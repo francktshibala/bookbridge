@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String         @id @default(cuid())
+  email            String         @unique
+  name             String?
+  isStudent        Boolean        @default(false)
+  fontSize         Int            @default(18)
+  contrast         String         @default("normal")
+  dyslexiaFont     Boolean        @default(false)
+  reducedMotion    Boolean        @default(false)
+  screenReaderMode Boolean        @default(false)
+  colorBlindMode   String         @default("none")
+  voiceNavigation  Boolean        @default(false)
+  readingSpeed     Float          @default(1.0)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  conversations    Conversation[]
+  subscription     Subscription?
+  usage            Usage[]
+
+  @@map("users")
+}
+
+model Subscription {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  tier      String   @default("free")
+  status    String   @default("active")
+  stripeId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
+
+model Book {
+  id            String         @id @default(cuid())
+  title         String
+  author        String
+  publicDomain  Boolean        @default(true)
+  description   String?
+  genre         String?
+  publishYear   Int?
+  isbn          String?
+  language      String         @default("en")
+  filename      String?
+  fileSize      Int?
+  uploadedBy    String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  conversations Conversation[]
+
+  @@map("books")
+}
+
+model Conversation {
+  id        String    @id @default(cuid())
+  userId    String
+  bookId    String
+  title     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  book      Book      @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages  Message[]
+
+  @@map("conversations")
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  content        String
+  sender         String
+  tokensUsed     Int?
+  model          String?
+  cost           Decimal?
+  createdAt      DateTime     @default(now())
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
+
+model Usage {
+  id      String   @id @default(cuid())
+  userId  String
+  date    DateTime @default(now())
+  queries Int      @default(0)
+  tokens  Int      @default(0)
+  cost    Decimal  @default(0)
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@map("usage")
+}
+
+model SystemUsage {
+  id           String   @id @default(cuid())
+  date         DateTime @unique @default(now())
+  totalQueries Int      @default(0)
+  totalTokens  Int      @default(0)
+  totalCost    Decimal  @default(0)
+  activeUsers  Int      @default(0)
+
+  @@map("system_usage")
+}

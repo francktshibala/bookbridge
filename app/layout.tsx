@@ -1,9 +1,10 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { SkipLinks } from '@/components/SkipLinks';
 import { AccessibilityProvider } from '@/contexts/AccessibilityContext';
 import { KeyboardNavigationProvider } from '@/components/KeyboardNavigationProvider';
+import Navigation from '@/components/Navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,14 +13,19 @@ export const metadata: Metadata = {
   description: 'An accessible AI-powered book companion designed for students with disabilities',
   keywords: 'accessible, AI, education, books, WCAG, screen reader',
   authors: [{ name: 'BookBridge Team' }],
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
-  themeColor: '#1a1a1a',
   manifest: '/manifest.json',
   openGraph: {
     title: 'BookBridge - Accessible AI Book Companion',
     description: 'AI-powered book analysis with 100% WCAG 2.1 AA compliance',
     type: 'website',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#1a1a1a',
 };
 
 export default function RootLayout({
@@ -54,26 +60,7 @@ export default function RootLayout({
         
         <AccessibilityProvider>
           <KeyboardNavigationProvider>
-            <header role="banner" className="bg-surface border-b border-gray-200">
-            <nav role="navigation" aria-label="Main navigation" id="navigation" className="container mx-auto px-4 py-4">
-              <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-bold">
-                  <a href="/" className="text-primary hover:text-accent-primary transition-colors">
-                    BookBridge
-                  </a>
-                </h1>
-                <div className="flex items-center gap-4">
-                  <a 
-                    href="/settings" 
-                    className="btn-secondary"
-                    aria-label="Accessibility settings"
-                  >
-                    Settings
-                  </a>
-                </div>
-              </div>
-            </nav>
-          </header>
+            <Navigation />
           
           <main 
             role="main" 
