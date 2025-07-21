@@ -5,6 +5,13 @@ import { createServerClient } from '@supabase/ssr';
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
   
+  // Allow public files
+  if (request.nextUrl.pathname.startsWith('/manifest.json') ||
+      request.nextUrl.pathname.startsWith('/icon-') ||
+      request.nextUrl.pathname.includes('.')) {
+    return response;
+  }
+  
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
