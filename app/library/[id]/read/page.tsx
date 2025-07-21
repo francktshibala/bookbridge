@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
+import { motion } from 'framer-motion';
 
 interface BookContent {
   id: string;
@@ -96,7 +97,7 @@ export default function BookReaderPage() {
   };
 
   const prevChunk = () => {
-    if (currentChunk > 0) {
+    if (currentChunk > 0 && bookContent) {
       const newChunk = currentChunk - 1;
       setCurrentChunk(newChunk);
       saveProgress(newChunk);
@@ -114,11 +115,49 @@ export default function BookReaderPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading book content...</p>
-        </div>
+      <div className="min-h-screen" style={{
+        backgroundColor: '#fafafa',
+        backgroundImage: `
+          radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(255, 219, 112, 0.1) 0%, transparent 50%)
+        `,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          style={{ textAlign: 'center', padding: '64px 0' }}
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              border: '3px solid #e2e8f0',
+              borderTop: '3px solid #667eea',
+              margin: '0 auto 16px auto'
+            }}
+          />
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+            style={{
+              color: '#4a5568',
+              fontSize: '16px',
+              fontWeight: '500',
+              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+            }}
+          >
+            Loading book content...
+          </motion.p>
+        </motion.div>
       </div>
     );
   }
@@ -193,41 +232,148 @@ export default function BookReaderPage() {
   };
 
   return (
-    <div className={`min-h-screen ${getBackgroundClass()}`}>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`min-h-screen ${getBackgroundClass()}`}
+      style={{
+        backgroundColor: '#fafafa',
+        backgroundImage: `
+          radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(255, 219, 112, 0.05) 0%, transparent 50%)
+        `
+      }}
+    >
       {/* Header */}
-      <div className={`${getHeaderClass()} border-b sticky top-0 z-10`}>
+      <motion.div 
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.4 }}
+        style={{
+          background: 'white',
+          borderBottom: '1px solid #e2e8f0',
+          position: 'sticky',
+          top: 0,
+          zIndex: 10,
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+        }}
+      >
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <button
+            <motion.button
+              whileHover={{ x: -4, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => router.push('/library')}
-              className={`${getTextClass()} hover:opacity-75 flex items-center space-x-2`}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                background: 'white',
+                border: '2px solid #e2e8f0',
+                borderRadius: '12px',
+                padding: '12px 20px',
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#4a5568',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#667eea';
+                e.currentTarget.style.backgroundColor = '#f8faff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = '#e2e8f0';
+                e.currentTarget.style.backgroundColor = 'white';
+              }}
             >
               <span>←</span>
               <span>Back to Library</span>
-            </button>
+            </motion.button>
             
-            <div className="text-center">
-              <h1 className={`text-lg font-semibold ${getTextClass()}`}>{bookContent.title}</h1>
-              <p className={`text-sm ${getTextClass()} opacity-75`}>by {bookContent.author}</p>
-            </div>
+            <motion.div 
+              initial={{ y: -10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              className="text-center"
+            >
+              <h1 style={{
+                fontSize: '20px',
+                fontWeight: '700',
+                color: '#1a202c',
+                marginBottom: '4px',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+              }}>{bookContent.title}</h1>
+              <p style={{
+                fontSize: '14px',
+                color: '#4a5568',
+                fontWeight: '500',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+              }}>by {bookContent.author}</p>
+            </motion.div>
             
-            <div className={`text-sm ${getTextClass()} opacity-75`}>
+            <motion.div 
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              style={{
+                fontSize: '14px',
+                color: '#4a5568',
+                fontWeight: '500',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                textAlign: 'right'
+              }}
+            >
               Page {currentChunk + 1} of {bookContent.totalChunks}
-              <div className="mt-1 w-16 bg-gray-300 rounded-full h-1">
-                <div 
-                  className="bg-blue-600 h-1 rounded-full transition-all duration-300"
-                  style={{ width: `${((currentChunk + 1) / bookContent.totalChunks) * 100}%` }}
+              <div style={{
+                marginTop: '8px',
+                width: '80px',
+                height: '4px',
+                backgroundColor: '#e2e8f0',
+                borderRadius: '2px',
+                overflow: 'hidden'
+              }}>
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: `${((currentChunk + 1) / bookContent.totalChunks) * 100}%` }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    height: '100%',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    borderRadius: '2px'
+                  }}
                   aria-label={`Reading progress: ${Math.round(((currentChunk + 1) / bookContent.totalChunks) * 100)}%`}
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Reading Content */}
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="prose prose-lg max-w-none">
+      <motion.div 
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        className="max-w-4xl mx-auto px-4 py-8"
+      >
+        <motion.div 
+          key={currentChunk}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+          style={{
+            background: 'white',
+            borderRadius: '16px',
+            padding: '32px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            minHeight: '400px'
+          }}
+        >
           <div 
             className={`whitespace-pre-wrap leading-relaxed ${
               preferences.contrast === 'high' ? 'text-black bg-white' :
@@ -236,8 +382,8 @@ export default function BookReaderPage() {
             }`}
             style={{
               fontSize: `${preferences.fontSize}px`,
-              lineHeight: preferences.dyslexiaFont ? '1.8' : '1.6',
-              fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : 'inherit'
+              lineHeight: preferences.dyslexiaFont ? '1.8' : '1.7',
+              fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : '"Inter", "Georgia", serif'
             }}
             role="main"
             aria-label="Book content"
@@ -245,33 +391,87 @@ export default function BookReaderPage() {
           >
             {currentChunkData?.content || 'No content available for this section.'}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Navigation Controls */}
-      <div className={`${getHeaderClass()} border-t sticky bottom-0`}>
+      <motion.div 
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.4 }}
+        style={{
+          background: 'white',
+          borderTop: '1px solid #e2e8f0',
+          position: 'sticky',
+          bottom: 0,
+          boxShadow: '0 -1px 3px rgba(0, 0, 0, 0.1)'
+        }}
+      >
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <button
+            <motion.button
+              whileHover={{ 
+                scale: currentChunk === 0 ? 1 : 1.05,
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ scale: 0.95 }}
               onClick={prevChunk}
               disabled={currentChunk === 0}
-              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-700 transition-colors"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 24px',
+                background: currentChunk === 0 ? '#f7fafc' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                color: currentChunk === 0 ? '#a0aec0' : 'white',
+                border: 'none',
+                borderRadius: '12px',
+                fontSize: '14px',
+                fontWeight: '600',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                cursor: currentChunk === 0 ? 'not-allowed' : 'pointer',
+                transition: 'all 0.2s ease'
+              }}
               aria-label="Previous page"
             >
               <span>←</span>
               <span>Previous</span>
-            </button>
+            </motion.button>
 
-            <div className="flex items-center space-x-2">
-              <span className={`text-sm ${getTextClass()}`}>Go to page:</span>
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.3 }}
+              style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
+            >
+              <span style={{
+                fontSize: '14px',
+                fontWeight: '500',
+                color: '#4a5568',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+              }}>Go to page:</span>
               <select
                 value={currentChunk}
                 onChange={(e) => goToChunk(parseInt(e.target.value))}
-                className={`border rounded px-2 py-1 text-sm ${
-                  preferences.contrast === 'ultra-high' 
-                    ? 'bg-gray-900 text-white border-gray-600' 
-                    : 'bg-white text-black border-gray-300'
-                }`}
+                style={{
+                  border: '2px solid #e2e8f0',
+                  borderRadius: '8px',
+                  padding: '8px 12px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  backgroundColor: 'white',
+                  color: '#2d3748',
+                  cursor: 'pointer',
+                  outline: 'none',
+                  transition: 'border-color 0.2s ease'
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#667eea';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#e2e8f0';
+                }}
                 aria-label="Jump to page"
               >
                 {Array.from({ length: bookContent.totalChunks }, (_, i) => (
@@ -280,20 +480,39 @@ export default function BookReaderPage() {
                   </option>
                 ))}
               </select>
-            </div>
+            </motion.div>
 
-            <button
+            <motion.button
+              whileHover={{ 
+                scale: currentChunk === bookContent.totalChunks - 1 ? 1 : 1.05,
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ scale: 0.95 }}
               onClick={nextChunk}
               disabled={currentChunk === bookContent.totalChunks - 1}
-              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-700 transition-colors"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 24px',
+                background: currentChunk === bookContent.totalChunks - 1 ? '#f7fafc' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                color: currentChunk === bookContent.totalChunks - 1 ? '#a0aec0' : 'white',
+                border: 'none',
+                borderRadius: '12px',
+                fontSize: '14px',
+                fontWeight: '600',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                cursor: currentChunk === bookContent.totalChunks - 1 ? 'not-allowed' : 'pointer',
+                transition: 'all 0.2s ease'
+              }}
               aria-label="Next page"
             >
               <span>Next</span>
               <span>→</span>
-            </button>
+            </motion.button>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

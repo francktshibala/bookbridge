@@ -7,6 +7,9 @@ export interface AccessibleComponentProps {
   ariaLabel?: string;
   ariaDescribedBy?: string;
   ariaLabelledBy?: string;
+  ariaLive?: 'polite' | 'assertive' | 'off';
+  ariaSetsize?: number;
+  ariaPosinset?: number;
   role?: string;
   tabIndex?: number;
   onFocus?: () => void;
@@ -16,7 +19,8 @@ export interface AccessibleComponentProps {
 
 interface AccessibleWrapperProps extends AccessibleComponentProps {
   children: React.ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
+  style?: React.CSSProperties;
 }
 
 export const AccessibleWrapper: React.FC<AccessibleWrapperProps> = ({ 
@@ -24,11 +28,15 @@ export const AccessibleWrapper: React.FC<AccessibleWrapperProps> = ({
   ariaLabel, 
   ariaDescribedBy,
   ariaLabelledBy,
+  ariaLive,
+  ariaSetsize,
+  ariaPosinset,
   role,
   tabIndex = 0,
   onFocus,
   onBlur,
   className,
+  style,
   as: Component = 'div'
 }) => {
   const props: any = {
@@ -36,10 +44,14 @@ export const AccessibleWrapper: React.FC<AccessibleWrapperProps> = ({
     'aria-label': ariaLabel,
     'aria-describedby': ariaDescribedBy,
     'aria-labelledby': ariaLabelledBy,
+    'aria-live': ariaLive,
+    'aria-setsize': ariaSetsize,
+    'aria-posinset': ariaPosinset,
     tabIndex,
     onFocus,
     onBlur,
-    className: clsx(className)
+    className: clsx(className),
+    style
   };
 
   // Remove undefined props

@@ -206,53 +206,48 @@
 
 ## PHASE 2: MVP Development (Weeks 4-8)
 
-### Sprint 4: Core Features - Reduced Scope (Week 4)
-**Theme:** "Public Domain MVP"  
-**Accessibility Focus:** Content presentation, reading experience  
+### Sprint 4: UI/UX TRANSFORMATION - Framer Motion Approach (Current Sprint)
+**Theme:** "Professional Animation Integration"  
+**Accessibility Focus:** Industry-standard animations with WCAG compliance  
 **AI Cost Target:** <$200 (Limited user testing)  
 
 #### Sprint Goals
-1. Build book upload and metadata system
-2. Create basic AI Q&A interface
-3. Implement accessible reading experience
+1. Replace complex custom components with reliable Framer Motion
+2. Create professional book grid with smooth animations
+3. Implement industry-standard user experience
 
 #### Daily Breakdown
 
-**Monday - Book Management System**
-- [ ] Create public domain book upload system
-- [ ] Implement metadata extraction (title, author, year)
-- [ ] Build book library interface
-- [ ] Add search and filtering
+**Monday - Framer Motion Setup & Book Grid**
+- [ ] Install Framer Motion: `npm install framer-motion`
+- [ ] Remove problematic custom 3D components
+- [ ] Create new BookCard component with hover animations
+- [ ] Implement staggered entrance animations for book grid
+- [ ] Add smooth loading states and test cross-browser
 
-**Tuesday - AI Q&A Interface**
-- [ ] Build accessible chat interface
-- [ ] Implement streaming AI responses
-- [ ] Add question suggestion system
-- [ ] Create response caching
+**Tuesday - Page Transitions & Interactions**
+- [ ] Implement smooth page transitions (library ↔ reading)
+- [ ] Add book selection animations and micro-interactions
+- [ ] Create responsive search and filter animations
+- [ ] Add subtle CSS gradient backgrounds
+- [ ] Optimize for accessibility (prefers-reduced-motion)
 
-**Wednesday - Reading Experience**
-- [ ] Design accessible book reader
-- [ ] Implement text customization (size, font, spacing)
-- [ ] Add reading progress tracking
-- [ ] Create bookmark functionality
+**Wednesday - AI Chat Enhancement & Polish**
+- [ ] Add smooth message bubble animations with Framer Motion
+- [ ] Implement typing indicators and message transitions
+- [ ] Create personality through subtle, purposeful animations
+- [ ] Final performance optimization and testing
+- [ ] User acceptance testing and feedback collection
 
-**Thursday - Mobile Optimization**
-- [ ] Implement responsive design
-- [ ] Add touch gesture support
-- [ ] Optimize for screen readers on mobile
-- [ ] Test one-handed operation
-
-**Friday - User Testing Preparation**
-- [ ] Hire accessibility consultant (2 days/week)
-- [ ] Recruit 5 beta testers with disabilities
-- [ ] Conduct initial usability testing
-- [ ] Document feedback and iterate
-
-#### Sprint 4 Acceptance Criteria
-- [ ] Public domain books can be uploaded and processed
-- [ ] Basic AI Q&A functional with accessibility
-- [ ] Reading experience works on mobile and desktop
-- [ ] Initial user testing shows 80%+ task completion
+#### Sprint 4 Acceptance Criteria (Revised)
+- [ ] Professional book grid with smooth hover animations
+- [ ] Staggered entrance animations work across all browsers
+- [ ] Page transitions feel smooth and responsive (<300ms)
+- [ ] All animations respect prefers-reduced-motion setting
+- [ ] Mobile experience works perfectly on touch devices
+- [ ] User testing shows improved professional appearance
+- [ ] Performance benchmarks met: <2s load time, 60fps animations
+- [ ] Zero console errors or animation glitches
 
 #### Risks & Mitigation
 - **Risk:** AI response quality issues  
@@ -264,119 +259,202 @@
 
 ---
 
-### Sprint 5: Accessibility Excellence (Week 5)
-**Theme:** "World-Class Accessibility"  
-**Accessibility Focus:** Voice navigation, multi-modal input  
-**AI Cost Target:** <$300 (Expanded testing)  
+### Sprint 5: AI TRANSFORMATION SPRINT (Week 5) - PRIORITY OVERHAUL
+**Theme:** "Revolutionary AI Intelligence Implementation"  
+**Accessibility Focus:** AI responses optimized for screen readers and voice navigation
+**AI Cost Target:** <$300 (Testing new infrastructure while optimizing costs)
 
-#### Sprint Goals
-1. Implement advanced accessibility features
-2. Add voice navigation system
-3. Create dyslexia and vision support
+#### Sprint Goals (UPDATED BASED ON DUAL RESEARCH)
+1. **CRITICAL**: Fix content fetch timeouts (current 100% failure rate)
+2. **HIGH**: Implement semantic vector search + RAG for true understanding
+3. **HIGH**: Upgrade to Claude Sonnet 4 with smart model routing
+4. **MEDIUM**: Begin Socratic questioning and multi-agent architecture
 
-#### Daily Breakdown
+#### Daily Breakdown (RESEARCH-BACKED IMPLEMENTATION)
 
-**Monday - Voice Navigation**
-- [ ] Implement voice command system
-- [ ] Add natural language processing for navigation
-- [ ] Create voice feedback for actions
-- [ ] Test with speech recognition software
+**Monday - Day 1-2: CRITICAL BLOCKER RESOLUTION**
+- [ ] **BLOCKER FIX: Content Fetch Timeout Resolution**
+  - [ ] Increase timeout from 10s to 30s with exponential backoff retry
+  - [ ] Add streaming progress updates with screen reader announcements
+  - [ ] Implement robust error handling with graceful fallback responses
+  - [ ] Test with existing book content to achieve 0% timeout failures
+  - [ ] Monitor and validate reliable content retrieval
 
-**Tuesday - Visual Accessibility**
-- [ ] Add high contrast and dark mode
-- [ ] Implement dyslexia-friendly fonts
-- [ ] Create color blindness support
-- [ ] Add motion sensitivity controls
+**Tuesday-Wednesday - Day 3-5: SEMANTIC INTELLIGENCE IMPLEMENTATION**
+- [ ] **VECTOR SEARCH + RAG SYSTEM**
+  - [ ] Set up text-embedding-3-large for semantic content understanding
+  - [ ] Choose and integrate vector database (Pinecone or Chroma evaluation)
+  - [ ] Implement hybrid search combining semantic + keyword matching
+  - [ ] Create intelligent chunk selection based on query complexity analysis
+  - [ ] Test semantic search accuracy targeting 90%+ relevant chunk retrieval
+  - [ ] Validate performance vs current keyword-only approach
 
-**Wednesday - Text-to-Speech Enhancement**
-- [ ] Implement advanced text-to-speech
-- [ ] Add speed and voice controls
-- [ ] Create pronunciation customization
-- [ ] Test with different speech synthesizers
+**Thursday-Friday - Day 6-7: ADVANCED MODEL INTEGRATION**
+- [ ] **CLAUDE SONNET 4 UPGRADE & OPTIMIZATION**
+  - [ ] Implement smart model routing (Sonnet 4 for complex analysis, Haiku for simple)
+  - [ ] Create specialized literary analysis prompts for educational depth
+  - [ ] Add enhanced prompt engineering with educational psychology principles
+  - [ ] Test model performance, response quality, and cost optimization
+  - [ ] Validate 60% cost reduction target with improved quality
 
-**Thursday - Cognitive Accessibility**
-- [ ] Simplify navigation and reduce complexity
-- [ ] Add clear progress indicators
-- [ ] Implement consistent interaction patterns
-- [ ] Create help and guidance systems
-
-**Friday - Accessibility Audit**
-- [ ] Conduct comprehensive WCAG 2.1 AA audit
-- [ ] Test with real users with disabilities
-- [ ] Document accessibility features
-- [ ] Create accessibility statement
-
-#### Sprint 5 Acceptance Criteria
-- [ ] Voice navigation covers 90% of app functionality
-- [ ] All WCAG 2.1 AA criteria met
-- [ ] Users with disabilities can complete all tasks
-- [ ] Accessibility audit shows 95%+ compliance
-
-#### Risks & Mitigation
-- **Risk:** Voice recognition accuracy issues  
-  **Mitigation:** Multiple recognition engines, fallback methods
-- **Risk:** Accessibility complexity impacts performance  
-  **Mitigation:** Performance testing, optimization
-
-**Sprint 5 Budget:** $3,000 (voice technology, user testing)
+**Friday Afternoon - SOCRATIC ENGINE FOUNDATION**
+- [ ] **EDUCATIONAL INTELLIGENCE LAYER (Foundation)**
+  - [ ] Design Socratic questioning engine architecture
+  - [ ] Transform basic responses into educational dialogue patterns
+  - [ ] Generate probing questions that guide discovery vs direct answers
+  - [ ] Create teaching moments identification within responses
+  - [ ] Test initial Socratic transformation vs traditional Q&A
 
 ---
 
-### Sprint 6: User Testing & Iteration (Week 6)
-**Theme:** "User-Centered Refinement"  
-**Accessibility Focus:** User feedback integration  
-**AI Cost Target:** <$400 (Real user testing)  
+### Sprint 6: AI INTELLIGENCE COMPLETION + Accessibility Testing (Week 6)
+**Theme:** "Educational AI Excellence & User Validation"  
+**Accessibility Focus:** AI responses integrated with voice navigation and screen readers
+**AI Cost Target:** <$400 (Comprehensive testing of new AI features)
 
-#### Sprint Goals
-1. Conduct extensive user testing
-2. Iterate based on accessibility feedback
-3. Optimize AI response quality
+#### Sprint Goals (RESEARCH-INTEGRATED APPROACH)
+1. **HIGH**: Complete educational intelligence layer (learning profiles, personalization)
+2. **HIGH**: Implement multi-perspective analysis and knowledge building
+3. **CRITICAL**: Comprehensive user testing of AI transformation
+4. **MEDIUM**: Advanced accessibility features integration
 
-#### Daily Breakdown
+#### Daily Breakdown (EDUCATIONAL PSYCHOLOGY + TECHNICAL EXCELLENCE)
 
-**Monday - Expanded User Testing**
-- [ ] Test with 10 users with different disabilities
-- [ ] Conduct task-based usability testing
-- [ ] Gather feedback on AI response quality
-- [ ] Document pain points and suggestions
+**Monday-Tuesday - Day 1-3: LEARNING INTELLIGENCE IMPLEMENTATION**
+- [ ] **LEARNING PROFILE SYSTEM**
+  - [ ] Create user learning profile tracking (reading level, comprehension history)
+  - [ ] Implement adaptive response complexity based on user progress and performance
+  - [ ] Add preferred explanation style detection (examples, analogies, step-by-step, conceptual)
+  - [ ] Build reading history connection engine for cross-book knowledge
+  - [ ] Test personalization accuracy targeting 90% correct difficulty adaptation
 
-**Tuesday - Accessibility Iterations**
-- [ ] Fix critical accessibility issues found
-- [ ] Improve screen reader experience
-- [ ] Optimize keyboard navigation flow
-- [ ] Enhance voice command accuracy
+- [ ] **MULTI-PERSPECTIVE CULTURAL ANALYSIS**
+  - [ ] Implement multiple viewpoint generation for complex historical/literary topics
+  - [ ] Add marginalized voices and alternative interpretations to responses
+  - [ ] Create modern relevance connections linking classic content to current events
+  - [ ] Include scholarly debates with evidence-based perspectives
+  - [ ] Test perspective diversity and accuracy with subject matter experts
 
-**Wednesday - AI Response Optimization**
-- [ ] Improve prompt engineering for better responses
-- [ ] Optimize caching for common questions
-- [ ] Add context awareness for follow-up questions
-- [ ] Test response quality across different books
+**Wednesday-Thursday - Day 4-5: KNOWLEDGE BUILDING & MULTI-AGENT SYSTEM**
+- [ ] **PROGRESSIVE KNOWLEDGE BUILDING**
+  - [ ] Build concept mapping system across user's entire reading history
+  - [ ] Implement cross-book knowledge connections ("Remember when we discussed...")
+  - [ ] Create learning path optimization based on mastery levels and interests
+  - [ ] Add conversational memory for continuity across sessions
+  - [ ] Test knowledge building effectiveness targeting 80% meaningful connections
 
-**Thursday - Performance Optimization**
-- [ ] Optimize page load times (target <2 seconds)
-- [ ] Improve AI response times (target <3 seconds)
-- [ ] Test with slower internet connections
-- [ ] Optimize for older devices
+- [ ] **MULTI-AGENT ARCHITECTURE IMPLEMENTATION**
+  - [ ] Design and implement research, analysis, citation, and synthesis agents
+  - [ ] Create parallel agent execution for comprehensive response generation
+  - [ ] Build academic-level citation system with exact page references
+  - [ ] Add interactive quote highlighting integration with book reader
+  - [ ] Test multi-agent coordination and response quality
 
-**Friday - Integration Testing**
-- [ ] Conduct end-to-end testing of all features
-- [ ] Test error handling and edge cases
-- [ ] Verify accessibility across different browsers
-- [ ] Prepare for business model implementation
+**Friday-Weekend - Day 6-7: COMPREHENSIVE AI VALIDATION**
+- [ ] **CRITICAL: AI TRANSFORMATION USER TESTING**
+  - [ ] Recruit and test with 10 users comparing new vs old AI system
+  - [ ] Measure educational engagement and follow-up question generation
+  - [ ] Validate citation accuracy and relevance with academic standards
+  - [ ] Test Socratic questioning effectiveness for learning outcomes
+  - [ ] Gather quantitative feedback on learning experience transformation
+  - [ ] Document user satisfaction improvements and areas for iteration
 
-#### Sprint 6 Acceptance Criteria
-- [ ] 90% of accessibility issues resolved
-- [ ] AI response quality rated 4+ out of 5 by users
-- [ ] Page load times under 2 seconds
-- [ ] Zero critical bugs in core functionality
+- [ ] **ACCESSIBILITY INTEGRATION TESTING**
+  - [ ] Test new AI features with screen readers (NVDA, JAWS, VoiceOver)
+  - [ ] Validate voice navigation integration with enhanced AI responses
+  - [ ] Ensure citations and quotes are accessible to assistive technologies
+  - [ ] Test keyboard navigation with new multi-agent response features
 
-#### Risks & Mitigation
-- **Risk:** User feedback reveals major issues  
-  **Mitigation:** Rapid iteration, focus on critical path
-- **Risk:** Performance issues with accessibility features  
-  **Mitigation:** Performance monitoring, optimization
+#### Sprint 5 Acceptance Criteria (AI TRANSFORMATION FOCUS)
+- [ ] Content fetch timeout: 0% failure rate (from current 100% failure)
+- [ ] Vector search accuracy: 90%+ relevant chunk retrieval
+- [ ] Response speed with citations: <5 seconds average
+- [ ] Model routing optimization: 60% cost reduction with improved quality
+- [ ] Socratic questioning foundation: Educational dialogue vs basic Q&A
 
-**Sprint 6 Budget:** $3,000 (extended user testing, performance tools)
+#### Sprint 6 Acceptance Criteria (EDUCATIONAL INTELLIGENCE COMPLETION)
+- [ ] Learning profile accuracy: 90% correct difficulty adaptation
+- [ ] Multi-perspective analysis: 3+ viewpoints per complex topic
+- [ ] Knowledge building: 80% of users make meaningful cross-book connections
+- [ ] Citation accuracy: 95% verified quotes with exact page references
+- [ ] User satisfaction: 90%+ prefer new AI system vs old system
+- [ ] Educational engagement: 3x increase in follow-up questions
+
+#### Risks & Mitigation (UPDATED FOR AI FOCUS)
+- **Risk:** Vector search implementation complexity  
+  **Mitigation:** Start with proven libraries (Pinecone), parallel implementation approach
+- **Risk:** AI cost overruns during testing  
+  **Mitigation:** Strict monitoring, caching optimization, usage limits
+- **Risk:** Educational intelligence complexity  
+  **Mitigation:** Iterative testing with real users, focus on measurable outcomes
+
+**Sprint 5-6 Budget:** $4,000 (Vector database setup, enhanced AI credits, user testing)
+
+---
+
+### Sprint 7: Advanced AI Features & Performance Optimization (Week 7)
+**Theme:** "AI Excellence & System Performance"  
+**Accessibility Focus:** Advanced accessibility features with optimized AI
+**AI Cost Target:** <$500 (Full feature testing with optimization)
+
+#### Sprint Goals (PHASE 3: ADVANCED INTEGRATION)
+1. **HIGH**: Implement real-time content intelligence and text selection AI
+2. **HIGH**: Add advanced study aid generation (summaries, concept maps, essay prompts)
+3. **MEDIUM**: Performance optimization and A/B testing framework
+4. **MEDIUM**: Advanced accessibility features (voice navigation, visual modes)
+
+#### Daily Breakdown (PHASE 3 IMPLEMENTATION)
+
+**Monday - REAL-TIME CONTENT INTELLIGENCE**
+- [ ] **Text Selection AI Integration**
+  - [ ] Implement instant analysis of selected text passages
+  - [ ] Add contextual mini-lessons for literary devices and historical context
+  - [ ] Create connections to previous chapters and user's reading history
+  - [ ] Generate contextual questions based on selected content
+  - [ ] Test real-time analysis speed and accuracy
+
+**Tuesday-Wednesday - ADVANCED STUDY AID GENERATION**
+- [ ] **Intelligent Study Aid System**
+  - [ ] Implement smart summaries personalized to user's reading level
+  - [ ] Create dynamic concept mapping based on user's progress
+  - [ ] Generate essay prompts aligned with educational objectives
+  - [ ] Build discussion questions that promote critical thinking
+  - [ ] Add quiz questions with adaptive difficulty
+  - [ ] Test study aid quality and educational value
+
+**Thursday - PERFORMANCE OPTIMIZATION & A/B TESTING**
+- [ ] **AI Performance Excellence**
+  - [ ] Implement A/B testing framework for response optimization
+  - [ ] Create performance monitoring for educational effectiveness
+  - [ ] Optimize caching strategies for educational content
+  - [ ] Test different AI personality approaches (Socratic vs direct)
+  - [ ] Validate response time improvements (<3 seconds target)
+
+**Friday - ADVANCED ACCESSIBILITY INTEGRATION**
+- [ ] **Voice Navigation & Visual Accessibility**
+  - [ ] Implement voice navigation system with AI response integration
+  - [ ] Add high contrast and dyslexia-friendly modes
+  - [ ] Create customizable text sizing with smooth transitions
+  - [ ] Test voice commands with new AI features
+  - [ ] Validate accessibility compliance with enhanced AI
+
+#### Sprint 7 Acceptance Criteria (ADVANCED AI FEATURES)
+- [ ] Text selection AI: Instant analysis with contextual insights
+- [ ] Study aids generation: Personalized to user's level and interests
+- [ ] Performance optimization: <3 seconds average AI response time
+- [ ] A/B testing: Framework operational for continuous improvement
+- [ ] Voice navigation: Integrated with all new AI features
+- [ ] Educational value: 4.5+ user rating for learning enhancement
+
+#### Risks & Mitigation (PHASE 3 FOCUS)
+- **Risk:** Real-time analysis performance impact  
+  **Mitigation:** Efficient caching, progressive enhancement
+- **Risk:** Study aid quality consistency  
+  **Mitigation:** Template-based generation, user feedback loops
+- **Risk:** Advanced features accessibility complexity  
+  **Mitigation:** Incremental testing, assistive technology validation
+
+**Sprint 7 Budget:** $3,500 (Advanced AI features, performance optimization tools)
 
 ---
 

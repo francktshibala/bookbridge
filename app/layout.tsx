@@ -5,6 +5,7 @@ import { SkipLinks } from '@/components/SkipLinks';
 import { AccessibilityProvider } from '@/contexts/AccessibilityContext';
 import { KeyboardNavigationProvider } from '@/components/KeyboardNavigationProvider';
 import Navigation from '@/components/Navigation';
+import { VoiceNavigationWrapper } from '@/components/VoiceNavigationWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -60,27 +61,29 @@ export default function RootLayout({
         
         <AccessibilityProvider>
           <KeyboardNavigationProvider>
-            <Navigation />
-          
-          <main 
-            role="main" 
-            aria-label="BookBridge application" 
-            id="main-content"
-            className="flex-1 container mx-auto px-4 py-8"
-          >
-            {children}
-          </main>
-          
-          <footer role="contentinfo" className="bg-surface border-t border-gray-200 mt-auto">
-            <div className="container mx-auto px-4 py-4">
-              <p className="text-sm text-secondary text-center">
-                © 2024 BookBridge. Built with accessibility first. 
-                <a href="/accessibility" className="ml-2 underline hover:text-accent-primary">
-                  Accessibility Statement
-                </a>
-              </p>
-            </div>
-          </footer>
+            <VoiceNavigationWrapper>
+              <Navigation />
+            
+              <main 
+                role="main" 
+                aria-label="BookBridge application" 
+                id="main-content"
+                className="flex-1 container mx-auto px-4 py-8"
+              >
+                {children}
+              </main>
+              
+              <footer role="contentinfo" className="bg-surface border-t border-gray-200 mt-auto">
+                <div className="container mx-auto px-4 py-4">
+                  <p className="text-sm text-secondary text-center">
+                    © 2024 BookBridge. Built with accessibility first. 
+                    <a href="/accessibility" className="ml-2 underline hover:text-accent-primary">
+                      Accessibility Statement
+                    </a>
+                  </p>
+                </div>
+              </footer>
+            </VoiceNavigationWrapper>
           </KeyboardNavigationProvider>
         </AccessibilityProvider>
       </body>

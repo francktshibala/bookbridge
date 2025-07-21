@@ -1,3 +1,41 @@
+# Dependencies
 node_modules
+
+# Environment files
 .env
 .env.local
+.env.production
+
+# Build outputs
+.next/
+out/
+dist/
+
+# Vercel
+.vercel
+
+# Local certificates (not needed for Vercel)
+certificates/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Cache
+.next/cache

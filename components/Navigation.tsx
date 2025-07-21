@@ -44,8 +44,16 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-gray-900">📚 BookBridge</span>
+            <Link href="/" style={{ textDecoration: 'none' }} className="flex items-center">
+              <span style={{
+                fontSize: '24px',
+                fontWeight: '800',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+              }}>📚 BookBridge</span>
             </Link>
             
             {user && (

@@ -57,7 +57,7 @@ export default function SignupPage() {
           <AccessibleWrapper
             as="div"
             role="alert"
-            ariaLive="polite"
+            aria-live="polite"
             className="rounded-md bg-green-50 p-4"
           >
             <div className="text-center">
@@ -155,7 +155,7 @@ export default function SignupPage() {
               <AccessibleWrapper
                 as="div"
                 role="alert"
-                ariaLive="assertive"
+                aria-live="assertive"
                 className="rounded-md bg-red-50 p-4"
               >
                 <div className="text-sm text-red-700">{error}</div>

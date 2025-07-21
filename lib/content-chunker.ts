@@ -175,7 +175,58 @@ export class ContentChunker {
     query: string,
     maxChunks: number = 3
   ): ContentChunk[] {
-    // Simple keyword-based relevance scoring
+    // Check if this is an overview/about query
+    const overviewQueries = [
+      /what.*book.*about/i,
+      /summary/i,
+      /overview/i,
+      /main theme/i,
+      /tell me about/i,
+      /introduction/i
+    ];
+    
+    const isOverviewQuery = overviewQueries.some(pattern => pattern.test(query));
+    
+    // For overview queries, prioritize the beginning of the book
+    if (isOverviewQuery && chunks.length > 0) {
+      // Get first few chunks (usually contains introduction/overview)
+      const introChunks = chunks.slice(0, Math.min(3, chunks.length));
+      
+      // Also try to find chunks with overview keywords
+      const queryWords = query.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+      const scoredChunks = chunks.slice(3).map(chunk => {
+        const chunkLower = chunk.content.toLowerCase();
+        let score = 0;
+        
+        // Score based on keyword matches
+        for (const word of queryWords) {
+          const matches = (chunkLower.match(new RegExp(`\\b${word}\\b`, 'g')) || []).length;
+          score += matches * (word.length > 5 ? 2 : 1);
+        }
+        
+        // Bonus for overview-related content
+        const overviewKeywords = ['introduction', 'preface', 'foreword', 'overview', 'summary', 'about'];
+        for (const keyword of overviewKeywords) {
+          if (chunkLower.includes(keyword)) {
+            score += 5;
+          }
+        }
+        
+        return { chunk, score };
+      });
+      
+      // Get best scoring chunks from the rest
+      const bestScored = scoredChunks
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, Math.max(0, maxChunks - introChunks.length))
+        .map(item => item.chunk);
+      
+      // Combine intro chunks with best scored chunks
+      return [...introChunks, ...bestScored].slice(0, maxChunks);
+    }
+    
+    // Simple keyword-based relevance scoring for other queries
     const queryWords = query.toLowerCase().split(/\s+/).filter(w => w.length > 2);
     
     const scoredChunks = chunks.map(chunk => {

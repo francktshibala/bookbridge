@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { createClient as createServiceClient } from '@supabase/supabase-js';
 import { prisma } from '@/lib/prisma';
 import { contentExtractor } from '@/lib/content-extractor';
-import { contentChunker } from '@/lib/content-chunker';
+import { enhancedContentChunker } from '@/lib/content-chunker-enhanced';
 
 export async function GET(
   request: NextRequest,
@@ -90,28 +90,33 @@ export async function GET(
       const returnChunks = searchParams.get('chunks') === 'true';
       
       if (returnChunks || query) {
-        // Create chunks from the extracted content
-        const chunks = contentChunker.chunk(
+        // Create and index chunks from the extracted content
+        const chunks = await enhancedContentChunker.chunkAndIndex(
           book.id,
           extractedContent.text,
-          extractedContent.chapters,
-          {
-            maxChunkSize: 1500,
-            overlapSize: 200,
-            preserveSentences: true,
-            preserveParagraphs: true
-          }
+          extractedContent.chapters
         );
         
-        // If there's a query, find relevant chunks
-        const relevantChunks = query 
-          ? contentChunker.findRelevantChunks(chunks, query, 5)
-          : chunks.slice(0, 10); // Return first 10 chunks if no query
+        // If there's a query, find relevant chunks using vector search
+        let relevantChunks: any[];
+        let context: string | null = null;
         
-        // Create context for AI from relevant chunks
-        const context = query 
-          ? contentChunker.createContextFromChunks(relevantChunks, 3000)
-          : null;
+        if (query) {
+          relevantChunks = await enhancedContentChunker.findRelevantChunksAsync(
+            book.id,
+            chunks,
+            query,
+            5
+          );
+          context = await enhancedContentChunker.createEnhancedContextFromQuery(
+            book.id,
+            chunks,
+            query,
+            3000
+          );
+        } else {
+          relevantChunks = chunks.slice(0, 10); // Return first 10 chunks if no query
+        }
         
         return NextResponse.json({
           id: book.id,
