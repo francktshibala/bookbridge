@@ -52,9 +52,15 @@ export async function POST(request: NextRequest) {
             // Use fast content route with shorter timeout
             const timeout = 10000; // Fixed 10 second timeout
             
+            // Auto-detect the base URL for internal API calls
+            const baseUrl = process.env.NEXT_PUBLIC_URL || 
+                           (request.headers.get('host') ? 
+                            `https://${request.headers.get('host')}` : 
+                            'http://localhost:3000');
+            
             contentResponse = await Promise.race([
               fetch(
-                `${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/books/${bookId}/content-fast?query=${encodeURIComponent(query)}&maxChunks=5&maxWords=3000`,
+                `${baseUrl}/api/books/${bookId}/content-fast?query=${encodeURIComponent(query)}&maxChunks=5&maxWords=3000`,
                 {
                   headers: {
                     'Cookie': request.headers.get('cookie') || ''
@@ -123,8 +129,14 @@ export async function POST(request: NextRequest) {
 
     // Get user learning profile for personalized responses
     console.log('Getting user learning profile...');
-    const adaptivePrompt = await learningProfileService.getAdaptivePrompt(user.id, query);
-    console.log('Adaptive prompt generated:', adaptivePrompt ? 'Yes' : 'No');
+    let adaptivePrompt = '';
+    try {
+      adaptivePrompt = await learningProfileService.getAdaptivePrompt(user.id, query);
+      console.log('Adaptive prompt generated:', adaptivePrompt ? 'Yes' : 'No');
+    } catch (error) {
+      console.error('Learning profile error (non-blocking):', error.message);
+      adaptivePrompt = ''; // Continue without adaptive prompt
+    }
 
     // Get cross-book connections for contextual learning
     console.log('Getting cross-book connections...');
@@ -142,7 +154,8 @@ export async function POST(request: NextRequest) {
           console.log('Cross-book connections found:', connections.suggestedContext.length);
         }
       } catch (error) {
-        console.error('Error getting cross-book connections:', error);
+        console.error('Error getting cross-book connections (non-blocking):', error.message);
+        crossBookContext = ''; // Continue without cross-book context
       }
     }
 
