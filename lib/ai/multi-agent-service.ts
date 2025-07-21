@@ -51,7 +51,7 @@ export class MultiAgentService {
       temperature?: number;
     }
   ): Promise<MultiAgentResponse> {
-    const { userId, bookId, bookContext, maxTokens = 500, temperature = 0.7 } = options;
+    const { userId, bookId, bookContext, maxTokens = 1500, temperature = 0.7 } = options;
 
     // Step 1: Research Agent - Find relevant content
     const researchAgent = new ResearchAgent(this.anthropic);
@@ -145,7 +145,7 @@ Context: [Brief context explanation]
       response = await this.anthropic.messages.create({
         model: 'claude-3-5-sonnet-20241022',
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: 400,
+        max_tokens: 600,
         temperature: 0.3
       });
     } catch (error: any) {
@@ -158,7 +158,7 @@ Context: [Brief context explanation]
         const openaiResponse = await openai.chat.completions.create({
           model: 'gpt-4o',
           messages: [{ role: 'user', content: prompt }],
-          max_tokens: 400,
+          max_tokens: 600,
           temperature: 0.3
         });
         
@@ -230,22 +230,25 @@ Instructions:
 4. Connect to broader literary and cultural contexts
 5. Explain significance and implications
 
-Focus on:
-- Thematic analysis
-- Character development insights  
-- Literary techniques and their effects
-- Historical/cultural context
-- Symbolic meanings
-- Connections to other works or ideas
+Create an elaborate, flowing literary analysis that reads like a passionate professor's discourse. Your response should:
 
-Provide nuanced, academic-level analysis while remaining accessible.`;
+- Flow naturally from one insight to another with elegant transitions
+- Demonstrate deep literary understanding through sophisticated analysis
+- Weave together themes, symbolism, and character development organically
+- Include rich historical and cultural context as part of the narrative
+- Connect to other literary works and intellectual traditions naturally
+- Maintain the engaging tone of a brilliant academic conversation
+- Use flowing prose, not bullet points or fragmented thoughts
+- Build each paragraph upon the previous, creating intellectual momentum
+
+Write as if you're leading a fascinating graduate seminar, with passion and depth.`;
 
     let response;
     try {
       response = await this.anthropic.messages.create({
         model: 'claude-3-5-sonnet-20241022',
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: 400,
+        max_tokens: 600,
         temperature: 0.7
       });
     } catch (error: any) {
@@ -257,7 +260,7 @@ Provide nuanced, academic-level analysis while remaining accessible.`;
         const openaiResponse = await openai.chat.completions.create({
           model: 'gpt-4o',
           messages: [{ role: 'user', content: prompt }],
-          max_tokens: 400,
+          max_tokens: 600,
           temperature: 0.7
         });
         
@@ -328,7 +331,7 @@ Context: [Why this quote is significant]
       response = await this.anthropic.messages.create({
         model: 'claude-3-5-sonnet-20241022',
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: 300,
+        max_tokens: 1000,
         temperature: 0.3
       });
     } catch (error: any) {
@@ -340,7 +343,7 @@ Context: [Why this quote is significant]
         const openaiResponse = await openai.chat.completions.create({
           model: 'gpt-4o',
           messages: [{ role: 'user', content: prompt }],
-          max_tokens: 300,
+          max_tokens: 1000,
           temperature: 0.3
         });
         
@@ -414,30 +417,38 @@ ${analysis.content}
 Citation Agent References:
 ${citations.content}
 
-Instructions:
-1. Create a comprehensive response that answers the user's query
-2. Integrate research findings, analytical insights, and proper citations seamlessly
-3. Structure the response clearly with sections/headings if appropriate
-4. Highlight important quotes using **bold** formatting
-5. Include proper citations in parentheses
-6. Maintain an educational, engaging tone
-7. Ensure accuracy and avoid speculation beyond what's supported by the content
+Instructions for creating an elaborate, flowing response:
 
-Format the response to be:
-- Well-structured and easy to read
-- Educational and insightful
-- Properly cited with evidence
-- Comprehensive but concise
-- Engaging and accessible
+Your synthesis should read like an eloquent academic essay or a captivating lecture from a distinguished professor. Create a response that:
 
-Begin your response directly addressing the user's question.`;
+1. Opens with an engaging, sophisticated introduction that draws the reader in
+2. Develops ideas through flowing, interconnected paragraphs that build upon each other
+3. Integrates research findings, analysis, and citations naturally within the prose
+4. Uses transitions and connecting phrases to create intellectual flow
+5. Weaves quotes elegantly into the narrative, not as separate elements
+6. Demonstrates scholarly depth while maintaining accessibility
+7. Concludes with insights that elevate understanding and inspire further thought
+
+AVOID:
+- Bullet points or numbered lists
+- Choppy, disconnected sections
+- Study guide formatting
+- Overly technical jargon without explanation
+
+INSTEAD CREATE:
+- Flowing academic prose that engages and educates
+- Natural integration of evidence and analysis
+- A response that feels like a brilliant conversation with an expert
+- Rich, elaborate exploration that satisfies intellectual curiosity
+
+Begin with an elegant opening that immediately engages with the question's deeper implications.`;
 
     let response;
     try {
       response = await this.anthropic.messages.create({
         model: 'claude-3-5-sonnet-20241022',
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: 500,
+        max_tokens: 1000,
         temperature: 0.6
       });
     } catch (error: any) {
@@ -449,7 +460,7 @@ Begin your response directly addressing the user's question.`;
         const openaiResponse = await openai.chat.completions.create({
           model: 'gpt-4o',
           messages: [{ role: 'user', content: prompt }],
-          max_tokens: 500,
+          max_tokens: 1000,
           temperature: 0.6
         });
         

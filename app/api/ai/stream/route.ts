@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
             userId: user.id,
             bookId,
             bookContext,
-            maxTokens: 500
+            maxTokens: 1500
           });
 
           let fullContent = '';

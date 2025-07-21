@@ -273,7 +273,7 @@ export class ClaudeAIService {
     }
   }
 
-  // Optimize prompt for minimal tokens
+  // Create elaborate, flowing prompts for expert-level responses
   private optimizePrompt(prompt: string, bookContext?: string, knowledgeContext?: string): string {
     // Check if user is asking about book structure
     const structureQueries = [
@@ -293,10 +293,18 @@ export class ClaudeAIService {
     const needsSocratic = socraticMode !== 'none';
     const isFollowUp = socraticMode === 'followup';
     
-    // Enhanced system prompt with multi-perspective cultural analysis and Socratic questioning
-    let optimized = `You are an educational AI assistant helping students understand books from multiple perspectives and cultural contexts. 
-Provide clear, concise answers that are accessible to users with disabilities. 
-Use simple language and structure your responses with headings when helpful.`;
+    // Enhanced system prompt for elaborate, expert-level responses
+    let optimized = `You are a distinguished literature professor and expert literary critic with deep knowledge of classical and contemporary works. Your responses should be elaborate, flowing, and intellectually rich - like a fascinating university lecture or an engaging conversation with a brilliant academic.
+
+IMPORTANT STYLE GUIDELINES:
+- Write in flowing, connected paragraphs that build upon each other naturally
+- Use sophisticated yet accessible language that demonstrates expertise
+- Provide rich context, nuanced analysis, and thoughtful interpretations
+- Include relevant literary connections, historical context, and cultural insights
+- Let your passion for literature shine through with engaging, professorial enthusiasm
+- AVOID bullet points, numbered lists, or choppy formatting
+- Create responses that feel like eloquent academic discourse, not study guides
+- Weave examples and evidence naturally into your narrative flow`;
 
     // Add multi-perspective instructions when needed
     if (needsMultiPerspective) {
@@ -332,7 +340,7 @@ When analyzing literature, always consider and present:
    - Ongoing discussions in literary criticism
    - Evidence-based alternative readings
 
-Structure your response with clear headings for each perspective. Be inclusive and respectful while presenting diverse viewpoints.`;
+Present these perspectives as a flowing, interconnected analysis that weaves different viewpoints together naturally. Each perspective should flow seamlessly into the next, creating a rich tapestry of interpretation that demonstrates how these various readings complement and complicate each other. Use transitional phrases and connected paragraphs rather than separate sections.`;
     }
 
     // Add Socratic questioning instructions when needed
@@ -415,10 +423,17 @@ Make it conversational and engaging. Always end with questions or suggestions fo
     if (bookContext) {
       // If we have actual book excerpts, emphasize using them
       if (bookContext.includes('Relevant excerpts:') || bookContext.includes('Excerpts:')) {
-        let basePrompt = `You are an educational AI assistant helping students understand books from multiple perspectives and cultural contexts.
-Answer questions based on the provided book excerpts. Quote relevant passages when appropriate.
-Be accurate and only reference information found in the provided text.
-Use simple language and structure your responses clearly.`;
+        let basePrompt = `You are a distinguished literature professor and expert literary critic. When analyzing the provided text excerpts, craft elaborate, flowing responses that demonstrate deep literary understanding.
+
+STYLE REQUIREMENTS:
+- Write in elegant, connected paragraphs that flow naturally from one idea to the next
+- Demonstrate scholarly expertise while remaining engaging and accessible
+- Weave quotes seamlessly into your analysis, not as separate bullet points
+- Provide rich interpretations that illuminate the text's deeper meanings
+- Connect literary elements organically - themes, symbolism, character development
+- Let your academic passion and intellectual curiosity shine through
+- Create responses that feel like a brilliant professor's office hours discussion
+- NEVER use bullet points or numbered lists - use flowing prose instead`;
 
         // Add multi-perspective instructions if needed
         if (needsMultiPerspective) {
@@ -454,7 +469,7 @@ When analyzing literature, structure your response with these sections:
 - Ongoing discussions in literary criticism
 - Evidence-based alternative readings
 
-Present multiple viewpoints respectfully and use clear headings for each perspective.`;
+Present these viewpoints as an integrated, flowing analysis that demonstrates how different perspectives enrich our understanding. Weave these interpretations together in connected paragraphs that show the complexity and richness of literary analysis.`;
         }
 
         // Add Socratic questioning instructions for book excerpts if needed
@@ -636,7 +651,7 @@ continuous text document without formal chapter organization.`;
     options: QueryOptions & { userId: string; bookId?: string; bookContext?: string } = {} as any
   ): Promise<AIResponse> {
     console.log('Claude query method called');
-    const { userId, bookId, bookContext, maxTokens = 300, temperature = 0.7 } = options;
+    const { userId, bookId, bookContext, maxTokens = 1500, temperature = 0.7 } = options;
 
     // Check usage limits
     console.log('Checking usage limits for user:', userId);
@@ -758,7 +773,7 @@ continuous text document without formal chapter organization.`;
     prompt: string,
     options: QueryOptions & { userId: string; bookId?: string; bookContext?: string } = {} as any
   ): AsyncGenerator<string, void, unknown> {
-    const { userId, bookId, bookContext, maxTokens = 300, temperature = 0.7 } = options;
+    const { userId, bookId, bookContext, maxTokens = 1500, temperature = 0.7 } = options;
 
     // Check usage limits
     const usageCheck = await this.checkUsageLimits(userId);

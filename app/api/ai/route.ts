@@ -182,7 +182,7 @@ export async function POST(request: NextRequest) {
         userId: user.id,
         bookId,
         bookContext: enrichedBookContext + crossBookContext,
-        maxTokens: 500
+        maxTokens: 1500
       });
       console.log('Multi-agent response received:', response);
     } else {
@@ -192,7 +192,7 @@ export async function POST(request: NextRequest) {
         userId: user.id,
         bookId,
         bookContext: enrichedBookContext + crossBookContext,
-        maxTokens: 500
+        maxTokens: 1500
       });
       console.log('Standard AI response received:', response);
     }
