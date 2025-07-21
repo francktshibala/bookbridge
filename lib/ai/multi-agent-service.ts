@@ -323,12 +323,38 @@ Context: [Why this quote is significant]
 **CITATION NOTES:**
 [Any important notes about sources, context, or attribution]`;
 
-    const response = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 300,
-      temperature: 0.3
-    });
+    let response;
+    try {
+      response = await this.anthropic.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 300,
+        temperature: 0.3
+      });
+    } catch (error: any) {
+      if (error.status === 529) {
+        console.log('Claude overloaded, falling back to OpenAI for citation agent');
+        const { OpenAI } = await import('openai');
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        
+        const openaiResponse = await openai.chat.completions.create({
+          model: 'gpt-4o',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 300,
+          temperature: 0.3
+        });
+        
+        response = {
+          content: [{ type: 'text', text: openaiResponse.choices[0].message.content || '' }],
+          usage: {
+            input_tokens: 0,
+            output_tokens: openaiResponse.usage?.completion_tokens || 0
+          }
+        };
+      } else {
+        throw error;
+      }
+    }
 
     const content = response.content[0].type === 'text' ? response.content[0].text : '';
     
@@ -406,12 +432,38 @@ Format the response to be:
 
 Begin your response directly addressing the user's question.`;
 
-    const response = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 500,
-      temperature: 0.6
-    });
+    let response;
+    try {
+      response = await this.anthropic.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 500,
+        temperature: 0.6
+      });
+    } catch (error: any) {
+      if (error.status === 529) {
+        console.log('Claude overloaded, falling back to OpenAI for synthesis agent');
+        const { OpenAI } = await import('openai');
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        
+        const openaiResponse = await openai.chat.completions.create({
+          model: 'gpt-4o',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 500,
+          temperature: 0.6
+        });
+        
+        response = {
+          content: [{ type: 'text', text: openaiResponse.choices[0].message.content || '' }],
+          usage: {
+            input_tokens: 0,
+            output_tokens: openaiResponse.usage?.completion_tokens || 0
+          }
+        };
+      } else {
+        throw error;
+      }
+    }
 
     const content = response.content[0].type === 'text' ? response.content[0].text : '';
 
