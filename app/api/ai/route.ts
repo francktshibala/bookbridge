@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
       adaptivePrompt = await learningProfileService.getAdaptivePrompt(user.id, query);
       console.log('Adaptive prompt generated:', adaptivePrompt ? 'Yes' : 'No');
     } catch (error) {
-      console.error('Learning profile error (non-blocking):', error.message);
+      console.error('Learning profile error (non-blocking):', error instanceof Error ? error.message : String(error));
       adaptivePrompt = ''; // Continue without adaptive prompt
     }
 
@@ -154,7 +154,7 @@ export async function POST(request: NextRequest) {
           console.log('Cross-book connections found:', connections.suggestedContext.length);
         }
       } catch (error) {
-        console.error('Error getting cross-book connections (non-blocking):', error.message);
+        console.error('Error getting cross-book connections (non-blocking):', error instanceof Error ? error.message : String(error));
         crossBookContext = ''; // Continue without cross-book context
       }
     }
