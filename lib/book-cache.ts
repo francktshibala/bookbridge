@@ -167,7 +167,9 @@ class BookCacheService {
       
       // Score based on query term frequency
       queryTerms.forEach(term => {
-        const matches = (chunkText.match(new RegExp(term, 'g')) || []).length
+        // Escape special regex characters to prevent regex errors
+        const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        const matches = (chunkText.match(new RegExp(escapedTerm, 'g')) || []).length
         score += matches * 10
         
         // Bonus for exact phrase matches
