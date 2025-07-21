@@ -140,12 +140,39 @@ Context: [Brief context explanation]
 **RESEARCH SUMMARY:**
 [Brief summary of what was found relevant to the query]`;
 
-    const response = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 400,
-      temperature: 0.3
-    });
+    let response;
+    try {
+      response = await this.anthropic.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 400,
+        temperature: 0.3
+      });
+    } catch (error: any) {
+      // Fallback to OpenAI if Claude is overloaded
+      if (error.status === 529) {
+        console.log('Claude overloaded, falling back to OpenAI for research agent');
+        const { OpenAI } = await import('openai');
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        
+        const openaiResponse = await openai.chat.completions.create({
+          model: 'gpt-4o',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 400,
+          temperature: 0.3
+        });
+        
+        response = {
+          content: [{ type: 'text', text: openaiResponse.choices[0].message.content || '' }],
+          usage: {
+            input_tokens: 0, // OpenAI doesn't provide this directly
+            output_tokens: openaiResponse.usage?.completion_tokens || 0
+          }
+        };
+      } else {
+        throw error;
+      }
+    }
 
     const content = response.content[0].type === 'text' ? response.content[0].text : '';
     
@@ -213,12 +240,38 @@ Focus on:
 
 Provide nuanced, academic-level analysis while remaining accessible.`;
 
-    const response = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 400,
-      temperature: 0.7
-    });
+    let response;
+    try {
+      response = await this.anthropic.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 400,
+        temperature: 0.7
+      });
+    } catch (error: any) {
+      if (error.status === 529) {
+        console.log('Claude overloaded, falling back to OpenAI for analysis agent');
+        const { OpenAI } = await import('openai');
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        
+        const openaiResponse = await openai.chat.completions.create({
+          model: 'gpt-4o',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 400,
+          temperature: 0.7
+        });
+        
+        response = {
+          content: [{ type: 'text', text: openaiResponse.choices[0].message.content || '' }],
+          usage: {
+            input_tokens: 0,
+            output_tokens: openaiResponse.usage?.completion_tokens || 0
+          }
+        };
+      } else {
+        throw error;
+      }
+    }
 
     const content = response.content[0].type === 'text' ? response.content[0].text : '';
 

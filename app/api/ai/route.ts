@@ -53,9 +53,10 @@ export async function POST(request: NextRequest) {
             const timeout = 10000; // Fixed 10 second timeout
             
             // Auto-detect the base URL for internal API calls
+            const host = request.headers.get('host');
             const baseUrl = process.env.NEXT_PUBLIC_URL || 
-                           (request.headers.get('host') ? 
-                            `https://${request.headers.get('host')}` : 
+                           (host ? 
+                            `http${host.includes('localhost') ? '' : 's'}://${host}` : 
                             'http://localhost:3000');
             
             contentResponse = await Promise.race([
