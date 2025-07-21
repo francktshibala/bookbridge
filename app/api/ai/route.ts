@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
             const host = request.headers.get('host');
             const baseUrl = process.env.NEXT_PUBLIC_URL || 
                            (host ? 
-                            `http${host.includes('localhost') ? '' : 's'}://${host}` : 
+                            `http://${host}` : 
                             'http://localhost:3000');
             
             contentResponse = await Promise.race([
