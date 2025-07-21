@@ -158,45 +158,145 @@ class BookCacheService {
       throw new Error(`Book ${bookId} not found in cache`)
     }
 
-    // Simple keyword-based relevance scoring
-    const queryTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 2)
+    // Enhanced keyword-based relevance scoring
+    const queryLower = query.toLowerCase()
+    const queryTerms = queryLower.split(/\s+/).filter(term => term.length > 1) // Include 2-letter words
+    
+    // Add semantic variations and synonyms for better matching
+    const enhancedTerms = this.expandQueryTerms(queryTerms)
     
     const scoredChunks = content.chunks.map(chunk => {
       const chunkText = chunk.content.toLowerCase()
       let score = 0
       
       // Score based on query term frequency
-      queryTerms.forEach(term => {
-        // Escape special regex characters to prevent regex errors
-        const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-        const matches = (chunkText.match(new RegExp(escapedTerm, 'g')) || []).length
-        score += matches * 10
+      enhancedTerms.forEach(termGroup => {
+        const primaryTerm = termGroup.primary
+        const variations = termGroup.variations
         
-        // Bonus for exact phrase matches
-        if (chunkText.includes(query.toLowerCase())) {
-          score += 50
-        }
+        // Score primary term matches
+        const escapedTerm = primaryTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        const primaryMatches = (chunkText.match(new RegExp(`\\b${escapedTerm}\\b`, 'g')) || []).length
+        score += primaryMatches * 15 // Increased weight for exact matches
+        
+        // Score variation matches (lower weight)
+        variations.forEach(variation => {
+          const escapedVariation = variation.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+          const variationMatches = (chunkText.match(new RegExp(`\\b${escapedVariation}\\b`, 'g')) || []).length
+          score += variationMatches * 8
+        })
       })
+      
+      // Bonus for exact phrase matches (only once per chunk)
+      if (chunkText.includes(queryLower)) {
+        score += 75 // Increased bonus for exact phrase
+      }
+      
+      // Bonus for partial phrase matches (consecutive terms)
+      if (queryTerms.length > 1) {
+        for (let i = 0; i < queryTerms.length - 1; i++) {
+          const phrase = `${queryTerms[i]} ${queryTerms[i + 1]}`
+          if (chunkText.includes(phrase)) {
+            score += 30
+          }
+        }
+      }
       
       // Bonus for chapter titles containing query terms
       if (chunk.chapterTitle) {
         const titleText = chunk.chapterTitle.toLowerCase()
         queryTerms.forEach(term => {
           if (titleText.includes(term)) {
-            score += 20
+            score += 25 // Increased title bonus
           }
         })
+        
+        // Extra bonus for exact query in title
+        if (titleText.includes(queryLower)) {
+          score += 100
+        }
+      }
+      
+      // Proximity bonus - terms appearing close together
+      if (queryTerms.length > 1) {
+        const proximityScore = this.calculateProximityScore(chunkText, queryTerms)
+        score += proximityScore
       }
 
       return { chunk, score }
     })
 
-    // Sort by relevance score and return top chunks
-    return scoredChunks
-      .filter(item => item.score > 0)
+    // Sort by relevance score and return top chunks, ensuring we get results
+    const filteredChunks = scoredChunks.filter(item => item.score > 0)
+    
+    // If no scored matches, fall back to any chunks containing any query terms
+    if (filteredChunks.length === 0) {
+      const fallbackChunks = content.chunks
+        .filter(chunk => {
+          const chunkText = chunk.content.toLowerCase()
+          return queryTerms.some(term => chunkText.includes(term))
+        })
+        .slice(0, maxChunks)
+        .map(chunk => ({ chunk, score: 1 }))
+      
+      return fallbackChunks.map(item => item.chunk)
+    }
+    
+    return filteredChunks
       .sort((a, b) => b.score - a.score)
       .slice(0, maxChunks)
       .map(item => item.chunk)
+  }
+
+  // Expand query terms with semantic variations and synonyms
+  private expandQueryTerms(queryTerms: string[]): Array<{ primary: string; variations: string[] }> {
+    const synonymMap: Record<string, string[]> = {
+      'controversial': ['scandalous', 'provocative', 'contentious', 'inflammatory', 'shocking'],
+      'memoir': ['autobiography', 'memoirs', 'biography', 'life story', 'personal account'],
+      'writing': ['prose', 'literature', 'text', 'composition', 'narrative'],
+      'style': ['manner', 'approach', 'method', 'technique', 'way'],
+      'love': ['romance', 'passion', 'affection', 'relationship', 'affair'],
+      'death': ['dying', 'mortality', 'demise', 'passing', 'end'],
+      'war': ['battle', 'conflict', 'warfare', 'fighting', 'combat'],
+      'power': ['authority', 'control', 'influence', 'dominance', 'rule'],
+      'religion': ['faith', 'belief', 'spiritual', 'religious', 'church'],
+      'politics': ['political', 'government', 'democracy', 'republic', 'state'],
+      'society': ['social', 'cultural', 'civilization', 'community', 'public'],
+      'character': ['personality', 'individual', 'person', 'figure', 'nature'],
+      'theme': ['motif', 'subject', 'topic', 'idea', 'concept'],
+      'analysis': ['examination', 'study', 'interpretation', 'review', 'critique']
+    }
+    
+    return queryTerms.map(term => ({
+      primary: term,
+      variations: synonymMap[term] || []
+    }))
+  }
+
+  // Calculate proximity score for terms appearing near each other
+  private calculateProximityScore(text: string, queryTerms: string[]): number {
+    const words = text.split(/\s+/)
+    let proximityScore = 0
+    
+    for (let i = 0; i < queryTerms.length - 1; i++) {
+      const term1 = queryTerms[i]
+      const term2 = queryTerms[i + 1]
+      
+      const positions1 = words.map((word, index) => word.includes(term1) ? index : -1).filter(pos => pos !== -1)
+      const positions2 = words.map((word, index) => word.includes(term2) ? index : -1).filter(pos => pos !== -1)
+      
+      // Find closest positions
+      for (const pos1 of positions1) {
+        for (const pos2 of positions2) {
+          const distance = Math.abs(pos1 - pos2)
+          if (distance <= 10) { // Within 10 words
+            proximityScore += Math.max(0, 20 - distance * 2) // Closer = higher score
+          }
+        }
+      }
+    }
+    
+    return proximityScore
   }
 
   // Create context from relevant chunks

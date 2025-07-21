@@ -187,6 +187,8 @@
   - [x] Reduced timeouts from 2-3 minutes to 8-12 seconds (first time), 1-5 seconds (cached)
   - [x] Added background processing for large books
   - [x] Created fast content route with intelligent chunk retrieval
+  - [x] **STEP 1: Fixed regex error in book-cache.ts** - Escaped special characters preventing crashes
+  - [x] **STEP 2: Enhanced book content matching** - Added semantic synonyms, proximity scoring, and smarter relevance
 
 - [x] **HIGH PRIORITY DAY 3-5: Implement Vector Search + RAG** ✅ COMPLETED
   - [x] Set up text-embedding-3-large for semantic understanding
