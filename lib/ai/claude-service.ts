@@ -21,6 +21,7 @@ interface QueryOptions {
   maxTokens?: number;
   temperature?: number;
   stream?: boolean;
+  responseMode?: 'brief' | 'detailed';
 }
 
 export class ClaudeAIService {
@@ -56,8 +57,8 @@ export class ClaudeAIService {
     }
   }
 
-  // Smart model selection based on query complexity
-  private selectModel(query: string): string {
+  // Smart model selection based on query complexity and response mode
+  private selectModel(query: string, responseMode: 'brief' | 'detailed' = 'detailed'): string {
     const complexPatterns = [
       /analyze.*literary.*technique/i,
       /compare.*characters/i,
@@ -95,9 +96,15 @@ export class ClaudeAIService {
 
     const isComplex = complexPatterns.some(pattern => pattern.test(query));
     
-    // Use Haiku for simple queries, Sonnet for complex ones
-    // Opus is too expensive for regular use
-    return isComplex ? 'claude-3-5-sonnet-20241022' : 'claude-3-5-haiku-20241022';
+    // Enhanced model selection logic:
+    // - Detailed mode: Always use Sonnet for rich, elaborate responses
+    // - Brief mode: Use Haiku for efficiency, Sonnet only for very complex queries
+    if (responseMode === 'detailed') {
+      return 'claude-3-5-sonnet-20241022'; // Always use best model for detailed analysis
+    } else {
+      // Brief mode: Haiku for simple, Sonnet for complex
+      return isComplex ? 'claude-3-5-sonnet-20241022' : 'claude-3-5-haiku-20241022';
+    }
   }
 
   // Detect if query requires multi-perspective cultural analysis
@@ -206,9 +213,10 @@ export class ClaudeAIService {
   }
 
   // Generate cache key for query
-  private generateCacheKey(prompt: string, bookId?: string): string {
+  private generateCacheKey(prompt: string, bookId?: string, responseMode?: 'brief' | 'detailed'): string {
     const normalized = prompt.toLowerCase().trim();
-    const key = bookId ? `${bookId}:${normalized}` : normalized;
+    const modePrefix = responseMode ? `${responseMode}:` : '';
+    const key = bookId ? `${modePrefix}${bookId}:${normalized}` : `${modePrefix}${normalized}`;
     return Buffer.from(key).toString('base64');
   }
 
@@ -274,7 +282,7 @@ export class ClaudeAIService {
   }
 
   // Create elaborate, flowing prompts for expert-level responses
-  private optimizePrompt(prompt: string, bookContext?: string, knowledgeContext?: string): string {
+  private optimizePrompt(prompt: string, bookContext?: string, knowledgeContext?: string, responseMode: 'brief' | 'detailed' = 'detailed'): string {
     // Check if user is asking about book structure
     const structureQueries = [
       /how many chapter/i,
@@ -293,18 +301,39 @@ export class ClaudeAIService {
     const needsSocratic = socraticMode !== 'none';
     const isFollowUp = socraticMode === 'followup';
     
-    // Enhanced system prompt for elaborate, expert-level responses
-    let optimized = `You are a distinguished literature professor and expert literary critic with deep knowledge of classical and contemporary works. Your responses should be elaborate, flowing, and intellectually rich - like a fascinating university lecture or an engaging conversation with a brilliant academic.
+    // Dynamic system prompt based on response mode
+    let optimized = '';
+    
+    if (responseMode === 'brief') {
+      optimized = `You are a knowledgeable literature expert providing concise, focused answers. Your responses should be direct yet insightful, perfect for quick understanding.
 
-IMPORTANT STYLE GUIDELINES:
-- Write in flowing, connected paragraphs that build upon each other naturally
-- Use sophisticated yet accessible language that demonstrates expertise
-- Provide rich context, nuanced analysis, and thoughtful interpretations
-- Include relevant literary connections, historical context, and cultural insights
-- Let your passion for literature shine through with engaging, professorial enthusiasm
-- AVOID bullet points, numbered lists, or choppy formatting
-- Create responses that feel like eloquent academic discourse, not study guides
-- Weave examples and evidence naturally into your narrative flow`;
+BRIEF MODE GUIDELINES:
+- Provide clear, direct answers in 2-3 paragraphs maximum
+- Focus on the most essential points and key insights
+- Use accessible language while maintaining expertise
+- Include only the most relevant examples or evidence
+- Be precise and to-the-point while remaining engaging
+- Avoid extensive background or tangential information
+- Perfect for quick reference or initial understanding`;
+    } else {
+      optimized = `You are a distinguished literature professor and expert literary critic with deep knowledge of classical and contemporary works. Your responses should be elaborate, flowing, and intellectually rich - like a fascinating university lecture or an engaging conversation with a brilliant academic.
+
+DETAILED ANALYSIS GUIDELINES FOR COMPREHENSIVE DISCOURSE:
+- Create a substantial response of 8-12 flowing paragraphs that build upon each other naturally
+- Begin with an engaging introduction that establishes the complexity and importance of the topic
+- Develop your analysis through multiple interconnected layers: textual evidence, historical context, cultural significance, literary techniques, and broader implications
+- Each paragraph should seamlessly flow into the next, creating an intellectual journey for the reader
+- Use sophisticated yet accessible language that demonstrates deep expertise and scholarly insight
+- Include rich contextual information: historical background, biographical details, literary movements, and cultural connections
+- Weave in relevant comparisons to other works, authors, or literary traditions where appropriate
+- Integrate direct quotations and specific textual evidence naturally within your flowing prose
+- Address multiple dimensions of the question: surface meaning, deeper implications, symbolic significance, and contemporary relevance
+- Build toward a substantial conclusion that synthesizes your insights and opens new avenues for understanding
+- Let your passion for literature shine through with engaging, professorial enthusiasm that makes complex ideas accessible
+- AVOID bullet points, numbered lists, or choppy formatting - maintain elegant academic discourse throughout
+- Create responses that feel like captivating lectures from a master teacher, not mere study guides
+- Satisfy intellectual curiosity with the depth and elaboration worthy of graduate-level literary analysis`;
+    }
 
     // Add multi-perspective instructions when needed
     if (needsMultiPerspective) {
@@ -651,7 +680,10 @@ continuous text document without formal chapter organization.`;
     options: QueryOptions & { userId: string; bookId?: string; bookContext?: string } = {} as any
   ): Promise<AIResponse> {
     console.log('Claude query method called');
-    const { userId, bookId, bookContext, maxTokens = 1500, temperature = 0.7 } = options;
+    const { userId, bookId, bookContext, maxTokens = 1500, responseMode = 'detailed' } = options;
+    
+    // Adjust temperature based on response mode for optimal results
+    const temperature = responseMode === 'detailed' ? 0.8 : 0.7;
 
     // Check usage limits
     console.log('Checking usage limits for user:', userId);
@@ -663,7 +695,7 @@ continuous text document without formal chapter organization.`;
 
     // Check cache first
     console.log('Generating cache key...');
-    const cacheKey = this.generateCacheKey(prompt, bookId);
+    const cacheKey = this.generateCacheKey(prompt, bookId, responseMode);
     console.log('Cache key generated');
     
     // Try Redis cache first
@@ -698,8 +730,8 @@ continuous text document without formal chapter organization.`;
     console.log('Knowledge context retrieved');
     
     console.log('Selecting model and optimizing prompt...');
-    const model = this.selectModel(prompt);
-    const optimizedPrompt = this.optimizePrompt(prompt, bookContext, knowledgeContext);
+    const model = this.selectModel(prompt, responseMode);
+    const optimizedPrompt = this.optimizePrompt(prompt, bookContext, knowledgeContext, responseMode);
     console.log('Model selected:', model, 'Prompt optimized');
 
     try {
@@ -773,7 +805,10 @@ continuous text document without formal chapter organization.`;
     prompt: string,
     options: QueryOptions & { userId: string; bookId?: string; bookContext?: string } = {} as any
   ): AsyncGenerator<string, void, unknown> {
-    const { userId, bookId, bookContext, maxTokens = 1500, temperature = 0.7 } = options;
+    const { userId, bookId, bookContext, maxTokens = 1500, responseMode = 'detailed' } = options;
+    
+    // Adjust temperature based on response mode for optimal results
+    const temperature = responseMode === 'detailed' ? 0.8 : 0.7;
 
     // Check usage limits
     const usageCheck = await this.checkUsageLimits(userId);
@@ -782,7 +817,7 @@ continuous text document without formal chapter organization.`;
     }
 
     // Check cache first
-    const cacheKey = this.generateCacheKey(prompt, bookId);
+    const cacheKey = this.generateCacheKey(prompt, bookId, responseMode);
     const cached = this.cache.get(cacheKey);
     if (cached) {
       yield cached.content;
@@ -790,8 +825,8 @@ continuous text document without formal chapter organization.`;
     }
 
     const knowledgeContext = await this.getKnowledgeGraphContext(userId, prompt, bookId);
-    const model = this.selectModel(prompt);
-    const optimizedPrompt = this.optimizePrompt(prompt, bookContext, knowledgeContext);
+    const model = this.selectModel(prompt, responseMode);
+    const optimizedPrompt = this.optimizePrompt(prompt, bookContext, knowledgeContext, responseMode);
 
     try {
       const stream = await this.anthropic.messages.stream({

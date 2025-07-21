@@ -236,6 +236,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
   const [isListening, setIsListening] = useState(false);
   const [voiceSupported, setVoiceSupported] = useState(false);
   const [speechRecognition, setSpeechRecognition] = useState<any>(null);
+  const [responseMode, setResponseMode] = useState<'brief' | 'detailed'>('detailed');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -350,7 +351,8 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         body: JSON.stringify({
           query: userMessage.content,
           bookId,
-          bookContext
+          bookContext,
+          responseMode
         })
       });
 
@@ -425,24 +427,93 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
           borderRadius: '20px 20px 0 0'
         }}
       >
-        <h2 id="ai-chat-heading" style={{
-          fontSize: '20px',
-          fontWeight: '700',
-          color: '#1a202c',
-          marginBottom: '8px',
-          fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-        }}>
-          💬 AI Conversation
-        </h2>
-        <p style={{
-          fontSize: '14px',
-          color: '#667eea',
-          fontWeight: '500',
-          fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-          lineHeight: '1.5'
-        }}>
-          Ask thoughtful questions about <strong>{bookTitle || 'this book'}</strong> and get intelligent insights
-        </p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div>
+            <h2 id="ai-chat-heading" style={{
+              fontSize: '20px',
+              fontWeight: '700',
+              color: '#1a202c',
+              marginBottom: '8px',
+              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+            }}>
+              💬 AI Conversation
+            </h2>
+            <p style={{
+              fontSize: '14px',
+              color: '#667eea',
+              fontWeight: '500',
+              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+              lineHeight: '1.5'
+            }}>
+              Ask thoughtful questions about <strong>{bookTitle || 'this book'}</strong> and get intelligent insights
+            </p>
+          </div>
+          
+          {/* Response Mode Toggle */}
+          <div style={{
+            display: 'flex',
+            gap: '8px',
+            background: 'white',
+            padding: '4px',
+            borderRadius: '12px',
+            border: '1px solid #e0e7ff',
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)'
+          }}>
+            <motion.button
+              onClick={() => setResponseMode('brief')}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                padding: '8px 16px',
+                background: responseMode === 'brief' 
+                  ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                  : 'transparent',
+                color: responseMode === 'brief' ? 'white' : '#6b7280',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: '600',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+              aria-label="Quick answer mode"
+              aria-pressed={responseMode === 'brief'}
+            >
+              ⚡ Quick Answer
+            </motion.button>
+            
+            <motion.button
+              onClick={() => setResponseMode('detailed')}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                padding: '8px 16px',
+                background: responseMode === 'detailed' 
+                  ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                  : 'transparent',
+                color: responseMode === 'detailed' ? 'white' : '#6b7280',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: '600',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+              aria-label="Detailed analysis mode"
+              aria-pressed={responseMode === 'detailed'}
+            >
+              📚 Detailed Analysis
+            </motion.button>
+          </div>
+        </div>
       </motion.header>
 
       <div

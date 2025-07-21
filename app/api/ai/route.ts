@@ -8,7 +8,7 @@ import { crossBookConnectionsService } from '@/lib/cross-book-connections';
 export async function POST(request: NextRequest) {
   try {
     console.log('AI API called');
-    const { query, bookId, bookContext } = await request.json();
+    const { query, bookId, bookContext, responseMode = 'detailed' } = await request.json();
     console.log('Query:', query);
     console.log('BookId:', bookId);
     console.log('BookContext:', bookContext);
@@ -173,6 +173,10 @@ export async function POST(request: NextRequest) {
                           query.toLowerCase().includes('theme');
 
     console.log('Using multi-agent system:', useMultiAgent);
+    console.log('Response mode:', responseMode);
+
+    // Determine token limits based on response mode
+    const maxTokens = responseMode === 'brief' ? 300 : 1500;
 
     let response: any;
     if (useMultiAgent) {
@@ -182,7 +186,8 @@ export async function POST(request: NextRequest) {
         userId: user.id,
         bookId,
         bookContext: enrichedBookContext + crossBookContext,
-        maxTokens: 1500
+        maxTokens,
+        responseMode
       });
       console.log('Multi-agent response received:', response);
     } else {
@@ -192,7 +197,8 @@ export async function POST(request: NextRequest) {
         userId: user.id,
         bookId,
         bookContext: enrichedBookContext + crossBookContext,
-        maxTokens: 1500
+        maxTokens,
+        responseMode
       });
       console.log('Standard AI response received:', response);
     }
