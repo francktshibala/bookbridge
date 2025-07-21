@@ -202,6 +202,13 @@ export async function POST(request: NextRequest) {
     console.error('AI API error:', error);
     console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
     
+    // Log environment variable status for debugging
+    console.error('Environment check:', {
+      hasAnthropicKey: !!process.env.ANTHROPIC_API_KEY,
+      hasOpenAIKey: !!process.env.OPENAI_API_KEY,
+      anthropicKeyLength: process.env.ANTHROPIC_API_KEY?.length || 0
+    });
+    
     if (error instanceof Error) {
       // Handle specific error types
       if (error.message.includes('limit exceeded')) {
@@ -217,6 +224,16 @@ export async function POST(request: NextRequest) {
           { status: 503 }
         );
       }
+      
+      // Return more specific error for debugging
+      return NextResponse.json(
+        { 
+          error: 'AI service error',
+          message: error.message,
+          details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json(
