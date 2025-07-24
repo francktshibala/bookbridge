@@ -110,6 +110,8 @@ No interactive AI Q&A for books (all competitors use passive summaries)
 Poor accessibility compliance across major platforms
 Limited educational focus in existing AI tools
 High pricing barriers for students ($79.99/year for Blinkist)
+Limited book format support (most platforms locked to single ecosystem)
+No aggregated book discovery across multiple sources
 
 
 ⚖️ Legal Compliance Framework
@@ -854,14 +856,52 @@ AI Integration:
  Build basic streaming response system
 
 Budget: $3,000 (development tools and initial setup)
+
+## 📚 Book Access Strategy (Critical Enhancement)
+
+### Phase 1: Multi-Format Support (Weeks 3-4)
+**Transform from TXT-only to Universal Book Platform**
+- **Format Expansion:**
+  - EPUB support via epub.js library
+  - PDF text extraction with pdf-parse
+  - OCR for scanned PDFs using Tesseract.js
+  - MOBI/AZW parsing for Kindle formats
+
+### Phase 2: API Integration (Weeks 5-6)
+**From 100 Books to 2 Million+ Instant Access**
+- **Public Domain Sources:**
+  - Project Gutenberg API (75,999+ classics)
+  - Open Library API (1.4M+ books)
+  - Standard Ebooks (500+ premium formatted)
+  - Internet Archive texts (millions of documents)
+  
+- **Discovery & Metadata:**
+  - Google Books API for book discovery
+  - HathiTrust for academic content
+  - DOAB for open access scholarly books
+
+### Phase 3: Platform Integration (Post-Launch)
+**Browser Extensions & Cross-Platform Access**
+- **Kindle Integration:** Chrome extension for Cloud Reader
+- **Library Apps:** Libby/OverDrive compatibility research
+- **Academic Platforms:** JSTOR, academic repository access
+
+### Phase 4: Publisher Partnerships (6-12 months)
+**Scale to Modern Commercial Books**
+- **Strategy:** "Spotify for Book Understanding"
+- **Pilot:** Start with indie publishers
+- **Revenue Model:** Per-analysis or subscription split
+- **Value Prop:** AI analysis drives book discovery and sales
+
 Phase 2: MVP + Accessibility Excellence (Weeks 3-6)
 Week 3-4: Core Features Development
 Book Analysis System:
 
- Create file upload system (public domain focus)
- Implement AI-powered Q&A interface
- Build chapter summaries and character analysis
- Add personalized reading recommendations
+ Create multi-format upload system (EPUB, PDF, TXT)
+ Integrate public domain APIs (Gutenberg, Open Library)
+ Implement AI-powered Q&A interface with 2M+ book access
+ Build unified search across all book sources
+ Add intelligent book recommendations
 
 Accessibility Foundation:
 
@@ -999,15 +1039,17 @@ Development & Technology (45% - $20,000)
 
 Claude Code subscription (10 weeks): $500
 Accessibility consultant (20 days × $200): $4,000
-Third-party services and APIs: $6,000
+Third-party services and APIs: $7,000
 
 OpenAI API credits: $2,000
+Book APIs (Google Books quota): $500
 Supabase Pro: $500
 Vercel Pro: $500
 Domain, SSL, CDN: $500
 Analytics and monitoring: $1,000
 Payment processing setup: $1,000
 Email and communication tools: $500
+Additional storage for book caching: $500
 
 
 Development tools and software: $3,000
@@ -1091,7 +1133,8 @@ Technical:
 
  Core AI Q&A functionality working
  Basic accessibility compliance (60% WCAG 2.1 AA)
- File upload and processing system
+ Multi-format upload system (EPUB, PDF, TXT)
+ Public domain API integration (100K+ books accessible)
  User authentication and basic profiles
 
 Success Criteria:
@@ -1137,6 +1180,8 @@ Technical Metrics:
  99.9% uptime
  <2 second page load times
  Zero security incidents
+ 2M+ books accessible (via APIs)
+ Support for EPUB, PDF, TXT formats
 
 Business Metrics:
 
@@ -1144,6 +1189,13 @@ Business Metrics:
  5%+ freemium conversion rate
  <$50 Customer Acquisition Cost
  3+ institutional partnership discussions
+
+Book Access Metrics:
+
+ Format diversity: 40% EPUB, 35% PDF, 25% TXT
+ API books analyzed: 500+ daily
+ Average books per user: 5+ monthly
+ Discovery-driven engagement: 60% from browse feature
 
 
 🛡️ Comprehensive Risk Management
