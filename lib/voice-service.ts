@@ -31,6 +31,9 @@ export class VoiceService {
   private isSupported: boolean = false;
   private voices: SpeechSynthesisVoice[] = [];
   private currentAudio: HTMLAudioElement | null = null;
+  private isCurrentlyPlaying: boolean = false;
+  private lastRequestTime: number = 0;
+  private readonly debounceDelay: number = 500; // 500ms debounce
   private defaultSettings: VoiceSettings = {
     rate: 0.9,
     pitch: 1.0,
@@ -146,6 +149,15 @@ export class VoiceService {
   }
 
   public speak(options: TTSOptions): Promise<void> {
+    const now = Date.now();
+    
+    // Debounce rapid requests
+    if (now - this.lastRequestTime < this.debounceDelay && this.isCurrentlyPlaying) {
+      console.log('Request debounced - too soon after previous request');
+      return Promise.resolve();
+    }
+    
+    this.lastRequestTime = now;
     const settings = { ...this.defaultSettings, ...options.settings };
     
     switch (settings.provider) {
@@ -163,6 +175,7 @@ export class VoiceService {
       try {
         // Force complete stop before starting new audio
         this.stop();
+        this.isCurrentlyPlaying = true;
         
         // Small delay to ensure previous audio is fully stopped
         await new Promise(resolve => setTimeout(resolve, 100));
@@ -196,16 +209,21 @@ export class VoiceService {
         this.currentAudio.onended = () => {
           URL.revokeObjectURL(audioUrl);
           this.currentAudio = null;
+          this.isCurrentlyPlaying = false;
           options.onEnd?.();
           resolve();
         };
         this.currentAudio.onerror = () => {
+          this.isCurrentlyPlaying = false;
           reject(new Error('Audio playback failed'));
         };
         
         await this.currentAudio.play();
       } catch (error) {
+        this.isCurrentlyPlaying = false;
         VoiceErrorHandler.logError('elevenlabs', error as Error, true);
+        // Wait a moment before fallback to prevent immediate interruption
+        await new Promise(resolve => setTimeout(resolve, 200));
         // Fallback to web speech
         this.speakWithWebSpeech(options, { ...settings, provider: 'web-speech' })
           .then(resolve)
@@ -218,6 +236,7 @@ export class VoiceService {
     return new Promise(async (resolve, reject) => {
       try {
         this.stop();
+        this.isCurrentlyPlaying = true;
         options.onStart?.();
         
         // Track usage
@@ -246,16 +265,21 @@ export class VoiceService {
         this.currentAudio.onended = () => {
           URL.revokeObjectURL(audioUrl);
           this.currentAudio = null;
+          this.isCurrentlyPlaying = false;
           options.onEnd?.();
           resolve();
         };
         this.currentAudio.onerror = () => {
+          this.isCurrentlyPlaying = false;
           reject(new Error('Audio playback failed'));
         };
         
         await this.currentAudio.play();
       } catch (error) {
+        this.isCurrentlyPlaying = false;
         VoiceErrorHandler.logError('openai', error as Error, true);
+        // Wait a moment before fallback to prevent immediate interruption
+        await new Promise(resolve => setTimeout(resolve, 200));
         // Fallback to web speech
         this.speakWithWebSpeech(options, { ...settings, provider: 'web-speech' })
           .then(resolve)
@@ -272,6 +296,7 @@ export class VoiceService {
       }
 
       this.stop();
+      this.isCurrentlyPlaying = true;
       const utterance = new SpeechSynthesisUtterance(options.text);
 
       utterance.rate = settings.rate;
@@ -291,11 +316,13 @@ export class VoiceService {
       };
       utterance.onend = () => {
         this.currentUtterance = null;
+        this.isCurrentlyPlaying = false;
         options.onEnd?.();
         resolve();
       };
       utterance.onerror = (event) => {
         this.currentUtterance = null;
+        this.isCurrentlyPlaying = false;
         options.onError?.(event);
         reject(new Error(`Speech synthesis error: ${event.error}`));
       };
@@ -324,6 +351,7 @@ export class VoiceService {
 
   public stop(): void {
     // Force stop all audio immediately
+    this.isCurrentlyPlaying = false;
     if (this.isSupported) {
       this.speechSynthesis.cancel();
       this.currentUtterance = null;
