@@ -1,0 +1,142 @@
+[
+  {
+    "id": "q001",
+    "question": "What is the main theme of To Kill a Mockingbird?",
+    "expectedAnswer": "The main theme is racial injustice and moral courage. The novel explores prejudice in 1930s Alabama through Scout's coming-of-age story, showing how Atticus Finch stands up for what's right despite social pressure.",
+    "difficulty": "easy",
+    "category": "themes"
+  },
+  {
+    "id": "q002", 
+    "question": "Who is the narrator in The Great Gatsby?",
+    "expectedAnswer": "Nick Carraway is the narrator. He is Gatsby's neighbor and Daisy's cousin who tells the story from his perspective as both participant and observer.",
+    "difficulty": "easy",
+    "category": "characters"
+  },
+  {
+    "id": "q003",
+    "question": "What does the green light symbolize in The Great Gatsby?",
+    "expectedAnswer": "The green light symbolizes Gatsby's dreams and hopes, particularly his longing for Daisy. It represents the American Dream - something desired but ultimately unattainable.",
+    "difficulty": "medium",
+    "category": "symbolism"
+  },
+  {
+    "id": "q004",
+    "question": "What is the significance of the mockingbird in To Kill a Mockingbird?",
+    "expectedAnswer": "The mockingbird symbolizes innocence and goodness. Characters like Tom Robinson and Boo Radley are mockingbirds - they do no harm but are destroyed by evil and prejudice.",
+    "difficulty": "medium", 
+    "category": "symbolism"
+  },
+  {
+    "id": "q005",
+    "question": "How does Scout Finch change throughout To Kill a Mockingbird?",
+    "expectedAnswer": "Scout matures from an innocent child to someone who understands prejudice and injustice. She learns empathy, particularly through understanding Boo Radley, and develops moral courage like her father.",
+    "difficulty": "medium",
+    "category": "character-development"
+  },
+  {
+    "id": "q006",
+    "question": "What is the setting of Pride and Prejudice?",
+    "expectedAnswer": "The novel is set in rural England during the early 19th century (around 1811-1812), primarily in Hertfordshire and Derbyshire, focusing on the landed gentry class.",
+    "difficulty": "easy",
+    "category": "setting"
+  },
+  {
+    "id": "q007",
+    "question": "Why does Elizabeth Bennet initially dislike Mr. Darcy?",
+    "expectedAnswer": "Elizabeth dislikes Darcy because of his apparent pride and arrogance at the ball, his supposed mistreatment of Wickham, and his role in separating Jane and Bingley.",
+    "difficulty": "medium",
+    "category": "character-motivation"
+  },
+  {
+    "id": "q008",
+    "question": "What is the main conflict in Romeo and Juliet?",
+    "expectedAnswer": "The main conflict is the ancient feud between the Montague and Capulet families, which prevents Romeo and Juliet from being together and ultimately leads to their tragic deaths.",
+    "difficulty": "easy",
+    "category": "plot"
+  },
+  {
+    "id": "q009",
+    "question": "What does the white whale represent in Moby Dick?",
+    "expectedAnswer": "The white whale represents different things to different characters, but primarily symbolizes the unknowable forces of nature, fate, and Ahab's obsession with conquering the unconquerable.",
+    "difficulty": "hard",
+    "category": "symbolism"
+  },
+  {
+    "id": "q010",
+    "question": "Who is the protagonist in The Catcher in the Rye?",
+    "expectedAnswer": "Holden Caulfield is the protagonist and narrator. He's a troubled teenager who has been expelled from prep school and wanders New York City.",
+    "difficulty": "easy",
+    "category": "characters"
+  },
+  {
+    "id": "q011",
+    "question": "What is the central theme of 1984?",
+    "expectedAnswer": "The central theme is totalitarianism and the danger of authoritarian government. Orwell explores how totalitarian regimes control truth, language, and individual thought.",
+    "difficulty": "medium",
+    "category": "themes"
+  },
+  {
+    "id": "q012",
+    "question": "What does the conch shell symbolize in Lord of the Flies?",
+    "expectedAnswer": "The conch shell symbolizes civilization, order, and democratic authority. When it's destroyed, it represents the complete breakdown of civilized society on the island.",
+    "difficulty": "medium",
+    "category": "symbolism"
+  },
+  {
+    "id": "q013",
+    "question": "How does Jay Gatsby's pursuit of the American Dream end?",
+    "expectedAnswer": "Gatsby's pursuit ends in tragedy and death. His dream proves to be an illusion - he cannot recreate the past with Daisy, and his wealth cannot buy genuine love or acceptance.",
+    "difficulty": "hard",
+    "category": "themes"
+  },
+  {
+    "id": "q014",
+    "question": "What is the significance of the title 'Of Mice and Men'?",
+    "expectedAnswer": "The title comes from Robert Burns' poem and suggests that even the best-laid plans can go wrong. It reflects the broken dreams of characters like George, Lennie, and Curley's wife.",
+    "difficulty": "hard",
+    "category": "literary-analysis"
+  },
+  {
+    "id": "q015",
+    "question": "Who wrote Jane Eyre?",
+    "expectedAnswer": "Charlotte Brontë wrote Jane Eyre, published in 1847 under the pseudonym Currer Bell.",
+    "difficulty": "easy",
+    "category": "authors"
+  },
+  {
+    "id": "q016",
+    "question": "What is stream of consciousness in literature?",
+    "expectedAnswer": "Stream of consciousness is a narrative technique that presents a character's thoughts and feelings as they occur, without logical organization, mimicking the natural flow of human consciousness.",
+    "difficulty": "medium",
+    "category": "literary-techniques"
+  },
+  {
+    "id": "q017",
+    "question": "What is the climax of Romeo and Juliet?",
+    "expectedAnswer": "The climax occurs in Act 3, Scene 1, when Romeo kills Tybalt in a duel after Tybalt kills Mercutio. This action seals Romeo's fate and sets the tragedy in motion.",
+    "difficulty": "medium",
+    "category": "plot-structure"
+  },
+  {
+    "id": "q018",
+    "question": "What does the scarlet letter 'A' symbolize in Hawthorne's novel?",
+    "expectedAnswer": "The scarlet letter 'A' initially stands for 'Adulteress' but evolves to represent 'Able' and 'Angel' as Hester transforms through her suffering and good deeds in the community.",
+    "difficulty": "hard",
+    "category": "symbolism"
+  },
+  {
+    "id": "q019",
+    "question": "What is dramatic irony?",
+    "expectedAnswer": "Dramatic irony occurs when the audience knows something that a character doesn't, creating tension or humor. For example, in Romeo and Juliet, we know Juliet isn't really dead, but Romeo doesn't.",
+    "difficulty": "medium",
+    "category": "literary-techniques"
+  },
+  {
+    "id": "q020",
+    "question": "What is the significance of the title 'The Sound and the Fury'?",
+    "expectedAnswer": "The title comes from Macbeth's soliloquy about life being 'a tale told by an idiot, full of sound and fury, signifying nothing,' reflecting the novel's themes of meaninglessness and the decline of the Compson family.",
+    "difficulty": "hard",
+    "category": "literary-analysis"
+  }
+]

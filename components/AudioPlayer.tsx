@@ -111,7 +111,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             clearInterval(progressInterval);
           }
           
-          // For ElevenLabs/OpenAI, track actual audio element progress
+          // For ElevenLabs, track actual audio element progress
           if (voiceProvider !== 'web-speech') {
             // Wait a bit for audio element to be created
             setTimeout(() => {
@@ -219,7 +219,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       setIsPaused(true);
       setIsPlaying(false);
     } else {
-      // For ElevenLabs/OpenAI, pause the audio element
+      // For ElevenLabs, pause the audio element
       if (currentAudioElement && !currentAudioElement.paused) {
         currentAudioElement.pause();
         setIsPaused(true);
@@ -291,30 +291,6 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             }`}
           >
             Standard
-          </button>
-          <button
-            onClick={() => {
-              console.log('OpenAI TTS button clicked');
-              voiceService.stop(); // Stop current audio when switching
-              setIsPlaying(false);
-              setIsPaused(false);
-              setIsLoading(false);
-              setProgress(0);
-              setCurrentTime(0);
-              if (progressInterval) {
-                clearInterval(progressInterval);
-                setProgressInterval(null);
-              }
-              setVoiceProvider('openai');
-              console.log('Voice provider set to:', 'openai');
-            }}
-            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
-              voiceProvider === 'openai'
-                ? 'bg-green-600 text-white'
-                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-            }`}
-          >
-            OpenAI TTS {voiceProvider === 'openai' ? '✓' : ''}
           </button>
           <button
             onClick={() => {

@@ -11,7 +11,16 @@
     "start": "next start",
     "lint": "next lint",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "benchmark": "npx ts-node scripts/run-benchmark.ts daily",
+    "benchmark:quick": "npx ts-node scripts/run-benchmark.ts quick",
+    "benchmark:trend": "npx ts-node scripts/run-benchmark.ts trend",
+    "benchmark:advanced": "npx ts-node scripts/run-advanced-benchmark.ts daily",
+    "benchmark:advanced:quick": "npx ts-node scripts/run-advanced-benchmark.ts quick",
+    "benchmark:advanced:trend": "npx ts-node scripts/run-advanced-benchmark.ts trend",
+    "benchmark:generate": "npx ts-node scripts/generate-questions.ts",
+    "benchmark:adaptation": "npx ts-node scripts/test-complexity-adaptation.ts",
+    "benchmark:citations": "npx ts-node scripts/test-citation-accuracy.ts"
   },
   "repository": {
     "type": "git",
