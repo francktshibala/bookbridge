@@ -35,7 +35,7 @@ const FormattedAIResponse: React.FC<{
       // Highlight quoted text with special styling
       formattedParagraph = formattedParagraph.replace(
         /"([^"]+)"/g,
-        '<span style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); padding: 2px 6px; border-radius: 4px; font-weight: 600; border-left: 3px solid #fdcb6e;">"$1"</span>'
+        '<span class="ai-quote">"$1"</span>'
       );
       
       // Highlight citations in parentheses
