@@ -40,20 +40,14 @@ export default function Navigation() {
   ] : [];
 
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-200">
+    <nav className="card-gradient shadow-md border-b border-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" style={{ textDecoration: 'none' }} className="flex items-center">
-              <span style={{
-                fontSize: '24px',
-                fontWeight: '800',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-              }}>📚 BookBridge</span>
+              <span className="text-gradient" style={{ fontSize: '24px' }}>
+                📚 BookBridge
+              </span>
             </Link>
             
             {user && (
@@ -62,11 +56,7 @@ export default function Navigation() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                      pathname === link.href
-                        ? 'text-gray-900 border-b-2 border-indigo-500'
-                        : 'text-gray-500 hover:text-gray-900'
-                    }`}
+                    className={`nav-link ${pathname === link.href ? 'active' : ''}`}
                   >
                     {link.label}
                   </Link>
@@ -80,20 +70,20 @@ export default function Navigation() {
               <div className="relative">
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary"
                   aria-expanded={isMenuOpen}
                   aria-haspopup="true"
                 >
                   <span className="sr-only">Open user menu</span>
-                  <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
-                    <span className="text-sm font-medium text-gray-700">
+                  <div className="h-8 w-8 rounded-full bg-brand-primary flex items-center justify-center">
+                    <span className="text-sm font-medium text-white">
                       {user.email?.[0].toUpperCase()}
                     </span>
                   </div>
                 </button>
 
                 {isMenuOpen && (
-                  <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                  <div className="origin-top-right absolute right-0 mt-2 w-48 card-elevated">
                     <div className="py-1" role="menu" aria-orientation="vertical">
                       <div className="px-4 py-2 text-xs text-gray-500">
                         {user.email}
@@ -127,13 +117,13 @@ export default function Navigation() {
               <div className="space-x-4">
                 <Link
                   href="/auth/login"
-                  className="text-gray-500 hover:text-gray-900 font-medium"
+                  className="nav-link"
                 >
                   Sign in
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="btn-primary"
+                  className="btn-brand"
                 >
                   Sign up
                 </Link>

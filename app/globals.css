@@ -13,6 +13,26 @@
     --background: #ffffff;
     --surface: #f8f9fa;
     
+    /* BookBridge Brand Colors (Purple/Blue Gradient System) */
+    --brand-primary: #667eea;     /* Primary purple-blue */
+    --brand-secondary: #764ba2;   /* Deeper purple */
+    --brand-accent: #f093fb;      /* Pink accent */
+    
+    /* Surface colors for cards and components */
+    --surface-elevated: #ffffff;
+    --surface-subtle: #f8faff;
+    --surface-gradient: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+    
+    /* Border colors */
+    --border-light: #e0e7ff;
+    --border-subtle: #f0f4ff;
+    
+    /* Shadow system */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-brand: 0 4px 12px rgba(102, 126, 234, 0.25);
+    
     /* Typography scale (minimum 16px) */
     --text-xs: 14px;   /* Only for metadata */
     --text-sm: 16px;   /* Body text minimum */
@@ -52,6 +72,13 @@
       --accent-secondary: #ffa726;
       --background: #1a1a1a;
       --surface: #2a2a2a;
+      
+      /* Dark mode brand colors */
+      --surface-elevated: #2a2a2a;
+      --surface-subtle: #1f1f23;
+      --surface-gradient: linear-gradient(135deg, #1f1f23 0%, #252529 100%);
+      --border-light: #404040;
+      --border-subtle: #333333;
     }
   }
 
@@ -65,7 +92,7 @@
   body {
     color: var(--text-primary);
     background-color: var(--background);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   }
 
   /* Focus indicators */
@@ -218,6 +245,126 @@
 
   .btn-secondary:hover {
     background-color: #e0e0e0;
+  }
+  
+  /* Brand Button Styles */
+  .btn-brand {
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+    color: white;
+    border: none;
+    box-shadow: var(--shadow-brand);
+    transition: all 0.2s ease;
+  }
+  
+  .btn-brand:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
+  }
+  
+  .btn-brand:active {
+    transform: translateY(0);
+  }
+  
+  /* Card Styles */
+  .card-elevated {
+    background: var(--surface-elevated);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+  }
+  
+  .card-elevated:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .card-gradient {
+    background: var(--surface-gradient);
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* Input Styles */
+  .input-styled {
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: var(--text-base);
+    transition: all 0.2s ease;
+    outline: none;
+  }
+  
+  .input-styled:focus {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+  
+  .input-styled::placeholder {
+    color: var(--text-secondary);
+  }
+  
+  /* Text Styles */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+  
+  /* Hero Section Styles */
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  /* Feature Card Styles */
+  .feature-card {
+    background: var(--surface-elevated);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--brand-primary);
+  }
+  
+  /* Navigation Styles */
+  .nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+  
+  .nav-link:hover {
+    color: var(--brand-primary);
+    background: var(--surface-subtle);
+  }
+  
+  .nav-link.active {
+    color: var(--brand-primary);
+    background: var(--surface-subtle);
+    font-weight: 600;
   }
 
   /* Touch-friendly spacing */

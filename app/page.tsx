@@ -27,17 +27,10 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-gradient hero-title"
             style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
               fontSize: '56px',
-              fontWeight: '800',
-              marginBottom: '24px',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-              letterSpacing: '-1px',
-              lineHeight: '1.1'
+              letterSpacing: '-1px'
             }}
           >
             Welcome to BookBridge
@@ -70,16 +63,10 @@ export default function HomePage() {
           aria-labelledby="features-heading" 
           style={{ marginBottom: '64px' }}
         >
-          <h2 id="features-heading" style={{
+          <h2 id="features-heading" className="text-gradient" style={{
             fontSize: '36px',
-            fontWeight: '700',
             marginBottom: '32px',
-            textAlign: 'center',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+            textAlign: 'center'
           }}>
             Key Features
           </h2>
