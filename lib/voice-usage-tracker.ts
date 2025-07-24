@@ -23,7 +23,7 @@ export class VoiceUsageTracker {
     return VoiceUsageTracker.instance;
   }
 
-  async trackUsage(event: Omit<VoiceUsageEvent, 'created_at'>): Promise<void> {
+  async trackUsage(event: Omit<VoiceUsageEvent, 'created_at' | 'user_id'>): Promise<void> {
     try {
       // Get current user
       const { data: { user } } = await this.supabase.auth.getUser();
