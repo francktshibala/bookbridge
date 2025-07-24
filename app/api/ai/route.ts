@@ -49,8 +49,9 @@ export async function POST(request: NextRequest) {
           try {
             console.log(`Attempt ${attempt + 1}/${maxRetries} to fetch book content...`);
             
-            // Use fast content route with shorter timeout
-            const timeout = 10000; // Fixed 10 second timeout
+            // Use fast content route with timeout (longer for external books)
+            const isExternalBook = bookId.includes('-') && !bookId.match(/^[0-9a-f-]{36}$/);
+            const timeout = isExternalBook ? 30000 : 10000; // 30s for external books, 10s for internal
             
             // Auto-detect the base URL for internal API calls
             const host = request.headers.get('host');
@@ -106,7 +107,12 @@ export async function POST(request: NextRequest) {
             console.log('Book is being processed, using fallback context');
             enrichedBookContext = `Book: ${contentData.bookTitle || 'Unknown'}\n\nNote: Book content is being processed in the background. Using basic information for now.`;
           } else if (contentData.context) {
-            enrichedBookContext = `Book: ${contentData.title} by ${contentData.author}\n\nRelevant excerpts:\n${contentData.context}`;
+            // Check if this is a Google Books preview with limitations
+            if (contentData.isPreviewOnly && contentData.source === 'googlebooks') {
+              enrichedBookContext = `Book: ${contentData.title} by ${contentData.author}\n\nGoogle Books Preview (Metadata Only):\n${contentData.context}\n\n[Note: This analysis is based on metadata and description only, as Google Books doesn't provide full text content. For detailed textual analysis, consider using the same book from Project Gutenberg, Open Library, or Standard Ebooks if available.]`;
+            } else {
+              enrichedBookContext = `Book: ${contentData.title} by ${contentData.author}\n\nRelevant excerpts:\n${contentData.context}`;
+            }
             console.log('Book content loaded successfully from cache, context length:', enrichedBookContext.length);
           } else if (contentData.chunks && contentData.chunks.length > 0) {
             // Fallback to first few chunks if no specific context

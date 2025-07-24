@@ -35,9 +35,16 @@ export async function middleware(request: NextRequest) {
   const protectedRoutes = ['/library', '/upload', '/settings', '/api/books', '/api/ai'];
   const authRoutes = ['/auth/login', '/auth/signup'];
   
-  const isProtectedRoute = protectedRoutes.some(route => 
+  // Public API routes that should not require authentication
+  const publicApiRoutes = ['/api/books/external', '/api/books/gutenberg-'];
+  
+  const isPublicApiRoute = publicApiRoutes.some(route => 
     request.nextUrl.pathname.startsWith(route)
   );
+  
+  const isProtectedRoute = protectedRoutes.some(route => 
+    request.nextUrl.pathname.startsWith(route)
+  ) && !isPublicApiRoute;
   
   const isAuthRoute = authRoutes.some(route => 
     request.nextUrl.pathname.startsWith(route)

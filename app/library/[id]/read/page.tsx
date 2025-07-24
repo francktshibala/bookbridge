@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { motion } from 'framer-motion';
+import { AudioPlayer } from '@/components/AudioPlayer';
 
 interface BookContent {
   id: string;
@@ -391,6 +392,36 @@ export default function BookReaderPage() {
           >
             {currentChunkData?.content || 'No content available for this section.'}
           </div>
+        </motion.div>
+        
+        {/* Audio Player Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.4 }}
+          style={{
+            marginTop: '24px',
+            padding: '24px',
+            background: 'linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%)',
+            borderRadius: '16px',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
+          }}
+        >
+          <h3 style={{
+            fontSize: '18px',
+            fontWeight: '600',
+            marginBottom: '16px',
+            color: '#4a5568',
+            fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+          }}>
+            Listen to this chapter
+          </h3>
+          <AudioPlayer 
+            text={currentChunkData?.content || ''}
+            onStart={() => announceToScreenReader('Started reading chapter')}
+            onEnd={() => announceToScreenReader('Finished reading chapter')}
+          />
         </motion.div>
       </motion.div>
 

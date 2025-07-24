@@ -560,10 +560,24 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                 fontSize: '14px',
                 color: '#6b7280',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                lineHeight: '1.5'
+                lineHeight: '1.5',
+                marginBottom: '16px'
               }}>
                 Ask about themes, characters, plot details, writing style, or anything that sparks your curiosity!
               </p>
+              <div style={{
+                fontSize: '12px',
+                color: '#9ca3af',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                lineHeight: '1.4',
+                padding: '12px',
+                backgroundColor: '#f9fafb',
+                borderRadius: '8px',
+                border: '1px solid #e5e7eb'
+              }}>
+                <strong>📚 Analysis Disclaimer:</strong> AI responses are based on training knowledge and educational commentary, not text reproduction. 
+                All analyses represent fair use discussion of literary works for educational purposes.
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

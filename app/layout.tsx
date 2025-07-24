@@ -74,13 +74,28 @@ export default function RootLayout({
               </main>
               
               <footer role="contentinfo" className="bg-surface border-t border-gray-200 mt-auto">
-                <div className="container mx-auto px-4 py-4">
-                  <p className="text-sm text-secondary text-center">
-                    © 2024 BookBridge. Built with accessibility first. 
-                    <a href="/accessibility" className="ml-2 underline hover:text-accent-primary">
-                      Accessibility Statement
-                    </a>
-                  </p>
+                <div className="container mx-auto px-4 py-6">
+                  <div className="text-sm text-secondary text-center space-y-2">
+                    <p className="font-medium">
+                      © 2024 BookBridge. Built with accessibility first.
+                    </p>
+                    <p className="text-xs max-w-4xl mx-auto">
+                      <strong>Disclaimer:</strong> AI analysis is based on training knowledge and publicly available information, not text reproduction. 
+                      BookBridge does not store or reproduce copyrighted content. All book analyses represent educational commentary 
+                      and fair use discussion of literary works. Book content is sourced from public domain collections and official APIs.
+                    </p>
+                    <p className="text-xs">
+                      <a href="/accessibility" className="underline hover:text-accent-primary mr-4">
+                        Accessibility Statement
+                      </a>
+                      <a href="/privacy" className="underline hover:text-accent-primary mr-4">
+                        Privacy Policy
+                      </a>
+                      <a href="/terms" className="underline hover:text-accent-primary">
+                        Terms of Service
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </footer>
             </VoiceNavigationWrapper>
