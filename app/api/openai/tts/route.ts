@@ -5,7 +5,20 @@ export async function POST(request: NextRequest) {
   const startTime = Date.now();
   
   try {
-    const { text, voice = 'alloy', speed = 1.0 } = await request.json();
+    const body = await request.json();
+    const { text, voice = 'alloy', speed = 1.0 } = body;
+    
+    // Validate required fields
+    if (!text || typeof text !== 'string') {
+      console.error('Invalid text parameter:', text);
+      return NextResponse.json({ error: 'Text parameter is required and must be a string' }, { status: 400 });
+    }
+    
+    // Validate text length (OpenAI has a 4096 character limit)
+    if (text.length > 4000) {
+      console.error('Text too long:', text.length, 'characters');
+      return NextResponse.json({ error: 'Text must be less than 4000 characters' }, { status: 400 });
+    }
     
     if (!process.env.OPENAI_API_KEY) {
       console.error('OpenAI API key not configured');
@@ -47,9 +60,25 @@ export async function POST(request: NextRequest) {
     console.error('OpenAI TTS error:', error);
     console.error(`Failed after ${processingTime}ms`);
     
+    // Handle specific OpenAI errors
+    if (error?.status === 429) {
+      return NextResponse.json({ 
+        error: 'Rate limit exceeded. Please try again later.',
+        details: 'OpenAI API rate limit reached' 
+      }, { status: 429 });
+    }
+    
+    if (error?.status === 401) {
+      return NextResponse.json({ 
+        error: 'API authentication failed',
+        details: 'Invalid OpenAI API key' 
+      }, { status: 401 });
+    }
+    
     return NextResponse.json({ 
       error: 'Failed to generate speech',
-      details: error.message 
+      details: error.message || 'Unknown error occurred',
+      status: error?.status || 500
     }, { status: 500 });
   }
 }

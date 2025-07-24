@@ -95,12 +95,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       console.log('🔍 Looking for Google Books book:', googleId);
       
       try {
-        // Use search method since it returns ExternalBook format
-        const googleBooks = await googleBooksAPI.searchBooks(googleId, 1, 1);
-        targetBook = googleBooks.books.find(book => book.id === bookId) || null;
+        // Use getBook method to fetch specific book by ID
+        targetBook = await googleBooksAPI.getBook(googleId);
         
         if (targetBook) {
-          console.log('✅ Found Google Books book via search:', targetBook.title);
+          console.log('✅ Found Google Books book via getBook:', targetBook.title);
         }
       } catch (error) {
         console.error('Error fetching Google Books:', error);
