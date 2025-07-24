@@ -173,7 +173,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           
           onEnd?.();
         },
-        onError: (error) => {
+        onError: (error: any) => {
           setIsPlaying(false);
           setIsPaused(false);
           setIsLoading(false);
@@ -187,7 +187,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             setFallbackMessage('⚠️ Premium voice unavailable, try Standard voice');
             setTimeout(() => setFallbackMessage(null), 5000);
           }
-          onError?.(error.error);
+          onError?.(typeof error.error === 'string' ? error.error : 'error');
         },
         onPause: () => {
           setIsPaused(true);
