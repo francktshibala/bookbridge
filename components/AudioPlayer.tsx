@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { voiceService } from '@/lib/voice-service';
+import { voiceService, VoiceProvider } from '@/lib/voice-service';
+import { ELEVENLABS_VOICES, DEFAULT_ELEVENLABS_VOICE } from '@/lib/elevenlabs-voices';
 
 interface AudioPlayerProps {
   text: string;
@@ -29,6 +30,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const [showControls, setShowControls] = useState(false);
   const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [voiceProvider, setVoiceProvider] = useState<VoiceProvider>('web-speech');
+  const [elevenLabsVoice, setElevenLabsVoice] = useState<string>(DEFAULT_ELEVENLABS_VOICE);
+  const [fallbackMessage, setFallbackMessage] = useState<string | null>(null);
 
   // Load available voices on mount
   useEffect(() => {
@@ -45,12 +49,13 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   }, [text]);
 
   const handlePlay = async () => {
-    if (isPaused) {
-      voiceService.resume();
-      setIsPaused(false);
-      setIsPlaying(true);
-      return;
-    }
+    // Always stop current audio first to prevent overlapping
+    voiceService.stop();
+    setIsPlaying(false);
+    setIsPaused(false);
+    
+    // Small delay to ensure cleanup
+    await new Promise(resolve => setTimeout(resolve, 200));
 
     try {
       setIsPlaying(true);
@@ -67,7 +72,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           rate: playbackRate,
           volume: volume,
           voice: selectedVoice,
-          pitch: 1.0
+          pitch: 1.0,
+          provider: voiceProvider,
+          elevenLabsVoice: voiceProvider === 'elevenlabs' ? elevenLabsVoice : undefined
         },
         onStart: () => {
           console.log('Speech started');
@@ -95,6 +102,10 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           setIsPaused(false);
           setProgress(0);
           setCurrentTime(0);
+          if (voiceProvider === 'elevenlabs') {
+            setFallbackMessage('Premium voice unavailable, using standard voice');
+            setTimeout(() => setFallbackMessage(null), 5000);
+          }
           onError?.(error.error);
         },
         onPause: () => {
@@ -114,9 +125,11 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   };
 
   const handlePause = () => {
-    voiceService.pause();
-    setIsPaused(true);
+    voiceService.stop(); // Use stop instead of pause for cleaner state
+    setIsPaused(false);
     setIsPlaying(false);
+    setProgress(0);
+    setCurrentTime(0);
   };
 
   const handleStop = () => {
@@ -143,6 +156,84 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   return (
     <div className={`audio-player ${className}`}>
+      {/* Fallback Message */}
+      {fallbackMessage && (
+        <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p className="text-sm text-yellow-800">{fallbackMessage}</p>
+        </div>
+      )}
+
+      {/* Voice Quality Toggle */}
+      <div className="mb-4 flex items-center justify-between">
+        <span className="text-sm font-medium text-gray-700">Voice Quality</span>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => {
+              voiceService.stop(); // Stop current audio when switching
+              setIsPlaying(false);
+              setIsPaused(false);
+              setVoiceProvider('web-speech');
+            }}
+            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+              voiceProvider === 'web-speech'
+                ? 'bg-purple-600 text-white'
+                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+            }`}
+          >
+            Standard
+          </button>
+          <button
+            onClick={() => {
+              voiceService.stop(); // Stop current audio when switching
+              setIsPlaying(false);
+              setIsPaused(false);
+              setVoiceProvider('elevenlabs');
+            }}
+            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+              voiceProvider === 'elevenlabs'
+                ? 'bg-purple-600 text-white'
+                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+            }`}
+          >
+            Premium ✨
+          </button>
+        </div>
+      </div>
+
+      {/* Voice Selection for Premium */}
+      {voiceProvider === 'elevenlabs' && (
+        <div className="mb-4">
+          <label className="text-sm font-medium text-gray-700 block mb-2">
+            Select Voice
+          </label>
+          <select
+            value={elevenLabsVoice}
+            onChange={(e) => {
+              voiceService.stop(); // Stop current audio when changing voice
+              setIsPlaying(false);
+              setIsPaused(false);
+              setElevenLabsVoice(e.target.value);
+            }}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          >
+            <optgroup label="Female Voices">
+              {ELEVENLABS_VOICES.filter(v => v.category === 'female').map(voice => (
+                <option key={voice.voice_id} value={voice.voice_id}>
+                  {voice.name} ({voice.accent}) - {voice.description}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Male Voices">
+              {ELEVENLABS_VOICES.filter(v => v.category === 'male').map(voice => (
+                <option key={voice.voice_id} value={voice.voice_id}>
+                  {voice.name} ({voice.accent}) - {voice.description}
+                </option>
+              ))}
+            </optgroup>
+          </select>
+        </div>
+      )}
+
       {/* Main Play Button */}
       <div style={{
         display: 'flex',

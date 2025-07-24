@@ -1,10 +1,17 @@
 'use client';
 
+import { voiceUsageTracker } from './voice-usage-tracker';
+import { VoiceErrorHandler } from './voice-error-handler';
+
+export type VoiceProvider = 'web-speech' | 'openai' | 'elevenlabs';
+
 export interface VoiceSettings {
   rate: number;  // 0.1 to 10
   pitch: number; // 0 to 2
   volume: number; // 0 to 1
   voice: SpeechSynthesisVoice | null;
+  provider?: VoiceProvider;
+  elevenLabsVoice?: string;
 }
 
 export interface TTSOptions {
@@ -23,11 +30,13 @@ export class VoiceService {
   private currentUtterance: SpeechSynthesisUtterance | null = null;
   private isSupported: boolean = false;
   private voices: SpeechSynthesisVoice[] = [];
+  private currentAudio: HTMLAudioElement | null = null;
   private defaultSettings: VoiceSettings = {
-    rate: 0.9,    // Slightly slower for more natural sound
+    rate: 0.9,
     pitch: 1.0,
     volume: 0.8,
-    voice: null
+    voice: null,
+    provider: 'web-speech'
   };
 
   private constructor() {
@@ -137,19 +146,134 @@ export class VoiceService {
   }
 
   public speak(options: TTSOptions): Promise<void> {
+    const settings = { ...this.defaultSettings, ...options.settings };
+    
+    switch (settings.provider) {
+      case 'elevenlabs':
+        return this.speakWithElevenLabs(options, settings);
+      case 'openai':
+        return this.speakWithOpenAI(options, settings);
+      default:
+        return this.speakWithWebSpeech(options, settings);
+    }
+  }
+
+  private speakWithElevenLabs(options: TTSOptions, settings: VoiceSettings): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // Force complete stop before starting new audio
+        this.stop();
+        
+        // Small delay to ensure previous audio is fully stopped
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        options.onStart?.();
+        
+        // Track usage
+        await voiceUsageTracker.trackUsage({
+          provider: 'elevenlabs',
+          voice_id: settings.elevenLabsVoice,
+          character_count: options.text.length
+        });
+        
+        const response = await fetch('/api/elevenlabs/tts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: this.cleanTextForSpeech(options.text),
+            voice: settings.elevenLabsVoice || 'EXAVITQu4vr4xnSDxMaL',
+            speed: settings.rate
+          })
+        });
+        
+        if (!response.ok) throw new Error('ElevenLabs API failed');
+        
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        
+        this.currentAudio = new Audio(audioUrl);
+        this.currentAudio.volume = settings.volume;
+        this.currentAudio.onended = () => {
+          URL.revokeObjectURL(audioUrl);
+          this.currentAudio = null;
+          options.onEnd?.();
+          resolve();
+        };
+        this.currentAudio.onerror = () => {
+          reject(new Error('Audio playback failed'));
+        };
+        
+        await this.currentAudio.play();
+      } catch (error) {
+        VoiceErrorHandler.logError('elevenlabs', error as Error, true);
+        // Fallback to web speech
+        this.speakWithWebSpeech(options, { ...settings, provider: 'web-speech' })
+          .then(resolve)
+          .catch(reject);
+      }
+    });
+  }
+
+  private speakWithOpenAI(options: TTSOptions, settings: VoiceSettings): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        this.stop();
+        options.onStart?.();
+        
+        // Track usage
+        await voiceUsageTracker.trackUsage({
+          provider: 'openai',
+          character_count: options.text.length
+        });
+        
+        const response = await fetch('/api/openai/tts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: this.cleanTextForSpeech(options.text),
+            voice: 'alloy',
+            speed: settings.rate
+          })
+        });
+        
+        if (!response.ok) throw new Error('OpenAI TTS API failed');
+        
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        
+        this.currentAudio = new Audio(audioUrl);
+        this.currentAudio.volume = settings.volume;
+        this.currentAudio.onended = () => {
+          URL.revokeObjectURL(audioUrl);
+          this.currentAudio = null;
+          options.onEnd?.();
+          resolve();
+        };
+        this.currentAudio.onerror = () => {
+          reject(new Error('Audio playback failed'));
+        };
+        
+        await this.currentAudio.play();
+      } catch (error) {
+        VoiceErrorHandler.logError('elevenlabs', error as Error, true);
+        // Fallback to web speech
+        this.speakWithWebSpeech(options, { ...settings, provider: 'web-speech' })
+          .then(resolve)
+          .catch(reject);
+      }
+    });
+  }
+
+  private speakWithWebSpeech(options: TTSOptions, settings: VoiceSettings): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this.isSupported) {
         reject(new Error('Text-to-speech not supported'));
         return;
       }
 
-      // Stop any current speech
       this.stop();
-
       const utterance = new SpeechSynthesisUtterance(options.text);
-      const settings = { ...this.defaultSettings, ...options.settings };
 
-      // Apply settings
       utterance.rate = settings.rate;
       utterance.pitch = settings.pitch;
       utterance.volume = settings.volume;
@@ -157,30 +281,26 @@ export class VoiceService {
         utterance.voice = settings.voice;
       }
 
-      // Set up event handlers
       utterance.onstart = () => {
         options.onStart?.();
+        // Track usage
+        voiceUsageTracker.trackUsage({
+          provider: 'web-speech',
+          character_count: options.text.length
+        });
       };
-
       utterance.onend = () => {
         this.currentUtterance = null;
         options.onEnd?.();
         resolve();
       };
-
       utterance.onerror = (event) => {
         this.currentUtterance = null;
         options.onError?.(event);
         reject(new Error(`Speech synthesis error: ${event.error}`));
       };
-
-      utterance.onpause = () => {
-        options.onPause?.();
-      };
-
-      utterance.onresume = () => {
-        options.onResume?.();
-      };
+      utterance.onpause = () => options.onPause?.();
+      utterance.onresume = () => options.onResume?.();
 
       this.currentUtterance = utterance;
       this.speechSynthesis.speak(utterance);
@@ -191,6 +311,9 @@ export class VoiceService {
     if (this.isSupported && this.speechSynthesis.speaking) {
       this.speechSynthesis.pause();
     }
+    if (this.currentAudio && !this.currentAudio.paused) {
+      this.currentAudio.pause();
+    }
   }
 
   public resume(): void {
@@ -200,9 +323,17 @@ export class VoiceService {
   }
 
   public stop(): void {
+    // Force stop all audio immediately
     if (this.isSupported) {
       this.speechSynthesis.cancel();
       this.currentUtterance = null;
+    }
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio.currentTime = 0;
+      this.currentAudio.src = '';
+      this.currentAudio.load(); // Force reload to stop buffering
+      this.currentAudio = null;
     }
   }
 
