@@ -22,6 +22,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(0.9);
   const [volume, setVolume] = useState(0.8);
   const [progress, setProgress] = useState(0);
@@ -49,17 +50,18 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   }, [text]);
 
   const handlePlay = async () => {
+    if (isLoading) return;
+    
     // Always stop current audio first to prevent overlapping
     voiceService.stop();
     setIsPlaying(false);
     setIsPaused(false);
+    setIsLoading(true);
     
     // Small delay to ensure cleanup
     await new Promise(resolve => setTimeout(resolve, 200));
 
     try {
-      setIsPlaying(true);
-      setIsPaused(false);
       setProgress(0);
       setCurrentTime(0);
       onStart?.();
@@ -78,6 +80,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         },
         onStart: () => {
           console.log('Speech started');
+          setIsLoading(false);
+          setIsPlaying(true);
+          setIsPaused(false);
           // Start progress simulation
           const progressInterval = setInterval(() => {
             setCurrentTime(prev => {
@@ -93,6 +98,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         onEnd: () => {
           setIsPlaying(false);
           setIsPaused(false);
+          setIsLoading(false);
           setProgress(100);
           setCurrentTime(duration);
           onEnd?.();
@@ -100,6 +106,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         onError: (error) => {
           setIsPlaying(false);
           setIsPaused(false);
+          setIsLoading(false);
           setProgress(0);
           setCurrentTime(0);
           if (voiceProvider === 'elevenlabs') {
@@ -120,16 +127,25 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     } catch (error) {
       setIsPlaying(false);
       setIsPaused(false);
+      setIsLoading(false);
       onError?.(error instanceof Error ? error.message : 'Speech synthesis failed');
     }
   };
 
   const handlePause = () => {
-    voiceService.stop(); // Use stop instead of pause for cleaner state
-    setIsPaused(false);
-    setIsPlaying(false);
-    setProgress(0);
-    setCurrentTime(0);
+    if (voiceProvider === 'web-speech') {
+      // Web Speech API supports pause/resume
+      voiceService.pause();
+      setIsPaused(true);
+      setIsPlaying(false);
+    } else {
+      // For ElevenLabs/OpenAI, we need to stop completely
+      voiceService.stop();
+      setIsPaused(false);
+      setIsPlaying(false);
+      setIsLoading(false);
+      // Keep progress for better UX
+    }
   };
 
   const handleStop = () => {
@@ -249,11 +265,14 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <motion.button
             onClick={isPlaying ? handlePause : handlePlay}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: isLoading ? 1 : 1.05 }}
+            whileTap={{ scale: isLoading ? 1 : 0.95 }}
+            disabled={isLoading}
             style={{
               padding: '8px 12px',
-              background: isPlaying 
+              background: isLoading
+                ? 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)'
+                : isPlaying 
                 ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
                 : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
               color: 'white',
@@ -262,15 +281,26 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
               fontSize: '12px',
               fontWeight: '600',
               fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-              cursor: 'pointer',
+              cursor: isLoading ? 'not-allowed' : 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
-              transition: 'all 0.2s ease'
+              transition: 'all 0.2s ease',
+              opacity: isLoading ? 0.7 : 1
             }}
             aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
           >
-            {isPlaying ? (
+            {isLoading ? (
+              <>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                >
+                  ⏳
+                </motion.div>
+                Loading...
+              </>
+            ) : isPlaying ? (
               <>
                 <motion.div
                   animate={{ scale: [1, 1.1, 1] }}
