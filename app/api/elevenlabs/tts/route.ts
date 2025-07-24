@@ -6,9 +6,18 @@ export async function POST(request: NextRequest) {
   try {
     const { text, voice = 'EXAVITQu4vr4xnSDxMaL', speed = 1.0 } = await request.json();
     
+    console.log('Environment check:', {
+      hasApiKey: !!process.env.ELEVENLABS_API_KEY,
+      apiKeyLength: process.env.ELEVENLABS_API_KEY?.length || 0,
+      apiKeyStart: process.env.ELEVENLABS_API_KEY?.substring(0, 8) + '...',
+    });
+    
     if (!process.env.ELEVENLABS_API_KEY) {
       console.error('ElevenLabs API key not configured');
-      return NextResponse.json({ error: 'ElevenLabs API key not configured' }, { status: 500 });
+      return NextResponse.json({ 
+        error: 'ElevenLabs API key not configured',
+        env: Object.keys(process.env).filter(k => k.includes('ELEVEN'))
+      }, { status: 500 });
     }
     
     console.log('ElevenLabs TTS request:', {
@@ -78,12 +87,24 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     const processingTime = Date.now() - startTime;
     console.error('ElevenLabs TTS error:', error);
-    console.error(`Failed after ${processingTime}ms`);
+    console.error('Error details:', {
+      message: error.message,
+      name: error.name,
+      stack: error.stack,
+      processingTime: `${processingTime}ms`,
+      hasApiKey: !!process.env.ELEVENLABS_API_KEY,
+      apiKeyLength: process.env.ELEVENLABS_API_KEY?.length || 0
+    });
     
     if (error.name === 'AbortError') {
       return NextResponse.json({ error: 'Request timeout' }, { status: 504 });
     }
     
-    return NextResponse.json({ error: 'Failed to generate speech' }, { status: 500 });
+    // Return more specific error information
+    return NextResponse.json({ 
+      error: 'Failed to generate speech',
+      details: error.message,
+      hasApiKey: !!process.env.ELEVENLABS_API_KEY
+    }, { status: 500 });
   }
 }
