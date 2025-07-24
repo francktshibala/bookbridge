@@ -34,6 +34,8 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const [voiceProvider, setVoiceProvider] = useState<VoiceProvider>('web-speech');
   const [elevenLabsVoice, setElevenLabsVoice] = useState<string>(DEFAULT_ELEVENLABS_VOICE);
   const [fallbackMessage, setFallbackMessage] = useState<string | null>(null);
+  const [progressInterval, setProgressInterval] = useState<NodeJS.Timeout | null>(null);
+  const [currentAudioElement, setCurrentAudioElement] = useState<HTMLAudioElement | null>(null);
 
   // Load available voices on mount
   useEffect(() => {
@@ -49,14 +51,32 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     setDuration(estimatedDuration);
   }, [text]);
 
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (progressInterval) {
+        clearInterval(progressInterval);
+      }
+      voiceService.stop();
+    };
+  }, [progressInterval]);
+
   const handlePlay = async () => {
-    if (isLoading) return;
+    if (isLoading) {
+      console.log('Already loading, ignoring click');
+      return;
+    }
+    
+    console.log('handlePlay called with provider:', voiceProvider);
     
     // Always stop current audio first to prevent overlapping
     voiceService.stop();
     setIsPlaying(false);
     setIsPaused(false);
     setIsLoading(true);
+    
+    // Clear any previous fallback messages
+    setFallbackMessage(null);
     
     // Small delay to ensure cleanup
     await new Promise(resolve => setTimeout(resolve, 200));
@@ -67,6 +87,8 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       onStart?.();
 
       const cleanText = voiceService.cleanTextForSpeech(text);
+      
+      console.log('Calling voiceService.speak with provider:', voiceProvider);
       
       await voiceService.speak({
         text: cleanText,
@@ -83,17 +105,57 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           setIsLoading(false);
           setIsPlaying(true);
           setIsPaused(false);
-          // Start progress simulation
-          const progressInterval = setInterval(() => {
-            setCurrentTime(prev => {
-              const newTime = prev + 0.1;
-              setProgress((newTime / duration) * 100);
-              if (newTime >= duration) {
-                clearInterval(progressInterval);
+          
+          // Clear any existing interval
+          if (progressInterval) {
+            clearInterval(progressInterval);
+          }
+          
+          // For ElevenLabs/OpenAI, track actual audio element progress
+          if (voiceProvider !== 'web-speech') {
+            // Wait a bit for audio element to be created
+            setTimeout(() => {
+              const audioElement = voiceService.getCurrentAudioElement();
+              if (audioElement) {
+                setCurrentAudioElement(audioElement);
+                
+                // Use actual audio duration if available
+                if (audioElement.duration && !isNaN(audioElement.duration)) {
+                  setDuration(audioElement.duration);
+                }
+                
+                // Track actual progress
+                const interval = setInterval(() => {
+                  if (audioElement && !audioElement.paused) {
+                    const time = audioElement.currentTime;
+                    const dur = audioElement.duration || duration;
+                    setCurrentTime(time);
+                    setProgress((time / dur) * 100);
+                    
+                    if (time >= dur) {
+                      clearInterval(interval);
+                      setProgressInterval(null);
+                    }
+                  }
+                }, 100);
+                setProgressInterval(interval);
               }
-              return newTime;
-            });
-          }, 100);
+            }, 100);
+          } else {
+            // For web speech, use estimation
+            const interval = setInterval(() => {
+              setCurrentTime(prev => {
+                const newTime = prev + 0.1;
+                setProgress((newTime / duration) * 100);
+                if (newTime >= duration) {
+                  clearInterval(interval);
+                  setProgressInterval(null);
+                }
+                return newTime;
+              });
+            }, 100);
+            setProgressInterval(interval);
+          }
         },
         onEnd: () => {
           setIsPlaying(false);
@@ -101,6 +163,14 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           setIsLoading(false);
           setProgress(100);
           setCurrentTime(duration);
+          setCurrentAudioElement(null);
+          
+          // Clear progress interval
+          if (progressInterval) {
+            clearInterval(progressInterval);
+            setProgressInterval(null);
+          }
+          
           onEnd?.();
         },
         onError: (error) => {
@@ -109,8 +179,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           setIsLoading(false);
           setProgress(0);
           setCurrentTime(0);
-          if (voiceProvider === 'elevenlabs') {
-            setFallbackMessage('Premium voice unavailable, using standard voice');
+          
+          if (error.error === 'autoplay_blocked') {
+            setFallbackMessage('🔄 Click the play button again - browser needs permission');
+            setTimeout(() => setFallbackMessage(null), 4000);
+          } else if (voiceProvider !== 'web-speech') {
+            setFallbackMessage('⚠️ Premium voice unavailable, try Standard voice');
             setTimeout(() => setFallbackMessage(null), 5000);
           }
           onError?.(error.error);
@@ -133,27 +207,40 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   };
 
   const handlePause = () => {
+    // Clear progress tracking
+    if (progressInterval) {
+      clearInterval(progressInterval);
+      setProgressInterval(null);
+    }
+    
     if (voiceProvider === 'web-speech') {
       // Web Speech API supports pause/resume
       voiceService.pause();
       setIsPaused(true);
       setIsPlaying(false);
     } else {
-      // For ElevenLabs/OpenAI, we need to stop completely
-      voiceService.stop();
-      setIsPaused(false);
-      setIsPlaying(false);
-      setIsLoading(false);
-      // Keep progress for better UX
+      // For ElevenLabs/OpenAI, pause the audio element
+      if (currentAudioElement && !currentAudioElement.paused) {
+        currentAudioElement.pause();
+        setIsPaused(true);
+        setIsPlaying(false);
+      }
     }
   };
 
   const handleStop = () => {
+    // Clear progress tracking
+    if (progressInterval) {
+      clearInterval(progressInterval);
+      setProgressInterval(null);
+    }
+    
     voiceService.stop();
     setIsPlaying(false);
     setIsPaused(false);
     setProgress(0);
     setCurrentTime(0);
+    setCurrentAudioElement(null);
   };
 
   const formatTime = (seconds: number): string => {
@@ -188,6 +275,13 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
               voiceService.stop(); // Stop current audio when switching
               setIsPlaying(false);
               setIsPaused(false);
+              setIsLoading(false);
+              setProgress(0);
+              setCurrentTime(0);
+              if (progressInterval) {
+                clearInterval(progressInterval);
+                setProgressInterval(null);
+              }
               setVoiceProvider('web-speech');
             }}
             className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
@@ -200,9 +294,40 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           </button>
           <button
             onClick={() => {
+              console.log('OpenAI TTS button clicked');
               voiceService.stop(); // Stop current audio when switching
               setIsPlaying(false);
               setIsPaused(false);
+              setIsLoading(false);
+              setProgress(0);
+              setCurrentTime(0);
+              if (progressInterval) {
+                clearInterval(progressInterval);
+                setProgressInterval(null);
+              }
+              setVoiceProvider('openai');
+              console.log('Voice provider set to:', 'openai');
+            }}
+            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+              voiceProvider === 'openai'
+                ? 'bg-green-600 text-white'
+                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+            }`}
+          >
+            OpenAI TTS {voiceProvider === 'openai' ? '✓' : ''}
+          </button>
+          <button
+            onClick={() => {
+              voiceService.stop(); // Stop current audio when switching
+              setIsPlaying(false);
+              setIsPaused(false);
+              setIsLoading(false);
+              setProgress(0);
+              setCurrentTime(0);
+              if (progressInterval) {
+                clearInterval(progressInterval);
+                setProgressInterval(null);
+              }
               setVoiceProvider('elevenlabs');
             }}
             className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
@@ -211,7 +336,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
             }`}
           >
-            Premium ✨
+            ElevenLabs ✨
           </button>
         </div>
       </div>
@@ -228,6 +353,13 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
               voiceService.stop(); // Stop current audio when changing voice
               setIsPlaying(false);
               setIsPaused(false);
+              setIsLoading(false);
+              setProgress(0);
+              setCurrentTime(0);
+              if (progressInterval) {
+                clearInterval(progressInterval);
+                setProgressInterval(null);
+              }
               setElevenLabsVoice(e.target.value);
             }}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"

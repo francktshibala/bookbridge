@@ -167,8 +167,6 @@ export class VoiceService {
         // Small delay to ensure previous audio is fully stopped
         await new Promise(resolve => setTimeout(resolve, 100));
         
-        options.onStart?.();
-        
         // Track usage
         await voiceUsageTracker.trackUsage({
           provider: 'elevenlabs',
@@ -176,37 +174,87 @@ export class VoiceService {
           character_count: options.text.length
         });
         
-        const response = await fetch('/api/elevenlabs/tts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            text: this.cleanTextForSpeech(options.text),
-            voice: settings.elevenLabsVoice || 'EXAVITQu4vr4xnSDxMaL',
-            speed: settings.rate
-          })
-        });
+        // Create AbortController for timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout for better UX
         
-        if (!response.ok) throw new Error('ElevenLabs API failed');
-        
-        const audioBlob = await response.blob();
-        const audioUrl = URL.createObjectURL(audioBlob);
-        
-        this.currentAudio = new Audio(audioUrl);
-        this.currentAudio.volume = settings.volume;
-        this.currentAudio.onended = () => {
-          URL.revokeObjectURL(audioUrl);
-          this.currentAudio = null;
-          options.onEnd?.();
-          resolve();
-        };
-        this.currentAudio.onerror = () => {
-          reject(new Error('Audio playback failed'));
-        };
-        
-        await this.currentAudio.play();
+        try {
+          const response = await fetch('/api/elevenlabs/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              text: this.cleanTextForSpeech(options.text),
+              voice: settings.elevenLabsVoice || 'EXAVITQu4vr4xnSDxMaL',
+              speed: settings.rate
+            }),
+            signal: controller.signal
+          });
+          
+          clearTimeout(timeoutId);
+          
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error('ElevenLabs API error:', errorText);
+            throw new Error('ElevenLabs API failed');
+          }
+          
+          const audioBlob = await response.blob();
+          const audioUrl = URL.createObjectURL(audioBlob);
+          
+          this.currentAudio = new Audio(audioUrl);
+          this.currentAudio.volume = settings.volume;
+          this.currentAudio.playbackRate = settings.rate;
+          
+          // Set up event handlers before playing
+          this.currentAudio.onloadeddata = () => {
+            console.log('Audio loaded, starting playback');
+          };
+          
+          this.currentAudio.oncanplaythrough = () => {
+            console.log('Audio can play through, calling onStart');
+            options.onStart?.();
+          };
+          
+          this.currentAudio.onended = () => {
+            URL.revokeObjectURL(audioUrl);
+            this.currentAudio = null;
+            options.onEnd?.();
+            resolve();
+          };
+          
+          this.currentAudio.onerror = (e) => {
+            console.error('Audio playback error:', e);
+            URL.revokeObjectURL(audioUrl);
+            this.currentAudio = null;
+            reject(new Error('Audio playback failed'));
+          };
+          
+          // Attempt to play with better autoplay handling
+          try {
+            await this.currentAudio.play();
+          } catch (playError: any) {
+            if (playError.name === 'NotAllowedError') {
+              console.log('ElevenLabs: Autoplay blocked by browser policy');
+              options.onError?.({ error: 'autoplay_blocked', message: 'Click the play button again to start audio' } as any);
+              return;
+            }
+            throw playError;
+          }
+        } catch (fetchError: any) {
+          clearTimeout(timeoutId);
+          if (fetchError.name === 'AbortError') {
+            console.error('ElevenLabs request timed out');
+            throw new Error('ElevenLabs is taking too long to respond. Try using OpenAI TTS or Standard voice instead.');
+          }
+          throw fetchError;
+        }
       } catch (error) {
+        console.error('ElevenLabs TTS error:', error);
         VoiceErrorHandler.logError('elevenlabs', error as Error, true);
+        options.onError?.({ error: 'elevenlabs_failed', message: (error as Error).message } as any);
+        
         // Fallback to web speech
+        console.log('Falling back to Web Speech API');
         this.speakWithWebSpeech(options, { ...settings, provider: 'web-speech' })
           .then(resolve)
           .catch(reject);
@@ -217,8 +265,11 @@ export class VoiceService {
   private speakWithOpenAI(options: TTSOptions, settings: VoiceSettings): Promise<void> {
     return new Promise(async (resolve, reject) => {
       try {
+        // Force complete stop before starting new audio
         this.stop();
-        options.onStart?.();
+        
+        // Small delay to ensure previous audio is fully stopped
+        await new Promise(resolve => setTimeout(resolve, 100));
         
         // Track usage
         await voiceUsageTracker.trackUsage({
@@ -226,37 +277,86 @@ export class VoiceService {
           character_count: options.text.length
         });
         
-        const response = await fetch('/api/openai/tts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            text: this.cleanTextForSpeech(options.text),
-            voice: 'alloy',
-            speed: settings.rate
-          })
-        });
+        // Create AbortController for timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
         
-        if (!response.ok) throw new Error('OpenAI TTS API failed');
-        
-        const audioBlob = await response.blob();
-        const audioUrl = URL.createObjectURL(audioBlob);
-        
-        this.currentAudio = new Audio(audioUrl);
-        this.currentAudio.volume = settings.volume;
-        this.currentAudio.onended = () => {
-          URL.revokeObjectURL(audioUrl);
-          this.currentAudio = null;
-          options.onEnd?.();
-          resolve();
-        };
-        this.currentAudio.onerror = () => {
-          reject(new Error('Audio playback failed'));
-        };
-        
-        await this.currentAudio.play();
+        try {
+          const response = await fetch('/api/openai/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              text: this.cleanTextForSpeech(options.text).substring(0, 500), // Limit for faster response
+              voice: 'alloy',
+              speed: settings.rate
+            }),
+            signal: controller.signal
+          });
+          
+          clearTimeout(timeoutId);
+          
+          if (!response.ok) {
+            console.error('OpenAI TTS API error:', response.status);
+            throw new Error('OpenAI TTS API failed');
+          }
+          
+          const audioBlob = await response.blob();
+          const audioUrl = URL.createObjectURL(audioBlob);
+          
+          this.currentAudio = new Audio(audioUrl);
+          this.currentAudio.volume = settings.volume;
+          this.currentAudio.playbackRate = settings.rate;
+          
+          // Set up event handlers before playing
+          this.currentAudio.onloadeddata = () => {
+            console.log('OpenAI audio loaded, starting playback');
+          };
+          
+          this.currentAudio.oncanplaythrough = () => {
+            console.log('OpenAI audio can play through, calling onStart');
+            options.onStart?.();
+          };
+          
+          this.currentAudio.onended = () => {
+            URL.revokeObjectURL(audioUrl);
+            this.currentAudio = null;
+            options.onEnd?.();
+            resolve();
+          };
+          
+          this.currentAudio.onerror = (e) => {
+            console.error('OpenAI audio playback error:', e);
+            URL.revokeObjectURL(audioUrl);
+            this.currentAudio = null;
+            reject(new Error('Audio playback failed'));
+          };
+          
+          // Attempt to play with better autoplay handling
+          try {
+            await this.currentAudio.play();
+          } catch (playError: any) {
+            if (playError.name === 'NotAllowedError') {
+              console.log('OpenAI: Autoplay blocked by browser policy');
+              options.onError?.({ error: 'autoplay_blocked', message: 'Click the play button again to start audio' } as any);
+              return;
+            }
+            throw playError;
+          }
+        } catch (fetchError: any) {
+          clearTimeout(timeoutId);
+          if (fetchError.name === 'AbortError') {
+            console.error('OpenAI request timed out');
+            throw new Error('OpenAI is taking too long to respond. Try using Standard voice instead.');
+          }
+          throw fetchError;
+        }
       } catch (error) {
-        VoiceErrorHandler.logError('elevenlabs', error as Error, true);
+        console.error('OpenAI TTS error:', error);
+        VoiceErrorHandler.logError('openai', error as Error, true);
+        options.onError?.({ error: 'openai_failed', message: (error as Error).message } as any);
+        
         // Fallback to web speech
+        console.log('Falling back to Web Speech API');
         this.speakWithWebSpeech(options, { ...settings, provider: 'web-speech' })
           .then(resolve)
           .catch(reject);
@@ -456,6 +556,10 @@ export class VoiceService {
     }
 
     return englishVoices[0] || this.voices[0] || null;
+  }
+
+  public getCurrentAudioElement(): HTMLAudioElement | null {
+    return this.currentAudio;
   }
 }
 
