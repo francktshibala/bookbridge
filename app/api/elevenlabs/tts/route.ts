@@ -19,10 +19,10 @@ export async function POST(request: NextRequest) {
     });
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 45000); // 45 second timeout for production
 
-    // Limit text to 500 characters for faster response
-    const truncatedText = text.substring(0, 500);
+    // Use full text for better user experience
+    const truncatedText = text;
     
     let audioBuffer: ArrayBuffer;
     

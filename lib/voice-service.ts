@@ -176,7 +176,7 @@ export class VoiceService {
         
         // Create AbortController for timeout
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout for better UX
+        const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout for production
         
         try {
           const response = await fetch('/api/elevenlabs/tts', {
@@ -207,11 +207,7 @@ export class VoiceService {
           
           // Set up event handlers before playing
           this.currentAudio.onloadeddata = () => {
-            console.log('Audio loaded, starting playback');
-          };
-          
-          this.currentAudio.oncanplaythrough = () => {
-            console.log('Audio can play through, calling onStart');
+            console.log('ElevenLabs audio loaded, calling onStart');
             options.onStart?.();
           };
           
@@ -279,14 +275,14 @@ export class VoiceService {
         
         // Create AbortController for timeout
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout for production
         
         try {
           const response = await fetch('/api/openai/tts', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              text: this.cleanTextForSpeech(options.text).substring(0, 500), // Limit for faster response
+              text: this.cleanTextForSpeech(options.text),
               voice: 'alloy',
               speed: settings.rate
             }),
@@ -309,11 +305,7 @@ export class VoiceService {
           
           // Set up event handlers before playing
           this.currentAudio.onloadeddata = () => {
-            console.log('OpenAI audio loaded, starting playback');
-          };
-          
-          this.currentAudio.oncanplaythrough = () => {
-            console.log('OpenAI audio can play through, calling onStart');
+            console.log('OpenAI audio loaded, calling onStart');
             options.onStart?.();
           };
           

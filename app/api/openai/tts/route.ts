@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'OpenAI API key not configured' }, { status: 500 });
     }
 
-    // Limit text length for faster processing
-    const truncatedText = text.substring(0, 500);
+    // Use full text for better user experience
+    const truncatedText = text;
     
     console.log('OpenAI TTS request:', {
       voice,
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     // Create timeout promise
     const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error('Request timeout')), 10000); // 10 second timeout
+      setTimeout(() => reject(new Error('Request timeout')), 45000); // 45 second timeout for production
     });
 
     // Race between API call and timeout
