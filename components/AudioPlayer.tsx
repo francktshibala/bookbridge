@@ -33,6 +33,16 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [voiceProvider, setVoiceProvider] = useState<VoiceProvider>('web-speech');
   const [elevenLabsVoice, setElevenLabsVoice] = useState<string>(DEFAULT_ELEVENLABS_VOICE);
+  const [openAIVoice, setOpenAIVoice] = useState<string>('alloy');
+
+  const openAIVoices = [
+    { id: 'alloy', name: 'Alloy (Neutral)' },
+    { id: 'echo', name: 'Echo (Male)' },
+    { id: 'fable', name: 'Fable (British Male)' },
+    { id: 'onyx', name: 'Onyx (Deep Male)' },
+    { id: 'nova', name: 'Nova (Female)' },
+    { id: 'shimmer', name: 'Shimmer (Female)' }
+  ];
   const [fallbackMessage, setFallbackMessage] = useState<string | null>(null);
   const [progressInterval, setProgressInterval] = useState<NodeJS.Timeout | null>(null);
   const [currentAudioElement, setCurrentAudioElement] = useState<HTMLAudioElement | null>(null);
@@ -98,7 +108,8 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           voice: selectedVoice,
           pitch: 1.0,
           provider: voiceProvider,
-          elevenLabsVoice: voiceProvider === 'elevenlabs' ? elevenLabsVoice : undefined
+          elevenLabsVoice: voiceProvider === 'elevenlabs' ? elevenLabsVoice : undefined,
+          openAIVoice: voiceProvider === 'openai' ? openAIVoice : undefined
         },
         onStart: () => {
           console.log('Speech started');
@@ -111,7 +122,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             clearInterval(progressInterval);
           }
           
-          // For ElevenLabs, track actual audio element progress
+          // For ElevenLabs/OpenAI, track actual audio element progress
           if (voiceProvider !== 'web-speech') {
             // Wait a bit for audio element to be created
             setTimeout(() => {
@@ -219,11 +230,16 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       setIsPaused(true);
       setIsPlaying(false);
     } else {
-      // For ElevenLabs, pause the audio element
+      // For ElevenLabs/OpenAI, pause the audio element
       if (currentAudioElement && !currentAudioElement.paused) {
-        currentAudioElement.pause();
-        setIsPaused(true);
-        setIsPlaying(false);
+        try {
+          currentAudioElement.pause();
+          setIsPaused(true);
+          setIsPlaying(false);
+        } catch (error) {
+          console.warn('Pause failed, stopping instead:', error);
+          handleStop();
+        }
       }
     }
   };
@@ -304,6 +320,28 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 clearInterval(progressInterval);
                 setProgressInterval(null);
               }
+              setVoiceProvider('openai');
+            }}
+            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+              voiceProvider === 'openai'
+                ? 'bg-green-600 text-white'
+                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+            }`}
+          >
+            OpenAI TTS {voiceProvider === 'openai' ? '✓' : ''}
+          </button>
+          <button
+            onClick={() => {
+              voiceService.stop(); // Stop current audio when switching
+              setIsPlaying(false);
+              setIsPaused(false);
+              setIsLoading(false);
+              setProgress(0);
+              setCurrentTime(0);
+              if (progressInterval) {
+                clearInterval(progressInterval);
+                setProgressInterval(null);
+              }
               setVoiceProvider('elevenlabs');
             }}
             className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
@@ -354,6 +392,39 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 </option>
               ))}
             </optgroup>
+          </select>
+        </div>
+      )}
+
+      {/* OpenAI Voice Selection */}
+      {voiceProvider === 'openai' && (
+        <div style={{ marginBottom: '12px' }}>
+          <label style={{ 
+            display: 'block', 
+            marginBottom: '6px', 
+            fontSize: '13px', 
+            fontWeight: '500',
+            color: '#374151' 
+          }}>
+            OpenAI Voice:
+          </label>
+          <select
+            value={openAIVoice}
+            onChange={(e) => setOpenAIVoice(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '8px 12px',
+              border: '1px solid #d1d5db',
+              borderRadius: '6px',
+              fontSize: '14px',
+              backgroundColor: 'white'
+            }}
+          >
+            {openAIVoices.map(voice => (
+              <option key={voice.id} value={voice.id}>
+                {voice.name}
+              </option>
+            ))}
           </select>
         </div>
       )}

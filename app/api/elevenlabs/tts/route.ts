@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
     console.log('Environment check:', {
       hasApiKey: !!process.env.ELEVENLABS_API_KEY,
       apiKeyLength: process.env.ELEVENLABS_API_KEY?.length || 0,
-      apiKeyStart: process.env.ELEVENLABS_API_KEY?.substring(0, 8) + '...',
+      apiKeyStart: process.env.ELEVENLABS_API_KEY ? process.env.ELEVENLABS_API_KEY.substring(0, 8) + '...' : 'no-key',
     });
     
     if (!process.env.ELEVENLABS_API_KEY) {

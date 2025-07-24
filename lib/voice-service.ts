@@ -12,6 +12,7 @@ export interface VoiceSettings {
   voice: SpeechSynthesisVoice | null;
   provider?: VoiceProvider;
   elevenLabsVoice?: string;
+  openAIVoice?: string;
 }
 
 export interface TTSOptions {
@@ -189,6 +190,7 @@ export class VoiceService {
           character_count: options.text.length
         });
         
+        console.log('Making ElevenLabs API request...');
         const response = await fetch('/api/elevenlabs/tts', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -198,6 +200,8 @@ export class VoiceService {
             speed: settings.rate
           })
         });
+        
+        console.log('ElevenLabs response:', response.status, response.statusText);
         
         if (!response.ok) throw new Error('ElevenLabs API failed');
         
@@ -213,9 +217,13 @@ export class VoiceService {
           options.onEnd?.();
           resolve();
         };
-        this.currentAudio.onerror = () => {
+        this.currentAudio.onerror = (e) => {
           this.isCurrentlyPlaying = false;
-          reject(new Error('Audio playback failed'));
+          console.warn('Audio element error (Safari compatibility):', e);
+          // Don't reject on pause-related errors in Safari
+          if (!this.currentAudio || this.currentAudio.currentTime > 0) {
+            reject(new Error('Audio playback failed'));
+          }
         };
         
         await this.currentAudio.play();
@@ -250,7 +258,7 @@ export class VoiceService {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             text: this.cleanTextForSpeech(options.text),
-            voice: 'alloy',
+            voice: settings.openAIVoice || 'alloy',
             speed: settings.rate
           })
         });
@@ -269,9 +277,13 @@ export class VoiceService {
           options.onEnd?.();
           resolve();
         };
-        this.currentAudio.onerror = () => {
+        this.currentAudio.onerror = (e) => {
           this.isCurrentlyPlaying = false;
-          reject(new Error('Audio playback failed'));
+          console.warn('Audio element error (Safari compatibility):', e);
+          // Don't reject on pause-related errors in Safari
+          if (!this.currentAudio || this.currentAudio.currentTime > 0) {
+            reject(new Error('Audio playback failed'));
+          }
         };
         
         await this.currentAudio.play();
