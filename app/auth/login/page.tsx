@@ -2,9 +2,12 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { supabase } from '@/lib/supabase/client';
+import { ArrowLeft, Mail, Lock } from 'lucide-react';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -43,89 +46,317 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <AccessibleWrapper as="header" className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Sign in to BookBridge
-          </h1>
-          <p className="mt-2 text-sm text-gray-600">
-            Access your AI-powered book companion
-          </p>
-        </AccessibleWrapper>
+    <div className="page-container magical-bg min-h-screen" style={{ backgroundColor: '#0f172a', color: '#ffffff' }}>
+      {/* Magical Portfolio Background */}
+      <div className="fixed inset-0 pointer-events-none" style={{
+        background: `
+          radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.12) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(240, 147, 251, 0.08) 0%, transparent 50%)
+        `
+      }} />
+      
+      <div className="relative flex items-center justify-center min-h-screen py-12 px-12">
+        <div className="w-full max-w-md mx-auto">
+        {/* Back Navigation */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+          className="absolute top-8 left-8"
+        >
+          <Link 
+            href="/"
+            className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors font-medium"
+            style={{
+              textDecoration: 'none',
+              fontSize: '16px',
+              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+            }}
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span>Back to Home</span>
+          </Link>
+        </motion.div>
 
-        <AccessibleWrapper as="section" ariaLabelledBy="login-form-heading">
-          <h2 id="login-form-heading" className="sr-only">
-            Login Form
-          </h2>
+        {/* Premium Auth Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-8"
+        >
+          <AccessibleWrapper as="header">
+            <h1 className="text-gradient" style={{
+              fontSize: 'var(--text-4xl)',
+              fontWeight: '800',
+              marginBottom: '1rem',
+              lineHeight: '1.2',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+            }}>
+              Sign in to BookBridge
+            </h1>
+            <p style={{
+              fontSize: 'var(--text-lg)',
+              color: 'var(--text-secondary)',
+              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+              lineHeight: '1.6'
+            }}>
+              Access your AI-powered book companion
+            </p>
+          </AccessibleWrapper>
+        </motion.div>
 
-          <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                disabled={isLoading}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50"
-                placeholder="Enter your email"
-              />
-            </div>
+        {/* Premium Auth Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          style={{
+            background: 'var(--surface-elevated)',
+            borderRadius: '24px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.1)',
+            border: '1px solid var(--border-light)',
+            padding: '40px',
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          <AccessibleWrapper as="section" ariaLabelledBy="login-form-heading">
+            <h2 id="login-form-heading" className="sr-only">
+              Login Form
+            </h2>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                disabled={isLoading}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50"
-                placeholder="Enter your password"
-              />
-            </div>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              {/* Premium Email Input */}
+              <div>
+                <label htmlFor="email" style={{
+                  display: 'block',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  color: 'var(--text-primary)',
+                  marginBottom: '8px',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  Email address
+                </label>
+                <div style={{ position: 'relative' }}>
+                  <Mail className="w-5 h-5" style={{
+                    position: 'absolute',
+                    left: '12px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    color: 'var(--text-secondary)',
+                    zIndex: 1
+                  }} />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    disabled={isLoading}
+                    className="input-styled"
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px 12px 44px',
+                      color: 'var(--text-primary)',
+                      background: 'var(--surface-elevated)',
+                      border: '2px solid var(--border-light)',
+                      borderRadius: '12px',
+                      fontSize: '16px',
+                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                      outline: 'none',
+                      transition: 'all 0.3s ease',
+                      opacity: isLoading ? 0.5 : 1
+                    }}
+                    placeholder="Enter your email"
+                  />
+                </div>
+              </div>
 
-            {error && (
-              <AccessibleWrapper
-                as="div"
-                role="alert"
-                aria-live="assertive"
-                className="rounded-md bg-red-50 p-4"
-              >
-                <div className="text-sm text-red-700">{error}</div>
-              </AccessibleWrapper>
-            )}
+              {/* Premium Password Input */}
+              <div>
+                <label htmlFor="password" style={{
+                  display: 'block',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  color: 'var(--text-primary)',
+                  marginBottom: '8px',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  Password
+                </label>
+                <div style={{ position: 'relative' }}>
+                  <Lock className="w-5 h-5" style={{
+                    position: 'absolute',
+                    left: '12px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    color: 'var(--text-secondary)',
+                    zIndex: 1
+                  }} />
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    disabled={isLoading}
+                    className="input-styled"
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px 12px 44px',
+                      color: 'var(--text-primary)',
+                      background: 'var(--surface-elevated)',
+                      border: '2px solid var(--border-light)',
+                      borderRadius: '12px',
+                      fontSize: '16px',
+                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                      outline: 'none',
+                      transition: 'all 0.3s ease',
+                      opacity: isLoading ? 0.5 : 1
+                    }}
+                    placeholder="Enter your password"
+                  />
+                </div>
+              </div>
 
-            <div>
-              <button
+              {/* Premium Error Message */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <AccessibleWrapper
+                    as="div"
+                    role="alert"
+                    aria-live="assertive"
+                    style={{
+                      padding: '16px',
+                      borderRadius: '12px',
+                      background: 'rgba(239, 68, 68, 0.1)',
+                      border: '1px solid rgba(239, 68, 68, 0.3)',
+                      backdropFilter: 'blur(10px)'
+                    }}
+                  >
+                    <div style={{
+                      fontSize: '14px',
+                      color: '#ef4444',
+                      fontWeight: '600',
+                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                    }}>{error}</div>
+                  </AccessibleWrapper>
+                </motion.div>
+              )}
+
+              {/* Premium Submit Button */}
+              <motion.button
                 type="submit"
                 disabled={isLoading}
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ 
+                  scale: isLoading ? 1 : 1.02,
+                  boxShadow: isLoading ? undefined : '0 12px 40px rgba(102, 126, 234, 0.6), 0 0 0 1px rgba(255,255,255,0.1)',
+                  y: isLoading ? 0 : -3
+                }}
+                whileTap={{ scale: isLoading ? 1 : 0.98 }}
+                style={{
+                  width: '100%',
+                  padding: '16px 32px',
+                  background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 50%, #8b5cf6 100%)',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '16px',
+                  fontSize: '1.1rem',
+                  fontWeight: '800',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  cursor: isLoading ? 'not-allowed' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: '0 8px 25px rgba(102, 126, 234, 0.4), inset 0 1px 0 rgba(255,255,255,0.2)',
+                  letterSpacing: '0.02em',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+                  opacity: isLoading ? 0.7 : 1
+                }}
               >
-                {isLoading ? 'Signing in...' : 'Sign in'}
-              </button>
-            </div>
+                {/* Enhanced Shimmer Effect */}
+                {!isLoading && (
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: '-100%',
+                    width: '100%',
+                    height: '100%',
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
+                    animation: 'shimmer 3s infinite',
+                    zIndex: 1
+                  }} />
+                )}
+                
+                {isLoading ? (
+                  <>
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        border: '2px solid #ffffff',
+                        borderTop: '2px solid transparent',
+                        borderRadius: '50%'
+                      }}
+                    />
+                    <span style={{ zIndex: 2 }}>Signing in...</span>
+                  </>
+                ) : (
+                  <span style={{ 
+                    zIndex: 2,
+                    background: 'linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}>Sign in</span>
+                )}
+              </motion.button>
 
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
-                Don't have an account?{' '}
-                <a
-                  href="/auth/signup"
-                  className="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline"
-                >
-                  Sign up
-                </a>
-              </p>
-            </div>
-          </form>
-        </AccessibleWrapper>
+              {/* Premium Signup Link */}
+              <div style={{ textAlign: 'center', marginTop: '8px' }}>
+                <p style={{
+                  fontSize: '14px',
+                  color: 'var(--text-secondary)',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  Don't have an account?{' '}
+                  <Link
+                    href="/auth/signup"
+                    style={{
+                      fontWeight: '600',
+                      background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      textDecoration: 'none',
+                      transition: 'all 0.3s ease'
+                    }}
+                    className="hover:underline focus:outline-none focus:underline"
+                  >
+                    Sign up
+                  </Link>
+                </p>
+              </div>
+            </form>
+          </AccessibleWrapper>
+        </motion.div>
+        </div>
       </div>
     </div>
   );

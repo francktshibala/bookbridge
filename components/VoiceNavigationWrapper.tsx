@@ -21,7 +21,7 @@ export const VoiceNavigationWrapper: React.FC<VoiceNavigationWrapperProps> = ({ 
     const handleKeyDown = (event: KeyboardEvent) => {
       // Toggle voice navigation with 'V' key (when not in input field)
       if (
-        event.key.toLowerCase() === 'v' && 
+        event.key?.toLowerCase() === 'v' && 
         !event.ctrlKey && 
         !event.metaKey && 
         !event.altKey &&

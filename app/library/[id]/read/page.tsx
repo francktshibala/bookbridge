@@ -14,6 +14,11 @@ interface BookContent {
   chunks: Array<{
     chunkIndex: number;
     content: string;
+    sections?: Array<{
+      title: string;
+      content: string;
+      startIndex: number;
+    }>;
   }>;
   totalChunks: number;
 }
@@ -28,6 +33,8 @@ export default function BookReaderPage() {
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
   const [readingProgress, setReadingProgress] = useState<number>(0);
+  const [currentSection, setCurrentSection] = useState<number>(0);
+  const [sections, setSections] = useState<Array<{title: string; content: string; startIndex: number}>>([]);
 
   const bookId = params.id as string;
 
@@ -53,14 +60,72 @@ export default function BookReaderPage() {
       
       try {
         setLoading(true);
-        const response = await fetch(`/api/books/${bookId}/content?chunks=true`);
+        
+        // Check if this is an external book (from public domain sources)
+        const isExternalBook = bookId.includes('-') && 
+          ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
+            bookId.startsWith(source + '-')
+          );
+        
+        let response: Response;
+        
+        if (isExternalBook) {
+          // Use external book API for public domain books
+          response = await fetch(`/api/books/external/${bookId}`);
+        } else {
+          // Use internal book API for uploaded books
+          response = await fetch(`/api/books/${bookId}/content?chunks=true`);
+        }
         
         if (!response.ok) {
           throw new Error('Failed to fetch book content');
         }
         
         const data = await response.json();
-        setBookContent(data);
+        let finalData;
+        
+        // Transform external book response to match internal format
+        if (isExternalBook) {
+          // For external books, use enhanced chapter detection on full content
+          const bookStructure = detectBookStructure(data.content);
+          
+          // Create chunks based on detected chapters/sections
+          const chunks = bookStructure.map((section, index) => ({
+            chunkIndex: index,
+            content: section.content,
+            sections: [section] // Each chunk now contains one meaningful section
+          }));
+          
+          // Ensure at least one chunk
+          if (chunks.length === 0) {
+            chunks.push({
+              chunkIndex: 0,
+              content: data.content,
+              sections: []
+            });
+          }
+          
+          finalData = {
+            id: data.book.id,
+            title: data.book.title,
+            author: data.book.author,
+            chunks,
+            totalChunks: chunks.length
+          };
+          setBookContent(finalData);
+          
+          // Set sections from the book structure
+          setSections(bookStructure);
+        } else {
+          finalData = data;
+          setBookContent(data);
+          
+          // For internal books, use existing section detection
+          if (finalData.chunks && finalData.chunks.length > 0) {
+            const detectedSections = detectBookStructure(finalData.chunks[currentChunk]?.content || '');
+            setSections(detectedSections);
+          }
+        }
         
         // Load reading progress from localStorage
         const progressKey = `reading-progress-${bookId}`;
@@ -110,19 +175,200 @@ export default function BookReaderPage() {
     if (bookContent && chunkIndex >= 0 && chunkIndex < bookContent.totalChunks) {
       setCurrentChunk(chunkIndex);
       saveProgress(chunkIndex);
-      announceToScreenReader(`Navigated to page ${chunkIndex + 1} of ${bookContent.totalChunks}`);
+      
+      // For external books, each chunk is a chapter/section
+      const isExternalBook = bookId.includes('-') && 
+        ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
+          bookId.startsWith(source + '-')
+        );
+      
+      if (isExternalBook && bookContent.chunks[chunkIndex]?.sections) {
+        // External books: each chunk has its section
+        const chunkSections = bookContent.chunks[chunkIndex].sections;
+        setSections(chunkSections);
+        setCurrentSection(0);
+        const sectionTitle = chunkSections[0]?.title || `Chapter ${chunkIndex + 1}`;
+        announceToScreenReader(`Navigated to ${sectionTitle}`);
+      } else {
+        // Internal books: re-detect sections for new chunk
+        const detectedSections = detectBookStructure(bookContent.chunks[chunkIndex]?.content || '');
+        setSections(detectedSections);
+        setCurrentSection(0);
+        announceToScreenReader(`Navigated to page ${chunkIndex + 1} of ${bookContent.totalChunks}`);
+      }
+    }
+  };
+
+  // Clean content by removing Project Gutenberg headers and footers
+  const cleanPublicDomainContent = (content: string): string => {
+    let cleaned = content;
+    
+    // Remove Project Gutenberg header (everything before "*** START OF")
+    const startMarker = /\*\*\*\s*START OF (THE )?PROJECT GUTENBERG/i;
+    const startMatch = cleaned.search(startMarker);
+    if (startMatch !== -1) {
+      // Find the end of the header line
+      const headerEnd = cleaned.indexOf('\n', startMatch);
+      if (headerEnd !== -1) {
+        cleaned = cleaned.substring(headerEnd + 1);
+      }
+    }
+    
+    // Remove Project Gutenberg footer (everything after "*** END OF")
+    const endMarker = /\*\*\*\s*END OF (THE )?PROJECT GUTENBERG/i;
+    const endMatch = cleaned.search(endMarker);
+    if (endMatch !== -1) {
+      cleaned = cleaned.substring(0, endMatch);
+    }
+    
+    // Remove common metadata patterns
+    cleaned = cleaned
+      // Remove excessive line breaks
+      .replace(/\n{4,}/g, '\n\n\n')
+      // Remove "Produced by..." lines
+      .replace(/^Produced by.*$/gm, '')
+      // Remove copyright notices
+      .replace(/^Copyright.*$/gm, '')
+      // Remove transcriber notes
+      .replace(/^\[Transcriber.*?\]$/gm, '')
+      .trim();
+    
+    return cleaned;
+  };
+
+  // Enhanced chapter and section detection for public domain books
+  const detectBookStructure = (content: string) => {
+    const cleanedContent = cleanPublicDomainContent(content);
+    const sections = [];
+    
+    // Enhanced chapter patterns
+    const chapterPatterns = [
+      /^\s*CHAPTER\s+[IVXLCDM]+\.?\s*$/mi,           // CHAPTER I, II, etc.
+      /^\s*CHAPTER\s+\d+\.?\s*$/mi,                  // CHAPTER 1, 2, etc.
+      /^\s*Chapter\s+[IVXLCDM]+\.?\s*$/mi,          // Chapter I, II, etc.
+      /^\s*Chapter\s+\d+\.?\s*$/mi,                 // Chapter 1, 2, etc.
+      /^\s*PART\s+[IVXLCDM]+\.?\s*$/mi,             // PART I, II, etc.
+      /^\s*PART\s+\d+\.?\s*$/mi,                    // PART 1, 2, etc.
+      /^\s*Book\s+[IVXLCDM]+\.?\s*$/mi,             // Book I, II, etc.
+      /^\s*Book\s+\d+\.?\s*$/mi,                    // Book 1, 2, etc.
+      /^\s*[IVXLCDM]+\.?\s*$/m,                     // Just Roman numerals: I., II., etc.
+      /^\s*\d+\.?\s*$/m                             // Just numbers: 1., 2., etc.
+    ];
+    
+    const lines = cleanedContent.split('\n');
+    let currentSection = '';
+    let sectionTitle = '';
+    let sectionIndex = 0;
+    let chapterCount = 0;
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      if (!line) {
+        currentSection += '\n';
+        continue;
+      }
+      
+      // Check if this line matches any chapter pattern
+      const isChapterHeader = chapterPatterns.some(pattern => pattern.test(line));
+      
+      // Also check for common section headers
+      const isSectionHeader = !isChapterHeader && (
+        line.length < 100 && 
+        (line === line.toUpperCase() && line.length > 3) ||
+        /^(PART|SECTION|PROLOGUE|EPILOGUE|PREFACE|INTRODUCTION|CONCLUSION)\s*$/i.test(line) ||
+        line.endsWith(':') && line.length < 50
+      );
+      
+      const isHeader = isChapterHeader || isSectionHeader;
+      
+      if (isHeader && currentSection.trim().length > 200) {
+        // Save previous section
+        sections.push({
+          title: sectionTitle || `Section ${sections.length + 1}`,
+          content: currentSection.trim(),
+          startIndex: sectionIndex
+        });
+        
+        // Start new section
+        if (isChapterHeader) {
+          chapterCount++;
+          sectionTitle = line || `Chapter ${chapterCount}`;
+        } else {
+          sectionTitle = line || `Section ${sections.length + 1}`;
+        }
+        currentSection = '';
+        sectionIndex = i;
+      } else if (isHeader && !sectionTitle) {
+        if (isChapterHeader) {
+          chapterCount++;
+          sectionTitle = line || `Chapter ${chapterCount}`;
+        } else {
+          sectionTitle = line;
+        }
+      } else {
+        currentSection += line + '\n';
+      }
+      
+      // Auto-split very long sections (but prefer chapter breaks)
+      if (currentSection.length > 3000 && !isChapterHeader && i < lines.length - 1) {
+        // Look ahead for a natural break (paragraph end)
+        let splitPoint = i;
+        for (let j = i; j < Math.min(i + 20, lines.length); j++) {
+          if (!lines[j].trim()) {
+            splitPoint = j;
+            break;
+          }
+        }
+        
+        sections.push({
+          title: sectionTitle || `Section ${sections.length + 1}`,
+          content: currentSection.trim(),
+          startIndex: sectionIndex
+        });
+        
+        sectionTitle = '';
+        currentSection = '';
+        sectionIndex = splitPoint + 1;
+        i = splitPoint;
+      }
+    }
+    
+    // Add final section
+    if (currentSection.trim()) {
+      sections.push({
+        title: sectionTitle || `Section ${sections.length + 1}`,
+        content: currentSection.trim(),
+        startIndex: sectionIndex
+      });
+    }
+    
+    // If we found good chapter structure, return it; otherwise fall back to smart paragraphs
+    if (chapterCount >= 2) {
+      console.log(`✅ Detected ${chapterCount} chapters in book`);
+      return sections;
+    } else {
+      console.log(`📖 No clear chapters found, using smart section detection`);
+      return sections.length > 1 ? sections : [{
+        title: 'Full Content',
+        content: cleanedContent,
+        startIndex: 0
+      }];
+    }
+  };
+
+  const goToSection = (sectionIndex: number) => {
+    if (sectionIndex >= 0 && sectionIndex < sections.length) {
+      setCurrentSection(sectionIndex);
+      announceToScreenReader(`Navigated to ${sections[sectionIndex].title}`);
     }
   };
 
   if (loading) {
     return (
       <div className="min-h-screen" style={{
-        backgroundColor: '#fafafa',
-        backgroundImage: `
-          radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 40% 20%, rgba(255, 219, 112, 0.1) 0%, transparent 50%)
-        `,
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
+        backgroundAttachment: 'fixed',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -165,13 +411,30 @@ export default function BookReaderPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
+        backgroundAttachment: 'fixed'
+      }}>
         <div className="text-center">
-          <div className="text-red-600 text-xl mb-4">Error loading book</div>
-          <p className="text-gray-600 mb-4">{error}</p>
+          <div className="text-red-400 text-xl mb-4 font-semibold">Error loading book</div>
+          <p className="text-gray-300 mb-4">{error}</p>
           <button
             onClick={() => router.push('/library')}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="px-6 py-3 rounded-lg font-medium transition-all duration-200"
+            style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: 'white',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0px)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
           >
             Return to Library
           </button>
@@ -182,12 +445,29 @@ export default function BookReaderPage() {
 
   if (!bookContent) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
+        backgroundAttachment: 'fixed'
+      }}>
         <div className="text-center">
-          <p className="text-gray-600">No content available for this book.</p>
+          <p className="text-gray-300 mb-4">No content available for this book.</p>
           <button
             onClick={() => router.push('/library')}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4"
+            className="px-6 py-3 rounded-lg font-medium transition-all duration-200"
+            style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: 'white',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0px)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
           >
             Return to Library
           </button>
@@ -237,13 +517,14 @@ export default function BookReaderPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`min-h-screen ${getBackgroundClass()}`}
+      className="min-h-screen"
       style={{
-        backgroundColor: '#fafafa',
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
+        backgroundAttachment: 'fixed',
         backgroundImage: `
-          radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
-          radial-gradient(circle at 40% 20%, rgba(255, 219, 112, 0.05) 0%, transparent 50%)
+          radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.08) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.06) 0%, transparent 50%)
         `
       }}
     >
@@ -253,12 +534,13 @@ export default function BookReaderPage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.4 }}
         style={{
-          background: 'white',
-          borderBottom: '1px solid #e2e8f0',
+          background: 'rgba(26, 32, 44, 0.95)',
+          backdropFilter: 'blur(20px)',
+          borderBottom: '1px solid rgba(102, 126, 234, 0.2)',
           position: 'sticky',
           top: 0,
           zIndex: 10,
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.1)'
         }}
       >
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -271,24 +553,26 @@ export default function BookReaderPage() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                background: 'white',
-                border: '2px solid #e2e8f0',
+                background: 'rgba(45, 55, 72, 0.8)',
+                border: '2px solid rgba(102, 126, 234, 0.3)',
                 borderRadius: '12px',
                 padding: '12px 20px',
                 fontSize: '14px',
                 fontWeight: '600',
-                color: '#4a5568',
+                color: '#e2e8f0',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = '#667eea';
-                e.currentTarget.style.backgroundColor = '#f8faff';
+                e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = '#e2e8f0';
-                e.currentTarget.style.backgroundColor = 'white';
+                e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
+                e.currentTarget.style.backgroundColor = 'rgba(45, 55, 72, 0.8)';
+                e.currentTarget.style.transform = 'translateY(0px)';
               }}
             >
               <span>←</span>
@@ -304,13 +588,14 @@ export default function BookReaderPage() {
               <h1 style={{
                 fontSize: '20px',
                 fontWeight: '700',
-                color: '#1a202c',
+                color: '#f7fafc',
                 marginBottom: '4px',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
               }}>{bookContent.title}</h1>
               <p style={{
                 fontSize: '14px',
-                color: '#4a5568',
+                color: '#cbd5e0',
                 fontWeight: '500',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
               }}>by {bookContent.author}</p>
@@ -322,18 +607,26 @@ export default function BookReaderPage() {
               transition={{ delay: 0.4, duration: 0.4 }}
               style={{
                 fontSize: '14px',
-                color: '#4a5568',
+                color: '#cbd5e0',
                 fontWeight: '500',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                 textAlign: 'right'
               }}
             >
-              Page {currentChunk + 1} of {bookContent.totalChunks}
+{(() => {
+                const isExternalBook = bookId.includes('-') && 
+                  ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
+                    bookId.startsWith(source + '-')
+                  );
+                return isExternalBook 
+                  ? `Chapter ${currentChunk + 1} of ${bookContent.totalChunks}`
+                  : `Page ${currentChunk + 1} of ${bookContent.totalChunks}`;
+              })()}
               <div style={{
                 marginTop: '8px',
                 width: '80px',
                 height: '4px',
-                backgroundColor: '#e2e8f0',
+                backgroundColor: 'rgba(45, 55, 72, 0.6)',
                 borderRadius: '2px',
                 overflow: 'hidden'
               }}>
@@ -367,12 +660,13 @@ export default function BookReaderPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
           style={{
-            background: 'white',
-            borderRadius: '16px',
-            padding: '32px',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            minHeight: '400px'
+            background: 'rgba(26, 32, 44, 0.8)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '20px',
+            padding: '40px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(102, 126, 234, 0.2)',
+            border: '1px solid rgba(102, 126, 234, 0.2)',
+            minHeight: '500px'
           }}
         >
           <div 
@@ -382,45 +676,120 @@ export default function BookReaderPage() {
               'text-gray-900'
             }`}
             style={{
-              fontSize: `${preferences.fontSize}px`,
-              lineHeight: preferences.dyslexiaFont ? '1.8' : '1.7',
-              fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : '"Inter", "Georgia", serif'
+              fontSize: `${Math.max(preferences.fontSize, 16)}px`,
+              lineHeight: preferences.dyslexiaFont ? '1.9' : '1.8',
+              fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : '"Inter", "Charter", "Georgia", serif',
+              color: preferences.contrast === 'ultra-high' ? '#ffffff' : '#e2e8f0',
+              letterSpacing: '0.3px',
+              wordSpacing: '2px',
+              textAlign: 'justify',
+              textJustify: 'inter-word',
+              hyphens: 'auto',
+              WebkitHyphens: 'auto',
+              msHyphens: 'auto'
             }}
             role="main"
             aria-label="Book content"
             tabIndex={0}
           >
-            {currentChunkData?.content || 'No content available for this section.'}
+            {sections.length > 0 && sections[currentSection] ? 
+              sections[currentSection].content : 
+              currentChunkData?.content || 'No content available for this section.'}
           </div>
         </motion.div>
         
+        {/* Section Navigation */}
+        {sections.length > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.4 }}
+            style={{
+              marginTop: '24px',
+              padding: '20px',
+              background: 'rgba(45, 55, 72, 0.6)',
+              backdropFilter: 'blur(15px)',
+              borderRadius: '16px',
+              border: '1px solid rgba(102, 126, 234, 0.2)',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
+            }}
+          >
+{(() => {
+              const isExternalBook = bookId.includes('-') && 
+                ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
+                  bookId.startsWith(source + '-')
+                );
+              return (
+                <h3 style={{
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  marginBottom: '12px',
+                  color: '#cbd5e0',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  {isExternalBook ? 'Chapter sections' : 'Sections in this page'}
+                </h3>
+              );
+            })()}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {sections.map((section, index) => (
+                <motion.button
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => goToSection(index)}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    background: index === currentSection ? 
+                      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 
+                      'rgba(102, 126, 234, 0.1)',
+                    color: index === currentSection ? '#ffffff' : '#cbd5e0',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  }}
+                >
+                  {section.title}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
         {/* Audio Player Section */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.4 }}
+          transition={{ delay: 0.7, duration: 0.4 }}
           style={{
             marginTop: '24px',
             padding: '24px',
-            background: 'linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%)',
+            background: 'rgba(45, 55, 72, 0.6)',
+            backdropFilter: 'blur(15px)',
             borderRadius: '16px',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
+            border: '1px solid rgba(102, 126, 234, 0.2)',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
           }}
         >
           <h3 style={{
             fontSize: '18px',
             fontWeight: '600',
             marginBottom: '16px',
-            color: '#4a5568',
+            color: '#cbd5e0',
             fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
           }}>
-            Listen to this chapter
+            Listen to this {sections.length > 1 ? 'section' : 'page'}
           </h3>
           <AudioPlayer 
-            text={currentChunkData?.content || ''}
-            onStart={() => announceToScreenReader('Started reading chapter')}
-            onEnd={() => announceToScreenReader('Finished reading chapter')}
+            text={sections.length > 0 && sections[currentSection] ? 
+              sections[currentSection].content : 
+              currentChunkData?.content || ''}
+            onStart={() => announceToScreenReader(`Started reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
+            onEnd={() => announceToScreenReader(`Finished reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
           />
         </motion.div>
       </motion.div>
@@ -431,11 +800,12 @@ export default function BookReaderPage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.4 }}
         style={{
-          background: 'white',
-          borderTop: '1px solid #e2e8f0',
+          background: 'rgba(26, 32, 44, 0.95)',
+          backdropFilter: 'blur(20px)',
+          borderTop: '1px solid rgba(102, 126, 234, 0.2)',
           position: 'sticky',
           bottom: 0,
-          boxShadow: '0 -1px 3px rgba(0, 0, 0, 0.1)'
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.1)'
         }}
       >
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -475,24 +845,34 @@ export default function BookReaderPage() {
               transition={{ delay: 0.7, duration: 0.3 }}
               style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
             >
-              <span style={{
-                fontSize: '14px',
-                fontWeight: '500',
-                color: '#4a5568',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-              }}>Go to page:</span>
+{(() => {
+                const isExternalBook = bookId.includes('-') && 
+                  ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
+                    bookId.startsWith(source + '-')
+                  );
+                return (
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#cbd5e0',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  }}>
+                    {isExternalBook ? 'Go to chapter:' : 'Go to page:'}
+                  </span>
+                );
+              })()}
               <select
                 value={currentChunk}
                 onChange={(e) => goToChunk(parseInt(e.target.value))}
                 style={{
-                  border: '2px solid #e2e8f0',
+                  border: '2px solid rgba(102, 126, 234, 0.3)',
                   borderRadius: '8px',
                   padding: '8px 12px',
                   fontSize: '14px',
                   fontWeight: '500',
                   fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  backgroundColor: 'white',
-                  color: '#2d3748',
+                  backgroundColor: 'rgba(45, 55, 72, 0.8)',
+                  color: '#e2e8f0',
                   cursor: 'pointer',
                   outline: 'none',
                   transition: 'border-color 0.2s ease'
@@ -503,13 +883,29 @@ export default function BookReaderPage() {
                 onBlur={(e) => {
                   e.target.style.borderColor = '#e2e8f0';
                 }}
-                aria-label="Jump to page"
+                aria-label="Jump to chapter or page"
               >
-                {Array.from({ length: bookContent.totalChunks }, (_, i) => (
-                  <option key={i} value={i}>
-                    {i + 1}
-                  </option>
-                ))}
+                {Array.from({ length: bookContent.totalChunks }, (_, i) => {
+                  const isExternalBook = bookId.includes('-') && 
+                    ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
+                      bookId.startsWith(source + '-')
+                    );
+                  
+                  if (isExternalBook && bookContent.chunks[i]?.sections?.[0]?.title) {
+                    const chapterTitle = bookContent.chunks[i].sections[0].title;
+                    return (
+                      <option key={i} value={i}>
+                        {chapterTitle.length > 30 ? chapterTitle.substring(0, 30) + '...' : chapterTitle}
+                      </option>
+                    );
+                  }
+                  
+                  return (
+                    <option key={i} value={i}>
+                      {isExternalBook ? `Chapter ${i + 1}` : `Page ${i + 1}`}
+                    </option>
+                  );
+                })}
               </select>
             </motion.div>
 

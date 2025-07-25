@@ -47,7 +47,7 @@ const FormattedAIResponse: React.FC<{
       // Bold text formatting
       formattedParagraph = formattedParagraph.replace(
         /\*\*([^*]+)\*\*/g,
-        '<strong style="color: #2d3748; font-weight: 700;">$1</strong>'
+        '<strong style="color: #e2e8f0; font-weight: 700;">$1</strong>'
       );
 
       return (
@@ -72,15 +72,19 @@ const FormattedAIResponse: React.FC<{
         transition={{ duration: 0.4 }}
         style={{
           background: isMultiAgent 
-            ? 'linear-gradient(135deg, rgba(248, 250, 255, 0.8) 0%, rgba(240, 244, 255, 0.6) 100%)'
-            : 'rgba(248, 250, 255, 0.5)',
+            ? 'rgba(45, 55, 72, 0.8)'
+            : 'rgba(26, 32, 44, 0.6)',
+          backdropFilter: 'blur(15px)',
           borderRadius: '12px',
           padding: '16px',
           margin: '-8px',
           border: isMultiAgent 
-            ? '2px solid rgba(102, 126, 234, 0.3)'
-            : '1px solid rgba(224, 231, 255, 0.5)',
-          position: 'relative'
+            ? '2px solid rgba(102, 126, 234, 0.4)'
+            : '1px solid rgba(102, 126, 234, 0.2)',
+          position: 'relative',
+          boxShadow: isMultiAgent 
+            ? '0 8px 32px rgba(0, 0, 0, 0.3)'
+            : '0 4px 20px rgba(0, 0, 0, 0.2)'
         }}
       >
         {isMultiAgent && (
@@ -145,10 +149,11 @@ const FormattedAIResponse: React.FC<{
                   transition={{ duration: 0.3 }}
                   style={{
                     marginTop: '12px',
-                    background: 'white',
+                    background: 'rgba(45, 55, 72, 0.8)',
+                    backdropFilter: 'blur(10px)',
                     borderRadius: '8px',
                     padding: '12px',
-                    border: '1px solid rgba(224, 231, 255, 0.8)'
+                    border: '1px solid rgba(102, 126, 234, 0.3)'
                   }}
                 >
                   {agentResponses.research && (
@@ -156,7 +161,7 @@ const FormattedAIResponse: React.FC<{
                       <div style={{ fontSize: '12px', fontWeight: '700', color: '#667eea', marginBottom: '6px' }}>
                         🔍 RESEARCH AGENT
                       </div>
-                      <div style={{ fontSize: '13px', lineHeight: '1.5', color: '#4a5568' }}>
+                      <div style={{ fontSize: '13px', lineHeight: '1.5', color: '#cbd5e0' }}>
                         {agentResponses.research}
                       </div>
                     </div>
@@ -167,7 +172,7 @@ const FormattedAIResponse: React.FC<{
                       <div style={{ fontSize: '12px', fontWeight: '700', color: '#667eea', marginBottom: '6px' }}>
                         📊 ANALYSIS AGENT
                       </div>
-                      <div style={{ fontSize: '13px', lineHeight: '1.5', color: '#4a5568' }}>
+                      <div style={{ fontSize: '13px', lineHeight: '1.5', color: '#cbd5e0' }}>
                         {agentResponses.analysis}
                       </div>
                     </div>
@@ -178,7 +183,7 @@ const FormattedAIResponse: React.FC<{
                       <div style={{ fontSize: '12px', fontWeight: '700', color: '#667eea', marginBottom: '6px' }}>
                         📚 CITATION AGENT
                       </div>
-                      <div style={{ fontSize: '13px', lineHeight: '1.5', color: '#4a5568' }}>
+                      <div style={{ fontSize: '13px', lineHeight: '1.5', color: '#cbd5e0' }}>
                         {agentResponses.citations}
                       </div>
                     </div>
@@ -413,7 +418,8 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         flexDirection: 'column',
         height: '100%',
         maxHeight: '600px',
-        background: 'transparent'
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
+        backgroundAttachment: 'fixed'
       }}
     >
       <motion.header 
@@ -422,9 +428,11 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         transition={{ duration: 0.4 }}
         style={{
           padding: '24px 24px 20px 24px',
-          borderBottom: '1px solid #f0f4ff',
-          background: 'linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%)',
-          borderRadius: '20px 20px 0 0'
+          borderBottom: '1px solid rgba(102, 126, 234, 0.2)',
+          background: 'rgba(26, 32, 44, 0.95)',
+          backdropFilter: 'blur(20px)',
+          borderRadius: '20px 20px 0 0',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -432,15 +440,16 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
             <h2 id="ai-chat-heading" style={{
               fontSize: '20px',
               fontWeight: '700',
-              color: '#1a202c',
+              color: '#f7fafc',
               marginBottom: '8px',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
             }}>
               💬 AI Conversation
             </h2>
             <p style={{
               fontSize: '14px',
-              color: '#667eea',
+              color: '#a5b4fc',
               fontWeight: '500',
               fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
               lineHeight: '1.5'
@@ -453,11 +462,12 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
           <div style={{
             display: 'flex',
             gap: '8px',
-            background: 'white',
+            background: 'rgba(45, 55, 72, 0.8)',
+            backdropFilter: 'blur(10px)',
             padding: '4px',
             borderRadius: '12px',
-            border: '1px solid #e0e7ff',
-            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)'
+            border: '1px solid rgba(102, 126, 234, 0.3)',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
           }}>
             <motion.button
               onClick={() => setResponseMode('brief')}
@@ -468,7 +478,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                 background: responseMode === 'brief' 
                   ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                   : 'transparent',
-                color: responseMode === 'brief' ? 'white' : '#6b7280',
+                color: responseMode === 'brief' ? 'white' : '#cbd5e0',
                 border: 'none',
                 borderRadius: '8px',
                 fontSize: '13px',
@@ -524,7 +534,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
           display: 'flex',
           flexDirection: 'column',
           gap: '16px',
-          background: '#fafbff'
+          background: 'transparent'
         }}
         role="log"
         aria-live="polite"
@@ -540,9 +550,10 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               style={{
                 textAlign: 'center',
                 padding: '40px 20px',
-                background: 'white',
+                background: 'rgba(26, 32, 44, 0.6)',
+                backdropFilter: 'blur(15px)',
                 borderRadius: '16px',
-                border: '2px dashed #e0e7ff',
+                border: '2px dashed rgba(102, 126, 234, 0.3)',
                 margin: '20px 0'
               }}
             >
@@ -550,7 +561,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               <p style={{
                 fontSize: '16px',
                 fontWeight: '600',
-                color: '#374151',
+                color: '#f7fafc',
                 marginBottom: '8px',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
               }}>
@@ -558,7 +569,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               </p>
               <p style={{
                 fontSize: '14px',
-                color: '#6b7280',
+                color: '#cbd5e0',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                 lineHeight: '1.5',
                 marginBottom: '16px'
@@ -567,13 +578,13 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               </p>
               <div style={{
                 fontSize: '12px',
-                color: '#9ca3af',
+                color: '#6b7280',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                 lineHeight: '1.4',
                 padding: '12px',
-                backgroundColor: '#f9fafb',
+                backgroundColor: 'rgba(45, 55, 72, 0.6)',
                 borderRadius: '8px',
-                border: '1px solid #e5e7eb'
+                border: '1px solid rgba(102, 126, 234, 0.2)'
               }}>
                 <strong>📚 Analysis Disclaimer:</strong> AI responses are based on training knowledge and educational commentary, not text reproduction. 
                 All analyses represent fair use discussion of literary works for educational purposes.
@@ -609,12 +620,13 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                     padding: '16px 20px',
                     background: message.sender === 'user' 
                       ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                      : 'white',
-                    color: message.sender === 'user' ? 'white' : '#1f2937',
+                      : 'rgba(26, 32, 44, 0.8)',
+                    backdropFilter: message.sender === 'user' ? 'none' : 'blur(15px)',
+                    color: message.sender === 'user' ? 'white' : '#e2e8f0',
                     boxShadow: message.sender === 'user'
                       ? '0 4px 12px rgba(102, 126, 234, 0.25)'
                       : '0 2px 8px rgba(0, 0, 0, 0.08)',
-                    border: message.sender === 'user' ? 'none' : '1px solid #f0f4ff',
+                    border: message.sender === 'user' ? 'none' : '1px solid rgba(102, 126, 234, 0.3)',
                     position: 'relative'
                   }}
                 >
@@ -678,12 +690,13 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               style={{ display: 'flex', justifyContent: 'flex-start' }}
             >
               <div style={{
-                background: 'white',
+                background: 'rgba(26, 32, 44, 0.8)',
+                backdropFilter: 'blur(15px)',
                 borderRadius: '18px',
                 padding: '16px 20px',
                 maxWidth: '85%',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
-                border: '1px solid #f0f4ff'
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                border: '1px solid rgba(102, 126, 234, 0.3)'
               }}>
                 <div style={{
                   fontSize: '12px',
@@ -734,7 +747,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                       background: '#667eea'
                     }}
                   />
-                  <span style={{ marginLeft: '8px', color: '#6b7280' }}>
+                  <span style={{ marginLeft: '8px', color: '#cbd5e0' }}>
                     {processingStatus || 'Thinking deeply...'}
                   </span>
                 </div>
@@ -756,15 +769,17 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                 role="alert"
                 aria-live="assertive"
                 style={{
-                  background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-                  border: '1px solid #fca5a5',
+                  background: 'rgba(45, 55, 72, 0.8)',
+                  backdropFilter: 'blur(15px)',
+                  border: '1px solid rgba(239, 68, 68, 0.4)',
                   borderRadius: '16px',
-                  padding: '16px 20px'
+                  padding: '16px 20px',
+                  boxShadow: '0 4px 20px rgba(239, 68, 68, 0.2)'
                 }}
               >
                 <div style={{
                   fontSize: '14px',
-                  color: '#dc2626',
+                  color: '#fca5a5',
                   fontWeight: '600',
                   fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                   marginBottom: '8px'
@@ -774,7 +789,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                 <button
                   onClick={() => setError(null)}
                   style={{
-                    color: '#dc2626',
+                    color: '#fca5a5',
                     fontSize: '13px',
                     fontWeight: '500',
                     textDecoration: 'underline',
@@ -800,9 +815,11 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         transition={{ delay: 0.2, duration: 0.4 }}
         style={{
           padding: '20px 24px 24px 24px',
-          borderTop: '1px solid #f0f4ff',
-          background: 'linear-gradient(135deg, #f8faff 0%, #ffffff 100%)',
-          borderRadius: '0 0 20px 20px'
+          borderTop: '1px solid rgba(102, 126, 234, 0.2)',
+          background: 'rgba(26, 32, 44, 0.95)',
+          backdropFilter: 'blur(20px)',
+          borderRadius: '0 0 20px 20px',
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.3)'
         }}
       >
         <form onSubmit={handleSubmit} style={{ marginBottom: '12px' }}>
@@ -821,13 +838,14 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               style={{
                 flex: 1,
                 padding: '14px 18px',
-                border: isListening ? '2px solid #10b981' : '2px solid #e0e7ff',
+                border: isListening ? '2px solid #10b981' : '2px solid rgba(102, 126, 234, 0.3)',
                 borderRadius: '14px',
                 fontSize: '15px',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                 fontWeight: '500',
-                background: isListening ? '#f0fdf4' : 'white',
-                color: '#1f2937',
+                background: isListening ? 'rgba(16, 185, 129, 0.1)' : 'rgba(45, 55, 72, 0.8)',
+                backdropFilter: 'blur(10px)',
+                color: '#e2e8f0',
                 outline: 'none',
                 transition: 'all 0.2s ease',
                 opacity: (isProcessing || isListening) ? 0.8 : 1
@@ -860,9 +878,10 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                   padding: '14px',
                   background: isListening
                     ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-                    : '#f8faff',
-                  color: isListening ? 'white' : '#667eea',
-                  border: isListening ? 'none' : '2px solid #e0e7ff',
+                    : 'rgba(45, 55, 72, 0.8)',
+                  backdropFilter: 'blur(10px)',
+                  color: isListening ? 'white' : '#a5b4fc',
+                  border: isListening ? 'none' : '2px solid rgba(102, 126, 234, 0.3)',
                   borderRadius: '14px',
                   cursor: isProcessing ? 'not-allowed' : 'pointer',
                   display: 'flex',
@@ -951,20 +970,22 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         }}>
           <div id="input-help" style={{
             fontSize: '12px',
-            color: '#6b7280',
+            color: '#9ca3af',
             fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
             fontWeight: '500'
           }}>
             💡 Press <kbd style={{
-              background: '#f3f4f6',
-              border: '1px solid #d1d5db',
+              background: 'rgba(45, 55, 72, 0.6)',
+              border: '1px solid rgba(102, 126, 234, 0.3)',
+              color: '#cbd5e0',
               borderRadius: '4px',
               padding: '2px 6px',
               fontSize: '11px',
               fontWeight: '600'
             }}>Enter</kbd> to send, <kbd style={{
-              background: '#f3f4f6',
-              border: '1px solid #d1d5db',
+              background: 'rgba(45, 55, 72, 0.6)',
+              border: '1px solid rgba(102, 126, 234, 0.3)',
+              color: '#cbd5e0',
               borderRadius: '4px',
               padding: '2px 6px',
               fontSize: '11px',
@@ -988,7 +1009,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                 onClick={clearChat}
                 style={{
                   fontSize: '12px',
-                  color: '#ef4444',
+                  color: '#f87171',
                   fontWeight: '600',
                   background: 'none',
                   border: 'none',
@@ -1000,7 +1021,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                   transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#fef2f2';
+                  e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = 'none';

@@ -13,30 +13,37 @@ export function CatalogBookSkeleton({ index = 0 }: { index?: number }) {
         duration: 0.3
       }}
       style={{
-        background: 'white',
-        borderRadius: '16px',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+        background: 'var(--surface-elevated)',
+        borderRadius: '20px',
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.1)',
         overflow: 'hidden',
-        border: '1px solid rgba(0, 0, 0, 0.05)',
+        border: '1px solid var(--border-light)',
         width: '100%',
-        maxWidth: '320px',
-        height: '380px'
+        maxWidth: '350px',
+        aspectRatio: '1',
+        backdropFilter: 'blur(10px)'
       }}
     >
       {/* Header skeleton */}
       <div style={{
-        height: '120px',
-        background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)',
+        height: '140px',
+        background: 'linear-gradient(90deg, var(--surface-subtle) 0%, var(--border-subtle) 50%, var(--surface-subtle) 100%)',
         backgroundSize: '200% 100%',
         animation: 'shimmer 1.5s ease-in-out infinite'
       }} />
       
       {/* Content skeleton */}
-      <div style={{ padding: '20px' }}>
+      <div style={{ 
+        padding: '20px',
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column'
+      }}>
         {/* Title skeleton */}
         <div style={{
           height: '24px',
-          background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)',
+          background: 'linear-gradient(90deg, var(--surface-subtle) 0%, var(--border-subtle) 50%, var(--surface-subtle) 100%)',
           backgroundSize: '200% 100%',
           animation: 'shimmer 1.5s ease-in-out infinite',
           borderRadius: '4px',
@@ -47,7 +54,7 @@ export function CatalogBookSkeleton({ index = 0 }: { index?: number }) {
         <div style={{
           height: '16px',
           width: '60%',
-          background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)',
+          background: 'linear-gradient(90deg, var(--surface-subtle) 0%, var(--border-subtle) 50%, var(--surface-subtle) 100%)',
           backgroundSize: '200% 100%',
           animation: 'shimmer 1.5s ease-in-out infinite',
           borderRadius: '4px',
@@ -59,7 +66,7 @@ export function CatalogBookSkeleton({ index = 0 }: { index?: number }) {
           <div style={{
             height: '24px',
             width: '50px',
-            background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)',
+            background: 'linear-gradient(90deg, var(--surface-subtle) 0%, var(--border-subtle) 50%, var(--surface-subtle) 100%)',
             backgroundSize: '200% 100%',
             animation: 'shimmer 1.5s ease-in-out infinite',
             borderRadius: '6px'
@@ -67,7 +74,7 @@ export function CatalogBookSkeleton({ index = 0 }: { index?: number }) {
           <div style={{
             height: '24px',
             width: '80px',
-            background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)',
+            background: 'linear-gradient(90deg, var(--surface-subtle) 0%, var(--border-subtle) 50%, var(--surface-subtle) 100%)',
             backgroundSize: '200% 100%',
             animation: 'shimmer 1.5s ease-in-out infinite',
             borderRadius: '6px'
@@ -77,7 +84,7 @@ export function CatalogBookSkeleton({ index = 0 }: { index?: number }) {
         {/* Button skeleton */}
         <div style={{
           height: '44px',
-          background: 'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)',
+          background: 'linear-gradient(90deg, var(--surface-subtle) 0%, var(--border-subtle) 50%, var(--surface-subtle) 100%)',
           backgroundSize: '200% 100%',
           animation: 'shimmer 1.5s ease-in-out infinite',
           borderRadius: '12px',

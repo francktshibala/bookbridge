@@ -498,15 +498,8 @@ export default function LibraryPage() {
 
   if (selectedBook) {
     return (
-      <div className="min-h-screen" style={{
-        backgroundColor: '#fafafa',
-        backgroundImage: `
-          radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 40% 20%, rgba(255, 219, 112, 0.1) 0%, transparent 50%)
-        `
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
+      <div className="page-container magical-bg">
+        <div className="page-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -798,225 +791,199 @@ export default function LibraryPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{
-      backgroundColor: '#fafafa',
-      backgroundImage: `
-        radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(255, 219, 112, 0.1) 0%, transparent 50%)
-      `
-    }}>
-    <div className="max-w-4xl mx-auto p-4">
-      <AccessibleWrapper as="header" className="mb-8">
-        <h1 style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          textAlign: 'center',
-          fontSize: '48px',
-          fontWeight: '800',
-          marginBottom: '16px',
-          fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-          letterSpacing: '-0.5px',
-          lineHeight: '1.1'
-        }}>✨ BookBridge Library ✨</h1>
-        <p style={{
-          textAlign: 'center',
-          fontSize: '18px',
-          color: '#4a5568',
-          fontWeight: '500',
-          fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-          marginBottom: '32px',
-          maxWidth: '600px',
-          margin: '0 auto 32px auto',
-          lineHeight: '1.6'
-        }}>
-          Discover and explore our curated collection of public domain books with AI-powered insights and conversations.
-        </p>
-
-        {/* Tab Navigation */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '8px',
-          marginBottom: '32px'
-        }}>
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => {
-              setActiveTab('my-books');
-              announceToScreenReader('Switched to My Books tab');
-            }}
-            style={{
-              padding: '12px 24px',
-              borderRadius: '12px',
-              fontSize: '16px',
-              fontWeight: '600',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              background: activeTab === 'my-books' 
-                ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
-                : 'white',
-              color: activeTab === 'my-books' ? 'white' : '#4a5568',
-              boxShadow: activeTab === 'my-books' 
-                ? '0 4px 12px rgba(102, 126, 234, 0.3)' 
-                : '0 2px 4px rgba(0, 0, 0, 0.05)',
-              border: activeTab === 'my-books' ? 'none' : '2px solid #e2e8f0'
-            }}
-          >
-            📚 My Books
-          </motion.button>
-          
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => {
-              setActiveTab('browse');
-              announceToScreenReader('Switched to Browse Catalog tab');
-            }}
-            style={{
-              padding: '12px 24px',
-              borderRadius: '12px',
-              fontSize: '16px',
-              fontWeight: '600',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              background: activeTab === 'browse' 
-                ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
-                : 'white',
-              color: activeTab === 'browse' ? 'white' : '#4a5568',
-              boxShadow: activeTab === 'browse' 
-                ? '0 4px 12px rgba(102, 126, 234, 0.3)' 
-                : '0 2px 4px rgba(0, 0, 0, 0.05)',
-              border: activeTab === 'browse' ? 'none' : '2px solid #e2e8f0'
-            }}
-          >
-            🌍 Browse Catalog
-          </motion.button>
-        </div>
-
-        {activeTab === 'my-books' && (
-          <form onSubmit={handleSearch} style={{ 
-            display: 'flex', 
-            gap: '12px',
-            maxWidth: '500px',
-            margin: '0 auto'
-          }}>
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search books by title, author, or genre..."
-            style={{
-              flex: 1,
-              padding: '14px 20px',
-              border: '2px solid #e2e8f0',
-              borderRadius: '12px',
-              fontSize: '16px',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-              fontWeight: '500',
-              color: '#2d3748',
-              backgroundColor: 'white',
-              outline: 'none',
-              transition: 'all 0.2s ease'
-            }}
-            onFocus={(e) => {
-              e.target.style.borderColor = '#667eea';
-              e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
-            }}
-            onBlur={(e) => {
-              e.target.style.borderColor = '#e2e8f0';
-              e.target.style.boxShadow = 'none';
-            }}
-            aria-label="Search books"
-          />
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '12px',
-              padding: '14px 24px',
-              fontSize: '16px',
-              fontWeight: '600',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              opacity: loading ? 0.7 : 1,
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => {
-              if (!loading) {
-                e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)';
-              }
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            Search
-          </button>
-          </form>
-        )}
-      </AccessibleWrapper>
-
-      {error && (
+    <div className="page-container magical-bg" style={{ minHeight: '100vh' }}>
+      <div className="page-content" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
+        {/* Magical Hero Section */}
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          role="alert"
-          aria-live="assertive"
+          transition={{ duration: 0.8, ease: "easeOut" }}
           style={{
-            background: 'linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%)',
-            border: '1px solid #fc8181',
-            borderRadius: '12px',
-            padding: '20px',
-            marginBottom: '24px',
-            textAlign: 'center'
+            textAlign: 'center',
+            padding: '80px 0 60px 0',
+            background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 50%, rgba(240, 147, 251, 0.1) 100%)',
+            borderRadius: '32px',
+            marginBottom: '48px',
+            border: '1px solid var(--border-light)',
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
+          {/* Floating particles background */}
           <div style={{
-            color: '#c53030',
-            fontSize: '16px',
-            fontWeight: '600',
-            fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-            marginBottom: '12px'
-          }}>{error}</div>
-          <button
-            onClick={() => fetchBooks()}
-            style={{
-              color: '#c53030',
-              fontSize: '14px',
-              fontWeight: '600',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-              background: 'none',
-              border: 'none',
-              textDecoration: 'underline',
-              cursor: 'pointer',
-              transition: 'color 0.2s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = '#9c2626';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = '#c53030';
-            }}
-          >
-            Try Again
-          </button>
-        </motion.div>
-      )}
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(240, 147, 251, 0.3) 0%, transparent 50%)',
+            pointerEvents: 'none'
+          }} />
+          
+          <AccessibleWrapper as="header" style={{ position: 'relative', zIndex: 1 }}>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-gradient page-title" 
+              style={{ 
+                fontSize: '4.5rem', 
+                letterSpacing: '-0.02em',
+                marginBottom: '24px',
+                fontWeight: '900',
+                lineHeight: '1.1'
+              }}
+            >
+              📚 Discover Literary Magic
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              style={{
+                fontSize: '1.3rem',
+                color: 'var(--text-secondary)',
+                fontWeight: '500',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                marginBottom: '40px',
+                maxWidth: '700px',
+                margin: '0 auto 40px auto',
+                lineHeight: '1.6'
+              }}
+            >
+              Explore 20M+ classic books with AI-powered insights. From Gutenberg to Google Books - your literary journey starts here.
+            </motion.p>
 
-      {activeTab === 'my-books' ? (
-        renderMyBooksContent()
-      ) : (
+            {/* Elegant Tab Navigation */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '12px',
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '20px',
+                padding: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
+              }}
+            >
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  setActiveTab('my-books');
+                  announceToScreenReader('Switched to My Books tab');
+                }}
+                style={{
+                  padding: '16px 32px',
+                  borderRadius: '16px',
+                  fontSize: '1.1rem',
+                  fontWeight: '700',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  background: activeTab === 'my-books' 
+                    ? 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)' 
+                    : 'transparent',
+                  color: activeTab === 'my-books' ? '#ffffff' : 'var(--text-secondary)',
+                  boxShadow: activeTab === 'my-books' 
+                    ? '0 8px 25px rgba(102, 126, 234, 0.4)' 
+                    : 'none',
+                  border: 'none',
+                  transform: activeTab === 'my-books' ? 'translateY(-2px)' : 'translateY(0)'
+                }}
+              >
+                📚 My Collection
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  setActiveTab('browse');
+                  announceToScreenReader('Switched to Browse Catalog tab');
+                }}
+                style={{
+                  padding: '16px 32px',
+                  borderRadius: '16px',
+                  fontSize: '1.1rem',
+                  fontWeight: '700',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  background: activeTab === 'browse' 
+                    ? 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)' 
+                    : 'transparent',
+                  color: activeTab === 'browse' ? '#ffffff' : 'var(--text-secondary)',
+                  boxShadow: activeTab === 'browse' 
+                    ? '0 8px 25px rgba(102, 126, 234, 0.4)' 
+                    : 'none',
+                  border: 'none',
+                  transform: activeTab === 'browse' ? 'translateY(-2px)' : 'translateY(0)'
+                }}
+              >
+                🌟 Discover Books
+              </motion.button>
+            </motion.div>
+          </AccessibleWrapper>
+        </motion.div>
+
+        {activeTab === 'my-books' ? (
+          <>
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                role="alert"
+                aria-live="assertive"
+                style={{
+                  background: 'linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%)',
+                  border: '1px solid #fc8181',
+                  borderRadius: '12px',
+                  padding: '20px',
+                  marginBottom: '24px',
+                  textAlign: 'center'
+                }}
+              >
+                <div style={{
+                  color: '#c53030',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  marginBottom: '12px'
+                }}>{error}</div>
+                <button
+                  onClick={() => fetchBooks()}
+                  style={{
+                    color: '#c53030',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                    background: 'none',
+                    border: 'none',
+                    textDecoration: 'underline',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = '#9c2626';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = '#c53030';
+                  }}
+                >
+                  Try Again
+                </button>
+              </motion.div>
+            )}
+            {renderMyBooksContent()}
+          </>
+        ) : (
         // Browse Catalog Tab Content
         <AccessibleWrapper as="main" ariaLabelledBy="catalog-heading">
           {/* General Recommendations Section */}
@@ -1026,42 +993,83 @@ export default function LibraryPage() {
             subtitle="Books that readers love - start here to explore our collection"
             maxRecommendations={6}
           />
-          {/* Catalog Header */}
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            marginBottom: '32px',
-            flexWrap: 'wrap',
-            gap: '16px'
-          }}>
+          {/* Elegant Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{
+              textAlign: 'center',
+              marginBottom: '48px',
+              padding: '40px 32px',
+              background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(240, 147, 251, 0.08) 100%)',
+              borderRadius: '24px',
+              border: '1px solid var(--border-light)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+          >
+            {/* Decorative elements */}
+            <div style={{
+              position: 'absolute',
+              top: '-50%',
+              left: '-50%',
+              width: '200%',
+              height: '200%',
+              background: 'radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%)',
+              animation: 'float 6s ease-in-out infinite',
+              pointerEvents: 'none'
+            }} />
+            
             <motion.h2 
               id="catalog-heading"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
               style={{
-                fontSize: '28px',
-                fontWeight: '700',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                fontSize: '3rem',
+                fontWeight: '900',
+                background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                margin: 0
+                margin: '0 0 16px 0',
+                letterSpacing: '-0.02em',
+                position: 'relative',
+                zIndex: 1
               }}
             >
-              📚 Browse Classic Literature
+              ✨ Explore Literary Treasures
             </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              style={{
+                fontSize: '1.1rem',
+                color: 'var(--text-secondary)',
+                fontWeight: '500',
+                maxWidth: '600px',
+                margin: '0 auto',
+                lineHeight: '1.6',
+                position: 'relative',
+                zIndex: 1
+              }}
+            >
+              Browse through millions of classic books from renowned sources. Find your next literary adventure with AI-powered recommendations.
+            </motion.p>
             {catalogPagination.total > 0 && (
               <motion.span 
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 style={{
-                  fontSize: '14px',
-                  color: '#718096',
+                  fontSize: 'var(--text-sm)',
+                  color: 'var(--text-secondary)',
                   fontWeight: '500',
                   fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  backgroundColor: '#f7fafc',
+                  backgroundColor: 'var(--surface-subtle)',
                   padding: '6px 12px',
                   borderRadius: '20px'
                 }}
@@ -1069,7 +1077,7 @@ export default function LibraryPage() {
                 {catalogPagination.total.toLocaleString()}+ books available
               </motion.span>
             )}
-          </div>
+          </motion.div>
 
           {/* Catalog Search Controls */}
           <motion.div
@@ -1477,10 +1485,11 @@ export default function LibraryPage() {
           {catalogLoading ? (
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: '24px',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+              gap: '32px',
               justifyItems: 'center',
-              marginBottom: '32px'
+              marginBottom: '48px',
+              padding: '0 12px'
             }}>
               {Array.from({ length: 12 }, (_, index) => (
                 <CatalogBookSkeleton key={index} index={index} />
@@ -1504,14 +1513,20 @@ export default function LibraryPage() {
             </motion.div>
           ) : (
             <>
-              {/* Books Grid */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-                gap: '24px',
-                justifyItems: 'center',
-                marginBottom: '32px'
-              }}>
+              {/* Magical Books Grid */}
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+                  gap: '32px',
+                  justifyItems: 'center',
+                  marginBottom: '48px',
+                  padding: '0 12px'
+                }}
+              >
                 {catalogBooks.map((book, index) => (
                   <CatalogBookCard
                     key={book.id}
@@ -1520,7 +1535,7 @@ export default function LibraryPage() {
                     index={index}
                   />
                 ))}
-              </div>
+              </motion.div>
 
               {/* Pagination */}
               {(catalogPagination.hasNext || catalogPagination.hasPrevious) && (

@@ -234,7 +234,7 @@ export const VoiceNavigation: React.FC<VoiceNavigationProps> = ({
         position: 'fixed',
         bottom: '24px',
         right: '24px',
-        zIndex: 1000
+        zIndex: 40
       }}
     >
       <motion.div

@@ -71,9 +71,10 @@ export function RecommendationsSection({
   const LoadingSkeleton = () => (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
       gap: '24px',
-      marginTop: '24px'
+      marginTop: '24px',
+      justifyItems: 'center'
     }}>
       {Array.from({ length: maxRecommendations }, (_, index) => (
         <motion.div
@@ -266,9 +267,10 @@ export function RecommendationsSection({
             transition={{ delay: 0.4 }}
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-              gap: '24px',
-              justifyItems: 'center'
+              gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+              gap: '32px',
+              justifyItems: 'center',
+              padding: '0 12px'
             }}
           >
             {recommendations.map((recommendation, index) => (
