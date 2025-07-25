@@ -13,7 +13,9 @@ export async function middleware(request: NextRequest) {
   }
   
   // Allow Next.js internal requests (RSC prefetching)
-  if (request.nextUrl.searchParams.has('_rsc')) {
+  if (request.nextUrl.searchParams.has('_rsc') || 
+      request.headers.get('rsc') === '1' ||
+      request.headers.get('next-router-prefetch') === '1') {
     return response;
   }
   
