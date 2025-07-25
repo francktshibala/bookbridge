@@ -13,7 +13,7 @@ export default function HomePage() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '3rem'
+        gap: '1rem'
       }}>
         {/* Hero Section */}
         <motion.section 
@@ -22,6 +22,7 @@ export default function HomePage() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           aria-labelledby="welcome-heading" 
           className="page-header"
+          style={{ marginBottom: '0.5rem' }}
         >
           <motion.h1 
             id="welcome-heading"
@@ -38,6 +39,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="hero-subtitle"
+            style={{ color: '#f7fafc', marginBottom: '0' }}
           >
             Your accessible AI-powered companion for understanding books. Designed with WCAG 2.1 AA compliance 
             for students with disabilities.
@@ -53,7 +55,7 @@ export default function HomePage() {
           className="w-full"
           style={{ maxWidth: '1000px' }}
         >
-          <h2 id="features-heading" className="text-gradient page-title text-center mb-16">
+          <h2 id="features-heading" className="text-gradient page-title text-center" style={{ marginBottom: '2rem' }}>
             Key Features
           </h2>
           
