@@ -486,7 +486,7 @@ export async function POST(request: NextRequest) {
 
     // Apply vocabulary simplification if needed
     let finalContent = response.content;
-    if (queryIntent.expectedLength === 'simplified' || queryIntent.complexity === 'basic') {
+    if (queryIntent.expectedLength === 'simplified' || queryIntent.complexity === 'simple') {
       try {
         const extractedAge = queryIntent.extractedAge;
         if (bookContext) {
