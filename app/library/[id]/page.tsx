@@ -20,7 +20,7 @@ interface Book {
 }
 
 interface BookDetailPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default function BookDetailPage({ params }: BookDetailPageProps) {
@@ -61,7 +61,7 @@ export default function BookDetailPage({ params }: BookDetailPageProps) {
         console.error('Error loading book:', error);
         // Still create a fallback book to enable chat
         setBook({
-          id: params.id,
+          id: resolvedParams.id,
           title: 'Book Analysis',
           author: 'Various Authors',
           description: 'Analyzing book content...',
