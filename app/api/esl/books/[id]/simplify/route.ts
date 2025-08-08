@@ -4,9 +4,10 @@ import { ESLSimplifier } from '@/lib/ai/esl-simplifier';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await params;
     const { searchParams } = new URL(request.url);
     const level = searchParams.get('level') as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
     const section = parseInt(searchParams.get('section') || '0');
@@ -37,7 +38,7 @@ export async function GET(
       const { data: cached, error: cacheError } = await supabase
         .from('book_simplifications')
         .select('simplified_text, vocabulary_changes, cultural_annotations, quality_score, created_at')
-        .eq('book_id', params.id)
+        .eq('book_id', resolvedParams.id)
         .eq('target_level', level)
         .eq('chunk_index', section)
         .single();
@@ -57,7 +58,7 @@ export async function GET(
     }
     
     // If not cached or regeneration forced, generate on-demand
-    const originalContent = await fetchOriginalContent(params.id, section);
+    const originalContent = await fetchOriginalContent(resolvedParams.id, section);
     if (!originalContent) {
       return NextResponse.json(
         { error: 'Book content not found' },
@@ -65,7 +66,7 @@ export async function GET(
       );
     }
 
-    console.log(`Generating ${level} simplification for book ${params.id}, section ${section}`);
+    console.log(`Generating ${level} simplification for book ${resolvedParams.id}, section ${section}`);
     
     const eslSimplifier = new ESLSimplifier();
     const simplificationResult = await eslSimplifier.simplifyText(
@@ -90,7 +91,7 @@ export async function GET(
       const { error: storeError } = await supabase
         .from('book_simplifications')
         .upsert({
-          book_id: params.id,
+          book_id: resolvedParams.id,
           target_level: level,
           chunk_index: section,
           original_text: originalContent,
@@ -167,11 +168,12 @@ async function fetchOriginalContent(bookId: string, section: number): Promise<st
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await params;
     // Skip auth for demo purposes - focus on making simplification work
-    console.log('ESL Simplify: Processing request for book', params.id);
+    console.log('ESL Simplify: Processing request for book', resolvedParams.id);
 
     // Get request body
     const { text, targetLevel, nativeLanguage } = await request.json();

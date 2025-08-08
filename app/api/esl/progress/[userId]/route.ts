@@ -27,10 +27,11 @@ interface ProgressRecommendation {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
-    const userId = params.userId;
+    const resolvedParams = await params;
+    const userId = resolvedParams.userId;
     const { searchParams } = new URL(request.url);
     const days = parseInt(searchParams.get('days') || '30');
     const includeRecommendations = searchParams.get('recommendations') === 'true';
