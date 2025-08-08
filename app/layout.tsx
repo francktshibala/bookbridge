@@ -22,6 +22,16 @@ export const metadata: Metadata = {
     description: 'AI-powered book analysis with 100% WCAG 2.1 AA compliance',
     type: 'website',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
