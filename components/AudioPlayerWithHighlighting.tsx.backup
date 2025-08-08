@@ -4,25 +4,32 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { voiceService, VoiceProvider } from '@/lib/voice-service';
 import { ELEVENLABS_VOICES, DEFAULT_ELEVENLABS_VOICE } from '@/lib/elevenlabs-voices';
+import { useTextHighlighting } from '@/hooks/useTextHighlighting';
+import { HighlightableText } from '@/components/HighlightableText';
 
-interface AudioPlayerProps {
+interface AudioPlayerWithHighlightingProps {
   text: string;
   onStart?: () => void;
   onEnd?: () => void;
   onError?: (error: string) => void;
   className?: string;
+  enableHighlighting?: boolean;
+  showHighlightedText?: boolean;
 }
 
-export const AudioPlayer: React.FC<AudioPlayerProps> = ({
+export const AudioPlayerWithHighlighting: React.FC<AudioPlayerWithHighlightingProps> = ({
   text,
   onStart,
   onEnd,
   onError,
-  className = ''
+  className = '',
+  enableHighlighting = true,
+  showHighlightedText = true
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [audioActuallyStarted, setAudioActuallyStarted] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(0.9);
   const [volume, setVolume] = useState(0.8);
   const [progress, setProgress] = useState(0);
@@ -61,6 +68,24 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     setDuration(estimatedDuration);
   }, [text]);
 
+  // TEXT HIGHLIGHTING INTEGRATION
+  const {
+    tokens,
+    currentWordId,
+    currentTime: highlightCurrentTime,
+    onWordClick,
+    seekToWord,
+    isHighlightingEnabled
+  } = useTextHighlighting({
+    text,
+    audioElement: currentAudioElement,
+    isPlaying: audioActuallyStarted, // Only start highlighting when audio actually starts
+    isPaused,
+    voiceProvider,
+    playbackRate,
+    estimatedDuration: duration
+  });
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -72,8 +97,8 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   }, [progressInterval]);
 
   const handlePlay = async () => {
-    if (isLoading) {
-      console.log('Already loading, ignoring click');
+    if (isLoading || isPlaying) {
+      console.log('Already loading or playing, ignoring click');
       return;
     }
     
@@ -84,9 +109,17 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     setIsPlaying(false);
     setIsPaused(false);
     setIsLoading(true);
+    setAudioActuallyStarted(false); // Reset audio start state
     
     // Clear any previous fallback messages
     setFallbackMessage(null);
+    
+    console.log('🎵 UI State: Setting isLoading = true for', voiceProvider);
+    
+    // Show immediate feedback for slow providers
+    if (voiceProvider === 'openai' || voiceProvider === 'elevenlabs') {
+      setFallbackMessage('🎵 Generating high-quality audio... Highlighting will start when playback begins (10-20s)');
+    }
     
     // Small delay to ensure cleanup
     await new Promise(resolve => setTimeout(resolve, 200));
@@ -100,7 +133,8 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       
       console.log('Calling voiceService.speak with provider:', voiceProvider);
       
-      await voiceService.speak({
+      // Don't await - let callbacks handle state updates
+      voiceService.speak({
         text: cleanText,
         settings: {
           rate: playbackRate,
@@ -112,48 +146,118 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           openAIVoice: voiceProvider === 'openai' ? openAIVoice : undefined
         },
         onStart: () => {
-          console.log('Speech started');
-          setIsLoading(false);
-          setIsPlaying(true);
+          console.log('🎵 Audio actually started playing - updating UI state');
+          console.log('🎵 UI State: isLoading before:', isLoading);
+          
+          // FORCE UPDATE: Use functional updates to avoid stale closure
+          setIsLoading(prev => {
+            console.log('🎵 UI State: isLoading was:', prev, 'setting to false');
+            return false;
+          });
+          setIsPlaying(prev => {
+            console.log('🎵 UI State: isPlaying was:', prev, 'setting to true');
+            return true;
+          });
           setIsPaused(false);
+          setFallbackMessage(null); // Clear any loading messages
+          
+          console.log('🎵 UI State: Called state updates with functional setters');
           
           // Clear any existing interval
           if (progressInterval) {
             clearInterval(progressInterval);
           }
           
-          // For ElevenLabs/OpenAI, track actual audio element progress
+          // For ElevenLabs/OpenAI, get and set the audio element immediately
           if (voiceProvider !== 'web-speech') {
-            // Wait a bit for audio element to be created
-            setTimeout(() => {
-              const audioElement = voiceService.getCurrentAudioElement();
-              if (audioElement) {
-                setCurrentAudioElement(audioElement);
-                
-                // Use actual audio duration if available
-                if (audioElement.duration && !isNaN(audioElement.duration)) {
-                  setDuration(audioElement.duration);
-                }
-                
-                // Track actual progress
-                const interval = setInterval(() => {
-                  if (audioElement && !audioElement.paused) {
-                    const time = audioElement.currentTime;
-                    const dur = audioElement.duration || duration;
-                    setCurrentTime(time);
-                    setProgress((time / dur) * 100);
-                    
-                    if (time >= dur) {
-                      clearInterval(interval);
-                      setProgressInterval(null);
-                    }
-                  }
-                }, 100);
-                setProgressInterval(interval);
+            const audioElement = voiceService.getCurrentAudioElement();
+            console.log('🎵 Got audio element for highlighting:', !!audioElement);
+            
+            // DEBUGGING: Try to force play the audio element
+            if (audioElement) {
+              console.log('🎵 DEBUGGING: Audio element volume:', audioElement.volume);
+              console.log('🎵 DEBUGGING: Audio element muted:', audioElement.muted);
+              console.log('🎵 DEBUGGING: Audio element paused:', audioElement.paused);
+              console.log('🎵 DEBUGGING: Audio element currentTime:', audioElement.currentTime);
+              console.log('🎵 DEBUGGING: Audio element src exists:', !!audioElement.src);
+              
+              // Check if audio is muted at system level
+              if (audioElement.volume === 0) {
+                console.warn('🎵 DEBUGGING: Audio volume is 0, setting to 0.8');
+                audioElement.volume = 0.8;
               }
-            }, 100);
+              
+              if (audioElement.muted) {
+                console.warn('🎵 DEBUGGING: Audio is muted, unmuting');
+                audioElement.muted = false;
+              }
+              
+              console.log('🎵 DEBUGGING: Attempting to force play audio element');
+              audioElement.play().then(() => {
+                console.log('🎵 DEBUGGING: Force play succeeded - audio should be audible now');
+              }).catch(err => {
+                console.log('🎵 DEBUGGING: Force play failed:', err);
+              });
+            }
+            
+            if (audioElement) {
+              // Set audio element FIRST, then enable highlighting
+              setCurrentAudioElement(audioElement);
+              
+              // Small delay to ensure state is updated before enabling highlighting
+              setTimeout(() => {
+                setAudioActuallyStarted(true);
+                console.log('🎵 Audio element set, highlighting enabled');
+              }, 50);
+              
+              // Wait for metadata to be fully loaded before using duration
+              const waitForMetadata = () => {
+                if (audioElement.duration && !isNaN(audioElement.duration) && audioElement.duration > 1) {
+                  setDuration(audioElement.duration);
+                  console.log('🎵 Set actual audio duration:', audioElement.duration);
+                } else {
+                  // If duration not ready yet, wait for loadedmetadata event
+                  audioElement.addEventListener('loadedmetadata', () => {
+                    if (audioElement.duration && !isNaN(audioElement.duration)) {
+                      setDuration(audioElement.duration);
+                      console.log('🎵 Set audio duration after metadata loaded:', audioElement.duration);
+                    }
+                  }, { once: true });
+                  
+                  // Fallback timeout in case metadata doesn't load
+                  setTimeout(() => {
+                    if (audioElement.duration && !isNaN(audioElement.duration)) {
+                      setDuration(audioElement.duration);
+                      console.log('🎵 Set audio duration (fallback):', audioElement.duration);
+                    }
+                  }, 1000);
+                }
+              };
+              
+              waitForMetadata();
+              
+              // Track actual progress
+              const interval = setInterval(() => {
+                if (audioElement && !audioElement.paused) {
+                  const time = audioElement.currentTime;
+                  const dur = audioElement.duration || duration;
+                  setCurrentTime(time);
+                  setProgress((time / dur) * 100);
+                  
+                  if (time >= dur) {
+                    clearInterval(interval);
+                    setProgressInterval(null);
+                  }
+                }
+              }, 100);
+              setProgressInterval(interval);
+            } else {
+              console.warn('🎵 No audio element found, highlighting will use time estimation');
+              setAudioActuallyStarted(true); // Enable highlighting with time estimation
+            }
           } else {
             // For web speech, use estimation
+            setAudioActuallyStarted(true); // Enable highlighting for web speech
             const interval = setInterval(() => {
               setCurrentTime(prev => {
                 const newTime = prev + 0.1;
@@ -172,6 +276,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           setIsPlaying(false);
           setIsPaused(false);
           setIsLoading(false);
+          setAudioActuallyStarted(false);
           setProgress(100);
           setCurrentTime(duration);
           setCurrentAudioElement(null);
@@ -185,17 +290,20 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           onEnd?.();
         },
         onError: (error: any) => {
+          clearTimeout(loadingTimeout); // Clear loading timeout
           setIsPlaying(false);
           setIsPaused(false);
           setIsLoading(false);
+          setAudioActuallyStarted(false);
           setProgress(0);
           setCurrentTime(0);
           
           if (error.error === 'autoplay_blocked') {
-            setFallbackMessage('🔄 Click the play button again - browser needs permission');
-            setTimeout(() => setFallbackMessage(null), 4000);
+            setFallbackMessage('🔄 Click the play button again - browser needs permission for audio');
+            setTimeout(() => setFallbackMessage(null), 6000);
+            // Don't switch providers for autoplay issues
           } else if (voiceProvider !== 'web-speech') {
-            setFallbackMessage('⚠️ Premium voice unavailable, try Standard voice');
+            setFallbackMessage('⚠️ Premium voice failed, please try Standard voice');
             setTimeout(() => setFallbackMessage(null), 5000);
           }
           onError?.(typeof error.error === 'string' ? error.error : 'error');
@@ -207,12 +315,22 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         onResume: () => {
           setIsPaused(false);
           setIsPlaying(true);
+          setAudioActuallyStarted(true);
         }
+      }).catch((error) => {
+        console.error('Voice service error:', error);
+        setIsPlaying(false);
+        setIsPaused(false);
+        setIsLoading(false);
+        setAudioActuallyStarted(false);
+        setFallbackMessage('⚠️ Audio playback failed. Please try again.');
+        onError?.(error instanceof Error ? error.message : 'Speech synthesis failed');
       });
     } catch (error) {
       setIsPlaying(false);
       setIsPaused(false);
       setIsLoading(false);
+      setAudioActuallyStarted(false);
       onError?.(error instanceof Error ? error.message : 'Speech synthesis failed');
     }
   };
@@ -229,17 +347,29 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       voiceService.pause();
       setIsPaused(true);
       setIsPlaying(false);
+      setAudioActuallyStarted(false);
     } else {
       // For ElevenLabs/OpenAI, pause the audio element
       if (currentAudioElement && !currentAudioElement.paused) {
         try {
+          // Add event listener to handle pause completion
+          currentAudioElement.addEventListener('pause', () => {
+            console.log('🎵 Audio successfully paused');
+          }, { once: true });
+          
           currentAudioElement.pause();
           setIsPaused(true);
           setIsPlaying(false);
+          setAudioActuallyStarted(false);
         } catch (error) {
           console.warn('Pause failed, stopping instead:', error);
           handleStop();
         }
+      } else {
+        // If no audio element or already paused, just update state
+        setIsPaused(true);
+        setIsPlaying(false);
+        setAudioActuallyStarted(false);
       }
     }
   };
@@ -254,9 +384,18 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     voiceService.stop();
     setIsPlaying(false);
     setIsPaused(false);
+    setAudioActuallyStarted(false);
     setProgress(0);
     setCurrentTime(0);
     setCurrentAudioElement(null);
+  };
+
+  // Handle word clicks from highlighting
+  const handleWordClick = (token: any) => {
+    if (!enableHighlighting) return;
+    
+    console.log('🖱️ Word clicked in AudioPlayer:', token.text);
+    onWordClick(token);
   };
 
   const formatTime = (seconds: number): string => {
@@ -274,11 +413,55 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   };
 
   return (
-    <div className={`audio-player ${className}`}>
+    <div className={`audio-player-with-highlighting ${className}`}>
       {/* Fallback Message */}
       {fallbackMessage && (
         <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
           <p className="text-sm text-yellow-800">{fallbackMessage}</p>
+        </div>
+      )}
+
+      {/* Highlighted Text Display */}
+      {showHighlightedText && enableHighlighting && tokens.length > 0 && (
+        <div style={{
+          marginBottom: '20px',
+          padding: '20px',
+          backgroundColor: 'rgba(45, 55, 72, 0.4)',
+          borderRadius: '8px',
+          border: '1px solid rgba(102, 126, 234, 0.2)',
+          maxHeight: '200px',
+          overflowY: 'auto'
+        }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '10px'
+          }}>
+            <h4 style={{ 
+              margin: 0, 
+              color: '#a5b4fc', 
+              fontSize: '14px',
+              fontWeight: '600'
+            }}>
+              📝 Synchronized Text (Click words to seek)
+            </h4>
+            <div style={{ 
+              fontSize: '12px', 
+              color: '#9ca3af' 
+            }}>
+              {isLoading && !audioActuallyStarted ? '⏳ Waiting for audio...' : 
+               audioActuallyStarted && isHighlightingEnabled ? '✅ Highlighting Active' : 
+               '⏸️ Highlighting Paused'}
+            </div>
+          </div>
+          
+          <HighlightableText
+            tokens={tokens}
+            currentWordId={currentWordId}
+            onWordClick={handleWordClick}
+            disabled={!isPlaying && !isPaused}
+          />
         </div>
       )}
 
@@ -809,6 +992,22 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Highlighting Debug Info (only in development) */}
+      {process.env.NODE_ENV === 'development' && enableHighlighting && (
+        <div style={{
+          marginTop: '12px',
+          padding: '8px',
+          backgroundColor: 'rgba(34, 197, 94, 0.1)',
+          borderRadius: '6px',
+          fontSize: '11px',
+          color: '#22c55e'
+        }}>
+          <strong>🎯 Highlighting Debug:</strong> {tokens.length} tokens • Current: {currentWordId ? tokens.find(t => t.id === currentWordId)?.text : 'None'} • Time: {highlightCurrentTime.toFixed(1)}s
+        </div>
+      )}
     </div>
   );
 };
+
+export default AudioPlayerWithHighlighting;
