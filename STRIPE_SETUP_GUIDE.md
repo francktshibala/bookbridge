@@ -11,6 +11,8 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_... # or pk_live_... for production
 STRIPE_WEBHOOK_SECRET=whsec_... # Generated when creating webhook
 ```
 
+> Reminder: If `STRIPE_WEBHOOK_SECRET` is not set, the webhook route will no-op and subscriptions won’t auto-update from Stripe until you add it in both local and Vercel environments.
+
 ## 🔧 Stripe Dashboard Setup
 
 ### 1. Create Stripe Account

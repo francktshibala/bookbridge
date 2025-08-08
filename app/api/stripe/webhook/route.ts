@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+// TODO(francois): Set STRIPE_WEBHOOK_SECRET in .env.local and Vercel to enable webhook processing.
 import { getStripe } from '@/lib/stripe';
 import { createClient } from '@/lib/supabase/server';
 import Stripe from 'stripe';
