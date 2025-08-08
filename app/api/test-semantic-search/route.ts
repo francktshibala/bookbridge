@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     console.log(`Book ${bookId} indexed in Pinecone:`, isIndexed)
     
     // Try semantic search
-    let semanticResults = []
+    let semanticResults: any[] = []
     try {
       semanticResults = await vectorService.searchRelevantChunks(bookId, query, 5)
       console.log(`Found ${semanticResults.length} semantic results`)
@@ -27,7 +27,7 @@ export async function GET(request: Request) {
     }
     
     // Try hybrid search via book cache
-    let hybridResults = []
+    let hybridResults: any[] = []
     try {
       const cached = await bookCacheService.getCachedContent(bookId)
       if (cached) {

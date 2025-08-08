@@ -3,8 +3,17 @@
 import { VoiceService, VoiceSettings, TTSOptions } from './voice-service';
 import { supabase } from './supabase/client';
 
+export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+
+export function asCEFRLevel(level: unknown): CEFRLevel | undefined {
+  const allowed: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  return typeof level === 'string' && (allowed as readonly string[]).includes(level)
+    ? (level as CEFRLevel)
+    : undefined;
+}
+
 export interface ESLAudioOptions extends VoiceSettings {
-  eslLevel?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+  eslLevel?: CEFRLevel;
   emphasizeDifficultWords?: boolean;
   pauseAfterSentences?: boolean;
   pronunciationGuide?: boolean;
@@ -20,8 +29,9 @@ export interface PronunciationGuide {
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
-export class ESLVoiceService extends VoiceService {
+export class ESLVoiceService {
   private static eslInstance: ESLVoiceService;
+  private voiceService: VoiceService;
   private vocabularyDatabase: Map<string, Set<string>> = new Map();
   private phoneticDatabase: Map<string, string> = new Map();
   private difficultWordCache: Map<string, string[]> = new Map();
@@ -76,7 +86,7 @@ export class ESLVoiceService extends VoiceService {
   ]);
 
   private constructor() {
-    super();
+    this.voiceService = VoiceService.getInstance();
     this.initializeVocabularyDatabase();
     this.initializePhoneticDatabase();
   }
@@ -113,16 +123,32 @@ export class ESLVoiceService extends VoiceService {
    */
   public async speakWithESLSupport(
     text: string,
-    options: ESLAudioOptions = {}
+    options: Partial<ESLAudioOptions> = {},
+    callbacks: Pick<TTSOptions, 'onStart' | 'onEnd' | 'onError' | 'onWordBoundary'> = {}
   ): Promise<void> {
     // Get user's ESL profile if not provided
     if (!options.eslLevel) {
       const userProfile = await this.getUserESLProfile();
-      options.eslLevel = userProfile?.eslLevel;
+      if (userProfile?.eslLevel) {
+        options.eslLevel = userProfile.eslLevel;
+      }
     }
 
+    // Merge with base voice settings to satisfy required fields
+    const base: VoiceSettings = this.voiceService.getCurrentSettings();
+    const merged: ESLAudioOptions = {
+      rate: base.rate,
+      pitch: base.pitch,
+      volume: base.volume,
+      voice: base.voice,
+      provider: base.provider,
+      elevenLabsVoice: base.elevenLabsVoice,
+      openAIVoice: base.openAIVoice,
+      ...options,
+    };
+
     // Adjust speech rate based on ESL level
-    const adjustedOptions = this.adjustOptionsForESL(options);
+    const adjustedOptions = this.adjustOptionsForESL(merged);
     
     // Process text for ESL enhancements
     const enhancedText = await this.enhanceTextForESL(text, adjustedOptions);
@@ -133,19 +159,19 @@ export class ESLVoiceService extends VoiceService {
     }
     
     // Use parent class speak method with enhanced text and options
-    return super.speak({
+    return this.voiceService.speak({
       text: enhancedText,
       settings: adjustedOptions,
-      onStart: options.onStart,
-      onEnd: options.onEnd,
-      onError: options.onError,
+      onStart: callbacks.onStart,
+      onEnd: callbacks.onEnd,
+      onError: callbacks.onError,
       onWordBoundary: async (info) => {
         // Enhanced word boundary with pronunciation support
         if (options.pronunciationGuide) {
           const pronunciation = await this.getPronunciationForWord(info.word);
           console.log(`📚 Word: ${info.word} - Pronunciation: ${pronunciation.phonetic}`);
         }
-        options.onWordBoundary?.(info);
+        callbacks.onWordBoundary?.(info);
       }
     });
   }
@@ -275,7 +301,7 @@ export class ESLVoiceService extends VoiceService {
    */
   private async identifyDifficultWords(
     text: string,
-    eslLevel: string
+    eslLevel: CEFRLevel
   ): Promise<string[]> {
     // Check cache first
     const cacheKey = `${eslLevel}:${text.substring(0, 100)}`;
@@ -421,7 +447,7 @@ export class ESLVoiceService extends VoiceService {
   /**
    * Track vocabulary exposure for learning analytics
    */
-  private async trackVocabularyExposure(text: string, eslLevel: string): Promise<void> {
+  private async trackVocabularyExposure(text: string, eslLevel: CEFRLevel): Promise<void> {
     try {
       const words = text.toLowerCase().match(/\b\w+\b/g) || [];
       const uniqueWords = [...new Set(words)];
@@ -454,7 +480,7 @@ export class ESLVoiceService extends VoiceService {
   /**
    * Get user's ESL profile from database
    */
-  private async getUserESLProfile(): Promise<{ eslLevel: string; nativeLanguage: string } | null> {
+  private async getUserESLProfile(): Promise<{ eslLevel?: CEFRLevel; nativeLanguage?: string } | null> {
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return null;
@@ -468,8 +494,8 @@ export class ESLVoiceService extends VoiceService {
       if (error || !data) return null;
       
       return {
-        eslLevel: data.eslLevel,
-        nativeLanguage: data.nativeLanguage
+        eslLevel: asCEFRLevel(data.eslLevel),
+        nativeLanguage: data.nativeLanguage ?? undefined,
       };
     } catch (error) {
       console.error('ESL: Error fetching user profile:', error);
@@ -480,7 +506,7 @@ export class ESLVoiceService extends VoiceService {
   /**
    * Generate reading speed recommendations
    */
-  public getRecommendedReadingSpeed(eslLevel: string): {
+  public getRecommendedReadingSpeed(eslLevel: CEFRLevel): {
     wpm: number;
     audioRate: number;
     description: string;

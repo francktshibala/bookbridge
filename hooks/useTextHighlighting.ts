@@ -63,7 +63,8 @@ export const useTextHighlighting = ({
     console.log('🔤 Generating tokens for text highlighting...');
     
     // Get provider-optimized settings
-    const providerSettings = textTokenizer.getProviderOptimizedSettings(voiceProvider, playbackRate);
+    const normalizedProvider = voiceProvider === 'elevenlabs-websocket' ? 'elevenlabs' : voiceProvider as 'web-speech' | 'openai' | 'elevenlabs';
+    const providerSettings = textTokenizer.getProviderOptimizedSettings(normalizedProvider, playbackRate);
     
     // Generate tokens with estimated duration
     const newTokens = textTokenizer.tokenizeText(text, estimatedDuration, providerSettings);

@@ -9,9 +9,7 @@ async function listAllBooks() {
         id: true, 
         title: true, 
         author: true,
-        publicDomain: true,
-        avgRating: true, 
-        reviewCount: true 
+        publicDomain: true
       }
     });
     

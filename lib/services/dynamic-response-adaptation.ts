@@ -200,7 +200,7 @@ export class DynamicResponseAdaptationService {
    */
   private extractConcepts(query: string, response: string): any {
     // Simple concept extraction - would be enhanced with NLP
-    const concepts = [];
+    const concepts: any[] = [];
     
     // Extract literary terms
     const literaryTerms = ['theme', 'character', 'plot', 'setting', 'symbolism', 'metaphor'];

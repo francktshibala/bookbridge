@@ -31,7 +31,8 @@ async function testElevenLabsPatterns() {
     // Track events for this test
     let characterEvents: any[] = [];
     
-    const websocket = new ElevenLabsWebSocketService();
+    const apiKey = process.env.NEXT_PUBLIC_ELEVENLABS_API_KEY || '';
+    const websocket = new ElevenLabsWebSocketService(apiKey);
     
     try {
       await websocket.streamTTS({
@@ -46,9 +47,6 @@ async function testElevenLabsPatterns() {
           });
           
           console.log(`  [${characterEvents.length}] "${timing.character}" at ${timing.startTime.toFixed(3)}s`);
-        },
-        onAudioStart: () => {
-          console.log(`🎵 Audio started for ${testCase.name}`);
         },
         onComplete: () => {
           console.log(`✅ ${testCase.name} completed`);

@@ -544,7 +544,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
                 : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               color: 'white',
-              border: 'none',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: '10px',
               fontSize: '13px',
               fontWeight: '600',
@@ -556,8 +556,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
               transition: 'all 0.2s ease',
               opacity: isLoading ? 0.7 : 1,
               boxShadow: isLoading ? 'none' : '0 4px 12px rgba(102, 126, 234, 0.3)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)'
+              backdropFilter: 'blur(10px)'
             }}
             aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
           >

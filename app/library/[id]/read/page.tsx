@@ -1220,7 +1220,7 @@ export default function BookReaderPage() {
           originalText={sections[currentSection]?.content || currentChunkData?.content || ''}
           bookId={bookId}
           eslLevel={eslLevel}
-          nativeLanguage={null}
+          nativeLanguage={undefined}
           onClose={() => setShowSplitScreen(false)}
         />
       )}

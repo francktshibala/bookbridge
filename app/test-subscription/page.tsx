@@ -59,7 +59,7 @@ export default function TestSubscriptionPage() {
           <h2 className="font-semibold">Usage Data</h2>
           <p>Book Analyses Count: {usage?.bookAnalysesCount || 0}</p>
           <p>Remaining Analyses: {remainingAnalyses}</p>
-          <p>Last Reset: {usage?.lastResetDate || 'N/A'}</p>
+          <p>Last Reset: {usage?.lastResetDate ? new Date(usage.lastResetDate).toLocaleDateString() : 'N/A'}</p>
         </div>
 
         <div className="bg-purple-100 p-4 rounded">

@@ -215,9 +215,9 @@ CREATE TRIGGER on_auth_user_created
   `;
   
   console.log('\n📋 Manual SQL to execute in Supabase Dashboard SQL Editor:');
-  console.log('=' * 60);
+  console.log('='.repeat(60));
   console.log(sql);
-  console.log('=' * 60);
+  console.log('='.repeat(60));
   
   return sql;
 }

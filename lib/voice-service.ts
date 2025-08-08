@@ -971,9 +971,12 @@ export class VoiceService {
           clearTimeout(audioTimeout);
           
           // Check if it's an autoplay issue
-          if (playError.name === 'NotAllowedError') {
+          const errorName = (playError as any)?.name;
+          if (errorName === 'NotAllowedError') {
             // Signal autoplay blocked to UI
-            options.onError?.({ error: 'autoplay_blocked' });
+            options.onError?.({
+              error: 'canceled',
+            } as unknown as SpeechSynthesisErrorEvent);
             
             // Clean up
             URL.revokeObjectURL(audioUrl);

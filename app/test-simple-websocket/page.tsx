@@ -57,7 +57,7 @@ export default function TestSimpleWebSocket() {
       });
       
     } catch (error) {
-      addLog(`❌ Test failed: ${error.message}`);
+      addLog(`❌ Test failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
       setIsRunning(false);
     }
   };

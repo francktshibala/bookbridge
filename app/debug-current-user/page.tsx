@@ -72,7 +72,7 @@ export default function DebugCurrentUserPage() {
         setLoading(false);
       } catch (error) {
         console.error('Debug error:', error);
-        setUserInfo({ error: error.message });
+        setUserInfo({ error: error instanceof Error ? error.message : 'Unknown error' });
         setLoading(false);
       }
     }

@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
@@ -80,7 +81,7 @@ export default function Navigation() {
                   gap: '6px'
                 }}
               >
-                {link.icon && <link.icon size={16} />}
+                {(link as any).icon && React.createElement((link as any).icon, { size: 16 })}
                 {link.label}
               </Link>
             ))}

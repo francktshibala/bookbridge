@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const supabase = createClient();
+  const supabase = await createClient();
 
   try {
     switch (event.type) {
@@ -147,9 +147,9 @@ export async function POST(request: NextRequest) {
       case 'invoice.payment_succeeded': {
         const invoice = event.data.object as Stripe.Invoice;
         
-        if (invoice.subscription) {
+        if ((invoice as any).subscription) {
           const subscription = await stripe.subscriptions.retrieve(
-            invoice.subscription as string
+            (invoice as any).subscription as string
           );
           
           const customer = await stripe.customers.retrieve(subscription.customer as string);
@@ -163,7 +163,7 @@ export async function POST(request: NextRequest) {
               .from('payment_history')
               .insert({
                 userId,
-                stripePaymentIntentId: invoice.payment_intent as string,
+                stripePaymentIntentId: (invoice as any).payment_intent as string,
                 amount: invoice.amount_paid,
                 currency: invoice.currency,
                 status: 'succeeded',
@@ -177,9 +177,9 @@ export async function POST(request: NextRequest) {
       case 'invoice.payment_failed': {
         const invoice = event.data.object as Stripe.Invoice;
         
-        if (invoice.subscription) {
+        if ((invoice as any).subscription) {
           const subscription = await stripe.subscriptions.retrieve(
-            invoice.subscription as string
+            (invoice as any).subscription as string
           );
           
           const customer = await stripe.customers.retrieve(subscription.customer as string);
@@ -193,7 +193,7 @@ export async function POST(request: NextRequest) {
               .from('payment_history')
               .insert({
                 userId,
-                stripePaymentIntentId: invoice.payment_intent as string,
+                stripePaymentIntentId: (invoice as any).payment_intent as string,
                 amount: invoice.amount_due,
                 currency: invoice.currency,
                 status: 'failed',

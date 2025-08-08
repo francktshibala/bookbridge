@@ -139,7 +139,7 @@ Pass Rate: ${summary.passRate}% (${summary.passedCount}/${summary.totalTests})
       const status = result.score >= 85 ? '✅ PASS' : '❌ FAIL';
       report += `\n${index + 1}. ${status} (${result.score}/100)
    Q: ${result.question}
-   A: ${result.aiResponse.substring(0, 100)}...
+   A: ${result.aiResponse?.substring(0, 100) || 'No response'}...
 `;
     });
 

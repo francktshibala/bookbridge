@@ -89,7 +89,7 @@ export default function AuthMonitorPage() {
       const { data: { user }, error } = await supabase.auth.getUser();
       
       if (error) {
-        addAuthEvent('ERROR', `Initial auth check error: ${error.message}`, null, 'supabase');
+        addAuthEvent('ERROR', `Initial auth check error: ${error instanceof Error ? error.message : "Unknown error"}`, null, 'supabase');
       } else {
         setSupabaseUser(user);
         if (user) {

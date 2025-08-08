@@ -93,12 +93,16 @@ export class QuestionManager {
     const questions = await this.loadQuestions();
     
     const byDifficulty = questions.reduce((acc, q) => {
-      acc[q.difficulty] = (acc[q.difficulty] || 0) + 1;
+      if (q.difficulty) {
+        acc[q.difficulty] = (acc[q.difficulty] || 0) + 1;
+      }
       return acc;
     }, {} as Record<string, number>);
 
     const byCategory = questions.reduce((acc, q) => {
-      acc[q.category] = (acc[q.category] || 0) + 1;
+      if (q.category) {
+        acc[q.category] = (acc[q.category] || 0) + 1;
+      }
       return acc;
     }, {} as Record<string, number>);
 

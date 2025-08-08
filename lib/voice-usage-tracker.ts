@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/client';
 
 export interface VoiceUsageEvent {
   user_id: string;
-  provider: 'web-speech' | 'openai' | 'elevenlabs';
+  provider: 'web-speech' | 'openai' | 'elevenlabs' | 'elevenlabs-websocket';
   voice_id?: string;
   character_count: number;
   duration_seconds?: number;

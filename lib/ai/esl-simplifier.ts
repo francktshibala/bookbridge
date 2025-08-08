@@ -1,4 +1,4 @@
-import { vocabularyMappings } from './vocabulary-simplifier';
+import { VocabularyMapping } from './vocabulary-simplifier';
 
 interface CEFRLevel {
   level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
@@ -109,8 +109,8 @@ const CULTURAL_REFERENCES = new Map([
 ]);
 
 export class ESLSimplifier {
-  private coreVocab: Map<string, Set<string>>;
-  private culturalReferences: Map<string, string>;
+  private coreVocab: Map<string, Set<string>> = new Map();
+  private culturalReferences: Map<string, string> = new Map();
   
   constructor() {
     this.loadVocabularyDatabase();

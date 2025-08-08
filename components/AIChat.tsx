@@ -18,6 +18,8 @@ const FormattedAIResponse: React.FC<{
     citations?: string;
   };
   voiceSupported?: boolean;
+  eslLevel?: string | null;
+  nativeLanguage?: string | null;
 }> = ({ content, isMultiAgent, agentResponses, voiceSupported }) => {
   const [showAgentDetails, setShowAgentDetails] = useState(false);
 

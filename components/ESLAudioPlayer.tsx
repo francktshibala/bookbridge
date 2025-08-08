@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { voiceService, VoiceProvider } from '@/lib/voice-service';
-import { eslVoiceService, ESLAudioOptions, PronunciationGuide } from '@/lib/voice-service-esl';
+import { eslVoiceService, ESLAudioOptions, PronunciationGuide, CEFRLevel, asCEFRLevel } from '@/lib/voice-service-esl';
 import { useESLMode } from '@/hooks/useESLMode';
 import { ELEVENLABS_VOICES, DEFAULT_ELEVENLABS_VOICE } from '@/lib/elevenlabs-voices';
 import { Volume2, Play, Pause, Settings, BookOpen, Mic, ChevronDown, Speaker } from 'lucide-react';
@@ -61,14 +61,16 @@ export const ESLAudioPlayer: React.FC<ESLAudioPlayerProps> = ({
 
   // ESL-specific settings
   const [audioSettings, setAudioSettings] = useState<ESLAudioOptions>({
-    eslLevel: eslLevel || 'B1',
+    eslLevel: (asCEFRLevel(eslLevel) as CEFRLevel) || 'B1',
     nativeLanguage: nativeLanguage || undefined,
     emphasizeDifficultWords: true,
     pauseAfterSentences: false,
     pronunciationGuide: false,
     provider: 'web-speech',
-    rate: undefined, // Will be set based on ESL level
-    volume: 0.8
+    rate: 1.0, // Will be adjusted based on ESL level
+    pitch: 1.0,
+    volume: 0.8,
+    voice: null
   });
   
   // Progress tracking
@@ -114,10 +116,12 @@ export const ESLAudioPlayer: React.FC<ESLAudioPlayerProps> = ({
   // Get recommended settings based on ESL level
   useEffect(() => {
     if (eslLevel) {
-      const recommendations = eslVoiceService.getRecommendedReadingSpeed(eslLevel);
+      const level = asCEFRLevel(eslLevel);
+      if (!level) return;
+      const recommendations = eslVoiceService.getRecommendedReadingSpeed(level);
       setAudioSettings(prev => ({
         ...prev,
-        eslLevel,
+        eslLevel: level,
         provider: voiceProvider,
         voice: selectedVoice,
         elevenLabsVoice,
@@ -127,7 +131,7 @@ export const ESLAudioPlayer: React.FC<ESLAudioPlayerProps> = ({
       setWordsPerMinute(recommendations.wpm);
       
       // Enable helpful features for beginners
-      if (['A1', 'A2'].includes(eslLevel)) {
+      if (['A1', 'A2'].includes(level)) {
         setAudioSettings(prev => ({
           ...prev,
           pauseAfterSentences: true,
