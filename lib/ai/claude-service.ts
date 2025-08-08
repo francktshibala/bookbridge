@@ -22,6 +22,14 @@ interface QueryOptions {
   temperature?: number;
   stream?: boolean;
   responseMode?: 'brief' | 'detailed';
+  userProfile?: any;
+}
+
+interface ESLQueryOptions extends QueryOptions {
+  eslLevel?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+  nativeLanguage?: string;
+  vocabularyFocus?: boolean;
+  culturalContext?: boolean;
 }
 
 export class ClaudeAIService {
@@ -57,8 +65,63 @@ export class ClaudeAIService {
     }
   }
 
-  // Smart model selection based on query complexity and response mode
-  private selectModel(query: string, responseMode: 'brief' | 'detailed' = 'detailed'): string {
+  // ESL detection and adaptation methods
+  private detectESLNeed(query: string, userProfile?: any): boolean {
+    const eslIndicators = [
+      'explain', 'what does', 'help', 'don\'t understand', 'meaning',
+      'translate', 'simpler', 'easier', 'confusing', 'difficult',
+      'definition', 'clarify', 'rephrase', 'breakdown', 'vocabulary'
+    ];
+    
+    const hasIndicators = eslIndicators.some(indicator => 
+      query.toLowerCase().includes(indicator)
+    );
+    
+    const isESLUser = userProfile?.eslLevel !== null && userProfile?.eslLevel !== undefined;
+    
+    return hasIndicators || isESLUser;
+  }
+
+  private adaptPromptForESL(prompt: string, eslLevel: string, nativeLanguage?: string): string {
+    const levelConstraints = {
+      'A1': 'Use only basic 500-word vocabulary. Short simple sentences. Present tense only. Use everyday language.',
+      'A2': 'Use basic 1000-word vocabulary. Simple past and present. Basic connectors (and, but). Clear examples.',
+      'B1': 'Use 1500-word vocabulary. Most common tenses. Some complex sentences. Explain difficult concepts.',
+      'B2': 'Use 2500-word vocabulary. Advanced grammar. Cultural explanations when needed. Academic language OK.',
+      'C1': 'Use 4000-word vocabulary. Complex structures. Nuanced explanations. Academic discourse.',
+      'C2': 'Near-native vocabulary. All structures. Idiomatic expressions allowed. Full complexity.'
+    };
+
+    const culturalNote = nativeLanguage ? 
+      `Provide cultural context for concepts that may differ from ${nativeLanguage} culture.` : 
+      'Explain Western cultural references clearly.';
+
+    return `${prompt}
+
+IMPORTANT ESL ADAPTATION: ${levelConstraints[eslLevel as keyof typeof levelConstraints]} ${culturalNote}
+
+ESL TEACHING GUIDELINES:
+- Break down complex ideas into simpler parts
+- Use examples that relate to everyday life
+- Explain cultural references and idioms
+- Define any vocabulary words above the user's level
+- Use clear, logical organization in your response
+- Check for comprehension by asking follow-up questions when appropriate`;
+  }
+
+  // Enhanced model selection with ESL awareness
+  private selectModel(query: string, responseMode: 'brief' | 'detailed' = 'detailed', userProfile?: any): string {
+    const eslOptions = { userProfile } as ESLQueryOptions;
+    
+    if (this.detectESLNeed(query, userProfile)) {
+      // ESL users get consistent, clear responses
+      if (eslOptions.userProfile?.eslLevel && ['A1', 'A2'].includes(eslOptions.userProfile.eslLevel)) {
+        return 'claude-3-5-haiku-20241022'; // Simpler, faster responses for beginners
+      }
+      return 'claude-3-5-sonnet-20241022'; // Detailed explanations for intermediate+
+    }
+    
+    // Existing logic for non-ESL users
     const complexPatterns = [
       /analyze.*literary.*technique/i,
       /compare.*characters/i,
@@ -281,8 +344,8 @@ export class ClaudeAIService {
     }
   }
 
-  // Create elaborate, flowing prompts for expert-level responses
-  private optimizePrompt(prompt: string, bookContext?: string, knowledgeContext?: string, responseMode: 'brief' | 'detailed' = 'detailed'): string {
+  // Create elaborate, flowing prompts for expert-level responses with ESL adaptation
+  private optimizePrompt(prompt: string, bookContext?: string, knowledgeContext?: string, responseMode: 'brief' | 'detailed' = 'detailed', userProfile?: any): string {
     // Check if user is asking about book structure
     const structureQueries = [
       /how many chapter/i,
@@ -295,44 +358,56 @@ export class ClaudeAIService {
     
     const isStructureQuery = structureQueries.some(pattern => pattern.test(prompt));
     const needsMultiPerspective = this.requiresMultiPerspectiveAnalysis(prompt);
+    const needsESLAdaptation = this.detectESLNeed(prompt, userProfile);
     
     // Use intelligent conversation flow detection
     const socraticMode = this.shouldUseSocraticMode(prompt, bookContext);
     const needsSocratic = socraticMode !== 'none';
     const isFollowUp = socraticMode === 'followup';
     
-    // Dynamic system prompt based on response mode
+    // Dynamic system prompt based on response mode and ESL needs
     let optimized = '';
     
     if (responseMode === 'brief') {
-      optimized = `You are a knowledgeable literature expert providing concise, focused answers. Your responses should be direct yet insightful, perfect for quick understanding.
+      optimized = `You are a helpful literature teacher providing clear, focused answers. Explain things in a way that's easy to understand while still being insightful.
 
 BRIEF MODE GUIDELINES:
-- Provide clear, direct answers in 2-3 paragraphs maximum
-- Focus on the most essential points and key insights
-- Use accessible language while maintaining expertise
-- Include only the most relevant examples or evidence
-- Be precise and to-the-point while remaining engaging
-- Avoid extensive background or tangential information
-- Perfect for quick reference or initial understanding`;
+- Give clear, direct answers in 1-2 paragraphs
+- Focus on the most important points
+- Use everyday language that anyone can follow
+- Include simple examples when helpful
+- Be precise but friendly and engaging
+- Skip complex background details
+- Perfect for quick understanding`;
+      
+      // Add ESL adaptation for brief mode
+      if (needsESLAdaptation && userProfile?.eslLevel) {
+        optimized = this.adaptPromptForESL(optimized, userProfile.eslLevel, userProfile.nativeLanguage);
+      }
     } else {
-      optimized = `You are a distinguished literature professor and expert literary critic with deep knowledge of classical and contemporary works. Your responses should be elaborate, flowing, and intellectually rich - like a fascinating university lecture or an engaging conversation with a brilliant academic.
+      optimized = `You are a professional literature tutor who helps students understand books through clear, academic guidance. Provide thoughtful analysis using professional teaching methods.
 
-DETAILED ANALYSIS GUIDELINES FOR COMPREHENSIVE DISCOURSE:
-- Create a substantial response of 8-12 flowing paragraphs that build upon each other naturally
-- Begin with an engaging introduction that establishes the complexity and importance of the topic
-- Develop your analysis through multiple interconnected layers: textual evidence, historical context, cultural significance, literary techniques, and broader implications
-- Each paragraph should seamlessly flow into the next, creating an intellectual journey for the reader
-- Use sophisticated yet accessible language that demonstrates deep expertise and scholarly insight
-- Include rich contextual information: historical background, biographical details, literary movements, and cultural connections
-- Weave in relevant comparisons to other works, authors, or literary traditions where appropriate
-- Integrate direct quotations and specific textual evidence naturally within your flowing prose
-- Address multiple dimensions of the question: surface meaning, deeper implications, symbolic significance, and contemporary relevance
-- Build toward a substantial conclusion that synthesizes your insights and opens new avenues for understanding
-- Let your passion for literature shine through with engaging, professorial enthusiasm that makes complex ideas accessible
-- AVOID bullet points, numbered lists, or choppy formatting - maintain elegant academic discourse throughout
-- Create responses that feel like captivating lectures from a master teacher, not mere study guides
-- Satisfy intellectual curiosity with the depth and elaboration worthy of graduate-level literary analysis`;
+PROFESSIONAL TUTORING GUIDELINES:
+- Provide clear, structured responses that build understanding step-by-step
+- Use professional academic language that is accessible but sophisticated
+- Begin with acknowledgment of the student's question and its importance
+- Develop explanations systematically: context, analysis, significance
+- Connect ideas logically with smooth transitions between concepts
+- Include relevant textual evidence and examples to support points
+- Make connections to broader literary themes and historical context
+- Address multiple layers: literal meaning, symbolic significance, and cultural impact
+- Guide student thinking with occasional questions that encourage deeper analysis
+- Maintain professional enthusiasm for literature without theatrical elements
+- Write in clear, flowing paragraphs using academic discourse
+- Create responses that demonstrate scholarly expertise while remaining accessible
+- Focus on educational value and intellectual growth rather than entertainment
+
+IMPORTANT: Do not use theatrical elements like stage directions, action descriptions in asterisks, or dramatic roleplay. Maintain professional academic tone throughout your response.`;
+      
+      // Add ESL adaptation for detailed mode
+      if (needsESLAdaptation && userProfile?.eslLevel) {
+        optimized = this.adaptPromptForESL(optimized, userProfile.eslLevel, userProfile.nativeLanguage);
+      }
     }
 
     // Add multi-perspective instructions when needed
@@ -452,17 +527,17 @@ Make it conversational and engaging. Always end with questions or suggestions fo
     if (bookContext) {
       // If we have actual book excerpts, emphasize using them
       if (bookContext.includes('Relevant excerpts:') || bookContext.includes('Excerpts:')) {
-        let basePrompt = `You are a distinguished literature professor and expert literary critic. When analyzing the provided text excerpts, craft elaborate, flowing responses that demonstrate deep literary understanding.
+        let basePrompt = `You are an enthusiastic literature teacher who helps students understand texts deeply. When analyzing the provided excerpts, create clear and engaging responses that help readers appreciate the work.
 
 STYLE REQUIREMENTS:
-- Write in elegant, connected paragraphs that flow naturally from one idea to the next
-- Demonstrate scholarly expertise while remaining engaging and accessible
-- Weave quotes seamlessly into your analysis, not as separate bullet points
-- Provide rich interpretations that illuminate the text's deeper meanings
-- Connect literary elements organically - themes, symbolism, character development
-- Let your academic passion and intellectual curiosity shine through
-- Create responses that feel like a brilliant professor's office hours discussion
-- NEVER use bullet points or numbered lists - use flowing prose instead`;
+- Write in clear, connected paragraphs that build understanding step by step
+- Show your expertise while keeping explanations accessible and engaging
+- Include quotes naturally to support your points, not as separate examples
+- Provide meaningful interpretations that help readers see deeper layers
+- Connect different elements smoothly - themes, symbols, character development
+- Share your love of literature in a way that inspires others
+- Create responses that feel like having a great conversation with a passionate teacher
+- Write in flowing paragraphs that tell a story about the text`;
 
         // Add multi-perspective instructions if needed
         if (needsMultiPerspective) {
@@ -677,13 +752,13 @@ continuous text document without formal chapter organization.`;
   // Main query method
   async query(
     prompt: string, 
-    options: QueryOptions & { userId: string; bookId?: string; bookContext?: string } = {} as any
+    options: QueryOptions & { userId: string; bookId?: string; bookContext?: string; temperature?: number } = {} as any
   ): Promise<AIResponse> {
     console.log('Claude query method called');
-    const { userId, bookId, bookContext, maxTokens = 1500, responseMode = 'detailed' } = options;
+    const { userId, bookId, bookContext, maxTokens = 1500, responseMode = 'detailed', temperature: customTemp } = options;
     
-    // Adjust temperature based on response mode for optimal results
-    const temperature = responseMode === 'detailed' ? 0.8 : 0.7;
+    // Adjust temperature based on response mode for optimal results, or use custom temperature
+    const temperature = customTemp !== undefined ? customTemp : (responseMode === 'detailed' ? 0.8 : 0.7);
 
     // Check usage limits
     console.log('Checking usage limits for user:', userId);
@@ -730,8 +805,8 @@ continuous text document without formal chapter organization.`;
     console.log('Knowledge context retrieved');
     
     console.log('Selecting model and optimizing prompt...');
-    const model = this.selectModel(prompt, responseMode);
-    const optimizedPrompt = this.optimizePrompt(prompt, bookContext, knowledgeContext, responseMode);
+    const model = this.selectModel(prompt, responseMode, options.userProfile);
+    const optimizedPrompt = this.optimizePrompt(prompt, bookContext, knowledgeContext, responseMode, options.userProfile);
     console.log('Model selected:', model, 'Prompt optimized');
 
     try {
@@ -825,8 +900,8 @@ continuous text document without formal chapter organization.`;
     }
 
     const knowledgeContext = await this.getKnowledgeGraphContext(userId, prompt, bookId);
-    const model = this.selectModel(prompt, responseMode);
-    const optimizedPrompt = this.optimizePrompt(prompt, bookContext, knowledgeContext, responseMode);
+    const model = this.selectModel(prompt, responseMode, options.userProfile);
+    const optimizedPrompt = this.optimizePrompt(prompt, bookContext, knowledgeContext, responseMode, options.userProfile);
 
     try {
       const stream = await this.anthropic.messages.stream({

@@ -17,12 +17,12 @@ export interface AgentResponse {
   }>;
 }
 
-export interface MultiAgentResponse {
+export interface TutoringResponse {
   content: string;
-  research: AgentResponse;
-  analysis: AgentResponse;
-  citations: AgentResponse;
-  synthesis: AgentResponse;
+  context: AgentResponse;
+  insights: AgentResponse;
+  questions: AgentResponse;
+  adaptation: AgentResponse;
   usage: {
     prompt_tokens: number;
     completion_tokens: number;
@@ -30,6 +30,8 @@ export interface MultiAgentResponse {
   };
   model: string;
   cost: number;
+  teachingMoments?: string[];
+  followUpQuestions?: string[];
 }
 
 export class MultiAgentService {
@@ -50,54 +52,61 @@ export class MultiAgentService {
       maxTokens?: number;
       temperature?: number;
       responseMode?: 'brief' | 'detailed';
+      conversationHistory?: any;
     }
-  ): Promise<MultiAgentResponse> {
-    const { userId, bookId, bookContext, maxTokens = 1500, temperature = 0.7, responseMode = 'detailed' } = options;
+  ): Promise<TutoringResponse> {
+    const { userId, bookId, bookContext, maxTokens = 1500, temperature = 0.7, responseMode = 'detailed', conversationHistory } = options;
 
-    // Step 1: Research Agent - Find relevant content
-    const researchAgent = new ResearchAgent(this.anthropic);
-    const research = await researchAgent.findRelevantContent(query, bookContext);
+    // Step 1: ContextAgent - Professional conversation retrieval and background research
+    const contextAgent = new ContextAgent(this.anthropic);
+    const context = await contextAgent.gatherLearningContext(query, bookContext, conversationHistory);
 
-    // Step 2: Analysis Agent - Provide deep insights
-    const analysisAgent = new AnalysisAgent(this.anthropic);
-    const analysis = await analysisAgent.analyzeContent(query, research.content, bookContext);
+    // Step 2: InsightAgent - Educational insight identification and thematic analysis
+    const insightAgent = new InsightAgent(this.anthropic);
+    const insights = await insightAgent.identifyEducationalInsights(query, context.content, bookContext);
 
-    // Step 3: Citation Agent - Create proper references
-    const citationAgent = new CitationAgent(this.anthropic);
-    const citations = await citationAgent.generateCitations(query, research.content, bookContext);
+    // Step 3: SocraticAgent - Thought-provoking questions to guide discovery
+    const socraticAgent = new SocraticAgent(this.anthropic);
+    const questions = await socraticAgent.generateGuidingQuestions(query, insights.content, bookContext);
 
-    // Step 4: Synthesis Agent - Combine all outputs
-    const synthesisAgent = new SynthesisAgent(this.anthropic);
-    const synthesis = await synthesisAgent.synthesizeResponse(
+    // Step 4: AdaptiveAgent - Professional learning level adjustment and synthesis
+    const adaptiveAgent = new AdaptiveAgent(this.anthropic);
+    const adaptation = await adaptiveAgent.createTutoringResponse(
       query,
-      research,
-      analysis,
-      citations,
+      context,
+      insights,
+      questions,
       bookContext,
       responseMode
     );
 
     // Calculate total usage and cost
     const totalUsage = {
-      prompt_tokens: research.usage?.prompt_tokens || 0 + analysis.usage?.prompt_tokens || 0 + 
-                    citations.usage?.prompt_tokens || 0 + synthesis.usage?.prompt_tokens || 0,
-      completion_tokens: research.usage?.completion_tokens || 0 + analysis.usage?.completion_tokens || 0 + 
-                        citations.usage?.completion_tokens || 0 + synthesis.usage?.completion_tokens || 0,
+      prompt_tokens: (context.usage?.prompt_tokens || 0) + (insights.usage?.prompt_tokens || 0) + 
+                    (questions.usage?.prompt_tokens || 0) + (adaptation.usage?.prompt_tokens || 0),
+      completion_tokens: (context.usage?.completion_tokens || 0) + (insights.usage?.completion_tokens || 0) + 
+                        (questions.usage?.completion_tokens || 0) + (adaptation.usage?.completion_tokens || 0),
       total_tokens: 0
     };
     totalUsage.total_tokens = totalUsage.prompt_tokens + totalUsage.completion_tokens;
 
     const totalCost = this.calculateTotalCost(totalUsage);
 
+    // Extract teaching moments and follow-up questions
+    const teachingMoments = this.extractTeachingMoments(adaptation.content);
+    const followUpQuestions = this.extractFollowUpQuestions(questions.content);
+
     return {
-      content: synthesis.content,
-      research,
-      analysis,
-      citations,
-      synthesis,
+      content: adaptation.content,
+      context,
+      insights,
+      questions,
+      adaptation,
       usage: totalUsage,
-      model: 'multi-agent-claude-3-5-sonnet',
-      cost: totalCost
+      model: 'enhanced-tutoring-claude-3-5-sonnet',
+      cost: totalCost,
+      teachingMoments,
+      followUpQuestions
     };
   }
 
@@ -107,40 +116,68 @@ export class MultiAgentService {
     const outputCost = (usage.completion_tokens / 1000) * modelCosts.output;
     return inputCost + outputCost;
   }
+
+  private extractTeachingMoments(content: string): string[] {
+    const moments: string[] = [];
+    const teachingPattern = /\*\*Teaching Moment:\*\*\s*([^\n]+)/g;
+    let match;
+    while ((match = teachingPattern.exec(content)) !== null) {
+      moments.push(match[1]);
+    }
+    return moments;
+  }
+
+  private extractFollowUpQuestions(content: string): string[] {
+    const questions: string[] = [];
+    const questionPattern = /\*\*Question:\*\*\s*([^\n]+)/g;
+    let match;
+    while ((match = questionPattern.exec(content)) !== null) {
+      questions.push(match[1]);
+    }
+    return questions;
+  }
 }
 
-class ResearchAgent {
+class ContextAgent {
   constructor(private anthropic: Anthropic) {}
 
-  async findRelevantContent(query: string, bookContext?: string): Promise<AgentResponse & { usage?: any }> {
-    const prompt = `You are a Research Agent specialized in finding relevant content from books.
+  async gatherLearningContext(query: string, bookContext?: string, conversationHistory?: any): Promise<AgentResponse & { usage?: any }> {
+    const prompt = `You are a ContextAgent specialized in gathering educational context for effective tutoring.
 
-Your task: Extract the most relevant passages and information from the provided book content that directly relates to the user's query.
+Your task: Prepare the learning foundation by gathering relevant book passages, conversation history, and background information needed for effective teaching.
 
-Query: "${query}"
+Student Query: "${query}"
 
 Book Content:
 ${bookContext || 'No book content provided'}
 
+Conversation History:
+${conversationHistory ? JSON.stringify(conversationHistory) : 'No previous conversation'}
+
 Instructions:
-1. Identify 3-5 most relevant passages that directly address the query
-2. Extract direct quotes with their context
-3. Rate relevance of each passage (0.0-1.0)
-4. Focus on factual content retrieval, not interpretation
+1. Identify 3-5 most educationally relevant passages that help answer the query
+2. Extract key quotes that will support learning objectives
+3. Consider what background knowledge the student needs
+4. Note any concepts that need foundation-building
+5. Prepare context for progressive understanding
+6. Use professional academic language without theatrical elements, stage directions, or roleplay
 
 Respond in this format:
-**RELEVANT PASSAGES:**
+**LEARNING CONTEXT:**
 
-**Passage 1 (Relevance: X.X):**
+**Key Passage 1:**
 "[Direct quote]"
-Location: [Chapter/section if available]
-Context: [Brief context explanation]
+Educational Value: [Why this helps student understanding]
+Concepts Involved: [Key concepts to teach]
 
-**Passage 2 (Relevance: X.X):**
+**Key Passage 2:**
 [Continue pattern...]
 
-**RESEARCH SUMMARY:**
-[Brief summary of what was found relevant to the query]`;
+**BACKGROUND NEEDED:**
+[Essential background knowledge for understanding]
+
+**LEARNING FOUNDATION:**
+[Context summary focused on building student understanding]`;
 
     let response;
     try {
@@ -148,12 +185,11 @@ Context: [Brief context explanation]
         model: 'claude-3-5-sonnet-20241022',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 600,
-        temperature: 0.3
+        temperature: 0.4
       });
     } catch (error: any) {
-      // Fallback to OpenAI if Claude is overloaded
       if (error.status === 529) {
-        console.log('Claude overloaded, falling back to OpenAI for research agent');
+        console.log('Claude overloaded, falling back to OpenAI for context agent');
         const { OpenAI } = await import('openai');
         const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
         
@@ -161,13 +197,13 @@ Context: [Brief context explanation]
           model: 'gpt-4o',
           messages: [{ role: 'user', content: prompt }],
           max_tokens: 600,
-          temperature: 0.3
+          temperature: 0.4
         });
         
         response = {
           content: [{ type: 'text', text: openaiResponse.choices[0].message.content || '' }],
           usage: {
-            input_tokens: 0, // OpenAI doesn't provide this directly
+            input_tokens: 0,
             output_tokens: openaiResponse.usage?.completion_tokens || 0
           }
         };
@@ -178,12 +214,12 @@ Context: [Brief context explanation]
 
     const content = response.content[0].type === 'text' ? response.content[0].text : '';
     
-    // Parse sources from the response
-    const sources = this.extractSources(content);
+    // Parse learning context from the response
+    const sources = this.extractLearningContext(content);
 
     return {
       content,
-      confidence: 0.85,
+      confidence: 0.90,
       sources,
       usage: {
         prompt_tokens: response.usage.input_tokens,
@@ -192,311 +228,83 @@ Context: [Brief context explanation]
     };
   }
 
-  private extractSources(content: string): Array<{ text: string; location: string; relevance: number }> {
-    const sources: Array<{ text: string; location: string; relevance: number }> = [];
-    const passageRegex = /\*\*Passage \d+ \(Relevance: ([\d.]+)\):\*\*\s*"([^"]+)"\s*Location: ([^\n]+)/g;
+  private extractLearningContext(content: string): Array<{ text: string; location: string; relevance: number }> {
+    const contexts: Array<{ text: string; location: string; relevance: number }> = [];
+    const passageRegex = /\*\*Key Passage \d+:\*\*\s*"([^"]+)"\s*Educational Value: ([^\n]+)/g;
     
     let match;
     while ((match = passageRegex.exec(content)) !== null) {
-      sources.push({
-        text: match[2],
-        location: match[3],
-        relevance: parseFloat(match[1])
-      });
-    }
-    
-    return sources;
-  }
-}
-
-class AnalysisAgent {
-  constructor(private anthropic: Anthropic) {}
-
-  async analyzeContent(query: string, researchContent: string, bookContext?: string): Promise<AgentResponse & { usage?: any }> {
-    const prompt = `You are an Analysis Agent specialized in providing deep literary and thematic insights.
-
-Your task: Analyze the research findings and provide comprehensive insights, connections, and interpretations.
-
-Original Query: "${query}"
-
-Research Findings:
-${researchContent}
-
-Book Context:
-${bookContext || 'Limited context available'}
-
-Instructions:
-1. Provide deep analytical insights about the content
-2. Make connections between themes, characters, and concepts
-3. Offer multiple interpretative perspectives
-4. Connect to broader literary and cultural contexts
-5. Explain significance and implications
-
-Create an elaborate, flowing literary analysis that reads like a passionate professor's discourse. Your response should:
-
-- Flow naturally from one insight to another with elegant transitions
-- Demonstrate deep literary understanding through sophisticated analysis
-- Weave together themes, symbolism, and character development organically
-- Include rich historical and cultural context as part of the narrative
-- Connect to other literary works and intellectual traditions naturally
-- Maintain the engaging tone of a brilliant academic conversation
-- Use flowing prose, not bullet points or fragmented thoughts
-- Build each paragraph upon the previous, creating intellectual momentum
-
-Write as if you're leading a fascinating graduate seminar, with passion and depth.`;
-
-    let response;
-    try {
-      response = await this.anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
-        messages: [{ role: 'user', content: prompt }],
-        max_tokens: 600,
-        temperature: 0.7
-      });
-    } catch (error: any) {
-      if (error.status === 529) {
-        console.log('Claude overloaded, falling back to OpenAI for analysis agent');
-        const { OpenAI } = await import('openai');
-        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-        
-        const openaiResponse = await openai.chat.completions.create({
-          model: 'gpt-4o',
-          messages: [{ role: 'user', content: prompt }],
-          max_tokens: 600,
-          temperature: 0.7
-        });
-        
-        response = {
-          content: [{ type: 'text', text: openaiResponse.choices[0].message.content || '' }],
-          usage: {
-            input_tokens: 0,
-            output_tokens: openaiResponse.usage?.completion_tokens || 0
-          }
-        };
-      } else {
-        throw error;
-      }
-    }
-
-    const content = response.content[0].type === 'text' ? response.content[0].text : '';
-
-    return {
-      content,
-      confidence: 0.90,
-      usage: {
-        prompt_tokens: response.usage.input_tokens,
-        completion_tokens: response.usage.output_tokens
-      }
-    };
-  }
-}
-
-class CitationAgent {
-  constructor(private anthropic: Anthropic) {}
-
-  async generateCitations(query: string, researchContent: string, bookContext?: string): Promise<AgentResponse & { usage?: any }> {
-    const prompt = `You are a Citation Agent specialized in creating proper academic references and highlighting direct quotes.
-
-Your task: Create properly formatted citations and identify the most important quotes to highlight.
-
-Query: "${query}"
-
-Research Content:
-${researchContent}
-
-Book Context:
-${bookContext || 'Limited context available'}
-
-Instructions:
-1. Identify the 3-5 most important quotes that directly support the analysis
-2. Create proper citations in format: (Author, Chapter/Page) or (Title, Section)
-3. Ensure all quotes are accurately attributed
-4. Highlight passages that should be emphasized in the final response
-5. Note any context needed to understand the quotes
-
-Output format:
-**KEY CITATIONS:**
-
-**Quote 1:**
-"[Exact quote]"
-Citation: (Source, Location)
-Context: [Why this quote is significant]
-
-**Quote 2:**
-[Continue pattern...]
-
-**CITATION NOTES:**
-[Any important notes about sources, context, or attribution]`;
-
-    let response;
-    try {
-      response = await this.anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
-        messages: [{ role: 'user', content: prompt }],
-        max_tokens: 1000,
-        temperature: 0.3
-      });
-    } catch (error: any) {
-      if (error.status === 529) {
-        console.log('Claude overloaded, falling back to OpenAI for citation agent');
-        const { OpenAI } = await import('openai');
-        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-        
-        const openaiResponse = await openai.chat.completions.create({
-          model: 'gpt-4o',
-          messages: [{ role: 'user', content: prompt }],
-          max_tokens: 1000,
-          temperature: 0.3
-        });
-        
-        response = {
-          content: [{ type: 'text', text: openaiResponse.choices[0].message.content || '' }],
-          usage: {
-            input_tokens: 0,
-            output_tokens: openaiResponse.usage?.completion_tokens || 0
-          }
-        };
-      } else {
-        throw error;
-      }
-    }
-
-    const content = response.content[0].type === 'text' ? response.content[0].text : '';
-    
-    // Parse citations from the response
-    const citations = this.extractCitations(content);
-
-    return {
-      content,
-      confidence: 0.95,
-      citations,
-      usage: {
-        prompt_tokens: response.usage.input_tokens,
-        completion_tokens: response.usage.output_tokens
-      }
-    };
-  }
-
-  private extractCitations(content: string): Array<{ text: string; source: string; page?: string; context: string }> {
-    const citations: Array<{ text: string; source: string; page?: string; context: string }> = [];
-    const citationRegex = /\*\*Quote \d+:\*\*\s*"([^"]+)"\s*Citation: \(([^)]+)\)\s*Context: ([^\n]+)/g;
-    
-    let match;
-    while ((match = citationRegex.exec(content)) !== null) {
-      citations.push({
+      contexts.push({
         text: match[1],
-        source: match[2],
-        context: match[3]
+        location: 'Educational Context',
+        relevance: 0.9 // High relevance for educational content
       });
     }
     
-    return citations;
+    return contexts;
   }
 }
 
-class SynthesisAgent {
+class InsightAgent {
   constructor(private anthropic: Anthropic) {}
 
-  async synthesizeResponse(
-    query: string,
-    research: AgentResponse,
-    analysis: AgentResponse,
-    citations: AgentResponse,
-    bookContext?: string,
-    responseMode: 'brief' | 'detailed' = 'detailed'
-  ): Promise<AgentResponse & { usage?: any }> {
-    const modeInstructions = responseMode === 'brief' 
-      ? `Instructions for creating a concise, focused response:
+  async identifyEducationalInsights(query: string, contextContent: string, bookContext?: string): Promise<AgentResponse & { usage?: any }> {
+    const prompt = `You are an InsightAgent specialized in identifying educational insights and thematic understanding.
 
-Your synthesis should be direct and insightful, perfect for quick understanding. Create a response that:
+Your task: Identify the key insights, themes, and educational opportunities that will help the student develop deeper understanding.
 
-1. Opens with a clear, direct answer to the query
-2. Provides 2-3 key insights in concise paragraphs
-3. Integrates the most essential findings from research, analysis, and citations
-4. Uses accessible language while maintaining expertise
-5. Focuses on core concepts without extensive elaboration
-6. Concludes with the most important takeaway
+Student Query: "${query}"
 
-BRIEF MODE REQUIREMENTS:
-- Maximum 3 paragraphs
-- Focus on essential points only
-- Direct, clear language
-- Include only the most relevant citations
-- Perfect for quick reference and initial understanding
+Learning Context:
+${contextContent}
 
-Provide a focused, expert response that gets to the heart of the question efficiently.`
-      : `Instructions for creating comprehensive, elaborate academic discourse:
+Book Context:
+${bookContext || 'Limited context available'}
 
-Your synthesis should be a substantial, flowing academic analysis of 8-12 interconnected paragraphs that reads like a captivating lecture from a distinguished professor. Create a response that:
+Instructions:
+1. Identify the core educational insights that address the student's question
+2. Recognize themes and literary devices that support learning
+3. Find connections between concepts that build understanding
+4. Identify teaching opportunities within the content
+5. Focus on insights that guide student discovery rather than providing all answers
 
-STRUCTURE AND DEPTH:
-1. Opens with an engaging, sophisticated introduction that establishes the complexity and significance of the topic
-2. Develops analysis through multiple interconnected layers: research findings, textual evidence, historical context, cultural significance, and broader implications
-3. Each paragraph flows seamlessly into the next, creating an intellectual journey that builds understanding progressively
-4. Integrates research findings, analysis, and citations naturally within flowing prose - never as separate sections
-5. Uses sophisticated transitions and connecting phrases to create seamless intellectual flow
-6. Addresses multiple dimensions: surface analysis, deeper implications, symbolic significance, and contemporary relevance
-7. Weaves quotations elegantly into the narrative fabric, not as isolated elements
-8. Builds toward a substantial conclusion that synthesizes insights and opens new avenues for understanding
+Respond as a professional tutor identifying key learning moments. Use clear academic language without theatrical elements, stage directions, or roleplay actions:
 
-ACADEMIC EXCELLENCE:
-- Demonstrate graduate-level scholarly depth while maintaining engaging accessibility
-- Include rich contextual information: historical background, literary movements, cultural connections
-- Draw relevant comparisons to other works, authors, or intellectual traditions where appropriate
-- Let professorial passion shine through with enthusiasm that makes complex ideas captivating
-- Satisfy intellectual curiosity with the depth and elaboration worthy of advanced literary analysis
+**CORE INSIGHTS:**
 
-AVOID:
-- Bullet points, numbered lists, or any choppy formatting
-- Disconnected sections or study guide approaches
-- Surface-level analysis or brief explanations
-- Technical jargon without elegant explanation
+**Primary Educational Insight:**
+[Main concept the student needs to understand]
 
-INSTEAD CREATE:
-- Flowing academic prose that engages, educates, and inspires
-- Natural integration of evidence that feels effortless yet comprehensive
-- A response that feels like an intellectually stimulating conversation with a master scholar
-- Rich, elaborate exploration that leaves the reader with deep satisfaction and new insights
+**Supporting Themes:**
+[2-3 related themes that reinforce the main concept]
 
-Begin with an elegant opening that immediately establishes the intellectual stakes and draws the reader into the complex beauty of your analysis.`;
+**Literary Connections:**
+[How this connects to broader literary understanding]
 
-    const prompt = `You are a Synthesis Agent responsible for creating the final response.
+**Teaching Opportunities:**
+[Specific moments where student can discover meaning]
 
-Your task: Combine insights from the research, analysis, and citation agents into a cohesive, well-structured response.
+**EDUCATIONAL SUMMARY:**
+[Professional summary of insights that will guide the tutoring response]`;
 
-Original Query: "${query}"
-
-Research Agent Findings:
-${research.content}
-
-Analysis Agent Insights:
-${analysis.content}
-
-Citation Agent References:
-${citations.content}
-
-${modeInstructions}`;
-
-    const maxTokens = responseMode === 'brief' ? 300 : 1500;
-    
     let response;
     try {
       response = await this.anthropic.messages.create({
         model: 'claude-3-5-sonnet-20241022',
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: maxTokens,
+        max_tokens: 700,
         temperature: 0.6
       });
     } catch (error: any) {
       if (error.status === 529) {
-        console.log('Claude overloaded, falling back to OpenAI for synthesis agent');
+        console.log('Claude overloaded, falling back to OpenAI for insight agent');
         const { OpenAI } = await import('openai');
         const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
         
         const openaiResponse = await openai.chat.completions.create({
           model: 'gpt-4o',
           messages: [{ role: 'user', content: prompt }],
-          max_tokens: 1000,
+          max_tokens: 700,
           temperature: 0.6
         });
         
@@ -525,4 +333,250 @@ ${modeInstructions}`;
   }
 }
 
+class SocraticAgent {
+  constructor(private anthropic: Anthropic) {}
+
+  async generateGuidingQuestions(query: string, insightsContent: string, bookContext?: string): Promise<AgentResponse & { usage?: any }> {
+    const prompt = `You are a SocraticAgent specialized in generating thought-provoking questions that guide student discovery.
+
+Your task: Create questions that help the student discover insights rather than just providing answers.
+
+Student Query: "${query}"
+
+Educational Insights:
+${insightsContent}
+
+Book Context:
+${bookContext || 'Limited context available'}
+
+Instructions:
+1. Generate 3-5 progressive questions that build understanding step-by-step
+2. Start with foundational questions and move to deeper analysis
+3. Use questions that help students make their own connections
+4. Focus on "Why" and "How" rather than just "What"
+5. Create questions that encourage critical thinking and discovery
+6. Use professional academic language without theatrical elements, stage directions, or roleplay
+
+Respond as a professional tutor crafting guiding questions. Do not use theatrical elements like stage directions in asterisks:
+
+**GUIDING QUESTIONS:**
+
+**Foundation Question:**
+**Question:** [Basic understanding question]
+**Purpose:** [Why this question helps learning]
+
+**Development Question:**
+**Question:** [Question that builds on foundation]
+**Purpose:** [How this deepens understanding]
+
+**Analysis Question:**
+**Question:** [Critical thinking question]
+**Purpose:** [What insight this reveals]
+
+**Connection Question:**
+**Question:** [Question linking to broader understanding]
+**Purpose:** [How this connects to larger themes]
+
+**QUESTIONING STRATEGY:**
+[Professional summary of how these questions guide discovery]`;
+
+    let response;
+    try {
+      response = await this.anthropic.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 800,
+        temperature: 0.5
+      });
+    } catch (error: any) {
+      if (error.status === 529) {
+        console.log('Claude overloaded, falling back to OpenAI for socratic agent');
+        const { OpenAI } = await import('openai');
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        
+        const openaiResponse = await openai.chat.completions.create({
+          model: 'gpt-4o',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 800,
+          temperature: 0.5
+        });
+        
+        response = {
+          content: [{ type: 'text', text: openaiResponse.choices[0].message.content || '' }],
+          usage: {
+            input_tokens: 0,
+            output_tokens: openaiResponse.usage?.completion_tokens || 0
+          }
+        };
+      } else {
+        throw error;
+      }
+    }
+
+    const content = response.content[0].type === 'text' ? response.content[0].text : '';
+    
+    // Parse questions from the response
+    const questions = this.extractQuestions(content);
+
+    return {
+      content,
+      confidence: 0.93,
+      citations: questions, // Reusing citations field for questions
+      usage: {
+        prompt_tokens: response.usage.input_tokens,
+        completion_tokens: response.usage.output_tokens
+      }
+    };
+  }
+
+  private extractQuestions(content: string): Array<{ text: string; source: string; context: string }> {
+    const questions: Array<{ text: string; source: string; context: string }> = [];
+    const questionRegex = /\*\*Question:\*\*\s*([^\n]+)\s*\*\*Purpose:\*\*\s*([^\n]+)/g;
+    
+    let match;
+    while ((match = questionRegex.exec(content)) !== null) {
+      questions.push({
+        text: match[1],
+        source: 'Socratic Question',
+        context: match[2]
+      });
+    }
+    
+    return questions;
+  }
+}
+
+class AdaptiveAgent {
+  constructor(private anthropic: Anthropic) {}
+
+  async createTutoringResponse(
+    query: string,
+    context: AgentResponse,
+    insights: AgentResponse,
+    questions: AgentResponse,
+    bookContext?: string,
+    responseMode: 'brief' | 'detailed' = 'detailed'
+  ): Promise<AgentResponse & { usage?: any }> {
+    const modeInstructions = responseMode === 'brief' 
+      ? `Instructions for creating a concise, professional tutoring response:
+
+Create a response that demonstrates professional tutoring expertise:
+
+1. Begin with encouragement that acknowledges the student's curiosity
+2. Provide a clear, direct answer that builds understanding step-by-step
+3. Use one key example or quote that illuminates the concept
+4. End with a thought-provoking question that encourages further exploration
+
+PROFESSIONAL TUTORING REQUIREMENTS:
+- Maximum 2-3 paragraphs
+- High school vocabulary with precise literary terms explained
+- Professional encouragement ("Your question touches on an important aspect...")
+- Focus on guiding discovery rather than just providing information
+- Include one follow-up question to continue learning
+
+Maintain academic sophistication while being accessible and encouraging.`
+      : `Instructions for creating comprehensive professional tutoring dialogue:
+
+Create a response that embodies excellent tutoring methodology:
+
+PROFESSIONAL TUTORING STRUCTURE:
+1. Open with professional encouragement that validates the student's inquiry
+2. Build understanding progressively through 3-4 well-connected paragraphs
+3. Use the Socratic method: guide discovery rather than simply explain
+4. Include specific textual examples that illuminate key concepts
+5. Connect current learning to broader literary understanding
+6. Conclude with questions that encourage deeper exploration
+
+TUTORING EXCELLENCE STANDARDS:
+- Demonstrate sophisticated literary knowledge while maintaining accessibility
+- Use professional encouragement ("Your analysis demonstrates strong thinking...")
+- Guide student discovery: "Consider how this connects to..." rather than "This means..."
+- Include cultural and historical context that enriches understanding
+- Suggest next steps for learning and exploration
+- Maintain academic rigor without overwhelming complexity
+
+AVOID:
+- Lecturing or one-way information delivery
+- Overly dramatic enthusiasm or casual language
+- Providing all answers without encouraging student thinking
+- Academic jargon without clear explanation
+- Theatrical elements, stage directions, or roleplay actions in asterisks
+- Any form of dramatic narration or character acting
+
+CREATE INSTEAD:
+- Professional dialogue that feels like working with an expert tutor
+- Responses that build confidence while challenging thinking
+- Natural integration of quotes and examples within teaching flow
+- Professional recognition of student progress and insights
+
+Begin with professional acknowledgment of the student's question and build understanding systematically.
+
+CRITICAL: Do not use any theatrical elements, stage directions in asterisks (like *adjusting glasses*), or dramatic roleplay. Respond as a professional academic tutor using clear, direct language.`;
+
+    const prompt = `You are an AdaptiveAgent responsible for creating the final tutoring response.
+
+Your task: Synthesize all agent insights into a professional tutoring dialogue that guides student learning.
+
+Student Query: "${query}"
+
+Learning Context:
+${context.content}
+
+Educational Insights:
+${insights.content}
+
+Guiding Questions:
+${questions.content}
+
+${modeInstructions}`;
+
+    const maxTokens = responseMode === 'brief' ? 400 : 1200;
+    
+    let response;
+    try {
+      response = await this.anthropic.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: maxTokens,
+        temperature: 0.7
+      });
+    } catch (error: any) {
+      if (error.status === 529) {
+        console.log('Claude overloaded, falling back to OpenAI for adaptive agent');
+        const { OpenAI } = await import('openai');
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        
+        const openaiResponse = await openai.chat.completions.create({
+          model: 'gpt-4o',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: maxTokens,
+          temperature: 0.7
+        });
+        
+        response = {
+          content: [{ type: 'text', text: openaiResponse.choices[0].message.content || '' }],
+          usage: {
+            input_tokens: 0,
+            output_tokens: openaiResponse.usage?.completion_tokens || 0
+          }
+        };
+      } else {
+        throw error;
+      }
+    }
+
+    const content = response.content[0].type === 'text' ? response.content[0].text : '';
+
+    return {
+      content,
+      confidence: 0.95,
+      usage: {
+        prompt_tokens: response.usage.input_tokens,
+        completion_tokens: response.usage.output_tokens
+      }
+    };
+  }
+}
+
 export const multiAgentService = new MultiAgentService();
+export const enhancedTutoringService = new MultiAgentService(); // Alias for clarity

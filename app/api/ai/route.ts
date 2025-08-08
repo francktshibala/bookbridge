@@ -1,17 +1,46 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { aiService } from '@/lib/ai';
-import { multiAgentService } from '@/lib/ai/multi-agent-service';
+import { multiAgentService, TutoringResponse } from '@/lib/ai/multi-agent-service';
 import { createClient } from '@/lib/supabase/server';
 import { learningProfileService } from '@/lib/learning-profile';
 import { crossBookConnectionsService } from '@/lib/cross-book-connections';
+import { UsageTrackingMiddleware } from '@/lib/middleware/usage-tracking';
+import { conversationService } from '@/lib/services/conversation-service';
+import { queryIntentClassifier } from '@/lib/ai/query-intent-classifier';
+import { dynamicResponseAdaptation } from '@/lib/services/dynamic-response-adaptation';
+import { vocabularySimplifier } from '@/lib/ai/vocabulary-simplifier';
+
+// Helper function to extract key concepts from query and response
+function extractConcepts(query: string, response: string): string[] {
+  const concepts: string[] = [];
+  
+  // Common literary concepts to look for
+  const literaryConcepts = [
+    'symbolism', 'theme', 'character', 'plot', 'setting', 
+    'metaphor', 'irony', 'foreshadowing', 'conflict', 'tone',
+    'mood', 'perspective', 'motif', 'allegory', 'imagery'
+  ];
+  
+  const combinedText = `${query} ${response}`.toLowerCase();
+  
+  literaryConcepts.forEach(concept => {
+    if (combinedText.includes(concept)) {
+      concepts.push(concept);
+    }
+  });
+  
+  return concepts;
+}
 
 export async function POST(request: NextRequest) {
   try {
     console.log('AI API called');
-    const { query, bookId, bookContext, responseMode = 'detailed' } = await request.json();
+    const { query, bookId, bookContext, conversationId, eslContext } = await request.json();
     console.log('Query:', query);
     console.log('BookId:', bookId);
     console.log('BookContext:', bookContext);
+    console.log('ConversationId:', conversationId);
+    console.log('ESL Context:', eslContext);
 
     if (!query || typeof query !== 'string') {
       return NextResponse.json(
@@ -32,6 +61,63 @@ export async function POST(request: NextRequest) {
       );
     }
     console.log('User authenticated:', user.id);
+
+    // Check usage limits before processing
+    const usageCheck = await UsageTrackingMiddleware.checkAndTrack(
+      user.id, 
+      bookId, 
+      bookContext
+    );
+
+    if (!usageCheck.allowed) {
+      console.log('Usage limit exceeded for user:', user.id, 'Reason:', usageCheck.reason);
+      let message = usageCheck.reason || 'Usage limit exceeded';
+      
+      // Add helpful context for free users
+      if (usageCheck.reason?.includes('monthly limit')) {
+        message += ' Consider upgrading to Premium ($4/month) or Student ($2/month with .edu email) for unlimited access.';
+      }
+
+      return NextResponse.json({
+        error: message,
+        code: 'USAGE_LIMIT_EXCEEDED',
+        remainingAnalyses: usageCheck.remainingAnalyses || 0,
+        upgradeUrl: '/subscription/pricing'
+      }, { status: 429 });
+    }
+
+    console.log('Usage check passed. Remaining analyses:', usageCheck.remainingAnalyses);
+
+    // Initialize or retrieve conversation
+    let conversation;
+    let conversationContext = '';
+    let conversationContextData = null;
+    
+    if (bookId) {
+      try {
+        // Find or create conversation for this book
+        conversation = await conversationService.findOrCreateConversation(user.id, bookId);
+        console.log('Conversation initialized:', conversation.id);
+
+        // Get conversation context if there are previous messages
+        if (conversation.messages.length > 0) {
+          conversationContextData = await conversationService.getConversationContext(conversation.id);
+          if (conversationContextData) {
+            conversationContext = await conversationService.buildConversationPromptContext(conversationContextData);
+            console.log('Loaded conversation context with', conversationContextData.messages.length, 'messages');
+          }
+        }
+
+        // Store user query in conversation (without embedding for now)
+        await conversationService.addMessage(conversation.id, {
+          content: query,
+          sender: 'user',
+        });
+      } catch (error) {
+        console.error('Conversation management error (non-blocking):', error);
+        // Continue without conversation tracking
+      }
+    }
 
     // If bookId is provided, fetch relevant book content
     let enrichedBookContext = bookContext;
@@ -166,7 +252,8 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Determine whether to use multi-agent system
+    // Determine whether to use enhanced tutoring multi-agent system
+    // Enable for most educational queries to provide better tutoring experience
     const useMultiAgent = process.env.ENABLE_MULTI_AGENT === 'true' || 
                           query.toLowerCase().includes('analyze') ||
                           query.toLowerCase().includes('compare') ||
@@ -176,51 +263,267 @@ export async function POST(request: NextRequest) {
                           query.toLowerCase().includes('mean') ||
                           query.toLowerCase().includes('interpret') ||
                           query.toLowerCase().includes('discuss') ||
-                          query.toLowerCase().includes('theme');
+                          query.toLowerCase().includes('theme') ||
+                          query.toLowerCase().includes('what does') ||
+                          query.toLowerCase().includes('why does') ||
+                          query.toLowerCase().includes('how does') ||
+                          query.toLowerCase().includes('think') ||
+                          query.toLowerCase().includes('feel') ||
+                          query.toLowerCase().includes('important') ||
+                          query.toLowerCase().includes('character') ||
+                          query.toLowerCase().includes('understand') ||
+                          query.toLowerCase().includes('symbol') ||
+                          query.length > 10; // Most educational questions are longer than 10 characters
 
     console.log('Using multi-agent system:', useMultiAgent);
-    console.log('Response mode:', responseMode);
+    
+    // 🧠 DYNAMIC RESPONSE ADAPTATION - Get user's preferred response style
+    let dynamicParams;
+    try {
+      dynamicParams = await dynamicResponseAdaptation.getAdaptedParameters(user.id);
+      console.log('Dynamic adaptation parameters:', dynamicParams);
+    } catch (error) {
+      console.error('Error getting dynamic params (non-blocking):', error);
+      dynamicParams = null;
+    }
+    
+    // 🧠 INTELLIGENT RESPONSE LENGTH DETECTION (Claude AI Style)
+    const queryIntent = await queryIntentClassifier.classifyQuery(query, conversationContextData || undefined);
+    
+    // Override with dynamic adaptation if available
+    if (dynamicParams) {
+      // Merge dynamic preferences with query intent
+      if (dynamicParams.length === 'brief' && queryIntent.expectedLength !== 'brief') {
+        queryIntent.expectedLength = 'brief'; // User prefers brief responses
+      } else if (dynamicParams.length === 'detailed' && queryIntent.expectedLength === 'brief') {
+        queryIntent.expectedLength = 'moderate'; // Compromise between user preference and query need
+      }
+      
+      // Adjust complexity based on user history
+      if (dynamicParams.complexity === 'simple') {
+        queryIntent.complexity = 'basic';
+      } else if (dynamicParams.complexity === 'advanced') {
+        queryIntent.complexity = 'expert';
+      }
+    }
+    
+    // Map 'moderate' and 'simplified' to 'detailed' for backward compatibility with existing AI services
+    const responseMode = (queryIntent.expectedLength === 'moderate' || queryIntent.expectedLength === 'simplified') 
+      ? 'detailed' : queryIntent.expectedLength as 'brief' | 'detailed';
+    const maxTokens = queryIntent.expectedLength === 'brief' ? 150 : 
+                      queryIntent.expectedLength === 'moderate' ? 400 :
+                      queryIntent.expectedLength === 'simplified' ? 300 : 800;
+    
+    console.log('Query Intent Analysis:', {
+      type: queryIntent.type,
+      expectedLength: queryIntent.expectedLength,
+      complexity: queryIntent.complexity,
+      confidence: queryIntent.confidence,
+      reasoning: queryIntent.reasoning,
+      maxTokens
+    });
 
-    // Determine token limits based on response mode
-    const maxTokens = responseMode === 'brief' ? 300 : 1500;
+    // 🧠 Generate intelligent prompt based on query intent
+    const intelligentPrompt = queryIntentClassifier.generateResponsePrompt(
+      queryIntent, 
+      query, 
+      enrichedBookContext + crossBookContext + (conversationContext ? `\n\n${conversationContext}` : '')
+    );
+    
+    // Add dynamic adaptation instructions if available
+    let dynamicInstructions = '';
+    if (dynamicParams) {
+      dynamicInstructions = `\n\nUser Preference Adaptation:
+- Preferred explanation style: ${dynamicParams.style} (use ${dynamicParams.style === 'examples' ? 'concrete examples' : 
+  dynamicParams.style === 'analogies' ? 'relatable analogies' : 
+  dynamicParams.style === 'step-by-step' ? 'step-by-step breakdowns' : 'direct explanations'})
+- Response temperature: ${dynamicParams.temperature} (${dynamicParams.temperature < 0.5 ? 'be more consistent and focused' : 
+  dynamicParams.temperature > 0.7 ? 'be more creative and exploratory' : 'balance consistency with creativity'})`;}
+
+    // 🌍 ESL ADAPTATION - Add ESL-aware instructions
+    let eslInstructions = '';
+    if (eslContext?.enabled && eslContext.level) {
+      const cefrLevelMappings = {
+        'A1': {
+          description: 'Elementary (Beginner)',
+          instructions: 'Use very simple vocabulary, short sentences, present tense mainly. Explain complex literary terms with basic definitions. Provide examples using familiar words. Avoid idioms and cultural references that may be unclear.'
+        },
+        'A2': {
+          description: 'Pre-Intermediate',
+          instructions: 'Use simple vocabulary and clear sentence structures. Explain literary concepts step-by-step. Use common words to define uncommon terms. Include simple examples and comparisons to familiar things.'
+        },
+        'B1': {
+          description: 'Intermediate',
+          instructions: 'Use moderately complex vocabulary with explanations of advanced terms. Provide clear context for literary analysis. Use some sophisticated language but explain difficult concepts clearly.'
+        },
+        'B2': {
+          description: 'Upper-Intermediate',
+          instructions: 'Use varied vocabulary appropriate for literature study. Explain advanced concepts clearly with good examples. Balance sophisticated analysis with accessible language.'
+        },
+        'C1': {
+          description: 'Advanced',
+          instructions: 'Use advanced vocabulary and complex sentence structures. Provide nuanced literary analysis with detailed explanations and cultural context.'
+        },
+        'C2': {
+          description: 'Proficient',
+          instructions: 'Use sophisticated vocabulary and complex analysis. Provide in-depth literary interpretation with cultural and historical context.'
+        }
+      };
+      
+      const levelInfo = cefrLevelMappings[eslContext.level as keyof typeof cefrLevelMappings] || cefrLevelMappings['B2'];
+      
+      eslInstructions = `\n\nESL Adaptation (CEFR ${eslContext.level} - ${levelInfo.description}):
+- ${levelInfo.instructions}`;
+      
+      if (eslContext.nativeLanguage) {
+        eslInstructions += `
+- Consider that the user's native language is ${eslContext.nativeLanguage}. Be mindful of potential language transfer challenges.`;
+      }
+      
+      eslInstructions += `
+- If discussing complex literary concepts, provide simpler explanations first, then build up to more sophisticated analysis.
+- Use concrete examples from the text to illustrate abstract concepts.
+- When appropriate, ask if the user needs clarification on vocabulary or concepts.`;
+      
+      console.log(`ESL adaptations applied for level ${eslContext.level}:`, levelInfo.description);
+    }
 
     let response: any;
     if (useMultiAgent) {
-      console.log('Calling multi-agent AI service...');
-      const enhancedQuery = adaptivePrompt ? `${adaptivePrompt}${query}` : query;
+      console.log('Calling enhanced tutoring multi-agent service...');
+      const enhancedQuery = adaptivePrompt ? `${adaptivePrompt}${intelligentPrompt}${dynamicInstructions}${eslInstructions}` : `${intelligentPrompt}${dynamicInstructions}${eslInstructions}`;
       response = await multiAgentService.processQuery(enhancedQuery, {
         userId: user.id,
         bookId,
-        bookContext: enrichedBookContext + crossBookContext,
+        bookContext: enrichedBookContext + crossBookContext + (conversationContext ? `\n\n${conversationContext}` : ''),
         maxTokens,
-        responseMode
-      });
-      console.log('Multi-agent response received:', response);
+        responseMode,
+        conversationHistory: conversationContextData,
+        temperature: dynamicParams?.temperature
+      }) as TutoringResponse;
+      console.log('Enhanced tutoring response received:', response);
     } else {
-      console.log('Calling standard AI service...');
-      const enhancedQuery = adaptivePrompt ? `${adaptivePrompt}${query}` : query;
+      console.log('Calling standard AI service with intelligent prompt...');
+      const enhancedQuery = adaptivePrompt ? `${adaptivePrompt}${intelligentPrompt}${dynamicInstructions}${eslInstructions}` : `${intelligentPrompt}${dynamicInstructions}${eslInstructions}`;
       response = await aiService.query(enhancedQuery, {
         userId: user.id,
         bookId,
-        bookContext: enrichedBookContext + crossBookContext,
+        bookContext: enrichedBookContext + crossBookContext + (conversationContext ? `\n\n${conversationContext}` : ''),
         maxTokens,
-        responseMode
+        responseMode,
+        temperature: dynamicParams?.temperature
       });
       console.log('Standard AI response received:', response);
     }
 
+    // Store AI response in conversation
+    if (conversation && response?.content) {
+      try {
+        await conversationService.addMessage(conversation.id, {
+          content: response.content,
+          sender: 'assistant',
+          tokensUsed: response.usage?.total_tokens,
+          model: response.model,
+          cost: response.cost
+        });
+        
+        // Add episodic memory for significant moments
+        if (query.toLowerCase().includes('mean') || 
+            query.toLowerCase().includes('symbolize') || 
+            query.toLowerCase().includes('theme') ||
+            query.toLowerCase().includes('understand')) {
+          await conversationService.addEpisodicMemory({
+            conversationId: conversation.id,
+            query: query,
+            response: response.content.substring(0, 500), // Store first 500 chars
+            bookPassage: enrichedBookContext.substring(0, 500),
+            concepts: extractConcepts(query, response.content)
+          });
+        }
+        
+        // 🧠 DYNAMIC RESPONSE ADAPTATION - Record interaction for learning
+        if (dynamicParams) {
+          try {
+            // Detect user reaction from the query (if it's a follow-up)
+            let previousQuery = null;
+            if (conversationContextData && conversationContextData.messages.length > 1) {
+              const userMessages = conversationContextData.messages.filter(m => m.sender === 'user');
+              if (userMessages.length > 1) {
+                previousQuery = userMessages[userMessages.length - 2].content;
+              }
+            }
+            
+            const userReaction = await dynamicResponseAdaptation.detectUserReaction(
+              query,
+              previousQuery || undefined
+            );
+            
+            await dynamicResponseAdaptation.recordInteraction({
+              userId: user.id,
+              conversationId: conversation.id,
+              query: query,
+              response: response.content,
+              userReaction: userReaction,
+              followUpQuery: !!previousQuery
+            });
+            
+            console.log('Recorded interaction with reaction:', userReaction);
+          } catch (error) {
+            console.error('Failed to record dynamic adaptation (non-blocking):', error);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to store conversation response (non-blocking):', error);
+      }
+    }
+
+    // Track successful analysis in background
+    if (usageCheck.shouldTrack && response?.content) {
+      UsageTrackingMiddleware.trackSuccess(user.id, bookId, bookContext).catch(error => {
+        console.error('Background usage tracking failed:', error);
+      });
+    }
+
+    // Apply vocabulary simplification if needed
+    let finalContent = response.content;
+    if (queryIntent.expectedLength === 'simplified' || queryIntent.complexity === 'basic') {
+      try {
+        const extractedAge = queryIntent.extractedAge;
+        if (bookContext) {
+          // Context-aware simplification for book discussions
+          finalContent = vocabularySimplifier.simplifyWithContext(
+            response.content,
+            bookContext,
+            extractedAge
+          );
+        } else {
+          // General simplification
+          finalContent = vocabularySimplifier.simplifyText(response.content, extractedAge);
+        }
+        console.log('Applied vocabulary simplification for age:', extractedAge || 'general');
+      } catch (error) {
+        console.error('Vocabulary simplification failed (non-blocking):', error);
+        // Continue with original content if simplification fails
+      }
+    }
+
     return NextResponse.json({ 
-      response: response.content,
+      response: finalContent,
       usage: response.usage,
       cost: response.cost,
       model: response.model,
       multiAgent: useMultiAgent,
+      remainingAnalyses: usageCheck.remainingAnalyses,
+      conversationId: conversation?.id,
       ...(useMultiAgent && {
-        agentResponses: {
-          research: response.research?.content,
-          analysis: response.analysis?.content,
-          citations: response.citations?.content
-        }
+        tutoringAgents: {
+          context: response.context?.content,
+          insights: response.insights?.content,
+          questions: response.questions?.content,
+          adaptation: response.adaptation?.content
+        },
+        teachingMoments: response.teachingMoments,
+        followUpQuestions: response.followUpQuestions
       })
     });
 

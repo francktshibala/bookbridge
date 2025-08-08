@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { aiService } from '@/lib/ai';
 import { createClient } from '@/lib/supabase/server';
+import { UsageTrackingMiddleware } from '@/lib/middleware/usage-tracking';
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,6 +23,29 @@ export async function POST(request: NextRequest) {
         { error: 'Authentication required' },
         { status: 401 }
       );
+    }
+
+    // Check usage limits before processing
+    const usageCheck = await UsageTrackingMiddleware.checkAndTrack(
+      user.id, 
+      bookId, 
+      bookContext
+    );
+
+    if (!usageCheck.allowed) {
+      let message = usageCheck.reason || 'Usage limit exceeded';
+      
+      // Add helpful context for free users
+      if (usageCheck.reason?.includes('monthly limit')) {
+        message += ' Consider upgrading to Premium ($4/month) or Student ($2/month with .edu email) for unlimited access.';
+      }
+
+      return NextResponse.json({
+        error: message,
+        code: 'USAGE_LIMIT_EXCEEDED',
+        remainingAnalyses: usageCheck.remainingAnalyses || 0,
+        upgradeUrl: '/subscription/pricing'
+      }, { status: 429 });
     }
 
     // Create streaming response
@@ -56,8 +80,19 @@ export async function POST(request: NextRequest) {
             controller.enqueue(encoder.encode(`data: ${data}\n\n`));
           }
 
+          // Track successful analysis in background
+          if (usageCheck.shouldTrack && fullContent) {
+            UsageTrackingMiddleware.trackSuccess(user.id, bookId, bookContext).catch(error => {
+              console.error('Background usage tracking failed:', error);
+            });
+          }
+
           // Send completion message
-          controller.enqueue(encoder.encode('data: {"type": "complete"}\n\n'));
+          const completionData = JSON.stringify({
+            type: 'complete',
+            remainingAnalyses: usageCheck.remainingAnalyses
+          });
+          controller.enqueue(encoder.encode(`data: ${completionData}\n\n`));
           controller.close();
 
         } catch (error) {
