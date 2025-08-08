@@ -301,9 +301,9 @@ export async function POST(request: NextRequest) {
       
       // Adjust complexity based on user history
       if (dynamicParams.complexity === 'simple') {
-        queryIntent.complexity = 'basic';
+        queryIntent.complexity = 'simple';
       } else if (dynamicParams.complexity === 'advanced') {
-        queryIntent.complexity = 'expert';
+        queryIntent.complexity = 'complex';
       }
     }
     
