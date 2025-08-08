@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supabase Auth Debug</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>Supabase Auth Debug</h1>
+    <div id="status"></div>
+    <button onclick="login()">Login</button>
+    <button onclick="checkSession()">Check Session</button>
+    <button onclick="logout()">Logout</button>
+    
+    <script>
+        const supabaseUrl = 'https://xsolwqqdbsuydwmmwtsl.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhzb2x3cXFkYnN1eWR3bW13dHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4MDg0MTcsImV4cCI6MjA2ODM4NDQxN30.QLtUXuOSsJNaDr3Hek_Uyf1BcjBBttpKl4ZZ-ds2esk'
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+        
+        const status = document.getElementById('status')
+        
+        async function login() {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: 'test@example.com',
+                password: 'testpassword123'
+            })
+            status.innerHTML = `Login: ${error ? error.message : 'Success!'}`
+            console.log('Login result:', { data, error })
+        }
+        
+        async function checkSession() {
+            const { data: { session }, error } = await supabase.auth.getSession()
+            status.innerHTML = `Session: ${session ? session.user.email : 'No session'}`
+            console.log('Session:', { session, error })
+            
+            // Check cookies
+            console.log('Cookies:', document.cookie)
+        }
+        
+        async function logout() {
+            const { error } = await supabase.auth.signOut()
+            status.innerHTML = `Logout: ${error ? error.message : 'Success!'}`
+        }
+        
+        // Listen for auth changes
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log('Auth state changed:', event, session?.user?.email)
+            status.innerHTML = `Event: ${event}, User: ${session?.user?.email || 'None'}`
+        })
+        
+        // Check initial session
+        checkSession()
+    </script>
+</body>
+</html>

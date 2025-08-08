@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Premium Voice Test</title>
+</head>
+<body>
+    <h1>Direct Premium Voice Test</h1>
+    <button onclick="testOpenAI()">Test OpenAI Voice Directly</button>
+    <button onclick="testElevenLabs()">Test ElevenLabs Voice Directly</button>
+    <div id="status"></div>
+
+    <script>
+        async function testOpenAI() {
+            const status = document.getElementById('status');
+            status.textContent = 'Testing OpenAI TTS...';
+            
+            try {
+                const response = await fetch('/api/openai/tts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: 'This is a test of OpenAI text to speech.',
+                        voice: 'alloy',
+                        speed: 1.0
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API failed: ${response.status} ${response.statusText}`);
+                }
+                
+                const blob = await response.blob();
+                const audio = new Audio(URL.createObjectURL(blob));
+                audio.play();
+                status.textContent = 'OpenAI TTS working! Audio should be playing.';
+            } catch (error) {
+                status.textContent = 'OpenAI TTS failed: ' + error.message;
+                console.error(error);
+            }
+        }
+
+        async function testElevenLabs() {
+            const status = document.getElementById('status');
+            status.textContent = 'Testing ElevenLabs TTS...';
+            
+            try {
+                const response = await fetch('/api/elevenlabs/tts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: 'This is a test of ElevenLabs text to speech.',
+                        voice_id: '21m00Tcm4TlvDq8ikWAM'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API failed: ${response.status} ${response.statusText}`);
+                }
+                
+                const blob = await response.blob();
+                const audio = new Audio(URL.createObjectURL(blob));
+                audio.play();
+                status.textContent = 'ElevenLabs TTS working! Audio should be playing.';
+            } catch (error) {
+                status.textContent = 'ElevenLabs TTS failed: ' + error.message;
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>

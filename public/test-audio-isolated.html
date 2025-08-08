@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio System Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+        .test-section { margin: 20px 0; padding: 15px; background: white; border-radius: 8px; }
+        button { padding: 10px 20px; margin: 10px; font-size: 16px; }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+        #logs { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; max-height: 300px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔊 Audio System Diagnostics</h1>
+    
+    <div class="test-section">
+        <h3>Step 1: System Audio Test</h3>
+        <button onclick="testSystemAudio()">Test System Beep</button>
+        <p><em>This should play a system beep sound</em></p>
+    </div>
+
+    <div class="test-section">
+        <h3>Step 2: Browser Audio Permissions</h3>
+        <button onclick="checkAudioPermissions()">Check Audio Permissions</button>
+        <p><em>Check if browser has audio permissions</em></p>
+    </div>
+
+    <div class="test-section">
+        <h3>Step 3: Simple HTML5 Audio</h3>
+        <button onclick="testSimpleAudio()">Test Built-in Audio</button>
+        <audio id="testAudio" controls style="display: block; margin: 10px 0;">
+            <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+" src="data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA" type="audio/wav">
+        </audio>
+        <p><em>Try playing the audio element above manually</em></p>
+    </div>
+
+    <div class="test-section">
+        <h3>Step 4: OpenAI TTS Audio Direct Test</h3>
+        <button onclick="testOpenAIAudio()">Test OpenAI Audio Blob</button>
+        <button onclick="downloadAudioBlob()" id="downloadBtn" style="display:none;">Download Audio File</button>
+        <p><em>This will fetch audio from your OpenAI API and try to play it</em></p>
+    </div>
+
+    <div class="test-section">
+        <h3>Step 5: Audio Context Test</h3>
+        <button onclick="testAudioContext()">Test Audio Context</button>
+        <p><em>Test Web Audio API functionality</em></p>
+    </div>
+
+    <div class="test-section">
+        <h3>Logs</h3>
+        <div id="logs"></div>
+        <button onclick="clearLogs()">Clear Logs</button>
+    </div>
+
+    <script>
+        let audioBlob = null;
+        
+        function log(message, type = 'info') {
+            const logs = document.getElementById('logs');
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'info';
+            logs.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+            logs.scrollTop = logs.scrollHeight;
+            console.log(message);
+        }
+
+        function clearLogs() {
+            document.getElementById('logs').innerHTML = '';
+        }
+
+        // Test 1: System Audio
+        function testSystemAudio() {
+            log('Testing system audio...', 'info');
+            try {
+                // Create a simple beep sound
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+                
+                log('✅ System beep should be playing now', 'success');
+            } catch (error) {
+                log('❌ System audio failed: ' + error.message, 'error');
+            }
+        }
+
+        // Test 2: Audio Permissions
+        async function checkAudioPermissions() {
+            log('Checking audio permissions...', 'info');
+            try {
+                if (navigator.permissions) {
+                    const result = await navigator.permissions.query({name: 'microphone'});
+                    log('🎤 Microphone permission: ' + result.state, result.state === 'granted' ? 'success' : 'error');
+                }
+                
+                // Check if we can create audio context
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                log('🔊 Audio Context state: ' + audioContext.state, audioContext.state === 'running' ? 'success' : 'info');
+                
+                if (audioContext.state === 'suspended') {
+                    log('🔄 Attempting to resume audio context...', 'info');
+                    await audioContext.resume();
+                    log('🔊 Audio Context after resume: ' + audioContext.state, audioContext.state === 'running' ? 'success' : 'error');
+                }
+            } catch (error) {
+                log('❌ Permission check failed: ' + error.message, 'error');
+            }
+        }
+
+        // Test 3: Simple Audio Element
+        function testSimpleAudio() {
+            log('Testing simple HTML5 audio...', 'info');
+            const testAudio = document.getElementById('testAudio');
+            testAudio.volume = 0.5;
+            
+            testAudio.addEventListener('loadeddata', () => {
+                log('✅ Audio data loaded', 'success');
+            });
+            
+            testAudio.addEventListener('canplay', () => {
+                log('✅ Audio can play', 'success');
+            });
+            
+            testAudio.addEventListener('playing', () => {
+                log('✅ Audio is playing', 'success');
+            });
+            
+            testAudio.addEventListener('error', (e) => {
+                log('❌ Audio error: ' + e.message, 'error');
+            });
+            
+            testAudio.play().then(() => {
+                log('✅ Audio play() succeeded', 'success');
+            }).catch(err => {
+                log('❌ Audio play() failed: ' + err.message, 'error');
+            });
+        }
+
+        // Test 4: OpenAI Audio
+        async function testOpenAIAudio() {
+            log('Testing OpenAI TTS audio...', 'info');
+            try {
+                const response = await fetch('/api/openai/tts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: "This is a test of OpenAI text to speech audio playback.",
+                        voice: 'alloy',
+                        speed: 1.0
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('OpenAI API failed with status: ' + response.status);
+                }
+                
+                audioBlob = await response.blob();
+                log('✅ OpenAI audio blob received: ' + audioBlob.size + ' bytes', 'success');
+                document.getElementById('downloadBtn').style.display = 'inline-block';
+                
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const audio = new Audio(audioUrl);
+                
+                audio.addEventListener('loadedmetadata', () => {
+                    log('✅ Audio metadata loaded - duration: ' + audio.duration + 's', 'success');
+                });
+                
+                audio.addEventListener('canplay', () => {
+                    log('✅ Audio ready to play', 'success');
+                });
+                
+                audio.addEventListener('playing', () => {
+                    log('✅ Audio is playing!', 'success');
+                });
+                
+                audio.addEventListener('ended', () => {
+                    log('✅ Audio playback completed', 'success');
+                    URL.revokeObjectURL(audioUrl);
+                });
+                
+                audio.addEventListener('error', (e) => {
+                    log('❌ Audio playback error: ' + e.message, 'error');
+                });
+                
+                audio.volume = 0.7;
+                await audio.play();
+                
+            } catch (error) {
+                log('❌ OpenAI audio test failed: ' + error.message, 'error');
+            }
+        }
+
+        // Download audio blob for external testing
+        function downloadAudioBlob() {
+            if (audioBlob) {
+                const url = URL.createObjectURL(audioBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'openai-tts-test.mp3';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                log('✅ Audio file downloaded - try playing it externally', 'success');
+            }
+        }
+
+        // Test 5: Audio Context
+        async function testAudioContext() {
+            log('Testing Web Audio API context...', 'info');
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                log('🔊 Audio Context created - state: ' + audioContext.state, 'info');
+                log('🔊 Sample rate: ' + audioContext.sampleRate + ' Hz', 'info');
+                log('🔊 Destination channels: ' + audioContext.destination.maxChannelCount, 'info');
+                
+                if (audioContext.state !== 'running') {
+                    await audioContext.resume();
+                    log('🔊 Audio Context resumed - state: ' + audioContext.state, audioContext.state === 'running' ? 'success' : 'error');
+                }
+                
+                // Test oscillator
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+                
+                log('✅ Web Audio API test tone played', 'success');
+                
+            } catch (error) {
+                log('❌ Web Audio API failed: ' + error.message, 'error');
+            }
+        }
+
+        // Auto-run basic checks on page load
+        window.onload = function() {
+            log('🔍 Audio diagnostics page loaded', 'info');
+            log('🌐 Browser: ' + navigator.userAgent, 'info');
+            log('🔊 Audio API support: ' + (window.AudioContext ? 'Yes' : 'No'), window.AudioContext ? 'success' : 'error');
+        };
+    </script>
+</body>
+</html>

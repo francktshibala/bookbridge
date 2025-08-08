@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Debug Test</title>
+</head>
+<body>
+    <h1>Audio Debug Test</h1>
+    <button id="testOpenAI">Test OpenAI Audio</button>
+    <button id="testDirectBlob">Test Direct Audio Blob</button>
+    <div id="logs"></div>
+    <audio id="testAudio" controls style="display: block; margin: 20px 0;"></audio>
+
+    <script>
+        const logs = document.getElementById('logs');
+        const testAudio = document.getElementById('testAudio');
+        
+        function log(message) {
+            console.log(message);
+            logs.innerHTML += '<div>' + new Date().toLocaleTimeString() + ': ' + message + '</div>';
+        }
+
+        document.getElementById('testOpenAI').onclick = async () => {
+            log('🎵 Testing OpenAI TTS...');
+            
+            try {
+                const response = await fetch('/api/openai/tts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: "This is a test of OpenAI text to speech.",
+                        voice: 'alloy',
+                        speed: 1.0
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('OpenAI API failed');
+                }
+                
+                const audioBlob = await response.blob();
+                log('✅ Audio blob received: ' + audioBlob.size + ' bytes');
+                
+                const audioUrl = URL.createObjectURL(audioBlob);
+                testAudio.src = audioUrl;
+                testAudio.load();
+                
+                log('🎵 Audio loaded in HTML5 player - try playing manually');
+                
+                // Try programmatic play
+                setTimeout(async () => {
+                    try {
+                        await testAudio.play();
+                        log('✅ Programmatic play succeeded');
+                    } catch (e) {
+                        log('❌ Programmatic play failed: ' + e.message);
+                    }
+                }, 1000);
+                
+            } catch (error) {
+                log('❌ Error: ' + error.message);
+            }
+        };
+
+        document.getElementById('testDirectBlob').onclick = async () => {
+            log('🎵 Testing direct audio blob creation...');
+            
+            // Create a simple audio blob for comparison
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const sampleRate = audioContext.sampleRate;
+            const duration = 2; // 2 seconds
+            const frameCount = sampleRate * duration;
+            
+            const arrayBuffer = audioContext.createBuffer(1, frameCount, sampleRate);
+            const channelData = arrayBuffer.getChannelData(0);
+            
+            // Generate a simple tone
+            for (let i = 0; i < frameCount; i++) {
+                channelData[i] = Math.sin(2 * Math.PI * 440 * i / sampleRate) * 0.1;
+            }
+            
+            log('✅ Generated test tone - check if this plays');
+            
+            // This is just for testing - real conversion would be more complex
+            // but let's see if basic audio element works
+            const testTone = new Audio();
+            testTone.addEventListener('canplay', () => {
+                log('✅ Test tone ready');
+                testTone.play().then(() => {
+                    log('✅ Test tone playing');
+                }).catch(e => {
+                    log('❌ Test tone play failed: ' + e.message);
+                });
+            });
+        };
+    </script>
+</body>
+</html>
