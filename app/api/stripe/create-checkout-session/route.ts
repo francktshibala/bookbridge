@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe, STRIPE_CONFIG } from '@/lib/stripe';
+import { getStripe, STRIPE_CONFIG } from '@/lib/stripe';
 import { createClient } from '@supabase/supabase-js';
 
 export async function POST(request: NextRequest) {
   try {
+    const stripe = getStripe();
     const { tier, userId, userEmail } = await request.json();
 
     if (!tier || !['premium', 'student'].includes(tier)) {

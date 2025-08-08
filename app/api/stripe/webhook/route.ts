@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 import { createClient } from '@/lib/supabase/server';
 import Stripe from 'stripe';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 export async function POST(request: NextRequest) {
+  const stripe = getStripe();
   if (!webhookSecret) {
     console.warn('STRIPE_WEBHOOK_SECRET is not set - skipping webhook processing');
     return NextResponse.json(
