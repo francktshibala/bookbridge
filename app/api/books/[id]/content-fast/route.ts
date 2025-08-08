@@ -187,6 +187,113 @@ export async function GET(
           }
         }
         
+        // Check if we should cache this external book
+        const shouldCache = searchParams.get('cache') === 'true';
+        
+        if (shouldCache && content && content.length > 1000) {
+          // Process and cache the external book
+          console.log(`Caching external book ${id}...`);
+          
+          try {
+            // Import content chunker
+            const { enhancedContentChunker } = await import('@/lib/content-chunker-enhanced');
+            
+            // Extract chapters if possible - using the expected format
+            const chapters = [];
+            const chapterRegex = /^(Chapter\s+\d+|Chapter\s+[IVXLCDM]+|CHAPTER\s+\d+|CHAPTER\s+[IVXLCDM]+)/gim;
+            let chapterMatch;
+            let lastIndex = 0;
+            let chapterOrder = 0;
+            
+            const matches = [];
+            while ((chapterMatch = chapterRegex.exec(content)) !== null) {
+              matches.push({
+                title: chapterMatch[0],
+                index: chapterMatch.index
+              });
+            }
+            
+            // Create chapter objects with content
+            for (let i = 0; i < matches.length; i++) {
+              const start = matches[i].index;
+              const end = i < matches.length - 1 ? matches[i + 1].index : content.length;
+              const chapterContent = content.slice(start, end);
+              
+              chapters.push({
+                title: matches[i].title,
+                content: chapterContent,
+                order: chapterOrder++
+              });
+            }
+            
+            // If no chapters found, treat whole content as one chapter
+            if (chapters.length === 0) {
+              chapters.push({
+                title: 'Full Text',
+                content: content,
+                order: 0
+              });
+            }
+            
+            // Create chunks
+            const chunks = await enhancedContentChunker.chunkAndIndex(
+              id,
+              content,
+              chapters
+            );
+            
+            // Cache the content
+            const cachedContent = {
+              bookId: id,
+              title: book.title,
+              author: book.author,
+              chunks,
+              totalChunks: chunks.length,
+              metadata: {
+                source: book.source,
+                externalId: bookId,
+                cached: new Date().toISOString()
+              },
+              lastProcessed: new Date(),
+              indexed: true
+            };
+            
+            await bookCacheService.cacheContent(cachedContent);
+            console.log(`External book ${id} cached with ${chunks.length} chunks`);
+            
+            // Return with semantic search if query provided
+            if (query) {
+              const relevantChunks = await bookCacheService.findRelevantCachedChunks(
+                id,
+                query,
+                maxChunks
+              );
+              
+              const semanticContext = relevantChunks.length > 0 
+                ? bookCacheService.createContextFromChunks(relevantChunks, maxWords)
+                : context;
+              
+              return NextResponse.json({
+                id: book.id,
+                title: book.title,
+                author: book.author,
+                cached: true,
+                external: true,
+                query,
+                context: semanticContext,
+                source: book.source,
+                wordCount: content?.split(/\s+/).length || 0,
+                characterCount: content?.length || 0,
+                relevantChunks: relevantChunks.length,
+                message: 'Book cached and indexed for semantic search'
+              });
+            }
+          } catch (cacheError) {
+            console.error('Failed to cache external book:', cacheError);
+            // Continue with regular response if caching fails
+          }
+        }
+        
         return NextResponse.json({
           id: book.id,
           title: book.title,
@@ -197,7 +304,9 @@ export async function GET(
           context,
           source: book.source,
           wordCount: content?.split(/\s+/).length || 0,
-          characterCount: content?.length || 0
+          characterCount: content?.length || 0,
+          canCache: content && content.length > 1000,
+          cacheHint: content && content.length > 1000 ? 'Add ?cache=true to enable semantic search' : undefined
         })
         
       } catch (error) {

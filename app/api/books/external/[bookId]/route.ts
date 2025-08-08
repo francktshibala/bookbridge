@@ -5,9 +5,16 @@ import { standardEbooksAPI } from '@/lib/book-sources/standardebooks-api';
 import { googleBooksAPI } from '@/lib/book-sources/google-books-api';
 import type { ExternalBook } from '@/types/book-sources';
 
+// Import vector service for semantic search
+import { vectorService } from '@/lib/vector/vector-service';
+import { ContentChunk } from '@/lib/content-chunker';
+
 // Simple in-memory cache for external book content
-const contentCache = new Map<string, { content: any; timestamp: number }>();
+const contentCache = new Map<string, { content: any; timestamp: number; indexed?: boolean }>();
 const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
+
+// In-memory chunk cache for external books
+const chunkCache = new Map<string, ContentChunk[]>();
 
 // Helper function to fetch Standard Ebooks content (EPUB to text)
 async function fetchStandardEbooksContent(book: ExternalBook): Promise<string> {
