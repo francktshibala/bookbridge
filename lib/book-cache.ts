@@ -1,6 +1,7 @@
 import { LRUCache } from 'lru-cache'
 import { prisma } from './prisma'
 import { ContentChunk } from './content-chunker'
+import { vectorService } from './vector/vector-service'
 
 export interface CachedBookContent {
   bookId: string
@@ -122,6 +123,23 @@ class BookCacheService {
       })
 
       console.log(`Book ${content.bookId} cached successfully with ${content.totalChunks} chunks`)
+      
+      // Index chunks in vector database for semantic search
+      try {
+        console.log(`Indexing ${content.chunks.length} chunks in vector database...`)
+        await vectorService.indexBookChunks(content.bookId, content.chunks)
+        
+        // Update indexed flag
+        await prisma.bookCache.update({
+          where: { bookId: content.bookId },
+          data: { indexed: true }
+        })
+        
+        console.log(`Book ${content.bookId} indexed in vector database`)
+      } catch (indexError) {
+        console.error('Error indexing book in vector database:', indexError)
+        // Don't throw - caching should succeed even if indexing fails
+      }
     } catch (error) {
       console.error('Error caching book content:', error)
       throw error
@@ -147,7 +165,7 @@ class BookCacheService {
     this.processingStatus.set(bookId, updated)
   }
 
-  // Find relevant chunks from cached content
+  // Find relevant chunks from cached content using hybrid search
   async findRelevantCachedChunks(
     bookId: string,
     query: string,
@@ -158,7 +176,19 @@ class BookCacheService {
       throw new Error(`Book ${bookId} not found in cache`)
     }
 
-    // Enhanced keyword-based relevance scoring
+    // Try semantic search first if available
+    let semanticResults: ContentChunk[] = []
+    try {
+      const vectorResults = await vectorService.searchRelevantChunks(bookId, query, maxChunks)
+      if (vectorResults.length > 0) {
+        console.log(`Semantic search found ${vectorResults.length} results`)
+        semanticResults = vectorResults.map(r => r.chunk)
+      }
+    } catch (error) {
+      console.log('Semantic search failed, falling back to keyword search:', error)
+    }
+
+    // Always perform keyword search as well
     const queryLower = query.toLowerCase()
     const queryTerms = queryLower.split(/\s+/).filter(term => term.length > 1) // Include 2-letter words
     
@@ -226,10 +256,42 @@ class BookCacheService {
       return { chunk, score }
     })
 
-    // Sort by relevance score and return top chunks, ensuring we get results
+    // Sort by relevance score for keyword results
     const filteredChunks = scoredChunks.filter(item => item.score > 0)
     
-    // If no scored matches, fall back to any chunks containing any query terms
+    // Combine semantic and keyword results using a hybrid approach
+    if (semanticResults.length > 0) {
+      // Create a map to track unique chunks by ID
+      const uniqueChunks = new Map<string, { chunk: ContentChunk, score: number, source: string }>()
+      
+      // Add semantic results with boosted scores
+      semanticResults.forEach((chunk, index) => {
+        const semanticScore = 1000 - (index * 100) // Higher scores for semantic matches
+        uniqueChunks.set(chunk.id, { chunk, score: semanticScore, source: 'semantic' })
+      })
+      
+      // Add keyword results, combining scores if chunk already exists
+      filteredChunks.forEach(({ chunk, score }) => {
+        const existing = uniqueChunks.get(chunk.id)
+        if (existing) {
+          // Boost score if found by both methods
+          existing.score += score * 2
+          existing.source = 'hybrid'
+        } else {
+          uniqueChunks.set(chunk.id, { chunk, score, source: 'keyword' })
+        }
+      })
+      
+      // Sort all results by score and return top chunks
+      const allResults = Array.from(uniqueChunks.values())
+        .sort((a, b) => b.score - a.score)
+        .slice(0, maxChunks)
+      
+      console.log(`Hybrid search results: ${allResults.map(r => `${r.source}(${r.score})`).join(', ')}`)
+      return allResults.map(item => item.chunk)
+    }
+    
+    // If no semantic results, use keyword results only
     if (filteredChunks.length === 0) {
       const fallbackChunks = content.chunks
         .filter(chunk => {

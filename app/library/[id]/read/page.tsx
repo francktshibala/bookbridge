@@ -5,7 +5,13 @@ import { useParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { motion } from 'framer-motion';
-import { AudioPlayer } from '@/components/AudioPlayer';
+import { SmartAudioPlayer } from '@/components/SmartAudioPlayer';
+import { ESLAudioPlayer } from '@/components/ESLAudioPlayer';
+import { ESLControls } from '@/components/esl/ESLControls';
+import { SplitScreenView } from '@/components/esl/SplitScreenView';
+import { ClickableText } from '@/components/esl/ClickableText';
+import { AIChat } from '@/components/AIChat';
+import { useESLMode } from '@/hooks/useESLMode';
 
 interface BookContent {
   id: string;
@@ -27,6 +33,7 @@ export default function BookReaderPage() {
   const params = useParams();
   const router = useRouter();
   const { preferences, announceToScreenReader } = useAccessibility();
+  const { eslEnabled, eslLevel, nativeLanguage, isLoading: eslLoading } = useESLMode();
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -35,6 +42,11 @@ export default function BookReaderPage() {
   const [readingProgress, setReadingProgress] = useState<number>(0);
   const [currentSection, setCurrentSection] = useState<number>(0);
   const [sections, setSections] = useState<Array<{title: string; content: string; startIndex: number}>>([]);
+  const [displayMode, setDisplayMode] = useState<'original' | 'simplified'>('original');
+  const [showSplitScreen, setShowSplitScreen] = useState(false);
+  const [enableVocabulary, setEnableVocabulary] = useState(true);
+  const [learnedWords, setLearnedWords] = useState<Set<string>>(new Set());
+  const [showAIChat, setShowAIChat] = useState(false);
 
   const bookId = params.id as string;
 
@@ -545,45 +557,98 @@ export default function BookReaderPage() {
       >
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <motion.button
-              whileHover={{ x: -4, transition: { duration: 0.2 } }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => router.push('/library')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                background: 'rgba(45, 55, 72, 0.8)',
-                border: '2px solid rgba(102, 126, 234, 0.3)',
-                borderRadius: '12px',
-                padding: '12px 20px',
-                fontSize: '14px',
-                fontWeight: '600',
-                color: '#e2e8f0',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = '#667eea';
-                e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
-                e.currentTarget.style.backgroundColor = 'rgba(45, 55, 72, 0.8)';
-                e.currentTarget.style.transform = 'translateY(0px)';
-              }}
-            >
-              <span>←</span>
-              <span>Back to Library</span>
-            </motion.button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <motion.button
+                whileHover={{ x: -4, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => router.push(`/library/${bookId}`)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'rgba(45, 55, 72, 0.8)',
+                  border: '2px solid rgba(102, 126, 234, 0.3)',
+                  borderRadius: '12px',
+                  padding: '12px 20px',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  color: '#e2e8f0',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#667eea';
+                  e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
+                  e.currentTarget.style.backgroundColor = 'rgba(45, 55, 72, 0.8)';
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                }}
+              >
+                <span>←</span>
+                <span>Back to Library</span>
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowAIChat(!showAIChat)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: showAIChat ? 
+                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 
+                    'rgba(45, 55, 72, 0.8)',
+                  border: '2px solid rgba(102, 126, 234, 0.3)',
+                  borderRadius: '12px',
+                  padding: '12px 20px',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  color: '#e2e8f0',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  if (!showAIChat) {
+                    e.currentTarget.style.borderColor = '#667eea';
+                    e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
+                  }
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  if (!showAIChat) {
+                    e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
+                    e.currentTarget.style.backgroundColor = 'rgba(45, 55, 72, 0.8)';
+                  }
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                }}
+              >
+                <span>🤖</span>
+                <span>{showAIChat ? 'Hide AI Chat' : 'AI Chat'}</span>
+                {eslEnabled && eslLevel && (
+                  <span style={{
+                    fontSize: '10px',
+                    padding: '2px 6px',
+                    background: 'rgba(16, 185, 129, 0.3)',
+                    borderRadius: '10px',
+                    color: '#10b981'
+                  }}>
+                    ESL
+                  </span>
+                )}
+              </motion.button>
+            </div>
             
             <motion.div 
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="text-center"
+              className="text-center flex-1"
             >
               <h1 style={{
                 fontSize: '20px',
@@ -599,6 +664,90 @@ export default function BookReaderPage() {
                 fontWeight: '500',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
               }}>by {bookContent.author}</p>
+              
+              {/* ESL Mode Indicator with Split View Button */}
+              {eslEnabled && eslLevel && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  style={{
+                    marginTop: '8px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '4px 12px',
+                    background: 'rgba(16, 185, 129, 0.2)',
+                    border: '1px solid rgba(16, 185, 129, 0.4)',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    color: '#10b981',
+                    fontWeight: '600'
+                  }}>
+                    <span>📚</span>
+                    <span>ESL Mode Active • Level {eslLevel}</span>
+                  </div>
+                  
+                  <button
+                    onClick={() => setShowSplitScreen(true)}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: '4px 12px',
+                      background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%)',
+                      border: '1px solid rgba(102, 126, 234, 0.4)',
+                      borderRadius: '20px',
+                      fontSize: '12px',
+                      color: '#a78bfa',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = '#667eea';
+                      e.currentTarget.style.background = 'linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.4)';
+                      e.currentTarget.style.background = 'linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%)';
+                    }}
+                  >
+                    <span>🔀</span>
+                    <span>Split View</span>
+                  </button>
+                  
+                  <button
+                    onClick={() => setEnableVocabulary(!enableVocabulary)}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: '4px 12px',
+                      background: enableVocabulary ? 
+                        'linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(37, 99, 235, 0.3) 100%)' :
+                        'rgba(107, 114, 128, 0.2)',
+                      border: `1px solid ${enableVocabulary ? 'rgba(59, 130, 246, 0.5)' : 'rgba(107, 114, 128, 0.4)'}`,
+                      borderRadius: '20px',
+                      fontSize: '12px',
+                      color: enableVocabulary ? '#60a5fa' : '#9ca3af',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                    title={enableVocabulary ? 'Click words for definitions' : 'Enable word lookup'}
+                  >
+                    <span>📖</span>
+                    <span>Vocabulary {enableVocabulary ? 'ON' : 'OFF'}</span>
+                  </button>
+                </motion.div>
+              )}
             </motion.div>
             
             <motion.div 
@@ -670,6 +819,7 @@ export default function BookReaderPage() {
           }}
         >
           <div 
+            id="book-reading-text"
             className={`whitespace-pre-wrap leading-relaxed ${
               preferences.contrast === 'high' ? 'text-black bg-white' :
               preferences.contrast === 'ultra-high' ? 'text-white bg-black' :
@@ -692,9 +842,24 @@ export default function BookReaderPage() {
             aria-label="Book content"
             tabIndex={0}
           >
-            {sections.length > 0 && sections[currentSection] ? 
-              sections[currentSection].content : 
-              currentChunkData?.content || 'No content available for this section.'}
+            {enableVocabulary ? (
+              <ClickableText
+                text={sections.length > 0 && sections[currentSection] ? 
+                  sections[currentSection].content : 
+                  currentChunkData?.content || 'No content available for this section.'}
+                eslEnabled={eslEnabled}
+                eslLevel={eslLevel || undefined}
+                nativeLanguage={nativeLanguage || undefined}
+                onWordLearned={(word) => {
+                  setLearnedWords(prev => new Set(prev).add(word));
+                  announceToScreenReader(`Added "${word}" to learning list`);
+                }}
+              />
+            ) : (
+              sections.length > 0 && sections[currentSection] ? 
+                sections[currentSection].content : 
+                currentChunkData?.content || 'No content available for this section.'
+            )}
           </div>
         </motion.div>
         
@@ -760,6 +925,29 @@ export default function BookReaderPage() {
           </motion.div>
         )}
 
+        {/* AI Chat Section */}
+        {showAIChat && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            style={{
+              marginTop: '24px',
+              height: '600px',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              border: '1px solid rgba(102, 126, 234, 0.3)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)'
+            }}
+          >
+            <AIChat 
+              bookId={bookId}
+              bookTitle={bookContent.title}
+              bookContext={`${bookContent.title} by ${bookContent.author} - Currently reading: ${sections[currentSection]?.title || `Page ${currentChunk + 1}`}`}
+            />
+          </motion.div>
+        )}
+
         {/* Audio Player Section */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -783,14 +971,83 @@ export default function BookReaderPage() {
             fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
           }}>
             Listen to this {sections.length > 1 ? 'section' : 'page'}
+            {eslEnabled && eslLevel && (
+              <span style={{ 
+                marginLeft: '8px', 
+                fontSize: '14px', 
+                color: '#a0aec0',
+                fontWeight: '400'
+              }}>
+                (ESL Mode: {eslLevel})
+              </span>
+            )}
           </h3>
-          <AudioPlayer 
-            text={sections.length > 0 && sections[currentSection] ? 
-              sections[currentSection].content : 
-              currentChunkData?.content || ''}
-            onStart={() => announceToScreenReader(`Started reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
-            onEnd={() => announceToScreenReader(`Finished reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
-          />
+          
+          {/* Always show audio player, but with different modes */}
+          {eslEnabled && eslLevel ? (
+            <ESLAudioPlayer 
+              text={sections.length > 0 && sections[currentSection] ? 
+                sections[currentSection].content : 
+                currentChunkData?.content || ''}
+              bookId={bookId}
+              onStart={() => announceToScreenReader(`Started reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'} in ESL mode`)}
+              onEnd={() => announceToScreenReader(`Finished reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
+              onWordHighlight={(wordIndex) => {
+                // Highlight word in the reading text
+                const textElement = document.getElementById('book-reading-text');
+                if (textElement) {
+                  const words = textElement.innerText.split(/\s+/);
+                  // Clear previous highlights
+                  textElement.innerHTML = words.map((word, idx) => {
+                    if (idx === wordIndex) {
+                      return `<span style="background-color: #fef3c7; padding: 2px 4px; border-radius: 4px;">${word}</span>`;
+                    }
+                    return word;
+                  }).join(' ');
+                }
+              }}
+            />
+          ) : (
+            <>
+              <SmartAudioPlayer 
+                text={sections.length > 0 && sections[currentSection] ? 
+                  sections[currentSection].content : 
+                  currentChunkData?.content || ''}
+                enableHighlighting={true}
+                showHighlightedText={false}
+                targetElementId="book-reading-text"
+                variant="reading"
+                onStart={() => announceToScreenReader(`Started reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
+                onEnd={() => announceToScreenReader(`Finished reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
+              />
+              
+              {/* ESL Mode Prompt */}
+              <div style={{
+                marginTop: '16px',
+                padding: '16px',
+                background: 'rgba(59, 130, 246, 0.1)',
+                border: '2px solid rgba(59, 130, 246, 0.3)',
+                borderRadius: '12px',
+                textAlign: 'center'
+              }}>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#a5b4fc',
+                  margin: '0 0 12px 0',
+                  fontWeight: '500'
+                }}>
+                  🎓 Want ESL learning features like simplified text and pronunciation guidance?
+                </p>
+                <p style={{
+                  fontSize: '12px',
+                  color: '#94a3b8',
+                  margin: 0
+                }}>
+                  Click the ESL Controls button above to enable ESL mode
+                </p>
+              </div>
+            </>
+          )}
         </motion.div>
       </motion.div>
 
@@ -940,6 +1197,33 @@ export default function BookReaderPage() {
           </div>
         </div>
       </motion.div>
+
+      {/* ESL Controls - Floating widget */}
+      <ESLControls 
+        userId={user?.id}
+        onESLModeChange={(enabled, level) => {
+          if (enabled && level) {
+            announceToScreenReader(`ESL mode enabled with level ${level}`);
+            // In future, this will trigger text simplification
+            setDisplayMode('simplified');
+          } else {
+            announceToScreenReader('ESL mode disabled');
+            setDisplayMode('original');
+          }
+        }}
+        variant="floating"
+      />
+
+      {/* Split Screen View Modal */}
+      {showSplitScreen && eslEnabled && eslLevel && (
+        <SplitScreenView
+          originalText={sections[currentSection]?.content || currentChunkData?.content || ''}
+          bookId={bookId}
+          eslLevel={eslLevel}
+          nativeLanguage={null}
+          onClose={() => setShowSplitScreen(false)}
+        />
+      )}
     </motion.div>
   );
 }

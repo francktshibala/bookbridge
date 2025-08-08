@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { AIChat } from '@/components/AIChat';
@@ -12,6 +13,8 @@ import { CatalogBookCard } from '@/components/CatalogBookCard';
 import { CatalogBookSkeleton } from '@/components/CatalogBookSkeleton';
 import { RecommendationsSection } from '@/components/RecommendationsSection';
 import { useBookViewTracking } from '@/lib/use-recommendations';
+import { useAuth } from '@/components/SimpleAuthProvider';
+import { ESLProgressWidget } from '@/components/esl/ESLProgressWidget';
 import type { ExternalBook, BookSearchResults, BookSource } from '@/types/book-sources';
 
 interface Book {
@@ -37,7 +40,10 @@ interface BooksResponse {
 }
 
 export default function LibraryPage() {
+  // Simple auth check - no automatic redirects
+  const { user, loading: authLoading } = useAuth();
   const { announceToScreenReader } = useAccessibility();
+  const router = useRouter();
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -273,6 +279,9 @@ export default function LibraryPage() {
     });
   };
 
+  // Don't return early - this violates Rules of Hooks
+  // Instead, we'll handle auth loading in the render section
+
   // Helper function to render the My Books content
   const renderMyBooksContent = () => {
     if (loading) {
@@ -479,21 +488,9 @@ export default function LibraryPage() {
   
   const handleAnalyzeCatalogBook = (book: ExternalBook) => {
     console.log('Analyzing catalog book:', book);
-    // For now, we'll convert the external book to our internal format
-    const internalBook: Book = {
-      id: book.id,
-      title: book.title,
-      author: book.author,
-      description: book.subjects.join(', '),
-      genre: book.subjects[0] || 'Classic Literature',
-      publishYear: book.publicationYear,
-      language: book.language,
-      publicDomain: true,
-      createdAt: new Date().toISOString()
-    };
-    
-    setSelectedBook(internalBook);
-    announceToScreenReader(`Selected catalog book: ${book.title} by ${book.author}`);
+    announceToScreenReader(`Opening ${book.title} by ${book.author}`);
+    // Navigate to the book detail page instead of updating state
+    router.push(`/library/${book.id}`);
   };
 
   if (selectedBook) {
@@ -790,6 +787,44 @@ export default function LibraryPage() {
     );
   }
 
+  // Show auth loading screen
+  if (authLoading) {
+    return (
+      <AccessibleWrapper>
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-600 mx-auto mb-4"></div>
+            <p className="text-slate-600 dark:text-slate-400">Loading...</p>
+          </div>
+        </div>
+      </AccessibleWrapper>
+    );
+  }
+
+  // Show login prompt for unauthenticated users (no automatic redirect)
+  if (!user) {
+    return (
+      <AccessibleWrapper>
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-4">
+              Please Sign In
+            </h1>
+            <p className="text-slate-600 dark:text-slate-400 mb-6">
+              You need to sign in to access your book library.
+            </p>
+            <a 
+              href="/auth/login" 
+              className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Sign In
+            </a>
+          </div>
+        </div>
+      </AccessibleWrapper>
+    );
+  }
+
   return (
     <div className="page-container magical-bg" style={{ minHeight: '100vh' }}>
       <div className="page-content" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
@@ -932,6 +967,9 @@ export default function LibraryPage() {
             </motion.div>
           </AccessibleWrapper>
         </motion.div>
+
+        {/* ESL Progress Widget */}
+        <ESLProgressWidget />
 
         {activeTab === 'my-books' ? (
           <>

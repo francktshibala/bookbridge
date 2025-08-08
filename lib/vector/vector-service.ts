@@ -26,24 +26,33 @@ export class VectorService {
   }
 
   async initialize() {
-    if (this.isInitialized) return;
+    if (this.isInitialized) {
+      console.log('[VectorService] Already initialized, skipping...');
+      return;
+    }
 
+    console.log('[VectorService] Starting initialization...');
+    
     try {
       // Initialize Pinecone if API key is available
       if (process.env.PINECONE_API_KEY) {
-        console.log('Initializing Pinecone vector database...');
+        console.log('[VectorService] Pinecone API key found, initializing...');
+        console.log('[VectorService] Creating Pinecone client...');
         this.pinecone = new Pinecone({
           apiKey: process.env.PINECONE_API_KEY,
         });
 
         const indexName = process.env.PINECONE_INDEX || 'bookbridge-books';
+        console.log(`[VectorService] Using index: ${indexName}`);
         
         // Check if index exists, create if not
+        console.log('[VectorService] Listing existing indexes...');
         const indexes = await this.pinecone.listIndexes();
+        console.log('[VectorService] Existing indexes:', indexes.indexes?.map(idx => idx.name).join(', ') || 'none');
         const indexExists = indexes.indexes?.some(index => index.name === indexName);
         
         if (!indexExists) {
-          console.log(`Creating Pinecone index: ${indexName}`);
+          console.log(`[VectorService] Index ${indexName} not found, creating...`);
           await this.pinecone.createIndex({
             name: indexName,
             dimension: 1536,
@@ -60,13 +69,16 @@ export class VectorService {
           await new Promise(resolve => setTimeout(resolve, 10000));
         }
 
+        console.log(`[VectorService] Getting index handle for ${indexName}...`);
         const index = this.pinecone.Index(indexName);
+        
+        console.log('[VectorService] Creating PineconeStore...');
         this.vectorStore = await PineconeStore.fromExistingIndex(
           this.embeddings,
           { pineconeIndex: index }
         );
         
-        console.log('Pinecone initialized successfully');
+        console.log('[VectorService] ✓ Pinecone initialized successfully!');
       } else {
         console.warn('Pinecone API key not found, vector search will use fallback implementation');
       }
@@ -225,6 +237,13 @@ export class VectorService {
     }
   }
 }
+
+// Debug logging
+console.log('[VectorService] Module loaded, creating singleton instance...');
+console.log('[VectorService] Environment check:');
+console.log('  - PINECONE_API_KEY exists:', !!process.env.PINECONE_API_KEY);
+console.log('  - PINECONE_INDEX:', process.env.PINECONE_INDEX || 'not set');
+console.log('  - OPENAI_API_KEY exists:', !!process.env.OPENAI_API_KEY);
 
 // Export singleton instance
 export const vectorService = new VectorService();

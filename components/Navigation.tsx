@@ -3,30 +3,16 @@
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
-import { useEffect, useState } from 'react';
-import type { User } from '@supabase/supabase-js';
+import { useState } from 'react';
+import { SubscriptionStatus } from '@/components/SubscriptionStatus';
+import { useAuth } from '@/components/SimpleAuthProvider';
 
 export default function Navigation() {
   const router = useRouter();
   const pathname = usePathname();
-  const [user, setUser] = useState<User | null>(null);
+  const { user } = useAuth();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const supabase = createClient();
-
-  useEffect(() => {
-    const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-    };
-
-    getUser();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, [supabase]);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -34,6 +20,7 @@ export default function Navigation() {
   };
 
   const navLinks = user ? [
+    { href: '/', label: 'Home' },
     { href: '/library', label: 'Library' },
     { href: '/upload', label: 'Upload Book' },
     { href: '/settings', label: 'Settings' },
@@ -87,9 +74,13 @@ export default function Navigation() {
                   color: '#ffffff', 
                   fontSize: '16px', 
                   fontWeight: '600',
-                  marginLeft: '24px'
+                  marginLeft: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
                 }}
               >
+                {link.icon && <link.icon size={16} />}
                 {link.label}
               </Link>
             ))}
@@ -98,6 +89,11 @@ export default function Navigation() {
           {/* Right side - Only User menu or Auth buttons */}
           <div className="flex items-center" style={{ minWidth: 'fit-content', paddingRight: '40px', marginRight: '24px' }}>
             {user ? (
+              <>
+                {/* Subscription Status */}
+                <div className="mr-6">
+                  <SubscriptionStatus />
+                </div>
               <div className="relative">
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
@@ -165,6 +161,56 @@ export default function Navigation() {
                           {user.email}
                         </div>
                       </div>
+                      <Link
+                        href="/esl-dashboard"
+                        className="block w-full text-left px-6 py-3 text-sm transition-all duration-300 hover-lift-sm"
+                        style={{ 
+                          color: '#a78bfa',
+                          textDecoration: 'none',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                        }}
+                        role="menuitem"
+                        onClick={() => setIsUserMenuOpen(false)}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = '#ffffff';
+                          e.currentTarget.style.background = 'rgba(139, 92, 246, 0.15)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = '#a78bfa';
+                          e.currentTarget.style.background = 'transparent';
+                        }}
+                      >
+                        <span>📊</span>
+                        <span>ESL Dashboard</span>
+                      </Link>
+                      <Link
+                        href="/subscription"
+                        className="block w-full text-left px-6 py-3 text-sm transition-all duration-300 hover-lift-sm"
+                        style={{ 
+                          color: '#60a5fa',
+                          textDecoration: 'none',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                        }}
+                        role="menuitem"
+                        onClick={() => setIsUserMenuOpen(false)}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = '#ffffff';
+                          e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = '#60a5fa';
+                          e.currentTarget.style.background = 'transparent';
+                        }}
+                      >
+                        <span>⭐</span>
+                        <span>Subscription</span>
+                      </Link>
                       <button
                         onClick={handleSignOut}
                         className="block w-full text-left px-6 py-3 text-sm hover:bg-red-600 hover:bg-opacity-20 transition-all duration-300 hover-lift-sm"
@@ -188,6 +234,7 @@ export default function Navigation() {
                   </div>
                 )}
               </div>
+              </>
             ) : (
               <div className="flex items-center space-x-4">
                 <Link

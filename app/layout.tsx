@@ -6,7 +6,8 @@ import { AccessibilityProvider } from '@/contexts/AccessibilityContext';
 import { KeyboardNavigationProvider } from '@/components/KeyboardNavigationProvider';
 import Navigation from '@/components/Navigation';
 import { VoiceNavigationWrapper } from '@/components/VoiceNavigationWrapper';
-import Footer from '@/components/Footer';
+import { SimpleAuthProvider } from '@/components/SimpleAuthProvider';
+import { ConditionalFooter } from '@/components/ConditionalFooter';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -38,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <head>
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
@@ -60,25 +62,27 @@ export default function RootLayout({
           className="sr-only"
         />
         
-        <AccessibilityProvider>
-          <KeyboardNavigationProvider>
-            <VoiceNavigationWrapper>
-              <Navigation />
-            
-              <main 
-                role="main" 
-                aria-label="BookBridge application" 
-                id="main-content"
-                className="flex-1 px-4 py-8 w-full"
-                style={{ backgroundColor: 'transparent' }}
-              >
-                {children}
-              </main>
+        <SimpleAuthProvider>
+          <AccessibilityProvider>
+            <KeyboardNavigationProvider>
+              <VoiceNavigationWrapper>
+                <Navigation />
               
-              <Footer />
-            </VoiceNavigationWrapper>
-          </KeyboardNavigationProvider>
-        </AccessibilityProvider>
+                <main 
+                  role="main" 
+                  aria-label="BookBridge application" 
+                  id="main-content"
+                  className="flex-1 px-4 py-8 w-full"
+                  style={{ backgroundColor: 'transparent' }}
+                >
+                  {children}
+                </main>
+                
+                <ConditionalFooter />
+              </VoiceNavigationWrapper>
+            </KeyboardNavigationProvider>
+          </AccessibilityProvider>
+        </SimpleAuthProvider>
       </body>
     </html>
   );

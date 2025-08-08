@@ -535,6 +535,30 @@
     margin-right: auto;
   }
   
+  /* Glass-morphism Card for Testimonials */
+  .glass-card {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.12),
+      0 8px 16px rgba(0, 0, 0, 0.08),
+      0 16px 32px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.15),
+      0 16px 32px rgba(0, 0, 0, 0.12),
+      0 32px 64px rgba(0, 0, 0, 0.08);
+    border-color: rgba(148, 163, 184, 0.2);
+  }
+
   /* Portfolio-Quality Feature Card Styles with enhanced shadows */
   .feature-card {
     background: var(--surface-elevated);
@@ -825,6 +849,16 @@
   }
 }
 
+/* Testimonial card hover effect */
+@keyframes subtle-glow {
+  0%, 100% {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(102, 126, 234, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -864,3 +898,4 @@
   border-left: 3px solid #667eea;
   color: #a5b4fc;
 }
+

@@ -20,11 +20,19 @@ model User {
   colorBlindMode   String         @default("none")
   voiceNavigation  Boolean        @default(false)
   readingSpeed     Float          @default(1.0)
+  // ESL-specific fields
+  eslLevel         String?        @map("esl_level") // A1, A2, B1, B2, C1, C2
+  nativeLanguage   String?        @map("native_language")
+  learningGoals    Json?          @map("learning_goals")
+  readingSpeedWpm  Int?           @default(150) @map("reading_speed_wpm")
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
   conversations    Conversation[]
   subscription     Subscription?
   usage            Usage[]
+  // ESL-related relationships
+  vocabularyProgress ESLVocabularyProgress[]
+  readingSessions    ReadingSession[]
 
   @@map("users")
 }
@@ -57,8 +65,8 @@ model Book {
   uploadedBy    String?
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  conversations Conversation[]
   bookCache     BookCache?
+  conversations Conversation[]
 
   @@map("books")
 }
@@ -82,6 +90,7 @@ model Message {
   conversationId String
   content        String
   sender         String
+  embedding      Json?
   tokensUsed     Int?
   model          String?
   cost           Decimal?
@@ -89,6 +98,24 @@ model Message {
   conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 
   @@map("messages")
+}
+
+model EpisodicMemory {
+  id             String   @id @default(cuid())
+  conversationId String
+  timestamp      DateTime @default(now())
+  query          String
+  response       String
+  bookPassage    String?
+  userReaction   String?  // 'confused' | 'understood' | 'engaged'
+  concepts       Json?    // Array of concepts discussed
+  // ESL enhancements
+  vocabularyIntroduced Json? @map("vocabulary_introduced") @default("[]")
+  difficultyLevel String? @map("difficulty_level") // CEFR level
+  comprehensionScore Decimal? @map("comprehension_score") @db.Decimal(3,2)
+  createdAt      DateTime @default(now())
+
+  @@map("episodic_memory")
 }
 
 model Usage {
@@ -118,12 +145,90 @@ model SystemUsage {
 model BookCache {
   id            String   @id @default(cuid())
   bookId        String   @unique
-  chunks        Json     // Store ContentChunk array as JSON
+  chunks        Json
   totalChunks   Int
-  metadata      Json     // Store extracted metadata
+  metadata      Json
   lastProcessed DateTime @default(now())
   indexed       Boolean  @default(false)
   book          Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
 
   @@map("book_cache")
+}
+
+model AppTestimonial {
+  id          String   @id @default(cuid())
+  userName    String   @map("user_name")
+  userTitle   String?  @map("user_title")
+  userRole    String?  @map("user_role")
+  rating      Int
+  content     String
+  featured    Boolean  @default(false)
+  verified    Boolean  @default(false)
+  avatarColor String   @default("#667eea") @map("avatar_color")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("app_testimonials")
+}
+
+// ESL-specific models for language learning features
+model ESLVocabularyProgress {
+  id             String   @id @default(cuid())
+  userId         String   @map("user_id")
+  word           String
+  definition     String?
+  difficultyLevel String? @map("difficulty_level") // CEFR level (A1, A2, B1, B2, C1, C2)
+  encounters     Int      @default(1)
+  masteryLevel   Int      @default(0) @map("mastery_level") // 0-5 scale
+  firstSeen      DateTime @default(now()) @map("first_seen")
+  lastReviewed   DateTime @default(now()) @map("last_reviewed")
+  nextReview     DateTime @default(now()) @map("next_review")
+  createdAt      DateTime @default(now()) @map("created_at")
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, word])
+  @@index([userId, nextReview])
+  @@map("esl_vocabulary_progress")
+}
+
+model ReadingSession {
+  id                String    @id @default(cuid())
+  userId            String    @map("user_id")
+  bookId            String    @map("book_id")
+  sessionStart      DateTime  @default(now()) @map("session_start")
+  sessionEnd        DateTime? @map("session_end")
+  wordsRead         Int       @default(0) @map("words_read")
+  avgReadingSpeed   Int?      @map("avg_reading_speed") // WPM
+  difficultyLevel   String?   @map("difficulty_level") // CEFR level
+  comprehensionScore Decimal? @map("comprehension_score") @db.Decimal(3,2)
+  vocabularyLookups Int       @default(0) @map("vocabulary_lookups")
+  timeOnSimplified  Int       @default(0) @map("time_on_simplified") // seconds
+  timeOnOriginal    Int       @default(0) @map("time_on_original") // seconds
+  createdAt         DateTime  @default(now()) @map("created_at")
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, bookId])
+  @@index([userId, createdAt])
+  @@map("reading_sessions")
+}
+
+model BookSimplification {
+  id                  String   @id @default(cuid())
+  bookId              String   @map("book_id")
+  targetLevel         String   @map("target_level") // CEFR level (A1, A2, B1, B2, C1, C2)
+  chunkIndex          Int      @map("chunk_index")
+  originalText        String   @map("original_text")
+  simplifiedText      String   @map("simplified_text")
+  vocabularyChanges   Json     @default("[]") @map("vocabulary_changes")
+  culturalAnnotations Json     @default("[]") @map("cultural_annotations")
+  qualityScore        Decimal? @map("quality_score") @db.Decimal(3,2)
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  @@unique([bookId, targetLevel, chunkIndex])
+  @@index([bookId, targetLevel])
+  @@index([updatedAt])
+  @@map("book_simplifications")
 }

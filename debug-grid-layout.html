@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Grid Layout</title>
+    <style>
+        body {
+            background: #1a1a2e;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            width: 100%;
+        }
+        .card {
+            background: #334155;
+            border-radius: 20px;
+            padding: 32px;
+            min-height: 420px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #475569;
+        }
+        .avatar {
+            width: 112px;
+            height: 112px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .info {
+            background: #0f172a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grid Layout Test - Should Show 2-3 Cards Per Row</h1>
+        
+        <div class="info">
+            <p>Window width: <span id="width"></span>px</p>
+            <p>Container width: <span id="container-width"></span>px</p>
+            <p>Cards per row: <span id="cards-per-row"></span></p>
+        </div>
+
+        <h2>Test Cards Grid</h2>
+        <div class="grid" id="grid">
+            <div class="card">
+                <div class="avatar">SM</div>
+                <p>Test Card 1 - This should display in a multi-column grid layout</p>
+            </div>
+            <div class="card">
+                <div class="avatar">JD</div>
+                <p>Test Card 2 - This should display in a multi-column grid layout</p>
+            </div>
+            <div class="card">
+                <div class="avatar">AL</div>
+                <p>Test Card 3 - This should display in a multi-column grid layout</p>
+            </div>
+            <div class="card">
+                <div class="avatar">MR</div>
+                <p>Test Card 4 - This should display in a multi-column grid layout</p>
+            </div>
+            <div class="card">
+                <div class="avatar">KW</div>
+                <p>Test Card 5 - This should display in a multi-column grid layout</p>
+            </div>
+            <div class="card">
+                <div class="avatar">DT</div>
+                <p>Test Card 6 - This should display in a multi-column grid layout</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="http://localhost:3001/testimonials" style="color: #667eea; font-size: 20px;">
+                → Go to Actual Testimonials Page
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateInfo() {
+            document.getElementById('width').textContent = window.innerWidth;
+            document.getElementById('container-width').textContent = document.querySelector('.container').offsetWidth;
+            
+            const grid = document.getElementById('grid');
+            const firstCard = grid.querySelector('.card');
+            if (firstCard) {
+                const gridWidth = grid.offsetWidth;
+                const cardWidth = firstCard.offsetWidth;
+                const cardsPerRow = Math.floor(gridWidth / cardWidth);
+                document.getElementById('cards-per-row').textContent = cardsPerRow;
+            }
+        }
+        
+        updateInfo();
+        window.addEventListener('resize', updateInfo);
+    </script>
+</body>
+</html>

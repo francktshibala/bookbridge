@@ -34,8 +34,8 @@ export default function LoginPage() {
         throw error;
       }
 
-      announceToScreenReader('Login successful! Redirecting to home page.');
-      router.push('/');
+      announceToScreenReader('Login successful! Redirecting to library.');
+      router.push('/library');
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Login failed';
       setError(errorMessage);

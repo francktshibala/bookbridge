@@ -5,7 +5,8 @@ import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { voiceService } from '@/lib/voice-service';
-import { AudioPlayer } from '@/components/AudioPlayer';
+import { SmartAudioPlayer } from '@/components/SmartAudioPlayer';
+import { useESLMode } from '@/hooks/useESLMode';
 
 // Component to format AI responses with better styling and citation support
 const FormattedAIResponse: React.FC<{ 
@@ -19,6 +20,18 @@ const FormattedAIResponse: React.FC<{
   voiceSupported?: boolean;
 }> = ({ content, isMultiAgent, agentResponses, voiceSupported }) => {
   const [showAgentDetails, setShowAgentDetails] = useState(false);
+
+  // Debug logging to track component lifecycle
+  useEffect(() => {
+    console.log('🎵 FormattedAIResponse mounted with content length:', content?.length || 0);
+    return () => {
+      console.log('🎵 FormattedAIResponse unmounting');
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log('🎵 FormattedAIResponse content changed, length:', content?.length || 0);
+  }, [content]);
 
   // Safety check
   if (!content) {
@@ -55,8 +68,8 @@ const FormattedAIResponse: React.FC<{
           key={index}
           style={{
             marginBottom: '16px',
-            lineHeight: '1.7',
-            fontSize: '15px'
+            lineHeight: '1.8',
+            fontSize: '18px'
           }}
           dangerouslySetInnerHTML={{ __html: formattedParagraph }}
         />
@@ -87,37 +100,22 @@ const FormattedAIResponse: React.FC<{
             : '0 4px 20px rgba(0, 0, 0, 0.2)'
         }}
       >
-        {isMultiAgent && (
-          <div style={{
-            position: 'absolute',
-            top: '8px',
-            right: '8px',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            color: 'white',
-            padding: '4px 8px',
-            borderRadius: '12px',
-            fontSize: '10px',
-            fontWeight: '700',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px'
-          }}>
-            🧠 Multi-Agent
-          </div>
-        )}
         
         {formatContent(content)}
         
         {/* Professional Audio Player */}
-        {voiceSupported && (
-          <div style={{ marginTop: '16px' }}>
-            <AudioPlayer 
-              text={content}
-              onStart={() => console.log('Audio started')}
-              onEnd={() => console.log('Audio ended')}
-              onError={(error) => console.error('Audio error:', error)}
-            />
-          </div>
-        )}
+        <div style={{ marginTop: '16px' }}>
+          <SmartAudioPlayer 
+            key={`audio-${content.substring(0, 50)}`} // Stable key based on content
+            text={content}
+            enableHighlighting={false}
+            showHighlightedText={false}
+            variant="chat"
+            onStart={() => console.log('Audio started')}
+            onEnd={() => console.log('Audio ended')}
+            onError={(error) => console.error('Audio error:', error)}
+          />
+        </div>
         
         {isMultiAgent && agentResponses && (
           <div style={{ marginTop: '16px', borderTop: '1px solid rgba(224, 231, 255, 0.5)', paddingTop: '16px' }}>
@@ -233,6 +231,7 @@ interface AIChatProps {
 
 export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }) => {
   const { announceToScreenReader } = useAccessibility();
+  const { eslEnabled, eslLevel, nativeLanguage } = useESLMode();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -241,22 +240,191 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
   const [isListening, setIsListening] = useState(false);
   const [voiceSupported, setVoiceSupported] = useState(false);
   const [speechRecognition, setSpeechRecognition] = useState<any>(null);
-  const [responseMode, setResponseMode] = useState<'brief' | 'detailed'>('detailed');
+  const [selectedVoice, setSelectedVoice] = useState<'standard' | 'openai' | 'elevenlabs'>('standard');
+  const [selectedSubVoice, setSelectedSubVoice] = useState<string>('');
+  const [showVoiceModal, setShowVoiceModal] = useState(false);
+  // Note: Response mode is now automatically determined by AI based on query intent
+  // CONVERSATION PERSISTENCE RE-ENABLED - Auth cycles fixed
+  const [conversationId, setConversationId] = useState<string | null>(null);
+  const [loadedConversationId, setLoadedConversationId] = useState<string | null>(null);
+  const [paginationMetadata, setPaginationMetadata] = useState<{
+    total: number;
+    limit: number;
+    offset: number;
+    hasMore: boolean;
+  } | null>(null);
+  const [isLoadingOlderMessages, setIsLoadingOlderMessages] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const loadOlderMessages = async () => {
+    if (!conversationId || !paginationMetadata?.hasMore || isLoadingOlderMessages) {
+      return;
+    }
+
+    setIsLoadingOlderMessages(true);
+    console.log('📜 Loading older messages...', {
+      currentOffset: paginationMetadata.offset + paginationMetadata.limit,
+      hasMore: paginationMetadata.hasMore
+    });
+
+    try {
+      const offset = paginationMetadata.offset + paginationMetadata.limit;
+      const response = await fetch(`/api/conversations/${conversationId}/messages?offset=${offset}&limit=30`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('✅ Older messages loaded:', data.messages?.length || 0);
+        
+        if (data.messages && data.messages.length > 0) {
+          const formattedMessages = data.messages.map((msg: any) => ({
+            id: msg.id,
+            content: msg.content,
+            sender: msg.sender,
+            timestamp: new Date(msg.createdAt)
+          }));
+          
+          // Prepend older messages to the beginning
+          setMessages(prevMessages => [...formattedMessages, ...prevMessages]);
+          setPaginationMetadata(data.metadata);
+          console.log('🎉 Added', formattedMessages.length, 'older messages');
+        }
+      } else {
+        console.error('❌ Failed to load older messages:', response.status);
+      }
+    } catch (error) {
+      console.error('💥 Error loading older messages:', error);
+    } finally {
+      setIsLoadingOlderMessages(false);
+    }
+  };
+
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    // Only scroll to bottom for new messages, not when loading older ones
+    if (!isLoadingOlderMessages) {
+      scrollToBottom();
+    }
+  }, [messages, isLoadingOlderMessages]);
+
+  // Scroll detection for loading older messages
+  useEffect(() => {
+    const container = messagesContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      const scrollPosition = scrollTop + clientHeight;
+      const totalHeight = scrollHeight;
+      
+      // If user scrolled to top 10% of the container, load older messages
+      if (scrollTop < 100 && paginationMetadata?.hasMore && !isLoadingOlderMessages) {
+        console.log('🔝 User scrolled to top, loading older messages...');
+        loadOlderMessages();
+      }
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [paginationMetadata?.hasMore, isLoadingOlderMessages, conversationId]);
 
   // Focus input on mount
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  // CONVERSATION PERSISTENCE RE-ENABLED - Auth cycles fixed
+  // Initialize conversationId from sessionStorage on mount
+  useEffect(() => {
+    console.log('🚀 AIChat component mounted for bookId:', bookId);
+    if (typeof window !== 'undefined' && bookId) {
+      const key = `conversation-${bookId}`;
+      const stored = sessionStorage.getItem(key);
+      console.log('🔑 Initializing conversationId from sessionStorage:', { key, stored, hasWindow: typeof window !== 'undefined' });
+      if (stored) {
+        console.log('✅ Found stored conversation, setting conversationId:', stored);
+        setConversationId(stored);
+      } else {
+        console.log('📭 No stored conversation found for this book');
+      }
+    } else {
+      console.log('⚠️ Cannot initialize - missing window or bookId:', { hasWindow: typeof window !== 'undefined', bookId });
+    }
+  }, [bookId]);
+
+  // Load messages when conversationId exists - with proper timing and Fast Refresh protection
+  useEffect(() => {
+    console.log('🔄 ConversationId effect triggered:', { conversationId, loadedConversationId, messagesLength: messages.length });
+    
+    const loadMessages = async () => {
+      // Only load if we have a conversationId and haven't loaded this specific conversation yet
+      if (conversationId && conversationId !== loadedConversationId) {
+        console.log('📥 Loading messages for NEW conversation:', conversationId);
+        
+        try {
+          const response = await fetch(`/api/conversations/${conversationId}/messages?latest=true`);
+          console.log('📡 Messages API response:', response.status);
+          
+          if (response.ok) {
+            const data = await response.json();
+            console.log('✅ Messages loaded:', data.messages?.length || 0, 'messages');
+            console.log('📊 Pagination metadata:', data.metadata);
+            
+            if (data.messages && data.messages.length > 0) {
+              const formattedMessages = data.messages.map((msg: any) => ({
+                id: msg.id,
+                content: msg.content,
+                sender: msg.sender,
+                timestamp: new Date(msg.createdAt),
+                isMultiAgent: msg.isMultiAgent,
+                agentResponses: msg.agentResponses
+              }));
+              
+              console.log('🔍 Loaded message structure:', formattedMessages[0]);
+              setMessages(formattedMessages);
+              setPaginationMetadata(data.metadata);
+              setLoadedConversationId(conversationId); // Mark this conversation as loaded
+              console.log('🎉 Successfully set', formattedMessages.length, 'messages to state for conversation:', conversationId);
+            } else {
+              // Empty conversation - still mark as loaded to prevent re-attempts
+              setLoadedConversationId(conversationId);
+              setPaginationMetadata(data.metadata || null);
+              console.log('📭 No messages in conversation, marked as loaded');
+            }
+          } else {
+            const errorText = await response.text();
+            console.log('❌ Messages API error:', errorText);
+          }
+        } catch (error) {
+          console.log('💥 Messages loading error:', error);
+        }
+      } else if (!conversationId) {
+        console.log('⏭️ No conversationId, skipping message load');
+      } else if (conversationId === loadedConversationId) {
+        console.log('⏭️ Conversation', conversationId, 'already loaded, skipping');
+      }
+    };
+
+    loadMessages();
+  }, [conversationId, loadedConversationId]);
+
+  // Close voice modal when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showVoiceModal && !(event.target as Element).closest('[data-voice-modal]')) {
+        setShowVoiceModal(false);
+      }
+    };
+
+    if (showVoiceModal) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showVoiceModal]);
 
   // Initialize voice capabilities
   useEffect(() => {
@@ -353,11 +521,19 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // Include cookies for server-side auth
         body: JSON.stringify({
           query: userMessage.content,
           bookId,
           bookContext,
-          responseMode
+          // responseMode removed - AI automatically determines based on query intent
+          conversationId: conversationId, // Re-enabled conversation persistence
+          // ESL Enhancement - Include user's language learning context
+          eslContext: eslEnabled ? {
+            level: eslLevel,
+            nativeLanguage: nativeLanguage,
+            enabled: true
+          } : null
         })
       });
 
@@ -370,6 +546,20 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
 
       if (!response.ok) {
         throw new Error(data.error || 'Failed to get AI response');
+      }
+
+      // CONVERSATION PERSISTENCE RE-ENABLED
+      // Save conversationId if returned from backend
+      if (data.conversationId && !conversationId) {
+        console.log('💾 Saving new conversationId:', data.conversationId);
+        setConversationId(data.conversationId);
+        // Persist to sessionStorage
+        if (typeof window !== 'undefined') {
+          const key = `conversation-${bookId}`;
+          sessionStorage.setItem(key, data.conversationId);
+          console.log('💾 Saved to sessionStorage:', key, '=', data.conversationId);
+        }
+        console.log('✅ Conversation started:', data.conversationId);
       }
 
       const aiMessage: Message = {
@@ -417,129 +607,73 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        maxHeight: '600px',
+        minHeight: 'calc(100vh - 120px)',
         background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: 'fixed',
+        borderRadius: '20px',
+        overflow: 'hidden'
       }}
     >
-      <motion.header 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        style={{
-          padding: '24px 24px 20px 24px',
-          borderBottom: '1px solid rgba(102, 126, 234, 0.2)',
-          background: 'rgba(26, 32, 44, 0.95)',
-          backdropFilter: 'blur(20px)',
-          borderRadius: '20px 20px 0 0',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
-        }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div>
-            <h2 id="ai-chat-heading" style={{
-              fontSize: '20px',
-              fontWeight: '700',
-              color: '#f7fafc',
-              marginBottom: '8px',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-              textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
-            }}>
-              💬 AI Conversation
-            </h2>
-            <p style={{
-              fontSize: '14px',
-              color: '#a5b4fc',
-              fontWeight: '500',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-              lineHeight: '1.5'
-            }}>
-              Ask thoughtful questions about <strong>{bookTitle || 'this book'}</strong> and get intelligent insights
-            </p>
-          </div>
-          
-          {/* Response Mode Toggle */}
-          <div style={{
-            display: 'flex',
-            gap: '8px',
-            background: 'rgba(45, 55, 72, 0.8)',
-            backdropFilter: 'blur(10px)',
-            padding: '4px',
-            borderRadius: '12px',
-            border: '1px solid rgba(102, 126, 234, 0.3)',
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
-          }}>
-            <motion.button
-              onClick={() => setResponseMode('brief')}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                padding: '8px 16px',
-                background: responseMode === 'brief' 
-                  ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                  : 'transparent',
-                color: responseMode === 'brief' ? 'white' : '#cbd5e0',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '13px',
-                fontWeight: '600',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}
-              aria-label="Quick answer mode"
-              aria-pressed={responseMode === 'brief'}
-            >
-              ⚡ Quick Answer
-            </motion.button>
-            
-            <motion.button
-              onClick={() => setResponseMode('detailed')}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                padding: '8px 16px',
-                background: responseMode === 'detailed' 
-                  ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                  : 'transparent',
-                color: responseMode === 'detailed' ? 'white' : '#6b7280',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '13px',
-                fontWeight: '600',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}
-              aria-label="Detailed analysis mode"
-              aria-pressed={responseMode === 'detailed'}
-            >
-              📚 Detailed Analysis
-            </motion.button>
-          </div>
-        </div>
-      </motion.header>
 
       <div
+        ref={messagesContainerRef}
         style={{
           flex: 1,
           overflowY: 'auto',
-          padding: '24px',
+          padding: '32px 24px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '16px',
+          gap: '24px',
           background: 'transparent'
         }}
         role="log"
         aria-live="polite"
         aria-label="Chat conversation"
       >
+        {/* Loading indicator for older messages */}
+        <AnimatePresence>
+          {isLoadingOlderMessages && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                textAlign: 'center',
+                padding: '16px',
+                background: 'rgba(26, 32, 44, 0.6)',
+                backdropFilter: 'blur(15px)',
+                borderRadius: '12px',
+                border: '1px solid rgba(102, 126, 234, 0.3)',
+                marginBottom: '16px'
+              }}
+            >
+              <div style={{
+                fontSize: '14px',
+                color: '#cbd5e0',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px'
+              }}>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    border: '2px solid rgba(102, 126, 234, 0.3)',
+                    borderTop: '2px solid #667eea',
+                    borderRadius: '50%'
+                  }}
+                />
+                Loading older messages...
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <AnimatePresence>
           {messages.length === 0 && (
             <motion.div 
@@ -576,6 +710,37 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               }}>
                 Ask about themes, characters, plot details, writing style, or anything that sparks your curiosity!
               </p>
+              
+              {/* ESL Mode Indicator */}
+              {eslEnabled && eslLevel && (
+                <div style={{
+                  padding: '8px 12px',
+                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  marginBottom: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <span style={{ fontSize: '14px' }}>🌍</span>
+                  <span style={{
+                    fontSize: '12px',
+                    color: '#ffffff',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                    fontWeight: '600'
+                  }}>
+                    ESL Mode Active - Level {eslLevel}
+                  </span>
+                  <span style={{
+                    fontSize: '11px',
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  }}>
+                    (AI responses adapted for English learners)
+                  </span>
+                </div>
+              )}
               <div style={{
                 fontSize: '12px',
                 color: '#6b7280',
@@ -615,9 +780,9 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               >
                 <div
                   style={{
-                    maxWidth: '85%',
-                    borderRadius: '18px',
-                    padding: '16px 20px',
+                    maxWidth: '90%',
+                    borderRadius: '20px',
+                    padding: '20px 24px',
                     background: message.sender === 'user' 
                       ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                       : 'rgba(26, 32, 44, 0.8)',
@@ -645,8 +810,8 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                     {message.sender === 'user' ? '👤 You' : '🤖 AI Assistant'}
                   </div>
                   <div style={{
-                    fontSize: '15px',
-                    lineHeight: '1.6',
+                    fontSize: '18px',
+                    lineHeight: '1.7',
                     whiteSpace: 'pre-wrap',
                     fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                     fontWeight: '500'
@@ -657,6 +822,8 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                         isMultiAgent={message.isMultiAgent}
                         agentResponses={message.agentResponses}
                         voiceSupported={voiceSupported}
+                        eslLevel={eslLevel}
+                        nativeLanguage={nativeLanguage}
                       />
                     ) : (
                       message.content
@@ -809,12 +976,282 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         <div ref={messagesEndRef} />
       </div>
 
+      {/* Voice Settings Modal */}
+      <AnimatePresence>
+        {showVoiceModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(0, 0, 0, 0.5)',
+              backdropFilter: 'blur(8px)',
+              zIndex: 1000,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '20px'
+            }}
+            onClick={() => setShowVoiceModal(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                background: 'rgba(26, 32, 44, 0.95)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '16px',
+                padding: '24px',
+                border: '2px solid rgba(102, 126, 234, 0.3)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+                maxWidth: '400px',
+                width: '100%',
+                maxHeight: '80vh',
+                overflowY: 'auto'
+              }}
+              onClick={(e) => e.stopPropagation()}
+              data-voice-modal
+            >
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '20px'
+              }}>
+                <h3 style={{
+                  fontSize: '18px',
+                  fontWeight: '700',
+                  color: '#f7fafc',
+                  margin: 0,
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  🎵 Voice Settings
+                </h3>
+                <button
+                  onClick={() => setShowVoiceModal(false)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#9ca3af',
+                    fontSize: '24px',
+                    cursor: 'pointer',
+                    padding: '4px',
+                    borderRadius: '8px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
+                    e.currentTarget.style.color = '#f87171';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'none';
+                    e.currentTarget.style.color = '#9ca3af';
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#cbd5e0',
+                  margin: '0 0 16px 0',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  Choose a voice for AI responses
+                </p>
+
+                {/* Standard Voice */}
+                <button
+                  onClick={() => {
+                    setSelectedVoice('standard');
+                    setSelectedSubVoice('');
+                    setShowVoiceModal(false);
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    background: selectedVoice === 'standard' 
+                      ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                      : 'rgba(45, 55, 72, 0.6)',
+                    border: selectedVoice === 'standard' 
+                      ? 'none'
+                      : '1px solid rgba(102, 126, 234, 0.3)',
+                    borderRadius: '8px',
+                    color: selectedVoice === 'standard' ? 'white' : '#cbd5e0',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginBottom: '8px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (selectedVoice !== 'standard') {
+                      e.currentTarget.style.background = 'rgba(102, 126, 234, 0.1)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (selectedVoice !== 'standard') {
+                      e.currentTarget.style.background = 'rgba(45, 55, 72, 0.6)';
+                    }
+                  }}
+                >
+                  <span>🔊 Standard Voice</span>
+                  <span style={{ 
+                    fontSize: '12px', 
+                    opacity: 0.8,
+                    background: 'rgba(16, 185, 129, 0.2)',
+                    color: '#10b981',
+                    padding: '4px 8px',
+                    borderRadius: '6px'
+                  }}>
+                    Free
+                  </span>
+                </button>
+
+                {/* OpenAI Voices */}
+                <div style={{ marginBottom: '8px' }}>
+                  <div style={{
+                    fontSize: '12px',
+                    color: '#667eea',
+                    fontWeight: '700',
+                    marginBottom: '8px',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  }}>
+                    🤖 OpenAI Voices
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                    {['Alloy', 'Echo', 'Fable', 'Onyx', 'Nova', 'Shimmer'].map((voice) => (
+                      <button
+                        key={`openai-${voice}`}
+                        onClick={() => {
+                          setSelectedVoice('openai');
+                          setSelectedSubVoice(voice);
+                          setShowVoiceModal(false);
+                        }}
+                        style={{
+                          padding: '10px 12px',
+                          background: selectedVoice === 'openai' && selectedSubVoice === voice
+                            ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                            : 'rgba(45, 55, 72, 0.6)',
+                          border: selectedVoice === 'openai' && selectedSubVoice === voice
+                            ? 'none'
+                            : '1px solid rgba(102, 126, 234, 0.3)',
+                          borderRadius: '8px',
+                          color: selectedVoice === 'openai' && selectedSubVoice === voice ? 'white' : '#a5b4fc',
+                          fontSize: '12px',
+                          fontWeight: '500',
+                          fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!(selectedVoice === 'openai' && selectedSubVoice === voice)) {
+                            e.currentTarget.style.background = 'rgba(102, 126, 234, 0.1)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!(selectedVoice === 'openai' && selectedSubVoice === voice)) {
+                            e.currentTarget.style.background = 'rgba(45, 55, 72, 0.6)';
+                          }
+                        }}
+                      >
+                        {voice}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ElevenLabs Voices */}
+                <div>
+                  <div style={{
+                    fontSize: '12px',
+                    color: '#667eea',
+                    fontWeight: '700',
+                    marginBottom: '8px',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  }}>
+                    ✨ ElevenLabs Voices
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                    {['Rachel', 'Drew', 'Clyde', 'Paul', 'Domi', 'Dave'].map((voice) => (
+                      <button
+                        key={`elevenlabs-${voice}`}
+                        onClick={() => {
+                          setSelectedVoice('elevenlabs');
+                          setSelectedSubVoice(voice);
+                          setShowVoiceModal(false);
+                        }}
+                        style={{
+                          padding: '10px 12px',
+                          background: selectedVoice === 'elevenlabs' && selectedSubVoice === voice
+                            ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                            : 'rgba(45, 55, 72, 0.6)',
+                          border: selectedVoice === 'elevenlabs' && selectedSubVoice === voice
+                            ? 'none'
+                            : '1px solid rgba(102, 126, 234, 0.3)',
+                          borderRadius: '8px',
+                          color: selectedVoice === 'elevenlabs' && selectedSubVoice === voice ? 'white' : '#a5b4fc',
+                          fontSize: '12px',
+                          fontWeight: '500',
+                          fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!(selectedVoice === 'elevenlabs' && selectedSubVoice === voice)) {
+                            e.currentTarget.style.background = 'rgba(102, 126, 234, 0.1)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!(selectedVoice === 'elevenlabs' && selectedSubVoice === voice)) {
+                            e.currentTarget.style.background = 'rgba(45, 55, 72, 0.6)';
+                          }
+                        }}
+                      >
+                        {voice}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{
+                  marginTop: '16px',
+                  padding: '12px',
+                  background: 'rgba(251, 191, 36, 0.1)',
+                  border: '1px solid rgba(251, 191, 36, 0.2)',
+                  borderRadius: '8px',
+                  fontSize: '11px',
+                  color: '#fbbf24',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  <strong>Pro voices</strong> require premium subscription for enhanced quality
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.footer 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
         style={{
-          padding: '20px 24px 24px 24px',
+          padding: '16px 24px',
           borderTop: '1px solid rgba(102, 126, 234, 0.2)',
           background: 'rgba(26, 32, 44, 0.95)',
           backdropFilter: 'blur(20px)',
@@ -823,8 +1260,8 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         }}
       >
         <form onSubmit={handleSubmit} style={{ marginBottom: '12px' }}>
-          {/* Input Row with Voice Button */}
-          <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
+          {/* Input Row with Voice Controls */}
+          <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
             <motion.input
               ref={inputRef}
               type="text"
@@ -837,10 +1274,10 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               transition={{ duration: 0.2 }}
               style={{
                 flex: 1,
-                padding: '14px 18px',
+                padding: '18px 22px',
                 border: isListening ? '2px solid #10b981' : '2px solid rgba(102, 126, 234, 0.3)',
-                borderRadius: '14px',
-                fontSize: '15px',
+                borderRadius: '16px',
+                fontSize: '17px',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                 fontWeight: '500',
                 background: isListening ? 'rgba(16, 185, 129, 0.1)' : 'rgba(45, 55, 72, 0.8)',
@@ -866,173 +1303,235 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               aria-describedby="input-help"
             />
 
-            {/* Voice Input Button */}
+            {/* Voice Settings and Microphone */}
             {speechRecognition && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                {/* Voice Settings Button */}
+                <motion.button
+                  type="button"
+                  onClick={() => setShowVoiceModal(true)}
+                  disabled={isProcessing}
+                  whileHover={{ scale: isProcessing ? 1 : 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{
+                    padding: '18px',
+                    background: 'rgba(45, 55, 72, 0.8)',
+                    backdropFilter: 'blur(10px)',
+                    color: '#a5b4fc',
+                    border: '2px solid rgba(102, 126, 234, 0.3)',
+                    borderRadius: '16px',
+                    cursor: isProcessing ? 'not-allowed' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    opacity: isProcessing ? 0.5 : 1,
+                    transition: 'all 0.2s ease'
+                  }}
+                  aria-label="Voice settings"
+                  title="Configure voice settings"
+                >
+                  ⚙️
+                </motion.button>
+
+                {/* Voice Input Button */}
+                <motion.button
+                  type="button"
+                  onClick={isListening ? stopVoiceInput : startVoiceInput}
+                  disabled={isProcessing}
+                  whileHover={{ scale: isProcessing ? 1 : 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{
+                    padding: '18px',
+                    background: isListening
+                      ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+                      : 'rgba(45, 55, 72, 0.8)',
+                    backdropFilter: 'blur(10px)',
+                    color: isListening ? 'white' : '#a5b4fc',
+                    border: isListening ? 'none' : '2px solid rgba(102, 126, 234, 0.3)',
+                    borderRadius: '16px',
+                    cursor: isProcessing ? 'not-allowed' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    opacity: isProcessing ? 0.5 : 1,
+                    transition: 'all 0.2s ease',
+                    boxShadow: isListening ? '0 4px 12px rgba(16, 185, 129, 0.25)' : 'none'
+                  }}
+                  aria-label={isListening ? 'Stop voice input' : 'Start voice input'}
+                  title={isListening ? 'Stop listening' : 'Click to speak your question'}
+                >
+                  {isListening ? (
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                    >
+                      🛑
+                    </motion.div>
+                  ) : (
+                    '🎤'
+                  )}
+                </motion.button>
+              </div>
+            )}
+          </div>
+
+          {/* ESL Status Row */}
+          {eslEnabled && eslLevel && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '8px',
+              padding: '6px 12px',
+              background: 'rgba(16, 185, 129, 0.1)',
+              borderRadius: '8px',
+              border: '1px solid rgba(16, 185, 129, 0.2)'
+            }}>
+              <span style={{ fontSize: '12px' }}>🌍</span>
+              <span style={{
+                fontSize: '11px',
+                color: '#10b981',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                fontWeight: '600'
+              }}>
+                ESL Level {eslLevel} Active
+              </span>
+              {nativeLanguage && (
+                <span style={{
+                  fontSize: '10px',
+                  color: '#059669',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  • Native: {nativeLanguage}
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Send Button Row */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
               <motion.button
-                type="button"
-                onClick={isListening ? stopVoiceInput : startVoiceInput}
-                disabled={isProcessing}
-                whileHover={{ scale: isProcessing ? 1 : 1.05 }}
+                type="submit"
+                disabled={isProcessing || !inputValue.trim()}
+                whileHover={{ 
+                  scale: (isProcessing || !inputValue.trim()) ? 1 : 1.05,
+                  transition: { duration: 0.2 }
+                }}
                 whileTap={{ scale: 0.95 }}
                 style={{
-                  padding: '14px',
-                  background: isListening
-                    ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-                    : 'rgba(45, 55, 72, 0.8)',
-                  backdropFilter: 'blur(10px)',
-                  color: isListening ? 'white' : '#a5b4fc',
-                  border: isListening ? 'none' : '2px solid rgba(102, 126, 234, 0.3)',
-                  borderRadius: '14px',
-                  cursor: isProcessing ? 'not-allowed' : 'pointer',
+                  padding: '14px 24px',
+                  background: (isProcessing || !inputValue.trim()) 
+                    ? '#e5e7eb' 
+                    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: (isProcessing || !inputValue.trim()) ? '#9ca3af' : 'white',
+                  border: 'none',
+                  borderRadius: '12px',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  cursor: (isProcessing || !inputValue.trim()) ? 'not-allowed' : 'pointer',
+                  transition: 'all 0.2s ease',
+                  boxShadow: (isProcessing || !inputValue.trim()) 
+                    ? 'none' 
+                    : '0 4px 12px rgba(102, 126, 234, 0.25)',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '18px',
-                  opacity: isProcessing ? 0.5 : 1,
-                  transition: 'all 0.2s ease',
-                  boxShadow: isListening ? '0 4px 12px rgba(16, 185, 129, 0.25)' : 'none'
+                  gap: '8px'
                 }}
-                aria-label={isListening ? 'Stop voice input' : 'Start voice input'}
-                title={isListening ? 'Stop listening' : 'Click to speak your question'}
+                aria-label="Send question"
               >
-                {isListening ? (
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  >
-                    🛑
-                  </motion.div>
+                {isProcessing ? (
+                  <>
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      style={{
+                        width: '16px',
+                        height: '16px',
+                        border: '2px solid transparent',
+                        borderTop: '2px solid currentColor',
+                        borderRadius: '50%'
+                      }}
+                    />
+                    Sending...
+                  </>
                 ) : (
-                  '🎤'
+                  <>
+                    ✨ Send
+                  </>
                 )}
               </motion.button>
-            )}
-            
-            <motion.button
-              type="submit"
-              disabled={isProcessing || !inputValue.trim()}
-              whileHover={{ 
-                scale: (isProcessing || !inputValue.trim()) ? 1 : 1.05,
-                transition: { duration: 0.2 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                padding: '14px 24px',
-                background: (isProcessing || !inputValue.trim()) 
-                  ? '#e5e7eb' 
-                  : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                color: (isProcessing || !inputValue.trim()) ? '#9ca3af' : 'white',
-                border: 'none',
-                borderRadius: '14px',
-                fontSize: '15px',
-                fontWeight: '600',
+              
+              <div style={{
+                fontSize: '12px',
+                color: '#9ca3af',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                cursor: (isProcessing || !inputValue.trim()) ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: (isProcessing || !inputValue.trim()) 
-                  ? 'none' 
-                  : '0 4px 12px rgba(102, 126, 234, 0.25)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}
-              aria-label="Send question"
-            >
-              {isProcessing ? (
-                <>
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    style={{
-                      width: '16px',
-                      height: '16px',
-                      border: '2px solid transparent',
-                      borderTop: '2px solid currentColor',
-                      borderRadius: '50%'
-                    }}
-                  />
-                  Sending...
-                </>
-              ) : (
-                <>
-                  ✨ Send
-                </>
+                fontWeight: '500'
+              }}>
+                Press <kbd style={{
+                  background: 'rgba(45, 55, 72, 0.6)',
+                  border: '1px solid rgba(102, 126, 234, 0.3)',
+                  color: '#cbd5e0',
+                  borderRadius: '4px',
+                  padding: '2px 6px',
+                  fontSize: '11px',
+                  fontWeight: '600'
+                }}>Enter</kbd> to send
+              </div>
+            </div>
+
+            <AnimatePresence>
+              {messages.length > 0 && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={clearChat}
+                  style={{
+                    fontSize: '11px',
+                    color: '#e2e8f0',
+                    fontWeight: '600',
+                    background: 'rgba(45, 55, 72, 0.6)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                    cursor: 'pointer',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                    padding: '6px 10px',
+                    borderRadius: '8px',
+                    transition: 'all 0.2s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(239, 68, 68, 0.15)';
+                    e.currentTarget.style.borderColor = '#f87171';
+                    e.currentTarget.style.color = '#fca5a5';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(239, 68, 68, 0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(45, 55, 72, 0.6)';
+                    e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                    e.currentTarget.style.color = '#e2e8f0';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                  aria-label="Clear chat history"
+                >
+                  🗑️ Clear Chat
+                </motion.button>
               )}
-            </motion.button>
+            </AnimatePresence>
           </div>
         </form>
 
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          gap: '16px'
-        }}>
-          <div id="input-help" style={{
-            fontSize: '12px',
-            color: '#9ca3af',
-            fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-            fontWeight: '500'
-          }}>
-            💡 Press <kbd style={{
-              background: 'rgba(45, 55, 72, 0.6)',
-              border: '1px solid rgba(102, 126, 234, 0.3)',
-              color: '#cbd5e0',
-              borderRadius: '4px',
-              padding: '2px 6px',
-              fontSize: '11px',
-              fontWeight: '600'
-            }}>Enter</kbd> to send, <kbd style={{
-              background: 'rgba(45, 55, 72, 0.6)',
-              border: '1px solid rgba(102, 126, 234, 0.3)',
-              color: '#cbd5e0',
-              borderRadius: '4px',
-              padding: '2px 6px',
-              fontSize: '11px',
-              fontWeight: '600'
-            }}>Shift+Enter</kbd> for new line
-            {speechRecognition && (
-              <span style={{ display: 'block', marginTop: '4px' }}>
-                🎤 Click microphone to speak your question • 🔊 Click "Listen" on responses for audio
-              </span>
-            )}
-          </div>
-          
-          <AnimatePresence>
-            {messages.length > 0 && (
-              <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={clearChat}
-                style={{
-                  fontSize: '12px',
-                  color: '#f87171',
-                  fontWeight: '600',
-                  background: 'none',
-                  border: 'none',
-                  textDecoration: 'underline',
-                  cursor: 'pointer',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  padding: '4px 8px',
-                  borderRadius: '6px',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'none';
-                }}
-                aria-label="Clear chat history"
-              >
-                🗑️ Clear Chat
-              </motion.button>
-            )}
-          </AnimatePresence>
-        </div>
       </motion.footer>
     </AccessibleWrapper>
   );

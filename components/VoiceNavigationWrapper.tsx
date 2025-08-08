@@ -156,12 +156,12 @@ export const VoiceNavigationWrapper: React.FC<VoiceNavigationWrapperProps> = ({ 
     <>
       {children}
       
-      {/* Voice Navigation Component */}
+      {/* Voice Navigation Component - Temporarily disabled to avoid overlap
       <VoiceNavigation
         onVoiceCommand={handleVoiceCommand}
         disabled={!isVoiceEnabled}
         className="voice-navigation"
-      />
+      /> */}
       
       {/* Add global CSS for text sizing and high contrast */}
       <style jsx global>{`
