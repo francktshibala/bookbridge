@@ -771,3 +771,13 @@ interface SimplificationEvent {
 - Edge cases: poetry/dialogue formatting, illustrations, mixed RTL content
 - i18n/RTL: locale roadmap and icon mirroring schedule; initial languages beyond English UI
 - Offline/Downloads: scope for PWA reading and audio caching in MVP 
+
+---
+
+## Wireframes (to be linked after upload)
+- Desktop Original: ../wireframes/desktop-original.png
+- Desktop Simplified: ../wireframes/desktop-simplified.png
+- Desktop Compare: ../wireframes/desktop-compare.png
+- Desktop TTS (playing): ../wireframes/desktop-tts.png
+- Mobile Simplified: ../wireframes/mobile-simplified.png
+- Level Sheet: ../wireframes/level-sheet.png 
