@@ -24,6 +24,218 @@ Over the next two sprints we will ship: a focused reading surface with three mod
 
 ## 2) Architecture Overview
 
+### Performance Optimization Strategy
+**Critical Performance Targets**
+- **Time-to-First-Simplified**: <2s cached, <5s generated
+- **TTS Continuity**: <100ms gaps between chunks
+- **Initial Page Load**: <2s including basic content
+- **Cache Hit Rates**: 85%+ simplifications, 95%+ vocabulary lookups
+- **Memory Efficiency**: <50MB per reading session
+
+### Multi-Layer Caching Architecture
+
+**Layer 1: Browser Cache (Immediate Access)**
+```typescript
+// Service Worker + IndexedDB for offline-capable ESL content
+interface CachedSimplification {
+  bookId: string;
+  level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+  chunkIndex: number;
+  content: string;
+  timestamp: number;
+  version: string; // Model version for cache invalidation
+}
+
+// Smart prefetching based on reading progress
+class SimplificationPrefetcher {
+  prefetchNextChunks(currentChunk: number, level: string, bookId: string) {
+    // Prefetch next 2-3 chunks at 70% current chunk progress
+    // Priority: B1/B2 > A2 > A1 > C1/C2 (based on usage)
+  }
+}
+```
+
+**Layer 2: CDN/Edge Cache (Global Distribution)**
+- Precomputed simplifications for top 50 titles at B1/B2 levels
+- Static TTS audio files cached at edge locations
+- Cache-Control headers: `max-age=86400, s-maxage=604800` (1 day/1 week)
+
+**Layer 3: Application Cache (Redis/Upstash)**
+```typescript
+// Key format: `${bookId}:${level}:${chunkIndex}:${modelVersion}`
+const cacheKey = `pride-prejudice:B1:023:haiku_a1b2c3_v2`;
+// TTL: 7 days for simplifications, 24h for vocabulary state
+```
+
+**Layer 4: Database Cache (Supabase)**
+- Permanent storage with composite indexing for ESL content
+- Optimized queries using `book_id, target_level, chunk_index` composite index
+
+### Intelligent TTS Performance Strategy
+
+**Smart Audio Prefetching Pipeline**
+```typescript
+interface TTSPrefetchStrategy {
+  // Start prefetch when user is 80% through current chunk
+  prefetchTrigger: 0.8;
+  
+  // Queue management to prevent memory bloat
+  maxQueuedChunks: 3;
+  
+  // Provider-specific optimization
+  chunkSizes: {
+    'web-speech': 10000,      // Can handle large chunks efficiently
+    'elevenlabs': 2000,       // Smaller for faster response
+    'openai': 1500,          // Balance quality vs speed
+    'elevenlabs-websocket': 5000 // Real-time streaming
+  };
+}
+
+class AudioPrefetchManager {
+  private audioQueue = new Map<string, ArrayBuffer>();
+  
+  async prefetchNextChunk(chunkId: string, provider: VoiceProvider) {
+    // Use optimal chunk size per provider for fastest response
+    const optimalSize = this.getOptimalChunkSize(provider);
+    
+    // Prefetch in background, don't block current playback
+    this.backgroundFetch(chunkId, optimalSize);
+  }
+  
+  // Seamless handoff with 150-250ms crossfade
+  crossfadeToNext(currentAudio: HTMLAudioElement, nextBuffer: ArrayBuffer) {
+    // Implementation for smooth transitions
+  }
+}
+```
+
+**Highlighting Performance for Large Books**
+```typescript
+// Memory-efficient highlighting for 500+ page books
+class HighlightingOptimizer {
+  private highlightPool = new Map<string, HighlightElement[]>();
+  
+  // Only create DOM elements for visible/nearby chunks
+  createVirtualizedHighlights(visibleRange: [number, number]) {
+    // Recycle highlight elements using object pooling
+    // Only highlight words in current viewport + 1 chunk buffer
+  }
+  
+  // Provider-specific optimization
+  getHighlightStrategy(provider: VoiceProvider) {
+    return {
+      'web-speech': 'boundary-events',    // Most accurate
+      'elevenlabs-websocket': 'character-timing', // Real-time precise
+      'openai': 'whisper-alignment',      // Post-process timing
+      'elevenlabs': 'time-estimation'     // Fallback method
+    };
+  }
+}
+```
+
+### Database Query Optimization
+
+**Vocabulary Tracking Performance**
+```sql
+-- Optimized index for SRS vocabulary queries
+CREATE INDEX CONCURRENTLY idx_vocab_srs_lookup 
+ON esl_vocabulary_progress(user_id, next_review) 
+WHERE next_review <= CURRENT_DATE + INTERVAL '1 day';
+
+-- Partitioned table for high-volume vocabulary events
+CREATE TABLE vocabulary_events_y2024m12 PARTITION OF vocabulary_events
+FOR VALUES FROM ('2024-12-01') TO ('2025-01-01');
+```
+
+**Book Content Query Optimization**
+```typescript
+// Streaming content delivery to avoid memory spikes
+class BookContentStreamer {
+  async streamChunks(bookId: string, startChunk: number = 0) {
+    // Fetch chunks in batches of 5, stream to client
+    for (let i = startChunk; i < totalChunks; i += 5) {
+      yield await this.fetchChunkBatch(bookId, i, 5);
+      
+      // Yield control to prevent blocking
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
+  }
+}
+```
+
+### Memory Management Strategy
+
+**ESL Session Memory Budget: <50MB**
+```typescript
+interface MemoryBudget {
+  // Current chunk content + simplified version
+  activeContent: 5_000_000,      // ~5MB text content
+  
+  // Audio buffers (3 chunks max)
+  audioPrefetch: 15_000_000,     // ~15MB MP3 audio
+  
+  // Vocabulary state + SRS data
+  vocabularyData: 2_000_000,     // ~2MB structured data
+  
+  // UI highlighting elements (virtualized)
+  highlightElements: 1_000_000,  // ~1MB DOM elements
+  
+  // Vector embeddings cache
+  embeddingsCache: 10_000_000,   // ~10MB semantic search
+  
+  // Component state + React overhead
+  reactOverhead: 12_000_000,     // ~12MB framework
+  
+  // Buffer for unexpected growth
+  safetyBuffer: 5_000_000        // ~5MB safety margin
+}
+
+class MemoryMonitor {
+  checkMemoryPressure() {
+    if (performance.memory?.usedJSHeapSize > 50_000_000) {
+      // Trigger cleanup: clear old audio buffers, simplification cache
+      this.aggressiveCleanup();
+    }
+  }
+}
+```
+
+### Performance Monitoring & Telemetry
+
+**Real-time Performance Metrics**
+```typescript
+interface PerformanceMetrics {
+  // ESL Feature Performance
+  simplificationLatency: number;    // Target: <2s cached, <5s generated
+  ttsGenerationTime: number;        // Target: <3s ElevenLabs, <2s OpenAI
+  highlightingAccuracy: number;     // % of words highlighted correctly
+  
+  // Memory & Caching
+  cacheHitRatio: number;           // Target: 85%+ simplifications
+  memoryUsage: number;             // Target: <50MB per session
+  prefetchEffectiveness: number;    // % of prefetched content used
+  
+  // User Experience
+  chunkTransitionGaps: number[];    // Target: <100ms gaps
+  initialLoadTime: number;          // Target: <2s to readable content
+  vocabularyLookupTime: number;     // Target: <200ms
+}
+
+// Automatic performance degradation detection
+class PerformanceDegrader {
+  adaptToSlowDevice() {
+    if (this.detectSlowDevice()) {
+      // Reduce chunk sizes, disable prefetch, simplify highlighting
+      return {
+        chunkSize: 500,              // Smaller chunks for slower devices
+        prefetchEnabled: false,       // Disable prefetch to save memory
+        highlightingMode: 'minimal'   // Basic highlighting only
+      };
+    }
+  }
+}
+```
+
 ### Chunking Strategy for Reading, TTS & Simplification
 **Sentence-Safe Chunking for TTS Continuity**
 - **Primary Unit**: Sentence boundaries (preserves natural audio flow like Speechify)
@@ -32,7 +244,7 @@ Over the next two sprints we will ship: a focused reading surface with three mod
 - **Cross-Chunk Handoff**: Prefetch next chunk at 80% progress, seamless transition
 
 ```typescript
-interface TTSChunk {
+interface OptimizedTTSChunk {
   id: string;
   sentences: Array<{
     text: string;
@@ -40,7 +252,9 @@ interface TTSChunk {
     words: Array<{ word: string; start: number; end: number }>;
   }>;
   audioUrl?: string;
+  prefetchedBuffer?: ArrayBuffer;  // Preloaded for instant playback
   nextChunkId?: string;
+  memoryFootprint: number;         // Track for memory management
 }
 ```
 
@@ -48,16 +262,24 @@ interface TTSChunk {
 - Existing `EnhancedContentChunker` + `VectorService` pipeline
 - Pinecone embeddings for semantic similarity
 - Fallback to keyword search when vector unavailable
+- **Performance**: Vector search cached with 1-hour TTL to reduce API calls
 
 ### Reliability & Observability
 - Cache hit rates for simplifications (target: 85%+)
 - TTS streaming continuity metrics (target: <100ms gaps)
 - Semantic similarity confidence scores (gate at 0.82 threshold)
+- Memory usage monitoring with automatic cleanup at 80% budget
+- Real-time performance degradation detection with adaptive responses
 
 ### Decisions
+- [x] **Memory Budget**: <50MB per ESL reading session with automatic cleanup
 - [x] **Chunking boundaries**: Sentence-safe with 500-800 word target
+- [x] **Cache Strategy**: 4-layer caching with smart prefetching and TTL management
+- [x] **TTS Optimization**: Provider-specific chunk sizes for fastest response
+- [x] **Highlighting Strategy**: Virtualized highlights for large books with object pooling
+- [x] **Performance Monitoring**: Real-time metrics with automatic adaptation to slow devices
 - [x] **Similarity gating thresholds**: Cosine ≥ 0.82 (allow some flexibility for ESL learning)
-- [x] **TTS prefetch**: Begin at 80% chunk progress
+- [x] **TTS prefetch**: Begin at 80% chunk progress with 3-chunk queue limit
 
 ---
 
@@ -164,50 +386,124 @@ interface VocabularySurfacing {
 ---
 
 ## 5) Reading UI: Modes & Controls
-- Modes
-  - **Original**: render source text; vocabulary tooltips optional.
-  - **Simplified**: render CEFR‑simplified text (A1–C2); preserves structure/paragraphs.
-  - **Compare (Split)**: side‑by‑side original and simplified with linked scroll and active‑panel highlighting.
 
-- Compact ESL/TTS Bar (sticky within reading surface)
-  - Always visible in reading view; collapses to one row on mobile.
-  - On‑bar controls (tap‑sized ≥ 44×44):
-    - **Level**: CEFR chip A1–C2 (opens level sheet on click).
-    - **Simplify**: toggle Original/Simplified.
-    - **Play/Pause** and Stop.
-    - **Speed**: 0.5–1.2× slider in 0.1 steps with label (Very Slow → Very Fast).
-    - **Auto‑advance**: toggle for cross‑chunk/page continuation.
-  - Overflow (Sheet/Popover): voice provider (Web Speech/OpenAI/ElevenLabs), voice selection, pronunciation guide, emphasize difficult words, pause after sentences, volume.
-  - Progress: slim progress bar + timecodes; chunk indicator when applicable (e.g., “2/5”).
+### 🚫 SIMPLIFICATION PRIORITIES: What NOT to Build
 
-- Compare mode specifics
-  - Scroll sync: compute scroll percentage and mirror to the inactive pane.
-  - Highlight target is the active pane (Simplified‑only view highlights the simplified panel).
+#### Features to REMOVE or HIDE for Clean UX:
 
-- Defaults & persistence
-  - ESL users default to Simplified; non‑ESL default to Original. Respect prior user choice per book (localStorage or DB). 
+**1. Visual Noise Elimination**
+- ❌ **Remove**: Floating tooltips, pop-overs, and contextual help bubbles
+- ❌ **Remove**: Multiple colored highlights (keep ONE subtle highlight for TTS only)
+- ❌ **Remove**: Animated transitions between pages (use instant navigation)
+- ❌ **Remove**: Gradient backgrounds, shadows, glows (flat design only)
+- ❌ **Remove**: Icon animations and hover effects (static icons only)
+- ❌ **Remove**: Progress percentage numbers (keep only slim bar)
+- ❌ **Remove**: "Click words for definitions" prompt
+- ❌ **Remove**: Keyboard shortcut hints floating on screen
+- ❌ **Remove**: Cultural context yellow boxes (integrate inline or remove)
+- ❌ **Remove**: Similarity score badges
 
-- Mobile & touch
-  - Single row with icons + labels hidden at ≤360px; long‑press the Level chip to open Level sheet; horizontal swipe for prev/next page when not selecting text.
+**2. Control Bar Minimalism**
+```
+CURRENT (Too Complex):
+[B1] [Original/Simplified/Compare] [▶] [■] [Speed: 1.0x ----o----] [Auto] [2/5] 12:34
 
-- Content Provenance & Legal Indicators
-  - **Source Badge**: Subtle provenance indicator below title
-    - Gutenberg: "From Project Gutenberg" with book icon
-    - Standard Ebooks: "Standard Ebooks Edition" with quality badge
-    - Open Library: "Open Library Text" with library icon
-  - **Info Sheet**: Tap badge for full details
-    - Publication date, source URL, last updated
-    - Copyright status verification
-    - "Report Issue" link for content concerns
-  - **Historical Context Warning**: Auto-shown for pre-1900 texts
-    - Dismissible banner: "This historical text reflects the language and attitudes of its time"
-    - Link to cultural notes when available
+SIMPLIFIED (Clean):
+[B1] [Simplified ▼] [▶] [1.0x]                                    2/5
+```
+- ❌ **Hide**: Stop button (pause is enough)
+- ❌ **Hide**: Speed slider (just show current speed, click to adjust)
+- ❌ **Hide**: Auto-advance toggle (make it default behavior)
+- ❌ **Hide**: Timecodes (keep only page number)
+- ❌ **Combine**: Mode switcher into single dropdown
+
+**3. Library Page Decluttering**
+- ❌ **Remove**: AI Chat widget (move to separate help page)
+- ❌ **Remove**: ESL Progress widget from library (move to profile)
+- ❌ **Remove**: Recommendations section (cognitive overload)
+- ❌ **Remove**: Multiple filter dropdowns (keep only search)
+- ❌ **Remove**: "Upload Book" from main nav (bury in settings)
+- ❌ **Remove**: Genre/Year/Author filters (just search is enough)
+- ❌ **Remove**: Pagination controls (infinite scroll only)
+- ❌ **Remove**: Book cards' publish year and language badges
+
+**4. Reading View Simplification**
+- ❌ **Remove**: Compare/Split mode entirely (too complex for ESL learners)
+- ❌ **Remove**: Vocabulary lookup on-demand (auto-show for difficult words only)
+- ❌ **Remove**: Page navigation arrows (swipe/scroll only)
+- ❌ **Remove**: Book title from reading view (users know what they're reading)
+- ❌ **Remove**: Source badges during reading (show only in library)
+
+**5. Navigation Bar Reduction**
+```
+CURRENT:
+[📚 BookBridge] [Home] [Library] [Upload Book] [Settings] [Subscription Status] [User Menu]
+
+SIMPLIFIED:
+[BookBridge]                                                      [Library] [☰]
+```
+- ❌ **Remove**: Home link (logo goes to library)
+- ❌ **Remove**: Upload Book from nav
+- ❌ **Remove**: Settings from nav (in user menu)
+- ❌ **Remove**: Subscription status badge (bury in profile)
+- ❌ **Remove**: Emoji from logo
+
+### ✅ What to KEEP (Core Features Only)
+
+**Essential Reading Controls:**
+- Level selector (B1, B2, etc.) - single tap to change
+- Mode toggle (Original/Simplified) - two states only
+- Play/Pause button - single action
+- Speed indicator - tap to adjust in modal
+- Page indicator (2/5) - minimal progress
+
+**Clean Visual Hierarchy:**
+```css
+/* Remove ALL of this: */
+--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.2);
+--shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
+--shadow-brand: 0 4px 12px rgba(102, 126, 234, 0.4);
+background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%);
+
+/* Use this instead: */
+background: #0f172a; /* Single flat color */
+border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle borders only */
+```
+
+### Mobile-First Simplification
+**Current Mobile (cluttered):**
+- 6 control buttons in single row
+- Long-press interactions
+- Swipe gestures competing with text selection
+
+**Simplified Mobile:**
+- 3 buttons MAX: [B1] [▶] [Page]
+- Tap-only interactions (no long-press)
+- Vertical scroll only (no swipes)
+
+### Component Removal Checklist
+
+| Component | Current State | Action | Reason |
+|-----------|--------------|--------|---------|
+| AIChat | Floating widget | ❌ REMOVE | Visual noise, blocks content |
+| SubscriptionStatus | Nav bar badge | ❌ REMOVE | Not essential for reading |
+| RecommendationsSection | Library page | ❌ REMOVE | Cognitive overload |
+| Tooltips | Hover everywhere | ❌ REMOVE | Clutters interface |
+| Animations | Transitions, floats | ❌ REMOVE | Distracting |
+| Cultural Notes | Yellow boxes | ❌ REMOVE | Breaks reading flow |
+| Compare Mode | Split view | ❌ REMOVE | Too complex |
+| Upload Book | Main nav | ❌ HIDE | Not core feature |
+| Settings | Main nav | ❌ HIDE | Bury in menu |
+| Voice Provider | Control bar | ❌ HIDE | Advanced setting |
 
 ### Decisions
-- [x] What’s on the bar: Level, Simplify, Play/Pause, Stop, Speed, Auto‑advance; everything else in overflow.
-- [x] Default mode: ESL → Simplified; non‑ESL → Original; persist per user/book.
-- [x] Provenance badges: Subtle source indicators with expandable info sheet
-- [x] Content warnings: Auto-display for historical texts with dismissible banner
+- [x] **Remove visual effects**: No gradients, shadows, animations, or transitions
+- [x] **Minimize controls**: 3-4 buttons max on reading bar
+- [x] **Remove Compare mode**: Too complex for target users  
+- [x] **Hide advanced settings**: Voice selection, pronunciation guides to settings
+- [x] **Simplify navigation**: Logo + Library + Menu only
+- [x] **Remove all floating elements**: No tooltips, help bubbles, or overlays
 
 ---
 
@@ -760,6 +1056,187 @@ interface SimplificationEvent {
 
 ---
 
+## 8) Technical Risk Assessment
+
+### Component Architecture Risks
+
+**🚨 CRITICAL: Design System Fragmentation**
+- **Risk**: 4 different audio components (AudioPlayer, ESLAudioPlayer, SmartAudioPlayer, AudioPlayerWithHighlighting) with duplicate styling logic and hardcoded values
+- **Impact**: 813 lines of inline styles in AudioPlayer.tsx will break with new design tokens
+- **Files**: `/components/AudioPlayer.tsx:276-811`, `/components/ESLAudioPlayer.tsx:278-609`
+- **Prevention**: Create shared `BaseAudioPlayer` with composition pattern before ESL implementation
+- **Early Warning**: If you see gradients like `linear-gradient(135deg, #667eea 0%, #764ba2 100%)` hardcoded across multiple components
+
+**🚨 CRITICAL: Missing Design Token System**
+- **Risk**: Color `#667eea` appears 47 times across components instead of using design tokens
+- **Impact**: Cannot implement ESL-specific theming (reading level colors, proficiency-based layouts)
+- **Files**: `/components/Navigation.tsx:30-275`, `/components/AIChat.tsx:604-1540`
+- **Prevention**: Extract all hardcoded colors/spacing to CSS custom properties in `globals.css`
+- **Early Warning**: Any new component using inline `style` props instead of design system classes
+
+### State Management Risks  
+
+**⚠️ HIGH: Multiple Competing State Systems**
+- **Risk**: ESL features will conflict with existing state management patterns
+- **Impact**: Race conditions between SmartAudioPlayer chunk state, ESLAudioPlayer mode state, and highlighting state
+- **Files**: `/hooks/useESLMode.ts:43-67`, `/hooks/useTextHighlighting.ts:36-54`
+- **Prevention**: Implement unified ESL session manager before adding new features
+- **Early Warning**: `useState` calls in components that should use shared context
+
+**⚠️ MEDIUM: AccessibilityContext Limitations**
+- **Risk**: Current accessibility context doesn't support ESL-specific preferences
+- **Impact**: Cannot adjust interface complexity or visual hierarchy for different proficiency levels
+- **Files**: `/contexts/AccessibilityContext.tsx:16-23`
+- **Prevention**: Extend context with ESL-aware preferences (reading speed, complexity level)
+- **Early Warning**: ESL components bypassing accessibility context for styling
+
+### TTS/Highlighting Implementation Risks
+
+**🚨 CRITICAL: Sentence-Safe Chunking Conflicts**  
+- **Risk**: Current chunking limits (OpenAI: 1200, ElevenLabs: 1800) conflict with required 500-800 word sentence-safe chunks
+- **Impact**: Will create jarring breaks mid-paragraph for ESL learners, breaking learning flow
+- **Files**: `/components/SmartAudioPlayer.tsx:54-107`, `/lib/voice-service.ts:55-71`
+- **Prevention**: Rewrite chunking logic to prioritize sentence boundaries over arbitrary limits
+- **Early Warning**: TTS stops mid-sentence or creates awkward pauses during testing
+
+**🚨 CRITICAL: Highlighting Range API Silent Failures**
+- **Risk**: Text highlighting appears to work in dev but fails silently in production (documented issue)
+- **Impact**: ESL learners lose critical word-level feedback for vocabulary acquisition
+- **Files**: `/lib/highlighting-manager.ts:22-370`, `/docs/HIGHLIGHTING_RANGE_API_ISSUE.md`
+- **Prevention**: Implement regex-based fallback as identified in existing documentation
+- **Early Warning**: Highlighting works in Chrome dev tools but fails in Safari/Firefox
+
+**🚨 CRITICAL: Cross-Chunk Continuity Failure**
+- **Risk**: No handoff mechanism between audio chunks (200ms+ gaps current)
+- **Impact**: Breaks ESL learning flow, fails <100ms gap requirement
+- **Files**: `/components/SmartAudioPlayer.tsx:260-421`
+- **Prevention**: Implement audio prefetching at 80% progress with crossfade transitions
+- **Early Warning**: Audible gaps between paragraphs during TTS playback
+
+### Database Migration Risks
+
+**🚨 CRITICAL: SM-2 Algorithm Data Loss**
+- **Risk**: Adding SM-2 SRS fields to existing vocabulary records will reset user progress
+- **Impact**: All users lose spaced repetition learning history, disrupting established review schedules
+- **Files**: `/prisma/schema.prisma:85-92` (esl_vocabulary_progress table)
+- **Prevention**: Calculate approximate SRS values from existing mastery_level and encounters data
+- **Migration Script**:
+```sql
+UPDATE esl_vocabulary_progress SET
+  repetitions = GREATEST(encounters - 1, 0),
+  ease_factor = CASE WHEN mastery_level >= 4 THEN 2.5 WHEN mastery_level >= 2 THEN 2.2 ELSE 1.8 END,
+  srs_interval = CASE WHEN next_review > NOW() THEN EXTRACT(days FROM (next_review - NOW())) ELSE 1 END;
+```
+- **Early Warning**: User complaints about vocabulary words they "already mastered" appearing in reviews
+
+**⚠️ MEDIUM: Index Creation Downtime**  
+- **Risk**: Creating performance indices on large tables may require 30-60 minute maintenance window
+- **Impact**: Application downtime during peak usage
+- **Files**: Database schema modifications for SRS lookups and cache optimization
+- **Prevention**: Use `CREATE INDEX CONCURRENTLY` and schedule during low-traffic hours
+- **Early Warning**: Query performance degradation as user base grows
+
+### TypeScript Compatibility Risks
+
+**🚨 CRITICAL: CEFR Level Type Fragmentation**
+- **Risk**: Multiple conflicting CEFR level definitions will cause runtime type errors
+- **Impact**: Components expecting different CEFR interfaces will fail at boundaries
+- **Files**: `/lib/voice-service-esl.ts`, `/lib/ai/esl-simplifier.ts`, API routes
+- **Prevention**: Create single `CEFRLevel` type in shared types file, audit all usages
+- **Early Warning**: TypeScript errors about incompatible CEFR level assignments
+
+**⚠️ HIGH: API Contract Mismatches**
+- **Risk**: Frontend components expect different response shapes than synthesis template defines
+- **Impact**: ESL features fail with "property undefined" errors in production
+- **Files**: API routes vs component interfaces
+- **Prevention**: Generate shared type definitions from OpenAPI spec or similar
+- **Early Warning**: Frequent null checks in components for properties that "should exist"
+
+### Performance Risks
+
+**🚨 CRITICAL: Memory Budget Violations**
+- **Risk**: Current implementation uses 75-120MB per session (target: <50MB)
+- **Impact**: Mobile devices run out of memory, causing tab crashes for ESL learners
+- **Files**: `/hooks/useTextHighlighting.ts:81-174`, `/components/SmartAudioPlayer.tsx`
+- **Prevention**: Implement memory monitoring and aggressive cleanup of audio buffers
+- **Early Warning**: Increasing browser memory usage over time, especially on mobile
+
+**🚨 CRITICAL: TTS Gap Performance**
+- **Risk**: Current 500-2000ms gaps between chunks (target: <100ms)
+- **Impact**: Disrupts ESL learning flow, makes audio books unusable for language acquisition
+- **Files**: Voice service TTS chunk handling
+- **Prevention**: Implement audio prefetching and crossfade system
+- **Early Warning**: Users complaining about "choppy" or "interrupted" audio
+
+**⚠️ HIGH: Real-Time Highlighting Performance**
+- **Risk**: 10 FPS polling-based highlighting will cause UI jank on lower-end devices
+- **Impact**: Poor user experience for ESL learners on budget Android devices
+- **Files**: `/hooks/useTextHighlighting.ts:111-141`
+- **Prevention**: Implement virtualized highlighting (only render visible text ranges)
+- **Early Warning**: Frame rate drops below 30fps during TTS highlighting
+
+### Content & Legal Risks
+
+**⚠️ MEDIUM: Public Domain Verification Gaps**
+- **Risk**: Current system lacks automated copyright validation for ESL-simplified content
+- **Impact**: Legal liability for copyrighted content that gets simplified/distributed
+- **Files**: Content ingestion and book catalog management
+- **Prevention**: Implement strict provenance tracking with pre-1928 validation
+- **Early Warning**: Content from ambiguous publication dates appearing in ESL catalog
+
+### Implementation Priority Mitigation Plan
+
+**Phase 1: Critical Infrastructure (Before ESL Development)**
+1. Fix highlighting Range API fallback system
+2. Implement unified state management for ESL features  
+3. Create design token system with ESL-specific variants
+4. Add database migrations with proper SRS field population
+
+**Phase 2: Performance Foundation**
+1. Implement TTS audio prefetching and crossfade
+2. Add memory monitoring and cleanup systems
+3. Create performance indices for ESL database queries
+4. Implement virtualized text highlighting
+
+**Phase 3: Type Safety & API Contracts** 
+1. Standardize CEFR level types across codebase
+2. Align API responses with synthesis template contracts
+3. Add comprehensive ESL feature type definitions
+4. Implement proper error boundaries for ESL components
+
+**Phase 4: Content Safety & Legal**
+1. Implement automated copyright verification
+2. Add content provenance tracking
+3. Create quick removal procedures for questionable content
+4. Add cultural sensitivity review workflow
+
+### Success Metrics & Monitoring
+
+**Critical Performance KPIs**:
+- TTS chunk gap time: <100ms (currently 500-2000ms)
+- Memory usage per session: <50MB (currently 75-120MB)  
+- Time-to-first-simplified: <2s cached, <5s generated
+- Cache hit rate: >85% for book simplifications
+
+**Technical Stability KPIs**:
+- Zero silent highlighting failures in production
+- <1% ESL feature runtime errors
+- Database migration rollback capability maintained
+- TypeScript strict mode compatibility maintained
+
+**Early Warning Alert System**:
+```typescript
+// Implement monitoring hooks
+const useESLPerformanceMonitor = () => {
+  // Track memory usage, TTS gaps, API response times
+  // Alert when approaching limits
+};
+```
+
+By addressing these risks proactively, the ESL redesign can succeed without compromising existing functionality or user experience.
+
+---
+
 ## 14) Open Questions & Dependencies
 - Similarity gate per level: keep global 0.82 or adjust (e.g., A1/A2 stricter)?
 - TTS timings: confirm per‑word boundary fidelity for OpenAI/ElevenLabs; fallback quality expectations
@@ -771,6 +1248,168 @@ interface SimplificationEvent {
 - Edge cases: poetry/dialogue formatting, illustrations, mixed RTL content
 - i18n/RTL: locale roadmap and icon mirroring schedule; initial languages beyond English UI
 - Offline/Downloads: scope for PWA reading and audio caching in MVP 
+
+---
+
+## 9) Feature Prioritization Matrix
+
+### Executive Summary: The 80/20 Path to Success
+
+Based on the codebase analysis and ESL redesign plan, I've identified that **20% of features will deliver 80% of user value**. The absolute MVP focuses on **reliable text simplification with basic reading modes** - everything else is nice-to-have. The existing codebase already has substantial ESL infrastructure (SRS algorithm, vocabulary pedagogy, simplification API) but lacks the clean reading experience that makes it usable.
+
+### Priority Tiers
+
+#### 🎯 TIER 1: Core MVP (Ship This First)
+**These 4 features deliver 80% of value with minimal complexity**
+
+| Feature | User Impact | Effort | Risk | Why Critical |
+|---------|------------|--------|------|--------------|
+| **1. Basic Reading Modes** | 🔥🔥🔥 | Low | Low | Users need Original OR Simplified, not fancy UI |
+| **2. Cached Simplification** | 🔥🔥🔥 | Low | Low | API already exists; just add caching |
+| **3. Simple TTS Playback** | 🔥🔥 | Low | Low | Web Speech API only; no ElevenLabs complexity |
+| **4. Level Selection** | 🔥🔥🔥 | Low | Low | Single dropdown; persist in localStorage |
+
+**Implementation Path:**
+```typescript
+// Week 1: Just these 4 features
+const MVP = {
+  modes: ['original', 'simplified'], // NO compare mode yet
+  tts: 'web-speech-only',           // NO ElevenLabs/OpenAI
+  caching: 'supabase-only',          // Already implemented
+  ui: 'minimal-controls'             // Level + Mode + Play button
+};
+```
+
+#### ⚡ TIER 2: High-Value Enhancements (Sprint 2)
+**Add ONLY after Tier 1 is rock-solid**
+
+| Feature | User Impact | Effort | Risk | Why Wait |
+|---------|------------|--------|------|----------|
+| **5. Vocabulary Tooltips** | 🔥🔥 | Medium | Low | Existing vocab system; needs UI integration |
+| **6. Compare Mode** | 🔥 | Medium | Medium | Complex UI; not essential for learning |
+| **7. TTS Auto-advance** | 🔥 | Medium | High | Cross-chunk sync is complex |
+| **8. Reading Progress** | 🔥 | Low | Low | Nice metric but not core |
+
+#### 🌟 TIER 3: Nice-to-Have (v2 Features)
+**Defer these - they add complexity without proportional value**
+
+| Feature | User Impact | Effort | Risk | Why Defer |
+|---------|------------|--------|------|-----------|
+| SRS Integration | 🔥 | High | High | Complex; users just want to read |
+| ElevenLabs TTS | 💧 | High | High | Expensive, complex WebSocket handling |
+| Highlighting Sync | 💧 | High | Very High | Browser compatibility nightmare |
+| Cultural Notes | 💧 | Medium | Medium | Information overload for users |
+| Reading Analytics | 💧 | Medium | Low | Vanity metrics |
+| Pronunciation Guide | 💧 | High | Medium | Requires audio recording |
+| Voice Selection | 💧 | Low | Low | Web Speech has limited options |
+| Speed Control 0.1x | 💧 | Low | Low | 0.5/0.75/1.0/1.25 is enough |
+
+#### ❌ TIER 4: Cut These Features
+**Remove from scope - they hurt more than help**
+
+| Feature | Why Cut |
+|---------|---------|
+| **Semantic Similarity Gate** | Over-engineering; if AI fails, show original |
+| **Precomputation Pipeline** | Premature optimization; cache on-demand |
+| **Multi-Model Strategy** | Use Claude Haiku for everything |
+| **Vocabulary Mastery Levels** | Too gamified for serious readers |
+| **Cross-page Handoff** | Technical debt; restart TTS per page |
+| **Gesture Controls** | Mobile browsers are inconsistent |
+| **PWA/Offline** | Scope creep; online-only is fine |
+| **RTL Support** | <0.1% of ESL learners need this |
+
+### The Absolute MVP Architecture
+
+```typescript
+// This is ALL you need for v1
+interface MinimalESLReader {
+  // Data
+  book: { id: string; content: string };
+  userLevel: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+  
+  // UI State (localStorage)
+  currentMode: 'original' | 'simplified';
+  
+  // Core Functions (4 total!)
+  simplifyText: (text: string, level: string) => Promise<string>;
+  playTTS: () => void;  // Web Speech only
+  stopTTS: () => void;
+  switchMode: () => void;
+}
+
+// That's it. Ship it.
+```
+
+### Risk Mitigation Strategy
+
+**High-Risk Features to Avoid in MVP:**
+1. **WebSocket TTS** - Connection drops, buffering, sync issues
+2. **Word-level Highlighting** - Browser timing inconsistencies  
+3. **Cross-chunk Continuity** - State management complexity
+4. **SRS Algorithm** - Cognitive overhead for casual readers
+5. **Multiple AI Models** - Cost and latency variance
+
+**Low-Risk Quick Wins:**
+1. **localStorage Persistence** - Simple, works everywhere
+2. **Web Speech API** - Built-in, no dependencies
+3. **Supabase Caching** - Already implemented
+4. **Basic CSS Modes** - Just toggle classes
+
+### Implementation Timeline
+
+**Week 1: Ship Tier 1 (4 features)**
+- Day 1-2: Reading modes UI (Original/Simplified toggle)
+- Day 3: Wire up existing simplification API
+- Day 4: Add Web Speech TTS (play/stop only)
+- Day 5: Testing and polish
+
+**Week 2: Add Tier 2 (if time permits)**
+- Day 1-2: Vocabulary tooltips
+- Day 3-4: Compare mode
+- Day 5: Metrics and monitoring
+
+### Success Metrics for MVP
+
+**User-Facing (What Actually Matters):**
+- Time to first simplified text: <3 seconds
+- Mode switching: Instant (<100ms)
+- TTS reliability: 99%+ (Web Speech is stable)
+- Cache hit rate: >80% after first week
+
+**Technical (Keep It Simple):**
+- Total LOC added: <1000
+- Dependencies added: 0 (use what exists)
+- API calls per session: <5
+- Error rate: <1%
+
+### Decisions for Immediate Action
+
+- [x] **Cut features aggressively**: Ship 4 core features only
+- [x] **Use Web Speech only**: No ElevenLabs in v1
+- [x] **Cache everything**: Simplify once, reuse forever
+- [x] **Single AI model**: Claude Haiku for all levels
+- [x] **No fancy UI**: Text + 3 buttons maximum
+- [x] **localStorage only**: No complex state management
+- [x] **No highlighting**: Audio plays, text stays static
+- [x] **No cross-page**: Each page is independent
+
+### The Counter-Intuitive Truth
+
+**What ESL learners actually want:**
+1. Text they can understand (simplified)
+2. Audio they can follow (TTS)
+3. To not feel stupid (level selection)
+
+**What they DON'T need:**
+- Gamification
+- Analytics dashboards  
+- Perfect word-timing
+- Voice variety
+- Cultural explanations
+- Progress tracking
+- Vocabulary drills
+
+**The Painful Reality:** Your beautiful SRS algorithm and vocabulary pedagogy system? Users don't care. They just want to read Harry Potter at their level. Build that first.
 
 ---
 
