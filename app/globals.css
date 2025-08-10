@@ -78,6 +78,55 @@
     /* Touch targets (minimum 44px) */
     --touch-target: 44px;
     --touch-spacing: 8px;
+    
+    /* ESL Design System Extensions */
+    /* Colors - Enhanced for ESL Features */
+    --color-bg-surface: #0f172a;
+    --color-bg-panel: rgba(26,32,44,0.95);
+    --color-brand: #667eea;
+    --color-brand-2: #764ba2;
+    --color-accent: #10b981;
+    --color-info: #3b82f6;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    --color-text-primary: #e2e8f0;
+    --color-text-muted: #a0aec0;
+    --color-highlight-bg: #fbbf24;
+    --color-highlight-text: #111827;
+    
+    /* ESL CEFR Level Colors */
+    --cefr-a1: #10b981;  /* Green for beginners */
+    --cefr-a2: #06b6d4;  /* Light blue */
+    --cefr-b1: #3b82f6;  /* Blue */
+    --cefr-b2: #8b5cf6;  /* Purple */
+    --cefr-c1: #ef4444;  /* Red */
+    --cefr-c2: #f59e0b;  /* Orange for advanced */
+    
+    /* Radius - Consistent with ESL UI */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-pill: 999px;
+    
+    /* Shadows - Simplified for ESL Clean UI */
+    --shadow-1: 0 1px 2px rgba(0,0,0,.2);
+    --shadow-2: 0 4px 20px rgba(0,0,0,.3);
+    --shadow-ring: 0 0 0 1px rgba(102,126,234,.2);
+    
+    /* Motion - Consistent timing */
+    --duration-fast: 120ms;
+    --duration-normal: 200ms;
+    --duration-slow: 300ms;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    
+    /* Z-index Scale */
+    --z-nav: 50;
+    --z-player: 40;
+    --z-split-view: 100;
+    --z-modal: 110;
+    --z-tooltip: 120;
   }
 
   /* High contrast mode */
@@ -222,6 +271,141 @@
     clip: rect(0, 0, 0, 0) !important;
     white-space: nowrap !important;
     border: 0 !important;
+  }
+
+  /* ESL-specific utility classes */
+  .esl-control-bar {
+    background: var(--color-bg-panel);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    backdrop-filter: blur(12px);
+  }
+
+  .esl-control-bar.mobile {
+    padding: var(--space-3);
+    gap: var(--space-3);
+    border-radius: var(--radius-lg);
+  }
+
+  /* CEFR Level Badge Styles */
+  .cefr-badge {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    min-width: var(--touch-target);
+    height: var(--touch-target);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .cefr-badge.a1 { background: var(--cefr-a1); color: white; }
+  .cefr-badge.a2 { background: var(--cefr-a2); color: white; }
+  .cefr-badge.b1 { background: var(--cefr-b1); color: white; }
+  .cefr-badge.b2 { background: var(--cefr-b2); color: white; }
+  .cefr-badge.c1 { background: var(--cefr-c1); color: white; }
+  .cefr-badge.c2 { background: var(--cefr-c2); color: white; }
+
+  /* Reading Mode Toggle */
+  .mode-toggle {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-text-primary);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-out);
+    min-height: var(--touch-target);
+  }
+
+  .mode-toggle.active {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    color: white;
+  }
+
+  .mode-toggle:hover:not(.active) {
+    border-color: var(--color-brand);
+    background: rgba(102, 126, 234, 0.1);
+  }
+
+  /* TTS Controls */
+  .tts-play-button {
+    width: var(--touch-target);
+    height: var(--touch-target);
+    border-radius: 50%;
+    background: var(--color-brand);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .tts-play-button:hover {
+    background: var(--color-brand-2);
+    transform: scale(1.05);
+  }
+
+  /* Speed Control */
+  .speed-control {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    transition: all var(--duration-normal) var(--ease-out);
+    min-height: var(--touch-target);
+    display: flex;
+    align-items: center;
+  }
+
+  .speed-control:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-primary);
+  }
+
+  /* Vocabulary Highlighting */
+  .vocab-highlight {
+    background: rgba(251, 191, 36, 0.2);
+    color: var(--color-highlight-text);
+    padding: 2px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 1px dotted var(--color-highlight-bg);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .vocab-highlight:hover {
+    background: rgba(251, 191, 36, 0.3);
+  }
+
+  /* Clean Reading Text */
+  .reading-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .reading-text.simplified {
+    color: var(--color-accent);
   }
 
   /* Skip links container */

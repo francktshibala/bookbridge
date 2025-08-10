@@ -180,6 +180,13 @@ model ESLVocabularyProgress {
   difficultyLevel String? @map("difficulty_level") // CEFR level (A1, A2, B1, B2, C1, C2)
   encounters     Int      @default(1)
   masteryLevel   Int      @default(0) @map("mastery_level") // 0-5 scale
+  
+  // SM-2 SRS Algorithm fields
+  easeFactor     Decimal  @default(2.5) @map("ease_factor") @db.Decimal(3,2) // 1.3-2.5 range
+  srsInterval    Int      @default(1) @map("srs_interval") // days until next review
+  repetitions    Int      @default(0) // successful reviews in a row
+  lastQuality    Int      @default(0) @map("last_quality") // 0-5 response quality
+  
   firstSeen      DateTime @default(now()) @map("first_seen")
   lastReviewed   DateTime @default(now()) @map("last_reviewed")
   nextReview     DateTime @default(now()) @map("next_review")
@@ -189,6 +196,7 @@ model ESLVocabularyProgress {
 
   @@unique([userId, word])
   @@index([userId, nextReview])
+  @@index([difficultyLevel, easeFactor]) // For SRS queries
   @@map("esl_vocabulary_progress")
 }
 
@@ -224,11 +232,13 @@ model BookSimplification {
   vocabularyChanges   Json     @default("[]") @map("vocabulary_changes")
   culturalAnnotations Json     @default("[]") @map("cultural_annotations")
   qualityScore        Decimal? @map("quality_score") @db.Decimal(3,2)
+  versionKey          String   @default("v1") @map("version_key") // For cache invalidation
   createdAt           DateTime @default(now()) @map("created_at")
   updatedAt           DateTime @updatedAt @map("updated_at")
 
-  @@unique([bookId, targetLevel, chunkIndex])
+  @@unique([bookId, targetLevel, chunkIndex, versionKey])
   @@index([bookId, targetLevel])
   @@index([updatedAt])
+  @@index([versionKey]) // For cache invalidation queries
   @@map("book_simplifications")
 }

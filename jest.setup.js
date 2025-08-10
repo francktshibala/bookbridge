@@ -5,6 +5,9 @@ import { toHaveNoViolations } from 'jest-axe'
 // Extend Jest matchers with accessibility testing
 expect.extend(toHaveNoViolations)
 
+// Import ESL-specific matchers
+import './test-utils/esl-matchers'
+
 // Mock window.matchMedia for tests
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
