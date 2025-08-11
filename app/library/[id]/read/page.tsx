@@ -350,8 +350,8 @@ export default function BookReaderPage() {
                 transition: 'transform 0.2s'
               }}
               onClick={() => setShowLevelDropdown(!showLevelDropdown)}
-              onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
             >
               {eslLevel}
             </button>
@@ -392,12 +392,12 @@ export default function BookReaderPage() {
                     }}
                     onMouseEnter={(e) => {
                       if (level !== eslLevel) {
-                        e.target.style.backgroundColor = '#475569';
+                        (e.target as HTMLElement).style.backgroundColor = '#475569';
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (level !== eslLevel) {
-                        e.target.style.backgroundColor = 'transparent';
+                        (e.target as HTMLElement).style.backgroundColor = 'transparent';
                       }
                     }}
                   >
@@ -424,8 +424,8 @@ export default function BookReaderPage() {
               boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
               transition: 'all 0.2s'
             }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+            onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
           >
             {currentMode === 'simplified' ? 'Simplified' : 'Original'}
           </button>
@@ -450,8 +450,8 @@ export default function BookReaderPage() {
                 transition: 'transform 0.2s',
                 position: 'relative'
               }}
-              onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
             >
               🎤
               {/* Voice indicator */}
@@ -516,12 +516,12 @@ export default function BookReaderPage() {
                     }}
                     onMouseEnter={(e) => {
                       if (voice.id !== voiceProvider) {
-                        e.target.style.backgroundColor = '#475569';
+                        (e.target as HTMLElement).style.backgroundColor = '#475569';
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (voice.id !== voiceProvider) {
-                        e.target.style.backgroundColor = 'transparent';
+                        (e.target as HTMLElement).style.backgroundColor = 'transparent';
                       }
                     }}
                   >
@@ -551,8 +551,8 @@ export default function BookReaderPage() {
               boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
               transition: 'transform 0.2s'
             }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+            onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
           >
             {isPlaying ? '⏸' : '▶'}
           </button>
@@ -577,12 +577,12 @@ export default function BookReaderPage() {
               transition: 'all 0.2s'
             }}
             onMouseEnter={(e) => {
-              e.target.style.color = 'white';
-              e.target.style.backgroundColor = '#475569';
+              (e.target as HTMLElement).style.color = 'white';
+              (e.target as HTMLElement).style.backgroundColor = '#475569';
             }}
             onMouseLeave={(e) => {
-              e.target.style.color = '#cbd5e1';
-              e.target.style.backgroundColor = 'transparent';
+              (e.target as HTMLElement).style.color = '#cbd5e1';
+              (e.target as HTMLElement).style.backgroundColor = 'transparent';
             }}
           >
             {speechSpeed}x
@@ -609,13 +609,13 @@ export default function BookReaderPage() {
               }}
               onMouseEnter={(e) => {
                 if (canGoPrev) {
-                  e.target.style.color = 'white';
-                  e.target.style.backgroundColor = '#475569';
+                  (e.target as HTMLElement).style.color = 'white';
+                  (e.target as HTMLElement).style.backgroundColor = '#475569';
                 }
               }}
               onMouseLeave={(e) => {
-                e.target.style.color = canGoPrev ? '#94a3b8' : '#475569';
-                e.target.style.backgroundColor = 'transparent';
+                (e.target as HTMLElement).style.color = canGoPrev ? '#94a3b8' : '#475569';
+                (e.target as HTMLElement).style.backgroundColor = 'transparent';
               }}
             >
               ‹
@@ -649,13 +649,13 @@ export default function BookReaderPage() {
               }}
               onMouseEnter={(e) => {
                 if (canGoNext) {
-                  e.target.style.color = 'white';
-                  e.target.style.backgroundColor = '#475569';
+                  (e.target as HTMLElement).style.color = 'white';
+                  (e.target as HTMLElement).style.backgroundColor = '#475569';
                 }
               }}
               onMouseLeave={(e) => {
-                e.target.style.color = canGoNext ? '#94a3b8' : '#475569';
-                e.target.style.backgroundColor = 'transparent';
+                (e.target as HTMLElement).style.color = canGoNext ? '#94a3b8' : '#475569';
+                (e.target as HTMLElement).style.backgroundColor = 'transparent';
               }}
             >
               ›

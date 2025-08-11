@@ -35,12 +35,11 @@ function extractConcepts(query: string, response: string): string[] {
 export async function POST(request: NextRequest) {
   try {
     console.log('AI API called');
-    const { query, bookId, bookContext, conversationId, eslContext } = await request.json();
+    const { query, bookId, bookContext, conversationId } = await request.json();
     console.log('Query:', query);
     console.log('BookId:', bookId);
     console.log('BookContext:', bookContext);
     console.log('ConversationId:', conversationId);
-    console.log('ESL Context:', eslContext);
 
     if (!query || typeof query !== 'string') {
       return NextResponse.json(
@@ -340,58 +339,11 @@ export async function POST(request: NextRequest) {
 - Response temperature: ${dynamicParams.temperature} (${dynamicParams.temperature < 0.5 ? 'be more consistent and focused' : 
   dynamicParams.temperature > 0.7 ? 'be more creative and exploratory' : 'balance consistency with creativity'})`;}
 
-    // 🌍 ESL ADAPTATION - Add ESL-aware instructions
-    let eslInstructions = '';
-    if (eslContext?.enabled && eslContext.level) {
-      const cefrLevelMappings = {
-        'A1': {
-          description: 'Elementary (Beginner)',
-          instructions: 'Use very simple vocabulary, short sentences, present tense mainly. Explain complex literary terms with basic definitions. Provide examples using familiar words. Avoid idioms and cultural references that may be unclear.'
-        },
-        'A2': {
-          description: 'Pre-Intermediate',
-          instructions: 'Use simple vocabulary and clear sentence structures. Explain literary concepts step-by-step. Use common words to define uncommon terms. Include simple examples and comparisons to familiar things.'
-        },
-        'B1': {
-          description: 'Intermediate',
-          instructions: 'Use moderately complex vocabulary with explanations of advanced terms. Provide clear context for literary analysis. Use some sophisticated language but explain difficult concepts clearly.'
-        },
-        'B2': {
-          description: 'Upper-Intermediate',
-          instructions: 'Use varied vocabulary appropriate for literature study. Explain advanced concepts clearly with good examples. Balance sophisticated analysis with accessible language.'
-        },
-        'C1': {
-          description: 'Advanced',
-          instructions: 'Use advanced vocabulary and complex sentence structures. Provide nuanced literary analysis with detailed explanations and cultural context.'
-        },
-        'C2': {
-          description: 'Proficient',
-          instructions: 'Use sophisticated vocabulary and complex analysis. Provide in-depth literary interpretation with cultural and historical context.'
-        }
-      };
-      
-      const levelInfo = cefrLevelMappings[eslContext.level as keyof typeof cefrLevelMappings] || cefrLevelMappings['B2'];
-      
-      eslInstructions = `\n\nESL Adaptation (CEFR ${eslContext.level} - ${levelInfo.description}):
-- ${levelInfo.instructions}`;
-      
-      if (eslContext.nativeLanguage) {
-        eslInstructions += `
-- Consider that the user's native language is ${eslContext.nativeLanguage}. Be mindful of potential language transfer challenges.`;
-      }
-      
-      eslInstructions += `
-- If discussing complex literary concepts, provide simpler explanations first, then build up to more sophisticated analysis.
-- Use concrete examples from the text to illustrate abstract concepts.
-- When appropriate, ask if the user needs clarification on vocabulary or concepts.`;
-      
-      console.log(`ESL adaptations applied for level ${eslContext.level}:`, levelInfo.description);
-    }
 
     let response: any;
     if (useMultiAgent) {
       console.log('Calling enhanced tutoring multi-agent service...');
-      const enhancedQuery = adaptivePrompt ? `${adaptivePrompt}${intelligentPrompt}${dynamicInstructions}${eslInstructions}` : `${intelligentPrompt}${dynamicInstructions}${eslInstructions}`;
+      const enhancedQuery = adaptivePrompt ? `${adaptivePrompt}${intelligentPrompt}${dynamicInstructions}` : `${intelligentPrompt}${dynamicInstructions}`;
       response = await multiAgentService.processQuery(enhancedQuery, {
         userId: user.id,
         bookId,
@@ -404,7 +356,7 @@ export async function POST(request: NextRequest) {
       console.log('Enhanced tutoring response received:', response);
     } else {
       console.log('Calling standard AI service with intelligent prompt...');
-      const enhancedQuery = adaptivePrompt ? `${adaptivePrompt}${intelligentPrompt}${dynamicInstructions}${eslInstructions}` : `${intelligentPrompt}${dynamicInstructions}${eslInstructions}`;
+      const enhancedQuery = adaptivePrompt ? `${adaptivePrompt}${intelligentPrompt}${dynamicInstructions}` : `${intelligentPrompt}${dynamicInstructions}`;
       response = await aiService.query(enhancedQuery, {
         userId: user.id,
         bookId,

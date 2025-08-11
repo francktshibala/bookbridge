@@ -163,31 +163,6 @@ export default function Navigation() {
                         </div>
                       </div>
                       <Link
-                        href="/esl-dashboard"
-                        className="block w-full text-left px-6 py-3 text-sm transition-all duration-300 hover-lift-sm"
-                        style={{ 
-                          color: '#a78bfa',
-                          textDecoration: 'none',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px',
-                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-                        }}
-                        role="menuitem"
-                        onClick={() => setIsUserMenuOpen(false)}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.color = '#ffffff';
-                          e.currentTarget.style.background = 'rgba(139, 92, 246, 0.15)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.color = '#a78bfa';
-                          e.currentTarget.style.background = 'transparent';
-                        }}
-                      >
-                        <span>📊</span>
-                        <span>ESL Dashboard</span>
-                      </Link>
-                      <Link
                         href="/subscription"
                         className="block w-full text-left px-6 py-3 text-sm transition-all duration-300 hover-lift-sm"
                         style={{ 

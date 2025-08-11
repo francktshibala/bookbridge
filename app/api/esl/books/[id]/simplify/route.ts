@@ -148,18 +148,18 @@ async function fetchOriginalContent(bookId: string, section: number): Promise<st
     if (!response.ok) return null;
     
     const data = await response.json();
-    if (!data.content) return null;
+    // Updated: API now returns content in 'context' property, not 'content'
+    if (!data.context) return null;
 
-    // For now, we'll work with the full content or a section based on word count
-    // In production, this would be more sophisticated chunking
-    const words = data.content.split(' ');
-    const chunkSize = 800; // words per section
+    // Split content into chunks matching the frontend pagination (3000 chars per chunk)
+    const fullText = data.context;
+    const chunkSize = 3000; // characters per section (matching frontend)
     const startIndex = section * chunkSize;
-    const endIndex = Math.min(startIndex + chunkSize, words.length);
+    const endIndex = Math.min(startIndex + chunkSize, fullText.length);
     
-    if (startIndex >= words.length) return null;
+    if (startIndex >= fullText.length) return null;
     
-    return words.slice(startIndex, endIndex).join(' ');
+    return fullText.substring(startIndex, endIndex);
   } catch (error) {
     console.error('Failed to fetch original content:', error);
     return null;

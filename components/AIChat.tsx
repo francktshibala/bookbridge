@@ -6,7 +6,6 @@ import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { voiceService } from '@/lib/voice-service';
 import { SmartAudioPlayer } from '@/components/SmartAudioPlayer';
-import { useESLMode } from '@/hooks/useESLMode';
 
 // Component to format AI responses with better styling and citation support
 const FormattedAIResponse: React.FC<{ 
@@ -18,8 +17,6 @@ const FormattedAIResponse: React.FC<{
     citations?: string;
   };
   voiceSupported?: boolean;
-  eslLevel?: string | null;
-  nativeLanguage?: string | null;
 }> = ({ content, isMultiAgent, agentResponses, voiceSupported }) => {
   const [showAgentDetails, setShowAgentDetails] = useState(false);
 
@@ -233,7 +230,6 @@ interface AIChatProps {
 
 export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }) => {
   const { announceToScreenReader } = useAccessibility();
-  const { eslEnabled, eslLevel, nativeLanguage } = useESLMode();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -529,13 +525,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
           bookId,
           bookContext,
           // responseMode removed - AI automatically determines based on query intent
-          conversationId: conversationId, // Re-enabled conversation persistence
-          // ESL Enhancement - Include user's language learning context
-          eslContext: eslEnabled ? {
-            level: eslLevel,
-            nativeLanguage: nativeLanguage,
-            enabled: true
-          } : null
+          conversationId: conversationId
         })
       });
 
@@ -712,37 +702,6 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               }}>
                 Ask about themes, characters, plot details, writing style, or anything that sparks your curiosity!
               </p>
-              
-              {/* ESL Mode Indicator */}
-              {eslEnabled && eslLevel && (
-                <div style={{
-                  padding: '8px 12px',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(16, 185, 129, 0.3)',
-                  marginBottom: '12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}>
-                  <span style={{ fontSize: '14px' }}>🌍</span>
-                  <span style={{
-                    fontSize: '12px',
-                    color: '#ffffff',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                    fontWeight: '600'
-                  }}>
-                    ESL Mode Active - Level {eslLevel}
-                  </span>
-                  <span style={{
-                    fontSize: '11px',
-                    color: 'rgba(255, 255, 255, 0.8)',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-                  }}>
-                    (AI responses adapted for English learners)
-                  </span>
-                </div>
-              )}
               <div style={{
                 fontSize: '12px',
                 color: '#6b7280',
@@ -824,8 +783,6 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
                         isMultiAgent={message.isMultiAgent}
                         agentResponses={message.agentResponses}
                         voiceSupported={voiceSupported}
-                        eslLevel={eslLevel}
-                        nativeLanguage={nativeLanguage}
                       />
                     ) : (
                       message.content
@@ -1379,38 +1336,6 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
             )}
           </div>
 
-          {/* ESL Status Row */}
-          {eslEnabled && eslLevel && (
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              marginBottom: '8px',
-              padding: '6px 12px',
-              background: 'rgba(16, 185, 129, 0.1)',
-              borderRadius: '8px',
-              border: '1px solid rgba(16, 185, 129, 0.2)'
-            }}>
-              <span style={{ fontSize: '12px' }}>🌍</span>
-              <span style={{
-                fontSize: '11px',
-                color: '#10b981',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                fontWeight: '600'
-              }}>
-                ESL Level {eslLevel} Active
-              </span>
-              {nativeLanguage && (
-                <span style={{
-                  fontSize: '10px',
-                  color: '#059669',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-                }}>
-                  • Native: {nativeLanguage}
-                </span>
-              )}
-            </div>
-          )}
 
           {/* Send Button Row */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
