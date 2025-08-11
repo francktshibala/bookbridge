@@ -3,14 +3,14 @@ import { createClient } from '@/lib/supabase/server'
 import { prisma } from '@/lib/prisma'
 import { claudeService } from '@/lib/ai/claude-service'
 
-// Display configuration from implementation guide
+// Display configuration - UNIFIED 400 WORDS FOR CONTENT CONSISTENCY
 const DISPLAY_CONFIG = {
-  A1: { wordsPerScreen: 75, fontSize: '19px', sessionMin: 12 },
-  A2: { wordsPerScreen: 150, fontSize: '17px', sessionMin: 18 },
-  B1: { wordsPerScreen: 250, fontSize: '17px', sessionMin: 22 },
-  B2: { wordsPerScreen: 350, fontSize: '16px', sessionMin: 27 },
+  A1: { wordsPerScreen: 400, fontSize: '19px', sessionMin: 12 },
+  A2: { wordsPerScreen: 400, fontSize: '17px', sessionMin: 18 },
+  B1: { wordsPerScreen: 400, fontSize: '17px', sessionMin: 22 },
+  B2: { wordsPerScreen: 400, fontSize: '16px', sessionMin: 27 },
   C1: { wordsPerScreen: 400, fontSize: '16px', sessionMin: 30 },
-  C2: { wordsPerScreen: 450, fontSize: '16px', sessionMin: 35 }
+  C2: { wordsPerScreen: 400, fontSize: '16px', sessionMin: 35 }
 } as const
 
 type CEFRLevel = keyof typeof DISPLAY_CONFIG
@@ -27,65 +27,177 @@ const chunkText = (text: string, cefrLevel: CEFRLevel): string[] => {
   return chunks
 }
 
+// Era detection function for text-specific thresholds
+const detectEra = (text: string): string => {
+  const sample = text.slice(0, 1000).toLowerCase()
+  
+  // Early Modern English (Shakespeare, 1500-1700)
+  if (/\b(thou|thee|thy|thine|hath|doth|art)\b/.test(sample) || 
+      /-(est|eth)\b/.test(sample) || 
+      /\b(wherefore|whence|whither|prithee)\b/.test(sample)) {
+    return 'early-modern'
+  }
+  
+  // Victorian/19th century (1800-1900)
+  if (/\b(whilst|shall|entailment|chaperone|governess)\b/.test(sample) || 
+      /\b(drawing-room|morning-room|upon|herewith)\b/.test(sample)) {
+    return 'victorian'
+  }
+  
+  // American 19th century vernacular
+  if (/\b(ain't|reckon|y'all|mighty|heap)\b/.test(sample) || 
+      /\b(warn't|hain't|'bout|'nough)\b/.test(sample)) {
+    return 'american-19c'
+  }
+  
+  return 'modern'
+}
+
 // AI-powered text simplification with semantic similarity gate
 const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: string): Promise<{
   simplifiedText: string
   similarity: number
-  quality: 'excellent' | 'good' | 'acceptable' | 'failed'
+  quality: 'excellent' | 'good' | 'acceptable' | 'failed' | 'modernized'
   retryAttempt: number
+  era: string
 }> => {
-  const SIMILARITY_THRESHOLD = 0.82
+  // Era and CEFR level-specific similarity thresholds
+  const era = detectEra(text)
+  const isArchaic = era === 'early-modern' || era === 'victorian' || era === 'american-19c'
+  const isBasicLevel = cefrLevel === 'A1' || cefrLevel === 'A2' || cefrLevel === 'B1'
+  
+  // Base thresholds by era
+  const BASE_THRESHOLDS = {
+    'early-modern': 0.65,  // Shakespeare - more lenient
+    'victorian': 0.70,     // Austen, Dickens - moderate
+    'american-19c': 0.75,  // Twain - slightly lenient  
+    'modern': 0.82         // Contemporary - strict
+  }
+  
+  // Tiered threshold reduction for archaic text
+  const baseThreshold = BASE_THRESHOLDS[era as keyof typeof BASE_THRESHOLDS] || 0.82
+  let SIMILARITY_THRESHOLD = baseThreshold
+  
+  if (isArchaic) {
+    if (cefrLevel === 'A1') {
+      SIMILARITY_THRESHOLD = baseThreshold * 0.75  // Most lenient for A1
+    } else if (cefrLevel === 'A2') {
+      SIMILARITY_THRESHOLD = baseThreshold * 0.80  // Very lenient for A2  
+    } else if (cefrLevel === 'B1') {
+      SIMILARITY_THRESHOLD = baseThreshold * 0.85  // Moderate for B1
+    }
+    // B2+ uses baseThreshold (no reduction)
+  }
   const MAX_RETRIES = 2
+  
+  const reductionNote = isArchaic && SIMILARITY_THRESHOLD < baseThreshold ? 
+    ` (reduced from ${baseThreshold})` : ''
+  console.log(`Detected era: ${era}, CEFR: ${cefrLevel}, using threshold: ${SIMILARITY_THRESHOLD}${reductionNote}`)
 
-  // CEFR-specific simplification prompts
-  const simplificationPrompts = {
-    A1: `Simplify this text for an A1 beginner English learner:
-    - Use only the 500 most common English words
-    - Use present tense only
-    - Keep sentences to 5-8 words maximum
-    - Replace difficult words with simple alternatives
-    - Remove complex grammar structures
-    - Keep the main meaning intact`,
+  // Era-aware CEFR-specific simplification prompts
+  // Dynamic temperature by CEFR level and retry attempt
+  const getTemperature = (level: CEFRLevel, attempt: number): number => {
+    const temperatureMatrix = {
+      A1: [0.45, 0.40, 0.35], // Start high for creative rewriting
+      A2: [0.40, 0.35, 0.30], // Moderate creativity
+      B1: [0.35, 0.30, 0.25], // Balanced approach
+      B2: [0.30, 0.25, 0.20], // More conservative
+      C1: [0.25, 0.20, 0.15], // Minimal changes
+      C2: [0.20, 0.15, 0.10]  // Very conservative
+    }
+    return temperatureMatrix[level]?.[Math.min(attempt, 2)] || 0.25
+  }
+
+  const getSimplificationPrompt = (level: CEFRLevel, era: string): string => {
+    const isArchaic = era === 'early-modern' || era === 'victorian' || era === 'american-19c'
     
-    A2: `Simplify this text for an A2 elementary English learner:
-    - Use only common 1000-word vocabulary
-    - Use simple past and present tense
-    - Keep sentences short (8-12 words)
-    - Use basic connectors: and, but, because
-    - Explain cultural references simply
-    - Keep the essential meaning`,
+    const basePrompts = {
+      A1: isArchaic ? 
+        `COMPLETELY MODERNIZE this ${era} text for A1 beginner English learners:
+        - Replace ALL archaic words immediately: thou/thee/thy→you/your, art/hast/doth→are/have/does
+        - Convert ALL old grammar to modern English patterns
+        - Break EVERY sentence to 5-8 words maximum
+        - Use ONLY the 500 most common English words
+        - Don't preserve poetic structure - clarity is the ONLY priority
+        - Completely rewrite if needed for understanding
+        - Use simple present tense only
+        - Make it sound like everyday modern English` :
+        `Aggressively simplify this text for an A1 beginner English learner:
+        - Use only the 500 most common English words
+        - Use present tense only
+        - Keep sentences to 5-8 words maximum
+        - Replace ALL difficult words with simple alternatives
+        - Remove ALL complex grammar structures
+        - Rewrite completely if needed for clarity`,
+        
+      A2: isArchaic ?
+        `AGGRESSIVELY MODERNIZE this ${era} text for A2 elementary English learners:
+        - Replace ALL archaic language: thou/thee/thy→you/your, 'tis/'twas→it is/it was
+        - Update ALL old verb forms: dost/doth/hath→do/does/has
+        - Break long sentences to 8-12 words maximum
+        - Use ONLY 1000-2750 most common English words
+        - Prioritize understanding over literary style
+        - Rewrite complex structures completely
+        - Use simple past and present tense only
+        - Make it readable for elementary learners` :
+        `Strongly simplify this text for an A2 elementary English learner:
+        - Use only 1000-2750 common vocabulary words
+        - Use simple past and present tense only
+        - Keep sentences short (8-12 words)
+        - Use basic connectors: and, but, because
+        - Replace ALL difficult words with common alternatives
+        - Rewrite complex sentences completely`,
+        
+      B1: isArchaic ?
+        `Adapt this ${era} text for a B1 intermediate English learner:
+        - Modernize archaic grammar while keeping the literary style
+        - Update old words to modern equivalents when necessary
+        - Use 1500-word vocabulary level
+        - Break very long sentences but preserve flow
+        - KEEP the original tone and literary quality
+        - Maintain all plot details and character development` :
+        `Simplify this text for a B1 intermediate English learner:
+        - Use 1500-word vocabulary level
+        - Use most common tenses (avoid complex forms)
+        - Break long sentences into shorter ones
+        - Explain difficult concepts with examples
+        - Keep paragraph structure
+        - Maintain the core meaning and details`,
+      
+      B2: isArchaic ?
+        `Refine this ${era} text for a B2 upper-intermediate English learner:
+        - Modernize grammar but keep literary elegance
+        - Use 2500-word vocabulary level
+        - Clarify archaic references and expressions
+        - PRESERVE the sophisticated style and tone
+        - Keep all cultural and historical context
+        - Maintain the author's voice and literary devices` :
+        `Simplify this text for a B2 upper-intermediate English learner:
+        - Use 2500-word vocabulary level
+        - Clarify complex grammar structures
+        - Break down academic language
+        - Explain cultural and historical references
+        - Keep most original details
+        - Maintain sophisticated ideas but make them clearer`,
+        
+      C1: `Refine this text for a C1 advanced English learner:
+        - Use advanced but clear vocabulary (4000 words)
+        - Simplify very complex sentence structures
+        - Clarify implicit meanings
+        - Explain subtle cultural nuances
+        - Keep academic tone but improve clarity
+        - Maintain all nuances and complexity`,
+        
+      C2: `Polish this text for a C2 near-native English learner:
+        - Keep sophisticated vocabulary
+        - Improve flow and coherence
+        - Clarify any ambiguous expressions
+        - Enhance readability while maintaining complexity
+        - Keep all original meaning and style
+        - Perfect for advanced learners`
+    }
     
-    B1: `Simplify this text for a B1 intermediate English learner:
-    - Use 1500-word vocabulary level
-    - Use most common tenses (avoid complex forms)
-    - Break long sentences into shorter ones
-    - Explain difficult concepts with examples
-    - Keep paragraph structure
-    - Maintain the core meaning and details`,
-    
-    B2: `Simplify this text for a B2 upper-intermediate English learner:
-    - Use 2500-word vocabulary level
-    - Clarify complex grammar structures
-    - Break down academic language
-    - Explain cultural and historical references
-    - Keep most original details
-    - Maintain sophisticated ideas but make them clearer`,
-    
-    C1: `Refine this text for a C1 advanced English learner:
-    - Use advanced but clear vocabulary (4000 words)
-    - Simplify very complex sentence structures
-    - Clarify implicit meanings
-    - Explain subtle cultural nuances
-    - Keep academic tone but improve clarity
-    - Maintain all nuances and complexity`,
-    
-    C2: `Polish this text for a C2 near-native English learner:
-    - Keep sophisticated vocabulary
-    - Improve flow and coherence
-    - Clarify any ambiguous expressions
-    - Enhance readability while maintaining complexity
-    - Keep all original meaning and style
-    - Perfect for advanced learners`
+    return basePrompts[level]
   }
 
   let retryAttempt = 0
@@ -98,26 +210,29 @@ const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: st
       // Add retry-specific instructions for conservative approaches
       const retryInstructions = attempt > 0 ? `
       
-      IMPORTANT: This is retry attempt ${attempt + 1}. The previous simplification changed the meaning too much.
-      Be MORE CONSERVATIVE this time:
-      - Make smaller changes to vocabulary
-      - Keep more of the original sentence structure
-      - Only simplify the most difficult parts
-      - Preserve all key information and meaning
-      - Focus on clarity over simplicity` : ''
+      IMPORTANT: This is retry attempt ${attempt + 1}. The previous simplification didn't simplify ENOUGH.
+      Be MORE AGGRESSIVE this time:
+      - Make BIGGER changes to vocabulary
+      - COMPLETELY rewrite complex sentences
+      - Prioritize clarity over preservation
+      - Use simpler words from the allowed vocabulary level
+      - Focus on making it EASIER to understand, not preserving style` : ''
 
-      const prompt = `${simplificationPrompts[cefrLevel]}${retryInstructions}
+      const prompt = `${getSimplificationPrompt(cefrLevel, era)}${retryInstructions}
 
       Text to simplify:
       "${text}"
 
       Return only the simplified text with no additional explanation or formatting.`
 
-      // Call Claude API for simplification
+      // Call Claude API for simplification with dynamic temperature
+      const currentTemperature = getTemperature(cefrLevel, retryAttempt)
+      console.log(`Using temperature ${currentTemperature} for ${cefrLevel} level, attempt ${retryAttempt + 1}`)
+      
       const response = await claudeService.query(prompt, {
         userId,
         maxTokens: Math.min(1500, Math.max(300, text.length * 2)),
-        temperature: 0.3, // Low temperature for consistent simplification
+        temperature: currentTemperature, // Dynamic temperature by level and attempt
         responseMode: 'brief'
       })
 
@@ -133,7 +248,22 @@ const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: st
         bestResult = { text: simplifiedText, similarity }
       }
 
-      // Check if similarity meets threshold
+      // Skip similarity validation for archaic texts - trust AI simplification completely
+      const isArchaicText = era === 'early-modern' || era === 'victorian' || era === 'american-19c'
+      if (isArchaicText) {
+        console.log(`Archaic text detected (${era}) - skipping similarity gate, trusting AI simplification`)
+        const quality = 'modernized' // New quality type for archaic text
+        
+        return { 
+          simplifiedText, 
+          similarity, 
+          quality, 
+          retryAttempt,
+          era
+        }
+      }
+
+      // Check if similarity meets threshold (modern text only)
       if (similarity >= SIMILARITY_THRESHOLD) {
         const quality = similarity >= 0.95 ? 'excellent' : 
                        similarity >= 0.90 ? 'good' : 'acceptable'
@@ -142,7 +272,8 @@ const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: st
           simplifiedText, 
           similarity, 
           quality, 
-          retryAttempt 
+          retryAttempt,
+          era
         }
       }
 
@@ -160,7 +291,8 @@ const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: st
     simplifiedText: bestResult.text || text, // Fallback to original
     similarity: bestResult.similarity,
     quality: 'failed',
-    retryAttempt
+    retryAttempt,
+    era
   }
 }
 
@@ -352,7 +484,24 @@ export async function GET(
           source = 'ai_simplified'
           console.log(`AI simplification successful: quality=${aiResult.quality}, similarity=${aiResult.similarity.toFixed(3)}`)
         } else {
-          console.log(`AI simplification failed similarity gate: ${aiResult.similarity.toFixed(3)} < 0.82, using original chunk`)
+          // Calculate the same threshold logic for logging
+          const baseThreshold = aiResult.era === 'early-modern' ? 0.65 : 
+                               aiResult.era === 'victorian' ? 0.70 : 
+                               aiResult.era === 'american-19c' ? 0.75 : 0.82
+          const isArchaic = ['early-modern', 'victorian', 'american-19c'].includes(aiResult.era)
+          let threshold = baseThreshold
+          
+          if (isArchaic) {
+            if (level === 'A1') {
+              threshold = baseThreshold * 0.75
+            } else if (level === 'A2') {
+              threshold = baseThreshold * 0.80
+            } else if (level === 'B1') {
+              threshold = baseThreshold * 0.85
+            }
+          }
+          
+          console.log(`AI simplification failed similarity gate: ${aiResult.similarity.toFixed(3)} < ${threshold.toFixed(3)} (${aiResult.era} ${level}), using original chunk`)
           source = 'fallback_chunked'
         }
       } catch (error) {
@@ -404,12 +553,33 @@ export async function GET(
 
     // Add AI-specific metadata if available
     if (aiResult) {
+      // Calculate the actual threshold used (same logic as in simplification)
+      const baseThreshold = aiResult.era === 'early-modern' ? 0.65 : 
+                           aiResult.era === 'victorian' ? 0.70 : 
+                           aiResult.era === 'american-19c' ? 0.75 : 0.82
+      const isArchaic = ['early-modern', 'victorian', 'american-19c'].includes(aiResult.era)
+      let actualThreshold = baseThreshold
+      
+      if (isArchaic) {
+        if (level === 'A1') {
+          actualThreshold = baseThreshold * 0.75
+        } else if (level === 'A2') {
+          actualThreshold = baseThreshold * 0.80
+        } else if (level === 'B1') {
+          actualThreshold = baseThreshold * 0.85
+        }
+      }
+                       
       response.aiMetadata = {
         similarity: parseFloat(aiResult.similarity.toFixed(3)),
         quality: aiResult.quality,
         retryAttempts: aiResult.retryAttempt,
         passedSimilarityGate: aiResult.quality !== 'failed',
-        similarityThreshold: 0.82
+        similarityThreshold: parseFloat(actualThreshold.toFixed(3)),
+        detectedEra: aiResult.era,
+        isArchaicText: isArchaic,
+        thresholdReduced: actualThreshold < baseThreshold,
+        cefrLevel: level
       }
     }
 

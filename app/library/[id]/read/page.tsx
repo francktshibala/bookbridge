@@ -5,7 +5,9 @@ import { useParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { ESLControls } from '@/components/esl/ESLControls';
 import { VocabularyHighlighter } from '@/components/VocabularyHighlighter';
-import { SimpleTTS } from '@/components/SimpleTTS';
+import { PrecomputeAudioPlayer } from '@/components/PrecomputeAudioPlayer';
+import { AudioPlayerWithHighlighting } from '@/components/AudioPlayerWithHighlighting';
+import { IntegratedAudioControls } from '@/components/IntegratedAudioControls';
 import { SpeedControl } from '@/components/SpeedControl';
 
 interface BookContent {
@@ -30,11 +32,13 @@ export default function BookReaderPage() {
   const [eslLevel, setEslLevel] = useState<string>('B2');
   const [showLevelDropdown, setShowLevelDropdown] = useState(false);
   const [showVoiceDropdown, setShowVoiceDropdown] = useState(false);
-  const [voiceProvider, setVoiceProvider] = useState<'standard' | 'openai' | 'elevenlabs'>('standard');
+  const [voiceProvider, setVoiceProvider] = useState<'standard' | 'openai' | 'elevenlabs'>('openai');
   const [currentContent, setCurrentContent] = useState<string>('');
   const [currentMode, setCurrentMode] = useState<'original' | 'simplified'>('original');
   const [simplifiedContent, setSimplifiedContent] = useState<string>('');
   const [isPlaying, setIsPlaying] = useState(false);
+  const [continuousPlayback, setContinuousPlayback] = useState(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(-1);
   const [speechSpeed, setSpeechSpeed] = useState(1.0);
   const [simplificationLoading, setSimplificationLoading] = useState(false);
   const [displayConfig, setDisplayConfig] = useState<any>(null);
@@ -406,17 +410,35 @@ export default function BookReaderPage() {
   
   const handleAutoAdvance = () => {
     const canGoNext = bookContent ? currentChunk < bookContent.totalChunks - 1 : false;
-    if (canGoNext) {
+    if (canGoNext && continuousPlayback) {
+      console.log(`🎵 Auto-advancing to chunk ${currentChunk + 1} for continuous playback`);
       handleChunkNavigation('next', true);
       // Small delay then resume playing on new page
       setTimeout(() => {
         setIsPlaying(true);
       }, 200);
     } else {
-      // Reached end of book
+      // Reached end of book or continuous playback disabled
+      setIsPlaying(false);
+      if (!canGoNext) {
+        console.log('🏁 Reached end of book');
+      }
+    }
+  };
+
+  const handleWordHighlight = (wordIndex: number) => {
+    setCurrentWordIndex(wordIndex);
+  };
+
+  const handleChunkComplete = () => {
+    console.log(`🎵 Chunk ${currentChunk} audio completed`);
+    if (continuousPlayback) {
+      handleAutoAdvance();
+    } else {
       setIsPlaying(false);
     }
   };
+
 
   if (loading) {
     return (
@@ -687,6 +709,11 @@ export default function BookReaderPage() {
                       setVoiceProvider(voice.id as 'standard' | 'openai' | 'elevenlabs');
                       setShowVoiceDropdown(false);
                       localStorage.setItem(`voice-provider-${bookId}`, voice.id);
+                      
+                      // Stop any playing audio when switching voice
+                      if (isPlaying) {
+                        setIsPlaying(false);
+                      }
                     }}
                     onMouseEnter={(e) => {
                       if (voice.id !== voiceProvider) {
@@ -707,7 +734,7 @@ export default function BookReaderPage() {
             )}
           </div>
           
-          {/* Play/Pause Button - SEPARATE */}
+          {/* Play/Pause Button - Direct TTS Control */}
           <button
             onClick={() => setIsPlaying(!isPlaying)}
             style={{
@@ -729,6 +756,44 @@ export default function BookReaderPage() {
             onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
           >
             {isPlaying ? '⏸' : '▶'}
+          </button>
+
+          {/* Continuous Playback Toggle */}
+          <button
+            onClick={() => setContinuousPlayback(!continuousPlayback)}
+            title={continuousPlayback ? 'Continuous playback enabled' : 'Enable continuous playback'}
+            style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              backgroundColor: continuousPlayback ? '#10b981' : '#475569',
+              color: 'white',
+              fontSize: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: 'none',
+              cursor: 'pointer',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+              transition: 'all 0.2s',
+              position: 'relative'
+            }}
+            onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
+          >
+            🔁
+            {continuousPlayback && (
+              <span style={{
+                position: 'absolute',
+                top: '-2px',
+                right: '-2px',
+                width: '12px',
+                height: '12px',
+                backgroundColor: '#10b981',
+                borderRadius: '50%',
+                border: '2px solid white'
+              }} />
+            )}
           </button>
           
           {/* Speed Control - FORCED LARGE */}
@@ -964,6 +1029,43 @@ export default function BookReaderPage() {
                   eslLevel={eslLevel}
                   mode={currentMode}
                 />
+
+                {/* Integrated Audio Controls - Invisible but Connected */}
+                <IntegratedAudioControls
+                  text={currentContent}
+                  voiceProvider={voiceProvider}
+                  isPlaying={isPlaying}
+                  onPlayStateChange={setIsPlaying}
+                  onEnd={handleChunkComplete}
+                />
+                  
+                  {/* Continuous Playback Status */}
+                  {continuousPlayback && (
+                    <div style={{
+                      textAlign: 'center',
+                      marginTop: '16px',
+                      padding: '8px 16px',
+                      backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                      border: '1px solid rgba(16, 185, 129, 0.3)',
+                      borderRadius: '8px',
+                      fontSize: '14px',
+                      color: '#10b981'
+                    }}>
+                      📚 Continuous playback enabled - will auto-advance to next chunk
+                    </div>
+                  )}
+
+                  {/* Current word highlight debug info */}
+                  {process.env.NODE_ENV === 'development' && currentWordIndex >= 0 && (
+                    <div style={{
+                      textAlign: 'center',
+                      marginTop: '8px',
+                      fontSize: '12px',
+                      color: '#6b7280'
+                    }}>
+                      Highlighting word {currentWordIndex + 1}
+                    </div>
+                  )}
               </>
             )}
           </div>

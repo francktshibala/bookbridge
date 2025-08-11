@@ -232,3 +232,102 @@ model BookSimplification {
   @@index([updatedAt])
   @@map("book_simplifications")
 }
+
+// New models for precomputed content + audio system
+
+model BookContent {
+  id          String   @id @default(cuid())
+  bookId      String   @unique @map("book_id")
+  title       String
+  author      String
+  fullText    String   @map("full_text")
+  era         String?  // 'early-modern', 'victorian', 'american-19c', 'modern'
+  wordCount   Int      @map("word_count")
+  totalChunks Int      @map("total_chunks")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  chunks BookChunk[]
+  audioFiles BookAudio[]
+
+  @@index([era])
+  @@map("book_content")
+}
+
+model BookChunk {
+  id           String   @id @default(cuid())
+  bookId       String   @map("book_id")
+  cefrLevel    String   @map("cefr_level") // A1, A2, B1, B2, C1, C2, original
+  chunkIndex   Int      @map("chunk_index")
+  chunkText    String   @map("chunk_text")
+  wordCount    Int      @map("word_count")
+  isSimplified Boolean  @default(false) @map("is_simplified")
+  qualityScore Decimal? @map("quality_score") @db.Decimal(3,2)
+  createdAt    DateTime @default(now()) @map("created_at")
+  
+  bookContent BookContent @relation(fields: [bookId], references: [bookId], onDelete: Cascade)
+  audioSegments AudioSegment[]
+
+  @@unique([bookId, cefrLevel, chunkIndex])
+  @@index([bookId, cefrLevel])
+  @@index([bookId, chunkIndex])
+  @@map("book_chunks")
+}
+
+model BookAudio {
+  id        String   @id @default(cuid())
+  bookId    String   @map("book_id")
+  cefrLevel String   @map("cefr_level") // A1, A2, B1, B2, C1, C2, original
+  voiceId   String   @map("voice_id") // OpenAI/ElevenLabs voice identifier
+  audioUrl  String?  @map("audio_url") // URL or path to audio file
+  audioBlob Bytes?   @map("audio_blob") // Direct audio storage
+  duration  Float?   @map("duration") // Total duration in seconds
+  fileSize  Int?     @map("file_size") // File size in bytes
+  format    String   @default("mp3") // Audio format
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  bookContent BookContent @relation(fields: [bookId], references: [bookId], onDelete: Cascade)
+  audioSegments AudioSegment[]
+
+  @@unique([bookId, cefrLevel, voiceId])
+  @@index([bookId, cefrLevel])
+  @@map("book_audio")
+}
+
+model AudioSegment {
+  id          String   @id @default(cuid())
+  bookId      String   @map("book_id")
+  audioId     String   @map("audio_id")
+  chunkId     String   @map("chunk_id")
+  startTime   Float    @map("start_time") // Start time in seconds
+  endTime     Float    @map("end_time")   // End time in seconds
+  wordTimings Json     @map("word_timings") // Array of {word, start, end} objects
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  bookAudio BookAudio @relation(fields: [audioId], references: [id], onDelete: Cascade)
+  bookChunk BookChunk @relation(fields: [chunkId], references: [id], onDelete: Cascade)
+
+  @@unique([audioId, chunkId])
+  @@index([bookId])
+  @@map("audio_segments")
+}
+
+model PrecomputeQueue {
+  id          String   @id @default(cuid())
+  bookId      String   @map("book_id")
+  cefrLevel   String   @map("cefr_level")
+  chunkIndex  Int      @map("chunk_index")
+  priority    String   @default("normal") // 'high', 'normal', 'background'
+  status      String   @default("pending") // 'pending', 'processing', 'completed', 'failed'
+  taskType    String   @map("task_type") // 'simplification', 'audio', 'both'
+  attempts    Int      @default(0)
+  lastError   String?  @map("last_error")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  completedAt DateTime? @map("completed_at")
+
+  @@unique([bookId, cefrLevel, chunkIndex, taskType])
+  @@index([status, priority])
+  @@index([createdAt])
+  @@map("precompute_queue")
+}
