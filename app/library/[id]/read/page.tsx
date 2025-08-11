@@ -40,6 +40,8 @@ export default function BookReaderPage() {
   const [displayConfig, setDisplayConfig] = useState<any>(null);
   const [sessionTimeLeft, setSessionTimeLeft] = useState<number | null>(null);
   const [sessionTimerActive, setSessionTimerActive] = useState(false);
+  const [aiMetadata, setAiMetadata] = useState<any>(null);
+  const [microHint, setMicroHint] = useState<string>('');
 
   const bookId = params.id as string;
 
@@ -54,6 +56,8 @@ export default function BookReaderPage() {
   // Clear simplified content when chunk changes
   useEffect(() => {
     setSimplifiedContent('');
+    setAiMetadata(null);
+    setMicroHint('');
     // Reset to original content for new chunk
     if (bookContent?.chunks[currentChunk]) {
       const newContent = bookContent.chunks[currentChunk].content;
@@ -154,9 +158,11 @@ export default function BookReaderPage() {
 
   // Fetch simplified content from our new API
   const fetchSimplifiedContent = async (level: string, chunkIndex: number) => {
+    console.log(`🔥 CALLING SIMPLIFY API: /api/books/${bookId}/simplify?level=${level}&chunk=${chunkIndex}`);
     setSimplificationLoading(true);
     try {
       const response = await fetch(`/api/books/${bookId}/simplify?level=${level}&chunk=${chunkIndex}`);
+      console.log(`🔥 API Response status: ${response.status}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch simplified content: ${response.status}`);
       }
@@ -165,7 +171,14 @@ export default function BookReaderPage() {
       if (data.success) {
         setSimplifiedContent(data.content);
         setDisplayConfig(data.displayConfig);
+        setAiMetadata(data.aiMetadata || null);
+        setMicroHint(data.microHint || '');
+        
         console.log(`Loaded simplified content for level ${level}, chunk ${chunkIndex}`);
+        if (data.aiMetadata) {
+          console.log(`AI Quality: ${data.aiMetadata.quality}, Similarity: ${data.aiMetadata.similarity}`);
+        }
+        
         return data.content;
       } else {
         throw new Error(data.error || 'Simplification failed');
@@ -297,6 +310,9 @@ export default function BookReaderPage() {
       if (bookContent?.chunks[currentChunk]) {
         setCurrentContent(bookContent.chunks[currentChunk].content);
       }
+      // Clear AI metadata and micro-hints when switching to original
+      setAiMetadata(null);
+      setMicroHint('');
       // Stop session timer when leaving simplified mode
       stopSessionTimer();
     }
@@ -690,6 +706,38 @@ export default function BookReaderPage() {
             {speechSpeed}x
           </button>
           
+          {/* AI Quality Indicator */}
+          {currentMode === 'simplified' && aiMetadata && (
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              color: aiMetadata.quality === 'excellent' ? '#10b981' : 
+                     aiMetadata.quality === 'good' ? '#3b82f6' :
+                     aiMetadata.quality === 'acceptable' ? '#f59e0b' : '#ef4444',
+              fontSize: '12px',
+              fontWeight: '600'
+            }}>
+              <div style={{ marginBottom: '2px' }}>AI Quality</div>
+              <div style={{ 
+                fontSize: '10px',
+                textTransform: 'uppercase',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(255,255,255,0.1)'
+              }}>
+                {aiMetadata.quality}
+              </div>
+              <div style={{ 
+                fontSize: '9px', 
+                marginTop: '2px',
+                opacity: 0.7
+              }}>
+                {Math.round(aiMetadata.similarity * 100)}%
+              </div>
+            </div>
+          )}
+
           {/* Session Timer Display */}
           {sessionTimerActive && sessionTimeLeft !== null && (
             <div style={{
@@ -838,11 +886,29 @@ export default function BookReaderPage() {
                 Loading {currentMode} content for level {eslLevel}...
               </div>
             ) : (
-              <VocabularyHighlighter 
-                text={currentContent}
-                eslLevel={eslLevel}
-                mode={currentMode}
-              />
+              <>
+                {/* Micro-hint for simplification issues */}
+                {microHint && currentMode === 'simplified' && (
+                  <div style={{
+                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                    border: '1px solid rgba(245, 158, 11, 0.3)',
+                    borderRadius: '8px',
+                    padding: '8px 12px',
+                    marginBottom: '16px',
+                    fontSize: '13px',
+                    color: '#f59e0b',
+                    textAlign: 'center'
+                  }}>
+                    💡 {microHint}
+                  </div>
+                )}
+                
+                <VocabularyHighlighter 
+                  text={currentContent}
+                  eslLevel={eslLevel}
+                  mode={currentMode}
+                />
+              </>
             )}
           </div>
         </div>
