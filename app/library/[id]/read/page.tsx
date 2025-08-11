@@ -53,6 +53,13 @@ export default function BookReaderPage() {
     }
   }, [bookId]);
 
+  // Re-validate reading position after book content is loaded
+  useEffect(() => {
+    if (bookContent?.chunks) {
+      loadReadingPosition(); // Re-validate position against actual book content
+    }
+  }, [bookContent]);
+
   // Clear simplified content when chunk changes
   useEffect(() => {
     setSimplifiedContent('');
@@ -75,7 +82,14 @@ export default function BookReaderPage() {
     if (savedPosition) {
       const position = parseInt(savedPosition, 10);
       if (position >= 0) {
-        setCurrentChunk(position);
+        // Validate chunk position against actual book content when available
+        if (bookContent?.chunks && position >= bookContent.chunks.length) {
+          console.warn(`Saved position ${position} exceeds book length (${bookContent.chunks.length} chunks). Resetting to 0.`);
+          localStorage.setItem(`reading-position-${bookId}`, '0');
+          setCurrentChunk(0);
+        } else {
+          setCurrentChunk(position);
+        }
       }
     }
     
@@ -163,7 +177,35 @@ export default function BookReaderPage() {
     try {
       const response = await fetch(`/api/books/${bookId}/simplify?level=${level}&chunk=${chunkIndex}`);
       console.log(`🔥 API Response status: ${response.status}`);
+      
       if (!response.ok) {
+        // Handle specific 400 errors with detailed logging and fallback
+        if (response.status === 400) {
+          const errorData = await response.json().catch(() => ({ error: 'Unknown 400 error' }));
+          console.error('400 Error Details:', errorData);
+          
+          // Check if it's a chunk index out of range error
+          if (errorData.error && errorData.error.includes('out of range')) {
+            console.warn(`Chunk index ${chunkIndex} is invalid. Resetting to chunk 0 and clearing stale localStorage.`);
+            
+            // Clear potentially stale reading positions
+            localStorage.removeItem(`reading-position-${bookId}`);
+            localStorage.removeItem(`reading-mode-${bookId}`);
+            
+            // Reset to chunk 0 and try again
+            setCurrentChunk(0);
+            
+            // Retry with chunk 0 if we're not already trying chunk 0
+            if (chunkIndex !== 0) {
+              console.log('Retrying with chunk 0...');
+              return await fetchSimplifiedContent(level, 0);
+            }
+          }
+          
+          // For other 400 errors, show user-friendly message
+          setMicroHint(`Unable to simplify: ${errorData.error || 'Invalid request'}. Showing original text.`);
+        }
+        
         throw new Error(`Failed to fetch simplified content: ${response.status}`);
       }
       
@@ -185,12 +227,26 @@ export default function BookReaderPage() {
       }
     } catch (error) {
       console.error('Error fetching simplified content:', error);
-      // Fallback to original content if simplification fails
-      if (bookContent?.chunks[chunkIndex]) {
-        const fallbackContent = bookContent.chunks[chunkIndex].content;
-        setSimplifiedContent(fallbackContent);
-        return fallbackContent;
+      
+      // Enhanced fallback with chunk validation
+      if (bookContent?.chunks) {
+        // Validate chunk index against available chunks
+        const validChunkIndex = Math.min(chunkIndex, bookContent.chunks.length - 1);
+        const fallbackContent = bookContent.chunks[validChunkIndex]?.content;
+        
+        if (fallbackContent) {
+          setSimplifiedContent(fallbackContent);
+          // Update chunk index if it was corrected
+          if (validChunkIndex !== chunkIndex) {
+            console.log(`Corrected chunk index from ${chunkIndex} to ${validChunkIndex}`);
+            setCurrentChunk(validChunkIndex);
+          }
+          return fallbackContent;
+        }
       }
+      
+      // Last resort: show error message to user
+      setMicroHint('Unable to load content. Please try refreshing the page.');
       return '';
     } finally {
       setSimplificationLoading(false);

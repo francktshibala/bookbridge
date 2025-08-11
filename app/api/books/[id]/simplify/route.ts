@@ -304,8 +304,32 @@ export async function GET(
     const chunks = chunkText(fullText, level)
     
     if (chunkIndex >= chunks.length) {
+      console.warn(`Chunk index ${chunkIndex} out of range for book ${id} at level ${level}. Available: 0-${chunks.length - 1}`);
       return NextResponse.json(
-        { error: `Chunk index ${chunkIndex} out of range. Book has ${chunks.length} chunks at level ${level}` },
+        { 
+          error: `Chunk index ${chunkIndex} out of range. Book has ${chunks.length} chunks at level ${level}`,
+          availableChunks: chunks.length,
+          validRange: `0-${chunks.length - 1}`,
+          suggestedChunk: 0,
+          bookId: id,
+          level: level
+        },
+        { status: 400 }
+      )
+    }
+
+    // Also validate negative chunk indices
+    if (chunkIndex < 0) {
+      console.warn(`Invalid negative chunk index ${chunkIndex} for book ${id}`);
+      return NextResponse.json(
+        { 
+          error: `Invalid chunk index ${chunkIndex}. Must be 0 or greater`,
+          availableChunks: chunks.length,
+          validRange: `0-${chunks.length - 1}`,
+          suggestedChunk: 0,
+          bookId: id,
+          level: level
+        },
         { status: 400 }
       )
     }
