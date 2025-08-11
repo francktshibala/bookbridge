@@ -1039,10 +1039,10 @@ interface SimplificationEvent {
 - Sprint 2: Cross‑page highlighting, SRS integration, precompute pipeline, polish & a11y passes
 
 ### Sprint 1 Backlog
-- [ ] Design system: implement tokens (colors/spacing/type) and primitives (Button/Toggle/Tabs/Pager/Tooltip/Sheet/Progress/Toast); wire into reading page
-- [ ] Reading modes: Original/Simplified/Compare with mode toggle and clear indicators; persist per user/book
-- [ ] ESL/TTS bar: Level chip A1–C2, Simplify toggle, Play/Pause/Stop, Speed (0.5–1.2×), Auto‑advance toggle; mobile one‑row collapse
-- [ ] Simplification reliability: call API, apply 0.82 similarity gate; on fail → conservative retry → return original with “simplification unavailable” micro‑hint
+- [x] Design system: implement tokens (colors/spacing/type) and primitives (Button/Toggle/Tabs/Pager/Tooltip/Sheet/Progress/Toast); wire into reading page
+- [x] Reading modes: Original/Simplified/Compare with mode toggle and clear indicators; persist per user/book
+- [x] ESL/TTS bar: Level chip A1–C2, Simplify toggle, Play/Pause/Stop, Speed (0.5–1.2×), Auto‑advance toggle; mobile one‑row collapse
+- [ ] Simplification reliability: call API, apply 0.82 similarity gate; on fail → conservative retry → return original with "simplification unavailable" micro‑hint
 - [ ] TTS basics: auto‑advance between chunks with 150–250ms crossfade; prefetch next chunk at 90% or ≤10 words
 - [ ] Telemetry: emit key events (time‑to‑first‑simplified, tts_auto_advanced, similarity_gate_failed); minimal dashboard
 
