@@ -359,7 +359,7 @@ export async function GET(
     }
 
     // Prepare response with similarity gate information
-    const response = {
+    const response: any = {
       success: true,
       content: finalContent,
       level: level,
