@@ -36,6 +36,10 @@ export default function BookReaderPage() {
   const [simplifiedContent, setSimplifiedContent] = useState<string>('');
   const [isPlaying, setIsPlaying] = useState(false);
   const [speechSpeed, setSpeechSpeed] = useState(1.0);
+  const [simplificationLoading, setSimplificationLoading] = useState(false);
+  const [displayConfig, setDisplayConfig] = useState<any>(null);
+  const [sessionTimeLeft, setSessionTimeLeft] = useState<number | null>(null);
+  const [sessionTimerActive, setSessionTimerActive] = useState(false);
 
   const bookId = params.id as string;
 
@@ -148,6 +152,75 @@ export default function BookReaderPage() {
     setUser(user);
   };
 
+  // Fetch simplified content from our new API
+  const fetchSimplifiedContent = async (level: string, chunkIndex: number) => {
+    setSimplificationLoading(true);
+    try {
+      const response = await fetch(`/api/books/${bookId}/simplify?level=${level}&chunk=${chunkIndex}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch simplified content: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      if (data.success) {
+        setSimplifiedContent(data.content);
+        setDisplayConfig(data.displayConfig);
+        console.log(`Loaded simplified content for level ${level}, chunk ${chunkIndex}`);
+        return data.content;
+      } else {
+        throw new Error(data.error || 'Simplification failed');
+      }
+    } catch (error) {
+      console.error('Error fetching simplified content:', error);
+      // Fallback to original content if simplification fails
+      if (bookContent?.chunks[chunkIndex]) {
+        const fallbackContent = bookContent.chunks[chunkIndex].content;
+        setSimplifiedContent(fallbackContent);
+        return fallbackContent;
+      }
+      return '';
+    } finally {
+      setSimplificationLoading(false);
+    }
+  };
+
+  // Session Timer Logic
+  const startSessionTimer = (cefrLevel: string) => {
+    // Configuration matches our DISPLAY_CONFIG
+    const sessionMinutes = {
+      A1: 12, A2: 18, B1: 22, B2: 27, C1: 30, C2: 35
+    }[cefrLevel] || 22;
+    
+    const totalSeconds = sessionMinutes * 60;
+    setSessionTimeLeft(totalSeconds);
+    setSessionTimerActive(true);
+    console.log(`Started ${sessionMinutes}-minute session timer for level ${cefrLevel}`);
+  };
+
+  const stopSessionTimer = () => {
+    setSessionTimerActive(false);
+    setSessionTimeLeft(null);
+  };
+
+  // Timer countdown effect
+  useEffect(() => {
+    if (!sessionTimerActive || sessionTimeLeft === null || sessionTimeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      setSessionTimeLeft(prev => {
+        if (prev === null || prev <= 1) {
+          setSessionTimerActive(false);
+          // Could show a break reminder here
+          console.log('Session timer completed - time for a break!');
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [sessionTimerActive, sessionTimeLeft]);
+
   const fetchBook = async () => {
     try {
       const response = await fetch(`/api/books/${bookId}/content-fast`);
@@ -207,15 +280,29 @@ export default function BookReaderPage() {
     setCurrentMode(mode);
   };
 
-  // Handle mode switching - simplified version that just changes visual mode
-  const handleModeToggle = () => {
+  // Handle mode switching - now connects to our simplification API
+  const handleModeToggle = async () => {
     const newMode = currentMode === 'original' ? 'simplified' : 'original';
     setCurrentMode(newMode);
     localStorage.setItem(`reading-mode-${bookId}`, newMode);
-    // For now, we'll just use the original content with ESL visual styling
+    
+    if (newMode === 'simplified') {
+      // Fetch simplified content for current chunk and CEFR level
+      const simplifiedText = await fetchSimplifiedContent(eslLevel, currentChunk);
+      setCurrentContent(simplifiedText);
+      // Start session timer when entering simplified mode
+      startSessionTimer(eslLevel);
+    } else {
+      // Switch back to original content
+      if (bookContent?.chunks[currentChunk]) {
+        setCurrentContent(bookContent.chunks[currentChunk].content);
+      }
+      // Stop session timer when leaving simplified mode
+      stopSessionTimer();
+    }
   };
 
-  const handleChunkNavigation = (direction: 'prev' | 'next', autoAdvance = false) => {
+  const handleChunkNavigation = async (direction: 'prev' | 'next', autoAdvance = false) => {
     if (!bookContent) return;
     
     const newChunk = direction === 'next' 
@@ -232,8 +319,11 @@ export default function BookReaderPage() {
       const newOriginalContent = bookContent.chunks[newChunk]?.content || '';
       if (currentMode === 'original') {
         setCurrentContent(newOriginalContent);
+      } else if (currentMode === 'simplified') {
+        // Fetch simplified content for the new chunk
+        const simplifiedText = await fetchSimplifiedContent(eslLevel, newChunk);
+        setCurrentContent(simplifiedText);
       }
-      // For simplified mode, SimpleReadingModes will handle content update
       
       // For auto-advance, continue playing on the new page
       if (!autoAdvance && isPlaying) {
@@ -290,6 +380,12 @@ export default function BookReaderPage() {
 
   return (
     <div className="min-h-screen bg-slate-900">
+      <style jsx>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
       {/* Header */}
       <div className="bg-slate-800 shadow-sm border-b border-slate-700">
         <div className="max-w-2xl mx-auto px-8 py-8">
@@ -385,10 +481,16 @@ export default function BookReaderPage() {
                       transition: 'background-color 0.2s',
                       borderRadius: level === 'A1' ? '10px 10px 0 0' : level === 'C2' ? '0 0 10px 10px' : '0'
                     }}
-                    onClick={() => {
+                    onClick={async () => {
                       setEslLevel(level);
                       setShowLevelDropdown(false);
                       localStorage.setItem(`esl-level-${bookId}`, level);
+                      
+                      // If we're in simplified mode, refetch content for new level
+                      if (currentMode === 'simplified') {
+                        const simplifiedText = await fetchSimplifiedContent(level, currentChunk);
+                        setCurrentContent(simplifiedText);
+                      }
                     }}
                     onMouseEnter={(e) => {
                       if (level !== eslLevel) {
@@ -588,6 +690,27 @@ export default function BookReaderPage() {
             {speechSpeed}x
           </button>
           
+          {/* Session Timer Display */}
+          {sessionTimerActive && sessionTimeLeft !== null && (
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              color: sessionTimeLeft < 300 ? '#ef4444' : '#94a3b8', // Red when < 5 minutes left
+              fontSize: '14px',
+              fontWeight: '600'
+            }}>
+              <div style={{ fontSize: '12px', marginBottom: '4px' }}>Session</div>
+              <div style={{ 
+                fontSize: '16px',
+                fontFamily: 'monospace',
+                color: sessionTimeLeft < 300 ? '#ef4444' : '#10b981'
+              }}>
+                {Math.floor(sessionTimeLeft / 60)}:{(sessionTimeLeft % 60).toString().padStart(2, '0')}
+              </div>
+            </div>
+          )}
+
           {/* Navigation - FORCED LARGE */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button
@@ -686,17 +809,41 @@ export default function BookReaderPage() {
             <p style={{ color: '#94a3b8', fontSize: '16px' }}>by {bookContent.author}</p>
           </div>
           
-          {/* Book Text with FORCED LARGE margins */}
+          {/* Book Text with FORCED LARGE margins and CEFR-based font size */}
           <div style={{ 
             maxWidth: '900px', 
             margin: '0 auto', 
-            padding: '32px 80px' 
+            padding: '32px 80px',
+            fontSize: displayConfig?.fontSize || '16px',
+            lineHeight: '1.8',
+            transition: 'font-size 0.3s ease'
           }}>
-            <VocabularyHighlighter 
-              text={currentContent}
-              eslLevel={eslLevel}
-              mode={currentMode}
-            />
+            {simplificationLoading ? (
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                gap: '12px',
+                color: '#94a3b8',
+                fontSize: '16px'
+              }}>
+                <div style={{
+                  width: '20px',
+                  height: '20px',
+                  border: '2px solid #475569',
+                  borderTop: '2px solid #6366f1',
+                  borderRadius: '50%',
+                  animation: 'spin 1s linear infinite'
+                }}></div>
+                Loading {currentMode} content for level {eslLevel}...
+              </div>
+            ) : (
+              <VocabularyHighlighter 
+                text={currentContent}
+                eslLevel={eslLevel}
+                mode={currentMode}
+              />
+            )}
           </div>
         </div>
       </div>

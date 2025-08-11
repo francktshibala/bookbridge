@@ -1419,4 +1419,12 @@ interface MinimalESLReader {
 - Desktop Compare: ../wireframes/desktop-compare.png
 - Desktop TTS (playing): ../wireframes/desktop-tts.png
 - Mobile Simplified: ../wireframes/mobile-simplified.png
-- Level Sheet: ../wireframes/level-sheet.png 
+- Level Sheet: ../wireframes/level-sheet.png
+
+## Future Mobile Design Considerations
+
+**Text Display Research Note**: Mobile screens will require adjusted word counts per CEFR level:
+- Mobile displays need 15-20% fewer words per screen than desktop
+- Optimal mobile ranges: A1: 60 words, A2: 120 words, B1: 200 words, B2: 280 words, C1: 320 words, C2: 360 words
+- Touch-friendly level switching and original/simplified toggle required
+- Session timers may need mobile-specific shorter intervals due to context switching 
