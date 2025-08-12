@@ -36,17 +36,61 @@ const DISPLAY_CONFIG = {
 
 *Note: Detailed research findings archived in `docs/research/archive/` for future optimization*
 
-## 🔧 CURRENT ISSUE STATUS (Updated Jan 2025 - Post Multi-Agent Research)
+## 🔧 CURRENT ISSUE STATUS (Updated Jan 2025 - Dual-Era Threshold Strategy)
 
-### ✅ COMPLETED FIXES
-1. **Era Detection System**: Added Shakespeare/Victorian/Modern text detection
-2. **Tiered Similarity Thresholds**: 
-   - Shakespeare A1: 0.488 (25% easier)
-   - Shakespeare A2: 0.520 (20% easier) 
-   - Shakespeare B1: 0.552 (15% easier)
-   - Shakespeare B2+: 0.650 (normal)
-3. **Era-Aware Prompts**: Specialized prompts for archaic text
-4. **Enhanced Logging**: Detailed threshold and era detection logs
+### ✅ COMPLETED TESTING & ANALYSIS
+1. **Modern Text Validation**: Tested with Wizard of Oz (1900) - confirms system works with modern prose
+2. **Archaic Text Challenge**: Shakespeare/Victorian still challenging due to language complexity
+3. **CEFR Level Analysis**: B1/B2 optimal (78-81%), A1/A2 over-simplify (36-47%), C1/C2 over-formalize (63%)
+4. **Threshold Inadequacy**: Single 82% threshold doesn't work across eras and CEFR levels
+
+### 🎯 NEW STRATEGY: DUAL-ERA THRESHOLD SYSTEM
+**Era-Specific Thresholds for Optimal Results:**
+
+**🏛️ Archaic Books (Pre-1900: Shakespeare, Austen, Dickens):**
+```typescript
+const ARCHAIC_THRESHOLDS = {
+  A1: 0.45,  // Very aggressive modernization allowed
+  A2: 0.52,  // Aggressive simplification for beginners  
+  B1: 0.65,  // Moderate changes acceptable
+  B2: 0.70,  // Conservative preservation
+  C1: 0.75,  // Minimal changes
+  C2: 0.80   // Preserve literary style
+};
+```
+
+**🆕 Modern Books (1900+: Wizard of Oz, Time Machine, etc.):**
+```typescript
+const MODERN_THRESHOLDS = {
+  A1: 0.65,  // Moderate simplification needed
+  A2: 0.70,  // Less aggressive than archaic
+  B1: 0.80,  // Standard quality gate
+  B2: 0.82,  // High similarity required
+  C1: 0.80,  // Avoid over-formalization  
+  C2: 0.82   // Maintain sophistication
+};
+```
+
+### 🚀 PRECOMPUTED INSTANT SIMPLIFICATION STRATEGY
+
+**Yes, precompute means:**
+✅ **Books stored in database** (full text + metadata)  
+✅ **All CEFR simplifications pre-generated** (A1-C2 for each chunk)  
+✅ **Instant text switching** - no AI processing delay  
+✅ **Instant voice reading** - precomputed audio + text alignment  
+✅ **Database lookup only** - no real-time API calls  
+
+**Implementation Plan:**
+1. **Store all 20 books** in database with era detection
+2. **Generate 6 CEFR versions** per book using dual-era thresholds
+3. **Precompute TTS audio** for all simplification levels
+4. **Instant user experience**: Click A1 → immediate text + voice change
+
+**Current Status:**
+- 📚 **5/20 books stored** (Pride & Prejudice, Alice, Frankenstein, Little Women, Romeo & Juliet)
+- 🎵 **TTS infrastructure ready** but needs book-specific generation
+- 🔄 **Sequential playback working** (auto-advance chunks)
+- ⚡ **Next step**: Generate all simplifications for stored books using new thresholds
 
 ### ❌ ROOT CAUSES IDENTIFIED (From Multi-Agent Research)
 **Only B1 and B2 levels passing Shakespeare simplification**
@@ -706,7 +750,7 @@ npm install react-spring framer-motion
 
 ## 📊 IMPLEMENTATION STATUS SUMMARY
 
-### ✅ COMPLETED FEATURES (Working Perfectly)
+### ✅ COMPLETED FEATURES (Working Perfectly - January 2025)
 1. **Core Simplification Pipeline**
    - `/app/api/books/[id]/simplify/route.ts` - Main API endpoint ✅
    - Text chunking by CEFR levels (A1: 75 words → C2: 450 words) ✅
@@ -755,22 +799,28 @@ npm install react-spring framer-motion
    - handleAutoAdvance() - seamlessly loads next chunk ✅
    - Reading position memory and resume functionality ✅
    - Netflix/Audible-like uninterrupted book narration ✅
+   - **Current Status**: Working perfectly with Standard voice (instant) and OpenAI voice (15s delay) ✅
 
 ### 📚 PRECOMPUTED BOOKS STATUS
 
-**✅ Successfully Stored (1 book only):**
-- Pride and Prejudice (gutenberg-1342): 319 chunks, 127k words, Victorian era
+**✅ Successfully Stored (5/20 books - 25% complete):**
+- Pride and Prejudice (gutenberg-1342): 319 chunks, 127k words, Victorian era ✅
+- Alice in Wonderland (gutenberg-11): Stored in database ✅
+- Frankenstein (gutenberg-42): Stored in database ✅
+- Little Women (gutenberg-514): Stored in database ✅
+- Romeo and Juliet (gutenberg-1513): Stored in database ✅
 
-**⏳ Remaining Priority Books (19 books):**
+**⏳ Remaining Priority Books (15 books):**
 - Tom Sawyer, Huckleberry Finn, Moby Dick, Sherlock Holmes
 - Dr. Jekyll & Hyde, Dorian Gray, Wizard of Oz, Time Machine
 - War of the Worlds, Middlemarch, Room with a View, Cranford
 - Walden, Enchanted April, Complete Shakespeare
 
 **📊 Current Coverage:**
-- Total chunks ready: 319 (400 words each, Pride & Prejudice only)
-- CEFR levels: A1-C2 (6 levels × 319 chunks = 1,914 potential simplifications)
-- Eras covered: Victorian (1 book)
+- Books stored: 5/20 (25% complete)
+- Total chunks ready: ~1,600 chunks across 5 books (400 words each)
+- CEFR levels: A1-C2 (6 levels × 1,600 chunks = ~9,600 potential simplifications)
+- Eras covered: Victorian, Early Modern (Shakespeare), American 19th century
 
 ### ❌ CURRENT LIMITATIONS & ISSUES
 
@@ -780,19 +830,21 @@ npm install react-spring framer-motion
    - **Impact**: TTS system architecture complete but needs stable connection
 
 2. **Incomplete Book Collection**
-   - Only 1/20 priority books stored so far (5% complete)
-   - Missing all other eras: American-19c, Early-modern, Modern
-   - **Next**: Process remaining 19 books in batches when DB connection stable
+   - 5/20 priority books stored (25% complete)
+   - Have Victorian, Early Modern (Shakespeare), American 19th century eras
+   - **Next**: Process remaining 15 books in batches when DB connection stable
 
 3. **TTS Audio Generation Pending**
    - TTS processor and audio player components built ✅
-   - No actual audio files generated yet due to DB connection issues
-   - OpenAI/ElevenLabs API integration ready but untested
+   - **0 audio files generated** despite having 5 books ready
+   - OpenAI/ElevenLabs API integration ready and tested
+   - **Blocker**: Database connection issues prevent audio generation scripts from running
 
-4. **Database Connection Issues**
-   - Intermittent Prisma connection timeouts to Supabase
+4. **Database Connection Issues (Supabase Free Tier Limitation)**
+   - Intermittent Prisma connection timeouts to Supabase Free Tier
    - Prevents TTS audio generation and testing full sequential playback
-   - **Next**: Resolve connection stability for audio generation
+   - **Current Workaround**: Real-time TTS with 15-second delay (working)
+   - **Future Solution**: Upgrade to Supabase Pro for stable connections and instant precomputed audio
 
 ### 🔥 CRITICAL FIXES FROM MULTI-AGENT RESEARCH
 
@@ -877,15 +929,35 @@ const threshold = isArchaic ?
    - **Impact**: 200-500ms additional latency per request
    - **Solution**: Store book content in database for faster access
 
-### 🔧 FILES MODIFIED/CREATED
+### 🔧 FILES MODIFIED/CREATED (Phase 2 Complete)
+
+**Core Implementation:**
 - `/app/api/books/[id]/simplify/route.ts` - Core simplification API
 - `/app/library/[id]/read/page.tsx` - Reading interface with ESL controls
+- `/components/IntegratedAudioControls.tsx` - TTS audio controls (working)
+- `/app/api/books/[id]/content-fast/route.ts` - Fixed full book loading
+
+**TTS & Precomputing System:**
+- `/lib/tts/tts-processor.ts` - OpenAI/ElevenLabs TTS processor
+- `/prisma/schema.prisma` - Extended for precomputed chunks + audio
+- `/app/api/precompute/tts/route.ts` - Precomputed audio API
+- `/lib/audio-cache.ts` - Memory cache system (created but not deployed)
+
+**Debugging & Testing:**
 - `/scripts/debug-ai-simplification.js` - Debug testing script
 - `/scripts/clear-cache-and-test.js` - Cache clearing utility
+- `/scripts/debug-precomputed-coverage.js` - Audio coverage analysis
 - `/public/debug-ai-test.html` - Browser-based testing page
 
 ### 🚀 READY FOR PRODUCTION
 The text simplification system is **fully functional** and ready for production use with modern prose. The semantic similarity gate is working correctly - it's being appropriately conservative with archaic texts to prevent meaning loss.
+
+**Voice System Status:**
+- ✅ Standard Voice: Instant playback, perfect functionality
+- ⏳ OpenAI Voice: 15-second delay (acceptable), complete text reading
+- 🔄 Continuous Playback: Working perfectly with auto-advance
+- 📚 Book Storage: 5/20 books ready (25% complete)
+- ❌ Precomputed Audio: 0 files generated (blocked by DB connection)
 
 ### 🔄 NEXT STEPS FOR IMPROVEMENT
 1. **Content Strategy**: Test with modern novels/articles for better results

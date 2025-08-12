@@ -178,13 +178,9 @@ export async function GET(
             context = words.slice(0, maxWords).join(' ') + '...';
           }
         } else if (!query && storyContent) {
-          // If no query, return first portion of the actual story (not preface)
-          const words = storyContent.split(/\s+/);
-          if (words.length > maxWords) {
-            context = words.slice(0, maxWords).join(' ') + '...';
-          } else {
-            context = storyContent;
-          }
+          // If no query (reading interface), return the FULL story content
+          // Don't truncate for reading - users expect the complete book
+          context = storyContent;
         }
         
         // Check if we should cache this external book

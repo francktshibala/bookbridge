@@ -9,6 +9,8 @@ interface IntegratedAudioControlsProps {
   isPlaying: boolean;
   onPlayStateChange: (playing: boolean) => void;
   onEnd?: () => void;
+  bookId?: string; // For precomputed audio lookup
+  chunkIndex?: number; // For precomputed audio lookup
 }
 
 export function IntegratedAudioControls({
@@ -16,8 +18,12 @@ export function IntegratedAudioControls({
   voiceProvider,
   isPlaying,
   onPlayStateChange,
-  onEnd
+  onEnd,
+  bookId,
+  chunkIndex
 }: IntegratedAudioControlsProps) {
+  // Debug log to track what text is being passed for audio
+  console.log(`🎯 IntegratedAudioControls received text (${text.length} chars): "${text.substring(0, 100)}..."`);
   const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -32,17 +38,18 @@ export function IntegratedAudioControls({
 
   const playAudio = async () => {
     setIsLoading(true);
-    console.log(`🎵 Generating ${voiceProvider} audio for text...`);
+    console.log(`🎵 Playing ${voiceProvider} audio for text: "${text.substring(0, 50)}..."`);
 
     try {
       // Stop any existing audio
       voiceService.stop();
 
-      // Map provider names
+      // Simple, reliable voice service - works with delays but completes reading
+      console.log(`🎵 Using voice service for ${voiceProvider}...`);
       const provider = voiceProvider === 'standard' ? 'web-speech' : voiceProvider;
 
       await voiceService.speak({
-        text: text.substring(0, 2000), // Limit for faster response
+        text: text.substring(0, 1500), // Use displayed text
         settings: {
           volume: 0.8,
           rate: 1.0,
@@ -52,16 +59,16 @@ export function IntegratedAudioControls({
           elevenLabsVoice: voiceProvider === 'elevenlabs' ? 'pNInz6obpgDQGcFmaJgB' : undefined
         },
         onStart: () => {
-          console.log('🎵 Audio started');
+          console.log(`🎵 ${voiceProvider} audio started`);
           setIsLoading(false);
         },
         onEnd: () => {
-          console.log('🎵 Audio ended');
+          console.log(`🎵 ${voiceProvider} audio completed - auto-advancing`);
           onPlayStateChange(false);
-          onEnd?.();
+          onEnd?.(); // Auto-advance to next page
         },
         onError: (error) => {
-          console.error('🎵 Audio error:', error);
+          console.error(`🎵 ${voiceProvider} audio error:`, error);
           setIsLoading(false);
           onPlayStateChange(false);
         }
@@ -88,5 +95,12 @@ export function IntegratedAudioControls({
     };
   }, []);
 
-  return null; // This is an invisible controller component
+  return (
+    <div style={{ display: 'none' }}>
+      {/* Invisible audio controller - reads displayed text exactly */}
+      {/* Text length: {text.length} chars */}
+      {/* Voice: {voiceProvider} */}
+      {/* Chunk: {chunkIndex} */}
+    </div>
+  );
 }

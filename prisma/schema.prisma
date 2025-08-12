@@ -302,6 +302,7 @@ model AudioSegment {
   startTime   Float    @map("start_time") // Start time in seconds
   endTime     Float    @map("end_time")   // End time in seconds
   wordTimings Json     @map("word_timings") // Array of {word, start, end} objects
+  audioBlob   Bytes?   @map("audio_blob") // Individual chunk audio data
   createdAt   DateTime @default(now()) @map("created_at")
   
   bookAudio BookAudio @relation(fields: [audioId], references: [id], onDelete: Cascade)

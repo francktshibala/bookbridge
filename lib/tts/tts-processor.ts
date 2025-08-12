@@ -281,43 +281,71 @@ export class TTSProcessor {
     wordTimings: WordTiming[];
   } | null> {
     try {
-      // First try to get from database
-      const audioRecord = await prisma.bookAudio.findUnique({
+      console.log(`🔍 Looking for precomputed audio: ${bookId} ${cefrLevel} chunk ${chunkIndex} voice ${voiceId}`);
+      
+      // Get the specific chunk
+      const chunk = await prisma.bookChunk.findUnique({
         where: {
-          bookId_cefrLevel_voiceId: {
+          bookId_cefrLevel_chunkIndex: {
             bookId,
-            cefrLevel,
-            voiceId
-          }
-        },
-        include: {
-          audioSegments: {
-            where: {
-              chunkId: {
-                in: await prisma.bookChunk
-                  .findMany({
-                    where: { bookId, cefrLevel, chunkIndex },
-                    select: { id: true }
-                  })
-                  .then(chunks => chunks.map(c => c.id))
-              }
-            }
+            cefrLevel: 'original', // We stored chunks as 'original', not simplified levels yet
+            chunkIndex
           }
         }
       });
 
-      if (audioRecord && audioRecord.audioBlob && audioRecord.audioSegments.length > 0) {
-        const segment = audioRecord.audioSegments[0];
-        return {
-          audioBlob: Buffer.from(audioRecord.audioBlob),
-          duration: audioRecord.duration || 0,
-          wordTimings: JSON.parse(segment.wordTimings as string)
-        };
+      if (!chunk) {
+        console.log(`❌ Chunk not found: ${bookId} ${cefrLevel} chunk ${chunkIndex}`);
+        return null;
       }
 
-      return null;
+      // Find BookAudio record for this book+voice combination
+      const audioRecord = await prisma.bookAudio.findFirst({
+        where: {
+          bookId,
+          cefrLevel: 'original', // We stored as 'original'
+          voiceId
+        }
+      });
+
+      if (!audioRecord) {
+        console.log(`❌ BookAudio not found: ${bookId} voice ${voiceId}`);
+        return null;
+      }
+
+      // Find the specific audio segment for this chunk
+      const audioSegment = await prisma.audioSegment.findFirst({
+        where: {
+          audioId: audioRecord.id,
+          chunkId: chunk.id
+        }
+      });
+
+      if (!audioSegment) {
+        console.log(`❌ AudioSegment not found for chunk ${chunkIndex}`);
+        return null;
+      }
+
+      console.log(`✅ Found precomputed audio segment: ${audioSegment.endTime}s duration`);
+
+      // Check if we have the audio blob stored
+      if (audioSegment.audioBlob) {
+        console.log(`🎵 Using precomputed audio blob: ${(audioSegment.audioBlob.length/1024).toFixed(1)}KB`);
+        
+        const storedTimings = JSON.parse(audioSegment.wordTimings as string);
+        
+        return {
+          audioBlob: Buffer.from(audioSegment.audioBlob),
+          duration: audioSegment.endTime,
+          wordTimings: storedTimings || []
+        };
+      } else {
+        console.log(`⚠️ Audio segment exists but no blob stored, falling back to generation`);
+        return null; // This will trigger fallback
+      }
+      
     } catch (error) {
-      console.error('Error fetching audio:', error);
+      console.error('Error fetching precomputed audio:', error);
       return null;
     }
   }

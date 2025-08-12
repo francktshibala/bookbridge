@@ -1037,6 +1037,8 @@ export default function BookReaderPage() {
                   isPlaying={isPlaying}
                   onPlayStateChange={setIsPlaying}
                   onEnd={handleChunkComplete}
+                  bookId={bookId}
+                  chunkIndex={currentChunk}
                 />
                   
                   {/* Continuous Playback Status */}
