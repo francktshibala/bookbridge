@@ -1,31 +1,15 @@
 /**
- * Feature Flag System for ESL Redesign
- * Enables safe, incremental rollout of ESL features
+ * Feature Flag System for Controlled Feature Rollout
+ * Enables safe, incremental rollout of features
  */
 
 export interface FeatureFlags {
-  eslRedesign: boolean;
-  sentenceSafeChunking: boolean;
-  similarityGate: boolean;
-  eslControlBar: boolean;
-  compareMode: boolean;
-  srsIntegration: boolean;
-  precomputedSimplifications: boolean;
-  nonStopListening: boolean; // Cross-page auto-advance
-  easyNavigation: boolean;   // Swipe/keyboard navigation
+  // Add future feature flags here
 }
 
 // Default feature flags - all disabled initially for safe rollout
 const DEFAULT_FLAGS: FeatureFlags = {
-  eslRedesign: false,
-  sentenceSafeChunking: false,
-  similarityGate: false,
-  eslControlBar: false,
-  compareMode: false,
-  srsIntegration: false,
-  precomputedSimplifications: false,
-  nonStopListening: false,
-  easyNavigation: false,
+  // Add default values for future flags here
 };
 
 /**
@@ -33,15 +17,7 @@ const DEFAULT_FLAGS: FeatureFlags = {
  */
 export function getFeatureFlags(): FeatureFlags {
   return {
-    eslRedesign: process.env.NEXT_PUBLIC_ESL_REDESIGN === 'true',
-    sentenceSafeChunking: process.env.NEXT_PUBLIC_SENTENCE_SAFE_CHUNKING === 'true',
-    similarityGate: process.env.NEXT_PUBLIC_SIMILARITY_GATE === 'true',
-    eslControlBar: process.env.NEXT_PUBLIC_ESL_CONTROL_BAR === 'true',
-    compareMode: process.env.NEXT_PUBLIC_COMPARE_MODE === 'true',
-    srsIntegration: process.env.NEXT_PUBLIC_SRS_INTEGRATION === 'true',
-    precomputedSimplifications: process.env.NEXT_PUBLIC_PRECOMPUTED_SIMPLIFICATIONS === 'true',
-    nonStopListening: process.env.NEXT_PUBLIC_NON_STOP_LISTENING === 'true',
-    easyNavigation: process.env.NEXT_PUBLIC_EASY_NAVIGATION === 'true',
+    // Add environment variable mappings for future flags here
   };
 }
 

@@ -8,41 +8,6 @@ export default function DebugCurrentUserPage() {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
 
-  const addESLProfile = async () => {
-    if (!userInfo?.authUser) return;
-    
-    setUpdating(true);
-    try {
-      const supabase = createClient();
-      
-      // Add ESL profile to current user
-      const { error } = await supabase
-        .from('users')
-        .update({
-          esl_level: 'B2',
-          native_language: 'Spanish',
-          learning_goals: JSON.stringify([
-            'Improve reading comprehension',
-            'Learn academic vocabulary',
-            'Better understanding of cultural references'
-          ]),
-          reading_speed_wpm: 130
-        })
-        .eq('id', userInfo.authUser.id);
-      
-      if (error) {
-        console.error('Update error:', error);
-        alert('Error updating profile: ' + error.message);
-      } else {
-        alert('ESL profile added! Refresh the page.');
-        window.location.reload();
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Error: ' + error);
-    }
-    setUpdating(false);
-  };
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -113,35 +78,6 @@ export default function DebugCurrentUserPage() {
             {JSON.stringify(userInfo, null, 2)}
           </pre>
           
-          {userInfo?.authUser && (
-            <div>
-              <h3 style={{ marginBottom: '10px', color: '#cbd5e0' }}>Quick Fix:</h3>
-              {!userInfo?.dbUser?.esl_level ? (
-                <button
-                  onClick={addESLProfile}
-                  disabled={updating}
-                  style={{
-                    padding: '12px 24px',
-                    background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    cursor: updating ? 'not-allowed' : 'pointer',
-                    opacity: updating ? 0.5 : 1
-                  }}
-                >
-                  {updating ? 'Adding ESL Profile...' : 'Add ESL Profile (B2 Spanish)'}
-                </button>
-              ) : (
-                <div style={{ color: '#10b981' }}>
-                  ✅ User has ESL profile: {userInfo.dbUser.esl_level} 
-                  ({userInfo.dbUser.native_language})
-                </div>
-              )}
-            </div>
-          )}
         </div>
       </div>
     </div>

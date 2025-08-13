@@ -20,19 +20,11 @@ model User {
   colorBlindMode   String         @default("none")
   voiceNavigation  Boolean        @default(false)
   readingSpeed     Float          @default(1.0)
-  // ESL-specific fields
-  eslLevel         String?        @map("esl_level") // A1, A2, B1, B2, C1, C2
-  nativeLanguage   String?        @map("native_language")
-  learningGoals    Json?          @map("learning_goals")
-  readingSpeedWpm  Int?           @default(150) @map("reading_speed_wpm")
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
   conversations    Conversation[]
   subscription     Subscription?
   usage            Usage[]
-  // ESL-related relationships
-  vocabularyProgress ESLVocabularyProgress[]
-  readingSessions    ReadingSession[]
 
   @@map("users")
 }
@@ -109,10 +101,6 @@ model EpisodicMemory {
   bookPassage    String?
   userReaction   String?  // 'confused' | 'understood' | 'engaged'
   concepts       Json?    // Array of concepts discussed
-  // ESL enhancements
-  vocabularyIntroduced Json? @map("vocabulary_introduced") @default("[]")
-  difficultyLevel String? @map("difficulty_level") // CEFR level
-  comprehensionScore Decimal? @map("comprehension_score") @db.Decimal(3,2)
   createdAt      DateTime @default(now())
 
   @@map("episodic_memory")
@@ -171,6 +159,7 @@ model AppTestimonial {
   @@map("app_testimonials")
 }
 
+<<<<<<< Updated upstream
 // ESL-specific models for language learning features
 model ESLVocabularyProgress {
   id             String   @id @default(cuid())
@@ -342,3 +331,5 @@ model PrecomputeQueue {
   @@index([createdAt])
   @@map("precompute_queue")
 }
+=======
+>>>>>>> Stashed changes

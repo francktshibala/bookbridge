@@ -13,7 +13,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:esl": "jest --testPathPattern=esl",
     "postinstall": "prisma generate",
     "benchmark": "npx ts-node scripts/run-benchmark.ts daily",
     "benchmark:quick": "npx ts-node scripts/run-benchmark.ts quick",

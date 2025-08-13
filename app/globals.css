@@ -79,8 +79,8 @@
     --touch-target: 44px;
     --touch-spacing: 8px;
     
-    /* ESL Design System Extensions */
-    /* Colors - Enhanced for ESL Features */
+    /* Design System Extensions */
+    /* Enhanced Color Palette */
     --color-bg-surface: #0f172a;
     --color-bg-panel: rgba(26,32,44,0.95);
     --color-brand: #667eea;
@@ -94,22 +94,15 @@
     --color-highlight-bg: #fbbf24;
     --color-highlight-text: #111827;
     
-    /* ESL CEFR Level Colors */
-    --cefr-a1: #10b981;  /* Green for beginners */
-    --cefr-a2: #06b6d4;  /* Light blue */
-    --cefr-b1: #3b82f6;  /* Blue */
-    --cefr-b2: #8b5cf6;  /* Purple */
-    --cefr-c1: #ef4444;  /* Red */
-    --cefr-c2: #f59e0b;  /* Orange for advanced */
     
-    /* Radius - Consistent with ESL UI */
+    /* Border Radius */
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 20px;
     --radius-pill: 999px;
     
-    /* Shadows - Simplified for ESL Clean UI */
+    /* Shadows */
     --shadow-1: 0 1px 2px rgba(0,0,0,.2);
     --shadow-2: 0 4px 20px rgba(0,0,0,.3);
     --shadow-ring: 0 0 0 1px rgba(102,126,234,.2);
@@ -273,46 +266,7 @@
     border: 0 !important;
   }
 
-  /* ESL-specific utility classes */
-  .esl-control-bar {
-    background: var(--color-bg-panel);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    padding: var(--space-3) var(--space-4);
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    backdrop-filter: blur(12px);
-  }
 
-  .esl-control-bar.mobile {
-    padding: var(--space-3);
-    gap: var(--space-3);
-    border-radius: var(--radius-lg);
-  }
-
-  /* CEFR Level Badge Styles */
-  .cefr-badge {
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-pill);
-    font-weight: 600;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    min-width: var(--touch-target);
-    height: var(--touch-target);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--duration-normal) var(--ease-out);
-  }
-
-  .cefr-badge.a1 { background: var(--cefr-a1); color: white; }
-  .cefr-badge.a2 { background: var(--cefr-a2); color: white; }
-  .cefr-badge.b1 { background: var(--cefr-b1); color: white; }
-  .cefr-badge.b2 { background: var(--cefr-b2); color: white; }
-  .cefr-badge.c1 { background: var(--cefr-c1); color: white; }
-  .cefr-badge.c2 { background: var(--cefr-c2); color: white; }
 
   /* Reading Mode Toggle */
   .mode-toggle {

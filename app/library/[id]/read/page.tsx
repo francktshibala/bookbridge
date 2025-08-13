@@ -3,12 +3,17 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+<<<<<<< Updated upstream
 import { ESLControls } from '@/components/esl/ESLControls';
 import { VocabularyHighlighter } from '@/components/VocabularyHighlighter';
 import { PrecomputeAudioPlayer } from '@/components/PrecomputeAudioPlayer';
 import { AudioPlayerWithHighlighting } from '@/components/AudioPlayerWithHighlighting';
 import { IntegratedAudioControls } from '@/components/IntegratedAudioControls';
 import { SpeedControl } from '@/components/SpeedControl';
+=======
+import { useAccessibility } from '@/contexts/AccessibilityContext';
+import { motion } from 'framer-motion';
+>>>>>>> Stashed changes
 
 interface BookContent {
   id: string;
@@ -24,11 +29,16 @@ interface BookContent {
 export default function BookReaderPage() {
   const params = useParams();
   const router = useRouter();
+<<<<<<< Updated upstream
+=======
+  const { preferences, announceToScreenReader } = useAccessibility();
+>>>>>>> Stashed changes
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
+<<<<<<< Updated upstream
   const [eslLevel, setEslLevel] = useState<string>('B2');
   const [showLevelDropdown, setShowLevelDropdown] = useState(false);
   const [showVoiceDropdown, setShowVoiceDropdown] = useState(false);
@@ -46,6 +56,11 @@ export default function BookReaderPage() {
   const [sessionTimerActive, setSessionTimerActive] = useState(false);
   const [aiMetadata, setAiMetadata] = useState<any>(null);
   const [microHint, setMicroHint] = useState<string>('');
+=======
+  const [readingProgress, setReadingProgress] = useState<number>(0);
+  const [currentSection, setCurrentSection] = useState<number>(0);
+  const [sections, setSections] = useState<Array<{title: string; content: string; startIndex: number}>>([]);
+>>>>>>> Stashed changes
 
   const bookId = params.id as string;
 
@@ -484,9 +499,46 @@ export default function BookReaderPage() {
       <div className="bg-slate-800 shadow-sm border-b border-slate-700">
         <div className="max-w-2xl mx-auto px-8 py-8">
           <div className="flex items-center justify-between">
+<<<<<<< Updated upstream
             <div>
               <h1 className="text-2xl font-bold text-white">{bookContent.title}</h1>
               <p className="text-slate-300">by {bookContent.author}</p>
+=======
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <motion.button
+                whileHover={{ x: -4, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => router.push(`/library/${bookId}`)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'rgba(45, 55, 72, 0.8)',
+                  border: '2px solid rgba(102, 126, 234, 0.3)',
+                  borderRadius: '12px',
+                  padding: '12px 20px',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  color: '#e2e8f0',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#667eea';
+                  e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
+                  e.currentTarget.style.backgroundColor = 'rgba(45, 55, 72, 0.8)';
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                }}
+              >
+                <span>←</span>
+                <span>Back to Library</span>
+              </motion.button>
+>>>>>>> Stashed changes
             </div>
             <div className="flex items-center gap-3">
               <button
@@ -543,6 +595,7 @@ export default function BookReaderPage() {
               onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
               onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
             >
+<<<<<<< Updated upstream
               {eslLevel}
             </button>
             
@@ -908,6 +961,206 @@ export default function BookReaderPage() {
               onMouseLeave={(e) => {
                 (e.target as HTMLElement).style.color = canGoPrev ? '#94a3b8' : '#475569';
                 (e.target as HTMLElement).style.backgroundColor = 'transparent';
+=======
+              <h1 style={{
+                fontSize: '20px',
+                fontWeight: '700',
+                color: '#f7fafc',
+                marginBottom: '4px',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+              }}>{bookContent.title}</h1>
+              <p style={{
+                fontSize: '14px',
+                color: '#cbd5e0',
+                fontWeight: '500',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+              }}>by {bookContent.author}</p>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              style={{
+                fontSize: '14px',
+                color: '#cbd5e0',
+                fontWeight: '500',
+                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                textAlign: 'right'
+              }}
+            >
+{(() => {
+                const isExternalBook = bookId.includes('-') && 
+                  ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
+                    bookId.startsWith(source + '-')
+                  );
+                return isExternalBook 
+                  ? `Chapter ${currentChunk + 1} of ${bookContent.totalChunks}`
+                  : `Page ${currentChunk + 1} of ${bookContent.totalChunks}`;
+              })()}
+              <div style={{
+                marginTop: '8px',
+                width: '80px',
+                height: '4px',
+                backgroundColor: 'rgba(45, 55, 72, 0.6)',
+                borderRadius: '2px',
+                overflow: 'hidden'
+              }}>
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: `${((currentChunk + 1) / bookContent.totalChunks) * 100}%` }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    height: '100%',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    borderRadius: '2px'
+                  }}
+                  aria-label={`Reading progress: ${Math.round(((currentChunk + 1) / bookContent.totalChunks) * 100)}%`}
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Reading Content */}
+      <motion.div 
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        className="max-w-4xl mx-auto px-4 py-8"
+      >
+        <motion.div 
+          key={currentChunk}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+          style={{
+            background: 'rgba(26, 32, 44, 0.8)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '20px',
+            padding: '40px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(102, 126, 234, 0.2)',
+            border: '1px solid rgba(102, 126, 234, 0.2)',
+            minHeight: '500px'
+          }}
+        >
+          <div 
+            id="book-reading-text"
+            className={`whitespace-pre-wrap leading-relaxed ${
+              preferences.contrast === 'high' ? 'text-black bg-white' :
+              preferences.contrast === 'ultra-high' ? 'text-white bg-black' :
+              'text-gray-900'
+            }`}
+            style={{
+              fontSize: `${Math.max(preferences.fontSize, 16)}px`,
+              lineHeight: preferences.dyslexiaFont ? '1.9' : '1.8',
+              fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : '"Inter", "Charter", "Georgia", serif',
+              color: preferences.contrast === 'ultra-high' ? '#ffffff' : '#e2e8f0',
+              letterSpacing: '0.3px',
+              wordSpacing: '2px',
+              textAlign: 'justify',
+              textJustify: 'inter-word',
+              hyphens: 'auto',
+              WebkitHyphens: 'auto',
+              msHyphens: 'auto'
+            }}
+            role="main"
+            aria-label="Book content"
+            tabIndex={0}
+          >
+            {sections.length > 0 && sections[currentSection] ? 
+              sections[currentSection].content : 
+              currentChunkData?.content || 'No content available for this section.'}
+          </div>
+        </motion.div>
+        
+        {/* Section Navigation */}
+        {sections.length > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.4 }}
+            style={{
+              marginTop: '24px',
+              padding: '20px',
+              background: 'rgba(45, 55, 72, 0.6)',
+              backdropFilter: 'blur(15px)',
+              borderRadius: '16px',
+              border: '1px solid rgba(102, 126, 234, 0.2)',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
+            }}
+          >
+{(() => {
+              const isExternalBook = bookId.includes('-') && 
+                ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
+                  bookId.startsWith(source + '-')
+                );
+              return (
+                <h3 style={{
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  marginBottom: '12px',
+                  color: '#cbd5e0',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  {isExternalBook ? 'Chapter sections' : 'Sections in this page'}
+                </h3>
+              );
+            })()}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {sections.map((section, index) => (
+                <motion.button
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => goToSection(index)}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    background: index === currentSection ? 
+                      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 
+                      'rgba(102, 126, 234, 0.1)',
+                    color: index === currentSection ? '#ffffff' : '#cbd5e0',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  }}
+                >
+                  {section.title}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+      </motion.div>
+
+      {/* Navigation Controls */}
+      <motion.div 
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.4 }}
+        style={{
+          background: 'rgba(26, 32, 44, 0.95)',
+          backdropFilter: 'blur(20px)',
+          borderTop: '1px solid rgba(102, 126, 234, 0.2)',
+          position: 'sticky',
+          bottom: 0,
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.1)'
+        }}
+      >
+        <div className="max-w-4xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <motion.button
+              whileHover={{ 
+                scale: currentChunk === 0 ? 1 : 1.05,
+                transition: { duration: 0.2 }
+>>>>>>> Stashed changes
               }}
             >
               ‹
@@ -955,6 +1208,7 @@ export default function BookReaderPage() {
           </div>
         </div>
 
+<<<<<<< Updated upstream
         {/* Reading Content - FORCED MARGINS */}
         <div 
           style={{
@@ -1074,5 +1328,8 @@ export default function BookReaderPage() {
         </div>
       </div>
     </div>
+=======
+    </motion.div>
+>>>>>>> Stashed changes
   );
 }
