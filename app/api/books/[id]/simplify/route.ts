@@ -691,7 +691,7 @@ export async function GET(
       console.log(`Cached simplification for ${id}, level ${level}, chunk ${chunkIndex}`)
     } catch (cacheError) {
       console.warn('Failed to cache simplification:', cacheError)
-      console.error('Cache error details:', cacheError.message)
+      console.error('Cache error details:', cacheError instanceof Error ? cacheError.message : 'Unknown error')
       // Continue without caching
     }
 
@@ -776,15 +776,10 @@ export async function POST(
     if (regenerate) {
       // Clear cached version and regenerate
       try {
-        await prisma.bookSimplification.delete({
-          where: {
-            bookId_targetLevel_chunkIndex: {
-              bookId: id,
-              targetLevel: level,
-              chunkIndex: chunkIndex
-            }
-          }
-        })
+        await prisma.$executeRaw`
+          DELETE FROM book_simplifications 
+          WHERE book_id = ${id} AND target_level = ${level} AND chunk_index = ${chunkIndex}
+        `
         console.log(`Cleared cached simplification for regeneration`)
       } catch (error) {
         console.warn('No cached version to clear:', error)

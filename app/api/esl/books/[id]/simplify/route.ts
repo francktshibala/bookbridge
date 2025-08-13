@@ -72,11 +72,7 @@ export async function GET(
     const simplificationResult = await eslSimplifier.simplifyText(
       originalContent,
       level,
-      {
-        preserveNames: true,
-        addCulturalContext: true,
-        maintainStoryStructure: true
-      }
+      'system-esl'
     );
 
     // Calculate quality score
@@ -96,8 +92,8 @@ export async function GET(
           chunk_index: section,
           original_text: originalContent,
           simplified_text: simplificationResult.simplifiedText,
-          vocabulary_changes: simplificationResult.changesLog,
-          cultural_annotations: simplificationResult.culturalContexts,
+          vocabulary_changes: simplificationResult.vocabularyChanges,
+          cultural_annotations: simplificationResult.culturalAnnotations,
           quality_score: qualityScore,
           updated_at: new Date().toISOString()
         });
@@ -114,8 +110,8 @@ export async function GET(
     return NextResponse.json({
       success: true,
       content: simplificationResult.simplifiedText,
-      vocabularyChanges: simplificationResult.changesLog,
-      culturalAnnotations: simplificationResult.culturalContexts,
+      vocabularyChanges: simplificationResult.vocabularyChanges,
+      culturalAnnotations: simplificationResult.culturalAnnotations,
       qualityScore: qualityScore,
       source: 'generated',
       generatedAt: new Date().toISOString(),
@@ -124,8 +120,8 @@ export async function GET(
         originalLength: originalContent.length,
         simplifiedLength: simplificationResult.simplifiedText.length,
         compressionRatio: (simplificationResult.simplifiedText.length / originalContent.length).toFixed(2),
-        vocabularyChanges: simplificationResult.changesLog.length,
-        culturalExplanations: simplificationResult.culturalContexts.length
+        vocabularyChanges: simplificationResult.vocabularyChanges.length,
+        culturalExplanations: simplificationResult.culturalAnnotations.length
       }
     });
     
@@ -195,14 +191,14 @@ export async function POST(
       nativeLanguage
     );
 
-    console.log(`ESL Simplify: Original length: ${text.length}, Simplified length: ${simplifiedText.length}`);
+    console.log(`ESL Simplify: Original length: ${text.length}, Simplified length: ${simplifiedText.simplifiedText.length}`);
 
     return NextResponse.json({
-      simplifiedText,
+      simplifiedText: simplifiedText.simplifiedText,
       cached: false,
       debug: {
         originalText: text.substring(0, 100) + '...',
-        simplifiedText: simplifiedText.substring(0, 100) + '...',
+        simplifiedText: simplifiedText.simplifiedText.substring(0, 100) + '...',
         targetLevel,
         textLength: text.length
       }

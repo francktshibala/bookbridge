@@ -29,10 +29,11 @@ export function getFeatureFlagsForUser(userId?: string): FeatureFlags {
   
   // Beta user override - enable all flags for development
   if (userId && process.env.NEXT_PUBLIC_BETA_USER_IDS?.split(',').includes(userId)) {
-    return Object.keys(baseFlags).reduce((flags, key) => {
-      flags[key as keyof FeatureFlags] = true;
-      return flags;
-    }, {} as FeatureFlags);
+    const allEnabledFlags = { ...baseFlags };
+    Object.keys(baseFlags).forEach(key => {
+      (allEnabledFlags as any)[key] = true;
+    });
+    return allEnabledFlags;
   }
 
   return baseFlags;
@@ -51,7 +52,7 @@ export function useFeatureFlags(userId?: string): FeatureFlags {
 export function trackFeatureFlagUsage(flag: keyof FeatureFlags, value: boolean, userId?: string) {
   // Track feature flag usage for analytics
   if (typeof window !== 'undefined') {
-    window.gtag?.('event', 'feature_flag_used', {
+    (window as any).gtag?.('event', 'feature_flag_used', {
       flag_name: flag,
       flag_value: value,
       user_id: userId,
