@@ -2,9 +2,9 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 // Configuration
-const BOOK_ID = 'gutenberg-1342' // Pride & Prejudice
+const BOOK_ID = 'gutenberg-11' // Alice in Wonderland
 const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-const BASE_URL = 'http://localhost:3005'
+const BASE_URL = 'http://localhost:3006'
 const BATCH_SIZE = 1 // Process only 1 at a time to avoid database issues
 const DELAY_BETWEEN_REQUESTS = 12000 // 12 seconds between requests (5 per minute to stay under rate limits)
 const MAX_RETRIES = 2
@@ -15,12 +15,30 @@ async function sleep(ms) {
 
 async function getBookChunkCount() {
   try {
-    const response = await fetch(`${BASE_URL}/api/books/${BOOK_ID}/content-fast`)
-    const data = await response.json()
-    const fullText = data.context || data.content
-    const words = fullText.split(/\s+/)
-    const totalChunks = Math.ceil(words.length / 400)
-    return totalChunks
+    // Test each CEFR level to find the actual chunk count
+    const chunkCounts = {}
+    for (const level of CEFR_LEVELS) {
+      try {
+        const response = await fetch(`${BASE_URL}/api/books/${BOOK_ID}/simplify?level=${level}&chunk=999&useAI=false`)
+        const data = await response.json()
+        if (data.error && data.error.includes('out of range')) {
+          // Extract actual chunk count from error message
+          const match = data.error.match(/has (\d+) chunks/)
+          if (match) {
+            chunkCounts[level] = parseInt(match[1])
+          }
+        }
+      } catch (e) {
+        console.warn(`Could not determine chunk count for ${level}`)
+      }
+    }
+    
+    // Use the minimum chunk count across all levels
+    const counts = Object.values(chunkCounts)
+    const minChunks = Math.min(...counts)
+    console.log('Chunk counts by level:', chunkCounts)
+    console.log('Using minimum chunk count:', minChunks)
+    return minChunks
   } catch (error) {
     console.error('Failed to get book content:', error)
     throw error
@@ -28,21 +46,16 @@ async function getBookChunkCount() {
 }
 
 async function checkExistingSimplifications(totalChunks) {
-  const existing = await prisma.bookSimplification.findMany({
-    where: {
-      bookId: BOOK_ID
-    },
-    select: {
-      targetLevel: true,
-      chunkIndex: true,
-      qualityScore: true
-    }
-  })
+  const existing = await prisma.$queryRaw`
+    SELECT target_level, chunk_index, quality_score 
+    FROM book_simplifications 
+    WHERE book_id = ${BOOK_ID}
+  `
   
   // Create a map of existing simplifications
   const existingMap = new Set()
   existing.forEach(item => {
-    existingMap.add(`${item.targetLevel}-${item.chunkIndex}`)
+    existingMap.add(`${item.target_level}-${item.chunk_index}`)
   })
   
   // Find missing simplifications - FIXED: respect chunk boundaries
@@ -102,22 +115,30 @@ async function processSimplification(level, chunkIndex, totalChunks, retryCount 
     
     const result = await response.json()
     
+    // Check if AI simplification actually worked
+    if (result.aiMetadata && result.aiMetadata.quality === 'failed') {
+      console.log(`    ⚠️ AI simplification failed (${result.aiMetadata.retryAttempts} attempts)`)
+      if (retryCount < MAX_RETRIES) {
+        console.log(`    🔄 Retrying (${retryCount + 1}/${MAX_RETRIES})...`)
+        await sleep(5000)
+        return processSimplification(level, chunkIndex, totalChunks, retryCount + 1)
+      }
+      return { success: false, level, chunkIndex, error: 'AI simplification failed after retries' }
+    }
+    
     // Verify it was actually saved to database
     await sleep(1000) // Give database time to commit
     
-    const saved = await prisma.bookSimplification.findUnique({
-      where: {
-        bookId_targetLevel_chunkIndex: {
-          bookId: BOOK_ID,
-          targetLevel: level,
-          chunkIndex: chunkIndex
-        }
-      }
-    })
+    const saved = await prisma.$queryRaw`
+      SELECT * FROM book_simplifications 
+      WHERE book_id = ${BOOK_ID} AND target_level = ${level} AND chunk_index = ${chunkIndex}
+      LIMIT 1
+    `
     
-    if (saved) {
-      console.log(`    ✅ Verified in database: quality=${saved.qualityScore?.toFixed(3)}`)
-      return { success: true, level, chunkIndex, quality: saved.qualityScore }
+    if (saved.length > 0) {
+      const qualityScore = saved[0].quality_score
+      console.log(`    ✅ Verified in database: quality=${qualityScore?.toFixed(3)}`)
+      return { success: true, level, chunkIndex, quality: qualityScore }
     } else {
       console.log(`    ⚠️ NOT in database - will retry`)
       if (retryCount < MAX_RETRIES) {
@@ -138,7 +159,7 @@ async function processSimplification(level, chunkIndex, totalChunks, retryCount 
 }
 
 async function main() {
-  console.log('🚀 FIXED BULK PROCESSING FOR PRIDE & PREJUDICE (v2)')
+  console.log('🚀 FIXED BULK PROCESSING FOR ALICE IN WONDERLAND (v2)')
   console.log('='*60)
   console.log('KEY FIXES:')
   console.log('  1. Respects chunk boundaries (0 to totalChunks-1)')
@@ -215,9 +236,10 @@ async function main() {
         console.log(`\n📊 Progress: ${progress}% (${totalSuccessful} saved, ${totalFailed} failed)`)
         
         // Verify database count
-        const currentCount = await prisma.bookSimplification.count({
-          where: { bookId: BOOK_ID }
-        })
+        const countResult = await prisma.$queryRaw`
+          SELECT COUNT(*) as count FROM book_simplifications WHERE book_id = ${BOOK_ID}
+        `
+        const currentCount = Number(countResult[0].count)
         console.log(`  Database verification: ${currentCount} total entries`)
       }
       
@@ -242,16 +264,18 @@ async function main() {
     console.log(`  Failed: ${totalFailed}`)
     
     // Verify actual database count
-    const finalCount = await prisma.bookSimplification.count({
-      where: { bookId: BOOK_ID }
-    })
-    console.log(`\n✅ VERIFIED Database Count: ${finalCount}/1830`)
+    const finalCountResult = await prisma.$queryRaw`
+      SELECT COUNT(*) as count FROM book_simplifications WHERE book_id = ${BOOK_ID}
+    `
+    const finalCount = Number(finalCountResult[0].count)
+    const expectedTotal = 67 * CEFR_LEVELS.length // Alice in Wonderland has 67 chunks
+    console.log(`\n✅ VERIFIED Database Count: ${finalCount}/${expectedTotal}`)
     
-    if (finalCount === 1830) {
-      console.log('\n🎉 PRIDE & PREJUDICE FULLY PROCESSED!')
+    if (finalCount === expectedTotal) {
+      console.log('\n🎉 ALICE IN WONDERLAND FULLY PROCESSED!')
       console.log('All simplifications are saved in the database.')
     } else {
-      console.log(`\n⏳ Still missing ${1830 - finalCount} simplifications.`)
+      console.log(`\n⏳ Still missing ${expectedTotal - finalCount} simplifications.`)
       console.log('Run this script again to continue.')
     }
     
@@ -269,15 +293,20 @@ async function main() {
   }
 }
 
-// Check if server is running
-fetch(`${BASE_URL}/api/health`)
-  .then(() => {
-    console.log('✅ Server is running on port 3005')
-    console.log('Starting fixed bulk processing v2...\n')
-    main()
+// Check if server is running by testing the actual API endpoint
+fetch(`${BASE_URL}/api/books/gutenberg-11/content-fast`)
+  .then(response => {
+    if (response.ok) {
+      console.log('✅ Server is running on port 3006')
+      console.log('Starting fixed bulk processing v2...\n')
+      main()
+    } else {
+      throw new Error(`Server responded with ${response.status}`)
+    }
   })
-  .catch(() => {
-    console.error('❌ Server is not running on port 3005')
-    console.error('Please start the dev server first: npm run dev')
+  .catch((error) => {
+    console.error('❌ Server is not running on port 3006 or API is not accessible')
+    console.error('Please start the dev server first: PORT=3006 npm run dev')
+    console.error('Error:', error.message)
     process.exit(1)
   })

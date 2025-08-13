@@ -802,8 +802,29 @@ continuous text document without formal chapter organization.`;
 
       return aiResponse;
     } catch (error) {
-      console.error('Claude API error:', error);
-      throw new Error('AI service temporarily unavailable');
+      console.error('Claude API error (detailed):', error);
+      
+      // Provide more specific error information
+      if (error instanceof Error) {
+        if (error.message.includes('API call timeout')) {
+          throw new Error('Claude API timeout - request took longer than 30 seconds');
+        }
+        if (error.message.includes('401') || error.message.includes('authentication')) {
+          throw new Error('Claude API authentication failed - check ANTHROPIC_API_KEY');
+        }
+        if (error.message.includes('429') || error.message.includes('rate limit')) {
+          throw new Error('Claude API rate limit exceeded - please try again later');
+        }
+        if (error.message.includes('400')) {
+          throw new Error(`Claude API bad request: ${error.message}`);
+        }
+        if (error.message.includes('500')) {
+          throw new Error('Claude API server error - service temporarily unavailable');
+        }
+      }
+      
+      // For unknown errors, include the original message
+      throw new Error(`AI service error: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 

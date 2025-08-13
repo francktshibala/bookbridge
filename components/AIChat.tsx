@@ -525,11 +525,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
           bookId,
           bookContext,
           // responseMode removed - AI automatically determines based on query intent
-<<<<<<< Updated upstream
-          conversationId: conversationId
-=======
           conversationId: conversationId, // Re-enabled conversation persistence
->>>>>>> Stashed changes
         })
       });
 
@@ -706,10 +702,6 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
               }}>
                 Ask about themes, characters, plot details, writing style, or anything that sparks your curiosity!
               </p>
-<<<<<<< Updated upstream
-=======
-              
->>>>>>> Stashed changes
               <div style={{
                 fontSize: '12px',
                 color: '#6b7280',

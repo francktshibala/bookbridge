@@ -25,6 +25,8 @@ model User {
   conversations    Conversation[]
   subscription     Subscription?
   usage            Usage[]
+  eslVocabularyProgress ESLVocabularyProgress[]
+  readingSessions ReadingSession[]
 
   @@map("users")
 }
@@ -159,7 +161,6 @@ model AppTestimonial {
   @@map("app_testimonials")
 }
 
-<<<<<<< Updated upstream
 // ESL-specific models for language learning features
 model ESLVocabularyProgress {
   id             String   @id @default(cuid())
@@ -331,5 +332,5 @@ model PrecomputeQueue {
   @@index([createdAt])
   @@map("precompute_queue")
 }
-=======
->>>>>>> Stashed changes
+
+
