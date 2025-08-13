@@ -516,29 +516,36 @@ export async function GET(
 
     // Check if we have cached simplification
     try {
-      const cachedSimplification = await prisma.bookSimplification.findUnique({
-        where: {
-          bookId_targetLevel_chunkIndex: {
-            bookId: id,
-            targetLevel: level,
-            chunkIndex: chunkIndex
-          }
-        }
-      })
+      const cachedResults = await prisma.$queryRaw`
+        SELECT * FROM book_simplifications 
+        WHERE book_id = ${id} AND target_level = ${level} AND chunk_index = ${chunkIndex}
+        LIMIT 1
+      ` as Array<{
+        id: string;
+        simplified_text: string;
+        quality_score: number;
+        original_text: string;
+        vocabulary_changes: any;
+        cultural_annotations: any;
+        created_at: Date;
+        updated_at: Date;
+      }>
+      
+      const cachedSimplification = cachedResults.length > 0 ? cachedResults[0] : null
 
       if (cachedSimplification) {
         console.log(`Returning cached simplification for ${id}, level ${level}, chunk ${chunkIndex}`)
         return NextResponse.json({
           success: true,
-          content: cachedSimplification.simplifiedText,
+          content: cachedSimplification.simplified_text,
           level: level,
           chunkIndex: chunkIndex,
           source: 'cache',
           displayConfig: DISPLAY_CONFIG[level],
           stats: {
-            originalLength: cachedSimplification.originalText.length,
-            simplifiedLength: cachedSimplification.simplifiedText.length,
-            compressionRatio: `${Math.round((cachedSimplification.simplifiedText.length / cachedSimplification.originalText.length) * 100)}%`
+            originalLength: cachedSimplification.original_text.length,
+            simplifiedLength: cachedSimplification.simplified_text.length,
+            compressionRatio: `${Math.round((cachedSimplification.simplified_text.length / cachedSimplification.original_text.length) * 100)}%`
           }
         })
       }
