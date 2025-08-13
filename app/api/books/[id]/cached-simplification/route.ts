@@ -19,7 +19,11 @@ export async function GET(
       FROM book_simplifications 
       WHERE book_id = ${id} AND target_level = ${level} AND chunk_index = ${chunkIndex}
       LIMIT 1
-    `
+    ` as Array<{
+      simplified_text: string;
+      quality_score: number;
+      original_text: string;
+    }>
 
     if (cached.length > 0) {
       const simplification = cached[0]
