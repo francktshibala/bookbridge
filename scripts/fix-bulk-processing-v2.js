@@ -15,12 +15,30 @@ async function sleep(ms) {
 
 async function getBookChunkCount() {
   try {
-    const response = await fetch(`${BASE_URL}/api/books/${BOOK_ID}/content-fast`)
-    const data = await response.json()
-    const fullText = data.context || data.content
-    const words = fullText.split(/\s+/)
-    const totalChunks = Math.ceil(words.length / 400)
-    return totalChunks
+    // Test each CEFR level to find the actual chunk count
+    const chunkCounts = {}
+    for (const level of CEFR_LEVELS) {
+      try {
+        const response = await fetch(`${BASE_URL}/api/books/${BOOK_ID}/simplify?level=${level}&chunk=999&useAI=false`)
+        const data = await response.json()
+        if (data.error && data.error.includes('out of range')) {
+          // Extract actual chunk count from error message
+          const match = data.error.match(/has (\d+) chunks/)
+          if (match) {
+            chunkCounts[level] = parseInt(match[1])
+          }
+        }
+      } catch (e) {
+        console.warn(`Could not determine chunk count for ${level}`)
+      }
+    }
+
+    // Use the minimum chunk count across all levels
+    const counts = Object.values(chunkCounts)
+    const minChunks = Math.min(...counts)
+    console.log('Chunk counts by level:', chunkCounts)
+    console.log('Using minimum chunk count:', minChunks)
+    return minChunks
   } catch (error) {
     console.error('Failed to get book content:', error)
     throw error
