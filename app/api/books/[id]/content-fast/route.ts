@@ -35,11 +35,48 @@ export async function GET(
     const maxChunks = parseInt(searchParams.get('maxChunks') || '5')
     const maxWords = parseInt(searchParams.get('maxWords') || '3000')
 
-    // Handle external books
+    // Handle external books - but check database first for our stored books
     if (isExternalBook) {
       console.log(`External book detected: ${id}`)
       
-      // For external books, fetch content via the external API route
+      // PRIORITY 1: Check if this book is stored in our database first
+      try {
+        console.log(`Checking database for stored book: ${id}`)
+        const storedContent = await prisma.bookContent.findUnique({
+          where: { bookId: id }
+        })
+
+        if (storedContent) {
+          console.log(`✅ Found stored book in database: ${storedContent.title}`)
+          
+          // Return stored content with proper formatting
+          const context = storedContent.fullText
+          
+          return NextResponse.json({
+            id: storedContent.bookId,
+            title: storedContent.title,
+            author: storedContent.author,
+            cached: false,
+            external: false, // This is now internal content
+            stored: true,    // Flag to indicate database source
+            query,
+            context,
+            content: context, // Also provide as 'content' for compatibility
+            source: 'database',
+            wordCount: storedContent.wordCount,
+            characterCount: context.length,
+            totalChunks: storedContent.totalChunks,
+            era: storedContent.era,
+            message: 'Content loaded from database storage'
+          })
+        } else {
+          console.log(`❌ Book ${id} not found in database, falling back to external API`)
+        }
+      } catch (dbError) {
+        console.error('Database lookup failed, falling back to external API:', dbError)
+      }
+      
+      // FALLBACK: If not in database, fetch content via the external API route
       try {
         const [source, ...bookIdParts] = id.split('-');
         const bookId = bookIdParts.join('-'); // Handle IDs with dashes

@@ -27,34 +27,59 @@ const chunkText = (text: string, cefrLevel: CEFRLevel): string[] => {
   return chunks
 }
 
-// Era detection function for text-specific thresholds
+// Enhanced era detection function for text-specific thresholds
 const detectEra = (text: string): string => {
-  const sample = text.slice(0, 1000).toLowerCase()
+  const sample = text.slice(0, 2000).toLowerCase()
+  let scores = {
+    'early-modern': 0,
+    'victorian': 0,
+    'american-19c': 0,
+    'modern': 0
+  }
   
   // Early Modern English (Shakespeare, 1500-1700)
-  if (/\b(thou|thee|thy|thine|hath|doth|art)\b/.test(sample) || 
-      /-(est|eth)\b/.test(sample) || 
-      /\b(wherefore|whence|whither|prithee)\b/.test(sample)) {
-    return 'early-modern'
-  }
+  if (/\b(thou|thee|thy|thine|hath|doth|art)\b/.test(sample)) scores['early-modern'] += 3
+  if (/-(est|eth)\b/.test(sample)) scores['early-modern'] += 2
+  if (/\b(wherefore|whence|whither|prithee|forsooth)\b/.test(sample)) scores['early-modern'] += 2
   
-  // Victorian/19th century (1800-1900)
-  if (/\b(whilst|shall|entailment|chaperone|governess)\b/.test(sample) || 
-      /\b(drawing-room|morning-room|upon|herewith)\b/.test(sample)) {
-    return 'victorian'
-  }
+  // Victorian/19th century (1800-1900) - Enhanced for Austen
+  if (/\b(whilst|shall|should|would)\b/.test(sample)) scores['victorian'] += 2
+  if (/\b(entailment|chaperone|governess|propriety|establishment)\b/.test(sample)) scores['victorian'] += 3
+  if (/\b(drawing-room|morning-room|parlour|sitting-room)\b/.test(sample)) scores['victorian'] += 2
+  if (/\b(upon|herewith|wherein|whereupon|heretofore)\b/.test(sample)) scores['victorian'] += 2
+  if (/\b(connexion|endeavour|honour|favour|behaviour)\b/.test(sample)) scores['victorian'] += 2  // British spelling
+  if (/\b(ladyship|gentleman|acquaintance|circumstance)\b/.test(sample)) scores['victorian'] += 1
+  if (/\b(sensible|agreeable|tolerable|amiable|eligible)\b/.test(sample)) scores['victorian'] += 1
+  
+  // Check for long sentences (common in Victorian literature)
+  const sentences = sample.split(/[.!?]/)
+  const avgWordsPerSentence = sentences.reduce((sum, s) => sum + s.split(/\s+/).length, 0) / sentences.length
+  if (avgWordsPerSentence > 25) scores['victorian'] += 2
   
   // American 19th century vernacular
-  if (/\b(ain't|reckon|y'all|mighty|heap)\b/.test(sample) || 
-      /\b(warn't|hain't|'bout|'nough)\b/.test(sample)) {
-    return 'american-19c'
+  if (/\b(ain't|reckon|y'all|mighty|heap)\b/.test(sample)) scores['american-19c'] += 2
+  if (/\b(warn't|hain't|'bout|'nough)\b/.test(sample)) scores['american-19c'] += 2
+  
+  // Modern indicators
+  if (/\b(okay|ok|yeah|guys|cool|awesome)\b/.test(sample)) scores['modern'] += 2
+  if (/\b(telephone|computer|internet|email)\b/.test(sample)) scores['modern'] += 3
+  
+  // Return era with highest score
+  const maxScore = Math.max(...Object.values(scores))
+  if (maxScore === 0) return 'modern'
+  
+  for (const [era, score] of Object.entries(scores)) {
+    if (score === maxScore) {
+      console.log(`Era detection scores: ${JSON.stringify(scores)} -> ${era}`)
+      return era
+    }
   }
   
   return 'modern'
 }
 
 // AI-powered text simplification with semantic similarity gate
-const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: string): Promise<{
+const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: string, bookEra?: string): Promise<{
   simplifiedText: string
   similarity: number
   quality: 'excellent' | 'good' | 'acceptable' | 'failed' | 'modernized'
@@ -62,7 +87,8 @@ const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: st
   era: string
 }> => {
   // Era and CEFR level-specific similarity thresholds
-  const era = detectEra(text)
+  // Use provided bookEra if available, otherwise detect from chunk
+  const era = bookEra || detectEra(text)
   const isArchaic = era === 'early-modern' || era === 'victorian' || era === 'american-19c'
   const isBasicLevel = cefrLevel === 'A1' || cefrLevel === 'A2' || cefrLevel === 'B1'
   
@@ -95,24 +121,69 @@ const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: st
   console.log(`Detected era: ${era}, CEFR: ${cefrLevel}, using threshold: ${SIMILARITY_THRESHOLD}${reductionNote}`)
 
   // Era-aware CEFR-specific simplification prompts
-  // Dynamic temperature by CEFR level and retry attempt
-  const getTemperature = (level: CEFRLevel, attempt: number): number => {
-    const temperatureMatrix = {
-      A1: [0.45, 0.40, 0.35], // Start high for creative rewriting
-      A2: [0.40, 0.35, 0.30], // Moderate creativity
-      B1: [0.35, 0.30, 0.25], // Balanced approach
-      B2: [0.30, 0.25, 0.20], // More conservative
-      C1: [0.25, 0.20, 0.15], // Minimal changes
-      C2: [0.20, 0.15, 0.10]  // Very conservative
+  // Dynamic temperature by era, CEFR level and retry attempt
+  const getTemperature = (level: CEFRLevel, era: string, attempt: number): number => {
+    const temperatureMatrix: Record<string, Record<CEFRLevel, number[]>> = {
+      'early-modern': {
+        A1: [0.50, 0.45, 0.40],  // High creativity for aggressive modernization
+        A2: [0.45, 0.40, 0.35],  // Creative rewriting allowed
+        B1: [0.40, 0.35, 0.30],  // Moderate creativity
+        B2: [0.35, 0.30, 0.25],  // Conservative changes
+        C1: [0.30, 0.25, 0.20],  // Minimal changes
+        C2: [0.25, 0.20, 0.15]   // Preserve literary style
+      },
+      'victorian': {
+        A1: [0.45, 0.40, 0.35],  // High for sentence restructuring
+        A2: [0.40, 0.35, 0.30],  // Moderate creativity
+        B1: [0.35, 0.30, 0.25],  // Standard processing
+        B2: [0.30, 0.25, 0.20],  // Conservative
+        C1: [0.25, 0.20, 0.15],  // Preserve style
+        C2: [0.20, 0.15, 0.10]   // Minimal changes
+      },
+      'american-19c': {
+        A1: [0.40, 0.35, 0.30],  // Dialect modernization
+        A2: [0.35, 0.30, 0.25],  // Standard modernization
+        B1: [0.30, 0.25, 0.20],  // Conservative changes
+        B2: [0.25, 0.20, 0.15],  // Preserve voice
+        C1: [0.20, 0.15, 0.10],  // Minimal changes
+        C2: [0.15, 0.10, 0.05]   // Preserve authenticity
+      },
+      'modern': {
+        A1: [0.35, 0.30, 0.25],  // Standard simplification
+        A2: [0.30, 0.25, 0.20],  // Moderate changes
+        B1: [0.25, 0.20, 0.15],  // Light editing
+        B2: [0.20, 0.15, 0.10],  // Minimal changes
+        C1: [0.15, 0.10, 0.05],  // Very conservative
+        C2: [0.10, 0.05, 0.02]   // Preserve original
+      }
     }
-    return temperatureMatrix[level]?.[Math.min(attempt, 2)] || 0.25
+    
+    const eraMatrix = temperatureMatrix[era] || temperatureMatrix['modern']
+    const temps = eraMatrix[level]
+    return temps[Math.min(attempt, temps.length - 1)]
   }
 
   const getSimplificationPrompt = (level: CEFRLevel, era: string): string => {
     const isArchaic = era === 'early-modern' || era === 'victorian' || era === 'american-19c'
     
     const basePrompts = {
-      A1: isArchaic ? 
+      A1: era === 'victorian' ? 
+        `AGGRESSIVELY SIMPLIFY this Victorian text for beginners:
+
+MANDATORY CHANGES:
+- Break ALL long periodic sentences (25+ words) into simple statements
+- Replace formal vocabulary with everyday words
+- Maximum 8 words per sentence
+- Use ONLY the 500 most common English words
+- Convert passive voice to active voice
+- Explain social terms inline: "entailment" → "family land rules"
+- Remove ALL complex phrases like "shall not be wanting" → "will help"
+
+PRESERVE: Names, basic story events
+SIMPLIFY: Everything else without compromise
+
+Text: ${era} text
+Simplified:` : isArchaic ?
         `COMPLETELY MODERNIZE this ${era} text for A1 beginner English learners:
         - Replace ALL archaic words immediately: thou/thee/thy→you/your, art/hast/doth→are/have/does
         - Convert ALL old grammar to modern English patterns
@@ -130,7 +201,26 @@ const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: st
         - Remove ALL complex grammar structures
         - Rewrite completely if needed for clarity`,
         
-      A2: isArchaic ?
+      A2: era === 'victorian' ?
+        `MODERNIZE this Victorian text for A2 elementary learners:
+
+REQUIRED CHANGES:
+- Break long sentences to 8-12 words maximum
+- Replace ALL formal/archaic vocabulary:
+  * "whilst" → "while"
+  * "shall" → "will"  
+  * "drawing-room" → "living room"
+  * "chaperone" → "guardian"
+- Use ONLY the 1000 most common English words
+- Convert formal statements to simple modern English
+- Remove unnecessary formality and politeness phrases
+- Make dialogue sound like modern conversation
+
+PRESERVE: Character relationships, plot events
+MODERNIZE: Everything else aggressively
+
+Text: ${era} text
+Simplified:` : isArchaic ?
         `AGGRESSIVELY MODERNIZE this ${era} text for A2 elementary English learners:
         - Replace ALL archaic language: thou/thee/thy→you/your, 'tis/'twas→it is/it was
         - Update ALL old verb forms: dost/doth/hath→do/does/has
@@ -226,8 +316,8 @@ const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: st
       Return only the simplified text with no additional explanation or formatting.`
 
       // Call Claude API for simplification with dynamic temperature
-      const currentTemperature = getTemperature(cefrLevel, retryAttempt)
-      console.log(`Using temperature ${currentTemperature} for ${cefrLevel} level, attempt ${retryAttempt + 1}`)
+      const currentTemperature = getTemperature(cefrLevel, era, attempt)
+      console.log(`Using temperature ${currentTemperature} for ${cefrLevel} level (${era}), attempt ${attempt + 1}`)
       
       const response = await claudeService.query(prompt, {
         userId,
@@ -470,13 +560,31 @@ export async function GET(
     let finalContent = originalChunk
     let aiResult = null
     let source = 'chunked'
+    
+    // Detect era based on full book text for better accuracy
+    // Override for known books
+    let bookEra = detectEra(fullText)
+    if (id === 'gutenberg-1342') {
+      bookEra = 'victorian' // Pride & Prejudice is definitely Victorian
+      console.log(`📚 Override era for Pride & Prejudice: victorian`)
+    } else if (id === 'gutenberg-1513') {
+      bookEra = 'early-modern' // Romeo & Juliet is Shakespeare
+      console.log(`📚 Override era for Romeo & Juliet: early-modern`)
+    }
+    console.log(`📚 Book-level era detection for ${id}: ${bookEra}`)
 
     // Apply AI simplification if enabled and user is authenticated
-    console.log(`🤖 AI check: useAI=${useAI}, userId=${userId}, condition=${useAI && userId !== 'anonymous'}`)
-    if (useAI && userId !== 'anonymous') {
+    // Allow Gutenberg books to bypass authentication for AI processing
+    const isGutenbergBook = id.startsWith('gutenberg-')
+    const allowAI = useAI && (isGutenbergBook || userId !== 'anonymous')
+    
+    console.log(`🤖 AI check: useAI=${useAI}, userId=${userId}, isGutenberg=${isGutenbergBook}, allowAI=${allowAI}`)
+    if (allowAI) {
       try {
-        console.log(`Starting AI simplification for ${id}, level ${level}, chunk ${chunkIndex}`)
-        aiResult = await simplifyTextWithAI(originalChunk, level, userId)
+        // Use a system user ID for Gutenberg books if user is anonymous
+        const aiUserId = isGutenbergBook && userId === 'anonymous' ? 'system-gutenberg' : userId
+        console.log(`Starting AI simplification for ${id}, level ${level}, chunk ${chunkIndex}, aiUserId=${aiUserId}`)
+        aiResult = await simplifyTextWithAI(originalChunk, level, aiUserId, bookEra)
         
         // Check if AI simplification was successful (passed similarity gate)
         if (aiResult.quality !== 'failed') {
