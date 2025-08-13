@@ -3,15 +3,12 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
-import { useAccessibility } from '@/contexts/AccessibilityContext';
-import { motion } from 'framer-motion';
-import { SmartAudioPlayer } from '@/components/SmartAudioPlayer';
-import { ESLAudioPlayer } from '@/components/ESLAudioPlayer';
 import { ESLControls } from '@/components/esl/ESLControls';
-import { SplitScreenView } from '@/components/esl/SplitScreenView';
-import { ClickableText } from '@/components/esl/ClickableText';
-import { AIChat } from '@/components/AIChat';
-import { useESLMode } from '@/hooks/useESLMode';
+import { VocabularyHighlighter } from '@/components/VocabularyHighlighter';
+import { PrecomputeAudioPlayer } from '@/components/PrecomputeAudioPlayer';
+import { AudioPlayerWithHighlighting } from '@/components/AudioPlayerWithHighlighting';
+import { IntegratedAudioControls } from '@/components/IntegratedAudioControls';
+import { SpeedControl } from '@/components/SpeedControl';
 
 interface BookContent {
   id: string;
@@ -20,11 +17,6 @@ interface BookContent {
   chunks: Array<{
     chunkIndex: number;
     content: string;
-    sections?: Array<{
-      title: string;
-      content: string;
-      startIndex: number;
-    }>;
   }>;
   totalChunks: number;
 }
@@ -32,1198 +24,1055 @@ interface BookContent {
 export default function BookReaderPage() {
   const params = useParams();
   const router = useRouter();
-  const { preferences, announceToScreenReader } = useAccessibility();
-  const { eslEnabled, eslLevel, nativeLanguage, isLoading: eslLoading } = useESLMode();
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
-  const [readingProgress, setReadingProgress] = useState<number>(0);
-  const [currentSection, setCurrentSection] = useState<number>(0);
-  const [sections, setSections] = useState<Array<{title: string; content: string; startIndex: number}>>([]);
-  const [displayMode, setDisplayMode] = useState<'original' | 'simplified'>('original');
-  const [showSplitScreen, setShowSplitScreen] = useState(false);
-  const [enableVocabulary, setEnableVocabulary] = useState(true);
-  const [learnedWords, setLearnedWords] = useState<Set<string>>(new Set());
-  const [showAIChat, setShowAIChat] = useState(false);
+  const [eslLevel, setEslLevel] = useState<string>('B2');
+  const [showLevelDropdown, setShowLevelDropdown] = useState(false);
+  const [showVoiceDropdown, setShowVoiceDropdown] = useState(false);
+  const [voiceProvider, setVoiceProvider] = useState<'standard' | 'openai' | 'elevenlabs'>('openai');
+  const [currentContent, setCurrentContent] = useState<string>('');
+  const [currentMode, setCurrentMode] = useState<'original' | 'simplified'>('original');
+  const [simplifiedContent, setSimplifiedContent] = useState<string>('');
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [continuousPlayback, setContinuousPlayback] = useState(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(-1);
+  const [speechSpeed, setSpeechSpeed] = useState(1.0);
+  const [simplificationLoading, setSimplificationLoading] = useState(false);
+  const [displayConfig, setDisplayConfig] = useState<any>(null);
+  const [sessionTimeLeft, setSessionTimeLeft] = useState<number | null>(null);
+  const [sessionTimerActive, setSessionTimerActive] = useState(false);
+  const [aiMetadata, setAiMetadata] = useState<any>(null);
+  const [microHint, setMicroHint] = useState<string>('');
 
   const bookId = params.id as string;
 
   useEffect(() => {
-    async function checkAuth() {
-      const supabase = createClient();
-      const { data: { user }, error } = await supabase.auth.getUser();
+    if (bookId) {
+      fetchBook();
+      checkAuth();
+      loadReadingPosition();
+    }
+  }, [bookId]);
+
+  // Re-validate reading position after book content is loaded
+  useEffect(() => {
+    if (bookContent?.chunks) {
+      loadReadingPosition(); // Re-validate position against actual book content
+    }
+  }, [bookContent]);
+
+  // Clear simplified content when chunk changes
+  useEffect(() => {
+    setSimplifiedContent('');
+    setAiMetadata(null);
+    setMicroHint('');
+    // Reset to original content for new chunk
+    if (bookContent?.chunks[currentChunk]) {
+      const newContent = bookContent.chunks[currentChunk].content;
+      setCurrentContent(newContent);
+    }
+  }, [currentChunk, bookContent]);
+
+  // Load reading position from localStorage
+  const loadReadingPosition = () => {
+    const savedPosition = localStorage.getItem(`reading-position-${bookId}`);
+    const savedEslLevel = localStorage.getItem(`esl-level-${bookId}`);
+    const savedMode = localStorage.getItem(`reading-mode-${bookId}`);
+    const savedVoiceProvider = localStorage.getItem(`voice-provider-${bookId}`);
+    
+    if (savedPosition) {
+      const position = parseInt(savedPosition, 10);
+      if (position >= 0) {
+        // Validate chunk position against actual book content when available
+        if (bookContent?.chunks && position >= bookContent.chunks.length) {
+          console.warn(`Saved position ${position} exceeds book length (${bookContent.chunks.length} chunks). Resetting to 0.`);
+          localStorage.setItem(`reading-position-${bookId}`, '0');
+          setCurrentChunk(0);
+        } else {
+          setCurrentChunk(position);
+        }
+      }
+    }
+    
+    if (savedEslLevel) {
+      setEslLevel(savedEslLevel);
+    }
+    
+    if (savedMode === 'simplified' || savedMode === 'original') {
+      setCurrentMode(savedMode);
+    }
+    
+    if (savedVoiceProvider === 'standard' || savedVoiceProvider === 'openai' || savedVoiceProvider === 'elevenlabs') {
+      setVoiceProvider(savedVoiceProvider);
+    }
+  };
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
       
-      if (error || !user) {
-        router.push('/auth/login');
+      if (showLevelDropdown && !target.closest('[data-level-dropdown]')) {
+        setShowLevelDropdown(false);
+      }
+      
+      if (showVoiceDropdown && !target.closest('[data-voice-dropdown]')) {
+        setShowVoiceDropdown(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [showLevelDropdown, showVoiceDropdown]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Don't interfere if user is typing in an input
+      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement || event.target instanceof HTMLSelectElement) {
         return;
       }
-      
-      setUser(user);
-    }
-    
-    checkAuth();
-  }, [router]);
 
+      switch (event.key) {
+        case ' ':
+        case 'Spacebar':
+          event.preventDefault();
+          setIsPlaying(!isPlaying);
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          event.preventDefault();
+          if (currentChunk > 0) {
+            handleChunkNavigation('prev');
+          }
+          break;
+        case 'ArrowRight':
+        case 'ArrowDown':
+          event.preventDefault();
+          if (bookContent && currentChunk < bookContent.totalChunks - 1) {
+            handleChunkNavigation('next');
+          }
+          break;
+        case 'Escape':
+          if (isPlaying) {
+            setIsPlaying(false);
+          }
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isPlaying, currentChunk, bookContent]);
+
+  const checkAuth = async () => {
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    setUser(user);
+  };
+
+  // Fetch simplified content from our new API
+  const fetchSimplifiedContent = async (level: string, chunkIndex: number) => {
+    console.log(`🔥 CALLING SIMPLIFY API: /api/books/${bookId}/simplify?level=${level}&chunk=${chunkIndex}`);
+    setSimplificationLoading(true);
+    try {
+      const response = await fetch(`/api/books/${bookId}/simplify?level=${level}&chunk=${chunkIndex}`);
+      console.log(`🔥 API Response status: ${response.status}`);
+      
+      if (!response.ok) {
+        // Handle specific 400 errors with detailed logging and fallback
+        if (response.status === 400) {
+          const errorData = await response.json().catch(() => ({ error: 'Unknown 400 error' }));
+          console.error('400 Error Details:', errorData);
+          
+          // Check if it's a chunk index out of range error
+          if (errorData.error && errorData.error.includes('out of range')) {
+            console.warn(`Chunk index ${chunkIndex} is invalid. Resetting to chunk 0 and clearing stale localStorage.`);
+            
+            // Clear potentially stale reading positions
+            localStorage.removeItem(`reading-position-${bookId}`);
+            localStorage.removeItem(`reading-mode-${bookId}`);
+            
+            // Reset to chunk 0 and try again
+            setCurrentChunk(0);
+            
+            // Retry with chunk 0 if we're not already trying chunk 0
+            if (chunkIndex !== 0) {
+              console.log('Retrying with chunk 0...');
+              return await fetchSimplifiedContent(level, 0);
+            }
+          }
+          
+          // For other 400 errors, show user-friendly message
+          setMicroHint(`Unable to simplify: ${errorData.error || 'Invalid request'}. Showing original text.`);
+        }
+        
+        throw new Error(`Failed to fetch simplified content: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      if (data.success) {
+        setSimplifiedContent(data.content);
+        setDisplayConfig(data.displayConfig);
+        setAiMetadata(data.aiMetadata || null);
+        setMicroHint(data.microHint || '');
+        
+        console.log(`Loaded simplified content for level ${level}, chunk ${chunkIndex}`);
+        if (data.aiMetadata) {
+          console.log(`AI Quality: ${data.aiMetadata.quality}, Similarity: ${data.aiMetadata.similarity}`);
+        }
+        
+        return data.content;
+      } else {
+        throw new Error(data.error || 'Simplification failed');
+      }
+    } catch (error) {
+      console.error('Error fetching simplified content:', error);
+      
+      // Enhanced fallback with chunk validation
+      if (bookContent?.chunks) {
+        // Validate chunk index against available chunks
+        const validChunkIndex = Math.min(chunkIndex, bookContent.chunks.length - 1);
+        const fallbackContent = bookContent.chunks[validChunkIndex]?.content;
+        
+        if (fallbackContent) {
+          setSimplifiedContent(fallbackContent);
+          // Update chunk index if it was corrected
+          if (validChunkIndex !== chunkIndex) {
+            console.log(`Corrected chunk index from ${chunkIndex} to ${validChunkIndex}`);
+            setCurrentChunk(validChunkIndex);
+          }
+          return fallbackContent;
+        }
+      }
+      
+      // Last resort: show error message to user
+      setMicroHint('Unable to load content. Please try refreshing the page.');
+      return '';
+    } finally {
+      setSimplificationLoading(false);
+    }
+  };
+
+  // Session Timer Logic
+  const startSessionTimer = (cefrLevel: string) => {
+    // Configuration matches our DISPLAY_CONFIG
+    const sessionMinutes = {
+      A1: 12, A2: 18, B1: 22, B2: 27, C1: 30, C2: 35
+    }[cefrLevel] || 22;
+    
+    const totalSeconds = sessionMinutes * 60;
+    setSessionTimeLeft(totalSeconds);
+    setSessionTimerActive(true);
+    console.log(`Started ${sessionMinutes}-minute session timer for level ${cefrLevel}`);
+  };
+
+  const stopSessionTimer = () => {
+    setSessionTimerActive(false);
+    setSessionTimeLeft(null);
+  };
+
+  // Timer countdown effect
   useEffect(() => {
-    async function fetchBookContent() {
-      if (!user || !bookId) return;
-      
-      try {
-        setLoading(true);
-        
-        // Check if this is an external book (from public domain sources)
-        const isExternalBook = bookId.includes('-') && 
-          ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
-            bookId.startsWith(source + '-')
-          );
-        
-        let response: Response;
-        
-        if (isExternalBook) {
-          // Use external book API for public domain books
-          response = await fetch(`/api/books/external/${bookId}`);
-        } else {
-          // Use internal book API for uploaded books
-          response = await fetch(`/api/books/${bookId}/content?chunks=true`);
-        }
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch book content');
-        }
-        
-        const data = await response.json();
-        let finalData;
-        
-        // Transform external book response to match internal format
-        if (isExternalBook) {
-          // For external books, use enhanced chapter detection on full content
-          const bookStructure = detectBookStructure(data.content);
-          
-          // Create chunks based on detected chapters/sections
-          const chunks = bookStructure.map((section, index) => ({
-            chunkIndex: index,
-            content: section.content,
-            sections: [section] // Each chunk now contains one meaningful section
-          }));
-          
-          // Ensure at least one chunk
-          if (chunks.length === 0) {
-            chunks.push({
-              chunkIndex: 0,
-              content: data.content,
-              sections: []
-            });
-          }
-          
-          finalData = {
-            id: data.book.id,
-            title: data.book.title,
-            author: data.book.author,
-            chunks,
-            totalChunks: chunks.length
-          };
-          setBookContent(finalData);
-          
-          // Set sections from the book structure
-          setSections(bookStructure);
-        } else {
-          finalData = data;
-          setBookContent(data);
-          
-          // For internal books, use existing section detection
-          if (finalData.chunks && finalData.chunks.length > 0) {
-            const detectedSections = detectBookStructure(finalData.chunks[currentChunk]?.content || '');
-            setSections(detectedSections);
-          }
-        }
-        
-        // Load reading progress from localStorage
-        const progressKey = `reading-progress-${bookId}`;
-        const savedProgress = localStorage.getItem(progressKey);
-        if (savedProgress) {
-          const progress = parseInt(savedProgress);
-          setCurrentChunk(progress);
-          setReadingProgress(progress);
-          announceToScreenReader(`Resumed reading from page ${progress + 1}`);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
-      } finally {
-        setLoading(false);
-      }
-    }
+    if (!sessionTimerActive || sessionTimeLeft === null || sessionTimeLeft <= 0) return;
 
-    fetchBookContent();
-  }, [bookId, user]);
-
-  // Save reading progress to localStorage
-  const saveProgress = (chunkIndex: number) => {
-    const progressKey = `reading-progress-${bookId}`;
-    localStorage.setItem(progressKey, chunkIndex.toString());
-    setReadingProgress(chunkIndex);
-  };
-
-  const nextChunk = () => {
-    if (bookContent && currentChunk < bookContent.totalChunks - 1) {
-      const newChunk = currentChunk + 1;
-      setCurrentChunk(newChunk);
-      saveProgress(newChunk);
-      announceToScreenReader(`Page ${newChunk + 1} of ${bookContent.totalChunks}`);
-    }
-  };
-
-  const prevChunk = () => {
-    if (currentChunk > 0 && bookContent) {
-      const newChunk = currentChunk - 1;
-      setCurrentChunk(newChunk);
-      saveProgress(newChunk);
-      announceToScreenReader(`Page ${newChunk + 1} of ${bookContent.totalChunks}`);
-    }
-  };
-
-  const goToChunk = (chunkIndex: number) => {
-    if (bookContent && chunkIndex >= 0 && chunkIndex < bookContent.totalChunks) {
-      setCurrentChunk(chunkIndex);
-      saveProgress(chunkIndex);
-      
-      // For external books, each chunk is a chapter/section
-      const isExternalBook = bookId.includes('-') && 
-        ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
-          bookId.startsWith(source + '-')
-        );
-      
-      if (isExternalBook && bookContent.chunks[chunkIndex]?.sections) {
-        // External books: each chunk has its section
-        const chunkSections = bookContent.chunks[chunkIndex].sections;
-        setSections(chunkSections);
-        setCurrentSection(0);
-        const sectionTitle = chunkSections[0]?.title || `Chapter ${chunkIndex + 1}`;
-        announceToScreenReader(`Navigated to ${sectionTitle}`);
-      } else {
-        // Internal books: re-detect sections for new chunk
-        const detectedSections = detectBookStructure(bookContent.chunks[chunkIndex]?.content || '');
-        setSections(detectedSections);
-        setCurrentSection(0);
-        announceToScreenReader(`Navigated to page ${chunkIndex + 1} of ${bookContent.totalChunks}`);
-      }
-    }
-  };
-
-  // Clean content by removing Project Gutenberg headers and footers
-  const cleanPublicDomainContent = (content: string): string => {
-    let cleaned = content;
-    
-    // Remove Project Gutenberg header (everything before "*** START OF")
-    const startMarker = /\*\*\*\s*START OF (THE )?PROJECT GUTENBERG/i;
-    const startMatch = cleaned.search(startMarker);
-    if (startMatch !== -1) {
-      // Find the end of the header line
-      const headerEnd = cleaned.indexOf('\n', startMatch);
-      if (headerEnd !== -1) {
-        cleaned = cleaned.substring(headerEnd + 1);
-      }
-    }
-    
-    // Remove Project Gutenberg footer (everything after "*** END OF")
-    const endMarker = /\*\*\*\s*END OF (THE )?PROJECT GUTENBERG/i;
-    const endMatch = cleaned.search(endMarker);
-    if (endMatch !== -1) {
-      cleaned = cleaned.substring(0, endMatch);
-    }
-    
-    // Remove common metadata patterns
-    cleaned = cleaned
-      // Remove excessive line breaks
-      .replace(/\n{4,}/g, '\n\n\n')
-      // Remove "Produced by..." lines
-      .replace(/^Produced by.*$/gm, '')
-      // Remove copyright notices
-      .replace(/^Copyright.*$/gm, '')
-      // Remove transcriber notes
-      .replace(/^\[Transcriber.*?\]$/gm, '')
-      .trim();
-    
-    return cleaned;
-  };
-
-  // Enhanced chapter and section detection for public domain books
-  const detectBookStructure = (content: string) => {
-    const cleanedContent = cleanPublicDomainContent(content);
-    const sections = [];
-    
-    // Enhanced chapter patterns
-    const chapterPatterns = [
-      /^\s*CHAPTER\s+[IVXLCDM]+\.?\s*$/mi,           // CHAPTER I, II, etc.
-      /^\s*CHAPTER\s+\d+\.?\s*$/mi,                  // CHAPTER 1, 2, etc.
-      /^\s*Chapter\s+[IVXLCDM]+\.?\s*$/mi,          // Chapter I, II, etc.
-      /^\s*Chapter\s+\d+\.?\s*$/mi,                 // Chapter 1, 2, etc.
-      /^\s*PART\s+[IVXLCDM]+\.?\s*$/mi,             // PART I, II, etc.
-      /^\s*PART\s+\d+\.?\s*$/mi,                    // PART 1, 2, etc.
-      /^\s*Book\s+[IVXLCDM]+\.?\s*$/mi,             // Book I, II, etc.
-      /^\s*Book\s+\d+\.?\s*$/mi,                    // Book 1, 2, etc.
-      /^\s*[IVXLCDM]+\.?\s*$/m,                     // Just Roman numerals: I., II., etc.
-      /^\s*\d+\.?\s*$/m                             // Just numbers: 1., 2., etc.
-    ];
-    
-    const lines = cleanedContent.split('\n');
-    let currentSection = '';
-    let sectionTitle = '';
-    let sectionIndex = 0;
-    let chapterCount = 0;
-    
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
-      
-      if (!line) {
-        currentSection += '\n';
-        continue;
-      }
-      
-      // Check if this line matches any chapter pattern
-      const isChapterHeader = chapterPatterns.some(pattern => pattern.test(line));
-      
-      // Also check for common section headers
-      const isSectionHeader = !isChapterHeader && (
-        line.length < 100 && 
-        (line === line.toUpperCase() && line.length > 3) ||
-        /^(PART|SECTION|PROLOGUE|EPILOGUE|PREFACE|INTRODUCTION|CONCLUSION)\s*$/i.test(line) ||
-        line.endsWith(':') && line.length < 50
-      );
-      
-      const isHeader = isChapterHeader || isSectionHeader;
-      
-      if (isHeader && currentSection.trim().length > 200) {
-        // Save previous section
-        sections.push({
-          title: sectionTitle || `Section ${sections.length + 1}`,
-          content: currentSection.trim(),
-          startIndex: sectionIndex
-        });
-        
-        // Start new section
-        if (isChapterHeader) {
-          chapterCount++;
-          sectionTitle = line || `Chapter ${chapterCount}`;
-        } else {
-          sectionTitle = line || `Section ${sections.length + 1}`;
+    const timer = setInterval(() => {
+      setSessionTimeLeft(prev => {
+        if (prev === null || prev <= 1) {
+          setSessionTimerActive(false);
+          // Could show a break reminder here
+          console.log('Session timer completed - time for a break!');
+          return 0;
         }
-        currentSection = '';
-        sectionIndex = i;
-      } else if (isHeader && !sectionTitle) {
-        if (isChapterHeader) {
-          chapterCount++;
-          sectionTitle = line || `Chapter ${chapterCount}`;
-        } else {
-          sectionTitle = line;
-        }
-      } else {
-        currentSection += line + '\n';
-      }
-      
-      // Auto-split very long sections (but prefer chapter breaks)
-      if (currentSection.length > 3000 && !isChapterHeader && i < lines.length - 1) {
-        // Look ahead for a natural break (paragraph end)
-        let splitPoint = i;
-        for (let j = i; j < Math.min(i + 20, lines.length); j++) {
-          if (!lines[j].trim()) {
-            splitPoint = j;
-            break;
-          }
-        }
-        
-        sections.push({
-          title: sectionTitle || `Section ${sections.length + 1}`,
-          content: currentSection.trim(),
-          startIndex: sectionIndex
-        });
-        
-        sectionTitle = '';
-        currentSection = '';
-        sectionIndex = splitPoint + 1;
-        i = splitPoint;
-      }
-    }
-    
-    // Add final section
-    if (currentSection.trim()) {
-      sections.push({
-        title: sectionTitle || `Section ${sections.length + 1}`,
-        content: currentSection.trim(),
-        startIndex: sectionIndex
+        return prev - 1;
       });
-    }
-    
-    // If we found good chapter structure, return it; otherwise fall back to smart paragraphs
-    if (chapterCount >= 2) {
-      console.log(`✅ Detected ${chapterCount} chapters in book`);
-      return sections;
-    } else {
-      console.log(`📖 No clear chapters found, using smart section detection`);
-      return sections.length > 1 ? sections : [{
-        title: 'Full Content',
-        content: cleanedContent,
-        startIndex: 0
-      }];
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [sessionTimerActive, sessionTimeLeft]);
+
+  const fetchBook = async () => {
+    try {
+      const response = await fetch(`/api/books/${bookId}/content-fast`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('Book data received:', data);
+      
+      // The API returns content in 'context' property, not 'chunks'
+      if (data.context) {
+        // Split the content into manageable chunks for better reading experience
+        const chunkSize = 1500; // ~1500 characters per page for better breathing room
+        const fullText = data.context;
+        const chunks = [];
+        
+        for (let i = 0; i < fullText.length; i += chunkSize) {
+          chunks.push({
+            chunkIndex: chunks.length,
+            content: fullText.substring(i, i + chunkSize)
+          });
+        }
+        
+        const bookData = {
+          id: data.id,
+          title: data.title,
+          author: data.author,
+          chunks: chunks,
+          totalChunks: chunks.length
+        };
+        
+        setBookContent(bookData);
+        
+        // Set initial content based on saved position
+        const savedPosition = localStorage.getItem(`reading-position-${bookId}`);
+        const initialChunk = savedPosition ? parseInt(savedPosition, 10) : 0;
+        const validChunk = Math.max(0, Math.min(initialChunk, chunks.length - 1));
+        
+        setCurrentChunk(validChunk);
+        setCurrentContent(chunks[validChunk].content);
+        console.log(`Book split into ${chunks.length} chunks, starting at chunk ${validChunk}`);
+      } else {
+        console.log('No content found in book data');
+        setError('Book content not available');
+      }
+    } catch (err) {
+      console.error('Failed to fetch book:', err);
+      setError(err instanceof Error ? err.message : 'Failed to fetch book');
+    } finally {
+      setLoading(false);
     }
   };
 
-  const goToSection = (sectionIndex: number) => {
-    if (sectionIndex >= 0 && sectionIndex < sections.length) {
-      setCurrentSection(sectionIndex);
-      announceToScreenReader(`Navigated to ${sections[sectionIndex].title}`);
+  const handleContentChange = (content: string, mode: 'original' | 'simplified') => {
+    setCurrentContent(content);
+    setCurrentMode(mode);
+  };
+
+  // Handle mode switching - now connects to our simplification API
+  const handleModeToggle = async () => {
+    const newMode = currentMode === 'original' ? 'simplified' : 'original';
+    setCurrentMode(newMode);
+    localStorage.setItem(`reading-mode-${bookId}`, newMode);
+    
+    if (newMode === 'simplified') {
+      // Fetch simplified content for current chunk and CEFR level
+      const simplifiedText = await fetchSimplifiedContent(eslLevel, currentChunk);
+      setCurrentContent(simplifiedText);
+      // Start session timer when entering simplified mode
+      startSessionTimer(eslLevel);
+    } else {
+      // Switch back to original content
+      if (bookContent?.chunks[currentChunk]) {
+        setCurrentContent(bookContent.chunks[currentChunk].content);
+      }
+      // Clear AI metadata and micro-hints when switching to original
+      setAiMetadata(null);
+      setMicroHint('');
+      // Stop session timer when leaving simplified mode
+      stopSessionTimer();
     }
   };
+
+  const handleChunkNavigation = async (direction: 'prev' | 'next', autoAdvance = false) => {
+    if (!bookContent) return;
+    
+    const newChunk = direction === 'next' 
+      ? Math.min(currentChunk + 1, bookContent.totalChunks - 1)
+      : Math.max(currentChunk - 1, 0);
+    
+    if (newChunk !== currentChunk) {
+      setCurrentChunk(newChunk);
+      
+      // Save reading position to localStorage
+      localStorage.setItem(`reading-position-${bookId}`, newChunk.toString());
+      
+      // Get the new content based on current mode
+      const newOriginalContent = bookContent.chunks[newChunk]?.content || '';
+      if (currentMode === 'original') {
+        setCurrentContent(newOriginalContent);
+      } else if (currentMode === 'simplified') {
+        // Fetch simplified content for the new chunk
+        const simplifiedText = await fetchSimplifiedContent(eslLevel, newChunk);
+        setCurrentContent(simplifiedText);
+      }
+      
+      // For auto-advance, continue playing on the new page
+      if (!autoAdvance && isPlaying) {
+        setIsPlaying(false);
+      }
+    }
+  };
+  
+  const handleAutoAdvance = () => {
+    const canGoNext = bookContent ? currentChunk < bookContent.totalChunks - 1 : false;
+    if (canGoNext && continuousPlayback) {
+      console.log(`🎵 Auto-advancing to chunk ${currentChunk + 1} for continuous playback`);
+      handleChunkNavigation('next', true);
+      // Small delay then resume playing on new page
+      setTimeout(() => {
+        setIsPlaying(true);
+      }, 200);
+    } else {
+      // Reached end of book or continuous playback disabled
+      setIsPlaying(false);
+      if (!canGoNext) {
+        console.log('🏁 Reached end of book');
+      }
+    }
+  };
+
+  const handleWordHighlight = (wordIndex: number) => {
+    setCurrentWordIndex(wordIndex);
+  };
+
+  const handleChunkComplete = () => {
+    console.log(`🎵 Chunk ${currentChunk} audio completed`);
+    if (continuousPlayback) {
+      handleAutoAdvance();
+    } else {
+      setIsPlaying(false);
+    }
+  };
+
 
   if (loading) {
     return (
-      <div className="min-h-screen" style={{
-        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
-        backgroundAttachment: 'fixed',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          style={{ textAlign: 'center', padding: '64px 0' }}
-        >
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: '50%',
-              border: '3px solid #e2e8f0',
-              borderTop: '3px solid #667eea',
-              margin: '0 auto 16px auto'
-            }}
-          />
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.4 }}
-            style={{
-              color: '#4a5568',
-              fontSize: '16px',
-              fontWeight: '500',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-            }}
-          >
-            Loading book content...
-          </motion.p>
-        </motion.div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-lg text-gray-600">Loading book...</span>
+        </div>
       </div>
     );
   }
 
-  if (error) {
+  if (error || !bookContent) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{
-        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
-        backgroundAttachment: 'fixed'
-      }}>
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="text-red-400 text-xl mb-4 font-semibold">Error loading book</div>
-          <p className="text-gray-300 mb-4">{error}</p>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2">Error Loading Book</h2>
+          <p className="text-gray-600 mb-4">{error || 'Book not found'}</p>
           <button
             onClick={() => router.push('/library')}
-            className="px-6 py-3 rounded-lg font-medium transition-all duration-200"
-            style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              border: 'none',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0px)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
           >
-            Return to Library
+            Back to Library
           </button>
         </div>
       </div>
     );
   }
 
-  if (!bookContent) {
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{
-        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
-        backgroundAttachment: 'fixed'
-      }}>
-        <div className="text-center">
-          <p className="text-gray-300 mb-4">No content available for this book.</p>
-          <button
-            onClick={() => router.push('/library')}
-            className="px-6 py-3 rounded-lg font-medium transition-all duration-200"
-            style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              border: 'none',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0px)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            Return to Library
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  const currentChunkData = bookContent.chunks[currentChunk];
-
-  // Get dynamic background based on contrast preference
-  const getBackgroundClass = () => {
-    switch (preferences.contrast) {
-      case 'high':
-        return 'bg-white';
-      case 'ultra-high':
-        return 'bg-black';
-      default:
-        return 'bg-white';
-    }
-  };
-
-  const getHeaderClass = () => {
-    switch (preferences.contrast) {
-      case 'high':
-        return 'bg-gray-100 border-gray-300';
-      case 'ultra-high':
-        return 'bg-gray-900 border-gray-700';
-      default:
-        return 'bg-gray-50 border-gray-200';
-    }
-  };
-
-  const getTextClass = () => {
-    switch (preferences.contrast) {
-      case 'high':
-        return 'text-black';
-      case 'ultra-high':
-        return 'text-white';
-      default:
-        return 'text-gray-900';
-    }
-  };
+  const currentChunkData = bookContent?.chunks?.[currentChunk];
+  const canGoPrev = currentChunk > 0;
+  const canGoNext = bookContent ? currentChunk < bookContent.totalChunks - 1 : false;
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen"
-      style={{
-        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%)',
-        backgroundAttachment: 'fixed',
-        backgroundImage: `
-          radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.08) 0%, transparent 50%),
-          radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.06) 0%, transparent 50%)
-        `
-      }}
-    >
+    <div className="min-h-screen bg-slate-900">
+      <style jsx>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
       {/* Header */}
-      <motion.div 
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.4 }}
-        style={{
-          background: 'rgba(26, 32, 44, 0.95)',
-          backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(102, 126, 234, 0.2)',
-          position: 'sticky',
-          top: 0,
-          zIndex: 10,
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.1)'
-        }}
-      >
-        <div className="max-w-4xl mx-auto px-4 py-4">
+      <div className="bg-slate-800 shadow-sm border-b border-slate-700">
+        <div className="max-w-2xl mx-auto px-8 py-8">
           <div className="flex items-center justify-between">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <motion.button
-                whileHover={{ x: -4, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => router.push(`/library/${bookId}`)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: 'rgba(45, 55, 72, 0.8)',
-                  border: '2px solid rgba(102, 126, 234, 0.3)',
-                  borderRadius: '12px',
-                  padding: '12px 20px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  color: '#e2e8f0',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#667eea';
-                  e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
-                  e.currentTarget.style.backgroundColor = 'rgba(45, 55, 72, 0.8)';
-                  e.currentTarget.style.transform = 'translateY(0px)';
-                }}
-              >
-                <span>←</span>
-                <span>Back to Library</span>
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowAIChat(!showAIChat)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: showAIChat ? 
-                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 
-                    'rgba(45, 55, 72, 0.8)',
-                  border: '2px solid rgba(102, 126, 234, 0.3)',
-                  borderRadius: '12px',
-                  padding: '12px 20px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  color: '#e2e8f0',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  if (!showAIChat) {
-                    e.currentTarget.style.borderColor = '#667eea';
-                    e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
-                  }
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  if (!showAIChat) {
-                    e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
-                    e.currentTarget.style.backgroundColor = 'rgba(45, 55, 72, 0.8)';
-                  }
-                  e.currentTarget.style.transform = 'translateY(0px)';
-                }}
-              >
-                <span>🤖</span>
-                <span>{showAIChat ? 'Hide AI Chat' : 'AI Chat'}</span>
-                {eslEnabled && eslLevel && (
-                  <span style={{
-                    fontSize: '10px',
-                    padding: '2px 6px',
-                    background: 'rgba(16, 185, 129, 0.3)',
-                    borderRadius: '10px',
-                    color: '#10b981'
-                  }}>
-                    ESL
-                  </span>
-                )}
-              </motion.button>
+            <div>
+              <h1 className="text-2xl font-bold text-white">{bookContent.title}</h1>
+              <p className="text-slate-300">by {bookContent.author}</p>
             </div>
-            
-            <motion.div 
-              initial={{ y: -10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.4 }}
-              className="text-center flex-1"
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => router.push('/library')}
+                className="px-4 py-2 text-slate-300 hover:text-white transition-colors"
+              >
+                ← Back to Library
+              </button>
+              <div className="text-xs text-slate-400 hidden lg:block" title="Keyboard shortcuts: Space=Play/Pause, Arrow keys=Navigate, Esc=Stop">
+                ⌨️ Space, Arrows, Esc
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 48px' }}>
+        {/* FORCED INLINE STYLES CONTROL BAR */}
+        <div 
+          style={{
+            backgroundColor: '#1e293b',
+            border: '2px solid #475569',
+            borderRadius: '24px',
+            padding: '32px',
+            marginBottom: '48px',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '48px'
+          }}
+        >
+          {/* CEFR Level Selector - FORCED LARGE */}
+          <div style={{ position: 'relative' }} data-level-dropdown>
+            <button
+              style={{
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                backgroundColor: '#6366f1',
+                color: 'white',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                transition: 'transform 0.2s'
+              }}
+              onClick={() => setShowLevelDropdown(!showLevelDropdown)}
+              onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
             >
-              <h1 style={{
-                fontSize: '20px',
-                fontWeight: '700',
-                color: '#f7fafc',
-                marginBottom: '4px',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
-              }}>{bookContent.title}</h1>
-              <p style={{
-                fontSize: '14px',
-                color: '#cbd5e0',
-                fontWeight: '500',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-              }}>by {bookContent.author}</p>
-              
-              {/* ESL Mode Indicator with Split View Button */}
-              {eslEnabled && eslLevel && (
-                <motion.div
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  style={{
-                    marginTop: '8px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}
-                >
-                  <div style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    padding: '4px 12px',
-                    background: 'rgba(16, 185, 129, 0.2)',
-                    border: '1px solid rgba(16, 185, 129, 0.4)',
-                    borderRadius: '20px',
-                    fontSize: '12px',
-                    color: '#10b981',
-                    fontWeight: '600'
-                  }}>
-                    <span>📚</span>
-                    <span>ESL Mode Active • Level {eslLevel}</span>
-                  </div>
-                  
+              {eslLevel}
+            </button>
+            
+            {/* Dropdown Menu */}
+            {showLevelDropdown && (
+              <div style={{
+                position: 'absolute',
+                top: '72px',
+                left: '0',
+                backgroundColor: '#1e293b',
+                border: '2px solid #475569',
+                borderRadius: '12px',
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)',
+                zIndex: 50,
+                minWidth: '80px'
+              }}>
+                {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
                   <button
-                    onClick={() => setShowSplitScreen(true)}
+                    key={level}
                     style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      padding: '4px 12px',
-                      background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%)',
-                      border: '1px solid rgba(102, 126, 234, 0.4)',
-                      borderRadius: '20px',
-                      fontSize: '12px',
-                      color: '#a78bfa',
+                      width: '100%',
+                      padding: '12px 16px',
+                      backgroundColor: level === eslLevel ? '#6366f1' : 'transparent',
+                      color: 'white',
+                      fontSize: '16px',
                       fontWeight: '600',
+                      border: 'none',
                       cursor: 'pointer',
-                      transition: 'all 0.2s'
+                      textAlign: 'left',
+                      transition: 'background-color 0.2s',
+                      borderRadius: level === 'A1' ? '10px 10px 0 0' : level === 'C2' ? '0 0 10px 10px' : '0'
+                    }}
+                    onClick={async () => {
+                      setEslLevel(level);
+                      setShowLevelDropdown(false);
+                      localStorage.setItem(`esl-level-${bookId}`, level);
+                      
+                      // If we're in simplified mode, refetch content for new level
+                      if (currentMode === 'simplified') {
+                        const simplifiedText = await fetchSimplifiedContent(level, currentChunk);
+                        setCurrentContent(simplifiedText);
+                      }
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = '#667eea';
-                      e.currentTarget.style.background = 'linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%)';
+                      if (level !== eslLevel) {
+                        (e.target as HTMLElement).style.backgroundColor = '#475569';
+                      }
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.4)';
-                      e.currentTarget.style.background = 'linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%)';
+                      if (level !== eslLevel) {
+                        (e.target as HTMLElement).style.backgroundColor = 'transparent';
+                      }
                     }}
                   >
-                    <span>🔀</span>
-                    <span>Split View</span>
+                    {level}
                   </button>
-                  
-                  <button
-                    onClick={() => setEnableVocabulary(!enableVocabulary)}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      padding: '4px 12px',
-                      background: enableVocabulary ? 
-                        'linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(37, 99, 235, 0.3) 100%)' :
-                        'rgba(107, 114, 128, 0.2)',
-                      border: `1px solid ${enableVocabulary ? 'rgba(59, 130, 246, 0.5)' : 'rgba(107, 114, 128, 0.4)'}`,
-                      borderRadius: '20px',
-                      fontSize: '12px',
-                      color: enableVocabulary ? '#60a5fa' : '#9ca3af',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s'
-                    }}
-                    title={enableVocabulary ? 'Click words for definitions' : 'Enable word lookup'}
-                  >
-                    <span>📖</span>
-                    <span>Vocabulary {enableVocabulary ? 'ON' : 'OFF'}</span>
-                  </button>
-                </motion.div>
-              )}
-            </motion.div>
-            
-            <motion.div 
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-              style={{
-                fontSize: '14px',
-                color: '#cbd5e0',
-                fontWeight: '500',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                textAlign: 'right'
-              }}
-            >
-{(() => {
-                const isExternalBook = bookId.includes('-') && 
-                  ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
-                    bookId.startsWith(source + '-')
-                  );
-                return isExternalBook 
-                  ? `Chapter ${currentChunk + 1} of ${bookContent.totalChunks}`
-                  : `Page ${currentChunk + 1} of ${bookContent.totalChunks}`;
-              })()}
-              <div style={{
-                marginTop: '8px',
-                width: '80px',
-                height: '4px',
-                backgroundColor: 'rgba(45, 55, 72, 0.6)',
-                borderRadius: '2px',
-                overflow: 'hidden'
-              }}>
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${((currentChunk + 1) / bookContent.totalChunks) * 100}%` }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    height: '100%',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    borderRadius: '2px'
-                  }}
-                  aria-label={`Reading progress: ${Math.round(((currentChunk + 1) / bookContent.totalChunks) * 100)}%`}
-                />
+                ))}
               </div>
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Reading Content */}
-      <motion.div 
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-        className="max-w-4xl mx-auto px-4 py-8"
-      >
-        <motion.div 
-          key={currentChunk}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          style={{
-            background: 'rgba(26, 32, 44, 0.8)',
-            backdropFilter: 'blur(20px)',
-            borderRadius: '20px',
-            padding: '40px',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(102, 126, 234, 0.2)',
-            border: '1px solid rgba(102, 126, 234, 0.2)',
-            minHeight: '500px'
-          }}
-        >
-          <div 
-            id="book-reading-text"
-            className={`whitespace-pre-wrap leading-relaxed ${
-              preferences.contrast === 'high' ? 'text-black bg-white' :
-              preferences.contrast === 'ultra-high' ? 'text-white bg-black' :
-              'text-gray-900'
-            }`}
-            style={{
-              fontSize: `${Math.max(preferences.fontSize, 16)}px`,
-              lineHeight: preferences.dyslexiaFont ? '1.9' : '1.8',
-              fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : '"Inter", "Charter", "Georgia", serif',
-              color: preferences.contrast === 'ultra-high' ? '#ffffff' : '#e2e8f0',
-              letterSpacing: '0.3px',
-              wordSpacing: '2px',
-              textAlign: 'justify',
-              textJustify: 'inter-word',
-              hyphens: 'auto',
-              WebkitHyphens: 'auto',
-              msHyphens: 'auto'
-            }}
-            role="main"
-            aria-label="Book content"
-            tabIndex={0}
-          >
-            {enableVocabulary ? (
-              <ClickableText
-                text={sections.length > 0 && sections[currentSection] ? 
-                  sections[currentSection].content : 
-                  currentChunkData?.content || 'No content available for this section.'}
-                eslEnabled={eslEnabled}
-                eslLevel={eslLevel || undefined}
-                nativeLanguage={nativeLanguage || undefined}
-                onWordLearned={(word) => {
-                  setLearnedWords(prev => new Set(prev).add(word));
-                  announceToScreenReader(`Added "${word}" to learning list`);
-                }}
-              />
-            ) : (
-              sections.length > 0 && sections[currentSection] ? 
-                sections[currentSection].content : 
-                currentChunkData?.content || 'No content available for this section.'
             )}
           </div>
-        </motion.div>
-        
-        {/* Section Navigation */}
-        {sections.length > 1 && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.4 }}
-            style={{
-              marginTop: '24px',
-              padding: '20px',
-              background: 'rgba(45, 55, 72, 0.6)',
-              backdropFilter: 'blur(15px)',
-              borderRadius: '16px',
-              border: '1px solid rgba(102, 126, 234, 0.2)',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
-            }}
-          >
-{(() => {
-              const isExternalBook = bookId.includes('-') && 
-                ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
-                  bookId.startsWith(source + '-')
-                );
-              return (
-                <h3 style={{
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  marginBottom: '12px',
-                  color: '#cbd5e0',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-                }}>
-                  {isExternalBook ? 'Chapter sections' : 'Sections in this page'}
-                </h3>
-              );
-            })()}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-              {sections.map((section, index) => (
-                <motion.button
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => goToSection(index)}
-                  style={{
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    border: 'none',
-                    background: index === currentSection ? 
-                      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 
-                      'rgba(102, 126, 234, 0.1)',
-                    color: index === currentSection ? '#ffffff' : '#cbd5e0',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-                  }}
-                >
-                  {section.title}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* AI Chat Section */}
-        {showAIChat && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            style={{
-              marginTop: '24px',
-              height: '600px',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              border: '1px solid rgba(102, 126, 234, 0.3)',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)'
-            }}
-          >
-            <AIChat 
-              bookId={bookId}
-              bookTitle={bookContent.title}
-              bookContext={`${bookContent.title} by ${bookContent.author} - Currently reading: ${sections[currentSection]?.title || `Page ${currentChunk + 1}`}`}
-            />
-          </motion.div>
-        )}
-
-        {/* Audio Player Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.4 }}
-          style={{
-            marginTop: '24px',
-            padding: '24px',
-            background: 'rgba(45, 55, 72, 0.6)',
-            backdropFilter: 'blur(15px)',
-            borderRadius: '16px',
-            border: '1px solid rgba(102, 126, 234, 0.2)',
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
-          }}
-        >
-          <h3 style={{
-            fontSize: '18px',
-            fontWeight: '600',
-            marginBottom: '16px',
-            color: '#cbd5e0',
-            fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-          }}>
-            Listen to this {sections.length > 1 ? 'section' : 'page'}
-            {eslEnabled && eslLevel && (
-              <span style={{ 
-                marginLeft: '8px', 
-                fontSize: '14px', 
-                color: '#a0aec0',
-                fontWeight: '400'
-              }}>
-                (ESL Mode: {eslLevel})
-              </span>
-            )}
-          </h3>
           
-          {/* Always show audio player, but with different modes */}
-          {eslEnabled && eslLevel ? (
-            <ESLAudioPlayer 
-              text={sections.length > 0 && sections[currentSection] ? 
-                sections[currentSection].content : 
-                currentChunkData?.content || ''}
-              bookId={bookId}
-              onStart={() => announceToScreenReader(`Started reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'} in ESL mode`)}
-              onEnd={() => announceToScreenReader(`Finished reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
-              onWordHighlight={(wordIndex) => {
-                // Highlight word in the reading text
-                const textElement = document.getElementById('book-reading-text');
-                if (textElement) {
-                  const words = textElement.innerText.split(/\s+/);
-                  // Clear previous highlights
-                  textElement.innerHTML = words.map((word, idx) => {
-                    if (idx === wordIndex) {
-                      return `<span style="background-color: #fef3c7; padding: 2px 4px; border-radius: 4px;">${word}</span>`;
-                    }
-                    return word;
-                  }).join(' ');
+          {/* Simplified Mode Toggle - FORCED LARGE */}
+          <button
+            onClick={handleModeToggle}
+            style={{
+              padding: '16px 40px',
+              borderRadius: '32px',
+              backgroundColor: currentMode === 'simplified' ? '#6366f1' : '#475569',
+              color: 'white',
+              fontSize: '16px',
+              fontWeight: '600',
+              border: currentMode === 'simplified' ? 'none' : '2px solid #64748b',
+              cursor: 'pointer',
+              minHeight: '64px',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+              transition: 'all 0.2s'
+            }}
+            onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
+          >
+            {currentMode === 'simplified' ? 'Simplified' : 'Original'}
+          </button>
+          
+          {/* TTS Voice Selector - FORCED LARGE */}
+          <div style={{ position: 'relative' }} data-voice-dropdown>
+            <button
+              onClick={() => setShowVoiceDropdown(!showVoiceDropdown)}
+              style={{
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                backgroundColor: '#6366f1',
+                color: 'white',
+                fontSize: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                transition: 'transform 0.2s',
+                position: 'relative'
+              }}
+              onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
+            >
+              🎤
+              {/* Voice indicator */}
+              <span style={{
+                position: 'absolute',
+                top: '-8px',
+                right: '-8px',
+                width: '20px',
+                height: '20px',
+                backgroundColor: '#10b981',
+                borderRadius: '50%',
+                fontSize: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 'bold'
+              }}>
+                {voiceProvider === 'openai' ? 'AI' : voiceProvider === 'elevenlabs' ? '11' : 'S'}
+              </span>
+            </button>
+            
+            {/* Voice Dropdown Menu */}
+            {showVoiceDropdown && (
+              <div style={{
+                position: 'absolute',
+                top: '72px',
+                left: '0',
+                backgroundColor: '#1e293b',
+                border: '2px solid #475569',
+                borderRadius: '12px',
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)',
+                zIndex: 50,
+                minWidth: '160px'
+              }}>
+                {[
+                  { id: 'standard', name: '🔊 Standard', desc: 'Web Speech' },
+                  { id: 'openai', name: '🤖 OpenAI', desc: 'Premium AI' },
+                  { id: 'elevenlabs', name: '🎵 ElevenLabs', desc: 'Ultra Realistic' }
+                ].map((voice, index) => (
+                  <button
+                    key={voice.id}
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      backgroundColor: voice.id === voiceProvider ? '#6366f1' : 'transparent',
+                      color: 'white',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      border: 'none',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      transition: 'background-color 0.2s',
+                      borderRadius: index === 0 ? '10px 10px 0 0' : index === 2 ? '0 0 10px 10px' : '0',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-start'
+                    }}
+                    onClick={() => {
+                      setVoiceProvider(voice.id as 'standard' | 'openai' | 'elevenlabs');
+                      setShowVoiceDropdown(false);
+                      localStorage.setItem(`voice-provider-${bookId}`, voice.id);
+                      
+                      // Stop any playing audio when switching voice
+                      if (isPlaying) {
+                        setIsPlaying(false);
+                      }
+                    }}
+                    onMouseEnter={(e) => {
+                      if (voice.id !== voiceProvider) {
+                        (e.target as HTMLElement).style.backgroundColor = '#475569';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (voice.id !== voiceProvider) {
+                        (e.target as HTMLElement).style.backgroundColor = 'transparent';
+                      }
+                    }}
+                  >
+                    <span style={{ fontSize: '14px', fontWeight: 'bold' }}>{voice.name}</span>
+                    <span style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>{voice.desc}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          {/* Play/Pause Button - Direct TTS Control */}
+          <button
+            onClick={() => setIsPlaying(!isPlaying)}
+            style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              backgroundColor: '#6366f1',
+              color: 'white',
+              fontSize: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: 'none',
+              cursor: 'pointer',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+              transition: 'transform 0.2s'
+            }}
+            onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
+          >
+            {isPlaying ? '⏸' : '▶'}
+          </button>
+
+          {/* Continuous Playback Toggle */}
+          <button
+            onClick={() => setContinuousPlayback(!continuousPlayback)}
+            title={continuousPlayback ? 'Continuous playback enabled' : 'Enable continuous playback'}
+            style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              backgroundColor: continuousPlayback ? '#10b981' : '#475569',
+              color: 'white',
+              fontSize: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: 'none',
+              cursor: 'pointer',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+              transition: 'all 0.2s',
+              position: 'relative'
+            }}
+            onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
+          >
+            🔁
+            {continuousPlayback && (
+              <span style={{
+                position: 'absolute',
+                top: '-2px',
+                right: '-2px',
+                width: '12px',
+                height: '12px',
+                backgroundColor: '#10b981',
+                borderRadius: '50%',
+                border: '2px solid white'
+              }} />
+            )}
+          </button>
+          
+          {/* Speed Control - FORCED LARGE */}
+          <button
+            onClick={() => {
+              const speeds = [0.5, 0.75, 1.0, 1.25, 1.5];
+              const currentIndex = speeds.indexOf(speechSpeed);
+              const nextSpeed = speeds[(currentIndex + 1) % speeds.length];
+              setSpeechSpeed(nextSpeed);
+            }}
+            style={{
+              color: '#cbd5e1',
+              fontSize: '18px',
+              fontWeight: '600',
+              padding: '12px 16px',
+              backgroundColor: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              borderRadius: '8px',
+              transition: 'all 0.2s'
+            }}
+            onMouseEnter={(e) => {
+              (e.target as HTMLElement).style.color = 'white';
+              (e.target as HTMLElement).style.backgroundColor = '#475569';
+            }}
+            onMouseLeave={(e) => {
+              (e.target as HTMLElement).style.color = '#cbd5e1';
+              (e.target as HTMLElement).style.backgroundColor = 'transparent';
+            }}
+          >
+            {speechSpeed}x
+          </button>
+          
+          {/* AI Quality Indicator */}
+          {currentMode === 'simplified' && aiMetadata && (
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              color: aiMetadata.quality === 'excellent' ? '#10b981' : 
+                     aiMetadata.quality === 'good' ? '#3b82f6' :
+                     aiMetadata.quality === 'acceptable' ? '#f59e0b' : '#ef4444',
+              fontSize: '12px',
+              fontWeight: '600'
+            }}>
+              <div style={{ marginBottom: '2px' }}>AI Quality</div>
+              <div style={{ 
+                fontSize: '10px',
+                textTransform: 'uppercase',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(255,255,255,0.1)'
+              }}>
+                {aiMetadata.quality}
+              </div>
+              <div style={{ 
+                fontSize: '9px', 
+                marginTop: '2px',
+                opacity: 0.7
+              }}>
+                {Math.round(aiMetadata.similarity * 100)}%
+              </div>
+            </div>
+          )}
+
+          {/* Session Timer Display */}
+          {sessionTimerActive && sessionTimeLeft !== null && (
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              color: sessionTimeLeft < 300 ? '#ef4444' : '#94a3b8', // Red when < 5 minutes left
+              fontSize: '14px',
+              fontWeight: '600'
+            }}>
+              <div style={{ fontSize: '12px', marginBottom: '4px' }}>Session</div>
+              <div style={{ 
+                fontSize: '16px',
+                fontFamily: 'monospace',
+                color: sessionTimeLeft < 300 ? '#ef4444' : '#10b981'
+              }}>
+                {Math.floor(sessionTimeLeft / 60)}:{(sessionTimeLeft % 60).toString().padStart(2, '0')}
+              </div>
+            </div>
+          )}
+
+          {/* Navigation - FORCED LARGE */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <button
+              onClick={() => handleChunkNavigation('prev')}
+              disabled={!canGoPrev}
+              style={{
+                width: '48px',
+                height: '48px',
+                color: canGoPrev ? '#94a3b8' : '#475569',
+                fontSize: '24px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'transparent',
+                border: 'none',
+                cursor: canGoPrev ? 'pointer' : 'not-allowed',
+                borderRadius: '8px',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                if (canGoPrev) {
+                  (e.target as HTMLElement).style.color = 'white';
+                  (e.target as HTMLElement).style.backgroundColor = '#475569';
                 }
               }}
-            />
-          ) : (
-            <>
-              <SmartAudioPlayer 
-                text={sections.length > 0 && sections[currentSection] ? 
-                  sections[currentSection].content : 
-                  currentChunkData?.content || ''}
-                enableHighlighting={true}
-                showHighlightedText={false}
-                targetElementId="book-reading-text"
-                variant="reading"
-                onStart={() => announceToScreenReader(`Started reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
-                onEnd={() => announceToScreenReader(`Finished reading ${sections.length > 1 ? sections[currentSection]?.title || 'section' : 'page'}`)}
-              />
-              
-              {/* ESL Mode Prompt */}
-              <div style={{
-                marginTop: '16px',
-                padding: '16px',
-                background: 'rgba(59, 130, 246, 0.1)',
-                border: '2px solid rgba(59, 130, 246, 0.3)',
-                borderRadius: '12px',
-                textAlign: 'center'
-              }}>
-                <p style={{
-                  fontSize: '14px',
-                  color: '#a5b4fc',
-                  margin: '0 0 12px 0',
-                  fontWeight: '500'
-                }}>
-                  🎓 Want ESL learning features like simplified text and pronunciation guidance?
-                </p>
-                <p style={{
-                  fontSize: '12px',
-                  color: '#94a3b8',
-                  margin: 0
-                }}>
-                  Click the ESL Controls button above to enable ESL mode
-                </p>
-              </div>
-            </>
-          )}
-        </motion.div>
-      </motion.div>
-
-      {/* Navigation Controls */}
-      <motion.div 
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.4 }}
-        style={{
-          background: 'rgba(26, 32, 44, 0.95)',
-          backdropFilter: 'blur(20px)',
-          borderTop: '1px solid rgba(102, 126, 234, 0.2)',
-          position: 'sticky',
-          bottom: 0,
-          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.1)'
-        }}
-      >
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <motion.button
-              whileHover={{ 
-                scale: currentChunk === 0 ? 1 : 1.05,
-                transition: { duration: 0.2 }
+              onMouseLeave={(e) => {
+                (e.target as HTMLElement).style.color = canGoPrev ? '#94a3b8' : '#475569';
+                (e.target as HTMLElement).style.backgroundColor = 'transparent';
               }}
-              whileTap={{ scale: 0.95 }}
-              onClick={prevChunk}
-              disabled={currentChunk === 0}
+            >
+              ‹
+            </button>
+            <span style={{
+              color: '#cbd5e1',
+              fontSize: '16px',
+              fontWeight: '500',
+              padding: '0 16px',
+              minWidth: '60px',
+              textAlign: 'center'
+            }}>
+              {currentChunk + 1}/{bookContent?.totalChunks || 0}
+            </span>
+            <button
+              onClick={() => handleChunkNavigation('next')}
+              disabled={!canGoNext}
               style={{
+                width: '48px',
+                height: '48px',
+                color: canGoNext ? '#94a3b8' : '#475569',
+                fontSize: '24px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                padding: '12px 24px',
-                background: currentChunk === 0 ? '#f7fafc' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                color: currentChunk === 0 ? '#a0aec0' : 'white',
+                justifyContent: 'center',
+                backgroundColor: 'transparent',
                 border: 'none',
-                borderRadius: '12px',
-                fontSize: '14px',
-                fontWeight: '600',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                cursor: currentChunk === 0 ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s ease'
+                cursor: canGoNext ? 'pointer' : 'not-allowed',
+                borderRadius: '8px',
+                transition: 'all 0.2s'
               }}
-              aria-label="Previous page"
-            >
-              <span>←</span>
-              <span>Previous</span>
-            </motion.button>
-
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.3 }}
-              style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
-            >
-{(() => {
-                const isExternalBook = bookId.includes('-') && 
-                  ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
-                    bookId.startsWith(source + '-')
-                  );
-                return (
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#cbd5e0',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-                  }}>
-                    {isExternalBook ? 'Go to chapter:' : 'Go to page:'}
-                  </span>
-                );
-              })()}
-              <select
-                value={currentChunk}
-                onChange={(e) => goToChunk(parseInt(e.target.value))}
-                style={{
-                  border: '2px solid rgba(102, 126, 234, 0.3)',
-                  borderRadius: '8px',
-                  padding: '8px 12px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  backgroundColor: 'rgba(45, 55, 72, 0.8)',
-                  color: '#e2e8f0',
-                  cursor: 'pointer',
-                  outline: 'none',
-                  transition: 'border-color 0.2s ease'
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#667eea';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#e2e8f0';
-                }}
-                aria-label="Jump to chapter or page"
-              >
-                {Array.from({ length: bookContent.totalChunks }, (_, i) => {
-                  const isExternalBook = bookId.includes('-') && 
-                    ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
-                      bookId.startsWith(source + '-')
-                    );
-                  
-                  if (isExternalBook && bookContent.chunks[i]?.sections?.[0]?.title) {
-                    const chapterTitle = bookContent.chunks[i].sections[0].title;
-                    return (
-                      <option key={i} value={i}>
-                        {chapterTitle.length > 30 ? chapterTitle.substring(0, 30) + '...' : chapterTitle}
-                      </option>
-                    );
-                  }
-                  
-                  return (
-                    <option key={i} value={i}>
-                      {isExternalBook ? `Chapter ${i + 1}` : `Page ${i + 1}`}
-                    </option>
-                  );
-                })}
-              </select>
-            </motion.div>
-
-            <motion.button
-              whileHover={{ 
-                scale: currentChunk === bookContent.totalChunks - 1 ? 1 : 1.05,
-                transition: { duration: 0.2 }
+              onMouseEnter={(e) => {
+                if (canGoNext) {
+                  (e.target as HTMLElement).style.color = 'white';
+                  (e.target as HTMLElement).style.backgroundColor = '#475569';
+                }
               }}
-              whileTap={{ scale: 0.95 }}
-              onClick={nextChunk}
-              disabled={currentChunk === bookContent.totalChunks - 1}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '12px 24px',
-                background: currentChunk === bookContent.totalChunks - 1 ? '#f7fafc' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                color: currentChunk === bookContent.totalChunks - 1 ? '#a0aec0' : 'white',
-                border: 'none',
-                borderRadius: '12px',
-                fontSize: '14px',
-                fontWeight: '600',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                cursor: currentChunk === bookContent.totalChunks - 1 ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s ease'
+              onMouseLeave={(e) => {
+                (e.target as HTMLElement).style.color = canGoNext ? '#94a3b8' : '#475569';
+                (e.target as HTMLElement).style.backgroundColor = 'transparent';
               }}
-              aria-label="Next page"
             >
-              <span>Next</span>
-              <span>→</span>
-            </motion.button>
+              ›
+            </button>
           </div>
         </div>
-      </motion.div>
 
-      {/* ESL Controls - Floating widget */}
-      <ESLControls 
-        userId={user?.id}
-        onESLModeChange={(enabled, level) => {
-          if (enabled && level) {
-            announceToScreenReader(`ESL mode enabled with level ${level}`);
-            // In future, this will trigger text simplification
-            setDisplayMode('simplified');
-          } else {
-            announceToScreenReader('ESL mode disabled');
-            setDisplayMode('original');
-          }
-        }}
-        variant="floating"
-      />
+        {/* Reading Content - FORCED MARGINS */}
+        <div 
+          style={{
+            backgroundColor: 'rgba(30, 41, 59, 0.5)',
+            borderRadius: '24px',
+            border: '1px solid rgba(71, 85, 105, 0.5)',
+            padding: '48px',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+          }}
+        >
+          {/* Book Title */}
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <h1 style={{ 
+              fontSize: '36px', 
+              fontWeight: 'bold', 
+              color: 'white', 
+              marginBottom: '16px' 
+            }}>
+              {bookContent.title}
+            </h1>
+            <p style={{ color: '#94a3b8', fontSize: '16px' }}>by {bookContent.author}</p>
+          </div>
+          
+          {/* Book Text with FORCED LARGE margins and CEFR-based font size */}
+          <div style={{ 
+            maxWidth: '900px', 
+            margin: '0 auto', 
+            padding: '32px 80px',
+            fontSize: displayConfig?.fontSize || '16px',
+            lineHeight: '1.8',
+            transition: 'font-size 0.3s ease'
+          }}>
+            {simplificationLoading ? (
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                gap: '12px',
+                color: '#94a3b8',
+                fontSize: '16px'
+              }}>
+                <div style={{
+                  width: '20px',
+                  height: '20px',
+                  border: '2px solid #475569',
+                  borderTop: '2px solid #6366f1',
+                  borderRadius: '50%',
+                  animation: 'spin 1s linear infinite'
+                }}></div>
+                Loading {currentMode} content for level {eslLevel}...
+              </div>
+            ) : (
+              <>
+                {/* Micro-hint for simplification issues */}
+                {microHint && currentMode === 'simplified' && (
+                  <div style={{
+                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                    border: '1px solid rgba(245, 158, 11, 0.3)',
+                    borderRadius: '8px',
+                    padding: '8px 12px',
+                    marginBottom: '16px',
+                    fontSize: '13px',
+                    color: '#f59e0b',
+                    textAlign: 'center'
+                  }}>
+                    💡 {microHint}
+                  </div>
+                )}
+                
+                <VocabularyHighlighter 
+                  text={currentContent}
+                  eslLevel={eslLevel}
+                  mode={currentMode}
+                />
 
-      {/* Split Screen View Modal */}
-      {showSplitScreen && eslEnabled && eslLevel && (
-        <SplitScreenView
-          originalText={sections[currentSection]?.content || currentChunkData?.content || ''}
-          bookId={bookId}
-          eslLevel={eslLevel}
-          nativeLanguage={undefined}
-          onClose={() => setShowSplitScreen(false)}
-        />
-      )}
-    </motion.div>
+                {/* Integrated Audio Controls - Invisible but Connected */}
+                <IntegratedAudioControls
+                  text={currentContent}
+                  voiceProvider={voiceProvider}
+                  isPlaying={isPlaying}
+                  onPlayStateChange={setIsPlaying}
+                  onEnd={handleChunkComplete}
+                  bookId={bookId}
+                  chunkIndex={currentChunk}
+                />
+                  
+                  {/* Continuous Playback Status */}
+                  {continuousPlayback && (
+                    <div style={{
+                      textAlign: 'center',
+                      marginTop: '16px',
+                      padding: '8px 16px',
+                      backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                      border: '1px solid rgba(16, 185, 129, 0.3)',
+                      borderRadius: '8px',
+                      fontSize: '14px',
+                      color: '#10b981'
+                    }}>
+                      📚 Continuous playback enabled - will auto-advance to next chunk
+                    </div>
+                  )}
+
+                  {/* Current word highlight debug info */}
+                  {process.env.NODE_ENV === 'development' && currentWordIndex >= 0 && (
+                    <div style={{
+                      textAlign: 'center',
+                      marginTop: '8px',
+                      fontSize: '12px',
+                      color: '#6b7280'
+                    }}>
+                      Highlighting word {currentWordIndex + 1}
+                    </div>
+                  )}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

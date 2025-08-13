@@ -1039,10 +1039,11 @@ interface SimplificationEvent {
 - Sprint 2: Cross‑page highlighting, SRS integration, precompute pipeline, polish & a11y passes
 
 ### Sprint 1 Backlog
-- [ ] Design system: implement tokens (colors/spacing/type) and primitives (Button/Toggle/Tabs/Pager/Tooltip/Sheet/Progress/Toast); wire into reading page
-- [ ] Reading modes: Original/Simplified/Compare with mode toggle and clear indicators; persist per user/book
-- [ ] ESL/TTS bar: Level chip A1–C2, Simplify toggle, Play/Pause/Stop, Speed (0.5–1.2×), Auto‑advance toggle; mobile one‑row collapse
-- [ ] Simplification reliability: call API, apply 0.82 similarity gate; on fail → conservative retry → return original with “simplification unavailable” micro‑hint
+- [x] Design system: implement tokens (colors/spacing/type) and primitives (Button/Toggle/Tabs/Pager/Tooltip/Sheet/Progress/Toast); wire into reading page
+- [x] Reading modes: Original/Simplified/Compare with mode toggle and clear indicators; persist per user/book
+- [x] ESL/TTS bar: Level chip A1–C2, Simplify toggle, Play/Pause/Stop, Speed (0.5–1.2×), Auto‑advance toggle; mobile one‑row collapse
+- [x] **TEXT SIMPLIFICATION PIPELINE COMPLETE**: Basic chunking API at `/api/books/[id]/simplify`, CEFR-based text chunking (A1: 75 words → C2: 450 words), adaptive font sizes, session timers, database caching
+- [ ] Simplification reliability: call API, apply 0.82 similarity gate; on fail → conservative retry → return original with "simplification unavailable" micro‑hint
 - [ ] TTS basics: auto‑advance between chunks with 150–250ms crossfade; prefetch next chunk at 90% or ≤10 words
 - [ ] Telemetry: emit key events (time‑to‑first‑simplified, tts_auto_advanced, similarity_gate_failed); minimal dashboard
 
@@ -1419,4 +1420,12 @@ interface MinimalESLReader {
 - Desktop Compare: ../wireframes/desktop-compare.png
 - Desktop TTS (playing): ../wireframes/desktop-tts.png
 - Mobile Simplified: ../wireframes/mobile-simplified.png
-- Level Sheet: ../wireframes/level-sheet.png 
+- Level Sheet: ../wireframes/level-sheet.png
+
+## Future Mobile Design Considerations
+
+**Text Display Research Note**: Mobile screens will require adjusted word counts per CEFR level:
+- Mobile displays need 15-20% fewer words per screen than desktop
+- Optimal mobile ranges: A1: 60 words, A2: 120 words, B1: 200 words, B2: 280 words, C1: 320 words, C2: 360 words
+- Touch-friendly level switching and original/simplified toggle required
+- Session timers may need mobile-specific shorter intervals due to context switching 

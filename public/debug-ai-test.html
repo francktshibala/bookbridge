@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug AI Simplification</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>Debug AI Simplification Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        const supabase = window.supabase.createClient(
+            'https://xsolwqqdbsuydwmmwtsl.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhzb2x3cXFkYnN1eWR3bW13dHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4MDg0MTcsImV4cCI6MjA2ODM4NDQxN30.xc_mJg5t2pYwKz_G0q4nD8ae1-d828f8ac0e3d'
+        );
+        
+        async function testAI() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<p>Testing AI simplification...</p>';
+            
+            try {
+                // Check auth first
+                const { data: { user } } = await supabase.auth.getUser();
+                console.log('User:', user);
+                results.innerHTML += `<p>Auth: ${user ? user.email : 'Not signed in'}</p>`;
+                
+                // Test API call with auth
+                const response = await fetch('/api/books/gutenberg-100/simplify?level=B1&chunk=4&ai=true', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${(await supabase.auth.getSession()).data.session?.access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                results.innerHTML += `<h3>API Response:</h3>`;
+                results.innerHTML += `<p><strong>Source:</strong> ${data.source}</p>`;
+                results.innerHTML += `<p><strong>AI Metadata:</strong> ${data.aiMetadata ? JSON.stringify(data.aiMetadata) : 'None'}</p>`;
+                results.innerHTML += `<p><strong>Success:</strong> ${data.source === 'ai_simplified' ? '🎉 YES' : '❌ NO'}</p>`;
+                results.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                
+            } catch (error) {
+                results.innerHTML += `<p>Error: ${error.message}</p>`;
+                console.error(error);
+            }
+        }
+        
+        // Auto-run test
+        window.onload = testAI;
+    </script>
+</body>
+</html>
