@@ -332,6 +332,9 @@ Polished version:`
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
     retryAttempt = attempt + 1
     
+    // Call Claude API for simplification with dynamic temperature  
+    const currentTemperature = getTemperature(cefrLevel, era, attempt)
+    
     try {
       // Add retry-specific instructions for conservative approaches
       const retryInstructions = attempt > 0 ? `
@@ -347,9 +350,6 @@ Polished version:`
       const prompt = `${getSimplificationPrompt(cefrLevel, era, text)}${retryInstructions}
 
       Return only the simplified text with no additional explanation or formatting.`
-
-      // Call Claude API for simplification with dynamic temperature
-      const currentTemperature = getTemperature(cefrLevel, era, attempt)
       console.log(`Using temperature ${currentTemperature} for ${cefrLevel} level (${era}), attempt ${attempt + 1}`)
       
       const response = await claudeService.query(prompt, {
