@@ -602,6 +602,17 @@ const prisma = new PrismaClient();
 3. **Clean & Reprocess Frankenstein** (gutenberg-84) - ~425 chunks, 6-8 hours
 4. **Clean & Reprocess Little Women** (gutenberg-514) - ~150 chunks, 3-4 hours
 
+### **⚠️ Manual Execution Required:**
+**Every book processing requires manual terminal commands:**
+```bash
+# Terminal 1: Start server
+npm run dev
+
+# Terminal 2: Run bulk processing
+node scripts/bulk-process-[book-name].js
+```
+**User must run these commands manually - no automation.**
+
 ---
 
 *Critical usage limit issue identified, documented, and resolved. Quality validation implemented to prevent future failures. Multi-computer deployment successful.*
