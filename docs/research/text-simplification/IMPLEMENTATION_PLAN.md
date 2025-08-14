@@ -6,12 +6,83 @@
 
 ## Current Status Summary
 
-**✅ PHASE 3 COMPLETED - August 13, 2025**
+**✅ PHASE 4 UPDATED - August 14, 2025**
 
-**Initial Problem (RESOLVED)**: System was returning identical text with quality=1.0
-- Started with: Only 117/1,692 simplifications (7% coverage)
-- **Now: 1,692/1,692 simplifications (100% coverage)**
-- All issues resolved through implementation fixes
+**CRITICAL ISSUE DISCOVERED & RESOLVED**: Usage Limit Blocking AI Simplification
+
+## 🚨 Major Discovery: Usage Limit Root Cause (August 14, 2025)
+
+**Problem Identified:**
+- **Frankenstein** processing appeared "complete" (2,550 simplifications) but was actually **100% failed**
+- **All CEFR levels showed identical text** on reading page (no actual simplification)
+- **Root Cause**: `system-gutenberg` user hit $10 daily usage limit
+- **Result**: AI simplification blocked → fallback to chunked original text → cached as "successful"
+
+**Critical Learning:**
+```
+Usage check result: { allowed: false, reason: 'Daily user limit exceeded ($10)' }
+AI simplification failed similarity gate: 0.000 < 0.488
+```
+
+**Impact Assessment:**
+- ❌ **Frankenstein**: 2,550 "fake" simplifications (identical text cached)
+- ❌ **Little Women**: 918 "fake" simplifications (identical text cached)  
+- ✅ **Pride & Prejudice**: 1,692 genuine simplifications (processed before limit)
+- ✅ **Romeo & Juliet**: Currently processing successfully (after usage reset)
+
+## ✅ **Solution Implemented:**
+
+**1. Usage Limit Reset Process:**
+```javascript
+// scripts/reset-usage-limits.js
+await prisma.usage.delete({
+  where: { id: currentUsage.id }
+});
+// Resets system-gutenberg from $10.00 to $0.00
+```
+
+**2. Quality Validation Added:**
+```javascript
+// In bulk scripts - now validates real simplification
+const isAIProcessed = result.source === 'ai_simplified' || 
+                     (result.source === 'cache' && result.qualityScore < 1.0)
+const isDifferentFromOriginal = result.aiMetadata?.passedSimilarityGate !== false
+```
+
+**3. Multi-Computer Deployment:**
+- ✅ **Computer 1**: Romeo & Juliet processing (320/336 simplifications)
+- ✅ **Computer 2**: Successfully running after `git pull` + usage reset
+- 📋 **Complete setup instructions** in `SETUP_INSTRUCTIONS.md`
+
+## 📊 **Updated Book Status:**
+
+### ✅ **Completed Successfully:**
+- **Pride & Prejudice** (gutenberg-1342): 1,692/1,692 simplifications ✅
+- **Romeo & Juliet** (gutenberg-1513): 16/336 simplifications ⏳ (processing now)
+
+### ❌ **Requires Reprocessing (Failed Due to Usage Limits):**
+- **Frankenstein** (gutenberg-84): 2,550 failed simplifications - **DELETE & RESTART**
+- **Little Women** (gutenberg-514): 918 failed simplifications - **DELETE & RESTART**
+
+### 📋 **Pending:**
+- **Alice in Wonderland** (gutenberg-11): 372 simplifications needed
+- **Other Gutenberg books**: Awaiting processing
+
+## 🎯 **Next Actions Required:**
+
+### **1. Clean Failed Simplifications:**
+```sql
+-- Delete Frankenstein failed simplifications
+DELETE FROM book_simplifications WHERE bookId = 'gutenberg-84';
+
+-- Delete Little Women failed simplifications  
+DELETE FROM book_simplifications WHERE bookId = 'gutenberg-514';
+```
+
+### **2. Reprocess Clean:**
+- Use updated bulk scripts with quality validation
+- Ensure usage limits are reset before processing
+- Validate `source=ai_simplified` in results
 
 **Successfully Implemented Solutions:**
 - ✅ Assertive prompting templates (Victorian-aware)
@@ -20,6 +91,8 @@
 - ✅ Bulk processing with automatic resume
 - ✅ Chunk boundary detection (282 actual vs 305 expected)
 - ✅ Authentication bypass for Gutenberg books
+- ✅ **Usage limit monitoring and reset process**
+- ✅ **Quality validation to prevent fake simplifications**
 
 **Pride & Prejudice Metrics:**
 - **Total Processing Time**: ~28 hours (overnight + day)
@@ -489,4 +562,46 @@ Expected A1: "All people know this truth. Rich single men need wives. Everyone b
 
 ---
 
-*Technical implementation complete. Authentication blocking issue identified and documented. Ready to resolve and test tomorrow.*
+## 🧹 **Cleanup Scripts for Failed Books**
+
+### **Create Frankenstein Cleanup Script:**
+```bash
+# scripts/clear-frankenstein-cache.js
+node -e "
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+(async () => {
+  const deleted = await prisma.bookSimplification.deleteMany({
+    where: { bookId: 'gutenberg-84' }
+  });
+  console.log('Deleted', deleted.count, 'Frankenstein simplifications');
+  await prisma.\$disconnect();
+})();
+"
+```
+
+### **Create Little Women Cleanup Script:**
+```bash
+# scripts/clear-little-women-cache.js  
+node -e "
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+(async () => {
+  const deleted = await prisma.bookSimplification.deleteMany({
+    where: { bookId: 'gutenberg-514' }
+  });
+  console.log('Deleted', deleted.count, 'Little Women simplifications');
+  await prisma.\$disconnect();
+})();
+"
+```
+
+### **Processing Order Recommendation:**
+1. ✅ **Romeo & Juliet** (currently processing) - 56 chunks, 1-2 hours
+2. **Alice in Wonderland** (gutenberg-11) - ~62 chunks, 1.5-2 hours  
+3. **Clean & Reprocess Frankenstein** (gutenberg-84) - ~425 chunks, 6-8 hours
+4. **Clean & Reprocess Little Women** (gutenberg-514) - ~150 chunks, 3-4 hours
+
+---
+
+*Critical usage limit issue identified, documented, and resolved. Quality validation implemented to prevent future failures. Multi-computer deployment successful.*
