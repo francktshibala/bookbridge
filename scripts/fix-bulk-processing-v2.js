@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 // Configuration
-const BOOK_ID = 'gutenberg-1342' // Pride & Prejudice
+const BOOK_ID = 'gutenberg-514' // Frankenstein
 const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 const BASE_URL = 'http://localhost:3005'
 const BATCH_SIZE = 1 // Process only 1 at a time to avoid database issues
@@ -156,7 +156,7 @@ async function processSimplification(level, chunkIndex, totalChunks, retryCount 
 }
 
 async function main() {
-  console.log('🚀 FIXED BULK PROCESSING FOR PRIDE & PREJUDICE (v2)')
+  console.log('🚀 FIXED BULK PROCESSING FOR FRANKENSTEIN (v2)')
   console.log('='*60)
   console.log('KEY FIXES:')
   console.log('  1. Respects chunk boundaries (0 to totalChunks-1)')
@@ -263,13 +263,14 @@ async function main() {
     const finalCount = await prisma.bookSimplification.count({
       where: { bookId: BOOK_ID }
     })
-    console.log(`\n✅ VERIFIED Database Count: ${finalCount}/1830`)
     
-    if (finalCount === 1830) {
-      console.log('\n🎉 PRIDE & PREJUDICE FULLY PROCESSED!')
+    const expectedTotal = totalChunks * CEFR_LEVELS.length
+    console.log(`\n✅ VERIFIED Database Count: ${finalCount}/${expectedTotal}`)
+    if (finalCount === expectedTotal) {
+      console.log('\n🎉 FRANKENSTEIN FULLY PROCESSED!')
       console.log('All simplifications are saved in the database.')
     } else {
-      console.log(`\n⏳ Still missing ${1830 - finalCount} simplifications.`)
+      console.log(`\n⏳ Still missing ${expectedTotal - finalCount} simplifications.`)
       console.log('Run this script again to continue.')
     }
     
