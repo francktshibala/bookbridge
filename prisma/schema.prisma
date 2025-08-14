@@ -20,19 +20,13 @@ model User {
   colorBlindMode   String         @default("none")
   voiceNavigation  Boolean        @default(false)
   readingSpeed     Float          @default(1.0)
-  // ESL-specific fields
-  eslLevel         String?        @map("esl_level") // A1, A2, B1, B2, C1, C2
-  nativeLanguage   String?        @map("native_language")
-  learningGoals    Json?          @map("learning_goals")
-  readingSpeedWpm  Int?           @default(150) @map("reading_speed_wpm")
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
   conversations    Conversation[]
   subscription     Subscription?
   usage            Usage[]
-  // ESL-related relationships
-  vocabularyProgress ESLVocabularyProgress[]
-  readingSessions    ReadingSession[]
+  eslVocabularyProgress ESLVocabularyProgress[]
+  readingSessions ReadingSession[]
 
   @@map("users")
 }
@@ -109,10 +103,6 @@ model EpisodicMemory {
   bookPassage    String?
   userReaction   String?  // 'confused' | 'understood' | 'engaged'
   concepts       Json?    // Array of concepts discussed
-  // ESL enhancements
-  vocabularyIntroduced Json? @map("vocabulary_introduced") @default("[]")
-  difficultyLevel String? @map("difficulty_level") // CEFR level
-  comprehensionScore Decimal? @map("comprehension_score") @db.Decimal(3,2)
   createdAt      DateTime @default(now())
 
   @@map("episodic_memory")
@@ -180,6 +170,13 @@ model ESLVocabularyProgress {
   difficultyLevel String? @map("difficulty_level") // CEFR level (A1, A2, B1, B2, C1, C2)
   encounters     Int      @default(1)
   masteryLevel   Int      @default(0) @map("mastery_level") // 0-5 scale
+  
+  // SM-2 SRS Algorithm fields
+  easeFactor     Decimal  @default(2.5) @map("ease_factor") @db.Decimal(3,2) // 1.3-2.5 range
+  srsInterval    Int      @default(1) @map("srs_interval") // days until next review
+  repetitions    Int      @default(0) // successful reviews in a row
+  lastQuality    Int      @default(0) @map("last_quality") // 0-5 response quality
+  
   firstSeen      DateTime @default(now()) @map("first_seen")
   lastReviewed   DateTime @default(now()) @map("last_reviewed")
   nextReview     DateTime @default(now()) @map("next_review")
@@ -189,6 +186,7 @@ model ESLVocabularyProgress {
 
   @@unique([userId, word])
   @@index([userId, nextReview])
+  @@index([difficultyLevel, easeFactor]) // For SRS queries
   @@map("esl_vocabulary_progress")
 }
 
@@ -224,12 +222,14 @@ model BookSimplification {
   vocabularyChanges   Json     @default("[]") @map("vocabulary_changes")
   culturalAnnotations Json     @default("[]") @map("cultural_annotations")
   qualityScore        Decimal? @map("quality_score") @db.Decimal(3,2)
+  versionKey          String   @default("v1") @map("version_key") // For cache invalidation
   createdAt           DateTime @default(now()) @map("created_at")
   updatedAt           DateTime @updatedAt @map("updated_at")
 
-  @@unique([bookId, targetLevel, chunkIndex])
+  @@unique([bookId, targetLevel, chunkIndex, versionKey])
   @@index([bookId, targetLevel])
   @@index([updatedAt])
+  @@index([versionKey]) // For cache invalidation queries
   @@map("book_simplifications")
 }
 
@@ -332,3 +332,5 @@ model PrecomputeQueue {
   @@index([createdAt])
   @@map("precompute_queue")
 }
+
+

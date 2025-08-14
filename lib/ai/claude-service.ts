@@ -25,12 +25,6 @@ interface QueryOptions {
   userProfile?: any;
 }
 
-interface ESLQueryOptions extends QueryOptions {
-  eslLevel?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
-  nativeLanguage?: string;
-  vocabularyFocus?: boolean;
-  culturalContext?: boolean;
-}
 
 export class ClaudeAIService {
   private anthropic: Anthropic;
@@ -65,63 +59,10 @@ export class ClaudeAIService {
     }
   }
 
-  // ESL detection and adaptation methods
-  private detectESLNeed(query: string, userProfile?: any): boolean {
-    const eslIndicators = [
-      'explain', 'what does', 'help', 'don\'t understand', 'meaning',
-      'translate', 'simpler', 'easier', 'confusing', 'difficult',
-      'definition', 'clarify', 'rephrase', 'breakdown', 'vocabulary'
-    ];
-    
-    const hasIndicators = eslIndicators.some(indicator => 
-      query.toLowerCase().includes(indicator)
-    );
-    
-    const isESLUser = userProfile?.eslLevel !== null && userProfile?.eslLevel !== undefined;
-    
-    return hasIndicators || isESLUser;
-  }
 
-  private adaptPromptForESL(prompt: string, eslLevel: string, nativeLanguage?: string): string {
-    const levelConstraints = {
-      'A1': 'Use only basic 500-word vocabulary. Short simple sentences. Present tense only. Use everyday language.',
-      'A2': 'Use basic 1000-word vocabulary. Simple past and present. Basic connectors (and, but). Clear examples.',
-      'B1': 'Use 1500-word vocabulary. Most common tenses. Some complex sentences. Explain difficult concepts.',
-      'B2': 'Use 2500-word vocabulary. Advanced grammar. Cultural explanations when needed. Academic language OK.',
-      'C1': 'Use 4000-word vocabulary. Complex structures. Nuanced explanations. Academic discourse.',
-      'C2': 'Near-native vocabulary. All structures. Idiomatic expressions allowed. Full complexity.'
-    };
 
-    const culturalNote = nativeLanguage ? 
-      `Provide cultural context for concepts that may differ from ${nativeLanguage} culture.` : 
-      'Explain Western cultural references clearly.';
-
-    return `${prompt}
-
-IMPORTANT ESL ADAPTATION: ${levelConstraints[eslLevel as keyof typeof levelConstraints]} ${culturalNote}
-
-ESL TEACHING GUIDELINES:
-- Break down complex ideas into simpler parts
-- Use examples that relate to everyday life
-- Explain cultural references and idioms
-- Define any vocabulary words above the user's level
-- Use clear, logical organization in your response
-- Check for comprehension by asking follow-up questions when appropriate`;
-  }
-
-  // Enhanced model selection with ESL awareness
+  // Model selection logic
   private selectModel(query: string, responseMode: 'brief' | 'detailed' = 'detailed', userProfile?: any): string {
-    const eslOptions = { userProfile } as ESLQueryOptions;
-    
-    if (this.detectESLNeed(query, userProfile)) {
-      // ESL users get consistent, clear responses
-      if (eslOptions.userProfile?.eslLevel && ['A1', 'A2'].includes(eslOptions.userProfile.eslLevel)) {
-        return 'claude-3-5-haiku-20241022'; // Simpler, faster responses for beginners
-      }
-      return 'claude-3-5-sonnet-20241022'; // Detailed explanations for intermediate+
-    }
-    
-    // Existing logic for non-ESL users
     const complexPatterns = [
       /analyze.*literary.*technique/i,
       /compare.*characters/i,
@@ -344,7 +285,7 @@ ESL TEACHING GUIDELINES:
     }
   }
 
-  // Create elaborate, flowing prompts for expert-level responses with ESL adaptation
+  // Create elaborate, flowing prompts for expert-level responses
   private optimizePrompt(prompt: string, bookContext?: string, knowledgeContext?: string, responseMode: 'brief' | 'detailed' = 'detailed', userProfile?: any): string {
     // Check if user is asking about book structure
     const structureQueries = [
@@ -358,14 +299,13 @@ ESL TEACHING GUIDELINES:
     
     const isStructureQuery = structureQueries.some(pattern => pattern.test(prompt));
     const needsMultiPerspective = this.requiresMultiPerspectiveAnalysis(prompt);
-    const needsESLAdaptation = this.detectESLNeed(prompt, userProfile);
     
     // Use intelligent conversation flow detection
     const socraticMode = this.shouldUseSocraticMode(prompt, bookContext);
     const needsSocratic = socraticMode !== 'none';
     const isFollowUp = socraticMode === 'followup';
     
-    // Dynamic system prompt based on response mode and ESL needs
+    // Dynamic system prompt based on response mode
     let optimized = '';
     
     if (responseMode === 'brief') {
@@ -380,10 +320,6 @@ BRIEF MODE GUIDELINES:
 - Skip complex background details
 - Perfect for quick understanding`;
       
-      // Add ESL adaptation for brief mode
-      if (needsESLAdaptation && userProfile?.eslLevel) {
-        optimized = this.adaptPromptForESL(optimized, userProfile.eslLevel, userProfile.nativeLanguage);
-      }
     } else {
       optimized = `You are a professional literature tutor who helps students understand books through clear, academic guidance. Provide thoughtful analysis using professional teaching methods.
 
@@ -404,10 +340,6 @@ PROFESSIONAL TUTORING GUIDELINES:
 
 IMPORTANT: Do not use theatrical elements like stage directions, action descriptions in asterisks, or dramatic roleplay. Maintain professional academic tone throughout your response.`;
       
-      // Add ESL adaptation for detailed mode
-      if (needsESLAdaptation && userProfile?.eslLevel) {
-        optimized = this.adaptPromptForESL(optimized, userProfile.eslLevel, userProfile.nativeLanguage);
-      }
     }
 
     // Add multi-perspective instructions when needed
@@ -870,8 +802,29 @@ continuous text document without formal chapter organization.`;
 
       return aiResponse;
     } catch (error) {
-      console.error('Claude API error:', error);
-      throw new Error('AI service temporarily unavailable');
+      console.error('Claude API error (detailed):', error);
+      
+      // Provide more specific error information
+      if (error instanceof Error) {
+        if (error.message.includes('API call timeout')) {
+          throw new Error('Claude API timeout - request took longer than 30 seconds');
+        }
+        if (error.message.includes('401') || error.message.includes('authentication')) {
+          throw new Error('Claude API authentication failed - check ANTHROPIC_API_KEY');
+        }
+        if (error.message.includes('429') || error.message.includes('rate limit')) {
+          throw new Error('Claude API rate limit exceeded - please try again later');
+        }
+        if (error.message.includes('400')) {
+          throw new Error(`Claude API bad request: ${error.message}`);
+        }
+        if (error.message.includes('500')) {
+          throw new Error('Claude API server error - service temporarily unavailable');
+        }
+      }
+      
+      // For unknown errors, include the original message
+      throw new Error(`AI service error: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 

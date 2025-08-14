@@ -163,128 +163,164 @@ const simplifyTextWithAI = async (text: string, cefrLevel: CEFRLevel, userId: st
     return temps[Math.min(attempt, temps.length - 1)]
   }
 
-  const getSimplificationPrompt = (level: CEFRLevel, era: string): string => {
+  const getSimplificationPrompt = (level: CEFRLevel, era: string, text: string): string => {
     const isArchaic = era === 'early-modern' || era === 'victorian' || era === 'american-19c'
     
     const basePrompts = {
       A1: era === 'victorian' ? 
-        `AGGRESSIVELY SIMPLIFY this Victorian text for beginners:
+        `Simplify this Victorian text for A1 beginner English learners:
 
-MANDATORY CHANGES:
-- Break ALL long periodic sentences (25+ words) into simple statements
+Instructions:
+- Break long sentences into simple statements (max 8 words per sentence)
 - Replace formal vocabulary with everyday words
-- Maximum 8 words per sentence
-- Use ONLY the 500 most common English words
+- Use only the 500 most common English words
 - Convert passive voice to active voice
-- Explain social terms inline: "entailment" → "family land rules"
-- Remove ALL complex phrases like "shall not be wanting" → "will help"
+- Make it sound like everyday modern English
 
-PRESERVE: Names, basic story events
-SIMPLIFY: Everything else without compromise
+Text: ${text}
 
-Text: ${era} text
-Simplified:` : isArchaic ?
-        `COMPLETELY MODERNIZE this ${era} text for A1 beginner English learners:
-        - Replace ALL archaic words immediately: thou/thee/thy→you/your, art/hast/doth→are/have/does
-        - Convert ALL old grammar to modern English patterns
-        - Break EVERY sentence to 5-8 words maximum
-        - Use ONLY the 500 most common English words
-        - Don't preserve poetic structure - clarity is the ONLY priority
-        - Completely rewrite if needed for understanding
-        - Use simple present tense only
-        - Make it sound like everyday modern English` :
-        `Aggressively simplify this text for an A1 beginner English learner:
-        - Use only the 500 most common English words
-        - Use present tense only
-        - Keep sentences to 5-8 words maximum
-        - Replace ALL difficult words with simple alternatives
-        - Remove ALL complex grammar structures
-        - Rewrite completely if needed for clarity`,
+Simplified version:` : isArchaic ?
+        `Modernize this ${era} text for A1 beginner English learners:
+        
+Instructions:
+- Replace archaic words: thou/thee/thy to you/your, art/hast/doth to are/have/does
+- Convert old grammar to modern English patterns
+- Break sentences to 5-8 words maximum
+- Use only the 500 most common English words
+- Use simple present tense only
+- Make it sound like everyday modern English
+
+Text: ${text}
+
+Modernized version:` :
+        `Simplify this text for A1 beginner English learners:
+
+Instructions:
+- Use only the 500 most common English words
+- Use present tense only
+- Keep sentences to 5-8 words maximum
+- Replace difficult words with simple alternatives
+- Remove complex grammar structures
+
+Text: ${text}
+
+Simplified version:`,
         
       A2: era === 'victorian' ?
-        `MODERNIZE this Victorian text for A2 elementary learners:
+        `Modernize this Victorian text for A2 elementary learners:
 
-REQUIRED CHANGES:
+Instructions:
 - Break long sentences to 8-12 words maximum
-- Replace ALL formal/archaic vocabulary:
-  * "whilst" → "while"
-  * "shall" → "will"  
-  * "drawing-room" → "living room"
-  * "chaperone" → "guardian"
-- Use ONLY the 1000 most common English words
+- Replace formal vocabulary: "whilst" to "while", "shall" to "will"
+- Use the 1000 most common English words
 - Convert formal statements to simple modern English
-- Remove unnecessary formality and politeness phrases
 - Make dialogue sound like modern conversation
 
-PRESERVE: Character relationships, plot events
-MODERNIZE: Everything else aggressively
+Text: ${text}
 
-Text: ${era} text
-Simplified:` : isArchaic ?
-        `AGGRESSIVELY MODERNIZE this ${era} text for A2 elementary English learners:
-        - Replace ALL archaic language: thou/thee/thy→you/your, 'tis/'twas→it is/it was
-        - Update ALL old verb forms: dost/doth/hath→do/does/has
-        - Break long sentences to 8-12 words maximum
-        - Use ONLY 1000-2750 most common English words
-        - Prioritize understanding over literary style
-        - Rewrite complex structures completely
-        - Use simple past and present tense only
-        - Make it readable for elementary learners` :
-        `Strongly simplify this text for an A2 elementary English learner:
-        - Use only 1000-2750 common vocabulary words
-        - Use simple past and present tense only
-        - Keep sentences short (8-12 words)
-        - Use basic connectors: and, but, because
-        - Replace ALL difficult words with common alternatives
-        - Rewrite complex sentences completely`,
+Modernized version:` : isArchaic ?
+        `Modernize this ${era} text for A2 elementary English learners:
+        
+Instructions:
+- Replace archaic language: thou/thee/thy to you/your, 'tis/'twas to it is/it was
+- Update old verb forms: dost/doth/hath to do/does/has
+- Break long sentences to 8-12 words maximum
+- Use 1000-2750 most common English words
+- Use simple past and present tense only
+
+Text: ${text}
+
+Modernized version:` :
+        `Simplify this text for A2 elementary English learners:
+
+Instructions:
+- Use 1000-2750 common vocabulary words
+- Use simple past and present tense only
+- Keep sentences short (8-12 words)
+- Use basic connectors: and, but, because
+- Replace difficult words with common alternatives
+
+Text: ${text}
+
+Simplified version:`,
         
       B1: isArchaic ?
-        `Adapt this ${era} text for a B1 intermediate English learner:
-        - Modernize archaic grammar while keeping the literary style
-        - Update old words to modern equivalents when necessary
-        - Use 1500-word vocabulary level
-        - Break very long sentences but preserve flow
-        - KEEP the original tone and literary quality
-        - Maintain all plot details and character development` :
-        `Simplify this text for a B1 intermediate English learner:
-        - Use 1500-word vocabulary level
-        - Use most common tenses (avoid complex forms)
-        - Break long sentences into shorter ones
-        - Explain difficult concepts with examples
-        - Keep paragraph structure
-        - Maintain the core meaning and details`,
+        `Adapt this ${era} text for B1 intermediate English learners:
+
+Instructions:
+- Modernize archaic grammar while keeping literary style
+- Update old words to modern equivalents when necessary
+- Use 1500-word vocabulary level
+- Break very long sentences but preserve flow
+- Keep the original tone and literary quality
+
+Text: ${text}
+
+Adapted version:` :
+        `Simplify this text for B1 intermediate English learners:
+
+Instructions:
+- Use 1500-word vocabulary level
+- Use most common tenses (avoid complex forms)
+- Break long sentences into shorter ones
+- Explain difficult concepts with examples
+- Maintain the core meaning and details
+
+Text: ${text}
+
+Simplified version:`,
       
       B2: isArchaic ?
-        `Refine this ${era} text for a B2 upper-intermediate English learner:
-        - Modernize grammar but keep literary elegance
-        - Use 2500-word vocabulary level
-        - Clarify archaic references and expressions
-        - PRESERVE the sophisticated style and tone
-        - Keep all cultural and historical context
-        - Maintain the author's voice and literary devices` :
-        `Simplify this text for a B2 upper-intermediate English learner:
-        - Use 2500-word vocabulary level
-        - Clarify complex grammar structures
-        - Break down academic language
-        - Explain cultural and historical references
-        - Keep most original details
-        - Maintain sophisticated ideas but make them clearer`,
+        `Refine this ${era} text for B2 upper-intermediate English learners:
+
+Instructions:
+- Modernize grammar but keep literary elegance
+- Use 2500-word vocabulary level
+- Clarify archaic references and expressions
+- Preserve the sophisticated style and tone
+- Keep all cultural and historical context
+
+Text: ${text}
+
+Refined version:` :
+        `Simplify this text for B2 upper-intermediate English learners:
+
+Instructions:
+- Use 2500-word vocabulary level
+- Clarify complex grammar structures
+- Break down academic language
+- Explain cultural and historical references
+- Maintain sophisticated ideas but make them clearer
+
+Text: ${text}
+
+Simplified version:`,
         
-      C1: `Refine this text for a C1 advanced English learner:
-        - Use advanced but clear vocabulary (4000 words)
-        - Simplify very complex sentence structures
-        - Clarify implicit meanings
-        - Explain subtle cultural nuances
-        - Keep academic tone but improve clarity
-        - Maintain all nuances and complexity`,
+      C1: `Refine this text for C1 advanced English learners:
+
+Instructions:
+- Use advanced but clear vocabulary (4000 words)
+- Simplify very complex sentence structures
+- Clarify implicit meanings
+- Explain subtle cultural nuances
+- Keep academic tone but improve clarity
+
+Text: ${text}
+
+Refined version:`,
         
-      C2: `Polish this text for a C2 near-native English learner:
-        - Keep sophisticated vocabulary
-        - Improve flow and coherence
-        - Clarify any ambiguous expressions
-        - Enhance readability while maintaining complexity
-        - Keep all original meaning and style
-        - Perfect for advanced learners`
+      C2: `Polish this text for C2 near-native English learners:
+
+Instructions:
+- Keep sophisticated vocabulary
+- Improve flow and coherence
+- Clarify any ambiguous expressions
+- Enhance readability while maintaining complexity
+- Keep all original meaning and style
+
+Text: ${text}
+
+Polished version:`
     }
     
     return basePrompts[level]
@@ -295,6 +331,9 @@ Simplified:` : isArchaic ?
 
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
     retryAttempt = attempt + 1
+    
+    // Call Claude API for simplification with dynamic temperature  
+    const currentTemperature = getTemperature(cefrLevel, era, attempt)
     
     try {
       // Add retry-specific instructions for conservative approaches
@@ -308,15 +347,9 @@ Simplified:` : isArchaic ?
       - Use simpler words from the allowed vocabulary level
       - Focus on making it EASIER to understand, not preserving style` : ''
 
-      const prompt = `${getSimplificationPrompt(cefrLevel, era)}${retryInstructions}
-
-      Text to simplify:
-      "${text}"
+      const prompt = `${getSimplificationPrompt(cefrLevel, era, text)}${retryInstructions}
 
       Return only the simplified text with no additional explanation or formatting.`
-
-      // Call Claude API for simplification with dynamic temperature
-      const currentTemperature = getTemperature(cefrLevel, era, attempt)
       console.log(`Using temperature ${currentTemperature} for ${cefrLevel} level (${era}), attempt ${attempt + 1}`)
       
       const response = await claudeService.query(prompt, {
@@ -369,8 +402,19 @@ Simplified:` : isArchaic ?
 
     } catch (error) {
       console.error(`Simplification attempt ${retryAttempt} failed:`, error)
+      console.error(`Error details for ${cefrLevel} level (${era}):`, {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        name: error instanceof Error ? error.name : 'Unknown',
+        stack: error instanceof Error ? error.stack : undefined,
+        userId,
+        textLength: text.length,
+        temperature: currentTemperature,
+        era
+      })
+      
       if (attempt === MAX_RETRIES) {
         // Return best result if all attempts fail
+        console.error(`All ${MAX_RETRIES + 1} attempts failed for ${cefrLevel} simplification`)
         break
       }
     }
@@ -472,29 +516,36 @@ export async function GET(
 
     // Check if we have cached simplification
     try {
-      const cachedSimplification = await prisma.bookSimplification.findUnique({
-        where: {
-          bookId_targetLevel_chunkIndex: {
-            bookId: id,
-            targetLevel: level,
-            chunkIndex: chunkIndex
-          }
-        }
-      })
+      const cachedResults = await prisma.$queryRaw`
+        SELECT * FROM book_simplifications 
+        WHERE book_id = ${id} AND target_level = ${level} AND chunk_index = ${chunkIndex}
+        LIMIT 1
+      ` as Array<{
+        id: string;
+        simplified_text: string;
+        quality_score: number;
+        original_text: string;
+        vocabulary_changes: any;
+        cultural_annotations: any;
+        created_at: Date;
+        updated_at: Date;
+      }>
+      
+      const cachedSimplification = cachedResults.length > 0 ? cachedResults[0] : null
 
       if (cachedSimplification) {
         console.log(`Returning cached simplification for ${id}, level ${level}, chunk ${chunkIndex}`)
         return NextResponse.json({
           success: true,
-          content: cachedSimplification.simplifiedText,
+          content: cachedSimplification.simplified_text,
           level: level,
           chunkIndex: chunkIndex,
           source: 'cache',
           displayConfig: DISPLAY_CONFIG[level],
           stats: {
-            originalLength: cachedSimplification.originalText.length,
-            simplifiedLength: cachedSimplification.simplifiedText.length,
-            compressionRatio: `${Math.round((cachedSimplification.simplifiedText.length / cachedSimplification.originalText.length) * 100)}%`
+            originalLength: cachedSimplification.original_text.length,
+            simplifiedLength: cachedSimplification.simplified_text.length,
+            compressionRatio: `${Math.round((cachedSimplification.simplified_text.length / cachedSimplification.original_text.length) * 100)}%`
           }
         })
       }
@@ -619,23 +670,28 @@ export async function GET(
       }
     }
 
-    // Cache the result for future requests
+    // Cache the result for future requests using raw SQL to match actual database schema
     try {
-      const cacheData = {
-        bookId: id,
-        targetLevel: level,
-        chunkIndex: chunkIndex,
-        originalText: originalChunk,
-        simplifiedText: finalContent,
-        vocabularyChanges: [], // Could be enhanced with vocabulary analysis
-        culturalAnnotations: [], // Could be enhanced with cultural context analysis
-        qualityScore: aiResult?.similarity || 1.0
-      }
-
-      await prisma.bookSimplification.create({ data: cacheData })
+      await prisma.$executeRaw`
+        INSERT INTO book_simplifications (
+          id, book_id, target_level, chunk_index, original_text, 
+          simplified_text, vocabulary_changes, cultural_annotations, 
+          quality_score, created_at, updated_at
+        ) VALUES (
+          gen_random_uuid(), ${id}, ${level}, ${chunkIndex}, ${originalChunk},
+          ${finalContent}, '[]'::jsonb, '[]'::jsonb, 
+          ${aiResult?.similarity || 1.0}, NOW(), NOW()
+        )
+        ON CONFLICT (book_id, target_level, chunk_index) 
+        DO UPDATE SET 
+          simplified_text = EXCLUDED.simplified_text,
+          quality_score = EXCLUDED.quality_score,
+          updated_at = NOW()
+      `
       console.log(`Cached simplification for ${id}, level ${level}, chunk ${chunkIndex}`)
     } catch (cacheError) {
       console.warn('Failed to cache simplification:', cacheError)
+      console.error('Cache error details:', cacheError instanceof Error ? cacheError.message : 'Unknown error')
       // Continue without caching
     }
 
@@ -720,15 +776,10 @@ export async function POST(
     if (regenerate) {
       // Clear cached version and regenerate
       try {
-        await prisma.bookSimplification.delete({
-          where: {
-            bookId_targetLevel_chunkIndex: {
-              bookId: id,
-              targetLevel: level,
-              chunkIndex: chunkIndex
-            }
-          }
-        })
+        await prisma.$executeRaw`
+          DELETE FROM book_simplifications 
+          WHERE book_id = ${id} AND target_level = ${level} AND chunk_index = ${chunkIndex}
+        `
         console.log(`Cleared cached simplification for regeneration`)
       } catch (error) {
         console.warn('No cached version to clear:', error)

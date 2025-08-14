@@ -525,7 +525,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
           bookId,
           bookContext,
           // responseMode removed - AI automatically determines based on query intent
-          conversationId: conversationId
+          conversationId: conversationId, // Re-enabled conversation persistence
         })
       });
 
