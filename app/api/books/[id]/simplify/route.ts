@@ -621,6 +621,12 @@ export async function GET(
     } else if (id === 'gutenberg-1513') {
       bookEra = 'early-modern' // Romeo & Juliet is Shakespeare
       console.log(`📚 Override era for Romeo & Juliet: early-modern`)
+    } else if (id === 'gutenberg-514') {
+      bookEra = 'american-19c' // Little Women is American 19th century
+      console.log(`📚 Override era for Little Women: american-19c`)
+    } else if (id === 'gutenberg-84') {
+      bookEra = 'victorian' // Frankenstein is Gothic/Victorian era
+      console.log(`📚 Override era for Frankenstein: victorian`)
     }
     console.log(`📚 Book-level era detection for ${id}: ${bookEra}`)
 
