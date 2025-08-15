@@ -590,11 +590,20 @@ interface CacheKey {
 
 ### Precomputation Pipeline
 **Priority Titles** (from ESL master plan):
-1. Pride and Prejudice (gutenberg-1342)
-2. Tom Sawyer (gutenberg-74)
-3. Alice in Wonderland (gutenberg-11)
-4. Christmas Carol (gutenberg-46)
-5. Great Expectations (gutenberg-1400)
+
+**Tier 1: Primary Books (Original 5)**
+1. Pride and Prejudice (gutenberg-1342) ✅ Complete
+2. Tom Sawyer (gutenberg-74) ❌ Blocked by API issue
+3. Alice in Wonderland (gutenberg-11) ✅ Complete
+4. Christmas Carol (gutenberg-46) ❌ Blocked by API issue
+5. Great Expectations (gutenberg-1400) ❌ Blocked by API issue
+
+**Tier 2: Additional Priority Books (Database Available)**
+6. Emma (gutenberg-158) - Jane Austen
+7. A Room with a View (gutenberg-2641) - E.M. Forster
+8. Little Women (gutenberg-514) - Louisa May Alcott
+9. Romeo and Juliet (gutenberg-1513) - Shakespeare
+10. A Modest Proposal (gutenberg-1080) - Jonathan Swift (Self-improvement/Philosophy)
 
 **Processing Schedule**
 - Batch process B1/B2 levels first (highest usage)
@@ -604,7 +613,7 @@ interface CacheKey {
 ### Decisions
 - [x] **Version key format**: `${model}_${promptHash}_v${schema}` 
 - [x] **TTL strategy**: 30 days for simplifications, 24h for sessions
-- [x] **Precompute scope**: Top 50 titles × B1/B2 levels = ~100 high-value assets
+- [x] **Precompute scope**: Top 10 priority titles × B1/B2 levels = ~60 high-value assets (expanded from original 5 to 10 books)
 
 ---
 
