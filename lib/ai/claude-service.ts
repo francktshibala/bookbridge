@@ -595,6 +595,12 @@ continuous text document without formal chapter organization.`;
   private async checkUsageLimits(userId: string): Promise<{ allowed: boolean; reason?: string }> {
     const today = new Date().toISOString().split('T')[0];
     
+    // BYPASS LIMITS FOR SYSTEM USERS (bulk processing)
+    if (userId.startsWith('system-') || userId === 'system-gutenberg') {
+      console.log(`🔓 Bypassing usage limits for system user: ${userId}`);
+      return { allowed: true };
+    }
+    
     // Check user daily limit (handle case where user doesn't exist yet)
     try {
       const userUsage = await prisma.usage.findUnique({
