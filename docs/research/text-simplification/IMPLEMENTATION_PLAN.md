@@ -58,10 +58,10 @@ const isDifferentFromOriginal = result.aiMetadata?.passedSimilarityGate !== fals
 
 ### ✅ **Completed Successfully:**
 - **Pride & Prejudice** (gutenberg-1342): 1,692/1,692 simplifications ✅
-- **Romeo & Juliet** (gutenberg-1513): 16/336 simplifications ⏳ (processing now)
+- **Romeo & Juliet** (gutenberg-1513): 336/336 simplifications ✅
+- **Frankenstein** (gutenberg-84): 2,550/2,550 simplifications ✅ (verified working)
 
 ### ❌ **Requires Reprocessing (Failed Due to Usage Limits):**
-- **Frankenstein** (gutenberg-84): 2,550 failed simplifications - **DELETE & RESTART**
 - **Little Women** (gutenberg-514): 918 failed simplifications - **DELETE & RESTART**
 
 ### 📋 **Pending:**
