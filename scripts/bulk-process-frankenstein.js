@@ -1,16 +1,15 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-// Configuration for Romeo & Juliet
-const BOOK_ID = 'gutenberg-1513' // Romeo & Juliet
+// Configuration for Frankenstein
+const BOOK_ID = 'gutenberg-84' // Frankenstein
 const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-const BASE_URL = 'http://localhost:3005'  // Updated to match current server port
+const BASE_URL = 'http://localhost:3005'  // UPDATE THIS TO YOUR SERVER PORT
 const BATCH_SIZE = 3 // Production mode - process 3 at a time
 const DELAY_BETWEEN_BATCHES = 8000 // 8 seconds between batches (avoid usage limit)
 const MAX_RETRIES = 2
 const DELAY_BETWEEN_REQUESTS = 2000 // 2s between individual requests (conservative)
 const TEST_MODE = false // PRODUCTION: Process all chunks
-const TEST_CHUNKS = 3 // Number of chunks to test
 
 async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -18,10 +17,8 @@ async function sleep(ms) {
 
 async function getBookChunkCount() {
   try {
-    // Get actual chunk count by testing API boundaries
     console.log('  🔍 Testing API to find actual chunk count...')
     
-    // Test each CEFR level to find minimum valid chunk count
     let minChunkCount = Infinity
     
     for (const level of CEFR_LEVELS.slice(0, 2)) { // Test first 2 levels only
@@ -122,20 +119,20 @@ async function processSimplification(level, chunkIndex, retryCount = 0) {
     
     const result = await response.json()
     
-    // Validate the result - CRITICAL: Check actual text difference
+    // Validate the result - same logic as Romeo & Juliet
     const isAIProcessed = result.source === 'ai_simplified' || 
                          (result.source === 'cache' && result.qualityScore < 1.0)
     const hasValidContent = result.content && result.content.length > 0
     const isDifferentFromOriginal = result.aiMetadata?.passedSimilarityGate !== false
     
-    // CRITICAL: For Early Modern texts (Shakespeare), trust AI when quality=modernized
-    const isEarlyModernAndModernized = result.aiMetadata?.quality === 'modernized' ||
-                                      result.aiMetadata?.quality === 'acceptable' ||
-                                      result.aiMetadata?.quality === 'good' ||
-                                      result.aiMetadata?.quality === 'excellent'
+    // CRITICAL: For Gothic/Romantic texts (Frankenstein), trust AI quality assessments
+    const isGothicAndModernized = result.aiMetadata?.quality === 'modernized' ||
+                                  result.aiMetadata?.quality === 'acceptable' ||
+                                  result.aiMetadata?.quality === 'good' ||
+                                  result.aiMetadata?.quality === 'excellent'
     
-    // For Early Modern text, if AI says it's modernized, trust it
-    const validSimplification = isEarlyModernAndModernized || 
+    // Trust AI for Gothic literature like we did for Shakespeare
+    const validSimplification = isGothicAndModernized || 
                                (result.originalText && result.simplifiedText && 
                                 result.originalText !== result.simplifiedText)
     
@@ -195,11 +192,12 @@ async function processBatchSequentially(batch) {
 }
 
 async function main() {
-  console.log('🎭 BULK PROCESSING ROMEO & JULIET')
+  console.log('⚡ BULK PROCESSING FRANKENSTEIN')
   console.log('='*50)
   console.log(`  Book ID: ${BOOK_ID}`)
   console.log(`  Server: ${BASE_URL}`)
   console.log(`  CEFR Levels: ${CEFR_LEVELS.join(', ')}`)
+  console.log(`  Mode: ${TEST_MODE ? 'TEST' : 'PRODUCTION'}`)
   
   try {
     // Step 1: Get total chunks
@@ -218,7 +216,7 @@ async function main() {
     
     if (identicalCount > 0) {
       console.log(`\n⚠️  Warning: ${identicalCount} failed simplifications detected`)
-      console.log(`   These show identical text and will be replaced during processing`)
+      console.log(`   Run clear-frankenstein-bad-cache.js to clean before processing`)
     }
     
     if (missing.length === 0) {
@@ -230,8 +228,8 @@ async function main() {
     // TEST MODE: Limit to first few chunks for validation
     if (TEST_MODE) {
       const originalLength = missing.length
-      console.log(`\n🧪 TEST MODE: Limiting to first ${TEST_CHUNKS} chunks for validation`)
-      missing = missing.slice(0, TEST_CHUNKS)
+      console.log(`\n🧪 TEST MODE: Processing first 6 items only`)
+      missing = missing.slice(0, 6)
       console.log(`  Reduced from ${originalLength} to ${missing.length} items for testing`)
     }
     
@@ -314,8 +312,8 @@ async function main() {
     console.log(`  Remaining missing: ${finalMissing.length}`)
     
     if (finalMissing.length === 0) {
-      console.log('\n🎉 ROMEO & JULIET FULLY PROCESSED!')
-      console.log(`🎭 Shakespeare modernized for all CEFR levels!`)
+      console.log('\n🎉 FRANKENSTEIN FULLY PROCESSED!')
+      console.log(`⚡ Mary Shelley's Gothic masterpiece modernized for all CEFR levels!`)
     } else {
       console.log('\n⏳ Processing incomplete. Run script again to continue.')
     }
