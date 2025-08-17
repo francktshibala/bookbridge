@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import '../styles/wireframe-typography.css';
 import { SkipLinks } from '@/components/SkipLinks';
 import { AccessibilityProvider } from '@/contexts/AccessibilityContext';
 import { KeyboardNavigationProvider } from '@/components/KeyboardNavigationProvider';

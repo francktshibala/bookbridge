@@ -22,9 +22,8 @@ export default function Navigation() {
 
   const navLinks = user ? [
     { href: '/', label: 'Home' },
-    { href: '/library', label: 'Library' },
-    { href: '/upload', label: 'Upload Book' },
-    { href: '/settings', label: 'Settings' },
+    { href: '/library', label: 'Browse All Books' },
+    { href: '/ai-tutor', label: 'AI Tutor' },
   ] : [];
 
   return (
@@ -57,7 +56,7 @@ export default function Navigation() {
                 padding: 0,
                 lineHeight: '1'
               }}>
-                📚 BookBridge
+                BookBridge ESL
               </span>
             </Link>
             
