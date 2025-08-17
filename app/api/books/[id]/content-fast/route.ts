@@ -69,9 +69,76 @@ export async function GET(
             era: storedContent.era,
             message: 'Content loaded from database storage'
           })
-        } else {
-          console.log(`❌ Book ${id} not found in database, falling back to external API`)
         }
+
+        // PRIORITY 2: Check if this is an enhanced book with simplifications
+        try {
+          console.log(`Checking for enhanced book with simplifications: ${id}`)
+          const enhancedBook = await prisma.bookSimplification.findFirst({
+            where: { bookId: id },
+            select: { 
+              bookId: true,
+              originalText: true,
+              chunkIndex: true
+            },
+            orderBy: { chunkIndex: 'asc' }
+          })
+
+          if (enhancedBook) {
+            console.log(`✅ Found enhanced book with simplifications: ${id}`)
+            
+            // Get all chunks for this enhanced book
+            const allChunks = await prisma.bookSimplification.findMany({
+              where: { bookId: id },
+              select: { 
+                chunkIndex: true,
+                originalText: true 
+              },
+              orderBy: { chunkIndex: 'asc' },
+              distinct: ['chunkIndex']
+            })
+
+            // Combine all original text chunks
+            const fullText = allChunks
+              .sort((a, b) => a.chunkIndex - b.chunkIndex)
+              .map(chunk => chunk.originalText)
+              .join('\n\n')
+
+            // Determine title and author from Gutenberg mappings or generate defaults
+            const titleMappings: Record<string, { title: string; author: string }> = {
+              'gutenberg-158': { title: 'Emma', author: 'Jane Austen' },
+              'gutenberg-215': { title: 'The Call of the Wild', author: 'Jack London' },
+              'gutenberg-64317': { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+              'gutenberg-43': { title: 'Dr. Jekyll and Mr. Hyde', author: 'Robert Louis Stevenson' },
+              'gutenberg-844': { title: 'The Importance of Being Earnest', author: 'Oscar Wilde' },
+              'gutenberg-1952': { title: 'The Yellow Wallpaper', author: 'Charlotte Perkins Gilman' }
+            }
+
+            const bookInfo = titleMappings[id] || { title: 'Enhanced Book', author: 'Unknown Author' }
+            
+            return NextResponse.json({
+              id: id,
+              title: bookInfo.title,
+              author: bookInfo.author,
+              cached: false,
+              external: false,
+              stored: true,
+              enhanced: true, // Flag to indicate this is an enhanced book
+              query,
+              context: fullText,
+              content: fullText,
+              source: 'enhanced_database',
+              wordCount: fullText.split(' ').length,
+              characterCount: fullText.length,
+              totalChunks: allChunks.length,
+              message: 'Enhanced book content loaded from simplifications'
+            })
+          }
+        } catch (enhancedError) {
+          console.error('Enhanced book lookup failed:', enhancedError)
+        }
+
+        console.log(`❌ Book ${id} not found in database, falling back to external API`)
       } catch (dbError) {
         console.error('Database lookup failed, falling back to external API:', dbError)
       }
