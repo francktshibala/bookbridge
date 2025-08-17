@@ -22,19 +22,23 @@ const GENRE_MAPPINGS: Record<string, { genre: string; cefrLevels: string; estima
 
 export async function GET() {
   try {
-    // Get all books with simplifications
+    // Get all books that have simplifications
+    const booksWithSimplifications = await prisma.bookSimplification.findMany({
+      select: {
+        bookId: true,
+        targetLevel: true
+      },
+      distinct: ['bookId', 'targetLevel']
+    });
+
+    // Get unique book IDs that have simplifications
+    const enhancedBookIds = [...new Set(booksWithSimplifications.map(s => s.bookId))];
+
+    // Get book content for these books
     const books = await prisma.bookContent.findMany({
       where: {
-        simplifications: {
-          some: {} // Has at least one simplification
-        }
-      },
-      include: {
-        simplifications: {
-          select: {
-            level: true
-          },
-          distinct: ['level']
+        bookId: {
+          in: enhancedBookIds
         }
       },
       orderBy: {
@@ -53,8 +57,12 @@ export async function GET() {
         }
       }
 
+      // Get simplification levels for this book
+      const bookSimplifications = booksWithSimplifications.filter(s => s.bookId === book.bookId);
+      const simplificationCount = bookSimplifications.length;
+      const availableLevels = [...new Set(bookSimplifications.map(s => s.targetLevel))].sort();
+
       // Determine status based on simplification count
-      const simplificationCount = book.simplifications.length;
       let status: 'enhanced' | 'processing' | 'planned' = 'enhanced';
       
       if (simplificationCount === 0) {
@@ -71,10 +79,10 @@ export async function GET() {
         genre: metadata.genre,
         cefrLevels: metadata.cefrLevels,
         estimatedHours: metadata.estimatedHours,
-        totalChunks: book.chunks?.length || 0,
+        totalChunks: book.totalChunks,
         status,
         simplificationCount,
-        availableLevels: book.simplifications.map(s => s.level).sort()
+        availableLevels
       };
     });
 
