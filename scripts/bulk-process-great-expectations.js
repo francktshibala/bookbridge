@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 // Configuration for Great Expectations
 const BOOK_ID = 'gutenberg-1400' // Great Expectations
 const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-const BASE_URL = 'http://localhost:3005'  // Updated to match your server port
+const BASE_URL = 'http://localhost:3006'  // Updated to match your server port
 const BATCH_SIZE = 3 // Conservative for stability
 const DELAY_BETWEEN_BATCHES = 8000 // 8 seconds between batches (avoid usage limit)
 const MAX_RETRIES = 2
@@ -88,7 +88,7 @@ async function detectChunkCount() {
       
       try {
         const response = await fetch(
-          `${BASE_URL}/api/books/${BOOK_ID}/simplify?level=${level}&chunk=${mid}&ai=false`
+          `${BASE_URL}/api/books/${BOOK_ID}/simplify?level=${level}&chunk=${mid}&useAI=false`
         )
         
         if (response.ok) {
@@ -120,7 +120,7 @@ async function detectChunkCount() {
 }
 
 async function processSimplification(level, chunkIndex, retryCount = 0) {
-  const url = `${BASE_URL}/api/books/${BOOK_ID}/simplify?level=${level}&chunk=${chunkIndex}&ai=true`
+  const url = `${BASE_URL}/api/books/${BOOK_ID}/simplify?level=${level}&chunk=${chunkIndex}&useAI=true`
   
   console.log(`    📝 Processing: ${colors.cyan}${level} chunk ${chunkIndex}${colors.reset}...`)
   console.log(`      🤖 Calling: ${url}`)

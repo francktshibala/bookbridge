@@ -1,0 +1,408 @@
+/* Wireframe-exact typography system for ESL redesign */
+/* Based on implementation plan and wireframe specifications */
+
+.book-content-wireframe {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.book-title-wireframe {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #e2e8f0;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.book-text-wireframe {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #cbd5e0;
+    margin-bottom: 20px;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.book-text-wireframe.simplified {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 3px solid #10b981;
+}
+
+/* CEFR Color System - matching wireframe specifications */
+.cefr-a1 { 
+    background: #10b981; 
+    color: white;
+}
+
+.cefr-a2 { 
+    background: #3b82f6; 
+    color: white;
+}
+
+.cefr-b1 { 
+    background: #8b5cf6; 
+    color: white;
+}
+
+.cefr-b2 { 
+    background: #f59e0b; 
+    color: white;
+}
+
+.cefr-c1 { 
+    background: #ef4444; 
+    color: white;
+}
+
+.cefr-c2 { 
+    background: #6b7280; 
+    color: white;
+}
+
+/* CEFR Level Badge (circular design from wireframes) */
+.cefr-level-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cefr-level-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Controls Layout - simplified per wireframes */
+.wireframe-controls-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 12px;
+    border: 1px solid #475569;
+    margin-bottom: 24px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Play/Pause Button - large and prominent */
+.wireframe-play-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #667eea;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+.wireframe-play-button:hover {
+    background: #5b6df0;
+    transform: scale(1.05);
+}
+
+.wireframe-play-button:active {
+    transform: scale(0.98);
+}
+
+/* Speed Control - tap to cycle */
+.wireframe-speed-control {
+    color: #cbd5e0;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.wireframe-speed-control:hover {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    color: #e2e8f0;
+}
+
+/* Page Progress - simple fraction display */
+.wireframe-page-progress {
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Menu Button - three dots for advanced options */
+.wireframe-menu-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.wireframe-menu-button:hover {
+    border-color: #475569;
+    background: rgba(71, 85, 105, 0.3);
+    color: #e2e8f0;
+}
+
+/* Reading Mode Toggle - Original/Simplified */
+.wireframe-mode-toggle {
+    display: flex;
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 8px;
+    border: 1px solid #475569;
+    overflow: hidden;
+}
+
+.wireframe-mode-option {
+    padding: 8px 16px;
+    background: transparent;
+    color: #94a3b8;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-height: 40px;
+}
+
+.wireframe-mode-option.active {
+    background: #667eea;
+    color: white;
+}
+
+.wireframe-mode-option:hover:not(.active) {
+    background: rgba(102, 126, 234, 0.1);
+    color: #e2e8f0;
+}
+
+/* Enhanced Book Indicators */
+.enhanced-book-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.text-only-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(107, 114, 128, 0.2);
+    color: #6b7280;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Word Highlighting for Enhanced Books */
+.word-highlight-active {
+    background: rgba(16, 185, 129, 0.3);
+    color: #10b981;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+    padding: 1px 2px;
+}
+
+.vocabulary-highlight {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+    border-bottom: 1px dotted #3b82f6;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 1px 2px;
+    transition: all 0.2s ease;
+}
+
+.vocabulary-highlight:hover {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .book-content-wireframe {
+        padding: 16px;
+    }
+    
+    .book-title-wireframe {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .book-text-wireframe {
+        font-size: 20px;
+        line-height: 1.7;
+    }
+    
+    .wireframe-controls-container {
+        gap: 12px;
+        padding: 10px 16px;
+        flex-wrap: wrap;
+    }
+    
+    .wireframe-play-button {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+    }
+    
+    .cefr-level-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+    
+    /* Ensure touch targets are at least 44px */
+    .wireframe-speed-control,
+    .wireframe-menu-button,
+    .wireframe-mode-option {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    .cefr-level-badge,
+    .wireframe-play-button,
+    .wireframe-speed-control,
+    .wireframe-menu-button,
+    .word-highlight-active,
+    .vocabulary-highlight {
+        transition: none;
+    }
+}
+
+/* Animation for loading spinner */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .book-text-wireframe {
+        color: #ffffff;
+    }
+    
+    .book-text-wireframe.simplified {
+        color: #00ff00;
+        background: rgba(0, 255, 0, 0.1);
+        border-left-color: #00ff00;
+    }
+    
+    .wireframe-controls-container {
+        border-color: #ffffff;
+        background: rgba(0, 0, 0, 0.9);
+    }
+}
+
+/* Focus Indicators for Keyboard Navigation */
+.cefr-level-badge:focus,
+.wireframe-play-button:focus,
+.wireframe-speed-control:focus,
+.wireframe-menu-button:focus,
+.wireframe-mode-option:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Enhanced Book Collection Grid Styles */
+.enhanced-books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 32px 0;
+    padding: 0 20px;
+}
+
+.enhanced-book-card {
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 12px;
+    border: 1px solid #475569;
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.enhanced-book-card:hover {
+    transform: translateY(-4px);
+    border-color: #667eea;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.enhanced-book-card .book-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.enhanced-book-card .book-author {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 12px;
+}
+
+.enhanced-book-card .book-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.enhanced-book-card .cefr-range {
+    background: rgba(102, 126, 234, 0.2);
+    color: #667eea;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.enhanced-book-card .reading-time {
+    color: #94a3b8;
+    font-size: 12px;
+}

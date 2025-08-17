@@ -61,9 +61,25 @@ const isDifferentFromOriginal = result.aiMetadata?.passedSimilarityGate !== fals
 - **Romeo & Juliet** (gutenberg-1513): 336/336 simplifications ✅
 - **Frankenstein** (gutenberg-84): 2,550/2,550 simplifications ✅ (verified working)
 - **Little Women** (gutenberg-514): 2,550/2,550 simplifications ✅ (completed August 17, 2025)
+- **Great Gatsby** (gutenberg-64317): 666/666 simplifications ✅
+- **Dr. Jekyll & Hyde** (gutenberg-43): 305/305 simplifications ✅
+- **The Yellow Wallpaper** (gutenberg-1952): 84/84 simplifications ✅
+- **The Importance of Being Earnest** (gutenberg-844): 270/270 simplifications ✅
+- **The Call of the Wild** (gutenberg-215): 438/438 simplifications ✅
+- **A Christmas Carol** (gutenberg-46): 384/384 simplifications ✅
 
-### 📋 **Pending:**
-- **Alice in Wonderland** (gutenberg-11): 372 simplifications needed
+
+### 📋 **Pending (Scripts Ready):**
+- **Great Expectations** (gutenberg-1400): Script ready for processing (LARGE - 26+ hours)
+
+### 📋 **Available for Processing:**
+- **Picture of Dorian Gray** (gutenberg-174): ~180 chunks, 2-3 hours processing
+- **Adventures of Huckleberry Finn** (gutenberg-76): ~255 chunks, 3-4 hours processing  
+- **Adventures of Tom Sawyer** (gutenberg-74): ~161 chunks, 2-3 hours processing
+- **Metamorphosis** (gutenberg-5200): ~51 chunks, 1.5 hour processing (needs priority list addition)
+
+### 📋 **Long Books (Future Processing):**
+- **Great Expectations** (gutenberg-1400): 26+ hours processing time
 - **Other Gutenberg books**: Awaiting processing
 
 ## 🎯 **Next Actions Required:**

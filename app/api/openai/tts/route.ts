@@ -32,9 +32,17 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString()
     });
 
+    // Check if OpenAI is properly imported
+    if (!OpenAI) {
+      console.error('OpenAI class not available');
+      return NextResponse.json({ error: 'OpenAI module not loaded' }, { status: 500 });
+    }
+
+    console.log('Creating OpenAI instance...');
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
+    console.log('OpenAI instance created successfully');
 
     const mp3 = await openai.audio.speech.create({
       model: 'tts-1',

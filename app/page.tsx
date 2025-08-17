@@ -1,11 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { EnhancedBooksGrid } from '@/components/ui/EnhancedBooksGrid';
 
 export default function HomePage() {
+  const [selectedLevel, setSelectedLevel] = useState('B1');
+  const cefrLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  
+  const sampleTexts = {
+    A1: "Elizabeth is a young woman. She meets Mr. Darcy. He is rich but proud.",
+    A2: "Elizabeth Bennet is a smart young woman. She meets Mr. Darcy at a party. He seems proud and unfriendly.",
+    B1: "Elizabeth Bennet is an intelligent young woman from a middle-class family. When she meets the wealthy Mr. Darcy, she finds him arrogant and dismissive.",
+    B2: "Elizabeth Bennet, a spirited and perceptive young woman, encounters the aristocratic Mr. Darcy at a social gathering, where his apparent pride and disdain immediately prejudice her against him.",
+    C1: "Elizabeth Bennet, whose lively intelligence and independent spirit distinguish her from her contemporaries, finds herself profoundly antipathetic toward the enigmatic Mr. Darcy following their initial encounter.",
+    C2: "Elizabeth Bennet, possessed of a penetrating wit and an unwavering moral compass that renders her peculiarly resistant to the superficial allurements of society, experiences an immediate and visceral aversion to the ostensibly supercilious Mr. Darcy."
+  };
+  
+
   return (
-    <div className="page-container magical-bg min-h-screen" style={{ backgroundColor: '#0f172a', color: '#ffffff' }}>
+    <div className="page-container magical-bg min-h-screen" style={{ 
+      background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)', 
+      color: '#ffffff',
+      position: 'relative'
+    }}>
       <div className="page-content" style={{ 
         padding: '4rem 2rem', 
         maxWidth: '1200px', 
@@ -13,7 +31,7 @@ export default function HomePage() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '1rem'
+        gap: '2.5rem'
       }}>
         {/* Hero Section */}
         <motion.section 
@@ -21,8 +39,8 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           aria-labelledby="welcome-heading" 
-          className="page-header"
-          style={{ marginBottom: '0.5rem' }}
+          className="page-header text-center"
+          style={{ marginBottom: '2rem' }}
         >
           <motion.h1 
             id="welcome-heading"
@@ -30,8 +48,9 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-gradient hero-title"
+            style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}
           >
-            Welcome to BookBridge
+            Read Classic Literature at Your English Level
           </motion.h1>
           
           <motion.p 
@@ -39,163 +58,491 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="hero-subtitle"
-            style={{ color: '#f7fafc', marginBottom: '0' }}
+            style={{ 
+              color: '#94a3b8', 
+              marginBottom: '3rem', 
+              fontSize: '1.125rem', 
+              maxWidth: '800px', 
+              margin: '0 auto 3rem auto',
+              lineHeight: '1.6'
+            }}
           >
-            Your accessible AI-powered companion for understanding books. Designed with WCAG 2.1 AA compliance 
-            for students with disabilities.
+            AI-powered text simplification • Word-by-word audio • Vocabulary learning
           </motion.p>
-        </motion.section>
 
-        {/* Features Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          aria-labelledby="features-heading" 
-          className="w-full"
-          style={{ maxWidth: '1000px' }}
-        >
-          <h2 id="features-heading" className="text-gradient page-title text-center" style={{ marginBottom: '2rem' }}>
-            Key Features
-          </h2>
-          
-          <div className="features-grid">
-            {[
-              "AI-Powered Literary Analysis",
-              "100% WCAG 2.1 AA Accessibility", 
-              "20M+ Books from Multiple Sources",
-              "Premium Voice & TTS Features"
-            ].map((feature, index) => {
-              const icons = ["🤖", "♿", "📚", "🎙️"];
-              const descriptions = [
-                "Advanced multi-agent system for deep book understanding and Socratic dialogue",
-                "Complete accessibility compliance designed for students with disabilities",
-                "Access books from Project Gutenberg, Open Library, Google Books, and more",
-                "High-quality text-to-speech with ElevenLabs and OpenAI voice options"
-              ];
-              
-              return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
-                className="group feature-card"
-                style={{
-                  backgroundColor: '#334155',
-                  borderColor: '#475569'
-                }}
-              >
-                {/* Top section with icon */}
-                <div className="text-center mb-6">
-                  <motion.div 
-                    whileHover={{ 
-                      scale: 1.2, 
-                      rotate: 10,
-                      transition: { 
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 10
-                      }
-                    }}
-                    className="w-20 h-20 rounded-3xl flex items-center justify-center text-4xl transition-all duration-300 mx-auto mb-4"
-                    style={{
-                      background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)',
-                      boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4), 0 8px 24px rgba(102, 126, 234, 0.2)'
-                    }}
-                    aria-hidden="true"
-                  >
-                    <span className="text-white">{icons[index]}</span>
-                  </motion.div>
-                  
-                  <h3 className="font-bold leading-tight mb-4 transition-colors duration-300" 
-                      style={{ 
-                        color: '#ffffff',
-                        fontSize: 'var(--text-2xl)'
-                      }}>
-                    {feature}
-                  </h3>
-                </div>
-                
-                {/* Description section */}
-                <div className="text-center">
-                  <p className="leading-relaxed" style={{ 
-                    color: '#e2e8f0',
-                    fontSize: 'var(--text-lg)'
-                  }}>
-                    {descriptions[index]}
-                  </p>
-                </div>
-              </motion.div>
-            );
-            })}
-          </div>
-        </motion.section>
-
-        {/* CTA Section - Balanced with features grid */}
-        <motion.section 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-          aria-labelledby="cta-heading"
-          className="p-12 text-center rounded-2xl border mx-auto"
-          style={{
-            backgroundColor: '#334155',
-            borderColor: '#475569',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.3)',
-            maxWidth: '1000px',
-            width: '100%'
-          }}
-        >
-          <h3 id="cta-heading" className="font-bold mb-6" style={{ 
-            color: '#ffffff',
-            fontSize: 'var(--text-3xl)'
-          }}>
-            Get Started
-          </h3>
-          
-          <p className="font-medium max-w-2xl mx-auto mb-12" style={{ 
-            color: '#e2e8f0',
-            fontSize: 'var(--text-xl)',
-            lineHeight: '1.6'
-          }}>
-            Upload a public domain book or select from our library to begin your accessible reading experience.
-          </p>
-          
-          <motion.div 
+          {/* CEFR Level Selector */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.5 }}
-            className="flex gap-8 justify-center flex-wrap"
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="flex flex-wrap justify-center gap-3 mb-8"
+          >
+            {cefrLevels.map((level, index) => (
+              <motion.button
+                key={level}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelectedLevel(level)}
+                className="cefr-level-button"
+                style={{
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '50%',
+                  background: selectedLevel === level 
+                    ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+                    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  border: 'none',
+                  color: 'white',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: selectedLevel === level
+                    ? '0 4px 12px rgba(16, 185, 129, 0.4)'
+                    : '0 4px 12px rgba(102, 126, 234, 0.4)'
+                }}
+              >
+                {level}
+              </motion.button>
+            ))}
+          </motion.div>
+
+          {/* Sample Text Demo */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.6 }}
+            style={{
+              backgroundColor: '#1e293b',
+              borderRadius: '16px',
+              padding: '1.5rem 2rem',
+              marginBottom: '1.5rem',
+              border: '1px solid #334155',
+              background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+              maxWidth: '900px',
+              width: '100%',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+              margin: '0 auto 1.5rem auto',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '1rem'
+            }}>
+              <span style={{
+                fontSize: '0.875rem',
+                fontWeight: '600',
+                color: '#10b981',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em'
+              }}>
+                {selectedLevel} Level Example
+              </span>
+            </div>
+            <motion.p
+              key={selectedLevel}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                fontSize: '1.125rem',
+                lineHeight: '1.7',
+                color: '#f1f5f9',
+                textAlign: 'center',
+                fontStyle: 'italic',
+                margin: '0 auto',
+                maxWidth: '800px'
+              }}
+            >
+              "{sampleTexts[selectedLevel as keyof typeof sampleTexts]}"
+            </motion.p>
+            <div style={{
+              textAlign: 'center',
+              marginTop: '1rem',
+              fontSize: '0.875rem',
+              color: '#64748b'
+            }}>
+              From Pride and Prejudice
+            </div>
+          </motion.div>
+
+          {/* Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 0.6 }}
+            className="flex gap-6 justify-center flex-wrap"
           >
             <motion.a 
-              href="/upload"
-              whileHover={{ 
-                y: -2,
-                transition: { duration: 0.2 }
+              href="/library/gutenberg-1342/read"
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn btn-brand inline-flex items-center gap-3 px-8 py-4 font-semibold"
+              style={{ 
+                fontSize: '1.125rem', 
+                textDecoration: 'none',
+                borderRadius: '12px'
               }}
-              whileTap={{ scale: 0.98 }}
-              aria-label="Upload a public domain book"
-              className="btn btn-secondary inline-flex items-center gap-3 px-10 py-5 font-semibold"
-              style={{ fontSize: 'var(--text-lg)', marginBottom: '2rem', textDecoration: 'none' }}
             >
-              📚 Upload Book
+              Start Reading Pride & Prejudice
             </motion.a>
             
             <motion.a 
-              href="/library"
-              whileHover={{ 
-                y: -3,
-                transition: { duration: 0.2 }
+              href="#level-assessment"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn btn-secondary inline-flex items-center gap-3 px-8 py-4 font-semibold"
+              style={{ 
+                fontSize: '1.125rem', 
+                textDecoration: 'none',
+                borderRadius: '12px',
+                background: 'transparent',
+                border: '2px solid #667eea',
+                color: '#667eea'
               }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Browse our book library"
-              className="btn btn-brand inline-flex items-center gap-3 px-10 py-5 font-semibold"
-              style={{ fontSize: 'var(--text-lg)', marginBottom: '2rem', textDecoration: 'none' }}
             >
-              🔍 Browse Library
+              Take Level Assessment
             </motion.a>
           </motion.div>
+        </motion.section>
+
+        {/* Enhanced Books Grid */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="w-full"
+        >
+          <EnhancedBooksGrid books={['gutenberg-1342', 'gutenberg-1513', 'gutenberg-11']} />
+        </motion.section>
+
+
+        {/* How ESL Reading Works */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.0, duration: 0.6 }}
+          className="w-full"
+          style={{ 
+            marginTop: '3rem',
+            maxWidth: '1200px',
+            margin: '3rem auto 0 auto',
+            padding: '0 2rem'
+          }}
+        >
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <h2 style={{
+              fontSize: '2rem',
+              fontWeight: 'bold',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              marginBottom: '0.5rem'
+            }}>
+              How It Works
+            </h2>
+            <p style={{ color: '#94a3b8', fontSize: '1.125rem' }}>
+              Three simple steps to start reading at your level
+            </p>
+          </div>
+
+          {/* Single horizontal row for steps */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'stretch',
+            gap: '2rem',
+            maxWidth: '900px',
+            margin: '0 auto',
+            flexWrap: 'wrap'
+          }}>
+              {/* Step 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.2, duration: 0.5 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                style={{ 
+                  textAlign: 'center',
+                  position: 'relative',
+                  background: 'rgba(30, 41, 59, 0.8)',
+                  border: '1px solid #334155',
+                  borderRadius: '12px',
+                  padding: '1.5rem 1rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  flex: '1',
+                  minWidth: '250px',
+                  maxWidth: '280px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#10b981';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(16, 185, 129, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#334155';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                {/* Step number */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-12px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '24px',
+                  height: '24px',
+                  background: '#10b981',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  color: 'white'
+                }}>
+                  1
+                </div>
+                
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 0.75rem auto',
+                  fontSize: '1.5rem',
+                  boxShadow: '0 4px 16px rgba(16, 185, 129, 0.3)'
+                }}>
+                  📚
+                </div>
+                <h3 style={{
+                  fontSize: '1.25rem',
+                  fontWeight: 'bold',
+                  color: '#ffffff',
+                  marginBottom: '0.5rem'
+                }}>
+                  Choose Your Level
+                </h3>
+                <p style={{
+                  color: '#94a3b8',
+                  lineHeight: '1.5',
+                  marginBottom: '0.75rem',
+                  fontSize: '0.9rem'
+                }}>
+                  Select A1-C2 level for automatic text simplification
+                </p>
+                {/* Mini demo */}
+                <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+                  {['A1', 'B1', 'C1'].map(level => (
+                    <span key={level} style={{
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                      fontSize: '12px',
+                      background: 'rgba(16, 185, 129, 0.2)',
+                      color: '#10b981'
+                    }}>
+                      {level}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Step 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.4, duration: 0.5 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                style={{ 
+                  textAlign: 'center',
+                  position: 'relative',
+                  background: 'rgba(30, 41, 59, 0.8)',
+                  border: '1px solid #334155',
+                  borderRadius: '12px',
+                  padding: '1.5rem 1rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  flex: '1',
+                  minWidth: '250px',
+                  maxWidth: '280px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#3b82f6';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(59, 130, 246, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#334155';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                {/* Step number */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-12px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '24px',
+                  height: '24px',
+                  background: '#3b82f6',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  color: 'white'
+                }}>
+                  2
+                </div>
+                
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 0.75rem auto',
+                  fontSize: '1.5rem',
+                  boxShadow: '0 4px 16px rgba(59, 130, 246, 0.3)'
+                }}>
+                  🎧
+                </div>
+                <h3 style={{
+                  fontSize: '1.25rem',
+                  fontWeight: 'bold',
+                  color: '#ffffff',
+                  marginBottom: '0.5rem'
+                }}>
+                  Listen & Read
+                </h3>
+                <p style={{
+                  color: '#94a3b8',
+                  lineHeight: '1.5',
+                  marginBottom: '0.75rem',
+                  fontSize: '0.9rem'
+                }}>
+                  Word-by-word highlighting with premium voices
+                </p>
+                {/* Mini demo */}
+                <div style={{
+                  background: 'rgba(59, 130, 246, 0.1)',
+                  padding: '8px 12px',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  color: '#3b82f6'
+                }}>
+                  <span style={{ background: 'rgba(59, 130, 246, 0.3)', padding: '2px 4px', borderRadius: '2px' }}>Word</span> highlighting demo
+                </div>
+              </motion.div>
+
+              {/* Step 3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.6, duration: 0.5 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                style={{ 
+                  textAlign: 'center',
+                  position: 'relative',
+                  background: 'rgba(30, 41, 59, 0.8)',
+                  border: '1px solid #334155',
+                  borderRadius: '12px',
+                  padding: '1.5rem 1rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  flex: '1',
+                  minWidth: '250px',
+                  maxWidth: '280px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#8b5cf6';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(139, 92, 246, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#334155';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                {/* Step number */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-12px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '24px',
+                  height: '24px',
+                  background: '#8b5cf6',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  color: 'white'
+                }}>
+                  3
+                </div>
+                
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 0.75rem auto',
+                  fontSize: '1.5rem',
+                  boxShadow: '0 4px 16px rgba(139, 92, 246, 0.3)'
+                }}>
+                  🤖
+                </div>
+                <h3 style={{
+                  fontSize: '1.25rem',
+                  fontWeight: 'bold',
+                  color: '#ffffff',
+                  marginBottom: '0.5rem'
+                }}>
+                  Ask AI Tutor
+                </h3>
+                <p style={{
+                  color: '#94a3b8',
+                  lineHeight: '1.5',
+                  marginBottom: '0.75rem',
+                  fontSize: '0.9rem'
+                }}>
+                  Get instant help with vocabulary and comprehension
+                </p>
+                {/* Mini demo */}
+                <div style={{
+                  fontSize: '12px',
+                  color: '#8b5cf6'
+                }}>
+                  <a href="#ai-demo" style={{
+                    color: '#8b5cf6',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}>
+                    Try it now →
+                  </a>
+                </div>
+              </motion.div>
+          </div>
         </motion.section>
       </div>
     </div>
