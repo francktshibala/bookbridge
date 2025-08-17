@@ -143,7 +143,7 @@ interface EnhancedBookCardProps {
 
 ---
 
-## **Phase 5: Advanced Audio Features (Database Books Only) (3 hours)**
+## **Phase 5: Advanced Audio Features (Database Books Only) (3 hours)** ✅ COMPLETED
 
 ### **Step 5.1: Voice Selection Enhancement** ✅
 **File**: `components/VoiceSelectionModal.tsx`
@@ -305,9 +305,9 @@ public startSession(options: HighlightingOptions & { isEnhancedBook?: boolean })
 
 ---
 
-## **Phase 6: Library Page Enhancement (1.5 hours)**
+## **Phase 6: Library Page Enhancement (1.5 hours)** ✅ COMPLETED
 
-### **Step 6.1: Add Enhanced Collection Section**
+### **Step 6.1: Add Enhanced Collection Section** ✅
 **File**: `app/library/page.tsx`
 ```typescript
 // Within existing tab structure
@@ -330,41 +330,562 @@ const DiscoverBooksTab = () => {
 };
 ```
 
-### **Step 6.2: Enhanced Book Detection in Library**
-**File**: `app/library/page.tsx`
-```typescript
-// Add badges to existing book cards
-const enhancedBookIds = [
-  'gutenberg-1342', 'gutenberg-1513', 'gutenberg-84', 
-  'gutenberg-11', 'gutenberg-64317', 'gutenberg-43', 'gutenberg-1952'
-];
+### **Step 6.2: Enhanced Book Detection in Library** ✅ SKIPPED
+**Reason**: Redundant with dedicated enhanced collection page. Better UX to keep library clean and direct users to `/enhanced-collection` for enhanced books.
 
-// Visual indicators for enhanced books in existing grid
-```
+**Decision**: Enhanced books are properly showcased in their dedicated page with filtering, descriptions, and progress tracking. No value in duplicating badges in main library.
 
-**Safety**: Existing library functionality preserved, enhancement layered on top
+**Safety**: Existing library functionality preserved, no unnecessary clutter added
 
 ---
 
-## **Phase 7: Mobile Optimization (1 hour)**
+## **Phase 7: Mobile Optimization (3 hours)**
 
-### **Step 7.1: Responsive Adjustments**
-**Files**: All component styles
+### **Step 7.1: Mobile Homepage Implementation**
+**File**: `app/page.tsx` + mobile styles
+
+**Hero Section Mobile**:
 ```css
-@media (max-width: 768px) {
-  .cefr-demo { /* Mobile CEFR demo */ }
-  .enhanced-books-grid { grid-template-columns: 1fr; }
-  .wireframe-audio-controls { /* Single row, 44px+ targets */ }
-  .book-content-wireframe { padding: 20px; }
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 30px 20px;
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .hero-button {
+    width: 100%;
+    min-height: 48px; /* Touch target */
+    padding: 16px;
+  }
 }
 ```
 
-### **Step 7.2: Touch Target Optimization**
-- Ensure all buttons ≥44px
-- Swipe gestures for CEFR levels
-- Mobile-friendly modals
+**Mobile Stats Grid**:
+```typescript
+// 2-column grid for mobile
+<div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+  <StatCard number="7" label="Enhanced Books" />
+  <StatCard number="5K+" label="ESL Learners" />
+</div>
+```
 
-**Safety**: Responsive enhancements, core functionality unchanged
+**Mobile Enhanced Features Section**:
+```tsx
+// 2x2 grid for mobile showing all 4 key features
+<div className="enhanced-features-mobile">
+  <h2>✨ Enhanced Features</h2>
+  <div className="features-grid">
+    <div className="feature-card">
+      <span className="feature-icon">🎯</span>
+      <h4>AI Simplification</h4>
+      <p>6 CEFR levels</p>
+    </div>
+    <div className="feature-card">
+      <span className="feature-icon">🎧</span>
+      <h4>Premium Audio</h4>
+      <p>12 voices</p>
+    </div>
+    <div className="feature-card">
+      <span className="feature-icon">📚</span>
+      <h4>Vocabulary</h4>
+      <p>Word definitions</p>
+    </div>
+    <div className="feature-card">
+      <span className="feature-icon">📊</span>
+      <h4>Progress</h4>
+      <p>Track reading</p>
+    </div>
+  </div>
+</div>
+
+// CSS
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.feature-card {
+  text-align: center;
+  padding: 16px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+```
+
+**Mobile Featured Books with Complete Details**:
+```tsx
+interface MobileBookCardProps {
+  book: {
+    title: string;
+    author: string;
+    levelRange: string; // e.g., "B1-C2"
+    duration: string; // e.g., "~8 hours"
+    genre: string; // e.g., "Romance"
+    isEnhanced: boolean;
+  };
+}
+
+const MobileBookCard = ({ book }) => (
+  <div className="mobile-book-card">
+    <div className="book-cover" />
+    <div className="book-info">
+      <h3>{book.title}</h3>
+      <p className="author">{book.author}</p>
+      <div className="book-meta">
+        <span className="level-badge">{book.levelRange}</span>
+        <span className="duration">{book.duration}</span>
+        <span className="genre">{book.genre}</span>
+      </div>
+      {book.isEnhanced && <div className="enhanced-label">✨ Enhanced</div>}
+    </div>
+  </div>
+);
+```
+
+**Mobile CEFR Test CTA Section**:
+```tsx
+const MobileCEFRTestCTA = () => (
+  <div className="cefr-test-cta-mobile">
+    <h3>Not Sure Your Level?</h3>
+    <p>Take our quick CEFR assessment to find books perfect for you</p>
+    <button className="cta-button">
+      Take Free CEFR Test →
+    </button>
+  </div>
+);
+
+// CSS
+.cefr-test-cta-mobile {
+  padding: 30px 20px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  text-align: center;
+}
+```
+
+### **Step 7.2: Mobile Enhanced Collection Page**
+**File**: `app/enhanced-collection/page.tsx`
+
+**Horizontal Filter Scroll**:
+```tsx
+<div className="filter-container">
+  <div className="filter-scroll">
+    {genres.map(genre => (
+      <button className="filter-chip">{genre}</button>
+    ))}
+  </div>
+</div>
+
+// CSS
+.filter-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 16px 20px;
+}
+
+.filter-chip {
+  padding: 8px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-height: 44px;
+}
+```
+
+**Mobile Book Cards with Enhanced Details**:
+```tsx
+interface MobileEnhancedBookCardProps {
+  book: {
+    id: string;
+    title: string;
+    author: string;
+    levelRange: string; // e.g., "B1-C2"
+    chapters: number;
+    chaptersCompleted: number;
+    duration: string; // e.g., "~8 hours"
+    genre: string;
+    progress?: number;
+    status?: 'new' | 'in-progress' | 'completed';
+  };
+}
+
+const MobileEnhancedBookCard = ({ book }) => (
+  <div className="mobile-enhanced-card">
+    <div className="mobile-card-content">
+      <div className="mobile-book-cover">{book.title.substring(0, 3)}</div>
+      <div className="mobile-book-info">
+        <h3>{book.title}</h3>
+        <p className="author">{book.author}</p>
+        <div className="mobile-badges">
+          <span className="cefr-badge">{book.levelRange}</span>
+          <span className="enhanced-badge">Enhanced</span>
+          {book.status === 'in-progress' && (
+            <span className="progress-badge">In Progress</span>
+          )}
+          <span className="genre-tag">{book.genre}</span>
+        </div>
+        <div className="book-stats">
+          <div>📖 {book.chapters} chapters • {book.chaptersCompleted}/{book.chapters} completed</div>
+          <div>⏱️ {book.duration} audio</div>
+        </div>
+        {book.progress && (
+          <div className="progress-container">
+            <div className="progress-header">
+              <span>Progress</span>
+              <span>{book.progress}%</span>
+            </div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{ width: `${book.progress}%` }} />
+            </div>
+          </div>
+        )}
+        <button className="mobile-action-button">
+          {book.status === 'in-progress' ? 'Continue Reading' : 'Start Reading'}
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
+// CSS
+.mobile-enhanced-card {
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.book-stats {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 12px 0;
+}
+
+.genre-tag {
+  font-size: 11px;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+```
+
+### **Step 7.3: Mobile Reading Interface**
+**File**: `app/library/[id]/read/page.tsx`
+
+**Sticky Mobile Header with Audio and Reading Controls**:
+```tsx
+const MobileReadingHeader = () => {
+  const [isSimplified, setIsSimplified] = useState(true);
+  const [selectedLevel, setSelectedLevel] = useState('B1');
+  
+  return (
+    <div className="mobile-reading-header">
+      <div className="mobile-nav-row">
+        <button className="back-button">←</button>
+        <h1 className="mobile-book-title">{bookTitle}</h1>
+        <button className="menu-button">⋮</button>
+      </div>
+      
+      <div className="mobile-audio-controls">
+        <button className="play-pause-button">▶</button>
+        <div className="audio-progress">
+          <div className="progress-info">
+            <span>Chapter {current} of {total}</span>
+            <span>{currentTime} / {duration}</span>
+          </div>
+          <div className="progress-bar">
+            <div className="progress-fill" />
+          </div>
+        </div>
+      </div>
+      
+      {/* Reading Controls */}
+      <div className="mobile-reading-controls">
+        {/* Text Mode Toggle */}
+        <div className="mode-toggle">
+          <button 
+            className={isSimplified ? 'active' : ''}
+            onClick={() => setIsSimplified(true)}
+          >
+            Simplified
+          </button>
+          <button 
+            className={!isSimplified ? 'active' : ''}
+            onClick={() => setIsSimplified(false)}
+          >
+            Original
+          </button>
+        </div>
+        
+        {/* CEFR Level Selector */}
+        {isSimplified && (
+          <div className="cefr-selector">
+            <span className="label">Level:</span>
+            <div className="level-buttons">
+              {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(level => (
+                <button
+                  key={level}
+                  className={selectedLevel === level ? 'active' : ''}
+                  onClick={() => setSelectedLevel(level)}
+                >
+                  {level}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// CSS
+.mobile-reading-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  z-index: 50;
+}
+
+.mobile-audio-controls {
+  padding: 12px;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 12px;
+  margin: 0 20px 12px;
+}
+
+.mobile-reading-controls {
+  padding: 12px 20px;
+  background: var(--bg-secondary);
+}
+
+.mode-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mode-toggle button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.cefr-selector {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.level-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.level-buttons button {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  min-width: 32px;
+}
+```
+
+**Mobile Bottom Navigation**:
+```tsx
+const MobileBottomNav = () => (
+  <div className="mobile-bottom-nav">
+    <button className="nav-item">
+      <span className="nav-icon">⚙️</span>
+      <span className="nav-label">Settings</span>
+    </button>
+    <button className="nav-item">
+      <span className="nav-icon">📑</span>
+      <span className="nav-label">Chapters</span>
+    </button>
+    <button className="nav-item">
+      <span className="nav-icon">🎤</span>
+      <span className="nav-label">Voice</span>
+    </button>
+    <button className="nav-item active">
+      <span className="nav-icon">▶️</span>
+      <span className="nav-label">Auto-play</span>
+    </button>
+  </div>
+);
+
+// CSS
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 16px 20px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  color: var(--text-secondary);
+}
+
+.nav-item.active {
+  color: var(--primary);
+}
+```
+
+### **Step 7.4: Mobile Navigation Menu**
+**File**: `components/MobileNavigation.tsx`
+
+```tsx
+interface MobileNavigationProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const MobileNavigation = ({ isOpen, onClose }) => (
+  <>
+    {/* Backdrop */}
+    {isOpen && (
+      <div className="nav-backdrop" onClick={onClose} />
+    )}
+    
+    {/* Slide-out Menu */}
+    <div className={`mobile-nav-menu ${isOpen ? 'open' : ''}`}>
+      <div className="nav-header">
+        <div className="user-profile">
+          <div className="avatar" />
+          <div>
+            <div className="user-name">Guest User</div>
+            <div className="user-level">Level: B2</div>
+          </div>
+        </div>
+      </div>
+      
+      <nav className="nav-items">
+        <a href="/" className="nav-link active">
+          <span>🏠</span> Home
+        </a>
+        <a href="/enhanced-collection" className="nav-link">
+          <span>✨</span> Enhanced Books
+        </a>
+        <a href="/library" className="nav-link">
+          <span>📚</span> All Books
+        </a>
+        <a href="/progress" className="nav-link">
+          <span>📊</span> My Progress
+        </a>
+        <a href="/cefr-test" className="nav-link">
+          <span>🎯</span> Take CEFR Test
+        </a>
+        <a href="/settings" className="nav-link">
+          <span>⚙️</span> Settings
+        </a>
+      </nav>
+      
+      <div className="nav-footer">
+        <button className="sign-in-button">
+          Sign In / Sign Up
+        </button>
+      </div>
+    </div>
+  </>
+);
+
+// CSS
+.mobile-nav-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 280px;
+  background: var(--bg-secondary);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.mobile-nav-menu.open {
+  transform: translateX(0);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  min-height: 44px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 12px;
+}
+```
+
+### **Step 7.5: Touch Gestures & Mobile Interactions**
+**Implementation Details**:
+
+1. **Swipe Navigation**:
+```tsx
+// Use react-swipeable or similar
+const handlers = useSwipeable({
+  onSwipedLeft: () => goToNextChapter(),
+  onSwipedRight: () => goToPreviousChapter(),
+  trackMouse: false
+});
+```
+
+2. **Bottom Sheet Modals**:
+```tsx
+// Voice selection, CEFR levels as bottom sheets
+const BottomSheet = ({ isOpen, onClose, children }) => (
+  <div className={`bottom-sheet ${isOpen ? 'open' : ''}`}>
+    <div className="sheet-handle" />
+    {children}
+  </div>
+);
+```
+
+3. **Touch-Friendly Spacing**:
+- All interactive elements: min 44px height
+- Minimum 8px between tappable items
+- Larger hit areas for critical controls (play/pause)
+
+### **Step 7.6: Performance Optimizations**
+- Lazy load book covers on mobile
+- Reduce animation complexity on low-end devices
+- Cache simplified text for offline reading
+- Optimize audio streaming for mobile data
+
+**Safety**: All mobile changes are responsive CSS and conditional rendering, desktop experience unchanged
 
 ---
 
@@ -424,20 +945,24 @@ const FEATURE_FLAGS = {
 
 ## **Estimated Timeline**
 
-**Total: 13-15 hours**
+**Total: 15-17 hours**
 
 **Week 1 (5 hours):**
-- Phase 1: Typography (1.5h)
-- Phase 2: Components (3h)
-- Phase 3: Homepage (0.5h implementation)
+- Phase 1: Typography (1.5h) ✅
+- Phase 2: Components (3h) ✅
+- Phase 3: Homepage (0.5h implementation) ✅
 
 **Week 2 (5 hours):**
-- Phase 4: Audio Controls (2.5h)
-- Phase 5: Word Highlighting (2h)
-- Phase 6: Library Enhancement (0.5h)
+- Phase 4: Audio Controls (2.5h) ✅
+- Phase 5: Word Highlighting (2h) ✅
+- Phase 6: Library Enhancement (0.5h) ✅
 
-**Week 3 (3-5 hours):**
-- Phase 7: Mobile Optimization (1h)
+**Week 3 (5-7 hours):**
+- Phase 7: Mobile Optimization (3h) - Expanded to match wireframes
+  - Mobile Homepage (0.5h)
+  - Enhanced Collection Mobile (0.5h)
+  - Reading Interface Mobile (1h)
+  - Navigation Menu & Interactions (1h)
 - Phase 8: Testing & Validation (1h)
 - Buffer time for debugging (1-3h)
 
