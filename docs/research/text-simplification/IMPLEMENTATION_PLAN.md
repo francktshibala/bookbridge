@@ -62,6 +62,7 @@ const isDifferentFromOriginal = result.aiMetadata?.passedSimilarityGate !== fals
 - **The Yellow Wallpaper** (gutenberg-1952): 84/84 simplifications ✅
 - **The Importance of Being Earnest** (gutenberg-844): 270/270 simplifications ✅
 - **The Call of the Wild** (gutenberg-215): 438/438 simplifications ✅
+- **A Christmas Carol** (gutenberg-46): 384/384 simplifications ✅
 
 ### ❌ **Requires Reprocessing (Failed Due to Usage Limits):**
 - **Little Women** (gutenberg-514): 918 failed simplifications - **DELETE & RESTART**
@@ -77,8 +78,6 @@ const isDifferentFromOriginal = result.aiMetadata?.passedSimilarityGate !== fals
 - **Adventures of Huckleberry Finn** (gutenberg-76): ~255 chunks, 3-4 hours processing  
 - **Adventures of Tom Sawyer** (gutenberg-74): ~161 chunks, 2-3 hours processing
 - **Metamorphosis** (gutenberg-5200): ~51 chunks, 1.5 hour processing (needs priority list addition)
-- **A Christmas Carol** (gutenberg-46): ~64 chunks, 2 hour processing
-- **The Call of the Wild** (gutenberg-215): ~73 chunks, 2 hour processing
 
 ### 📋 **Long Books (Future Processing):**
 - **Great Expectations** (gutenberg-1400): 26+ hours processing time

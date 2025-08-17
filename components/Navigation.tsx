@@ -22,6 +22,7 @@ export default function Navigation() {
 
   const navLinks = user ? [
     { href: '/', label: 'Home' },
+    { href: '/enhanced-collection', label: '✨ Enhanced Books' },
     { href: '/library', label: 'Browse All Books' },
     { href: '/ai-tutor', label: 'AI Tutor' },
   ] : [];

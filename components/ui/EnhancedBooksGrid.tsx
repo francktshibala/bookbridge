@@ -158,7 +158,7 @@ export function EnhancedBooksGrid({
           }}
         >
           <a
-            href="/enhanced-books"
+            href="/enhanced-collection"
             style={{
               display: 'inline-flex',
               alignItems: 'center',

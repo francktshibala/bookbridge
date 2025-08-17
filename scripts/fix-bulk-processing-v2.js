@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 // Configuration
 const BOOK_ID = 'gutenberg-64317' // The Great Gatsby
 const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'http://localhost:3006'
 const BATCH_SIZE = 1 // Process only 1 at a time to avoid database issues
 const DELAY_BETWEEN_REQUESTS = 12000 // 12 seconds between requests (5 per minute to stay under rate limits)
 const MAX_RETRIES = 2
