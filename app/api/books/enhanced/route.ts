@@ -17,69 +17,125 @@ const GENRE_MAPPINGS: Record<string, { genre: string; cefrLevels: string; estima
   'Call of the Wild': { genre: 'Adventure', cefrLevels: 'B1-C2', estimatedHours: 3 },
   'Jungle Book': { genre: 'Adventure', cefrLevels: 'A2-B2', estimatedHours: 4 },
   'Moby Dick': { genre: 'Adventure', cefrLevels: 'C1-C2', estimatedHours: 12 },
-  'Sherlock Holmes': { genre: 'Mystery', cefrLevels: 'B2-C2', estimatedHours: 8 }
+  'Sherlock Holmes': { genre: 'Mystery', cefrLevels: 'B2-C2', estimatedHours: 8 },
+  'Dr. Jekyll': { genre: 'Gothic', cefrLevels: 'B2-C2', estimatedHours: 3 },
+  'Yellow Wallpaper': { genre: 'Short Story', cefrLevels: 'B1-C1', estimatedHours: 1 }
+};
+
+// Map common Gutenberg book IDs to titles for orphaned simplifications
+const GUTENBERG_TITLES: Record<string, { title: string; author: string }> = {
+  'gutenberg-158': { title: 'Emma', author: 'Jane Austen' },
+  'gutenberg-215': { title: 'The Call of the Wild', author: 'Jack London' },
+  'gutenberg-64317': { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+  'gutenberg-43': { title: 'Dr. Jekyll and Mr. Hyde', author: 'Robert Louis Stevenson' },
+  'gutenberg-844': { title: 'The Importance of Being Earnest', author: 'Oscar Wilde' },
+  'gutenberg-1952': { title: 'The Yellow Wallpaper', author: 'Charlotte Perkins Gilman' },
+  'gutenberg-174': { title: 'The Picture of Dorian Gray', author: 'Oscar Wilde' },
+  'gutenberg-345': { title: 'Dracula', author: 'Bram Stoker' },
+  'gutenberg-76': { title: 'Adventures of Huckleberry Finn', author: 'Mark Twain' },
+  'gutenberg-74': { title: 'The Adventures of Tom Sawyer', author: 'Mark Twain' }
 };
 
 export async function GET() {
   try {
-    // Get all books that have simplifications
-    const booksWithSimplifications = await prisma.bookSimplification.findMany({
-      select: {
-        bookId: true,
-        targetLevel: true
+    // Get all books with significant simplifications (50+ simplifications indicates real processing)
+    const simplificationStats = await prisma.bookSimplification.groupBy({
+      by: ['bookId'],
+      _count: {
+        id: true
       },
-      distinct: ['bookId', 'targetLevel']
-    });
-
-    // Get unique book IDs that have simplifications
-    const enhancedBookIds = [...new Set(booksWithSimplifications.map(s => s.bookId))];
-
-    // Get book content for these books
-    const books = await prisma.bookContent.findMany({
-      where: {
-        bookId: {
-          in: enhancedBookIds
+      having: {
+        id: {
+          _count: {
+            gte: 50 // Only books with substantial processing
+          }
         }
       },
       orderBy: {
-        createdAt: 'desc'
+        _count: {
+          id: 'desc'
+        }
       }
     });
 
-    // Transform books into enhanced format
-    const enhancedBooks = books.map(book => {
+    // Get detailed simplification data for these books
+    const allSimplifications = await prisma.bookSimplification.findMany({
+      where: {
+        bookId: {
+          in: simplificationStats.map(s => s.bookId)
+        }
+      },
+      select: {
+        bookId: true,
+        targetLevel: true
+      }
+    });
+
+    // Get book content for books that have it
+    const booksWithContent = await prisma.bookContent.findMany({
+      where: {
+        bookId: {
+          in: simplificationStats.map(s => s.bookId)
+        }
+      }
+    });
+
+    // Transform into enhanced books
+    const enhancedBooks = simplificationStats.map(stat => {
+      const bookId = stat.bookId;
+      const simplificationCount = stat._count.id;
+      
+      // Try to get book content first
+      const bookContent = booksWithContent.find(b => b.bookId === bookId);
+      
+      // If no book content, use Gutenberg mapping
+      let title = 'Unknown Title';
+      let author = 'Unknown Author';
+      let totalChunks = 0;
+      
+      if (bookContent) {
+        title = bookContent.title;
+        author = bookContent.author;
+        totalChunks = bookContent.totalChunks;
+      } else if (GUTENBERG_TITLES[bookId]) {
+        title = GUTENBERG_TITLES[bookId].title;
+        author = GUTENBERG_TITLES[bookId].author;
+        totalChunks = Math.floor(simplificationCount / 6); // Estimate chunks
+      }
+
       // Find matching metadata
       let metadata = { genre: 'Classic', cefrLevels: 'B1-C2', estimatedHours: 5 };
       for (const [keyword, data] of Object.entries(GENRE_MAPPINGS)) {
-        if (book.title.includes(keyword)) {
+        if (title.includes(keyword)) {
           metadata = data;
           break;
         }
       }
 
-      // Get simplification levels for this book
-      const bookSimplifications = booksWithSimplifications.filter(s => s.bookId === book.bookId);
-      const simplificationCount = bookSimplifications.length;
+      // Get available levels for this book
+      const bookSimplifications = allSimplifications.filter(s => s.bookId === bookId);
       const availableLevels = [...new Set(bookSimplifications.map(s => s.targetLevel))].sort();
 
-      // Determine status based on simplification count
+      // Determine status based on available levels
       let status: 'enhanced' | 'processing' | 'planned' = 'enhanced';
       
-      if (simplificationCount === 0) {
+      if (availableLevels.length === 0) {
         status = 'planned';
-      } else if (simplificationCount < 3) {
+      } else if (availableLevels.length < 4) {
         status = 'processing';
+      } else {
+        status = 'enhanced';
       }
 
       return {
-        id: book.bookId,
-        title: book.title,
-        author: book.author,
-        description: `Enhanced ESL edition with ${simplificationCount} difficulty levels available`,
+        id: bookId,
+        title,
+        author,
+        description: `Enhanced ESL edition with ${availableLevels.length} difficulty levels available`,
         genre: metadata.genre,
         cefrLevels: metadata.cefrLevels,
         estimatedHours: metadata.estimatedHours,
-        totalChunks: book.totalChunks,
+        totalChunks,
         status,
         simplificationCount,
         availableLevels
