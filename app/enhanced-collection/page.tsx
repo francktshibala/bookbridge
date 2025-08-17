@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
 import { motion } from 'framer-motion';
 
 interface Book {
@@ -16,69 +15,9 @@ interface Book {
   status: 'enhanced' | 'processing' | 'planned';
   progress?: number;
   chaptersRead?: number;
+  simplificationCount?: number;
+  availableLevels?: string[];
 }
-
-const ENHANCED_BOOK_IDS = [
-  'gutenberg-1342', // Pride and Prejudice
-  'gutenberg-1513', // Romeo and Juliet  
-  'gutenberg-11',   // Alice in Wonderland
-  'gutenberg-84',   // Frankenstein
-  'gutenberg-514',  // Little Women
-  'gutenberg-46',   // A Christmas Carol
-  'gutenberg-64317' // The Great Gatsby
-];
-
-const BOOK_METADATA = {
-  'gutenberg-1342': {
-    description: 'Follow Elizabeth Bennet\'s journey through love, social expectations, and personal growth in this timeless romance.',
-    genre: 'Romance',
-    cefrLevels: 'B1-C2',
-    estimatedHours: 8,
-    status: 'enhanced' as const
-  },
-  'gutenberg-1513': {
-    description: 'Shakespeare\'s tragic tale of star-crossed lovers, adapted for modern ESL learners with simplified language options.',
-    genre: 'Tragedy',
-    cefrLevels: 'B1-C2',
-    estimatedHours: 3,
-    status: 'enhanced' as const
-  },
-  'gutenberg-11': {
-    description: 'Join Alice on her whimsical journey down the rabbit hole in this beloved children\'s classic.',
-    genre: 'Fantasy',
-    cefrLevels: 'A2-C1',
-    estimatedHours: 2.5,
-    status: 'enhanced' as const
-  },
-  'gutenberg-84': {
-    description: 'Mary Shelley\'s groundbreaking Gothic novel about science, ambition, and the consequences of playing God.',
-    genre: 'Gothic',
-    cefrLevels: 'B2-C2',
-    estimatedHours: 6,
-    status: 'enhanced' as const
-  },
-  'gutenberg-514': {
-    description: 'Follow the March sisters as they navigate childhood, dreams, and growing up during the American Civil War.',
-    genre: 'Coming of Age',
-    cefrLevels: 'A2-B2',
-    estimatedHours: 10,
-    status: 'enhanced' as const
-  },
-  'gutenberg-46': {
-    description: 'Ebenezer Scrooge\'s transformative Christmas journey in Dickens\' beloved holiday tale.',
-    genre: 'Classic',
-    cefrLevels: 'B1-C1',
-    estimatedHours: 2,
-    status: 'processing' as const
-  },
-  'gutenberg-64317': {
-    description: 'Jazz Age glamour and the American Dream in Fitzgerald\'s iconic novel.',
-    genre: 'American Classic',
-    cefrLevels: 'B2-C2',
-    estimatedHours: 4,
-    status: 'planned' as const
-  }
-};
 
 const ENHANCED_FEATURES = [
   {
@@ -103,546 +42,475 @@ const ENHANCED_FEATURES = [
   }
 ];
 
-export default function EnhancedCollectionPage() {
+export default function EnhancedCollectionDynamic() {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedFilter, setSelectedFilter] = useState('All');
-  const [user, setUser] = useState<any>(null);
+  const [selectedGenre, setSelectedGenre] = useState<string>('All');
+  const [error, setError] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(9);
+  const BOOKS_PER_PAGE = 9;
 
   useEffect(() => {
-    fetchBooks();
-    checkAuth();
+    fetchEnhancedBooks();
   }, []);
 
-  const checkAuth = async () => {
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    setUser(user);
-  };
-
-  const fetchBooks = async () => {
+  const fetchEnhancedBooks = async () => {
     try {
-      const supabase = createClient();
+      setLoading(true);
+      const response = await fetch('/api/books/enhanced');
       
-      // Fetch books from database
-      const { data: dbBooks, error } = await supabase
-        .from('books')
-        .select('*')
-        .in('id', ENHANCED_BOOK_IDS);
-
-      if (error) {
-        console.error('Error fetching books:', error);
-        // Fallback to metadata only
-        setBooks(createFallbackBooks());
-        return;
+      if (!response.ok) {
+        throw new Error('Failed to fetch enhanced books');
       }
 
-      // Combine database data with metadata
-      const enhancedBooks = ENHANCED_BOOK_IDS.map(bookId => {
-        const dbBook = dbBooks?.find(b => b.id === bookId);
-        const metadata = BOOK_METADATA[bookId as keyof typeof BOOK_METADATA];
-        
-        return {
-          id: bookId,
-          title: dbBook?.title || bookId.replace('gutenberg-', 'Book '),
-          author: dbBook?.author || 'Unknown Author',
-          description: metadata?.description || '',
-          genre: metadata?.genre || 'Classic',
-          cefrLevels: metadata?.cefrLevels || 'B1-C2',
-          estimatedHours: metadata?.estimatedHours || 4,
-          totalChunks: dbBook?.total_chunks || 25,
-          status: metadata?.status || 'planned',
-          progress: 0,
-          chaptersRead: 0
-        };
-      });
-
-      setBooks(enhancedBooks);
-    } catch (error) {
-      console.error('Error in fetchBooks:', error);
-      setBooks(createFallbackBooks());
+      const data = await response.json();
+      setBooks(data.books);
+    } catch (err) {
+      console.error('Error fetching enhanced books:', err);
+      setError('Failed to load enhanced books. Please try again later.');
     } finally {
       setLoading(false);
     }
   };
 
-  const createFallbackBooks = (): Book[] => {
-    return [
-      {
-        id: 'gutenberg-1342',
-        title: 'Pride and Prejudice',
-        author: 'Jane Austen',
-        description: 'Follow Elizabeth Bennet\'s journey through love, social expectations, and personal growth in this timeless romance.',
-        genre: 'Romance',
-        cefrLevels: 'B1-C2',
-        estimatedHours: 8,
-        totalChunks: 61,
-        status: 'enhanced',
-        progress: 0,
-        chaptersRead: 0
-      },
-      {
-        id: 'gutenberg-1513',
-        title: 'Romeo and Juliet',
-        author: 'William Shakespeare',
-        description: 'Shakespeare\'s tragic tale of star-crossed lovers, adapted for modern ESL learners with simplified language options.',
-        genre: 'Tragedy',
-        cefrLevels: 'B1-C2',
-        estimatedHours: 3,
-        totalChunks: 25,
-        status: 'enhanced',
-        progress: 0,
-        chaptersRead: 0
-      },
-      {
-        id: 'gutenberg-11',
-        title: 'Alice in Wonderland',
-        author: 'Lewis Carroll',
-        description: 'Join Alice on her whimsical journey down the rabbit hole in this beloved children\'s classic.',
-        genre: 'Fantasy',
-        cefrLevels: 'A2-C1',
-        estimatedHours: 2.5,
-        totalChunks: 12,
-        status: 'enhanced',
-        progress: 0,
-        chaptersRead: 0
-      },
-      {
-        id: 'gutenberg-84',
-        title: 'Frankenstein',
-        author: 'Mary Wollstonecraft Shelley',
-        description: 'Mary Shelley\'s groundbreaking Gothic novel about science, ambition, and the consequences of playing God.',
-        genre: 'Gothic',
-        cefrLevels: 'B2-C2',
-        estimatedHours: 6,
-        totalChunks: 24,
-        status: 'enhanced',
-        progress: 0,
-        chaptersRead: 0
-      },
-      {
-        id: 'gutenberg-514',
-        title: 'Little Women',
-        author: 'Louisa May Alcott',
-        description: 'Follow the March sisters as they navigate childhood, dreams, and growing up during the American Civil War.',
-        genre: 'Coming of Age',
-        cefrLevels: 'A2-B2',
-        estimatedHours: 10,
-        totalChunks: 47,
-        status: 'enhanced',
-        progress: 0,
-        chaptersRead: 0
-      },
-      {
-        id: 'gutenberg-46',
-        title: 'A Christmas Carol',
-        author: 'Charles Dickens',
-        description: 'Ebenezer Scrooge\'s transformative Christmas journey in Dickens\' beloved holiday tale.',
-        genre: 'Classic',
-        cefrLevels: 'B1-C1',
-        estimatedHours: 2,
-        totalChunks: 5,
-        status: 'processing',
-        progress: 0,
-        chaptersRead: 0
-      },
-      {
-        id: 'gutenberg-64317',
-        title: 'The Great Gatsby',
-        author: 'F. Scott Fitzgerald',
-        description: 'Jazz Age glamour and the American Dream in Fitzgerald\'s iconic novel.',
-        genre: 'American Classic',
-        cefrLevels: 'B2-C2',
-        estimatedHours: 4,
-        totalChunks: 30,
-        status: 'planned',
-        progress: 0,
-        chaptersRead: 0
+  // Get unique genres from books
+  const genres: string[] = ['All', ...new Set(books.map(book => book.genre).filter(Boolean) as string[])];
+
+  // Filter books by selected genre
+  const filteredBooks = selectedGenre === 'All' 
+    ? books 
+    : books.filter(book => book.genre === selectedGenre);
+
+  // Group books by status
+  const enhancedBooks = filteredBooks.filter(book => book.status === 'enhanced');
+  const processingBooks = filteredBooks.filter(book => book.status === 'processing');
+  const plannedBooks = filteredBooks.filter(book => book.status === 'planned');
+
+  // Apply pagination to enhanced books (main section)
+  const visibleEnhancedBooks = enhancedBooks.slice(0, visibleCount);
+  const hasMoreBooks = enhancedBooks.length > visibleCount;
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + BOOKS_PER_PAGE);
+  };
+
+  const handleGenreChange = (genre: string) => {
+    setSelectedGenre(genre);
+    setVisibleCount(BOOKS_PER_PAGE); // Reset pagination when changing genre
+  };
+
+  const BookCard = ({ book }: { book: Book }) => {
+    const getAbbreviation = (title: string) => {
+      const words = title.split(' ');
+      if (words.length >= 2) {
+        return words[0][0] + words[1][0];
       }
-    ];
-  };
+      return title.substring(0, 2).toUpperCase();
+    };
 
-  const getGenres = (): string[] => {
-    const genres = Array.from(new Set(books.map(book => book.genre).filter(Boolean) as string[]));
-    return ['All', ...genres];
-  };
+    const getProgressPercentage = () => {
+      if (!book.totalChunks || !book.chaptersRead) return 0;
+      return Math.round((book.chaptersRead / book.totalChunks) * 100);
+    };
 
-  const getFilteredBooks = () => {
-    if (selectedFilter === 'All') return books;
-    return books.filter(book => book.genre === selectedFilter);
-  };
+    const progress = getProgressPercentage();
 
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'enhanced':
-        return { text: '✨ Enhanced', bgColor: '#10b981', textColor: 'white' };
-      case 'processing':
-        return { text: '🔄 Processing', bgColor: '#f59e0b', textColor: 'white' };
-      case 'planned':
-        return { text: '⏳ Planned', bgColor: '#6b7280', textColor: 'white' };
-      default:
-        return { text: '📖 Available', bgColor: '#6366f1', textColor: 'white' };
-    }
-  };
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.02 }}
+        style={{
+          background: 'rgba(30, 41, 59, 0.8)',
+          border: '1px solid #334155',
+          borderRadius: '16px',
+          padding: '24px',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Status Badge */}
+        <div style={{
+          position: 'absolute',
+          top: '16px',
+          right: '16px',
+          padding: '4px 12px',
+          borderRadius: '12px',
+          fontSize: '12px',
+          fontWeight: '600',
+          background: book.status === 'enhanced' ? 'rgba(16, 185, 129, 0.2)' :
+                     book.status === 'processing' ? 'rgba(251, 191, 36, 0.2)' :
+                     'rgba(156, 163, 175, 0.2)',
+          color: book.status === 'enhanced' ? '#10b981' :
+                 book.status === 'processing' ? '#fbbf24' :
+                 '#9ca3af'
+        }}>
+          {book.status === 'enhanced' ? '✨ Enhanced' :
+           book.status === 'processing' ? '🔄 Processing' :
+           '📅 Planned'}
+        </div>
 
-  const getButtonConfig = (status: string) => {
-    switch (status) {
-      case 'enhanced':
-        return {
-          text: 'Start Reading',
-          disabled: false,
-          bgColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          textColor: 'white'
-        };
-      case 'processing':
-        return {
-          text: 'Coming Soon',
-          href: '#',
-          disabled: true,
-          bgColor: '#475569',
-          textColor: '#94a3b8'
-        };
-      case 'planned':
-        return {
-          text: 'Coming Soon',
-          href: '#',
-          disabled: true,
-          bgColor: '#475569',
-          textColor: '#94a3b8'
-        };
-      default:
-        return {
-          text: 'Coming Soon',
-          href: '#',
-          disabled: true,
-          bgColor: '#475569',
-          textColor: '#94a3b8'
-        };
-    }
+        {/* Book Cover Placeholder */}
+        <div style={{
+          width: '120px',
+          height: '160px',
+          background: `linear-gradient(135deg, #667eea 0%, #764ba2 100%)`,
+          borderRadius: '12px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '32px',
+          fontWeight: 'bold',
+          color: 'white',
+          marginBottom: '20px',
+          alignSelf: 'center'
+        }}>
+          {getAbbreviation(book.title)}
+        </div>
+
+        {/* Book Info */}
+        <h3 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '8px' }}>
+          {book.title}
+        </h3>
+        <p style={{ fontSize: '14px', color: '#94a3b8', marginBottom: '12px' }}>
+          {book.author}
+        </p>
+
+        {/* Book Details */}
+        <div style={{ fontSize: '13px', color: '#64748b', marginBottom: '16px' }}>
+          <span style={{ 
+            background: 'rgba(102, 126, 234, 0.2)', 
+            color: '#667eea',
+            padding: '2px 8px',
+            borderRadius: '8px',
+            marginRight: '8px'
+          }}>
+            {book.cefrLevels}
+          </span>
+          <span>~{book.estimatedHours} hours</span>
+          {book.genre && (
+            <span style={{ marginLeft: '8px' }}>{book.genre}</span>
+          )}
+        </div>
+
+        {/* Simplification Info */}
+        {book.simplificationCount && book.simplificationCount > 0 && (
+          <div style={{ 
+            fontSize: '12px', 
+            color: '#10b981',
+            marginBottom: '12px',
+            padding: '8px',
+            background: 'rgba(16, 185, 129, 0.1)',
+            borderRadius: '8px'
+          }}>
+            {book.simplificationCount} difficulty levels available
+            {book.availableLevels && (
+              <div style={{ marginTop: '4px', color: '#64748b' }}>
+                Levels: {book.availableLevels.join(', ')}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Description */}
+        <p style={{ 
+          fontSize: '14px', 
+          color: '#94a3b8', 
+          lineHeight: '1.6',
+          marginBottom: '20px',
+          flex: 1
+        }}>
+          {book.description}
+        </p>
+
+        {/* Progress Bar */}
+        {progress > 0 && (
+          <div style={{ marginBottom: '16px' }}>
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between',
+              fontSize: '12px',
+              color: '#64748b',
+              marginBottom: '4px'
+            }}>
+              <span>Progress: {progress}%</span>
+              <span>{book.chaptersRead}/{book.totalChunks} chunks</span>
+            </div>
+            <div style={{
+              height: '6px',
+              background: '#334155',
+              borderRadius: '3px',
+              overflow: 'hidden'
+            }}>
+              <div style={{
+                width: `${progress}%`,
+                height: '100%',
+                background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+                transition: 'width 0.3s ease'
+              }} />
+            </div>
+          </div>
+        )}
+
+        {/* Action Button */}
+        <a
+          href={`/library/${book.id}/read`}
+          style={{
+            display: 'block',
+            textAlign: 'center',
+            padding: '12px 24px',
+            background: book.status === 'enhanced' 
+              ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+              : 'transparent',
+            border: book.status === 'enhanced' ? 'none' : '2px solid #334155',
+            borderRadius: '12px',
+            color: book.status === 'enhanced' ? 'white' : '#64748b',
+            fontWeight: '600',
+            textDecoration: 'none',
+            cursor: book.status === 'enhanced' ? 'pointer' : 'not-allowed',
+            opacity: book.status === 'enhanced' ? 1 : 0.5
+          }}
+        >
+          {book.status === 'enhanced' ? 'Start Reading' :
+           book.status === 'processing' ? 'Coming Soon' :
+           'Planned'}
+        </a>
+      </motion.div>
+    );
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-lg text-gray-300">Loading enhanced collection...</span>
+      <div style={{ 
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '48px', marginBottom: '20px' }}>📚</div>
+          <p style={{ fontSize: '18px', color: '#94a3b8' }}>Loading enhanced collection...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div style={{ 
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '48px', marginBottom: '20px' }}>❌</div>
+          <p style={{ fontSize: '18px', color: '#ef4444' }}>{error}</p>
+          <button
+            onClick={fetchEnhancedBooks}
+            style={{
+              marginTop: '20px',
+              padding: '12px 24px',
+              background: '#667eea',
+              border: 'none',
+              borderRadius: '12px',
+              color: 'white',
+              fontWeight: '600',
+              cursor: 'pointer'
+            }}
+          >
+            Try Again
+          </button>
         </div>
       </div>
     );
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0f172a' }}>
+    <div style={{ minHeight: '100vh', padding: '40px 20px' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{ textAlign: 'center', marginBottom: '60px' }}
+        >
+          <h1 style={{ 
+            fontSize: '48px', 
+            fontWeight: 'bold',
+            marginBottom: '16px',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}>
+            ✨ Enhanced Collection
+          </h1>
+          <p style={{ fontSize: '18px', color: '#94a3b8' }}>
+            Classic literature enhanced with AI-powered ESL learning tools
+          </p>
+          <p style={{ fontSize: '14px', color: '#64748b', marginTop: '8px' }}>
+            Automatically updated with {books.length} books from our database
+          </p>
+        </motion.div>
 
-      {/* Page Header - exactly matching wireframe */}
-      <div style={{
-        padding: '60px 40px 40px',
-        textAlign: 'center',
-        background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-      }}>
-        <h1 style={{
-          fontSize: '48px',
-          fontWeight: '800',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          marginBottom: '16px',
-          margin: '0 0 16px 0'
-        }}>
-          ✨ Enhanced Collection
-        </h1>
-        <p style={{
-          fontSize: '20px',
-          color: '#94a3b8',
-          marginBottom: '32px',
-          margin: '0 0 32px 0'
-        }}>
-          Classic literature enhanced with AI-powered ESL learning tools
-        </p>
-        
-        {/* Filter Pills - exactly matching wireframe */}
-        <div style={{
-          display: 'flex',
+        {/* Genre Filter */}
+        <div style={{ 
+          display: 'flex', 
+          gap: '12px', 
           justifyContent: 'center',
-          gap: '12px',
+          marginBottom: '40px',
           flexWrap: 'wrap'
         }}>
-          {getGenres().map((genre) => (
+          {genres.map(genre => (
             <button
               key={genre}
-              onClick={() => setSelectedFilter(genre)}
+              onClick={() => handleGenreChange(genre)}
               style={{
-                padding: '8px 16px',
-                background: selectedFilter === genre ? '#667eea' : 'rgba(102, 126, 234, 0.2)',
-                color: selectedFilter === genre ? 'white' : '#667eea',
-                borderRadius: '20px',
-                fontSize: '14px',
+                padding: '8px 20px',
+                background: selectedGenre === genre ? '#667eea' : 'transparent',
+                border: `2px solid ${selectedGenre === genre ? '#667eea' : '#334155'}`,
+                borderRadius: '24px',
+                color: selectedGenre === genre ? 'white' : '#94a3b8',
                 fontWeight: '600',
-                border: 'none',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
               }}
             >
               {genre} ({genre === 'All' ? books.length : books.filter(b => b.genre === genre).length})
             </button>
           ))}
         </div>
-      </div>
 
-      {/* Enhanced Features Overview - exactly matching wireframe */}
-      <div style={{ 
-        padding: '40px', 
-        background: '#1e293b',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-      }}>
-        <h3 style={{
-          color: '#e2e8f0',
-          textAlign: 'center',
-          marginBottom: '32px',
-          fontSize: '24px',
-          margin: '0 0 32px 0'
-        }}>
-          ✨ Enhanced Features
-        </h3>
+        {/* Enhanced Features */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '24px',
-          maxWidth: '1000px',
-          width: '100%'
+          background: 'rgba(102, 126, 234, 0.1)',
+          borderRadius: '20px',
+          padding: '40px',
+          marginBottom: '60px'
         }}>
-          {ENHANCED_FEATURES.map((feature) => (
-            <div key={feature.title} style={{
-              textAlign: 'center',
-              padding: '20px'
-            }}>
-              <div style={{
-                fontSize: '32px',
-                marginBottom: '12px'
-              }}>
-                {feature.icon}
-              </div>
-              <h4 style={{
-                color: '#10b981',
-                marginBottom: '8px',
-                margin: '0 0 8px 0'
-              }}>
-                {feature.title}
-              </h4>
-              <p style={{
-                color: '#94a3b8',
-                fontSize: '14px',
-                margin: '0'
-              }}>
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Full Book Collection - exactly matching wireframe */}
-      <div style={{ 
-        padding: '40px',
-        maxWidth: '1200px',
-        margin: '0 auto'
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '24px',
-          justifyItems: 'center'
-        }}>
-          {getFilteredBooks().map((book) => {
-            const badge = getStatusBadge(book.status);
-            const buttonConfig = getButtonConfig(book.status);
-            
-            return (
-              <div
-                key={book.id}
+          <h2 style={{ 
+            fontSize: '28px', 
+            textAlign: 'center',
+            marginBottom: '32px',
+            color: '#e2e8f0'
+          }}>
+            ✨ Enhanced Features
+          </h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '24px'
+          }}>
+            {ENHANCED_FEATURES.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
                 style={{
-                  background: '#1e293b',
-                  border: '1px solid #334155',
-                  borderRadius: '16px',
+                  textAlign: 'center',
                   padding: '24px',
-                  position: 'relative',
-                  width: '100%',
-                  maxWidth: '350px'
+                  background: 'rgba(30, 41, 59, 0.5)',
+                  borderRadius: '16px',
+                  border: '1px solid #334155'
                 }}
               >
-                {/* Status Badge */}
-                <div style={{
-                  position: 'absolute',
-                  top: '16px',
-                  right: '16px',
-                  background: badge.bgColor,
-                  color: badge.textColor,
-                  padding: '4px 12px',
-                  borderRadius: '20px',
-                  fontSize: '12px',
-                  fontWeight: '600'
-                }}>
-                  {badge.text}
+                <div style={{ fontSize: '48px', marginBottom: '16px' }}>
+                  {feature.icon}
                 </div>
-                
-                {/* Book Info */}
-                <h3 style={{
-                  color: '#e2e8f0',
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  marginBottom: '8px',
-                  margin: '0 0 8px 0'
-                }}>
-                  {book.title}
+                <h3 style={{ fontSize: '18px', marginBottom: '8px', color: '#10b981' }}>
+                  {feature.title}
                 </h3>
-                <p style={{
-                  color: '#94a3b8',
-                  marginBottom: '12px',
-                  margin: '0 0 12px 0'
-                }}>
-                  {book.author}
+                <p style={{ fontSize: '14px', color: '#94a3b8' }}>
+                  {feature.description}
                 </p>
-                
-                {/* Stats */}
-                <div style={{
-                  display: 'flex',
-                  gap: '12px',
-                  marginBottom: '16px',
-                  fontSize: '14px'
-                }}>
-                  <span style={{ color: '#10b981' }}>{book.cefrLevels}</span>
-                  <span style={{ color: '#94a3b8' }}>~{book.estimatedHours} hours</span>
-                  <span style={{ color: '#94a3b8' }}>{book.genre}</span>
-                </div>
-                
-                {/* Description */}
-                <p style={{
-                  color: '#94a3b8',
-                  fontSize: '14px',
-                  lineHeight: '1.5',
-                  marginBottom: '16px',
-                  margin: '0 0 16px 0'
-                }}>
-                  {book.description}
-                </p>
-                
-                {/* Progress/Status Area */}
-                {book.status === 'enhanced' && (
-                  <div style={{
-                    background: 'rgba(16, 185, 129, 0.1)',
-                    padding: '12px',
-                    borderRadius: '8px',
-                    marginBottom: '16px'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      fontSize: '12px',
-                      color: '#10b981',
-                      marginBottom: '4px'
-                    }}>
-                      <span>Progress: {book.progress}%</span>
-                      <span>{book.chaptersRead}/{book.totalChunks} chapters</span>
-                    </div>
-                    <div style={{
-                      background: 'rgba(16, 185, 129, 0.2)',
-                      height: '4px',
-                      borderRadius: '2px'
-                    }}>
-                      <div style={{
-                        background: '#10b981',
-                        height: '100%',
-                        width: `${book.progress}%`,
-                        borderRadius: '2px'
-                      }}></div>
-                    </div>
-                  </div>
-                )}
-                
-                {book.status === 'processing' && (
-                  <div style={{
-                    background: 'rgba(251, 158, 11, 0.1)',
-                    padding: '12px',
-                    borderRadius: '8px',
-                    marginBottom: '16px'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      fontSize: '12px',
-                      color: '#f59e0b'
-                    }}>
-                      <span>🔄 AI enhancement in progress...</span>
-                    </div>
-                  </div>
-                )}
-                
-                {book.status === 'planned' && (
-                  <div style={{
-                    background: 'rgba(107, 114, 128, 0.1)',
-                    padding: '12px',
-                    borderRadius: '8px',
-                    marginBottom: '16px'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      fontSize: '12px',
-                      color: '#6b7280'
-                    }}>
-                      <span>⏳ Planned for enhancement</span>
-                    </div>
-                  </div>
-                )}
-                
-                {/* Action Button */}
-                {buttonConfig.disabled ? (
-                  <button
-                    disabled
-                    style={{
-                      width: '100%',
-                      background: buttonConfig.bgColor,
-                      color: buttonConfig.textColor,
-                      padding: '12px',
-                      borderRadius: '8px',
-                      border: 'none',
-                      fontWeight: '600',
-                      cursor: 'not-allowed'
-                    }}
-                  >
-                    {buttonConfig.text}
-                  </button>
-                ) : (
-                  <a
-                    href={`/library/${book.id}/read`}
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      background: buttonConfig.bgColor,
-                      color: buttonConfig.textColor,
-                      padding: '12px',
-                      borderRadius: '8px',
-                      border: 'none',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      textAlign: 'center',
-                      textDecoration: 'none',
-                      boxSizing: 'border-box'
-                    }}
-                  >
-                    {buttonConfig.text}
-                  </a>
-                )}
-              </div>
-            );
-          })}
+              </motion.div>
+            ))}
+          </div>
         </div>
+
+        {/* Enhanced Books Section */}
+        {enhancedBooks.length > 0 && (
+          <>
+            <h2 style={{ fontSize: '24px', marginBottom: '24px', color: '#10b981' }}>
+              ✅ Ready to Read ({enhancedBooks.length})
+            </h2>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '24px',
+              marginBottom: hasMoreBooks ? '40px' : '60px'
+            }}>
+              {visibleEnhancedBooks.map((book) => (
+                <BookCard key={book.id} book={book} />
+              ))}
+            </div>
+            
+            {/* Load More Button */}
+            {hasMoreBooks && (
+              <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+                <motion.button
+                  onClick={handleLoadMore}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{
+                    padding: '12px 24px',
+                    borderRadius: '12px',
+                    border: '2px solid #10b981',
+                    background: 'transparent',
+                    color: '#10b981',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  Load More Books ({enhancedBooks.length - visibleCount} remaining)
+                </motion.button>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* Processing Books Section */}
+        {processingBooks.length > 0 && (
+          <>
+            <h2 style={{ fontSize: '24px', marginBottom: '24px', color: '#fbbf24' }}>
+              🔄 Currently Processing ({processingBooks.length})
+            </h2>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '24px',
+              marginBottom: '60px'
+            }}>
+              {processingBooks.map((book) => (
+                <BookCard key={book.id} book={book} />
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Planned Books Section */}
+        {plannedBooks.length > 0 && (
+          <>
+            <h2 style={{ fontSize: '24px', marginBottom: '24px', color: '#9ca3af' }}>
+              📅 Planned for Enhancement ({plannedBooks.length})
+            </h2>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '24px'
+            }}>
+              {plannedBooks.map((book) => (
+                <BookCard key={book.id} book={book} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
