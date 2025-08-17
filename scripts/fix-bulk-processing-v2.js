@@ -1,8 +1,9 @@
+require('dotenv').config({ path: '.env.local' });
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 // Configuration
-const BOOK_ID = 'gutenberg-64317' // The Great Gatsby
+const BOOK_ID = 'gutenberg-514' // Little Women
 const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 const BASE_URL = 'http://localhost:3006'
 const BATCH_SIZE = 1 // Process only 1 at a time to avoid database issues
@@ -159,7 +160,7 @@ async function processSimplification(level, chunkIndex, totalChunks, retryCount 
 }
 
 async function main() {
-  console.log('🚀 BULK PROCESSING FOR THE GREAT GATSBY')
+  console.log('🚀 BULK PROCESSING FOR LITTLE WOMEN')
   console.log('='*60)
   console.log('KEY FIXES:')
   console.log('  1. Respects chunk boundaries (0 to totalChunks-1)')
@@ -272,7 +273,7 @@ async function main() {
     console.log(`\n✅ VERIFIED Database Count: ${finalCount}/${expectedTotal}`)
     
     if (finalCount === expectedTotal) {
-      console.log('\n🎉 THE GREAT GATSBY FULLY PROCESSED!')
+      console.log('\n🎉 LITTLE WOMEN FULLY PROCESSED!')
       console.log('All simplifications are saved in the database.')
     } else {
       console.log(`\n⏳ Still missing ${expectedTotal - finalCount} simplifications.`)
@@ -305,7 +306,7 @@ fetch(`${BASE_URL}/api/books/${BOOK_ID}/content-fast`)
     }
   })
   .catch((error) => {
-    console.error('❌ Server is not running on port 3005 or API is not accessible')
+    console.error('❌ Server is not running on port 3000 or API is not accessible')
     console.error('Please start the dev server first: npm run dev (port 3000)')
     console.error('Error:', error.message)
     process.exit(1)
