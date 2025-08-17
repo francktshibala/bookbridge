@@ -74,7 +74,7 @@ export default function EnhancedCollectionDynamic() {
   };
 
   // Get unique genres from books
-  const genres = ['All', ...new Set(books.map(book => book.genre).filter(Boolean))];
+  const genres: string[] = ['All', ...new Set(books.map(book => book.genre).filter(Boolean) as string[])];
 
   // Filter books by selected genre
   const filteredBooks = selectedGenre === 'All' 
