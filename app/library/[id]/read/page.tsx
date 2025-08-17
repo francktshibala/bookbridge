@@ -8,8 +8,10 @@ import { VocabularyHighlighter } from '@/components/VocabularyHighlighter';
 import { PrecomputeAudioPlayer } from '@/components/PrecomputeAudioPlayer';
 import { AudioPlayerWithHighlighting } from '@/components/AudioPlayerWithHighlighting';
 import { IntegratedAudioControls } from '@/components/IntegratedAudioControls';
+import { WireframeAudioControls } from '@/components/audio/WireframeAudioControls';
 import { SpeedControl } from '@/components/SpeedControl';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
+import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
 
 interface BookContent {
@@ -21,6 +23,8 @@ interface BookContent {
     content: string;
   }>;
   totalChunks: number;
+  stored?: boolean;
+  source?: string;
 }
 
 export default function BookReaderPage() {
@@ -36,6 +40,7 @@ export default function BookReaderPage() {
   const [showLevelDropdown, setShowLevelDropdown] = useState(false);
   const [showVoiceDropdown, setShowVoiceDropdown] = useState(false);
   const [voiceProvider, setVoiceProvider] = useState<'standard' | 'openai' | 'elevenlabs'>('openai');
+  const [selectedVoice, setSelectedVoice] = useState('alloy');
   const [currentContent, setCurrentContent] = useState<string>('');
   const [currentMode, setCurrentMode] = useState<'original' | 'simplified'>('original');
   const [simplifiedContent, setSimplifiedContent] = useState<string>('');
@@ -54,6 +59,7 @@ export default function BookReaderPage() {
   const [sections, setSections] = useState<Array<{title: string; content: string; startIndex: number}>>([]);
 
   const bookId = params.id as string;
+
 
   useEffect(() => {
     if (bookId) {
@@ -81,6 +87,16 @@ export default function BookReaderPage() {
       setCurrentContent(newContent);
     }
   }, [currentChunk, bookContent]);
+
+  // Load saved voice selection from localStorage
+  useEffect(() => {
+    if (bookId) {
+      const savedVoice = localStorage.getItem(`voice-selection-${bookId}`);
+      if (savedVoice) {
+        setSelectedVoice(savedVoice);
+      }
+    }
+  }, [bookId]);
 
   // Load reading position from localStorage
   const loadReadingPosition = () => {
@@ -329,7 +345,9 @@ export default function BookReaderPage() {
           title: data.title,
           author: data.author,
           chunks: chunks,
-          totalChunks: chunks.length
+          totalChunks: chunks.length,
+          stored: data.stored, // Add stored property for enhanced book detection
+          source: data.source  // Add source property for enhanced book detection
         };
         
         setBookContent(bookData);
@@ -450,6 +468,45 @@ export default function BookReaderPage() {
     announceToScreenReader(`Now reading: ${sections[index].title}`);
   };
 
+  const handleVoiceChange = (voiceId: string) => {
+    setSelectedVoice(voiceId);
+    localStorage.setItem(`voice-selection-${bookId}`, voiceId);
+  };
+
+  const handlePreviewVoice = async (voiceId: string) => {
+    // Implement voice preview functionality here
+    console.log('Previewing voice:', voiceId);
+    // Could play a short sample text with the selected voice
+  };
+
+  const handleModeChange = async (newMode: 'original' | 'simplified') => {
+    setCurrentMode(newMode);
+    localStorage.setItem(`reading-mode-${bookId}`, newMode);
+    
+    if (newMode === 'simplified') {
+      // Fetch simplified content for current chunk and level
+      const simplifiedText = await fetchSimplifiedContent(eslLevel, currentChunk);
+      setCurrentContent(simplifiedText);
+    } else {
+      // Switch back to original content
+      const originalContent = bookContent?.chunks[currentChunk]?.content || '';
+      setCurrentContent(originalContent);
+    }
+  };
+
+  // Auto-advance functionality (must be after handleChunkNavigation is defined)
+  const {
+    autoAdvanceEnabled,
+    toggleAutoAdvance,
+    handleChunkComplete: autoAdvanceChunkComplete
+  } = useAutoAdvance({
+    isEnhanced: bookContent?.stored === true && bookContent?.source === 'database',
+    currentChunk,
+    totalChunks: bookContent?.totalChunks || 0,
+    onNavigate: handleChunkNavigation,
+    onPlayStateChange: setIsPlaying
+  });
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -481,6 +538,13 @@ export default function BookReaderPage() {
   const currentChunkData = bookContent?.chunks?.[currentChunk];
   const canGoPrev = currentChunk > 0;
   const canGoNext = bookContent ? currentChunk < bookContent.totalChunks - 1 : false;
+
+  // Enhanced book detection
+  const isEnhancedBook = bookContent?.stored === true && bookContent?.source === 'database';
+  
+  // Feature flag for wireframe controls
+  const useWireframeControls = true; // Can toggle during testing
+
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -603,7 +667,8 @@ export default function BookReaderPage() {
 
       {/* Main Content */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 48px' }}>
-        {/* ESL Control Bar */}
+        {/* Old ESL Control Bar - Hidden when using wireframe controls */}
+        {!useWireframeControls && (
         <div 
           style={{
             backgroundColor: '#1e293b',
@@ -1052,6 +1117,44 @@ export default function BookReaderPage() {
             </button>
           </div>
         </div>
+        )}
+
+        {/* Audio Controls - Positioned above content */}
+        {useWireframeControls ? (
+          <WireframeAudioControls
+            enableWordHighlighting={isEnhancedBook}
+            text={currentContent}
+            voiceProvider={voiceProvider}
+            isPlaying={isPlaying}
+            onPlayStateChange={setIsPlaying}
+            onEnd={autoAdvanceChunkComplete}
+            bookId={bookId}
+            chunkIndex={currentChunk}
+            cefrLevel={eslLevel}
+            onCefrLevelChange={setEslLevel}
+            currentChunk={currentChunk}
+            totalChunks={bookContent?.totalChunks || 0}
+            onNavigate={handleChunkNavigation}
+            selectedVoice={selectedVoice}
+            onVoiceChange={handleVoiceChange}
+            onPreviewVoice={handlePreviewVoice}
+            currentMode={currentMode}
+            onModeChange={handleModeChange}
+            onWordHighlight={handleWordHighlight}
+            autoAdvanceEnabled={autoAdvanceEnabled}
+            onToggleAutoAdvance={toggleAutoAdvance}
+          />
+        ) : (
+          <IntegratedAudioControls
+            text={currentContent}
+            voiceProvider={voiceProvider}
+            isPlaying={isPlaying}
+            onPlayStateChange={setIsPlaying}
+            onEnd={handleChunkComplete}
+            bookId={bookId}
+            chunkIndex={currentChunk}
+          />
+        )}
 
         {/* Reading Content */}
         <motion.div 
@@ -1070,27 +1173,15 @@ export default function BookReaderPage() {
           }}
         >
           {/* Book Title */}
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h1 style={{ 
-              fontSize: '36px', 
-              fontWeight: 'bold', 
-              color: 'white', 
-              marginBottom: '16px' 
-            }}>
+          <div className="book-content-wireframe">
+            <h1 className="book-title-wireframe">
               {bookContent.title}
             </h1>
-            <p style={{ color: '#94a3b8', fontSize: '16px' }}>by {bookContent.author}</p>
+            <p style={{ color: '#94a3b8', fontSize: '16px', textAlign: 'center', marginBottom: '32px' }}>by {bookContent.author}</p>
           </div>
           
           {/* Book Text */}
-          <div style={{ 
-            maxWidth: '900px', 
-            margin: '0 auto', 
-            padding: '32px 80px',
-            fontSize: displayConfig?.fontSize || '16px',
-            lineHeight: '1.8',
-            transition: 'font-size 0.3s ease'
-          }}>
+          <div className="book-content-wireframe">
             {simplificationLoading ? (
               <div style={{ 
                 display: 'flex', 
@@ -1130,23 +1221,16 @@ export default function BookReaderPage() {
                 
                 <div 
                   id="book-reading-text"
-                  className={`whitespace-pre-wrap leading-relaxed ${
+                  className={`book-text-wireframe ${currentMode === 'simplified' ? 'simplified' : ''} whitespace-pre-wrap ${
                     preferences.contrast === 'high' ? 'text-black bg-white' :
-                    preferences.contrast === 'ultra-high' ? 'text-white bg-black' :
-                    'text-gray-900'
+                    preferences.contrast === 'ultra-high' ? 'text-white bg-black' : ''
                   }`}
                   style={{
-                    fontSize: `${Math.max(preferences.fontSize, 16)}px`,
-                    lineHeight: preferences.dyslexiaFont ? '1.9' : '1.8',
-                    fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : '"Inter", "Charter", "Georgia", serif',
-                    color: preferences.contrast === 'ultra-high' ? '#ffffff' : '#e2e8f0',
-                    letterSpacing: '0.3px',
-                    wordSpacing: '2px',
-                    textAlign: 'justify',
-                    textJustify: 'inter-word',
-                    hyphens: 'auto',
-                    WebkitHyphens: 'auto',
-                    msHyphens: 'auto'
+                    fontSize: preferences.dyslexiaFont ? `${Math.max(preferences.fontSize, 18)}px` : undefined,
+                    lineHeight: preferences.dyslexiaFont ? '1.9' : undefined,
+                    fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : undefined,
+                    letterSpacing: preferences.dyslexiaFont ? '0.3px' : undefined,
+                    wordSpacing: preferences.dyslexiaFont ? '2px' : undefined,
                   }}
                   role="main"
                   aria-label="Book content"
@@ -1159,16 +1243,6 @@ export default function BookReaderPage() {
                   />
                 </div>
 
-                {/* Integrated Audio Controls - Invisible but Connected */}
-                <IntegratedAudioControls
-                  text={currentContent}
-                  voiceProvider={voiceProvider}
-                  isPlaying={isPlaying}
-                  onPlayStateChange={setIsPlaying}
-                  onEnd={handleChunkComplete}
-                  bookId={bookId}
-                  chunkIndex={currentChunk}
-                />
                   
                 {/* Continuous Playback Status */}
                 {continuousPlayback && (

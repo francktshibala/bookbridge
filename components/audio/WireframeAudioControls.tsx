@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Play, Pause, Volume2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { VoiceSelectionModal } from '../VoiceSelectionModal';
+import { AudioSyncManager, VoiceSettings } from '../../lib/audio-sync-manager';
 
 interface WireframeAudioControlsProps {
   enableWordHighlighting: boolean;
@@ -21,6 +22,11 @@ interface WireframeAudioControlsProps {
   selectedVoice?: string;
   onVoiceChange?: (voiceId: string) => void;
   onPreviewVoice?: (voiceId: string) => void;
+  currentMode?: 'original' | 'simplified';
+  onModeChange?: (mode: 'original' | 'simplified') => void;
+  onWordHighlight?: (wordIndex: number) => void;
+  autoAdvanceEnabled?: boolean;
+  onToggleAutoAdvance?: () => void;
 }
 
 export function WireframeAudioControls({
@@ -39,23 +45,128 @@ export function WireframeAudioControls({
   onNavigate,
   selectedVoice = 'alloy',
   onVoiceChange,
-  onPreviewVoice
+  onPreviewVoice,
+  currentMode = 'original',
+  onModeChange,
+  onWordHighlight,
+  autoAdvanceEnabled = false,
+  onToggleAutoAdvance
 }: WireframeAudioControlsProps) {
   const [speed, setSpeed] = useState(1.0);
   const [showCefrModal, setShowCefrModal] = useState(false);
   const [showVoiceModal, setShowVoiceModal] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const audioSyncManager = useRef<AudioSyncManager | null>(null);
 
   const speeds = [0.5, 1.0, 1.5, 2.0];
   const cefrLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
+  // Initialize AudioSyncManager
+  useEffect(() => {
+    if (!audioSyncManager.current) {
+      audioSyncManager.current = new AudioSyncManager();
+    }
+
+    return () => {
+      if (audioSyncManager.current) {
+        audioSyncManager.current.destroy();
+        audioSyncManager.current = null;
+      }
+    };
+  }, []);
+
+  // Update speed when changed
+  useEffect(() => {
+    if (audioSyncManager.current) {
+      audioSyncManager.current.setSpeed(speed);
+    }
+  }, [speed]);
+
+  // Stop audio when component unmounts or text changes
+  useEffect(() => {
+    if (audioSyncManager.current) {
+      audioSyncManager.current.stop();
+      onPlayStateChange(false);
+    }
+  }, [text]);
+
+  // Auto-play when isPlaying becomes true (for auto-advance)
+  useEffect(() => {
+    if (isPlaying && audioSyncManager.current && !audioSyncManager.current.isCurrentlyPlaying() && !isProcessing) {
+      console.log('🎵 Auto-triggering playback due to isPlaying prop change');
+      handlePlayPause();
+    }
+  }, [isPlaying]);
+
   const handleSpeedToggle = () => {
     const currentIndex = speeds.indexOf(speed);
     const nextIndex = (currentIndex + 1) % speeds.length;
-    setSpeed(speeds[nextIndex]);
+    const newSpeed = speeds[nextIndex];
+    setSpeed(newSpeed);
   };
 
-  const handlePlayPause = () => {
-    onPlayStateChange(!isPlaying);
+  const handlePlayPause = async () => {
+    if (!audioSyncManager.current || isProcessing) return;
+
+    try {
+      setIsProcessing(true);
+
+      if (isPlaying) {
+        // Pause immediately
+        audioSyncManager.current.pause();
+        onPlayStateChange(false);
+      } else {
+        // Play
+        if (audioSyncManager.current.isCurrentlyPlaying()) {
+          // Resume existing audio
+          audioSyncManager.current.resume();
+          onPlayStateChange(true);
+        } else {
+          // Start new audio
+          const actualProvider = voiceProvider === 'standard' ? 'openai' : voiceProvider;
+          const voiceSettings: VoiceSettings = {
+            voiceId: selectedVoice,
+            provider: actualProvider as 'openai' | 'elevenlabs',
+            speed: speed
+          };
+
+          // Show loading state
+          onPlayStateChange(true);
+
+          await audioSyncManager.current.startSyncedPlayback(text, voiceSettings, {
+            enableHighlighting: enableWordHighlighting,
+            onWordChange: onWordHighlight,
+            onComplete: () => {
+              setIsProcessing(false);
+              onPlayStateChange(false);
+              onEnd?.();
+            },
+            onError: (error) => {
+              console.error('Audio playback error:', error);
+              setIsProcessing(false);
+              onPlayStateChange(false);
+              
+              // Handle autoplay policy violations gracefully
+              if (error.message.includes('browser autoplay policy')) {
+                console.log('💡 Browser blocked autoplay - user should try clicking play again');
+              }
+            }
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error in handlePlayPause:', error);
+      setIsProcessing(false);
+      onPlayStateChange(false);
+    } finally {
+      // Always clear processing state after a short delay
+      setTimeout(() => setIsProcessing(false), 500);
+    }
+  };
+
+  const handleModeToggle = () => {
+    const newMode = currentMode === 'original' ? 'simplified' : 'original';
+    onModeChange?.(newMode);
   };
 
   const cefrColors = {
@@ -181,46 +292,68 @@ export function WireframeAudioControls({
         </div>
       )}
 
-      {/* Simplified Toggle */}
+      {/* Simplified/Original Toggle */}
       <button 
+        onClick={handleModeToggle}
         className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-base font-medium transition-colors shadow-lg"
         style={{
           padding: '16px 40px',
           borderRadius: '32px',
-          backgroundColor: '#6366f1',
+          backgroundColor: currentMode === 'simplified' ? '#10b981' : '#6366f1',
           color: 'white',
           fontSize: '16px',
           fontWeight: '600',
           border: 'none',
           cursor: 'pointer',
           minHeight: '64px',
-          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+          transition: 'background-color 0.2s'
         }}
       >
-        Simplified
+        {currentMode === 'simplified' ? 'Simplified' : 'Original'}
       </button>
 
       {/* Play/Pause */}
       <button
         onClick={handlePlayPause}
+        disabled={isProcessing}
         className="w-16 h-16 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors shadow-lg"
         style={{
           width: '64px',
           height: '64px',
           borderRadius: '50%',
-          backgroundColor: '#6366f1',
+          backgroundColor: isProcessing ? '#9ca3af' : '#6366f1',
           color: 'white',
           fontSize: '24px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           border: 'none',
-          cursor: 'pointer',
-          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+          cursor: isProcessing ? 'not-allowed' : 'pointer',
+          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+          opacity: isProcessing ? 0.7 : 1
         }}
       >
-        {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+        {isProcessing ? (
+          <div style={{
+            width: '20px',
+            height: '20px',
+            border: '2px solid transparent',
+            borderTop: '2px solid white',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite'
+          }} />
+        ) : (
+          isPlaying ? <Pause size={20} /> : <Play size={20} />
+        )}
       </button>
+
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
 
       {/* Speed Control */}
       <button
@@ -261,6 +394,31 @@ export function WireframeAudioControls({
           }}
         >
           🎤
+        </button>
+      )}
+
+      {/* Auto-advance toggle (only for enhanced books) */}
+      {enableWordHighlighting && (
+        <button
+          onClick={onToggleAutoAdvance}
+          style={{
+            width: '48px',
+            height: '48px',
+            borderRadius: '8px',
+            backgroundColor: autoAdvanceEnabled ? '#10b981' : '#475569',
+            color: 'white',
+            fontSize: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: 'none',
+            cursor: 'pointer',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            transition: 'background-color 0.2s'
+          }}
+          title={autoAdvanceEnabled ? 'Auto-advance: Navigate to next page when audio ends' : 'Auto-advance disabled'}
+        >
+          {autoAdvanceEnabled ? '🔄' : '⏭️'}
         </button>
       )}
 
