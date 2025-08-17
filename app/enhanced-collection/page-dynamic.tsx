@@ -47,6 +47,8 @@ export default function EnhancedCollectionDynamic() {
   const [loading, setLoading] = useState(true);
   const [selectedGenre, setSelectedGenre] = useState<string>('All');
   const [error, setError] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(9);
+  const BOOKS_PER_PAGE = 9;
 
   useEffect(() => {
     fetchEnhancedBooks();
@@ -83,6 +85,19 @@ export default function EnhancedCollectionDynamic() {
   const enhancedBooks = filteredBooks.filter(book => book.status === 'enhanced');
   const processingBooks = filteredBooks.filter(book => book.status === 'processing');
   const plannedBooks = filteredBooks.filter(book => book.status === 'planned');
+
+  // Apply pagination to enhanced books (main section)
+  const visibleEnhancedBooks = enhancedBooks.slice(0, visibleCount);
+  const hasMoreBooks = enhancedBooks.length > visibleCount;
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + BOOKS_PER_PAGE);
+  };
+
+  const handleGenreChange = (genre: string) => {
+    setSelectedGenre(genre);
+    setVisibleCount(BOOKS_PER_PAGE); // Reset pagination when changing genre
+  };
 
   const BookCard = ({ book }: { book: Book }) => {
     const getAbbreviation = (title: string) => {
@@ -352,7 +367,7 @@ export default function EnhancedCollectionDynamic() {
           {genres.map(genre => (
             <button
               key={genre}
-              onClick={() => setSelectedGenre(genre)}
+              onClick={() => handleGenreChange(genre)}
               style={{
                 padding: '8px 20px',
                 background: selectedGenre === genre ? '#667eea' : 'transparent',
@@ -427,12 +442,36 @@ export default function EnhancedCollectionDynamic() {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
               gap: '24px',
-              marginBottom: '60px'
+              marginBottom: hasMoreBooks ? '40px' : '60px'
             }}>
-              {enhancedBooks.map((book) => (
+              {visibleEnhancedBooks.map((book) => (
                 <BookCard key={book.id} book={book} />
               ))}
             </div>
+            
+            {/* Load More Button */}
+            {hasMoreBooks && (
+              <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+                <motion.button
+                  onClick={handleLoadMore}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{
+                    padding: '12px 24px',
+                    borderRadius: '12px',
+                    border: '2px solid #10b981',
+                    background: 'transparent',
+                    color: '#10b981',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  Load More Books ({enhancedBooks.length - visibleCount} remaining)
+                </motion.button>
+              </div>
+            )}
           </>
         )}
 
