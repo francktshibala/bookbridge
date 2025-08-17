@@ -56,10 +56,12 @@ export function WireframeAudioControls({
   const [showCefrModal, setShowCefrModal] = useState(false);
   const [showVoiceModal, setShowVoiceModal] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [availableLevels, setAvailableLevels] = useState<string[]>(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
+  const [isEnhancedBook, setIsEnhancedBook] = useState(false);
   const audioSyncManager = useRef<AudioSyncManager | null>(null);
 
   const speeds = [0.5, 1.0, 1.5, 2.0];
-  const cefrLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  const allCefrLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
   // Initialize AudioSyncManager
   useEffect(() => {
@@ -74,6 +76,34 @@ export function WireframeAudioControls({
       }
     };
   }, []);
+
+  // Fetch available CEFR levels for this book
+  useEffect(() => {
+    const fetchAvailableLevels = async () => {
+      if (!bookId) return;
+      
+      try {
+        const response = await fetch(`/api/books/${bookId}/available-levels`);
+        const data = await response.json();
+        
+        if (data.availableLevels && data.availableLevels.length > 0) {
+          setAvailableLevels(data.availableLevels);
+          setIsEnhancedBook(data.isEnhanced);
+        } else {
+          // If no simplifications available, hide CEFR controls
+          setAvailableLevels([]);
+          setIsEnhancedBook(false);
+        }
+      } catch (error) {
+        console.error('Failed to fetch available levels:', error);
+        // Fallback to showing all levels
+        setAvailableLevels(allCefrLevels);
+        setIsEnhancedBook(false);
+      }
+    };
+
+    fetchAvailableLevels();
+  }, [bookId]);
 
   // Update speed when changed
   useEffect(() => {
@@ -195,8 +225,8 @@ export function WireframeAudioControls({
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
       }}
     >
-      {/* CEFR Level (only for enhanced books) */}
-      {enableWordHighlighting && (
+      {/* CEFR Level (only for enhanced books with available levels) */}
+      {enableWordHighlighting && isEnhancedBook && availableLevels.length > 0 && (
         <div className="relative">
           <button
             onClick={() => setShowCefrModal(!showCefrModal)}
@@ -249,7 +279,7 @@ export function WireframeAudioControls({
                 Reading Level
               </h3>
               <div className="space-y-1" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                {cefrLevels.map((level) => (
+                {availableLevels.map((level) => (
                   <button
                     key={level}
                     onClick={() => {
@@ -292,26 +322,48 @@ export function WireframeAudioControls({
         </div>
       )}
 
-      {/* Simplified/Original Toggle */}
-      <button 
-        onClick={handleModeToggle}
-        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-base font-medium transition-colors shadow-lg"
-        style={{
-          padding: '16px 40px',
-          borderRadius: '32px',
-          backgroundColor: currentMode === 'simplified' ? '#10b981' : '#6366f1',
-          color: 'white',
-          fontSize: '16px',
-          fontWeight: '600',
-          border: 'none',
-          cursor: 'pointer',
-          minHeight: '64px',
-          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-          transition: 'background-color 0.2s'
-        }}
-      >
-        {currentMode === 'simplified' ? 'Simplified' : 'Original'}
-      </button>
+      {/* Simplified/Original Toggle - Only for enhanced books */}
+      {isEnhancedBook && availableLevels.length > 0 ? (
+        <button 
+          onClick={handleModeToggle}
+          className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-base font-medium transition-colors shadow-lg"
+          style={{
+            padding: '16px 40px',
+            borderRadius: '32px',
+            backgroundColor: currentMode === 'simplified' ? '#10b981' : '#6366f1',
+            color: 'white',
+            fontSize: '16px',
+            fontWeight: '600',
+            border: 'none',
+            cursor: 'pointer',
+            minHeight: '64px',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            transition: 'background-color 0.2s'
+          }}
+        >
+          {currentMode === 'simplified' ? 'Simplified' : 'Original'}
+        </button>
+      ) : (
+        <button 
+          disabled
+          className="px-6 py-3 text-white rounded-full text-base font-medium"
+          style={{
+            padding: '16px 40px',
+            borderRadius: '32px',
+            backgroundColor: '#6b7280',
+            color: 'white',
+            fontSize: '16px',
+            fontWeight: '600',
+            border: 'none',
+            cursor: 'not-allowed',
+            minHeight: '64px',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            opacity: '0.5'
+          }}
+        >
+          Simplified
+        </button>
+      )}
 
       {/* Play/Pause */}
       <button

@@ -25,6 +25,7 @@ interface BookContent {
   totalChunks: number;
   stored?: boolean;
   source?: string;
+  enhanced?: boolean;
 }
 
 export default function BookReaderPage() {
@@ -540,7 +541,8 @@ export default function BookReaderPage() {
   const canGoNext = bookContent ? currentChunk < bookContent.totalChunks - 1 : false;
 
   // Enhanced book detection
-  const isEnhancedBook = bookContent?.stored === true && bookContent?.source === 'database';
+  const isEnhancedBook = bookContent?.stored === true && 
+    (bookContent?.source === 'database' || bookContent?.source === 'enhanced_database' || bookContent?.enhanced === true);
   
   // Feature flag for wireframe controls
   const useWireframeControls = true; // Can toggle during testing
