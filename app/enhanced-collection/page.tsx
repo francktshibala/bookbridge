@@ -101,6 +101,24 @@ export default function EnhancedCollectionDynamic() {
 
   const BookCard = ({ book }: { book: Book }) => {
     const getAbbreviation = (title: string) => {
+      // Custom abbreviations to match wireframe
+      const customAbbrevs: Record<string, string> = {
+        'Emma': 'EM',
+        'Pride and Prejudice': 'P&P',
+        'Frankenstein': 'FR',
+        'The Great Gatsby': 'GG',
+        'The Call of the Wild': 'CW',
+        "Alice's Adventures in Wonderland": 'Alice',
+        'Romeo and Juliet': 'R&J',
+        'Dr. Jekyll and Mr. Hyde': 'J&H',
+        'The Importance of Being Earnest': 'IBE',
+        'The Yellow Wallpaper': 'YW'
+      };
+      
+      if (customAbbrevs[title]) {
+        return customAbbrevs[title];
+      }
+      
       const words = title.split(' ');
       if (words.length >= 2) {
         return words[0][0] + words[1][0];
@@ -108,12 +126,23 @@ export default function EnhancedCollectionDynamic() {
       return title.substring(0, 2).toUpperCase();
     };
 
-    const getProgressPercentage = () => {
-      if (!book.totalChunks || !book.chaptersRead) return 0;
-      return Math.round((book.chaptersRead / book.totalChunks) * 100);
+    const getBookGradient = (title: string) => {
+      // Unique gradients for each book to match wireframe diversity
+      const gradients: Record<string, string> = {
+        'Emma': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        'Pride and Prejudice': 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)', 
+        'Frankenstein': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+        'The Great Gatsby': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+        'The Call of the Wild': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+        "Alice's Adventures in Wonderland": 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+        'Romeo and Juliet': 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+        'Dr. Jekyll and Mr. Hyde': 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
+        'The Importance of Being Earnest': 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+        'The Yellow Wallpaper': 'linear-gradient(135deg, #a8e6cf 0%, #dcedc8 100%)'
+      };
+      
+      return gradients[title] || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
     };
-
-    const progress = getProgressPercentage();
 
     return (
       <motion.div
@@ -124,12 +153,13 @@ export default function EnhancedCollectionDynamic() {
           background: 'rgba(30, 41, 59, 0.8)',
           border: '1px solid #334155',
           borderRadius: '16px',
-          padding: '24px',
-          height: '100%',
+          padding: '20px',
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          width: '300px', // Fixed width to match wireframe
+          height: 'auto'
         }}
       >
         {/* Status Badge */}
@@ -137,9 +167,9 @@ export default function EnhancedCollectionDynamic() {
           position: 'absolute',
           top: '16px',
           right: '16px',
-          padding: '4px 12px',
-          borderRadius: '12px',
-          fontSize: '12px',
+          padding: '4px 8px',
+          borderRadius: '8px',
+          fontSize: '11px',
           fontWeight: '600',
           background: book.status === 'enhanced' ? 'rgba(16, 185, 129, 0.2)' :
                      book.status === 'processing' ? 'rgba(251, 191, 36, 0.2)' :
@@ -153,130 +183,112 @@ export default function EnhancedCollectionDynamic() {
            '📅 Planned'}
         </div>
 
-        {/* Book Cover Placeholder */}
+        {/* Book Cover - Compact Square Design */}
         <div style={{
-          width: '120px',
-          height: '160px',
-          background: `linear-gradient(135deg, #667eea 0%, #764ba2 100%)`,
-          borderRadius: '12px',
+          width: '100px',
+          height: '120px',
+          background: getBookGradient(book.title),
+          borderRadius: '8px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: '32px',
+          fontSize: getAbbreviation(book.title).length > 3 ? '16px' : '24px',
           fontWeight: 'bold',
           color: 'white',
-          marginBottom: '20px',
-          alignSelf: 'center'
+          marginBottom: '16px',
+          alignSelf: 'flex-start',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
         }}>
           {getAbbreviation(book.title)}
         </div>
 
-        {/* Book Info */}
-        <h3 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '8px' }}>
+        {/* Book Info - Compact Layout */}
+        <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '4px', color: 'white' }}>
           {book.title}
         </h3>
-        <p style={{ fontSize: '14px', color: '#94a3b8', marginBottom: '12px' }}>
+        <p style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '8px' }}>
           {book.author}
         </p>
 
-        {/* Book Details */}
-        <div style={{ fontSize: '13px', color: '#64748b', marginBottom: '16px' }}>
+        {/* CEFR Levels Badge */}
+        <div style={{ fontSize: '12px', marginBottom: '8px' }}>
           <span style={{ 
             background: 'rgba(102, 126, 234, 0.2)', 
             color: '#667eea',
-            padding: '2px 8px',
-            borderRadius: '8px',
-            marginRight: '8px'
+            padding: '3px 8px',
+            borderRadius: '6px',
+            marginRight: '6px',
+            fontSize: '11px'
           }}>
             {book.cefrLevels}
           </span>
-          <span>~{book.estimatedHours} hours</span>
-          {book.genre && (
-            <span style={{ marginLeft: '8px' }}>{book.genre}</span>
+          <span style={{ color: '#64748b' }}>~{book.estimatedHours} hours</span>
+          <span style={{ marginLeft: '8px', color: '#64748b' }}>{book.genre}</span>
+        </div>
+
+        {/* Simplification Levels - Wireframe Style */}
+        <div style={{ 
+          fontSize: '12px', 
+          color: '#10b981',
+          marginBottom: '12px'
+        }}>
+          <div style={{ fontWeight: '500' }}>
+            {book.availableLevels?.length || 0} difficulty levels available
+          </div>
+          {book.availableLevels && book.availableLevels.length > 0 && (
+            <div style={{ color: '#64748b', marginTop: '2px' }}>
+              Levels: {book.availableLevels.join(', ')}
+            </div>
           )}
         </div>
 
-        {/* Simplification Info */}
-        {book.simplificationCount && book.simplificationCount > 0 && (
-          <div style={{ 
-            fontSize: '12px', 
-            color: '#10b981',
-            marginBottom: '12px',
-            padding: '8px',
-            background: 'rgba(16, 185, 129, 0.1)',
-            borderRadius: '8px'
-          }}>
-            {book.simplificationCount} difficulty levels available
-            {book.availableLevels && (
-              <div style={{ marginTop: '4px', color: '#64748b' }}>
-                Levels: {book.availableLevels.join(', ')}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Description */}
+        {/* Short Description */}
         <p style={{ 
-          fontSize: '14px', 
+          fontSize: '13px', 
           color: '#94a3b8', 
-          lineHeight: '1.6',
-          marginBottom: '20px',
-          flex: 1
+          lineHeight: '1.4',
+          marginBottom: '16px',
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical'
         }}>
-          {book.description}
+          Enhanced ESL edition with {book.availableLevels?.length || 0} difficulty levels available
         </p>
 
-        {/* Progress Bar */}
-        {progress > 0 && (
-          <div style={{ marginBottom: '16px' }}>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between',
-              fontSize: '12px',
-              color: '#64748b',
-              marginBottom: '4px'
-            }}>
-              <span>Progress: {progress}%</span>
-              <span>{book.chaptersRead}/{book.totalChunks} chunks</span>
-            </div>
-            <div style={{
-              height: '6px',
-              background: '#334155',
-              borderRadius: '3px',
-              overflow: 'hidden'
-            }}>
-              <div style={{
-                width: `${progress}%`,
-                height: '100%',
-                background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
-                transition: 'width 0.3s ease'
-              }} />
-            </div>
-          </div>
-        )}
+        {/* Progress Indicator - Simplified */}
+        <div style={{ 
+          fontSize: '11px', 
+          color: '#64748b',
+          marginBottom: '12px'
+        }}>
+          Progress: 0%
+          <span style={{ marginLeft: '8px' }}>
+            0/{book.totalChunks || 0} chapters
+          </span>
+        </div>
 
-        {/* Action Button */}
+        {/* Start Reading Button - Wireframe Style */}
         <a
           href={`/library/${book.id}/read`}
           style={{
             display: 'block',
             textAlign: 'center',
-            padding: '12px 24px',
-            background: book.status === 'enhanced' 
-              ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-              : 'transparent',
-            border: book.status === 'enhanced' ? 'none' : '2px solid #334155',
-            borderRadius: '12px',
-            color: book.status === 'enhanced' ? 'white' : '#64748b',
+            padding: '10px 20px',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            border: 'none',
+            borderRadius: '8px',
+            color: 'white',
             fontWeight: '600',
+            fontSize: '13px',
             textDecoration: 'none',
-            cursor: book.status === 'enhanced' ? 'pointer' : 'not-allowed',
-            opacity: book.status === 'enhanced' ? 1 : 0.5
+            cursor: 'pointer',
+            transition: 'opacity 0.2s ease'
           }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
         >
-          {book.status === 'enhanced' ? 'Start Reading' :
-           book.status === 'processing' ? 'Coming Soon' :
-           'Planned'}
+          Start Reading
         </a>
       </motion.div>
     );
@@ -440,9 +452,10 @@ export default function EnhancedCollectionDynamic() {
             </h2>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: '24px',
-              marginBottom: hasMoreBooks ? '40px' : '60px'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '20px',
+              marginBottom: hasMoreBooks ? '40px' : '60px',
+              justifyItems: 'center'
             }}>
               {visibleEnhancedBooks.map((book) => (
                 <BookCard key={book.id} book={book} />
