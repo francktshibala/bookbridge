@@ -39,7 +39,7 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           aria-labelledby="welcome-heading" 
-          className="page-header text-center"
+          className="page-header text-center hero-section"
           style={{ marginBottom: '2rem' }}
         >
           <motion.h1 
@@ -178,7 +178,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.6 }}
-            className="flex gap-6 justify-center flex-wrap"
+            className="flex gap-6 justify-center flex-wrap hero-buttons"
           >
             <motion.a 
               href="/library/gutenberg-1342/read"

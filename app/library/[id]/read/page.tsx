@@ -495,6 +495,17 @@ export default function BookReaderPage() {
     }
   };
 
+  const handleCefrLevelChange = async (newLevel: string) => {
+    setEslLevel(newLevel);
+    localStorage.setItem(`esl-level-${bookId}`, newLevel);
+    
+    // If we're in simplified mode, refetch content for new level
+    if (currentMode === 'simplified') {
+      const simplifiedText = await fetchSimplifiedContent(newLevel, currentChunk);
+      setCurrentContent(simplifiedText);
+    }
+  };
+
   // Auto-advance functionality (must be after handleChunkNavigation is defined)
   const {
     autoAdvanceEnabled,
@@ -1133,7 +1144,7 @@ export default function BookReaderPage() {
             bookId={bookId}
             chunkIndex={currentChunk}
             cefrLevel={eslLevel}
-            onCefrLevelChange={setEslLevel}
+            onCefrLevelChange={handleCefrLevelChange}
             currentChunk={currentChunk}
             totalChunks={bookContent?.totalChunks || 0}
             onNavigate={handleChunkNavigation}

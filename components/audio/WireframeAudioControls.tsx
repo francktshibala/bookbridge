@@ -15,7 +15,7 @@ interface WireframeAudioControlsProps {
   bookId?: string;
   chunkIndex?: number;
   cefrLevel?: string;
-  onCefrLevelChange?: (level: string) => void;
+  onCefrLevelChange?: (level: string) => void | Promise<void>;
   currentChunk?: number;
   totalChunks?: number;
   onNavigate?: (direction: 'prev' | 'next') => void;
@@ -282,8 +282,8 @@ export function WireframeAudioControls({
                 {availableLevels.map((level) => (
                   <button
                     key={level}
-                    onClick={() => {
-                      onCefrLevelChange?.(level);
+                    onClick={async () => {
+                      await onCefrLevelChange?.(level);
                       setShowCefrModal(false);
                     }}
                     className="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 font-medium transition-colors"
