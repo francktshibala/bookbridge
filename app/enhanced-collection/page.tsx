@@ -262,8 +262,8 @@ export default function EnhancedCollectionPage() {
     ];
   };
 
-  const getGenres = () => {
-    const genres = Array.from(new Set(books.map(book => book.genre).filter(Boolean)));
+  const getGenres = (): string[] => {
+    const genres = Array.from(new Set(books.map(book => book.genre).filter(Boolean) as string[]));
     return ['All', ...genres];
   };
 
