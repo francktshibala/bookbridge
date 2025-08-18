@@ -79,13 +79,13 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
   }, [currentWordIndex, isPlaying]);
 
   // Get highlight style based on animation type
-  const getHighlightStyle = (wordIndex: number, isHighlighted: boolean) => {
-    const baseStyle = {
+  const getHighlightStyle = (wordIndex: number, isHighlighted: boolean): React.CSSProperties => {
+    const baseStyle: React.CSSProperties = {
       padding: '2px 1px',
       borderRadius: '3px',
       cursor: 'pointer',
       display: 'inline-block',
-      position: 'relative' as const,
+      position: 'relative',
       transition: animationType === 'instant' 
         ? 'none' 
         : 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
@@ -97,7 +97,7 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
         background: 'transparent',
         color: 'inherit',
         transform: 'scale(1)'
-      };
+      } as React.CSSProperties;
     }
 
     // Speechify-style highlighting - make it more prominent
@@ -109,9 +109,8 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
         transform: 'scale(1.02)',
         boxShadow: `0 4px 12px ${highlightColor}80`,
         fontWeight: '600',
-        zIndex: 1000, // High z-index to ensure visibility
-        position: 'relative'
-      };
+        zIndex: 1000
+      } as React.CSSProperties;
     }
 
     // Smooth highlighting
@@ -122,7 +121,7 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
         color: highlightColor,
         borderBottom: `2px solid ${highlightColor}`,
         transform: 'scale(1.01)'
-      };
+      } as React.CSSProperties;
     }
 
     // Instant highlighting
@@ -131,7 +130,7 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
       background: highlightColor,
       color: 'white',
       fontWeight: 'bold'
-    };
+    } as React.CSSProperties;
   };
 
   // Handle word click to seek to that position
