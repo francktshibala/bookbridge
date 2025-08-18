@@ -81,14 +81,31 @@ export class AudioPreGenerationService {
   async initializeBookPreGeneration(bookId: string, totalChunks: number): Promise<void> {
     console.log(`Starting pre-generation for book: ${bookId} with ${totalChunks} chunks`);
     
-    // Create book status entry
-    await this.createBookStatus(bookId, totalChunks);
-    
-    // Queue popular combinations first (urgent priority)
-    await this.queuePopularCombinations(bookId, Math.min(totalChunks, 3)); // First 3 chunks
-    
-    // Queue remaining combinations (background priority)
-    await this.queueAllCombinations(bookId, totalChunks);
+    // Check if book status already exists
+    const { createClient } = await import('@/lib/supabase/server');
+    const supabase = await createClient();
+    const existingStatus = await supabase
+      .from('book_pregeneration_status')
+      .select('id')
+      .eq('book_id', bookId)
+      .single();
+
+    if (existingStatus.error && existingStatus.error.code !== 'PGRST116') {
+      throw new Error(`Failed to check book status: ${existingStatus.error.message}`);
+    }
+
+    if (!existingStatus.data) {
+      // Create book status entry only if it doesn't exist
+      await this.createBookStatus(bookId, totalChunks);
+      
+      // Queue popular combinations first (urgent priority)
+      await this.queuePopularCombinations(bookId, Math.min(totalChunks, 3)); // First 3 chunks
+      
+      // Queue remaining combinations (background priority)
+      await this.queueAllCombinations(bookId, totalChunks);
+    } else {
+      console.log(`Book ${bookId} already initialized, skipping setup`);
+    }
     
     console.log(`Pre-generation queued for ${bookId}`);
   }
@@ -378,12 +395,15 @@ export class AudioPreGenerationService {
 
   private async getChunkContent(bookId: string, cefrLevel: string, chunkIndex: number): Promise<string | null> {
     try {
-      // This would integrate with your existing content API
-      const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+      // Use the existing cached-simplification API
+      const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3001';
+      const response = await fetch(`${baseUrl}/api/books/${bookId}/cached-simplification?level=${cefrLevel}&chunk=${chunkIndex}`);
       if (response.ok) {
         const data = await response.json();
+        console.log(`Got content for ${bookId} ${cefrLevel} chunk ${chunkIndex}: ${data.content ? 'SUCCESS' : 'NO CONTENT'}`);
         return data.content;
       }
+      console.log(`API response not ok for ${bookId} ${cefrLevel} chunk ${chunkIndex}: ${response.status}`);
       return null;
     } catch (error) {
       console.error('Failed to get chunk content:', error);
@@ -419,31 +439,201 @@ export class AudioPreGenerationService {
     }
   }
 
-  // Database operations (to be implemented with your DB client)
+  // Database operations
   private async createBookStatus(bookId: string, totalChunks: number): Promise<void> {
-    const totalCombinations = this.CEFR_LEVELS.length * (this.OPENAI_VOICES.length + this.ELEVENLABS_VOICES.length) * totalChunks;
+    const { createClient } = await import('@/lib/supabase/server');
+    const supabase = await createClient();
     
-    // TODO: Implement database insert
-    console.log(`Creating book status for ${bookId}: ${totalCombinations} combinations`);
+    const totalCombinations = this.CEFR_LEVELS.length * this.OPENAI_VOICES.length * totalChunks;
+    
+    const { error } = await supabase
+      .from('book_pregeneration_status')
+      .upsert({
+        book_id: bookId,
+        total_combinations: totalCombinations,
+        status: 'pending',
+        estimated_total_cost_cents: totalCombinations * 10,
+        started_at: new Date().toISOString()
+      });
+
+    if (error) {
+      throw new Error(`Failed to create book status: ${error.message}`);
+    }
+    
+    console.log(`Created book status for ${bookId}: ${totalCombinations} combinations`);
   }
 
   private async queuePopularCombinations(bookId: string, chunkCount: number): Promise<void> {
-    // TODO: Implement database inserts for popular combinations
-    console.log(`Queuing popular combinations for ${bookId}, first ${chunkCount} chunks`);
+    const { createClient } = await import('@/lib/supabase/server');
+    const supabase = await createClient();
+    
+    const jobs = [];
+    
+    // Queue urgent jobs for popular combinations in first few chunks
+    for (let chunk = 0; chunk < chunkCount; chunk++) {
+      for (const combo of this.POPULAR_COMBINATIONS) {
+        jobs.push({
+          book_id: bookId,
+          cefr_level: combo.cefrLevel,
+          chunk_index: chunk,
+          sentence_indices: [0, 1, 2], // First 3 sentences
+          provider: combo.provider,
+          voice_id: combo.voiceId,
+          priority: 'urgent',
+          estimated_cost_cents: 9 // 3 sentences * ~$0.03
+        });
+      }
+    }
+    
+    const { error } = await supabase
+      .from('pre_generation_queue')
+      .insert(jobs);
+      
+    if (error) {
+      throw new Error(`Failed to queue popular combinations: ${error.message}`);
+    }
+    
+    console.log(`Queued ${jobs.length} popular combinations for ${bookId}`);
   }
 
   private async queueAllCombinations(bookId: string, totalChunks: number): Promise<void> {
-    // TODO: Implement database inserts for all combinations
-    console.log(`Queuing all combinations for ${bookId}, ${totalChunks} chunks`);
+    const { createClient } = await import('@/lib/supabase/server');
+    const supabase = await createClient();
+    
+    const jobs = [];
+    
+    // Queue high priority for all combinations in first 3 chunks
+    for (let chunk = 0; chunk < Math.min(3, totalChunks); chunk++) {
+      for (const level of this.CEFR_LEVELS) {
+        for (const voice of this.OPENAI_VOICES) {
+          // Skip if already queued as popular
+          const isPopular = this.POPULAR_COMBINATIONS.some(combo => 
+            combo.cefrLevel === level && combo.voiceId === voice && combo.provider === 'openai'
+          );
+          if (isPopular) continue;
+          
+          jobs.push({
+            book_id: bookId,
+            cefr_level: level,
+            chunk_index: chunk,
+            sentence_indices: [0, 1, 2],
+            provider: 'openai',
+            voice_id: voice,
+            priority: 'high',
+            estimated_cost_cents: 9
+          });
+        }
+      }
+    }
+    
+    // Queue normal priority for remaining chunks with popular combinations
+    for (let chunk = 3; chunk < totalChunks; chunk++) {
+      for (const combo of this.POPULAR_COMBINATIONS) {
+        jobs.push({
+          book_id: bookId,
+          cefr_level: combo.cefrLevel,
+          chunk_index: chunk,
+          sentence_indices: [0, 1, 2],
+          provider: combo.provider,
+          voice_id: combo.voiceId,
+          priority: 'normal',
+          estimated_cost_cents: 9
+        });
+      }
+    }
+    
+    // Queue background priority for all remaining combinations
+    for (let chunk = 3; chunk < totalChunks; chunk++) {
+      for (const level of this.CEFR_LEVELS) {
+        for (const voice of this.OPENAI_VOICES) {
+          const isPopular = this.POPULAR_COMBINATIONS.some(combo => 
+            combo.cefrLevel === level && combo.voiceId === voice && combo.provider === 'openai'
+          );
+          if (isPopular) continue;
+          
+          jobs.push({
+            book_id: bookId,
+            cefr_level: level,
+            chunk_index: chunk,
+            sentence_indices: [0, 1, 2],
+            provider: 'openai',
+            voice_id: voice,
+            priority: 'background',
+            estimated_cost_cents: 9
+          });
+        }
+      }
+    }
+    
+    // Insert in batches to avoid overwhelming the database
+    const batchSize = 100;
+    for (let i = 0; i < jobs.length; i += batchSize) {
+      const batch = jobs.slice(i, i + batchSize);
+      const { error } = await supabase
+        .from('pre_generation_queue')
+        .insert(batch);
+        
+      if (error) {
+        throw new Error(`Failed to queue batch ${i}: ${error.message}`);
+      }
+    }
+    
+    console.log(`Queued ${jobs.length} total combinations for ${bookId}`);
   }
 
   private async getNextJobs(limit: number): Promise<PreGenerationJob[]> {
-    // TODO: Implement database query for pending jobs
-    return [];
+    const { createClient } = await import('@/lib/supabase/server');
+    const supabase = await createClient();
+    
+    const { data: jobs, error } = await supabase
+      .from('pre_generation_queue')
+      .select('*')
+      .eq('status', 'pending')
+      .order('priority', { ascending: true })
+      .order('created_at', { ascending: true })
+      .limit(limit);
+      
+    if (error) {
+      throw new Error(`Failed to get next jobs: ${error.message}`);
+    }
+    
+    return jobs?.map(job => ({
+      id: job.id,
+      bookId: job.book_id,
+      cefrLevel: job.cefr_level,
+      chunkIndex: job.chunk_index,
+      sentenceIndices: job.sentence_indices,
+      provider: job.provider as 'openai' | 'elevenlabs',
+      voiceId: job.voice_id,
+      priority: job.priority as 'urgent' | 'high' | 'normal' | 'background',
+      status: job.status as 'pending' | 'processing' | 'completed' | 'failed',
+      retryCount: job.retry_count || 0,
+      errorMessage: job.error_message,
+      estimatedCostCents: job.estimated_cost_cents,
+      actualCostCents: job.actual_cost_cents
+    })) || [];
   }
 
   private async updateJobStatus(jobId: string, status: string, costCents?: number): Promise<void> {
-    // TODO: Implement database update
+    const { createClient } = await import('@/lib/supabase/server');
+    const supabase = await createClient();
+    
+    const updates: any = { 
+      status,
+      ...(status === 'processing' && { processing_started_at: new Date().toISOString() }),
+      ...(status === 'completed' && { completed_at: new Date().toISOString() }),
+      ...(costCents && { actual_cost_cents: costCents })
+    };
+    
+    const { error } = await supabase
+      .from('pre_generation_queue')
+      .update(updates)
+      .eq('id', jobId);
+      
+    if (error) {
+      throw new Error(`Failed to update job status: ${error.message}`);
+    }
+    
     console.log(`Job ${jobId} status: ${status}`);
   }
 
@@ -453,8 +643,36 @@ export class AudioPreGenerationService {
   }
 
   private async storeAudioAssets(audioAssets: AudioAsset[]): Promise<void> {
-    // TODO: Implement database inserts for audio assets
-    console.log(`Storing ${audioAssets.length} audio assets`);
+    const { createClient } = await import('@/lib/supabase/server');
+    const supabase = await createClient();
+    
+    const records = audioAssets.map(asset => ({
+      book_id: asset.bookId,
+      cefr_level: asset.cefrLevel,
+      chunk_index: asset.chunkIndex,
+      sentence_index: asset.sentenceIndex,
+      provider: asset.provider,
+      voice_id: asset.voiceId,
+      audio_url: asset.audioUrl,
+      duration: asset.duration,
+      file_size: asset.fileSize,
+      format: asset.format,
+      word_timings: asset.wordTimings,
+      cache_key: asset.cacheKey,
+      expires_at: asset.expiresAt.toISOString()
+    }));
+    
+    const { error } = await supabase
+      .from('audio_assets')
+      .upsert(records, {
+        onConflict: 'book_id,cefr_level,chunk_index,sentence_index,provider,voice_id'
+      });
+      
+    if (error) {
+      throw new Error(`Failed to store audio assets: ${error.message}`);
+    }
+    
+    console.log(`Stored ${audioAssets.length} audio assets`);
   }
 
   private async updateBookProgress(bookId: string): Promise<void> {

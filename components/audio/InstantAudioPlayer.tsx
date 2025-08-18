@@ -263,13 +263,16 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
           audio.onloadedmetadata = resolve;
         });
         
+        // Generate real word timings for synchronized highlighting
+        const wordTimings = await generateRealWordTimings(text, audioUrl, voiceId);
+        
         // Create single audio asset for progressive playback
         const progressiveAudio = [{
           id: crypto.randomUUID(),
           sentenceIndex: 0,
           audioUrl,
           duration: audio.duration,
-          wordTimings: generateEstimatedTimings(text, audio.duration),
+          wordTimings,
           provider: 'openai',
           voiceId,
           format: 'mp3'
@@ -287,27 +290,53 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     }
   };
 
-  // Generate estimated word timings for progressive audio
-  const generateEstimatedTimings = (text: string, audioDuration: number) => {
-    const words = text.split(/\s+/).filter(word => word.trim().length > 0);
-    const avgWordDuration = audioDuration / words.length; // Distribute evenly across actual duration
-    
-    console.log(`🎵 Generating timings for ${words.length} words over ${audioDuration.toFixed(2)}s (${avgWordDuration.toFixed(2)}s per word)`);
-    
-    const wordTimings = words.map((word, index) => ({
-      word: word.replace(/[.,!?]/g, ''),
-      startTime: index * avgWordDuration,
-      endTime: (index + 1) * avgWordDuration,
-      wordIndex: index,
-      confidence: 0.8
-    }));
+  // Generate real word timings using word-timing-generator
+  const generateRealWordTimings = async (text: string, audioUrl: string, voiceId: string) => {
+    try {
+      const { WordTimingGenerator } = await import('@/lib/word-timing-generator');
+      
+      // Determine best timing method based on voice
+      const timingMethod = WordTimingGenerator.getBestTimingMethod(voiceId);
+      
+      const wordTimingGen = new WordTimingGenerator();
+      const result = await wordTimingGen.generateWordTimings({
+        text,
+        voiceId,
+        provider: timingMethod,
+        audioUrl
+      });
 
-    return {
-      words: wordTimings,
-      method: 'estimated-duration-based',
-      accuracy: 0.8,
-      generatedAt: new Date().toISOString()
-    };
+      return {
+        words: result.wordTimings.map(timing => ({
+          ...timing,
+          confidence: result.accuracy === 'high' ? 0.95 : result.accuracy === 'medium' ? 0.8 : 0.6
+        })),
+        method: result.method,
+        accuracy: result.accuracy === 'high' ? 0.95 : result.accuracy === 'medium' ? 0.8 : 0.6,
+        generatedAt: new Date().toISOString()
+      };
+    } catch (error) {
+      console.error('Real word timing generation failed, falling back to estimates:', error);
+      
+      // Fallback to estimated timings if real timing fails
+      const words = text.split(/\s+/).filter(word => word.trim().length > 0);
+      const avgWordDuration = 0.6; // 600ms per word average
+      
+      const wordTimings = words.map((word, index) => ({
+        word: word.replace(/[.,!?]/g, ''),
+        startTime: index * avgWordDuration,
+        endTime: (index + 1) * avgWordDuration,
+        wordIndex: index,
+        confidence: 0.6
+      }));
+
+      return {
+        words: wordTimings,
+        method: 'estimated-fallback',
+        accuracy: 0.6,
+        generatedAt: new Date().toISOString()
+      };
+    }
   };
 
   // Handle when audio segment ends
@@ -362,20 +391,13 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       clearInterval(timeUpdateIntervalRef.current);
     }
 
-    console.log('🎵 Starting word highlighting with timings:', sentenceAudio.wordTimings?.words?.length || 0, 'words');
-    console.log('🎵 onWordHighlight callback:', typeof onWordHighlight, onWordHighlight?.name || 'anonymous');
-
     if (!sentenceAudio.wordTimings?.words || !onWordHighlight) {
-      console.log('⚠️ No word timings or highlight callback available. wordTimings:', !!sentenceAudio.wordTimings?.words, 'callback:', !!onWordHighlight);
       return;
     }
-
-    console.log('🎵 Setting up highlighting interval...');
     
     // Use 40ms intervals for smooth highlighting (research-backed)
     timeUpdateIntervalRef.current = setInterval(() => {
       if (!currentAudioRef.current) {
-        console.log('❌ Interval skipped - no audio element');
         return;
       }
       
@@ -394,7 +416,7 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       );
 
       if (currentWord && onWordHighlight) {
-        console.log(`🎯 Highlighting word ${currentWord.wordIndex}: "${currentWord.word}" at ${currentTime.toFixed(2)}s`);
+        console.log(`🎯 Highlighting word ${currentWord.wordIndex}: "${currentWord.word}" at ${currentTime.toFixed(2)}s (expected: ${currentWord.startTime.toFixed(2)}s - ${currentWord.endTime.toFixed(2)}s) diff: ${(currentTime - currentWord.startTime).toFixed(2)}s`);
         onWordHighlight(currentWord.wordIndex);
       }
 
@@ -403,7 +425,7 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
         currentTime,
         status: 'playing'
       });
-    }, 500); // Slower for testing
+    }, 40); // 40ms for smooth highlighting
   };
 
   // Handle playback completion
@@ -417,9 +439,6 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
 
     updateProgress({ status: 'completed' });
     onChunkComplete?.();
-    
-    const totalTime = Date.now() - startTimeRef.current;
-    console.log(`✅ Playback completed in ${totalTime}ms total`);
   };
 
   // Stop playback

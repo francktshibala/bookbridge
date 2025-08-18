@@ -36,43 +36,55 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
 
   // Parse text into words with positions
   const words = useMemo(() => {
-    return text.split(/(\s+)/).map((segment, index) => ({
-      text: segment,
-      isWord: /\S/.test(segment), // True if contains non-whitespace
-      wordIndex: Math.floor(index / 2), // Approximate word index
-      segmentIndex: index
-    }));
+    let wordCounter = 0;
+    return text.split(/(\s+)/).map((segment, index) => {
+      const isWord = /\S/.test(segment);
+      const result = {
+        text: segment,
+        isWord,
+        wordIndex: isWord ? wordCounter : -1,
+        segmentIndex: index
+      };
+      if (isWord) wordCounter++;
+      return result;
+    });
   }, [text]);
 
   // Update highlighted word with smooth transitions
   useEffect(() => {
-    console.log(`🔍 WordHighlighter: isPlaying=${isPlaying}, currentWordIndex=${currentWordIndex}, words.length=${words.length}`);
     if (isPlaying && currentWordIndex >= 0) {
-      console.log(`🎯 Highlighting word ${currentWordIndex}:`, words[currentWordIndex]?.text);
       setHighlightedIndex(currentWordIndex);
+      console.log('🎯 Setting highlightedIndex to:', currentWordIndex);
       
-      // Smooth scroll to highlighted word
-      if (highlightedWordRef.current && containerRef.current) {
-        const wordElement = highlightedWordRef.current;
-        const container = containerRef.current;
+      // Add a small delay to ensure DOM is updated
+      setTimeout(() => {
+        // Find highlighted word by ID instead of ref (more reliable)
+        const wordElement = document.getElementById(`word-${currentWordIndex}`);
         
-        // Calculate if word is visible
-        const wordRect = wordElement.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        
-        const isVisible = (
-          wordRect.top >= containerRect.top &&
-          wordRect.bottom <= containerRect.bottom
-        );
-        
-        if (!isVisible) {
-          wordElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-            inline: 'nearest'
-          });
+        if (wordElement) {
+          const wordRect = wordElement.getBoundingClientRect();
+          
+          
+          // Check if word is visible in viewport
+          const windowHeight = window.innerHeight;
+          const topThreshold = windowHeight * 0.3;
+          const bottomThreshold = windowHeight * 0.7;
+          
+          // Word is too high or too low in viewport
+          if (wordRect.top < topThreshold || wordRect.bottom > bottomThreshold) {
+            // Calculate the absolute position of the element
+            const absoluteTop = window.scrollY + wordRect.top;
+            // Center the word in viewport
+            const targetScrollPosition = absoluteTop - (windowHeight / 2) + (wordRect.height / 2);
+            
+            
+            window.scrollTo({
+              top: targetScrollPosition,
+              behavior: 'smooth'
+            });
+          }
         }
-      }
+      }, 50); // 50ms delay to ensure DOM update
     } else {
       setHighlightedIndex(-1);
     }
@@ -106,7 +118,6 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
         ...baseStyle,
         background: `linear-gradient(135deg, ${highlightColor}, ${adjustColor(highlightColor, 20)})`,
         color: 'white',
-        transform: 'scale(1.02)',
         boxShadow: `0 4px 12px ${highlightColor}80`,
         fontWeight: '600',
         zIndex: 1000
@@ -136,8 +147,7 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
   // Handle word click to seek to that position
   const handleWordClick = (wordIndex: number) => {
     // This could trigger seeking in the audio player
-    // For now, just log the click
-    console.log(`Clicked word ${wordIndex}: ${words.find(w => w.wordIndex === wordIndex)?.text}`);
+    // For now, just a placeholder for future functionality
   };
 
   // Progress indicator
@@ -177,11 +187,9 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
       <div 
         ref={containerRef}
         style={{
-          lineHeight: '1.6',
+          lineHeight: 'inherit',
           fontSize: 'inherit',
           fontFamily: 'inherit',
-          maxHeight: '400px',
-          overflowY: 'auto',
           padding: '8px 0'
         }}
       >
@@ -194,20 +202,16 @@ export const WordHighlighter: React.FC<WordHighlighterProps> = ({
           const isHighlighted = segment.wordIndex === highlightedIndex;
           const wordStyle = getHighlightStyle(segment.wordIndex, isHighlighted);
           
-          // Debug highlighting
-          if (isHighlighted) {
-            console.log(`🎨 Rendering highlighted word: "${segment.text}" with style:`, wordStyle);
-          }
           
           return (
             <motion.span
               key={index}
+              id={`word-${segment.wordIndex}`}
               ref={isHighlighted ? highlightedWordRef : undefined}
               style={wordStyle}
               onClick={() => handleWordClick(segment.wordIndex)}
               whileHover={{
-                transform: isHighlighted ? 'scale(1.02)' : 'scale(1.01)',
-                opacity: isHighlighted ? 1 : 0.8
+                opacity: isHighlighted ? 1 : 0.9
               }}
               layout={animationType === 'smooth'}
             >

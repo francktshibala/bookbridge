@@ -63,9 +63,6 @@ export default function BookReaderPage() {
 
   // Word highlighting integration
   const { currentWordIndex, handleWordHighlight, resetHighlighting } = useWordHighlighting();
-  
-  // Debug word highlighting
-  console.log('🔍 DEBUG: currentWordIndex =', currentWordIndex, 'isPlaying =', isPlaying);
 
   const bookId = params.id as string;
 
@@ -1528,24 +1525,7 @@ export default function BookReaderPage() {
                   aria-label="Book content"
                   tabIndex={0}
                 >
-                  {/* DEBUG: Test highlighting button */}
-                  <div style={{ marginBottom: '10px' }}>
-                    <button 
-                      onClick={() => {
-                        console.log('🧪 Manual test: calling handleWordHighlight(5)');
-                        handleWordHighlight(5);
-                      }}
-                      style={{ 
-                        padding: '5px 10px', 
-                        background: '#ff0000', 
-                        color: 'white', 
-                        border: 'none', 
-                        borderRadius: '4px' 
-                      }}
-                    >
-                      Test Highlight Word 5
-                    </button>
-                  </div>
+
 
                   {/* Word-level highlighting for instant audio */}
                   <div style={{ position: 'relative', zIndex: 100 }}>
@@ -1554,7 +1534,7 @@ export default function BookReaderPage() {
                       currentWordIndex={currentWordIndex}
                       isPlaying={true}
                       animationType="speechify"
-                      highlightColor="#ff0000"
+                      highlightColor="#10b981"
                       showProgress={true}
                       className="word-highlight-overlay"
                     />

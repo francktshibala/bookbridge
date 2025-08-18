@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { audioPreGenerationService } from '../../../../lib/audio-pregeneration-service';
+import { createClient } from '@/lib/supabase/server';
 
 /**
  * GET /api/audio/pregenerated
@@ -35,61 +35,83 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    let audioAssets;
+    const supabase = await createClient();
 
-    if (cacheKey) {
-      // Direct cache key lookup
-      audioAssets = await getAudioByCacheKey(cacheKey);
-    } else {
-      // Parameter-based lookup
-      audioAssets = await audioPreGenerationService.getPreGeneratedAudio(
-        bookId!,
-        cefrLevel!,
-        parseInt(chunkIndex!),
-        voiceId!
-      );
-    }
+    // Generate cache key for this request
+    const generatedCacheKey = `${bookId}_${cefrLevel}_${chunkIndex}_${voiceId}`;
+    const lookupKey = cacheKey || generatedCacheKey;
 
-    if (!audioAssets || audioAssets.length === 0) {
+    console.log(`🔍 Checking for pre-generated audio: ${lookupKey}`);
+
+    // Check for pre-generated audio assets
+    const { data: audioAssets, error } = await supabase
+      .from('audio_assets')
+      .select('*')
+      .eq('book_id', bookId)
+      .eq('cefr_level', cefrLevel)
+      .eq('chunk_index', parseInt(chunkIndex!))
+      .eq('voice_id', voiceId)
+      .gte('expires_at', new Date().toISOString())
+      .order('sentence_index', { ascending: true });
+
+    if (error) {
+      console.error('Database error:', error);
       return NextResponse.json(
-        { 
-          cached: false,
-          audioAssets: null,
-          message: 'No pre-generated audio found. Use progressive generation.',
-          fallback: {
-            endpoint: '/api/audio/progressive',
-            method: 'POST',
-            body: { bookId, cefrLevel, chunkIndex, voiceId }
-          }
-        },
-        { status: 404 }
+        { error: 'Database query failed' },
+        { status: 500 }
       );
     }
 
-    // Update access tracking
-    await updateAudioAccess(audioAssets);
+    // If no audio assets found, return cache miss
+    if (!audioAssets || audioAssets.length === 0) {
+      console.log(`❌ No pre-generated audio found for: ${lookupKey}`);
+      return NextResponse.json({
+        cached: false,
+        message: 'No pre-generated audio available'
+      });
+    }
+
+    console.log(`✅ Found ${audioAssets.length} pre-generated audio assets for: ${lookupKey}`);
+
+    // Update last_accessed timestamp for cache management
+    await supabase
+      .from('audio_assets')
+      .update({ last_accessed: new Date().toISOString() })
+      .eq('book_id', bookId)
+      .eq('cefr_level', cefrLevel)
+      .eq('chunk_index', parseInt(chunkIndex!))
+      .eq('voice_id', voiceId);
+
+    // Transform database records to API format
+    const formattedAudioAssets = audioAssets.map(asset => ({
+      id: asset.id,
+      sentenceIndex: asset.sentence_index,
+      audioUrl: asset.audio_url,
+      duration: parseFloat(asset.duration),
+      wordTimings: asset.word_timings,
+      provider: asset.provider,
+      voiceId: asset.voice_id,
+      format: asset.format || 'mp3'
+    }));
+
+    // Calculate metadata
+    const totalDuration = formattedAudioAssets.reduce((sum, asset) => sum + asset.duration, 0);
+    
+    const metadata = {
+      bookId,
+      cefrLevel,
+      chunkIndex: parseInt(chunkIndex!),
+      voiceId,
+      totalSentences: formattedAudioAssets.length,
+      totalDuration,
+      cacheKey: lookupKey
+    };
 
     return NextResponse.json({
       cached: true,
-      audioAssets: audioAssets.map(asset => ({
-        id: asset.id,
-        sentenceIndex: asset.sentenceIndex,
-        audioUrl: asset.audioUrl,
-        duration: asset.duration,
-        wordTimings: asset.wordTimings,
-        provider: asset.provider,
-        voiceId: asset.voiceId,
-        format: asset.format
-      })),
-      metadata: {
-        bookId,
-        cefrLevel,
-        chunkIndex: parseInt(chunkIndex || '0'),
-        voiceId,
-        totalSentences: audioAssets.length,
-        totalDuration: audioAssets.reduce((sum, asset) => sum + asset.duration, 0),
-        cacheKey: audioAssets[0]?.cacheKey
-      }
+      audioAssets: formattedAudioAssets,
+      metadata,
+      message: `Pre-generated audio ready: ${formattedAudioAssets.length} sentences, ${totalDuration.toFixed(1)}s total`
     });
 
   } catch (error) {
@@ -122,20 +144,35 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Initialize pre-generation for the book
-    await audioPreGenerationService.initializeBookPreGeneration(bookId, totalChunks);
+    const supabase = await createClient();
+
+    // Initialize book pre-generation status
+    const totalCombinations = totalChunks * 6 * 6; // 6 CEFR levels × 6 voices
+    
+    const { error: statusError } = await supabase
+      .from('book_pregeneration_status')
+      .upsert({
+        book_id: bookId,
+        total_combinations: totalCombinations,
+        status: 'pending',
+        estimated_total_cost_cents: totalCombinations * 10 // $0.10 per combination estimate
+      });
+
+    if (statusError) {
+      console.error('Failed to initialize book status:', statusError);
+      return NextResponse.json(
+        { error: 'Failed to initialize pre-generation status' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
       message: `Pre-generation initialized for book ${bookId}`,
       bookId,
       totalChunks,
-      estimatedCompletionTime: calculateEstimatedTime(totalChunks),
-      queueStatus: {
-        urgent: 3, // Popular combinations for first 3 chunks
-        high: 18,  // All combinations for first 3 chunks  
-        normal: totalChunks * 54 - 21 // Remaining combinations
-      }
+      totalCombinations,
+      estimatedCompletionTime: calculateEstimatedTime(totalChunks)
     });
 
   } catch (error) {
@@ -148,24 +185,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/**
- * Helper function to get audio by cache key
- */
-async function getAudioByCacheKey(cacheKey: string) {
-  // TODO: Implement database lookup by cache key
-  // For now, return null to indicate not implemented
-  console.log(`Looking up audio by cache key: ${cacheKey}`);
-  return null;
-}
-
-/**
- * Helper function to update audio access tracking
- */
-async function updateAudioAccess(audioAssets: any[]) {
-  // TODO: Implement database update for access tracking
-  // This helps with cache management and analytics
-  console.log(`Updating access for ${audioAssets.length} audio assets`);
-}
 
 /**
  * Helper function to calculate estimated completion time

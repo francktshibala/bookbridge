@@ -1,0 +1,760 @@
+
+> bookbridge@1.0.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by process 74763, using available port 3001 instead.
+   ▲ Next.js 15.4.4
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.1.11:3001
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+
+ ✓ Starting...
+ ✓ Ready in 1956ms
+ ✓ Compiled /middleware in 272ms (108 modules)
+ ○ Compiling /library/[id]/read ...
+ ✓ Compiled /library/[id]/read in 5.5s (1671 modules)
+ GET /library/gutenberg-1342/read 200 in 7666ms
+ ○ Compiling /api/books/[id]/content-fast ...
+ ✓ Compiled /api/books/[id]/content-fast in 2.7s (2733 modules)
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+Fast content fetch for book ID: gutenberg-1342
+External book detected: gutenberg-1342
+Checking database for stored book: gutenberg-1342
+✅ Found stored book in database: Pride and Prejudice
+ GET /api/books/gutenberg-1342/content-fast 200 in 5256ms
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+ ○ Compiling /api/books/[id]/cached-simplification ...
+ ✓ Compiled /api/books/[id]/cached-simplification in 510ms (2735 modules)
+Fetching cached simplification: gutenberg-1342, level=B1, chunk=0
+Found cached simplification with quality 0.71
+ GET /api/books/gutenberg-1342/cached-simplification?level=B1&chunk=0 200 in 1350ms
+ ✓ Compiled /api/audio/pregenerated in 421ms (2737 modules)
+🔍 Checking for pre-generated audio: gutenberg-1342_B1_0_alloy
+Database error: {
+  code: '42501',
+  details: null,
+  hint: null,
+  message: 'permission denied for table audio_assets'
+}
+ GET /api/audio/pregenerated?bookId=gutenberg-1342&cefrLevel=B1&chunkIndex=0&voiceId=alloy 500 in 1033ms
+ ✓ Compiled /api/openai/tts in 362ms (2739 modules)
+OpenAI TTS request: {
+  voice: 'alloy',
+  textLength: 2002,
+  speed: 1,
+  timestamp: '2025-08-18T19:10:45.117Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 28733ms
+ POST /api/openai/tts 200 in 29169ms
+ ✓ Compiled /api/openai/transcribe in 472ms (2741 modules)
+ POST /api/openai/transcribe 200 in 9840ms
+ ✓ Compiled in 4.5s (1663 modules)
+ GET /library/gutenberg-1342/read 200 in 377ms
+ ○ Compiling /api/books/[id]/content-fast ...
+ ✓ Compiled /api/books/[id]/content-fast in 515ms (2005 modules)
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+Fast content fetch for book ID: gutenberg-1342
+External book detected: gutenberg-1342
+Checking database for stored book: gutenberg-1342
+✅ Found stored book in database: Pride and Prejudice
+ GET /api/books/gutenberg-1342/content-fast 200 in 1556ms
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+ GET /library/gutenberg-1342/read 200 in 477ms
+Fast content fetch for book ID: gutenberg-1342
+External book detected: gutenberg-1342
+Checking database for stored book: gutenberg-1342
+✅ Found stored book in database: Pride and Prejudice
+ GET /api/books/gutenberg-1342/content-fast 200 in 515ms
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+ ✓ Compiled in 1047ms (2747 modules)
+ ✓ Compiled in 1ms (2005 modules)
+ ✓ Compiled in 0ms (2005 modules)
+ ✓ Compiled in 1ms (2005 modules)
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+Fast content fetch for book ID: gutenberg-1342
+External book detected: gutenberg-1342
+Checking database for stored book: gutenberg-1342
+ GET /library/gutenberg-1342/read 200 in 1362ms
+✅ Found stored book in database: Pride and Prejudice
+ GET /api/books/gutenberg-1342/content-fast 200 in 1911ms
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+ GET /library/gutenberg-1342/read 200 in 400ms
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+Fast content fetch for book ID: gutenberg-1342
+External book detected: gutenberg-1342
+Checking database for stored book: gutenberg-1342
+✅ Found stored book in database: Pride and Prejudice
+ GET /api/books/gutenberg-1342/content-fast 200 in 715ms
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+ ✓ Compiled /api/audio/pregenerated in 477ms (2007 modules)
+🔍 Checking for pre-generated audio: gutenberg-1342_B1_0_alloy
+❌ No pre-generated audio found for: gutenberg-1342_B1_0_alloy
+ GET /api/audio/pregenerated?bookId=gutenberg-1342&cefrLevel=B1&chunkIndex=0&voiceId=alloy 200 in 877ms
+ ✓ Compiled in 555ms (742 modules)
+ GET /library/gutenberg-1342/read 200 in 120ms
+ ✓ Compiled in 319ms (742 modules)
+ ✓ Compiled in 306ms (742 modules)
+ GET /library/gutenberg-1342/read 200 in 290ms
+ GET /library/gutenberg-1342/read 200 in 45ms
+ ✓ Compiled in 1299ms (1771 modules)
+ GET /library/gutenberg-1342/read 200 in 964ms
+ GET /library/gutenberg-1342/read 200 in 35ms
+ ✓ Compiled /api/audio/pregenerate in 500ms (1771 modules)
+🚀 Starting pre-generation for gutenberg-1342 with 459 chunks
+Starting pre-generation for book: gutenberg-1342 with 459 chunks
+Created book status for gutenberg-1342: 16524 combinations
+Queued 9 popular combinations for gutenberg-1342
+Queued 16974 total combinations for gutenberg-1342
+Pre-generation queued for gutenberg-1342
+ POST /api/audio/pregenerate 200 in 26107ms
+Processing 5 pre-generation jobs
+Processing job: b5f33f6d-1de9-4ad8-8e8b-02a40eaa03f6 for gutenberg-1342 A1 chunk 3
+Processing job: 843d5c18-50b3-4f00-a67d-2d0874bec34e for gutenberg-1342 A1 chunk 3
+Processing job: 2e4aec59-b124-4c31-a2bb-b278f16f7c64 for gutenberg-1342 A1 chunk 3
+Processing job: 3fcfd351-64dc-48a9-aae9-fab2f9c49e51 for gutenberg-1342 A1 chunk 3
+Processing job: 85f13ce5-b6dd-40da-8159-36334098830c for gutenberg-1342 A1 chunk 3
+Job b5f33f6d-1de9-4ad8-8e8b-02a40eaa03f6 status: processing
+Failed to get chunk content: TypeError: Failed to parse URL from /api/books/gutenberg-1342/content?cefr=A1&chunk=3
+    at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  380 |     try {
+  381 |       // This would integrate with your existing content API
+> 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+      |                             ^
+  383 |       if (response.ok) {
+  384 |         const data = await response.json();
+  385 |         return data.content; {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+    380 |     try {
+    381 |       // This would integrate with your existing content API
+  > 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+        |                             ^
+    383 |       if (response.ok) {
+    384 |         const data = await response.json();
+    385 |         return data.content; {
+    code: 'ERR_INVALID_URL',
+    input: '/api/books/gutenberg-1342/content?cefr=A1&chunk=3'
+  }
+}
+Failed to process job b5f33f6d-1de9-4ad8-8e8b-02a40eaa03f6: Error: No content found for gutenberg-1342 A1 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:154:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  152 |       
+  153 |       if (!chunkContent) {
+> 154 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  155 |       }
+  156 |       
+  157 |       // Split into sentences
+Job b5f33f6d-1de9-4ad8-8e8b-02a40eaa03f6 failed: No content found for gutenberg-1342 A1 chunk 3
+Job 85f13ce5-b6dd-40da-8159-36334098830c status: processing
+Failed to get chunk content: TypeError: Failed to parse URL from /api/books/gutenberg-1342/content?cefr=A1&chunk=3
+    at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  380 |     try {
+  381 |       // This would integrate with your existing content API
+> 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+      |                             ^
+  383 |       if (response.ok) {
+  384 |         const data = await response.json();
+  385 |         return data.content; {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+    380 |     try {
+    381 |       // This would integrate with your existing content API
+  > 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+        |                             ^
+    383 |       if (response.ok) {
+    384 |         const data = await response.json();
+    385 |         return data.content; {
+    code: 'ERR_INVALID_URL',
+    input: '/api/books/gutenberg-1342/content?cefr=A1&chunk=3'
+  }
+}
+Failed to process job 85f13ce5-b6dd-40da-8159-36334098830c: Error: No content found for gutenberg-1342 A1 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:154:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  152 |       
+  153 |       if (!chunkContent) {
+> 154 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  155 |       }
+  156 |       
+  157 |       // Split into sentences
+Job 85f13ce5-b6dd-40da-8159-36334098830c failed: No content found for gutenberg-1342 A1 chunk 3
+Job 3fcfd351-64dc-48a9-aae9-fab2f9c49e51 status: processing
+Failed to get chunk content: TypeError: Failed to parse URL from /api/books/gutenberg-1342/content?cefr=A1&chunk=3
+    at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  380 |     try {
+  381 |       // This would integrate with your existing content API
+> 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+      |                             ^
+  383 |       if (response.ok) {
+  384 |         const data = await response.json();
+  385 |         return data.content; {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+    380 |     try {
+    381 |       // This would integrate with your existing content API
+  > 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+        |                             ^
+    383 |       if (response.ok) {
+    384 |         const data = await response.json();
+    385 |         return data.content; {
+    code: 'ERR_INVALID_URL',
+    input: '/api/books/gutenberg-1342/content?cefr=A1&chunk=3'
+  }
+}
+Failed to process job 3fcfd351-64dc-48a9-aae9-fab2f9c49e51: Error: No content found for gutenberg-1342 A1 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:154:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  152 |       
+  153 |       if (!chunkContent) {
+> 154 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  155 |       }
+  156 |       
+  157 |       // Split into sentences
+Job 3fcfd351-64dc-48a9-aae9-fab2f9c49e51 failed: No content found for gutenberg-1342 A1 chunk 3
+Job 843d5c18-50b3-4f00-a67d-2d0874bec34e status: processing
+Failed to get chunk content: TypeError: Failed to parse URL from /api/books/gutenberg-1342/content?cefr=A1&chunk=3
+    at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  380 |     try {
+  381 |       // This would integrate with your existing content API
+> 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+      |                             ^
+  383 |       if (response.ok) {
+  384 |         const data = await response.json();
+  385 |         return data.content; {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+    380 |     try {
+    381 |       // This would integrate with your existing content API
+  > 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+        |                             ^
+    383 |       if (response.ok) {
+    384 |         const data = await response.json();
+    385 |         return data.content; {
+    code: 'ERR_INVALID_URL',
+    input: '/api/books/gutenberg-1342/content?cefr=A1&chunk=3'
+  }
+}
+Failed to process job 843d5c18-50b3-4f00-a67d-2d0874bec34e: Error: No content found for gutenberg-1342 A1 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:154:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  152 |       
+  153 |       if (!chunkContent) {
+> 154 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  155 |       }
+  156 |       
+  157 |       // Split into sentences
+Job 843d5c18-50b3-4f00-a67d-2d0874bec34e failed: No content found for gutenberg-1342 A1 chunk 3
+Job 2e4aec59-b124-4c31-a2bb-b278f16f7c64 status: processing
+Failed to get chunk content: TypeError: Failed to parse URL from /api/books/gutenberg-1342/content?cefr=A1&chunk=3
+    at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  380 |     try {
+  381 |       // This would integrate with your existing content API
+> 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+      |                             ^
+  383 |       if (response.ok) {
+  384 |         const data = await response.json();
+  385 |         return data.content; {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.getChunkContent (lib/audio-pregeneration-service.ts:382:29)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:151:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+    380 |     try {
+    381 |       // This would integrate with your existing content API
+  > 382 |       const response = await fetch(`/api/books/${bookId}/content?cefr=${cefrLevel}&chunk=${chunkIndex}`);
+        |                             ^
+    383 |       if (response.ok) {
+    384 |         const data = await response.json();
+    385 |         return data.content; {
+    code: 'ERR_INVALID_URL',
+    input: '/api/books/gutenberg-1342/content?cefr=A1&chunk=3'
+  }
+}
+Failed to process job 2e4aec59-b124-4c31-a2bb-b278f16f7c64: Error: No content found for gutenberg-1342 A1 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:154:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:110:4)
+  152 |       
+  153 |       if (!chunkContent) {
+> 154 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  155 |       }
+  156 |       
+  157 |       // Split into sentences
+Job 2e4aec59-b124-4c31-a2bb-b278f16f7c64 failed: No content found for gutenberg-1342 A1 chunk 3
+ ✓ Compiled in 583ms (1785 modules)
+ GET /library/gutenberg-1342/read 200 in 174ms
+ ✓ Compiled in 526ms (742 modules)
+ GET /library/gutenberg-1342/read 200 in 69ms
+ ✓ Compiled in 283ms (742 modules)
+ GET /library/gutenberg-1342/read 200 in 38ms
+ ✓ Compiled in 245ms (742 modules)
+ GET /library/gutenberg-1342/read 200 in 33ms
+ ✓ Compiled in 236ms (742 modules)
+ GET /library/gutenberg-1342/read 200 in 52ms
+ ✓ Compiled in 1564ms (1663 modules)
+ GET /library/gutenberg-1342/read 200 in 284ms
+ ○ Compiling /api/books/[id]/content-fast ...
+ ✓ Compiled /api/books/[id]/content-fast in 2.1s (2005 modules)
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+Fast content fetch for book ID: gutenberg-1342
+External book detected: gutenberg-1342
+Checking database for stored book: gutenberg-1342
+✅ Found stored book in database: Pride and Prejudice
+ GET /api/books/gutenberg-1342/content-fast 200 in 3448ms
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+ ✓ Compiled in 1214ms (742 modules)
+ ⨯ Error: Cannot find module './4985.js'
+Require stack:
+- /Users/user/bookbridge/bookbridge/.next/server/webpack-runtime.js
+- /Users/user/bookbridge/bookbridge/.next/server/app/api/books/[id]/content-fast/route.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/require.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/load-components.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/utils.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/swc/options.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/swc/index.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/lib/router-server.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/app/library/[id]/read/page.js:10:2123)
+    at Object.<anonymous> (.next/server/app/library/[id]/read/page.js:10:2184) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/library/gutenberg-1342/read'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 3.4s (1991 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'
+}
+Time 5.464943
+ GET /library/gutenberg-1342/read 500 in 5489ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json',
+  page: '/library/gutenberg-1342/read'
+}
+ ⨯ Failed to generate static paths for /library/[id]/read:
+[Error: Cannot find module './vendor-chunks/framer-motion.js'
+Require stack:
+- /Users/user/bookbridge/bookbridge/.next/server/webpack-runtime.js
+- /Users/user/bookbridge/bookbridge/.next/server/app/library/[id]/read/page.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/require.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/load-components.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/utils.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Failed to generate static paths for /library/[id]/read:
+[Error: Cannot find module './vendor-chunks/framer-motion.js'
+Require stack:
+- /Users/user/bookbridge/bookbridge/.next/server/webpack-runtime.js
+- /Users/user/bookbridge/bookbridge/.next/server/app/library/[id]/read/page.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/require.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/load-components.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/utils.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'
+}
+Time 1.114502
+ GET /library/gutenberg-1342/read 500 in 732ms
+ ⨯ [Error: Cannot find module './vendor-chunks/framer-motion.js'
+Require stack:
+- /Users/user/bookbridge/bookbridge/.next/server/webpack-runtime.js
+- /Users/user/bookbridge/bookbridge/.next/server/app/library/[id]/read/page.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/require.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/load-components.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/utils.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/library/gutenberg-1342/read'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'
+}
+Time 0.732963
+ GET /library/gutenberg-1342/read 500 in 726ms
+ ⨯ [Error: Cannot find module './vendor-chunks/framer-motion.js'
+Require stack:
+- /Users/user/bookbridge/bookbridge/.next/server/webpack-runtime.js
+- /Users/user/bookbridge/bookbridge/.next/server/app/library/[id]/read/page.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/require.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/load-components.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/utils.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/library/gutenberg-1342/read'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'
+}
+Time 0.4926
+ GET /library/gutenberg-1342/read 500 in 712ms
+ ⨯ [Error: Cannot find module './vendor-chunks/framer-motion.js'
+Require stack:
+- /Users/user/bookbridge/bookbridge/.next/server/webpack-runtime.js
+- /Users/user/bookbridge/bookbridge/.next/server/app/library/[id]/read/page.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/require.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/load-components.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/utils.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/library/gutenberg-1342/read'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'
+}
+Time 0.473368
+ GET /library/gutenberg-1342/read 500 in 744ms
+ ✓ Compiled /api/audio/pregenerate in 228ms (1223 modules)
+ POST /api/audio/pregenerate 400 in 596ms
+ ⨯ [Error: Cannot find module './vendor-chunks/framer-motion.js'
+Require stack:
+- /Users/user/bookbridge/bookbridge/.next/server/webpack-runtime.js
+- /Users/user/bookbridge/bookbridge/.next/server/app/library/[id]/read/page.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/require.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/load-components.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/utils.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/library/gutenberg-1342/read'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/user/bookbridge/bookbridge/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/user/bookbridge/bookbridge/.next/server/pages/_document.js'
+}
+Time 1.157382
+ GET /library/gutenberg-1342/read 500 in 913ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 634ms (2104 modules)
+ GET /_next/static/chunks/fallback/webpack.js 404 in 1260ms
+ GET /_next/static/chunks/fallback/main.js 404 in 1253ms
+ GET /_next/static/chunks/fallback/react-refresh.js 404 in 1253ms
+ GET /_next/static/chunks/fallback/pages/_app.js 404 in 1253ms
+ GET /_next/static/chunks/fallback/pages/_error.js 404 in 1254ms
+🚀 Starting pre-generation for gutenberg-1342 with 10 chunks
+Starting pre-generation for book: gutenberg-1342 with 10 chunks
+Pre-generation error: Error: Failed to create book status: duplicate key value violates unique constraint "book_pregeneration_status_book_id_key"
+    at AudioPreGenerationService.createBookStatus (lib/audio-pregeneration-service.ts:441:12)
+    at async AudioPreGenerationService.initializeBookPreGeneration (lib/audio-pregeneration-service.ts:85:4)
+    at async POST (app/api/audio/pregenerate/route.ts:23:4)
+  439 |
+  440 |     if (error) {
+> 441 |       throw new Error(`Failed to create book status: ${error.message}`);
+      |            ^
+  442 |     }
+  443 |     
+  444 |     console.log(`Created book status for ${bookId}: ${totalCombinations} combinations`);
+ POST /api/audio/pregenerate 500 in 690ms
+ POST /api/audio/pregenerate 400 in 8ms
+ ✓ Compiled in 439ms (2118 modules)
+🚀 Starting pre-generation for gutenberg-1342 with 10 chunks
+Starting pre-generation for book: gutenberg-1342 with 10 chunks
+Pre-generation error: TypeError: Cannot read properties of undefined (reading 'from')
+    at AudioPreGenerationService.initializeBookPreGeneration (lib/audio-pregeneration-service.ts:86:7)
+    at POST (app/api/audio/pregenerate/route.ts:23:36)
+  84 |     // Check if book status already exists
+  85 |     const existingStatus = await this.supabase
+> 86 |       .from('book_pregeneration_status')
+     |       ^
+  87 |       .select('id')
+  88 |       .eq('book_id', bookId)
+  89 |       .single();
+ POST /api/audio/pregenerate 500 in 102ms
+ ✓ Compiled in 399ms (2118 modules)
+ ✓ Compiled in 447ms (2113 modules)
+🚀 Starting pre-generation for gutenberg-1342 with 10 chunks
+Starting pre-generation for book: gutenberg-1342 with 10 chunks
+Book gutenberg-1342 already initialized, skipping setup
+Pre-generation queued for gutenberg-1342
+ POST /api/audio/pregenerate 200 in 536ms
+Processing 5 pre-generation jobs
+Processing job: e563fc5d-528b-439e-9f43-02ecf8cfc969 for gutenberg-1342 A1 chunk 3
+Processing job: faef5725-6c29-42be-82e6-ec5a88dff59e for gutenberg-1342 A2 chunk 3
+Processing job: a69c2080-8664-4aed-b1ba-b34f15a62c42 for gutenberg-1342 A2 chunk 3
+Processing job: 091c283a-9bf0-4063-a160-ab67674778bc for gutenberg-1342 A2 chunk 3
+Processing job: 7d87c242-411b-4dcc-a919-ce5e68a0d1d6 for gutenberg-1342 A2 chunk 3
+Job e563fc5d-528b-439e-9f43-02ecf8cfc969 status: processing
+Job faef5725-6c29-42be-82e6-ec5a88dff59e status: processing
+Job a69c2080-8664-4aed-b1ba-b34f15a62c42 status: processing
+Job 7d87c242-411b-4dcc-a919-ce5e68a0d1d6 status: processing
+Job 091c283a-9bf0-4063-a160-ab67674778bc status: processing
+Failed to process job e563fc5d-528b-439e-9f43-02ecf8cfc969: Error: No content found for gutenberg-1342 A1 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job e563fc5d-528b-439e-9f43-02ecf8cfc969 failed: No content found for gutenberg-1342 A1 chunk 3
+Failed to process job faef5725-6c29-42be-82e6-ec5a88dff59e: Error: No content found for gutenberg-1342 A2 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job faef5725-6c29-42be-82e6-ec5a88dff59e failed: No content found for gutenberg-1342 A2 chunk 3
+Failed to process job a69c2080-8664-4aed-b1ba-b34f15a62c42: Error: No content found for gutenberg-1342 A2 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job a69c2080-8664-4aed-b1ba-b34f15a62c42 failed: No content found for gutenberg-1342 A2 chunk 3
+Failed to process job 7d87c242-411b-4dcc-a919-ce5e68a0d1d6: Error: No content found for gutenberg-1342 A2 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job 7d87c242-411b-4dcc-a919-ce5e68a0d1d6 failed: No content found for gutenberg-1342 A2 chunk 3
+Failed to process job 091c283a-9bf0-4063-a160-ab67674778bc: Error: No content found for gutenberg-1342 A2 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job 091c283a-9bf0-4063-a160-ab67674778bc failed: No content found for gutenberg-1342 A2 chunk 3
+ ✓ Compiled /api/books/[id]/cached-simplification in 166ms (1227 modules)
+Fetching cached simplification: gutenberg-1342, level=A1, chunk=3
+Found cached simplification with quality 0.48
+ GET /api/books/gutenberg-1342/cached-simplification?level=A1&chunk=3 200 in 739ms
+ ⨯ Failed to generate static paths for /api/books/[id]/cached-simplification:
+TypeError: Cannot read properties of undefined (reading 'call')
+    at __webpack_exec__ (.next/server/app/api/books/[id]/cached-simplification/route.js:162:39)
+    at <unknown> (.next/server/app/api/books/[id]/cached-simplification/route.js:163:83)
+    at <unknown> (.next/server/app/api/books/[id]/cached-simplification/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/books/[id]/cached-simplification/route.js:166:3) {
+  type: 'TypeError'
+}
+ ⨯ Failed to generate static paths for /api/books/[id]/cached-simplification:
+TypeError: Cannot read properties of undefined (reading 'call')
+    at __webpack_exec__ (.next/server/app/api/books/[id]/cached-simplification/route.js:162:39)
+    at <unknown> (.next/server/app/api/books/[id]/cached-simplification/route.js:163:83)
+    at <unknown> (.next/server/app/api/books/[id]/cached-simplification/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/books/[id]/cached-simplification/route.js:166:3) {
+  type: 'TypeError'
+}
+ ✓ Compiled in 763ms (2117 modules)
+🚀 Starting pre-generation for gutenberg-1342 with 5 chunks
+Starting pre-generation for book: gutenberg-1342 with 5 chunks
+Book gutenberg-1342 already initialized, skipping setup
+Pre-generation queued for gutenberg-1342
+ POST /api/audio/pregenerate 200 in 646ms
+Processing 5 pre-generation jobs
+Processing job: d97cb9f5-c976-4f34-b0f8-cee693fe87db for gutenberg-1342 A2 chunk 3
+Processing job: 86e235ad-d664-4b61-aa68-ff5d082f6548 for gutenberg-1342 A2 chunk 3
+Processing job: 757e2e98-218d-4c8f-9812-dd032bf90e65 for gutenberg-1342 B1 chunk 3
+Processing job: 904aacd2-94d9-4b1d-9722-3d034f28140a for gutenberg-1342 B1 chunk 3
+Processing job: 63a7227e-9175-49eb-8908-32a126160fb7 for gutenberg-1342 B1 chunk 3
+Job d97cb9f5-c976-4f34-b0f8-cee693fe87db status: processing
+Job 86e235ad-d664-4b61-aa68-ff5d082f6548 status: processing
+Job 757e2e98-218d-4c8f-9812-dd032bf90e65 status: processing
+Job 904aacd2-94d9-4b1d-9722-3d034f28140a status: processing
+Job 63a7227e-9175-49eb-8908-32a126160fb7 status: processing
+API response not ok for gutenberg-1342 A2 chunk 3: 500
+Failed to process job d97cb9f5-c976-4f34-b0f8-cee693fe87db: Error: No content found for gutenberg-1342 A2 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job d97cb9f5-c976-4f34-b0f8-cee693fe87db failed: No content found for gutenberg-1342 A2 chunk 3
+API response not ok for gutenberg-1342 A2 chunk 3: 500
+Failed to process job 86e235ad-d664-4b61-aa68-ff5d082f6548: Error: No content found for gutenberg-1342 A2 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job 86e235ad-d664-4b61-aa68-ff5d082f6548 failed: No content found for gutenberg-1342 A2 chunk 3
+API response not ok for gutenberg-1342 B1 chunk 3: 500
+Failed to process job 757e2e98-218d-4c8f-9812-dd032bf90e65: Error: No content found for gutenberg-1342 B1 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job 757e2e98-218d-4c8f-9812-dd032bf90e65 failed: No content found for gutenberg-1342 B1 chunk 3
+API response not ok for gutenberg-1342 B1 chunk 3: 500
+Failed to process job 904aacd2-94d9-4b1d-9722-3d034f28140a: Error: No content found for gutenberg-1342 B1 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job 904aacd2-94d9-4b1d-9722-3d034f28140a failed: No content found for gutenberg-1342 B1 chunk 3
+API response not ok for gutenberg-1342 B1 chunk 3: 500
+Failed to process job 63a7227e-9175-49eb-8908-32a126160fb7: Error: No content found for gutenberg-1342 B1 chunk 3
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job 63a7227e-9175-49eb-8908-32a126160fb7 failed: No content found for gutenberg-1342 B1 chunk 3
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at __webpack_exec__ (.next/server/app/api/books/[id]/cached-simplification/route.js:162:39)
+    at <unknown> (.next/server/app/api/books/[id]/cached-simplification/route.js:163:83)
+    at <unknown> (.next/server/app/api/books/[id]/cached-simplification/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/books/[id]/cached-simplification/route.js:166:3) {
+  type: 'TypeError',
+  page: '/api/books/gutenberg-1342/cached-simplification'
+}
+Time 1.047413
+ GET /api/books/gutenberg-1342/cached-simplification?level=B1&chunk=0 500 in 702ms
+[?25h
