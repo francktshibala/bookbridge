@@ -947,7 +947,7 @@
   }
 
   /* Mobile responsive adjustments */
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     /* Mobile Hero Section */
     .hero-section {
       padding: 30px 20px;
@@ -978,6 +978,241 @@
       min-height: 48px !important;
       padding: 16px !important;
       font-size: 16px !important;
+    }
+    
+    /* Mobile Stats Grid - 2x2 layout */
+    .enhanced-books-grid + div {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 16px !important;
+      padding: 24px 20px !important;
+      margin-top: 32px !important;
+    }
+    
+    .enhanced-books-grid + div > div {
+      padding: 16px !important;
+    }
+    
+    .enhanced-books-grid + div > div > div:first-child {
+      font-size: 24px !important;
+    }
+    
+    .enhanced-books-grid + div > div > div:last-child {
+      font-size: 12px !important;
+    }
+    
+    /* Mobile Enhanced Features Section - Show only on mobile */
+    .enhanced-features-mobile {
+      display: block !important;
+      margin: 24px 0 !important;
+    }
+    
+    .enhanced-features-mobile h2 {
+      font-size: 18px !important;
+      margin-bottom: 12px !important;
+    }
+    
+    .features-grid-mobile {
+      max-width: 280px !important;
+      gap: 12px !important;
+    }
+    
+    .feature-card-mobile {
+      transition: all 0.3s ease;
+      min-height: 80px !important;
+      padding: 12px !important;
+    }
+    
+    .feature-card-mobile span {
+      font-size: 20px !important;
+    }
+    
+    .feature-card-mobile h4 {
+      font-size: 12px !important;
+      margin: 6px 0 2px 0 !important;
+    }
+    
+    .feature-card-mobile p {
+      font-size: 10px !important;
+    }
+    
+    .feature-card-mobile:hover {
+      transform: translateY(-2px);
+      border-color: #667eea !important;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Mobile Book Cards Optimization */
+    .enhanced-books-grid {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+      padding: 0 20px !important;
+    }
+    
+    .enhanced-book-card {
+      padding: 20px !important;
+      margin-bottom: 16px !important;
+    }
+    
+    .enhanced-book-card .book-title {
+      font-size: 18px !important;
+      line-height: 1.3 !important;
+    }
+    
+    .enhanced-book-card .book-author {
+      font-size: 14px !important;
+    }
+    
+    .enhanced-book-card .book-features {
+      gap: 6px !important;
+      margin-bottom: 12px !important;
+    }
+    
+    /* Touch-friendly action buttons */
+    .enhanced-book-card a {
+      min-height: 44px !important;
+      padding: 12px 16px !important;
+      font-size: 14px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 8px !important;
+    }
+    
+    /* Compact badges for mobile */
+    .enhanced-book-badge,
+    .cefr-range {
+      font-size: 11px !important;
+      padding: 3px 6px !important;
+    }
+    
+    /* Mobile Enhanced Collection Page */
+    .enhanced-collection-mobile-header h1 {
+      font-size: 32px !important;
+      margin-bottom: 12px !important;
+    }
+    
+    .enhanced-collection-mobile-header p {
+      font-size: 16px !important;
+    }
+    
+    /* Mobile Genre Filter - Horizontal Scroll */
+    .genre-filter-container {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: none !important;
+      padding: 0 20px !important;
+      margin: 0 -20px 32px -20px !important;
+      flex-wrap: nowrap !important;
+      justify-content: flex-start !important;
+    }
+    
+    .genre-filter-container::-webkit-scrollbar {
+      display: none !important;
+    }
+    
+    .genre-filter-scroll {
+      display: flex !important;
+      gap: 12px !important;
+      min-width: max-content !important;
+      padding: 0 20px !important;
+      justify-content: flex-start !important;
+      flex-wrap: nowrap !important;
+    }
+    
+    .genre-filter-scroll button {
+      flex-shrink: 0 !important;
+      white-space: nowrap !important;
+      min-height: 44px !important;
+      padding: 8px 16px !important;
+      font-size: 14px !important;
+    }
+    
+    /* Mobile Enhanced Features - 2x2 Grid */
+    .enhanced-features-section {
+      padding: 20px !important;
+      margin: 0 0 24px 0 !important;
+    }
+    
+    .enhanced-features-section h2 {
+      font-size: 20px !important;
+      margin-bottom: 16px !important;
+    }
+    
+    .enhanced-features-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 12px !important;
+      max-width: none !important;
+    }
+    
+    .enhanced-features-grid > div {
+      padding: 12px !important;
+      border-radius: 12px !important;
+    }
+    
+    .enhanced-features-grid h3 {
+      font-size: 12px !important;
+      margin-bottom: 2px !important;
+      line-height: 1.2 !important;
+    }
+    
+    .enhanced-features-grid p {
+      font-size: 10px !important;
+      line-height: 1.2 !important;
+      margin: 0 !important;
+    }
+    
+    .enhanced-features-grid .feature-icon {
+      font-size: 24px !important;
+      margin-bottom: 4px !important;
+    }
+    
+    /* Mobile Book Cards - Single Column */
+    .books-grid-mobile {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+      padding: 0 20px !important;
+      justify-items: center !important;
+      max-width: 100% !important;
+    }
+    
+    /* Force all book grids to single column on mobile */
+    div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+      grid-template-columns: 1fr !important;
+      justify-items: center !important;
+    }
+    
+    /* Mobile Book Card Layout */
+    .book-card-mobile {
+      width: 100% !important;
+      max-width: 350px !important;
+      padding: 20px !important;
+      margin: 0 auto !important;
+    }
+    
+    .book-card-mobile .book-cover {
+      width: 80px !important;
+      height: 100px !important;
+      font-size: 18px !important;
+    }
+    
+    .book-card-mobile h3 {
+      font-size: 16px !important;
+      line-height: 1.3 !important;
+    }
+    
+    .book-card-mobile p {
+      font-size: 12px !important;
+    }
+    
+    .book-card-mobile a {
+      min-height: 44px !important;
+      padding: 12px 20px !important;
+      font-size: 14px !important;
+    }
+    
+    /* Center Ready to Read heading */
+    h2[style*="color: #10b981"] {
+      text-align: center !important;
     }
     
     .features-grid {
@@ -1064,4 +1299,102 @@
   border-left: 3px solid #667eea;
   color: #a5b4fc;
 }
+
+/* STEP 3: ADD RESPONSIVE BEHAVIOR */
+/* Mobile screens: hide desktop nav, show hamburger */
+@media (max-width: 1023px) {
+  .desktop-nav-links {
+    display: none !important;
+  }
+  .desktop-user-menu {
+    display: none !important;
+  }
+  .mobile-hamburger {
+    display: flex !important;
+  }
+}
+
+/* Desktop screens: show desktop nav, hide hamburger AND mobile menu */
+@media (min-width: 1024px) {
+  .desktop-nav-links {
+    display: flex !important;
+  }
+  .desktop-user-menu {
+    display: flex !important;
+  }
+  .mobile-hamburger {
+    display: none !important;
+  }
+  /* Force hide mobile menu on desktop */
+  .mobile-nav-menu {
+    display: none !important;
+  }
+  
+  /* Force hide backdrop on desktop */
+  .mobile-nav-backdrop {
+    display: none !important;
+  }
+}
+  
+  /* Mobile hamburger menu animations */
+  .hamburger-line {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Mobile menu slide animation */
+  .mobile-menu-slide {
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .mobile-menu-slide.open {
+    transform: translateX(0);
+  }
+  
+  /* Mobile menu backdrop */
+  .mobile-menu-backdrop {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .mobile-menu-backdrop.open {
+    opacity: 1;
+  }
+  
+  /* Mobile navigation item hover effects */
+  .mobile-nav-item {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .mobile-nav-item:hover {
+    background-color: rgba(59, 130, 246, 0.1) !important;
+    transform: translateX(4px);
+  }
+  
+  .mobile-nav-item.active {
+    background-color: rgba(59, 130, 246, 0.2) !important;
+    border-left: 3px solid #3b82f6;
+  }
+  
+  /* Touch-friendly sizing for mobile menu */
+  .mobile-touch-target {
+    min-height: 56px !important;
+    padding: 12px 16px !important;
+  }
+  
+  /* Mobile user profile styling */
+  .mobile-user-profile {
+    background: rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 2rem;
+  }
+  
+  /* Mobile menu scroll */
+  .mobile-menu-content {
+    overflow-y: auto;
+    height: 100vh;
+    padding-bottom: 2rem;
+  }
 

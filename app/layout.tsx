@@ -54,7 +54,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body className="antialiased min-h-screen flex flex-col overflow-x-hidden magical-bg" style={{ backgroundColor: '#0f172a', color: '#ffffff' }}>
+      <body 
+        className="antialiased min-h-screen flex flex-col overflow-x-hidden magical-bg" 
+        style={{ backgroundColor: '#0f172a', color: '#ffffff' }}
+        suppressHydrationWarning
+      >
         <SkipLinks />
         
         {/* Live region for screen reader announcements */}

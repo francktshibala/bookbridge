@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progressive Voice Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #ffffff;
+        }
+        .test-section {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+        .test-result {
+            background: rgba(16, 185, 129, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #10b981;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .error {
+            background: rgba(239, 68, 68, 0.2);
+            border-left-color: #ef4444;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .sentence {
+            padding: 8px;
+            margin: 4px 0;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+        }
+        .sentence-meta {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎙️ Progressive Voice Feature Test</h1>
+    <p>Test the text processing logic that will power the progressive voice feature.</p>
+
+    <div class="test-section">
+        <h3>Text Processing Test</h3>
+        <button onclick="testTextProcessor()">Test Text Splitting</button>
+        <button onclick="testValidation()">Test Validation</button>
+        <button onclick="clearResults()">Clear Results</button>
+        <div id="textResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Sample Text</h3>
+        <textarea id="sampleText" rows="6" style="width: 100%; background: rgba(30, 41, 59, 0.8); color: white; border: 1px solid #334155; border-radius: 6px; padding: 10px;">Elizabeth Bennet was sitting by herself the next morning, writing to her sister Jane, when she was startled by a ring at the door-bell. She had been expecting no one, and her surprise was great when, to her utter amazement, she saw Mr. Darcy walk into the room. In an hurried manner he immediately began an enquiry after her health, imputing his visit to a wish of hearing that her sister, being by then better. She answered him with cold civility. He sat down for a few moments, and then getting up, walked about the room.</textarea>
+    </div>
+
+    <script>
+        // Simplified version of TextProcessor for testing
+        class TextProcessor {
+            static MIN_WORDS_PER_CHUNK = 5;
+            static MAX_WORDS_PER_CHUNK = 25;
+            static AVG_WORDS_PER_MINUTE = 150;
+
+            static ABBREVIATIONS = new Set([
+                'Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Sr.', 'Jr.',
+                'St.', 'Ave.', 'Blvd.', 'Rd.', 'Inc.', 'Ltd.', 'Co.',
+                'vs.', 'etc.', 'i.e.', 'e.g.', 'a.m.', 'p.m.',
+                'U.S.', 'U.K.', 'N.Y.', 'L.A.'
+            ]);
+
+            static splitIntoSentences(text) {
+                if (!text || text.trim().length === 0) {
+                    return [];
+                }
+
+                const cleanText = this.cleanText(text);
+                const rawSentences = this.performInitialSplit(cleanText);
+                const optimizedSentences = this.optimizeSentenceLengths(rawSentences);
+                
+                return optimizedSentences.map((sentence, index) => {
+                    const words = this.extractWords(sentence);
+                    return {
+                        text: sentence.trim(),
+                        wordCount: words.length,
+                        estimatedDuration: this.estimateDuration(words.length),
+                        words,
+                        sentenceIndex: index
+                    };
+                }).filter(sentence => sentence.wordCount > 0);
+            }
+
+            static cleanText(text) {
+                return text
+                    .replace(/\s+/g, ' ')
+                    .replace(/([.!?])\s*([a-z])/g, '$1 $2')
+                    .replace(/([.!?])"(\s+[A-Z])/g, '$1" $2')
+                    .replace(/([.!?]){2,}/g, '$1')
+                    .trim();
+            }
+
+            static performInitialSplit(text) {
+                const sentences = [];
+                let currentSentence = '';
+                let i = 0;
+
+                while (i < text.length) {
+                    const char = text[i];
+                    currentSentence += char;
+
+                    if (char === '.' || char === '!' || char === '?') {
+                        const nextChar = text[i + 1];
+                        const prevWords = currentSentence.trim().split(' ');
+                        const lastWord = prevWords[prevWords.length - 1];
+
+                        if (this.ABBREVIATIONS.has(lastWord)) {
+                            i++;
+                            continue;
+                        }
+
+                        if (char === '.' && this.isPartOfNumber(text, i)) {
+                            i++;
+                            continue;
+                        }
+
+                        if (nextChar && /[a-z]/.test(nextChar)) {
+                            i++;
+                            continue;
+                        }
+
+                        if (currentSentence.trim().length > 0) {
+                            sentences.push(currentSentence.trim());
+                            currentSentence = '';
+                        }
+                    }
+                    i++;
+                }
+
+                if (currentSentence.trim().length > 0) {
+                    sentences.push(currentSentence.trim());
+                }
+
+                return sentences.filter(s => s.length > 0);
+            }
+
+            static isPartOfNumber(text, periodIndex) {
+                const before = text[periodIndex - 1];
+                const after = text[periodIndex + 1];
+                return /\d/.test(before) && /\d/.test(after);
+            }
+
+            static optimizeSentenceLengths(sentences) {
+                const optimized = [];
+                let currentChunk = '';
+
+                for (const sentence of sentences) {
+                    const sentenceWords = this.extractWords(sentence);
+                    const currentWords = this.extractWords(currentChunk);
+                    const combinedLength = currentWords.length + sentenceWords.length;
+
+                    if (currentChunk && combinedLength <= this.MAX_WORDS_PER_CHUNK) {
+                        currentChunk += ' ' + sentence;
+                    } else {
+                        if (currentChunk) {
+                            optimized.push(currentChunk.trim());
+                        }
+
+                        if (sentenceWords.length > this.MAX_WORDS_PER_CHUNK) {
+                            const splitSentences = this.splitLongSentence(sentence);
+                            optimized.push(...splitSentences);
+                            currentChunk = '';
+                        } else {
+                            currentChunk = sentence;
+                        }
+                    }
+                }
+
+                if (currentChunk) {
+                    optimized.push(currentChunk.trim());
+                }
+
+                return this.combineShortChunks(optimized);
+            }
+
+            static splitLongSentence(sentence) {
+                const words = this.extractWords(sentence);
+                const chunks = [];
+                const breakWords = ['and', 'but', 'or', 'so', 'yet', 'for', 'nor', 'because', 'although', 'while', 'since'];
+                const breakPoints = [];
+
+                words.forEach((word, index) => {
+                    if (breakWords.includes(word.toLowerCase()) || word.endsWith(',')) {
+                        breakPoints.push(index);
+                    }
+                });
+
+                if (breakPoints.length === 0) {
+                    const midPoint = Math.floor(words.length / 2);
+                    breakPoints.push(midPoint);
+                }
+
+                let lastIndex = 0;
+                for (const breakPoint of breakPoints) {
+                    const chunkWords = words.slice(lastIndex, breakPoint + 1);
+                    if (chunkWords.length >= this.MIN_WORDS_PER_CHUNK) {
+                        chunks.push(chunkWords.join(' '));
+                        lastIndex = breakPoint + 1;
+                    }
+                }
+
+                if (lastIndex < words.length) {
+                    const remainingWords = words.slice(lastIndex);
+                    if (remainingWords.length >= this.MIN_WORDS_PER_CHUNK) {
+                        chunks.push(remainingWords.join(' '));
+                    } else if (chunks.length > 0) {
+                        chunks[chunks.length - 1] += ' ' + remainingWords.join(' ');
+                    } else {
+                        chunks.push(remainingWords.join(' '));
+                    }
+                }
+
+                return chunks;
+            }
+
+            static combineShortChunks(chunks) {
+                const combined = [];
+                let currentChunk = '';
+
+                for (const chunk of chunks) {
+                    const chunkWords = this.extractWords(chunk);
+                    const currentWords = this.extractWords(currentChunk);
+
+                    if (chunkWords.length < this.MIN_WORDS_PER_CHUNK && currentChunk) {
+                        if (currentWords.length + chunkWords.length <= this.MAX_WORDS_PER_CHUNK) {
+                            currentChunk += ' ' + chunk;
+                            continue;
+                        }
+                    }
+
+                    if (currentChunk) {
+                        combined.push(currentChunk.trim());
+                    }
+                    currentChunk = chunk;
+                }
+
+                if (currentChunk) {
+                    combined.push(currentChunk.trim());
+                }
+
+                return combined;
+            }
+
+            static extractWords(text) {
+                if (!text) return [];
+
+                return text
+                    .split(/\s+/)
+                    .map(word => word.trim())
+                    .filter(word => word.length > 0)
+                    .map(word => {
+                        return word.replace(/^[^\w''-]+|[^\w''-]+$/g, '');
+                    })
+                    .filter(word => word.length > 0);
+            }
+
+            static estimateDuration(wordCount) {
+                const wordsPerSecond = this.AVG_WORDS_PER_MINUTE / 60;
+                return Math.round((wordCount / wordsPerSecond) * 100) / 100;
+            }
+
+            static validateProcessing(originalText, processedSentences) {
+                const issues = [];
+                
+                const originalWords = this.extractWords(originalText);
+                const processedWords = processedSentences.flatMap(s => s.words);
+                
+                if (Math.abs(originalWords.length - processedWords.length) > originalWords.length * 0.05) {
+                    issues.push(`Word count difference: ${originalWords.length} -> ${processedWords.length}`);
+                }
+
+                const tooShort = processedSentences.filter(s => s.wordCount < this.MIN_WORDS_PER_CHUNK);
+                const tooLong = processedSentences.filter(s => s.wordCount > this.MAX_WORDS_PER_CHUNK);
+
+                if (tooShort.length > 0) {
+                    issues.push(`${tooShort.length} sentences too short (< ${this.MIN_WORDS_PER_CHUNK} words)`);
+                }
+
+                if (tooLong.length > 0) {
+                    issues.push(`${tooLong.length} sentences too long (> ${this.MAX_WORDS_PER_CHUNK} words)`);
+                }
+
+                const totalWords = processedSentences.reduce((sum, s) => sum + s.wordCount, 0);
+                const avgWordsPerSentence = totalWords / processedSentences.length;
+                const totalDuration = processedSentences.reduce((sum, s) => sum + s.estimatedDuration, 0);
+
+                return {
+                    isValid: issues.length === 0,
+                    issues,
+                    stats: {
+                        originalLength: originalWords.length,
+                        processedLength: processedWords.length,
+                        sentenceCount: processedSentences.length,
+                        avgWordsPerSentence: Math.round(avgWordsPerSentence * 100) / 100,
+                        totalEstimatedDuration: Math.round(totalDuration * 100) / 100
+                    }
+                };
+            }
+        }
+
+        function testTextProcessor() {
+            const text = document.getElementById('sampleText').value;
+            const resultsDiv = document.getElementById('textResults');
+            
+            try {
+                const result = TextProcessor.splitIntoSentences(text);
+                
+                let html = '<div class="test-result">';
+                html += '<h4>✅ Text Processing Results</h4>';
+                html += `<p><strong>Input:</strong> ${text.length} characters</p>`;
+                html += `<p><strong>Output:</strong> ${result.length} optimized sentences</p>`;
+                html += '</div>';
+
+                result.forEach((sentence, i) => {
+                    html += `<div class="sentence">`;
+                    html += `<strong>Sentence ${i + 1}:</strong> ${sentence.text}`;
+                    html += `<div class="sentence-meta">`;
+                    html += `${sentence.wordCount} words • ~${sentence.estimatedDuration}s duration`;
+                    html += `</div></div>`;
+                });
+
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="test-result error">❌ Error: ${error.message}</div>`;
+            }
+        }
+
+        function testValidation() {
+            const text = document.getElementById('sampleText').value;
+            const resultsDiv = document.getElementById('textResults');
+            
+            try {
+                const result = TextProcessor.splitIntoSentences(text);
+                const validation = TextProcessor.validateProcessing(text, result);
+                
+                let html = '<div class="test-result">';
+                html += `<h4>${validation.isValid ? '✅' : '⚠️'} Validation Results</h4>`;
+                html += `<p><strong>Status:</strong> ${validation.isValid ? 'PASS' : 'ISSUES FOUND'}</p>`;
+                html += `<p><strong>Original words:</strong> ${validation.stats.originalLength}</p>`;
+                html += `<p><strong>Processed words:</strong> ${validation.stats.processedLength}</p>`;
+                html += `<p><strong>Sentences created:</strong> ${validation.stats.sentenceCount}</p>`;
+                html += `<p><strong>Avg words per sentence:</strong> ${validation.stats.avgWordsPerSentence}</p>`;
+                html += `<p><strong>Total estimated duration:</strong> ${validation.stats.totalEstimatedDuration}s</p>`;
+                
+                if (validation.issues.length > 0) {
+                    html += '<p><strong>Issues:</strong></p><ul>';
+                    validation.issues.forEach(issue => {
+                        html += `<li>${issue}</li>`;
+                    });
+                    html += '</ul>';
+                }
+                html += '</div>';
+
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="test-result error">❌ Error: ${error.message}</div>`;
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('textResults').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

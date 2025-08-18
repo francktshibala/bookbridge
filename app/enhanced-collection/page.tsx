@@ -184,7 +184,7 @@ export default function EnhancedCollectionDynamic() {
         </div>
 
         {/* Book Cover - Compact Square Design */}
-        <div style={{
+        <div className="book-cover" style={{
           width: '100px',
           height: '120px',
           background: getBookGradient(book.title),
@@ -348,6 +348,7 @@ export default function EnhancedCollectionDynamic() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
+          className="enhanced-collection-mobile-header"
           style={{ textAlign: 'center', marginBottom: '60px' }}
         >
           <h1 style={{ 
@@ -369,35 +370,46 @@ export default function EnhancedCollectionDynamic() {
         </motion.div>
 
         {/* Genre Filter */}
-        <div style={{ 
+        <div className="genre-filter-container" style={{ 
           display: 'flex', 
           gap: '12px', 
           justifyContent: 'center',
           marginBottom: '40px',
-          flexWrap: 'wrap'
+          flexWrap: 'wrap',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch'
         }}>
-          {genres.map(genre => (
-            <button
-              key={genre}
-              onClick={() => handleGenreChange(genre)}
-              style={{
-                padding: '8px 20px',
-                background: selectedGenre === genre ? '#667eea' : 'transparent',
-                border: `2px solid ${selectedGenre === genre ? '#667eea' : '#334155'}`,
-                borderRadius: '24px',
-                color: selectedGenre === genre ? 'white' : '#94a3b8',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              {genre} ({genre === 'All' ? books.length : books.filter(b => b.genre === genre).length})
-            </button>
-          ))}
+          <div className="genre-filter-scroll" style={{
+            display: 'flex',
+            gap: '12px',
+            flexWrap: 'nowrap',
+            minWidth: 'max-content'
+          }}>
+            {genres.map(genre => (
+              <button
+                key={genre}
+                onClick={() => handleGenreChange(genre)}
+                style={{
+                  padding: '8px 20px',
+                  background: selectedGenre === genre ? '#667eea' : 'transparent',
+                  border: `2px solid ${selectedGenre === genre ? '#667eea' : '#334155'}`,
+                  borderRadius: '24px',
+                  color: selectedGenre === genre ? 'white' : '#94a3b8',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0
+                }}
+              >
+                {genre} ({genre === 'All' ? books.length : books.filter(b => b.genre === genre).length})
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Enhanced Features */}
-        <div style={{
+        <div className="enhanced-features-section" style={{
           background: 'rgba(102, 126, 234, 0.1)',
           borderRadius: '20px',
           padding: '40px',
@@ -411,7 +423,7 @@ export default function EnhancedCollectionDynamic() {
           }}>
             ✨ Enhanced Features
           </h2>
-          <div style={{
+          <div className="enhanced-features-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
             gap: '24px'
@@ -430,7 +442,7 @@ export default function EnhancedCollectionDynamic() {
                   border: '1px solid #334155'
                 }}
               >
-                <div style={{ fontSize: '48px', marginBottom: '16px' }}>
+                <div className="feature-icon" style={{ fontSize: '48px', marginBottom: '16px' }}>
                   {feature.icon}
                 </div>
                 <h3 style={{ fontSize: '18px', marginBottom: '8px', color: '#10b981' }}>
@@ -447,10 +459,10 @@ export default function EnhancedCollectionDynamic() {
         {/* Enhanced Books Section */}
         {enhancedBooks.length > 0 && (
           <>
-            <h2 style={{ fontSize: '24px', marginBottom: '24px', color: '#10b981' }}>
+            <h2 style={{ fontSize: '24px', marginBottom: '24px', color: '#10b981', textAlign: 'center' }}>
               ✅ Ready to Read ({enhancedBooks.length})
             </h2>
-            <div style={{
+            <div className="books-grid-mobile" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
               gap: '20px',
@@ -458,7 +470,9 @@ export default function EnhancedCollectionDynamic() {
               justifyItems: 'center'
             }}>
               {visibleEnhancedBooks.map((book) => (
-                <BookCard key={book.id} book={book} />
+                <div key={book.id} className="book-card-mobile">
+                  <BookCard book={book} />
+                </div>
               ))}
             </div>
             
