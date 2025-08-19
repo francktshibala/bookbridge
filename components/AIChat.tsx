@@ -507,12 +507,56 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
 
     announceToScreenReader('Processing your question...');
 
+    // Declare timer variables in broader scope for cleanup
+    let timeoutId: NodeJS.Timeout | undefined;
+    let progressTimer1: NodeJS.Timeout | undefined;
+    let progressTimer2: NodeJS.Timeout | undefined;
+    let progressTimer3: NodeJS.Timeout | undefined;
+
     try {
-      // Simulate progress updates
+      // Enhanced progress updates with estimated time
+      const startTime = Date.now();
+      
       if (bookId) {
-        setProcessingStatus('Accessing book content...');
-        announceToScreenReader('Accessing book content...');
+        setProcessingStatus('🔍 Accessing book content... (Step 1 of 4)');
+        announceToScreenReader('Accessing book content, step 1 of 4');
+      } else {
+        setProcessingStatus('🤖 Preparing AI analysis... (Estimated 20-30 seconds)');
+        announceToScreenReader('Preparing AI analysis, estimated 20 to 30 seconds');
       }
+
+      // Create AbortController for timeout handling
+      const controller = new AbortController();
+      timeoutId = setTimeout(() => controller.abort(), 90000); // 90 second timeout
+
+      // Progress update after 5 seconds
+      progressTimer1 = setTimeout(() => {
+        if (bookId) {
+          setProcessingStatus('📚 Analyzing book context... (Step 2 of 4)');
+          announceToScreenReader('Analyzing book context, step 2 of 4');
+        } else {
+          setProcessingStatus('🧠 AI agents working... (Please wait, complex analysis in progress)');
+          announceToScreenReader('AI agents working, complex analysis in progress');
+        }
+      }, 5000);
+
+      // Progress update after 15 seconds
+      progressTimer2 = setTimeout(() => {
+        if (bookId) {
+          setProcessingStatus('⚡ Generating insights... (Step 3 of 4)');
+          announceToScreenReader('Generating insights, step 3 of 4');
+        } else {
+          setProcessingStatus('✨ Crafting personalized response... (Almost done)');
+          announceToScreenReader('Crafting personalized response, almost done');
+        }
+      }, 15000);
+
+      // Progress update after 25 seconds
+      progressTimer3 = setTimeout(() => {
+        const elapsed = Math.round((Date.now() - startTime) / 1000);
+        setProcessingStatus(`🎯 Finalizing response... (${elapsed}s elapsed, finishing up)`);
+        announceToScreenReader(`Finalizing response, ${elapsed} seconds elapsed, finishing up`);
+      }, 25000);
 
       const response = await fetch('/api/ai', {
         method: 'POST',
@@ -520,6 +564,7 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
           'Content-Type': 'application/json',
         },
         credentials: 'include', // Include cookies for server-side auth
+        signal: controller.signal, // Add abort signal
         body: JSON.stringify({
           query: userMessage.content,
           bookId,
@@ -529,10 +574,15 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         })
       });
 
-      if (bookId) {
-        setProcessingStatus('Analyzing your question...');
-        announceToScreenReader('Analyzing your question...');
-      }
+      // Clear all timers if request completes successfully
+      clearTimeout(timeoutId);
+      clearTimeout(progressTimer1);
+      clearTimeout(progressTimer2);
+      clearTimeout(progressTimer3);
+
+      const elapsed = Math.round((Date.now() - startTime) / 1000);
+      setProcessingStatus(`✅ Response ready! (Completed in ${elapsed}s)`);
+      announceToScreenReader(`Response ready, completed in ${elapsed} seconds`);
 
       const data = await response.json();
 
@@ -568,7 +618,25 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
 
     } catch (error) {
       console.error('AI request error:', error);
-      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      
+      // Clear any running progress timers
+      if (timeoutId) clearTimeout(timeoutId);
+      if (progressTimer1) clearTimeout(progressTimer1);
+      if (progressTimer2) clearTimeout(progressTimer2);
+      if (progressTimer3) clearTimeout(progressTimer3);
+      
+      let errorMessage = 'An unknown error occurred';
+      
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          errorMessage = '⏱️ Request timed out after 90 seconds. Your AI analysis was too complex - try asking a simpler question or try again later.';
+        } else if (error.message.includes('fetch')) {
+          errorMessage = '🌐 Network error. Please check your connection and try again.';
+        } else {
+          errorMessage = error.message;
+        }
+      }
+      
       setError(errorMessage);
       announceToScreenReader(`Error: ${errorMessage}`, 'assertive');
     } finally {
