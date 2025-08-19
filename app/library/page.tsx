@@ -512,9 +512,9 @@ export default function LibraryPage() {
         selectedAIBook.subjects?.length ? `, Subjects: ${selectedAIBook.subjects.join(', ')}` : ''
       }`;
 
-      // Add timeout to prevent hanging
+      // Add timeout to prevent hanging - increased for complex AI analysis
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 second timeout for complex AI processing
 
       const response = await fetch('/api/ai', {
         method: 'POST',
@@ -538,13 +538,25 @@ export default function LibraryPage() {
       }
 
       const data = await response.json();
-      return data.response || data.content || data.message || 'I received your question but had trouble generating a response. Please try again.';
+      
+      // Return the full AI response data for progressive disclosure
+      const aiResponse = {
+        content: data.response || data.content || data.message || 'I received your question but had trouble generating a response. Please try again.',
+        context: data.tutoringAgents?.context ? { content: data.tutoringAgents.context, confidence: 0.9 } : undefined,
+        insights: data.tutoringAgents?.insights ? { content: data.tutoringAgents.insights, confidence: 0.9 } : undefined,
+        questions: data.tutoringAgents?.questions ? { content: data.tutoringAgents.questions, confidence: 0.9 } : undefined,
+        crossBookConnections: data.crossBookConnections,
+        agentResponses: data.agentResponses,
+        multiAgent: data.multiAgent
+      };
+      
+      return JSON.stringify(aiResponse);
     } catch (error) {
       console.error('Error sending AI message:', error);
       
       if (error instanceof Error) {
         if (error.name === 'AbortError') {
-          throw new Error('Request timed out. Please try a shorter question or try again later.');
+          throw new Error('⏱️ Request timed out after 90 seconds. Your AI analysis was too complex - try asking a simpler question or try again later.');
         }
         if (error.message.includes('limit exceeded')) {
           throw new Error('You have reached your AI usage limit. Please upgrade your plan or try again later.');
