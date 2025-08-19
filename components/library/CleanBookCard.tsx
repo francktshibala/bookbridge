@@ -90,43 +90,6 @@ export function CleanBookCard({ book, onAskAI, onReadBook, index = 0 }: CleanBoo
         </p>
       </div>
       
-      {/* Book Meta Tags */}
-      <div 
-        className="book-meta"
-        style={{
-          display: 'flex',
-          gap: '12px',
-          marginBottom: '16px',
-          flexWrap: 'wrap'
-        }}
-      >
-        <span 
-          className="meta-tag genre-tag"
-          style={{
-            padding: '4px 12px',
-            background: 'rgba(102, 126, 234, 0.2)',
-            color: '#667eea',
-            borderRadius: '12px',
-            fontSize: '12px',
-            fontWeight: 600
-          }}
-        >
-          {primarySubject}
-        </span>
-        <span 
-          className="meta-tag read-count"
-          style={{
-            padding: '4px 12px',
-            background: 'rgba(16, 185, 129, 0.2)',
-            color: '#10b981',
-            borderRadius: '12px',
-            fontSize: '12px',
-            fontWeight: 600
-          }}
-        >
-          {formatReadCount(book.popularity)}
-        </span>
-      </div>
       
       {/* Book Description */}
       <p 

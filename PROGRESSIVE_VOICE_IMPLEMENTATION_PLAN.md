@@ -438,3 +438,222 @@ The Progressive Voice system is now **production-ready** and delivers the comple
 - Clean, maintainable codebase architecture
 
 **Next Phase:** System is ready for scaling to full library and Cloudflare R2 integration for permanent audio storage.
+
+---
+
+## 🎛️ ADMIN DASHBOARD IMPLEMENTATION PLAN (2025-08-19)
+
+### **Phase 9: Admin Dashboard Development**
+
+The Progressive Voice system is fully operational but needs an admin interface for monitoring and control. This phase focuses on building a comprehensive admin dashboard to manage the pre-generation system.
+
+### **Step-by-Step Implementation Plan**
+
+#### **Step 1: Project Setup & Planning (30 minutes)**
+- [ ] **Create Admin Dashboard Route Structure**
+  - **File**: `app/admin/page.tsx` (main dashboard)
+  - **File**: `app/admin/layout.tsx` (admin layout with sidebar)
+  - **File**: `app/admin/queue/page.tsx` (queue management)
+  - **File**: `app/admin/books/page.tsx` (book management)
+  - **File**: `app/admin/costs/page.tsx` (cost analytics)
+  - **File**: `app/admin/storage/page.tsx` (storage management)
+  - **File**: `app/admin/settings/page.tsx` (settings)
+
+- [ ] **Authentication Setup**
+  - **Requirement**: Admin-only access control
+  - **Implementation**: Check user role in layout middleware
+  - **Security**: Protect all `/admin/*` routes
+
+#### **Step 2: Core Layout & Navigation (45 minutes)**
+- [ ] **Create Admin Layout Component**
+  - **File**: `components/admin/AdminLayout.tsx`
+  - **Features**: Sidebar navigation, responsive design
+  - **Styling**: Match existing BookBridge design system
+  - **Navigation**: Dashboard, Queue, Books, Costs, Storage, Settings
+
+- [ ] **Implement Sidebar Navigation**
+  - **File**: `components/admin/AdminSidebar.tsx`
+  - **Features**: Active state tracking, icons, collapsible on mobile
+  - **Integration**: Use Next.js router for navigation state
+
+#### **Step 3: Dashboard Overview Page (60 minutes)**
+- [ ] **Create Dashboard Stats Component**
+  - **File**: `components/admin/DashboardStats.tsx`
+  - **Features**: 4-card stats grid (Audio Assets, Queue Jobs, Monthly Costs, Load Time)
+  - **Data Source**: Database queries for real-time stats
+  - **Styling**: Cards with hover effects, progress bars, trend indicators
+
+- [ ] **Implement Real-Time Stats API**
+  - **File**: `app/api/admin/stats/route.ts`
+  - **Queries**: 
+    - Total audio assets count
+    - Active queue jobs count
+    - Monthly TTS costs sum
+    - Average load time calculation
+  - **Performance**: Cached queries (5-minute TTL)
+
+#### **Step 4: Queue Management Interface (90 minutes)**
+- [ ] **Create Queue Management Component**
+  - **File**: `components/admin/QueueManagement.tsx`
+  - **Features**: 
+    - Queue table with filters (status, priority, book)
+    - Bulk actions (pause, resume, clear failed)
+    - Real-time status updates
+    - Job progress tracking
+
+- [ ] **Implement Queue Control APIs**
+  - **File**: `app/api/admin/queue/route.ts` (GET queue data)
+  - **File**: `app/api/admin/queue/[action]/route.ts` (POST actions)
+  - **Actions**: pause, resume, cancel, retry, clear-failed
+  - **Real-time**: WebSocket or Server-Sent Events for live updates
+
+- [ ] **Create Queue Filters Component**
+  - **File**: `components/admin/QueueFilters.tsx`
+  - **Features**: Status, priority, book selection dropdowns
+  - **State**: URL search params for filter persistence
+
+#### **Step 5: Book Management Interface (75 minutes)**
+- [ ] **Create Book Management Component**
+  - **File**: `components/admin/BookManagement.tsx`
+  - **Features**: 
+    - Book cards with progress tracking
+    - Manual pre-generation triggers
+    - Book configuration (CEFR levels, voices)
+    - Bulk book operations
+
+- [ ] **Implement Book Management APIs**
+  - **File**: `app/api/admin/books/route.ts` (GET books with stats)
+  - **File**: `app/api/admin/books/[bookId]/pregenerate/route.ts` (POST trigger)
+  - **Features**: 
+    - Book pre-generation status calculation
+    - Manual priority pre-generation
+    - Book configuration updates
+
+- [ ] **Create Book Card Component**
+  - **File**: `components/admin/BookCard.tsx`
+  - **Features**: Progress bars, action buttons, combination counts
+  - **Styling**: Compact design matching wireframe
+
+#### **Step 6: Cost Analytics Dashboard (60 minutes)**
+- [ ] **Create Cost Analytics Component**
+  - **File**: `components/admin/CostAnalytics.tsx`
+  - **Features**: 
+    - Cost overview cards (monthly spend, cost per asset, storage)
+    - Provider breakdown table
+    - Trend indicators and budget tracking
+    - Export functionality
+
+- [ ] **Implement Cost Analytics APIs**
+  - **File**: `app/api/admin/costs/route.ts`
+  - **Queries**: 
+    - Monthly cost aggregation by provider
+    - Cost per audio asset calculation
+    - Storage cost tracking
+    - Usage percentage by provider
+
+- [ ] **Create Cost Trend Component**
+  - **File**: `components/admin/CostTrends.tsx`
+  - **Features**: Visual indicators for cost changes, budget progress
+
+#### **Step 7: Data Integration & APIs (45 minutes)**
+- [ ] **Create Database Query Utilities**
+  - **File**: `lib/admin/queries.ts`
+  - **Functions**: 
+    - `getAdminStats()` - Dashboard overview
+    - `getQueueJobs(filters)` - Queue management
+    - `getBookStats()` - Book progress tracking
+    - `getCostAnalytics()` - Cost breakdown
+
+- [ ] **Implement WebSocket for Real-time Updates**
+  - **File**: `lib/admin/websocket.ts`
+  - **Features**: Live queue status, progress updates, cost tracking
+  - **Performance**: Throttled updates (max 1/second)
+
+#### **Step 8: Error Handling & Loading States (30 minutes)**
+- [ ] **Create Loading Components**
+  - **File**: `components/admin/LoadingStates.tsx`
+  - **Features**: Skeleton loaders, spinner states, error boundaries
+  - **Consistency**: Match BookBridge design patterns
+
+- [ ] **Implement Error Handling**
+  - **File**: `components/admin/ErrorHandling.tsx`
+  - **Features**: Graceful error states, retry mechanisms, fallback UI
+
+#### **Step 9: Mobile Responsiveness (30 minutes)**
+- [ ] **Optimize Mobile Layout**
+  - **Responsive**: Collapsible sidebar, stacked cards, touch-friendly buttons
+  - **Performance**: Lazy loading for mobile, reduced data fetching
+  - **Testing**: Test on various screen sizes
+
+#### **Step 10: Security & Performance (30 minutes)**
+- [ ] **Implement Admin Authentication**
+  - **File**: `middleware.ts` - Route protection
+  - **Features**: Role-based access, session validation
+  - **Security**: Rate limiting, input validation
+
+- [ ] **Performance Optimization**
+  - **Caching**: Redis caching for expensive queries
+  - **Pagination**: Large datasets (queue, books)
+  - **Optimization**: Database query optimization
+
+### **Implementation Timeline**
+
+**Total Estimated Time: 8-10 hours**
+
+- **Day 1 (4 hours)**: Steps 1-3 (Setup, Layout, Dashboard)
+- **Day 2 (3 hours)**: Steps 4-5 (Queue & Book Management)  
+- **Day 3 (2 hours)**: Steps 6-7 (Cost Analytics & APIs)
+- **Day 4 (1 hour)**: Steps 8-10 (Polish & Security)
+
+### **Success Criteria**
+
+✅ **Functional Requirements:**
+- Real-time monitoring of pre-generation queue
+- Manual control over book pre-generation
+- Cost tracking and budget management
+- Responsive design matching BookBridge styling
+
+✅ **Technical Requirements:**
+- Sub-100ms API response times
+- Real-time updates via WebSocket
+- Mobile-responsive design
+- Secure admin-only access
+
+✅ **User Experience:**
+- Intuitive navigation and controls
+- Clear visual hierarchy and status indicators  
+- Professional appearance matching existing app
+- Comprehensive monitoring capabilities
+
+### **File Structure Summary**
+
+```
+app/
+├── admin/
+│   ├── layout.tsx (admin layout)
+│   ├── page.tsx (dashboard overview)
+│   ├── queue/page.tsx (queue management)
+│   ├── books/page.tsx (book management)
+│   ├── costs/page.tsx (cost analytics)
+│   └── settings/page.tsx (settings)
+├── api/admin/
+│   ├── stats/route.ts (dashboard stats)
+│   ├── queue/route.ts (queue data)
+│   ├── queue/[action]/route.ts (queue actions)
+│   ├── books/route.ts (book data)
+│   └── costs/route.ts (cost analytics)
+components/admin/
+├── AdminLayout.tsx (main layout)
+├── AdminSidebar.tsx (navigation)
+├── DashboardStats.tsx (overview stats)
+├── QueueManagement.tsx (queue interface)
+├── BookManagement.tsx (book interface)
+├── CostAnalytics.tsx (cost interface)
+├── LoadingStates.tsx (loading UI)
+└── ErrorHandling.tsx (error UI)
+lib/admin/
+├── queries.ts (database utilities)
+└── websocket.ts (real-time updates)
+```
+
+**Ready to proceed step-by-step!** 🚀

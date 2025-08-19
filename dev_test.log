@@ -1124,3 +1124,73 @@ Stored 3 audio assets
 Job 35bb9f6b-93a9-4591-b335-6d1220b7da9c status: completed
 Updating progress for book gutenberg-1342
 Completed job: 35bb9f6b-93a9-4591-b335-6d1220b7da9c - Generated 3 audio files
+ ✓ Compiled in 421ms (294 modules)
+ ✓ Compiled in 182ms (294 modules)
+ ✓ Compiled in 164ms (294 modules)
+ ✓ Compiled in 204ms (294 modules)
+ ✓ Compiled in 106ms (294 modules)
+ ✓ Compiled in 133ms (294 modules)
+ ✓ Compiled in 142ms (294 modules)
+ ✓ Compiled in 127ms (294 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.2s (525 modules)
+Time 5.139373
+ GET /admin 404 in 2ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 7.9s (1955 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+Time 3.242927
+ GET /admin 404 in 1ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 2.1s (2049 modules)
+Time 3.365133
+Time 0.871945
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 664ms (1962 modules)
+ GET /admin 200 in 1100ms
+ GET /_next/static/chunks/main-app.js?v=1755633771333 404 in 86ms
+ ✓ Compiled in 790ms (1976 modules)
+ ✓ Compiled in 426ms (1976 modules)
+ ⨯ ./app/admin/page.tsx:2:1
+Module not found: Can't resolve '@/components/admin/QuickActions'
+  1 | import { DashboardStats } from '@/components/admin/DashboardStats';
+> 2 | import { QuickActions } from '@/components/admin/QuickActions';
+    | ^
+  3 |
+  4 | export default function AdminDashboard() {
+  5 |   return (
+
+https://nextjs.org/docs/messages/module-not-found
+ ✓ Compiled in 1081ms (1979 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/user/bookbridge/bookbridge/.next/cache/webpack/client-development/10.pack.gz_' -> '/Users/user/bookbridge/bookbridge/.next/cache/webpack/client-development/10.pack.gz'
+ ✓ Compiled in 387ms (879 modules)
+ ○ Compiling /auth/login ...
+ ✓ Compiled /auth/login in 1267ms (1962 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/user/bookbridge/bookbridge/.next/routes-manifest.json',
+  page: '/auth/login'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- /Users/user/bookbridge/bookbridge/.next/server/webpack-runtime.js
+- /Users/user/bookbridge/bookbridge/.next/server/app/auth/login/page.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/require.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/load-components.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/utils.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/swc/options.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/swc/index.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/lib/router-server.js
+- /Users/user/bookbridge/bookbridge/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:1:327)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Time 3.304552
+ GET /auth/login 500 in 2605ms

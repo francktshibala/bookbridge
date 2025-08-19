@@ -14,6 +14,7 @@ import { CatalogBookSkeleton } from '@/components/CatalogBookSkeleton';
 import { RecommendationsSection } from '@/components/RecommendationsSection';
 import { useBookViewTracking } from '@/lib/use-recommendations';
 import { useAuth } from '@/components/SimpleAuthProvider';
+import { AIBookChatModal } from '@/components/ai/AIBookChatModal';
 import type { ExternalBook, BookSearchResults, BookSource } from '@/types/book-sources';
 
 interface Book {
@@ -70,6 +71,8 @@ export default function LibraryPage() {
   const [genreFilter, setGenreFilter] = useState('');
   const [startYear, setStartYear] = useState('');
   const [endYear, setEndYear] = useState('');
+  const [isAIChatOpen, setIsAIChatOpen] = useState(false);
+  const [selectedAIBook, setSelectedAIBook] = useState<ExternalBook | null>(null);
 
   // Convert internal Book to ExternalBook for tracking
   const selectedExternalBook: ExternalBook | null = selectedBook ? {
@@ -488,8 +491,69 @@ export default function LibraryPage() {
   const handleAskAI = (book: ExternalBook) => {
     console.log('Opening AI chat for book:', book);
     announceToScreenReader(`Opening AI chat for ${book.title} by ${book.author}`);
-    // TODO: Open AI chat modal (Step 8.3)
-    alert(`AI Chat for "${book.title}" will be implemented in Step 8.3`);
+    setSelectedAIBook(book);
+    setIsAIChatOpen(true);
+  };
+
+  const handleCloseAIChat = () => {
+    setIsAIChatOpen(false);
+    setSelectedAIBook(null);
+  };
+
+  const handleSendAIMessage = async (message: string): Promise<string> => {
+    if (!selectedAIBook) {
+      throw new Error('No book selected for AI chat');
+    }
+
+    try {
+      const bookContext = `Title: ${selectedAIBook.title}, Author: ${selectedAIBook.author}${
+        selectedAIBook.description ? `, Description: ${selectedAIBook.description}` : ''
+      }${
+        selectedAIBook.subjects?.length ? `, Subjects: ${selectedAIBook.subjects.join(', ')}` : ''
+      }`;
+
+      // Add timeout to prevent hanging
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
+      const response = await fetch('/api/ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: message,
+          bookId: selectedAIBook.id,
+          bookContext: bookContext,
+        }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.error || errorData.message || `HTTP error! status: ${response.status}`;
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      return data.response || data.content || data.message || 'I received your question but had trouble generating a response. Please try again.';
+    } catch (error) {
+      console.error('Error sending AI message:', error);
+      
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          throw new Error('Request timed out. Please try a shorter question or try again later.');
+        }
+        if (error.message.includes('limit exceeded')) {
+          throw new Error('You have reached your AI usage limit. Please upgrade your plan or try again later.');
+        }
+        throw new Error(error.message);
+      }
+      
+      throw new Error('Failed to get AI response. Please try again.');
+    }
   };
 
   const handleReadBook = (bookId: string) => {
@@ -834,294 +898,46 @@ export default function LibraryPage() {
   return (
     <div className="page-container magical-bg" style={{ minHeight: '100vh' }}>
       <div className="page-content" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
-        {/* Magical Hero Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          style={{
-            textAlign: 'center',
-            padding: '80px 0 60px 0',
-            background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 50%, rgba(240, 147, 251, 0.1) 100%)',
-            borderRadius: '32px',
-            marginBottom: '48px',
-            border: '1px solid var(--border-light)',
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
-          {/* Floating particles background */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(240, 147, 251, 0.3) 0%, transparent 50%)',
-            pointerEvents: 'none'
-          }} />
-          
-          <AccessibleWrapper as="header" style={{ position: 'relative', zIndex: 1 }}>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-gradient page-title" 
-              style={{ 
-                fontSize: '4.5rem', 
-                letterSpacing: '-0.02em',
-                marginBottom: '24px',
-                fontWeight: '900',
-                lineHeight: '1.1'
-              }}
-            >
-              📚 Discover Literary Magic
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              style={{
-                fontSize: '1.3rem',
-                color: 'var(--text-secondary)',
-                fontWeight: '500',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                marginBottom: '40px',
-                maxWidth: '700px',
-                margin: '0 auto 40px auto',
-                lineHeight: '1.6'
-              }}
-            >
-              Explore 20M+ classic books with AI-powered insights. From Gutenberg to Google Books - your literary journey starts here.
-            </motion.p>
-
-            {/* Elegant Tab Navigation */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '12px',
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(20px)',
-                borderRadius: '20px',
-                padding: '8px',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
-              }}
-            >
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setActiveTab('my-books');
-                  announceToScreenReader('Switched to My Books tab');
-                }}
-                style={{
-                  padding: '16px 32px',
-                  borderRadius: '16px',
-                  fontSize: '1.1rem',
-                  fontWeight: '700',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  background: activeTab === 'my-books' 
-                    ? 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)' 
-                    : 'transparent',
-                  color: activeTab === 'my-books' ? '#ffffff' : 'var(--text-secondary)',
-                  boxShadow: activeTab === 'my-books' 
-                    ? '0 8px 25px rgba(102, 126, 234, 0.4)' 
-                    : 'none',
-                  border: 'none',
-                  transform: activeTab === 'my-books' ? 'translateY(-2px)' : 'translateY(0)'
-                }}
-              >
-                📚 My Collection
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setActiveTab('browse');
-                  announceToScreenReader('Switched to Browse Catalog tab');
-                }}
-                style={{
-                  padding: '16px 32px',
-                  borderRadius: '16px',
-                  fontSize: '1.1rem',
-                  fontWeight: '700',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  background: activeTab === 'browse' 
-                    ? 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)' 
-                    : 'transparent',
-                  color: activeTab === 'browse' ? '#ffffff' : 'var(--text-secondary)',
-                  boxShadow: activeTab === 'browse' 
-                    ? '0 8px 25px rgba(102, 126, 234, 0.4)' 
-                    : 'none',
-                  border: 'none',
-                  transform: activeTab === 'browse' ? 'translateY(-2px)' : 'translateY(0)'
-                }}
-              >
-                🌟 Discover Books
-              </motion.button>
-            </motion.div>
-          </AccessibleWrapper>
-        </motion.div>
-
-
-        {activeTab === 'my-books' ? (
-          <>
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                role="alert"
-                aria-live="assertive"
-                style={{
-                  background: 'linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%)',
-                  border: '1px solid #fc8181',
-                  borderRadius: '12px',
-                  padding: '20px',
-                  marginBottom: '24px',
-                  textAlign: 'center'
-                }}
-              >
-                <div style={{
-                  color: '#c53030',
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  marginBottom: '12px'
-                }}>{error}</div>
-                <button
-                  onClick={() => fetchBooks()}
-                  style={{
-                    color: '#c53030',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                    background: 'none',
-                    border: 'none',
-                    textDecoration: 'underline',
-                    cursor: 'pointer',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#9c2626';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#c53030';
-                  }}
-                >
-                  Try Again
-                </button>
-              </motion.div>
-            )}
-            {renderMyBooksContent()}
-          </>
-        ) : (
-        // Browse Catalog Tab Content
+        {/* Browse Catalog Content */}
         <AccessibleWrapper as="main" ariaLabelledBy="catalog-heading">
-          {/* General Recommendations Section */}
-          <RecommendationsSection
-            onAnalyzeBook={handleAskAI}
-            title="✨ Discover Popular Books"
-            subtitle="Books that readers love - start here to explore our collection"
-            maxRecommendations={6}
-          />
-          {/* Elegant Section Header */}
+          {/* Clean Header */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
             style={{
               textAlign: 'center',
-              marginBottom: '48px',
-              padding: '40px 32px',
-              background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(240, 147, 251, 0.08) 100%)',
-              borderRadius: '24px',
-              border: '1px solid var(--border-light)',
-              position: 'relative',
-              overflow: 'hidden'
+              marginBottom: '48px'
             }}
           >
-            {/* Decorative elements */}
-            <div style={{
-              position: 'absolute',
-              top: '-50%',
-              left: '-50%',
-              width: '200%',
-              height: '200%',
-              background: 'radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%)',
-              animation: 'float 6s ease-in-out infinite',
-              pointerEvents: 'none'
-            }} />
-            
             <motion.h2 
               id="catalog-heading"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
               style={{
-                fontSize: '3rem',
-                fontWeight: '900',
-                background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                fontSize: '2.5rem',
+                fontWeight: '700',
+                color: '#8b5cf6',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                margin: '0 0 16px 0',
-                letterSpacing: '-0.02em',
-                position: 'relative',
-                zIndex: 1
+                margin: '0 0 16px 0'
               }}
             >
-              ✨ Explore Literary Treasures
+              📚 Browse All Books
             </motion.h2>
             
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
               style={{
-                fontSize: '1.1rem',
-                color: 'var(--text-secondary)',
-                fontWeight: '500',
+                fontSize: '1rem',
+                color: '#94a3b8',
+                fontWeight: '400',
                 maxWidth: '600px',
                 margin: '0 auto',
-                lineHeight: '1.6',
-                position: 'relative',
-                zIndex: 1
+                lineHeight: '1.6'
               }}
             >
-              Browse through millions of classic books from renowned sources. Find your next literary adventure with AI-powered recommendations.
+              Explore thousands of classic books from renowned sources. Discover your next favorite read with AI-powered insights.
             </motion.p>
-            {catalogPagination.total > 0 && (
-              <motion.span 
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                style={{
-                  fontSize: 'var(--text-sm)',
-                  color: 'var(--text-secondary)',
-                  fontWeight: '500',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  backgroundColor: 'var(--surface-subtle)',
-                  padding: '6px 12px',
-                  borderRadius: '20px'
-                }}
-              >
-                {catalogPagination.total.toLocaleString()}+ books available
-              </motion.span>
-            )}
           </motion.div>
 
-          {/* Catalog Search Controls */}
+          {/* Simple Search Controls */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1131,265 +947,65 @@ export default function LibraryPage() {
             <div style={{ 
               display: 'flex', 
               gap: '12px',
-              flexWrap: 'wrap',
               alignItems: 'center',
-              marginBottom: '16px'
+              justifyContent: 'center',
+              maxWidth: '800px',
+              margin: '0 auto'
             }}>
-              <div style={{ flex: '1', minWidth: '300px' }}>
-                <input
-                  type="text"
-                  value={catalogSearch}
-                  onChange={(e) => setCatalogSearch(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      handleCatalogSearch();
-                    }
-                  }}
-                  placeholder="Search classic books by title or author..."
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    border: '2px solid #e2e8f0',
-                    borderRadius: '12px',
-                    fontSize: '16px',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                    fontWeight: '500',
-                    color: '#2d3748',
-                    backgroundColor: 'white',
-                    outline: 'none',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#667eea';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#e2e8f0';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                />
-              </div>
+              <input
+                type="text"
+                value={catalogSearch}
+                onChange={(e) => setCatalogSearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleCatalogSearch();
+                  }
+                }}
+                placeholder="shakespeare"
+                style={{
+                  flex: '1',
+                  padding: '12px 16px',
+                  border: '1px solid #334155',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  color: '#e2e8f0',
+                  backgroundColor: '#1e293b',
+                  outline: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#8b5cf6';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#334155';
+                }}
+              />
               
-              {/* Source Filter Dropdown */}
               <select
                 value={selectedSource}
                 onChange={(e) => {
                   const newSource = e.target.value as 'all' | BookSource;
                   setSelectedSource(newSource);
-                  fetchCatalogBooks(1, catalogSearch, newSource, {
-                    author: authorFilter,
-                    genre: genreFilter,
-                    startYear: startYear,
-                    endYear: endYear
-                  });
+                  fetchCatalogBooks(1, catalogSearch, newSource);
                 }}
                 style={{
                   padding: '12px 16px',
-                  border: '2px solid #e2e8f0',
-                  borderRadius: '12px',
+                  border: '1px solid #334155',
+                  borderRadius: '8px',
                   fontSize: '16px',
                   fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  fontWeight: '500',
-                  color: '#2d3748',
-                  backgroundColor: 'white',
+                  color: '#e2e8f0',
+                  backgroundColor: '#1e293b',
                   outline: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
+                  cursor: 'pointer'
                 }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#667eea';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#e2e8f0';
-                  e.target.style.boxShadow = 'none';
-                }}
-                aria-label="Filter by book source"
               >
-                <option value="all">📚 All Sources</option>
-                <option value="gutenberg">📖 Project Gutenberg (76K+)</option>
-                <option value="openlibrary">🌍 Open Library (1.4M+)</option>
-                {/* <option value="standard-ebooks">✨ Standard Ebooks (500+)</option> */}
-                <option value="googlebooks">🔍 Google Books (20M+)</option>
+                <option value="all">All Sources</option>
+                <option value="gutenberg">Project Gutenberg</option>
+                <option value="openlibrary">Open Library</option>
+                <option value="googlebooks">Google Books</option>
               </select>
-              
-              {/* Advanced Filters */}
-              <div style={{
-                display: 'flex',
-                gap: '12px',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                padding: '12px',
-                backgroundColor: '#f8fafc',
-                borderRadius: '12px',
-                border: '1px solid #e2e8f0'
-              }}>
-                <span style={{
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  color: '#4a5568',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-                }}>
-                  🔍 Filters:
-                </span>
-                
-                {/* Author Filter */}
-                <input
-                  type="text"
-                  value={authorFilter}
-                  onChange={(e) => setAuthorFilter(e.target.value)}
-                  placeholder="Author name..."
-                  style={{
-                    padding: '8px 12px',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '8px',
-                    fontSize: '14px',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                    color: '#374151',
-                    backgroundColor: 'white',
-                    outline: 'none',
-                    minWidth: '120px',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#667eea';
-                    e.target.style.boxShadow = '0 0 0 2px rgba(102, 126, 234, 0.1)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#e2e8f0';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                />
-                
-                {/* Genre Filter */}
-                <select
-                  value={genreFilter}
-                  onChange={(e) => setGenreFilter(e.target.value)}
-                  style={{
-                    padding: '8px 12px',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '8px',
-                    fontSize: '14px',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                    color: '#374151',
-                    backgroundColor: 'white',
-                    outline: 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#667eea';
-                    e.target.style.boxShadow = '0 0 0 2px rgba(102, 126, 234, 0.1)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#e2e8f0';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                >
-                  <option value="">All Genres</option>
-                  <option value="fiction">Fiction</option>
-                  <option value="science fiction">Science Fiction</option>
-                  <option value="fantasy">Fantasy</option>
-                  <option value="mystery">Mystery</option>
-                  <option value="romance">Romance</option>
-                  <option value="history">History</option>
-                  <option value="biography">Biography</option>
-                  <option value="philosophy">Philosophy</option>
-                  <option value="poetry">Poetry</option>
-                  <option value="drama">Drama</option>
-                  <option value="children">Children's Books</option>
-                  <option value="young adult">Young Adult</option>
-                </select>
-                
-                {/* Publication Year Range */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <input
-                    type="number"
-                    value={startYear}
-                    onChange={(e) => setStartYear(e.target.value)}
-                    placeholder="From year"
-                    min="1800"
-                    max="2024"
-                    style={{
-                      padding: '8px 12px',
-                      border: '1px solid #e2e8f0',
-                      borderRadius: '8px',
-                      fontSize: '14px',
-                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                      color: '#374151',
-                      backgroundColor: 'white',
-                      outline: 'none',
-                      width: '90px',
-                      transition: 'all 0.2s ease'
-                    }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = '#667eea';
-                      e.target.style.boxShadow = '0 0 0 2px rgba(102, 126, 234, 0.1)';
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = '#e2e8f0';
-                      e.target.style.boxShadow = 'none';
-                    }}
-                  />
-                  <span style={{ color: '#6b7280', fontSize: '14px' }}>-</span>
-                  <input
-                    type="number"
-                    value={endYear}
-                    onChange={(e) => setEndYear(e.target.value)}
-                    placeholder="To year"
-                    min="1800"
-                    max="2024"
-                    style={{
-                      padding: '8px 12px',
-                      border: '1px solid #e2e8f0',
-                      borderRadius: '8px',
-                      fontSize: '14px',
-                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                      color: '#374151',
-                      backgroundColor: 'white',
-                      outline: 'none',
-                      width: '90px',
-                      transition: 'all 0.2s ease'
-                    }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = '#667eea';
-                      e.target.style.boxShadow = '0 0 0 2px rgba(102, 126, 234, 0.1)';
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = '#e2e8f0';
-                      e.target.style.boxShadow = 'none';
-                    }}
-                  />
-                </div>
-                
-                {/* Clear Filters Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    setAuthorFilter('');
-                    setGenreFilter('');
-                    setStartYear('');
-                    setEndYear('');
-                    setCatalogPage(1);
-                    fetchCatalogBooks(1, catalogSearch, selectedSource);
-                  }}
-                  style={{
-                    padding: '8px 12px',
-                    backgroundColor: '#f1f5f9',
-                    border: '1px solid #cbd5e1',
-                    borderRadius: '8px',
-                    fontSize: '12px',
-                    fontWeight: '500',
-                    color: '#475569',
-                    cursor: 'pointer',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  Clear Filters
-                </motion.button>
-              </div>
               
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -1397,87 +1013,35 @@ export default function LibraryPage() {
                 onClick={handleCatalogSearch}
                 disabled={catalogLoading}
                 style={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  background: '#8b5cf6',
                   color: 'white',
                   border: 'none',
-                  borderRadius: '12px',
-                  padding: '12px 20px',
+                  borderRadius: '8px',
+                  padding: '12px 24px',
                   fontSize: '16px',
                   fontWeight: '600',
                   fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                   cursor: catalogLoading ? 'not-allowed' : 'pointer',
-                  opacity: catalogLoading ? 0.7 : 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
-                  transition: 'all 0.2s ease'
+                  opacity: catalogLoading ? 0.7 : 1
                 }}
               >
-                🔍 Search
+                Search
               </motion.button>
-              
-              {catalogSearch && (
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    setCatalogSearch('');
-                    setAuthorFilter('');
-                    setGenreFilter('');
-                    setStartYear('');
-                    setEndYear('');
-                    setCatalogPage(1);
-                    fetchCatalogBooks(1, '', selectedSource);
-                  }}
-                  style={{
-                    background: 'white',
-                    color: '#718096',
-                    border: '2px solid #e2e8f0',
-                    borderRadius: '12px',
-                    padding: '12px 16px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#cbd5e0';
-                    e.currentTarget.style.backgroundColor = '#f7fafc';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#e2e8f0';
-                    e.currentTarget.style.backgroundColor = 'white';
-                  }}
-                >
-                  ✕ Clear
-                </motion.button>
-              )}
             </div>
             
-            {/* Search Results Info */}
-            {catalogSearch && catalogPagination.total >= 0 && (
+            {catalogPagination.total > 0 && (
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 style={{
                   fontSize: '14px',
-                  color: '#718096',
+                  color: '#64748b',
                   fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  margin: 0,
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  marginTop: '16px'
                 }}
               >
-                {catalogPagination.total === 0 
-                  ? `No results found for "${catalogSearch}"`
-                  : `Found ${catalogPagination.total.toLocaleString()} results for "${catalogSearch}"`
-                }
+                Found {catalogPagination.total.toLocaleString()} books matching "{catalogSearch || 'all books'}"
               </motion.p>
             )}
           </motion.div>
@@ -1661,7 +1225,14 @@ export default function LibraryPage() {
             </>
           )}
         </AccessibleWrapper>
-      )}
+
+      {/* AI Chat Modal */}
+      <AIBookChatModal
+        isOpen={isAIChatOpen}
+        book={selectedAIBook}
+        onClose={handleCloseAIChat}
+        onSendMessage={handleSendAIMessage}
+      />
     </div>
     </div>
   );
