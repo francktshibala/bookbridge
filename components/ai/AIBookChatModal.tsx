@@ -4,10 +4,85 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ExternalBook } from '@/types/book-sources';
 
+// Helper function to format AI responses with better paragraph structure
+const formatAIResponse = (content: string): string => {
+  return content
+    // Convert bold markdown to HTML with better styling
+    .replace(/\*\*(.*?)\*\*/g, '<strong style="color: #f1f5f9; font-weight: 600;">$1</strong>')
+    // Handle quoted text
+    .replace(/"([^"]+)"/g, '<span style="color: #8b5cf6; font-style: italic;">"$1"</span>')
+    // Clean up any escaped HTML/CSS that shouldn't be displayed as text
+    .replace(/style="[^"]*"/g, '') // Remove any style attributes that got through
+    .replace(/color:\s*#[a-fA-F0-9]{6};\s*/g, '') // Remove color properties
+    .replace(/font-weight:\s*\d+;\s*/g, '') // Remove font-weight properties
+    .replace(/"">/g, '') // Remove formatting artifacts from AI responses
+    // Split into paragraphs and add proper spacing
+    .split('\n\n')
+    .map(paragraph => {
+      if (paragraph.trim()) {
+        // Check if it contains list items
+        if (paragraph.includes('- ')) {
+          const lines = paragraph.split('\n').filter(line => line.trim());
+          const nonListLines = lines.filter(line => !line.trim().startsWith('- '));
+          const listLines = lines.filter(line => line.trim().startsWith('- '));
+          
+          let result = '';
+          
+          // Add non-list content as a paragraph
+          if (nonListLines.length > 0) {
+            result += `<p style="margin-bottom: 12px; line-height: 1.6;">${nonListLines.join(' ')}</p>`;
+          }
+          
+          // Add list items
+          if (listLines.length > 0) {
+            result += '<ul style="margin: 12px 0; padding-left: 24px; list-style-type: disc;">';
+            listLines.forEach(item => {
+              const cleanItem = item.replace(/^- /, '').trim();
+              result += `<li style="margin-bottom: 6px; line-height: 1.5;">${cleanItem}</li>`;
+            });
+            result += '</ul>';
+          }
+          return result;
+        } else {
+          // Check if this is a question section
+          if (paragraph.includes('?')) {
+            return `<p style="margin-bottom: 18px; line-height: 1.7; padding: 12px 0; border-left: 3px solid rgba(139, 92, 246, 0.3); padding-left: 16px; margin-left: 8px;">${paragraph.trim()}</p>`;
+          } else {
+            // Regular paragraph with better styling
+            return `<p style="margin-bottom: 18px; line-height: 1.7;">${paragraph.trim()}</p>`;
+          }
+        }
+      }
+      return '';
+    })
+    .join('')
+    // Remove trailing margin from last element
+    .replace(/margin-bottom: 18px;(?=[^>]*>(?:[^<]|<(?!\/p>))*<\/p>\s*$)/, 'margin-bottom: 0;');
+};
+
+interface AIResponseData {
+  content: string;
+  context?: {
+    content: string;
+    confidence: number;
+  };
+  insights?: {
+    content: string;
+    confidence: number;
+  };
+  questions?: {
+    content: string;
+    confidence: number;
+  };
+  crossBookConnections?: any;
+  agentResponses?: any;
+}
+
 interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  aiData?: AIResponseData; // Rich AI analysis data
 }
 
 interface AIBookChatModalProps {
@@ -16,6 +91,190 @@ interface AIBookChatModalProps {
   onClose: () => void;
   onSendMessage?: (message: string) => Promise<string>;
 }
+
+// Progressive Disclosure AI Message Component
+const AIMessageWithDisclosure: React.FC<{ message: ChatMessage }> = ({ message }) => {
+  const [showDetails, setShowDetails] = useState(false);
+  
+  if (message.role !== 'assistant' || !message.aiData) {
+    return null;
+  }
+
+  const { aiData } = message;
+  const hasRichData = aiData.context || aiData.insights || aiData.questions;
+
+  return (
+    <div style={{ width: '100%' }}>
+      {/* Main AI Response */}
+      <div
+        style={{
+          background: 'rgba(139, 92, 246, 0.1)',
+          border: '1px solid rgba(139, 92, 246, 0.2)',
+          borderRadius: '12px',
+          padding: '16px',
+          color: '#e2e8f0',
+          lineHeight: '1.5',
+          marginBottom: hasRichData ? '12px' : '0'
+        }}
+        dangerouslySetInnerHTML={{
+          __html: formatAIResponse(message.content)
+        }}
+      />
+      
+      {/* Progressive Disclosure Button */}
+      {hasRichData && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: showDetails ? '16px' : '0' }}>
+          <button
+            onClick={() => setShowDetails(!showDetails)}
+            style={{
+              background: showDetails ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.2)',
+              border: `1px solid ${showDetails ? '#8b5cf6' : 'rgba(139, 92, 246, 0.3)'}`,
+              borderRadius: '20px',
+              padding: '8px 16px',
+              color: showDetails ? '#c4b5fd' : '#a78bfa',
+              fontSize: '14px',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+            onMouseEnter={(e) => {
+              if (!showDetails) {
+                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.3)';
+                e.currentTarget.style.borderColor = '#8b5cf6';
+                e.currentTarget.style.color = '#c4b5fd';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!showDetails) {
+                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)';
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+                e.currentTarget.style.color = '#a78bfa';
+              }
+            }}
+          >
+            {showDetails ? '🔼 Hide Details' : '💡 Explore Deeper'}
+          </button>
+        </div>
+      )}
+      
+      {/* Expanded Details */}
+      {showDetails && hasRichData && (
+        <div style={{
+          background: 'rgba(15, 23, 42, 0.8)',
+          border: '1px solid rgba(139, 92, 246, 0.2)',
+          borderRadius: '12px',
+          padding: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px'
+        }}>
+          
+          {/* Questions Section */}
+          {aiData.questions && (
+            <div>
+              <h4 style={{
+                color: '#8b5cf6',
+                fontSize: '18px',
+                fontWeight: '700',
+                marginBottom: '14px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+              }}>
+                🎯 Think About This
+              </h4>
+              <div
+                style={{
+                  background: 'rgba(139, 92, 246, 0.08)',
+                  borderLeft: '4px solid #8b5cf6',
+                  padding: '16px 20px',
+                  borderRadius: '0 12px 12px 0',
+                  color: '#e2e8f0',
+                  lineHeight: '1.7',
+                  fontSize: '15px',
+                  boxShadow: '0 2px 8px rgba(139, 92, 246, 0.1)'
+                }}
+                dangerouslySetInnerHTML={{
+                  __html: formatAIResponse(aiData.questions.content)
+                }}
+              />
+            </div>
+          )}
+          
+          {/* Insights Section */}
+          {aiData.insights && (
+            <div>
+              <h4 style={{
+                color: '#10b981',
+                fontSize: '18px',
+                fontWeight: '700',
+                marginBottom: '14px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+              }}>
+                🧠 Deep Insights
+              </h4>
+              <div
+                style={{
+                  background: 'rgba(16, 185, 129, 0.08)',
+                  borderLeft: '4px solid #10b981',
+                  padding: '16px 20px',
+                  borderRadius: '0 12px 12px 0',
+                  color: '#e2e8f0',
+                  lineHeight: '1.7',
+                  fontSize: '15px',
+                  boxShadow: '0 2px 8px rgba(16, 185, 129, 0.1)'
+                }}
+                dangerouslySetInnerHTML={{
+                  __html: formatAIResponse(aiData.insights.content)
+                }}
+              />
+            </div>
+          )}
+          
+          {/* Context Section */}
+          {aiData.context && (
+            <div>
+              <h4 style={{
+                color: '#f59e0b',
+                fontSize: '18px',
+                fontWeight: '700',
+                marginBottom: '14px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+              }}>
+                📚 Learning Context
+              </h4>
+              <div
+                style={{
+                  background: 'rgba(245, 158, 11, 0.08)',
+                  borderLeft: '4px solid #f59e0b',
+                  padding: '16px 20px',
+                  borderRadius: '0 12px 12px 0',
+                  color: '#e2e8f0',
+                  lineHeight: '1.7',
+                  fontSize: '15px',
+                  boxShadow: '0 2px 8px rgba(245, 158, 11, 0.1)'
+                }}
+                dangerouslySetInnerHTML={{
+                  __html: formatAIResponse(aiData.context.content)
+                }}
+              />
+            </div>
+          )}
+          
+        </div>
+      )}
+    </div>
+  );
+};
 
 export function AIBookChatModal({ 
   isOpen, 
@@ -75,18 +334,33 @@ export function AIBookChatModal({
     try {
       let aiResponse: string;
       
+      let aiData: AIResponseData = { content: '' };
+      
       if (onSendMessage) {
         aiResponse = await onSendMessage(message);
+        
+        // Try to parse rich AI data
+        try {
+          aiData = JSON.parse(aiResponse);
+          console.log('🎯 Parsed AI Data:', aiData); // Debug log
+          aiResponse = aiData.content; // Use the main content for display
+        } catch (e) {
+          // If parsing fails, treat as simple string response
+          console.log('❌ Failed to parse AI data:', e, 'Raw response:', aiResponse);
+          aiData = { content: aiResponse };
+        }
       } else {
         // Default demo response
         await new Promise(resolve => setTimeout(resolve, 1000));
         aiResponse = `I'm processing your question about "${book?.title}". In a real implementation, this would connect to an AI service to provide detailed analysis and answers about the literary work.`;
+        aiData = { content: aiResponse };
       }
 
       const assistantMessage: ChatMessage = {
         role: 'assistant',
         content: aiResponse,
-        timestamp: new Date()
+        timestamp: new Date(),
+        aiData: aiData
       };
 
       setMessages(prev => [...prev, assistantMessage]);
@@ -431,25 +705,27 @@ export function AIBookChatModal({
                     >
                       {message.role === 'user' ? '👤' : '🤖'}
                     </div>
-                    <div
-                      style={{
-                        background: message.role === 'user'
-                          ? 'rgba(102, 126, 234, 0.1)'
-                          : 'rgba(139, 92, 246, 0.1)',
-                        border: `1px solid ${message.role === 'user'
-                          ? 'rgba(102, 126, 234, 0.2)'
-                          : 'rgba(139, 92, 246, 0.2)'}`,
-                        borderRadius: '12px',
-                        padding: '16px',
-                        color: '#e2e8f0',
-                        lineHeight: '1.5',
-                        flex: 1,
-                        textAlign: message.role === 'user' ? 'right' : 'left'
-                      }}
-                      dangerouslySetInnerHTML={{
-                        __html: message.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                      }}
-                    />
+                    
+                    {/* Use Progressive Disclosure for AI messages, simple display for user messages */}
+                    {message.role === 'assistant' ? (
+                      <AIMessageWithDisclosure message={message} />
+                    ) : (
+                      <div
+                        style={{
+                          background: 'rgba(102, 126, 234, 0.1)',
+                          border: '1px solid rgba(102, 126, 234, 0.2)',
+                          borderRadius: '12px',
+                          padding: '16px',
+                          color: '#e2e8f0',
+                          lineHeight: '1.5',
+                          flex: 1,
+                          textAlign: 'right'
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: formatAIResponse(message.content)
+                        }}
+                      />
+                    )}
                   </div>
                 ))}
                 {isLoading && (
