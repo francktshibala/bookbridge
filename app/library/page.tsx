@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { gutenbergAPI } from '@/lib/book-sources/gutenberg-api';
 import { openLibraryAPI } from '@/lib/book-sources/openlibrary-api';
 import { standardEbooksAPI } from '@/lib/book-sources/standardebooks-api';
-import { CatalogBookCard } from '@/components/CatalogBookCard';
+import { CleanBookCard } from '@/components/library/CleanBookCard';
 import { CatalogBookSkeleton } from '@/components/CatalogBookSkeleton';
 import { RecommendationsSection } from '@/components/RecommendationsSection';
 import { useBookViewTracking } from '@/lib/use-recommendations';
@@ -485,11 +485,18 @@ export default function LibraryPage() {
     announceToScreenReader('Returned to library view');
   };
   
-  const handleAnalyzeCatalogBook = (book: ExternalBook) => {
-    console.log('Analyzing catalog book:', book);
-    announceToScreenReader(`Opening ${book.title} by ${book.author}`);
-    // Navigate to the book detail page instead of updating state
-    router.push(`/library/${book.id}`);
+  const handleAskAI = (book: ExternalBook) => {
+    console.log('Opening AI chat for book:', book);
+    announceToScreenReader(`Opening AI chat for ${book.title} by ${book.author}`);
+    // TODO: Open AI chat modal (Step 8.3)
+    alert(`AI Chat for "${book.title}" will be implemented in Step 8.3`);
+  };
+
+  const handleReadBook = (bookId: string) => {
+    console.log('Reading book:', bookId);
+    announceToScreenReader(`Opening book for reading`);
+    // Navigate to the book detail page
+    router.push(`/library/${bookId}`);
   };
 
   if (selectedBook) {
@@ -1023,7 +1030,7 @@ export default function LibraryPage() {
         <AccessibleWrapper as="main" ariaLabelledBy="catalog-heading">
           {/* General Recommendations Section */}
           <RecommendationsSection
-            onAnalyzeBook={handleAnalyzeCatalogBook}
+            onAnalyzeBook={handleAskAI}
             title="✨ Discover Popular Books"
             subtitle="Books that readers love - start here to explore our collection"
             maxRecommendations={6}
@@ -1555,18 +1562,18 @@ export default function LibraryPage() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-                  gap: '32px',
-                  justifyItems: 'center',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+                  gap: '24px',
                   marginBottom: '48px',
-                  padding: '0 12px'
+                  padding: '0 20px'
                 }}
               >
                 {catalogBooks.map((book, index) => (
-                  <CatalogBookCard
+                  <CleanBookCard
                     key={book.id}
                     book={book}
-                    onAnalyze={handleAnalyzeCatalogBook}
+                    onAskAI={handleAskAI}
+                    onReadBook={handleReadBook}
                     index={index}
                   />
                 ))}
