@@ -127,7 +127,8 @@ export class WordTimingGenerator {
       formData.append('response_format', 'verbose_json');
       formData.append('timestamp_granularities[]', 'word');
 
-      const response = await fetch('/api/openai/transcribe', {
+      const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3001';
+      const response = await fetch(`${baseUrl}/api/openai/transcribe`, {
         method: 'POST',
         body: formData
       });
@@ -146,11 +147,20 @@ export class WordTimingGenerator {
         wordIndex: index
       })) || [];
 
-      // Get actual audio duration
-      const audio = new Audio();
-      audio.src = typeof audioSource === 'string' ? audioSource : URL.createObjectURL(audioSource);
-      await new Promise(resolve => audio.addEventListener('loadedmetadata', resolve));
-      const actualDuration = audio.duration;
+      // Get actual audio duration (server-safe)
+      let actualDuration = 0;
+      if (typeof window !== 'undefined') {
+        // Browser context - use Audio API
+        const audio = new Audio();
+        audio.src = typeof audioSource === 'string' ? audioSource : URL.createObjectURL(audioSource);
+        await new Promise(resolve => audio.addEventListener('loadedmetadata', resolve));
+        actualDuration = audio.duration;
+      } else {
+        // Server context - estimate from word timings
+        actualDuration = result.words?.length > 0 
+          ? Math.max(...result.words.map((w: any) => w.end))
+          : 0;
+      }
 
       return {
         wordTimings,

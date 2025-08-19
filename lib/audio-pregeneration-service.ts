@@ -199,8 +199,8 @@ export class AudioPreGenerationService {
       // Store all audio assets
       await this.storeAudioAssets(audioAssets);
       
-      // Update job as completed
-      await this.updateJobStatus(job.id, 'completed', totalCost);
+      // Update job as completed (convert dollars to cents)
+      await this.updateJobStatus(job.id, 'completed', Math.round(totalCost * 100));
       
       // Update book progress
       await this.updateBookProgress(job.bookId);
@@ -264,8 +264,10 @@ export class AudioPreGenerationService {
     provider: 'openai' | 'elevenlabs', 
     voiceId: string
   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3001';
+    
     if (provider === 'openai') {
-      const response = await fetch('/api/openai/tts', {
+      const response = await fetch(`${baseUrl}/api/openai/tts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -291,7 +293,7 @@ export class AudioPreGenerationService {
       };
     } else {
       // ElevenLabs implementation
-      const response = await fetch('/api/elevenlabs/tts', {
+      const response = await fetch(`${baseUrl}/api/elevenlabs/tts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

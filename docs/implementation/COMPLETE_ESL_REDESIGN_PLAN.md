@@ -452,6 +452,165 @@ const handleCefrLevelChange = async (newLevel: string) => {
 
 ---
 
+## **Phase 8: Browse All Books & AI Chat Redesign (4 hours)** 🆕 PLANNED
+
+> **📋 Reference Wireframes**: `browse-all-books-main-grid-wireframe.png` and `browse-all-books-ai-chat-modal-wireframe.png` in `/docs/wireframes/`
+
+### **Current State Analysis:**
+- **Problem**: Current browse page has cluttered, colorful cards with gradients and inconsistent "Analyze" buttons
+- **Solution**: Clean ESL-style cards with standardized "Ask AI" + "Read Book" actions
+- **Goal**: Match Enhanced Collection page aesthetic for consistency
+
+### **Step 8.1: Clean Card Component Design (1.5 hours)**
+**File**: `components/library/CleanBookCard.tsx`
+```typescript
+interface CleanBookCardProps {
+  book: {
+    id: string;
+    title: string;
+    author: string;
+    description?: string;
+    genre?: string;
+    readCount?: number;
+    source: 'gutenberg' | 'openlibrary' | 'standardebooks';
+  };
+  onAskAI: (book: ExternalBook) => void;
+  onReadBook: (bookId: string) => void;
+}
+
+// Design Specifications (exact wireframe match):
+// - Background: #1e293b with #334155 border
+// - Border radius: 16px
+// - Padding: 24px
+// - Hover: border-color: #667eea, box-shadow with blue glow
+// - Title: 20px, font-weight: 700, color: #e2e8f0
+// - Author: 16px, color: #94a3b8
+// - Meta tags: genre + read count in colored pills
+// - Two-button layout: Ask AI (purple) + Read Book (blue gradient)
+```
+
+### **Step 8.2: Update Library Page Layout (1 hour)**
+**File**: `app/library/page.tsx`
+```typescript
+// Replace CatalogBookCard with CleanBookCard
+// Update grid layout:
+// - grid-template-columns: repeat(auto-fill, minmax(320px, 1fr))
+// - gap: 24px
+// - Consistent spacing with Enhanced Collection page
+
+// Remove old colorful card styling
+// Apply ESL design system colors and typography
+```
+
+### **Step 8.3: AI Chat Modal Component (1.5 hours)**
+**File**: `components/ai/AIBookChatModal.tsx`
+```typescript
+interface AIBookChatModalProps {
+  isOpen: boolean;
+  book: ExternalBook | null;
+  onClose: () => void;
+}
+
+// Design Specifications (exact wireframe match):
+// - Overlay: rgba(0, 0, 0, 0.8) with backdrop-filter: blur(4px)
+// - Modal: #0f172a background, max-width: 900px, max-height: 80vh
+// - Header: Book info with purple book cover placeholder
+// - Welcome section: Purple gradient background with suggestion pills
+// - Chat messages: User (blue) vs AI (purple) with avatars
+// - Input area: #1e293b background with rounded input + send button
+// - Educational disclaimer footer
+```
+
+### **Step 8.4: AI Chat Integration Logic (1 hour)**
+**File**: `hooks/useAIBookChat.ts`
+```typescript
+export function useAIBookChat() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState<ExternalBook | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  
+  const openChat = (book: ExternalBook) => {
+    setSelectedBook(book);
+    setIsOpen(true);
+    // Initialize with welcome message
+    setMessages([{
+      role: 'assistant',
+      content: `Hello! I'm here to help you explore ${book.title}. This ${book.subjects?.[0] || 'classic'} work... What would you like to know?`
+    }]);
+  };
+  
+  const sendMessage = async (content: string) => {
+    // Add user message
+    // Call AI service (existing chat API)
+    // Add AI response
+  };
+  
+  return { isOpen, selectedBook, messages, openChat, closeChat, sendMessage };
+}
+```
+
+### **Step 8.5: Page Integration & Testing (1 hour)**
+**Files**: `app/library/page.tsx` integration
+```typescript
+// Integration steps:
+// 1. Import CleanBookCard and AIBookChatModal
+// 2. Replace existing CatalogBookCard usage
+// 3. Connect AI chat handlers
+// 4. Update search/filter styling to match Enhanced Collection
+// 5. Test responsive behavior on mobile
+// 6. Verify consistency with ESL design system
+
+// Color palette validation:
+// - Cards: #1e293b background, #334155 borders
+// - Text: #e2e8f0 headings, #94a3b8 secondary
+// - Buttons: Purple (#8b5cf6) for AI, Blue gradient (#667eea to #764ba2) for Read
+// - Hovers: #667eea borders with glow effects
+```
+
+### **Design System Consistency Checklist:**
+- ✅ Typography matches Enhanced Collection page
+- ✅ Color palette consistent with ESL theme
+- ✅ Button styling matches existing patterns
+- ✅ Spacing and layout aligned with wireframes
+- ✅ Mobile responsiveness preserved
+- ✅ Accessibility standards maintained
+
+### **Expected Outcome:**
+- **Browse All Books page** that exactly matches `browse-all-books-main-grid-wireframe.png`
+- **AI Chat modal** that exactly matches `browse-all-books-ai-chat-modal-wireframe.png`
+- **Seamless integration** with existing ESL design system
+- **Improved user experience** with clear, clean interface
+- **Consistent branding** across all pages
+
+### **File Structure:**
+```
+components/
+├── library/
+│   └── CleanBookCard.tsx (new)
+├── ai/
+│   └── AIBookChatModal.tsx (new)
+└── hooks/
+    └── useAIBookChat.ts (new)
+
+app/
+└── library/
+    └── page.tsx (updated)
+
+styles/
+└── library-redesign.css (new - if needed)
+```
+
+### **Testing Requirements:**
+1. **Visual Regression**: Compare with wireframes pixel-by-pixel
+2. **Responsive Testing**: Mobile and desktop layouts
+3. **Interaction Testing**: AI chat flow and book reading navigation
+4. **Accessibility Testing**: Screen reader compatibility
+5. **Performance Testing**: Modal opening/closing animations
+
+**Safety**: All changes are additive or replacements - no breaking changes to existing functionality
+
+---
+
 ### **Step 7.1: Mobile Homepage Implementation** ✅ COMPLETED
 **Files**: `app/page.tsx` + `app/globals.css` (mobile styles)
 

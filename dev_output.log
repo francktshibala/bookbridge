@@ -1,0 +1,208 @@
+
+> bookbridge@1.0.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by process 79182, using available port 3001 instead.
+   ▲ Next.js 15.4.4
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.1.11:3001
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+
+ ✓ Starting...
+ ✓ Ready in 1873ms
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 605ms (108 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 10.9s (1654 modules)
+ GET / 200 in 11625ms
+ ○ Compiling /api/audio/pregenerate ...
+ ✓ Compiled /api/audio/pregenerate in 1905ms (942 modules)
+🚀 Starting pre-generation for gutenberg-1342 with 5 chunks
+Starting pre-generation for book: gutenberg-1342 with 5 chunks
+Book gutenberg-1342 already initialized, skipping setup
+Pre-generation queued for gutenberg-1342
+ POST /api/audio/pregenerate 200 in 2645ms
+Processing 5 pre-generation jobs
+Processing job: 9609ea44-3bcf-4d6d-90a1-4a02e16a26fd for gutenberg-1342 B2 chunk 3
+Processing job: 5ee3c6b0-c04b-442d-9b60-03676997764e for gutenberg-1342 B2 chunk 3
+Processing job: 4bf18a03-8b6e-4e55-b666-8b27a65cac53 for gutenberg-1342 C1 chunk 3
+Processing job: 67d28a20-b2c3-405d-bd54-8e650b902f7d for gutenberg-1342 C1 chunk 3
+Processing job: 6d0b226a-2195-469a-a6c6-fed72d5e6148 for gutenberg-1342 C1 chunk 3
+Job 9609ea44-3bcf-4d6d-90a1-4a02e16a26fd status: processing
+Job 6d0b226a-2195-469a-a6c6-fed72d5e6148 status: processing
+Job 5ee3c6b0-c04b-442d-9b60-03676997764e status: processing
+Job 67d28a20-b2c3-405d-bd54-8e650b902f7d status: processing
+Job 4bf18a03-8b6e-4e55-b666-8b27a65cac53 status: processing
+Got content for gutenberg-1342 C1 chunk 3: SUCCESS
+Failed to process job 67d28a20-b2c3-405d-bd54-8e650b902f7d: TypeError: Failed to parse URL from /api/openai/tts
+    at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+    at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+  267 |     if (provider === 'openai') {
+> 268 |       const response = await fetch('/api/openai/tts', {
+      |                             ^
+  269 |         method: 'POST',
+  270 |         headers: { 'Content-Type': 'application/json' },
+  271 |         body: JSON.stringify({ {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+      at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+    266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+    267 |     if (provider === 'openai') {
+  > 268 |       const response = await fetch('/api/openai/tts', {
+        |                             ^
+    269 |         method: 'POST',
+    270 |         headers: { 'Content-Type': 'application/json' },
+    271 |         body: JSON.stringify({ {
+    code: 'ERR_INVALID_URL',
+    input: '/api/openai/tts'
+  }
+}
+Job 67d28a20-b2c3-405d-bd54-8e650b902f7d failed: Failed to parse URL from /api/openai/tts
+Got content for gutenberg-1342 B2 chunk 3: SUCCESS
+Failed to process job 5ee3c6b0-c04b-442d-9b60-03676997764e: TypeError: Failed to parse URL from /api/openai/tts
+    at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+    at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+  267 |     if (provider === 'openai') {
+> 268 |       const response = await fetch('/api/openai/tts', {
+      |                             ^
+  269 |         method: 'POST',
+  270 |         headers: { 'Content-Type': 'application/json' },
+  271 |         body: JSON.stringify({ {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+      at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+    266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+    267 |     if (provider === 'openai') {
+  > 268 |       const response = await fetch('/api/openai/tts', {
+        |                             ^
+    269 |         method: 'POST',
+    270 |         headers: { 'Content-Type': 'application/json' },
+    271 |         body: JSON.stringify({ {
+    code: 'ERR_INVALID_URL',
+    input: '/api/openai/tts'
+  }
+}
+Job 5ee3c6b0-c04b-442d-9b60-03676997764e failed: Failed to parse URL from /api/openai/tts
+Got content for gutenberg-1342 C1 chunk 3: SUCCESS
+Failed to process job 6d0b226a-2195-469a-a6c6-fed72d5e6148: TypeError: Failed to parse URL from /api/openai/tts
+    at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+    at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+  267 |     if (provider === 'openai') {
+> 268 |       const response = await fetch('/api/openai/tts', {
+      |                             ^
+  269 |         method: 'POST',
+  270 |         headers: { 'Content-Type': 'application/json' },
+  271 |         body: JSON.stringify({ {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+      at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+    266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+    267 |     if (provider === 'openai') {
+  > 268 |       const response = await fetch('/api/openai/tts', {
+        |                             ^
+    269 |         method: 'POST',
+    270 |         headers: { 'Content-Type': 'application/json' },
+    271 |         body: JSON.stringify({ {
+    code: 'ERR_INVALID_URL',
+    input: '/api/openai/tts'
+  }
+}
+Job 6d0b226a-2195-469a-a6c6-fed72d5e6148 failed: Failed to parse URL from /api/openai/tts
+Got content for gutenberg-1342 B2 chunk 3: SUCCESS
+Failed to process job 9609ea44-3bcf-4d6d-90a1-4a02e16a26fd: TypeError: Failed to parse URL from /api/openai/tts
+    at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+    at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+  267 |     if (provider === 'openai') {
+> 268 |       const response = await fetch('/api/openai/tts', {
+      |                             ^
+  269 |         method: 'POST',
+  270 |         headers: { 'Content-Type': 'application/json' },
+  271 |         body: JSON.stringify({ {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+      at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+    266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+    267 |     if (provider === 'openai') {
+  > 268 |       const response = await fetch('/api/openai/tts', {
+        |                             ^
+    269 |         method: 'POST',
+    270 |         headers: { 'Content-Type': 'application/json' },
+    271 |         body: JSON.stringify({ {
+    code: 'ERR_INVALID_URL',
+    input: '/api/openai/tts'
+  }
+}
+Job 9609ea44-3bcf-4d6d-90a1-4a02e16a26fd failed: Failed to parse URL from /api/openai/tts
+Got content for gutenberg-1342 C1 chunk 3: SUCCESS
+Failed to process job 4bf18a03-8b6e-4e55-b666-8b27a65cac53: TypeError: Failed to parse URL from /api/openai/tts
+    at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+    at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+  267 |     if (provider === 'openai') {
+> 268 |       const response = await fetch('/api/openai/tts', {
+      |                             ^
+  269 |         method: 'POST',
+  270 |         headers: { 'Content-Type': 'application/json' },
+  271 |         body: JSON.stringify({ {
+  [cause]: TypeError: Invalid URL
+      at AudioPreGenerationService.callTTSAPI (lib/audio-pregeneration-service.ts:268:29)
+      at AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:231:35)
+      at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:38)
+      at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+    266 |   ): Promise<{ audioUrl: string; audioBlob: Buffer; duration: number; fileSize: number }> {
+    267 |     if (provider === 'openai') {
+  > 268 |       const response = await fetch('/api/openai/tts', {
+        |                             ^
+    269 |         method: 'POST',
+    270 |         headers: { 'Content-Type': 'application/json' },
+    271 |         body: JSON.stringify({ {
+    code: 'ERR_INVALID_URL',
+    input: '/api/openai/tts'
+  }
+}
+Job 4bf18a03-8b6e-4e55-b666-8b27a65cac53 failed: Failed to parse URL from /api/openai/tts
+ ✓ Compiled in 455ms (727 modules)
+ ✓ Compiled in 511ms (727 modules)
+ ✓ Compiled in 1789ms (727 modules)
+ ✓ Compiled in 480ms (727 modules)
+ ✓ Compiled in 1752ms (727 modules)
+ ○ Compiling /api/audio/pregenerate ...
+ ✓ Compiled /api/audio/pregenerate in 636ms (215 modules)
+ POST /api/audio/pregenerate 400 in 970ms
+ ○ Compiling /api/openai/tts ...
+ ✓ Compiled /api/openai/tts in 1462ms (1029 modules)
+OpenAI TTS request: {
+  voice: 'alloy',
+  textLength: 16,
+  speed: 1,
+  timestamp: '2025-08-19T17:57:54.882Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 2195ms
+ POST /api/openai/tts 200 in 3788ms
+[?25h

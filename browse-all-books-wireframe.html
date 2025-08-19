@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse All Books - Wireframe Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header Section */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Search and Filters */
+        .search-filters {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .search-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .search-input {
+            flex: 1;
+            min-width: 300px;
+            padding: 12px 16px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 16px;
+        }
+        
+        .source-dropdown {
+            padding: 12px 16px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 16px;
+            min-width: 150px;
+        }
+        
+        .search-button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .filters-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-input {
+            padding: 8px 12px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #e2e8f0;
+            font-size: 14px;
+            width: 120px;
+        }
+        
+        .clear-filters {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #667eea;
+            border-radius: 6px;
+            color: #667eea;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .book-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .book-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .book-header {
+            margin-bottom: 16px;
+        }
+        
+        .book-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .book-author {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+        
+        .book-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-tag {
+            padding: 4px 12px;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .read-count {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+        
+        .book-description {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .book-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn-ask-ai {
+            flex: 1;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid #8b5cf6;
+            border-radius: 8px;
+            color: #8b5cf6;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-ask-ai:hover {
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .btn-read {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-read:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Results Info */
+        .results-info {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #94a3b8;
+            font-size: 16px;
+        }
+        
+        .results-count {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 40px;
+        }
+        
+        .pagination-button {
+            padding: 12px 20px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-button:hover:not(:disabled) {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        
+        .pagination-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination-button.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .search-row {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                min-width: auto;
+            }
+            
+            .books-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .book-actions {
+                flex-direction: column;
+            }
+            
+            .filters-row {
+                justify-content: center;
+            }
+        }
+        
+        /* Loading State */
+        .loading-skeleton {
+            background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+            height: 20px;
+            margin-bottom: 12px;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* AI Chat Modal */
+        .ai-chat-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .ai-chat-modal {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .ai-chat-header {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .ai-chat-book-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .ai-chat-book-cover {
+            width: 48px;
+            height: 72px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .ai-chat-book-details h3 {
+            color: #e2e8f0;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .ai-chat-book-details p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .ai-chat-close {
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        
+        .ai-chat-close:hover {
+            background: rgba(148, 163, 184, 0.1);
+            color: #e2e8f0;
+        }
+        
+        .ai-chat-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .ai-chat-welcome {
+            padding: 32px 24px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+            border-bottom: 1px solid #334155;
+        }
+        
+        .ai-chat-welcome h4 {
+            color: #8b5cf6;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .ai-chat-welcome p {
+            color: #94a3b8;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .ai-chat-suggestions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .suggestion-pill {
+            padding: 8px 16px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            color: #a78bfa;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .suggestion-pill:hover {
+            background: rgba(139, 92, 246, 0.3);
+            border-color: #8b5cf6;
+            color: #c4b5fd;
+        }
+        
+        .ai-chat-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .ai-message {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .ai-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .ai-message-content {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            color: #e2e8f0;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .user-message {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            flex-direction: row-reverse;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .user-message-content {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            color: #e2e8f0;
+            line-height: 1.5;
+            flex: 1;
+            text-align: right;
+        }
+        
+        .ai-chat-input-area {
+            background: #1e293b;
+            border-top: 1px solid #334155;
+            padding: 20px 24px;
+        }
+        
+        .ai-chat-input-container {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+        
+        .ai-chat-input {
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: #e2e8f0;
+            font-size: 16px;
+            resize: none;
+            min-height: 44px;
+            max-height: 120px;
+            font-family: inherit;
+        }
+        
+        .ai-chat-input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+        }
+        
+        .ai-chat-send {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ai-chat-send:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+        
+        .ai-chat-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .ai-chat-disclaimer {
+            padding: 12px 24px;
+            background: rgba(59, 130, 246, 0.1);
+            border-top: 1px solid #334155;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+        
+        .ai-chat-disclaimer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        
+        .ai-chat-disclaimer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Show AI Chat */
+        .ai-chat-overlay.show {
+            display: flex;
+        }
+        
+        /* Mobile AI Chat */
+        @media (max-width: 768px) {
+            .ai-chat-modal {
+                margin: 0;
+                border-radius: 16px 16px 0 0;
+                max-height: 90vh;
+                align-self: flex-end;
+            }
+            
+            .ai-chat-header {
+                padding: 16px 20px;
+            }
+            
+            .ai-chat-book-cover {
+                width: 40px;
+                height: 60px;
+            }
+            
+            .ai-chat-welcome {
+                padding: 24px 20px;
+            }
+            
+            .ai-chat-suggestions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ai-chat-messages {
+                padding: 20px;
+            }
+            
+            .ai-chat-input-area {
+                padding: 16px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page Header -->
+        <header class="page-header">
+            <h1 class="page-title">📚 Browse All Books</h1>
+            <p class="page-subtitle">
+                Explore thousands of classic books from renowned sources. Discover your next favorite read with AI-powered insights.
+            </p>
+        </header>
+        
+        <!-- Search and Filters -->
+        <div class="search-filters">
+            <div class="search-row">
+                <input type="text" class="search-input" placeholder="Search books by title or author..." value="shakespeare">
+                <select class="source-dropdown">
+                    <option>All Sources</option>
+                    <option>Project Gutenberg</option>
+                    <option>Open Library</option>
+                    <option>Standard Ebooks</option>
+                </select>
+                <button class="search-button">🔍 Search</button>
+            </div>
+            
+            <div class="filters-row">
+                <span style="color: #94a3b8; font-size: 14px;">Filters:</span>
+                <input type="text" class="filter-input" placeholder="Author">
+                <input type="text" class="filter-input" placeholder="Genre">
+                <input type="number" class="filter-input" placeholder="From year">
+                <input type="number" class="filter-input" placeholder="To year">
+                <button class="clear-filters">Clear Filters</button>
+            </div>
+        </div>
+        
+        <!-- Results Info -->
+        <div class="results-info">
+            Found <span class="results-count">24 books</span> matching "shakespeare"
+        </div>
+        
+        <!-- Books Grid -->
+        <div class="books-grid">
+            <!-- Book Card 1 - Popular -->
+            <div class="book-card">
+                <div class="book-header">
+                    <h3 class="book-title">The Complete Works of William Shakespeare</h3>
+                    <p class="book-author">by William Shakespeare</p>
+                </div>
+                
+                <div class="book-meta">
+                    <span class="meta-tag">Drama</span>
+                    <span class="meta-tag">Classic</span>
+                    <span class="meta-tag read-count">126k reads</span>
+                </div>
+                
+                <p class="book-description">
+                    The complete collection of Shakespeare's plays and sonnets including Romeo and Juliet, Hamlet, Macbeth, and many more timeless works that have shaped literature for centuries.
+                </p>
+                
+                <div class="book-actions">
+                    <button class="btn-ask-ai">
+                        🤖 Ask AI
+                    </button>
+                    <button class="btn-read">
+                        📖 Read Book
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Book Card 2 -->
+            <div class="book-card">
+                <div class="book-header">
+                    <h3 class="book-title">Romeo and Juliet</h3>
+                    <p class="book-author">by William Shakespeare</p>
+                </div>
+                
+                <div class="book-meta">
+                    <span class="meta-tag">Tragedy</span>
+                    <span class="meta-tag">Romance</span>
+                    <span class="meta-tag read-count">89k reads</span>
+                </div>
+                
+                <p class="book-description">
+                    The tragic story of two young star-crossed lovers whose deaths ultimately unite their feuding families in Verona. A timeless tale of love, fate, and family conflict.
+                </p>
+                
+                <div class="book-actions">
+                    <button class="btn-ask-ai">
+                        🤖 Ask AI
+                    </button>
+                    <button class="btn-read">
+                        📖 Read Book
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Book Card 3 -->
+            <div class="book-card">
+                <div class="book-header">
+                    <h3 class="book-title">Hamlet, Prince of Denmark</h3>
+                    <p class="book-author">by William Shakespeare</p>
+                </div>
+                
+                <div class="book-meta">
+                    <span class="meta-tag">Tragedy</span>
+                    <span class="meta-tag">Drama</span>
+                    <span class="meta-tag read-count">75k reads</span>
+                </div>
+                
+                <p class="book-description">
+                    The tragedy of Hamlet, Prince of Denmark, who seeks revenge against his uncle Claudius for murdering his father. A masterpiece exploring themes of revenge, madness, and mortality.
+                </p>
+                
+                <div class="book-actions">
+                    <button class="btn-ask-ai">
+                        🤖 Ask AI
+                    </button>
+                    <button class="btn-read">
+                        📖 Read Book
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Book Card 4 -->
+            <div class="book-card">
+                <div class="book-header">
+                    <h3 class="book-title">Macbeth</h3>
+                    <p class="book-author">by William Shakespeare</p>
+                </div>
+                
+                <div class="book-meta">
+                    <span class="meta-tag">Tragedy</span>
+                    <span class="meta-tag">Historical</span>
+                    <span class="meta-tag read-count">62k reads</span>
+                </div>
+                
+                <p class="book-description">
+                    A Scottish general's consuming ambition to become king leads him down a dark path of murder and moral corruption. One of Shakespeare's most powerful psychological dramas.
+                </p>
+                
+                <div class="book-actions">
+                    <button class="btn-ask-ai">
+                        🤖 Ask AI
+                    </button>
+                    <button class="btn-read">
+                        📖 Read Book
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Book Card 5 -->
+            <div class="book-card">
+                <div class="book-header">
+                    <h3 class="book-title">A Midsummer Night's Dream</h3>
+                    <p class="book-author">by William Shakespeare</p>
+                </div>
+                
+                <div class="book-meta">
+                    <span class="meta-tag">Comedy</span>
+                    <span class="meta-tag">Fantasy</span>
+                    <span class="meta-tag read-count">54k reads</span>
+                </div>
+                
+                <p class="book-description">
+                    A magical comedy involving four young lovers, fairies, and amateur actors in an enchanted forest. A whimsical exploration of love, dreams, and transformation.
+                </p>
+                
+                <div class="book-actions">
+                    <button class="btn-ask-ai">
+                        🤖 Ask AI
+                    </button>
+                    <button class="btn-read">
+                        📖 Read Book
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Book Card 6 -->
+            <div class="book-card">
+                <div class="book-header">
+                    <h3 class="book-title">Othello</h3>
+                    <p class="book-author">by William Shakespeare</p>
+                </div>
+                
+                <div class="book-meta">
+                    <span class="meta-tag">Tragedy</span>
+                    <span class="meta-tag">Drama</span>
+                    <span class="meta-tag read-count">41k reads</span>
+                </div>
+                
+                <p class="book-description">
+                    The tragic story of Othello, a Moorish general, whose jealousy is manipulated by his ensign Iago, leading to devastating consequences. A powerful examination of racism and jealousy.
+                </p>
+                
+                <div class="book-actions">
+                    <button class="btn-ask-ai">
+                        🤖 Ask AI
+                    </button>
+                    <button class="btn-read">
+                        📖 Read Book
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="pagination-button" disabled>← Previous</button>
+            <button class="pagination-button active">1</button>
+            <button class="pagination-button">2</button>
+            <button class="pagination-button">3</button>
+            <button class="pagination-button">4</button>
+            <button class="pagination-button">Next →</button>
+        </div>
+    </div>
+    
+    <!-- AI Chat Modal -->
+    <div class="ai-chat-overlay" id="aiChatOverlay">
+        <div class="ai-chat-modal">
+            <!-- Chat Header -->
+            <div class="ai-chat-header">
+                <div class="ai-chat-book-info">
+                    <div class="ai-chat-book-cover">
+                        Romeo<br>& Juliet
+                    </div>
+                    <div class="ai-chat-book-details">
+                        <h3>Romeo and Juliet</h3>
+                        <p>by William Shakespeare</p>
+                    </div>
+                </div>
+                <button class="ai-chat-close" onclick="closeAIChat()">×</button>
+            </div>
+            
+            <!-- Chat Content -->
+            <div class="ai-chat-content">
+                <!-- Welcome Section -->
+                <div class="ai-chat-welcome">
+                    <h4>🤖 Ready to explore this book together?</h4>
+                    <p>Ask about themes, characters, plot details, writing style, or anything that sparks your curiosity!</p>
+                    
+                    <div class="ai-chat-suggestions">
+                        <div class="suggestion-pill" onclick="askQuestion('What are the main themes?')">What are the main themes?</div>
+                        <div class="suggestion-pill" onclick="askQuestion('Tell me about the characters')">Tell me about the characters</div>
+                        <div class="suggestion-pill" onclick="askQuestion('What is the writing style?')">What is the writing style?</div>
+                        <div class="suggestion-pill" onclick="askQuestion('Why is this book important?')">Why is this book important?</div>
+                    </div>
+                </div>
+                
+                <!-- Chat Messages -->
+                <div class="ai-chat-messages" id="chatMessages">
+                    <!-- Example AI Message -->
+                    <div class="ai-message">
+                        <div class="ai-avatar">🤖</div>
+                        <div class="ai-message-content">
+                            Hello! I'm here to help you explore <strong>Romeo and Juliet</strong>. This timeless tragedy explores themes of love, fate, family conflict, and the consequences of hatred. What would you like to know about this masterpiece?
+                        </div>
+                    </div>
+                    
+                    <!-- Example User Message (hidden initially) -->
+                    <div class="user-message" style="display: none;" id="exampleUserMessage">
+                        <div class="user-avatar">👤</div>
+                        <div class="user-message-content">
+                            What are the main themes in Romeo and Juliet?
+                        </div>
+                    </div>
+                    
+                    <!-- Example AI Response (hidden initially) -->
+                    <div class="ai-message" style="display: none;" id="exampleAIResponse">
+                        <div class="ai-avatar">🤖</div>
+                        <div class="ai-message-content">
+                            The main themes in Romeo and Juliet include:
+                            <br><br>
+                            <strong>1. Love vs. Hate:</strong> The pure love between Romeo and Juliet contrasts with the bitter hatred between their families.
+                            <br><br>
+                            <strong>2. Fate and Free Will:</strong> The concept of "star-crossed lovers" suggests destiny, while their choices also drive the tragedy.
+                            <br><br>
+                            <strong>3. Youth vs. Age:</strong> The impulsive passion of youth clashes with the rigid traditions of the older generation.
+                            <br><br>
+                            <strong>4. Death and Sacrifice:</strong> Their deaths ultimately reconcile the feuding families, showing love's power to overcome hatred.
+                            <br><br>
+                            Would you like me to explore any of these themes in more detail?
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Input -->
+                <div class="ai-chat-input-area">
+                    <div class="ai-chat-input-container">
+                        <textarea 
+                            class="ai-chat-input" 
+                            id="chatInput"
+                            placeholder="Type your question about the book..." 
+                            rows="1"
+                            onkeydown="handleEnterKey(event)"
+                        ></textarea>
+                        <button class="ai-chat-send" onclick="sendMessage()" id="sendButton">
+                            ↑
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Disclaimer -->
+                <div class="ai-chat-disclaimer">
+                    ⚠️ AI responses are based on training knowledge and educational commentary, not text reproduction. All analyses represent fair use discussion of literary works for educational purposes.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Demo JavaScript for Interactive Elements -->
+    <script>
+        // AI Chat Functions
+        function openAIChat(bookTitle, bookAuthor) {
+            // Update chat modal with book info
+            document.querySelector('.ai-chat-book-details h3').textContent = bookTitle;
+            document.querySelector('.ai-chat-book-details p').textContent = `by ${bookAuthor}`;
+            
+            // Show modal
+            document.getElementById('aiChatOverlay').classList.add('show');
+            
+            // Focus on input
+            setTimeout(() => {
+                document.getElementById('chatInput').focus();
+            }, 300);
+        }
+        
+        function closeAIChat() {
+            document.getElementById('aiChatOverlay').classList.remove('show');
+        }
+        
+        function askQuestion(question) {
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addUserMessage(message);
+            
+            // Clear input
+            input.value = '';
+            
+            // Simulate AI typing
+            setTimeout(() => {
+                addAIMessage("I'm processing your question about the book. In a real implementation, this would connect to an AI service to provide detailed analysis and answers about the literary work.");
+            }, 1000);
+        }
+        
+        function addUserMessage(message) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'user-message';
+            messageDiv.innerHTML = `
+                <div class="user-avatar">👤</div>
+                <div class="user-message-content">${message}</div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function addAIMessage(message) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'ai-message';
+            messageDiv.innerHTML = `
+                <div class="ai-avatar">🤖</div>
+                <div class="ai-message-content">${message}</div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function handleEnterKey(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+        
+        // Close modal when clicking overlay
+        document.getElementById('aiChatOverlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeAIChat();
+            }
+        });
+        
+        // Demo hover effects and interactions
+        document.querySelectorAll('.btn-ask-ai').forEach((btn, index) => {
+            btn.addEventListener('click', (e) => {
+                const bookCard = e.target.closest('.book-card');
+                const bookTitle = bookCard.querySelector('.book-title').textContent;
+                const bookAuthor = bookCard.querySelector('.book-author').textContent.replace('by ', '');
+                openAIChat(bookTitle, bookAuthor);
+            });
+        });
+        
+        document.querySelectorAll('.btn-read').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Navigate to reading page for this book');
+            });
+        });
+        
+        document.querySelector('.search-button').addEventListener('click', () => {
+            alert('Search functionality - would filter books');
+        });
+        
+        document.querySelector('.clear-filters').addEventListener('click', () => {
+            document.querySelectorAll('.filter-input').forEach(input => input.value = '');
+            alert('Filters cleared');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1126 @@
+
+> bookbridge@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.4.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.11:3000
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+
+ ✓ Starting...
+ ✓ Ready in 2.5s
+ ✓ Compiled /middleware in 216ms (108 modules)
+ ○ Compiling /api/audio/pregenerate ...
+ ✓ Compiled /api/audio/pregenerate in 1099ms (401 modules)
+🚀 Starting pre-generation for gutenberg-1342 with 459 chunks
+Starting pre-generation for book: gutenberg-1342 with 459 chunks
+Book gutenberg-1342 already initialized, skipping setup
+Pre-generation queued for gutenberg-1342
+ POST /api/audio/pregenerate 200 in 2165ms
+Processing 5 pre-generation jobs
+Processing job: bcd2d552-f06e-4a7c-97d7-71b89f03f8a9 for gutenberg-1342 C1 chunk 3
+Processing job: 0b34e233-725f-4bae-b566-3942a0b5add4 for gutenberg-1342 C1 chunk 3
+Processing job: 9d4174ee-a359-429e-b764-334c0dd6b4dd for gutenberg-1342 C1 chunk 3
+Processing job: 8d5935bf-4985-4202-b599-c061ba15b88c for gutenberg-1342 C2 chunk 3
+Processing job: 3c23917f-ea16-493b-b631-ef53e61b4d32 for gutenberg-1342 C2 chunk 3
+Job bcd2d552-f06e-4a7c-97d7-71b89f03f8a9 status: processing
+Job 9d4174ee-a359-429e-b764-334c0dd6b4dd status: processing
+Job 3c23917f-ea16-493b-b631-ef53e61b4d32 status: processing
+Job 0b34e233-725f-4bae-b566-3942a0b5add4 status: processing
+Job 8d5935bf-4985-4202-b599-c061ba15b88c status: processing
+ ○ Compiling /api/books/[id]/cached-simplification ...
+ ✓ Compiled /api/books/[id]/cached-simplification in 932ms (405 modules)
+Fetching cached simplification: gutenberg-1342, level=C1, chunk=3
+Fetching cached simplification: gutenberg-1342, level=C1, chunk=3
+Fetching cached simplification: gutenberg-1342, level=C2, chunk=3
+Fetching cached simplification: gutenberg-1342, level=C2, chunk=3
+Fetching cached simplification: gutenberg-1342, level=C1, chunk=3
+Found cached simplification with quality 1
+ GET /api/books/gutenberg-1342/cached-simplification?level=C1&chunk=3 200 in 1886ms
+Got content for gutenberg-1342 C1 chunk 3: SUCCESS
+Found cached simplification with quality 1
+ GET /api/books/gutenberg-1342/cached-simplification?level=C1&chunk=3 200 in 2459ms
+Found cached simplification with quality 1
+ GET /api/books/gutenberg-1342/cached-simplification?level=C1&chunk=3 200 in 2470ms
+Got content for gutenberg-1342 C1 chunk 3: SUCCESS
+Got content for gutenberg-1342 C1 chunk 3: SUCCESS
+Found cached simplification with quality 0.75
+ GET /api/books/gutenberg-1342/cached-simplification?level=C2&chunk=3 200 in 2249ms
+Found cached simplification with quality 0.75
+ GET /api/books/gutenberg-1342/cached-simplification?level=C2&chunk=3 200 in 2204ms
+Got content for gutenberg-1342 C2 chunk 3: SUCCESS
+Got content for gutenberg-1342 C2 chunk 3: SUCCESS
+ ✓ Compiled /api/openai/tts in 397ms (506 modules)
+OpenAI TTS request: {
+  voice: 'onyx',
+  textLength: 76,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:15.383Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'echo',
+  textLength: 76,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:15.410Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'alloy',
+  textLength: 76,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:15.410Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'shimmer',
+  textLength: 76,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:15.411Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'nova',
+  textLength: 76,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:15.411Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1485ms
+ POST /api/openai/tts 200 in 1575ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS completed in 1546ms
+ POST /api/openai/tts 200 in 2032ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS request: {
+  voice: 'echo',
+  textLength: 66,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:16.962Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'onyx',
+  textLength: 66,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:16.967Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 2690ms
+ POST /api/openai/tts 200 in 2779ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS request: {
+  voice: 'alloy',
+  textLength: 66,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:18.128Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 2830ms
+ POST /api/openai/tts 200 in 2920ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS request: {
+  voice: 'shimmer',
+  textLength: 66,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:18.277Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1662ms
+ POST /api/openai/tts 200 in 1675ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS request: {
+  voice: 'echo',
+  textLength: 78,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:18.650Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1840ms
+ POST /api/openai/tts 200 in 1857ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS request: {
+  voice: 'onyx',
+  textLength: 78,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:18.828Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1259ms
+ POST /api/openai/tts 200 in 1268ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS request: {
+  voice: 'alloy',
+  textLength: 78,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:19.412Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1837ms
+ POST /api/openai/tts 200 in 1851ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS request: {
+  voice: 'shimmer',
+  textLength: 78,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:20.138Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1454ms
+ POST /api/openai/tts 200 in 1463ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS completed in 2071ms
+ POST /api/openai/tts 200 in 2079ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+Stored 3 audio assets
+Failed to process job 0b34e233-725f-4bae-b566-3942a0b5add4: Error: Failed to update job status: invalid input syntax for type integer: "4.5"
+    at AudioPreGenerationService.updateJobStatus (lib/audio-pregeneration-service.ts:636:12)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:203:6)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  634 |       
+  635 |     if (error) {
+> 636 |       throw new Error(`Failed to update job status: ${error.message}`);
+      |            ^
+  637 |     }
+  638 |     
+  639 |     console.log(`Job ${jobId} status: ${status}`);
+Job 0b34e233-725f-4bae-b566-3942a0b5add4 failed: Failed to update job status: invalid input syntax for type integer: "4.5"
+Stored 3 audio assets
+OpenAI TTS completed in 1466ms
+ POST /api/openai/tts 200 in 1477ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+Failed to process job 3c23917f-ea16-493b-b631-ef53e61b4d32: Error: Failed to update job status: invalid input syntax for type integer: "4.5"
+    at AudioPreGenerationService.updateJobStatus (lib/audio-pregeneration-service.ts:636:12)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:203:6)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  634 |       
+  635 |     if (error) {
+> 636 |       throw new Error(`Failed to update job status: ${error.message}`);
+      |            ^
+  637 |     }
+  638 |     
+  639 |     console.log(`Job ${jobId} status: ${status}`);
+Job 3c23917f-ea16-493b-b631-ef53e61b4d32 failed: Failed to update job status: invalid input syntax for type integer: "4.5"
+OpenAI TTS completed in 2387ms
+ POST /api/openai/tts 200 in 2395ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+Stored 3 audio assets
+Stored 3 audio assets
+Failed to process job 9d4174ee-a359-429e-b764-334c0dd6b4dd: Error: Failed to update job status: invalid input syntax for type integer: "4.5"
+    at AudioPreGenerationService.updateJobStatus (lib/audio-pregeneration-service.ts:636:12)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:203:6)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  634 |       
+  635 |     if (error) {
+> 636 |       throw new Error(`Failed to update job status: ${error.message}`);
+      |            ^
+  637 |     }
+  638 |     
+  639 |     console.log(`Job ${jobId} status: ${status}`);
+Job 9d4174ee-a359-429e-b764-334c0dd6b4dd failed: Failed to update job status: invalid input syntax for type integer: "4.5"
+Failed to process job 8d5935bf-4985-4202-b599-c061ba15b88c: Error: Failed to update job status: invalid input syntax for type integer: "4.5"
+    at AudioPreGenerationService.updateJobStatus (lib/audio-pregeneration-service.ts:636:12)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:203:6)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  634 |       
+  635 |     if (error) {
+> 636 |       throw new Error(`Failed to update job status: ${error.message}`);
+      |            ^
+  637 |     }
+  638 |     
+  639 |     console.log(`Job ${jobId} status: ${status}`);
+Job 8d5935bf-4985-4202-b599-c061ba15b88c failed: Failed to update job status: invalid input syntax for type integer: "4.5"
+OpenAI TTS completed in 7647ms
+ POST /api/openai/tts 200 in 7737ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS request: {
+  voice: 'nova',
+  textLength: 66,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:23.088Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1669ms
+ POST /api/openai/tts 200 in 1682ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+OpenAI TTS request: {
+  voice: 'nova',
+  textLength: 78,
+  speed: 1,
+  timestamp: '2025-08-19T18:02:24.777Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 2013ms
+ POST /api/openai/tts 200 in 2022ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: TypeError: Failed to parse URL from /api/openai/transcribe
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:163:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  161 |
+  162 |     } catch (error) {
+> 163 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  164 |     }
+  165 |   }
+  166 |
+Stored 3 audio assets
+Failed to process job bcd2d552-f06e-4a7c-97d7-71b89f03f8a9: Error: Failed to update job status: invalid input syntax for type integer: "4.5"
+    at AudioPreGenerationService.updateJobStatus (lib/audio-pregeneration-service.ts:636:12)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:203:6)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  634 |       
+  635 |     if (error) {
+> 636 |       throw new Error(`Failed to update job status: ${error.message}`);
+      |            ^
+  637 |     }
+  638 |     
+  639 |     console.log(`Job ${jobId} status: ${status}`);
+Job bcd2d552-f06e-4a7c-97d7-71b89f03f8a9 failed: Failed to update job status: invalid input syntax for type integer: "4.5"
+ ✓ Compiled in 14ms
+ ✓ Compiled /api/audio/pregenerate in 284ms (215 modules)
+🚀 Starting pre-generation for gutenberg-1342 with 1 chunks
+Starting pre-generation for book: gutenberg-1342 with 1 chunks
+Book gutenberg-1342 already initialized, skipping setup
+Pre-generation queued for gutenberg-1342
+ POST /api/audio/pregenerate 200 in 810ms
+Processing 5 pre-generation jobs
+Processing job: 77e6f39b-98a3-4858-9e6b-ea643ba9b9d2 for gutenberg-1342 C2 chunk 3
+Processing job: e7a2ce7d-6216-4d05-a78a-2baebedd4d6e for gutenberg-1342 C2 chunk 3
+Processing job: 17651d9c-9602-413f-8768-3351ccae74bf for gutenberg-1342 C2 chunk 3
+Processing job: 702f8eb7-b13f-422a-bc80-f74180566c63 for gutenberg-1342 C2 chunk 3
+Processing job: 262fd205-ac0b-4da6-9223-830aa7447676 for gutenberg-1342 A1 chunk 4
+Job 77e6f39b-98a3-4858-9e6b-ea643ba9b9d2 status: processing
+ ✓ Compiled /api/books/[id]/cached-simplification in 63ms (219 modules)
+Fetching cached simplification: gutenberg-1342, level=C2, chunk=3
+Job e7a2ce7d-6216-4d05-a78a-2baebedd4d6e status: processing
+Job 17651d9c-9602-413f-8768-3351ccae74bf status: processing
+Fetching cached simplification: gutenberg-1342, level=C2, chunk=3
+Fetching cached simplification: gutenberg-1342, level=C2, chunk=3
+Job 702f8eb7-b13f-422a-bc80-f74180566c63 status: processing
+Fetching cached simplification: gutenberg-1342, level=C2, chunk=3
+Job 262fd205-ac0b-4da6-9223-830aa7447676 status: processing
+Fetching cached simplification: gutenberg-1342, level=A1, chunk=4
+Found cached simplification with quality 0.75
+ GET /api/books/gutenberg-1342/cached-simplification?level=C2&chunk=3 200 in 588ms
+Got content for gutenberg-1342 C2 chunk 3: SUCCESS
+Found cached simplification with quality 0.75
+ GET /api/books/gutenberg-1342/cached-simplification?level=C2&chunk=3 200 in 481ms
+Found cached simplification with quality 0.75
+ GET /api/books/gutenberg-1342/cached-simplification?level=C2&chunk=3 200 in 463ms
+Got content for gutenberg-1342 C2 chunk 3: SUCCESS
+Got content for gutenberg-1342 C2 chunk 3: SUCCESS
+Found cached simplification with quality 0.75
+ GET /api/books/gutenberg-1342/cached-simplification?level=C2&chunk=3 200 in 491ms
+Got content for gutenberg-1342 C2 chunk 3: SUCCESS
+ ✓ Compiled /api/openai/tts in 98ms (320 modules)
+OpenAI TTS request: {
+  voice: 'fable',
+  textLength: 76,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:01.092Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+Found cached simplification with quality 0.44
+ GET /api/books/gutenberg-1342/cached-simplification?level=A1&chunk=4 200 in 493ms
+Got content for gutenberg-1342 A1 chunk 4: SUCCESS
+OpenAI TTS request: {
+  voice: 'nova',
+  textLength: 76,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:01.111Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'onyx',
+  textLength: 76,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:01.122Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'shimmer',
+  textLength: 76,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:01.130Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'alloy',
+  textLength: 129,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:01.138Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1482ms
+ POST /api/openai/tts 200 in 1546ms
+OpenAI TTS completed in 1790ms
+ POST /api/openai/tts 200 in 1944ms
+OpenAI TTS completed in 1748ms
+ POST /api/openai/tts 200 in 1766ms
+ ✓ Compiled /api/openai/transcribe in 439ms (508 modules)
+OpenAI TTS completed in 2166ms
+ POST /api/openai/tts 200 in 2192ms
+OpenAI TTS completed in 2390ms
+ POST /api/openai/tts 200 in 2464ms
+ POST /api/openai/transcribe 200 in 1809ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'nova',
+  textLength: 66,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:04.464Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 1438ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'shimmer',
+  textLength: 66,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:04.770Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 2014ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'fable',
+  textLength: 66,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:04.974Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 1483ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'onyx',
+  textLength: 66,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:05.022Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 2870ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'alloy',
+  textLength: 116,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:05.843Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1148ms
+ POST /api/openai/tts 200 in 1156ms
+OpenAI TTS completed in 2080ms
+ POST /api/openai/tts 200 in 2104ms
+ POST /api/openai/transcribe 200 in 1340ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'fable',
+  textLength: 78,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:07.490Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 2791ms
+ POST /api/openai/tts 200 in 2799ms
+ POST /api/openai/transcribe 200 in 1054ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'nova',
+  textLength: 78,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:07.630Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 2961ms
+ POST /api/openai/tts 200 in 2969ms
+OpenAI TTS completed in 2952ms
+ POST /api/openai/tts 200 in 2963ms
+OpenAI TTS completed in 1285ms
+ POST /api/openai/tts 200 in 1293ms
+OpenAI TTS completed in 1527ms
+ POST /api/openai/tts 200 in 1535ms
+ POST /api/openai/transcribe 200 in 1054ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'onyx',
+  textLength: 78,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:09.068Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 1549ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'shimmer',
+  textLength: 78,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:09.141Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 1142ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS request: {
+  voice: 'alloy',
+  textLength: 98,
+  speed: 1,
+  timestamp: '2025-08-19T18:09:09.975Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1171ms
+ POST /api/openai/tts 200 in 1179ms
+OpenAI TTS completed in 1622ms
+ POST /api/openai/tts 200 in 1630ms
+ POST /api/openai/transcribe 200 in 2242ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+OpenAI TTS completed in 1484ms
+ POST /api/openai/tts 200 in 1493ms
+ POST /api/openai/transcribe 200 in 2450ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+Stored 3 audio assets
+Job e7a2ce7d-6216-4d05-a78a-2baebedd4d6e status: completed
+Updating progress for book gutenberg-1342
+Completed job: e7a2ce7d-6216-4d05-a78a-2baebedd4d6e - Generated 3 audio files
+Stored 3 audio assets
+Job 77e6f39b-98a3-4858-9e6b-ea643ba9b9d2 status: completed
+Updating progress for book gutenberg-1342
+Completed job: 77e6f39b-98a3-4858-9e6b-ea643ba9b9d2 - Generated 3 audio files
+ POST /api/openai/transcribe 200 in 2529ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+ POST /api/openai/transcribe 200 in 2978ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+Stored 3 audio assets
+ POST /api/openai/transcribe 200 in 2432ms
+Word timing generation failed with whisper: Error: Whisper timing generation failed: ReferenceError: Audio is not defined
+    at WordTimingGenerator.generateWithWhisper (lib/word-timing-generator.ts:164:12)
+    at async WordTimingGenerator.generateWordTimings (lib/word-timing-generator.ts:47:19)
+    at async AudioPreGenerationService.generateWordTimings (lib/audio-pregeneration-service.ts:341:21)
+    at async AudioPreGenerationService.generateSentenceAudio (lib/audio-pregeneration-service.ts:234:24)
+    at async AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:185:27)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  162 |
+  163 |     } catch (error) {
+> 164 |       throw new Error(`Whisper timing generation failed: ${error}`);
+      |            ^
+  165 |     }
+  166 |   }
+  167 |
+Stored 3 audio assets
+Job 17651d9c-9602-413f-8768-3351ccae74bf status: completed
+Updating progress for book gutenberg-1342
+Completed job: 17651d9c-9602-413f-8768-3351ccae74bf - Generated 3 audio files
+Job 702f8eb7-b13f-422a-bc80-f74180566c63 status: completed
+Updating progress for book gutenberg-1342
+Completed job: 702f8eb7-b13f-422a-bc80-f74180566c63 - Generated 3 audio files
+Stored 3 audio assets
+Job 262fd205-ac0b-4da6-9223-830aa7447676 status: completed
+Updating progress for book gutenberg-1342
+Completed job: 262fd205-ac0b-4da6-9223-830aa7447676 - Generated 3 audio files
+ ✓ Compiled in 14ms
+ ✓ Compiled /api/audio/pregenerate in 380ms (215 modules)
+🚀 Starting pre-generation for gutenberg-1342 with 1 chunks
+Starting pre-generation for book: gutenberg-1342 with 1 chunks
+Book gutenberg-1342 already initialized, skipping setup
+Pre-generation queued for gutenberg-1342
+ POST /api/audio/pregenerate 200 in 996ms
+Processing 5 pre-generation jobs
+Processing job: f5766296-d4cf-45da-88bf-760e9040124f for gutenberg-1342 A1 chunk 4
+Processing job: 35bb9f6b-93a9-4591-b335-6d1220b7da9c for gutenberg-1342 A1 chunk 4
+Processing job: 52f56337-8904-4786-a11c-ed85be5746b4 for gutenberg-1342 A1 chunk 4
+Processing job: feff942a-26ba-4a66-a4d6-7e9460866759 for gutenberg-1342 A1 chunk 4
+Processing job: 5ef1c0a8-bbcc-41d1-a021-ba0995ad4325 for gutenberg-1342 A1 chunk 4
+Job 52f56337-8904-4786-a11c-ed85be5746b4 status: processing
+Job f5766296-d4cf-45da-88bf-760e9040124f status: processing
+ ✓ Compiled /api/books/[id]/cached-simplification in 76ms (219 modules)
+Fetching cached simplification: gutenberg-1342, level=A1, chunk=4
+Job 35bb9f6b-93a9-4591-b335-6d1220b7da9c status: processing
+Job feff942a-26ba-4a66-a4d6-7e9460866759 status: processing
+Fetching cached simplification: gutenberg-1342, level=A1, chunk=4
+Job 5ef1c0a8-bbcc-41d1-a021-ba0995ad4325 status: processing
+Fetching cached simplification: gutenberg-1342, level=A1, chunk=4
+Fetching cached simplification: gutenberg-1342, level=A1, chunk=4
+Fetching cached simplification: gutenberg-1342, level=A1, chunk=4
+Found cached simplification with quality 0.44
+ GET /api/books/gutenberg-1342/cached-simplification?level=A1&chunk=4 200 in 604ms
+Got content for gutenberg-1342 A1 chunk 4: SUCCESS
+Found cached simplification with quality 0.44
+ GET /api/books/gutenberg-1342/cached-simplification?level=A1&chunk=4 200 in 535ms
+Got content for gutenberg-1342 A1 chunk 4: SUCCESS
+Found cached simplification with quality 0.44
+ GET /api/books/gutenberg-1342/cached-simplification?level=A1&chunk=4 200 in 494ms
+Got content for gutenberg-1342 A1 chunk 4: SUCCESS
+ ✓ Compiled /api/openai/tts in 107ms (320 modules)
+OpenAI TTS request: {
+  voice: 'echo',
+  textLength: 129,
+  speed: 1,
+  timestamp: '2025-08-19T18:18:56.769Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'fable',
+  textLength: 129,
+  speed: 1,
+  timestamp: '2025-08-19T18:18:56.771Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS request: {
+  voice: 'nova',
+  textLength: 129,
+  speed: 1,
+  timestamp: '2025-08-19T18:18:56.771Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1423ms
+ POST /api/openai/tts 200 in 1565ms
+ ✓ Compiled /api/openai/transcribe in 188ms (322 modules)
+OpenAI TTS completed in 1825ms
+ POST /api/openai/tts 200 in 1956ms
+OpenAI TTS completed in 2222ms
+ POST /api/openai/tts 200 in 2398ms
+ POST /api/openai/transcribe 200 in 1691ms
+OpenAI TTS request: {
+  voice: 'echo',
+  textLength: 116,
+  speed: 1,
+  timestamp: '2025-08-19T18:18:59.949Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 1113ms
+OpenAI TTS request: {
+  voice: 'nova',
+  textLength: 116,
+  speed: 1,
+  timestamp: '2025-08-19T18:19:00.135Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 1763ms
+OpenAI TTS request: {
+  voice: 'fable',
+  textLength: 116,
+  speed: 1,
+  timestamp: '2025-08-19T18:19:00.393Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+Error fetching cached simplification: Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `aws-0-us-east-2.pooler.supabase.com:5432`
+
+Please make sure your database server is running at `aws-0-us-east-2.pooler.supabase.com:5432`.
+    at async GET (app/api/books/[id]/cached-simplification/route.ts:17:19)
+  15 |
+  16 |     // Get cached simplification from database
+> 17 |     const cached = await prisma.$queryRaw`
+     |                   ^
+  18 |       SELECT simplified_text, quality_score, original_text 
+  19 |       FROM book_simplifications 
+  20 |       WHERE book_id = ${id} AND target_level = ${level} AND chunk_index = ${chunkIndex} {
+  code: 'P1001',
+  meta: [Object],
+  clientVersion: '6.12.0'
+}
+ GET /api/books/gutenberg-1342/cached-simplification?level=A1&chunk=4 500 in 5245ms
+Error fetching cached simplification: Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `aws-0-us-east-2.pooler.supabase.com:5432`
+
+Please make sure your database server is running at `aws-0-us-east-2.pooler.supabase.com:5432`.
+    at async GET (app/api/books/[id]/cached-simplification/route.ts:17:19)
+  15 |
+  16 |     // Get cached simplification from database
+> 17 |     const cached = await prisma.$queryRaw`
+     |                   ^
+  18 |       SELECT simplified_text, quality_score, original_text 
+  19 |       FROM book_simplifications 
+  20 |       WHERE book_id = ${id} AND target_level = ${level} AND chunk_index = ${chunkIndex} {
+  code: 'P1001',
+  meta: [Object],
+  clientVersion: '6.12.0'
+}
+ GET /api/books/gutenberg-1342/cached-simplification?level=A1&chunk=4 500 in 5338ms
+API response not ok for gutenberg-1342 A1 chunk 4: 500
+Failed to process job feff942a-26ba-4a66-a4d6-7e9460866759: Error: No content found for gutenberg-1342 A1 chunk 4
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job feff942a-26ba-4a66-a4d6-7e9460866759 failed: No content found for gutenberg-1342 A1 chunk 4
+API response not ok for gutenberg-1342 A1 chunk 4: 500
+Failed to process job 5ef1c0a8-bbcc-41d1-a021-ba0995ad4325: Error: No content found for gutenberg-1342 A1 chunk 4
+    at AudioPreGenerationService.processJob (lib/audio-pregeneration-service.ts:171:14)
+    at async AudioPreGenerationService.processQueue (lib/audio-pregeneration-service.ts:127:4)
+  169 |       
+  170 |       if (!chunkContent) {
+> 171 |         throw new Error(`No content found for ${job.bookId} ${job.cefrLevel} chunk ${job.chunkIndex}`);
+      |              ^
+  172 |       }
+  173 |       
+  174 |       // Split into sentences
+Job 5ef1c0a8-bbcc-41d1-a021-ba0995ad4325 failed: No content found for gutenberg-1342 A1 chunk 4
+OpenAI TTS completed in 2001ms
+ POST /api/openai/tts 200 in 2009ms
+OpenAI TTS completed in 2373ms
+ POST /api/openai/tts 200 in 2412ms
+OpenAI TTS completed in 3433ms
+ POST /api/openai/tts 200 in 3443ms
+ POST /api/openai/transcribe 200 in 2026ms
+OpenAI TTS request: {
+  voice: 'nova',
+  textLength: 98,
+  speed: 1,
+  timestamp: '2025-08-19T18:19:04.190Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 2551ms
+OpenAI TTS request: {
+  voice: 'echo',
+  textLength: 98,
+  speed: 1,
+  timestamp: '2025-08-19T18:19:04.911Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+ POST /api/openai/transcribe 200 in 1101ms
+OpenAI TTS request: {
+  voice: 'fable',
+  textLength: 98,
+  speed: 1,
+  timestamp: '2025-08-19T18:19:04.961Z'
+}
+Creating OpenAI instance...
+OpenAI instance created successfully
+OpenAI TTS completed in 1661ms
+ POST /api/openai/tts 200 in 1668ms
+OpenAI TTS completed in 1639ms
+ POST /api/openai/tts 200 in 1647ms
+OpenAI TTS completed in 1830ms
+ POST /api/openai/tts 200 in 1842ms
+ POST /api/openai/transcribe 200 in 1167ms
+ POST /api/openai/transcribe 200 in 885ms
+Stored 3 audio assets
+ POST /api/openai/transcribe 200 in 1300ms
+Stored 3 audio assets
+Job 52f56337-8904-4786-a11c-ed85be5746b4 status: completed
+Updating progress for book gutenberg-1342
+Completed job: 52f56337-8904-4786-a11c-ed85be5746b4 - Generated 3 audio files
+Job f5766296-d4cf-45da-88bf-760e9040124f status: completed
+Updating progress for book gutenberg-1342
+Completed job: f5766296-d4cf-45da-88bf-760e9040124f - Generated 3 audio files
+Stored 3 audio assets
+Job 35bb9f6b-93a9-4591-b335-6d1220b7da9c status: completed
+Updating progress for book gutenberg-1342
+Completed job: 35bb9f6b-93a9-4591-b335-6d1220b7da9c - Generated 3 audio files
