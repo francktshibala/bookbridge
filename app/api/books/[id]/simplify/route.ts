@@ -480,15 +480,20 @@ export async function GET(
     const isExternalBook = id.includes('-') && !id.match(/^[0-9a-f-]{36}$/)
     
     if (!isExternalBook) {
-      // Get user from Supabase auth (only for internal books)
-      const supabase = await createClient()
-      const { data: { user }, error: authError } = await supabase.auth.getUser()
+      // Allow internal service calls with token bypass
+      const internalToken = request.headers.get('x-internal-token')
+      const validInternal = internalToken && internalToken === process.env.INTERNAL_SERVICE_TOKEN
+      if (!validInternal) {
+        // Get user from Supabase auth (only for internal books)
+        const supabase = await createClient()
+        const { data: { user }, error: authError } = await supabase.auth.getUser()
 
-      if (authError || !user) {
-        return NextResponse.json(
-          { error: 'Authentication required' },
-          { status: 401 }
-        )
+        if (authError || !user) {
+          return NextResponse.json(
+            { error: 'Authentication required' },
+            { status: 401 }
+          )
+        }
       }
     }
 
@@ -508,11 +513,18 @@ export async function GET(
 
     // Get user ID for AI calls (required for Claude service)
     // For external books, we still need to check auth to enable AI features
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    let userId = user?.id || 'anonymous'
+    let userId = 'system'
+    {
+      const internalToken = request.headers.get('x-internal-token')
+      const validInternal = internalToken && internalToken === process.env.INTERNAL_SERVICE_TOKEN
+      if (!validInternal) {
+        const supabase = await createClient()
+        const { data: { user } } = await supabase.auth.getUser()
+        userId = user?.id || 'anonymous'
+      }
+    }
     
-    console.log(`🔐 Auth check: userId = ${userId}, user = ${user ? user.email : 'null'}, useAI = ${useAI}`)
+    console.log(`🔐 Auth check: userId = ${userId}, useAI = ${useAI}`)
 
     // Check if we have cached simplification
     try {
