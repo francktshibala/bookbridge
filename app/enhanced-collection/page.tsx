@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { AIBookChatModal } from '@/components/ai/AIBookChatModal';
+import type { ExternalBook } from '@/types/book-sources';
 
 interface Book {
   id: string;
@@ -49,6 +51,10 @@ export default function EnhancedCollectionDynamic() {
   const [error, setError] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(9);
   const BOOKS_PER_PAGE = 9;
+  
+  // AI Chat Modal State
+  const [isAIChatOpen, setIsAIChatOpen] = useState(false);
+  const [selectedAIBook, setSelectedAIBook] = useState<ExternalBook | null>(null);
 
   useEffect(() => {
     fetchEnhancedBooks();
@@ -97,6 +103,101 @@ export default function EnhancedCollectionDynamic() {
   const handleGenreChange = (genre: string) => {
     setSelectedGenre(genre);
     setVisibleCount(BOOKS_PER_PAGE); // Reset pagination when changing genre
+  };
+
+  // AI Chat Handlers
+  const handleAskAI = (book: Book) => {
+    // Convert Book to ExternalBook format for AI modal
+    const externalBook: ExternalBook = {
+      id: book.id,
+      title: book.title,
+      author: book.author,
+      description: book.description || 'Enhanced ESL edition with multiple difficulty levels available',
+      subjects: book.genre ? [book.genre] : ['Literature'],
+      language: 'en',
+      source: 'gutenberg',
+      publicationYear: undefined,
+      popularity: 1
+    };
+    
+    setSelectedAIBook(externalBook);
+    setIsAIChatOpen(true);
+  };
+
+  const handleCloseAIChat = () => {
+    setIsAIChatOpen(false);
+    setSelectedAIBook(null);
+  };
+
+  const handleSendAIMessage = async (message: string): Promise<string> => {
+    if (!selectedAIBook) {
+      throw new Error('No book selected for AI chat');
+    }
+
+    try {
+      const bookContext = `Title: ${selectedAIBook.title}, Author: ${selectedAIBook.author}${
+        selectedAIBook.description ? `, Description: ${selectedAIBook.description}` : ''
+      }${
+        selectedAIBook.subjects?.length ? `, Subjects: ${selectedAIBook.subjects.join(', ')}` : ''
+      }`;
+
+      // Add timeout to prevent hanging - increased for complex AI analysis
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 second timeout for complex AI processing
+
+      const response = await fetch('/api/ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: message,
+          bookId: selectedAIBook.id,
+          bookContext: bookContext,
+        }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.error || errorData.message || `HTTP error! status: ${response.status}`;
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      
+      // Return the full AI response data for progressive disclosure
+      const aiResponse = {
+        content: data.response || data.content || data.message || 'I received your question but had trouble generating a response. Please try again.',
+        context: data.tutoringAgents?.context ? { content: data.tutoringAgents.context, confidence: 0.9 } : undefined,
+        insights: data.tutoringAgents?.insights ? { content: data.tutoringAgents.insights, confidence: 0.9 } : undefined,
+        questions: data.tutoringAgents?.questions ? { content: data.tutoringAgents.questions, confidence: 0.9 } : undefined,
+        crossBookConnections: data.crossBookConnections,
+        agentResponses: data.agentResponses,
+        multiAgent: data.multiAgent
+      };
+      
+      return JSON.stringify(aiResponse);
+    } catch (error) {
+      console.error('Error sending AI message:', error);
+      
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          throw new Error('⏱️ Request timed out after 90 seconds. Your AI analysis was too complex - try asking a simpler question or try again later.');
+        }
+        if (error.message.includes('limit exceeded') || error.message.includes('usage limit')) {
+          throw new Error('You have reached your AI usage limit. Please upgrade your plan or try again later.');
+        }
+        if (error.message.includes('rate_limit_error') || error.message.includes('429')) {
+          throw new Error('🚦 AI service is temporarily busy due to high usage. Please wait 1-2 minutes and try again.');
+        }
+        throw new Error(error.message);
+      }
+      
+      throw new Error('Failed to get AI response. Please try again.');
+    }
   };
 
   const BookCard = ({ book }: { book: Book }) => {
@@ -268,28 +369,67 @@ export default function EnhancedCollectionDynamic() {
           </span>
         </div>
 
-        {/* Start Reading Button - Wireframe Style */}
-        <a
-          href={`/library/${book.id}/read`}
-          style={{
-            display: 'block',
-            textAlign: 'center',
-            padding: '10px 20px',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            border: 'none',
-            borderRadius: '8px',
-            color: 'white',
-            fontWeight: '600',
-            fontSize: '13px',
-            textDecoration: 'none',
-            cursor: 'pointer',
-            transition: 'opacity 0.2s ease'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
-          onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-        >
-          Start Reading
-        </a>
+        {/* Action Buttons */}
+        <div style={{
+          display: 'flex',
+          gap: '8px'
+        }}>
+          <motion.button
+            whileHover={{ y: -1, transition: { duration: 0.2 } }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => handleAskAI(book)}
+            style={{
+              flex: 1,
+              padding: '10px 12px',
+              background: 'transparent',
+              border: '2px solid #8b5cf6',
+              borderRadius: '8px',
+              color: '#8b5cf6',
+              fontWeight: '600',
+              fontSize: '12px',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '4px'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+            }}
+          >
+            🤖 Ask AI
+          </motion.button>
+          
+          <a
+            href={`/library/${book.id}/read`}
+            style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              padding: '10px 12px',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              border: 'none',
+              borderRadius: '8px',
+              color: 'white',
+              fontWeight: '600',
+              fontSize: '12px',
+              textDecoration: 'none',
+              cursor: 'pointer',
+              transition: 'opacity 0.2s ease',
+              gap: '4px'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+          >
+            📖 Read
+          </a>
+        </div>
       </motion.div>
     );
   };
@@ -539,6 +679,14 @@ export default function EnhancedCollectionDynamic() {
           </>
         )}
       </div>
+
+      {/* AI Chat Modal */}
+      <AIBookChatModal
+        isOpen={isAIChatOpen}
+        book={selectedAIBook}
+        onClose={handleCloseAIChat}
+        onSendMessage={handleSendAIMessage}
+      />
     </div>
   );
 }

@@ -270,13 +270,14 @@ export class BookProcessor {
         throw new Error(`Original chunk not found: ${bookId} chunk ${chunkIndex}`);
       }
 
-      // Call existing simplification API
-      const response = await fetch('http://localhost:3001/api/books/' + bookId.replace('gutenberg-', '') + '/simplify', {
+      // Call existing simplification API (use proper base URL)
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXTAUTH_URL || 'http://localhost:3000';
+      const response = await fetch(`${baseUrl}/api/books/${bookId.replace('gutenberg-', '')}/simplify`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-internal-token': process.env.INTERNAL_SERVICE_TOKEN || '' },
         body: JSON.stringify({
-          text: originalChunk.chunkText,
-          targetLevel: cefrLevel
+          level: cefrLevel,
+          chunkIndex
         })
       });
 

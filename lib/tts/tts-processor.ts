@@ -283,12 +283,12 @@ export class TTSProcessor {
     try {
       console.log(`🔍 Looking for precomputed audio: ${bookId} ${cefrLevel} chunk ${chunkIndex} voice ${voiceId}`);
       
-      // Get the specific chunk
+      // Get the specific chunk for the requested CEFR level
       const chunk = await prisma.bookChunk.findUnique({
         where: {
           bookId_cefrLevel_chunkIndex: {
             bookId,
-            cefrLevel: 'original', // We stored chunks as 'original', not simplified levels yet
+            cefrLevel, // use CEFR level, not 'original'
             chunkIndex
           }
         }
@@ -299,11 +299,11 @@ export class TTSProcessor {
         return null;
       }
 
-      // Find BookAudio record for this book+voice combination
+      // Find BookAudio record for this book+voice+level combination
       const audioRecord = await prisma.bookAudio.findFirst({
         where: {
           bookId,
-          cefrLevel: 'original', // We stored as 'original'
+          cefrLevel,
           voiceId
         }
       });

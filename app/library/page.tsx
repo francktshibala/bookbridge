@@ -558,8 +558,11 @@ export default function LibraryPage() {
         if (error.name === 'AbortError') {
           throw new Error('⏱️ Request timed out after 90 seconds. Your AI analysis was too complex - try asking a simpler question or try again later.');
         }
-        if (error.message.includes('limit exceeded')) {
+        if (error.message.includes('limit exceeded') || error.message.includes('usage limit')) {
           throw new Error('You have reached your AI usage limit. Please upgrade your plan or try again later.');
+        }
+        if (error.message.includes('rate_limit_error') || error.message.includes('429')) {
+          throw new Error('🚦 AI service is temporarily busy due to high usage. Please wait 1-2 minutes and try again.');
         }
         throw new Error(error.message);
       }

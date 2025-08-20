@@ -206,3 +206,393 @@ OpenAI instance created successfully
 OpenAI TTS completed in 2195ms
  POST /api/openai/tts 200 in 3788ms
 [?25h
+
+> bookbridge@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.4.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.11:3000
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+
+ ✓ Starting...
+ ✓ Ready in 2.3s
+ ✓ Compiled /middleware in 403ms (108 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 4.2s (1632 modules)
+ ✓ Compiled in 961ms (726 modules)
+ GET / 200 in 5163ms
+ GET / 200 in 149ms
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 902ms (1642 modules)
+ GET /admin 200 in 1648ms
+ ○ Compiling /api/admin/stats ...
+ ✓ Compiled /api/admin/stats in 516ms (1664 modules)
+ GET /api/admin/stats 200 in 1593ms
+ ✓ Compiled /admin/queue in 326ms (1672 modules)
+ GET /admin/queue 200 in 552ms
+ ✓ Compiled /api/admin/queue in 290ms (1674 modules)
+ GET /api/admin/queue 200 in 541ms
+ GET /api/admin/queue 200 in 852ms
+ ✓ Compiled /api/admin/queue/resume in 497ms (1759 modules)
+🚀 Starting queue processing...
+📋 Found 10 pending jobs
+ ○ Compiling /api/books/[id]/simplify ...
+ ✓ Compiled /api/books/[id]/simplify in 993ms (2388 modules)
+Redis URL not found, skipping Redis initialization
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 2425ms
+❌ Failed: gutenberg-1342 A1 chunk 62: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 26ms
+❌ Failed: gutenberg-1342 A1 chunk 63: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 16ms
+❌ Failed: gutenberg-1342 A1 chunk 64: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 18ms
+❌ Failed: gutenberg-1342 A1 chunk 65: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 14ms
+❌ Failed: gutenberg-1342 A1 chunk 66: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 13ms
+❌ Failed: gutenberg-1342 A1 chunk 67: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 16ms
+❌ Failed: gutenberg-1342 A1 chunk 68: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 18ms
+❌ Failed: gutenberg-1342 A1 chunk 69: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 19ms
+❌ Failed: gutenberg-1342 A1 chunk 70: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+Text simplification request for book ID: 1342
+ POST /api/books/1342/simplify 401 in 18ms
+❌ Failed: gutenberg-1342 A1 chunk 71: Error: Simplification API failed: Unauthorized
+    at BookProcessor.processSimplificationJob (lib/precompute/book-processor.ts:285:14)
+    at async BookProcessor.processQueue (lib/precompute/book-processor.ts:379:10)
+    at async POST (app/api/admin/queue/resume/route.ts:13:4)
+  283 |
+  284 |       if (!response.ok) {
+> 285 |         throw new Error(`Simplification API failed: ${response.statusText}`);
+      |              ^
+  286 |       }
+  287 |
+  288 |       const result = await response.json();
+Redis URL not found, skipping Redis initialization
+✅ Queue processing completed
+ POST /api/admin/queue/resume 200 in 16575ms
+ GET /api/admin/queue 200 in 167ms
+
+> bookbridge@1.0.0 build
+> prisma generate && next build
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v6.12.0) to ./node_modules/@prisma/client in 209ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+
+   ▲ Next.js 15.4.4
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 26.0s
+   Linting and checking validity of types ...
+
+> bookbridge@1.0.0 build
+> prisma generate && next build
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v6.12.0) to ./node_modules/@prisma/client in 157ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+
+   ▲ Next.js 15.4.4
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 10.0s
+   Linting and checking validity of types ...
+
+> bookbridge@1.0.0 build
+> prisma generate && next build
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v6.12.0) to ./node_modules/@prisma/client in 158ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+
+   ▲ Next.js 15.4.4
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 10.0s
+   Linting and checking validity of types ...
+   Collecting page data ...
+Redis URL not found, skipping Redis initialization
+Redis URL not found, skipping Redis initialization
+Using Claude AI service
+Redis URL not found, skipping Redis initialization
+Redis URL not found, skipping Redis initialization
+Using Claude AI service
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+Redis URL not found, skipping Redis initialization
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+   Generating static pages (0/81) ...
+   Generating static pages (20/81) 
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+   Generating static pages (40/81) 
+Redis URL not found, skipping Redis initialization
+Redis URL not found, skipping Redis initialization
+Using Claude AI service
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+   Generating static pages (60/81) 
+ ✓ Generating static pages (81/81)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                          Size  First Load JS
+┌ ○ /                                             3.36 kB         145 kB
+├ ○ /_not-found                                     996 B         101 kB
+├ ○ /admin                                        1.44 kB         105 kB
+├ ○ /admin/books                                  2.08 kB         102 kB
+├ ○ /admin/costs                                    497 B         100 kB
+├ ○ /admin/queue                                  2.06 kB         102 kB
+├ ○ /admin/settings                                 261 B         100 kB
+├ ○ /admin/storage                                  261 B         100 kB
+├ ƒ /api/admin/books                                261 B         100 kB
+├ ƒ /api/admin/books/pregenerate                    261 B         100 kB
+├ ƒ /api/admin/process-books                        261 B         100 kB
+├ ƒ /api/admin/queue                                261 B         100 kB
+├ ƒ /api/admin/queue/cancel                         261 B         100 kB
+├ ƒ /api/admin/queue/clear-failed                   261 B         100 kB
+├ ƒ /api/admin/queue/pause                          261 B         100 kB
+├ ƒ /api/admin/queue/purge-original                 261 B         100 kB
+├ ƒ /api/admin/queue/resume                         261 B         100 kB
+├ ƒ /api/admin/queue/retry                          261 B         100 kB
+├ ƒ /api/admin/stats                                261 B         100 kB
+├ ƒ /api/admin/testimonials                         261 B         100 kB
+├ ƒ /api/ai                                         261 B         100 kB
+├ ƒ /api/ai/stream                                  261 B         100 kB
+├ ƒ /api/audio/cache                                261 B         100 kB
+├ ƒ /api/audio/pregenerate                          261 B         100 kB
+├ ƒ /api/audio/pregenerated                         261 B         100 kB
+├ ƒ /api/books                                      261 B         100 kB
+├ ƒ /api/books/[id]/available-levels                261 B         100 kB
+├ ƒ /api/books/[id]/cached-simplification           261 B         100 kB
+├ ƒ /api/books/[id]/content                         261 B         100 kB
+├ ƒ /api/books/[id]/content-fast                    261 B         100 kB
+├ ƒ /api/books/[id]/simplify                        261 B         100 kB
+├ ƒ /api/books/enhanced                             261 B         100 kB
+├ ƒ /api/books/external/[bookId]                    261 B         100 kB
+├ ƒ /api/books/googlebooks/[bookId]/content         261 B         100 kB
+├ ƒ /api/books/googlebooks/search                   261 B         100 kB
+├ ƒ /api/books/recommendations/[bookId]             261 B         100 kB
+├ ƒ /api/books/recommendations/general              261 B         100 kB
+├ ƒ /api/books/standardebooks/feed                  261 B         100 kB
+├ ƒ /api/books/standardebooks/proxy                 261 B         100 kB
+├ ƒ /api/books/upload                               261 B         100 kB
+├ ƒ /api/conversations/[conversationId]/messages    261 B         100 kB
+├ ƒ /api/elevenlabs/tts                             261 B         100 kB
+├ ƒ /api/elevenlabs/websocket-key                   261 B         100 kB
+├ ƒ /api/esl/books/[id]/simplify                    261 B         100 kB
+├ ƒ /api/knowledge-graph                            261 B         100 kB
+├ ƒ /api/openai/transcribe                          261 B         100 kB
+├ ƒ /api/openai/tts                                 261 B         100 kB
+├ ƒ /api/precompute/initialize                      261 B         100 kB
+├ ƒ /api/precompute/process                         261 B         100 kB
+├ ƒ /api/precompute/tts                             261 B         100 kB
+├ ƒ /api/stripe/create-checkout-session             261 B         100 kB
+├ ƒ /api/stripe/webhook                             261 B         100 kB
+├ ƒ /api/subscription/manage                        261 B         100 kB
+├ ƒ /api/test-book-indexing                         261 B         100 kB
+├ ƒ /api/test-openlibrary                           261 B         100 kB
+├ ƒ /api/test-pinecone                              261 B         100 kB
+├ ƒ /api/test-semantic-search                       261 B         100 kB
+├ ƒ /api/test-stripe                                261 B         100 kB
+├ ƒ /api/whisper/align                              261 B         100 kB
+├ ○ /auth/login                                   4.86 kB         185 kB
+├ ○ /auth/signup                                  5.47 kB         185 kB
+├ ○ /debug-current-user                           1.19 kB         142 kB
+├ ○ /debug-voice-integration                      1.29 kB         156 kB
+├ ○ /debug-websocket-highlighting                 1.96 kB         102 kB
+├ ○ /debug-websocket-simple                       1.31 kB         101 kB
+├ ○ /enhanced-collection                          5.86 kB         146 kB
+├ ○ /icon.svg                                         0 B            0 B
+├ ○ /knowledge-graph                              2.18 kB         102 kB
+├ ○ /library                                      18.7 kB         223 kB
+├ ƒ /library/[id]                                 4.39 kB         208 kB
+├ ƒ /library/[id]/read                            19.4 kB         205 kB
+├ ○ /privacy                                      1.66 kB         138 kB
+├ ○ /subscription/manage                          4.77 kB         185 kB
+├ ○ /subscription/pricing                         5.83 kB         182 kB
+├ ○ /subscription/success                         2.73 kB         142 kB
+├ ○ /terms                                        1.51 kB         137 kB
+├ ○ /test-adaptive-highlighting                   2.26 kB         102 kB
+├ ○ /test-auth-monitor                            9.63 kB         190 kB
+├ ○ /test-components                              3.86 kB         146 kB
+├ ○ /test-elevenlabs-debug                        1.26 kB         101 kB
+├ ○ /test-highlighting-fix                        1.26 kB         157 kB
+├ ○ /test-minimal-audio                           1.52 kB         101 kB
+├ ○ /test-simple-websocket                         1.3 kB         101 kB
+├ ○ /test-smart-audio                             4.17 kB         160 kB
+├ ○ /test-standard-voice                            922 B         156 kB
+├ ○ /test-subscription                            2.17 kB         142 kB
+├ ○ /test-voice                                     779 B         156 kB
+├ ○ /test-voice-in-reading                        1.89 kB         157 kB
+├ ○ /test-voice/usage                             2.09 kB         179 kB
+├ ○ /test-websocket-tts                            1.1 kB         156 kB
+└ ○ /upload                                       5.71 kB         145 kB
++ First Load JS shared by all                     99.7 kB
+  ├ chunks/4bd1b696-602635ee57868870.js           54.1 kB
+  ├ chunks/5964-4be51857873888c3.js               43.5 kB
+  └ other shared chunks (total)                   2.03 kB
+
+
+ƒ Middleware                                      33.1 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

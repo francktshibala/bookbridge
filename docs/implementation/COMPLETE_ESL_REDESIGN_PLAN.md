@@ -40,6 +40,97 @@
 
 ---
 
+## 2025-08-20 Update: Admin Dashboard Styling Fix + Real Admin Wiring
+
+### What was fixed in one shot (root cause and remedy)
+- Problem symptoms: Admin UI rendered as plain text on a dark background; Tailwind classNames present but no styles applied.
+- Root cause: PostCSS plugin mismatch. `postcss.config.js` used the Tailwind v4 plugin (`'@tailwindcss/postcss'`) while the project depends on Tailwind v3 (`tailwindcss@^3.4.0`). This prevents utility generation, so no Tailwind styles load.
+- Fix applied:
+  - Updated `postcss.config.js` to use the v3 plugin:
+    ```diff
+    module.exports = {
+      plugins: {
+    -   '@tailwindcss/postcss': {},
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    }
+    ```
+  - Cleared `.next` cache and restarted the dev server. Styles compiled and applied immediately.
+
+### Why this worked on the first attempt
+- Your description was precise: “components appear as plain text” + “Tailwind classes are present,” which strongly indicated a build/pipeline issue rather than JSX or hydration.
+- You listed prior attempts (client directives, imports, cache clear, inline HTML), allowing us to skip those branches and inspect the pipeline directly.
+- Rapid verification steps: check `package.json` Tailwind version, then `postcss.config.js` plugin; the mismatch was obvious and low‑risk to correct.
+
+### Admin “Make it real” — implementations completed
+- Stats API correction
+  - Fixed monthly costs calculation (removed incorrect division by 100) in `app/api/admin/stats/route.ts`.
+- Dashboard uses live data
+  - `app/admin/page.tsx` now renders `DashboardStats` (fetches `/api/admin/stats`) and `QuickActions`.
+- Queue management (live)
+  - Endpoints:
+    - `GET /api/admin/queue` — list recent jobs (Prisma `PrecomputeQueue`).
+    - `POST /api/admin/queue/pause` — set job status to `pending` (soft pause).
+    - `POST /api/admin/queue/resume` — mark `pending` and trigger processing.
+    - `POST /api/admin/queue/retry` — reset attempts and status.
+    - `POST /api/admin/queue/cancel` — delete job.
+  - UI wiring: `components/admin/QueueManagement.tsx` now loads from `/api/admin/queue` and calls action endpoints.
+- Book pre‑generation (start with Pride and Prejudice)
+  - Endpoint: `POST /api/admin/books/pregenerate` queues simplification jobs for a `bookId`, ensuring content is stored first via `BookProcessor`.
+  - UI wiring: `components/admin/BookManagement.tsx` “Generate Audio” calls this endpoint. It also hydrates from `/api/books/enhanced` when available.
+
+### How to use (short)
+- Book Management → find “Pride and Prejudice” (`gutenberg-1342`) → “Generate Audio”.
+- Pre‑generation Queue → monitor and manage jobs (Pause/Resume/Retry/Cancel).
+- Optional: call `POST /api/precompute/process` to process pending jobs immediately.
+
+---
+
+## 2025-08-20 Progress Addendum: CEFR‑only Queue, Live Wiring, and Current Blocker
+
+### What is completed now
+- Admin UI is live and data‑backed
+  - Dashboard uses `/api/admin/stats` (cost math fixed).
+  - Queue page wired to real DB (`PrecomputeQueue`) with a new Level column.
+  - Queue API filters to CEFR A1–C2 only (hides legacy `original`).
+  - Actions implemented: pause, resume, retry, cancel, clear‑failed, purge‑original.
+- Book pre‑generation workflow
+  - `POST /api/admin/books/pregenerate` ensures content exists, then enqueues simplification jobs for A1–C2.
+  - Worker (`BookProcessor`) fixed to call simplify API with the right payload `{ level, chunkIndex }` and to use a proper `baseUrl`.
+- Internal service auth path
+  - Simplify endpoint now supports an internal bypass via `x-internal-token` matching `INTERNAL_SERVICE_TOKEN`.
+  - Worker sends this header for server‑to‑server calls.
+
+### What you’ll see in the UI
+- Queue shows only CEFR levels (A1–C2) in the Level column.
+- Resume All triggers processing. Pending should decrease and Completed should increase once the API calls succeed.
+
+### Current blocker (why jobs still fail)
+- Logs show `401 Unauthorized` from `POST /api/books/1342/simplify`.
+  - We added the internal token bypass and the worker sends `x-internal-token`, but the simplify route still returns 401.
+  - Likely cause: the simplify `POST` delegates to the `GET` handler using `GET(request, { params })`. This reuses the original Next `request` object without updating the URL/search params; header forwarding is implicit but not guaranteed across this code path. If the internal header is not observed inside `GET`, auth falls back to Supabase and returns 401.
+
+### Attempts already made
+- Fixed Tailwind/PostCSS mismatch (styles now applied).
+- Switched queue to CEFR‑only; purged legacy `original` rows.
+- Replaced worker payload (`{ level, chunkIndex }`), removing the earlier `chunkIndex.toString()` error in `POST`.
+- Added internal token bypass in simplify `GET` and adjusted user ID derivation.
+- Worker now sends `x-internal-token` and resolves `baseUrl` to the active port.
+
+### Next recommended fix (low‑risk)
+- Refactor simplify endpoint to avoid calling `GET(request, { params })` from `POST`. Instead, extract the core logic into a shared function:
+  - `handleSimplify({ id, level, chunkIndex, request })`
+  - Call this directly from both `GET` and `POST`, explicitly passing `level` and `chunkIndex`, and reading the internal header once.
+- Alternatively, in the current structure, create a new `Request` with the updated URL and headers when invoking `GET` from `POST` to guarantee header and query propagation.
+
+Once the above is applied, clicking “Resume All” on the Queue page should move jobs from Pending → Completed.
+
+### Environment note
+- Set `INTERNAL_SERVICE_TOKEN` before starting the dev server so the internal bypass is recognized.
+
+---
+
 ## **Phase 1: Typography & Layout Foundation (1.5 hours)** ✅ COMPLETED
 
 ### **Step 1.1: Create Typography System** ✅

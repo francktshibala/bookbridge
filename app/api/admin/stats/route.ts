@@ -29,7 +29,7 @@ export async function GET() {
       }
     });
 
-    // Mock monthly costs based on completed jobs (assuming $0.05 per job)
+    // Mock monthly costs based on completed jobs (assuming $0.05 per job, already in USD)
     const monthlyCosts = completedJobs * 0.05;
 
     // Calculate average load time (mock for now - would need real metrics)
@@ -64,9 +64,9 @@ export async function GET() {
         progress: Math.min((queueJobsCount || 0) / 5000 * 100, 100)
       },
       monthlyCosts: {
-        total: monthlyCosts / 100, // Convert from cents to dollars
+        total: monthlyCosts,
         trend: '-15%',
-        progress: Math.min((monthlyCosts / 100) / 200 * 100, 100) // Assuming $200 budget
+        progress: Math.min((monthlyCosts) / 200 * 100, 100) // Assuming $200 budget
       },
       avgLoadTime: {
         total: avgLoadTime,
