@@ -804,12 +804,17 @@ export async function POST(
       }
     }
 
-    // Redirect to GET with parameters
+    // Create a new NextRequest with proper headers for GET method
     const url = new URL(request.url)
     url.searchParams.set('level', level)
     url.searchParams.set('chunk', chunkIndex.toString())
-    
-    return GET(request, { params })
+
+    // Forward all headers including x-internal-token
+    const newRequest = new NextRequest(url.toString(), {
+      headers: request.headers
+    })
+
+    return GET(newRequest, { params })
 
   } catch (error) {
     console.error('Error in simplification POST:', error)

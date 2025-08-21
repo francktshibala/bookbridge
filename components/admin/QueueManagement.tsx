@@ -50,15 +50,24 @@ const mockJobs: QueueJob[] = [
   }
 ];
 
+interface QueueStats {
+  pending: number;
+  processing: number;
+  completed: number;
+  failed: number;
+  total: number;
+}
+
 export function QueueManagement() {
   const [jobs, setJobs] = useState<QueueJob[]>(mockJobs);
   const [isProcessing, setIsProcessing] = useState(true);
+  const [stats, setStats] = useState<QueueStats>({ pending: 200, processing: 0, completed: 0, failed: 0, total: 200 });
 
-  useEffect(() => {
-    // Load real queue data if available
-    fetch('/api/admin/queue')
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .then(data => {
+  const fetchQueueData = async () => {
+    try {
+      const res = await fetch('/api/admin/queue');
+      if (res.ok) {
+        const data = await res.json();
         if (Array.isArray(data?.jobs)) {
           // Map API jobs to UI model where possible
           const mapped: QueueJob[] = data.jobs.map((j: any) => ({
@@ -74,8 +83,21 @@ export function QueueManagement() {
           setJobs(mapped);
         }
         if (typeof data?.isProcessing === 'boolean') setIsProcessing(data.isProcessing);
-      })
-      .catch(() => {});
+        if (data?.stats) setStats(data.stats);
+      }
+    } catch (error) {
+      console.error('Failed to fetch queue data:', error);
+    }
+  };
+
+  useEffect(() => {
+    // Load initial data
+    fetchQueueData();
+    
+    // Auto-refresh every 5 seconds
+    const interval = setInterval(fetchQueueData, 5000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   const getStatusBadge = (status: QueueJob['status']) => {
@@ -109,25 +131,11 @@ export function QueueManagement() {
         body: JSON.stringify({ jobId })
       });
       if (!res.ok) throw new Error('Request failed');
-      // Refresh list
-      const refreshed = await fetch('/api/admin/queue');
-      if (refreshed.ok) {
-        const data = await refreshed.json();
-        if (Array.isArray(data?.jobs)) {
-          const mapped: QueueJob[] = data.jobs.map((j: any) => ({
-            id: j.id,
-            bookTitle: j.bookTitle || j.bookId,
-            bookAuthor: j.bookAuthor || '',
-            cefrLevel: j.cefrLevel,
-            status: j.status,
-            progress: j.progress ?? (j.status === 'completed' ? 100 : j.status === 'processing' ? 50 : 0),
-            createdAt: j.createdAt,
-            estimatedTime: j.estimatedTime
-          }));
-          setJobs(mapped);
-        }
-      }
-    } catch (_) {}
+      // Refresh list immediately
+      await fetchQueueData();
+    } catch (error) {
+      console.error(`Failed to ${action} queue:`, error);
+    }
   };
 
   return (
@@ -167,19 +175,19 @@ export function QueueManagement() {
       {/* Queue Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-          <div className="text-2xl font-bold text-white">{jobs.filter(j => j.status === 'pending').length}</div>
+          <div className="text-2xl font-bold text-white">{stats.pending}</div>
           <div className="text-sm text-slate-400">Pending</div>
         </div>
         <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-          <div className="text-2xl font-bold text-blue-400">{jobs.filter(j => j.status === 'processing').length}</div>
+          <div className="text-2xl font-bold text-blue-400">{stats.processing}</div>
           <div className="text-sm text-slate-400">Processing</div>
         </div>
         <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-          <div className="text-2xl font-bold text-green-400">{jobs.filter(j => j.status === 'completed').length}</div>
+          <div className="text-2xl font-bold text-green-400">{stats.completed}</div>
           <div className="text-sm text-slate-400">Completed</div>
         </div>
         <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-          <div className="text-2xl font-bold text-red-400">{jobs.filter(j => j.status === 'failed').length}</div>
+          <div className="text-2xl font-bold text-red-400">{stats.failed}</div>
           <div className="text-sm text-slate-400">Failed</div>
         </div>
       </div>

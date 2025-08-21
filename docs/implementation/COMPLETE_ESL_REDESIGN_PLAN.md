@@ -131,6 +131,92 @@ Once the above is applied, clicking “Resume All” on the Queue page should mo
 
 ---
 
+## 2025-08-21 Update: Admin Dashboard 401 Auth Fix - Implementation Plan
+
+### Research Summary (Both agents identified same root causes)
+
+1. **Book ID Stripping Bug**: Worker removes 'gutenberg-' prefix, causing external books to be treated as internal
+   - `/lib/precompute/book-processor.ts:275` transforms `gutenberg-1513` → `1513`
+   - Without hyphen, book isn't detected as external and requires authentication
+
+2. **Header Forwarding Issue**: POST→GET delegation doesn't preserve `x-internal-token` header
+   - `POST` calls `GET(request, { params })` reusing original request
+   - Next.js App Router may not reliably forward custom headers in this pattern
+
+### Implementation Plan
+
+#### Phase 1: Quick Fix (5 minutes) - IMMEDIATE
+**File**: `/lib/precompute/book-processor.ts:275`
+```typescript
+// Change from:
+const response = await fetch(`${baseUrl}/api/books/${bookId.replace('gutenberg-', '')}/simplify`, {
+
+// To:
+const response = await fetch(`${baseUrl}/api/books/${bookId}/simplify`, {
+```
+
+This single-line change will:
+- Preserve full book IDs (e.g., `gutenberg-1513`)
+- Ensure external book detection works correctly
+- Allow Gutenberg books to bypass authentication
+- Unblock the 200 pending jobs immediately
+
+#### Phase 2: Robust Fix (15 minutes) - RECOMMENDED
+**File**: `/app/api/books/[id]/simplify/route.ts` (POST method)
+```typescript
+export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const { id } = await params
+    const body = await request.json()
+    const { level, chunkIndex, regenerate = false } = body
+
+    if (regenerate) {
+      // Clear cached version logic...
+    }
+
+    // Create a new Request with proper headers
+    const url = new URL(request.url)
+    url.searchParams.set('level', level)
+    url.searchParams.set('chunk', chunkIndex.toString())
+    
+    // Forward all headers including x-internal-token
+    const newRequest = new Request(url.toString(), {
+      method: 'GET',
+      headers: request.headers
+    })
+    
+    return GET(newRequest, { params })
+  } catch (error) {
+    // Error handling...
+  }
+}
+```
+
+This ensures:
+- Headers are properly forwarded to GET method
+- `x-internal-token` reaches the auth check
+- More reliable for all edge cases
+
+### Testing & Verification
+
+1. **After Phase 1 Fix**:
+   - Check Pre-generation Queue shows progress > 0%
+   - Monitor for successful job completion
+   - Verify no more 401 errors in logs
+
+2. **After Phase 2 Fix**:
+   - Test direct API calls with internal token
+   - Test worker-initiated calls
+   - Verify both auth paths work correctly
+
+### Expected Outcome
+- 200 pending jobs will start processing
+- Queue will show actual progress percentages
+- Monthly TTS costs will start accumulating
+- Book pre-generation will function as designed
+
+---
+
 ## **Phase 1: Typography & Layout Foundation (1.5 hours)** ✅ COMPLETED
 
 ### **Step 1.1: Create Typography System** ✅

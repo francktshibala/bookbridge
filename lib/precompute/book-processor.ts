@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import { createClient } from '@supabase/supabase-js';
 import { contentExtractor } from '../content-extractor';
 import { PRIORITY_BOOKS } from '../../scripts/priority-books.js';
+import { AudioGenerator } from '../services/audio-generator';
 
-const prisma = new PrismaClient();
 
 // Service role client for direct database/storage access
 const supabase = createClient(
@@ -23,6 +23,11 @@ export class BookProcessor {
   private static instance: BookProcessor;
   private processingQueue: Map<string, BookProcessingJob> = new Map();
   private isProcessing = false;
+  private audioGenerator: AudioGenerator;
+
+  constructor() {
+    this.audioGenerator = new AudioGenerator();
+  }
 
   static getInstance(): BookProcessor {
     if (!BookProcessor.instance) {
@@ -272,7 +277,7 @@ export class BookProcessor {
 
       // Call existing simplification API (use proper base URL)
       const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXTAUTH_URL || 'http://localhost:3000';
-      const response = await fetch(`${baseUrl}/api/books/${bookId.replace('gutenberg-', '')}/simplify`, {
+      const response = await fetch(`${baseUrl}/api/books/${bookId}/simplify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-internal-token': process.env.INTERNAL_SERVICE_TOKEN || '' },
         body: JSON.stringify({
@@ -287,16 +292,45 @@ export class BookProcessor {
 
       const result = await response.json();
 
-      // Store simplified chunk
+      // Validate response has content
+      if (!result.content) {
+        throw new Error(`Invalid API response: missing content field`);
+      }
+
+      // Generate audio for the simplified text
+      let audioFilePath: string | null = null;
+      let audioProvider: string | null = null;
+      let audioVoiceId: string | null = null;
+
+      try {
+        audioFilePath = await this.audioGenerator.generateAudio(
+          result.content,
+          'alloy',
+          bookId,
+          chunkIndex,
+          cefrLevel
+        );
+        audioProvider = 'openai';
+        audioVoiceId = 'alloy';
+        console.log(`🎵 Generated audio: ${audioFilePath}`);
+      } catch (audioError) {
+        console.error(`⚠️ Audio generation failed for ${bookId} ${cefrLevel} chunk ${chunkIndex}:`, audioError);
+        // Continue without audio - don't fail the whole job
+      }
+
+      // Store simplified chunk with audio info
       await prisma.bookChunk.create({
         data: {
           bookId,
           cefrLevel,
           chunkIndex,
-          chunkText: result.simplified,
-          wordCount: result.simplified.split(/\s+/).length,
+          chunkText: result.content,
+          wordCount: result.content.split(/\s+/).length,
           isSimplified: true,
-          qualityScore: result.metrics?.semanticSimilarity || null
+          qualityScore: result.qualityScore || null,
+          audioFilePath,
+          audioProvider,
+          audioVoiceId
         }
       });
 
@@ -411,6 +445,78 @@ export class BookProcessor {
     }
 
     console.log('✅ Priority books initialization completed');
+  }
+
+  // Generate audio for existing simplified chunks (backfill operation)
+  async generateAudioForExistingChunks(): Promise<{ 
+    processed: number; 
+    succeeded: number; 
+    failed: number; 
+    errors: string[] 
+  }> {
+    console.log('🎵 Starting audio generation for existing simplified chunks...');
+    
+    // Find all simplified chunks without audio
+    const chunksNeedingAudio = await prisma.bookChunk.findMany({
+      where: {
+        isSimplified: true,
+        audioFilePath: null,
+        cefrLevel: { not: 'original' }
+      },
+      orderBy: [
+        { bookId: 'asc' },
+        { cefrLevel: 'asc' }, 
+        { chunkIndex: 'asc' }
+      ]
+    });
+
+    console.log(`📋 Found ${chunksNeedingAudio.length} chunks needing audio generation`);
+
+    let processed = 0;
+    let succeeded = 0;
+    let failed = 0;
+    const errors: string[] = [];
+
+    for (const chunk of chunksNeedingAudio) {
+      try {
+        processed++;
+        console.log(`🎵 Processing ${chunk.bookId} ${chunk.cefrLevel} chunk ${chunk.chunkIndex} (${processed}/${chunksNeedingAudio.length})`);
+
+        // Generate audio
+        const audioFilePath = await this.audioGenerator.generateAudio(
+          chunk.chunkText,
+          'alloy',
+          chunk.bookId,
+          chunk.chunkIndex,
+          chunk.cefrLevel
+        );
+
+        // Update chunk with audio info
+        await prisma.bookChunk.update({
+          where: { id: chunk.id },
+          data: {
+            audioFilePath,
+            audioProvider: 'openai',
+            audioVoiceId: 'alloy'
+          }
+        });
+
+        succeeded++;
+        console.log(`✅ Generated audio: ${audioFilePath}`);
+
+        // Small delay to avoid overwhelming the API
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+      } catch (error) {
+        failed++;
+        const errorMsg = `Failed ${chunk.bookId} ${chunk.cefrLevel} chunk ${chunk.chunkIndex}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+        errors.push(errorMsg);
+        console.error(`❌ ${errorMsg}`);
+      }
+    }
+
+    console.log(`🎵 Audio generation completed: ${succeeded} succeeded, ${failed} failed out of ${processed} processed`);
+    return { processed, succeeded, failed, errors };
   }
 
   // Get processing statistics
