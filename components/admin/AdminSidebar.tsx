@@ -8,6 +8,7 @@ const navigation = [
   { name: 'Dashboard', href: '/admin', icon: '📊' },
   { name: 'Pre-generation Queue', href: '/admin/queue', icon: '⏳' },
   { name: 'Book Management', href: '/admin/books', icon: '📚' },
+  { name: 'Audio Management', href: '/admin/audio', icon: '🎵' },
   { name: 'Cost Analytics', href: '/admin/costs', icon: '💰' },
   { name: 'Storage Management', href: '/admin/storage', icon: '🗄️' },
   { name: 'Settings', href: '/admin/settings', icon: '⚙️' },

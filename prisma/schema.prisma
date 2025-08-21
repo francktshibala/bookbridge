@@ -263,6 +263,12 @@ model BookChunk {
   wordCount    Int      @map("word_count")
   isSimplified Boolean  @default(false) @map("is_simplified")
   qualityScore Decimal? @map("quality_score") @db.Decimal(3,2)
+  
+  // Audio generation fields
+  audioFilePath String?  @map("audio_file_path") // Path to generated audio file
+  audioProvider String?  @map("audio_provider")  // 'openai', 'elevenlabs', etc.
+  audioVoiceId  String?  @map("audio_voice_id")  // Voice used for generation
+  
   createdAt    DateTime @default(now()) @map("created_at")
   
   bookContent BookContent @relation(fields: [bookId], references: [bookId], onDelete: Cascade)

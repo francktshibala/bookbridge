@@ -1,7 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import { createClient } from '@supabase/supabase-js';
 
-const prisma = new PrismaClient();
 
 // Service role client for storage access
 const supabase = createClient(

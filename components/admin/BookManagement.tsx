@@ -130,7 +130,7 @@ export function BookManagement() {
       await fetch('/api/admin/books/pregenerate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ bookId, priority: 'high', task: 'simplification' })
+        body: JSON.stringify({ bookId, priority: 'high', task: 'both' })
       });
       setBooks(books.map(book => 
         book.id === bookId 

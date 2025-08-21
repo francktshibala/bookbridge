@@ -3,7 +3,7 @@ import { BookProcessor } from '@/lib/precompute/book-processor';
 
 export async function POST(request: NextRequest) {
   try {
-    const { bookId, priority = 'high', task = 'simplification' } = await request.json();
+    const { bookId, priority = 'high', task = 'both' } = await request.json();
     if (!bookId) {
       return NextResponse.json({ error: 'bookId is required' }, { status: 400 });
     }
