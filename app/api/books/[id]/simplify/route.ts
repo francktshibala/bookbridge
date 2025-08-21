@@ -804,17 +804,16 @@ export async function POST(
       }
     }
 
-    // Create a new Request with proper headers for GET method
+    // Create a new NextRequest with proper headers for GET method
     const url = new URL(request.url)
     url.searchParams.set('level', level)
     url.searchParams.set('chunk', chunkIndex.toString())
-    
+
     // Forward all headers including x-internal-token
-    const newRequest = new Request(url.toString(), {
-      method: 'GET',
+    const newRequest = new NextRequest(url.toString(), {
       headers: request.headers
     })
-    
+
     return GET(newRequest, { params })
 
   } catch (error) {
