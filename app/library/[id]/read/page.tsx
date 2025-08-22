@@ -60,6 +60,7 @@ export default function BookReaderPage() {
   const [readingProgress, setReadingProgress] = useState<number>(0);
   const [currentSection, setCurrentSection] = useState<number>(0);
   const [sections, setSections] = useState<Array<{title: string; content: string; startIndex: number}>>([]);
+  const [simplifiedTotalChunks, setSimplifiedTotalChunks] = useState<number>(0);
 
   // Word highlighting integration
   const { currentWordIndex, handleWordHighlight, resetHighlighting } = useWordHighlighting();
@@ -356,6 +357,12 @@ export default function BookReaderPage() {
           source: data.source  // Add source property for enhanced book detection
         };
         
+        // Pre-compute simplified chunk count (400-word pages) for alignment
+        try {
+          const words = fullText.split(/\s+/);
+          setSimplifiedTotalChunks(Math.ceil(words.length / 400));
+        } catch {}
+
         setBookContent(bookData);
         
         // Set initial content based on saved position
@@ -411,8 +418,9 @@ export default function BookReaderPage() {
   const handleChunkNavigation = async (direction: 'prev' | 'next', autoAdvance = false) => {
     if (!bookContent) return;
     
+    const effectiveTotal = currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : bookContent.totalChunks;
     const newChunk = direction === 'next' 
-      ? Math.min(currentChunk + 1, bookContent.totalChunks - 1)
+      ? Math.min(currentChunk + 1, effectiveTotal - 1)
       : Math.max(currentChunk - 1, 0);
     
     if (newChunk !== currentChunk) {
@@ -552,7 +560,8 @@ export default function BookReaderPage() {
 
   const currentChunkData = bookContent?.chunks?.[currentChunk];
   const canGoPrev = currentChunk > 0;
-  const canGoNext = bookContent ? currentChunk < bookContent.totalChunks - 1 : false;
+  const effectiveTotal = currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : (bookContent?.totalChunks || 0);
+  const canGoNext = effectiveTotal ? currentChunk < effectiveTotal - 1 : false;
 
   // Enhanced book detection
   const isEnhancedBook = bookContent?.stored === true && 
@@ -561,6 +570,8 @@ export default function BookReaderPage() {
   // Feature flag for progressive audio vs wireframe controls
   const useProgressiveAudio = true; // Enable Progressive Voice for enhanced books
   const useWireframeControls = true; // Can toggle during testing
+
+  const getEffectiveTotal = () => (currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : (bookContent?.totalChunks || 0));
 
 
   return (
@@ -645,13 +656,9 @@ export default function BookReaderPage() {
                 }}
               >
                 {(() => {
-                  const isExternalBook = bookId.includes('-') && 
-                    ['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].some(source => 
-                      bookId.startsWith(source + '-')
-                    );
-                  return isExternalBook 
-                    ? `Chapter ${currentChunk + 1} of ${bookContent.totalChunks}`
-                    : `Page ${currentChunk + 1} of ${bookContent.totalChunks}`;
+                  const total = getEffectiveTotal();
+                  const label = currentMode === 'simplified' ? 'Page' : (bookId.includes('-') ? 'Chapter' : 'Page');
+                  return `${label} ${currentChunk + 1} of ${total || 0}`;
                 })()}
                 <div style={{
                   marginTop: '8px',
@@ -663,7 +670,7 @@ export default function BookReaderPage() {
                 }}>
                   <motion.div 
                     initial={{ width: 0 }}
-                    animate={{ width: `${((currentChunk + 1) / bookContent.totalChunks) * 100}%` }}
+                    animate={{ width: `${getEffectiveTotal() ? (((currentChunk + 1) / getEffectiveTotal()) * 100) : 0}%` }}
                     transition={{ duration: 0.3 }}
                     style={{
                       height: '100%',
