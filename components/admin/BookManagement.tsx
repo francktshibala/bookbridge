@@ -12,6 +12,11 @@ interface Book {
   priority: 'low' | 'medium' | 'high';
 }
 
+type CEFR = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+
+interface CoverageLevel { total: number; withAudio: number; percent: number }
+interface BookCoverage { title: string; author: string; levels: Record<CEFR, CoverageLevel> }
+
 const mockBooks: Book[] = [
   {
     id: '1',
@@ -90,6 +95,17 @@ export function BookManagement() {
           }));
           setBooks(mapped);
         }
+      })
+      .catch(() => {});
+  }, []);
+
+  // Load per-book/level coverage
+  const [coverage, setCoverage] = useState<Record<string, BookCoverage>>({});
+  useEffect(() => {
+    fetch('/api/admin/books/coverage')
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(data => {
+        if (data?.coverage) setCoverage(data.coverage);
       })
       .catch(() => {});
   }, []);
@@ -230,12 +246,29 @@ export function BookManagement() {
               {getPriorityBadge(book.priority)}
             </div>
 
-            {/* Audio Status */}
-            <div className="flex items-center mb-4">
-              <span className={`w-2 h-2 rounded-full mr-2 ${book.audioGenerated ? 'bg-green-400' : 'bg-slate-500'}`}></span>
-              <span className="text-sm text-slate-300">
-                {book.audioGenerated ? 'Audio Available' : 'No Audio'}
-              </span>
+            {/* Audio Coverage by CEFR */}
+            <div className="space-y-2 mb-4">
+              {(['A1','A2','B1','B2','C1','C2'] as CEFR[]).map(level => {
+                const cov = coverage[book.id]?.levels?.[level];
+                const total = cov?.total ?? 0;
+                const withAudio = cov?.withAudio ?? 0;
+                const percent = cov?.percent ?? 0;
+                return (
+                  <div key={level} className="flex items-center justify-between">
+                    <span className="text-xs text-slate-400 w-8">{level}</span>
+                    <div className="flex-1 mx-2 h-2 bg-slate-700 rounded-full">
+                      <div className="h-2 bg-blue-500 rounded-full" style={{ width: `${percent}%` }} />
+                    </div>
+                    <span className="text-xs text-slate-300 w-20 text-right">{withAudio}/{total} ({percent}%)</span>
+                    {total > withAudio && (
+                      <button
+                        onClick={() => triggerGeneration(book.id)}
+                        className="ml-2 px-2 py-1 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded"
+                      >Fill</button>
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Actions */}

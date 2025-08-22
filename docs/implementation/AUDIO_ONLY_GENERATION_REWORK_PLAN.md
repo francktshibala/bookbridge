@@ -67,7 +67,7 @@ A. Stop Simplifications from Admin
 
 B. Queue & Stats alignment (audio-only)
 - Completed: `GET /api/admin/queue` now filters with `where: { taskType: 'audio' }` and includes `bookTitle`, `cefrLevel`, and pagination.
-- [ ] Reduce polling to 5–10s; stop when window not visible.
+- Completed: Reduced queue polling cadence; aborts in-flight requests; pauses when tab hidden; AbortError logs silenced.
 
 C. Audio backfill improvements
 - [ ] Extend `/api/admin/audio/backfill` to accept optional scope `{ bookId, levels }` and call `generateAudioForExistingChunks()` with filters.
@@ -78,8 +78,8 @@ D. Book Management coverage
 - [ ] Render coverage badges (e.g., A1: 20/20, A2: 0/20) and progress bars. Enable per-level “Generate Audio”.
 
 E. Reader integration
-- [ ] Add a helper: `resolvePrecomputedAudioUrl(bookId, level, chunkIndex)` that checks DB → public path → null.
-- [ ] Update `InstantAudioPlayer` usage to prefer resolved URL; only fall back to on-demand when null.
+- Completed: Reader now calls `/api/audio/pregenerated` which falls back to `book_chunks.audio_file_path`; uses returned URL for instant playback.
+- Completed: `InstantAudioPlayer` prefers precomputed audio; falls back to progressive generation only when not available.
 - [ ] Ensure chunkIndex mapping matches generation segmentation for simplified mode.
 
 F. Storage migration (optional, next phase)
