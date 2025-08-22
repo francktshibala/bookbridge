@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { prisma } from '@/lib/prisma';
 
 /**
  * GET /api/audio/pregenerated
@@ -43,7 +44,7 @@ export async function GET(request: NextRequest) {
 
     console.log(`🔍 Checking for pre-generated audio: ${lookupKey}`);
 
-    // Check for pre-generated audio assets
+    // Check for pre-generated sentence-level audio assets (Supabase)
     const { data: audioAssets, error } = await supabase
       .from('audio_assets')
       .select('*')
@@ -54,64 +55,106 @@ export async function GET(request: NextRequest) {
       .gte('expires_at', new Date().toISOString())
       .order('sentence_index', { ascending: true });
 
+    // If the optional sentence-level cache table doesn't exist, fall back to Prisma
     if (error) {
-      console.error('Database error:', error);
-      return NextResponse.json(
-        { error: 'Database query failed' },
-        { status: 500 }
-      );
+      console.warn('Sentence-level audio cache unavailable, falling back to file path:', error);
     }
 
-    // If no audio assets found, return cache miss
-    if (!audioAssets || audioAssets.length === 0) {
-      console.log(`❌ No pre-generated audio found for: ${lookupKey}`);
+    // If sentence-level assets exist, return them
+    if (audioAssets && audioAssets.length > 0) {
+      console.log(`✅ Found ${audioAssets.length} pre-generated audio assets for: ${lookupKey}`);
+
+      // Update last_accessed timestamp for cache management
+      await supabase
+        .from('audio_assets')
+        .update({ last_accessed: new Date().toISOString() })
+        .eq('book_id', bookId)
+        .eq('cefr_level', cefrLevel)
+        .eq('chunk_index', parseInt(chunkIndex!))
+        .eq('voice_id', voiceId);
+
+      // Transform database records to API format
+      const formattedAudioAssets = audioAssets.map(asset => ({
+        id: asset.id,
+        sentenceIndex: asset.sentence_index,
+        audioUrl: asset.audio_url,
+        duration: parseFloat(asset.duration),
+        wordTimings: asset.word_timings,
+        provider: asset.provider,
+        voiceId: asset.voice_id,
+        format: asset.format || 'mp3'
+      }));
+
+      // Calculate metadata
+      const totalDuration = formattedAudioAssets.reduce((sum, asset) => sum + asset.duration, 0);
+      
+      const metadata = {
+        bookId,
+        cefrLevel,
+        chunkIndex: parseInt(chunkIndex!),
+        voiceId,
+        totalSentences: formattedAudioAssets.length,
+        totalDuration,
+        cacheKey: lookupKey
+      };
+
       return NextResponse.json({
-        cached: false,
-        message: 'No pre-generated audio available'
+        cached: true,
+        audioAssets: formattedAudioAssets,
+        metadata,
+        message: `Pre-generated audio ready: ${formattedAudioAssets.length} sentences, ${totalDuration.toFixed(1)}s total`
       });
     }
 
-    console.log(`✅ Found ${audioAssets.length} pre-generated audio assets for: ${lookupKey}`);
+    // Fallback: return a single precomputed file path from Prisma book_chunks
+    const chunk = await prisma.bookChunk.findUnique({
+      where: {
+        bookId_cefrLevel_chunkIndex: {
+          bookId: bookId!,
+          cefrLevel: cefrLevel!,
+          chunkIndex: parseInt(chunkIndex!)
+        }
+      },
+      select: { audioFilePath: true }
+    });
 
-    // Update last_accessed timestamp for cache management
-    await supabase
-      .from('audio_assets')
-      .update({ last_accessed: new Date().toISOString() })
-      .eq('book_id', bookId)
-      .eq('cefr_level', cefrLevel)
-      .eq('chunk_index', parseInt(chunkIndex!))
-      .eq('voice_id', voiceId);
+    if (chunk?.audioFilePath) {
+      const url = chunk.audioFilePath.startsWith('http')
+        ? chunk.audioFilePath
+        : chunk.audioFilePath; // local /audio/... path
 
-    // Transform database records to API format
-    const formattedAudioAssets = audioAssets.map(asset => ({
-      id: asset.id,
-      sentenceIndex: asset.sentence_index,
-      audioUrl: asset.audio_url,
-      duration: parseFloat(asset.duration),
-      wordTimings: asset.word_timings,
-      provider: asset.provider,
-      voiceId: asset.voice_id,
-      format: asset.format || 'mp3'
-    }));
+      const metadata = {
+        bookId,
+        cefrLevel,
+        chunkIndex: parseInt(chunkIndex!),
+        voiceId,
+        totalSentences: 1,
+        totalDuration: 0,
+        cacheKey: lookupKey
+      };
 
-    // Calculate metadata
-    const totalDuration = formattedAudioAssets.reduce((sum, asset) => sum + asset.duration, 0);
-    
-    const metadata = {
-      bookId,
-      cefrLevel,
-      chunkIndex: parseInt(chunkIndex!),
-      voiceId,
-      totalSentences: formattedAudioAssets.length,
-      totalDuration,
-      cacheKey: lookupKey
-    };
+      return NextResponse.json({
+        cached: true,
+        audioAssets: [{
+          id: lookupKey,
+          sentenceIndex: 0,
+          audioUrl: url,
+          duration: 0,
+          wordTimings: { words: [], method: 'none', accuracy: 0, generatedAt: new Date().toISOString() },
+          provider: 'file',
+          voiceId: voiceId!,
+          format: 'mp3'
+        }],
+        metadata,
+        message: 'Pre-generated file available (single asset).'
+      });
+    }
 
+    // Nothing found
+    console.log(`❌ No pre-generated audio found for: ${lookupKey}`);
     return NextResponse.json({
-      cached: true,
-      audioAssets: formattedAudioAssets,
-      metadata,
-      message: `Pre-generated audio ready: ${formattedAudioAssets.length} sentences, ${totalDuration.toFixed(1)}s total`
+      cached: false,
+      message: 'No pre-generated audio available'
     });
 
   } catch (error) {
@@ -184,7 +227,6 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
 
 /**
  * Helper function to calculate estimated completion time

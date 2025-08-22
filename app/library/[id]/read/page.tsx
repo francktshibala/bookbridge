@@ -337,8 +337,8 @@ export default function BookReaderPage() {
         // Split the content into manageable chunks for better reading experience
         const chunkSize = 1500; // ~1500 characters per page for better breathing room
         const fullText = data.context;
-        const chunks = [];
-        
+        const chunks = [] as { chunkIndex: number; content: string }[];
+
         for (let i = 0; i < fullText.length; i += chunkSize) {
           chunks.push({
             chunkIndex: chunks.length,
