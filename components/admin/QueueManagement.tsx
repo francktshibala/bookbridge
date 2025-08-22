@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface QueueJob {
   id: string;
@@ -62,10 +62,15 @@ export function QueueManagement() {
   const [jobs, setJobs] = useState<QueueJob[]>(mockJobs);
   const [isProcessing, setIsProcessing] = useState(true);
   const [stats, setStats] = useState<QueueStats>({ pending: 200, processing: 0, completed: 0, failed: 0, total: 200 });
+  const abortRef = useRef<AbortController | null>(null);
+  const visibleRef = useRef<boolean>(true);
 
   const fetchQueueData = async () => {
     try {
-      const res = await fetch('/api/admin/queue');
+      // Abort previous request if still in flight
+      abortRef.current?.abort();
+      abortRef.current = new AbortController();
+      const res = await fetch('/api/admin/queue', { signal: abortRef.current.signal, cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data?.jobs)) {
@@ -85,7 +90,11 @@ export function QueueManagement() {
         if (typeof data?.isProcessing === 'boolean') setIsProcessing(data.isProcessing);
         if (data?.stats) setStats(data.stats);
       }
-    } catch (error) {
+    } catch (error: any) {
+      // Ignore expected aborts from visibility changes or overlapping polls
+      if (error?.name === 'AbortError' || error?.code === 20) {
+        return;
+      }
       console.error('Failed to fetch queue data:', error);
     }
   };
@@ -93,11 +102,18 @@ export function QueueManagement() {
   useEffect(() => {
     // Load initial data
     fetchQueueData();
-    
-    // Auto-refresh every 5 seconds
-    const interval = setInterval(fetchQueueData, 5000);
-    
-    return () => clearInterval(interval);
+    // Pause polling when tab hidden
+    const onVisibility = () => { visibleRef.current = document.visibilityState === 'visible'; };
+    document.addEventListener('visibilitychange', onVisibility);
+    // Auto-refresh every 12 seconds
+    const interval = setInterval(() => {
+      if (visibleRef.current) fetchQueueData();
+    }, 12000);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', onVisibility);
+      abortRef.current?.abort();
+    };
   }, []);
 
   const getStatusBadge = (status: QueueJob['status']) => {
