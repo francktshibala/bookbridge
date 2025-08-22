@@ -55,12 +55,9 @@ export async function GET(request: NextRequest) {
       .gte('expires_at', new Date().toISOString())
       .order('sentence_index', { ascending: true });
 
+    // If the optional sentence-level cache table doesn't exist, fall back to Prisma
     if (error) {
-      console.error('Database error:', error);
-      return NextResponse.json(
-        { error: 'Database query failed' },
-        { status: 500 }
-      );
+      console.warn('Sentence-level audio cache unavailable, falling back to file path:', error);
     }
 
     // If sentence-level assets exist, return them
