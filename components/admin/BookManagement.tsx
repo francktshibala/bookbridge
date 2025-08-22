@@ -127,11 +127,12 @@ export function BookManagement() {
 
   const triggerGeneration = async (bookId: string) => {
     try {
-      await fetch('/api/admin/books/pregenerate', {
+      const res = await fetch('/api/admin/audio/backfill', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ bookId, priority: 'high', task: 'both' })
+        body: JSON.stringify({ bookId })
       });
+      if (!res.ok) throw new Error('Backfill failed');
       setBooks(books.map(book => 
         book.id === bookId 
           ? { ...book, status: 'processing' as const }

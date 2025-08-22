@@ -4,40 +4,21 @@ import { prisma } from '@/lib/prisma';
 export async function GET() {
   try {
     // Get counts by status
+    const baseWhere = {
+      taskType: 'audio' as const,
+      cefrLevel: { in: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const }
+    };
+
     const [pending, processing, completed, failed] = await Promise.all([
-      prisma.precomputeQueue.count({
-        where: {
-          cefrLevel: { in: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] },
-          status: 'pending'
-        }
-      }),
-      prisma.precomputeQueue.count({
-        where: {
-          cefrLevel: { in: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] },
-          status: 'processing'
-        }
-      }),
-      prisma.precomputeQueue.count({
-        where: {
-          cefrLevel: { in: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] },
-          status: 'completed'
-        }
-      }),
-      prisma.precomputeQueue.count({
-        where: {
-          cefrLevel: { in: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] },
-          status: 'failed'
-        }
-      })
+      prisma.precomputeQueue.count({ where: { ...baseWhere, status: 'pending' } }),
+      prisma.precomputeQueue.count({ where: { ...baseWhere, status: 'processing' } }),
+      prisma.precomputeQueue.count({ where: { ...baseWhere, status: 'completed' } }),
+      prisma.precomputeQueue.count({ where: { ...baseWhere, status: 'failed' } })
     ]);
 
     // Get recent jobs with proper mapping
     const jobs = await prisma.precomputeQueue.findMany({
-      where: {
-        cefrLevel: {
-          in: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-        }
-      },
+      where: baseWhere,
       orderBy: [{ createdAt: 'desc' }],
       take: 200
     });
