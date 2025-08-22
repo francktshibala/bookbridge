@@ -130,8 +130,8 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
 
   // Main playback function - instant if pre-generated, fallback if not
   const startPlayback = async () => {
-    if (!isEnhanced || !text.trim()) {
-      setError('Audio only available for enhanced books');
+    if (!text.trim()) {
+      setError('No text available for this chunk');
       return;
     }
 
@@ -158,10 +158,16 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
         return;
       }
 
-      // Step 2: Fallback to progressive generation (current system)
-      console.log('📦 Fallback: Using progressive generation');
-      setIsPreGenerated(false);
-      await fallbackToProgressiveGeneration();
+      // Step 2: Fallback behavior
+      if (isEnhanced) {
+        // Only use progressive generation for enhanced contexts
+        console.log('📦 Fallback: Using progressive generation');
+        setIsPreGenerated(false);
+        await fallbackToProgressiveGeneration();
+      } else {
+        setError('Pre-generated audio not found for this page');
+        updateProgress({ status: 'error' });
+      }
 
     } catch (error) {
       console.error('Audio playback failed:', error);

@@ -334,16 +334,29 @@ export default function BookReaderPage() {
       
       // The API returns content in 'context' property, not 'chunks'
       if (data.context) {
-        // Split the content into manageable chunks for better reading experience
-        const chunkSize = 1500; // ~1500 characters per page for better breathing room
+        // Dev toggle: if ?devChunkPaging=true, use 400-word paging to align with audio chunks
+        const useChunkPaging = typeof window !== 'undefined' && new URL(window.location.href).searchParams.get('devChunkPaging') === 'true';
         const fullText = data.context;
-        const chunks = [];
-        
-        for (let i = 0; i < fullText.length; i += chunkSize) {
-          chunks.push({
-            chunkIndex: chunks.length,
-            content: fullText.substring(i, i + chunkSize)
-          });
+        const chunks: { chunkIndex: number; content: string }[] = [];
+
+        if (useChunkPaging) {
+          const words = fullText.split(/\s+/);
+          const wordsPerChunk = 400;
+          for (let i = 0; i < words.length; i += wordsPerChunk) {
+            const slice = words.slice(i, i + wordsPerChunk).join(' ');
+            if (slice.trim()) {
+              chunks.push({ chunkIndex: chunks.length, content: slice });
+            }
+          }
+        } else {
+          // Split the content into manageable chunks for better reading experience
+          const chunkSize = 1500; // ~1500 characters per page for better breathing room
+          for (let i = 0; i < fullText.length; i += chunkSize) {
+            chunks.push({
+              chunkIndex: chunks.length,
+              content: fullText.substring(i, i + chunkSize)
+            });
+          }
         }
         
         const bookData = {
