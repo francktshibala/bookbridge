@@ -3,7 +3,7 @@ import { BookProcessor } from '@/lib/precompute/book-processor';
 
 export async function POST(request: NextRequest) {
   try {
-    const { bookId, task = 'audio', levels } = await request.json();
+    const { bookId, task = 'audio' } = await request.json();
     if (!bookId) {
       return NextResponse.json({ error: 'bookId is required' }, { status: 400 });
     }
@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
     }
 
     const processor = BookProcessor.getInstance();
-    // Generate audio for existing simplified chunks for this book (and optional levels)
-    const result = await processor.generateAudioForExistingChunks({ bookId, levels });
+    // Generate audio for existing simplified chunks (global run)
+    const result = await processor.generateAudioForExistingChunks();
 
     return NextResponse.json({ success: true, ...result });
 
