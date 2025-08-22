@@ -448,21 +448,41 @@ export class BookProcessor {
   }
 
   // Generate audio for existing simplified chunks (backfill operation)
-  async generateAudioForExistingChunks(): Promise<{ 
+  async generateAudioForExistingChunks(
+    bookId?: string,
+    levels?: string[]
+  ): Promise<{ 
     processed: number; 
     succeeded: number; 
     failed: number; 
     errors: string[] 
   }> {
     console.log('🎵 Starting audio generation for existing simplified chunks...');
+    if (bookId) {
+      console.log(`📚 Filtering by bookId: ${bookId}`);
+      if (levels && levels.length > 0) {
+        console.log(`📊 Filtering by levels: ${levels.join(', ')}`);
+      }
+    }
+    
+    // Build where clause based on filters
+    const whereClause: any = {
+      isSimplified: true,
+      audioFilePath: null,
+      cefrLevel: { not: 'original' }
+    };
+    
+    if (bookId) {
+      whereClause.bookId = bookId;
+    }
+    
+    if (levels && levels.length > 0) {
+      whereClause.cefrLevel = { in: levels };
+    }
     
     // Find all simplified chunks without audio
     const chunksNeedingAudio = await prisma.bookChunk.findMany({
-      where: {
-        isSimplified: true,
-        audioFilePath: null,
-        cefrLevel: { not: 'original' }
-      },
+      where: whereClause,
       orderBy: [
         { bookId: 'asc' },
         { cefrLevel: 'asc' }, 
@@ -477,10 +497,15 @@ export class BookProcessor {
     let failed = 0;
     const errors: string[] = [];
 
-    for (const chunk of chunksNeedingAudio) {
+    // Process chunks with concurrency control
+    const CONCURRENCY = 3;
+    const DELAY_BETWEEN_JOBS = 1500; // 1.5 seconds
+    const MAX_RETRIES = 3;
+    
+    // Helper function to process a single chunk with retry
+    const processChunkWithRetry = async (chunk: any, attemptNum = 1): Promise<boolean> => {
       try {
-        processed++;
-        console.log(`🎵 Processing ${chunk.bookId} ${chunk.cefrLevel} chunk ${chunk.chunkIndex} (${processed}/${chunksNeedingAudio.length})`);
+        console.log(`🎵 Processing ${chunk.bookId} ${chunk.cefrLevel} chunk ${chunk.chunkIndex} (attempt ${attemptNum})`);
 
         // Generate audio
         const audioFilePath = await this.audioGenerator.generateAudio(
@@ -501,17 +526,42 @@ export class BookProcessor {
           }
         });
 
-        succeeded++;
         console.log(`✅ Generated audio: ${audioFilePath}`);
-
-        // Small delay to avoid overwhelming the API
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        return true;
 
       } catch (error) {
-        failed++;
         const errorMsg = `Failed ${chunk.bookId} ${chunk.cefrLevel} chunk ${chunk.chunkIndex}: ${error instanceof Error ? error.message : 'Unknown error'}`;
-        errors.push(errorMsg);
-        console.error(`❌ ${errorMsg}`);
+        
+        if (attemptNum < MAX_RETRIES) {
+          // Exponential backoff: 2^attempt seconds
+          const backoffDelay = Math.pow(2, attemptNum) * 1000;
+          console.log(`⚠️ ${errorMsg} - Retrying in ${backoffDelay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, backoffDelay));
+          return processChunkWithRetry(chunk, attemptNum + 1);
+        } else {
+          console.error(`❌ ${errorMsg} - Max retries exceeded`);
+          errors.push(errorMsg);
+          return false;
+        }
+      }
+    };
+    
+    // Process chunks in batches
+    for (let i = 0; i < chunksNeedingAudio.length; i += CONCURRENCY) {
+      const batch = chunksNeedingAudio.slice(i, i + CONCURRENCY);
+      const batchPromises = batch.map(chunk => processChunkWithRetry(chunk));
+      
+      const results = await Promise.all(batchPromises);
+      
+      processed += batch.length;
+      succeeded += results.filter(r => r).length;
+      failed += results.filter(r => !r).length;
+      
+      console.log(`📊 Progress: ${processed}/${chunksNeedingAudio.length} chunks processed (${succeeded} succeeded, ${failed} failed)`);
+      
+      // Delay between batches (except for the last batch)
+      if (i + CONCURRENCY < chunksNeedingAudio.length) {
+        await new Promise(resolve => setTimeout(resolve, DELAY_BETWEEN_JOBS));
       }
     }
 

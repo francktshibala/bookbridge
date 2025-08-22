@@ -70,8 +70,8 @@ B. Queue & Stats alignment (audio-only)
 - Completed: Reduced queue polling cadence; aborts in-flight requests; pauses when tab hidden; AbortError logs silenced.
 
 C. Audio backfill improvements
-- [ ] Extend `/api/admin/audio/backfill` to accept optional scope `{ bookId, levels }` and call `generateAudioForExistingChunks()` with filters.
-- [ ] Add simple concurrency + retry in `generateAudioForExistingChunks()`.
+- Completed: Extended `/api/admin/audio/backfill` to accept optional scope `{ bookId, levels }` and call `generateAudioForExistingChunks()` with filters.
+- Completed: Added concurrency control (3 parallel jobs), retry logic (3 attempts with exponential backoff), and 1.5s delays between batches in `generateAudioForExistingChunks()`.
 
 D. Book Management coverage
 - [ ] Add API to fetch per-book coverage (counts grouped by `bookId`, `level`).
@@ -110,3 +110,53 @@ G. Validation
 - Keep all existing audio files in `public/audio/` for now; they enable instant playback and serve as a baseline for validation.
 - After audio-only wiring and a successful coverage audit, delete only orphaned or outdated files.
 - Prefer performing cleanup after migrating to Storage/CDN, where listing and lifecycle rules are easier to manage.
+
+---
+
+## Current Implementation Status (2025-08-22)
+
+### What's Working Now
+1. **Audio Backfill API** (`/api/admin/audio/backfill`):
+   - Accepts optional `bookId` and `levels` filters
+   - Processes with 3 parallel jobs, retry logic, and delays
+   - Example: `POST { bookId: "gutenberg-84", levels: ["A1", "A2"] }`
+
+2. **Reader Integration**:
+   - `InstantAudioPlayer` checks for precomputed audio via `/api/audio/pregenerated`
+   - Falls back to `book_chunks.audio_file_path` for instant playback
+   - Shows "⚡ Instant" indicator when playing precomputed audio
+
+### How to Verify Audio Is Working
+```bash
+# Check if audio files exist in database
+npx prisma db push && node -e "
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+prisma.bookChunk.findMany({
+  where: { 
+    bookId: 'gutenberg-84',  // Replace with your book ID
+    cefrLevel: { in: ['A1', 'A2'] },
+    audioFilePath: { not: null }
+  },
+  select: { cefrLevel: true, chunkIndex: true, audioFilePath: true }
+}).then(chunks => {
+  console.log(\`Found \${chunks.length} chunks with audio\`);
+  console.log(chunks.slice(0, 3));
+  process.exit(0);
+});
+"
+```
+
+### To Generate Audio for A1/A2
+```bash
+# Run audio backfill for specific book and levels
+curl -X POST http://localhost:3000/api/admin/audio/backfill \
+  -H "Content-Type: application/json" \
+  -d '{"bookId": "gutenberg-84", "levels": ["A1", "A2"]}'
+```
+
+### Next Steps to Complete
+1. **Book Management Coverage UI** - Show audio coverage per book/level
+2. **Validation Scripts** - Audit coverage and fix missing audio
+3. **Storage Migration** - Move from public/audio to CDN
+4. **Chunk Alignment** - Ensure reader chunks match generation segments
