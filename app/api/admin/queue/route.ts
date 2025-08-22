@@ -4,10 +4,11 @@ import { prisma } from '@/lib/prisma';
 export async function GET() {
   try {
     // Get counts by status
+    const allowedLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as string[];
     const baseWhere = {
-      taskType: 'audio' as const,
-      cefrLevel: { in: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const }
-    };
+      taskType: 'audio',
+      cefrLevel: { in: allowedLevels }
+    } as const;
 
     const [pending, processing, completed, failed] = await Promise.all([
       prisma.precomputeQueue.count({ where: { ...baseWhere, status: 'pending' } }),
@@ -18,7 +19,10 @@ export async function GET() {
 
     // Get recent jobs with proper mapping
     const jobs = await prisma.precomputeQueue.findMany({
-      where: baseWhere,
+      where: {
+        taskType: 'audio',
+        cefrLevel: { in: allowedLevels }
+      },
       orderBy: [{ createdAt: 'desc' }],
       take: 200
     });
