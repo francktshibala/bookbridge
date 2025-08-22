@@ -62,11 +62,11 @@ Goal: Use existing simplified text (already in DB) and precompute audio only, so
 ## Step-by-Step Implementation Checklist
 
 A. Stop Simplifications from Admin
-- [ ] In `app/api/admin/books/pregenerate/route.ts`: remove `storeBookContent` and `queueSimplificationJobs`; accept only `{ bookId, task: 'audio' }` else 400; or deprecate endpoint.
-- [ ] In `components/admin/BookManagement.tsx`: update `triggerGeneration` to call `POST /api/admin/audio/backfill` with `{ bookId }` (optionally `levels`).
+- Completed: In `app/api/admin/books/pregenerate/route.ts`, removed `storeBookContent` and `queueSimplificationJobs`; now accepts only `{ bookId, task: 'audio' }` (or returns 400).
+- Completed: In `components/admin/BookManagement.tsx`, updated `triggerGeneration` to call `POST /api/admin/audio/backfill` with `{ bookId }` (optionally `levels`).
 
 B. Queue & Stats alignment (audio-only)
-- [ ] `GET /api/admin/queue`: add `where: { taskType: 'audio' }`, include `bookTitle`, `cefrLevel`, and pagination.
+- Completed: `GET /api/admin/queue` now filters with `where: { taskType: 'audio' }` and includes `bookTitle`, `cefrLevel`, and pagination.
 - [ ] Reduce polling to 5–10s; stop when window not visible.
 
 C. Audio backfill improvements
