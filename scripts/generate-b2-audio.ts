@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { AudioService } from '../lib/services/audio-service';
+import { AudioGenerator } from '../lib/services/audio-generator';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -43,8 +43,8 @@ async function generateB2Audio() {
       });
     }
     
-    // Initialize audio service
-    const audioService = AudioService.getInstance();
+    // Initialize audio generator
+    const audioGenerator = new AudioGenerator();
     let generated = 0;
     let errors = 0;
     
@@ -53,22 +53,13 @@ async function generateB2Audio() {
       try {
         process.stdout.write(`\rGenerating audio for chunk ${chunk.chunkIndex + 1}/${b2Chunks.length}...`);
         
-        const audioBuffer = await audioService.generateSpeech(
+        const audioUrl = await audioGenerator.generateAudio(
           chunk.content,
-          'openai',
-          { voice: 'nova' }
+          'nova',
+          'pride-and-prejudice',
+          chunk.chunkIndex,
+          'B2'
         );
-        
-        // Save to file
-        const audioDir = path.join('public/audio/pride-and-prejudice/B2');
-        await fs.mkdir(audioDir, { recursive: true });
-        
-        const fileName = `chunk_${chunk.chunkIndex}.mp3`;
-        const filePath = path.join(audioDir, fileName);
-        await fs.writeFile(filePath, audioBuffer);
-        
-        // Update database with URL path
-        const audioUrl = `/audio/pride-and-prejudice/B2/${fileName}`;
         await prisma.bookChunk.update({
           where: { id: chunk.id },
           data: { audioFilePath: audioUrl }
