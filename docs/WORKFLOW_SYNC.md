@@ -104,6 +104,43 @@ curl -X POST http://localhost:3000/api/admin/audio/backfill \
 - **Terminal Scripts**: Initial bulk generation (A1, A2, B1, B2, C1, C2)
 - **Chat/API**: Small fixes, testing, single chunk regeneration
 
+## Audio System Status & Completion
+
+### Pride & Prejudice (gutenberg-1342) - ✅ COMPLETE
+**Status**: All 6 CEFR levels completed with consistent "alloy" voice
+- **A1**: 252 files ✅
+- **A2**: 282 files ✅  
+- **B1**: 282 files ✅
+- **B2**: 282 files ✅
+- **C1**: 282 files ✅
+- **C2**: 196 files ✅
+- **Total**: 1,416 audio files
+
+### Global Storage Integration - ✅ COMPLETE
+- **Supabase Storage**: CDN-enabled bucket configured for 285+ cities worldwide
+- **Global Access**: Optimized for instant playback including Africa
+- **Migration Ready**: Script available to move local files to CDN
+- **Cache Settings**: 30-day client cache, 90-day CDN cache for optimal performance
+
+### Key Scripts for Future Use
+```bash
+# Check progress for any book
+npx ts-node scripts/check-c1-c2-progress.ts
+
+# Create Supabase audio bucket  
+npx ts-node scripts/create-audio-bucket.ts
+
+# Test storage integration
+npx ts-node scripts/test-audio-storage.ts
+
+# Migrate existing local files to global CDN
+npx ts-node scripts/migrate-audio-to-supabase.ts
+```
+
+### Next Books Strategy
+**Future books will automatically use Supabase Storage** - no migration needed.
+Simply generate audio using terminal commands for optimal speed.
+
 ## Recommended Conventions
 - Branch names: `feat/...`, `fix/...`, `chore/...`
 - Commit messages: short, descriptive, imperative mood.
