@@ -54,6 +54,26 @@
 - Stripe build-time errors:
   - We use lazy `getStripe()`; only runtime needs `STRIPE_SECRET_KEY`.
 
+## Deployment & Size Management
+### Pre-Deploy Checklist
+- [ ] Run `npm run build` locally to catch issues early
+- [ ] Check `.vercelignore` excludes large files (`public/audio/`)
+- [ ] Audio files stored as database URLs, not local files
+- [ ] Vercel function limit: 300MB (our fix: exclude 1.8GB audio files)
+
+### Optimal Push Timing
+**Best Practice:** Push after completing features, not during audio generation.
+
+**Avoid pushing during:**
+- Active audio generation (creates large files)
+- Database migrations
+- Heavy file operations
+
+**Safe to push:**
+- After audio generation completes
+- Code-only changes
+- Config/documentation updates
+
 ## Recommended Conventions
 - Branch names: `feat/...`, `fix/...`, `chore/...`
 - Commit messages: short, descriptive, imperative mood.
