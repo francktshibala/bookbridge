@@ -74,6 +74,36 @@
 - Code-only changes
 - Config/documentation updates
 
+## Audio Generation Performance Guidelines
+
+### Terminal vs Chat-Based Generation
+**ALWAYS use terminal for audio generation - it's significantly faster**
+
+Terminal execution avoids:
+- Next.js API route overhead
+- HTTP request/response cycles  
+- Browser memory limits
+- Chat interface delays
+
+### Terminal Audio Generation Commands
+```bash
+# Check progress first
+npx ts-node scripts/check-c1-c2-progress.ts
+
+# If C2 hasn't started (0% complete), run terminal generation
+npx ts-node scripts/generate-c2-audio.ts
+
+# Alternative: Use backfill API via curl (slower but more reliable)
+curl -X POST http://localhost:3000/api/admin/audio/backfill \
+  -H "Content-Type: application/json" \
+  -d '{"bookId": "gutenberg-1342", "levels": ["C2"]}' \
+  --max-time 3600
+```
+
+### When to Use Each Approach
+- **Terminal Scripts**: Initial bulk generation (A1, A2, B1, B2, C1, C2)
+- **Chat/API**: Small fixes, testing, single chunk regeneration
+
 ## Recommended Conventions
 - Branch names: `feat/...`, `fix/...`, `chore/...`
 - Commit messages: short, descriptive, imperative mood.

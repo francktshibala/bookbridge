@@ -420,10 +420,45 @@ export class AudioPreGenerationService {
   }
 
   private async uploadToStorage(audioBlob: Buffer, format: string): Promise<string> {
-    // TODO: Implement Cloudflare R2 upload
-    // For now, create a data URL
-    const base64 = audioBlob.toString('base64');
-    return `data:audio/${format};base64,${base64}`;
+    try {
+      const { createClient } = require('@supabase/supabase-js');
+      
+      // Create service role client for storage upload
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+      );
+
+      // Generate unique filename
+      const crypto = require('crypto');
+      const fileName = `${Date.now()}-${crypto.randomUUID()}.${format}`;
+      
+      // Upload to Supabase Storage with optimized settings for global CDN
+      const { data, error } = await supabase.storage
+        .from('audio-files')
+        .upload(fileName, audioBlob, {
+          contentType: `audio/${format}`,
+          cacheControl: '2592000', // 30 days cache
+          upsert: false
+        });
+        
+      if (error) {
+        console.error('Audio upload error:', error);
+        throw error;
+      }
+      
+      // Return public CDN URL for global access
+      const { data: { publicUrl } } = supabase.storage
+        .from('audio-files')
+        .getPublicUrl(data.path);
+        
+      return publicUrl;
+    } catch (error) {
+      console.error('Failed to upload audio to Supabase Storage:', error);
+      // Fallback to data URL for development
+      const base64 = audioBlob.toString('base64');
+      return `data:audio/${format};base64,${base64}`;
+    }
   }
 
   private async getAudioDuration(audioUrl: string): Promise<number> {
