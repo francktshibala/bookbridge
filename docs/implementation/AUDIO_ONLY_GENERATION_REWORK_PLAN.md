@@ -155,8 +155,47 @@ curl -X POST http://localhost:3000/api/admin/audio/backfill \
   -d '{"bookId": "gutenberg-84", "levels": ["A1", "A2"]}'
 ```
 
+## Phase 1: Pride and Prejudice (gutenberg-1342) - Active Implementation
+
+### Step 1.1: Foundation Setup ✅ COMPLETED
+- [x] Fixed chunk alignment by copying simplified text to book_chunks table
+- [x] Ensured reader and audio use same data source
+- [x] Verified text matches audio on page 1
+
+### Step 1.2: Generate A1 Audio ✅ COMPLETED
+- [x] Copied 252 A1 simplifications to book_chunks table
+- [x] Generated audio for ALL 252 A1 chunks 
+- [x] Verified audio matches displayed text
+- [x] Test playback from page 1 with ⚡ instant indicator
+
+### Step 1.3: Generate A2 Audio 🔄 IN PROGRESS
+- [x] Copied 282 A2 simplifications to book_chunks table
+- [x] Started A2 audio generation (26+ files complete)
+- [ ] Complete A2 generation (~282 files)
+- [ ] Test A2 level instant playback
+
+### Step 1.4: Generate B1 Audio 🔄 IN PROGRESS  
+- [x] Copied 282 B1 simplifications to book_chunks table
+- [x] Started B1 audio generation (running in parallel)
+- [ ] Complete B1 generation (~282 files)
+- [ ] Test B1 level instant playback
+
+### Step 1.5: Generate Remaining Levels (Next)
+- [ ] Copy B2, C1, C2 simplifications to book_chunks table
+- [ ] Generate B2, C1, C2 audio files
+- [ ] Test all 6 levels have instant playbook
+- [ ] Document Pride & Prejudice as 100% complete
+
+## Phase 2: Multi-Computer Distribution
+
+### Step 2.1: Distribution Setup ✅ COMPLETED
+- [x] Created MULTI_COMPUTER_AUDIO_GENERATION.md instructions
+- [x] Built and pushed to GitHub for other computers
+- [x] Assigned next books: gutenberg-11 (Alice), gutenberg-1513 (Romeo & Juliet)
+
 ### Next Steps to Complete
-1. **Book Management Coverage UI** - Show audio coverage per book/level
-2. **Validation Scripts** - Audit coverage and fix missing audio
-3. **Storage Migration** - Move from public/audio to CDN
-4. **Chunk Alignment** - Ensure reader chunks match generation segments
+1. **Continue Pride & Prejudice** - Complete B2, C1, C2 levels (currently generating A2, B1)
+2. **Multi-Computer Coordination** - Other computers process their assigned books
+3. **Book Management Coverage UI** - Show audio coverage per book/level
+4. **Validation Scripts** - Audit coverage and fix missing audio
+5. **Storage Migration** - Move from public/audio to CDN
