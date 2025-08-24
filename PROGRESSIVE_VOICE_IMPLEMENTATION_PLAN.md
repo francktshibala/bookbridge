@@ -480,11 +480,14 @@ The Progressive Voice system is now **production-ready** and delivers the comple
   ```
 
 #### **Issue 2: Missing Chunk Sequences (C1 Level)**
-- **Problem**: C1 level has gaps in chunk indexes (0,4,5 exist but 1,2,3 missing)
-- **Root Cause**: Incomplete simplification generation for C1 level
-- **Impact**: Frontend shows "no pregenerated audio" for missing chunks
-- **Status**: 🔍 Identified, needs investigation
-- **Solution**: Generate missing C1 chunks or update frontend to handle gaps
+- **Problem**: C1 level has gaps in chunk indexes (missing: 1,2,3,8,9,14,15,16,17,18,21,33,34)
+- **Root Cause**: These chunks were never simplified during initial C1 generation
+- **Impact**: Frontend shows "no pregenerated audio" when trying to load missing chunks
+- **Status**: ✅ Root cause confirmed - simplifications don't exist for these chunks
+- **Solution Options**:
+  1. **Frontend fix (recommended)**: Update reader to skip missing chunks gracefully
+  2. **Data fix**: Generate the 13 missing C1 simplifications (requires AI processing)
+- **Current workaround**: C1 works for existing chunks (0,4,5,6,7,10,11,12...)
 
 #### **Issue 3: CDN Cache Propagation Delay**
 - **Problem**: Vercel still serves old mismatched audio files
