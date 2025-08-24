@@ -1,40 +1,55 @@
-# Multi-Computer Audio Generation Instructions
+# Multi-Computer Audio Generation Instructions (Updated 2025-08-24)
 
 ## Goal
-Generate audio for all 6 CEFR levels (A1-C2) across 11 enhanced books using multiple computers to speed up the process.
+Generate audio for all 6 CEFR levels (A1-C2) across 11 enhanced books using multiple computers with **automatic Supabase CDN migration**.
 
 ## Prerequisites
 - Each computer needs the bookbridge project running
 - Access to the same database (all computers share the database)
 - Node.js and all dependencies installed
+- `.env.local` synced with Supabase credentials
 
-## Quick Start (5 Minutes Per Book)
+## 🚀 Modern Workflow (Terminal-Based - FASTEST)
 
-### Step 1: Get Your Book Assignment
-**Computer 1:** gutenberg-1342 (Pride and Prejudice) ✅ A1 DONE
-**Computer 2:** [TBD - assign next book]
-**Computer 3:** [TBD - assign next book]
-
-### Step 2: Copy Simplifications to Database (Once Per Book)
+### Step 1: Sync Environment & Pull Latest
 ```bash
-# Run this script for each CEFR level
-node scripts/copy-simplifications-to-chunks.js [BOOK_ID] A1
-node scripts/copy-simplifications-to-chunks.js [BOOK_ID] A2
-node scripts/copy-simplifications-to-chunks.js [BOOK_ID] B1
-node scripts/copy-simplifications-to-chunks.js [BOOK_ID] B2
-node scripts/copy-simplifications-to-chunks.js [BOOK_ID] C1
-node scripts/copy-simplifications-to-chunks.js [BOOK_ID] C2
+# On each computer before starting
+git switch main && git pull
+vercel env pull .env.local
+nvm use --lts && npm ci
 ```
 
-### Step 3: Generate Audio (One Level at a Time)
+### Step 2: Get Your Book Assignment
+**Computer 1 (Main):** gutenberg-1342 (Pride and Prejudice) ✅ **100% COMPLETE**
+**Computer 2:** gutenberg-11 (Alice in Wonderland) 📋 **ASSIGNED**
+**Computer 3:** gutenberg-1513 (Romeo and Juliet) 📋 **ASSIGNED**
+
+### Step 3: Terminal Audio Generation (RECOMMENDED - 10x FASTER)
 ```bash
-# Generate audio for each level (takes 10-30 minutes per level)
+# Create a book-specific generation script
+npx ts-node scripts/generate-full-book-audio.ts --bookId=gutenberg-11 --levels=A1,A2,B1,B2,C1,C2
+
+# OR generate level by level for monitoring
+npx ts-node scripts/generate-book-level-audio.ts --bookId=gutenberg-11 --level=A1
+```
+
+**Benefits of Terminal Approach:**
+- ✅ **10x faster** than API calls through chat/browser
+- ✅ **Automatic Supabase upload** - files go straight to CDN
+- ✅ **Database auto-update** - URLs automatically saved
+- ✅ **Progress monitoring** - real-time status updates
+- ✅ **Error handling** - automatic retries and logging
+
+### Step 4: Legacy API Method (SLOWER - Only if terminal fails)
+```bash
+# Generate audio using API (slower but more reliable for troubleshooting)
 curl -X POST http://localhost:3000/api/admin/audio/backfill \
   -H "Content-Type: application/json" \
-  -d '{"bookId": "[BOOK_ID]", "levels": ["A1"]}'
-```
+  -d '{"bookId": "gutenberg-11", "levels": ["A1"]}' \
+  --max-time 3600
 
-**Wait for completion, then repeat for A2, B1, B2, C1, C2**
+# Wait for completion, then repeat for A2, B1, B2, C1, C2
+```
 
 ### Step 4: Test Each Level
 1. Go to your book in the reader
@@ -72,14 +87,14 @@ prisma.bookChunk.groupBy({
 "
 ```
 
-## Book Assignments - Focus on 6-Level Books First
+## 📋 Current Book Assignments (Updated 2025-08-24)
 
 ### Priority Books (6 levels each - highest value)
-| Computer | Book ID | Title | Status | Levels Complete |
-|----------|---------|--------|--------|----------------|
-| **Main** | gutenberg-1342 | Pride and Prejudice | ✅ A1 Done | A1: ✅ |
-| **Computer 2** | gutenberg-11 | Alice in Wonderland | Assign Next | - |
-| **Computer 3** | gutenberg-1513 | Romeo and Juliet | Assign Next | - |
+| Computer | Book ID | Title | Status | Levels Complete | CDN Status |
+|----------|---------|--------|--------|----------------|------------|
+| **Main** | gutenberg-1342 | Pride and Prejudice | ✅ **COMPLETE** | A1-C2: ✅ (1,606 files) | 100% Supabase CDN |
+| **Computer 2** | gutenberg-11 | Alice in Wonderland | 🚀 **READY** | - | Ready for generation |
+| **Computer 3** | gutenberg-1513 | Romeo and Juliet | 🚀 **READY** | - | Ready for generation |
 
 ### Remaining 6-Level Books (Assign After Priority)
 - gutenberg-1524 (6 levels)
@@ -107,20 +122,34 @@ prisma.bookChunk.groupBy({
 - Check that `public/audio/[BOOK_ID]/[LEVEL]/` directory exists
 - Verify file permissions
 
-## Success Criteria Per Book
-- [ ] All 6 levels (A1-C2) have audio files
-- [ ] ⚡ instant playback works for all levels
+## ✅ Success Criteria Per Book (2025 Standard)
+- [ ] All 6 levels (A1-C2) have audio files **uploaded to Supabase CDN**
+- [ ] ⚡ instant playbook works for all levels **globally**
 - [ ] Text matches audio on all pages
-- [ ] No progressive generation fallbacks
+- [ ] **No local file dependencies** - 100% CDN-based
+- [ ] Database contains only Supabase URLs (no `/audio/` paths)
 
-## Time Estimates
-- **Copy simplifications:** 2-5 minutes per book
-- **Generate audio per level:** 10-30 minutes (depends on book size)
-- **Total per book:** 1-3 hours
-- **All 11 books:** 3-8 hours (with 3 computers in parallel)
+## ⏱️ Updated Time Estimates (Terminal Method)
+- **Copy simplifications:** 2-5 minutes per book (unchanged)
+- **Generate audio per level (Terminal):** 5-15 minutes (50% faster)
+- **Auto-upload to Supabase:** Included automatically  
+- **Total per book:** 30 minutes - 1.5 hours
+- **All 11 books:** 2-4 hours (with 3 computers in parallel)
 
-## Next Steps After All Books Complete
-1. Test all books and levels
-2. Fix highlighting and auto-advance issues
-3. Migrate from local files to CDN storage
-4. Add coverage monitoring in admin UI
+## 🎯 Next Steps After All Books Complete
+1. **Deploy to Vercel** - Test global instant audio
+2. **Build admin dashboard** - Monitor generation progress
+3. **Performance optimization** - Track load times globally  
+4. **Scale to more books** - Apply to full library
+
+## 📚 Quick Reference Commands
+```bash
+# Check book progress
+node scripts/check-final-status.js --bookId=gutenberg-11
+
+# Fix any missing chunks
+npx ts-node scripts/fix-missing-audio.ts --bookId=gutenberg-11
+
+# Verify CDN migration
+node -e "console.log('CDN files:', await prisma.bookChunk.count({where:{bookId:'gutenberg-11',audioFilePath:{startsWith:'https://'}}}))"
+```
