@@ -13,7 +13,7 @@ async function generateB2Audio() {
     const b2Chunks = await prisma.bookChunk.findMany({
       where: {
         bookId: 'pride-and-prejudice',
-        eslLevel: 'B2'
+        cefrLevel: 'B2'
       },
       orderBy: { chunkIndex: 'asc' }
     });
@@ -35,7 +35,7 @@ async function generateB2Audio() {
       await prisma.bookChunk.updateMany({
         where: {
           bookId: 'pride-and-prejudice',
-          eslLevel: 'B2'
+          cefrLevel: 'B2'
         },
         data: {
           audioFilePath: null
@@ -54,7 +54,7 @@ async function generateB2Audio() {
         process.stdout.write(`\rGenerating audio for chunk ${chunk.chunkIndex + 1}/${b2Chunks.length}...`);
         
         const audioUrl = await audioGenerator.generateAudio(
-          chunk.content,
+          chunk.chunkText,
           'nova',
           'pride-and-prejudice',
           chunk.chunkIndex,
