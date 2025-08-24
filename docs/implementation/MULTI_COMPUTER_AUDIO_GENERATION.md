@@ -1,5 +1,55 @@
 # Multi-Computer Audio Generation Instructions (Updated 2025-08-24)
 
+## ⚠️ Common Pitfalls & Solutions (MUST READ BEFORE STARTING)
+
+### 🚨 Critical Mistakes to Avoid
+
+#### 1. **Storage Path Conflicts**
+- **Problem**: Using same paths for all books (`/a1/chunk_0.mp3`) causes audio mix-ups
+- **Solution**: ALWAYS use book-specific paths: `bookId/level/chunk_X.mp3`
+- **Example**: `gutenberg-11/a1/chunk_0.mp3` NOT just `a1/chunk_0.mp3`
+
+#### 2. **Skipping Database Setup**
+- **Problem**: Generating expensive audio before chunks exist in database
+- **Solution**: ALWAYS run this checklist first:
+  ```bash
+  # 1. Verify simplifications exist
+  node -e "const {PrismaClient} = require('@prisma/client'); const p = new PrismaClient(); p.bookSimplification.count({where:{bookId:'YOUR_BOOK_ID'}}).then(c => console.log('Simplifications:', c));"
+  
+  # 2. Copy ALL levels to bookChunk table
+  for level in A1 A2 B1 B2 C1 C2; do node scripts/copy-simplifications-to-chunks.js YOUR_BOOK_ID $level; done
+  
+  # 3. ONLY THEN generate audio
+  ```
+
+#### 3. **No Verification Before Generation**
+- **Problem**: Wasting hours generating audio that won't work
+- **Solution**: Test first chunk before full generation:
+  ```bash
+  # Generate just chunk 0 of A1 first
+  # Check it plays correctly on Vercel
+  # THEN proceed with full generation
+  ```
+
+#### 4. **Wrong Content in CDN**
+- **Problem**: Audio content doesn't match text (e.g., Romeo playing Pride & Prejudice)
+- **Solution**: If reusing scripts, update ALL book IDs and paths carefully
+
+### ✅ Correct Workflow Order
+1. **Check** simplifications exist
+2. **Copy** to bookChunk table  
+3. **Update** script with correct book ID and paths
+4. **Test** one chunk first
+5. **Generate** all audio
+6. **Verify** on Vercel
+
+### 📊 Lessons from Completed Books
+- Pride & Prejudice: ✅ Success (but wrong initial paths)
+- Romeo & Juliet: ⚠️ Fixed audio-text mismatches, missing C1 chunks
+- Alice in Wonderland: ⚠️ Fixed path conflicts, required file moves
+
+---
+
 ## Goal
 Generate audio for all 6 CEFR levels (A1-C2) across 11 enhanced books using multiple computers with **automatic Supabase CDN migration**.
 
@@ -21,7 +71,7 @@ nvm use --lts && npm ci
 
 ### Step 2: Get Your Book Assignment
 **Computer 1 (Main):** gutenberg-1342 (Pride and Prejudice) ✅ **100% COMPLETE**
-**Computer 2:** gutenberg-11 (Alice in Wonderland) 📋 **ASSIGNED**
+**Computer 2:** gutenberg-11 (Alice in Wonderland) 🔄 **IN PROGRESS**
 **Computer 3:** gutenberg-1513 (Romeo and Juliet) 📋 **ASSIGNED**
 
 ### Step 3: Terminal Audio Generation (RECOMMENDED - 10x FASTER)
