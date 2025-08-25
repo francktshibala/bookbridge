@@ -122,6 +122,8 @@ npx ts-node scripts/generate-gutenberg-84-audio.ts
 ---
 
 **Status**: ✅ COMPLETED
-**Final Results**: 1028/1032 generated (99.6% success rate)
-**Failed Chunks**: 3 (need manual retry later)
+**Final Results**: 
+- **Frankenstein (gutenberg-84)**: 1028/1032 generated (99.6% success rate)
+- **Yellow Wallpaper (gutenberg-1952)**: 83/84 generated (98.8% success rate)
+**Failed Chunks**: 4 total (need manual retry later)
 **Next Action**: Verify missing chunks and retry failed ones
