@@ -31,6 +31,36 @@
   - `npm ci` (uses the committed `package-lock.json`)
 - After pulling changes that touch dependencies, run `npm ci` again.
 
+## 🚨 CRITICAL: Pre-Audio Generation Checklist (MUST RUN BEFORE ANY AUDIO WORK)
+```bash
+# Step 1: Basic sync
+git switch main && git pull
+vercel env pull .env.local
+nvm use --lts && npm ci
+
+# Step 2: Read documentation FIRST
+head -80 docs/implementation/MULTI_COMPUTER_AUDIO_GENERATION.md
+
+# Step 3: Find books with actual content loaded (not just metadata)
+for book in gutenberg-1524 gutenberg-158 gutenberg-1952 gutenberg-215 gutenberg-43 gutenberg-46 gutenberg-55 gutenberg-84 gutenberg-844; do
+  node -e "const {PrismaClient} = require('@prisma/client'); const p = new PrismaClient(); p.bookContent.findFirst({where:{bookId:'$book'}}).then(c => console.log('$book has content:', !!c));"
+done
+
+# Step 4: Choose a book that returns "has content: true"
+CHOSEN_BOOK="gutenberg-XXXX"  # Replace with working book
+
+# Step 5: Verify simplifications exist
+node -e "const {PrismaClient} = require('@prisma/client'); const p = new PrismaClient(); p.bookSimplification.count({where:{bookId:'$CHOSEN_BOOK'}}).then(c => console.log('Simplifications:', c));"
+
+# Step 6: Copy simplifications to chunks FIRST
+for level in A1 A2 B1 B2 C1 C2; do 
+  node scripts/copy-simplifications-to-chunks.js $CHOSEN_BOOK $level
+done
+
+# Step 7: ONLY THEN create audio generation script
+# CRITICAL: Use bookId/level/chunk_X.mp3 format, NOT just level/chunk_X.mp3
+```
+
 ## Quick Checklist (each time you switch machines)
 1. `git switch main && git pull`
 2. `git switch <your-branch>` (or re-create: `git switch -c feat/<topic>`)
@@ -116,7 +146,14 @@ curl -X POST http://localhost:3000/api/admin/audio/backfill \
 - **C2**: 196 files ✅
 - **Total**: 1,416 audio files
 
-### Global Storage Integration - ✅ COMPLETE
+### Multi-Book Status (Updated 2025-08-24)
+- **Pride & Prejudice**: ✅ Complete (1,606 files)
+- **Romeo & Juliet**: ✅ Complete (312 files, C1 has sequence gaps)
+- **Alice in Wonderland**: 🔄 Audio-text mismatch being fixed
+- **⚠️ Critical Discovery**: Only ~3 books are "audio-ready" (have book_content entries)
+- **Remaining books**: Need content loading before audio generation possible
+
+### Global Storage Integration - ✅ COMPLETE  
 - **Supabase Storage**: CDN-enabled bucket configured for 285+ cities worldwide
 - **Global Access**: Optimized for instant playback including Africa
 - **Migration Ready**: Script available to move local files to CDN

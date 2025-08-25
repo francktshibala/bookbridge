@@ -35,6 +35,19 @@
 - **Problem**: Audio content doesn't match text (e.g., Romeo playing Pride & Prejudice)
 - **Solution**: If reusing scripts, update ALL book IDs and paths carefully
 
+#### 5. **Missing Book Content (CRITICAL)**
+- **Problem**: Foreign key error `book_chunks_book_id_fkey` when creating chunks
+- **Root Cause**: Most books exist but have no `book_content` entries loaded
+- **Impact**: Only ~3 books are actually "audio-ready" out of 11 with simplifications
+- **Solution**: 
+  ```bash
+  # Check if book has content before starting
+  node -e "const {PrismaClient} = require('@prisma/client'); const p = new PrismaClient(); p.bookContent.findFirst({where:{bookId:'YOUR_BOOK_ID'}}).then(c => console.log('Has content:', !!c));"
+  
+  # Use only books that return "Has content: true"
+  ```
+- **Status**: ⚠️ Major pipeline issue - most books need content loading first
+
 ### ✅ Correct Workflow Order
 1. **Check** simplifications exist
 2. **Copy** to bookChunk table  
