@@ -5,6 +5,7 @@ node_modules
 .env
 .env.local
 .env.production
+.env.local.bak
 
 # Build outputs
 .next/
@@ -39,3 +40,4 @@ Thumbs.db
 
 # Cache
 .next/cache
+/public/audio/
