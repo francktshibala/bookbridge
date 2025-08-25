@@ -40,6 +40,5 @@ Thumbs.db
 
 # Cache
 .next/cache
-
 # Audio files (using CDN)
 /public/audio/
