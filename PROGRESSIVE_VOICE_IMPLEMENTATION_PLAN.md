@@ -466,38 +466,7 @@ The Progressive Voice system is now **production-ready** and delivers the comple
 ### 🚀 **In Progress**
 | Book ID | Title | Status | Assignment |
 |---------|--------|--------|------------|
-| gutenberg-84 | Frankenstein | ✅ **GENERATING** (Nova voice, 1,032 chunks) | Computer 2 |
-| gutenberg-11 | Alice in Wonderland | 🔄 Script ready | Computer 1 |
-
-### ✅ **Success Story: Computer 2 Frankenstein Generation (2025-08-25)**
-
-#### **Breakthrough Achievement**
-- **Book**: gutenberg-84 (Frankenstein) 
-- **Status**: ✅ **ACTIVE GENERATION** - Script working perfectly
-- **Voice**: Nova (OpenAI female voice) - excellent quality
-- **Chunks**: 1,032 total across 6 CEFR levels (A1-C2, 172 each)
-- **CDN Upload**: Real-time successful uploads to Supabase Storage
-- **Performance**: Smooth generation, no compilation errors
-
-#### **Technical Solutions Implemented**
-1. **Schema Resolution**: Fixed database field mismatches
-   - Used direct SQL for audio_files table insertion
-   - Handled complex Prisma schema conflicts elegantly
-   
-2. **Audio Pipeline**: Complete TTS → CDN → Database flow
-   - OpenAI TTS API integration working flawlessly
-   - Supabase Storage upload with proper CDN URLs
-   - Consistent file naming: `gutenberg-84/{level}/chunk_{index}.mp3`
-
-3. **Error Handling**: Graceful fallbacks for database issues
-   - Primary success: CDN upload (most important)
-   - Secondary: Database logging (nice to have)
-
-#### **Key Learnings**
-- **Multi-computer coordination**: Excellent communication and execution
-- **Schema complexity**: Raw SQL sometimes better than ORM for complex operations
-- **Voice selection**: Nova voice provides excellent narration quality
-- **Chunk preparation**: Pre-copying simplifications to chunks table essential
+| gutenberg-11 | Alice in Wonderland | 🔄 Script ready | Computer 2 |
 
 ### 🐛 **Current Issues & Fixes (2025-08-24)**
 
@@ -542,8 +511,7 @@ The Progressive Voice system is now **production-ready** and delivers the comple
 
 1. **Immediate (Today)**:
    - ✅ Complete C1/C2 audio fix for Romeo & Juliet
-   - ✅ **Computer 2: Frankenstein generation in progress** (Nova voice, working perfectly)
-   - ✅ Start Alice in Wonderland generation on Computer 1
+   - ✅ Start Alice in Wonderland generation on Computer 2
    - ⏳ Monitor CDN cache for audio-text alignment
 
 2. **Short Term (This Week)**:
