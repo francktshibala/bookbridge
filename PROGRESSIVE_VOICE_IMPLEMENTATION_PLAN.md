@@ -470,6 +470,18 @@ The Progressive Voice system is now **production-ready** and delivers the comple
 
 ### 🐛 **Current Issues & Fixes (2025-08-24)**
 
+#### **Issue 0: API Connection Timeouts During Generation**
+- **Problem**: OpenAI TTS API returns `ECONNRESET` errors during bulk generation
+- **Example**: Alice B1 chunks 10, 12 failed with "TypeError: terminated"
+- **Root Cause**: Network timeouts or OpenAI rate limiting
+- **Impact**: Specific chunks have no audio (gaps in sequence)
+- **Status**: ⏳ Need to regenerate failed chunks
+- **Solution**: 
+  ```bash
+  # After full generation completes, check for gaps and regenerate
+  # Script uses upsert: true so safe to rerun for specific chunks
+  ```
+
 #### **Issue 1: Audio-Text Mismatch (Romeo & Juliet)**
 - **Problem**: First 2 pages on Vercel play Pride & Prejudice audio instead of Romeo & Juliet text
 - **Root Cause**: CDN audio files contain wrong content from initial generation
