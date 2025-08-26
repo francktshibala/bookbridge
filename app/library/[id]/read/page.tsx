@@ -582,109 +582,28 @@ export default function BookReaderPage() {
           to { transform: rotate(360deg); }
         }
       `}</style>
-      {/* Header */}
+      {/* Clean Minimal Header */}
       <motion.div 
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4 }}
         className="bg-slate-800 shadow-sm border-b border-slate-700"
+        style={{ height: '50px' }}
       >
-        <div className="max-w-2xl mx-auto px-8 py-8">
-          <div className="flex items-center justify-between">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <motion.button
-                whileHover={{ x: -4, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => router.push(`/library/${bookId}`)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: 'rgba(45, 55, 72, 0.8)',
-                  border: '2px solid rgba(102, 126, 234, 0.3)',
-                  borderRadius: '12px',
-                  padding: '12px 20px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  color: '#e2e8f0',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#667eea';
-                  e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
-                  e.currentTarget.style.backgroundColor = 'rgba(45, 55, 72, 0.8)';
-                  e.currentTarget.style.transform = 'translateY(0px)';
-                }}
-              >
-                <span>←</span>
-                <span>Back to Library</span>
-              </motion.button>
+        <div className="max-w-7xl mx-auto px-6 h-full">
+          <div className="flex items-center justify-between h-full">
+            <div className="text-lg font-bold text-slate-300">
+              BookBridge ESL
             </div>
-            <div>
-              <h1 style={{
-                fontSize: '20px',
-                fontWeight: '700',
-                color: '#f7fafc',
-                marginBottom: '4px',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
-              }}>{bookContent.title}</h1>
-              <p style={{
-                fontSize: '14px',
-                color: '#cbd5e0',
-                fontWeight: '500',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-              }}>by {bookContent.author}</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <motion.div 
-                initial={{ x: 20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.4 }}
-                style={{
-                  fontSize: '14px',
-                  color: '#cbd5e0',
-                  fontWeight: '500',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  textAlign: 'right'
-                }}
-              >
-                {(() => {
-                  const total = getEffectiveTotal();
-                  const label = currentMode === 'simplified' ? 'Page' : (bookId.includes('-') ? 'Chapter' : 'Page');
-                  return `${label} ${currentChunk + 1} of ${total || 0}`;
-                })()}
-                <div style={{
-                  marginTop: '8px',
-                  width: '80px',
-                  height: '4px',
-                  backgroundColor: 'rgba(45, 55, 72, 0.6)',
-                  borderRadius: '2px',
-                  overflow: 'hidden'
-                }}>
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: `${getEffectiveTotal() ? (((currentChunk + 1) / getEffectiveTotal()) * 100) : 0}%` }}
-                    transition={{ duration: 0.3 }}
-                    style={{
-                      height: '100%',
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                      borderRadius: '2px'
-                    }}
-                    aria-label={`Reading progress: ${Math.round(((currentChunk + 1) / bookContent.totalChunks) * 100)}%`}
-                  />
-                </div>
-              </motion.div>
-              <div className="text-xs text-slate-400 hidden lg:block" title="Keyboard shortcuts: Space=Play/Pause, Arrow keys=Navigate, Esc=Stop">
-                ⌨️ Space, Arrows, Esc
-              </div>
-            </div>
+            <motion.button
+              whileHover={{ x: -4, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => router.push('/enhanced-collection')}
+              className="flex items-center gap-2 bg-transparent border border-slate-600 hover:border-slate-400 rounded-lg px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+            >
+              <span>←</span>
+              <span>Back to Library</span>
+            </motion.button>
           </div>
         </div>
       </motion.div>

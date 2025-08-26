@@ -925,6 +925,112 @@
                 </ul>
             </div>
         </div>
+        
+        <!-- CURRENT IMPLEMENTATION IMPROVEMENT -->
+        <div class="phase-section">
+            <h2>🎯 Current Implementation: Clean Desktop Reading Page</h2>
+            <div class="phase-description">
+                <strong>Improvement:</strong> Transform current cluttered reading page into clean, immersive experience based on Phase 1 MVP principles.
+                <br><strong>Focus:</strong> Remove navigation distractions, group controls logically, maximize content space.
+            </div>
+            
+            <div class="wireframe">
+                <div class="desktop-frame">
+                    <!-- Clean Minimal Header -->
+                    <div class="navbar" style="height: 50px; padding: 0 20px;">
+                        <div class="logo" style="font-size: 18px;">BookBridge ESL</div>
+                        <button style="background: none; border: none; color: #94a3b8; font-size: 14px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            ← Back to Library
+                        </button>
+                    </div>
+                    
+                    <div class="content-area" style="padding: 30px 40px;">
+                        <!-- Improved Control Bar with Logical Grouping -->
+                        <div class="control-bar" style="justify-content: space-between; max-width: 800px; margin: 0 auto 40px;">
+                            <!-- Content Controls Group -->
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <button class="level-badge">A1</button>
+                                <button class="mode-toggle active">Simplified</button>
+                            </div>
+                            
+                            <!-- Divider -->
+                            <div style="width: 1px; height: 30px; background: #334155;"></div>
+                            
+                            <!-- Audio Controls Group -->
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <button style="background: transparent; border: 1px solid #334155; color: #e2e8f0; padding: 8px 12px; border-radius: 8px; font-size: 13px; cursor: pointer;">
+                                    Alloy
+                                </button>
+                                <button style="background: #10b981; color: white; border: none; padding: 8px 12px; border-radius: 8px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                                    ▶ Auto
+                                </button>
+                                <span class="speed-control">1.0x</span>
+                            </div>
+                            
+                            <!-- Divider -->
+                            <div style="width: 1px; height: 30px; background: #334155;"></div>
+                            
+                            <!-- Navigation Group -->
+                            <div class="nav-arrows">
+                                <button class="nav-arrow">‹</button>
+                                <span class="page-indicator">2/394</span>
+                                <button class="nav-arrow">›</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Book Content with More Space -->
+                        <div class="book-content" style="max-width: 750px;">
+                            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 40px;">
+                                <h1 class="book-title" style="margin: 0; flex: 1;">Emma</h1>
+                                <span style="color: #64748b; font-size: 16px;">by Jane Austen</span>
+                            </div>
+                            
+                            <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                                <p style="color: #10b981; font-size: 16px; margin: 0; font-style: italic;">
+                                    Here's the simplified text for A1 English learners:
+                                </p>
+                            </div>
+                            
+                            <div style="background: #1e293b; border-radius: 12px; padding: 32px; line-height: 2.0;">
+                                <p class="book-text simplified" style="font-size: 20px; margin-bottom: 24px;">
+                                    Emma had a special friend. Her friend helped her for many years. She played 
+                                    with Emma since Emma was five. She took care of Emma when she was sick.
+                                </p>
+                                <p class="book-text simplified" style="font-size: 20px; margin-bottom: 24px;">
+                                    Emma loved her friend very much. They were close and talked about 
+                                    everything. Her friend knew all about her family. She understood Emma's 
+                                    thoughts and feelings.
+                                </p>
+                                <p class="book-text simplified" style="font-size: 20px; margin-bottom: 24px;">
+                                    Now her friend was getting married. She would live just half a mile away. 
+                                    Emma was worried. She would be alone at home. Her father could not talk 
+                                    with her well.
+                                </p>
+                                <p class="book-text simplified" style="font-size: 20px; margin: 0;">
+                                    Her father was old and quiet. He did not move much. People liked him, but he 
+                                    was not very smart. Emma's sister lived far away in London.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-list">
+                <h4>Improvements Made:</h4>
+                <ul>
+                    <li>Minimal header (50px height) - just logo + back button</li>
+                    <li>Logical control grouping with visual dividers</li>
+                    <li>Larger content area with breathing room</li>
+                    <li>Single title display (no duplication)</li>
+                    <li>Voice selector simplified to current voice name</li>
+                    <li>Auto-read indicator with clear active state</li>
+                    <li>Reading content in elevated card for focus</li>
+                    <li>Larger text (20px) for better readability</li>
+                    <li>Simplified text highlighted with green accent</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 </html>

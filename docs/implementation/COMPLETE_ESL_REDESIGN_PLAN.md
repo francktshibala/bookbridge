@@ -1035,6 +1035,341 @@ const pinchBind = usePinch(({ offset: [scale] }) => {
 
 ---
 
+## **Phase 9: Clean Reading Page Implementation (3 hours)** 🆕 PLANNED
+
+### **Overview**
+Transform the current reading page from navigation-heavy interface to clean, immersive reading experience based on Phase 1 MVP wireframe principles. Leverage existing WireframeAudioControls, enhanced book detection, and progressive voice system.
+
+### **Step 9.1: Header Simplification (20 minutes)**
+**File**: `app/library/[id]/read/page.tsx`
+
+**Implementation:**
+```tsx
+// Replace current navbar section with minimal header
+<div className="reading-header">
+  <div className="logo">BookBridge ESL</div>
+  <button onClick={() => router.push('/enhanced-collection')} className="back-button">
+    ← Back to Library
+  </button>
+</div>
+```
+
+**Changes:**
+- Remove full navigation bar (Home, Enhanced Books, Browse All Books, AI Tutor)
+- Remove keyboard shortcuts display ("Space, Arrows, Esc")
+- Remove duplicate author info from header
+- Reduce header height from ~80px to 50px
+- Add proper back navigation to enhanced collection
+
+### **Step 9.2: Control Bar Consolidation with Logical Grouping (45 minutes)**
+**File**: `app/library/[id]/read/page.tsx`
+
+**Implementation:**
+```tsx
+// Replace IntegratedAudioControls with WireframeAudioControls + logical grouping
+<div className="control-bar-grouped">
+  {/* Content Controls Group */}
+  <div className="control-group">
+    <CEFRLevelSelector currentLevel={eslLevel} onChange={setEslLevel} />
+    <ModeToggle mode={currentMode} onChange={setCurrentMode} />
+  </div>
+
+  <div className="control-divider" />
+
+  {/* Audio Controls Group */}
+  <div className="control-group">
+    <VoiceSelector voice={voiceProvider} availableVoices={getAvailableVoices(isEnhancedBook)} />
+    <SmartPlayButton isPlaying={isPlaying} autoAdvance={autoAdvance} onToggle={handlePlayToggle} />
+    <SpeedControl speed={playbackRate} onChange={setPlaybackRate} />
+  </div>
+
+  <div className="control-divider" />
+
+  {/* Navigation Group */}
+  <div className="control-group">
+    <NavigationArrows currentChunk={currentChunk} totalChunks={totalChunks} onNavigate={setCurrentChunk} />
+  </div>
+</div>
+```
+
+**Features:**
+- Visual dividers between logical groups
+- Consolidated controls using existing WireframeAudioControls infrastructure
+- Leverage existing state management and enhanced book detection
+
+### **Step 9.3: Smart Play/Auto-Advance Button (30 minutes)**
+**File**: `components/audio/SmartPlayButton.tsx` (new component)
+
+**Implementation:**
+```tsx
+export function SmartPlayButton({ isPlaying, autoAdvance, onToggle }) {
+  const getButtonState = () => {
+    if (!isPlaying) return { icon: '▶', text: 'Play', className: 'play' }
+    if (autoAdvance) return { icon: '⏸', text: 'Auto', className: 'auto' }
+    return { icon: '⏸', text: 'Manual', className: 'manual' }
+  }
+
+  const { icon, text, className } = getButtonState()
+  
+  return (
+    <button onClick={onToggle} className={`smart-play-button ${className}`}>
+      {icon} {text}
+    </button>
+  )
+}
+```
+
+**Benefits:**
+- Single button reduces cognitive load
+- Clear state indication (Play/Auto/Manual)
+- Maintains existing auto-advance functionality from progressive voice system
+
+### **Step 9.4: Voice Limitation System (45 minutes)**
+**File**: `components/audio/VoiceSelector.tsx` + `lib/audio-config.ts`
+
+**Implementation:**
+```tsx
+// Voice availability logic
+const getAvailableVoices = (isEnhancedBook: boolean) => {
+  if (isEnhancedBook) {
+    // Only show pre-generated voices (protects credits)
+    return [
+      { id: 'alloy', name: 'Alloy', instant: true },
+      { id: 'nova', name: 'Nova', instant: true }
+    ]
+  }
+  
+  // Non-enhanced books: all voices with warnings
+  return [
+    { id: 'webspeech', name: 'Browser Voice', free: true },
+    { id: 'alloy', name: 'Alloy', cost: true },
+    { id: 'nova', name: 'Nova', cost: true },
+    // ... other OpenAI voices with cost warning
+  ]
+}
+
+// VoiceSelector shows different UI based on book type
+<select onChange={handleVoiceChange}>
+  {availableVoices.map(voice => (
+    <option key={voice.id} value={voice.id}>
+      {voice.name} {voice.instant && '⚡'} {voice.cost && '💳'}
+    </option>
+  ))}
+</select>
+```
+
+**Safety Features:**
+- Enhanced books: Only show Alloy/Nova (instant, no cost)
+- Non-enhanced books: Show all voices with cost warnings
+- Clear UI indicators: ⚡ for instant, 💳 for cost
+- Confirmation modal before expensive voice changes
+
+### **Step 9.5: Content Layout Enhancement (30 minutes)**
+**File**: `app/library/[id]/read/page.tsx`
+
+**Implementation:**
+```tsx
+// Enhanced content layout with better spacing and focus
+<div className="book-content-clean">
+  <div className="book-header">
+    <h1 className="book-title">{bookContent.title}</h1>
+    <span className="book-author">by {bookContent.author}</span>
+  </div>
+  
+  {/* Simplified text indicator */}
+  {currentMode === 'simplified' && (
+    <div className="simplified-indicator">
+      Here's the simplified text for {eslLevel} English learners:
+    </div>
+  )}
+  
+  {/* Reading content in elevated card */}
+  <div className="reading-content-card">
+    <div className="book-text" dangerouslySetInnerHTML={{ __html: currentContent }} />
+  </div>
+</div>
+```
+
+**Styling**: Use existing `wireframe-typography.css` classes with enhancements:
+- Larger content area with breathing room
+- Single title display (remove duplication)
+- Reading content in elevated card for focus
+- Simplified text highlighted with green accent
+
+### **Step 9.6: Text Highlighting CSS Fix (20 minutes)**
+**File**: `lib/highlighting-manager.ts` + `app/globals.css`
+
+**Fix Implementation:**
+```css
+/* Fix CSS highlighting - prevent word movement */
+.highlighted-word {
+  background-color: rgba(16, 185, 129, 0.3) !important;
+  transition: background-color 0.2s ease;
+  /* Remove any margin/padding that causes movement */
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.highlighted-word.active {
+  background-color: rgba(16, 185, 129, 0.6) !important;
+  color: #10b981 !important;
+}
+```
+
+**Current Issue**: Words moving instead of background highlighting
+**Solution**: Ensure highlighting only affects background, not layout
+
+### **Step 9.7: Two-Tier Reading Experience (45 minutes)**
+**File**: `app/library/[id]/read/page.tsx` + routing modifications
+
+**Business Logic:**
+Create distinct reading experiences based on entry point to protect API costs and showcase premium features.
+
+**Implementation:**
+```tsx
+// Detect entry source from URL params
+const searchParams = useSearchParams()
+const entrySource = searchParams.get('source') // 'enhanced' | 'browse'
+const isEnhancedExperience = entrySource === 'enhanced' || bookContent?.stored === true
+
+// Conditional rendering based on experience tier
+return (
+  <div className="reading-page">
+    {isEnhancedExperience ? (
+      <EnhancedReadingExperience 
+        bookContent={bookContent}
+        showAllFeatures={true}
+      />
+    ) : (
+      <BasicReadingExperience 
+        bookContent={bookContent}
+        originalTextOnly={true}
+      />
+    )}
+  </div>
+)
+```
+
+**Enhanced Experience (Enhanced Books tab → reading):**
+- ✅ Full clean reading interface with all features
+- ✅ CEFR level controls + simplification
+- ✅ Voice selection (Alloy/Nova only)
+- ✅ Smart play/auto-advance button
+- ✅ Word highlighting during audio
+- ✅ All premium features enabled
+- **Header**: "BookBridge ESL" + "← Back to Enhanced Books"
+
+**Basic Experience (Browse All Books tab → reading):**
+- ✅ Clean header with "BookBridge" + "← Back to Browse All Books"
+- ✅ Original text display only
+- ✅ Simple navigation arrows (previous/next page)
+- ✅ No CEFR controls, no simplification options
+- ✅ No voice features (cost protection)
+- ✅ Optional upgrade banner: "Want enhanced features? Try Enhanced Books →"
+
+**URL Routing Updates:**
+```tsx
+// Enhanced Books section links
+<Link href={`/library/${book.id}/read?source=enhanced`}>
+  Read with Enhanced Features
+</Link>
+
+// Browse All Books section links  
+<Link href={`/library/${book.id}/read?source=browse`}>
+  Read Original Text
+</Link>
+```
+
+**Cost Protection Logic:**
+```tsx
+const getAvailableFeatures = (isEnhancedExperience: boolean, isEnhancedBook: boolean) => {
+  if (!isEnhancedExperience) {
+    // Browse All Books: No expensive features
+    return {
+      simplification: false,
+      voiceFeatures: false,
+      cefrControls: false,
+      highlightingOnly: false // No audio = no highlighting needed
+    }
+  }
+  
+  if (isEnhancedBook) {
+    // Enhanced Books with pre-generated audio
+    return {
+      simplification: true,
+      voiceFeatures: ['alloy', 'nova'], // Only pre-generated
+      cefrControls: true,
+      highlightingOnly: false,
+      instantAudio: true
+    }
+  }
+  
+  // Enhanced Books without pre-generated audio (fallback)
+  return {
+    simplification: true, // Warning modal before expensive operations
+    voiceFeatures: ['webspeech'], // Free option only
+    cefrControls: true,
+    highlightingOnly: true
+  }
+}
+```
+
+**Benefits:**
+- **Cost Protection**: Zero accidental API usage from Browse section
+- **Clear Value Tiers**: Users understand Enhanced vs Browse differences  
+- **Upsell Opportunity**: Basic users see what they're missing
+- **Business Strategy**: Free tier drives users to premium Enhanced Books
+- **Highlighting Preserved**: Keep current 99% accurate word highlighting for enhanced experience
+
+### **File Structure Changes:**
+
+**New Files:**
+- `components/audio/SmartPlayButton.tsx`
+- `components/reading/CleanReadingHeader.tsx`
+- `components/reading/GroupedControlBar.tsx`
+- `lib/voice-availability.ts`
+
+**Modified Files:**
+- `app/library/[id]/read/page.tsx` (main reading page)
+- `components/audio/VoiceSelector.tsx` (voice limitation logic)
+- `app/globals.css` (highlighting fix + clean reading styles)
+- `lib/highlighting-manager.ts` (CSS class fixes)
+
+### **Dependencies:**
+- ✅ WireframeAudioControls (already built)
+- ✅ Enhanced book detection (`bookContent?.stored === true`)
+- ✅ Progressive voice system (instant audio + word highlighting)
+- ✅ Dynamic CEFR system (`/api/books/[id]/available-levels`)
+- ✅ Typography system (`wireframe-typography.css`)
+
+### **Testing Requirements:**
+1. **Enhanced Books**: Verify only Alloy/Nova voices appear, instant audio works
+2. **Non-Enhanced Books**: Verify all voices available with cost warnings
+3. **Smart Play Button**: Test all states (Play → Auto → Manual → Play)
+4. **Header**: Verify minimal design, proper back navigation
+5. **Control Grouping**: Test visual dividers and logical arrangement
+6. **Text Highlighting**: Verify no word movement, proper background highlighting
+7. **Responsive**: Ensure desktop layout works on different screen sizes
+
+### **Safety:**
+- All changes leverage existing, tested infrastructure
+- Enhanced book detection prevents breaking existing functionality
+- Voice limitation protects API credits automatically
+- Component-based approach allows easy rollback
+- CSS fixes are additive, don't break existing styles
+
+### **Expected Outcome:**
+- **Immersive Reading Experience**: Minimal distractions, content-focused design
+- **Smart Audio Controls**: Instant playback for enhanced books, cost protection
+- **Professional UI**: Grouped controls with clear visual hierarchy
+- **Production Ready**: Built on existing, tested systems
+- **Credit Safe**: Automatic voice limitations based on book type
+
+**Estimated Total Time: 3 hours**
+
+---
+
 ## **Phase 8: Testing & Validation (1 hour)**
 
 ### **Step 8.1: Functionality Testing**
