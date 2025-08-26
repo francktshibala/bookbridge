@@ -16,6 +16,7 @@ import { SpeedControl } from '@/components/SpeedControl';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
+import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
 
 interface BookContent {
   id: string;
@@ -1223,37 +1224,37 @@ export default function BookReaderPage() {
                   )}
                 </div>
 
-                {/* Smart Play/Auto Button - Use existing InstantAudioPlayer */}
-                <InstantAudioPlayer
-                  bookId={bookId}
-                  chunkIndex={currentChunk}
-                  text={currentContent}
-                  cefrLevel={eslLevel}
-                  voiceId={selectedVoice}
-                  isEnhanced={isEnhancedBook}
-                  onWordHighlight={handleWordHighlight}
-                  onChunkComplete={autoAdvanceChunkComplete}
-                  onProgressUpdate={(progress) => {
-                    console.log('Instant audio progress:', progress);
+                {/* Smart Play/Auto Button - Combined play and auto-advance */}
+                <SmartPlayButton
+                  isPlaying={isPlaying}
+                  autoAdvanceEnabled={autoAdvanceEnabled}
+                  onPlayPause={() => {
+                    if (isPlaying) {
+                      setIsPlaying(false);
+                    } else {
+                      setIsPlaying(true);
+                    }
                   }}
-                  className="smart-play-button"
+                  onToggleAutoAdvance={toggleAutoAdvance}
                 />
-
-                {/* Auto-advance Toggle */}
-                <button
-                  onClick={toggleAutoAdvance}
-                  className="rounded-lg flex items-center justify-center text-white font-bold transition-all duration-200 flex-shrink-0"
-                  style={{
-                    background: autoAdvanceEnabled ? '#10b981' : 'rgba(71, 85, 105, 0.8)',
-                    border: autoAdvanceEnabled ? '2px solid #10b981' : '2px solid rgba(71, 85, 105, 0.5)',
-                    width: '60px',
-                    height: '44px',
-                    fontSize: '12px'
-                  }}
-                  title={autoAdvanceEnabled ? 'Auto-advance ON' : 'Auto-advance OFF'}
-                >
-                  {autoAdvanceEnabled ? '▶ Auto' : '⏸ Manual'}
-                </button>
+                
+                {/* Hidden InstantAudioPlayer for audio functionality */}
+                <div style={{ display: 'none' }}>
+                  <InstantAudioPlayer
+                    bookId={bookId}
+                    chunkIndex={currentChunk}
+                    text={currentContent}
+                    cefrLevel={eslLevel}
+                    voiceId={selectedVoice}
+                    isEnhanced={isEnhancedBook}
+                    onWordHighlight={handleWordHighlight}
+                    onChunkComplete={autoAdvanceChunkComplete}
+                    onProgressUpdate={(progress) => {
+                      console.log('Instant audio progress:', progress);
+                    }}
+                    className="hidden"
+                  />
+                </div>
 
                 {/* Speed Control */}
                 <button
