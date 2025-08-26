@@ -283,18 +283,21 @@ book_pregeneration_status (book_id, total_combinations, completed, status)
 | Book | ID | Files | CDN | Voice | Status |
 |------|-----|-------|-----|--------|---------|
 | Pride & Prejudice | gutenberg-1342 | 1,606 | ✅ | alloy | Production |
-| Romeo & Juliet | gutenberg-1513 | 312 | ✅ | alloy | Fixed |
+| Romeo & Juliet | gutenberg-1513 | 312 | ✅ | alloy | Production |
+| The Great Gatsby | gutenberg-64317 | 656 | ✅ | nova | Production |
+| Frankenstein | gutenberg-84 | 1,032 | ✅ | nova | Production |
+| The Importance of Being Earnest | gutenberg-844 | 241 | ✅ | nova | Production |
 
 ### 🔄 In Progress  
 | Book | ID | Progress | Computer | Voice | ETA |
 |------|-----|----------|----------|--------|-----|
-| The Great Gatsby | gutenberg-64317 | 10% | Computer 2 | nova | 8h |
+| gutenberg-158 | gutenberg-158 | 0% | Available | TBD | TBD |
 
 ### 📋 Queue (Enhanced Books with Simplifications)
 - gutenberg-11 (Alice in Wonderland)
-- gutenberg-1524, gutenberg-158, gutenberg-1952  
+- gutenberg-1524, gutenberg-1952  
 - gutenberg-215, gutenberg-43, gutenberg-46
-- gutenberg-55, gutenberg-84, gutenberg-844
+- gutenberg-55
 
 ### 📈 Progress Tracking
 ```bash
