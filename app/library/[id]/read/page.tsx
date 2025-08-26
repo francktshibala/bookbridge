@@ -1062,275 +1062,281 @@ export default function BookReaderPage() {
         </div>
         )}
 
-        {/* Audio Controls - Wireframe Style Layout */}
+        {/* Control Bar Consolidated with Logical Grouping */}
         {isEnhancedBook && useProgressiveAudio ? (
-          <div className="mb-6">
-            {/* Main Control Bar - Full Width Aligned with Reading Content */}
+          <div className="mb-8">
             <div 
-              className="flex items-center justify-between mb-6 px-8 py-6"
+              className="control-bar-grouped"
               style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
                 background: 'rgba(30, 41, 59, 0.8)',
-                borderRadius: '24px',
+                borderRadius: '16px',
                 border: '1px solid rgba(71, 85, 105, 0.3)',
-                maxWidth: '1200px',
-                width: '100%',
-                margin: '0 auto'
+                maxWidth: '900px',
+                margin: '0 auto',
+                padding: '16px 24px',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
               }}
             >
-
-              {/* CEFR Level Badge - Round and prominent with dropdown */}
-              <div className="relative" style={{ marginLeft: '16px' }}>
-                <button 
-                  className="rounded-full flex items-center justify-center text-white font-bold transition-all duration-200 flex-shrink-0"
-                  style={{ 
-                    background: '#667eea', 
-                    border: '3px solid #667eea', 
-                    boxShadow: '0 6px 20px rgba(102, 126, 234, 0.4)',
-                    width: '60px',
-                    height: '60px',
-                    fontSize: '20px'
-                  }}
-                  onClick={() => setShowLevelDropdown(!showLevelDropdown)}
-                >
-                  {eslLevel}
-                </button>
-                
-                {/* CEFR Level Dropdown */}
-                {showLevelDropdown && (
-                  <div 
-                    className="absolute top-16 left-0 z-50"
+              {/* Content Controls Group */}
+              <div className="control-group" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                {/* CEFR Level Selector */}
+                <div className="relative">
+                  <button 
+                    className="level-badge"
                     style={{
-                      background: 'rgba(30, 41, 59, 0.95)',
-                      backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(71, 85, 105, 0.3)',
-                      borderRadius: '12px',
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                      minWidth: '100px',
-                      overflow: 'hidden',
-                      padding: '8px'
+                      background: '#667eea',
+                      color: 'white',
+                      padding: '8px 12px',
+                      borderRadius: '50px',
+                      fontWeight: '600',
+                      fontSize: '14px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      minWidth: '44px',
+                      height: '44px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'all 0.2s'
                     }}
+                    onClick={() => setShowLevelDropdown(!showLevelDropdown)}
                   >
-                    {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level, index) => (
-                      <button
-                        key={level}
-                        className="w-full px-6 py-4 text-center text-white font-semibold transition-all duration-200"
-                        style={{
-                          backgroundColor: level === eslLevel ? '#667eea' : 'rgba(102, 126, 234, 0.15)',
-                          borderBottom: index < 5 ? '1px solid rgba(71, 85, 105, 0.3)' : 'none'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#667eea';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = level === eslLevel ? '#667eea' : 'rgba(102, 126, 234, 0.15)';
-                        }}
-                        onClick={async () => {
-                          await handleCefrLevelChange(level);
-                          setShowLevelDropdown(false);
-                        }}
-                      >
-                        {level}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                    {eslLevel}
+                  </button>
+                  
+                  {/* CEFR Level Dropdown */}
+                  {showLevelDropdown && (
+                    <div 
+                      className="absolute top-12 left-0 z-50"
+                      style={{
+                        background: 'rgba(30, 41, 59, 0.95)',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(71, 85, 105, 0.3)',
+                        borderRadius: '8px',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                        minWidth: '80px',
+                        overflow: 'hidden',
+                        padding: '4px'
+                      }}
+                    >
+                      {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
+                        <button
+                          key={level}
+                          className="w-full px-4 py-2 text-center text-white font-semibold transition-all duration-200 hover:bg-blue-600"
+                          style={{
+                            backgroundColor: level === eslLevel ? '#667eea' : 'transparent',
+                            fontSize: '14px'
+                          }}
+                          onClick={async () => {
+                            await handleCefrLevelChange(level);
+                            setShowLevelDropdown(false);
+                          }}
+                        >
+                          {level}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Mode Toggle */}
+                <button
+                  onClick={handleModeChange ? () => handleModeChange(currentMode === 'original' ? 'simplified' : 'original') : undefined}
+                  className="mode-toggle"
+                  style={{
+                    background: currentMode === 'simplified' ? '#667eea' : 'transparent',
+                    border: '1px solid #334155',
+                    color: '#e2e8f0',
+                    padding: '8px 16px',
+                    borderRadius: '50px',
+                    fontSize: '14px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    minHeight: '44px',
+                    borderColor: currentMode === 'simplified' ? '#667eea' : '#334155'
+                  }}
+                >
+                  {currentMode === 'simplified' ? 'Simplified' : 'Original'}
+                </button>
               </div>
 
-              {/* Original/Simplified Mode Toggle */}
-              <button
-                onClick={handleModeChange ? () => handleModeChange(currentMode === 'original' ? 'simplified' : 'original') : undefined}
-                className="px-8 py-4 rounded-full font-semibold text-lg transition-all duration-200 flex-shrink-0"
-                style={{
-                  background: currentMode === 'simplified' ? '#667eea' : 'rgba(71, 85, 105, 0.8)',
-                  color: 'white',
-                  minWidth: '160px',
-                  height: '56px',
-                  border: currentMode === 'simplified' ? '2px solid #667eea' : '2px solid rgba(71, 85, 105, 0.5)'
-                }}
-              >
-                {currentMode === 'simplified' ? 'Simplified' : 'Original'}
-              </button>
+              {/* Control Divider */}
+              <div style={{ width: '1px', height: '30px', background: '#334155' }}></div>
 
-              {/* Voice Selector - Round and prominent */}
-              <div className="relative">
-                <button 
-                  className="rounded-full flex items-center justify-center text-white font-bold transition-all duration-200 flex-shrink-0"
-                  style={{ 
-                    background: '#10b981', 
-                    border: '3px solid #10b981', 
-                    boxShadow: '0 6px 20px rgba(16, 185, 129, 0.4)',
-                    width: '60px',
-                    height: '60px',
-                    fontSize: '16px'
-                  }}
-                  onClick={() => setShowVoiceDropdown(!showVoiceDropdown)}
-                  title={`Current voice: ${selectedVoice}`}
-                >
-                  🎤
-                </button>
-                
-                {/* Voice Dropdown */}
-                {showVoiceDropdown && (
-                  <div 
-                    className="absolute top-16 left-0 z-50"
+              {/* Audio Controls Group */}
+              <div className="control-group" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                {/* Voice Selector - Simplified to just current voice name */}
+                <div className="relative">
+                  <button
+                    onClick={() => setShowVoiceDropdown(!showVoiceDropdown)}
                     style={{
-                      background: 'rgba(30, 41, 59, 0.95)',
-                      backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(71, 85, 105, 0.3)',
-                      borderRadius: '12px',
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                      minWidth: '180px',
-                      maxHeight: '300px',
-                      overflow: 'hidden',
-                      overflowY: 'auto',
-                      padding: '8px'
+                      background: 'transparent',
+                      border: '1px solid #334155',
+                      color: '#e2e8f0',
+                      padding: '8px 12px',
+                      borderRadius: '8px',
+                      fontSize: '13px',
+                      cursor: 'pointer',
+                      textTransform: 'capitalize',
+                      minHeight: '44px'
                     }}
                   >
-                    {/* OpenAI Voices */}
+                    {selectedVoice}
+                  </button>
+                  
+                  {/* Voice Dropdown - Only show Alloy/Nova for enhanced books */}
+                  {showVoiceDropdown && (
                     <div 
-                      className="px-3 py-2 text-xs font-semibold text-center text-white"
-                      style={{ backgroundColor: 'rgba(16, 185, 129, 0.3)', borderBottom: '1px solid rgba(16, 185, 129, 0.5)' }}
+                      className="absolute top-12 left-0 z-50"
+                      style={{
+                        background: 'rgba(30, 41, 59, 0.95)',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(71, 85, 105, 0.3)',
+                        borderRadius: '8px',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                        minWidth: '120px',
+                        overflow: 'hidden',
+                        padding: '4px'
+                      }}
                     >
-                      OpenAI Voices
+                      {/* Only show available voices for enhanced books */}
+                      {(isEnhancedBook ? ['alloy', 'nova'] : ['alloy', 'echo', 'fable', 'onyx', 'nova', 'shimmer']).map((voice) => (
+                        <button
+                          key={voice}
+                          className="w-full px-4 py-2 text-center text-white font-medium transition-all duration-200 hover:bg-green-600 capitalize"
+                          style={{
+                            backgroundColor: voice === selectedVoice ? '#10b981' : 'transparent',
+                            fontSize: '13px'
+                          }}
+                          onClick={() => {
+                            handleVoiceChange(voice);
+                            setShowVoiceDropdown(false);
+                          }}
+                        >
+                          {voice} {isEnhancedBook && ['alloy', 'nova'].includes(voice) && '⚡'}
+                        </button>
+                      ))}
                     </div>
-                    {['alloy', 'echo', 'fable', 'onyx', 'nova', 'shimmer'].map((voice, index) => (
-                      <button
-                        key={voice}
-                        className="w-full px-6 py-4 text-center text-white font-medium transition-all duration-200"
-                        style={{
-                          backgroundColor: voice === selectedVoice ? '#10b981' : 'rgba(16, 185, 129, 0.15)',
-                          borderBottom: '1px solid rgba(71, 85, 105, 0.3)'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#10b981';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = voice === selectedVoice ? '#10b981' : 'rgba(16, 185, 129, 0.15)';
-                        }}
-                        onClick={() => {
-                          handleVoiceChange(voice);
-                          setShowVoiceDropdown(false);
-                        }}
-                      >
-                        <div className="capitalize">{voice}</div>
-                      </button>
-                    ))}
-                    
-                    {/* Separator */}
-                    <div 
-                      className="h-2"
-                      style={{ backgroundColor: 'rgba(71, 85, 105, 0.5)' }}
-                    />
-                    
-                    {/* ElevenLabs Voices */}
-                    <div 
-                      className="px-3 py-2 text-xs font-semibold text-center text-white"
-                      style={{ backgroundColor: 'rgba(16, 185, 129, 0.3)', borderBottom: '1px solid rgba(16, 185, 129, 0.5)' }}
-                    >
-                      ElevenLabs Voices
-                    </div>
-                    {[
-                      { id: 'eleven_rachel', name: 'Rachel' },
-                      { id: 'eleven_drew', name: 'Drew' },
-                      { id: 'eleven_clyde', name: 'Clyde' },
-                      { id: 'eleven_paul', name: 'Paul' },
-                      { id: 'eleven_domi', name: 'Domi' },
-                      { id: 'eleven_dave', name: 'Dave' }
-                    ].map((voice, index) => (
-                      <button
-                        key={voice.id}
-                        className="w-full px-6 py-4 text-center text-white font-medium transition-all duration-200"
-                        style={{
-                          backgroundColor: voice.id === selectedVoice ? '#10b981' : 'rgba(16, 185, 129, 0.15)',
-                          borderBottom: index < 5 ? '1px solid rgba(71, 85, 105, 0.3)' : 'none'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#10b981';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = voice.id === selectedVoice ? '#10b981' : 'rgba(16, 185, 129, 0.15)';
-                        }}
-                        onClick={() => {
-                          handleVoiceChange(voice.id);
-                          setShowVoiceDropdown(false);
-                        }}
-                      >
-                        {voice.name}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                  )}
+                </div>
+
+                {/* Smart Play/Auto Button - Use existing InstantAudioPlayer */}
+                <InstantAudioPlayer
+                  bookId={bookId}
+                  chunkIndex={currentChunk}
+                  text={currentContent}
+                  cefrLevel={eslLevel}
+                  voiceId={selectedVoice}
+                  isEnhanced={isEnhancedBook}
+                  onWordHighlight={handleWordHighlight}
+                  onChunkComplete={autoAdvanceChunkComplete}
+                  onProgressUpdate={(progress) => {
+                    console.log('Instant audio progress:', progress);
+                  }}
+                  className="smart-play-button"
+                />
+
+                {/* Auto-advance Toggle */}
+                <button
+                  onClick={toggleAutoAdvance}
+                  className="rounded-lg flex items-center justify-center text-white font-bold transition-all duration-200 flex-shrink-0"
+                  style={{
+                    background: autoAdvanceEnabled ? '#10b981' : 'rgba(71, 85, 105, 0.8)',
+                    border: autoAdvanceEnabled ? '2px solid #10b981' : '2px solid rgba(71, 85, 105, 0.5)',
+                    width: '60px',
+                    height: '44px',
+                    fontSize: '12px'
+                  }}
+                  title={autoAdvanceEnabled ? 'Auto-advance ON' : 'Auto-advance OFF'}
+                >
+                  {autoAdvanceEnabled ? '▶ Auto' : '⏸ Manual'}
+                </button>
+
+                {/* Speed Control */}
+                <button
+                  onClick={() => {
+                    const speeds = [0.5, 0.75, 1.0, 1.25, 1.5];
+                    const currentIndex = speeds.indexOf(speechSpeed);
+                    const nextSpeed = speeds[(currentIndex + 1) % speeds.length];
+                    setSpeechSpeed(nextSpeed);
+                  }}
+                  className="speed-control"
+                  style={{
+                    color: '#94a3b8',
+                    fontSize: '14px',
+                    cursor: 'pointer',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    border: '1px solid transparent',
+                    transition: 'all 0.2s',
+                    background: 'transparent',
+                    minHeight: '44px'
+                  }}
+                >
+                  {speechSpeed}x
+                </button>
               </div>
 
-              {/* Instant Audio Player - Same size as CEFR button */}
-              <InstantAudioPlayer
-                bookId={bookId}
-                chunkIndex={currentChunk}
-                text={currentContent}
-                cefrLevel={eslLevel}
-                voiceId={selectedVoice}
-                isEnhanced={isEnhancedBook}
-                onWordHighlight={handleWordHighlight}
-                onChunkComplete={autoAdvanceChunkComplete}
-                onProgressUpdate={(progress) => {
-                  console.log('Instant audio progress:', progress);
-                }}
-                className="progressive-audio-prominent"
-              />
+              {/* Control Divider */}
+              <div style={{ width: '1px', height: '30px', background: '#334155' }}></div>
 
-              {/* Auto-advance Toggle - Round */}
-              <button
-                onClick={toggleAutoAdvance}
-                className="rounded-full flex items-center justify-center text-white font-bold transition-all duration-200 flex-shrink-0"
-                style={{
-                  background: autoAdvanceEnabled ? '#10b981' : 'rgba(71, 85, 105, 0.8)',
-                  border: autoAdvanceEnabled ? '3px solid #10b981' : '3px solid rgba(71, 85, 105, 0.5)',
-                  boxShadow: autoAdvanceEnabled ? '0 6px 20px rgba(16, 185, 129, 0.4)' : '0 6px 20px rgba(71, 85, 105, 0.3)',
-                  width: '60px',
-                  height: '60px',
-                  fontSize: '14px'
-                }}
-                title={autoAdvanceEnabled ? 'Auto-advance ON' : 'Auto-advance OFF'}
-              >
-                {autoAdvanceEnabled ? '🔁' : '⏸️'}
-              </button>
-
-              {/* Speed Control */}
-              <span className="text-white text-xl font-medium flex-shrink-0 min-w-[60px] text-center">
-                1.0x
-              </span>
-
-              {/* Navigation with arrows closer to page counter */}
-              <div className="flex items-center gap-2" style={{ marginRight: '16px' }}>
-                {/* Left Navigation Arrow - Closer to page counter */}
+              {/* Navigation Group */}
+              <div className="nav-arrows" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <button
                   onClick={() => handleChunkNavigation('prev')}
-                  disabled={currentChunk <= 1}
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg transition-all duration-200 disabled:opacity-40 flex-shrink-0"
-                  style={{ 
-                    background: currentChunk <= 1 ? 'rgba(71, 85, 105, 0.5)' : '#667eea',
-                    border: currentChunk <= 1 ? '2px solid rgba(71, 85, 105, 0.3)' : '2px solid #667eea'
+                  disabled={!canGoPrev}
+                  className="nav-arrow"
+                  style={{
+                    width: '32px',
+                    height: '32px',
+                    border: '1px solid #334155',
+                    background: 'transparent',
+                    color: canGoPrev ? '#94a3b8' : '#475569',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: canGoPrev ? 'pointer' : 'not-allowed',
+                    transition: 'all 0.2s',
+                    fontSize: '16px'
                   }}
                 >
-                  ←
+                  ‹
                 </button>
-
-                {/* Page Counter */}
-                <span className="text-white text-lg font-medium flex-shrink-0 min-w-[80px] text-center">
-                  {currentChunk}/{bookContent?.totalChunks || 0}
+                <span 
+                  className="page-indicator"
+                  style={{
+                    color: '#94a3b8',
+                    fontSize: '14px',
+                    minWidth: '60px',
+                    textAlign: 'center'
+                  }}
+                >
+                  {currentChunk + 1}/{bookContent?.totalChunks || 0}
                 </span>
-
-                {/* Right Navigation Arrow - Closer to page counter */}
                 <button
                   onClick={() => handleChunkNavigation('next')}
-                  disabled={currentChunk >= (bookContent?.totalChunks || 0)}
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg transition-all duration-200 disabled:opacity-40 flex-shrink-0"
-                  style={{ 
-                    background: currentChunk >= (bookContent?.totalChunks || 0) ? 'rgba(71, 85, 105, 0.5)' : '#667eea',
-                    border: currentChunk >= (bookContent?.totalChunks || 0) ? '2px solid rgba(71, 85, 105, 0.3)' : '2px solid #667eea'
+                  disabled={!canGoNext}
+                  className="nav-arrow"
+                  style={{
+                    width: '32px',
+                    height: '32px',
+                    border: '1px solid #334155',
+                    background: 'transparent',
+                    color: canGoNext ? '#94a3b8' : '#475569',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: canGoNext ? 'pointer' : 'not-allowed',
+                    transition: 'all 0.2s',
+                    fontSize: '16px'
                   }}
                 >
-                  →
+                  ›
                 </button>
               </div>
             </div>
