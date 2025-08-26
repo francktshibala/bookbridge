@@ -52,10 +52,7 @@ async function copySimplificationsToChunks(bookId, cefrLevel) {
             chunkText: simp.simplified_text,
             wordCount: simp.simplified_text.split(/\s+/).length,
             isSimplified: true,
-            qualityScore: simp.quality_score,
-            audioFilePath: null, // Will be filled by audio generation
-            audioProvider: null,
-            audioVoiceId: null
+            qualityScore: simp.quality_score
           }
         });
 
