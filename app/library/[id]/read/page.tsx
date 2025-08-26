@@ -1385,21 +1385,31 @@ export default function BookReaderPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
           style={{
-            background: 'rgba(26, 32, 44, 0.8)',
+            background: 'rgba(26, 32, 44, 0.5)',
             backdropFilter: 'blur(20px)',
-            borderRadius: '20px',
-            padding: '40px',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(102, 126, 234, 0.2)',
-            border: '1px solid rgba(102, 126, 234, 0.2)',
-            minHeight: '500px'
+            borderRadius: '24px',
+            padding: '48px 40px',
+            boxShadow: '0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.15)',
+            border: '1px solid rgba(102, 126, 234, 0.15)',
+            minHeight: '600px',
+            marginTop: '16px'
           }}
         >
           {/* Book Title */}
-          <div className="book-content-wireframe">
-            <h1 className="book-title-wireframe">
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <h1 className="book-title-wireframe" style={{ marginBottom: '12px' }}>
               {bookContent.title}
             </h1>
-            <p style={{ color: '#94a3b8', fontSize: '16px', textAlign: 'center', marginBottom: '32px' }}>by {bookContent.author}</p>
+            <p style={{ 
+              color: '#94a3b8', 
+              fontSize: '17px', 
+              textAlign: 'center', 
+              marginBottom: '0',
+              fontStyle: 'italic',
+              letterSpacing: '0.5px'
+            }}>
+              by {bookContent.author}
+            </p>
           </div>
           
           {/* Book Text */}
