@@ -287,11 +287,12 @@ book_pregeneration_status (book_id, total_combinations, completed, status)
 | The Great Gatsby | gutenberg-64317 | 656 | ✅ | nova | Production |
 | Frankenstein | gutenberg-84 | 1,032 | ✅ | nova | Production |
 | The Importance of Being Earnest | gutenberg-844 | 241 | ✅ | nova | Production |
+| Emma | gutenberg-158 | 2,159 | ✅ | alloy | Production |
 
 ### 🔄 In Progress  
 | Book | ID | Progress | Computer | Voice | ETA |
 |------|-----|----------|----------|--------|-----|
-| gutenberg-158 | gutenberg-158 | 0% | Available | TBD | TBD |
+| None | - | - | Available | - | - |
 
 ### 📋 Queue (Enhanced Books with Simplifications)
 - gutenberg-11 (Alice in Wonderland)
