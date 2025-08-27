@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { ESLControls } from '@/components/esl/ESLControls';
 import { VocabularyHighlighter } from '@/components/VocabularyHighlighter';
@@ -12,6 +12,7 @@ import { WireframeAudioControls } from '@/components/audio/WireframeAudioControl
 import { ProgressiveAudioPlayer } from '@/components/audio/ProgressiveAudioPlayer';
 import { InstantAudioPlayer } from '@/components/audio/InstantAudioPlayer';
 import { WordHighlighter, useWordHighlighting } from '@/components/audio/WordHighlighter';
+import { AutoScrollHandler } from '@/components/audio/AutoScrollHandler';
 import { SpeedControl } from '@/components/SpeedControl';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useAutoAdvance } from '@/hooks/useAutoAdvance';
@@ -35,6 +36,7 @@ interface BookContent {
 export default function BookReaderPage() {
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { preferences, announceToScreenReader } = useAccessibility();
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
@@ -74,11 +76,20 @@ export default function BookReaderPage() {
   const [currentSection, setCurrentSection] = useState<number>(0);
   const [sections, setSections] = useState<Array<{title: string; content: string; startIndex: number}>>([]);
   const [simplifiedTotalChunks, setSimplifiedTotalChunks] = useState<number>(0);
+  const [userScrolledUp, setUserScrolledUp] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
 
   // Word highlighting integration
   const { currentWordIndex, handleWordHighlight, resetHighlighting } = useWordHighlighting();
 
   const bookId = params.id as string;
+
+  // Two-tier experience detection
+  const entrySource = searchParams.get('source'); // 'enhanced' | 'browse' | null
+  const isEnhancedExperience = entrySource === 'enhanced' || bookContent?.stored === true;
+  const isBrowseExperience = entrySource === 'browse';
+  
 
   // Enhanced book detection - calculated here to avoid hooks order issues
   const isEnhancedBook = bookContent?.stored === true && 
@@ -190,6 +201,8 @@ export default function BookReaderPage() {
     if (bookContent?.chunks[currentChunk]) {
       const newContent = bookContent.chunks[currentChunk].content;
       setCurrentContent(newContent);
+      console.log('DEBUG: Chunk changed to', currentChunk, 'Content length:', newContent?.length || 0);
+      console.log('DEBUG: Content preview:', newContent?.substring(0, 100) || 'No content');
     }
   }, [currentChunk, bookContent]);
 
@@ -446,9 +459,93 @@ export default function BookReaderPage() {
     return () => clearInterval(timer);
   }, [sessionTimerActive, sessionTimeLeft]);
 
+  // Scroll-to-pause functionality
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Clear existing timeout
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      
+      // Check if user scrolled up significantly (more than 150px)
+      if (currentScrollY < lastScrollY - 150 && isPlaying) {
+        console.log('📜 USER SCROLLED UP: Pausing audio and disabling auto-scroll');
+        setUserScrolledUp(true);
+        setAutoScrollEnabled(false);
+        setIsPlaying(false);
+      }
+      
+      // Update last scroll position after a short delay
+      scrollTimeout = setTimeout(() => {
+        setLastScrollY(currentScrollY);
+        
+        // Reset scroll flag after user stops scrolling
+        if (userScrolledUp && Math.abs(currentScrollY - lastScrollY) < 50) {
+          setTimeout(() => setUserScrolledUp(false), 2000); // Reset after 2 seconds
+        }
+      }, 100);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }, [lastScrollY, isPlaying, userScrolledUp]);
+
+  // Auto-scroll handler based on audio progress - CONSERVATIVE approach
+  const handleAutoScroll = (scrollProgress: number) => {
+    if (!autoScrollEnabled || userScrolledUp || !currentContent) return;
+    
+    // Get the main content container
+    const contentContainer = document.querySelector('[data-content="true"]');
+    if (!contentContainer) return;
+    
+    const containerRect = contentContainer.getBoundingClientRect();
+    const containerHeight = containerRect.height;
+    const windowHeight = window.innerHeight;
+    const currentScroll = window.scrollY;
+    
+    // Much more conservative scroll calculation
+    // Only scroll small increments to keep content in view, not jump ahead
+    const contentTop = containerRect.top + currentScroll;
+    const contentBottom = contentTop + containerHeight;
+    const viewportTop = currentScroll;
+    const viewportBottom = currentScroll + windowHeight;
+    
+    // Check if we need to scroll to keep content visible
+    const isContentTooHigh = containerRect.top < windowHeight * 0.1; // Content too far up
+    const isContentTooLow = containerRect.bottom > windowHeight * 0.9; // Content too far down
+    
+    if (isContentTooHigh && !isContentTooLow) {
+      // Content is getting too high, scroll down gently
+      const gentleScrollDown = currentScroll + (windowHeight * 0.15); // Scroll just 15% of viewport
+      const maxAllowedScroll = contentBottom - windowHeight * 0.7; // Don't scroll past 70% of content
+      const targetScroll = Math.min(gentleScrollDown, maxAllowedScroll);
+      
+      // Only scroll if it's a meaningful difference and not too aggressive
+      if (targetScroll > currentScroll + 30 && targetScroll < currentScroll + 200) {
+        window.scrollTo({
+          top: targetScroll,
+          behavior: 'smooth'
+        });
+        console.log(`📜 GENTLE AUTO-SCROLL: ${(scrollProgress * 100).toFixed(1)}% → +${(targetScroll - currentScroll).toFixed(0)}px`);
+      }
+    }
+  };
+
   const fetchBook = async () => {
     try {
-      const response = await fetch(`/api/books/${bookId}/content-fast`);
+      // Pass the source parameter to API so browse users get fresh external content
+      const sourceParam = entrySource ? `?source=${entrySource}` : '';
+      const response = await fetch(`/api/books/${bookId}/content-fast${sourceParam}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -459,7 +556,7 @@ export default function BookReaderPage() {
       // The API returns content in 'context' property, not 'chunks'
       if (data.context) {
         // Split the content into manageable chunks for better reading experience
-        const chunkSize = 1500; // ~1500 characters per page for better breathing room
+        const chunkSize = 1500; // ~1500 characters per page for consistent experience
         const fullText = data.context;
         const chunks = [] as { chunkIndex: number; content: string }[];
 
@@ -496,6 +593,8 @@ export default function BookReaderPage() {
         setCurrentChunk(validChunk);
         setCurrentContent(chunks[validChunk].content);
         console.log(`Book split into ${chunks.length} chunks, starting at chunk ${validChunk}`);
+        console.log('DEBUG: First chunk content length:', chunks[validChunk]?.content?.length || 0);
+        console.log('DEBUG: First chunk preview:', chunks[validChunk]?.content?.substring(0, 100) || 'No content');
       } else {
         console.log('No content found in book data');
         setError('Book content not available');
@@ -672,16 +771,24 @@ export default function BookReaderPage() {
         <div className="max-w-7xl mx-auto px-6 h-full">
           <div className="flex items-center justify-between h-full">
             <div className="text-lg font-bold text-slate-300">
-              BookBridge ESL
+              {isBrowseExperience ? 'BookBridge' : 'BookBridge ESL'}
             </div>
             <motion.button
               whileHover={{ x: -4, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => router.push('/enhanced-collection')}
+              onClick={() => {
+                if (isBrowseExperience) {
+                  router.push('/?tab=browse-all-books');
+                } else {
+                  router.push('/enhanced-collection');
+                }
+              }}
               className="flex items-center gap-2 bg-transparent border border-slate-600 hover:border-slate-400 rounded-lg px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
             >
               <span>←</span>
-              <span>Back to Library</span>
+              <span>
+                {isBrowseExperience ? 'Back to Browse All Books' : 'Back to Enhanced Books'}
+              </span>
             </motion.button>
           </div>
         </div>
@@ -1141,8 +1248,8 @@ export default function BookReaderPage() {
         </div>
         )}
 
-        {/* Control Bar Consolidated with Logical Grouping */}
-        {isEnhancedBook && useProgressiveAudio ? (
+        {/* Control Bar Consolidated with Logical Grouping - Only for Enhanced Experience */}
+        {isEnhancedBook && useProgressiveAudio && !isBrowseExperience ? (
           <div className="mb-8">
             <div 
               className="control-bar-grouped"
@@ -1354,11 +1461,21 @@ export default function BookReaderPage() {
                       // Update loading state based on audio status
                       setIsAudioLoading(progress.status === 'loading');
                     }}
+                    onAutoScroll={handleAutoScroll}
                     className="hidden"
                     isPlaying={isPlaying}
                     onPlayingChange={(playing) => {
                       console.log('🔄 InstantAudioPlayer onPlayingChange called with:', playing);
                       setIsPlaying(playing);
+                      
+                      // Re-enable auto-scroll when user manually starts playing
+                      if (playing) {
+                        console.log('🔄 Re-enabling auto-scroll - user started playback');
+                        setAutoScrollEnabled(true);
+                        if (userScrolledUp) {
+                          setUserScrolledUp(false);
+                        }
+                      }
                     }}
                   />
                 </div>
@@ -1386,6 +1503,26 @@ export default function BookReaderPage() {
                 >
                   {speechSpeed}x
                 </button>
+
+                {/* Scroll-to-pause notification */}
+                {userScrolledUp && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    style={{
+                      fontSize: '11px',
+                      color: '#f59e0b',
+                      background: 'rgba(245, 158, 11, 0.15)',
+                      padding: '4px 8px',
+                      borderRadius: '6px',
+                      border: '1px solid rgba(245, 158, 11, 0.3)',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    📜 Paused by scroll
+                  </motion.div>
+                )}
               </div>
 
               {/* Control Divider */}
@@ -1440,6 +1577,72 @@ export default function BookReaderPage() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: canGoNext ? 'pointer' : 'not-allowed',
+                    transition: 'all 0.2s',
+                    fontSize: '16px'
+                  }}
+                >
+                  ›
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : isBrowseExperience ? (
+          // Browse Experience: Simple navigation only - no expensive features
+          <div className="mb-8">
+            <div 
+              className="browse-controls"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '16px',
+                background: 'rgba(30, 41, 59, 0.8)',
+                borderRadius: '16px',
+                border: '1px solid rgba(71, 85, 105, 0.3)',
+                maxWidth: '400px',
+                margin: '0 auto',
+                padding: '16px 24px',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
+              }}
+            >
+              <span style={{ color: '#94a3b8', fontSize: '14px' }}>
+                Page {currentChunk + 1} of {bookContent?.totalChunks || 0}
+              </span>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button
+                  onClick={() => handleChunkNavigation('prev')}
+                  disabled={currentChunk <= 0}
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    border: '1px solid #334155',
+                    background: 'transparent',
+                    color: currentChunk > 0 ? '#94a3b8' : '#475569',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: currentChunk > 0 ? 'pointer' : 'not-allowed',
+                    transition: 'all 0.2s',
+                    fontSize: '16px'
+                  }}
+                >
+                  ‹
+                </button>
+                <button
+                  onClick={() => handleChunkNavigation('next')}
+                  disabled={currentChunk >= (bookContent?.totalChunks || 0) - 1}
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    border: '1px solid #334155',
+                    background: 'transparent',
+                    color: currentChunk < (bookContent?.totalChunks || 0) - 1 ? '#94a3b8' : '#475569',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: currentChunk < (bookContent?.totalChunks || 0) - 1 ? 'pointer' : 'not-allowed',
                     transition: 'all 0.2s',
                     fontSize: '16px'
                   }}
@@ -1575,20 +1778,37 @@ export default function BookReaderPage() {
                   aria-label="Book content"
                   tabIndex={0}
                 >
-
-
-                  {/* Word-level highlighting for instant audio */}
-                  {isEnhancedBook && (
-                    <div style={{ position: 'relative' }}>
-                      <WordHighlighter
+                  {/* Enhanced books: Use WordHighlighter for text display with highlighting disabled */}
+                  {isEnhancedBook ? (
+                    <div style={{ position: 'relative' }} data-content="true">
+                      {/* Auto-scroll handler - works independently of highlighting */}
+                      <AutoScrollHandler
                         text={currentContent}
                         currentWordIndex={currentWordIndex}
+                        isPlaying={isPlaying}
+                        enabled={autoScrollEnabled}
+                      />
+                      
+                      {/* Word highlighting - DISABLED but still displays text */}
+                      <WordHighlighter
+                        text={currentContent}
+                        currentWordIndex={-1} // DISABLED: Causes dizziness, doesn't match voice speed
                         isPlaying={isPlaying}
                         animationType="speechify"
                         highlightColor="#10b981"
                         showProgress={true}
                         className="word-highlight-overlay"
                       />
+                    </div>
+                  ) : (
+                    /* Browse experience: Direct text display without highlighting */
+                    <div data-content="true" style={{ 
+                      color: '#e2e8f0', 
+                      fontSize: '16px', 
+                      lineHeight: '1.6',
+                      whiteSpace: 'pre-wrap'
+                    }}>
+                      {currentContent || 'Loading content...'}
                     </div>
                   )}
                 </div>
@@ -1625,6 +1845,62 @@ export default function BookReaderPage() {
             )}
           </div>
         </motion.div>
+        
+        {/* Upgrade Banner for Browse Experience Users */}
+        {isBrowseExperience && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+            style={{
+              marginTop: '32px',
+              padding: '24px',
+              background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))',
+              backdropFilter: 'blur(15px)',
+              borderRadius: '16px',
+              border: '1px solid rgba(102, 126, 234, 0.3)',
+              boxShadow: '0 4px 20px rgba(102, 126, 234, 0.1)',
+              textAlign: 'center'
+            }}
+          >
+            <h3 style={{
+              fontSize: '20px',
+              fontWeight: '700',
+              marginBottom: '12px',
+              color: '#e2e8f0',
+              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+            }}>
+              ✨ Want Enhanced Features?
+            </h3>
+            <p style={{
+              fontSize: '16px',
+              color: '#94a3b8',
+              marginBottom: '20px',
+              lineHeight: '1.6'
+            }}>
+              Get AI-powered simplification, instant audio, word highlighting, and more with Enhanced Books
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => router.push('/enhanced-collection')}
+              style={{
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '12px',
+                padding: '12px 24px',
+                fontSize: '16px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4)',
+                transition: 'all 0.2s'
+              }}
+            >
+              Try Enhanced Books →
+            </motion.button>
+          </motion.div>
+        )}
         
         {/* Section Navigation (if applicable) */}
         {sections.length > 1 && (

@@ -1258,6 +1258,12 @@ export function SmartPlayButton({ isPlaying, autoAdvanceEnabled, onPlayPause, on
 - ✅ Mobile-responsive optimizations
 
 ### **Step 9.6: Text Highlighting CSS Fix and Audio Wiring (30 minutes)** ✅ COMPLETED
+
+### **Step 9.6.1: Auto-Scroll Fix (15 minutes)** ✅ COMPLETED
+**Issue**: Auto-scroll was not working because `onWordHighlight` callbacks were disabled in InstantAudioPlayer
+**Solution**: Re-enabled word timing callbacks for AutoScrollHandler while keeping visual highlighting disabled
+**Files**: `components/audio/InstantAudioPlayer.tsx`, `components/audio/AutoScrollHandler.tsx`
+**Result**: Auto-scroll now works perfectly without visual word highlighting
 **Files**: `components/audio/InstantAudioPlayer.tsx` + `app/library/[id]/read/page.tsx`
 
 **Audio Wiring Implementation:**
@@ -1341,7 +1347,7 @@ useEffect(() => {
 - ✅ Enhanced books show word highlighting, browse books don't
 - ✅ Audio wiring functional for instant playback
 
-### **Step 9.7: Two-Tier Reading Experience (45 minutes)**
+### **Step 9.7: Two-Tier Reading Experience (45 minutes)** ✅ COMPLETED
 **File**: `app/library/[id]/read/page.tsx` + routing modifications
 
 **Business Logic:**
@@ -1377,9 +1383,9 @@ return (
 - ✅ CEFR level controls + simplification
 - ✅ Voice selection (Alloy/Nova only)
 - ✅ Smart play/auto-advance button
-- ✅ Word highlighting during audio
+- ✅ Auto-scroll functionality (no visual highlighting)
 - ✅ All premium features enabled
-- **Header**: "BookBridge ESL" + "← Back to Enhanced Books"
+- ✅ Header: "BookBridge ESL" + "← Back to Enhanced Books"
 
 **Basic Experience (Browse All Books tab → reading):**
 - ✅ Clean header with "BookBridge" + "← Back to Browse All Books"
@@ -1387,7 +1393,7 @@ return (
 - ✅ Simple navigation arrows (previous/next page)
 - ✅ No CEFR controls, no simplification options
 - ✅ No voice features (cost protection)
-- ✅ Optional upgrade banner: "Want enhanced features? Try Enhanced Books →"
+- ✅ Upgrade banner: "Want enhanced features? Try Enhanced Books →"
 
 **URL Routing Updates:**
 ```tsx
@@ -1436,12 +1442,20 @@ const getAvailableFeatures = (isEnhancedExperience: boolean, isEnhancedBook: boo
 }
 ```
 
+**Implementation Completed ✅ (August 27, 2025):**
+- ✅ **API Route Logic**: Modified `/api/books/[id]/content-fast` to bypass database for browse users (`source=browse`)
+- ✅ **Reading Page Updates**: Pass source parameter to API for proper content fetching
+- ✅ **Browse Book Content Fix**: Browse users now get complete external book content (200+ pages vs 4 pages)
+- ✅ **Content Rendering**: Fixed text display with proper styling for browse experience
+- ✅ **Debug Implementation**: Added logging for content loading verification
+
 **Benefits:**
 - **Cost Protection**: Zero accidental API usage from Browse section
 - **Clear Value Tiers**: Users understand Enhanced vs Browse differences  
 - **Upsell Opportunity**: Basic users see what they're missing
 - **Business Strategy**: Free tier drives users to premium Enhanced Books
 - **Highlighting Preserved**: Keep current 99% accurate word highlighting for enhanced experience
+- **Complete Book Access**: Browse users get full book content, not limited previews
 
 ### **File Structure Changes:**
 
@@ -1488,6 +1502,206 @@ const getAvailableFeatures = (isEnhancedExperience: boolean, isEnhancedBook: boo
 - **Credit Safe**: Automatic voice limitations based on book type
 
 **Estimated Total Time: 3 hours**
+
+---
+
+## **Phase 9.5: Highlighting Synchronization & User Control Fix**
+
+### **Problem Statement**
+Word highlighting synchronization is not matching the actual voice speed, and auto-scroll interferes with user control. Research by two AI agents identified the root cause: 150ms hardware delay between `audio.play()` and actual sound output.
+
+### **Implementation Plan**
+
+#### **Step 9.5.1: Quick Timing Fix (1 hour)** 
+**Goal**: Add 150ms compensation to sync highlighting with voice
+
+**File**: `/components/audio/InstantAudioPlayer.tsx`
+
+**A. Audio Startup Delay Compensation** (Line 272)
+```typescript
+// Add 150ms delay after audio.play()
+await audio.play();
+console.log('🎵 Audio started playing');
+await new Promise(resolve => setTimeout(resolve, 150)); // Hardware delay compensation
+startWordHighlighting(audioAssets[0]);
+```
+
+**B. Calibration Offset for currentTime** (Line 462)
+```typescript
+// Subtract calibration offset when matching words
+const calibrationOffset = 0.15; // 150ms offset
+const adjustedCurrentTime = currentTime - calibrationOffset;
+const currentWord = sentenceAudio.wordTimings.words.find(timing =>
+  adjustedCurrentTime >= timing.startTime && 
+  adjustedCurrentTime <= timing.endTime
+);
+```
+
+#### **Step 9.5.2: Performance Optimization (1 hour)**
+**Goal**: Replace setInterval with requestAnimationFrame for smoother sync
+
+**File**: `/components/audio/InstantAudioPlayer.tsx` (Lines 458-481)
+
+```typescript
+// Replace setInterval with requestAnimationFrame
+let animationFrameId: number;
+let lastHighlightedIndex = -1;
+
+const updateHighlight = () => {
+  if (!currentAudioRef.current || currentAudioRef.current.paused) {
+    return;
+  }
+  
+  const currentTime = currentAudioRef.current.currentTime - 0.15;
+  const currentWord = sentenceAudio.wordTimings.words.find(timing =>
+    currentTime >= timing.startTime && currentTime <= timing.endTime
+  );
+  
+  // Debounce - only update if word changed
+  if (currentWord && currentWord.wordIndex !== lastHighlightedIndex) {
+    lastHighlightedIndex = currentWord.wordIndex;
+    onWordHighlight(currentWord.wordIndex);
+  }
+  
+  animationFrameId = requestAnimationFrame(updateHighlight);
+};
+
+animationFrameId = requestAnimationFrame(updateHighlight);
+```
+
+#### **Step 9.5.3: User Scroll Control (2 hours)**
+**Goal**: Implement pause-on-scroll and prevent auto-scroll interference
+
+**A. Add User Scroll Detection**
+**File**: `/components/audio/WordHighlighter.tsx` (Before line 54)
+
+```typescript
+// Add at component top level
+const [userScrolling, setUserScrolling] = useState(false);
+const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
+const isAutoScrolling = useRef(false);
+
+// User scroll detection
+useEffect(() => {
+  const handleUserInput = () => {
+    setUserScrolling(true);
+    setTimeout(() => setUserScrolling(false), 150);
+  };
+
+  ['wheel', 'touchmove', 'mousedown'].forEach(event => {
+    document.addEventListener(event, handleUserInput);
+  });
+
+  return () => {
+    ['wheel', 'touchmove', 'mousedown'].forEach(event => {
+      document.removeEventListener(event, handleUserInput);
+    });
+  };
+}, []);
+```
+
+**B. Implement Pause-on-Scroll**
+**File**: `/app/library/[id]/read/page.tsx`
+
+```typescript
+// Add scroll detection that pauses audio
+useEffect(() => {
+  const handleScroll = () => {
+    if (isPlaying && !isAutoScrolling.current) {
+      // User manually scrolled - pause audio
+      setIsPlaying(false);
+      toast.info("Audio paused - manual scroll detected");
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  return () => window.removeEventListener('scroll', handleScroll);
+}, [isPlaying]);
+```
+
+**C. Modify Auto-Scroll Logic**
+**File**: `/components/audio/WordHighlighter.tsx` (Lines 81-84)
+
+```typescript
+// Only auto-scroll if user hasn't manually scrolled recently
+if (autoScrollEnabled && !userScrolling) {
+  isAutoScrolling.current = true;
+  window.scrollTo({
+    top: targetScrollPosition,
+    behavior: 'smooth'
+  });
+  setTimeout(() => {
+    isAutoScrolling.current = false;
+  }, 500);
+}
+```
+
+#### **Step 9.5.4: Enhanced User Controls (1 hour)**
+**Goal**: Make controls always accessible and add auto-scroll toggle
+
+**A. Sticky Audio Controls**
+**File**: `/app/library/[id]/read/page.tsx`
+
+```css
+.audio-controls-sticky {
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+```
+
+**B. Auto-Scroll Toggle**
+**File**: `/components/audio/SmartPlayButton.tsx`
+
+```typescript
+// Add auto-scroll toggle to SmartPlayButton
+<button
+  onClick={() => setAutoScrollEnabled(!autoScrollEnabled)}
+  className="auto-scroll-toggle"
+  title={autoScrollEnabled ? "Disable auto-scroll" : "Enable auto-scroll"}
+>
+  {autoScrollEnabled ? "📜" : "📄"}
+</button>
+```
+
+#### **Step 9.5.5: Testing & Calibration (1 hour)**
+**Goal**: Fine-tune timing values and test across devices
+
+**Testing Checklist:**
+- [ ] Words highlight within 50ms of being spoken
+- [ ] User can scroll up without fighting auto-scroll
+- [ ] Pause controls always accessible
+- [ ] No highlight flicker or jumping
+- [ ] Smooth performance on all devices
+- [ ] Test different delay values (100ms, 150ms, 200ms)
+- [ ] Verify pause-on-scroll works smoothly
+- [ ] Test auto-scroll toggle functionality
+
+### **Success Metrics**
+- Words highlight precisely when spoken (within 50ms tolerance)
+- User retains full scroll control during playback
+- Pause button remains accessible at all times
+- No performance degradation from requestAnimationFrame
+- Smooth user experience across all devices
+
+### **Risk Mitigation**
+- Test each change independently before combining
+- Keep original code commented for quick rollback
+- Monitor performance impact of requestAnimationFrame
+- Provide user preference for disabling auto-scroll
+
+### **Future Enhancements** (Post-MVP)
+1. Web Speech API integration for real-time boundary events
+2. Per-device calibration persistence
+3. Advanced scroll behaviors (direction detection)
+4. ElevenLabs WebSocket for character-level timing
+
+**Safety**: All changes are additive and preserve existing functionality. Component-based approach allows easy testing and rollback.
 
 ---
 

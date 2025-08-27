@@ -574,8 +574,8 @@ export default function LibraryPage() {
   const handleReadBook = (bookId: string) => {
     console.log('Reading book:', bookId);
     announceToScreenReader(`Opening book for reading`);
-    // Navigate to the book detail page
-    router.push(`/library/${bookId}`);
+    // Navigate to the reading page with browse source
+    router.push(`/library/${bookId}/read?source=browse`);
   };
 
   if (selectedBook) {
