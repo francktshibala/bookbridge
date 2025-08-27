@@ -580,7 +580,7 @@ export default function LibraryPage() {
 
   if (selectedBook) {
     return (
-      <div className="page-container magical-bg">
+      <div className="page-container magical-bg" style={{ backgroundColor: '#0f172a', color: '#ffffff' }}>
         <div className="page-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -911,7 +911,7 @@ export default function LibraryPage() {
   }
 
   return (
-    <div className="page-container magical-bg" style={{ minHeight: '100vh' }}>
+    <div className="page-container magical-bg" style={{ minHeight: '100vh', backgroundColor: '#0f172a', color: '#ffffff' }}>
       <div className="page-content" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
         {/* Browse Catalog Content */}
         <AccessibleWrapper as="main" ariaLabelledBy="catalog-heading">
@@ -1124,7 +1124,7 @@ export default function LibraryPage() {
             >
               <div style={{ fontSize: '48px', marginBottom: '24px' }}>📚</div>
               <p style={{
-                color: '#4a5568',
+                color: '#94a3b8',
                 fontSize: '18px',
                 fontWeight: '500',
                 fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
@@ -1184,9 +1184,9 @@ export default function LibraryPage() {
                       style={{
                         padding: '12px 20px',
                         borderRadius: '12px',
-                        border: '2px solid #e2e8f0',
-                        backgroundColor: !catalogPagination.hasPrevious ? '#f7fafc' : 'white',
-                        color: !catalogPagination.hasPrevious ? '#a0aec0' : '#4a5568',
+                        border: '2px solid #334155',
+                        backgroundColor: !catalogPagination.hasPrevious ? '#1e293b' : '#334155',
+                        color: !catalogPagination.hasPrevious ? '#64748b' : '#e2e8f0',
                         fontSize: '14px',
                         fontWeight: '600',
                         fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
@@ -1201,11 +1201,11 @@ export default function LibraryPage() {
                       padding: '12px 20px',
                       fontSize: '14px',
                       fontWeight: '500',
-                      color: '#4a5568',
+                      color: '#e2e8f0',
                       fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                      backgroundColor: '#f7fafc',
+                      backgroundColor: '#1e293b',
                       borderRadius: '12px',
-                      border: '2px solid #e2e8f0'
+                      border: '2px solid #334155'
                     }}>
                       Page {catalogPage}
                     </span>
@@ -1222,9 +1222,9 @@ export default function LibraryPage() {
                       style={{
                         padding: '12px 20px',
                         borderRadius: '12px',
-                        border: '2px solid #e2e8f0',
-                        backgroundColor: !catalogPagination.hasNext ? '#f7fafc' : 'white',
-                        color: !catalogPagination.hasNext ? '#a0aec0' : '#4a5568',
+                        border: '2px solid #334155',
+                        backgroundColor: !catalogPagination.hasNext ? '#1e293b' : '#334155',
+                        color: !catalogPagination.hasNext ? '#64748b' : '#e2e8f0',
                         fontSize: '14px',
                         fontWeight: '600',
                         fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',

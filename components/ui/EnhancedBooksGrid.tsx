@@ -7,6 +7,7 @@ interface EnhancedBooksGridProps {
   books?: string[];
   showFeatureBadges?: boolean;
   layout?: 'grid-3x3' | 'grid-2x2' | 'list';
+  onAskAI?: (book: any) => void;
 }
 
 // Enhanced book data for the 7 ESL books
@@ -86,7 +87,8 @@ const ENHANCED_BOOKS_DATA = {
 export function EnhancedBooksGrid({ 
   books = Object.keys(ENHANCED_BOOKS_DATA),
   showFeatureBadges = true,
-  layout = 'grid-3x3'
+  layout = 'grid-3x3',
+  onAskAI
 }: EnhancedBooksGridProps) {
   
   const getGridClass = () => {
@@ -142,6 +144,7 @@ export function EnhancedBooksGrid({
             key={book.id} 
             book={book} 
             index={index}
+            onAskAI={onAskAI}
           />
         ))}
       </div>

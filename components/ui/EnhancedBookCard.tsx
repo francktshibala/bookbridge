@@ -21,9 +21,10 @@ interface EnhancedBook {
 interface EnhancedBookCardProps {
   book: EnhancedBook;
   index?: number;
+  onAskAI?: (book: any) => void;
 }
 
-export function EnhancedBookCard({ book, index = 0 }: EnhancedBookCardProps) {
+export function EnhancedBookCard({ book, index = 0, onAskAI }: EnhancedBookCardProps) {
   const genreColors: Record<string, string> = {
     'Classic Literature': '#f59e0b',
     'Romance': '#ec4899',
@@ -198,30 +199,45 @@ export function EnhancedBookCard({ book, index = 0 }: EnhancedBookCardProps) {
             Start Reading
           </Link>
           
-          <Link
-            href={`/library/${book.id}`}
+          <button
+            onClick={() => {
+              if (onAskAI) {
+                onAskAI({
+                  id: book.id,
+                  title: book.title,
+                  author: book.author,
+                  description: `Enhanced ESL edition with ${book.cefr.min}-${book.cefr.max} difficulty levels available`,
+                  subjects: book.genre ? [book.genre] : ['Literature'],
+                  language: 'en',
+                  source: 'gutenberg',
+                  popularity: 1
+                });
+              }
+            }}
             style={{
               padding: '10px 16px',
               backgroundColor: 'transparent',
-              color: '#94a3b8',
-              border: '1px solid #475569',
+              color: '#8b5cf6',
+              border: '1px solid #8b5cf6',
               borderRadius: '8px',
               fontSize: '14px',
               fontWeight: '600',
-              textDecoration: 'none',
+              cursor: 'pointer',
               transition: 'all 0.2s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = '#667eea';
-              e.currentTarget.style.color = '#667eea';
+              e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
+              e.currentTarget.style.borderColor = '#a855f7';
+              e.currentTarget.style.color = '#a855f7';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = '#475569';
-              e.currentTarget.style.color = '#94a3b8';
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.borderColor = '#8b5cf6';
+              e.currentTarget.style.color = '#8b5cf6';
             }}
           >
-            Preview
-          </Link>
+            🤖 Ask AI
+          </button>
         </div>
       </div>
 

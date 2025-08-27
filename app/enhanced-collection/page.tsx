@@ -107,6 +107,8 @@ export default function EnhancedCollectionDynamic() {
 
   // AI Chat Handlers
   const handleAskAI = (book: Book) => {
+    console.log('Enhanced Collection - Original book data:', book);
+    
     // Convert Book to ExternalBook format for AI modal
     const externalBook: ExternalBook = {
       id: book.id,
@@ -119,6 +121,8 @@ export default function EnhancedCollectionDynamic() {
       publicationYear: undefined,
       popularity: 1
     };
+    
+    console.log('Enhanced Collection - Converted ExternalBook:', externalBook);
     
     setSelectedAIBook(externalBook);
     setIsAIChatOpen(true);
@@ -162,6 +166,14 @@ export default function EnhancedCollectionDynamic() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
+        console.error('Enhanced Collection AI API Error Response:', errorData);
+        console.error('Response status:', response.status);
+        console.error('Request was:', {
+          query: message,
+          bookId: selectedAIBook.id,
+          bookContext: bookContext
+        });
+        
         const errorMessage = errorData.error || errorData.message || `HTTP error! status: ${response.status}`;
         throw new Error(errorMessage);
       }
@@ -253,24 +265,24 @@ export default function EnhancedCollectionDynamic() {
         style={{
           background: 'rgba(30, 41, 59, 0.8)',
           border: '1px solid #334155',
-          borderRadius: '16px',
-          padding: '20px',
+          borderRadius: '12px',
+          padding: '12px',
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
           overflow: 'hidden',
-          width: '300px', // Fixed width to match wireframe
+          width: '280px',
           height: 'auto'
         }}
       >
         {/* Status Badge */}
         <div style={{
           position: 'absolute',
-          top: '16px',
-          right: '16px',
-          padding: '4px 8px',
-          borderRadius: '8px',
-          fontSize: '11px',
+          top: '8px',
+          right: '8px',
+          padding: '2px 6px',
+          borderRadius: '6px',
+          fontSize: '10px',
           fontWeight: '600',
           background: book.status === 'enhanced' ? 'rgba(16, 185, 129, 0.2)' :
                      book.status === 'processing' ? 'rgba(251, 191, 36, 0.2)' :
@@ -286,93 +298,84 @@ export default function EnhancedCollectionDynamic() {
 
         {/* Book Cover - Compact Square Design */}
         <div className="book-cover" style={{
-          width: '100px',
-          height: '120px',
+          width: '80px',
+          height: '100px',
           background: getBookGradient(book.title),
-          borderRadius: '8px',
+          borderRadius: '6px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: getAbbreviation(book.title).length > 3 ? '16px' : '24px',
+          fontSize: getAbbreviation(book.title).length > 3 ? '14px' : '20px',
           fontWeight: 'bold',
           color: 'white',
-          marginBottom: '16px',
+          marginBottom: '10px',
           alignSelf: 'flex-start',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)'
         }}>
           {getAbbreviation(book.title)}
         </div>
 
         {/* Book Info - Compact Layout */}
-        <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '4px', color: 'white' }}>
+        <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '2px', color: 'white', lineHeight: '1.2' }}>
           {book.title}
         </h3>
-        <p style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '8px' }}>
+        <p style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '6px' }}>
           {book.author}
         </p>
 
-        {/* CEFR Levels Badge */}
-        <div style={{ fontSize: '12px', marginBottom: '8px' }}>
+        {/* CEFR Levels Badge - Inline Compact */}
+        <div style={{ fontSize: '11px', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
           <span style={{ 
             background: 'rgba(102, 126, 234, 0.2)', 
             color: '#667eea',
-            padding: '3px 8px',
-            borderRadius: '6px',
-            marginRight: '6px',
-            fontSize: '11px'
+            padding: '2px 6px',
+            borderRadius: '4px',
+            fontSize: '10px',
+            fontWeight: '500'
           }}>
             {book.cefrLevels}
           </span>
-          <span style={{ color: '#64748b' }}>~{book.estimatedHours} hours</span>
-          <span style={{ marginLeft: '8px', color: '#64748b' }}>{book.genre}</span>
+          <span style={{ color: '#64748b', fontSize: '10px' }}>~{book.estimatedHours}h</span>
+          <span style={{ color: '#64748b', fontSize: '10px' }}>{book.genre}</span>
         </div>
 
-        {/* Simplification Levels - Wireframe Style */}
-        <div style={{ 
-          fontSize: '12px', 
-          color: '#10b981',
-          marginBottom: '12px'
-        }}>
-          <div style={{ fontWeight: '500' }}>
-            {book.availableLevels?.length || 0} difficulty levels available
-          </div>
-          {book.availableLevels && book.availableLevels.length > 0 && (
-            <div style={{ color: '#64748b', marginTop: '2px' }}>
-              Levels: {book.availableLevels.join(', ')}
-            </div>
-          )}
-        </div>
-
-        {/* Short Description */}
-        <p style={{ 
-          fontSize: '13px', 
-          color: '#94a3b8', 
-          lineHeight: '1.4',
-          marginBottom: '16px',
-          overflow: 'hidden',
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical'
-        }}>
-          Enhanced ESL edition with {book.availableLevels?.length || 0} difficulty levels available
-        </p>
-
-        {/* Progress Indicator - Simplified */}
+        {/* Simplification Levels - Compact */}
         <div style={{ 
           fontSize: '11px', 
-          color: '#64748b',
-          marginBottom: '12px'
+          color: '#10b981',
+          marginBottom: '6px',
+          fontWeight: '500'
         }}>
-          Progress: 0%
-          <span style={{ marginLeft: '8px' }}>
-            0/{book.totalChunks || 0} chapters
-          </span>
+          {book.availableLevels?.length || 0} difficulty levels available
         </div>
 
-        {/* Action Buttons */}
+        {/* Short Description - Compact */}
+        <p style={{ 
+          fontSize: '11px', 
+          color: '#94a3b8', 
+          lineHeight: '1.3',
+          marginBottom: '8px',
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitLineClamp: 1,
+          WebkitBoxOrient: 'vertical'
+        }}>
+          Enhanced ESL edition with {book.availableLevels?.length || 0} levels
+        </p>
+
+        {/* Progress Indicator - Inline Compact */}
+        <div style={{ 
+          fontSize: '10px', 
+          color: '#64748b',
+          marginBottom: '8px'
+        }}>
+          Progress: 0% • 0/{book.totalChunks || 0} chapters
+        </div>
+
+        {/* Action Buttons - Compact */}
         <div style={{
           display: 'flex',
-          gap: '8px'
+          gap: '6px'
         }}>
           <motion.button
             whileHover={{ y: -1, transition: { duration: 0.2 } }}
@@ -380,19 +383,19 @@ export default function EnhancedCollectionDynamic() {
             onClick={() => handleAskAI(book)}
             style={{
               flex: 1,
-              padding: '10px 12px',
+              padding: '8px 10px',
               background: 'transparent',
-              border: '2px solid #8b5cf6',
-              borderRadius: '8px',
+              border: '1px solid #8b5cf6',
+              borderRadius: '6px',
               color: '#8b5cf6',
               fontWeight: '600',
-              fontSize: '12px',
+              fontSize: '11px',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '4px'
+              gap: '3px'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
@@ -412,17 +415,17 @@ export default function EnhancedCollectionDynamic() {
               alignItems: 'center',
               justifyContent: 'center',
               textAlign: 'center',
-              padding: '10px 12px',
+              padding: '8px 10px',
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               border: 'none',
-              borderRadius: '8px',
+              borderRadius: '6px',
               color: 'white',
               fontWeight: '600',
-              fontSize: '12px',
+              fontSize: '11px',
               textDecoration: 'none',
               cursor: 'pointer',
               transition: 'opacity 0.2s ease',
-              gap: '4px'
+              gap: '3px'
             }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
@@ -512,38 +515,41 @@ export default function EnhancedCollectionDynamic() {
         {/* Genre Filter */}
         <div className="genre-filter-container" style={{ 
           display: 'flex', 
-          gap: '12px', 
           justifyContent: 'center',
           marginBottom: '40px',
-          flexWrap: 'wrap',
-          overflowX: 'auto',
-          WebkitOverflowScrolling: 'touch'
+          padding: '0 20px'
         }}>
-          <div className="genre-filter-scroll" style={{
+          <div className="genre-filter-wrapper" style={{
             display: 'flex',
             gap: '12px',
-            flexWrap: 'nowrap',
-            minWidth: 'max-content'
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            maxWidth: '100%'
           }}>
             {genres.map(genre => (
-              <button
+              <motion.button
                 key={genre}
                 onClick={() => handleGenreChange(genre)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 style={{
                   padding: '8px 20px',
-                  background: selectedGenre === genre ? '#667eea' : 'transparent',
-                  border: `2px solid ${selectedGenre === genre ? '#667eea' : '#334155'}`,
+                  background: selectedGenre === genre 
+                    ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
+                    : 'transparent',
+                  border: `2px solid ${selectedGenre === genre ? 'transparent' : '#334155'}`,
                   borderRadius: '24px',
                   color: selectedGenre === genre ? 'white' : '#94a3b8',
                   fontWeight: '600',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
                   whiteSpace: 'nowrap',
-                  flexShrink: 0
+                  minWidth: 'fit-content',
+                  boxShadow: selectedGenre === genre ? '0 4px 12px rgba(102, 126, 234, 0.3)' : 'none'
                 }}
               >
                 {genre} ({genre === 'All' ? books.length : books.filter(b => b.genre === genre).length})
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>

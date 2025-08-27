@@ -3,10 +3,16 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { EnhancedBooksGrid } from '@/components/ui/EnhancedBooksGrid';
+import { AIBookChatModal } from '@/components/ai/AIBookChatModal';
+import type { ExternalBook } from '@/types/book-sources';
 
 export default function HomePage() {
   const [selectedLevel, setSelectedLevel] = useState('B1');
   const cefrLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  
+  // AI Chat Modal State
+  const [isAIChatOpen, setIsAIChatOpen] = useState(false);
+  const [selectedAIBook, setSelectedAIBook] = useState<ExternalBook | null>(null);
   
   const sampleTexts = {
     A1: "Elizabeth is a young woman. She meets Mr. Darcy. He is rich but proud.",
@@ -17,6 +23,88 @@ export default function HomePage() {
     C2: "Elizabeth Bennet, possessed of a penetrating wit and an unwavering moral compass that renders her peculiarly resistant to the superficial allurements of society, experiences an immediate and visceral aversion to the ostensibly supercilious Mr. Darcy."
   };
   
+  // AI Chat Handlers
+  const handleAskAI = (book: ExternalBook) => {
+    console.log('Opening AI chat for book:', book);
+    setSelectedAIBook(book);
+    setIsAIChatOpen(true);
+  };
+
+  const handleCloseAIChat = () => {
+    setIsAIChatOpen(false);
+    setSelectedAIBook(null);
+  };
+
+  const handleSendAIMessage = async (message: string): Promise<string> => {
+    if (!selectedAIBook) {
+      throw new Error('No book selected for AI chat');
+    }
+
+    try {
+      const bookContext = `Title: ${selectedAIBook.title}, Author: ${selectedAIBook.author}${
+        selectedAIBook.description ? `, Description: ${selectedAIBook.description}` : ''
+      }${
+        selectedAIBook.subjects?.length ? `, Subjects: ${selectedAIBook.subjects.join(', ')}` : ''
+      }`;
+
+      // Add timeout to prevent hanging - increased for complex AI analysis
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 second timeout for complex AI processing
+
+      const response = await fetch('/api/ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: message,
+          bookId: selectedAIBook.id,
+          bookContext: bookContext,
+        }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.error || errorData.message || `HTTP error! status: ${response.status}`;
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      
+      // Return the full AI response data for progressive disclosure
+      const aiResponse = {
+        content: data.response || data.content || data.message || 'I received your question but had trouble generating a response. Please try again.',
+        context: data.tutoringAgents?.context ? { content: data.tutoringAgents.context, confidence: 0.9 } : undefined,
+        insights: data.tutoringAgents?.insights ? { content: data.tutoringAgents.insights, confidence: 0.9 } : undefined,
+        questions: data.tutoringAgents?.questions ? { content: data.tutoringAgents.questions, confidence: 0.9 } : undefined,
+        crossBookConnections: data.crossBookConnections,
+        agentResponses: data.agentResponses,
+        multiAgent: data.multiAgent
+      };
+      
+      return JSON.stringify(aiResponse);
+    } catch (error) {
+      console.error('Error sending AI message:', error);
+      
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          throw new Error('⏱️ Request timed out after 90 seconds. Your AI analysis was too complex - try asking a simpler question or try again later.');
+        }
+        if (error.message.includes('limit exceeded') || error.message.includes('usage limit')) {
+          throw new Error('You have reached your AI usage limit. Please upgrade your plan or try again later.');
+        }
+        if (error.message.includes('rate_limit_error') || error.message.includes('429')) {
+          throw new Error('🚦 AI service is temporarily busy due to high usage. Please wait 1-2 minutes and try again.');
+        }
+        throw new Error(error.message);
+      }
+      
+      throw new Error('Failed to get AI response. Please try again.');
+    }
+  };
 
   return (
     <div className="page-container magical-bg min-h-screen" style={{ 
@@ -319,7 +407,10 @@ export default function HomePage() {
           transition={{ delay: 1.2, duration: 0.6 }}
           className="w-full"
         >
-          <EnhancedBooksGrid books={['gutenberg-1342', 'gutenberg-1513', 'gutenberg-11']} />
+          <EnhancedBooksGrid 
+            books={['gutenberg-1342', 'gutenberg-1513', 'gutenberg-11']} 
+            onAskAI={handleAskAI}
+          />
         </motion.section>
 
 
@@ -644,6 +735,14 @@ export default function HomePage() {
           </div>
         </motion.section>
       </div>
+
+      {/* AI Chat Modal */}
+      <AIBookChatModal
+        isOpen={isAIChatOpen}
+        book={selectedAIBook}
+        onClose={handleCloseAIChat}
+        onSendMessage={handleSendAIMessage}
+      />
     </div>
   );
 }

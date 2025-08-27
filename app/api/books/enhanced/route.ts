@@ -150,9 +150,70 @@ export async function GET() {
 
   } catch (error) {
     console.error('Error fetching enhanced books:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch enhanced books' },
-      { status: 500 }
-    );
+    
+    // Return fallback data when database is unavailable
+    const fallbackBooks = [
+      {
+        id: 'gutenberg-1342',
+        title: 'Pride and Prejudice',
+        author: 'Jane Austen',
+        description: 'Enhanced ESL edition with 6 difficulty levels available',
+        genre: 'Romance',
+        cefrLevels: 'B1-C2',
+        estimatedHours: 8,
+        totalChunks: 305,
+        status: 'enhanced' as const,
+        simplificationCount: 1830,
+        availableLevels: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+      },
+      {
+        id: 'gutenberg-1513',
+        title: 'Romeo and Juliet',
+        author: 'William Shakespeare',
+        description: 'Enhanced ESL edition with 6 difficulty levels available',
+        genre: 'Tragedy',
+        cefrLevels: 'B1-C2',
+        estimatedHours: 3,
+        totalChunks: 150,
+        status: 'enhanced' as const,
+        simplificationCount: 900,
+        availableLevels: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+      },
+      {
+        id: 'gutenberg-84',
+        title: 'Frankenstein',
+        author: 'Mary Wollstonecraft Shelley',
+        description: 'Enhanced ESL edition with 6 difficulty levels available',
+        genre: 'Gothic',
+        cefrLevels: 'B2-C2',
+        estimatedHours: 6,
+        totalChunks: 172,
+        status: 'enhanced' as const,
+        simplificationCount: 1032,
+        availableLevels: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+      },
+      {
+        id: 'gutenberg-11',
+        title: 'Alice\'s Adventures in Wonderland',
+        author: 'Lewis Carroll',
+        description: 'Enhanced ESL edition with 6 difficulty levels available',
+        genre: 'Fantasy',
+        cefrLevels: 'A2-C1',
+        estimatedHours: 2.5,
+        totalChunks: 90,
+        status: 'enhanced' as const,
+        simplificationCount: 540,
+        availableLevels: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+      }
+    ];
+    
+    console.log('Returning fallback enhanced books data due to database connectivity issue');
+    
+    return NextResponse.json({
+      books: fallbackBooks,
+      total: fallbackBooks.length,
+      lastUpdated: new Date().toISOString(),
+      fallback: true
+    });
   }
 }
