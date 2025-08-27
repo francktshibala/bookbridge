@@ -50,6 +50,8 @@ interface InstantAudioPlayerProps {
   onChunkComplete?: () => void;
   onProgressUpdate?: (progress: AudioProgressUpdate) => void;
   className?: string;
+  isPlaying?: boolean;
+  onPlayingChange?: (playing: boolean) => void;
 }
 
 interface AudioProgressUpdate {
@@ -71,16 +73,35 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
   onWordHighlight,
   onChunkComplete,
   onProgressUpdate,
-  className = ''
+  className = '',
+  isPlaying: externalIsPlaying,
+  onPlayingChange
 }) => {
   // Audio state
   const [audioQueue, setAudioQueue] = useState<SentenceAudio[]>([]);
   const [currentSentence, setCurrentSentence] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [internalIsPlaying, setInternalIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [metadata, setMetadata] = useState<AudioMetadata | null>(null);
   const [isPreGenerated, setIsPreGenerated] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  // Use external play state if provided, otherwise use internal
+  const isPlaying = externalIsPlaying !== undefined ? externalIsPlaying : internalIsPlaying;
+  const setIsPlaying = (playing: boolean) => {
+    console.log('🎵 InstantAudioPlayer setIsPlaying called:', playing, { 
+      hasExternal: externalIsPlaying !== undefined,
+      hasCallback: !!onPlayingChange 
+    });
+    
+    if (externalIsPlaying !== undefined && onPlayingChange) {
+      // External control mode - only notify parent
+      onPlayingChange(playing);
+    } else {
+      // Internal control mode - update internal state
+      setInternalIsPlaying(playing);
+    }
+  };
 
   // Audio elements and tracking
   const audioRefs = useRef<HTMLAudioElement[]>([]);
@@ -109,6 +130,31 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       }
     };
   }, []);
+
+  // Handle external play state changes
+  useEffect(() => {
+    console.log('🎵 External control effect triggered:', { 
+      externalIsPlaying, 
+      internalIsPlaying, 
+      externalIsDefined: externalIsPlaying !== undefined 
+    });
+    
+    if (externalIsPlaying !== undefined) {
+      if (externalIsPlaying && !internalIsPlaying) {
+        // External requested play
+        console.log('🎵 External play request - starting playback');
+        startPlayback();
+      } else if (!externalIsPlaying && internalIsPlaying) {
+        // External requested stop
+        console.log('🎵 External pause request - stopping playback');
+        stopPlayback();
+      } else if (!externalIsPlaying && !internalIsPlaying) {
+        // Both false, ensure audio is really stopped
+        console.log('🎵 Both states false - ensuring audio is stopped');
+        stopPlayback();
+      }
+    }
+  }, [externalIsPlaying, internalIsPlaying]);
 
   // Update progress callback
   const updateProgress = useCallback((update: Partial<AudioProgressUpdate>) => {
@@ -224,13 +270,8 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
 
     try {
       await audio.play();
-      console.log(`🎵 Audio started playing, isPlaying should be true. Actual isPlaying: ${isPlaying}`);
-      
-      // Small delay to ensure state has updated
-      setTimeout(() => {
-        console.log(`🎵 After timeout, isPlaying: ${isPlaying}`);
-        startWordHighlighting(audioAssets[0]);
-      }, 100);
+      console.log(`🎵 Audio started playing`);
+      startWordHighlighting(audioAssets[0]);
       
       const totalLoadTime = Date.now() - startTimeRef.current;
       console.log(`🎯 Total startup time: ${totalLoadTime}ms`);
@@ -391,51 +432,91 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     updateProgress({ status: 'ready' });
   };
 
-  // Start word-level highlighting
+  // Start word-level highlighting using REAL-TIME audio tracking (most accurate)
   const startWordHighlighting = (sentenceAudio: SentenceAudio) => {
     if (timeUpdateIntervalRef.current) {
       clearInterval(timeUpdateIntervalRef.current);
     }
 
-    if (!sentenceAudio.wordTimings?.words || !onWordHighlight) {
+    if (!onWordHighlight || !text) {
+      console.log('⚠️ INSTANT AUDIO: No highlight callback or text provided');
       return;
     }
     
-    // Use 40ms intervals for smooth highlighting (research-backed)
-    timeUpdateIntervalRef.current = setInterval(() => {
-      if (!currentAudioRef.current) {
-        return;
-      }
+    console.log('🎯 REAL-TIME HIGHLIGHTING: Starting with audio tracking', {
+      hasWordTimings: !!sentenceAudio.wordTimings?.words,
+      wordCount: sentenceAudio.wordTimings?.words?.length,
+      duration: sentenceAudio.duration,
+      method: sentenceAudio.wordTimings?.method
+    });
+    
+    // Method 1: Use database word timings if available (most accurate)
+    if (sentenceAudio.wordTimings?.words?.length > 0) {
+      console.log('🎯 Using DATABASE word timings for perfect sync');
       
-      if (currentAudioRef.current.paused) {
-        console.log('❌ Interval skipped - audio is paused');
-        return;
-      }
+      // Use 50ms intervals for smooth real-time tracking
+      timeUpdateIntervalRef.current = setInterval(() => {
+        if (!currentAudioRef.current) return;
+        if (currentAudioRef.current.paused) return;
 
-      const currentTime = currentAudioRef.current.currentTime;
+        const currentTime = currentAudioRef.current.currentTime;
+        
+        // Find current word based on actual audio time with small lookahead
+        const lookahead = 0.1; // 100ms lookahead for responsiveness
+        const currentWord = sentenceAudio.wordTimings.words.find(timing =>
+          (currentTime + lookahead) >= timing.startTime && 
+          (currentTime + lookahead) <= timing.endTime
+        );
+
+        if (currentWord) {
+          console.log(`🎯 DATABASE TIMING: Word ${currentWord.wordIndex} "${currentWord.word}" at ${currentTime.toFixed(2)}s`);
+          onWordHighlight(currentWord.wordIndex);
+        }
+
+        // Update progress
+        updateProgress({ 
+          currentTime,
+          status: 'playing'
+        });
+      }, 50); // 50ms for smooth tracking
       
-      // Find current word with 100ms lookahead for better responsiveness
-      const lookahead = 0.1;
-      const currentWord = sentenceAudio.wordTimings.words.find(timing =>
-        (currentTime + lookahead) >= timing.startTime && 
-        (currentTime + lookahead) <= timing.endTime
-      );
+    } else {
+      // Method 2: Fallback to IMPROVED estimation with real-time audio position
+      console.log('🎯 Using IMPROVED estimation with real-time tracking');
+      
+      const words = text.split(/\s+/).filter(word => word.length > 0);
+      const duration = sentenceAudio.duration || 10;
+      
+      timeUpdateIntervalRef.current = setInterval(() => {
+        if (!currentAudioRef.current) return;
+        if (currentAudioRef.current.paused) return;
 
-      if (currentWord && onWordHighlight) {
-        console.log(`🎯 Highlighting word ${currentWord.wordIndex}: "${currentWord.word}" at ${currentTime.toFixed(2)}s (expected: ${currentWord.startTime.toFixed(2)}s - ${currentWord.endTime.toFixed(2)}s) diff: ${(currentTime - currentWord.startTime).toFixed(2)}s`);
-        onWordHighlight(currentWord.wordIndex);
-      }
+        const currentTime = currentAudioRef.current.currentTime;
+        const progress = Math.min(currentTime / duration, 1); // Clamp to 1
+        const estimatedWordIndex = Math.floor(progress * words.length);
+        
+        if (estimatedWordIndex < words.length && estimatedWordIndex >= 0) {
+          console.log(`🎯 IMPROVED ESTIMATION: Word ${estimatedWordIndex} "${words[estimatedWordIndex]}" at ${currentTime.toFixed(2)}s/${duration}s (${(progress*100).toFixed(1)}%)`);
+          onWordHighlight(estimatedWordIndex);
+        }
 
-      // Update progress
-      updateProgress({ 
-        currentTime,
-        status: 'playing'
-      });
-    }, 40); // 40ms for smooth highlighting
+        // Update progress
+        updateProgress({ 
+          currentTime,
+          status: 'playing'
+        });
+      }, 100); // 100ms for estimation method
+    }
   };
 
   // Handle playback completion
   const handlePlaybackComplete = () => {
+    console.log('🏁 INSTANT AUDIO: Playback completed, calling onChunkComplete', {
+      hasCallback: !!onChunkComplete,
+      currentSentence,
+      totalSentences: audioQueue.length
+    });
+    
     setIsPlaying(false);
     setCurrentSentence(0);
     
@@ -444,21 +525,63 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     }
 
     updateProgress({ status: 'completed' });
-    onChunkComplete?.();
+    
+    if (onChunkComplete) {
+      console.log('🏁 INSTANT AUDIO: Calling onChunkComplete callback');
+      onChunkComplete();
+    } else {
+      console.log('⚠️ INSTANT AUDIO: No onChunkComplete callback provided');
+    }
   };
 
   // Stop playback
   const stopPlayback = () => {
-    setIsPlaying(false);
-    audioRefs.current.forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
+    console.log('🛑 stopPlayback called - pausing all audio');
     
+    // Clear highlighting interval first
     if (timeUpdateIntervalRef.current) {
+      console.log('🛑 Clearing highlighting interval');
       clearInterval(timeUpdateIntervalRef.current);
+      timeUpdateIntervalRef.current = null;
     }
 
+    // Pause and reset all audio elements
+    audioRefs.current.forEach((audio, index) => {
+      try {
+        if (audio && !audio.paused) {
+          console.log(`🛑 Pausing audio ${index}: ${audio.src ? audio.src.substring(0, 50) + '...' : 'no src'}`);
+          audio.pause();
+          audio.currentTime = 0;
+          
+          // Remove event listeners to prevent any continued playback
+          audio.onended = null;
+          audio.ontimeupdate = null;
+          audio.onloadeddata = null;
+        }
+      } catch (e) {
+        console.error(`Error pausing audio ${index}:`, e);
+      }
+    });
+    
+    // Clear current audio reference
+    if (currentAudioRef.current) {
+      try {
+        console.log('🛑 Clearing currentAudioRef');
+        if (!currentAudioRef.current.paused) {
+          currentAudioRef.current.pause();
+        }
+        currentAudioRef.current.currentTime = 0;
+        currentAudioRef.current.onended = null;
+        currentAudioRef.current.ontimeupdate = null;
+        currentAudioRef.current = null;
+      } catch (e) {
+        console.error('Error clearing currentAudioRef:', e);
+      }
+    }
+    
+    // Update state
+    setIsPlaying(false);
+    setCurrentSentence(0);
     updateProgress({ status: 'paused' });
   };
 

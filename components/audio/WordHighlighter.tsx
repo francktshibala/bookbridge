@@ -289,10 +289,12 @@ export const useWordHighlighting = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(-1);
   
   const handleWordHighlight = (wordIndex: number) => {
+    console.log('🎯 handleWordHighlight called with index:', wordIndex, 'previous index:', currentWordIndex);
     setCurrentWordIndex(wordIndex);
   };
   
   const resetHighlighting = () => {
+    console.log('🔄 resetHighlighting called');
     setCurrentWordIndex(-1);
   };
   

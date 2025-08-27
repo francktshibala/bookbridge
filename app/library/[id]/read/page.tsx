@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { ESLControls } from '@/components/esl/ESLControls';
@@ -49,7 +49,19 @@ export default function BookReaderPage() {
   const [currentContent, setCurrentContent] = useState<string>('');
   const [currentMode, setCurrentMode] = useState<'original' | 'simplified'>('original');
   const [simplifiedContent, setSimplifiedContent] = useState<string>('');
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlayingState] = useState(false);
+  
+  const setIsPlaying = (playing: boolean) => {
+    console.log('🔄 PLAYING STATE CHANGE:', {
+      from: isPlaying,
+      to: playing,
+      currentChunk,
+      autoAdvanceEnabled,
+      stackTrace: new Error().stack?.split('\n')[1] // Show where this was called from
+    });
+    setIsPlayingState(playing);
+  };
+  const [isAudioLoading, setIsAudioLoading] = useState(false);
   const [continuousPlayback, setContinuousPlayback] = useState(false);
   const [speechSpeed, setSpeechSpeed] = useState(1.0);
   const [simplificationLoading, setSimplificationLoading] = useState(false);
@@ -67,6 +79,89 @@ export default function BookReaderPage() {
   const { currentWordIndex, handleWordHighlight, resetHighlighting } = useWordHighlighting();
 
   const bookId = params.id as string;
+
+  // Enhanced book detection - calculated here to avoid hooks order issues
+  const isEnhancedBook = bookContent?.stored === true && 
+    (bookContent?.source === 'database' || bookContent?.source === 'enhanced_database' || bookContent?.enhanced === true);
+
+  // Handle chunk navigation - defined with useCallback for stable reference
+  const handleChunkNavigation = useCallback(async (direction: 'prev' | 'next', autoAdvance = false) => {
+    console.log('🔄 NAVIGATION DEBUG: handleChunkNavigation called', {
+      direction,
+      autoAdvance,
+      currentChunk,
+      currentMode,
+      isPlaying,
+      bookContentExists: !!bookContent,
+      simplifiedTotalChunks,
+      totalChunks: bookContent?.totalChunks
+    });
+    
+    if (!bookContent) {
+      console.log('❌ NAVIGATION: No book content, returning');
+      return;
+    }
+    
+    const effectiveTotal = currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : bookContent.totalChunks;
+    const newChunk = direction === 'next' 
+      ? Math.min(currentChunk + 1, effectiveTotal - 1)
+      : Math.max(currentChunk - 1, 0);
+    
+    console.log('🔄 NAVIGATION: Calculated new chunk', {
+      effectiveTotal,
+      newChunk,
+      willChange: newChunk !== currentChunk
+    });
+    
+    if (newChunk !== currentChunk) {
+      console.log('🔄 NAVIGATION: Setting new chunk and content', {
+        from: currentChunk,
+        to: newChunk,
+        autoAdvance,
+        currentMode
+      });
+      
+      setCurrentChunk(newChunk);
+      
+      // Save reading position to localStorage
+      localStorage.setItem(`reading-position-${bookId}`, newChunk.toString());
+      
+      // Get the new content based on current mode
+      const newOriginalContent = bookContent.chunks[newChunk]?.content || '';
+      if (currentMode === 'original') {
+        console.log('🔄 NAVIGATION: Setting original content');
+        setCurrentContent(newOriginalContent);
+      } else if (currentMode === 'simplified') {
+        // For simplified mode, we'll rely on the useEffect that handles chunk changes
+        // to fetch the simplified content. For now, set original content temporarily.
+        console.log('🔄 NAVIGATION: Setting original content temporarily, useEffect will fetch simplified');
+        setCurrentContent(newOriginalContent);
+      }
+      
+      // For auto-advance, continue playing on the new page
+      if (!autoAdvance && isPlaying) {
+        console.log('🔄 NAVIGATION: Manual navigation while playing, stopping audio');
+        setIsPlaying(false);
+      } else if (autoAdvance) {
+        console.log('🔄 NAVIGATION: Auto-advance navigation, keeping play state as is');
+      }
+    } else {
+      console.log('🔄 NAVIGATION: No chunk change needed');
+    }
+  }, [bookContent, currentMode, simplifiedTotalChunks, currentChunk, bookId, isPlaying]);
+
+  // Auto-advance functionality - must be at top level for hooks rules
+  const {
+    autoAdvanceEnabled,
+    toggleAutoAdvance,
+    handleChunkComplete: autoAdvanceChunkComplete
+  } = useAutoAdvance({
+    isEnhanced: isEnhancedBook,
+    currentChunk,
+    totalChunks: bookContent?.totalChunks || 0,
+    onNavigate: handleChunkNavigation,
+    onPlayStateChange: setIsPlaying
+  });
 
 
   useEffect(() => {
@@ -89,12 +184,39 @@ export default function BookReaderPage() {
     setSimplifiedContent('');
     setAiMetadata(null);
     setMicroHint('');
+    resetHighlighting(); // Reset word highlighting
+    setIsPlaying(false); // Stop audio when changing chunks
     // Reset to original content for new chunk
     if (bookContent?.chunks[currentChunk]) {
       const newContent = bookContent.chunks[currentChunk].content;
       setCurrentContent(newContent);
     }
   }, [currentChunk, bookContent]);
+
+  // Auto-fetch simplified content when chunk changes in simplified mode
+  useEffect(() => {
+    console.log('📝 SIMPLIFIED FETCH EFFECT: Triggered', {
+      currentMode,
+      currentChunk,
+      eslLevel,
+      hasBookContent: !!bookContent?.chunks[currentChunk],
+      shouldFetch: currentMode === 'simplified' && bookContent?.chunks[currentChunk]
+    });
+    
+    if (currentMode === 'simplified' && bookContent?.chunks[currentChunk]) {
+      console.log(`📝 SIMPLIFIED FETCH: Auto-fetching simplified content for chunk ${currentChunk} in ${eslLevel} level`);
+      fetchSimplifiedContent(eslLevel, currentChunk).then(simplifiedText => {
+        if (simplifiedText) {
+          console.log(`✅ SIMPLIFIED FETCH: Content loaded for chunk ${currentChunk}, setting as currentContent`);
+          setCurrentContent(simplifiedText);
+        } else {
+          console.log(`❌ SIMPLIFIED FETCH: No content returned for chunk ${currentChunk}`);
+        }
+      }).catch(error => {
+        console.error(`❌ SIMPLIFIED FETCH: Failed for chunk ${currentChunk}:`, error);
+      });
+    }
+  }, [currentChunk, currentMode, eslLevel, bookContent]);
 
   // Load saved voice selection from localStorage
   useEffect(() => {
@@ -416,36 +538,7 @@ export default function BookReaderPage() {
     }
   };
 
-  const handleChunkNavigation = async (direction: 'prev' | 'next', autoAdvance = false) => {
-    if (!bookContent) return;
-    
-    const effectiveTotal = currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : bookContent.totalChunks;
-    const newChunk = direction === 'next' 
-      ? Math.min(currentChunk + 1, effectiveTotal - 1)
-      : Math.max(currentChunk - 1, 0);
-    
-    if (newChunk !== currentChunk) {
-      setCurrentChunk(newChunk);
-      
-      // Save reading position to localStorage
-      localStorage.setItem(`reading-position-${bookId}`, newChunk.toString());
-      
-      // Get the new content based on current mode
-      const newOriginalContent = bookContent.chunks[newChunk]?.content || '';
-      if (currentMode === 'original') {
-        setCurrentContent(newOriginalContent);
-      } else if (currentMode === 'simplified') {
-        // Fetch simplified content for the new chunk
-        const simplifiedText = await fetchSimplifiedContent(eslLevel, newChunk);
-        setCurrentContent(simplifiedText);
-      }
-      
-      // For auto-advance, continue playing on the new page
-      if (!autoAdvance && isPlaying) {
-        setIsPlaying(false);
-      }
-    }
-  };
+  // handleChunkNavigation is now defined above as useCallback
   
   const handleAutoAdvance = () => {
     const canGoNext = bookContent ? currentChunk < bookContent.totalChunks - 1 : false;
@@ -518,19 +611,6 @@ export default function BookReaderPage() {
     }
   };
 
-  // Auto-advance functionality (must be after handleChunkNavigation is defined)
-  const {
-    autoAdvanceEnabled,
-    toggleAutoAdvance,
-    handleChunkComplete: autoAdvanceChunkComplete
-  } = useAutoAdvance({
-    isEnhanced: bookContent?.stored === true && bookContent?.source === 'database',
-    currentChunk,
-    totalChunks: bookContent?.totalChunks || 0,
-    onNavigate: handleChunkNavigation,
-    onPlayStateChange: setIsPlaying
-  });
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -564,9 +644,7 @@ export default function BookReaderPage() {
   const effectiveTotal = currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : (bookContent?.totalChunks || 0);
   const canGoNext = effectiveTotal ? currentChunk < effectiveTotal - 1 : false;
 
-  // Enhanced book detection
-  const isEnhancedBook = bookContent?.stored === true && 
-    (bookContent?.source === 'database' || bookContent?.source === 'enhanced_database' || bookContent?.enhanced === true);
+  // Enhanced book detection - already defined at the top
   
   // Feature flag for progressive audio vs wireframe controls
   const useProgressiveAudio = true; // Enable Progressive Voice for enhanced books
@@ -1227,15 +1305,25 @@ export default function BookReaderPage() {
                 {/* Smart Play/Auto Button - Combined play and auto-advance */}
                 <SmartPlayButton
                   isPlaying={isPlaying}
+                  isLoading={isAudioLoading}
                   autoAdvanceEnabled={autoAdvanceEnabled}
                   onPlayPause={() => {
-                    if (isPlaying) {
-                      setIsPlaying(false);
-                    } else {
-                      setIsPlaying(true);
-                    }
+                    const newPlayingState = !isPlaying;
+                    console.log('📱 Reading page onPlayPause:', { 
+                      currentState: isPlaying, 
+                      newState: newPlayingState,
+                      currentChunk,
+                      currentMode,
+                      autoAdvanceEnabled,
+                      currentContent: currentContent.substring(0, 50) + '...',
+                      isEnhanced: isEnhancedBook
+                    });
+                    setIsPlaying(newPlayingState);
                   }}
-                  onToggleAutoAdvance={toggleAutoAdvance}
+                  onToggleAutoAdvance={() => {
+                    console.log('🔄 Toggle auto-advance clicked, current state:', autoAdvanceEnabled);
+                    toggleAutoAdvance();
+                  }}
                 />
                 
                 {/* Hidden InstantAudioPlayer for audio functionality */}
@@ -1247,12 +1335,31 @@ export default function BookReaderPage() {
                     cefrLevel={eslLevel}
                     voiceId={selectedVoice}
                     isEnhanced={isEnhancedBook}
-                    onWordHighlight={handleWordHighlight}
-                    onChunkComplete={autoAdvanceChunkComplete}
+                    onWordHighlight={(wordIndex) => {
+                      console.log('🎯 InstantAudioPlayer calling onWordHighlight with index:', wordIndex);
+                      handleWordHighlight(wordIndex);
+                    }}
+                    onChunkComplete={() => {
+                      console.log('🏁 InstantAudioPlayer onChunkComplete called');
+                      autoAdvanceChunkComplete();
+                    }}
                     onProgressUpdate={(progress) => {
-                      console.log('Instant audio progress:', progress);
+                      console.log('📊 Instant audio progress:', {
+                        status: progress.status,
+                        currentSentence: progress.currentSentence,
+                        totalSentences: progress.totalSentences,
+                        currentTime: progress.currentTime,
+                        isPreGenerated: progress.isPreGenerated
+                      });
+                      // Update loading state based on audio status
+                      setIsAudioLoading(progress.status === 'loading');
                     }}
                     className="hidden"
+                    isPlaying={isPlaying}
+                    onPlayingChange={(playing) => {
+                      console.log('🔄 InstantAudioPlayer onPlayingChange called with:', playing);
+                      setIsPlaying(playing);
+                    }}
                   />
                 </div>
 
@@ -1471,17 +1578,19 @@ export default function BookReaderPage() {
 
 
                   {/* Word-level highlighting for instant audio */}
-                  <div style={{ position: 'relative', zIndex: 100 }}>
-                    <WordHighlighter
-                      text={currentContent}
-                      currentWordIndex={currentWordIndex}
-                      isPlaying={true}
-                      animationType="speechify"
-                      highlightColor="#10b981"
-                      showProgress={true}
-                      className="word-highlight-overlay"
-                    />
-                  </div>
+                  {isEnhancedBook && (
+                    <div style={{ position: 'relative' }}>
+                      <WordHighlighter
+                        text={currentContent}
+                        currentWordIndex={currentWordIndex}
+                        isPlaying={isPlaying}
+                        animationType="speechify"
+                        highlightColor="#10b981"
+                        showProgress={true}
+                        className="word-highlight-overlay"
+                      />
+                    </div>
+                  )}
                 </div>
 
                   

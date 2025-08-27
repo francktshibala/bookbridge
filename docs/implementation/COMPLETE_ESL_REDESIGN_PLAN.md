@@ -1257,29 +1257,89 @@ export function SmartPlayButton({ isPlaying, autoAdvanceEnabled, onPlayPause, on
 - ✅ Enhanced word highlighting with better visual effects
 - ✅ Mobile-responsive optimizations
 
-### **Step 9.6: Text Highlighting CSS Fix (20 minutes)**
-**File**: `lib/highlighting-manager.ts` + `app/globals.css`
+### **Step 9.6: Text Highlighting CSS Fix and Audio Wiring (30 minutes)** ✅ COMPLETED
+**Files**: `components/audio/InstantAudioPlayer.tsx` + `app/library/[id]/read/page.tsx`
 
-**Fix Implementation:**
-```css
-/* Fix CSS highlighting - prevent word movement */
-.highlighted-word {
-  background-color: rgba(16, 185, 129, 0.3) !important;
-  transition: background-color 0.2s ease;
-  /* Remove any margin/padding that causes movement */
-  margin: 0;
-  padding: 0;
-  display: inline;
-}
+**Audio Wiring Implementation:**
+```tsx
+// Enhanced InstantAudioPlayer with external control
+export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
+  // ... existing props
+  isPlaying: externalIsPlaying,
+  onPlayingChange
+}) => {
+  const [internalIsPlaying, setInternalIsPlaying] = useState(false);
+  
+  // Use external play state if provided, otherwise use internal
+  const isPlaying = externalIsPlaying !== undefined ? externalIsPlaying : internalIsPlaying;
+  const setIsPlaying = (playing: boolean) => {
+    if (onPlayingChange) {
+      onPlayingChange(playing);
+    } else {
+      setInternalIsPlaying(playing);
+    }
+  };
 
-.highlighted-word.active {
-  background-color: rgba(16, 185, 129, 0.6) !important;
-  color: #10b981 !important;
-}
+  // Handle external play state changes
+  useEffect(() => {
+    if (externalIsPlaying !== undefined) {
+      if (externalIsPlaying && !internalIsPlaying) {
+        startPlayback();
+      } else if (!externalIsPlaying && internalIsPlaying) {
+        stopPlayback();
+      }
+    }
+  }, [externalIsPlaying]);
+};
 ```
 
-**Current Issue**: Words moving instead of background highlighting
-**Solution**: Ensure highlighting only affects background, not layout
+**SmartPlayButton Integration:**
+```tsx
+// Reading page wiring
+<SmartPlayButton
+  isPlaying={isPlaying}
+  isLoading={isAudioLoading}
+  onPlayPause={() => setIsPlaying(!isPlaying)}
+  onToggleAutoAdvance={toggleAutoAdvance}
+/>
+
+<InstantAudioPlayer
+  isPlaying={isPlaying}
+  onPlayingChange={setIsPlaying}
+  onProgressUpdate={(progress) => {
+    setIsAudioLoading(progress.status === 'loading');
+  }}
+  // ... other props
+/>
+```
+
+**Text Highlighting Fixes:**
+```tsx
+// Fixed WordHighlighter integration - only show when enhanced and playing
+{isEnhancedBook && (
+  <WordHighlighter
+    text={currentContent}
+    currentWordIndex={currentWordIndex}
+    isPlaying={isPlaying} // Now properly synced
+    animationType="speechify"
+    highlightColor="#10b981"
+  />
+)}
+
+// Reset highlighting on chunk changes
+useEffect(() => {
+  resetHighlighting();
+  setIsPlaying(false);
+}, [currentChunk, bookContent]);
+```
+
+**Accomplished:**
+- ✅ SmartPlayButton controls InstantAudioPlayer
+- ✅ Audio loading states synchronized 
+- ✅ Word highlighting only shows during playback
+- ✅ Proper state reset on chunk navigation
+- ✅ Enhanced books show word highlighting, browse books don't
+- ✅ Audio wiring functional for instant playback
 
 ### **Step 9.7: Two-Tier Reading Experience (45 minutes)**
 **File**: `app/library/[id]/read/page.tsx` + routing modifications

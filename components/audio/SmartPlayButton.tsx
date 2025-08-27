@@ -37,7 +37,10 @@ export function SmartPlayButton({
   return (
     <div className="smart-play-container" style={{ position: 'relative' }}>
       <button
-        onClick={onPlayPause}
+        onClick={() => {
+          console.log('🎛️ SmartPlayButton clicked, current isPlaying:', isPlaying);
+          onPlayPause();
+        }}
         disabled={isLoading}
         className="smart-play-button"
         style={{
