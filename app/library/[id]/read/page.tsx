@@ -1461,7 +1461,7 @@ export default function BookReaderPage() {
                       // Update loading state based on audio status
                       setIsAudioLoading(progress.status === 'loading');
                     }}
-                    onAutoScroll={handleAutoScroll}
+                    // onAutoScroll handled by separate AutoScrollHandler component
                     className="hidden"
                     isPlaying={isPlaying}
                     onPlayingChange={(playing) => {
