@@ -32,14 +32,20 @@ export async function GET(
     // Get query parameters
     const { searchParams } = new URL(request.url)
     const query = searchParams.get('query')
+    const source = searchParams.get('source') // 'browse' or 'enhanced'
     const maxChunks = parseInt(searchParams.get('maxChunks') || '5')
     const maxWords = parseInt(searchParams.get('maxWords') || '3000')
 
     // Handle external books - but check database first for our stored books
     if (isExternalBook) {
-      console.log(`External book detected: ${id}`)
+      console.log(`External book detected: ${id}, source: ${source}`)
       
-      // PRIORITY 1: Check if this book is stored in our database first
+      // For browse experience, skip database lookup and fetch fresh content
+      if (source === 'browse') {
+        console.log(`Browse mode: Skipping database lookup and fetching fresh content for ${id}`)
+        // Skip to external API fetching (FALLBACK section)
+      } else {
+        // PRIORITY 1: Check if this book is stored in our database first (Enhanced experience)
       try {
         console.log(`Checking database for stored book: ${id}`)
         const storedContent = await prisma.bookContent.findUnique({
@@ -111,7 +117,8 @@ export async function GET(
               'gutenberg-64317': { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
               'gutenberg-43': { title: 'Dr. Jekyll and Mr. Hyde', author: 'Robert Louis Stevenson' },
               'gutenberg-844': { title: 'The Importance of Being Earnest', author: 'Oscar Wilde' },
-              'gutenberg-1952': { title: 'The Yellow Wallpaper', author: 'Charlotte Perkins Gilman' }
+              'gutenberg-1952': { title: 'The Yellow Wallpaper', author: 'Charlotte Perkins Gilman' },
+              'gutenberg-2701': { title: 'Moby Dick; Or, The Whale', author: 'Herman Melville' }
             }
 
             const bookInfo = titleMappings[id] || { title: 'Enhanced Book', author: 'Unknown Author' }
@@ -142,6 +149,7 @@ export async function GET(
       } catch (dbError) {
         console.error('Database lookup failed, falling back to external API:', dbError)
       }
+      } // Close the enhanced experience else block
       
       // FALLBACK: If not in database, fetch content via the external API route
       try {
@@ -213,12 +221,15 @@ export async function GET(
           for (const pattern of patterns) {
             const match = text.match(pattern);
             if (match && match.index !== undefined) {
+              console.log(`📖 Found story start with pattern: ${pattern.toString()} at position ${match.index}`);
               return match.index;
             }
           }
           
           // Fallback: skip first 20% of text (usually contains preface/metadata)
-          return Math.floor(text.length * 0.2);
+          const fallbackStart = Math.floor(text.length * 0.2);
+          console.log(`📖 Using fallback story start: skip first 20% (${fallbackStart} chars of ${text.length})`);
+          return fallbackStart;
         };
         
         // Helper function to find the end of the actual story (before appendices/notes)
@@ -235,20 +246,34 @@ export async function GET(
           for (const pattern of endPatterns) {
             const match = text.match(pattern);
             if (match && match.index !== undefined) {
+              console.log(`📖 Found story end with pattern: ${pattern.toString()} at position ${match.index}`);
               return match.index;
             }
           }
           
+          console.log(`📖 No story end pattern found, using full text length: ${text.length}`);
           return text.length;
         };
+
+        // DEBUG: Log the original content length
+        console.log(`📖 Original content length: ${content?.length || 0} characters`);
         
         // Extract the main story content
         const storyStart = findStoryStart(content);
         const storyEnd = findStoryEnd(content);
         const storyContent = content.slice(storyStart, storyEnd);
         
-        if (query && storyContent) {
-          // Smart context extraction for external books
+        console.log(`📖 Story extraction: start=${storyStart}, end=${storyEnd}, extracted=${storyContent.length} chars`);
+        
+        // FIXED: Ensure we always have a valid context, prioritizing full content for reading
+        if (!query) {
+          // READING MODE: Return the FULL story content without truncation
+          console.log(`📖 Reading mode: returning full story content (${storyContent.length} chars)`);
+          context = storyContent;
+        } else if (query && storyContent) {
+          // QUERY MODE: Apply smart context extraction with limits
+          console.log(`📖 Query mode: applying context extraction for query "${query}"`);
+          
           const sentences = storyContent.split(/[.!?]+/)
             .map((s: string) => s.trim())
             .filter((s: string) => s.length > 10); // Filter out very short fragments
@@ -270,22 +295,33 @@ export async function GET(
           
           if (relevantSentences.length > 50) { // Only use if we found substantial content
             context = relevantSentences;
+            console.log(`📖 Using relevant sentences: ${context.length} chars`);
           } else {
             // Fallback: take first part of story if query matching fails
             const words = storyContent.split(/\s+/);
             context = words.slice(0, maxWords).join(' ');
+            console.log(`📖 Using first ${maxWords} words: ${context.length} chars`);
           }
           
           // Truncate to maxWords if needed
           const words = context.split(/\s+/);
           if (words.length > maxWords) {
             context = words.slice(0, maxWords).join(' ') + '...';
+            console.log(`📖 Truncated to ${maxWords} words: ${context.length} chars`);
           }
-        } else if (!query && storyContent) {
-          // If no query (reading interface), return the FULL story content
-          // Don't truncate for reading - users expect the complete book
-          context = storyContent;
+        } else {
+          // FALLBACK: Use original content if story extraction failed
+          console.log(`📖 Fallback: using original content (${content?.length || 0} chars)`);
+          context = content;
         }
+        
+        // FINAL CHECK: Ensure context is not empty
+        if (!context || context.trim().length === 0) {
+          console.error('❌ Context is empty! Using original content as last resort.');
+          context = content || 'Content unavailable';
+        }
+        
+        console.log(`📖 Final context length: ${context.length} characters`);
         
         // Check if we should cache this external book
         const shouldCache = searchParams.get('cache') === 'true';
@@ -394,6 +430,12 @@ export async function GET(
           }
         }
         
+        // Prepare comprehensive response with debugging info
+        const wordCount = context?.split(/\s+/).filter((word: string) => word.length > 0).length || 0;
+        const characterCount = context?.length || 0;
+        
+        console.log(`📖 Preparing response: ${characterCount} chars, ${wordCount} words`);
+        
         return NextResponse.json({
           id: book.id,
           title: book.title,
@@ -402,9 +444,12 @@ export async function GET(
           external: true,
           query,
           context,
+          content: context, // FIXED: Include both context and content for compatibility
           source: book.source,
-          wordCount: content?.split(/\s+/).length || 0,
-          characterCount: content?.length || 0,
+          wordCount,
+          characterCount,
+          originalContentLength: content?.length || 0, // DEBUG: Include original length
+          storyExtractionApplied: true, // DEBUG: Flag to indicate processing was applied
           canCache: content && content.length > 1000,
           cacheHint: content && content.length > 1000 ? 'Add ?cache=true to enable semantic search' : undefined
         })
