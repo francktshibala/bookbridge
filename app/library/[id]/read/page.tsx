@@ -471,8 +471,8 @@ export default function BookReaderPage() {
         clearTimeout(scrollTimeout);
       }
       
-      // Check if user scrolled up significantly (more than 150px)
-      if (currentScrollY < lastScrollY - 150 && isPlaying) {
+      // Check if user scrolled up significantly (more than 300px) - less sensitive
+      if (currentScrollY < lastScrollY - 300 && isPlaying) {
         console.log('📜 USER SCROLLED UP: Pausing audio and disabling auto-scroll');
         setUserScrolledUp(true);
         setAutoScrollEnabled(false);
@@ -500,7 +500,7 @@ export default function BookReaderPage() {
     };
   }, [lastScrollY, isPlaying, userScrolledUp]);
 
-  // Auto-scroll handler based on audio progress - CONSERVATIVE approach
+  // Smooth auto-scroll handler that follows voice reading naturally
   const handleAutoScroll = (scrollProgress: number) => {
     if (!autoScrollEnabled || userScrolledUp || !currentContent) return;
     
@@ -509,35 +509,36 @@ export default function BookReaderPage() {
     if (!contentContainer) return;
     
     const containerRect = contentContainer.getBoundingClientRect();
-    const containerHeight = containerRect.height;
     const windowHeight = window.innerHeight;
-    const currentScroll = window.scrollY;
     
-    // Much more conservative scroll calculation
-    // Only scroll small increments to keep content in view, not jump ahead
-    const contentTop = containerRect.top + currentScroll;
-    const contentBottom = contentTop + containerHeight;
-    const viewportTop = currentScroll;
-    const viewportBottom = currentScroll + windowHeight;
+    // Calculate ideal reading position (center of screen)
+    const idealReadingPosition = windowHeight * 0.4; // 40% from top for comfortable reading
+    const currentContentTop = containerRect.top;
     
-    // Check if we need to scroll to keep content visible
-    const isContentTooHigh = containerRect.top < windowHeight * 0.1; // Content too far up
-    const isContentTooLow = containerRect.bottom > windowHeight * 0.9; // Content too far down
+    // Only scroll if content is getting too high or too low from ideal position
+    const offsetFromIdeal = currentContentTop - idealReadingPosition;
     
-    if (isContentTooHigh && !isContentTooLow) {
-      // Content is getting too high, scroll down gently
-      const gentleScrollDown = currentScroll + (windowHeight * 0.15); // Scroll just 15% of viewport
-      const maxAllowedScroll = contentBottom - windowHeight * 0.7; // Don't scroll past 70% of content
-      const targetScroll = Math.min(gentleScrollDown, maxAllowedScroll);
+    // Smooth scrolling threshold - only scroll when content drifts significantly
+    const scrollThreshold = 100; // pixels
+    
+    if (Math.abs(offsetFromIdeal) > scrollThreshold) {
+      // Calculate smooth scroll distance - much smaller increments
+      const scrollDistance = offsetFromIdeal * 0.3; // Only move 30% of the way
+      const currentScroll = window.scrollY;
+      const targetScroll = currentScroll + scrollDistance;
       
-      // Only scroll if it's a meaningful difference and not too aggressive
-      if (targetScroll > currentScroll + 30 && targetScroll < currentScroll + 200) {
-        window.scrollTo({
-          top: targetScroll,
-          behavior: 'smooth'
-        });
-        console.log(`📜 GENTLE AUTO-SCROLL: ${(scrollProgress * 100).toFixed(1)}% → +${(targetScroll - currentScroll).toFixed(0)}px`);
-      }
+      // Limit maximum scroll per adjustment for smoothness
+      const maxScrollStep = 50; // Maximum 50px per scroll
+      const clampedScrollDistance = Math.max(-maxScrollStep, Math.min(maxScrollStep, scrollDistance));
+      const clampedTargetScroll = currentScroll + clampedScrollDistance;
+      
+      // Use smooth scrolling with longer duration for natural movement
+      window.scrollTo({
+        top: clampedTargetScroll,
+        behavior: 'smooth'
+      });
+      
+      console.log(`📜 SMOOTH AUTO-SCROLL: ${(scrollProgress * 100).toFixed(1)}% → ${clampedScrollDistance > 0 ? '+' : ''}${clampedScrollDistance.toFixed(0)}px`);
     }
   };
 
@@ -760,39 +761,7 @@ export default function BookReaderPage() {
           to { transform: rotate(360deg); }
         }
       `}</style>
-      {/* Clean Minimal Header */}
-      <motion.div 
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="bg-slate-800 shadow-sm border-b border-slate-700"
-        style={{ height: '50px' }}
-      >
-        <div className="max-w-7xl mx-auto px-6 h-full">
-          <div className="flex items-center justify-between h-full">
-            <div className="text-lg font-bold text-slate-300">
-              {isBrowseExperience ? 'BookBridge' : 'BookBridge ESL'}
-            </div>
-            <motion.button
-              whileHover={{ x: -4, transition: { duration: 0.2 } }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                if (isBrowseExperience) {
-                  router.push('/?tab=browse-all-books');
-                } else {
-                  router.push('/enhanced-collection');
-                }
-              }}
-              className="flex items-center gap-2 bg-transparent border border-slate-600 hover:border-slate-400 rounded-lg px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
-            >
-              <span>←</span>
-              <span>
-                {isBrowseExperience ? 'Back to Browse All Books' : 'Back to Enhanced Books'}
-              </span>
-            </motion.button>
-          </div>
-        </div>
-      </motion.div>
+      {/* Header removed for cleaner reading experience */}
 
       {/* Main Content */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 48px' }}>
@@ -1965,81 +1934,7 @@ export default function BookReaderPage() {
         )}
       </div>
 
-      {/* Bottom Navigation Controls */}
-      <motion.div 
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.4 }}
-        style={{
-          background: 'rgba(26, 32, 44, 0.95)',
-          backdropFilter: 'blur(20px)',
-          borderTop: '1px solid rgba(102, 126, 234, 0.2)',
-          position: 'sticky',
-          bottom: 0,
-          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.1)'
-        }}
-      >
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <motion.button
-              whileHover={{ 
-                scale: currentChunk === 0 ? 1 : 1.05,
-                transition: { duration: 0.2 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleChunkNavigation('prev')}
-              disabled={!canGoPrev}
-              style={{
-                padding: '12px 24px',
-                borderRadius: '8px',
-                background: canGoPrev ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'rgba(102, 126, 234, 0.1)',
-                color: canGoPrev ? '#ffffff' : '#64748b',
-                fontSize: '14px',
-                fontWeight: '600',
-                border: 'none',
-                cursor: canGoPrev ? 'pointer' : 'not-allowed',
-                transition: 'all 0.2s ease',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-              }}
-            >
-              Previous
-            </motion.button>
-            
-            <span style={{
-              fontSize: '14px',
-              color: '#cbd5e0',
-              fontWeight: '500',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-            }}>
-              {currentChunk + 1} / {bookContent?.totalChunks || 0}
-            </span>
-            
-            <motion.button
-              whileHover={{ 
-                scale: currentChunk === bookContent.totalChunks - 1 ? 1 : 1.05,
-                transition: { duration: 0.2 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleChunkNavigation('next')}
-              disabled={!canGoNext}
-              style={{
-                padding: '12px 24px',
-                borderRadius: '8px',
-                background: canGoNext ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'rgba(102, 126, 234, 0.1)',
-                color: canGoNext ? '#ffffff' : '#64748b',
-                fontSize: '14px',
-                fontWeight: '600',
-                border: 'none',
-                cursor: canGoNext ? 'pointer' : 'not-allowed',
-                transition: 'all 0.2s ease',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
-              }}
-            >
-              Next
-            </motion.button>
-          </div>
-        </div>
-      </motion.div>
+      {/* Bottom navigation removed for cleaner reading experience */}
     </div>
   );
 }
