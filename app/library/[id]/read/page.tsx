@@ -79,6 +79,7 @@ export default function BookReaderPage() {
   const [userScrolledUp, setUserScrolledUp] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
+  const [isAutoAdvancing, setIsAutoAdvancing] = useState(false);
 
   // Word highlighting integration
   const { currentWordIndex, handleWordHighlight, resetHighlighting } = useWordHighlighting();
@@ -131,6 +132,17 @@ export default function BookReaderPage() {
         autoAdvance,
         currentMode
       });
+      
+      // Set auto-advancing flag if this is an auto-advance to prevent scroll detection pause
+      if (autoAdvance) {
+        console.log('🔄 NAVIGATION: Setting auto-advancing flag to prevent scroll pause');
+        setIsAutoAdvancing(true);
+        // Clear flag after scroll has settled (2 seconds)
+        setTimeout(() => {
+          setIsAutoAdvancing(false);
+          console.log('🔄 NAVIGATION: Cleared auto-advancing flag');
+        }, 2000);
+      }
       
       setCurrentChunk(newChunk);
       
@@ -472,11 +484,14 @@ export default function BookReaderPage() {
       }
       
       // Check if user scrolled up significantly (more than 300px) - less sensitive
-      if (currentScrollY < lastScrollY - 300 && isPlaying) {
+      // BUT ignore during auto-advance transitions
+      if (currentScrollY < lastScrollY - 300 && isPlaying && !isAutoAdvancing) {
         console.log('📜 USER SCROLLED UP: Pausing audio and disabling auto-scroll');
         setUserScrolledUp(true);
         setAutoScrollEnabled(false);
         setIsPlaying(false);
+      } else if (currentScrollY < lastScrollY - 300 && isPlaying && isAutoAdvancing) {
+        console.log('📜 AUTO-ADVANCE SCROLL: Ignoring upward scroll during auto-advance transition');
       }
       
       // Update last scroll position after a short delay
@@ -498,7 +513,7 @@ export default function BookReaderPage() {
         clearTimeout(scrollTimeout);
       }
     };
-  }, [lastScrollY, isPlaying, userScrolledUp]);
+  }, [lastScrollY, isPlaying, userScrolledUp, isAutoAdvancing]);
 
   // Smooth auto-scroll handler that follows voice reading naturally
   const handleAutoScroll = (scrollProgress: number) => {
