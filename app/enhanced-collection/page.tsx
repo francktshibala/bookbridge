@@ -80,7 +80,9 @@ export default function EnhancedCollectionDynamic() {
   };
 
   // Get unique genres from books
-  const genres: string[] = ['All', ...new Set(books.map(book => book.genre).filter(Boolean) as string[])];
+  const genres: string[] = books.length > 0 
+    ? ['All', ...new Set(books.map(book => book.genre).filter(Boolean) as string[])]
+    : ['All', 'Romance', 'Classic', 'Gothic', 'Adventure', 'American'];
 
   // Filter books by selected genre
   const filteredBooks = selectedGenre === 'All' 
@@ -212,225 +214,128 @@ export default function EnhancedCollectionDynamic() {
     }
   };
 
+
   const BookCard = ({ book }: { book: Book }) => {
-    const getAbbreviation = (title: string) => {
-      // Custom abbreviations to match wireframe
-      const customAbbrevs: Record<string, string> = {
-        'Emma': 'EM',
-        'Pride and Prejudice': 'P&P',
-        'Frankenstein': 'FR',
-        'The Great Gatsby': 'GG',
-        'The Call of the Wild': 'CW',
-        "Alice's Adventures in Wonderland": 'Alice',
-        'Romeo and Juliet': 'R&J',
-        'Dr. Jekyll and Mr. Hyde': 'J&H',
-        'The Importance of Being Earnest': 'IBE',
-        'The Yellow Wallpaper': 'YW'
-      };
-      
-      if (customAbbrevs[title]) {
-        return customAbbrevs[title];
-      }
-      
-      const words = title.split(' ');
-      if (words.length >= 2) {
-        return words[0][0] + words[1][0];
-      }
-      return title.substring(0, 2).toUpperCase();
-    };
-
-    const getBookGradient = (title: string) => {
-      // Unique gradients for each book to match wireframe diversity
-      const gradients: Record<string, string> = {
-        'Emma': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        'Pride and Prejudice': 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)', 
-        'Frankenstein': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-        'The Great Gatsby': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-        'The Call of the Wild': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-        "Alice's Adventures in Wonderland": 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-        'Romeo and Juliet': 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-        'Dr. Jekyll and Mr. Hyde': 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
-        'The Importance of Being Earnest': 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
-        'The Yellow Wallpaper': 'linear-gradient(135deg, #a8e6cf 0%, #dcedc8 100%)'
-      };
-      
-      return gradients[title] || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-    };
-
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        whileHover={{ scale: 1.02 }}
+        whileHover={{ scale: 1.01 }}
         style={{
-          background: 'rgba(30, 41, 59, 0.8)',
+          background: 'rgba(51, 65, 85, 0.5)',
           border: '1px solid #334155',
           borderRadius: '12px',
-          padding: '12px',
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'relative',
-          overflow: 'hidden',
-          width: '280px',
-          height: 'auto'
+          padding: '16px',
+          marginBottom: '16px',
+          width: '100%'
         }}
       >
-        {/* Status Badge */}
+        {/* Book Title */}
         <div style={{
-          position: 'absolute',
-          top: '8px',
-          right: '8px',
-          padding: '2px 6px',
-          borderRadius: '6px',
-          fontSize: '10px',
+          fontSize: '16px',
           fontWeight: '600',
-          background: book.status === 'enhanced' ? 'rgba(16, 185, 129, 0.2)' :
-                     book.status === 'processing' ? 'rgba(251, 191, 36, 0.2)' :
-                     'rgba(156, 163, 175, 0.2)',
-          color: book.status === 'enhanced' ? '#10b981' :
-                 book.status === 'processing' ? '#fbbf24' :
-                 '#9ca3af'
+          color: '#e2e8f0',
+          marginBottom: '4px'
         }}>
-          {book.status === 'enhanced' ? '✨ Enhanced' :
-           book.status === 'processing' ? '🔄 Processing' :
-           '📅 Planned'}
-        </div>
-
-        {/* Book Cover - Compact Square Design */}
-        <div className="book-cover" style={{
-          width: '80px',
-          height: '100px',
-          background: getBookGradient(book.title),
-          borderRadius: '6px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: getAbbreviation(book.title).length > 3 ? '14px' : '20px',
-          fontWeight: 'bold',
-          color: 'white',
-          marginBottom: '10px',
-          alignSelf: 'flex-start',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)'
-        }}>
-          {getAbbreviation(book.title)}
-        </div>
-
-        {/* Book Info - Compact Layout */}
-        <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '2px', color: 'white', lineHeight: '1.2' }}>
           {book.title}
-        </h3>
-        <p style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '6px' }}>
-          {book.author}
-        </p>
+        </div>
 
-        {/* CEFR Levels Badge - Inline Compact */}
-        <div style={{ fontSize: '11px', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
-          <span style={{ 
-            background: 'rgba(102, 126, 234, 0.2)', 
-            color: '#667eea',
-            padding: '2px 6px',
+        {/* Author */}
+        <div style={{
+          fontSize: '14px',
+          color: '#94a3b8',
+          marginBottom: '12px'
+        }}>
+          by {book.author}
+        </div>
+
+        {/* Meta Tags */}
+        <div style={{
+          display: 'flex',
+          gap: '8px',
+          marginBottom: '12px',
+          flexWrap: 'wrap'
+        }}>
+          <span style={{
+            padding: '4px 8px',
+            background: 'rgba(59, 130, 246, 0.2)',
+            color: '#60a5fa',
             borderRadius: '4px',
-            fontSize: '10px',
-            fontWeight: '500'
+            fontSize: '11px'
           }}>
             {book.cefrLevels}
           </span>
-          <span style={{ color: '#64748b', fontSize: '10px' }}>~{book.estimatedHours}h</span>
-          <span style={{ color: '#64748b', fontSize: '10px' }}>{book.genre}</span>
+          <span style={{
+            padding: '4px 8px',
+            background: 'rgba(59, 130, 246, 0.2)',
+            color: '#60a5fa',
+            borderRadius: '4px',
+            fontSize: '11px'
+          }}>
+            {book.genre}
+          </span>
+          <span style={{
+            padding: '4px 8px',
+            background: 'rgba(59, 130, 246, 0.2)',
+            color: '#60a5fa',
+            borderRadius: '4px',
+            fontSize: '11px'
+          }}>
+            ~{book.estimatedHours}h
+          </span>
+          {book.status === 'enhanced' && (
+            <span style={{
+              padding: '4px 8px',
+              background: 'rgba(16, 185, 129, 0.2)',
+              color: '#10b981',
+              borderRadius: '4px',
+              fontSize: '11px'
+            }}>
+              Enhanced ⚡
+            </span>
+          )}
         </div>
 
-        {/* Simplification Levels - Compact */}
-        <div style={{ 
-          fontSize: '11px', 
-          color: '#10b981',
-          marginBottom: '6px',
-          fontWeight: '500'
-        }}>
-          {book.availableLevels?.length || 0} difficulty levels available
-        </div>
-
-        {/* Short Description - Compact */}
-        <p style={{ 
-          fontSize: '11px', 
-          color: '#94a3b8', 
-          lineHeight: '1.3',
-          marginBottom: '8px',
-          overflow: 'hidden',
-          display: '-webkit-box',
-          WebkitLineClamp: 1,
-          WebkitBoxOrient: 'vertical'
-        }}>
-          Enhanced ESL edition with {book.availableLevels?.length || 0} levels
-        </p>
-
-        {/* Progress Indicator - Inline Compact */}
-        <div style={{ 
-          fontSize: '10px', 
-          color: '#64748b',
-          marginBottom: '8px'
-        }}>
-          Progress: 0% • 0/{book.totalChunks || 0} chapters
-        </div>
-
-        {/* Action Buttons - Compact */}
+        {/* Action Buttons */}
         <div style={{
           display: 'flex',
-          gap: '6px'
+          gap: '8px'
         }}>
-          <motion.button
-            whileHover={{ y: -1, transition: { duration: 0.2 } }}
-            whileTap={{ scale: 0.98 }}
+          <button
             onClick={() => handleAskAI(book)}
             style={{
               flex: 1,
-              padding: '8px 10px',
-              background: 'transparent',
-              border: '1px solid #8b5cf6',
-              borderRadius: '6px',
-              color: '#8b5cf6',
-              fontWeight: '600',
-              fontSize: '11px',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '3px'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
+              height: '36px',
+              borderRadius: '8px',
+              background: 'rgba(139, 92, 246, 0.2)',
+              color: '#a78bfa',
+              border: '1px solid rgba(139, 92, 246, 0.3)',
+              fontSize: '14px',
+              fontWeight: '500',
+              cursor: 'pointer'
             }}
           >
-            🤖 Ask AI
-          </motion.button>
-          
+            Ask AI
+          </button>
           <a
             href={`/library/${book.id}/read`}
             style={{
               flex: 1,
+              height: '36px',
+              background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '14px',
+              fontWeight: '500',
+              textDecoration: 'none',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              textAlign: 'center',
-              padding: '8px 10px',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              border: 'none',
-              borderRadius: '6px',
-              color: 'white',
-              fontWeight: '600',
-              fontSize: '11px',
-              textDecoration: 'none',
-              cursor: 'pointer',
-              transition: 'opacity 0.2s ease',
-              gap: '3px'
+              cursor: 'pointer'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            📖 Read
+            {book.status === 'enhanced' ? 'Read Enhanced' : 'Read Original'}
           </a>
         </div>
       </motion.div>
@@ -515,16 +420,20 @@ export default function EnhancedCollectionDynamic() {
         {/* Genre Filter */}
         <div className="genre-filter-container" style={{ 
           display: 'flex', 
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
+          marginTop: '32px',
           marginBottom: '40px',
-          padding: '0 20px'
+          padding: '0 30px',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch'
         }}>
           <div className="genre-filter-wrapper" style={{
             display: 'flex',
             gap: '12px',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            maxWidth: '100%'
+            flexWrap: 'nowrap',
+            justifyContent: 'flex-start',
+            minWidth: 'max-content',
+            padding: '30px 0'
           }}>
             {genres.map(genre => (
               <motion.button
@@ -545,7 +454,9 @@ export default function EnhancedCollectionDynamic() {
                   transition: 'all 0.2s ease',
                   whiteSpace: 'nowrap',
                   minWidth: 'fit-content',
-                  boxShadow: selectedGenre === genre ? '0 4px 12px rgba(102, 126, 234, 0.3)' : 'none'
+                  minHeight: '44px',
+                  boxShadow: selectedGenre === genre ? '0 4px 12px rgba(102, 126, 234, 0.3)' : 'none',
+                  flexShrink: 0
                 }}
               >
                 {genre} ({genre === 'All' ? books.length : books.filter(b => b.genre === genre).length})
@@ -554,82 +465,59 @@ export default function EnhancedCollectionDynamic() {
           </div>
         </div>
 
-        {/* Enhanced Features */}
-        <div className="enhanced-features-section" style={{
-          background: 'rgba(102, 126, 234, 0.1)',
-          borderRadius: '20px',
-          padding: '40px',
-          marginBottom: '60px'
-        }}>
-          <h2 style={{ 
-            fontSize: '28px', 
-            textAlign: 'center',
-            marginBottom: '32px',
-            color: '#e2e8f0'
-          }}>
-            ✨ Enhanced Features
-          </h2>
-          <div className="enhanced-features-grid" style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '24px'
-          }}>
-            {ENHANCED_FEATURES.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                style={{
-                  textAlign: 'center',
-                  padding: '24px',
-                  background: 'rgba(30, 41, 59, 0.5)',
-                  borderRadius: '16px',
-                  border: '1px solid #334155'
-                }}
-              >
-                <div className="feature-icon" style={{ fontSize: '48px', marginBottom: '16px' }}>
-                  {feature.icon}
-                </div>
-                <h3 style={{ fontSize: '18px', marginBottom: '8px', color: '#10b981' }}>
-                  {feature.title}
-                </h3>
-                <p style={{ fontSize: '14px', color: '#94a3b8' }}>
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        
+        {/* Responsive Styles */}
+        <style jsx>{`
+          .genre-filter-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+          .genre-filter-container::-webkit-scrollbar {
+            height: 4px;
+          }
+          .genre-filter-container::-webkit-scrollbar-track {
+            background: rgba(51, 65, 85, 0.3);
+            border-radius: 2px;
+          }
+          .genre-filter-container::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 2px;
+          }
+          
+          @media (min-width: 769px) {
+            .enhanced-collection-grid {
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+              max-width: 1200px !important;
+              gap: 24px !important;
+            }
+          }
+        `}</style>
+
 
         {/* Enhanced Books Section */}
         {enhancedBooks.length > 0 && (
           <>
-            <h2 style={{ fontSize: '24px', marginBottom: '24px', color: '#10b981', textAlign: 'center' }}>
-              ✅ Ready to Read ({enhancedBooks.length})
-            </h2>
-            <div className="books-grid-mobile" style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '20px',
-              marginBottom: hasMoreBooks ? '40px' : '60px',
-              justifyItems: 'center'
-            }}>
-              {visibleEnhancedBooks.map((book) => (
-                <div key={book.id} className="book-card-mobile">
-                  <BookCard book={book} />
-                </div>
-              ))}
-            </div>
-            
-            {/* Load More Button */}
-            {hasMoreBooks && (
-              <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-                <motion.button
-                  onClick={handleLoadMore}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{
+            <div className="enhanced-collection-grid" style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr',
+                gap: '16px',
+                maxWidth: '600px',
+                margin: '0 auto',
+                marginBottom: hasMoreBooks ? '40px' : '60px'
+              }}>
+                {visibleEnhancedBooks.map((book) => (
+                  <BookCard key={book.id} book={book} />
+                ))}
+              </div>
+              
+              {/* Load More Button */}
+              {hasMoreBooks && (
+                <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+                  <motion.button
+                    onClick={handleLoadMore}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
                     padding: '12px 24px',
                     borderRadius: '12px',
                     border: '2px solid #10b981',
@@ -651,13 +539,22 @@ export default function EnhancedCollectionDynamic() {
         {/* Processing Books Section */}
         {processingBooks.length > 0 && (
           <>
-            <h2 style={{ fontSize: '24px', marginBottom: '24px', color: '#fbbf24' }}>
+            <h2 style={{ 
+              fontSize: '24px', 
+              marginBottom: '24px', 
+              color: '#fbbf24',
+              textAlign: 'center',
+              maxWidth: '600px',
+              margin: '0 auto 24px auto'
+            }}>
               🔄 Currently Processing ({processingBooks.length})
             </h2>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: '24px',
+              gridTemplateColumns: '1fr',
+              gap: '16px',
+              maxWidth: '600px',
+              margin: '0 auto',
               marginBottom: '60px'
             }}>
               {processingBooks.map((book) => (
@@ -670,13 +567,22 @@ export default function EnhancedCollectionDynamic() {
         {/* Planned Books Section */}
         {plannedBooks.length > 0 && (
           <>
-            <h2 style={{ fontSize: '24px', marginBottom: '24px', color: '#9ca3af' }}>
+            <h2 style={{ 
+              fontSize: '24px', 
+              marginBottom: '24px', 
+              color: '#9ca3af',
+              textAlign: 'center',
+              maxWidth: '600px',
+              margin: '0 auto 24px auto'
+            }}>
               📅 Planned for Enhancement ({plannedBooks.length})
             </h2>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: '24px'
+              gridTemplateColumns: '1fr',
+              gap: '16px',
+              maxWidth: '600px',
+              margin: '0 auto'
             }}>
               {plannedBooks.map((book) => (
                 <BookCard key={book.id} book={book} />
