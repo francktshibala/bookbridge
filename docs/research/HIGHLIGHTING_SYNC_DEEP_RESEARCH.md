@@ -142,7 +142,17 @@ Each research agent should document:
 ## Research Findings Section
 
 ### GPT-5 Research Findings:
-*[GPT-5 agent will document findings here]*
+- **Root cause**: Startup offset between `audio.play()` resolution and audible output (≈100–200ms) plus interval drift from 50–100ms polling causes highlights to advance ahead of speech even when database timings are correct.
+- **Database timings**: Likely accurate; mismatch stems from reference clock/offset, not timing records.
+- **`currentTime` reliability**: Okay for coarse sync but needs calibrated offset and drift mitigation; VBR MP3 and pause/buffer events amplify error during scrubs.
+- **Immediate fixes**:
+  - Add ~150ms startup compensation before beginning highlighting.
+  - Subtract a configurable calibration offset from `currentTime` when matching words.
+  - Prefer `requestAnimationFrame` loop over `setInterval` to reduce drift and align with paint.
+  - Debounce highlight changes to avoid flicker near boundaries.
+- **Medium/long term**:
+  - Prefer Web Speech boundary events when available; otherwise Whisper alignment or ElevenLabs WebSocket character timings.
+  - Optionally persist per-voice/device learned offset.
 
 ### Claude Code Agent Findings:
 

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug BookBridge API Response</title>
+    <style>
+        body {
+            font-family: monospace;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .error { color: red; }
+        .success { color: green; }
+        .warning { color: orange; }
+        pre {
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .stat {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 BookBridge API Debug Tool</h1>
+    <p>This tool helps debug the API response for gutenberg-2701 (Moby Dick)</p>
+    
+    <div class="section">
+        <h2>🔧 Test Controls</h2>
+        <button onclick="testContentFast()">Test content-fast API</button>
+        <button onclick="testExternal()">Test external API</button>
+        <button onclick="testBothAndCompare()">Test Both & Compare</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div class="section">
+        <h2>📊 Results</h2>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const baseUrl = window.location.origin;
+        const bookId = 'gutenberg-2701';
+
+        function logResult(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = type;
+            div.innerHTML = message;
+            results.appendChild(div);
+            console.log(message.replace(/<[^>]*>/g, '')); // Also log to console
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        function formatBytes(bytes) {
+            return bytes.toLocaleString() + ' chars';
+        }
+
+        function createStatsHtml(title, data) {
+            const stats = [
+                { label: 'Title', value: data.title || data.book?.title || 'N/A' },
+                { label: 'Author', value: data.author || data.book?.author || 'N/A' },
+                { label: 'Content Length', value: (data.content?.length || data.context?.length || 0).toLocaleString() },
+                { label: 'Word Count', value: (data.wordCount || 0).toLocaleString() },
+                { label: 'Character Count', value: (data.characterCount || 0).toLocaleString() },
+                { label: 'Source', value: data.source || 'N/A' },
+                { label: 'Cached', value: data.cached || false },
+                { label: 'External', value: data.external || false }
+            ];
+
+            let html = `<h3>${title}</h3><div class="stats">`;
+            stats.forEach(stat => {
+                html += `<div class="stat"><strong>${stat.label}:</strong> ${stat.value}</div>`;
+            });
+            html += '</div>';
+
+            return html;
+        }
+
+        async function testContentFast() {
+            logResult('🔄 Testing content-fast API...', 'info');
+            
+            try {
+                const response = await fetch(`${baseUrl}/api/books/${bookId}/content-fast`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                logResult(createStatsHtml('✅ Content-Fast API Response', data), 'success');
+
+                // Analyze the content
+                const content = data.context || data.content || '';
+                const expectedChunks = Math.ceil(content.length / 6000);
+                
+                logResult(`<h4>📐 Chunking Analysis:</h4>
+                    <div class="stats">
+                        <div class="stat"><strong>Content Length:</strong> ${formatBytes(content.length)}</div>
+                        <div class="stat"><strong>Expected Chunks (6K each):</strong> ${expectedChunks}</div>
+                        <div class="stat"><strong>First 200 chars:</strong> "${content.substring(0, 200)}..."</div>
+                    </div>`, content.length > 500000 ? 'success' : 'error');
+
+                if (content.length < 100000) {
+                    logResult('❌ <strong>ISSUE FOUND:</strong> Content is severely truncated! Expected >1M characters.', 'error');
+                } else if (expectedChunks < 100) {
+                    logResult('⚠️  <strong>WARNING:</strong> Expected more chunks for Moby Dick.', 'warning');
+                } else {
+                    logResult('✅ <strong>LOOKS GOOD:</strong> Content length appears correct.', 'success');
+                }
+
+                // Show raw response (truncated)
+                logResult(`<h4>📋 Raw Response Structure:</h4><pre>${JSON.stringify(data, null, 2).substring(0, 2000)}...</pre>`, 'info');
+
+            } catch (error) {
+                logResult(`❌ <strong>Error:</strong> ${error.message}`, 'error');
+            }
+        }
+
+        async function testExternal() {
+            logResult('🔄 Testing external API...', 'info');
+            
+            try {
+                const response = await fetch(`${baseUrl}/api/books/external/${bookId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                logResult(createStatsHtml('✅ External API Response', data), 'success');
+
+                // Analyze the content
+                const content = data.content || '';
+                
+                logResult(`<h4>📐 Content Analysis:</h4>
+                    <div class="stats">
+                        <div class="stat"><strong>Content Length:</strong> ${formatBytes(content.length)}</div>
+                        <div class="stat"><strong>First 200 chars:</strong> "${content.substring(0, 200)}..."</div>
+                        <div class="stat"><strong>Last 200 chars:</strong> "...${content.substring(Math.max(0, content.length - 200))}"</div>
+                    </div>`, content.length > 500000 ? 'success' : 'error');
+
+                if (content.length < 100000) {
+                    logResult('❌ <strong>EXTERNAL API ISSUE:</strong> Content is truncated at the external API level!', 'error');
+                } else {
+                    logResult('✅ <strong>EXTERNAL API GOOD:</strong> Full content returned by external API.', 'success');
+                }
+
+            } catch (error) {
+                logResult(`❌ <strong>Error:</strong> ${error.message}`, 'error');
+            }
+        }
+
+        async function testBothAndCompare() {
+            logResult('🔄 Testing both APIs and comparing...', 'info');
+            
+            try {
+                // Test both APIs in parallel
+                const [externalResponse, contentFastResponse] = await Promise.all([
+                    fetch(`${baseUrl}/api/books/external/${bookId}`),
+                    fetch(`${baseUrl}/api/books/${bookId}/content-fast`)
+                ]);
+
+                const externalData = externalResponse.ok ? await externalResponse.json() : null;
+                const contentFastData = contentFastResponse.ok ? await contentFastResponse.json() : null;
+
+                // Compare results
+                const externalLength = externalData?.content?.length || 0;
+                const contentFastLength = (contentFastData?.context || contentFastData?.content || '').length;
+
+                logResult(`<h3>🔍 Comparison Results:</h3>
+                    <div class="stats">
+                        <div class="stat"><strong>External API:</strong> ${formatBytes(externalLength)} ${externalResponse.ok ? '✅' : '❌'}</div>
+                        <div class="stat"><strong>Content-Fast API:</strong> ${formatBytes(contentFastLength)} ${contentFastResponse.ok ? '✅' : '❌'}</div>
+                        <div class="stat"><strong>Difference:</strong> ${Math.abs(externalLength - contentFastLength).toLocaleString()} chars</div>
+                    </div>`, 'info');
+
+                if (!externalResponse.ok || !contentFastResponse.ok) {
+                    logResult('❌ <strong>API ERROR:</strong> One or both APIs failed!', 'error');
+                } else if (Math.abs(externalLength - contentFastLength) > 10000) {
+                    logResult('⚠️  <strong>SIGNIFICANT DIFFERENCE:</strong> Content lengths differ significantly!', 'warning');
+                    logResult('🔍 <strong>DIAGNOSIS:</strong> The issue is in the content-fast API processing logic.', 'info');
+                } else if (externalLength < 500000) {
+                    logResult('❌ <strong>ISSUE AT SOURCE:</strong> Both APIs return truncated content - issue is in external API.', 'error');
+                } else if (contentFastLength < 500000) {
+                    logResult('❌ <strong>PROCESSING ISSUE:</strong> External API is fine, but content-fast is truncating.', 'error');
+                } else {
+                    logResult('✅ <strong>APIS LOOK GOOD:</strong> Both return full content - issue might be in frontend.', 'success');
+                }
+
+            } catch (error) {
+                logResult(`❌ <strong>Error:</strong> ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-run test on page load
+        window.addEventListener('load', () => {
+            logResult('📚 <strong>BookBridge API Debug Tool</strong> - Ready to test APIs', 'info');
+            logResult(`Testing book: <strong>${bookId}</strong> (Moby Dick)`, 'info');
+            logResult('Click "Test Both & Compare" to start comprehensive testing.', 'info');
+        });
+    </script>
+</body>
+</html>

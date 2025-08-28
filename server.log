@@ -2,13 +2,81 @@
 > bookbridge@1.0.0 dev
 > next dev
 
+ ⚠ Port 3000 is in use by process 817, using available port 3002 instead.
    ▲ Next.js 15.4.4
-   - Local:        http://localhost:3000
-   - Network:      http://192.168.1.2:3000
+   - Local:        http://localhost:3002
+   - Network:      http://192.168.1.11:3002
    - Environments: .env.local, .env
    - Experiments (use with caution):
      ✓ optimizeCss
 
  ✓ Starting...
- ✓ Ready in 3.8s
+ ✓ Ready in 2.4s
+ ✓ Compiled /middleware in 265ms (108 modules)
+ ○ Compiling /api/books/[id]/content-fast ...
+ ✓ Compiled /api/books/[id]/content-fast in 4.9s (1366 modules)
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+Fast content fetch for book ID: gutenberg-2701
+External book detected: gutenberg-2701
+Checking database for stored book: gutenberg-2701
+Checking for enhanced book with simplifications: gutenberg-2701
+✅ Found enhanced book with simplifications: gutenberg-2701
+[VectorService] Module loaded, creating singleton instance...
+[VectorService] Environment check:
+  - PINECONE_API_KEY exists: true
+  - PINECONE_INDEX: bookbridge-books
+  - OPENAI_API_KEY exists: true
+ GET /api/books/gutenberg-2701/content-fast 200 in 8917ms
+ ✓ Compiled in 947ms (1180 modules)
+ ✓ Compiled in 630ms (1180 modules)
+ ⨯ ./app/api/books/[id]/content-fast/route.ts
+Error:   [31mx[0m Expected a semicolon
+     ,-[[36;1;4m/Users/user/bookbridge/bookbridge/app/api/books/[id]/content-fast/route.ts[0m:569:1]
+ [2m566[0m |       metadata: cachedContent.metadata
+ [2m567[0m |     })
+ [2m568[0m | 
+ [2m569[0m |   } catch (error) {
+     : [35;1m    ^^^^^[0m
+ [2m570[0m |     console.error('Error in fast content fetch:', error)
+ [2m571[0m |     return NextResponse.json(
+ [2m572[0m |       { error: 'Internal server error' },
+     `----
+  [31mx[0m Expected a semicolon
+     ,-[[36;1;4m/Users/user/bookbridge/bookbridge/app/api/books/[id]/content-fast/route.ts[0m:579:1]
+ [2m576[0m | }
+ [2m577[0m | 
+ [2m578[0m | // POST endpoint to trigger processing
+ [2m579[0m | export async function POST(
+     : [35;1m^[0m
+ [2m580[0m |   request: NextRequest,
+ [2m581[0m |   { params }: { params: Promise<{ id: string }> }
+ [2m582[0m | ) {
+     `----
+  [31mx[0m 'import', and 'export' cannot be used outside of module code
+     ,-[[36;1;4m/Users/user/bookbridge/bookbridge/app/api/books/[id]/content-fast/route.ts[0m:579:1]
+ [2m576[0m | }
+ [2m577[0m | 
+ [2m578[0m | // POST endpoint to trigger processing
+ [2m579[0m | export async function POST(
+     : [35;1m^^^^^^[0m
+ [2m580[0m |   request: NextRequest,
+ [2m581[0m |   { params }: { params: Promise<{ id: string }> }
+ [2m582[0m | ) {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/books/[id]/content-fast/route.ts
+ ✓ Compiled in 317ms (1180 modules)
 [?25h

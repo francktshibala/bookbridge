@@ -362,6 +362,110 @@ docs/mobile/
 3. **Business Strategy**: `AGENT_5_MOBILE_APP_STORE_DISTRIBUTION_STRATEGY.md` for market approach
 4. **Long-term Planning**: `AGENT_6_TECHNICAL_ARCHITECTURE_DEVELOPMENT_STRATEGY.md` for React Native roadmap
 
+### **📁 CURRENT CODEBASE FILES TO MODIFY**
+
+#### **Week 1-2: Mobile Interface Implementation**
+**Primary Files (Based on Current Git Status):**
+- **`app/library/[id]/read/page.tsx`** - Main reading interface (currently modified)
+  - Add mobile-responsive layout with 56px sticky header
+  - Implement 44px touch targets for navigation
+  - Add mobile-optimized CEFR controls and audio positioning
+
+- **`components/audio/InstantAudioPlayer.tsx`** - Audio controls (currently modified)
+  - Optimize for mobile touch interaction
+  - Position controls in bottom 20% of screen for thumb access
+  - Add mobile-specific gesture support
+
+**New Files to Create:**
+- **`public/manifest.json`** - PWA web app manifest
+- **`public/sw.js`** - Service worker for offline capabilities
+- **`components/mobile/MobileHeader.tsx`** - Mobile-specific header component
+- **`styles/mobile.css`** - Mobile-first responsive styles
+
+#### **Week 3-4: PWA Implementation**
+**Service Worker Files:**
+- **`lib/pwa/sw-config.ts`** - Service worker configuration
+- **`lib/pwa/cache-strategies.ts`** - Caching strategies for audio/text
+- **`hooks/useInstallPrompt.ts`** - PWA install prompt management
+
+**Performance Optimization:**
+- **`lib/audio/mobile-audio-service.ts`** - Mobile-optimized audio delivery
+- **`components/offline/OfflineIndicator.tsx`** - Offline functionality UI
+- **`utils/network-detection.ts`** - Network condition adaptation
+
+#### **Week 5-6: Global Features**
+**Cultural Adaptation Files:**
+- **`components/i18n/RTLLayout.tsx`** - Right-to-left language support
+- **`utils/cultural-adaptations.ts`** - Regional UI modifications
+- **`styles/cultural-themes.css`** - Cultural color schemes
+
+#### **📋 COMPLETE MOBILE APP WIREFRAMES CREATED**
+
+**✅ COMPLETED: `complete-mobile-wireframes.html`**
+
+**Comprehensive Mobile Wireframe Includes:**
+1. **Homepage** - Hero section with CEFR demo and features grid
+2. **Enhanced Collection** - 10 enhanced books with genre filters and features showcase  
+3. **Browse All Books** - Search, upgrade banner, clean book cards with AI chat
+4. **Reading Page** - **Original/Simplified toggle**, CEFR controls, word highlighting
+5. **Mobile Navigation** - Hamburger menu with slide-out navigation
+6. **Audio Controls** - Fixed bottom controls with 56px play button and progress bar
+
+**Interactive Features:**
+- **Page navigation** between all 4 main pages
+- **Original/Simplified mode toggle** on reading page
+- **CEFR level switching** with text updates
+- **Mobile navigation menu** with proper close/open states
+- **Audio playback simulation** with word highlighting
+- **Genre filtering** on enhanced collection
+- **Touch-friendly targets** (44px minimum WCAG compliance)
+
+**Mobile Specifications Applied:**
+- 56px sticky header height
+- 44px minimum touch targets
+- 18px base typography (ESL optimized)
+- Fixed audio controls (72px height)
+- Proper mobile spacing and responsive design
+- Cultural adaptations and RTL support ready
+
+### **📋 IMPLEMENTATION SEQUENCE BY FILES**
+
+**Phase 1 (Week 1): Homepage Mobile**
+1. Update `app/page.tsx` - implement mobile hero section and CEFR demo
+2. Add mobile responsive styles to homepage components
+3. Test CEFR level switching functionality
+4. Implement mobile features grid (2x2 layout)
+
+**Phase 2 (Week 2): Enhanced Collection Mobile**
+1. Update `app/enhanced-collection/page.tsx` - add genre filters and features showcase
+2. Implement horizontal scrolling genre filters
+3. Update book cards for mobile layout
+4. Add Load More functionality for mobile
+
+**Phase 3 (Week 3): Browse Library Mobile**
+1. Update `app/library/page.tsx` - implement clean book cards
+2. Add mobile search interface
+3. Implement upgrade banner for enhanced features
+4. Add AI chat modal integration
+
+**Phase 4 (Week 4): Reading Page Mobile - PRIORITY**
+1. **Modify `app/library/[id]/read/page.tsx`** - ADD MISSING Original/Simplified toggle
+2. Implement mobile CEFR controls with proper touch targets
+3. Add mobile-optimized text layout and typography
+4. Integrate mobile audio controls with word highlighting
+
+**Phase 5 (Week 5): Navigation & Audio**
+1. Update `components/Navigation.tsx` for mobile hamburger menu
+2. Implement `components/MobileNavigationMenu.tsx` slide-out menu
+3. Create mobile audio controls component
+4. Add gesture support and touch interactions
+
+**Phase 6 (Week 6): PWA Features**
+1. Create `public/manifest.json` with app metadata
+2. Implement `public/sw.js` with caching strategies  
+3. Add install prompt functionality
+4. Test offline reading capabilities
+
 ### **Success Formula**
 **Phase 1 PWA Success** = Mobile UX (Agent 1) + Performance (Agent 3) + Market Strategy (Agent 5)
 **Phase 2 React Native Success** = PWA Foundation + Technical Architecture (Agent 6) + 95% Code Reuse

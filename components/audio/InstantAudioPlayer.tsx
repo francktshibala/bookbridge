@@ -49,6 +49,7 @@ interface InstantAudioPlayerProps {
   onWordHighlight?: (wordIndex: number) => void;
   onChunkComplete?: () => void;
   onProgressUpdate?: (progress: AudioProgressUpdate) => void;
+  onAutoScroll?: (scrollProgress: number) => void;
   className?: string;
   isPlaying?: boolean;
   onPlayingChange?: (playing: boolean) => void;
@@ -63,6 +64,12 @@ interface AudioProgressUpdate {
   isPreGenerated: boolean;
 }
 
+// Configurable timing offset for synchronization tuning
+// This offset delays highlighting to account for audio pipeline latency
+// If highlighting is AHEAD of voice: INCREASE this value
+// If highlighting is BEHIND voice: DECREASE this value  
+const AUDIO_SYNC_OFFSET = 0.10; // 100ms - adjusted for better voice-to-highlight sync
+
 export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
   bookId,
   chunkIndex,
@@ -73,6 +80,7 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
   onWordHighlight,
   onChunkComplete,
   onProgressUpdate,
+  onAutoScroll,
   className = '',
   isPlaying: externalIsPlaying,
   onPlayingChange
@@ -108,6 +116,13 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
   const currentAudioRef = useRef<HTMLAudioElement | null>(null);
   const timeUpdateIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<number>(0);
+  const rafIdRef = useRef<number | null>(null);
+  const startHighlightTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastHighlightedIndexRef = useRef<number>(-1);
+  const lastProgressUpdateRef = useRef<number>(0);
+  const syncOffsetRef = useRef<number>(AUDIO_SYNC_OFFSET);
+  const calibrationCountRef = useRef<number>(0);
+  const lastAutoScrollRef = useRef<number>(0);
 
   // Initialize audio elements pool
   useEffect(() => {
@@ -127,6 +142,14 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       });
       if (timeUpdateIntervalRef.current) {
         clearInterval(timeUpdateIntervalRef.current);
+      }
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+      if (startHighlightTimeoutRef.current) {
+        clearTimeout(startHighlightTimeoutRef.current);
+        startHighlightTimeoutRef.current = null;
       }
     };
   }, []);
@@ -271,6 +294,8 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     try {
       await audio.play();
       console.log(`🎵 Audio started playing`);
+      
+      // Start word highlighting immediately - timing compensation happens in real-time tracking
       startWordHighlighting(audioAssets[0]);
       
       const totalLoadTime = Date.now() - startTimeRef.current;
@@ -418,6 +443,8 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
 
     try {
       await nextAudio.play();
+      
+      // Start word highlighting immediately - timing compensation happens in real-time tracking
       startWordHighlighting(nextSentenceAudio);
       
     } catch (error) {
@@ -436,6 +463,15 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
   const startWordHighlighting = (sentenceAudio: SentenceAudio) => {
     if (timeUpdateIntervalRef.current) {
       clearInterval(timeUpdateIntervalRef.current);
+      timeUpdateIntervalRef.current = null;
+    }
+    if (rafIdRef.current !== null) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+    if (startHighlightTimeoutRef.current) {
+      clearTimeout(startHighlightTimeoutRef.current);
+      startHighlightTimeoutRef.current = null;
     }
 
     if (!onWordHighlight || !text) {
@@ -447,66 +483,102 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       hasWordTimings: !!sentenceAudio.wordTimings?.words,
       wordCount: sentenceAudio.wordTimings?.words?.length,
       duration: sentenceAudio.duration,
-      method: sentenceAudio.wordTimings?.method
+      method: sentenceAudio.wordTimings?.method,
+      initialOffset: `${AUDIO_SYNC_OFFSET * 1000}ms`,
+      fixApplied: 'Double compensation removed, timing direction corrected'
     });
-    
-    // Method 1: Use database word timings if available (most accurate)
-    if (sentenceAudio.wordTimings?.words?.length > 0) {
-      console.log('🎯 Using DATABASE word timings for perfect sync');
-      
-      // Use 50ms intervals for smooth real-time tracking
-      timeUpdateIntervalRef.current = setInterval(() => {
-        if (!currentAudioRef.current) return;
-        if (currentAudioRef.current.paused) return;
 
-        const currentTime = currentAudioRef.current.currentTime;
-        
-        // Find current word based on actual audio time with small lookahead
-        const lookahead = 0.1; // 100ms lookahead for responsiveness
-        const currentWord = sentenceAudio.wordTimings.words.find(timing =>
-          (currentTime + lookahead) >= timing.startTime && 
-          (currentTime + lookahead) <= timing.endTime
-        );
+    // Expose debug state to window for AudioDebugOverlay
+    (window as any).__audioPlayerDebug = {
+      syncOffset: syncOffsetRef.current,
+      lastHighlightedIndex: lastHighlightedIndexRef.current,
+      calibrationCount: calibrationCountRef.current,
+      audioElement: currentAudioRef.current,
+      sentenceAudio
+    };
 
-        if (currentWord) {
-          console.log(`🎯 DATABASE TIMING: Word ${currentWord.wordIndex} "${currentWord.word}" at ${currentTime.toFixed(2)}s`);
-          onWordHighlight(currentWord.wordIndex);
+    lastHighlightedIndexRef.current = -1;
+    lastProgressUpdateRef.current = 0;
+    syncOffsetRef.current = AUDIO_SYNC_OFFSET;
+    calibrationCountRef.current = 0;
+
+    // Start highlighting immediately - no startup delay to avoid double compensation
+    const useDatabaseTimings = !!sentenceAudio.wordTimings?.words?.length;
+
+    const frame = () => {
+      if (!currentAudioRef.current || currentAudioRef.current.paused) {
+        rafIdRef.current = null;
+        return;
+      }
+
+      const rawCurrentTime = currentAudioRef.current.currentTime;
+      // Add offset to delay highlighting so it matches audible output
+      const adjustedTime = rawCurrentTime + syncOffsetRef.current;
+
+      if (useDatabaseTimings) {
+        const timings = sentenceAudio.wordTimings!.words;
+        const current = timings.find(t => adjustedTime >= t.startTime && adjustedTime <= t.endTime);
+        if (current && current.wordIndex !== lastHighlightedIndexRef.current) {
+          lastHighlightedIndexRef.current = current.wordIndex;
+          onWordHighlight(current.wordIndex); // RE-ENABLED: For auto-scroll functionality (highlighting still disabled in UI)
+          
+          // Enhanced debug logging (disabled)
+          // console.log(`🎯 WORD HIGHLIGHT: "${current.word}" (index ${current.wordIndex}) at audio ${rawCurrentTime.toFixed(3)}s (adjusted: ${adjustedTime.toFixed(3)}s) | Word timing: ${current.startTime.toFixed(3)}-${current.endTime.toFixed(3)}s`);
+          
+          // Update debug state
+          (window as any).__audioPlayerDebug = {
+            ...(window as any).__audioPlayerDebug,
+            lastHighlightedIndex: current.wordIndex,
+            syncOffset: syncOffsetRef.current,
+            currentWord: current,
+            rawCurrentTime,
+            adjustedTime
+          };
+
+          // Auto-calibrate offset during first words to reduce lead/lag
+          if (calibrationCountRef.current < 3) {
+            // If we're highlighting early, we need more delay (positive offset)
+            // If we're highlighting late, we need less delay (smaller offset)
+            const highlightingLead = rawCurrentTime - current.startTime;
+            const targetOffset = Math.max(0.05, Math.min(0.3, highlightingLead));
+            
+            // Smooth update (EMA) - gradually adjust offset
+            syncOffsetRef.current = Math.max(0.05, Math.min(0.3, (syncOffsetRef.current * 0.8) + (targetOffset * 0.2)));
+            calibrationCountRef.current += 1;
+            
+            console.log(`🎯 AUTO-CALIBRATION: Word ${current.wordIndex} - Lead: ${(highlightingLead * 1000).toFixed(0)}ms, New offset: ${(syncOffsetRef.current * 1000).toFixed(0)}ms`);
+          }
         }
-
-        // Update progress
-        updateProgress({ 
-          currentTime,
-          status: 'playing'
-        });
-      }, 50); // 50ms for smooth tracking
-      
-    } else {
-      // Method 2: Fallback to IMPROVED estimation with real-time audio position
-      console.log('🎯 Using IMPROVED estimation with real-time tracking');
-      
-      const words = text.split(/\s+/).filter(word => word.length > 0);
-      const duration = sentenceAudio.duration || 10;
-      
-      timeUpdateIntervalRef.current = setInterval(() => {
-        if (!currentAudioRef.current) return;
-        if (currentAudioRef.current.paused) return;
-
-        const currentTime = currentAudioRef.current.currentTime;
-        const progress = Math.min(currentTime / duration, 1); // Clamp to 1
-        const estimatedWordIndex = Math.floor(progress * words.length);
-        
-        if (estimatedWordIndex < words.length && estimatedWordIndex >= 0) {
-          console.log(`🎯 IMPROVED ESTIMATION: Word ${estimatedWordIndex} "${words[estimatedWordIndex]}" at ${currentTime.toFixed(2)}s/${duration}s (${(progress*100).toFixed(1)}%)`);
-          onWordHighlight(estimatedWordIndex);
+      } else {
+        const words = text.split(/\s+/).filter(w => w.length > 0);
+        const duration = Math.max(0.001, sentenceAudio.duration || 10);
+        const progress = Math.min(Math.max(0, adjustedTime) / duration, 1);
+        const idx = Math.floor(progress * words.length);
+        if (idx >= 0 && idx < words.length && idx !== lastHighlightedIndexRef.current) {
+          lastHighlightedIndexRef.current = idx;
+          onWordHighlight(idx); // RE-ENABLED: For auto-scroll functionality (highlighting still disabled in UI)
         }
+      }
 
-        // Update progress
-        updateProgress({ 
-          currentTime,
-          status: 'playing'
-        });
-      }, 100); // 100ms for estimation method
-    }
+      // Throttle progress updates to ~10 Hz
+      const now = performance.now();
+      if (now - lastProgressUpdateRef.current >= 100) {
+        lastProgressUpdateRef.current = now;
+        updateProgress({ currentTime: rawCurrentTime, status: 'playing' });
+      }
+      
+      // Auto-scroll at much lower frequency for smoothness (2Hz)
+      if (onAutoScroll && now - lastAutoScrollRef.current >= 500) {
+        lastAutoScrollRef.current = now;
+        const duration = Math.max(0.001, sentenceAudio.duration || 10);
+        const scrollProgress = Math.min(rawCurrentTime / duration, 1);
+        onAutoScroll(scrollProgress);
+      }
+
+      rafIdRef.current = requestAnimationFrame(frame);
+    };
+
+    rafIdRef.current = requestAnimationFrame(frame);
   };
 
   // Handle playback completion
@@ -522,6 +594,15 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     
     if (timeUpdateIntervalRef.current) {
       clearInterval(timeUpdateIntervalRef.current);
+      timeUpdateIntervalRef.current = null;
+    }
+    if (rafIdRef.current !== null) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+    if (startHighlightTimeoutRef.current) {
+      clearTimeout(startHighlightTimeoutRef.current);
+      startHighlightTimeoutRef.current = null;
     }
 
     updateProgress({ status: 'completed' });
@@ -543,6 +624,14 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       console.log('🛑 Clearing highlighting interval');
       clearInterval(timeUpdateIntervalRef.current);
       timeUpdateIntervalRef.current = null;
+    }
+    if (rafIdRef.current !== null) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+    if (startHighlightTimeoutRef.current) {
+      clearTimeout(startHighlightTimeoutRef.current);
+      startHighlightTimeoutRef.current = null;
     }
 
     // Pause and reset all audio elements

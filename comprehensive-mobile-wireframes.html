@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>BookBridge Mobile PWA - Complete Wireframes</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans", sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Mobile Container */
+        .mobile-container {
+            max-width: 375px;
+            margin: 20px auto;
+            background: #1e293b;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            min-height: 812px;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            height: 44px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Mobile Header - 56px height */
+        .mobile-header {
+            height: 56px;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 24px;
+            height: 24px;
+            background: #3b82f6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            color: white;
+        }
+
+        .hamburger-menu {
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: none;
+            color: #94a3b8;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hamburger-menu:hover {
+            background: rgba(148, 163, 184, 0.1);
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 20px;
+            min-height: calc(100vh - 200px);
+        }
+
+        /* Homepage Styles */
+        .homepage {
+            display: none;
+        }
+
+        .homepage.active {
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: #94a3b8;
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .cefr-demo {
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+
+        .cefr-selector {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cefr-button {
+            width: 44px;
+            height: 32px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: #94a3b8;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cefr-button.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .demo-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            text-align: center;
+            padding: 16px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 8px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .feature-card {
+            background: rgba(51, 65, 85, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 4px;
+        }
+
+        .feature-desc {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .cta-button {
+            width: 100%;
+            height: 48px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+
+        /* Enhanced Collection Styles */
+        .enhanced-collection {
+            display: none;
+        }
+
+        .enhanced-collection.active {
+            display: block;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .genre-filters {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+
+        .genre-filter {
+            flex-shrink: 0;
+            padding: 8px 16px;
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid #334155;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #94a3b8;
+            cursor: pointer;
+            min-width: 44px;
+        }
+
+        .genre-filter.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .book-card {
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .book-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 4px;
+        }
+
+        .book-author {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .book-meta {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            padding: 4px 8px;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .book-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .book-button {
+            flex: 1;
+            height: 36px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .book-button.primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+
+        .book-button.secondary {
+            background: rgba(139, 92, 246, 0.2);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        /* Browse All Books Styles */
+        .browse-books {
+            display: none;
+        }
+
+        .browse-books.active {
+            display: block;
+        }
+
+        .search-bar {
+            width: 100%;
+            height: 44px;
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 0 16px;
+            color: #e2e8f0;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar::placeholder {
+            color: #64748b;
+        }
+
+        /* Reading Page Styles */
+        .reading-page {
+            display: none;
+            padding: 0;
+        }
+
+        .reading-page.active {
+            display: block;
+        }
+
+        .reading-header {
+            height: 56px;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .back-button {
+            padding: 8px 12px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Reading Controls */
+        .reading-controls {
+            padding: 16px;
+            background: rgba(51, 65, 85, 0.3);
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Original/Simplified Toggle */
+        .mode-toggle {
+            display: flex;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 8px;
+            padding: 4px;
+            border: 1px solid #334155;
+        }
+
+        .mode-button {
+            flex: 1;
+            height: 36px;
+            border: none;
+            background: none;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 6px;
+            padding: 0 16px;
+            min-width: 44px;
+        }
+
+        .mode-button.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .reading-content {
+            padding: 20px;
+        }
+
+        .book-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        .word-highlight-current {
+            background: linear-gradient(120deg, 
+                rgba(16, 185, 129, 0.3) 0%, 
+                rgba(16, 185, 129, 0.4) 100%);
+            border-radius: 3px;
+            padding: 1px 2px;
+            font-weight: 600;
+        }
+
+        .word-highlight-upcoming {
+            background: rgba(59, 130, 246, 0.15);
+            border-radius: 2px;
+            padding: 0 1px;
+        }
+
+        /* Mobile Audio Controls - Fixed bottom */
+        .mobile-audio-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            max-width: 335px;
+            margin: 0 auto;
+            height: 72px;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 0 20px;
+            z-index: 900;
+        }
+
+        .primary-audio-button {
+            width: 64px;
+            height: 64px;
+            border-radius: 32px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .secondary-audio-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audio-progress-container {
+            flex: 1;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+        }
+
+        .audio-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #334155;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .audio-progress-fill {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 2px;
+            width: 35%;
+            transition: width 0.1s ease;
+        }
+
+        .audio-time-display {
+            font-size: 12px;
+            color: #94a3b8;
+            min-width: 35px;
+            text-align: center;
+            margin-left: 8px;
+        }
+
+        /* Navigation Menu */
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            border-left: 1px solid #334155;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .mobile-nav-menu.open {
+            transform: translateX(0);
+        }
+
+        .nav-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: none;
+            color: #94a3b8;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .nav-user-section {
+            margin: 60px 0 40px 0;
+            text-align: center;
+        }
+
+        .nav-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin: 0 auto 12px;
+        }
+
+        .nav-username {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 4px;
+        }
+
+        .nav-level {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 16px 0;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            min-height: 44px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #3b82f6;
+        }
+
+        .nav-link .icon {
+            display: inline-block;
+            width: 20px;
+            margin-right: 12px;
+        }
+
+        /* Demo Controls */
+        .demo-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(30, 41, 59, 0.9);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            z-index: 2000;
+        }
+
+        .demo-button {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            margin: 4px 0;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .nav-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* PWA Install Prompt */
+        .pwa-install-prompt {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            right: 20px;
+            max-width: 335px;
+            margin: 0 auto;
+            background: white;
+            color: #212121;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            z-index: 1200;
+            display: none;
+        }
+
+        .install-prompt-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .install-prompt-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .install-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .install-button {
+            flex: 1;
+            height: 44px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .install-button-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .install-button-secondary {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 320px) {
+            .book-text {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+            
+            .cefr-button {
+                width: 36px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Controls -->
+    <div class="demo-controls">
+        <button class="demo-button" onclick="showPage('homepage')">🏠 Homepage</button>
+        <button class="demo-button" onclick="showPage('enhanced-collection')">✨ Enhanced Books</button>
+        <button class="demo-button" onclick="showPage('browse-books')">📚 Browse All</button>
+        <button class="demo-button" onclick="showPage('reading-page')">📖 Reading</button>
+        <button class="demo-button" onclick="toggleNav()">☰ Navigation</button>
+        <button class="demo-button" onclick="toggleInstall()">📱 Install PWA</button>
+    </div>
+
+    <!-- Mobile Container -->
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span>9:41</span>
+            <span>📶 📶 📶 📶 🔋</span>
+        </div>
+
+        <!-- Mobile Header -->
+        <header class="mobile-header">
+            <div class="header-left">
+                <div class="logo">B</div>
+                <span style="font-weight: 600; color: #e2e8f0; font-size: 16px;" id="headerTitle">BookBridge ESL</span>
+            </div>
+            
+            <button class="hamburger-menu" onclick="toggleNav()">☰</button>
+        </header>
+
+        <!-- Homepage -->
+        <div class="homepage active" id="homepage">
+            <div class="page-content">
+                <h1 class="hero-title">Read Classic Literature at Your English Level</h1>
+                <p class="hero-subtitle">AI-powered text simplification • Word-by-word audio • Vocabulary learning</p>
+                
+                <!-- CEFR Demo -->
+                <div class="cefr-demo">
+                    <div class="cefr-selector">
+                        <button class="cefr-button">A1</button>
+                        <button class="cefr-button active">A2</button>
+                        <button class="cefr-button">B1</button>
+                        <button class="cefr-button">B2</button>
+                        <button class="cefr-button">C1</button>
+                        <button class="cefr-button">C2</button>
+                    </div>
+                    <div class="demo-text">
+                        Elizabeth Bennet is a smart young woman. She meets Mr. Darcy at a party. He seems proud and unfriendly.
+                    </div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🎯</span>
+                        <div class="feature-title">AI Simplification</div>
+                        <div class="feature-desc">6 CEFR levels</div>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎧</span>
+                        <div class="feature-title">Premium Audio</div>
+                        <div class="feature-desc">Word highlighting</div>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📚</span>
+                        <div class="feature-title">Vocabulary</div>
+                        <div class="feature-desc">Interactive definitions</div>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📊</span>
+                        <div class="feature-title">Progress</div>
+                        <div class="feature-desc">Reading analytics</div>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <button class="cta-button" onclick="showPage('enhanced-collection')">
+                    ✨ Explore Enhanced Books
+                </button>
+                <button class="cta-button" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa;" onclick="showPage('browse-books')">
+                    📚 Browse All Books
+                </button>
+            </div>
+        </div>
+
+        <!-- Enhanced Collection Page -->
+        <div class="enhanced-collection" id="enhanced-collection">
+            <div class="page-content">
+                <h1 class="page-title">✨ Enhanced Books</h1>
+                <p class="page-subtitle">AI-powered features with instant audio</p>
+
+                <!-- Genre Filters -->
+                <div class="genre-filters">
+                    <button class="genre-filter active">All</button>
+                    <button class="genre-filter">Romance</button>
+                    <button class="genre-filter">Classic</button>
+                    <button class="genre-filter">Gothic</button>
+                    <button class="genre-filter">Adventure</button>
+                </div>
+
+                <!-- Enhanced Books List -->
+                <div class="book-card">
+                    <div class="book-title">Pride and Prejudice</div>
+                    <div class="book-author">by Jane Austen</div>
+                    <div class="book-meta">
+                        <span class="meta-tag">B1-C2</span>
+                        <span class="meta-tag">Romance</span>
+                        <span class="meta-tag">~8 hours</span>
+                    </div>
+                    <div class="book-actions">
+                        <button class="book-button secondary">Ask AI</button>
+                        <button class="book-button primary" onclick="showPage('reading-page')">Read Enhanced</button>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-title">Emma</div>
+                    <div class="book-author">by Jane Austen</div>
+                    <div class="book-meta">
+                        <span class="meta-tag">A2-C2</span>
+                        <span class="meta-tag">Romance</span>
+                        <span class="meta-tag">~10 hours</span>
+                    </div>
+                    <div class="book-actions">
+                        <button class="book-button secondary">Ask AI</button>
+                        <button class="book-button primary">Read Enhanced</button>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-title">Frankenstein</div>
+                    <div class="book-author">by Mary Shelley</div>
+                    <div class="book-meta">
+                        <span class="meta-tag">B2-C2</span>
+                        <span class="meta-tag">Gothic</span>
+                        <span class="meta-tag">~6 hours</span>
+                    </div>
+                    <div class="book-actions">
+                        <button class="book-button secondary">Ask AI</button>
+                        <button class="book-button primary">Read Enhanced</button>
+                    </div>
+                </div>
+
+                <button class="cta-button" style="margin-top: 20px;">Load More Books</button>
+            </div>
+        </div>
+
+        <!-- Browse All Books Page -->
+        <div class="browse-books" id="browse-books">
+            <div class="page-content">
+                <h1 class="page-title">📚 Browse All Books</h1>
+                <p class="page-subtitle">76,000+ public domain classics</p>
+
+                <!-- Search Bar -->
+                <input type="text" class="search-bar" placeholder="Search books, authors, genres..." />
+
+                <!-- Books List -->
+                <div class="book-card">
+                    <div class="book-title">The Great Gatsby</div>
+                    <div class="book-author">by F. Scott Fitzgerald</div>
+                    <div class="book-meta">
+                        <span class="meta-tag">American Classic</span>
+                        <span class="meta-tag">1925</span>
+                    </div>
+                    <div class="book-actions">
+                        <button class="book-button secondary">Ask AI</button>
+                        <button class="book-button primary">Read Original</button>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-title">Alice's Adventures in Wonderland</div>
+                    <div class="book-author">by Lewis Carroll</div>
+                    <div class="book-meta">
+                        <span class="meta-tag">Fantasy</span>
+                        <span class="meta-tag">1865</span>
+                    </div>
+                    <div class="book-actions">
+                        <button class="book-button secondary">Ask AI</button>
+                        <button class="book-button primary">Read Original</button>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-title">Romeo and Juliet</div>
+                    <div class="book-author">by William Shakespeare</div>
+                    <div class="book-meta">
+                        <span class="meta-tag">Tragedy</span>
+                        <span class="meta-tag">1597</span>
+                    </div>
+                    <div class="book-actions">
+                        <button class="book-button secondary">Ask AI</button>
+                        <button class="book-button primary">Read Original</button>
+                    </div>
+                </div>
+
+                <button class="cta-button" style="margin-top: 20px;">Load More Books</button>
+            </div>
+        </div>
+
+        <!-- Reading Page -->
+        <div class="reading-page" id="reading-page">
+            <!-- Reading Header -->
+            <div class="reading-header">
+                <a href="#" class="back-button" onclick="showPage('enhanced-collection')">← Back</a>
+                <span style="font-size: 14px; color: #94a3b8;">Chapter 1 of 61</span>
+            </div>
+
+            <!-- Reading Controls -->
+            <div class="reading-controls">
+                <!-- Original/Simplified Toggle -->
+                <div class="mode-toggle">
+                    <button class="mode-button">Original</button>
+                    <button class="mode-button active">Simplified</button>
+                </div>
+
+                <!-- CEFR Level Selector -->
+                <div class="cefr-selector">
+                    <button class="cefr-button">A1</button>
+                    <button class="cefr-button active">A2</button>
+                    <button class="cefr-button">B1</button>
+                    <button class="cefr-button">B2</button>
+                    <button class="cefr-button">C1</button>
+                    <button class="cefr-button">C2</button>
+                </div>
+            </div>
+
+            <!-- Reading Content -->
+            <div class="reading-content">
+                <h1 style="font-size: 22px; font-weight: 700; margin-bottom: 8px; text-align: center; color: #e2e8f0;">
+                    Pride and Prejudice
+                </h1>
+                <p style="font-size: 16px; color: #94a3b8; text-align: center; margin-bottom: 32px; font-style: italic;">
+                    by Jane Austen
+                </p>
+                
+                <div class="book-text">
+                    It is a <span class="word-highlight-upcoming">truth</span> <span class="word-highlight-upcoming">universally</span> <span class="word-highlight-current">acknowledged</span>, <span class="word-highlight-upcoming">that</span> <span class="word-highlight-upcoming">a</span> <span class="word-highlight-upcoming">single</span> <span class="word-highlight-upcoming">man</span> in possession of a good fortune, must be in want of a wife.
+                </div>
+                
+                <div class="book-text">
+                    However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.
+                </div>
+                
+                <div class="book-text">
+                    "My dear Mr. Bennet," said his lady to him one day, "have you heard that Netherfield Park is let at last?"
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Audio Controls (visible on reading page) -->
+    <div class="mobile-audio-controls" id="audioControls" style="display: none;">
+        <button class="secondary-audio-button">⏮</button>
+        <button class="primary-audio-button" id="playButton">▶</button>
+        <button class="secondary-audio-button">⏭</button>
+        
+        <div class="audio-progress-container">
+            <div class="audio-progress-bar">
+                <div class="audio-progress-fill"></div>
+            </div>
+            <div class="audio-time-display">2:15</div>
+        </div>
+        
+        <button class="secondary-audio-button">⚙</button>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav-backdrop" id="navBackdrop" onclick="toggleNav()"></div>
+    <div class="mobile-nav-menu" id="navMenu">
+        <button class="nav-close" onclick="toggleNav()">×</button>
+        
+        <div class="nav-user-section">
+            <div class="nav-avatar">👤</div>
+            <div class="nav-username">ESL Learner</div>
+            <div class="nav-level">B2 Level • 12% progress</div>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" onclick="showPage('homepage'); toggleNav();"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('enhanced-collection'); toggleNav();"><span class="icon">✨</span> Enhanced Books</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('browse-books'); toggleNav();"><span class="icon">📚</span> Browse All Books</a></li>
+                <li><a href="#" class="nav-link"><span class="icon">🤖</span> AI Tutor</a></li>
+                <li><a href="#" class="nav-link"><span class="icon">📊</span> Progress</a></li>
+                <li><a href="#" class="nav-link"><span class="icon">⚙️</span> Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- PWA Install Prompt -->
+    <div class="pwa-install-prompt" id="installPrompt">
+        <div class="install-prompt-header">
+            <div class="install-prompt-icon">📚</div>
+            <div>
+                <div style="font-size: 18px; font-weight: 600; margin-bottom: 4px;">Install BookBridge</div>
+                <div style="font-size: 14px; color: #666;">Learn offline & save data</div>
+            </div>
+        </div>
+        
+        <ul style="list-style: none; margin: 16px 0;">
+            <li style="display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 14px;">
+                <span style="color: #4CAF50;">✓</span>
+                <span>Works offline - save 90% data usage</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 14px;">
+                <span style="color: #4CAF50;">✓</span>
+                <span>Instant loading & smooth performance</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 14px;">
+                <span style="color: #4CAF50;">✓</span>
+                <span>Personal progress tracking</span>
+            </li>
+        </ul>
+        
+        <div class="install-actions">
+            <button class="install-button install-button-secondary" onclick="toggleInstall()">Maybe Later</button>
+            <button class="install-button install-button-primary" onclick="installApp()">Install App</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 'homepage';
+        let navOpen = false;
+        let installPromptOpen = false;
+
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.homepage, .enhanced-collection, .browse-books, .reading-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            currentPage = pageId;
+            
+            // Update header title
+            const titles = {
+                'homepage': 'BookBridge ESL',
+                'enhanced-collection': '✨ Enhanced Books',
+                'browse-books': '📚 Browse All Books',
+                'reading-page': 'Pride and Prejudice'
+            };
+            document.getElementById('headerTitle').textContent = titles[pageId] || 'BookBridge ESL';
+            
+            // Show/hide audio controls
+            const audioControls = document.getElementById('audioControls');
+            if (pageId === 'reading-page') {
+                audioControls.style.display = 'flex';
+            } else {
+                audioControls.style.display = 'none';
+            }
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+        }
+
+        // Navigation Menu
+        function toggleNav() {
+            navOpen = !navOpen;
+            document.getElementById('navMenu').classList.toggle('open', navOpen);
+            document.getElementById('navBackdrop').classList.toggle('active', navOpen);
+        }
+
+        // PWA Install
+        function toggleInstall() {
+            installPromptOpen = !installPromptOpen;
+            document.getElementById('installPrompt').style.display = installPromptOpen ? 'block' : 'none';
+        }
+
+        function installApp() {
+            alert('App installed! 🎉\n\nBookBridge is now available on your home screen.');
+            toggleInstall();
+        }
+
+        // Audio Playback Simulation
+        let isPlaying = false;
+        function togglePlayback() {
+            const playButton = document.getElementById('playButton');
+            isPlaying = !isPlaying;
+            playButton.textContent = isPlaying ? '⏸' : '▶';
+            
+            if (isPlaying) {
+                // Simulate word highlighting
+                simulateWordHighlighting();
+            }
+        }
+
+        function simulateWordHighlighting() {
+            const words = document.querySelectorAll('.word-highlight-current, .word-highlight-upcoming');
+            let currentIndex = 0;
+            
+            const interval = setInterval(() => {
+                if (!isPlaying || currentIndex >= words.length) {
+                    clearInterval(interval);
+                    return;
+                }
+                
+                // Reset previous word
+                document.querySelectorAll('.word-highlight-current').forEach(word => {
+                    word.classList.remove('word-highlight-current');
+                    word.classList.add('word-highlight-upcoming');
+                });
+                
+                // Highlight current word
+                if (words[currentIndex]) {
+                    words[currentIndex].classList.remove('word-highlight-upcoming');
+                    words[currentIndex].classList.add('word-highlight-current');
+                }
+                
+                currentIndex++;
+            }, 500);
+        }
+
+        // CEFR Level Switching
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('cefr-button')) {
+                // Remove active from siblings
+                e.target.parentElement.querySelectorAll('.cefr-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // Add active to clicked button
+                e.target.classList.add('active');
+                
+                // Update demo text if on homepage
+                if (currentPage === 'homepage') {
+                    const texts = {
+                        'A1': "Elizabeth is a young woman. She meets Mr. Darcy. He is rich but proud.",
+                        'A2': "Elizabeth Bennet is a smart young woman. She meets Mr. Darcy at a party. He seems proud and unfriendly.",
+                        'B1': "Elizabeth Bennet is an intelligent young woman from a middle-class family. When she meets the wealthy Mr. Darcy, she finds him arrogant and dismissive.",
+                        'B2': "Elizabeth Bennet, a spirited and perceptive young woman, encounters the aristocratic Mr. Darcy at a social gathering, where his apparent pride and disdain immediately prejudice her against him.",
+                        'C1': "Elizabeth Bennet, whose lively intelligence and independent spirit distinguish her from her contemporaries, finds herself profoundly antipathetic toward the enigmatic Mr. Darcy following their initial encounter.",
+                        'C2': "Elizabeth Bennet, possessed of a penetrating wit and an unwavering moral compass that renders her peculiarly resistant to the superficial allurements of society, experiences an immediate and visceral aversion to the ostensibly supercilious Mr. Darcy."
+                    };
+                    
+                    const demoText = document.querySelector('.demo-text');
+                    if (demoText) {
+                        demoText.textContent = texts[e.target.textContent] || texts['A2'];
+                    }
+                }
+            }
+        });
+
+        // Original/Simplified Toggle
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('mode-button')) {
+                // Remove active from siblings
+                e.target.parentElement.querySelectorAll('.mode-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // Add active to clicked button
+                e.target.classList.add('active');
+            }
+        });
+
+        // Genre Filter Toggle
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('genre-filter')) {
+                // Remove active from siblings
+                e.target.parentElement.querySelectorAll('.genre-filter').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // Add active to clicked button
+                e.target.classList.add('active');
+            }
+        });
+
+        // Audio Controls
+        document.getElementById('playButton').addEventListener('click', togglePlayback);
+
+        // Auto-show install prompt on homepage
+        setTimeout(() => {
+            if (currentPage === 'homepage') {
+                toggleInstall();
+            }
+        }, 5000);
+
+        // Initialize
+        showPage('homepage');
+    </script>
+</body>
+</html>
