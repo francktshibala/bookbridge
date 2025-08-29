@@ -214,8 +214,12 @@ export default function BookReaderPage() {
     
     // Only stop audio if NOT auto-advancing
     if (!isAutoAdvancing) {
+      console.log('🔄 CHUNK CHANGE: Stopping audio - manual navigation');
       setIsPlaying(false); // Stop audio when changing chunks manually
+    } else {
+      console.log('🔄 CHUNK CHANGE: Keeping audio playing - auto-advance navigation');
     }
+    
     // Reset to original content for new chunk
     if (bookContent?.chunks[currentChunk]) {
       const newContent = bookContent.chunks[currentChunk].content;
@@ -223,7 +227,7 @@ export default function BookReaderPage() {
       console.log('DEBUG: Chunk changed to', currentChunk, 'Content length:', newContent?.length || 0);
       console.log('DEBUG: Content preview:', newContent?.substring(0, 100) || 'No content');
     }
-  }, [currentChunk, bookContent]);
+  }, [currentChunk, bookContent, isAutoAdvancing]); // Add isAutoAdvancing to dependencies
 
   // Auto-fetch simplified content when chunk changes in simplified mode
   useEffect(() => {
@@ -550,17 +554,17 @@ export default function BookReaderPage() {
     // Only scroll if content is getting too high or too low from ideal position
     const offsetFromIdeal = currentContentTop - idealReadingPosition;
     
-    // Smooth scrolling threshold - only scroll when content drifts significantly
-    const scrollThreshold = 100; // pixels
+    // Smooth scrolling threshold - more responsive for better voice sync
+    const scrollThreshold = 50; // pixels (was 100px - reduced for faster response)
     
     if (Math.abs(offsetFromIdeal) > scrollThreshold) {
-      // Calculate smooth scroll distance - much smaller increments
-      const scrollDistance = offsetFromIdeal * 0.3; // Only move 30% of the way
+      // Calculate smooth scroll distance - more aggressive movement for better sync
+      const scrollDistance = offsetFromIdeal * 0.6; // Move 60% of the way (was 0.3)
       const currentScroll = window.scrollY;
       const targetScroll = currentScroll + scrollDistance;
       
       // Limit maximum scroll per adjustment for smoothness
-      const maxScrollStep = 50; // Maximum 50px per scroll
+      const maxScrollStep = 80; // Maximum 80px per scroll (was 50px)
       const clampedScrollDistance = Math.max(-maxScrollStep, Math.min(maxScrollStep, scrollDistance));
       const clampedTargetScroll = currentScroll + clampedScrollDistance;
       
