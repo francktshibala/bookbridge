@@ -28,7 +28,6 @@ export default function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/enhanced-collection', label: '✨ Enhanced Books' },
     { href: '/library', label: 'Browse All Books' },
-    ...(user ? [{ href: '/ai-tutor', label: 'AI Tutor' }] : []),
   ];
 
   return (

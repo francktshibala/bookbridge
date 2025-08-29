@@ -32,7 +32,6 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
     { href: '/', label: 'Home', icon: '🏠' },
     { href: '/enhanced-collection', label: '✨ Enhanced Books', icon: '✨' },
     { href: '/library', label: 'Browse All Books', icon: '📚' },
-    ...(user ? [{ href: '/ai-tutor', label: 'AI Tutor', icon: '📊' }] : []),
   ];
 
   // Hide on desktop screens even if isOpen is true
@@ -56,7 +55,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
           right: '0',
           bottom: '0',
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          zIndex: '40',
+          zIndex: '9998',
           opacity: isOpen ? 1 : 0,
           visibility: isOpen ? 'visible' : 'hidden',
           transition: 'opacity 0.3s ease-in-out, visibility 0.3s ease-in-out',
@@ -73,7 +72,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
           right: '0',
           height: '100vh',
           width: '320px',
-          zIndex: '50',
+          zIndex: '9999',
           backgroundColor: 'rgba(26, 26, 46, 0.98)',
           backdropFilter: 'blur(20px)',
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
@@ -106,39 +105,10 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
             </button>
           </div>
 
-          {/* User Profile Section */}
-          <div className="mb-6">
-            <div 
-              className="flex items-center p-4 rounded-lg"
-              style={{
-                backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                border: '1px solid rgba(102, 126, 234, 0.2)'
-              }}
-            >
-              <div 
-                className="w-12 h-12 rounded-full flex items-center justify-center mr-3"
-                style={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                }}
-              >
-                <span className="text-white font-semibold text-lg">
-                  {user ? user.email?.[0].toUpperCase() : 'G'}
-                </span>
-              </div>
-              <div>
-                <div className="text-white font-semibold text-base">
-                  {user ? 'User' : 'Guest User'}
-                </div>
-                <div className="text-gray-400 text-sm">
-                  Level: B2
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* Navigation Links */}
           <nav style={{ flex: '1' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {navigationItems.length > 0 ? (
                 navigationItems.map((item) => (
                   <Link
@@ -153,12 +123,12 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                     style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '6px',
-                      margin: '8px 0',
-                      minHeight: '56px'
+                      gap: '12px',
+                      minHeight: '56px',
+                      margin: '0'
                     }}
                   >
-                    <span style={{ fontSize: '20px', marginRight: '10px' }}>{item.icon}</span>
+                    <span style={{ fontSize: '18px' }}>{item.icon}</span>
                     {item.label}
                   </Link>
                 ))
@@ -166,74 +136,103 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
               
               {/* Show Sign In/Sign Up for guest users */}
               {!user && (
-                <div className="space-y-4 mt-6">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '20px' }}>
                   <Link
                     href="/auth/login"
                     onClick={handleNavClick}
-                    className="flex items-center justify-center p-4 rounded-lg bg-blue-600 hover:bg-blue-700 transition-colors"
                     style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '16px 20px',
+                      borderRadius: '12px',
                       textDecoration: 'none',
+                      fontSize: '16px',
+                      fontWeight: '500',
                       minHeight: '56px',
+                      backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                      color: '#ffffff',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.8)';
                     }}
                   >
-                    <span className="text-white font-semibold text-base">
-                      Sign In
-                    </span>
+                    Sign In
                   </Link>
                   <Link
                     href="/auth/signup"
                     onClick={handleNavClick}
-                    className="flex items-center justify-center p-4 rounded-lg border-2 border-blue-500 hover:bg-blue-500 hover:bg-opacity-10 transition-colors"
                     style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '16px 20px',
+                      borderRadius: '12px',
                       textDecoration: 'none',
+                      fontSize: '16px',
+                      fontWeight: '500',
                       minHeight: '56px',
+                      backgroundColor: 'transparent',
+                      color: '#60a5fa',
+                      border: '1px solid rgba(102, 126, 234, 0.4)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
+                      e.currentTarget.style.color = '#ffffff';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = '#60a5fa';
                     }}
                   >
-                    <span className="text-blue-400 hover:text-white font-semibold text-base">
-                      Sign Up
-                    </span>
+                    Sign Up
                   </Link>
                 </div>
               )}
             </div>
           </nav>
 
-          {/* Bottom Section */}
+          {/* Bottom Section - Simple */}
           {user && (
-            <div className="mt-auto pt-6 border-t border-gray-600 border-opacity-30">
-              {/* Subscription Status */}
-              <div className="mb-4">
-                <SubscriptionStatus />
-              </div>
-              
-              {/* Settings & Sign Out */}
-              <div className="space-y-2">
-                <Link
-                  href="/subscription"
-                  onClick={handleNavClick}
-                  className="flex items-center p-3 rounded-lg hover:bg-gray-700 hover:bg-opacity-30 transition-colors"
-                  style={{
-                    textDecoration: 'none',
-                    minHeight: '48px',
-                  }}
-                >
-                  <span className="text-lg mr-3">⚙️</span>
-                  <span className="text-gray-200 text-sm font-medium">Settings</span>
-                </Link>
-                
-                <button
-                  onClick={handleSignOut}
-                  className="flex items-center w-full p-3 rounded-lg text-left hover:bg-red-600 hover:bg-opacity-20 transition-colors"
-                  style={{
-                    minHeight: '48px',
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                  }}
-                >
-                  <span className="text-lg mr-3">🚪</span>
-                  <span className="text-red-400 text-sm font-medium">Sign Out</span>
-                </button>
-              </div>
+            <div style={{ 
+              marginTop: 'auto', 
+              paddingTop: '20px', 
+              borderTop: '1px solid rgba(102, 126, 234, 0.2)' 
+            }}>
+              <button
+                onClick={handleSignOut}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '100%',
+                  padding: '16px 20px',
+                  borderRadius: '12px',
+                  textDecoration: 'none',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  minHeight: '56px',
+                  backgroundColor: 'transparent',
+                  color: '#ef4444',
+                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                  e.currentTarget.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#ef4444';
+                }}
+              >
+                <span style={{ fontSize: '18px', marginRight: '12px' }}>🚪</span>
+                Sign Out
+              </button>
             </div>
           )}
         </div>

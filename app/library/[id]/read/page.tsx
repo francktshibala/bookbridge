@@ -137,6 +137,9 @@ export default function BookReaderPage() {
       if (autoAdvance) {
         console.log('🔄 NAVIGATION: Setting auto-advancing flag to prevent scroll pause');
         setIsAutoAdvancing(true);
+        setUserScrolledUp(false);      // Reset scroll flag for clean auto-advance
+        setAutoScrollEnabled(true);     // Re-enable auto-scroll for continuous playback
+        
         // Clear flag after scroll has settled (2 seconds)
         setTimeout(() => {
           setIsAutoAdvancing(false);
@@ -208,7 +211,11 @@ export default function BookReaderPage() {
     setAiMetadata(null);
     setMicroHint('');
     resetHighlighting(); // Reset word highlighting
-    setIsPlaying(false); // Stop audio when changing chunks
+    
+    // Only stop audio if NOT auto-advancing
+    if (!isAutoAdvancing) {
+      setIsPlaying(false); // Stop audio when changing chunks manually
+    }
     // Reset to original content for new chunk
     if (bookContent?.chunks[currentChunk]) {
       const newContent = bookContent.chunks[currentChunk].content;
