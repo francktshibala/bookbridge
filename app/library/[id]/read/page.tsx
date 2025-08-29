@@ -755,8 +755,8 @@ export default function BookReaderPage() {
   }
 
   const currentChunkData = bookContent?.chunks?.[currentChunk];
-  const canGoPrev = currentChunk > 0;
   const effectiveTotal = currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : (bookContent?.totalChunks || 0);
+  const canGoPrev = currentChunk > 0;
   const canGoNext = effectiveTotal ? currentChunk < effectiveTotal - 1 : false;
 
   // Enhanced book detection - already defined at the top
@@ -776,10 +776,45 @@ export default function BookReaderPage() {
           to { transform: rotate(360deg); }
         }
       `}</style>
-      {/* Header removed for cleaner reading experience */}
+      {/* Mobile Reading Header */}
+      <div 
+        className="mobile-reading-header"
+        style={{
+          display: 'none',
+          height: '56px',
+          background: 'rgba(30, 41, 59, 0.95)',
+          backdropFilter: 'blur(8px)',
+          borderBottom: '1px solid #334155',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 16px',
+          position: 'sticky',
+          top: 0,
+          zIndex: 100
+        }}
+      >
+        <button 
+          onClick={() => router.push(isEnhancedBook ? '/enhanced-collection' : '/library')}
+          style={{
+            padding: '8px 12px',
+            background: 'rgba(59, 130, 246, 0.1)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            borderRadius: '8px',
+            color: '#60a5fa',
+            textDecoration: 'none',
+            fontSize: '14px',
+            cursor: 'pointer'
+          }}
+        >
+          ← Back
+        </button>
+        <span style={{ fontSize: '14px', color: '#94a3b8' }}>
+          Chapter {currentChunk + 1} of {bookContent?.totalChunks || 0}
+        </span>
+      </div>
 
       {/* Main Content */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 48px' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 48px' }} className="main-content-container">
         {/* Old ESL Control Bar - Hidden when using wireframe controls */}
         {!useWireframeControls && (
         <div 
@@ -1232,24 +1267,124 @@ export default function BookReaderPage() {
         </div>
         )}
 
-        {/* Control Bar Consolidated with Logical Grouping - Only for Enhanced Experience */}
+        {/* Mobile-Responsive Reading Controls */}
         {isEnhancedBook && useProgressiveAudio && !isBrowseExperience ? (
-          <div className="mb-8">
+          <>
+            {/* Mobile Reading Controls - Visible on mobile */}
             <div 
-              className="control-bar-grouped"
+              className="mobile-reading-controls"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                background: 'rgba(30, 41, 59, 0.8)',
-                borderRadius: '16px',
-                border: '1px solid rgba(71, 85, 105, 0.3)',
-                maxWidth: '900px',
-                margin: '0 auto',
-                padding: '16px 24px',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
+                display: 'none',
+                padding: '16px',
+                background: 'rgba(51, 65, 85, 0.3)',
+                borderBottom: '1px solid #334155'
               }}
             >
+              {/* Original/Simplified Toggle */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '16px',
+                flexWrap: 'wrap',
+                marginBottom: '16px'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  background: 'rgba(30, 41, 59, 0.8)',
+                  borderRadius: '8px',
+                  padding: '4px',
+                  border: '1px solid #334155'
+                }}>
+                  <button
+                    onClick={() => handleModeChange && handleModeChange('original')}
+                    style={{
+                      flex: 1,
+                      height: '36px',
+                      border: 'none',
+                      background: currentMode === 'original' ? '#3b82f6' : 'none',
+                      color: currentMode === 'original' ? 'white' : '#94a3b8',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      cursor: 'pointer',
+                      borderRadius: '6px',
+                      padding: '0 16px',
+                      minWidth: '44px',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    Original
+                  </button>
+                  <button
+                    onClick={() => handleModeChange && handleModeChange('simplified')}
+                    style={{
+                      flex: 1,
+                      height: '36px',
+                      border: 'none',
+                      background: currentMode === 'simplified' ? '#3b82f6' : 'none',
+                      color: currentMode === 'simplified' ? 'white' : '#94a3b8',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      cursor: 'pointer',
+                      borderRadius: '6px',
+                      padding: '0 16px',
+                      minWidth: '44px',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    Simplified
+                  </button>
+                </div>
+              </div>
+              
+              {/* CEFR Level Selector */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '6px',
+                flexWrap: 'wrap'
+              }}>
+                {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
+                  <button
+                    key={level}
+                    onClick={async () => {
+                      await handleCefrLevelChange(level);
+                    }}
+                    style={{
+                      width: '44px',
+                      height: '32px',
+                      border: '1px solid #334155',
+                      background: level === eslLevel ? '#3b82f6' : '#1e293b',
+                      color: level === eslLevel ? 'white' : '#94a3b8',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {level}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop Control Bar - Hidden on mobile */}
+            <div className="mb-8 desktop-control-bar">
+              <div 
+                className="control-bar-grouped"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  background: 'rgba(30, 41, 59, 0.8)',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(71, 85, 105, 0.3)',
+                  maxWidth: '900px',
+                  margin: '0 auto',
+                  padding: '16px 24px',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
+                }}
+              >
               {/* Content Controls Group */}
               <div className="control-group" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                 {/* CEFR Level Selector */}
@@ -1636,6 +1771,7 @@ export default function BookReaderPage() {
               </div>
             </div>
           </div>
+          </>
         ) : useWireframeControls ? (
           <WireframeAudioControls
             enableWordHighlighting={isEnhancedBook}
@@ -1672,12 +1808,13 @@ export default function BookReaderPage() {
           />
         )}
 
-        {/* Reading Content */}
+        {/* Reading Content - Mobile Responsive */}
         <motion.div 
           key={currentChunk}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
+          className="reading-content-container"
           style={{
             background: 'rgba(26, 32, 44, 0.5)',
             backdropFilter: 'blur(20px)',
@@ -1686,7 +1823,8 @@ export default function BookReaderPage() {
             boxShadow: '0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.15)',
             border: '1px solid rgba(102, 126, 234, 0.15)',
             minHeight: '600px',
-            marginTop: '16px'
+            marginTop: '16px',
+            marginBottom: '100px' // Space for mobile audio controls
           }}
         >
           {/* Book Title */}
@@ -1950,6 +2088,193 @@ export default function BookReaderPage() {
       </div>
 
       {/* Bottom navigation removed for cleaner reading experience */}
+      
+      {/* Mobile Audio Controls - Fixed Bottom (Enhanced Books Only) */}
+      {isEnhancedBook && (
+        <div 
+          className="mobile-audio-controls"
+          style={{
+            display: 'none',
+            position: 'fixed',
+            bottom: '20px',
+            left: '20px',
+            right: '20px',
+            maxWidth: '335px',
+            margin: '0 auto',
+            height: '72px',
+            background: 'rgba(30, 41, 59, 0.95)',
+            backdropFilter: 'blur(16px)',
+            border: '1px solid #334155',
+            borderRadius: '16px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '16px',
+            padding: '0 20px',
+            zIndex: 900
+          }}
+        >
+          <button 
+            onClick={() => handleChunkNavigation('prev')}
+            disabled={!canGoPrev}
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '24px',
+              background: 'rgba(59, 130, 246, 0.1)',
+              border: '1px solid rgba(59, 130, 246, 0.2)',
+              color: canGoPrev ? '#60a5fa' : '#475569',
+              fontSize: '18px',
+              cursor: canGoPrev ? 'pointer' : 'not-allowed',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            ⏮
+          </button>
+          
+          <button 
+            onClick={() => setIsPlaying(!isPlaying)}
+            style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '32px',
+              background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+              border: 'none',
+              color: 'white',
+              fontSize: '24px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s'
+            }}
+          >
+            {isPlaying ? '⏸' : '▶'}
+          </button>
+          
+          <button 
+            onClick={() => handleChunkNavigation('next')}
+            disabled={!canGoNext}
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '24px',
+              background: 'rgba(59, 130, 246, 0.1)',
+              border: '1px solid rgba(59, 130, 246, 0.2)',
+              color: canGoNext ? '#60a5fa' : '#475569',
+              fontSize: '18px',
+              cursor: canGoNext ? 'pointer' : 'not-allowed',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            ⏭
+          </button>
+          
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}>
+            <div style={{
+              flex: 1,
+              height: '4px',
+              background: '#334155',
+              borderRadius: '2px',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <div style={{
+                height: '100%',
+                background: '#3b82f6',
+                borderRadius: '2px',
+                width: `${((currentChunk + 1) / (bookContent?.totalChunks || 1)) * 100}%`,
+                transition: 'width 0.3s ease'
+              }} />
+            </div>
+            <span style={{
+              fontSize: '12px',
+              color: '#94a3b8',
+              minWidth: '60px',
+              textAlign: 'right'
+            }}>
+              {currentChunk + 1}/{bookContent?.totalChunks || 0}
+            </span>
+          </div>
+        </div>
+      )}
+      
+      {/* Mobile/Desktop Responsive Styles */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .mobile-reading-header {
+            display: flex !important;
+          }
+          
+          .mobile-reading-controls {
+            display: block !important;
+          }
+          
+          .desktop-control-bar {
+            display: none !important;
+          }
+          
+          .mobile-audio-controls {
+            display: flex !important;
+          }
+          
+          .main-content-container {
+            padding: 0 !important;
+          }
+          
+          .reading-content-container {
+            padding: 20px !important;
+            border-radius: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 120px !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            min-height: auto !important;
+          }
+          
+          .book-title-wireframe {
+            font-size: 22px !important;
+          }
+          
+          .reading-text {
+            font-size: 18px !important;
+            text-align: justify !important;
+            line-height: 1.6 !important;
+          }
+          
+          .word-highlight-current {
+            background: linear-gradient(120deg, 
+              rgba(16, 185, 129, 0.3) 0%, 
+              rgba(16, 185, 129, 0.4) 100%) !important;
+            border-radius: 3px;
+            padding: 1px 2px;
+            font-weight: 600;
+          }
+          
+          .word-highlight-upcoming {
+            background: rgba(59, 130, 246, 0.15) !important;
+            border-radius: 2px;
+            padding: 0 1px;
+          }
+        }
+        
+        .mobile-reading-controls button:active {
+          transform: scale(0.95);
+        }
+        
+        .mobile-audio-controls button:active {
+          transform: scale(0.95);
+        }
+      `}</style>
     </div>
   );
 }
