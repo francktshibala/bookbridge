@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Play, Pause } from 'lucide-react';
 
 interface SmartPlayButtonProps {
@@ -19,6 +19,7 @@ export function SmartPlayButton({
   onToggleAutoAdvance
 }: SmartPlayButtonProps) {
   const [showAutoAdvanceHint, setShowAutoAdvanceHint] = useState(false);
+  const debounceRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const getButtonText = () => {
     if (isLoading) return 'Loading...';
@@ -38,8 +39,14 @@ export function SmartPlayButton({
     <div className="smart-play-container" style={{ position: 'relative' }}>
       <button
         onClick={() => {
-          console.log('🎛️ SmartPlayButton clicked, current isPlaying:', isPlaying);
-          onPlayPause();
+          if (debounceRef.current) {
+            clearTimeout(debounceRef.current);
+          }
+          
+          debounceRef.current = setTimeout(() => {
+            console.log('🎛️ SmartPlayButton clicked, current isPlaying:', isPlaying);
+            onPlayPause();
+          }, 100);
         }}
         disabled={isLoading}
         className="smart-play-button"
@@ -82,9 +89,18 @@ export function SmartPlayButton({
         )}
       </button>
 
-      {/* Auto-advance toggle - small button next to main button */}
-      <button
+      {/* Auto-advance toggle - accessible control next to main button (avoid button-in-button) */}
+      <div
+        role="switch"
+        aria-checked={autoAdvanceEnabled}
+        tabIndex={0}
         onClick={onToggleAutoAdvance}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onToggleAutoAdvance();
+          }
+        }}
         className="auto-advance-toggle"
         style={{
           position: 'absolute',
@@ -106,9 +122,10 @@ export function SmartPlayButton({
           transition: 'all 0.2s ease'
         }}
         title={autoAdvanceEnabled ? 'Disable auto-advance' : 'Enable auto-advance'}
+        aria-label={autoAdvanceEnabled ? 'Disable auto-advance' : 'Enable auto-advance'}
       >
         {autoAdvanceEnabled ? '🔄' : '⏭️'}
-      </button>
+      </div>
 
       {/* Tooltip */}
       {showAutoAdvanceHint && (

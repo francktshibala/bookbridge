@@ -253,6 +253,16 @@ export default function BookReaderPage() {
     }
   }, [bookId]);
 
+  // Load saved continuousPlayback state from localStorage
+  useEffect(() => {
+    if (bookId) {
+      const savedContinuous = localStorage.getItem(`continuous-playback-${bookId}`);
+      if (savedContinuous !== null) {
+        setContinuousPlayback(savedContinuous === 'true');
+      }
+    }
+  }, [bookId]);
+
   // Load reading position from localStorage
   const loadReadingPosition = () => {
     const savedPosition = localStorage.getItem(`reading-position-${bookId}`);
@@ -936,6 +946,8 @@ export default function BookReaderPage() {
           >
             {currentMode === 'simplified' ? 'Simplified' : 'Original'}
           </button>
+
+          
           
           {/* TTS Voice Selector */}
           <div style={{ position: 'relative' }} data-voice-dropdown>
@@ -1704,14 +1716,14 @@ export default function BookReaderPage() {
                 </button>
               </div>
             </div>
-          </div>
+            </div>
+          </>
         ) : isBrowseExperience ? (
-          // Browse Experience: Simple navigation only - no expensive features
-          <div className="mb-8">
+          <div className="mb-8" style={{ display: 'none' }}>
             <div 
               className="browse-controls"
               style={{
-                display: 'flex',
+                display: 'none',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '16px',
@@ -1771,7 +1783,6 @@ export default function BookReaderPage() {
               </div>
             </div>
           </div>
-          </>
         ) : useWireframeControls ? (
           <WireframeAudioControls
             enableWordHighlighting={isEnhancedBook}
@@ -2099,7 +2110,7 @@ export default function BookReaderPage() {
             bottom: '20px',
             left: '20px',
             right: '20px',
-            maxWidth: '335px',
+            maxWidth: '420px',
             margin: '0 auto',
             height: '72px',
             background: 'rgba(30, 41, 59, 0.95)',
@@ -2108,101 +2119,144 @@ export default function BookReaderPage() {
             borderRadius: '16px',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '16px',
-            padding: '0 20px',
-            zIndex: 900
+            gap: '8px',
+            padding: '0 16px',
+            zIndex: 1100
           }}
         >
-          <button 
-            onClick={() => handleChunkNavigation('prev')}
-            disabled={!canGoPrev}
-            style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: '24px',
-              background: 'rgba(59, 130, 246, 0.1)',
-              border: '1px solid rgba(59, 130, 246, 0.2)',
-              color: canGoPrev ? '#60a5fa' : '#475569',
-              fontSize: '18px',
-              cursor: canGoPrev ? 'pointer' : 'not-allowed',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            ⏮
-          </button>
-          
-          <button 
-            onClick={() => setIsPlaying(!isPlaying)}
-            style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '32px',
-              background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-              border: 'none',
-              color: 'white',
-              fontSize: '24px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.2s'
-            }}
-          >
-            {isPlaying ? '⏸' : '▶'}
-          </button>
-          
-          <button 
-            onClick={() => handleChunkNavigation('next')}
-            disabled={!canGoNext}
-            style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: '24px',
-              background: 'rgba(59, 130, 246, 0.1)',
-              border: '1px solid rgba(59, 130, 246, 0.2)',
-              color: canGoNext ? '#60a5fa' : '#475569',
-              fontSize: '18px',
-              cursor: canGoNext ? 'pointer' : 'not-allowed',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            ⏭
-          </button>
-          
-          <div style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}>
-            <div style={{
-              flex: 1,
-              height: '4px',
-              background: '#334155',
-              borderRadius: '2px',
-              position: 'relative',
-              overflow: 'hidden'
-            }}>
-              <div style={{
-                height: '100%',
-                background: '#3b82f6',
-                borderRadius: '2px',
-                width: `${((currentChunk + 1) / (bookContent?.totalChunks || 1)) * 100}%`,
-                transition: 'width 0.3s ease'
-              }} />
-            </div>
-            <span style={{
-              fontSize: '12px',
-              color: '#94a3b8',
-              minWidth: '60px',
-              textAlign: 'right'
-            }}>
-              {currentChunk + 1}/{bookContent?.totalChunks || 0}
-            </span>
+          {/* All Controls in One Group */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            {/* Voice Selector Button */}
+            <button
+              onClick={() => {
+                const voices = isEnhancedBook ? ['alloy', 'nova'] : ['alloy', 'echo', 'fable', 'onyx', 'nova', 'shimmer'];
+                const currentIndex = voices.indexOf(selectedVoice || 'alloy');
+                const nextVoice = voices[(currentIndex + 1) % voices.length];
+                setSelectedVoice(nextVoice);
+                localStorage.setItem(`voice-selection-${bookId}`, nextVoice);
+              }}
+              style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '22px',
+                background: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+                color: '#60a5fa',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                lineHeight: '1.2',
+                padding: '4px',
+                textTransform: 'capitalize'
+              }}
+              aria-label={`Voice: ${selectedVoice}`}
+            >
+              {selectedVoice.substring(0, 4)}
+            </button>
+
+            {/* Playback Controls */}
+            <button 
+              onClick={() => handleChunkNavigation('prev')}
+              disabled={!canGoPrev}
+              style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '22px',
+                background: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+                color: canGoPrev ? '#60a5fa' : '#475569',
+                fontSize: '16px',
+                cursor: canGoPrev ? 'pointer' : 'not-allowed',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              ⏮
+            </button>
+            
+            <button 
+              onClick={() => setIsPlaying(!isPlaying)}
+              style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '28px',
+                background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+                border: 'none',
+                color: 'white',
+                fontSize: '20px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s'
+              }}
+            >
+              {isPlaying ? '⏸' : '▶'}
+            </button>
+            
+            <button 
+              onClick={() => handleChunkNavigation('next')}
+              disabled={!canGoNext}
+              style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '22px',
+                background: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+                color: canGoNext ? '#60a5fa' : '#475569',
+                fontSize: '16px',
+                cursor: canGoNext ? 'pointer' : 'not-allowed',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              ⏭
+            </button>
+
+            {/* Auto-advance Toggle */}
+            <button
+              onClick={() => {
+                const newState = !continuousPlayback;
+                setContinuousPlayback(newState);
+                localStorage.setItem(`continuous-playback-${bookId}`, newState.toString());
+              }}
+              style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '22px',
+                background: continuousPlayback ? 'rgba(16, 185, 129, 0.2)' : 'rgba(59, 130, 246, 0.1)',
+                border: `1px solid ${continuousPlayback ? 'rgba(16, 185, 129, 0.4)' : 'rgba(59, 130, 246, 0.2)'}`,
+                color: continuousPlayback ? '#10b981' : '#60a5fa',
+                fontSize: '16px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative'
+              }}
+              aria-label={`Auto-advance: ${continuousPlayback ? 'On' : 'Off'}`}
+              title="Toggle auto-advance"
+            >
+              {continuousPlayback ? '✓' : '→'}
+              {continuousPlayback && (
+                <div style={{
+                  position: 'absolute',
+                  top: '-2px',
+                  right: '-2px',
+                  width: '8px',
+                  height: '8px',
+                  backgroundColor: '#10b981',
+                  borderRadius: '50%',
+                  border: '2px solid rgba(30, 41, 59, 0.95)'
+                }} />
+              )}
+            </button>
           </div>
         </div>
       )}
@@ -2224,6 +2278,24 @@ export default function BookReaderPage() {
           
           .mobile-audio-controls {
             display: flex !important;
+            position: fixed !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            max-width: none !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+            height: 72px !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+            padding-bottom: env(safe-area-inset-bottom) !important;
+            background: #0f172a !important; /* opaque to avoid seeing text under */
+            border-top: 1px solid #334155 !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            z-index: 999 !important;
           }
           
           .main-content-container {
@@ -2231,10 +2303,10 @@ export default function BookReaderPage() {
           }
           
           .reading-content-container {
-            padding: 20px !important;
+            padding: 0 !important;
             border-radius: 0 !important;
             margin-top: 0 !important;
-            margin-bottom: 120px !important;
+            margin-bottom: calc(88px + env(safe-area-inset-bottom)) !important; /* leave space for fixed bar */
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
@@ -2245,10 +2317,32 @@ export default function BookReaderPage() {
             font-size: 22px !important;
           }
           
-          .reading-text {
+          /* Make book text span full mobile width with comfortable gutters */
+          .book-text-wireframe {
+            width: 100% !important;
+            max-width: none !important;
+            padding: 0 16px !important; /* slim side gutters */
+            margin: 0 !important;
             font-size: 18px !important;
+            line-height: 1.7 !important;
             text-align: justify !important;
-            line-height: 1.6 !important;
+            hyphens: auto;
+            overflow-wrap: anywhere;
+          }
+
+          /* Prominent simplified (green) text on mobile */
+          .book-text-wireframe.simplified {
+            color: #d1fae5 !important; /* brighter green */
+            background: transparent !important;
+            border: 0 !important;
+            box-shadow: none !important;
+          }
+
+          /* Ensure highlighter overlay does not reduce content width */
+          .word-highlight-overlay {
+            width: 100% !important;
+            padding: 0 !important;
+            background: transparent !important;
           }
           
           .word-highlight-current {

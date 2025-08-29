@@ -473,6 +473,41 @@ docs/mobile/
 
 ---
 
+### ✅ Session Update – Aug 29, 2025
+
+The following items were completed in this session and are now reflected in the codebase:
+
+- [x] Reading Page Mobile: Fix JSX ternary/fragment issue that rendered ") : isBrowseExperience ? (" as text in `app/library/[id]/read/page.tsx`.
+- [x] Reading Page Mobile: Make simplified (green) text occupy full mobile width with 16px side gutters; increase readability (font-size/line-height/justification).
+- [x] Reading Page Mobile: Convert the bottom audio controls into a fixed, full‑width bar that respects `env(safe-area-inset-bottom)`; add bottom spacing so text never appears underneath the bar.
+- [x] Hydration/Nesting Fix: Replace nested `<button>` inside `SmartPlayButton` with an accessible control (`role="switch"`) to prevent button‑inside‑button hydration errors.
+- [x] Revert Request: Remove the temporarily added Auto‑advance and Voice picker controls from the mobile bottom bar (restored original minimal layout).
+
+Impact: Mobile reading experience is cleaner, text is more prominent, audio bar no longer overlaps content, and hydration errors are resolved.
+
+---
+
+### ✅ Session Update – Aug 29, 2025 (Second Session)
+
+The following mobile reading page improvements were completed:
+
+- [x] **Mobile Audio Bar Cleanup**: Removed duplicate progress bar and page indicator from bottom mobile audio controls
+- [x] **Voice Selector**: Added functional voice selector button showing current voice (alloy/nova)
+  - Displays abbreviated voice name (e.g., "allo", "nova")
+  - Persists selection in localStorage
+  - Circular design matching navigation buttons
+- [x] **Auto-advance Toggle**: Added functional auto-advance button with visual feedback
+  - Shows ✓ when enabled, → when disabled  
+  - Green indicator dot when active
+  - Persists state in localStorage
+- [x] **Layout Fix**: Reorganized buttons to center group, avoiding overlap with page navigation
+  - All controls now in single centered group: [Voice] [<<] [Play] [>>] [Auto]
+  - Increased z-index to 1100 to ensure visibility above other elements
+
+Impact: Mobile audio controls are now fully functional with voice selection and auto-advance features matching desktop functionality.
+
+---
+
 **🏆 RESEARCH COMPLETE - IMPLEMENTATION READY**
 
 BookBridge has a comprehensive roadmap to become the leading global mobile ESL platform. Execute Phase 1 immediately to capture the $150,000 monthly revenue opportunity while building toward the $18.5M long-term vision.
@@ -760,6 +795,6 @@ The successful homepage implementation:
 ---
 
 *Created: August 25, 2025*  
-*Updated: August 28, 2025 - Added Implementation Lessons Learned and Comprehensive Summary*  
-*Status: Phase 1-2 Complete, Phase 3-6 Ready for Implementation*  
+*Updated: August 29, 2025 - Reading page mobile updates, fixed audio bar, hydration fix*  
+*Status: Phase 1-2 Complete; Phase 3 noted; Phase 4 updated (reading page mobile improvements); Phase 5-6 pending*  
 *Expected ROI: 2,076% over 5 years*
