@@ -798,3 +798,50 @@ The successful homepage implementation:
 *Updated: August 29, 2025 - Reading page mobile updates, fixed audio bar, hydration fix*  
 *Status: Phase 1-2 Complete; Phase 3 noted; Phase 4 updated (reading page mobile improvements); Phase 5-6 pending*  
 *Expected ROI: 2,076% over 5 years*
+
+---
+
+### ✅ Session Update – Aug 29, 2025 (Third Session)
+
+The desktop reading experience was redesigned to match the mobile reading page, providing a unified, consistent UI.
+
+Completed changes:
+- [x] Desktop/mobile parity: enabled the fixed bottom audio/control bar on desktop (same layout as mobile)
+- [x] Removed legacy top/desktop control bars to avoid duplication and confusion
+- [x] Wired Auto‑advance button to central state via `useAutoAdvance` (`autoAdvanceEnabled`, `toggleAutoAdvance`)
+- [x] Removed scroll‑to‑pause behavior; scrolling no longer stops audio
+- [x] Fixed auto‑advance race by adding one‑shot suppression ref during chunk transitions
+- [x] Removed the temporary feature flag; unified layout is now the default across breakpoints
+- [x] Verified spacing so text never sits under the bottom bar at all desktop widths
+- [x] Build successful and changes committed
+
+Files touched in this session:
+- `app/library/[id]/read/page.tsx`
+
+Deployment note:
+- It is no longer necessary to set `NEXT_PUBLIC_UNIFIED_BOTTOM_CONTROLS`. The unified layout is always on.
+
+---
+
+## 🧭 Desktop Reading Page Parity Strategy (Implemented)
+
+Objective: Make the desktop reading page match the mobile reading page for a consistent, thumb‑accessible audio experience.
+
+Design and behavior decisions:
+- **Single source of truth**: Reuse the mobile bottom bar on desktop; remove legacy desktop bars.
+- **Controls**: Left voice selector, prev, large play/pause, next, auto‑advance toggle with on/off indicator.
+- **Top area**: Keep compact Original/Simplified toggle and CEFR chips; maintain clear hierarchy; avoid duplicated control bars.
+- **State wiring**: Use `useAutoAdvance` for auto‑advance; keep `isPlaying`, mode, and voice state in reading page; persist voice and auto‑advance in localStorage.
+- **Race‑condition prevention**: Use one‑shot suppression ref to prevent pause on auto‑advance chunk changes.
+- **Accessibility & input**: Preserve keyboard navigation; ensure 44px+ interactive targets; maintain screen‑reader announcements; respect high‑contrast options.
+- **Layout guarantees**: Add bottom spacing so content never renders beneath the fixed bar; keep safe‑area padding on mobile.
+
+QA checklist (completed):
+- [x] Auto‑advance persists and works across chunk transitions
+- [x] Voice change stops/restarts appropriately without conflicts
+- [x] Scrolling does not pause playback
+- [x] Desktop widths (1280–1920px+) render with ample bottom spacing
+- [x] No duplicate bars; only the unified bottom controls are visible
+
+Rollback plan (not required):
+- Re‑introduce the feature flag toggle and restore legacy bars if needed.
