@@ -17,7 +17,6 @@ import { SpeedControl } from '@/components/SpeedControl';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
-import { useFeatureFlags } from '@/utils/featureFlags';
 import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
 
 interface BookContent {
@@ -39,7 +38,6 @@ export default function BookReaderPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { preferences, announceToScreenReader } = useAccessibility();
-  const { unifiedBottomControls } = useFeatureFlags();
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -747,7 +745,7 @@ export default function BookReaderPage() {
   
   // Feature flag for progressive audio vs wireframe controls
   const useProgressiveAudio = true; // Enable Progressive Voice for enhanced books
-  const useWireframeControls = !unifiedBottomControls; // Hide legacy bar when unified bottom controls enabled
+  const useWireframeControls = false; // Always hide legacy wireframe bar in unified layout
 
   const getEffectiveTotal = () => (currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : (bookContent?.totalChunks || 0));
 
@@ -799,8 +797,8 @@ export default function BookReaderPage() {
 
       {/* Main Content */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 48px' }} className="main-content-container">
-        {/* Old ESL Control Bar - Hidden when unified bottom controls are enabled */}
-        {!unifiedBottomControls && (
+        {/* Old ESL Control Bar - removed in unified layout */}
+        {false && (
         <div 
           style={{
             backgroundColor: '#1e293b',
@@ -1162,7 +1160,7 @@ export default function BookReaderPage() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              color: sessionTimeLeft < 300 ? '#ef4444' : '#94a3b8',
+              color: (sessionTimeLeft ?? 0) < 300 ? '#ef4444' : '#94a3b8',
               fontSize: '14px',
               fontWeight: '600'
             }}>
@@ -1170,9 +1168,9 @@ export default function BookReaderPage() {
               <div style={{ 
                 fontSize: '16px',
                 fontFamily: 'monospace',
-                color: sessionTimeLeft < 300 ? '#ef4444' : '#10b981'
+                color: (sessionTimeLeft ?? 0) < 300 ? '#ef4444' : '#10b981'
               }}>
-                {Math.floor(sessionTimeLeft / 60)}:{(sessionTimeLeft % 60).toString().padStart(2, '0')}
+                {Math.floor((sessionTimeLeft ?? 0) / 60)}:{(((sessionTimeLeft ?? 0) % 60).toString()).padStart(2, '0')}
               </div>
             </div>
           )}
@@ -1260,7 +1258,7 @@ export default function BookReaderPage() {
             <div 
               className="mobile-reading-controls"
               style={{
-                display: unifiedBottomControls ? 'block' : 'none',
+                display: 'block',
                 padding: '16px',
                 background: 'rgba(51, 65, 85, 0.3)',
                 borderBottom: '1px solid #334155'
@@ -1354,8 +1352,8 @@ export default function BookReaderPage() {
               </div>
             </div>
 
-            {/* Desktop Control Bar - Hidden when unified bottom controls enabled */}
-            <div className="mb-8 desktop-control-bar" style={{ display: unifiedBottomControls ? 'none' : undefined }}>
+            {/* Desktop Control Bar - removed in unified layout */}
+            <div className="mb-8 desktop-control-bar" style={{ display: 'none' }}>
               <div 
                 className="control-bar-grouped"
                 style={{
@@ -2072,23 +2070,23 @@ export default function BookReaderPage() {
         )}
       </div>
 
-      {/* Mobile Audio Controls - Fixed Bottom (Enhanced Books Only) */}
+      {/* Mobile Audio Controls - Fixed Bottom (Unified layout for desktop & mobile) */}
       {isEnhancedBook && (
         <div 
           className="mobile-audio-controls"
           style={{
-            display: unifiedBottomControls ? 'flex' : 'none',
+            display: 'flex',
             position: 'fixed',
-            bottom: unifiedBottomControls ? '0' : '20px',
-            left: unifiedBottomControls ? '0' : '20px',
-            right: unifiedBottomControls ? '0' : '20px',
-            maxWidth: unifiedBottomControls ? 'none' : '420px',
-            margin: unifiedBottomControls ? '0' : '0 auto',
+            bottom: '0',
+            left: '0',
+            right: '0',
+            maxWidth: 'none',
+            margin: '0',
             height: '72px',
             background: 'rgba(30, 41, 59, 0.95)',
             backdropFilter: 'blur(16px)',
             border: '1px solid #334155',
-            borderRadius: unifiedBottomControls ? '0' : '16px',
+            borderRadius: '0',
             alignItems: 'center',
             justifyContent: 'center',
             gap: '8px',
