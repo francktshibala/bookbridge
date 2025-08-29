@@ -799,8 +799,8 @@ export default function BookReaderPage() {
 
       {/* Main Content */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 48px' }} className="main-content-container">
-        {/* Old ESL Control Bar - Hidden when using wireframe controls */}
-        {!useWireframeControls && (
+        {/* Old ESL Control Bar - Hidden when unified bottom controls are enabled */}
+        {!unifiedBottomControls && (
         <div 
           style={{
             backgroundColor: '#1e293b',
@@ -2191,20 +2191,18 @@ export default function BookReaderPage() {
               ⏭
             </button>
 
-            {/* Auto-advance Toggle */}
+            {/* Auto-advance Toggle (wired to useAutoAdvance) */}
             <button
               onClick={() => {
-                const newState = !continuousPlayback;
-                setContinuousPlayback(newState);
-                localStorage.setItem(`continuous-playback-${bookId}`, newState.toString());
+                toggleAutoAdvance();
               }}
               style={{
                 width: '44px',
                 height: '44px',
                 borderRadius: '22px',
-                background: continuousPlayback ? 'rgba(16, 185, 129, 0.2)' : 'rgba(59, 130, 246, 0.1)',
-                border: `1px solid ${continuousPlayback ? 'rgba(16, 185, 129, 0.4)' : 'rgba(59, 130, 246, 0.2)'}`,
-                color: continuousPlayback ? '#10b981' : '#60a5fa',
+                background: autoAdvanceEnabled ? 'rgba(16, 185, 129, 0.2)' : 'rgba(59, 130, 246, 0.1)',
+                border: `1px solid ${autoAdvanceEnabled ? 'rgba(16, 185, 129, 0.4)' : 'rgba(59, 130, 246, 0.2)'}`,
+                color: autoAdvanceEnabled ? '#10b981' : '#60a5fa',
                 fontSize: '16px',
                 cursor: 'pointer',
                 display: 'flex',
@@ -2212,11 +2210,11 @@ export default function BookReaderPage() {
                 justifyContent: 'center',
                 position: 'relative'
               }}
-              aria-label={`Auto-advance: ${continuousPlayback ? 'On' : 'Off'}`}
+              aria-label={`Auto-advance: ${autoAdvanceEnabled ? 'On' : 'Off'}`}
               title="Toggle auto-advance"
             >
-              {continuousPlayback ? '✓' : '→'}
-              {continuousPlayback && (
+              {autoAdvanceEnabled ? '✓' : '→'}
+              {autoAdvanceEnabled && (
                 <div style={{
                   position: 'absolute',
                   top: '-2px',
