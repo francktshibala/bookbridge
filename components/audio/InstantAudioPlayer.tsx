@@ -283,15 +283,24 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     setCurrentSentence(0);
     updateProgress({ status: 'playing' });
 
-    // Load and play first audio
+    // Load and play first audio with proper abort handling
     const audio = audioRefs.current[0];
     currentAudioRef.current = audio;
+
+    // Stop any existing playback first to prevent conflicts
+    if (!audio.paused) {
+      console.log('🔄 Stopping existing audio before starting new playback');
+      audio.pause();
+      audio.currentTime = 0;
+    }
 
     audio.src = audioAssets[0].audioUrl;
     audio.addEventListener('ended', () => handleAudioEnded(0));
     audio.addEventListener('loadeddata', handleAudioLoaded);
 
     try {
+      // Add small delay to ensure previous audio is fully stopped
+      await new Promise(resolve => setTimeout(resolve, 50));
       await audio.play();
       console.log(`🎵 Audio started playing`);
       
@@ -634,18 +643,29 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       startHighlightTimeoutRef.current = null;
     }
 
-    // Pause and reset all audio elements
+    // Pause and reset all audio elements more aggressively
     audioRefs.current.forEach((audio, index) => {
       try {
-        if (audio && !audio.paused) {
-          console.log(`🛑 Pausing audio ${index}: ${audio.src ? audio.src.substring(0, 50) + '...' : 'no src'}`);
-          audio.pause();
-          audio.currentTime = 0;
+        if (audio) {
+          console.log(`🛑 Stopping audio ${index}: ${audio.src ? audio.src.substring(0, 50) + '...' : 'no src'}`);
           
-          // Remove event listeners to prevent any continued playback
+          // Remove event listeners first to prevent race conditions
+          audio.removeEventListener('ended', () => handleAudioEnded(index));
+          audio.removeEventListener('loadeddata', handleAudioLoaded);
           audio.onended = null;
           audio.ontimeupdate = null;
           audio.onloadeddata = null;
+          audio.onerror = null;
+          
+          // Force stop playback
+          if (!audio.paused) {
+            audio.pause();
+          }
+          audio.currentTime = 0;
+          
+          // Clear the src to prevent any pending loads
+          audio.src = '';
+          audio.load(); // Reset the audio element completely
         }
       } catch (e) {
         console.error(`Error pausing audio ${index}:`, e);

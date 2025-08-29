@@ -554,17 +554,17 @@ export default function BookReaderPage() {
     // Only scroll if content is getting too high or too low from ideal position
     const offsetFromIdeal = currentContentTop - idealReadingPosition;
     
-    // Smooth scrolling threshold - more responsive for better voice sync
-    const scrollThreshold = 50; // pixels (was 100px - reduced for faster response)
+    // Smooth scrolling threshold - gentle and user-friendly
+    const scrollThreshold = 120; // pixels - increased for less frequent scrolling
     
     if (Math.abs(offsetFromIdeal) > scrollThreshold) {
-      // Calculate smooth scroll distance - more aggressive movement for better sync
-      const scrollDistance = offsetFromIdeal * 0.6; // Move 60% of the way (was 0.3)
+      // Calculate smooth scroll distance - gentle movement for comfortable reading
+      const scrollDistance = offsetFromIdeal * 0.25; // Move 25% of the way - slower, more natural
       const currentScroll = window.scrollY;
       const targetScroll = currentScroll + scrollDistance;
       
       // Limit maximum scroll per adjustment for smoothness
-      const maxScrollStep = 80; // Maximum 80px per scroll (was 50px)
+      const maxScrollStep = 40; // Maximum 40px per scroll - reduced for gentler movement
       const clampedScrollDistance = Math.max(-maxScrollStep, Math.min(maxScrollStep, scrollDistance));
       const clampedTargetScroll = currentScroll + clampedScrollDistance;
       
