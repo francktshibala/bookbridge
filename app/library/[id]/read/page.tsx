@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { ESLControls } from '@/components/esl/ESLControls';
@@ -80,6 +80,7 @@ export default function BookReaderPage() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
   const [isAutoAdvancing, setIsAutoAdvancing] = useState(false);
+  const suppressPauseOnNextChunkRef = useRef(false);
 
   // Word highlighting integration
   const { currentWordIndex, handleWordHighlight, resetHighlighting } = useWordHighlighting();
@@ -136,6 +137,8 @@ export default function BookReaderPage() {
       // Set auto-advancing flag if this is an auto-advance to prevent scroll detection pause
       if (autoAdvance) {
         console.log('🔄 NAVIGATION: Setting auto-advancing flag to prevent scroll pause');
+        // One-shot guard to prevent pause during the immediate chunk-change effect
+        suppressPauseOnNextChunkRef.current = true;
         setIsAutoAdvancing(true);
         setUserScrolledUp(false);      // Reset scroll flag for clean auto-advance
         setAutoScrollEnabled(true);     // Re-enable auto-scroll for continuous playback
@@ -212,12 +215,13 @@ export default function BookReaderPage() {
     setMicroHint('');
     resetHighlighting(); // Reset word highlighting
     
-    // Only stop audio if NOT auto-advancing
-    if (!isAutoAdvancing) {
-      console.log('🔄 CHUNK CHANGE: Stopping audio - manual navigation');
-      setIsPlaying(false); // Stop audio when changing chunks manually
+    // Use one-shot suppression ref to avoid race with state updates
+    if (suppressPauseOnNextChunkRef.current) {
+      console.log('🔄 CHUNK CHANGE: Suppression ref active - keeping audio playing during auto-advance');
+      suppressPauseOnNextChunkRef.current = false; // consume the one-shot guard
     } else {
-      console.log('🔄 CHUNK CHANGE: Keeping audio playing - auto-advance navigation');
+      console.log('🔄 CHUNK CHANGE: Stopping audio - manual navigation or no suppression');
+      setIsPlaying(false); // Stop audio when changing chunks manually
     }
     
     // Reset to original content for new chunk
@@ -227,7 +231,7 @@ export default function BookReaderPage() {
       console.log('DEBUG: Chunk changed to', currentChunk, 'Content length:', newContent?.length || 0);
       console.log('DEBUG: Content preview:', newContent?.substring(0, 100) || 'No content');
     }
-  }, [currentChunk, bookContent, isAutoAdvancing]); // Add isAutoAdvancing to dependencies
+  }, [currentChunk, bookContent]);
 
   // Auto-fetch simplified content when chunk changes in simplified mode
   useEffect(() => {
