@@ -77,7 +77,6 @@ export default function BookReaderPage() {
   const [sections, setSections] = useState<Array<{title: string; content: string; startIndex: number}>>([]);
   const [simplifiedTotalChunks, setSimplifiedTotalChunks] = useState<number>(0);
   const [userScrolledUp, setUserScrolledUp] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
   const [isAutoAdvancing, setIsAutoAdvancing] = useState(false);
   const suppressPauseOnNextChunkRef = useRef(false);
@@ -496,49 +495,7 @@ export default function BookReaderPage() {
     return () => clearInterval(timer);
   }, [sessionTimerActive, sessionTimeLeft]);
 
-  // Scroll-to-pause functionality
-  useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Clear existing timeout
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      
-      // Check if user scrolled up significantly (more than 300px) - less sensitive
-      // BUT ignore during auto-advance transitions
-      if (currentScrollY < lastScrollY - 300 && isPlaying && !isAutoAdvancing) {
-        console.log('📜 USER SCROLLED UP: Pausing audio and disabling auto-scroll');
-        setUserScrolledUp(true);
-        setAutoScrollEnabled(false);
-        setIsPlaying(false);
-      } else if (currentScrollY < lastScrollY - 300 && isPlaying && isAutoAdvancing) {
-        console.log('📜 AUTO-ADVANCE SCROLL: Ignoring upward scroll during auto-advance transition');
-      }
-      
-      // Update last scroll position after a short delay
-      scrollTimeout = setTimeout(() => {
-        setLastScrollY(currentScrollY);
-        
-        // Reset scroll flag after user stops scrolling
-        if (userScrolledUp && Math.abs(currentScrollY - lastScrollY) < 50) {
-          setTimeout(() => setUserScrolledUp(false), 2000); // Reset after 2 seconds
-        }
-      }, 100);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-    };
-  }, [lastScrollY, isPlaying, userScrolledUp, isAutoAdvancing]);
+  // Scroll-to-pause behavior removed per user request
 
   // Smooth auto-scroll handler that follows voice reading naturally
   const handleAutoScroll = (scrollProgress: number) => {
