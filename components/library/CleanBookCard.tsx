@@ -42,141 +42,120 @@ export function CleanBookCard({ book, onAskAI, onReadBook, index = 0 }: CleanBoo
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      whileHover={{ y: -2, transition: { duration: 0.2 } }}
-      className="clean-book-card"
+      whileHover={{ scale: 1.01 }}
       style={{
-        background: '#1e293b',
+        background: 'rgba(51, 65, 85, 0.5)',
         border: '1px solid #334155',
-        borderRadius: '16px',
-        padding: '24px',
-        transition: 'all 0.3s ease',
-        position: 'relative',
-        cursor: 'default'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = '#667eea';
-        e.currentTarget.style.boxShadow = '0 8px 32px rgba(102, 126, 234, 0.2)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = '#334155';
-        e.currentTarget.style.boxShadow = 'none';
+        borderRadius: '12px',
+        padding: '16px',
+        marginBottom: '16px'
       }}
     >
-      {/* Book Header */}
-      <div className="book-header" style={{ marginBottom: '16px' }}>
-        <h3 
-          className="book-title"
-          style={{
-            fontSize: '20px',
-            fontWeight: 700,
-            color: '#e2e8f0',
-            marginBottom: '8px',
-            lineHeight: '1.3'
-          }}
-        >
-          {displayTitle}
-        </h3>
-        <p 
-          className="book-author"
-          style={{
-            fontSize: '16px',
-            color: '#94a3b8',
-            marginBottom: '12px',
-            margin: 0
-          }}
-        >
-          by {displayAuthor}
-        </p>
+      {/* Book Title */}
+      <div style={{
+        fontSize: '16px',
+        fontWeight: '600',
+        color: '#e2e8f0',
+        marginBottom: '4px'
+      }}>
+        {displayTitle}
       </div>
-      
-      
-      {/* Book Description */}
-      <p 
-        className="book-description"
-        style={{
-          fontSize: '14px',
-          color: '#94a3b8',
-          lineHeight: '1.5',
-          marginBottom: '20px',
-          display: '-webkit-box',
-          WebkitLineClamp: 3,
-          WebkitBoxOrient: 'vertical' as any,
-          overflow: 'hidden'
-        }}
-      >
-        {displayDescription}
-      </p>
-      
-      {/* Book Actions */}
-      <div 
-        className="book-actions"
-        style={{
-          display: 'flex',
-          gap: '12px'
-        }}
-      >
-        <motion.button
-          whileHover={{ y: -1, transition: { duration: 0.2 } }}
-          whileTap={{ scale: 0.98 }}
+
+      {/* Author */}
+      <div style={{
+        fontSize: '14px',
+        color: '#94a3b8',
+        marginBottom: '12px'
+      }}>
+        by {displayAuthor}
+      </div>
+
+      {/* Meta Tags */}
+      <div style={{
+        display: 'flex',
+        gap: '8px',
+        marginBottom: '12px',
+        flexWrap: 'wrap'
+      }}>
+        <span style={{
+          padding: '4px 8px',
+          background: 'rgba(59, 130, 246, 0.2)',
+          color: '#60a5fa',
+          borderRadius: '4px',
+          fontSize: '11px'
+        }}>
+          {primarySubject}
+        </span>
+        {book.source && (
+          <span style={{
+            padding: '4px 8px',
+            background: 'rgba(59, 130, 246, 0.2)',
+            color: '#60a5fa',
+            borderRadius: '4px',
+            fontSize: '11px'
+          }}>
+            {book.source}
+          </span>
+        )}
+        {book.publicationYear && (
+          <span style={{
+            padding: '4px 8px',
+            background: 'rgba(59, 130, 246, 0.2)',
+            color: '#60a5fa',
+            borderRadius: '4px',
+            fontSize: '11px'
+          }}>
+            {book.publicationYear}
+          </span>
+        )}
+        <span style={{
+          padding: '4px 8px',
+          background: 'rgba(16, 185, 129, 0.2)',
+          color: '#10b981',
+          borderRadius: '4px',
+          fontSize: '11px'
+        }}>
+          Browse Library
+        </span>
+      </div>
+
+      {/* Action Buttons */}
+      <div style={{
+        display: 'flex',
+        gap: '8px'
+      }}>
+        <button
           onClick={() => onAskAI(book)}
-          className="btn-ask-ai"
           style={{
             flex: 1,
-            padding: '12px',
-            background: 'transparent',
-            border: '2px solid #8b5cf6',
+            height: '36px',
             borderRadius: '8px',
-            color: '#8b5cf6',
-            fontWeight: 600,
+            background: 'rgba(139, 92, 246, 0.2)',
+            color: '#a78bfa',
+            border: '1px solid rgba(139, 92, 246, 0.3)',
             fontSize: '14px',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'transparent';
+            fontWeight: '500',
+            cursor: 'pointer'
           }}
         >
-          🤖 Ask AI
-        </motion.button>
-        
-        <motion.button
-          whileHover={{ y: -1, transition: { duration: 0.2 } }}
-          whileTap={{ scale: 0.98 }}
+          Ask AI
+        </button>
+        <button
           onClick={() => onReadBook(book.id)}
-          className="btn-read"
           style={{
             flex: 1,
-            padding: '12px',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            height: '36px',
+            background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+            color: 'white',
             border: 'none',
             borderRadius: '8px',
-            color: 'white',
-            fontWeight: 600,
             fontSize: '14px',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = 'none';
+            fontWeight: '500',
+            cursor: 'pointer'
           }}
         >
-          📖 Read Book
-        </motion.button>
+          Read Book
+        </button>
       </div>
     </motion.div>
   );

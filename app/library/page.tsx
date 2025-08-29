@@ -16,6 +16,7 @@ import { useBookViewTracking } from '@/lib/use-recommendations';
 import { useAuth } from '@/components/SimpleAuthProvider';
 import { AIBookChatModal } from '@/components/ai/AIBookChatModal';
 import type { ExternalBook, BookSearchResults, BookSource } from '@/types/book-sources';
+ 
 
 interface Book {
   id: string;
@@ -952,7 +953,7 @@ export default function LibraryPage() {
             </motion.p>
           </motion.div>
 
-          {/* Simple Search Controls */}
+          {/* Mobile-Responsive Search Controls */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -962,10 +963,11 @@ export default function LibraryPage() {
             <div style={{ 
               display: 'flex', 
               gap: '12px',
-              alignItems: 'center',
+              alignItems: 'stretch',
               justifyContent: 'center',
               maxWidth: '800px',
-              margin: '0 auto'
+              margin: '0 auto',
+              flexWrap: 'wrap'
             }}>
               <input
                 type="text"
@@ -976,12 +978,14 @@ export default function LibraryPage() {
                     handleCatalogSearch();
                   }
                 }}
-                placeholder="shakespeare"
+                placeholder="Search books by title or author..."
                 style={{
                   flex: '1',
-                  padding: '12px 16px',
+                  minWidth: '250px',
+                  minHeight: '44px',
+                  padding: '14px 16px',
                   border: '1px solid #334155',
-                  borderRadius: '8px',
+                  borderRadius: '12px',
                   fontSize: '16px',
                   fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                   color: '#e2e8f0',
@@ -991,9 +995,11 @@ export default function LibraryPage() {
                 }}
                 onFocus={(e) => {
                   e.target.style.borderColor = '#8b5cf6';
+                  e.target.style.boxShadow = '0 0 0 3px rgba(139, 92, 246, 0.1)';
                 }}
                 onBlur={(e) => {
                   e.target.style.borderColor = '#334155';
+                  e.target.style.boxShadow = 'none';
                 }}
               />
               
@@ -1005,9 +1011,11 @@ export default function LibraryPage() {
                   fetchCatalogBooks(1, catalogSearch, newSource);
                 }}
                 style={{
-                  padding: '12px 16px',
+                  minWidth: '140px',
+                  minHeight: '44px',
+                  padding: '14px 16px',
                   border: '1px solid #334155',
-                  borderRadius: '8px',
+                  borderRadius: '12px',
                   fontSize: '16px',
                   fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                   color: '#e2e8f0',
@@ -1031,16 +1039,18 @@ export default function LibraryPage() {
                   background: '#8b5cf6',
                   color: 'white',
                   border: 'none',
-                  borderRadius: '8px',
-                  padding: '12px 24px',
+                  borderRadius: '12px',
+                  padding: '14px 28px',
+                  minHeight: '44px',
                   fontSize: '16px',
                   fontWeight: '600',
                   fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
                   cursor: catalogLoading ? 'not-allowed' : 'pointer',
-                  opacity: catalogLoading ? 0.7 : 1
+                  opacity: catalogLoading ? 0.7 : 1,
+                  boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
                 }}
               >
-                Search
+                {catalogLoading ? 'Searching...' : 'Search'}
               </motion.button>
             </div>
             
@@ -1059,6 +1069,84 @@ export default function LibraryPage() {
                 Found {catalogPagination.total.toLocaleString()} books matching "{catalogSearch || 'all books'}"
               </motion.p>
             )}
+          </motion.div>
+
+          {/* Upgrade Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            style={{
+              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%)',
+              border: '1px solid rgba(16, 185, 129, 0.3)',
+              borderRadius: '16px',
+              padding: '20px',
+              marginBottom: '32px',
+              textAlign: 'center',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+          >
+            {/* Decorative element */}
+            <div style={{
+              position: 'absolute',
+              top: '-50%',
+              right: '-10%',
+              width: '200px',
+              height: '200px',
+              background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
+              borderRadius: '50%'
+            }} />
+            
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '16px',
+              flexWrap: 'wrap'
+            }}>
+              <div style={{ fontSize: '32px' }}>⚡</div>
+              <div>
+                <div style={{
+                  color: '#10b981',
+                  fontSize: '18px',
+                  fontWeight: '700',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  marginBottom: '4px'
+                }}>
+                  Unlock Enhanced Reading Experience
+                </div>
+                <div style={{
+                  color: '#94a3b8',
+                  fontSize: '14px',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                }}>
+                  Get AI simplification, premium audio, and vocabulary tools
+                </div>
+              </div>
+              <motion.a
+                href="/enhanced-collection"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  color: 'white',
+                  textDecoration: 'none',
+                  padding: '12px 24px',
+                  borderRadius: '12px',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
+                  minHeight: '44px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                Explore Enhanced Books
+              </motion.a>
+            </div>
           </motion.div>
 
           {/* Error State */}
@@ -1134,19 +1222,15 @@ export default function LibraryPage() {
             </motion.div>
           ) : (
             <>
-              {/* Magical Books Grid */}
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-                  gap: '24px',
-                  marginBottom: '48px',
-                  padding: '0 20px'
-                }}
-              >
+              {/* Responsive Books Grid */}
+              <div className="browse-library-grid" style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr',
+                gap: '16px',
+                maxWidth: '600px',
+                margin: '0 auto',
+                marginBottom: '48px'
+              }}>
                 {catalogBooks.map((book, index) => (
                   <CleanBookCard
                     key={book.id}
@@ -1156,7 +1240,18 @@ export default function LibraryPage() {
                     index={index}
                   />
                 ))}
-              </motion.div>
+              </div>
+              
+              {/* Responsive Styles */}
+              <style jsx>{`
+                @media (min-width: 769px) {
+                  .browse-library-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+                    max-width: 1200px !important;
+                    gap: 24px !important;
+                  }
+                }
+              `}</style>
 
               {/* Pagination */}
               {(catalogPagination.hasNext || catalogPagination.hasPrevious) && (
