@@ -4,12 +4,12 @@
  */
 
 export interface FeatureFlags {
-  // Add future feature flags here
+  unifiedBottomControls?: boolean;
 }
 
 // Default feature flags - all disabled initially for safe rollout
 const DEFAULT_FLAGS: FeatureFlags = {
-  // Add default values for future flags here
+  unifiedBottomControls: false,
 };
 
 /**
@@ -17,7 +17,7 @@ const DEFAULT_FLAGS: FeatureFlags = {
  */
 export function getFeatureFlags(): FeatureFlags {
   return {
-    // Add environment variable mappings for future flags here
+    unifiedBottomControls: process.env.NEXT_PUBLIC_UNIFIED_BOTTOM_CONTROLS === 'true' || DEFAULT_FLAGS.unifiedBottomControls,
   };
 }
 

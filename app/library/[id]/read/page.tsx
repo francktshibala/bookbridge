@@ -17,6 +17,7 @@ import { SpeedControl } from '@/components/SpeedControl';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
+import { useFeatureFlags } from '@/utils/featureFlags';
 import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
 
 interface BookContent {
@@ -38,6 +39,7 @@ export default function BookReaderPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { preferences, announceToScreenReader } = useAccessibility();
+  const { unifiedBottomControls } = useFeatureFlags();
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -745,7 +747,7 @@ export default function BookReaderPage() {
   
   // Feature flag for progressive audio vs wireframe controls
   const useProgressiveAudio = true; // Enable Progressive Voice for enhanced books
-  const useWireframeControls = true; // Can toggle during testing
+  const useWireframeControls = !unifiedBottomControls; // Hide legacy bar when unified bottom controls enabled
 
   const getEffectiveTotal = () => (currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : (bookContent?.totalChunks || 0));
 
@@ -1258,7 +1260,7 @@ export default function BookReaderPage() {
             <div 
               className="mobile-reading-controls"
               style={{
-                display: 'none',
+                display: unifiedBottomControls ? 'block' : 'none',
                 padding: '16px',
                 background: 'rgba(51, 65, 85, 0.3)',
                 borderBottom: '1px solid #334155'
@@ -1352,8 +1354,8 @@ export default function BookReaderPage() {
               </div>
             </div>
 
-            {/* Desktop Control Bar - Hidden on mobile */}
-            <div className="mb-8 desktop-control-bar">
+            {/* Desktop Control Bar - Hidden when unified bottom controls enabled */}
+            <div className="mb-8 desktop-control-bar" style={{ display: unifiedBottomControls ? 'none' : undefined }}>
               <div 
                 className="control-bar-grouped"
                 style={{
@@ -2070,25 +2072,23 @@ export default function BookReaderPage() {
         )}
       </div>
 
-      {/* Bottom navigation removed for cleaner reading experience */}
-      
       {/* Mobile Audio Controls - Fixed Bottom (Enhanced Books Only) */}
       {isEnhancedBook && (
         <div 
           className="mobile-audio-controls"
           style={{
-            display: 'none',
+            display: unifiedBottomControls ? 'flex' : 'none',
             position: 'fixed',
-            bottom: '20px',
-            left: '20px',
-            right: '20px',
-            maxWidth: '420px',
-            margin: '0 auto',
+            bottom: unifiedBottomControls ? '0' : '20px',
+            left: unifiedBottomControls ? '0' : '20px',
+            right: unifiedBottomControls ? '0' : '20px',
+            maxWidth: unifiedBottomControls ? 'none' : '420px',
+            margin: unifiedBottomControls ? '0' : '0 auto',
             height: '72px',
             background: 'rgba(30, 41, 59, 0.95)',
             backdropFilter: 'blur(16px)',
             border: '1px solid #334155',
-            borderRadius: '16px',
+            borderRadius: unifiedBottomControls ? '0' : '16px',
             alignItems: 'center',
             justifyContent: 'center',
             gap: '8px',
@@ -2331,6 +2331,10 @@ export default function BookReaderPage() {
             border-radius: 2px;
             padding: 0 1px;
           }
+        }
+        
+        @media (min-width: 769px) {
+          ${'' /* Unified bottom controls on desktop when flag is on */}
         }
         
         .mobile-reading-controls button:active {
