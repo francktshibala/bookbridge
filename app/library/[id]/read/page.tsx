@@ -19,6 +19,7 @@ import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
 import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
 import { useReadingEngagement } from '@/components/InstallPrompt';
+import { ReadingProgressTracker } from '@/components/sync/ReadingProgressTracker';
 
 interface BookContent {
   id: string;
@@ -771,6 +772,22 @@ export default function BookReaderPage() {
 
   return (
     <div className="min-h-screen bg-slate-900">
+      {/* Background Reading Progress Tracker */}
+      {user && bookContent && (
+        <ReadingProgressTracker
+          bookId={bookId}
+          userId={user.id}
+          totalPages={bookContent.totalChunks}
+          currentPage={currentChunk + 1}
+          cefr={eslLevel}
+          voice={selectedVoice}
+          onProgressUpdate={(progress) => {
+            console.log('📊 Reading progress updated:', progress);
+            // Could trigger UI updates or sync status indicators here
+          }}
+        />
+      )}
+      
       <style jsx>{`
         @keyframes spin {
           from { transform: rotate(0deg); }
