@@ -184,7 +184,18 @@ export async function GET(
       }
 
       // Get book metadata first
-      const bookData = await gutenbergAPI.getBook(numericId);
+      console.log(`Fetching Gutenberg book ${numericId} from API...`);
+      
+      let bookData;
+      try {
+        bookData = await gutenbergAPI.getBook(numericId);
+      } catch (apiError) {
+        console.error('Gutenberg API failed:', apiError);
+        return NextResponse.json(
+          { error: 'Failed to fetch from Gutenberg API', details: apiError instanceof Error ? apiError.message : 'Unknown error' },
+          { status: 500 }
+        );
+      }
       
       if (!bookData) {
         return NextResponse.json(

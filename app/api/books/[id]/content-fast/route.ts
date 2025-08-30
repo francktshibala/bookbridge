@@ -148,6 +148,13 @@ export async function GET(
         console.log(`❌ Book ${id} not found in database, falling back to external API`)
       } catch (dbError) {
         console.error('Database lookup failed, falling back to external API:', dbError)
+        // Log detailed database error
+        console.error('Database error details:', {
+          error: dbError instanceof Error ? dbError.message : 'Unknown DB error',
+          stack: dbError instanceof Error ? dbError.stack : undefined,
+          bookId: id,
+          timestamp: new Date().toISOString()
+        })
       }
       } // Close the enhanced experience else block
       
@@ -456,8 +463,23 @@ export async function GET(
         
       } catch (error) {
         console.error('Error fetching external book:', error)
+        
+        // Log detailed external API error
+        const errorInfo = {
+          bookId: id,
+          apiUrl: `${request.nextUrl.origin}/api/books/external/${id}`,
+          error: error instanceof Error ? error.message : 'Unknown error',
+          stack: error instanceof Error ? error.stack : undefined,
+          timestamp: new Date().toISOString()
+        }
+        console.error('External API error details:', JSON.stringify(errorInfo, null, 2))
+        
         return NextResponse.json(
-          { error: 'Failed to fetch external book content' },
+          { 
+            error: 'Failed to fetch external book content',
+            message: error instanceof Error ? error.message : 'External API request failed',
+            bookId: id
+          },
           { status: 500 }
         )
       }
@@ -569,8 +591,23 @@ export async function GET(
 
   } catch (error) {
     console.error('Error in fast content fetch:', error)
+    
+    // Log more detailed error information
+    const errorDetails = {
+      bookId: params ? (await params).id : 'unknown',
+      errorMessage: error instanceof Error ? error.message : 'Unknown error',
+      errorStack: error instanceof Error ? error.stack : undefined,
+      timestamp: new Date().toISOString()
+    }
+    console.error('Detailed error:', JSON.stringify(errorDetails, null, 2))
+    
+    // Return more specific error message for debugging
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: 'Internal server error',
+        message: error instanceof Error ? error.message : 'Unknown error occurred',
+        bookId: params ? (await params).id : 'unknown'
+      },
       { status: 500 }
     )
   }
