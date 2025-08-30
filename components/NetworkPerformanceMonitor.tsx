@@ -92,9 +92,9 @@ export const NetworkPerformanceMonitor: React.FC<NetworkPerformanceMonitorProps>
     return { grade: 'F', color: 'text-red-600' };
   };
 
-  if (!isVisible && !process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
-    return null;
-  }
+  // Show only if explicitly enabled via prop or public env flag
+  const show = isVisible || process.env.NEXT_PUBLIC_SHOW_NET_MONITOR === 'true';
+  if (!show) return null;
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

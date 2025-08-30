@@ -2378,10 +2378,10 @@ export default function BookReaderPage() {
         }
       `}</style>
 
-      {/* Network Performance Monitor (Development/Testing) */}
+      {/* Network Performance Monitor (hidden in production unless explicitly enabled) */}
       <NetworkPerformanceMonitor 
         bookId={bookId}
-        isVisible={process.env.NODE_ENV === 'development'}
+        isVisible={false}
       />
     </div>
   );
