@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ABTestManager, UserEngagement, useReadingEngagement as useABTestEngagement } from '@/lib/ab-testing';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
@@ -13,6 +14,8 @@ export default function InstallPrompt() {
   const [showPrompt, setShowPrompt] = useState(false);
   const [isInstallable, setIsInstallable] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
+  const { engagement } = useABTestEngagement();
+  const [abTestManager, setAbTestManager] = useState<ABTestManager | null>(null);
 
   useEffect(() => {
     // Check if already installed
@@ -53,48 +56,24 @@ export default function InstallPrompt() {
     };
   }, [isInstalled]);
 
+  // Initialize A/B test manager
   useEffect(() => {
-    if (!isInstallable || !deferredPrompt || isInstalled) return;
+    const userId = localStorage.getItem('user_id') || 'anonymous_' + Math.random().toString(36).substr(2, 9);
+    if (!localStorage.getItem('user_id')) {
+      localStorage.setItem('user_id', userId);
+    }
+    setAbTestManager(ABTestManager.getInstance(userId));
+  }, []);
 
-    // Check engagement criteria based on research findings
-    const checkEngagementCriteria = () => {
-      const sessionCount = parseInt(localStorage.getItem('bookbridge_session_count') || '0');
-      const readingTime = parseInt(localStorage.getItem('bookbridge_total_reading_time') || '0');
-      const chaptersCompleted = parseInt(localStorage.getItem('bookbridge_chapters_completed') || '0');
-      const promptDismissed = localStorage.getItem('bookbridge_install_prompt_dismissed');
-      const lastPromptTime = parseInt(localStorage.getItem('bookbridge_last_prompt_time') || '0');
-      
-      // Don't show again if dismissed in last 7 days
-      if (promptDismissed && (Date.now() - lastPromptTime) < 7 * 24 * 60 * 60 * 1000) {
-        return false;
-      }
+  useEffect(() => {
+    if (!isInstallable || !deferredPrompt || isInstalled || !abTestManager) return;
 
-      // Primary trigger: After completing first chapter (85% acceptance rate)
-      if (chaptersCompleted >= 1) {
-        return true;
-      }
-
-      // Secondary trigger: After 2+ sessions with 5+ minutes reading (67% higher success)
-      if (sessionCount >= 2 && readingTime >= 300) { // 300 seconds = 5 minutes
-        return true;
-      }
-
-      // Never on first visit (90% rejection rate)
-      return false;
-    };
-
-    // Track current session
-    const trackSession = () => {
-      const sessionCount = parseInt(localStorage.getItem('bookbridge_session_count') || '0');
-      localStorage.setItem('bookbridge_session_count', (sessionCount + 1).toString());
-    };
-
-    trackSession();
-
-    // Check engagement with a delay to avoid immediate popup
+    // Check if should show prompt based on A/B test variant
     const timer = setTimeout(() => {
-      if (checkEngagementCriteria()) {
+      if (abTestManager.shouldShowPrompt(engagement)) {
         setShowPrompt(true);
+        // Track that prompt was shown
+        abTestManager.trackEvent('shown', { page: window.location.pathname }, engagement);
       }
     }, 3000); // 3 second delay
 
@@ -102,21 +81,20 @@ export default function InstallPrompt() {
   }, [isInstallable, deferredPrompt, isInstalled]);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) return;
+    if (!deferredPrompt || !abTestManager) return;
 
     try {
       await deferredPrompt.prompt();
       const choiceResult = await deferredPrompt.userChoice;
       
-      // Track user choice
-      localStorage.setItem('bookbridge_install_choice', choiceResult.outcome);
-      localStorage.setItem('bookbridge_last_prompt_time', Date.now().toString());
+      // Track A/B test result
+      const action = choiceResult.outcome === 'accepted' ? 'accepted' : 'dismissed';
+      abTestManager.trackEvent(action, { page: window.location.pathname }, engagement);
       
       if (choiceResult.outcome === 'accepted') {
         console.log('User accepted the install prompt');
       } else {
         console.log('User dismissed the install prompt');
-        localStorage.setItem('bookbridge_install_prompt_dismissed', 'true');
       }
     } catch (error) {
       console.error('Error during install prompt:', error);
@@ -127,15 +105,18 @@ export default function InstallPrompt() {
   };
 
   const handleDismissClick = () => {
+    if (abTestManager) {
+      abTestManager.trackEvent('dismissed', { page: window.location.pathname }, engagement);
+    }
     setShowPrompt(false);
-    localStorage.setItem('bookbridge_install_prompt_dismissed', 'true');
-    localStorage.setItem('bookbridge_last_prompt_time', Date.now().toString());
   };
 
   // Don't render if not installable, already installed, or shouldn't show prompt
-  if (!isInstallable || isInstalled || !showPrompt) {
+  if (!isInstallable || isInstalled || !showPrompt || !abTestManager) {
     return null;
   }
+
+  const variant = abTestManager.getVariant();
 
   return (
     <AnimatePresence>
@@ -159,7 +140,7 @@ export default function InstallPrompt() {
               {/* Content */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-lg font-semibold">📖 Read offline anytime!</h3>
+                  <h3 className="text-lg font-semibold">{variant.config.copy.title}</h3>
                   <button
                     onClick={handleDismissClick}
                     className="text-white text-opacity-80 hover:text-opacity-100 transition-opacity"
@@ -172,7 +153,7 @@ export default function InstallPrompt() {
                 </div>
                 
                 <p className="text-sm text-blue-100 mb-3">
-                  Install BookBridge app for instant access to your books, even without internet connection.
+                  {variant.config.copy.description}
                 </p>
                 
                 {/* Action Buttons */}
@@ -181,13 +162,13 @@ export default function InstallPrompt() {
                     onClick={handleInstallClick}
                     className="flex-1 bg-white text-blue-600 px-4 py-2 rounded-md font-semibold text-sm hover:bg-blue-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
                   >
-                    Install App
+                    {variant.config.copy.primaryButton}
                   </button>
                   <button
                     onClick={handleDismissClick}
                     className="px-4 py-2 text-blue-100 hover:text-white text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 rounded-md"
                   >
-                    Maybe Later
+                    {variant.config.copy.secondaryButton}
                   </button>
                 </div>
                 
