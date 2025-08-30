@@ -19,6 +19,7 @@ import { motion } from 'framer-motion';
 import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
 import { useReadingEngagement } from '@/components/InstallPrompt';
 import { ReadingProgressTracker } from '@/components/sync/ReadingProgressTracker';
+import { NetworkPerformanceMonitor } from '@/components/NetworkPerformanceMonitor';
 
 interface BookContent {
   id: string;
@@ -2376,6 +2377,12 @@ export default function BookReaderPage() {
           transform: scale(0.95);
         }
       `}</style>
+
+      {/* Network Performance Monitor (Development/Testing) */}
+      <NetworkPerformanceMonitor 
+        bookId={bookId}
+        isVisible={process.env.NODE_ENV === 'development'}
+      />
     </div>
   );
 }
