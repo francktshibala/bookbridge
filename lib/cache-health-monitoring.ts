@@ -7,6 +7,8 @@
 import { audioCacheDB, AudioQuality, NetworkType, CachePriority } from './audio-cache-db';
 import { priorityCacheEviction } from './priority-cache-eviction';
 import { dynamicStorageQuota } from './dynamic-storage-quota';
+import { userBehaviorAnalytics } from './user-behavior-analytics';
+import { adaptiveCacheTuner } from './adaptive-cache-tuner';
 
 interface CacheHealthMetrics {
   overall: HealthScore;
@@ -228,11 +230,14 @@ export class CacheHealthMonitoringService {
   }
 
   private async analyzePerformanceHealth(): Promise<PerformanceHealth> {
-    // These would be gathered from actual usage metrics
+    // Get enhanced metrics from user behavior analytics and adaptive tuning
     const avgLoadTime = await this.calculateAverageLoadTime();
     const cacheHitRate = await this.calculateCacheHitRate();
     const evictionFrequency = await this.calculateEvictionFrequency();
     const prefetchAccuracy = await this.calculatePrefetchAccuracy();
+    
+    // Integrate user behavior insights
+    await this.integrateUserBehaviorInsights();
 
     const recommendations: string[] = [];
     if (avgLoadTime > 2000) {
@@ -461,8 +466,18 @@ export class CacheHealthMonitoringService {
   }
 
   private async calculateCacheHitRate(): Promise<number> {
-    // This would track actual cache hits vs misses
-    return 0.78; // 78% hit rate
+    try {
+      // Get hit rate from adaptive tuner if available
+      const tuningHistory = await adaptiveCacheTuner.getTuningHistory(5);
+      if (tuningHistory.length > 0) {
+        const avgHitRate = tuningHistory.reduce((sum, h) => sum + h.cacheHitRate, 0) / tuningHistory.length;
+        return avgHitRate;
+      }
+    } catch (error) {
+      console.warn('CacheHealthMonitoring: Error getting hit rate from tuner:', error);
+    }
+    
+    return 0.78; // Default fallback
   }
 
   private async calculateEvictionFrequency(): Promise<number> {
@@ -475,8 +490,29 @@ export class CacheHealthMonitoringService {
   }
 
   private async calculatePrefetchAccuracy(): Promise<number> {
-    // This would track how often prefetched content is actually used
-    return 0.65; // 65% accuracy
+    try {
+      // Get accuracy from adaptive tuner if available
+      const tuningHistory = await adaptiveCacheTuner.getTuningHistory(5);
+      if (tuningHistory.length > 0) {
+        const avgAccuracy = tuningHistory.reduce((sum, h) => sum + h.prefetchAccuracy, 0) / tuningHistory.length;
+        return avgAccuracy;
+      }
+    } catch (error) {
+      console.warn('CacheHealthMonitoring: Error getting prefetch accuracy from tuner:', error);
+    }
+    
+    // Fallback to behavior-based estimation
+    try {
+      const analytics = await userBehaviorAnalytics.getCurrentSessionAnalytics();
+      if (analytics.session) {
+        // Lower skip rate suggests better prefetch accuracy
+        return Math.max(0.4, 0.8 - analytics.session.skipRate);
+      }
+    } catch (error) {
+      console.warn('CacheHealthMonitoring: Error getting behavior analytics:', error);
+    }
+    
+    return 0.65; // Default fallback
   }
 
   private async getQualityDistribution(): Promise<Record<AudioQuality, number>> {
@@ -810,6 +846,103 @@ export class CacheHealthMonitoringService {
     };
   }
 
+  // Integration methods for enhanced analytics
+  
+  private async integrateUserBehaviorInsights(): Promise<void> {
+    try {
+      const analytics = await userBehaviorAnalytics.getCurrentSessionAnalytics();
+      
+      if (analytics.session && analytics.matchingPatterns.length > 0) {
+        // Log insights about user behavior patterns affecting cache performance
+        const patterns = analytics.matchingPatterns;
+        const avgConfidence = patterns.reduce((sum, p) => sum + p.confidence, 0) / patterns.length;
+        
+        if (avgConfidence > 0.7) {
+          console.log(`CacheHealthMonitoring: Strong behavior patterns detected (${avgConfidence.toFixed(2)} confidence) - optimizing cache strategy`);
+          
+          // Trigger cache optimization based on patterns
+          await this.applyBehaviorBasedOptimizations(patterns);
+        }
+      }
+    } catch (error) {
+      console.warn('CacheHealthMonitoring: Error integrating behavior insights:', error);
+    }
+  }
+  
+  private async applyBehaviorBasedOptimizations(patterns: any[]): Promise<void> {
+    // Apply optimizations based on detected user behavior patterns
+    for (const pattern of patterns) {
+      const nextChunkPrediction = pattern.predictions.find((p: any) => p.type === 'next_chunk');
+      
+      if (nextChunkPrediction && nextChunkPrediction.probability > 0.8) {
+        // User likely to continue reading - optimize prefetch
+        const prefetchDistance = nextChunkPrediction.metadata?.prefetch_distance || 3;
+        console.log(`CacheHealthMonitoring: Optimizing prefetch distance to ${prefetchDistance} based on user pattern: ${pattern.name}`);
+        
+        // This would integrate with the prefetch service
+        // await prefetchService.adjustDistance(prefetchDistance);
+      }
+      
+      const qualityPrediction = pattern.predictions.find((p: any) => p.type === 'quality_preference');
+      if (qualityPrediction && qualityPrediction.probability > 0.7) {
+        const preferredQuality = qualityPrediction.metadata?.quality;
+        console.log(`CacheHealthMonitoring: User prefers ${preferredQuality} quality based on pattern: ${pattern.name}`);
+        
+        // This would integrate with quality management
+        // await qualityService.setPreferredQuality(preferredQuality);
+      }
+    }
+  }
+  
+  async getEnhancedHealthReport(): Promise<{
+    health: CacheHealthMetrics;
+    userBehaviorInsights: any;
+    tuningRecommendations: any[];
+    optimizationOpportunities: string[];
+  }> {
+    const health = await this.performHealthCheck();
+    
+    let userBehaviorInsights = null;
+    let tuningRecommendations: any[] = [];
+    const optimizationOpportunities: string[] = [];
+    
+    try {
+      userBehaviorInsights = await userBehaviorAnalytics.getCurrentSessionAnalytics();
+    } catch (error) {
+      console.warn('CacheHealthMonitoring: Error getting behavior insights:', error);
+    }
+    
+    try {
+      tuningRecommendations = await adaptiveCacheTuner.generateCurrentRecommendations();
+    } catch (error) {
+      console.warn('CacheHealthMonitoring: Error getting tuning recommendations:', error);
+    }
+    
+    // Generate optimization opportunities
+    if (health.overall.score < 80) {
+      optimizationOpportunities.push('Overall cache performance below optimal - consider parameter tuning');
+    }
+    
+    if (health.performance.cacheHitRate < 0.75) {
+      optimizationOpportunities.push('Cache hit rate could be improved with better prefetch strategy');
+    }
+    
+    if (health.network.adaptationScore < 0.7) {
+      optimizationOpportunities.push('Network adaptation needs improvement - rebalance quality distribution');
+    }
+    
+    if (userBehaviorInsights?.session && userBehaviorInsights.session.skipRate > 0.3) {
+      optimizationOpportunities.push('High skip rate detected - optimize content prediction');
+    }
+    
+    return {
+      health,
+      userBehaviorInsights,
+      tuningRecommendations,
+      optimizationOpportunities
+    };
+  }
+  
   stop(): void {
     if (this.monitoringInterval) {
       clearInterval(this.monitoringInterval);

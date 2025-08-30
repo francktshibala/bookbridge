@@ -7,6 +7,7 @@
 import { audioCacheDB, AudioQuality, NetworkType, CachePriority } from './audio-cache-db';
 import { networkAdaptiveAudio } from './network-adaptive-audio';
 import { audioSegmentation } from './audio-segmentation';
+import { advancedPrefetchEngine } from './advanced-prefetch-engine';
 
 interface ReadingPattern {
   userId?: string;
@@ -104,6 +105,16 @@ export class PredictivePrefetchService {
     cefrLevel: string,
     voiceId: string
   ): Promise<void> {
+    // Integrate with advanced prefetch engine
+    try {
+      const engineStats = await advancedPrefetchEngine.getPredictionStats();
+      if (engineStats.strategyName !== 'none') {
+        console.log(`PredictivePrefetch: Advanced engine active with ${engineStats.totalPredictions} predictions`);
+      }
+    } catch (error) {
+      // Advanced engine not initialized yet, continue with basic prefetch
+      console.log('PredictivePrefetch: Advanced engine not available, using basic strategy');
+    }
     const now = Date.now();
     
     // Update current behavior
@@ -511,12 +522,27 @@ export class PredictivePrefetchService {
     
     console.log(`PredictivePrefetch: Optimizing for ${networkInfo.type} network`);
     
+    // Integrate with advanced prefetch engine for enhanced optimization
+    try {
+      const currentStrategy = await advancedPrefetchEngine.getCurrentStrategy();
+      if (currentStrategy) {
+        console.log(`PredictivePrefetch: Coordinating with advanced strategy: ${currentStrategy.name}`);
+        
+        // Let advanced engine handle resource-intensive optimizations on fast networks
+        if (networkInfo.type === NetworkType.WIFI || networkInfo.type === NetworkType.FOURG) {
+          return; // Defer to advanced engine
+        }
+      }
+    } catch (error) {
+      console.log('PredictivePrefetch: Advanced engine not available, using basic optimization');
+    }
+    
     // Clear low-priority cache if on slow network
     if (networkInfo.type === NetworkType.SLOW_2G || networkInfo.type === NetworkType.TWOG) {
       await this.clearLowPriorityCache();
     }
     
-    // Pre-warm next chapter on fast networks
+    // Pre-warm next chapter on fast networks (if advanced engine not handling it)
     if ((networkInfo.type === NetworkType.FOURG || networkInfo.type === NetworkType.WIFI) && 
         this.currentBehavior) {
       await this.prewarmNextChapter();

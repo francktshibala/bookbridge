@@ -5,6 +5,7 @@
  */
 
 import { audioCacheDB, AudioQuality, NetworkType, CachePriority, CachedAudioData } from './audio-cache-db';
+import { userBehaviorAnalytics } from './user-behavior-analytics';
 
 interface EvictionPolicy {
   strategy: 'lru' | 'lfu' | 'priority-weighted' | 'network-adaptive';
@@ -297,12 +298,12 @@ export class PriorityCacheEvictionService {
       const store = transaction.objectStore('audioSentences');
       const request = store.getAll();
 
-      request.onsuccess = () => {
+      request.onsuccess = async () => {
         const items: CachedAudioData[] = request.result || [];
         const candidates: EvictionCandidate[] = [];
 
         for (const item of items) {
-          const candidate = this.createEvictionCandidate(item, policy);
+          const candidate = await this.createEvictionCandidate(item, policy);
           candidates.push(candidate);
         }
 
@@ -313,21 +314,24 @@ export class PriorityCacheEvictionService {
     });
   }
 
-  private createEvictionCandidate(item: CachedAudioData, policy: EvictionPolicy): EvictionCandidate {
+  private async createEvictionCandidate(item: CachedAudioData, policy: EvictionPolicy): Promise<EvictionCandidate> {
     const now = Date.now();
     const accessCount = this.accessCounts.get(item.id) || 0;
     const ageInDays = (now - item.createdAt) / (1000 * 60 * 60 * 24);
     const daysSinceAccess = (now - item.lastAccessed) / (1000 * 60 * 60 * 24);
 
     // Calculate eviction score (higher = more likely to evict)
-    const evictionScore = this.calculateEvictionScore({
+    const evictionScore = await this.calculateEvictionScore({
       priority: item.priority,
       ageInDays,
       daysSinceAccess,
       accessCount,
       fileSize: item.fileSize,
       quality: item.quality,
-      agingFactor: policy.agingFactor
+      agingFactor: policy.agingFactor,
+      bookId: item.bookId,
+      chunkIndex: item.chunkIndex,
+      sentenceIndex: item.sentenceIndex
     });
 
     return {
@@ -346,7 +350,7 @@ export class PriorityCacheEvictionService {
     };
   }
 
-  private calculateEvictionScore(params: {
+  private async calculateEvictionScore(params: {
     priority: CachePriority;
     ageInDays: number;
     daysSinceAccess: number;
@@ -354,7 +358,10 @@ export class PriorityCacheEvictionService {
     fileSize: number;
     quality: AudioQuality;
     agingFactor: number;
-  }): number {
+    bookId: string;
+    chunkIndex: number;
+    sentenceIndex: number;
+  }): Promise<number> {
     const {
       priority,
       ageInDays,
@@ -384,7 +391,14 @@ export class PriorityCacheEvictionService {
     // File size component (larger files = slightly higher eviction score)
     const sizeScore = Math.min(0.1, fileSize / (5 * 1024 * 1024)); // Max 0.1 for 5MB+ files
 
-    const totalScore = priorityScore + ageScore + accessScore + recencyScore + qualityScore + sizeScore;
+    // Add user behavior-based scoring
+    const behaviorScore = await this.getUserBehaviorScore(
+      params.bookId,
+      params.chunkIndex,
+      params.sentenceIndex
+    );
+
+    const totalScore = priorityScore + ageScore + accessScore + recencyScore + qualityScore + sizeScore + behaviorScore;
 
     return Math.min(1.0, Math.max(0.0, totalScore));
   }
@@ -588,6 +602,68 @@ export class PriorityCacheEvictionService {
 
   getAccessCount(id: string): number {
     return this.accessCounts.get(id) || 0;
+  }
+
+  // User behavior integration methods
+
+  private async getUserBehaviorScore(
+    bookId: string,
+    chunkIndex: number,
+    sentenceIndex: number
+  ): Promise<number> {
+    try {
+      const analytics = await userBehaviorAnalytics.getCurrentSessionAnalytics();
+      
+      if (!analytics.session) {
+        return 0; // No behavior data available
+      }
+
+      let behaviorScore = 0;
+
+      // Check if this content matches user skip patterns
+      const skipRate = analytics.session.skipRate;
+      if (skipRate > 0.3) {
+        behaviorScore += 0.1; // More likely to evict content user tends to skip
+      }
+
+      // Check if user is a speed reader (prefetch more, evict less recent content)
+      const readingSpeed = analytics.session.readingSpeed;
+      if (readingSpeed > 250) {
+        const daysSinceAccess = (Date.now() - Date.now()) / (1000 * 60 * 60 * 24);
+        if (daysSinceAccess > 1) {
+          behaviorScore += 0.15; // Speed readers move through content quickly
+        }
+      }
+
+      // Check matching patterns for predictions
+      for (const pattern of analytics.matchingPatterns) {
+        const skipPrediction = pattern.predictions.find(p => p.type === 'skip_likely');
+        if (skipPrediction && skipPrediction.probability > 0.6) {
+          behaviorScore += skipPrediction.probability * 0.2;
+        }
+      }
+
+      return Math.min(0.3, behaviorScore); // Cap behavior influence at 30%
+    } catch (error) {
+      console.warn('PriorityEviction: Error calculating user behavior score:', error);
+      return 0;
+    }
+  }
+
+  async integrateUserBehaviorOptimizations(): Promise<void> {
+    try {
+      const recommendations = await userBehaviorAnalytics.generateOptimizationRecommendations();
+      const evictionRecs = recommendations.filter(r => r.category === 'eviction');
+
+      for (const rec of evictionRecs) {
+        if (rec.confidence > 0.6 && rec.priority === 'high') {
+          console.log(`PriorityEviction: Applying behavior-based optimization: ${rec.action}`);
+          await rec.implementation();
+        }
+      }
+    } catch (error) {
+      console.warn('PriorityEviction: Error applying behavior optimizations:', error);
+    }
   }
 
   async resetAccessCounts(): Promise<void> {
