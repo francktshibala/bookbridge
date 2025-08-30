@@ -7,16 +7,6 @@ const withPWA = require('next-pwa')({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
-  fallbacks: {
-    document: '/offline'
-  },
-  additionalManifestEntries: [
-    { url: '/sw-custom.js', revision: null }
-  ],
-  exclude: [
-    // Exclude the custom service worker from being processed by workbox
-    /sw-custom\.js$/
-  ],
   runtimeCaching: [
     {
       urlPattern: /^https:.*\/audio\/.*/i,
@@ -28,6 +18,12 @@ const withPWA = require('next-pwa')({
           maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
         }
       }
+    },
+    // Do NOT cache API responses; always hit network
+    // Do NOT cache API responses; always go to network
+    {
+      urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
+      handler: 'NetworkOnly'
     },
     {
       urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -52,7 +48,8 @@ const withPWA = require('next-pwa')({
       }
     },
     {
-      urlPattern: /^https?.*$/i,
+      // Only cache navigations (documents)
+      urlPattern: ({ request }) => request.mode === 'navigate',
       handler: 'NetworkFirst',
       options: {
         cacheName: 'pages-cache',
@@ -60,7 +57,8 @@ const withPWA = require('next-pwa')({
           maxEntries: 50,
           maxAgeSeconds: 24 * 60 * 60 // 24 hours
         },
-        networkTimeoutSeconds: 3
+        networkTimeoutSeconds: 3,
+        cacheableResponse: { statuses: [200] }
       }
     }
   ]
