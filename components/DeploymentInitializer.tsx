@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { initializePWAForProduction, validateDeploymentHealth, trackDeploymentMetric } from '@/lib/deployment-utils';
 import { getProductionConfig, logDeploymentConfig } from '@/lib/production-config';
 import { getProductionFeatureFlags } from '@/lib/deployment-utils';
+import { realTimeMonitoring } from '@/lib/real-time-monitoring';
 
 export default function DeploymentInitializer() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -34,6 +35,16 @@ export default function DeploymentInitializer() {
       // Initialize PWA
       const pwaInitialized = await initializePWAForProduction();
       console.log('📱 PWA initialization:', pwaInitialized ? 'Success' : 'Failed');
+      
+      // Start real-time monitoring if enabled
+      if (featureFlags.performanceMonitoring) {
+        try {
+          await realTimeMonitoring.startRealTimeMonitoring();
+          console.log('📊 Real-time monitoring started');
+        } catch (error) {
+          console.warn('📊 Real-time monitoring failed to start:', error);
+        }
+      }
       
       // Validate deployment health
       const health = await validateDeploymentHealth();
