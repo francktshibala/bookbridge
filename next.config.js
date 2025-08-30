@@ -3,6 +3,9 @@ const withPWA = require('next-pwa')({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
+  fallbacks: {
+    document: '/offline'
+  },
   runtimeCaching: [
     {
       urlPattern: /^https:.*\/audio\/.*/i,
@@ -35,6 +38,18 @@ const withPWA = require('next-pwa')({
           maxEntries: 60,
           maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
         }
+      }
+    },
+    {
+      urlPattern: /^https?.*$/i,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'pages-cache',
+        expiration: {
+          maxEntries: 50,
+          maxAgeSeconds: 24 * 60 * 60 // 24 hours
+        },
+        networkTimeoutSeconds: 3
       }
     }
   ]
