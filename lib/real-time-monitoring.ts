@@ -84,7 +84,7 @@ export class RealTimeMonitoringSystem {
     if (typeof window === 'undefined') return;
 
     // Listen to performance alerts from the base monitoring system
-    window.addEventListener('performance-alert', this.handlePerformanceAlert.bind(this));
+    window.addEventListener('performance-alert', this.handlePerformanceAlert.bind(this) as EventListener);
     
     // Listen to page visibility changes
     document.addEventListener('visibilitychange', this.handleVisibilityChange.bind(this));
@@ -130,7 +130,11 @@ export class RealTimeMonitoringSystem {
       trackDeploymentMetric('real_time_monitoring_started', {
         sessionId: this.sessionId,
         userId,
-        featureFlags,
+        featureFlags: {
+          analyticsTracking: featureFlags.analyticsTracking || false,
+          performanceMonitoring: featureFlags.performanceMonitoring || false,
+          emergingMarketsOptimizations: featureFlags.emergingMarketsOptimizations || false,
+        },
         timestamp: Date.now(),
       });
       
@@ -259,7 +263,11 @@ export class RealTimeMonitoringSystem {
         userId,
         deviceInfo: await this.getDeviceInfo(),
         geolocation: await this.getGeolocationInfo(),
-        featureFlags,
+        featureFlags: {
+          analyticsTracking: featureFlags.analyticsTracking || false,
+          performanceMonitoring: featureFlags.performanceMonitoring || false,
+          emergingMarketsOptimizations: featureFlags.emergingMarketsOptimizations || false,
+        },
       };
       
       // Add to buffer

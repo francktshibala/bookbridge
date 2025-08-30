@@ -2,6 +2,7 @@ import { performanceMonitoringSystem, PerformanceMetrics, PerformanceAlert, Syst
 import { cacheHealthMonitoring } from './cache-health-monitoring';
 import { UserBehaviorAnalyticsService } from './user-behavior-analytics';
 import { voiceUsageTracker } from './voice-usage-tracker';
+import { pwaAnalytics } from './pwa-analytics';
 
 export interface DashboardMetrics {
   realTimeMetrics: PerformanceMetrics;
@@ -72,6 +73,9 @@ export class AnalyticsDashboard {
     this.updateInterval = setInterval(() => {
       this.collectMetricsSnapshot();
     }, 300000); // 5 minutes
+
+    // Start PWA analytics tracking
+    pwaAnalytics.trackEvent('analytics_started', { timestamp: Date.now() });
 
     console.log('📊 Analytics dashboard data collection started');
   }

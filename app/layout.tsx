@@ -15,6 +15,7 @@ import UpdateManager from '@/components/updates/UpdateManager';
 import OnboardingManager from '@/components/onboarding/OnboardingManager';
 import { PerformanceProvider } from '@/components/PerformanceProvider';
 import DeploymentInitializer from '@/components/DeploymentInitializer';
+import { PWAAnalyticsProvider } from '@/components/PWAAnalyticsProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -88,7 +89,8 @@ export default function RootLayout({
             <KeyboardNavigationProvider>
               <VoiceNavigationWrapper>
                 <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
-                  <OnboardingManager enableAutoOnboarding={true}>
+                  <PWAAnalyticsProvider enableTracking={true}>
+                    <OnboardingManager enableAutoOnboarding={true}>
                 {/* PWA Update Manager */}
                 <UpdateManager 
                   enableAutoCheck={true}
@@ -118,7 +120,8 @@ export default function RootLayout({
                 
                 {/* Deployment Initialization */}
                 <DeploymentInitializer />
-                </OnboardingManager>
+                    </OnboardingManager>
+                  </PWAAnalyticsProvider>
                 </PerformanceProvider>
               </VoiceNavigationWrapper>
             </KeyboardNavigationProvider>

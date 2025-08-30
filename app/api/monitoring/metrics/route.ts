@@ -87,7 +87,7 @@ async function processRealTimeMetrics(batch: RealTimeMetricsBatch) {
   const config = getProductionConfig();
   
   // Aggregate metrics for analysis
-  const aggregated = {
+  const aggregated: AggregatedMetrics = {
     totalMetrics: batch.metrics.length,
     avgResponseTime: 0,
     avgErrorRate: 0,
@@ -170,10 +170,24 @@ function getDeviceType(userAgent: string): string {
   return 'unknown';
 }
 
+interface AggregatedMetrics {
+  totalMetrics: number;
+  avgResponseTime: number;
+  avgErrorRate: number;
+  avgMemoryUsage: number;
+  avgCacheHitRate: number;
+  uniqueSessions: Set<string>;
+  uniqueUsers: Set<string>;
+  emergingMarketMetrics: number;
+  criticalIssues: number;
+  deviceTypes: Map<string, number>;
+  networkTypes: Map<string, number>;
+}
+
 /**
  * Log real-time insights
  */
-function logRealTimeInsights(aggregated: any, batch: RealTimeMetricsBatch) {
+function logRealTimeInsights(aggregated: AggregatedMetrics, batch: RealTimeMetricsBatch) {
   console.log('📊 Real-Time Metrics Batch Processed:', {
     timestamp: new Date(batch.timestamp).toISOString(),
     totalMetrics: aggregated.totalMetrics,
@@ -197,7 +211,7 @@ function logRealTimeInsights(aggregated: any, batch: RealTimeMetricsBatch) {
 /**
  * Handle critical issues detected in real-time
  */
-async function handleCriticalIssues(aggregated: any, batch: RealTimeMetricsBatch) {
+async function handleCriticalIssues(aggregated: AggregatedMetrics, batch: RealTimeMetricsBatch) {
   const criticalData = {
     timestamp: batch.timestamp,
     totalIssues: aggregated.criticalIssues,
@@ -242,7 +256,7 @@ async function handleCriticalIssues(aggregated: any, batch: RealTimeMetricsBatch
 /**
  * Update real-time dashboard data
  */
-async function updateRealTimeDashboard(aggregated: any, batch: RealTimeMetricsBatch) {
+async function updateRealTimeDashboard(aggregated: AggregatedMetrics, batch: RealTimeMetricsBatch) {
   // Store latest metrics in memory for dashboard API
   // In production, you'd use Redis or another fast storage
   
