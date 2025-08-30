@@ -3,11 +3,20 @@ import type { NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
+  const pathname = request.nextUrl.pathname;
+  
+  // Block test and debug routes in production
+  if (process.env.NODE_ENV === 'production') {
+    if (pathname.startsWith('/test-') || pathname.startsWith('/debug-')) {
+      // Return 404 for test/debug routes in production
+      return new NextResponse(null, { status: 404 });
+    }
+  }
   
   // Allow public files
-  if (request.nextUrl.pathname.startsWith('/manifest.json') ||
-      request.nextUrl.pathname.startsWith('/icon-') ||
-      request.nextUrl.pathname.includes('.')) {
+  if (pathname.startsWith('/manifest.json') ||
+      pathname.startsWith('/icon-') ||
+      pathname.includes('.')) {
     return response;
   }
   

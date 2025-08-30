@@ -1,5 +1,5 @@
-import { PDFDocument } from 'pdf-lib';
 import JSZip from 'jszip';
+import type { PDFDocument as PDFDocumentType } from 'pdf-lib';
 
 export interface ExtractedContent {
   text: string;
@@ -51,6 +51,7 @@ export class ContentExtractor {
     try {
       // For now, use pdf-lib to get basic info
       // Note: pdf-lib doesn't extract text, only metadata
+      const { PDFDocument } = await import('pdf-lib');
       const pdfDoc = await PDFDocument.load(buffer, { ignoreEncryption: true });
       const pageCount = pdfDoc.getPages().length;
       

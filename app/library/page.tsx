@@ -14,7 +14,7 @@ import { CatalogBookSkeleton } from '@/components/CatalogBookSkeleton';
 import { RecommendationsSection } from '@/components/RecommendationsSection';
 import { useBookViewTracking } from '@/lib/use-recommendations';
 import { useAuth } from '@/components/SimpleAuthProvider';
-import { AIBookChatModal } from '@/components/ai/AIBookChatModal';
+import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook, BookSearchResults, BookSource } from '@/types/book-sources';
  
 

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { EnhancedBooksGrid } from '@/components/ui/EnhancedBooksGrid';
-import { AIBookChatModal } from '@/components/ai/AIBookChatModal';
+import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 
 export default function HomePage() {

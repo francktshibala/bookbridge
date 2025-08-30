@@ -5,7 +5,7 @@ import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { voiceService } from '@/lib/voice-service';
-import { SmartAudioPlayer } from '@/components/SmartAudioPlayer';
+import { SmartAudioPlayer } from '@/lib/dynamic-imports';
 
 // Component to format AI responses with better styling and citation support
 const FormattedAIResponse: React.FC<{ 
@@ -112,7 +112,7 @@ const FormattedAIResponse: React.FC<{
             variant="chat"
             onStart={() => console.log('Audio started')}
             onEnd={() => console.log('Audio ended')}
-            onError={(error) => console.error('Audio error:', error)}
+            onError={(error: any) => console.error('Audio error:', error)}
           />
         </div>
         

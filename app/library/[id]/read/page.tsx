@@ -9,8 +9,7 @@ import { PrecomputeAudioPlayer } from '@/components/PrecomputeAudioPlayer';
 import { AudioPlayerWithHighlighting } from '@/components/AudioPlayerWithHighlighting';
 import { IntegratedAudioControls } from '@/components/IntegratedAudioControls';
 import { WireframeAudioControls } from '@/components/audio/WireframeAudioControls';
-import { ProgressiveAudioPlayer } from '@/components/audio/ProgressiveAudioPlayer';
-import { InstantAudioPlayer } from '@/components/audio/InstantAudioPlayer';
+import { ProgressiveAudioPlayer, InstantAudioPlayer } from '@/lib/dynamic-imports';
 import { WordHighlighter, useWordHighlighting } from '@/components/audio/WordHighlighter';
 import { AutoScrollHandler } from '@/components/audio/AutoScrollHandler';
 import { SpeedControl } from '@/components/SpeedControl';
@@ -1581,7 +1580,7 @@ export default function BookReaderPage() {
                     cefrLevel={eslLevel}
                     voiceId={selectedVoice}
                     isEnhanced={isEnhancedBook}
-                    onWordHighlight={(wordIndex) => {
+                    onWordHighlight={(wordIndex: number) => {
                       console.log('🎯 InstantAudioPlayer calling onWordHighlight with index:', wordIndex);
                       handleWordHighlight(wordIndex);
                     }}
@@ -1589,7 +1588,7 @@ export default function BookReaderPage() {
                       console.log('🏁 InstantAudioPlayer onChunkComplete called');
                       autoAdvanceChunkComplete();
                     }}
-                    onProgressUpdate={(progress) => {
+                    onProgressUpdate={(progress: any) => {
                       console.log('📊 Instant audio progress:', {
                         status: progress.status,
                         currentSentence: progress.currentSentence,
@@ -1603,7 +1602,7 @@ export default function BookReaderPage() {
                     // onAutoScroll handled by separate AutoScrollHandler component
                     className="hidden"
                     isPlaying={isPlaying}
-                    onPlayingChange={(playing) => {
+                    onPlayingChange={(playing: boolean) => {
                       console.log('🔄 InstantAudioPlayer onPlayingChange called with:', playing);
                       setIsPlaying(playing);
                       
