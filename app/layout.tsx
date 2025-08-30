@@ -9,6 +9,7 @@ import Navigation from '@/components/Navigation';
 import { VoiceNavigationWrapper } from '@/components/VoiceNavigationWrapper';
 import { SimpleAuthProvider } from '@/components/SimpleAuthProvider';
 import { ConditionalFooter } from '@/components/ConditionalFooter';
+import InstallPrompt from '@/components/InstallPrompt';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -94,6 +95,9 @@ export default function RootLayout({
                 </main>
                 
                 <ConditionalFooter />
+                
+                {/* PWA Install Prompt */}
+                <InstallPrompt />
               </VoiceNavigationWrapper>
             </KeyboardNavigationProvider>
           </AccessibilityProvider>

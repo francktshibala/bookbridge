@@ -18,6 +18,7 @@ import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
 import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
+import { useReadingEngagement } from '@/components/InstallPrompt';
 
 interface BookContent {
   id: string;
@@ -38,6 +39,7 @@ export default function BookReaderPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { preferences, announceToScreenReader } = useAccessibility();
+  const { trackReadingTime, trackChapterCompletion } = useReadingEngagement();
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -231,6 +233,23 @@ export default function BookReaderPage() {
       console.log('DEBUG: Content preview:', newContent?.substring(0, 100) || 'No content');
     }
   }, [currentChunk, bookContent]);
+
+  // Track reading engagement for install prompt
+  useEffect(() => {
+    if (!bookContent) return;
+
+    // Track reading time every 10 seconds while on page
+    const readingTimer = setInterval(() => {
+      trackReadingTime(10); // Track 10 seconds of reading time
+    }, 10000);
+
+    // Track chapter completion when reaching end of book chunks
+    if (currentChunk >= (bookContent.totalChunks - 1)) {
+      trackChapterCompletion();
+    }
+
+    return () => clearInterval(readingTimer);
+  }, [currentChunk, bookContent, trackReadingTime, trackChapterCompletion]);
 
   // Auto-fetch simplified content when chunk changes in simplified mode
   useEffect(() => {
