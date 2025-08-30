@@ -6,6 +6,13 @@ const withPWA = require('next-pwa')({
   fallbacks: {
     document: '/offline'
   },
+  additionalManifestEntries: [
+    { url: '/sw-custom.js', revision: null }
+  ],
+  exclude: [
+    // Exclude the custom service worker from being processed by workbox
+    /sw-custom\.js$/
+  ],
   runtimeCaching: [
     {
       urlPattern: /^https:.*\/audio\/.*/i,

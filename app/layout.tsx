@@ -11,6 +11,7 @@ import { SimpleAuthProvider } from '@/components/SimpleAuthProvider';
 import { ConditionalFooter } from '@/components/ConditionalFooter';
 import InstallPrompt from '@/components/InstallPrompt';
 import OfflineIndicator from '@/components/offline/OfflineIndicator';
+import UpdateManager from '@/components/updates/UpdateManager';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -83,6 +84,13 @@ export default function RootLayout({
           <AccessibilityProvider>
             <KeyboardNavigationProvider>
               <VoiceNavigationWrapper>
+                {/* PWA Update Manager */}
+                <UpdateManager 
+                  enableAutoCheck={true}
+                  checkInterval={30 * 60 * 1000}
+                  showBanner={true}
+                />
+                
                 {/* PWA Offline Indicator */}
                 <OfflineIndicator />
                 

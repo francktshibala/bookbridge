@@ -1,8 +1,50 @@
-// Custom service worker extension for background sync
-// This file extends the auto-generated service worker with background sync functionality
+// Custom service worker extension for background sync and update management
+// This file extends the auto-generated service worker with background sync and update functionality
 
 // Import background sync service
 importScripts('/js/background-sync-sw.js');
+
+// Listen for messages from the main thread
+self.addEventListener('message', (event) => {
+  console.log('ServiceWorker: Received message:', event.data);
+
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    console.log('ServiceWorker: Applying update - skipWaiting');
+    self.skipWaiting();
+    
+    // Notify all clients about the update
+    self.clients.matchAll().then(clients => {
+      clients.forEach(client => {
+        client.postMessage({
+          type: 'SW_UPDATED',
+          message: 'Service worker updated successfully'
+        });
+      });
+    });
+  }
+});
+
+// Enhanced activate event for update management
+self.addEventListener('activate', (event) => {
+  console.log('ServiceWorker: Activating new service worker');
+  
+  // Take control of all clients immediately
+  event.waitUntil(
+    self.clients.claim().then(() => {
+      console.log('ServiceWorker: Claimed all clients');
+      
+      // Notify clients about the activation
+      return self.clients.matchAll();
+    }).then(clients => {
+      clients.forEach(client => {
+        client.postMessage({
+          type: 'SW_ACTIVATED',
+          message: 'New service worker is now active'
+        });
+      });
+    })
+  );
+});
 
 // Listen for sync events
 self.addEventListener('sync', async (event) => {
@@ -193,4 +235,12 @@ async function removeFromSyncQueue(itemId) {
   });
 }
 
-console.log('ServiceWorker: Background sync extension loaded');
+// Enhanced install event for update handling
+self.addEventListener('install', (event) => {
+  console.log('ServiceWorker: Installing new service worker');
+  
+  // Don't wait for existing service workers to close (unless explicitly configured not to)
+  // This is controlled by next-pwa's skipWaiting setting
+});
+
+console.log('ServiceWorker: Background sync and update management extension loaded');
