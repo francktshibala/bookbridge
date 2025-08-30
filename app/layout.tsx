@@ -13,6 +13,7 @@ import InstallPrompt from '@/components/InstallPrompt';
 import OfflineIndicator from '@/components/offline/OfflineIndicator';
 import UpdateManager from '@/components/updates/UpdateManager';
 import OnboardingManager from '@/components/onboarding/OnboardingManager';
+import { PerformanceProvider } from '@/components/PerformanceProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -85,7 +86,8 @@ export default function RootLayout({
           <AccessibilityProvider>
             <KeyboardNavigationProvider>
               <VoiceNavigationWrapper>
-                <OnboardingManager enableAutoOnboarding={true}>
+                <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
+                  <OnboardingManager enableAutoOnboarding={true}>
                 {/* PWA Update Manager */}
                 <UpdateManager 
                   enableAutoCheck={true}
@@ -113,6 +115,7 @@ export default function RootLayout({
                 {/* PWA Install Prompt */}
                 <InstallPrompt />
                 </OnboardingManager>
+                </PerformanceProvider>
               </VoiceNavigationWrapper>
             </KeyboardNavigationProvider>
           </AccessibilityProvider>

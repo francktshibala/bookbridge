@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { voiceService, VoiceProvider } from '@/lib/voice-service';
 import { ELEVENLABS_VOICES, DEFAULT_ELEVENLABS_VOICE } from '@/lib/elevenlabs-voices';
 import { highlightingManager } from '@/lib/highlighting-manager';
+import { usePerformanceTracking } from './PerformanceProvider';
 
 interface SmartAudioPlayerProps {
   text: string;
@@ -38,6 +39,7 @@ export const SmartAudioPlayer: React.FC<SmartAudioPlayerProps> = ({
   const [totalChunks, setTotalChunks] = useState(1);
   const [chunks, setChunks] = useState<{original: string, sanitized: string}[]>([]);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
+  const { trackUserAction, trackError, updateFeatureUsage } = usePerformanceTracking();
 
   // Debug logging to track component lifecycle
   useEffect(() => {

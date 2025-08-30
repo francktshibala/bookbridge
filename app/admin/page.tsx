@@ -1,5 +1,6 @@
 import { DashboardStats } from '@/components/admin/DashboardStats';
 import { QuickActions } from '@/components/admin/QuickActions';
+import { PerformanceMonitor } from '@/components/admin/PerformanceMonitor';
 
 export default function AdminDashboard() {
   return (
@@ -24,6 +25,10 @@ export default function AdminDashboard() {
           Quick Actions
         </h2>
         <QuickActions />
+      </div>
+
+      <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
+        <PerformanceMonitor />
       </div>
     </div>
   );
