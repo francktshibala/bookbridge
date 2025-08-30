@@ -10,6 +10,7 @@ import { VoiceNavigationWrapper } from '@/components/VoiceNavigationWrapper';
 import { SimpleAuthProvider } from '@/components/SimpleAuthProvider';
 import { ConditionalFooter } from '@/components/ConditionalFooter';
 import InstallPrompt from '@/components/InstallPrompt';
+import OfflineIndicator from '@/components/offline/OfflineIndicator';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -82,6 +83,9 @@ export default function RootLayout({
           <AccessibilityProvider>
             <KeyboardNavigationProvider>
               <VoiceNavigationWrapper>
+                {/* PWA Offline Indicator */}
+                <OfflineIndicator />
+                
                 <Navigation />
               
                 <main 

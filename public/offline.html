@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookBridge - You're Offline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .container {
+            max-width: 28rem;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .icon-bg {
+            padding: 1.5rem;
+            border-radius: 50%;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+        
+        .wifi-icon {
+            width: 3rem;
+            height: 3rem;
+            color: #64748b;
+        }
+        
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .description {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        
+        .status-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .status-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: #ef4444;
+        }
+        
+        .status-text {
+            font-size: 0.875rem;
+            color: #cbd5e1;
+        }
+        
+        .status-details {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+        
+        .actions-section {
+            margin-bottom: 2rem;
+        }
+        
+        .actions-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .action-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-top: 0.125rem;
+        }
+        
+        .action-icon.book { color: #10b981; }
+        .action-icon.download { color: #3b82f6; }
+        
+        .action-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .action-title.book { color: #34d399; }
+        .action-title.download { color: #60a5fa; }
+        
+        .action-description {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+        
+        .button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 0.75rem;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .button-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+        
+        .button-primary:hover {
+            background-color: #1d4ed8;
+        }
+        
+        .button-secondary {
+            background-color: #374151;
+            color: #e5e7eb;
+        }
+        
+        .button-secondary:hover {
+            background-color: #4b5563;
+        }
+        
+        .tips {
+            text-align: left;
+        }
+        
+        .tips-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tips-list {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+        
+        .tips-list li {
+            margin-bottom: 0.25rem;
+        }
+        
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Offline Icon -->
+        <div class="icon-container">
+            <div class="icon-bg">
+                <svg class="wifi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Main Message -->
+        <h1 class="title">You're Offline</h1>
+        <p class="description">
+            No internet connection detected. You can still access downloaded books and recently viewed content.
+        </p>
+
+        <!-- Network Status -->
+        <div class="status-card">
+            <div class="status-header">
+                <div class="status-dot"></div>
+                <span class="status-text">Connection Status</span>
+            </div>
+            <div class="status-details">
+                <div>Status: Offline</div>
+                <div>Last checked: <span id="last-check-time">Just now</span></div>
+            </div>
+        </div>
+
+        <!-- Available Actions -->
+        <div class="actions-section">
+            <h2 class="actions-title">What you can do offline:</h2>
+            
+            <div class="action-item">
+                <svg class="action-icon book" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+                <div>
+                    <div class="action-title book">Read Downloaded Books</div>
+                    <div class="action-description">
+                        Access any books you've previously downloaded for offline reading
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-item">
+                <svg class="action-icon download" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                </svg>
+                <div>
+                    <div class="action-title download">View Cached Content</div>
+                    <div class="action-description">
+                        Browse recently viewed pages and cached book chapters
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <button class="button button-primary" onclick="handleRetry()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            Try Again
+        </button>
+        
+        <button class="button button-secondary" onclick="goHome()">
+            Go to Homepage
+        </button>
+
+        <!-- Tips -->
+        <div class="tips">
+            <h3 class="tips-title">Tips:</h3>
+            <ul class="tips-list">
+                <li>• Download books while connected for offline reading</li>
+                <li>• Recent pages are automatically cached</li>
+                <li>• Your reading progress syncs when reconnected</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateLastCheckTime() {
+            const now = new Date();
+            document.getElementById('last-check-time').textContent = now.toLocaleTimeString();
+        }
+
+        function handleRetry() {
+            if (navigator.onLine) {
+                // If we're back online, redirect to home
+                window.location.href = '/';
+            } else {
+                // Update check time and try again
+                updateLastCheckTime();
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
+            }
+        }
+
+        function goHome() {
+            window.location.href = '/';
+        }
+
+        // Update the time every minute
+        setInterval(updateLastCheckTime, 60000);
+
+        // Check for online status changes
+        window.addEventListener('online', function() {
+            // Automatically redirect when back online
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1000);
+        });
+
+        // Initialize time
+        updateLastCheckTime();
+    </script>
+</body>
+</html>

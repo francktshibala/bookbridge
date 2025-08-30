@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { ContentAvailabilityBadge, ContentAvailability } from '../offline/ContentAvailabilityBadge';
 
 interface EnhancedBook {
   id: string;
@@ -16,6 +17,7 @@ interface EnhancedBook {
     min: string;
     max: string;
   };
+  contentAvailability?: ContentAvailability;
 }
 
 interface EnhancedBookCardProps {
@@ -102,6 +104,12 @@ export function EnhancedBookCard({ book, index = 0, onAskAI }: EnhancedBookCardP
         }}>
           Enhanced ⚡
         </span>
+        {book.contentAvailability && (
+          <ContentAvailabilityBadge 
+            availability={book.contentAvailability}
+            variant="compact"
+          />
+        )}
       </div>
 
       {/* Action Buttons */}
