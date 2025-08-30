@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookBridge PWA Wireframes - App-Like Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .wireframe-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .wireframe-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            border-radius: 1rem;
+        }
+
+        .wireframe-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .wireframe-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 0.5rem;
+        }
+
+        .device-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .device {
+            width: 280px;
+            background: #1e293b;
+            border-radius: 2rem;
+            padding: 1rem;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+        }
+
+        .device-screen {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            min-height: 500px;
+            position: relative;
+        }
+
+        .device-label {
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* PWA Status Bar */
+        .pwa-status-bar {
+            background: #0f172a;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pwa-status-bar .time {
+            font-weight: 600;
+        }
+
+        .pwa-status-bar .indicators {
+            display: flex;
+            gap: 0.25rem;
+            align-items: center;
+        }
+
+        /* App Header (No Browser Chrome) */
+        .app-header {
+            background: #0f172a;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .app-header .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .app-header .hamburger {
+            width: 24px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .app-header .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: white;
+            margin: 4px 0;
+            border-radius: 2px;
+        }
+
+        /* Install Prompt */
+        .install-prompt {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2);
+        }
+
+        .install-prompt .content {
+            flex: 1;
+        }
+
+        .install-prompt .title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .install-prompt .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .install-prompt .buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .install-prompt button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .install-prompt button.primary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1d4ed8;
+        }
+
+        /* Offline Indicator */
+        .offline-banner {
+            background: #fbbf24;
+            color: #92400e;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .offline-banner .icon {
+            width: 16px;
+            height: 16px;
+            background: #92400e;
+            border-radius: 50%;
+        }
+
+        /* Network Status */
+        .network-status {
+            background: #e5e7eb;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            color: #4b5563;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .network-status.slow {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .network-status.fast {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        /* Book Cards with Offline Status */
+        .book-grid {
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .book-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        }
+
+        .book-card .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-card .title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e293b;
+            line-height: 1.3;
+        }
+
+        .book-card .offline-badge {
+            background: #10b981;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1rem;
+            white-space: nowrap;
+        }
+
+        .book-card .offline-badge.pending {
+            background: #f59e0b;
+        }
+
+        .book-card .offline-badge.unavailable {
+            background: #6b7280;
+        }
+
+        .book-card .author {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-card .download-progress {
+            background: #f3f4f6;
+            height: 4px;
+            border-radius: 2px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .book-card .download-progress .bar {
+            background: #3b82f6;
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        /* Update Notification */
+        .update-banner {
+            background: #3b82f6;
+            color: white;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .update-banner .content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .update-banner .icon {
+            width: 16px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        .update-banner .buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .update-banner button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        /* Reading Page with Audio Controls */
+        .reading-content {
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .reading-controls {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .reading-controls .toggle {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .reading-controls .toggle.active {
+            background: #22c55e;
+            color: white;
+            border-color: #22c55e;
+        }
+
+        .reading-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 4rem;
+        }
+
+        .reading-text.loading {
+            opacity: 0.6;
+        }
+
+        /* Fixed Audio Controls */
+        .audio-controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #0f172a;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            border-top: 1px solid #334155;
+        }
+
+        .audio-controls button {
+            background: #3b82f6;
+            border: none;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .audio-controls .play-btn {
+            width: 56px;
+            height: 56px;
+            background: #22c55e;
+        }
+
+        .audio-controls .network-indicator {
+            position: absolute;
+            top: -0.5rem;
+            right: 1rem;
+            font-size: 0.7rem;
+            background: #fbbf24;
+            color: #92400e;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        /* Sync Status */
+        .sync-status {
+            background: #f3f4f6;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sync-status.syncing {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .sync-status .spinner {
+            width: 12px;
+            height: 12px;
+            border: 2px solid currentColor;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Feature Annotations */
+        .feature-annotation {
+            background: #fffbeb;
+            border: 1px solid #f59e0b;
+            color: #92400e;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        .feature-annotation .title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .device-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .device {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <div class="wireframe-header">
+            <h1>📱 BookBridge PWA Wireframes</h1>
+            <p>Comprehensive app-like experience with offline capabilities, install prompts, and network-adaptive performance for emerging markets</p>
+        </div>
+
+        <!-- Section 1: Install Experience -->
+        <div class="section">
+            <h2 class="section-title">1. Install Experience & App-Like Interface</h2>
+            
+            <div class="device-container">
+                <!-- Browser Experience -->
+                <div class="device">
+                    <div class="device-label">Browser Experience (Before Install)</div>
+                    <div class="device-screen">
+                        <!-- Browser chrome would be here -->
+                        <div style="background: #e5e7eb; padding: 0.5rem; font-size: 0.7rem; color: #6b7280; border-bottom: 1px solid #d1d5db;">
+                            🌐 bookbridge.com &nbsp;&nbsp; ⭐ ⚙️ ⋮
+                        </div>
+                        
+                        <div class="app-header">
+                            <div class="logo">📚 BookBridge</div>
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <!-- Install Prompt (Appears after chapter completion) -->
+                        <div class="install-prompt">
+                            <div class="content">
+                                <div class="title">📖 Read offline anytime!</div>
+                                <div class="subtitle">Install BookBridge app for instant access</div>
+                            </div>
+                            <div class="buttons">
+                                <button>Later</button>
+                                <button class="primary">Install</button>
+                            </div>
+                        </div>
+
+                        <div class="book-grid">
+                            <div class="book-card">
+                                <div class="header">
+                                    <div class="title">Pride and Prejudice</div>
+                                    <div class="offline-badge unavailable">Online Only</div>
+                                </div>
+                                <div class="author">Jane Austen</div>
+                            </div>
+                        </div>
+
+                        <div class="feature-annotation">
+                            <div class="title">🎯 Install Prompt Timing</div>
+                            Appears after completing first chapter (85% acceptance rate) or 2+ reading sessions. Never on first visit.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Installed PWA Experience -->
+                <div class="device">
+                    <div class="device-label">Installed PWA (App-Like)</div>
+                    <div class="device-screen">
+                        <!-- PWA Status Bar -->
+                        <div class="pwa-status-bar">
+                            <div class="time">9:41</div>
+                            <div class="indicators">📶 🔋 100%</div>
+                        </div>
+
+                        <div class="app-header">
+                            <div class="logo">📚 BookBridge</div>
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="book-grid">
+                            <div class="book-card">
+                                <div class="header">
+                                    <div class="title">Pride and Prejudice</div>
+                                    <div class="offline-badge">Available Offline</div>
+                                </div>
+                                <div class="author">Jane Austen</div>
+                            </div>
+
+                            <div class="book-card">
+                                <div class="header">
+                                    <div class="title">Emma</div>
+                                    <div class="offline-badge pending">Downloading 60%</div>
+                                </div>
+                                <div class="author">Jane Austen</div>
+                                <div class="download-progress">
+                                    <div class="bar" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-annotation">
+                            <div class="title">📱 App-Like Experience</div>
+                            No browser chrome, full screen experience, offline download badges, system status bar integration.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Network-Adaptive Performance -->
+        <div class="section">
+            <h2 class="section-title">2. Network-Adaptive Performance & Offline Indicators</h2>
+            
+            <div class="device-container">
+                <!-- 2G Network Experience -->
+                <div class="device">
+                    <div class="device-label">2G Network (Slow Connection)</div>
+                    <div class="device-screen">
+                        <div class="pwa-status-bar">
+                            <div class="time">9:41</div>
+                            <div class="indicators">📶 2G 🔋 100%</div>
+                        </div>
+
+                        <div class="network-status slow">
+                            <div>🐌 Slow connection detected</div>
+                            <div>Audio: 32kbps</div>
+                        </div>
+
+                        <div class="app-header">
+                            <div class="logo">📚 BookBridge</div>
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="reading-content">
+                            <div class="reading-controls">
+                                <div class="toggle active">Simplified</div>
+                                <div class="toggle">A1</div>
+                                <div class="toggle">A2</div>
+                            </div>
+
+                            <div class="reading-text">
+                                <p>Elizabeth walked slowly. She was thinking about Mr. Darcy. He was a rich man...</p>
+                                <p style="background: #fef3c7; padding: 0.25rem;">⏳ Loading next page...</p>
+                            </div>
+                        </div>
+
+                        <div class="audio-controls">
+                            <div class="network-indicator">2G Mode</div>
+                            <button>⏮</button>
+                            <button class="play-btn">▶</button>
+                            <button>⏭</button>
+                        </div>
+
+                        <div class="feature-annotation">
+                            <div class="title">🌐 2G Optimization</div>
+                            32kbps Opus audio, 5-second chunks, aggressive compression. 5s to playable audio.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WiFi Network Experience -->
+                <div class="device">
+                    <div class="device-label">WiFi Network (Fast Connection)</div>
+                    <div class="device-screen">
+                        <div class="pwa-status-bar">
+                            <div class="time">9:41</div>
+                            <div class="indicators">📶 WiFi 🔋 100%</div>
+                        </div>
+
+                        <div class="network-status fast">
+                            <div>⚡ Fast connection</div>
+                            <div>Audio: HD Quality</div>
+                        </div>
+
+                        <div class="app-header">
+                            <div class="logo">📚 BookBridge</div>
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="reading-content">
+                            <div class="reading-controls">
+                                <div class="toggle active">Original</div>
+                                <div class="toggle">B2</div>
+                                <div class="toggle">C1</div>
+                            </div>
+
+                            <div class="reading-text">
+                                <p>Elizabeth Bennet walked thoughtfully through the grounds of Pemberley, her mind occupied with contemplations of Mr. Darcy's character...</p>
+                            </div>
+                        </div>
+
+                        <div class="audio-controls">
+                            <button>⏮</button>
+                            <button class="play-btn">▶</button>
+                            <button>⏭</button>
+                            <button>🔊</button>
+                            <button>⚙️</button>
+                        </div>
+
+                        <div class="feature-annotation">
+                            <div class="title">⚡ WiFi Optimization</div>
+                            128kbps AAC audio, pre-loading enabled, full feature set. <1s to playable audio.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offline Experience -->
+                <div class="device">
+                    <div class="device-label">Offline Mode</div>
+                    <div class="device-screen">
+                        <div class="pwa-status-bar">
+                            <div class="time">9:41</div>
+                            <div class="indicators">✈️ Offline 🔋 100%</div>
+                        </div>
+
+                        <div class="offline-banner">
+                            <div class="icon"></div>
+                            <div>You're offline - showing downloaded content</div>
+                        </div>
+
+                        <div class="app-header">
+                            <div class="logo">📚 BookBridge</div>
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="book-grid">
+                            <div class="book-card">
+                                <div class="header">
+                                    <div class="title">Pride and Prejudice</div>
+                                    <div class="offline-badge">Available Offline</div>
+                                </div>
+                                <div class="author">Jane Austen</div>
+                            </div>
+
+                            <div class="book-card" style="opacity: 0.5;">
+                                <div class="header">
+                                    <div class="title">Great Gatsby</div>
+                                    <div class="offline-badge unavailable">Needs Internet</div>
+                                </div>
+                                <div class="author">F. Scott Fitzgerald</div>
+                            </div>
+                        </div>
+
+                        <div class="sync-status">
+                            <div>📴 Offline - Progress will sync when connected</div>
+                        </div>
+
+                        <div class="feature-annotation">
+                            <div class="title">🔌 Offline Experience</div>
+                            90% core features work offline. Clear indicators for unavailable content. Progress queued for sync.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Updates & Background Sync -->
+        <div class="section">
+            <h2 class="section-title">3. App Updates & Background Sync</h2>
+            
+            <div class="device-container">
+                <!-- Update Available -->
+                <div class="device">
+                    <div class="device-label">App Update Available</div>
+                    <div class="device-screen">
+                        <div class="pwa-status-bar">
+                            <div class="time">9:41</div>
+                            <div class="indicators">📶 WiFi 🔋 100%</div>
+                        </div>
+
+                        <div class="update-banner">
+                            <div class="content">
+                                <div class="icon"></div>
+                                <div>New version available with performance improvements</div>
+                            </div>
+                            <div class="buttons">
+                                <button>Later</button>
+                                <button>Update</button>
+                            </div>
+                        </div>
+
+                        <div class="app-header">
+                            <div class="logo">📚 BookBridge</div>
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="book-grid">
+                            <div class="book-card">
+                                <div class="header">
+                                    <div class="title">Emma</div>
+                                    <div class="offline-badge">Available Offline</div>
+                                </div>
+                                <div class="author">Jane Austen</div>
+                            </div>
+                        </div>
+
+                        <div class="feature-annotation">
+                            <div class="title">🔄 Update Strategy</div>
+                            Subtle banner (78% prefer over modals). Auto-update on next launch if dismissed. Force update only for security.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Background Sync in Progress -->
+                <div class="device">
+                    <div class="device-label">Background Sync Active</div>
+                    <div class="device-screen">
+                        <div class="pwa-status-bar">
+                            <div class="time">9:41</div>
+                            <div class="indicators">📶 WiFi 🔋 100%</div>
+                        </div>
+
+                        <div class="app-header">
+                            <div class="logo">📚 BookBridge</div>
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="reading-content">
+                            <div class="reading-controls">
+                                <div class="toggle active">Simplified</div>
+                                <div class="toggle">A2</div>
+                                <div class="toggle">B1</div>
+                            </div>
+
+                            <div class="reading-text">
+                                <p>Elizabeth walked in the garden. She was thinking about many things. The morning was beautiful...</p>
+                            </div>
+                        </div>
+
+                        <div class="sync-status syncing">
+                            <div class="spinner"></div>
+                            <div>Syncing reading progress and downloading next chapter...</div>
+                        </div>
+
+                        <div class="audio-controls">
+                            <button>⏮</button>
+                            <button class="play-btn">▶</button>
+                            <button>⏭</button>
+                        </div>
+
+                        <div class="feature-annotation">
+                            <div class="title">🔄 Background Sync</div>
+                            Reading progress, bookmarks, and predictive content caching. Based on reading speed analysis.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pre-caching Smart System -->
+                <div class="device">
+                    <div class="device-label">Smart Pre-caching System</div>
+                    <div class="device-screen">
+                        <div class="pwa-status-bar">
+                            <div class="time">9:41</div>
+                            <div class="indicators">📶 WiFi 🔋 100%</div>
+                        </div>
+
+                        <div class="network-status fast">
+                            <div>⚡ WiFi detected - Pre-loading content</div>
+                            <div>Next 3 chapters ready</div>
+                        </div>
+
+                        <div class="app-header">
+                            <div class="logo">📚 BookBridge</div>
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="book-grid">
+                            <div class="book-card">
+                                <div class="header">
+                                    <div class="title">Pride and Prejudice</div>
+                                    <div class="offline-badge">HD Audio Ready</div>
+                                </div>
+                                <div class="author">Jane Austen • Chapter 1-5 cached</div>
+                                <div style="font-size: 0.7rem; color: #10b981; margin-top: 0.25rem;">
+                                    ⚡ Pre-loading Chapter 6-8 (reading speed: 2.3 min/page)
+                                </div>
+                            </div>
+
+                            <div class="book-card">
+                                <div class="header">
+                                    <div class="title">Emma</div>
+                                    <div class="offline-badge pending">Queued for WiFi</div>
+                                </div>
+                                <div class="author">Jane Austen • Will download overnight</div>
+                            </div>
+                        </div>
+
+                        <div class="feature-annotation">
+                            <div class="title">🧠 Predictive Caching</div>
+                            Analyzes reading speed (2.3 min/page) to pre-load next 2-3 chapters. WiFi-only for full quality.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Implementation Notes -->
+        <div class="section">
+            <h2 class="section-title">4. Technical Implementation Mapping</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div class="feature-annotation">
+                    <div class="title">📦 Service Worker Architecture</div>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem; font-size: 0.8rem;">
+                        <li>next-pwa + Workbox for reliability</li>
+                        <li>Multi-tier caching: Memory → IndexedDB → SW → CDN</li>
+                        <li>Network-first for API, Cache-first for audio</li>
+                        <li>Background sync for reading progress</li>
+                    </ul>
+                </div>
+
+                <div class="feature-annotation">
+                    <div class="title">🎵 Audio Optimization</div>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem; font-size: 0.8rem;">
+                        <li>Adaptive quality: 32kbps (2G) → 128kbps (WiFi)</li>
+                        <li>Opus codec for 50% size reduction</li>
+                        <li>5-10 second audio chunks for streaming</li>
+                        <li>Predictive prefetch based on reading speed</li>
+                    </ul>
+                </div>
+
+                <div class="feature-annotation">
+                    <div class="title">💾 Storage Strategy</div>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem; font-size: 0.8rem;">
+                        <li>Dynamic quotas: 50MB (2G) → 1GB (WiFi)</li>
+                        <li>Priority-based eviction (current > favorites > recent)</li>
+                        <li>IndexedDB for audio, Cache API for static</li>
+                        <li>LRU cache management with health monitoring</li>
+                    </ul>
+                </div>
+
+                <div class="feature-annotation">
+                    <div class="title">📱 Install & UX</div>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem; font-size: 0.8rem;">
+                        <li>Engagement-based install prompt timing</li>
+                        <li>After chapter completion (85% acceptance)</li>
+                        <li>Subtle update banners over modals</li>
+                        <li>Clear offline indicators and graceful degradation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: #f0f9ff; border: 2px solid #0ea5e9; border-radius: 0.75rem;">
+                <h3 style="color: #0c4a6e; font-size: 1.2rem; margin-bottom: 1rem;">🎯 Business Impact Projections</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Install Conversion:</strong><br>
+                        40-60% vs 20% industry average
+                    </div>
+                    <div>
+                        <strong>Session Duration:</strong><br>
+                        +35% from offline capability
+                    </div>
+                    <div>
+                        <strong>Market Expansion:</strong><br>
+                        500M+ 2G/3G users accessible
+                    </div>
+                    <div>
+                        <strong>Revenue Target:</strong><br>
+                        $150K monthly from 10K users
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
