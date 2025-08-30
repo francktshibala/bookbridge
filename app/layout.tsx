@@ -14,6 +14,7 @@ import OfflineIndicator from '@/components/offline/OfflineIndicator';
 import UpdateManager from '@/components/updates/UpdateManager';
 import OnboardingManager from '@/components/onboarding/OnboardingManager';
 import { PerformanceProvider } from '@/components/PerformanceProvider';
+import DeploymentInitializer from '@/components/DeploymentInitializer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -114,6 +115,9 @@ export default function RootLayout({
                 
                 {/* PWA Install Prompt */}
                 <InstallPrompt />
+                
+                {/* Deployment Initialization */}
+                <DeploymentInitializer />
                 </OnboardingManager>
                 </PerformanceProvider>
               </VoiceNavigationWrapper>
