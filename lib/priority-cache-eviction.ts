@@ -65,12 +65,16 @@ export class PriorityCacheEvictionService {
   }
 
   constructor() {
-    this.loadAccessCounts();
-    this.schedulePeriodicEviction();
+    // Only load from localStorage and schedule timers in the browser
+    if (typeof window !== 'undefined') {
+      this.loadAccessCounts();
+      this.schedulePeriodicEviction();
+    }
   }
 
   private async loadAccessCounts(): Promise<void> {
     try {
+      if (typeof window === 'undefined') return; // SSR safeguard
       const stored = localStorage.getItem('bookbridge_access_counts');
       if (stored) {
         const counts = JSON.parse(stored);
@@ -84,6 +88,7 @@ export class PriorityCacheEvictionService {
 
   private async saveAccessCounts(): Promise<void> {
     try {
+      if (typeof window === 'undefined') return; // SSR safeguard
       const counts = Object.fromEntries(this.accessCounts);
       localStorage.setItem('bookbridge_access_counts', JSON.stringify(counts));
     } catch (error) {
