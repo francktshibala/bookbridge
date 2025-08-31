@@ -25,6 +25,18 @@ export async function GET(
       const connectionTest = await prisma.$executeRaw`SELECT 1 as test`
       console.log('✅ Database connection test:', connectionTest)
       
+      // DEBUG: List all available book IDs in database
+      const allBookContent = await prisma.bookContent.findMany({
+        select: { bookId: true, title: true }
+      })
+      console.log('📚 Available bookContent IDs:', allBookContent.map(b => `${b.bookId}: ${b.title}`))
+      
+      const allSimplifications = await prisma.bookSimplification.findMany({
+        select: { bookId: true },
+        distinct: ['bookId']
+      })
+      console.log('📚 Available simplification IDs:', allSimplifications.map(s => s.bookId))
+      
       const storedContent = await prisma.bookContent.findUnique({
         where: { bookId: id }
       })
