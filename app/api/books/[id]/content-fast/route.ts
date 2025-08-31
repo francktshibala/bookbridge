@@ -9,6 +9,18 @@ export async function GET(
     const { id } = await params
     console.log('Fast content fetch for book ID:', id)
     
+    // Normalize possible ID variants (e.g., 'gutenberg-158' ↔ '158')
+    const extractDigits = (value: string) => (value.match(/\d+/)?.[0] || '').replace(/^0+/, '')
+    const numericId = extractDigits(id)
+    const gutenbergId = numericId ? `gutenberg-${numericId}` : null
+    const idVariants = Array.from(new Set([
+      id,
+      id.toLowerCase(),
+      id.toUpperCase(),
+      ...(numericId ? [numericId] : []),
+      ...(gutenbergId ? [gutenbergId] : [])
+    ].filter(Boolean))) as string[]
+    
     // Get query parameters
     const { searchParams } = new URL(request.url)
     const query = searchParams.get('query')
@@ -37,9 +49,17 @@ export async function GET(
       })
       console.log('📚 Available simplification IDs:', allSimplifications.map(s => s.bookId))
       
-      const storedContent = await prisma.bookContent.findUnique({
+      // Try exact match first
+      let storedContent = await prisma.bookContent.findUnique({
         where: { bookId: id }
       })
+
+      // Fallback: try common ID variants
+      if (!storedContent) {
+        storedContent = await prisma.bookContent.findFirst({
+          where: { bookId: { in: idVariants } }
+        })
+      }
 
       if (storedContent) {
         console.log(`✅ Found book in database: ${storedContent.title}`)
@@ -64,7 +84,7 @@ export async function GET(
 
       // Check for enhanced book with simplifications
       console.log(`🔍 Checking for enhanced book with simplifications: ${id}`)
-      const enhancedBook = await prisma.bookSimplification.findFirst({
+      let enhancedBook = await prisma.bookSimplification.findFirst({
         where: { bookId: id },
         select: { 
           bookId: true,
@@ -120,6 +140,67 @@ export async function GET(
           characterCount: fullText.length,
           totalChunks: allChunks.length,
           message: 'Enhanced book content loaded from simplifications'
+        })
+      }
+
+      // If not found by exact ID, try variant-based lookup for simplifications
+      console.log(`🔍 Fallback search for enhanced simplifications using variants: ${idVariants.join(', ')}`)
+      enhancedBook = await prisma.bookSimplification.findFirst({
+        where: { bookId: { in: idVariants } },
+        select: { 
+          bookId: true,
+          originalText: true,
+          chunkIndex: true
+        },
+        orderBy: { chunkIndex: 'asc' }
+      })
+
+      if (enhancedBook) {
+        const enhancedId = enhancedBook.bookId
+        console.log(`✅ Found enhanced book via variant match: ${enhancedId}`)
+        const allChunks = await prisma.bookSimplification.findMany({
+          where: { bookId: enhancedId },
+          select: { 
+            chunkIndex: true,
+            originalText: true 
+          },
+          orderBy: { chunkIndex: 'asc' },
+          distinct: ['chunkIndex']
+        })
+
+        const fullText = allChunks
+          .sort((a, b) => a.chunkIndex - b.chunkIndex)
+          .map(chunk => chunk.originalText)
+          .join('\n\n')
+
+        const titleMappings: Record<string, { title: string; author: string }> = {
+          'gutenberg-158': { title: 'Emma', author: 'Jane Austen' },
+          'gutenberg-215': { title: 'The Call of the Wild', author: 'Jack London' },
+          'gutenberg-64317': { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+          'gutenberg-43': { title: 'Dr. Jekyll and Mr. Hyde', author: 'Robert Louis Stevenson' },
+          'gutenberg-844': { title: 'The Importance of Being Earnest', author: 'Oscar Wilde' },
+          'gutenberg-1952': { title: 'The Yellow Wallpaper', author: 'Charlotte Perkins Gilman' },
+          'gutenberg-2701': { title: 'Moby Dick; Or, The Whale', author: 'Herman Melville' }
+        }
+
+        const bookInfo = titleMappings[enhancedId] || titleMappings[gutenbergId || ''] || { title: 'Enhanced Book', author: 'Unknown Author' }
+
+        return NextResponse.json({
+          id: enhancedId,
+          title: bookInfo.title,
+          author: bookInfo.author,
+          cached: false,
+          external: false,
+          stored: true,
+          enhanced: true,
+          query,
+          context: fullText,
+          content: fullText,
+          source: 'enhanced_database',
+          wordCount: fullText.split(' ').length,
+          characterCount: fullText.length,
+          totalChunks: allChunks.length,
+          message: 'Enhanced book content loaded from simplifications (variant match)'
         })
       }
 
