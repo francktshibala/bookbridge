@@ -5,6 +5,23 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
+// Minimal HEAD handler to ensure the route is matched by Next.js routing
+export async function HEAD() {
+  return new NextResponse(null, { status: 200, headers: { 'x-route': 'content-fast' } })
+}
+
+// OPTIONS handler for CORS/preflight visibility
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS, HEAD',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+    }
+  })
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
