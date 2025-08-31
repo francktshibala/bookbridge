@@ -18,8 +18,9 @@ import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
 import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
 import { useReadingEngagement } from '@/components/InstallPrompt';
-import { ReadingProgressTracker } from '@/components/sync/ReadingProgressTracker';
-import { NetworkPerformanceMonitor } from '@/components/NetworkPerformanceMonitor';
+// Temporarily disabled for production fix
+// import { ReadingProgressTracker } from '@/components/sync/ReadingProgressTracker';
+// import { NetworkPerformanceMonitor } from '@/components/NetworkPerformanceMonitor';
 
 interface BookContent {
   id: string;
@@ -772,8 +773,8 @@ export default function BookReaderPage() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      {/* Background Reading Progress Tracker */}
-      {user && bookContent && (
+      {/* Background Reading Progress Tracker - Temporarily disabled */}
+      {/* {user && bookContent && (
         <ReadingProgressTracker
           bookId={bookId}
           userId={user.id}
@@ -786,7 +787,7 @@ export default function BookReaderPage() {
             // Could trigger UI updates or sync status indicators here
           }}
         />
-      )}
+      )} */}
       
       <style jsx>{`
         @keyframes spin {
@@ -2378,11 +2379,11 @@ export default function BookReaderPage() {
         }
       `}</style>
 
-      {/* Network Performance Monitor (hidden in production unless explicitly enabled) */}
-      <NetworkPerformanceMonitor 
+      {/* Network Performance Monitor - Temporarily disabled */}
+      {/* <NetworkPerformanceMonitor 
         bookId={bookId}
         isVisible={false}
-      />
+      /> */}
     </div>
   );
 }

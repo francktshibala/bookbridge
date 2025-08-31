@@ -102,6 +102,12 @@ export class AudioCacheDB {
 
   async initialize(): Promise<void> {
     if (this.db) return;
+    
+    // Check if we're in a browser environment
+    if (typeof window === 'undefined' || !window.indexedDB) {
+      console.warn('AudioCacheDB: IndexedDB not available (SSR or unsupported browser)');
+      return;
+    }
 
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.DB_NAME, this.DB_VERSION);
@@ -218,7 +224,10 @@ export class AudioCacheDB {
   ): Promise<boolean> {
     try {
       await this.initialize();
-      if (!this.db) throw new Error('Database not initialized');
+      if (!this.db) {
+        console.warn('AudioCacheDB: Database not available, skipping cache storage');
+        return false;
+      }
 
       // Check cache size before storing
       await this.enforceStorageLimit();
@@ -274,7 +283,10 @@ export class AudioCacheDB {
   ): Promise<CachedAudioData | null> {
     try {
       await this.initialize();
-      if (!this.db) return null;
+      if (!this.db) {
+        console.warn('AudioCacheDB: Database not available, returning null');
+        return null;
+      }
 
       const cacheKey = this.generateCacheKey(bookId, chunkIndex, cefrLevel, voiceId, sentenceIndex);
 
@@ -318,7 +330,10 @@ export class AudioCacheDB {
   ): Promise<CachedAudioData[]> {
     try {
       await this.initialize();
-      if (!this.db) return [];
+      if (!this.db) {
+        console.warn('AudioCacheDB: Database not available, returning empty array');
+        return [];
+      }
 
       return new Promise((resolve, reject) => {
         const transaction = this.db!.transaction([this.STORE_NAME], 'readonly');
@@ -354,7 +369,10 @@ export class AudioCacheDB {
   ): Promise<boolean> {
     try {
       await this.initialize();
-      if (!this.db) return false;
+      if (!this.db) {
+        console.warn('AudioCacheDB: Database not available, returning false');
+        return false;
+      }
 
       const cacheKey = this.generateCacheKey(bookId, chunkIndex, cefrLevel, voiceId, sentenceIndex);
 
@@ -375,7 +393,10 @@ export class AudioCacheDB {
   async clearBookCache(bookId: string): Promise<number> {
     try {
       await this.initialize();
-      if (!this.db) return 0;
+      if (!this.db) {
+        console.warn('AudioCacheDB: Database not available, returning 0');
+        return 0;
+      }
 
       return new Promise((resolve, reject) => {
         const transaction = this.db!.transaction([this.STORE_NAME], 'readwrite');
@@ -538,7 +559,7 @@ export class AudioCacheDB {
   }
 
   async isSupported(): Promise<boolean> {
-    return 'indexedDB' in window && 'Blob' in window;
+    return typeof window !== 'undefined' && 'indexedDB' in window && 'Blob' in window;
   }
 
   async clearAllCache(): Promise<void> {
@@ -700,5 +721,5 @@ export class AudioCacheDB {
 export { AudioQuality, AudioCodec, CachePriority, NetworkType };
 export type { CachedAudioData };
 
-// Export singleton instance
-export const audioCacheDB = AudioCacheDB.getInstance();
+// Export singleton instance with SSR safety
+export const audioCacheDB = typeof window !== 'undefined' ? AudioCacheDB.getInstance() : null as any;

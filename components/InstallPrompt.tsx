@@ -111,6 +111,52 @@ export default function InstallPrompt() {
     setShowPrompt(false);
   };
 
+  // Show iOS-specific instructions
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  
+  if (isIOS && !isInstalled && showPrompt) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 100 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:max-w-sm"
+      >
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 rounded-lg shadow-2xl border border-blue-500">
+          <div className="flex items-start justify-between mb-3">
+            <h3 className="text-lg font-semibold">Install BookBridge</h3>
+            <button
+              onClick={() => setShowPrompt(false)}
+              className="text-white text-opacity-80 hover:text-opacity-100"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </div>
+          <p className="text-sm text-blue-100 mb-3">
+            Add BookBridge to your home screen for instant access to your books!
+          </p>
+          <div className="bg-blue-800 bg-opacity-50 p-3 rounded-lg mb-3">
+            <p className="text-xs text-blue-100 mb-2">To install on iOS:</p>
+            <ol className="text-xs text-blue-100 space-y-1">
+              <li>1. Tap the Share button <span className="inline-block transform rotate-90">→</span></li>
+              <li>2. Scroll down and tap "Add to Home Screen"</li>
+              <li>3. Tap "Add" to install</li>
+            </ol>
+          </div>
+          <button
+            onClick={() => setShowPrompt(false)}
+            className="w-full py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition-colors"
+          >
+            Got it
+          </button>
+        </div>
+      </motion.div>
+    );
+  }
+
   // Don't render if not installable, already installed, or shouldn't show prompt
   if (!isInstallable || isInstalled || !showPrompt || !abTestManager) {
     return null;

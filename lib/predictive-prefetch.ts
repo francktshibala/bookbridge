@@ -391,7 +391,7 @@ export class PredictivePrefetchService {
   }
 
   private getMaxConcurrentPrefetch(): number {
-    const networkInfo = audioCacheDB.getCurrentNetworkInfo();
+    const networkInfo = audioCacheDB?.getCurrentNetworkInfo() || { type: 'unknown' };
     
     const limits = {
       [NetworkType.SLOW_2G]: 1,
@@ -402,7 +402,7 @@ export class PredictivePrefetchService {
       [NetworkType.UNKNOWN]: 2
     };
     
-    return limits[networkInfo.type];
+    return limits[networkInfo.type as keyof typeof limits] || 2;
   }
 
   private async isAlreadyCached(prediction: PrefetchPrediction): Promise<boolean> {

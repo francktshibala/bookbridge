@@ -297,7 +297,7 @@ export class DynamicStorageQuotaService {
       return this.getDefaultQuota();
     }
 
-    const networkInfo = audioCacheDB.getCurrentNetworkInfo();
+    const networkInfo = audioCacheDB?.getCurrentNetworkInfo() || { type: 'unknown' };
     let totalQuotaMB = this.deviceCapabilities.estimatedStorageQuota;
 
     // Network-based adjustments (from PWA research)
@@ -310,7 +310,7 @@ export class DynamicStorageQuotaService {
       [NetworkType.UNKNOWN]: 1.0
     };
 
-    totalQuotaMB *= networkMultipliers[networkInfo.type];
+    totalQuotaMB *= networkMultipliers[networkInfo.type as keyof typeof networkMultipliers] || 1.0;
 
     // Check previous usage patterns for adjustments
     const usageAnalysis = await this.analyzeStorageUsage();

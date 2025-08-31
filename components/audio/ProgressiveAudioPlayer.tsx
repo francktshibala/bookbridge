@@ -386,6 +386,10 @@ export const ProgressiveAudioPlayer: React.FC<ProgressiveAudioPlayerProps> = ({
   const getCachedAudio = async (): Promise<SentenceAudio[] | null> => {
     try {
       // First check IndexedDB cache for instant loading
+      if (!audioCacheDB) {
+        console.log('AudioCacheDB not available (SSR), skipping cache check');
+        return null;
+      }
       const cachedAudio = await audioCacheDB.getChunkAudio(bookId, chunkIndex, cefrLevel, voiceId);
       
       if (cachedAudio.length > 0) {
@@ -393,7 +397,7 @@ export const ProgressiveAudioPlayer: React.FC<ProgressiveAudioPlayerProps> = ({
         
         // Convert cached data to SentenceAudio format
         const sentenceAudios = await Promise.all(
-          cachedAudio.map(async (cached) => {
+          cachedAudio.map(async (cached: any) => {
             const audioUrl = URL.createObjectURL(cached.audioBlob);
             return {
               text: cached.text,
@@ -451,19 +455,20 @@ export const ProgressiveAudioPlayer: React.FC<ProgressiveAudioPlayerProps> = ({
         const response = await fetch(audioResult.audioUrl);
         const audioBlob = await response.blob();
         
-        await audioCacheDB.storeAudioSentence(
-          bookId,
-          chunkIndex,
-          cefrLevel,
-          voiceId,
-          sentenceIndex,
-          audioBlob,
-          sentenceAudio.duration,
-          sentenceAudio.wordTimings,
-          sentence
-        );
-        
-        console.log(`Cached sentence ${sentenceIndex} in IndexedDB`);
+        if (audioCacheDB) {
+          await audioCacheDB.storeAudioSentence(
+            bookId,
+            chunkIndex,
+            cefrLevel,
+            voiceId,
+            sentenceIndex,
+            audioBlob,
+            sentenceAudio.duration,
+            sentenceAudio.wordTimings,
+            sentence
+          );
+          console.log(`Cached sentence ${sentenceIndex} in IndexedDB`);
+        }
       } catch (error) {
         console.warn('Failed to cache audio in IndexedDB:', error);
       }

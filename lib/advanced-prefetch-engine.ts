@@ -898,8 +898,8 @@ export class AdvancedPrefetchEngineService {
       [NetworkType.UNKNOWN]: 2
     };
 
-    const networkType = audioCacheDB.getCurrentNetworkInfo().type;
-    const baseLimit = networkLimits[networkType];
+    const networkType = audioCacheDB?.getCurrentNetworkInfo()?.type || 'unknown';
+    const baseLimit = networkLimits[networkType as keyof typeof networkLimits] || 2;
 
     // Adjust based on resource constraints
     if (this.resourceManager.batteryLevel < 0.3) return Math.max(1, Math.floor(baseLimit * 0.5));
@@ -1183,7 +1183,7 @@ export class AdvancedPrefetchEngineService {
   }
   
   private getNetworkBatteryMultiplier(): number {
-    const networkType = audioCacheDB.getCurrentNetworkInfo().type;
+    const networkType = audioCacheDB?.getCurrentNetworkInfo()?.type || 'unknown';
     
     const multipliers = {
       [NetworkType.SLOW_2G]: 3.0, // Very battery intensive
@@ -1194,7 +1194,7 @@ export class AdvancedPrefetchEngineService {
       [NetworkType.UNKNOWN]: 2.0
     };
     
-    return multipliers[networkType];
+    return multipliers[networkType as keyof typeof multipliers] || 2.0;
   }
   
   private estimateOperationDuration(prediction: AdvancedPrefetchPrediction): number {
