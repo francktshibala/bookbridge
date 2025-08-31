@@ -609,3 +609,54 @@ This comprehensive strategy transforms BookBridge into a mobile-first platform t
 
 *Research initiated: August 30, 2025*  
 *Target completion: [To be determined]*
+
+---
+
+## 🚀 PWA RE-ENABLING PLAN (2-3 Hours Total)
+
+**Status**: PWA was 90% implemented but disabled due to service worker interfering with API routes. **NO need to start from scratch** - just fix the routing conflict.
+
+### **Phase 1: Quick Re-enable (30 minutes)**
+1. **Restore next-pwa in next.config.js**:
+   ```javascript
+   const withPWA = require('next-pwa')({
+     dest: 'public',
+     disable: process.env.NODE_ENV === 'development'
+   });
+   ```
+
+2. **Add critical API exclusion** in PWA config:
+   ```javascript
+   runtimeCaching: [
+     {
+       urlPattern: /^https?.*\/api\/.*/i,
+       handler: 'NetworkOnly' // NEVER cache API routes
+     }
+   ]
+   ```
+
+### **Phase 2: Fix Service Worker Conflicts (1 hour)**
+1. **Test all dynamic API routes work** (`/api/books/[id]/content-fast`)
+2. **Verify no caching interference** with database calls
+3. **Ensure JSON responses** (not HTML 404s)
+
+### **Phase 3: Core PWA Testing (30 minutes)**
+1. **Install prompt** functionality
+2. **Offline page** loading
+3. **Basic audio caching** works
+
+### **Phase 4: Deploy & Verify (30 minutes)**
+1. **Deploy to Render**
+2. **Test in mobile browser**
+3. **Verify install prompt and offline features**
+
+### **Why Install Prompt Still Shows**
+The browser still has the **manifest.json** cached, which triggers install prompts even with PWA disabled. This is normal - the install would work for basic app shell but without service worker features.
+
+**Recommendation**: Don't test the current install - wait until PWA is properly re-enabled with the API exclusions to avoid confusion.
+
+### **Confidence Level**: 95% success rate since:
+- ✅ PWA infrastructure already exists
+- ✅ Only service worker needs API route exclusions  
+- ✅ Render handles dynamic routes properly
+- ✅ All the hard implementation work was already completed
