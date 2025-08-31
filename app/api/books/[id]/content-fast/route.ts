@@ -10,13 +10,14 @@ export async function GET(
     console.log('Fast content fetch for book ID:', id)
     
     // Normalize possible ID variants (e.g., 'gutenberg-158' ↔ '158')
+    const trimmedId = id.trim()
     const extractDigits = (value: string) => (value.match(/\d+/)?.[0] || '').replace(/^0+/, '')
-    const numericId = extractDigits(id)
+    const numericId = extractDigits(trimmedId)
     const gutenbergId = numericId ? `gutenberg-${numericId}` : null
     const idVariants = Array.from(new Set([
-      id,
-      id.toLowerCase(),
-      id.toUpperCase(),
+      trimmedId,
+      trimmedId.toLowerCase(),
+      trimmedId.toUpperCase(),
       ...(numericId ? [numericId] : []),
       ...(gutenbergId ? [gutenbergId] : [])
     ].filter(Boolean))) as string[]
@@ -51,13 +52,21 @@ export async function GET(
       
       // Try exact match first
       let storedContent = await prisma.bookContent.findUnique({
-        where: { bookId: id }
+        where: { bookId: trimmedId }
       })
 
-      // Fallback: try common ID variants
+      // Fallbacks: variant list, and heuristic matches
       if (!storedContent) {
         storedContent = await prisma.bookContent.findFirst({
-          where: { bookId: { in: idVariants } }
+          where: {
+            OR: [
+              { bookId: { in: idVariants } },
+              ...(numericId ? [
+                { bookId: { endsWith: numericId } },
+                { AND: [ { bookId: { startsWith: 'gutenberg-' } }, { bookId: { endsWith: numericId } } ] }
+              ] : [])
+            ]
+          }
         })
       }
 
@@ -85,7 +94,7 @@ export async function GET(
       // Check for enhanced book with simplifications
       console.log(`🔍 Checking for enhanced book with simplifications: ${id}`)
       let enhancedBook = await prisma.bookSimplification.findFirst({
-        where: { bookId: id },
+        where: { bookId: trimmedId },
         select: { 
           bookId: true,
           originalText: true,
@@ -98,7 +107,7 @@ export async function GET(
         console.log(`✅ Found enhanced book with simplifications: ${id}`)
         
         const allChunks = await prisma.bookSimplification.findMany({
-          where: { bookId: id },
+          where: { bookId: trimmedId },
           select: { 
             chunkIndex: true,
             originalText: true 
@@ -146,7 +155,15 @@ export async function GET(
       // If not found by exact ID, try variant-based lookup for simplifications
       console.log(`🔍 Fallback search for enhanced simplifications using variants: ${idVariants.join(', ')}`)
       enhancedBook = await prisma.bookSimplification.findFirst({
-        where: { bookId: { in: idVariants } },
+        where: {
+          OR: [
+            { bookId: { in: idVariants } },
+            ...(numericId ? [
+              { bookId: { endsWith: numericId } },
+              { AND: [ { bookId: { startsWith: 'gutenberg-' } }, { bookId: { endsWith: numericId } } ] }
+            ] : [])
+          ]
+        },
         select: { 
           bookId: true,
           originalText: true,
@@ -209,9 +226,15 @@ export async function GET(
       console.error('Database lookup failed:', dbError)
     }
 
-    // At this point, book not found in database - return 404
+    // At this point, book not found in database - return 404 with diagnostics
     return NextResponse.json(
-      { error: 'Book not found' },
+      { 
+        error: 'Book not found',
+        requestedId: trimmedId,
+        numericId,
+        gutenbergId,
+        idVariants
+      },
       { status: 404 }
     )
 
