@@ -19,6 +19,13 @@ export async function GET(
     
     console.log(`🔍 Book ID analysis: ${id}`, { isExternalBook });
     
+    // Get query parameters early so they're available everywhere
+    const { searchParams } = new URL(request.url)
+    const query = searchParams.get('query')
+    const source = searchParams.get('source') // 'browse' or 'enhanced'
+    const maxChunks = parseInt(searchParams.get('maxChunks') || '5')
+    const maxWords = parseInt(searchParams.get('maxWords') || '3000')
+    
     // ALWAYS check database first for books with dashes (they might be stored internally)
     let foundInDatabase = false;
     
@@ -74,13 +81,6 @@ export async function GET(
       
       console.log(`✅ Authentication successful for internal book ${id}, user: ${user.email}`);
     }
-
-    // Get query parameters
-    const { searchParams } = new URL(request.url)
-    const query = searchParams.get('query')
-    const source = searchParams.get('source') // 'browse' or 'enhanced'
-    const maxChunks = parseInt(searchParams.get('maxChunks') || '5')
-    const maxWords = parseInt(searchParams.get('maxWords') || '3000')
 
     // Handle external books 
     if (isExternalBook && !foundInDatabase) {
