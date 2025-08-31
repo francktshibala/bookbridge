@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "app/api/books/[id]/content-fast/route.ts": {
+      "maxDuration": 30
+    },
+    "app/api/content-fast/[id]/route.ts": {
+      "maxDuration": 30
+    }
+  }
+}
