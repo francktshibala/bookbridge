@@ -14,19 +14,65 @@ export async function GET(
     console.log('Fast content fetch for book ID:', id)
 
     // Check if this is an external book (skip auth for external books)
+    // FIXED: Books in our database have IDs like 'gutenberg-158' so check database first
     const isExternalBook = id.includes('-') && !id.match(/^[0-9a-f-]{36}$/);
     
-    if (!isExternalBook) {
+    console.log(`🔍 Book ID analysis: ${id}`, { isExternalBook });
+    
+    // ALWAYS check database first for books with dashes (they might be stored internally)
+    let foundInDatabase = false;
+    
+    try {
+      console.log(`🔍 Checking database for book: ${id}`);
+      const storedContent = await prisma.bookContent.findUnique({
+        where: { bookId: id }
+      });
+      
+      if (storedContent) {
+        foundInDatabase = true;
+        console.log(`✅ Found ${id} in database: ${storedContent.title}`);
+        console.log(`📊 Database book details: ${storedContent.wordCount} words, ${storedContent.totalChunks} chunks`);
+        
+        return NextResponse.json({
+          id: storedContent.bookId,
+          title: storedContent.title,
+          author: storedContent.author,
+          cached: false,
+          external: false,
+          stored: true,
+          query,
+          context: storedContent.fullText,
+          content: storedContent.fullText,
+          source: 'database',
+          wordCount: storedContent.wordCount,
+          characterCount: storedContent.fullText.length,
+          totalChunks: storedContent.totalChunks,
+          era: storedContent.era,
+          message: 'Content loaded from database storage'
+        });
+      } else {
+        console.log(`❌ Book ${id} not found in bookContent table`);
+      }
+    } catch (dbError) {
+      console.error('❌ Database lookup failed:', dbError);
+    }
+    
+    // Only require auth for internal books that aren't external and aren't in database
+    if (!isExternalBook && !foundInDatabase) {
       // Get user from Supabase auth (only for internal books)
+      console.log(`🔍 Internal book detected, checking authentication for: ${id}`);
       const supabase = await createClient()
       const { data: { user }, error: authError } = await supabase.auth.getUser()
 
       if (authError || !user) {
+        console.log(`❌ Authentication failed for internal book ${id}:`, { authError: authError?.message, hasUser: !!user });
         return NextResponse.json(
           { error: 'Authentication required' },
           { status: 401 }
         )
       }
+      
+      console.log(`✅ Authentication successful for internal book ${id}, user: ${user.email}`);
     }
 
     // Get query parameters
@@ -36,129 +82,18 @@ export async function GET(
     const maxChunks = parseInt(searchParams.get('maxChunks') || '5')
     const maxWords = parseInt(searchParams.get('maxWords') || '3000')
 
-    // Handle external books - but check database first for our stored books
-    if (isExternalBook) {
+    // Handle external books 
+    if (isExternalBook && !foundInDatabase) {
       console.log(`External book detected: ${id}, source: ${source}`)
       
       // For browse experience, skip database lookup and fetch fresh content
       if (source === 'browse') {
-        console.log(`Browse mode: Skipping database lookup and fetching fresh content for ${id}`)
+        console.log(`Browse mode: Fetching fresh external content for ${id}`)
         // Skip to external API fetching (FALLBACK section)
       } else {
-        // PRIORITY 1: Check if this book is stored in our database first (Enhanced experience)
-      try {
-        console.log(`🔍 Checking database for stored book: ${id}`)
-        const storedContent = await prisma.bookContent.findUnique({
-          where: { bookId: id }
-        })
 
-        if (storedContent) {
-          console.log(`✅ Found stored book in database: ${storedContent.title}`)
-          console.log(`📊 Database book details: ${storedContent.wordCount} words, ${storedContent.totalChunks} chunks`)
-          
-          // Return stored content with proper formatting
-          const context = storedContent.fullText
-          
-          return NextResponse.json({
-            id: storedContent.bookId,
-            title: storedContent.title,
-            author: storedContent.author,
-            cached: false,
-            external: false, // This is now internal content
-            stored: true,    // Flag to indicate database source
-            query,
-            context,
-            content: context, // Also provide as 'content' for compatibility
-            source: 'database',
-            wordCount: storedContent.wordCount,
-            characterCount: context.length,
-            totalChunks: storedContent.totalChunks,
-            era: storedContent.era,
-            message: 'Content loaded from database storage'
-          })
-        } else {
-          console.log(`❌ Book ${id} not found in bookContent table`)
-        }
-
-        // PRIORITY 2: Check if this is an enhanced book with simplifications
-        try {
-          console.log(`Checking for enhanced book with simplifications: ${id}`)
-          const enhancedBook = await prisma.bookSimplification.findFirst({
-            where: { bookId: id },
-            select: { 
-              bookId: true,
-              originalText: true,
-              chunkIndex: true
-            },
-            orderBy: { chunkIndex: 'asc' }
-          })
-
-          if (enhancedBook) {
-            console.log(`✅ Found enhanced book with simplifications: ${id}`)
-            
-            // Get all chunks for this enhanced book
-            const allChunks = await prisma.bookSimplification.findMany({
-              where: { bookId: id },
-              select: { 
-                chunkIndex: true,
-                originalText: true 
-              },
-              orderBy: { chunkIndex: 'asc' },
-              distinct: ['chunkIndex']
-            })
-
-            // Combine all original text chunks
-            const fullText = allChunks
-              .sort((a, b) => a.chunkIndex - b.chunkIndex)
-              .map(chunk => chunk.originalText)
-              .join('\n\n')
-
-            // Determine title and author from Gutenberg mappings or generate defaults
-            const titleMappings: Record<string, { title: string; author: string }> = {
-              'gutenberg-158': { title: 'Emma', author: 'Jane Austen' },
-              'gutenberg-215': { title: 'The Call of the Wild', author: 'Jack London' },
-              'gutenberg-64317': { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-              'gutenberg-43': { title: 'Dr. Jekyll and Mr. Hyde', author: 'Robert Louis Stevenson' },
-              'gutenberg-844': { title: 'The Importance of Being Earnest', author: 'Oscar Wilde' },
-              'gutenberg-1952': { title: 'The Yellow Wallpaper', author: 'Charlotte Perkins Gilman' },
-              'gutenberg-2701': { title: 'Moby Dick; Or, The Whale', author: 'Herman Melville' }
-            }
-
-            const bookInfo = titleMappings[id] || { title: 'Enhanced Book', author: 'Unknown Author' }
-            
-            return NextResponse.json({
-              id: id,
-              title: bookInfo.title,
-              author: bookInfo.author,
-              cached: false,
-              external: false,
-              stored: true,
-              enhanced: true, // Flag to indicate this is an enhanced book
-              query,
-              context: fullText,
-              content: fullText,
-              source: 'enhanced_database',
-              wordCount: fullText.split(' ').length,
-              characterCount: fullText.length,
-              totalChunks: allChunks.length,
-              message: 'Enhanced book content loaded from simplifications'
-            })
-          }
-        } catch (enhancedError) {
-          console.error('Enhanced book lookup failed:', enhancedError)
-        }
-
+        // Database lookup already done above, proceed to external API fallback
         console.log(`❌ Book ${id} not found in database, falling back to external API`)
-      } catch (dbError) {
-        console.error('Database lookup failed, falling back to external API:', dbError)
-        // Log detailed database error
-        console.error('Database error details:', {
-          error: dbError instanceof Error ? dbError.message : 'Unknown DB error',
-          stack: dbError instanceof Error ? dbError.stack : undefined,
-          bookId: id,
-          timestamp: new Date().toISOString()
-        })
-      }
       } // Close the enhanced experience else block
       
       // FALLBACK: If not in database, fetch content via the external API route
