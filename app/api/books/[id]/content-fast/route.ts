@@ -16,6 +16,15 @@ export async function GET(
     // FIRST: Always check database for any book, regardless of ID format
     try {
       console.log(`🔍 Checking database first for book: ${id}`)
+      console.log('🔍 Environment check:', { 
+        NODE_ENV: process.env.NODE_ENV,
+        DATABASE_URL_EXISTS: !!process.env.DATABASE_URL 
+      })
+      
+      // Test database connection
+      const connectionTest = await prisma.$executeRaw`SELECT 1 as test`
+      console.log('✅ Database connection test:', connectionTest)
+      
       const storedContent = await prisma.bookContent.findUnique({
         where: { bookId: id }
       })
