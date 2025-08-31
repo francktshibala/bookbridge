@@ -2,67 +2,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'production', // Disabled in production until SSR issues resolved
-  runtimeCaching: [
-    {
-      urlPattern: /^https:.*\/audio\/.*/i,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'audio-cache',
-        expiration: {
-          maxEntries: 100,
-          maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
-        }
-      }
-    },
-    // Do NOT cache API responses; always hit network
-    // Do NOT cache API responses; always go to network
-    {
-      urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
-      handler: 'NetworkOnly'
-    },
-    {
-      urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'google-fonts-cache',
-        expiration: {
-          maxEntries: 10,
-          maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
-        }
-      }
-    },
-    {
-      urlPattern: /\.(?:js|css|woff|woff2|ttf|eot)$/i,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'static-resources',
-        expiration: {
-          maxEntries: 60,
-          maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
-        }
-      }
-    },
-    {
-      // Only cache navigations (documents)
-      urlPattern: ({ request }) => request.mode === 'navigate',
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'pages-cache',
-        expiration: {
-          maxEntries: 50,
-          maxAgeSeconds: 24 * 60 * 60 // 24 hours
-        },
-        networkTimeoutSeconds: 3,
-        cacheableResponse: { statuses: [200] }
-      }
-    }
-  ]
-});
+// COMPLETELY DISABLE PWA - Testing if PWA is causing database access issues
+const withPWA = (config) => config; // No-op function, completely bypass PWA
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

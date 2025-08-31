@@ -17,8 +17,8 @@ import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
 import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
-import { useReadingEngagement } from '@/components/InstallPrompt';
-// Temporarily disabled for production fix
+// PWA COMPLETELY DISABLED FOR TESTING
+// import { useReadingEngagement } from '@/components/InstallPrompt';
 // import { ReadingProgressTracker } from '@/components/sync/ReadingProgressTracker';
 // import { NetworkPerformanceMonitor } from '@/components/NetworkPerformanceMonitor';
 
@@ -41,7 +41,7 @@ export default function BookReaderPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { preferences, announceToScreenReader } = useAccessibility();
-  const { trackReadingTime, trackChapterCompletion } = useReadingEngagement();
+  // PWA DISABLED: const { trackReadingTime, trackChapterCompletion } = useReadingEngagement();
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -236,7 +236,8 @@ export default function BookReaderPage() {
     }
   }, [currentChunk, bookContent]);
 
-  // Track reading engagement for install prompt
+  // PWA DISABLED: Track reading engagement for install prompt
+  /*
   useEffect(() => {
     if (!bookContent) return;
 
@@ -252,6 +253,7 @@ export default function BookReaderPage() {
 
     return () => clearInterval(readingTimer);
   }, [currentChunk, bookContent, trackReadingTime, trackChapterCompletion]);
+  */
 
   // Auto-fetch simplified content when chunk changes in simplified mode
   useEffect(() => {
