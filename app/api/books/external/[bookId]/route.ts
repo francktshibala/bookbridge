@@ -139,7 +139,12 @@ export async function GET(
   try {
     const { bookId } = await params;
     
+    console.log('🔍 External API called with bookId:', bookId);
+    console.log('🔍 Request URL:', request.url);
+    console.log('🔍 Environment:', process.env.NODE_ENV);
+    
     if (!bookId) {
+      console.error('❌ No bookId provided');
       return NextResponse.json(
         { error: 'Book ID is required' },
         { status: 400 }
@@ -164,7 +169,10 @@ export async function GET(
     const [source, ...idParts] = bookId.split('-');
     const id = idParts.join('-'); // Handle IDs that might contain dashes
     
+    console.log('🔍 Parsed book ID:', { bookId, source, id, idParts });
+    
     if (!['gutenberg', 'openlibrary', 'standardebooks', 'googlebooks'].includes(source) || !id) {
+      console.error('❌ Invalid book ID format:', { bookId, source, id });
       return NextResponse.json(
         { error: 'Invalid book ID format. Expected format: source-id (e.g., gutenberg-123, openlibrary-OL123W, standardebooks-author-title, googlebooks-abc123)' },
         { status: 400 }
@@ -184,13 +192,19 @@ export async function GET(
       }
 
       // Get book metadata first
-      console.log(`Fetching Gutenberg book ${numericId} from API...`);
+      console.log(`🔍 Fetching Gutenberg book ${numericId} from API...`);
       
       let bookData;
       try {
         bookData = await gutenbergAPI.getBook(numericId);
+        console.log('✅ Gutenberg API response received:', { id: numericId, title: bookData?.title });
       } catch (apiError) {
-        console.error('Gutenberg API failed:', apiError);
+        console.error('❌ Gutenberg API failed:', apiError);
+        console.error('❌ Gutenberg API error details:', {
+          bookId: numericId,
+          error: apiError instanceof Error ? apiError.message : 'Unknown error',
+          stack: apiError instanceof Error ? apiError.stack : undefined
+        });
         return NextResponse.json(
           { error: 'Failed to fetch from Gutenberg API', details: apiError instanceof Error ? apiError.message : 'Unknown error' },
           { status: 500 }
@@ -198,6 +212,7 @@ export async function GET(
       }
       
       if (!bookData) {
+        console.error(`❌ Book ${numericId} not found in Gutenberg API`);
         return NextResponse.json(
           { error: 'Book not found' },
           { status: 404 }
