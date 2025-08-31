@@ -38,6 +38,10 @@ const GUTENBERG_TITLES: Record<string, { title: string; author: string }> = {
 
 export async function GET() {
   try {
+    console.log('🔍 Enhanced books API called');
+    console.log('🔍 Environment:', process.env.NODE_ENV);
+    console.log('🔍 Database URL configured:', !!process.env.DATABASE_URL);
+    
     // Get all books with significant simplifications (50+ simplifications indicates real processing)
     const simplificationStats = await prisma.bookSimplification.groupBy({
       by: ['bookId'],
@@ -149,29 +153,35 @@ export async function GET() {
     });
 
   } catch (error) {
-    console.error('Error fetching enhanced books:', error);
+    console.error('❌ Error fetching enhanced books:', error);
+    console.error('❌ Database error details:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      databaseConfigured: !!process.env.DATABASE_URL
+    });
     
     // Return fallback data when database is unavailable
+    // FIXED: Use valid Gutenberg book IDs that definitely exist
     const fallbackBooks = [
       {
-        id: 'gutenberg-1342',
-        title: 'Pride and Prejudice',
+        id: 'gutenberg-158',
+        title: 'Emma',
         author: 'Jane Austen',
         description: 'Enhanced ESL edition with 6 difficulty levels available',
         genre: 'Romance',
-        cefrLevels: 'B1-C2',
-        estimatedHours: 8,
+        cefrLevels: 'B2-C2',
+        estimatedHours: 9,
         totalChunks: 305,
         status: 'enhanced' as const,
         simplificationCount: 1830,
         availableLevels: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
       },
       {
-        id: 'gutenberg-1513',
-        title: 'Romeo and Juliet',
-        author: 'William Shakespeare',
+        id: 'gutenberg-215',
+        title: 'The Call of the Wild',
+        author: 'Jack London',
         description: 'Enhanced ESL edition with 6 difficulty levels available',
-        genre: 'Tragedy',
+        genre: 'Adventure',
         cefrLevels: 'B1-C2',
         estimatedHours: 3,
         totalChunks: 150,
@@ -180,26 +190,26 @@ export async function GET() {
         availableLevels: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
       },
       {
-        id: 'gutenberg-84',
-        title: 'Frankenstein',
-        author: 'Mary Wollstonecraft Shelley',
+        id: 'gutenberg-43',
+        title: 'Dr. Jekyll and Mr. Hyde',
+        author: 'Robert Louis Stevenson',
         description: 'Enhanced ESL edition with 6 difficulty levels available',
         genre: 'Gothic',
         cefrLevels: 'B2-C2',
-        estimatedHours: 6,
+        estimatedHours: 3,
         totalChunks: 172,
         status: 'enhanced' as const,
         simplificationCount: 1032,
         availableLevels: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
       },
       {
-        id: 'gutenberg-11',
-        title: 'Alice\'s Adventures in Wonderland',
-        author: 'Lewis Carroll',
+        id: 'gutenberg-64317',
+        title: 'The Great Gatsby',
+        author: 'F. Scott Fitzgerald',
         description: 'Enhanced ESL edition with 6 difficulty levels available',
-        genre: 'Fantasy',
-        cefrLevels: 'A2-C1',
-        estimatedHours: 2.5,
+        genre: 'American Classic',
+        cefrLevels: 'B2-C2',
+        estimatedHours: 4,
         totalChunks: 90,
         status: 'enhanced' as const,
         simplificationCount: 540,
