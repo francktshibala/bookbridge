@@ -112,7 +112,7 @@ export default function InstallPrompt() {
   };
 
   // Show iOS-specific instructions
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isIOS = typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
   
   if (isIOS && !isInstalled && showPrompt) {
     return (

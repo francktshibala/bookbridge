@@ -6,7 +6,7 @@ const withPWA = require('next-pwa')({
   dest: 'public',
   register: true,
   skipWaiting: true,
-  disable: true, // Temporarily disabled for debugging
+  disable: process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'production', // Disabled in production until SSR issues resolved
   runtimeCaching: [
     {
       urlPattern: /^https:.*\/audio\/.*/i,
