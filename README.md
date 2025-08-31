@@ -117,4 +117,4 @@ Unlike generic AI assistants, BookBridge:
 
 ---
 
-*BookBridge: Where AI tutoring meets literature to create personalized learning experiences.*
+*BookBridge: Where AI tutoring meets literature to create personalized learning experiences.*# Force fresh deployment Sun Aug 31 01:55:24 MDT 2025
