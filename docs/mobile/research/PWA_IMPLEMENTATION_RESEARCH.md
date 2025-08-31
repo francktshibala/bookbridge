@@ -1,5 +1,23 @@
 # 📱 BookBridge PWA Implementation Research
 
+## ⚠️ CRITICAL PRODUCTION ISSUE RESOLVED (August 31, 2025)
+
+**Issue**: After PWA implementation began, 11 enhanced books with simplifications and audio stopped loading in production (404 errors), despite working perfectly locally.
+
+**Root Cause**: PWA service worker and related code was interfering with database access for books with Gutenberg-style IDs (e.g., `gutenberg-158`).
+
+**Temporary Fix Applied**: 
+- **PWA completely disabled** in `next.config.js` (replaced `withPWA` with no-op function)
+- **All PWA imports removed** from reading page (`app/library/[id]/read/page.tsx`)
+- **Service worker disabled** to restore database connectivity
+- Books now load correctly in production without PWA features
+
+**Status**: PWA features must be re-implemented with careful consideration of database access patterns. The service worker caching strategy needs to be redesigned to not interfere with API routes that query the database.
+
+**Next Steps**: Before re-enabling PWA, ensure service worker does not cache or intercept `/api/books/[id]/content-fast` routes that access the database.
+
+---
+
 ## Overview
 This document consolidates research findings from three specialized agents investigating Progressive Web App (PWA) implementation for BookBridge's mobile strategy. The goal is to transform BookBridge into a mobile-first platform that works offline, installs like a native app, and maintains the current Speechify-level audio performance (<2s loading, 99% word highlighting accuracy).
 
