@@ -47,13 +47,14 @@ export async function GET(
       } else {
         // PRIORITY 1: Check if this book is stored in our database first (Enhanced experience)
       try {
-        console.log(`Checking database for stored book: ${id}`)
+        console.log(`🔍 Checking database for stored book: ${id}`)
         const storedContent = await prisma.bookContent.findUnique({
           where: { bookId: id }
         })
 
         if (storedContent) {
           console.log(`✅ Found stored book in database: ${storedContent.title}`)
+          console.log(`📊 Database book details: ${storedContent.wordCount} words, ${storedContent.totalChunks} chunks`)
           
           // Return stored content with proper formatting
           const context = storedContent.fullText
@@ -75,6 +76,8 @@ export async function GET(
             era: storedContent.era,
             message: 'Content loaded from database storage'
           })
+        } else {
+          console.log(`❌ Book ${id} not found in bookContent table`)
         }
 
         // PRIORITY 2: Check if this is an enhanced book with simplifications
