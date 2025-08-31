@@ -42,6 +42,20 @@ export async function GET() {
     console.log('🔍 Environment:', process.env.NODE_ENV);
     console.log('🔍 Database URL configured:', !!process.env.DATABASE_URL);
     
+    // Test basic database connectivity first
+    try {
+      console.log('🔍 Testing database connectivity...');
+      const connectionTest = await prisma.$executeRaw`SELECT 1 as test`;
+      console.log('✅ Database connection successful:', connectionTest);
+    } catch (dbTestError) {
+      console.error('❌ Database connection failed:', dbTestError);
+      console.error('❌ Connection details:', {
+        error: dbTestError instanceof Error ? dbTestError.message : 'Unknown error',
+        stack: dbTestError instanceof Error ? dbTestError.stack : undefined
+      });
+      // Don't return here - continue with the main query to see the actual error
+    }
+    
     // Get all books with significant simplifications (50+ simplifications indicates real processing)
     const simplificationStats = await prisma.bookSimplification.groupBy({
       by: ['bookId'],
