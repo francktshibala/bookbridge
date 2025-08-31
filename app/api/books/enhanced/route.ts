@@ -57,6 +57,7 @@ export async function GET() {
     }
     
     // Get all books with significant simplifications (50+ simplifications indicates real processing)
+    console.log('🔍 Querying bookSimplification table...');
     const simplificationStats = await prisma.bookSimplification.groupBy({
       by: ['bookId'],
       _count: {
@@ -75,8 +76,12 @@ export async function GET() {
         }
       }
     });
+    
+    console.log('✅ Found simplification stats:', simplificationStats.length, 'books with 50+ simplifications');
+    console.log('📊 Book IDs found:', simplificationStats.map(s => s.bookId));
 
     // Get detailed simplification data for these books
+    console.log('🔍 Querying detailed simplifications...');
     const allSimplifications = await prisma.bookSimplification.findMany({
       where: {
         bookId: {
@@ -88,8 +93,11 @@ export async function GET() {
         targetLevel: true
       }
     });
+    
+    console.log('✅ Found detailed simplifications:', allSimplifications.length, 'entries');
 
     // Get book content for books that have it
+    console.log('🔍 Querying book content...');
     const booksWithContent = await prisma.bookContent.findMany({
       where: {
         bookId: {
@@ -97,6 +105,9 @@ export async function GET() {
         }
       }
     });
+    
+    console.log('✅ Found book content:', booksWithContent.length, 'books');
+    console.log('📚 Books with content:', booksWithContent.map(b => `${b.bookId}: ${b.title}`));
 
     // Transform into enhanced books
     const enhancedBooks = simplificationStats.map(stat => {
