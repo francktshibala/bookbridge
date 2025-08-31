@@ -2,36 +2,8 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
-  const response = NextResponse.next();
-  const pathname = request.nextUrl.pathname;
-  
-  // Block test and debug routes in production
-  if (process.env.NODE_ENV === 'production') {
-    if (pathname.startsWith('/test-') || pathname.startsWith('/debug-')) {
-      // Return 404 for test/debug routes in production
-      return new NextResponse(null, { status: 404 });
-    }
-  }
-  
-  // Allow public files
-  if (pathname.startsWith('/manifest.json') ||
-      pathname.startsWith('/icon-') ||
-      pathname.includes('.')) {
-    return response;
-  }
-  
-  // Allow Next.js internal requests (RSC prefetching)
-  if (request.nextUrl.searchParams.has('_rsc') || 
-      request.headers.get('rsc') === '1' ||
-      request.headers.get('next-router-prefetch') === '1') {
-    return response;
-  }
-  
-  // FULLY PASSIVE MIDDLEWARE: No auth checks at all
-  // All auth protection is now handled client-side by AuthProvider and useRequireAuth hook
-  // The API routes will handle their own authentication validation
-
-  return response;
+  // COMPLETELY DISABLED FOR DEBUGGING - BYPASS ALL LOGIC
+  return NextResponse.next();
 }
 
 export const config = {
