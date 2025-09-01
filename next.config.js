@@ -1,6 +1,13 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+// Make bundle analyzer optional for production builds
+let withBundleAnalyzer;
+try {
+  withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+  });
+} catch (error) {
+  console.log('Bundle analyzer not available, skipping...');
+  withBundleAnalyzer = (config) => config;
+}
 
 // PWA Feature Flag - Set ENABLE_PWA=true in .env.local to enable PWA features
 // Default: false (PWA disabled) for safety
