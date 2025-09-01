@@ -3,7 +3,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.bookbridge.app',
   appName: 'BookBridge',
-  webDir: 'out', // Will use static export for mobile builds only
+  webDir: '.next', // Will use Next.js build for production
   server: {
     androidScheme: 'https',
     // For development: point to local server
