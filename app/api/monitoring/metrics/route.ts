@@ -231,7 +231,9 @@ async function handleCriticalIssues(aggregated: AggregatedMetrics, batch: RealTi
   
   // For now, log the critical issues
   try {
-    const response = await fetch('/api/errors', {
+    const env = getDeploymentEnvironment();
+    const errorsEndpoint = new URL('/api/errors', env.deploymentUrl).toString();
+    const response = await fetch(errorsEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
