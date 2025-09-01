@@ -168,6 +168,195 @@ export class CapacitorStorage {
     }
   }
 
+  // Get stored audio file
+  static async getAudioFile(bookId: string, chunkIndex: number): Promise<string | null> {
+    try {
+      const { Capacitor } = await import('@capacitor/core');
+      
+      if (Capacitor.isNativePlatform()) {
+        const { Filesystem, Directory } = await import('@capacitor/filesystem');
+        
+        const result = await Filesystem.readFile({
+          path: `audio/${bookId}_${chunkIndex}.mp3`,
+          directory: Directory.Data,
+        });
+        
+        return `data:audio/mp3;base64,${result.data}`;
+      }
+    } catch (error) {
+      console.log(`Audio file not found natively: ${bookId}_${chunkIndex}`);
+    }
+    return null;
+  }
+
+  // Store raw book files (PDF, EPUB, etc.)
+  static async storeRawBookFile(
+    bookId: string, 
+    fileName: string, 
+    fileBlob: Blob,
+    mimeType: string
+  ): Promise<void> {
+    try {
+      const { Capacitor } = await import('@capacitor/core');
+      
+      if (Capacitor.isNativePlatform()) {
+        const { Filesystem, Directory } = await import('@capacitor/filesystem');
+        
+        const base64Data = await this.blobToBase64(fileBlob);
+        const extension = fileName.split('.').pop() || 'bin';
+        
+        await Filesystem.writeFile({
+          path: `raw-books/${bookId}.${extension}`,
+          data: base64Data,
+          directory: Directory.Data,
+        });
+        
+        // Store metadata for the raw file
+        await this.storeUserPreferences(`raw-book-${bookId}`, {
+          fileName,
+          mimeType,
+          size: fileBlob.size,
+          storedAt: Date.now()
+        });
+        
+        console.log(`📖 Stored raw book natively: ${bookId}`);
+      }
+    } catch (error) {
+      console.error('Native raw book storage failed:', error);
+    }
+  }
+
+  // Get raw book file
+  static async getRawBookFile(bookId: string): Promise<{ data: string; metadata: any } | null> {
+    try {
+      const { Capacitor } = await import('@capacitor/core');
+      
+      if (Capacitor.isNativePlatform()) {
+        const { Filesystem, Directory } = await import('@capacitor/filesystem');
+        
+        const metadata = await this.getUserPreferences(`raw-book-${bookId}`);
+        if (!metadata) return null;
+        
+        const extension = metadata.fileName.split('.').pop() || 'bin';
+        const result = await Filesystem.readFile({
+          path: `raw-books/${bookId}.${extension}`,
+          directory: Directory.Data,
+        });
+        
+        return {
+          data: `data:${metadata.mimeType};base64,${result.data}`,
+          metadata
+        };
+      }
+    } catch (error) {
+      console.log(`Raw book file not found natively: ${bookId}`);
+    }
+    return null;
+  }
+
+  // List all stored files for a book
+  static async listBookFiles(bookId: string): Promise<{
+    content: boolean;
+    rawFile: boolean;
+    audioFiles: number[];
+  }> {
+    const result = {
+      content: false,
+      rawFile: false,
+      audioFiles: [] as number[]
+    };
+
+    try {
+      const { Capacitor } = await import('@capacitor/core');
+      
+      if (Capacitor.isNativePlatform()) {
+        const { Filesystem, Directory } = await import('@capacitor/filesystem');
+        
+        // Check for processed content
+        try {
+          await Filesystem.readFile({
+            path: `books/${bookId}.json`,
+            directory: Directory.Data,
+          });
+          result.content = true;
+        } catch {}
+
+        // Check for raw file
+        const rawMetadata = await this.getUserPreferences(`raw-book-${bookId}`);
+        result.rawFile = !!rawMetadata;
+
+        // Check for audio files
+        try {
+          const audioDir = await Filesystem.readdir({
+            path: 'audio',
+            directory: Directory.Data,
+          });
+          
+          const audioPattern = new RegExp(`^${bookId}_(\\d+)\\.mp3$`);
+          result.audioFiles = audioDir.files
+            .map(file => {
+              const match = file.name.match(audioPattern);
+              return match ? parseInt(match[1]) : null;
+            })
+            .filter(index => index !== null)
+            .sort((a, b) => a - b);
+        } catch {}
+      }
+    } catch (error) {
+      console.error('Failed to list book files:', error);
+    }
+
+    return result;
+  }
+
+  // Delete all files for a book
+  static async deleteBookFiles(bookId: string): Promise<void> {
+    try {
+      const { Capacitor } = await import('@capacitor/core');
+      
+      if (Capacitor.isNativePlatform()) {
+        const { Filesystem, Directory } = await import('@capacitor/filesystem');
+        
+        // Delete processed content
+        try {
+          await Filesystem.deleteFile({
+            path: `books/${bookId}.json`,
+            directory: Directory.Data,
+          });
+        } catch {}
+
+        // Delete raw file
+        const rawMetadata = await this.getUserPreferences(`raw-book-${bookId}`);
+        if (rawMetadata) {
+          const extension = rawMetadata.fileName.split('.').pop() || 'bin';
+          try {
+            await Filesystem.deleteFile({
+              path: `raw-books/${bookId}.${extension}`,
+              directory: Directory.Data,
+            });
+            const { Preferences } = await import('@capacitor/preferences');
+            await Preferences.remove({ key: `raw-book-${bookId}` });
+          } catch {}
+        }
+
+        // Delete audio files
+        const files = await this.listBookFiles(bookId);
+        for (const chunkIndex of files.audioFiles) {
+          try {
+            await Filesystem.deleteFile({
+              path: `audio/${bookId}_${chunkIndex}.mp3`,
+              directory: Directory.Data,
+            });
+          } catch {}
+        }
+        
+        console.log(`🗑️ Deleted all files for book: ${bookId}`);
+      }
+    } catch (error) {
+      console.error('Failed to delete book files:', error);
+    }
+  }
+
   // Helper function to convert blob to base64
   private static blobToBase64(blob: Blob): Promise<string> {
     return new Promise((resolve, reject) => {

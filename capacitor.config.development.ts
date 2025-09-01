@@ -7,7 +7,7 @@ const config: CapacitorConfig = {
   server: {
     androidScheme: 'https',
     // For development: point to local server
-    url: 'http://localhost:3001',
+    url: 'http://localhost:3000',
     cleartext: true,
   },
   plugins: {

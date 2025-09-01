@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { InstantAudioPlayer } from './InstantAudioPlayer';
+import { CapacitorStorage } from '../../lib/capacitor-storage';
 
 interface CapacitorAudioPlayerProps {
   bookId: string;
@@ -24,6 +25,21 @@ export const CapacitorAudioPlayer: React.FC<CapacitorAudioPlayerProps> = ({
   chunkIndex,
   ...props
 }) => {
+  const [cachedAudioUrl, setCachedAudioUrl] = useState<string | null>(null);
+
+  // Check for cached audio on mount
+  useEffect(() => {
+    const checkCachedAudio = async () => {
+      const cachedUrl = await CapacitorStorage.getAudioFile(bookId, chunkIndex);
+      if (cachedUrl) {
+        setCachedAudioUrl(cachedUrl);
+        console.log(`📱 Using cached audio: ${bookId}_${chunkIndex}`);
+      }
+    };
+    
+    checkCachedAudio();
+  }, [bookId, chunkIndex]);
+
   // Enhanced caching for Capacitor native platform
   const cacheAudioNatively = useCallback(async (audioUrl: string, metadata: any) => {
     try {
@@ -31,21 +47,18 @@ export const CapacitorAudioPlayer: React.FC<CapacitorAudioPlayerProps> = ({
       const { Capacitor } = await import('@capacitor/core');
       
       if (Capacitor.isNativePlatform()) {
-        const { Filesystem, Directory } = await import('@capacitor/filesystem');
-        
         // Download audio file
         const response = await fetch(audioUrl);
         const blob = await response.blob();
         
-        // Convert to base64 for Capacitor storage
-        const base64Data = await blobToBase64(blob);
+        // Store using CapacitorStorage utility
+        await CapacitorStorage.storeAudioFile(bookId, chunkIndex, blob);
         
-        // Store in native filesystem
-        await Filesystem.writeFile({
-          path: `audio/${bookId}_${chunkIndex}.mp3`,
-          data: base64Data,
-          directory: Directory.Data,
-        });
+        // Update cached URL for immediate use
+        const newCachedUrl = await CapacitorStorage.getAudioFile(bookId, chunkIndex);
+        if (newCachedUrl) {
+          setCachedAudioUrl(newCachedUrl);
+        }
         
         console.log(`📱 Cached audio natively: ${bookId}_${chunkIndex}`);
       }
@@ -101,6 +114,8 @@ export const CapacitorAudioPlayer: React.FC<CapacitorAudioPlayerProps> = ({
       bookId={bookId}
       chunkIndex={chunkIndex}
       {...props}
+      cachedAudioUrl={cachedAudioUrl}
+      onAudioCache={cacheAudioNatively}
     />
   );
 };

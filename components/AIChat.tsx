@@ -558,11 +558,10 @@ export const AIChat: React.FC<AIChatProps> = ({ bookId, bookTitle, bookContext }
         announceToScreenReader(`Finalizing response, ${elapsed} seconds elapsed, finishing up`);
       }, 25000);
 
-      const response = await fetch('/api/ai', {
+      const { ApiAdapter } = await import('../lib/api-adapter');
+      
+      const response = await ApiAdapter.fetch('/api/ai', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         credentials: 'include', // Include cookies for server-side auth
         signal: controller.signal, // Add abort signal
         body: JSON.stringify({
