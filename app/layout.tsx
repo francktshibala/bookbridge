@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import '../styles/wireframe-typography.css';
 import { SkipLinks } from '@/components/SkipLinks';
+import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 import { AccessibilityProvider } from '@/contexts/AccessibilityContext';
 import { KeyboardNavigationProvider } from '@/components/KeyboardNavigationProvider';
 import Navigation from '@/components/Navigation';
@@ -91,6 +92,9 @@ export default function RootLayout({
                 <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
                   <PWAAnalyticsProvider enableTracking={true}>
                     <OnboardingManager enableAutoOnboarding={true}>
+                {/* Service Worker Registration */}
+                <ServiceWorkerRegistration />
+                
                 {/* PWA Update Manager */}
                 <UpdateManager 
                   enableAutoCheck={true}
