@@ -673,19 +673,20 @@ The browser still has the **manifest.json** cached, which triggers install promp
     - `[PWA] Service worker: /public/sw.js` with `url: /sw.js` and `scope: /`.
   - Fixed server-side monitoring error by changing relative `fetch('/api/errors')` to absolute URL based on deployment origin.
 
-- Current issue (to investigate):
-  - No install icon/prompt appears in Chrome despite successful build-time SW generation.
-  - DevTools → Application shows no Service Worker registration for the production origin.
+### PWA Abandonment Decision — 2025-09-02
 
-- Likely causes and checks:
-  1) SW not actually served/registered at runtime (despite being built). Check `https://bookbridge-mkd7.onrender.com/sw.js` returns JS (200) with correct `Content-Type: application/javascript`.
-  2) Registration timing/caching: open in Incognito, DevTools → Application → Clear storage → Unregister → hard reload twice.
-  3) Manifest/installability: DevTools → Application → Manifest should show Installable. Verify fields: `start_url`, `display: standalone`, icons 192/512, `scope: /`.
-  4) Browser/platform nuances: Chrome/Edge show install icon; iOS Safari requires Share → Add to Home Screen (no auto prompt).
-  5) Confirm next-pwa auto-registration active (`register: true`) and not tree-shaken; if needed, add an explicit client-side `navigator.serviceWorker.register('/sw.js')` for debugging.
+**Issue**: Despite extensive debugging efforts, PWA installation remains unreliable:
+- Install prompt appears but actual installation fails consistently
+- Service worker registration requires manual console commands
+- Same issues persist across multiple browsers and devices (desktop, mobile, iPhone, Android)
+- Multiple fix attempts (API route exclusions, explicit registration) did not resolve core reliability issues
 
-- Next steps (tomorrow):
-  - Manually verify `GET /sw.js` in production and Manifest installability panel warnings.
-  - If `sw.js` is present but not registering, temporarily add a minimal client-side registration in a dev-only component to force registration and read errors in console.
-  - Validate `app/layout.tsx` includes `manifest` (it does) and that `offline.html` is accessible.
-  - After registration works, validate install flow using `/test-pwa-books` and offline behavior via `/offline`.
+**Time Investment**: 3+ days of debugging with no reliable solution
+
+**Decision**: **Pivot to Capacitor hybrid app approach**
+- Maintains 95% code reuse from existing Next.js app
+- Provides reliable native app installation via app stores
+- Eliminates PWA browser compatibility issues
+- Delivers consistent user experience across all platforms
+
+**Next Phase**: Capacitor implementation research and development
