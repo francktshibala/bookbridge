@@ -381,7 +381,8 @@ export default function LibraryPage() {
         params.append('search', search);
       }
 
-      const response = await fetch(`/api/books?${params}`);
+      const { ApiAdapter } = await import('../../lib/api-adapter');
+      const response = await ApiAdapter.fetch(`/api/books?${params}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch books');
@@ -517,11 +518,10 @@ export default function LibraryPage() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 second timeout for complex AI processing
 
-      const response = await fetch('/api/ai', {
+      const { ApiAdapter } = await import('../../lib/api-adapter');
+      
+      const response = await ApiAdapter.fetch('/api/ai', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({
           query: message,
           bookId: selectedAIBook.id,

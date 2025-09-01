@@ -26,6 +26,7 @@ export const useNetworkStatus = (): NetworkStatusHook => {
     isSlowConnection: false,
     connectionType: 'unknown'
   });
+  const [capacitorListener, setCapacitorListener] = useState<any>(null);
 
   const getConnectionInfo = useCallback((): NetworkInfo => {
     const connection = (navigator as any).connection || 
@@ -74,31 +75,77 @@ export const useNetworkStatus = (): NetworkStatusHook => {
   }, [getConnectionInfo]);
 
   useEffect(() => {
-    // Initial status check
-    refreshNetworkStatus();
-
-    // Listen for online/offline events
-    const handleOnline = () => refreshNetworkStatus();
-    const handleOffline = () => refreshNetworkStatus();
-
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-
-    // Listen for connection changes if supported
-    const connection = (navigator as any).connection;
-    if (connection && connection.addEventListener) {
-      connection.addEventListener('change', refreshNetworkStatus);
-    }
-
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
+    // Enhanced Capacitor network monitoring
+    const initializeNetworkMonitoring = async () => {
+      try {
+        const { Capacitor } = await import('@capacitor/core');
+        
+        if (Capacitor.isNativePlatform()) {
+          const { Network } = await import('@capacitor/network');
+          
+          // Get initial Capacitor network status
+          const status = await Network.getStatus();
+          const connectionType = status.connectionType as string;
+          setNetworkInfo({
+            isOnline: status.connected,
+            isSlowConnection: connectionType === '2g' || connectionType === '3g' || connectionType === 'cellular',
+            connectionType: connectionType
+          });
+          
+          // Listen for network changes
+          const listener = await Network.addListener('networkStatusChange', (status) => {
+            const connectionType = status.connectionType as string;
+            setNetworkInfo({
+              isOnline: status.connected,
+              isSlowConnection: connectionType === '2g' || connectionType === '3g' || connectionType === 'cellular',
+              connectionType: connectionType
+            });
+            
+            console.log(`📶 Capacitor network changed: ${status.connectionType}, Connected: ${status.connected}`);
+          });
+          
+          setCapacitorListener(listener);
+          return;
+        }
+      } catch (error) {
+        console.log('Capacitor network monitoring not available, using web fallback');
+      }
       
-      if (connection && connection.removeEventListener) {
-        connection.removeEventListener('change', refreshNetworkStatus);
+      // Web fallback
+      refreshNetworkStatus();
+
+      // Listen for online/offline events
+      const handleOnline = () => refreshNetworkStatus();
+      const handleOffline = () => refreshNetworkStatus();
+
+      window.addEventListener('online', handleOnline);
+      window.addEventListener('offline', handleOffline);
+
+      // Listen for connection changes if supported
+      const connection = (navigator as any).connection;
+      if (connection && connection.addEventListener) {
+        connection.addEventListener('change', refreshNetworkStatus);
+      }
+
+      return () => {
+        window.removeEventListener('online', handleOnline);
+        window.removeEventListener('offline', handleOffline);
+        
+        if (connection && connection.removeEventListener) {
+          connection.removeEventListener('change', refreshNetworkStatus);
+        }
+      };
+    };
+
+    initializeNetworkMonitoring();
+
+    // Cleanup
+    return () => {
+      if (capacitorListener?.remove) {
+        capacitorListener.remove();
       }
     };
-  }, [refreshNetworkStatus]);
+  }, [refreshNetworkStatus, capacitorListener]);
 
   return {
     networkInfo,

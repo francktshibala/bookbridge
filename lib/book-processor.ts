@@ -3,6 +3,7 @@ import { createClient as createServiceClient } from '@supabase/supabase-js'
 import { contentExtractor } from './content-extractor'
 import { enhancedContentChunker } from './content-chunker-enhanced'
 import { bookCacheService, CachedBookContent } from './book-cache'
+import { CapacitorStorage } from './capacitor-storage'
 
 export class BookProcessorService {
   private processing = new Set<string>()
@@ -66,12 +67,21 @@ export class BookProcessorService {
         throw new Error(`Failed to download file: ${downloadError?.message}`)
       }
 
-      // Extract content
-      bookCacheService.setProcessingStatus(bookId, { progress: 40 })
+      // Store raw file in Capacitor storage for offline access
       const fileType = book.filename.split('.').pop()?.toLowerCase() || 'txt'
       const arrayBuffer = await fileData.arrayBuffer()
       const buffer = Buffer.from(arrayBuffer)
       
+      // Store the raw file for offline access
+      await CapacitorStorage.storeRawBookFile(
+        book.id,
+        book.filename,
+        new Blob([buffer]),
+        this.getMimeType(fileType)
+      )
+
+      // Extract content
+      bookCacheService.setProcessingStatus(bookId, { progress: 40 })
       console.log(`Extracting content from ${fileType} file`)
       const extractedContent = await contentExtractor.extract(buffer, fileType)
       
@@ -104,6 +114,9 @@ export class BookProcessorService {
 
       await bookCacheService.cacheContent(cachedContent)
       
+      // Store processed content in Capacitor storage for offline access
+      await CapacitorStorage.storeBookContent(book.id, cachedContent)
+      
       bookCacheService.setProcessingStatus(bookId, {
         status: 'completed',
         progress: 100,
@@ -126,6 +139,18 @@ export class BookProcessorService {
     }
   }
 
+  // Helper method to determine MIME type from file extension
+  private getMimeType(fileType: string): string {
+    const mimeTypes: Record<string, string> = {
+      'pdf': 'application/pdf',
+      'epub': 'application/epub+zip',
+      'txt': 'text/plain',
+      'html': 'text/html',
+      'htm': 'text/html'
+    }
+    return mimeTypes[fileType] || 'application/octet-stream'
+  }
+
   // Process book in background (non-blocking)
   async processBookBackground(bookId: string): Promise<void> {
     this.processBook(bookId).catch(error => {
@@ -135,9 +160,17 @@ export class BookProcessorService {
 
   // Check if book needs processing
   async needsProcessing(bookId: string): Promise<boolean> {
-    // Check if already cached
+    // Check if already cached in memory/database
     const isCached = await bookCacheService.isBookCached(bookId)
     if (isCached) {
+      return false
+    }
+
+    // Check if stored in Capacitor storage (offline)
+    const capacitorContent = await CapacitorStorage.getBookContent(bookId)
+    if (capacitorContent) {
+      // If found in Capacitor storage, restore to cache
+      await bookCacheService.cacheContent(capacitorContent)
       return false
     }
 

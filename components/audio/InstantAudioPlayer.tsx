@@ -53,6 +53,8 @@ interface InstantAudioPlayerProps {
   className?: string;
   isPlaying?: boolean;
   onPlayingChange?: (playing: boolean) => void;
+  cachedAudioUrl?: string | null;
+  onAudioCache?: (audioUrl: string, metadata: any) => Promise<void>;
 }
 
 interface AudioProgressUpdate {
@@ -253,7 +255,8 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     metadata: AudioMetadata;
   } | null> => {
     try {
-      const response = await fetch(
+      const { ApiAdapter } = await import('../../lib/api-adapter');
+      const response = await ApiAdapter.fetch(
         `/api/audio/pregenerated?bookId=${bookId}&cefrLevel=${cefrLevel}&chunkIndex=${chunkIndex}&voiceId=${voiceId}`
       );
 
@@ -324,9 +327,9 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     
     try {
       // Use existing OpenAI TTS API
-      const response = await fetch('/api/openai/tts', {
+      const { ApiAdapter } = await import('../../lib/api-adapter');
+      const response = await ApiAdapter.fetch('/api/openai/tts', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           text: text,
           voice: voiceId,

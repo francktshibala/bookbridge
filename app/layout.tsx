@@ -4,6 +4,7 @@ import './globals.css';
 import '../styles/wireframe-typography.css';
 import { SkipLinks } from '@/components/SkipLinks';
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
+import { CapacitorAppListener } from '@/components/CapacitorAppListener';
 import { AccessibilityProvider } from '@/contexts/AccessibilityContext';
 import { KeyboardNavigationProvider } from '@/components/KeyboardNavigationProvider';
 import Navigation from '@/components/Navigation';
@@ -94,6 +95,9 @@ export default function RootLayout({
                     <OnboardingManager enableAutoOnboarding={true}>
                 {/* Service Worker Registration */}
                 <ServiceWorkerRegistration />
+                
+                {/* Capacitor App Listener */}
+                <CapacitorAppListener />
                 
                 {/* PWA Update Manager */}
                 <UpdateManager 
