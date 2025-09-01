@@ -660,3 +660,32 @@ The browser still has the **manifest.json** cached, which triggers install promp
 - ✅ Only service worker needs API route exclusions  
 - ✅ Render handles dynamic routes properly
 - ✅ All the hard implementation work was already completed
+
+---
+
+### Production Deployment Update — 2025-09-01
+
+- Achievements today:
+  - Re-enabled PWA in production. Added robust env parsing and logging in `next.config.js` and echoed flags in `package.json` build script.
+  - Render Build Command set to `ENABLE_PWA=true npm run build`; Environment set to `NODE_ENV=production`, `ENABLE_PWA=true`.
+  - Verified build logs show PWA enabled and service worker generation:
+    - `🔧 PWA Status: ENABLED`
+    - `[PWA] Service worker: /public/sw.js` with `url: /sw.js` and `scope: /`.
+  - Fixed server-side monitoring error by changing relative `fetch('/api/errors')` to absolute URL based on deployment origin.
+
+- Current issue (to investigate):
+  - No install icon/prompt appears in Chrome despite successful build-time SW generation.
+  - DevTools → Application shows no Service Worker registration for the production origin.
+
+- Likely causes and checks:
+  1) SW not actually served/registered at runtime (despite being built). Check `https://bookbridge-mkd7.onrender.com/sw.js` returns JS (200) with correct `Content-Type: application/javascript`.
+  2) Registration timing/caching: open in Incognito, DevTools → Application → Clear storage → Unregister → hard reload twice.
+  3) Manifest/installability: DevTools → Application → Manifest should show Installable. Verify fields: `start_url`, `display: standalone`, icons 192/512, `scope: /`.
+  4) Browser/platform nuances: Chrome/Edge show install icon; iOS Safari requires Share → Add to Home Screen (no auto prompt).
+  5) Confirm next-pwa auto-registration active (`register: true`) and not tree-shaken; if needed, add an explicit client-side `navigator.serviceWorker.register('/sw.js')` for debugging.
+
+- Next steps (tomorrow):
+  - Manually verify `GET /sw.js` in production and Manifest installability panel warnings.
+  - If `sw.js` is present but not registering, temporarily add a minimal client-side registration in a dev-only component to force registration and read errors in console.
+  - Validate `app/layout.tsx` includes `manifest` (it does) and that `offline.html` is accessible.
+  - After registration works, validate install flow using `/test-pwa-books` and offline behavior via `/offline`.
