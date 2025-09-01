@@ -9,11 +9,21 @@ try {
   withBundleAnalyzer = (config) => config;
 }
 
-// PWA Feature Flag - Set ENABLE_PWA=true in .env.local to enable PWA features
+// PWA Feature Flag - Set ENABLE_PWA=true in .env.local or platform env to enable PWA features
 // Default: false (PWA disabled) for safety
-const isPWAEnabled = process.env.ENABLE_PWA === 'true';
+const parseBoolean = (value) => {
+  if (!value) return false;
+  const normalized = String(value).trim().toLowerCase();
+  return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'on';
+};
+
+const isPWAEnabled = parseBoolean(process.env.ENABLE_PWA);
 
 console.log('🔧 PWA Status:', isPWAEnabled ? 'ENABLED' : 'DISABLED');
+console.log('🔧 ENV SUMMARY:', {
+  NODE_ENV: process.env.NODE_ENV,
+  ENABLE_PWA: process.env.ENABLE_PWA,
+});
 
 // Configure PWA only when explicitly enabled
 const withPWA = isPWAEnabled
@@ -22,6 +32,9 @@ const withPWA = isPWAEnabled
       disable: process.env.NODE_ENV === 'development',
       register: true,
       skipWaiting: true,
+      // Ensure App Router compatibility
+      // next-pwa will emit sw.js/workbox files into public/
+      // We exclude API routes to prevent interference
       runtimeCaching: [
         {
           // CRITICAL: Never cache API routes to prevent database access issues
