@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">BookBridge</string>
+    <string name="title_activity_main">BookBridge</string>
+    <string name="package_name">com.bookbridge.app</string>
+    <string name="custom_url_scheme">com.bookbridge.app</string>
+</resources>

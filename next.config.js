@@ -76,6 +76,12 @@ const withPWA = isPWAEnabled
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  
+  // Capacitor-compatible image settings (keep web build working)
+  images: {
+    unoptimized: true,
+  },
+  
   headers: async () => [
     {
       source: '/(.*)',
