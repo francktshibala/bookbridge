@@ -77,7 +77,9 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   
-  // Capacitor-compatible image settings (keep web build working)
+  // Static export disabled due to API routes - use .next build
+  
+  // Capacitor-compatible image settings
   images: {
     unoptimized: true,
   },

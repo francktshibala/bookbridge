@@ -3,12 +3,11 @@ import type { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.bookbridge.app',
   appName: 'BookBridge',
-  webDir: '.next', // Will use Next.js build for production
+  webDir: '.next', // Next.js build directory
   server: {
     androidScheme: 'https',
-    // For development: point to local server
-    url: 'http://localhost:3001',
-    cleartext: true,
+    // Production: use static assets, no development server
+    cleartext: false,
   },
   plugins: {
     SplashScreen: {
