@@ -43,7 +43,7 @@ This document establishes the universal accessibility vision while defining the 
 
 ### **PROGRESSIVE_VOICE_IMPLEMENTATION_PLAN.md**
 **Location**: `/PROGRESSIVE_VOICE_IMPLEMENTATION_PLAN.md` *(Root level file)*  
-**Description**: Complete technical implementation plan for Speechify-level audio with instant playback and word highlighting. Documents 100% operational system with <2s audio delivery, 99% word highlighting accuracy, and cost optimization ($0.015/1K chars). Includes database schema, multi-provider TTS integration, global CDN migration status, and admin dashboard implementation plan. Status: Production-ready with multi-book support.
+**Description**: Complete technical implementation plan for Speechify-level audio with instant playback and word highlighting. Documents 100% operational system with <2s audio delivery, 99% word highlighting accuracy, and cost optimization ($0.015/1K chars). **CRITICAL: Contains documentation of major path issues that wasted time/money/energy (lines 317-323) - TTS API URL failures (`TypeError: Failed to parse URL from /api/openai/tts`) and their fixes using absolute URLs with baseUrl pattern.** Includes database schema, multi-provider TTS integration, global CDN migration status, and admin dashboard implementation plan. Status: Production-ready with multi-book support.
 
 ### **PROGRESSIVE_DISCLOSURE_AI_SYSTEM.md**
 **Location**: `/docs/implementation/PROGRESSIVE_DISCLOSURE_AI_SYSTEM.md`  
@@ -139,6 +139,18 @@ This document establishes the universal accessibility vision while defining the 
 - 10 enhanced books (50+ simplifications)
 - 19 limited books (< 50 simplifications)
 - 8 books with complete CEFR coverage (A1-C2)
+
+### **AUDIO_PATH_CONFLICT_PREVENTION.md**
+**Location**: `/docs/archived/AUDIO_PATH_CONFLICT_PREVENTION.md`  
+**Description**: **CRITICAL: Documents the core path collision issue that caused wrong audio content and cost significant time/money.** Root cause analysis of generic CDN paths (`a1/chunk_0.mp3`) allowing later books to overwrite earlier ones, resulting in Romeo & Juliet audio playing for Pride & Prejudice text. Contains mandatory prevention checklist, correct book-specific path patterns (`${bookId}/${level}/chunk_${index}.mp3`), emergency fix procedures, and quality assurance process. Essential reference for understanding past audio generation failures and current prevention measures.
+
+### **READING_FLOW_CONTINUITY_RESEARCH.md**
+**Location**: `/docs/research/READING_FLOW_CONTINUITY_RESEARCH.md`  
+**Description**: Comprehensive 3-agent research findings on the 3-5 second chunk transition delays breaking reading flow. Agent 1 identified 1300ms hardcoded delays in auto-advance logic and missing prefetch integration. Agent 2 analyzed database N+1 queries and caching gaps. Agent 3 examined UX issues including 0.4s animations and lack of transition feedback. Essential research foundation for achieving Speechify-level <100ms seamless transitions between chunks.
+
+### **CHUNK_TRANSITION_FIX_PLAN.md**
+**Location**: `/docs/implementation/CHUNK_TRANSITION_FIX_PLAN.md`  
+**Description**: Safe, incremental implementation plan to fix chunk transition delays for current enhanced books and future generation. Phase 1 removes 1300ms hardcoded delays for immediate improvement. Phase 2 implements prefetch service, memory caching, and bulk queries. Phase 3 provides testing protocol starting with Pride & Prejudice. Phase 4 establishes future book template with seamless transition design. Includes rollback plan, feature flags, and critical path collision prevention.
 
 ---
 
