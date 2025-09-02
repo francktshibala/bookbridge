@@ -10,8 +10,10 @@ export function CapacitorAppListener() {
     const initializeCapacitorApp = async () => {
       try {
         // Only import Capacitor on client side and when available
-        const { App } = await import('@capacitor/app');
-        const { Capacitor } = await import('@capacitor/core');
+        const [{ App }, { Capacitor }] = await Promise.all([
+          import('@capacitor/app'),
+          import('@capacitor/core')
+        ]);
         
         if (Capacitor.isNativePlatform()) {
           // Handle deep links
