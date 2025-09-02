@@ -1,5 +1,23 @@
 # Capacitor Implementation Testing Guide
 
+## Android Studio Quick Run (Dev)
+
+Use these two steps to open Android Studio and run the app while the Next dev server is running.
+
+1) Terminal 1 – start the dev server (leave running)
+
+cd /Users/user/bookbridge/bookbridge
+export JAVA_HOME=$(/usr/libexec/java_home -v 17); export PATH=$JAVA_HOME/bin:$PATH
+npm run dev -- -H 0.0.0.0 -p 3000
+
+2) Terminal 2 – open Android Studio
+
+npx cap open android
+
+Notes:
+- If you prefer to launch directly on the emulator: npx cap run android
+- If the emulator shows localhost:3000, ensure Terminal 1 is still running. Use http://10.0.2.2:3000 inside the emulator if you open Chrome for checks.
+
 ## What's Been Implemented (Days 1-6)
 
 ### ✅ Day 1-2: Basic Capacitor Setup
