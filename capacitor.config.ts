@@ -6,8 +6,7 @@ const config: CapacitorConfig = {
   webDir: '.next', // Next.js build directory
   server: {
     androidScheme: 'https',
-    // Production: use static assets, no development server
-    cleartext: false,
+    // Remove server URL for production - will use bundled assets
   },
   plugins: {
     SplashScreen: {
