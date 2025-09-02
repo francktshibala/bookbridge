@@ -18,11 +18,13 @@ const parseBoolean = (value) => {
 };
 
 const isPWAEnabled = parseBoolean(process.env.ENABLE_PWA);
+const useCapacitorStubs = parseBoolean(process.env.CAPACITOR_STUBS);
 
 console.log('🔧 PWA Status:', isPWAEnabled ? 'ENABLED' : 'DISABLED');
 console.log('🔧 ENV SUMMARY:', {
   NODE_ENV: process.env.NODE_ENV,
   ENABLE_PWA: process.env.ENABLE_PWA,
+  CAPACITOR_STUBS: process.env.CAPACITOR_STUBS,
 });
 
 // Configure PWA only when explicitly enabled
@@ -72,6 +74,8 @@ const withPWA = isPWAEnabled
     })
   : (config) => config; // No-op function if PWA disabled
 
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -111,6 +115,25 @@ const nextConfig = {
       ],
     },
   ],
+  
+  // Conditionally alias Capacitor packages to local stubs to avoid build-time resolution
+  // issues in non-Capacitor environments (e.g., server builds on Render)
+  webpack: (config) => {
+    if (useCapacitorStubs) {
+      config.resolve = config.resolve || {};
+      config.resolve.alias = {
+        ...(config.resolve.alias || {}),
+        '@capacitor/core': path.resolve(__dirname, 'stubs/capacitor/core.ts'),
+        '@capacitor/app': path.resolve(__dirname, 'stubs/capacitor/app.ts'),
+        '@capacitor/filesystem': path.resolve(__dirname, 'stubs/capacitor/filesystem.ts'),
+        '@capacitor/preferences': path.resolve(__dirname, 'stubs/capacitor/preferences.ts'),
+        '@capacitor/network': path.resolve(__dirname, 'stubs/capacitor/network.ts'),
+        '@capacitor/share': path.resolve(__dirname, 'stubs/capacitor/share.ts'),
+      };
+      console.log('🔧 Capacitor stubs alias ENABLED');
+    }
+    return config;
+  },
 }
 
 module.exports = withBundleAnalyzer(withPWA(nextConfig))
