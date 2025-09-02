@@ -765,7 +765,8 @@ export function AIBookChatModal({
                 style={{
                   background: '#1e293b',
                   borderTop: '1px solid #334155',
-                  padding: '20px 24px'
+                  padding: '20px 24px',
+                  paddingBottom: 'env(safe-area-inset-bottom, 20px)'
                 }}
               >
                 <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
