@@ -89,4 +89,18 @@ Versioning (Play requires monotonic versionCode):
 - Uploaded to Play Console Internal Testing. Testers reported "Not found" (HTTP 404), which indicates the app is now reaching production (earlier errors were localhost/10.0.2.2).
 - Waiting up to ~1 hour for Play propagation. Next step: testers opt-in via the internal testing link and reinstall/update to the latest version code, then report any remaining 404 with the exact path using Chrome DevTools device inspection.
 
+### Success (Follow‑up)
+- Updated production Capacitor URL to the actual Render host: `https://bookbridge-mkd7.onrender.com`.
+- Rebuilt Android bundle with a higher `versionCode` and uploaded to Internal Testing.
+- Testers reinstalled via the opt‑in link and confirmed the app now loads successfully (no localhost/10.0.2.2, no 404).
+
+Reference (tester opt‑in link): https://play.google.com/apps/internaltest/4701475300071839466
+
+What worked:
+- Ensure `npm run cap:production` is run immediately before building the bundle.
+- Bump `versionCode` each upload.
+- Use JDK 21 for Gradle build.
+- Verify `android/app/src/main/assets/capacitor.config.json` contains the correct `server.url` before release.
+
+
 
