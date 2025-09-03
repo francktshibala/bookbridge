@@ -6,7 +6,9 @@ const config: CapacitorConfig = {
   webDir: 'out', // Next.js static export directory
   server: {
     androidScheme: 'https',
-    // Remove server URL for production - will use bundled assets
+    // Use production server for release builds
+    url: 'https://bookbridge.onrender.com',
+    cleartext: false,
   },
   plugins: {
     SplashScreen: {
