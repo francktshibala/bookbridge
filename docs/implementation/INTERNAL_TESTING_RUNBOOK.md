@@ -84,4 +84,9 @@ Versioning (Play requires monotonic versionCode):
 - Rebuild with `cap:production` immediately before the Gradle bundle, bump `versionCode`, and re-upload.
 - Have testers uninstall and reinstall; verify initial WebView URL points to `https://bookbridge.onrender.com`.
 
+### Status Update (2025-09-02, end of session)
+- Built a production AAB successfully with `server.url` = `https://bookbridge.onrender.com` and increased `versionCode`.
+- Uploaded to Play Console Internal Testing. Testers reported "Not found" (HTTP 404), which indicates the app is now reaching production (earlier errors were localhost/10.0.2.2).
+- Waiting up to ~1 hour for Play propagation. Next step: testers opt-in via the internal testing link and reinstall/update to the latest version code, then report any remaining 404 with the exact path using Chrome DevTools device inspection.
+
 
