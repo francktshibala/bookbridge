@@ -15,6 +15,14 @@
     padding: 0;
   }
   
+  /* iOS Safe Area Support */
+  @supports (padding: max(0px)) {
+    html, body {
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+  }
+  
   :root {
     /* Portfolio-Inspired Dark Theme (Default) */
     /* Dark theme with sophisticated gradients */
@@ -1136,5 +1144,22 @@
     overflow-y: auto;
     height: 100vh;
     padding-bottom: 2rem;
+  }
+
+  .safe-area-top {
+    padding-top: 60px; /* Increased for iPhone notch */
+  }
+
+  @supports (padding: max(0px)) {
+    .safe-area-top {
+      padding-top: max(env(safe-area-inset-top), 60px);
+    }
+  }
+  
+  /* Force safe area for iOS in portrait */
+  @media (orientation: portrait) and (max-device-width: 430px) {
+    .safe-area-top {
+      padding-top: 70px !important;
+    }
   }
 

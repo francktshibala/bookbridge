@@ -9,6 +9,7 @@ import { SubscriptionStatus } from '@/components/SubscriptionStatus';
 import { useAuth } from '@/components/SimpleAuthProvider';
 import { useMobileNavigation } from '@/hooks/useMobileNavigation';
 import MobileNavigationMenu from '@/components/MobileNavigationMenu';
+import { useSafeAreaTop } from '@/hooks/useSafeAreaTop';
 
 export default function Navigation() {
   const router = useRouter();
@@ -17,6 +18,7 @@ export default function Navigation() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { isMobile, isMobileMenuOpen, toggleMobileMenu, closeMobileMenu, isClient } = useMobileNavigation();
   const supabase = createClient();
+  const safeAreaTop = useSafeAreaTop();
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -39,8 +41,10 @@ export default function Navigation() {
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.1)'
-      }}>
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.1)',
+        // Runtime fallback padding for iOS portrait simulator
+        paddingTop: safeAreaTop ? `${safeAreaTop}px` : undefined,
+      }} className="safe-area-top">
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: 'none' }}>
           <div className="flex justify-between items-center h-16" style={{ width: '100%' }}>
             {/* Left side - Logo and Navigation */}

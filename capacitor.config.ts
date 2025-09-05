@@ -6,8 +6,8 @@ const config: CapacitorConfig = {
   webDir: 'out', // Will use static export for production
   server: {
     androidScheme: 'https',
-    // For development: point to local server
-    url: 'http://10.0.2.2:3000',
+    // For production: point to live server
+    url: 'https://bookbridge-mkd7.onrender.com',
     cleartext: true,
   },
   plugins: {
