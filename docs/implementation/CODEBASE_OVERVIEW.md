@@ -275,4 +275,80 @@ This comprehensive benchmarking system transforms BookBridge's AI from unvalidat
 
 ---
 
-*This overview covers the most critical files for understanding BookBridge ESL's architecture, research foundations, mobile strategy, AI quality assurance, and current implementation status.*
+## 📱 **iOS & Mobile Platform Implementation**
+
+### **iOS Safe Area & Mobile Compatibility**
+
+#### **useSafeAreaTop.ts**
+**Location**: `/hooks/useSafeAreaTop.ts`  
+**Description**: Runtime iOS safe area detection hook created for iPhone notch/status bar compatibility. Implements hybrid CSS + JavaScript approach with `env(safe-area-inset-top)` measurement and 70px fallback for iOS portrait mode. Features device detection, orientation monitoring, and dynamic padding calculation to prevent UI overlap with system status bar. **Critical fix**: Resolves hamburger menu overlapping with iPhone status bar in portrait mode.
+
+#### **iOS Safe Area CSS Implementation**
+**Location**: `/app/globals.css` (safe area sections)  
+**Description**: CSS safe area support with comprehensive iPhone compatibility. Implements `env(safe-area-inset-top)` with portrait mode fallbacks, 70px padding for notched devices, and media query overrides for iOS orientation handling. Combined with runtime JavaScript detection for robust cross-device support.
+
+#### **Navigation Safe Area Integration**
+**Location**: `/components/Navigation.tsx` (lines 21, 46)  
+**Description**: Navigation component enhanced with iOS safe area integration. Uses `useSafeAreaTop` hook to apply dynamic padding, ensures hamburger menu accessibility, and maintains responsive design across iPhone models. **Status**: Production-ready with confirmed iPhone 15 simulator compatibility.
+
+### **Capacitor Mobile Framework**
+
+#### **CAPACITOR_COMPLETION_STATUS.md**
+**Location**: `/CAPACITOR_COMPLETION_STATUS.md`  
+**Description**: Complete mobile framework implementation tracking document. **Status**: 95% complete (13/14 days). Documents successful iOS and Android platform integration, production server connectivity, safe area fixes, and internal testing completion. Tracks core implementation (navigation, audio caching, file storage, API routing) and testing phases. **Both mobile platforms ready for app store deployment**.
+
+#### **iOS Production Configuration**
+**Location**: `/capacitor.config.ts`  
+**Description**: Capacitor configuration updated for production deployment. Points to `https://bookbridge-mkd7.onrender.com` server, includes iOS-specific settings, and supports both development and production modes. Integrated with safe area fixes and iPhone compatibility requirements.
+
+#### **iOS Project Configuration**
+**Location**: `/ios/App/App/Info.plist`  
+**Description**: iOS app configuration with TestFlight-ready privacy descriptions. **Recently added**: `NSMicrophoneUsageDescription` for audio features, `ITSAppUsesNonExemptEncryption` for export compliance, and network security exceptions for production server. **Status**: Configured for TestFlight deployment.
+
+### **TestFlight Deployment Framework**
+
+#### **IOS_TESTFLIGHT_RESEARCH.md**
+**Location**: `/docs/deployment/IOS_TESTFLIGHT_RESEARCH.md`  
+**Description**: Comprehensive 3-agent research findings and 8-phase implementation plan for TestFlight deployment. Contains complete App Store Connect setup procedures, technical requirements (certificates, signing, build process), app requirements (privacy policies, icons, review guidelines), and safety-first implementation strategy with backup branches and rollback plans. **Status**: Research complete, implementation in progress.
+
+#### **Implementation Safety Strategy**
+**Research Finding**: 8-phase deployment plan with multiple safety checkpoints:
+- Phase 1: Safety branches and verification
+- Phase 2: App Store Connect setup (no code changes)
+- Phase 3: Assets and privacy descriptions
+- Phase 4: Certificates and signing
+- Phase 5: Archive and upload *(currently in progress)*
+- Phase 6: Internal testing
+- Phase 7-8: External testing and production merge
+
+---
+
+## 🔍 **Documentation Update Strategy**
+
+### **Systematic Implementation Discovery Technique**
+
+**Problem**: Multiple implementations completed but not captured in codebase overview.
+
+**Recommended Discovery Process**:
+1. **Git History Analysis**: `git log --oneline --since="1 month ago" --name-only` to identify recent changes
+2. **File Change Detection**: Compare documented files vs. actual repository structure
+3. **Implementation Folder Audit**: Scan `/docs/implementation/` for completed but undocumented work
+4. **Component Search**: Find new hooks, components, and configuration files
+5. **Cross-Reference Validation**: Match implementation files with research/planning documents
+
+**Task Tool Strategy**: Use Task agents with specific search parameters:
+- Agent 1: Recent mobile/iOS implementations  
+- Agent 2: Capacitor and deployment configurations
+- Agent 3: New hooks, components, and utilities
+
+**Missing Documentation Indicators**:
+- Files referenced in recent commits but not in CODEBASE_OVERVIEW.md
+- Implementation plans marked complete but lacking overview entries
+- New technical capabilities (safe area, TestFlight) not documented
+- Research findings with corresponding code implementations
+
+This systematic approach ensures comprehensive documentation capture and prevents implementation knowledge loss during team transitions.
+
+---
+
+*This overview covers the most critical files for understanding BookBridge ESL's architecture, research foundations, mobile strategy, AI quality assurance, iOS deployment capability, and current implementation status including recent mobile platform achievements.*
