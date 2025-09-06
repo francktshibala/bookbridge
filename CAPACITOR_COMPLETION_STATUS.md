@@ -131,6 +131,68 @@
 
 **Alternative:** Use newer Mac with macOS 15.3+ for final upload step only
 
+## 🔧 **SOLUTION DOCUMENTATION: Certificate & Signing Issues**
+
+### **The Problem We Solved**
+**Issue**: "Provisioning profile doesn't include signing certificate" error in Xcode, preventing TestFlight archive.
+
+**Root Cause**: Apple Distribution certificate was installed in the **System keychain** instead of the **login keychain**, causing it to appear in "Certificates" tab but NOT in "My Certificates" tab. This prevented Xcode from accessing the private key needed for code signing.
+
+### **The Complete Solution (Step-by-Step)**
+
+#### **Step 1: Diagnose the Issue**
+- Certificate visible in System keychain → Certificates tab ✅
+- Certificate NOT visible in login keychain → My Certificates tab ❌
+- Private key not paired with certificate ❌
+- Xcode error: "Provisioning profile doesn't include signing certificate" ❌
+
+#### **Step 2: Fix Certificate Location**
+1. **Export certificate from System keychain** (couldn't export as .p12 due to missing private key)
+2. **Delete certificate from System keychain** (removed unpaired certificate)
+3. **Create proper .p12 file** using command line:
+   ```bash
+   # Export certificate from System keychain
+   security find-certificate -c "Apple Distribution: Francois Tshibala" -p /Library/Keychains/System.keychain > apple_dist.pem
+   
+   # Create .p12 with certificate and private key using legacy encryption
+   openssl pkcs12 -export -legacy -out BookBridgeLegacy.p12 -inkey bookbridge_private.key -in apple_dist.pem -passout pass:apple123
+   ```
+4. **Import .p12 into login keychain** by double-clicking the file
+5. **Verify pairing**: Certificate now appears in login keychain → My Certificates tab with key icon ✅
+
+#### **Step 3: Create Fresh Provisioning Profile**
+1. **Delete old provisioning profiles** that were linked to unpaired certificate
+2. **Create new App Store provisioning profile** "BookBridge TestFlight 2025" 
+3. **Download and install** new profile
+4. **Verify in Xcode** - profile now appears in signing options ✅
+
+#### **Step 4: Configure Manual Signing**
+1. **Disable automatic signing** (was failing due to certificate issues)
+2. **Select provisioning profile** manually: "BookBridge TestFlight 2025"
+3. **Select signing certificate** manually: Apple Distribution certificate
+4. **Archive successfully** - no more signing errors ✅
+
+### **Key Insights**
+- **Keychain location matters**: System vs login keychain affects certificate accessibility
+- **Private key pairing**: Certificate must be paired with private key in same keychain
+- **Manual signing more reliable**: When automatic signing fails, manual gives more control
+- **Legacy .p12 encryption**: Modern OpenSSL needs `-legacy` flag for macOS compatibility
+
+### **Files Created During Solution**
+- `apple_dist.pem` - Certificate exported from System keychain
+- `BookBridgeLegacy.p12` - Properly paired certificate + private key bundle
+- `bookbridge_private.key` - Original private key from CSR creation
+- New provisioning profile: "BookBridge TestFlight 2025"
+
+### **Final Result**
+✅ Certificate properly paired with private key in login keychain
+✅ Provisioning profile links correctly to certificate  
+✅ Xcode archive succeeds without signing errors
+✅ Valid .ipa file generated and ready for TestFlight upload
+❌ Upload blocked only by iOS 18 SDK requirement (macOS/Xcode version)
+
+**This solution resolves the most common iOS code signing issue developers face.**
+
 ### 📁 Working Branch
 - Current work on: `ios-testflight-deployment`  
 - Safety backup: `ios-testflight-backup`
