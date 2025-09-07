@@ -138,7 +138,14 @@ export function EnhancedBooksGrid({
       </motion.div>
 
       {/* Books Grid */}
-      <div className={`enhanced-books-grid grid ${getGridClass()}`}>
+      <div 
+        className={`enhanced-books-grid grid ${getGridClass()}`}
+        style={{
+          justifyItems: 'center',
+          maxWidth: enhancedBooksToShow.length <= 3 ? '900px' : '1200px',
+          margin: '0 auto'
+        }}
+      >
         {enhancedBooksToShow.map((book, index) => (
           <EnhancedBookCard 
             key={book.id} 
