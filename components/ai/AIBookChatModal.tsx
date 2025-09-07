@@ -430,10 +430,10 @@ export function AIBookChatModal({
             style={{
               background: '#0f172a',
               border: '1px solid #334155',
-              borderRadius: '20px',
+              borderRadius: window.innerWidth <= 768 ? '16px' : '20px',
               width: '100%',
-              maxWidth: '900px',
-              maxHeight: '80vh',
+              maxWidth: window.innerWidth <= 768 ? '95vw' : '900px',
+              maxHeight: window.innerWidth <= 768 ? '90vh' : '80vh',
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
