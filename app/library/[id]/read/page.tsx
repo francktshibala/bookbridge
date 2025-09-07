@@ -835,7 +835,11 @@ export default function BookReaderPage() {
       </div>
 
       {/* Main Content */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 48px' }} className="main-content-container">
+      <div style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        padding: window.innerWidth <= 768 ? '16px 8px' : '64px 48px' 
+      }} className="main-content-container">
         {/* Old ESL Control Bar - removed in unified layout */}
         {false && (
         <div 
