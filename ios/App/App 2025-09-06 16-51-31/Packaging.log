@@ -1,0 +1,1305 @@
+2025-09-06 22:50:46 +0000  Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x7ff397c52090; archive(resolved)="<IDEArchive: 0x60000b0070c0>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team(resolved)="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	Chain (17, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x7ff397c52090; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionProcessingPipelineContext: 0x7ff397c742d0; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff3a9306900; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff3996f3540; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff3978877f0; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff3978aeb30; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff396ca72a0; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff397c85d50; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff397c76430; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff396ca0d50; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff397866760; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff3978804b0; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff397cf85f0; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600004e44300; teamID='6Z8DF9BC32', teamName='Francois Tshibala', teamType='Individual', username='franck1tshibala@icloud.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7ff3af638010; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="(null)">
+	<IDEDistributionContext: 0x7ff397c77470; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x600005694d10>", team="(null)">
+	<IDEDistributionContext: 0x7ff3979c70a0; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="(null)", team="(null)">
+	<IDEDistributionContext: 0x7ff3979c9260; archive = "<IDEArchive: 0x60000b0070c0>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x7ff397c52090>
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionCreateDestRootStep
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionCopyItemStep
+2025-09-06 22:50:46 +0000  Running /usr/bin/ditto '-V' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app'
+2025-09-06 22:50:46 +0000  >>> Copying /Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app 
+2025-09-06 22:50:46 +0000  copying file ./_CodeSignature/CodeResources ... 
+2025-09-06 22:50:46 +0000  13035 bytes for ./_CodeSignature/CodeResources
+2025-09-06 22:50:46 +0000  copying file ./App ... 
+2025-09-06 22:50:46 +0000  93648 bytes for ./App
+2025-09-06 22:50:46 +0000  copying file ./AppIcon60x60@2x.png ... 
+2025-09-06 22:50:46 +0000  4734 bytes for ./AppIcon60x60@2x.png
+2025-09-06 22:50:46 +0000  copying file ./Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib ... 
+2025-09-06 22:50:46 +0000  858 bytes for ./Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib
+2025-09-06 22:50:46 +0000  copying file ./Base.lproj/Main.storyboardc/Info.plist ... 
+2025-09-06 22:50:46 +0000  258 bytes for ./Base.lproj/Main.storyboardc/Info.plist
+2025-09-06 22:50:46 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-snD-IY-ifK.nib ... 
+2025-09-06 22:50:46 +0000  1278 bytes for ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-snD-IY-ifK.nib
+2025-09-06 22:50:46 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2025-09-06 22:50:46 +0000  924 bytes for ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2025-09-06 22:50:46 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2025-09-06 22:50:46 +0000  258 bytes for ./Base.lproj/LaunchScreen.storyboardc/Info.plist
+2025-09-06 22:50:46 +0000  copying file ./config.xml ... 
+2025-09-06 22:50:46 +0000  185 bytes for ./config.xml
+2025-09-06 22:50:46 +0000  copying file ./public/cordova.js ... 
+2025-09-06 22:50:46 +0000  0 bytes for ./public/cordova.js
+copying file ./public/cordova_plugins.js ... 
+2025-09-06 22:50:46 +0000  0 bytes for ./public/cordova_plugins.js
+2025-09-06 22:50:46 +0000  copying file ./Assets.car ... 
+2025-09-06 22:50:46 +0000  299599 bytes for ./Assets.car
+copying file ./AppIcon76x76@2x~ipad.png ... 
+2025-09-06 22:50:46 +0000  6563 bytes for ./AppIcon76x76@2x~ipad.png
+copying file ./capacitor.config.json ... 
+2025-09-06 22:50:46 +0000  448 bytes for ./capacitor.config.json
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/Capacitor.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:46 +0000  2252 bytes for ./Frameworks/Capacitor.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/Capacitor.framework/native-bridge.js ... 
+2025-09-06 22:50:46 +0000  52815 bytes for ./Frameworks/Capacitor.framework/native-bridge.js
+copying file ./Frameworks/Capacitor.framework/Capacitor ... 
+2025-09-06 22:50:46 +0000  1532144 bytes for ./Frameworks/Capacitor.framework/Capacitor
+copying file ./Frameworks/Capacitor.framework/PrivacyInfo.xcprivacy ... 
+2025-09-06 22:50:46 +0000  373 bytes for ./Frameworks/Capacitor.framework/PrivacyInfo.xcprivacy
+copying file ./Frameworks/Capacitor.framework/Info.plist ... 
+2025-09-06 22:50:46 +0000  789 bytes for ./Frameworks/Capacitor.framework/Info.plist
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/CapacitorShare.framework/_CodeSignature/CodeResources ... 
+1798 bytes for ./Frameworks/CapacitorShare.framework/_CodeSignature/CodeResources
+copying file ./Frameworks/CapacitorShare.framework/CapacitorShare ... 
+2025-09-06 22:50:46 +0000  129696 bytes for ./Frameworks/CapacitorShare.framework/CapacitorShare
+copying file ./Frameworks/CapacitorShare.framework/Info.plist ... 
+2025-09-06 22:50:46 +0000  799 bytes for ./Frameworks/CapacitorShare.framework/Info.plist
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/CapacitorFilesystem.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:46 +0000  1798 bytes for ./Frameworks/CapacitorFilesystem.framework/_CodeSignature/CodeResources
+copying file ./Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem ... 
+2025-09-06 22:50:46 +0000  284512 bytes for ./Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem
+copying file ./Frameworks/CapacitorFilesystem.framework/Info.plist ... 
+2025-09-06 22:50:46 +0000  811 bytes for ./Frameworks/CapacitorFilesystem.framework/Info.plist
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/CapacitorNetwork.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:46 +0000  1798 bytes for ./Frameworks/CapacitorNetwork.framework/_CodeSignature/CodeResources
+copying file ./Frameworks/CapacitorNetwork.framework/CapacitorNetwork ... 
+2025-09-06 22:50:46 +0000  208736 bytes for ./Frameworks/CapacitorNetwork.framework/CapacitorNetwork
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/CapacitorNetwork.framework/Info.plist ... 
+2025-09-06 22:50:46 +0000  805 bytes for ./Frameworks/CapacitorNetwork.framework/Info.plist
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/CapacitorPreferences.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:46 +0000  1798 bytes for ./Frameworks/CapacitorPreferences.framework/_CodeSignature/CodeResources
+copying file ./Frameworks/CapacitorPreferences.framework/CapacitorPreferences ... 
+2025-09-06 22:50:46 +0000  137600 bytes for ./Frameworks/CapacitorPreferences.framework/CapacitorPreferences
+copying file ./Frameworks/CapacitorPreferences.framework/Info.plist ... 
+2025-09-06 22:50:46 +0000  813 bytes for ./Frameworks/CapacitorPreferences.framework/Info.plist
+copying file ./Frameworks/Cordova.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:46 +0000  2034 bytes for ./Frameworks/Cordova.framework/_CodeSignature/CodeResources
+copying file ./Frameworks/Cordova.framework/Cordova ... 
+2025-09-06 22:50:46 +0000  147792 bytes for ./Frameworks/Cordova.framework/Cordova
+copying file ./Frameworks/Cordova.framework/PrivacyInfo.xcprivacy ... 
+2025-09-06 22:50:46 +0000  373 bytes for ./Frameworks/Cordova.framework/PrivacyInfo.xcprivacy
+copying file ./Frameworks/Cordova.framework/Info.plist ... 
+2025-09-06 22:50:46 +0000  785 bytes for ./Frameworks/Cordova.framework/Info.plist
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/IONFilesystemLib.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:46 +0000  1798 bytes for ./Frameworks/IONFilesystemLib.framework/_CodeSignature/CodeResources
+copying file ./Frameworks/IONFilesystemLib.framework/IONFilesystemLib ... 
+2025-09-06 22:50:46 +0000  165296 bytes for ./Frameworks/IONFilesystemLib.framework/IONFilesystemLib
+copying file ./Frameworks/IONFilesystemLib.framework/Info.plist ... 
+2025-09-06 22:50:46 +0000  782 bytes for ./Frameworks/IONFilesystemLib.framework/Info.plist
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/CapacitorApp.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:46 +0000  1798 bytes for ./Frameworks/CapacitorApp.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/CapacitorApp.framework/CapacitorApp ... 
+2025-09-06 22:50:46 +0000  139744 bytes for ./Frameworks/CapacitorApp.framework/CapacitorApp
+2025-09-06 22:50:46 +0000  copying file ./Frameworks/CapacitorApp.framework/Info.plist ... 
+2025-09-06 22:50:46 +0000  795 bytes for ./Frameworks/CapacitorApp.framework/Info.plist
+2025-09-06 22:50:46 +0000  copying file ./embedded.mobileprovision ... 
+2025-09-06 22:50:46 +0000  12188 bytes for ./embedded.mobileprovision
+copying file ./Info.plist ... 
+2025-09-06 22:50:46 +0000  1841 bytes for ./Info.plist
+copying file ./PkgInfo ... 
+2025-09-06 22:50:46 +0000  8 bytes for ./PkgInfo
+2025-09-06 22:50:46 +0000  /usr/bin/ditto exited with 0
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionEmbedProfileStep
+2025-09-06 22:50:46 +0000  Skipping profile for item: <IDEDistributionItem: 0x60000b1ca880; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x60000bc5f3a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b6490; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000bc5fd40:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:46 +0000  Skipping profile for item: <IDEDistributionItem: 0x60000b1793e0; bundleID='org.cocoapods.CapacitorApp', path='<DVTFilePath:0x60000bc5ce00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b4ff0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061024c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorApp', executablePath='<DVTFilePath:0x60000bccad80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework/CapacitorApp'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:46 +0000  Skipping profile for item: <IDEDistributionItem: 0x60000bef2ca0; bundleID='org.cocoapods.CapacitorFilesystem', path='<DVTFilePath:0x60000ba43e80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60001343fa70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006129f80; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorFilesystem', executablePath='<DVTFilePath:0x60000bcbd880:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:46 +0000  Skipping profile for item: <IDEDistributionItem: 0x60000b1d1020; bundleID='org.cocoapods.CapacitorNetwork', path='<DVTFilePath:0x60000ba41e00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c90e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006129f80; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorNetwork', executablePath='<DVTFilePath:0x60000bcbc3f0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework/CapacitorNetwork'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:46 +0000  Skipping profile for item: <IDEDistributionItem: 0x60000b178a80; bundleID='org.cocoapods.CapacitorPreferences', path='<DVTFilePath:0x60000ba42b00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c3e30; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006129f80; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorPreferences', executablePath='<DVTFilePath:0x60000bcbdc00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework/CapacitorPreferences'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:46 +0000  Skipping profile for item: <IDEDistributionItem: 0x60000b1d8600; bundleID='org.cocoapods.CapacitorShare', path='<DVTFilePath:0x60000ba41600:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b5d10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorShare', executablePath='<DVTFilePath:0x60000bcabc60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework/CapacitorShare'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:46 +0000  Skipping profile for item: <IDEDistributionItem: 0x60000b1ddec0; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x60000bc4c540:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135cb660; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x60000b1ed1a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:46 +0000  Skipping profile for item: <IDEDistributionItem: 0x60000b1d34e0; bundleID='io.ionic.libs.filesystem.FilesystemLib', path='<DVTFilePath:0x60000ba41380:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135d6d50; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006129f80; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='io.ionic.libs.filesystem.FilesystemLib', executablePath='<DVTFilePath:0x60000bccae60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework/IONFilesystemLib'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionInfoPlistStep
+2025-09-06 22:50:46 +0000  Skipping Info.plist step because item: <IDEDistributionItem: 0x60000b1ca880; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x60000bc5f3a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b6490; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000bc5fd40:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'> is a framework or embedded in a framework.
+2025-09-06 22:50:46 +0000  Skipping Info.plist step because item: <IDEDistributionItem: 0x60000b1793e0; bundleID='org.cocoapods.CapacitorApp', path='<DVTFilePath:0x60000bc5ce00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b4ff0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorApp', executablePath='<DVTFilePath:0x60000bccad80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework/CapacitorApp'>', hardenedRuntime='0'>'> is a framework or embedded in a framework.
+2025-09-06 22:50:46 +0000  Skipping Info.plist step because item: <IDEDistributionItem: 0x60000bef2ca0; bundleID='org.cocoapods.CapacitorFilesystem', path='<DVTFilePath:0x60000ba43e80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60001343fa70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorFilesystem', executablePath='<DVTFilePath:0x60000bcbd880:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem'>', hardenedRuntime='0'>'> is a framework or embedded in a framework.
+2025-09-06 22:50:46 +0000  Skipping Info.plist step because item: <IDEDistributionItem: 0x60000b1d1020; bundleID='org.cocoapods.CapacitorNetwork', path='<DVTFilePath:0x60000ba41e00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c90e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorNetwork', executablePath='<DVTFilePath:0x60000bcbc3f0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework/CapacitorNetwork'>', hardenedRuntime='0'>'> is a framework or embedded in a framework.
+2025-09-06 22:50:46 +0000  Skipping Info.plist step because item: <IDEDistributionItem: 0x60000b178a80; bundleID='org.cocoapods.CapacitorPreferences', path='<DVTFilePath:0x60000ba42b00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c3e30; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorPreferences', executablePath='<DVTFilePath:0x60000bcbdc00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework/CapacitorPreferences'>', hardenedRuntime='0'>'> is a framework or embedded in a framework.
+2025-09-06 22:50:46 +0000  Skipping Info.plist step because item: <IDEDistributionItem: 0x60000b1d8600; bundleID='org.cocoapods.CapacitorShare', path='<DVTFilePath:0x60000ba41600:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b5d10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorShare', executablePath='<DVTFilePath:0x60000bcabc60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework/CapacitorShare'>', hardenedRuntime='0'>'> is a framework or embedded in a framework.
+2025-09-06 22:50:46 +0000  Skipping Info.plist step because item: <IDEDistributionItem: 0x60000b1ddec0; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x60000bc4c540:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135cb660; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x60000b1ed1a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'> is a framework or embedded in a framework.
+2025-09-06 22:50:46 +0000  Skipping Info.plist step because item: <IDEDistributionItem: 0x60000b1d34e0; bundleID='io.ionic.libs.filesystem.FilesystemLib', path='<DVTFilePath:0x60000ba41380:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135d6d50; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000611e880; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='io.ionic.libs.filesystem.FilesystemLib', executablePath='<DVTFilePath:0x60000bccae60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework/IONFilesystemLib'>', hardenedRuntime='0'>'> is a framework or embedded in a framework.
+2025-09-06 22:50:46 +0000  Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionItemRemovalStep
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionAppThinningPlistStep
+2025-09-06 22:50:46 +0000  Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionCompileBitcodeStep
+2025-09-06 22:50:46 +0000  Skipping step: IDEDistributionCompileBitcodeStep because it said so
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionCodeSlimmingStep
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionCopyBCSymbolMapsStep
+2025-09-06 22:50:46 +0000  Processing step: IDEDistributionSymbolsStep
+2025-09-06 22:50:46 +0000  Processing symbols for Capacitor.framework
+2025-09-06 22:50:46 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Capacitor.framework' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:46 +0000  building file list ... 
+2025-09-06 22:50:46 +0000   0 files...2025-09-06 22:50:46 +0000  7 files to consider
+2025-09-06 22:50:46 +0000  Capacitor.framework/
+2025-09-06 22:50:46 +0000  Capacitor.framework/_CodeSignature/
+rsync: link "/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Capacitor.framework/_CodeSignature/CodeResources" => /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Capacitor.framework/_CodeSignature/CodeResources failed: Operation not permitted (1)
+2025-09-06 22:50:46 +0000  Capacitor.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:46 +0000  
+2025-09-06 22:50:46 +0000  sent 283 bytes  received 38 bytes  642.00 bytes/sec
+total size is 1.51M  speedup is 4948.20
+2025-09-06 22:50:46 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:46 +0000  Running /usr/bin/rsync '-8aPhhE' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '--link-dest' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:46 +0000  building file list ... 
+2025-09-06 22:50:46 +0000   0 files...2025-09-06 22:50:46 +0000  85 files to consider
+2025-09-06 22:50:46 +0000  ./
+2025-09-06 22:50:46 +0000  App.app.dSYM/
+App.app.dSYM/Contents/
+App.app.dSYM/Contents/Resources/
+App.app.dSYM/Contents/Resources/DWARF/
+App.app.dSYM/Contents/Resources/Relocations/
+2025-09-06 22:50:46 +0000  App.app.dSYM/Contents/Resources/Relocations/aarch64/
+Capacitor.framework.dSYM/
+Capacitor.framework.dSYM/Contents/
+Capacitor.framework.dSYM/Contents/Resources/
+Capacitor.framework.dSYM/Contents/Resources/DWARF/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorApp.framework.dSYM/
+CapacitorApp.framework.dSYM/Contents/
+CapacitorApp.framework.dSYM/Contents/Resources/
+CapacitorApp.framework.dSYM/Contents/Resources/DWARF/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/
+CapacitorFilesystem.framework.dSYM/Contents/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/DWARF/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/aarch64/
+CapacitorNetwork.framework.dSYM/
+CapacitorNetwork.framework.dSYM/Contents/
+CapacitorNetwork.framework.dSYM/Contents/Resources/
+CapacitorNetwork.framework.dSYM/Contents/Resources/DWARF/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorPreferences.framework.dSYM/
+CapacitorPreferences.framework.dSYM/Contents/
+CapacitorPreferences.framework.dSYM/Contents/Resources/
+CapacitorPreferences.framework.dSYM/Contents/Resources/DWARF/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorShare.framework.dSYM/
+CapacitorShare.framework.dSYM/Contents/
+CapacitorShare.framework.dSYM/Contents/Resources/
+CapacitorShare.framework.dSYM/Contents/Resources/DWARF/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/aarch64/
+Cordova.framework.dSYM/
+Cordova.framework.dSYM/Contents/
+Cordova.framework.dSYM/Contents/Resources/
+Cordova.framework.dSYM/Contents/Resources/DWARF/
+Cordova.framework.dSYM/Contents/Resources/Relocations/
+2025-09-06 22:50:46 +0000  Cordova.framework.dSYM/Contents/Resources/Relocations/aarch64/
+IONFilesystemLib.framework.dSYM/
+IONFilesystemLib.framework.dSYM/Contents/
+IONFilesystemLib.framework.dSYM/Contents/Resources/
+IONFilesystemLib.framework.dSYM/Contents/Resources/DWARF/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:46 +0000  
+sent 2.73K bytes  received 362 bytes  6.16K bytes/sec
+total size is 12.73M  speedup is 4230.04
+2025-09-06 22:50:46 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:46 +0000  Writing /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols/5E1D7CFB-23F0-3293-9D38-263B2493D3F9.symbols
+2025-09-06 22:50:46 +0000  Processing symbols for CapacitorApp.framework
+2025-09-06 22:50:46 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorApp.framework' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:46 +0000  building file list ... 
+ 0 files...2025-09-06 22:50:46 +0000  5 files to consider
+2025-09-06 22:50:46 +0000  CapacitorApp.framework/
+2025-09-06 22:50:46 +0000  CapacitorApp.framework/_CodeSignature/
+rsync: link "/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/CapacitorApp.framework/_CodeSignature/CodeResources" => /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorApp.framework/_CodeSignature/CodeResources failed: Operation not permitted (1)
+2025-09-06 22:50:46 +0000  CapacitorApp.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:46 +0000  
+sent 224 bytes  received 38 bytes  524.00 bytes/sec
+total size is 139.00K  speedup is 543.27
+2025-09-06 22:50:46 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:46 +0000  Running /usr/bin/rsync '-8aPhhE' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '--link-dest' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:46 +0000  building file list ... 
+2025-09-06 22:50:46 +0000   0 files...2025-09-06 22:50:46 +0000  85 files to consider
+2025-09-06 22:50:46 +0000  ./
+2025-09-06 22:50:46 +0000  App.app.dSYM/
+App.app.dSYM/Contents/
+App.app.dSYM/Contents/Resources/
+2025-09-06 22:50:46 +0000  App.app.dSYM/Contents/Resources/DWARF/
+App.app.dSYM/Contents/Resources/Relocations/
+App.app.dSYM/Contents/Resources/Relocations/aarch64/
+Capacitor.framework.dSYM/
+Capacitor.framework.dSYM/Contents/
+Capacitor.framework.dSYM/Contents/Resources/
+Capacitor.framework.dSYM/Contents/Resources/DWARF/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorApp.framework.dSYM/
+CapacitorApp.framework.dSYM/Contents/
+CapacitorApp.framework.dSYM/Contents/Resources/
+CapacitorApp.framework.dSYM/Contents/Resources/DWARF/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/
+CapacitorFilesystem.framework.dSYM/Contents/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/DWARF/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/aarch64/
+CapacitorNetwork.framework.dSYM/
+2025-09-06 22:50:46 +0000  CapacitorNetwork.framework.dSYM/Contents/
+CapacitorNetwork.framework.dSYM/Contents/Resources/
+CapacitorNetwork.framework.dSYM/Contents/Resources/DWARF/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorPreferences.framework.dSYM/
+CapacitorPreferences.framework.dSYM/Contents/
+CapacitorPreferences.framework.dSYM/Contents/Resources/
+CapacitorPreferences.framework.dSYM/Contents/Resources/DWARF/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorShare.framework.dSYM/
+CapacitorShare.framework.dSYM/Contents/
+CapacitorShare.framework.dSYM/Contents/Resources/
+CapacitorShare.framework.dSYM/Contents/Resources/DWARF/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/aarch64/
+Cordova.framework.dSYM/
+Cordova.framework.dSYM/Contents/
+Cordova.framework.dSYM/Contents/Resources/
+Cordova.framework.dSYM/Contents/Resources/DWARF/
+Cordova.framework.dSYM/Contents/Resources/Relocations/
+Cordova.framework.dSYM/Contents/Resources/Relocations/aarch64/
+IONFilesystemLib.framework.dSYM/
+IONFilesystemLib.framework.dSYM/Contents/
+IONFilesystemLib.framework.dSYM/Contents/Resources/
+IONFilesystemLib.framework.dSYM/Contents/Resources/DWARF/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:46 +0000  
+sent 2.89K bytes  received 530 bytes  6.82K bytes/sec
+total size is 12.73M  speedup is 3822.91
+2025-09-06 22:50:46 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:46 +0000  Writing /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols/204C1476-7BCA-31B1-82CF-CC50DAD27666.symbols
+2025-09-06 22:50:46 +0000  Processing symbols for CapacitorFilesystem.framework
+2025-09-06 22:50:46 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorFilesystem.framework' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:46 +0000  building file list ... 
+2025-09-06 22:50:46 +0000   0 files...2025-09-06 22:50:46 +0000  5 files to consider
+2025-09-06 22:50:46 +0000  CapacitorFilesystem.framework/
+2025-09-06 22:50:46 +0000  CapacitorFilesystem.framework/_CodeSignature/
+rsync: link "/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/CapacitorFilesystem.framework/_CodeSignature/CodeResources" => /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorFilesystem.framework/_CodeSignature/CodeResources failed: Operation not permitted (1)
+2025-09-06 22:50:46 +0000  CapacitorFilesystem.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:46 +0000  
+sent 238 bytes  received 38 bytes  552.00 bytes/sec
+total size is 280.39K  speedup is 1040.29
+2025-09-06 22:50:46 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:46 +0000  Running /usr/bin/rsync '-8aPhhE' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '--link-dest' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:46 +0000  building file list ... 
+2025-09-06 22:50:46 +0000   0 files...2025-09-06 22:50:46 +0000  85 files to consider
+2025-09-06 22:50:46 +0000  ./
+2025-09-06 22:50:46 +0000  App.app.dSYM/
+App.app.dSYM/Contents/
+App.app.dSYM/Contents/Resources/
+2025-09-06 22:50:46 +0000  App.app.dSYM/Contents/Resources/DWARF/
+App.app.dSYM/Contents/Resources/Relocations/
+App.app.dSYM/Contents/Resources/Relocations/aarch64/
+Capacitor.framework.dSYM/
+Capacitor.framework.dSYM/Contents/
+Capacitor.framework.dSYM/Contents/Resources/
+Capacitor.framework.dSYM/Contents/Resources/DWARF/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorApp.framework.dSYM/
+CapacitorApp.framework.dSYM/Contents/
+CapacitorApp.framework.dSYM/Contents/Resources/
+CapacitorApp.framework.dSYM/Contents/Resources/DWARF/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/
+CapacitorFilesystem.framework.dSYM/Contents/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/DWARF/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/aarch64/
+CapacitorNetwork.framework.dSYM/
+CapacitorNetwork.framework.dSYM/Contents/
+CapacitorNetwork.framework.dSYM/Contents/Resources/
+CapacitorNetwork.framework.dSYM/Contents/Resources/DWARF/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorPreferences.framework.dSYM/
+CapacitorPreferences.framework.dSYM/Contents/
+CapacitorPreferences.framework.dSYM/Contents/Resources/
+CapacitorPreferences.framework.dSYM/Contents/Resources/DWARF/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorShare.framework.dSYM/
+2025-09-06 22:50:46 +0000  CapacitorShare.framework.dSYM/Contents/
+CapacitorShare.framework.dSYM/Contents/Resources/
+CapacitorShare.framework.dSYM/Contents/Resources/DWARF/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/aarch64/
+Cordova.framework.dSYM/
+Cordova.framework.dSYM/Contents/
+Cordova.framework.dSYM/Contents/Resources/
+Cordova.framework.dSYM/Contents/Resources/DWARF/
+Cordova.framework.dSYM/Contents/Resources/Relocations/
+Cordova.framework.dSYM/Contents/Resources/Relocations/aarch64/
+IONFilesystemLib.framework.dSYM/
+IONFilesystemLib.framework.dSYM/Contents/
+IONFilesystemLib.framework.dSYM/Contents/Resources/
+IONFilesystemLib.framework.dSYM/Contents/Resources/DWARF/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:46 +0000  
+sent 2.89K bytes  received 530 bytes  6.82K bytes/sec
+total size is 12.73M  speedup is 3822.91
+2025-09-06 22:50:46 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:46 +0000  Writing /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols/041E1D5C-F34C-3695-9E58-54EA447EDD99.symbols
+2025-09-06 22:50:46 +0000  Processing symbols for CapacitorNetwork.framework
+2025-09-06 22:50:46 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorNetwork.framework' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:46 +0000  building file list ... 
+ 0 files...2025-09-06 22:50:46 +0000  5 files to consider
+2025-09-06 22:50:46 +0000  CapacitorNetwork.framework/
+2025-09-06 22:50:46 +0000  CapacitorNetwork.framework/_CodeSignature/
+rsync: link "/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/CapacitorNetwork.framework/_CodeSignature/CodeResources" => /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorNetwork.framework/_CodeSignature/CodeResources failed: Operation not permitted (1)
+CapacitorNetwork.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:46 +0000  
+sent 232 bytes  received 38 bytes  540.00 bytes/sec
+total size is 206.39K  speedup is 782.74
+2025-09-06 22:50:46 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:46 +0000  Running /usr/bin/rsync '-8aPhhE' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '--link-dest' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:46 +0000  building file list ... 
+2025-09-06 22:50:46 +0000   0 files...2025-09-06 22:50:46 +0000  85 files to consider
+2025-09-06 22:50:46 +0000  ./
+2025-09-06 22:50:46 +0000  App.app.dSYM/
+App.app.dSYM/Contents/
+App.app.dSYM/Contents/Resources/
+App.app.dSYM/Contents/Resources/DWARF/
+2025-09-06 22:50:46 +0000  App.app.dSYM/Contents/Resources/Relocations/
+App.app.dSYM/Contents/Resources/Relocations/aarch64/
+Capacitor.framework.dSYM/
+Capacitor.framework.dSYM/Contents/
+Capacitor.framework.dSYM/Contents/Resources/
+Capacitor.framework.dSYM/Contents/Resources/DWARF/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorApp.framework.dSYM/
+CapacitorApp.framework.dSYM/Contents/
+CapacitorApp.framework.dSYM/Contents/Resources/
+CapacitorApp.framework.dSYM/Contents/Resources/DWARF/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/
+CapacitorFilesystem.framework.dSYM/Contents/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/DWARF/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/aarch64/
+CapacitorNetwork.framework.dSYM/
+CapacitorNetwork.framework.dSYM/Contents/
+CapacitorNetwork.framework.dSYM/Contents/Resources/
+CapacitorNetwork.framework.dSYM/Contents/Resources/DWARF/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:46 +0000  CapacitorPreferences.framework.dSYM/
+CapacitorPreferences.framework.dSYM/Contents/
+CapacitorPreferences.framework.dSYM/Contents/Resources/
+CapacitorPreferences.framework.dSYM/Contents/Resources/DWARF/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorShare.framework.dSYM/
+CapacitorShare.framework.dSYM/Contents/
+CapacitorShare.framework.dSYM/Contents/Resources/
+CapacitorShare.framework.dSYM/Contents/Resources/DWARF/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/aarch64/
+Cordova.framework.dSYM/
+Cordova.framework.dSYM/Contents/
+Cordova.framework.dSYM/Contents/Resources/
+Cordova.framework.dSYM/Contents/Resources/DWARF/
+Cordova.framework.dSYM/Contents/Resources/Relocations/
+Cordova.framework.dSYM/Contents/Resources/Relocations/aarch64/
+IONFilesystemLib.framework.dSYM/
+IONFilesystemLib.framework.dSYM/Contents/
+IONFilesystemLib.framework.dSYM/Contents/Resources/
+IONFilesystemLib.framework.dSYM/Contents/Resources/DWARF/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/
+2025-09-06 22:50:46 +0000  IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:47 +0000  
+sent 2.89K bytes  received 530 bytes  2.27K bytes/sec
+total size is 12.73M  speedup is 3822.91
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Writing /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols/79712CB0-0C0B-3510-937F-80C11A62FB84.symbols
+2025-09-06 22:50:47 +0000  Processing symbols for CapacitorPreferences.framework
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorPreferences.framework' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  building file list ... 
+2025-09-06 22:50:47 +0000   0 files...2025-09-06 22:50:47 +0000  5 files to consider
+2025-09-06 22:50:47 +0000  CapacitorPreferences.framework/
+2025-09-06 22:50:47 +0000  CapacitorPreferences.framework/_CodeSignature/
+rsync: link "/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/CapacitorPreferences.framework/_CodeSignature/CodeResources" => /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorPreferences.framework/_CodeSignature/CodeResources failed: Operation not permitted (1)
+2025-09-06 22:50:47 +0000  CapacitorPreferences.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:47 +0000  
+sent 240 bytes  received 38 bytes  556.00 bytes/sec
+total size is 136.92K  speedup is 504.36
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '--link-dest' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  building file list ... 
+ 0 files...2025-09-06 22:50:47 +0000  85 files to consider
+2025-09-06 22:50:47 +0000  ./
+2025-09-06 22:50:47 +0000  App.app.dSYM/
+App.app.dSYM/Contents/
+App.app.dSYM/Contents/Resources/
+App.app.dSYM/Contents/Resources/DWARF/
+App.app.dSYM/Contents/Resources/Relocations/
+App.app.dSYM/Contents/Resources/Relocations/aarch64/
+Capacitor.framework.dSYM/
+Capacitor.framework.dSYM/Contents/
+Capacitor.framework.dSYM/Contents/Resources/
+Capacitor.framework.dSYM/Contents/Resources/DWARF/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorApp.framework.dSYM/
+CapacitorApp.framework.dSYM/Contents/
+CapacitorApp.framework.dSYM/Contents/Resources/
+CapacitorApp.framework.dSYM/Contents/Resources/DWARF/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/
+CapacitorFilesystem.framework.dSYM/Contents/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/DWARF/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/
+2025-09-06 22:50:47 +0000  CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/aarch64/
+CapacitorNetwork.framework.dSYM/
+CapacitorNetwork.framework.dSYM/Contents/
+CapacitorNetwork.framework.dSYM/Contents/Resources/
+CapacitorNetwork.framework.dSYM/Contents/Resources/DWARF/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorPreferences.framework.dSYM/
+CapacitorPreferences.framework.dSYM/Contents/
+CapacitorPreferences.framework.dSYM/Contents/Resources/
+CapacitorPreferences.framework.dSYM/Contents/Resources/DWARF/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorShare.framework.dSYM/
+CapacitorShare.framework.dSYM/Contents/
+CapacitorShare.framework.dSYM/Contents/Resources/
+CapacitorShare.framework.dSYM/Contents/Resources/DWARF/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/aarch64/
+Cordova.framework.dSYM/
+Cordova.framework.dSYM/Contents/
+Cordova.framework.dSYM/Contents/Resources/
+Cordova.framework.dSYM/Contents/Resources/DWARF/
+Cordova.framework.dSYM/Contents/Resources/Relocations/
+Cordova.framework.dSYM/Contents/Resources/Relocations/aarch64/
+IONFilesystemLib.framework.dSYM/
+2025-09-06 22:50:47 +0000  IONFilesystemLib.framework.dSYM/Contents/
+IONFilesystemLib.framework.dSYM/Contents/Resources/
+IONFilesystemLib.framework.dSYM/Contents/Resources/DWARF/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:47 +0000  
+sent 2.89K bytes  received 530 bytes  6.82K bytes/sec
+total size is 12.73M  speedup is 3822.91
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Writing /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols/77F32040-F525-319E-8156-5A63A512D2F0.symbols
+2025-09-06 22:50:47 +0000  Processing symbols for CapacitorShare.framework
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorShare.framework' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  building file list ... 
+2025-09-06 22:50:47 +0000   0 files...2025-09-06 22:50:47 +0000  5 files to consider
+2025-09-06 22:50:47 +0000  CapacitorShare.framework/
+2025-09-06 22:50:47 +0000  CapacitorShare.framework/_CodeSignature/
+rsync: link "/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/CapacitorShare.framework/_CodeSignature/CodeResources" => /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorShare.framework/_CodeSignature/CodeResources failed: Operation not permitted (1)
+2025-09-06 22:50:47 +0000  CapacitorShare.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:47 +0000  
+sent 228 bytes  received 38 bytes  532.00 bytes/sec
+total size is 129.19K  speedup is 497.34
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '--link-dest' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  building file list ... 
+2025-09-06 22:50:47 +0000   0 files...2025-09-06 22:50:47 +0000  85 files to consider
+2025-09-06 22:50:47 +0000  ./
+2025-09-06 22:50:47 +0000  App.app.dSYM/
+App.app.dSYM/Contents/
+App.app.dSYM/Contents/Resources/
+App.app.dSYM/Contents/Resources/DWARF/
+2025-09-06 22:50:47 +0000  App.app.dSYM/Contents/Resources/Relocations/
+App.app.dSYM/Contents/Resources/Relocations/aarch64/
+Capacitor.framework.dSYM/
+Capacitor.framework.dSYM/Contents/
+Capacitor.framework.dSYM/Contents/Resources/
+Capacitor.framework.dSYM/Contents/Resources/DWARF/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorApp.framework.dSYM/
+CapacitorApp.framework.dSYM/Contents/
+CapacitorApp.framework.dSYM/Contents/Resources/
+CapacitorApp.framework.dSYM/Contents/Resources/DWARF/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/
+CapacitorFilesystem.framework.dSYM/Contents/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/DWARF/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/
+2025-09-06 22:50:47 +0000  CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/aarch64/
+CapacitorNetwork.framework.dSYM/
+CapacitorNetwork.framework.dSYM/Contents/
+CapacitorNetwork.framework.dSYM/Contents/Resources/
+CapacitorNetwork.framework.dSYM/Contents/Resources/DWARF/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorPreferences.framework.dSYM/
+CapacitorPreferences.framework.dSYM/Contents/
+CapacitorPreferences.framework.dSYM/Contents/Resources/
+CapacitorPreferences.framework.dSYM/Contents/Resources/DWARF/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorShare.framework.dSYM/
+CapacitorShare.framework.dSYM/Contents/
+CapacitorShare.framework.dSYM/Contents/Resources/
+CapacitorShare.framework.dSYM/Contents/Resources/DWARF/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/aarch64/
+Cordova.framework.dSYM/
+2025-09-06 22:50:47 +0000  Cordova.framework.dSYM/Contents/
+Cordova.framework.dSYM/Contents/Resources/
+Cordova.framework.dSYM/Contents/Resources/DWARF/
+Cordova.framework.dSYM/Contents/Resources/Relocations/
+Cordova.framework.dSYM/Contents/Resources/Relocations/aarch64/
+IONFilesystemLib.framework.dSYM/
+IONFilesystemLib.framework.dSYM/Contents/
+IONFilesystemLib.framework.dSYM/Contents/Resources/
+IONFilesystemLib.framework.dSYM/Contents/Resources/DWARF/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:47 +0000  
+sent 2.89K bytes  received 530 bytes  6.82K bytes/sec
+total size is 12.73M  speedup is 3822.91
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Writing /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols/8ECCB7D4-0AED-3E89-866F-06E740B2391B.symbols
+2025-09-06 22:50:47 +0000  Processing symbols for Cordova.framework
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Cordova.framework' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  building file list ... 
+2025-09-06 22:50:47 +0000   0 files...2025-09-06 22:50:47 +0000  6 files to consider
+2025-09-06 22:50:47 +0000  Cordova.framework/
+2025-09-06 22:50:47 +0000  Cordova.framework/_CodeSignature/
+rsync: link "/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Cordova.framework/_CodeSignature/CodeResources" => /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Cordova.framework/_CodeSignature/CodeResources failed: Operation not permitted (1)
+Cordova.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '--link-dest' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  
+sent 243 bytes  received 38 bytes  562.00 bytes/sec
+total size is 147.45K  speedup is 537.31
+2025-09-06 22:50:47 +0000  building file list ... 
+ 0 files...2025-09-06 22:50:47 +0000  85 files to consider
+2025-09-06 22:50:47 +0000  ./
+App.app.dSYM/
+App.app.dSYM/Contents/
+App.app.dSYM/Contents/Resources/
+App.app.dSYM/Contents/Resources/DWARF/
+App.app.dSYM/Contents/Resources/Relocations/
+App.app.dSYM/Contents/Resources/Relocations/aarch64/
+Capacitor.framework.dSYM/
+Capacitor.framework.dSYM/Contents/
+Capacitor.framework.dSYM/Contents/Resources/
+Capacitor.framework.dSYM/Contents/Resources/DWARF/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorApp.framework.dSYM/
+CapacitorApp.framework.dSYM/Contents/
+CapacitorApp.framework.dSYM/Contents/Resources/
+CapacitorApp.framework.dSYM/Contents/Resources/DWARF/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/
+CapacitorFilesystem.framework.dSYM/Contents/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/DWARF/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/aarch64/
+CapacitorNetwork.framework.dSYM/
+CapacitorNetwork.framework.dSYM/Contents/
+CapacitorNetwork.framework.dSYM/Contents/Resources/
+CapacitorNetwork.framework.dSYM/Contents/Resources/DWARF/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorPreferences.framework.dSYM/
+CapacitorPreferences.framework.dSYM/Contents/
+CapacitorPreferences.framework.dSYM/Contents/Resources/
+CapacitorPreferences.framework.dSYM/Contents/Resources/DWARF/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorShare.framework.dSYM/
+CapacitorShare.framework.dSYM/Contents/
+CapacitorShare.framework.dSYM/Contents/Resources/
+CapacitorShare.framework.dSYM/Contents/Resources/DWARF/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/aarch64/
+Cordova.framework.dSYM/
+Cordova.framework.dSYM/Contents/
+Cordova.framework.dSYM/Contents/Resources/
+Cordova.framework.dSYM/Contents/Resources/DWARF/
+Cordova.framework.dSYM/Contents/Resources/Relocations/
+Cordova.framework.dSYM/Contents/Resources/Relocations/aarch64/
+IONFilesystemLib.framework.dSYM/
+IONFilesystemLib.framework.dSYM/Contents/
+IONFilesystemLib.framework.dSYM/Contents/Resources/
+IONFilesystemLib.framework.dSYM/Contents/Resources/DWARF/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:47 +0000  
+sent 2.89K bytes  received 530 bytes  6.82K bytes/sec
+total size is 12.73M  speedup is 3822.91
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Writing /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols/60DC215F-7E51-3A7D-9ECD-4D4830EB19BB.symbols
+2025-09-06 22:50:47 +0000  Processing symbols for IONFilesystemLib.framework
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/IONFilesystemLib.framework' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  building file list ... 
+ 0 files...2025-09-06 22:50:47 +0000  5 files to consider
+2025-09-06 22:50:47 +0000  IONFilesystemLib.framework/
+2025-09-06 22:50:47 +0000  IONFilesystemLib.framework/_CodeSignature/
+rsync: link "/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/IONFilesystemLib.framework/_CodeSignature/CodeResources" => /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/IONFilesystemLib.framework/_CodeSignature/CodeResources failed: Operation not permitted (1)
+2025-09-06 22:50:47 +0000  IONFilesystemLib.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:47 +0000  
+sent 231 bytes  received 38 bytes  538.00 bytes/sec
+total size is 163.94K  speedup is 624.07
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '--link-dest' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  building file list ... 
+ 0 files...2025-09-06 22:50:47 +0000  85 files to consider
+2025-09-06 22:50:47 +0000  ./
+2025-09-06 22:50:47 +0000  App.app.dSYM/
+App.app.dSYM/Contents/
+2025-09-06 22:50:47 +0000  App.app.dSYM/Contents/Resources/
+App.app.dSYM/Contents/Resources/DWARF/
+App.app.dSYM/Contents/Resources/Relocations/
+App.app.dSYM/Contents/Resources/Relocations/aarch64/
+Capacitor.framework.dSYM/
+Capacitor.framework.dSYM/Contents/
+Capacitor.framework.dSYM/Contents/Resources/
+Capacitor.framework.dSYM/Contents/Resources/DWARF/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorApp.framework.dSYM/
+CapacitorApp.framework.dSYM/Contents/
+CapacitorApp.framework.dSYM/Contents/Resources/
+CapacitorApp.framework.dSYM/Contents/Resources/DWARF/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/
+2025-09-06 22:50:47 +0000  CapacitorApp.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/
+CapacitorFilesystem.framework.dSYM/Contents/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/DWARF/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/aarch64/
+CapacitorNetwork.framework.dSYM/
+CapacitorNetwork.framework.dSYM/Contents/
+CapacitorNetwork.framework.dSYM/Contents/Resources/
+2025-09-06 22:50:47 +0000  CapacitorNetwork.framework.dSYM/Contents/Resources/DWARF/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorPreferences.framework.dSYM/
+CapacitorPreferences.framework.dSYM/Contents/
+CapacitorPreferences.framework.dSYM/Contents/Resources/
+CapacitorPreferences.framework.dSYM/Contents/Resources/DWARF/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorShare.framework.dSYM/
+CapacitorShare.framework.dSYM/Contents/
+CapacitorShare.framework.dSYM/Contents/Resources/
+CapacitorShare.framework.dSYM/Contents/Resources/DWARF/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/aarch64/
+Cordova.framework.dSYM/
+2025-09-06 22:50:47 +0000  Cordova.framework.dSYM/Contents/
+Cordova.framework.dSYM/Contents/Resources/
+Cordova.framework.dSYM/Contents/Resources/DWARF/
+Cordova.framework.dSYM/Contents/Resources/Relocations/
+Cordova.framework.dSYM/Contents/Resources/Relocations/aarch64/
+IONFilesystemLib.framework.dSYM/
+IONFilesystemLib.framework.dSYM/Contents/
+IONFilesystemLib.framework.dSYM/Contents/Resources/
+IONFilesystemLib.framework.dSYM/Contents/Resources/DWARF/
+2025-09-06 22:50:47 +0000  IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:47 +0000  
+2025-09-06 22:50:47 +0000  sent 2.89K bytes  received 530 bytes  6.82K bytes/sec
+total size is 12.73M  speedup is 3822.91
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Writing /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols/8B38204F-5C11-3520-9233-8BCCD1426422.symbols
+2025-09-06 22:50:47 +0000  Processing symbols for App.app
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  building file list ... 
+2025-09-06 22:50:47 +0000   0 files...2025-09-06 22:50:47 +0000  67 files to consider
+2025-09-06 22:50:47 +0000  App.app/
+2025-09-06 22:50:47 +0000  App.app/Base.lproj/
+App.app/Base.lproj/LaunchScreen.storyboardc/
+App.app/Base.lproj/Main.storyboardc/
+App.app/Frameworks/
+App.app/Frameworks/Capacitor.framework/
+App.app/Frameworks/Capacitor.framework/_CodeSignature/
+App.app/Frameworks/CapacitorApp.framework/
+App.app/Frameworks/CapacitorApp.framework/_CodeSignature/
+App.app/Frameworks/CapacitorFilesystem.framework/
+App.app/Frameworks/CapacitorFilesystem.framework/_CodeSignature/
+App.app/Frameworks/CapacitorNetwork.framework/
+App.app/Frameworks/CapacitorNetwork.framework/_CodeSignature/
+App.app/Frameworks/CapacitorPreferences.framework/
+App.app/Frameworks/CapacitorPreferences.framework/_CodeSignature/
+App.app/Frameworks/CapacitorShare.framework/
+App.app/Frameworks/CapacitorShare.framework/_CodeSignature/
+App.app/Frameworks/Cordova.framework/
+App.app/Frameworks/Cordova.framework/_CodeSignature/
+App.app/Frameworks/IONFilesystemLib.framework/
+App.app/Frameworks/IONFilesystemLib.framework/_CodeSignature/
+2025-09-06 22:50:47 +0000  App.app/_CodeSignature/
+App.app/public/
+2025-09-06 22:50:47 +0000  
+sent 2.33K bytes  received 158 bytes  4.98K bytes/sec
+total size is 3.11M  speedup is 1278.01
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Running /usr/bin/rsync '-8aPhhE' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '--link-dest' '/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/dSYMs/' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI'
+2025-09-06 22:50:47 +0000  building file list ... 
+2025-09-06 22:50:47 +0000   0 files...2025-09-06 22:50:47 +0000  85 files to consider
+2025-09-06 22:50:47 +0000  ./
+2025-09-06 22:50:47 +0000  App.app.dSYM/
+App.app.dSYM/Contents/
+App.app.dSYM/Contents/Resources/
+App.app.dSYM/Contents/Resources/DWARF/
+2025-09-06 22:50:47 +0000  App.app.dSYM/Contents/Resources/Relocations/
+App.app.dSYM/Contents/Resources/Relocations/aarch64/
+Capacitor.framework.dSYM/
+Capacitor.framework.dSYM/Contents/
+Capacitor.framework.dSYM/Contents/Resources/
+Capacitor.framework.dSYM/Contents/Resources/DWARF/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/
+Capacitor.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorApp.framework.dSYM/
+CapacitorApp.framework.dSYM/Contents/
+CapacitorApp.framework.dSYM/Contents/Resources/
+CapacitorApp.framework.dSYM/Contents/Resources/DWARF/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/
+CapacitorApp.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/
+CapacitorFilesystem.framework.dSYM/Contents/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/DWARF/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/
+CapacitorFilesystem.framework.dSYM/Contents/Resources/Swift/aarch64/
+CapacitorNetwork.framework.dSYM/
+CapacitorNetwork.framework.dSYM/Contents/
+CapacitorNetwork.framework.dSYM/Contents/Resources/
+CapacitorNetwork.framework.dSYM/Contents/Resources/DWARF/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/
+CapacitorNetwork.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorPreferences.framework.dSYM/
+CapacitorPreferences.framework.dSYM/Contents/
+CapacitorPreferences.framework.dSYM/Contents/Resources/
+CapacitorPreferences.framework.dSYM/Contents/Resources/DWARF/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/
+CapacitorPreferences.framework.dSYM/Contents/Resources/Relocations/aarch64/
+CapacitorShare.framework.dSYM/
+2025-09-06 22:50:47 +0000  CapacitorShare.framework.dSYM/Contents/
+CapacitorShare.framework.dSYM/Contents/Resources/
+CapacitorShare.framework.dSYM/Contents/Resources/DWARF/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/
+CapacitorShare.framework.dSYM/Contents/Resources/Relocations/aarch64/
+Cordova.framework.dSYM/
+Cordova.framework.dSYM/Contents/
+Cordova.framework.dSYM/Contents/Resources/
+Cordova.framework.dSYM/Contents/Resources/DWARF/
+Cordova.framework.dSYM/Contents/Resources/Relocations/
+Cordova.framework.dSYM/Contents/Resources/Relocations/aarch64/
+IONFilesystemLib.framework.dSYM/
+IONFilesystemLib.framework.dSYM/Contents/
+IONFilesystemLib.framework.dSYM/Contents/Resources/
+IONFilesystemLib.framework.dSYM/Contents/Resources/DWARF/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/
+IONFilesystemLib.framework.dSYM/Contents/Resources/Relocations/aarch64/
+2025-09-06 22:50:47 +0000  
+sent 2.89K bytes  received 530 bytes  6.82K bytes/sec
+2025-09-06 22:50:47 +0000  total size is 12.73M  speedup is 3822.91
+2025-09-06 22:50:47 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:47 +0000  Writing /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols/77A79DBA-4E34-34B3-A040-35AAF2A04354.symbols
+2025-09-06 22:50:47 +0000  Processing step: IDEDistributionCopyAppleProvidedContentStep
+2025-09-06 22:50:47 +0000  Processing step: IDEDistributionAppThinningStep
+2025-09-06 22:50:47 +0000  Skipping step: IDEDistributionAppThinningStep because it said so
+2025-09-06 22:50:47 +0000  Processing step: IDEDistributionArchThinningStep
+2025-09-06 22:50:47 +0000  Running /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Capacitor.framework/Capacitor' '-verify_arch' 'arm64e'
+2025-09-06 22:50:47 +0000  /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-09-06 22:50:47 +0000  Skipping architecture thinning for item "Capacitor" because arch "arm64e" wasn't found
+2025-09-06 22:50:47 +0000  Running /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorApp.framework/CapacitorApp' '-verify_arch' 'arm64e'
+2025-09-06 22:50:47 +0000  /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-09-06 22:50:47 +0000  Skipping architecture thinning for item "CapacitorApp" because arch "arm64e" wasn't found
+2025-09-06 22:50:47 +0000  Running /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem' '-verify_arch' 'arm64e'
+2025-09-06 22:50:47 +0000  /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-09-06 22:50:47 +0000  Skipping architecture thinning for item "CapacitorFilesystem" because arch "arm64e" wasn't found
+2025-09-06 22:50:47 +0000  Running /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorNetwork.framework/CapacitorNetwork' '-verify_arch' 'arm64e'
+2025-09-06 22:50:47 +0000  /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-09-06 22:50:47 +0000  Skipping architecture thinning for item "CapacitorNetwork" because arch "arm64e" wasn't found
+2025-09-06 22:50:47 +0000  Running /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorPreferences.framework/CapacitorPreferences' '-verify_arch' 'arm64e'
+2025-09-06 22:50:47 +0000  /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-09-06 22:50:47 +0000  Skipping architecture thinning for item "CapacitorPreferences" because arch "arm64e" wasn't found
+2025-09-06 22:50:47 +0000  Running /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorShare.framework/CapacitorShare' '-verify_arch' 'arm64e'
+2025-09-06 22:50:47 +0000  /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-09-06 22:50:47 +0000  Skipping architecture thinning for item "CapacitorShare" because arch "arm64e" wasn't found
+2025-09-06 22:50:47 +0000  Running /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Cordova.framework/Cordova' '-verify_arch' 'arm64e'
+2025-09-06 22:50:47 +0000  /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-09-06 22:50:47 +0000  Skipping architecture thinning for item "Cordova" because arch "arm64e" wasn't found
+2025-09-06 22:50:47 +0000  Running /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/IONFilesystemLib.framework/IONFilesystemLib' '-verify_arch' 'arm64e'
+2025-09-06 22:50:47 +0000  /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-09-06 22:50:47 +0000  Skipping architecture thinning for item "IONFilesystemLib" because arch "arm64e" wasn't found
+2025-09-06 22:50:47 +0000  Running /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/App' '-verify_arch' 'arm64e'
+2025-09-06 22:50:47 +0000  /Applications/Xcode_15.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-09-06 22:50:47 +0000  Skipping architecture thinning for item "App" because arch "arm64e" wasn't found
+2025-09-06 22:50:47 +0000  Processing step: IDEDistributionODRStep
+2025-09-06 22:50:47 +0000  Processing step: IDEDistributionStripXattrsStep
+2025-09-06 22:50:47 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x60000b1ca880; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x60000bc5f3a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b6490; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000bc5fd40:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:47 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x60000b1793e0; bundleID='org.cocoapods.CapacitorApp', path='<DVTFilePath:0x60000bc5ce00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b4ff0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorApp', executablePath='<DVTFilePath:0x60000bccad80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework/CapacitorApp'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:47 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x60000bef2ca0; bundleID='org.cocoapods.CapacitorFilesystem', path='<DVTFilePath:0x60000ba43e80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60001343fa70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorFilesystem', executablePath='<DVTFilePath:0x60000bcbd880:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:47 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x60000b1d1020; bundleID='org.cocoapods.CapacitorNetwork', path='<DVTFilePath:0x60000ba41e00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c90e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorNetwork', executablePath='<DVTFilePath:0x60000bcbc3f0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework/CapacitorNetwork'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:47 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x60000b178a80; bundleID='org.cocoapods.CapacitorPreferences', path='<DVTFilePath:0x60000ba42b00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c3e30; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorPreferences', executablePath='<DVTFilePath:0x60000bcbdc00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework/CapacitorPreferences'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:47 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x60000b1d8600; bundleID='org.cocoapods.CapacitorShare', path='<DVTFilePath:0x60000ba41600:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b5d10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorShare', executablePath='<DVTFilePath:0x60000bcabc60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework/CapacitorShare'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:47 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x60000b1ddec0; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x60000bc4c540:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135cb660; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x60000b1ed1a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:47 +0000  Skipping stripping extended attributes of item: <IDEDistributionItem: 0x60000b1d34e0; bundleID='io.ionic.libs.filesystem.FilesystemLib', path='<DVTFilePath:0x60000ba41380:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135d6d50; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='io.ionic.libs.filesystem.FilesystemLib', executablePath='<DVTFilePath:0x60000bccae60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework/IONFilesystemLib'>', hardenedRuntime='0'>'>
+2025-09-06 22:50:47 +0000  Running /usr/bin/xattr '-crs' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app'
+2025-09-06 22:50:47 +0000  /usr/bin/xattr exited with 0
+2025-09-06 22:50:47 +0000  Processing step: IDEDistributionCodesignStep
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1ca880; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x60000bc5f3a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b6490; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000bc5fd40:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'>: {
+}
+2025-09-06 22:50:47 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1ca880; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x60000bc5f3a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b6490; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006183e40; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000bc5fd40:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'> are: {
+}
+2025-09-06 22:50:47 +0000  Writing entitlements for <IDEDistributionItem: 0x60000b1ca880; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x60000bc5f3a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b6490; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006182040; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000bc5fd40:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'> to: /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~tRXStp
+2025-09-06 22:50:47 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1' '--entitlements' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~tRXStp' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Capacitor.framework'
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Capacitor.framework: replacing existing signature
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Capacitor.framework: signed bundle with Mach-O thin (arm64) [org.cocoapods.Capacitor]
+2025-09-06 22:50:47 +0000  /usr/bin/codesign exited with 0
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1793e0; bundleID='org.cocoapods.CapacitorApp', path='<DVTFilePath:0x60000bc5ce00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b4ff0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061d9b00; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorApp', executablePath='<DVTFilePath:0x60000bccad80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework/CapacitorApp'>', hardenedRuntime='0'>'>: {
+}
+2025-09-06 22:50:47 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1793e0; bundleID='org.cocoapods.CapacitorApp', path='<DVTFilePath:0x60000bc5ce00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b4ff0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorApp', executablePath='<DVTFilePath:0x60000bccad80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework/CapacitorApp'>', hardenedRuntime='0'>'> are: {
+}
+2025-09-06 22:50:47 +0000  Writing entitlements for <IDEDistributionItem: 0x60000b1793e0; bundleID='org.cocoapods.CapacitorApp', path='<DVTFilePath:0x60000bc5ce00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b4ff0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006108900; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorApp', executablePath='<DVTFilePath:0x60000bccad80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorApp.framework/CapacitorApp'>', hardenedRuntime='0'>'> to: /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~SLr8F4
+2025-09-06 22:50:47 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1' '--entitlements' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~SLr8F4' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorApp.framework'
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorApp.framework: replacing existing signature
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorApp.framework: signed bundle with Mach-O thin (arm64) [org.cocoapods.CapacitorApp]
+2025-09-06 22:50:47 +0000  /usr/bin/codesign exited with 0
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000bef2ca0; bundleID='org.cocoapods.CapacitorFilesystem', path='<DVTFilePath:0x60000ba43e80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60001343fa70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061d9b00; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorFilesystem', executablePath='<DVTFilePath:0x60000bcbd880:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem'>', hardenedRuntime='0'>'>: {
+}
+2025-09-06 22:50:47 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000bef2ca0; bundleID='org.cocoapods.CapacitorFilesystem', path='<DVTFilePath:0x60000ba43e80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60001343fa70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorFilesystem', executablePath='<DVTFilePath:0x60000bcbd880:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem'>', hardenedRuntime='0'>'> are: {
+}
+2025-09-06 22:50:47 +0000  Writing entitlements for <IDEDistributionItem: 0x60000bef2ca0; bundleID='org.cocoapods.CapacitorFilesystem', path='<DVTFilePath:0x60000ba43e80:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60001343fa70; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006183e40; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorFilesystem', executablePath='<DVTFilePath:0x60000bcbd880:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem'>', hardenedRuntime='0'>'> to: /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~Ssp4hh
+2025-09-06 22:50:47 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1' '--entitlements' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~Ssp4hh' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorFilesystem.framework'
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorFilesystem.framework: replacing existing signature
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorFilesystem.framework: signed bundle with Mach-O thin (arm64) [org.cocoapods.CapacitorFilesystem]
+2025-09-06 22:50:47 +0000  /usr/bin/codesign exited with 0
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1d1020; bundleID='org.cocoapods.CapacitorNetwork', path='<DVTFilePath:0x60000ba41e00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c90e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorNetwork', executablePath='<DVTFilePath:0x60000bcbc3f0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework/CapacitorNetwork'>', hardenedRuntime='0'>'>: {
+}
+2025-09-06 22:50:47 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1d1020; bundleID='org.cocoapods.CapacitorNetwork', path='<DVTFilePath:0x60000ba41e00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c90e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061d9b00; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorNetwork', executablePath='<DVTFilePath:0x60000bcbc3f0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework/CapacitorNetwork'>', hardenedRuntime='0'>'> are: {
+}
+2025-09-06 22:50:47 +0000  Writing entitlements for <IDEDistributionItem: 0x60000b1d1020; bundleID='org.cocoapods.CapacitorNetwork', path='<DVTFilePath:0x60000ba41e00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c90e0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061db840; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorNetwork', executablePath='<DVTFilePath:0x60000bcbc3f0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorNetwork.framework/CapacitorNetwork'>', hardenedRuntime='0'>'> to: /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~XOtG7b
+2025-09-06 22:50:47 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1' '--entitlements' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~XOtG7b' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorNetwork.framework'
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorNetwork.framework: replacing existing signature
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorNetwork.framework: signed bundle with Mach-O thin (arm64) [org.cocoapods.CapacitorNetwork]
+2025-09-06 22:50:47 +0000  /usr/bin/codesign exited with 0
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b178a80; bundleID='org.cocoapods.CapacitorPreferences', path='<DVTFilePath:0x60000ba42b00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c3e30; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061d9b00; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorPreferences', executablePath='<DVTFilePath:0x60000bcbdc00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework/CapacitorPreferences'>', hardenedRuntime='0'>'>: {
+}
+2025-09-06 22:50:47 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b178a80; bundleID='org.cocoapods.CapacitorPreferences', path='<DVTFilePath:0x60000ba42b00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c3e30; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorPreferences', executablePath='<DVTFilePath:0x60000bcbdc00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework/CapacitorPreferences'>', hardenedRuntime='0'>'> are: {
+}
+2025-09-06 22:50:47 +0000  Writing entitlements for <IDEDistributionItem: 0x60000b178a80; bundleID='org.cocoapods.CapacitorPreferences', path='<DVTFilePath:0x60000ba42b00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135c3e30; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006183e40; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorPreferences', executablePath='<DVTFilePath:0x60000bcbdc00:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorPreferences.framework/CapacitorPreferences'>', hardenedRuntime='0'>'> to: /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~HVnqMM
+2025-09-06 22:50:47 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1' '--entitlements' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~HVnqMM' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorPreferences.framework'
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorPreferences.framework: replacing existing signature
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorPreferences.framework: signed bundle with Mach-O thin (arm64) [org.cocoapods.CapacitorPreferences]
+2025-09-06 22:50:47 +0000  
+2025-09-06 22:50:47 +0000  /usr/bin/codesign exited with 0
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1d8600; bundleID='org.cocoapods.CapacitorShare', path='<DVTFilePath:0x60000ba41600:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b5d10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006101a40; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorShare', executablePath='<DVTFilePath:0x60000bcabc60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework/CapacitorShare'>', hardenedRuntime='0'>'>: {
+}
+2025-09-06 22:50:47 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1d8600; bundleID='org.cocoapods.CapacitorShare', path='<DVTFilePath:0x60000ba41600:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b5d10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006100780; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorShare', executablePath='<DVTFilePath:0x60000bcabc60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework/CapacitorShare'>', hardenedRuntime='0'>'> are: {
+}
+2025-09-06 22:50:47 +0000  Writing entitlements for <IDEDistributionItem: 0x60000b1d8600; bundleID='org.cocoapods.CapacitorShare', path='<DVTFilePath:0x60000ba41600:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135b5d10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006102d00; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.CapacitorShare', executablePath='<DVTFilePath:0x60000bcabc60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/CapacitorShare.framework/CapacitorShare'>', hardenedRuntime='0'>'> to: /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~afrvOu
+2025-09-06 22:50:47 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1' '--entitlements' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~afrvOu' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorShare.framework'
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorShare.framework: replacing existing signature
+2025-09-06 22:50:47 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorShare.framework: signed bundle with Mach-O thin (arm64) [org.cocoapods.CapacitorShare]
+2025-09-06 22:50:47 +0000  /usr/bin/codesign exited with 0
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1ddec0; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x60000bc4c540:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135cb660; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006101a40; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x60000b1ed1a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'>: {
+}
+2025-09-06 22:50:47 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-09-06 22:50:47 +0000  Entitlements for <IDEDistributionItem: 0x60000b1ddec0; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x60000bc4c540:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135cb660; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061d9b00; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x60000b1ed1a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'> are: {
+}
+2025-09-06 22:50:47 +0000  Writing entitlements for <IDEDistributionItem: 0x60000b1ddec0; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x60000bc4c540:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135cb660; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061db840; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x60000b1ed1a0:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'> to: /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~sGjEFG
+2025-09-06 22:50:47 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1' '--entitlements' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~sGjEFG' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Cordova.framework'
+2025-09-06 22:50:48 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Cordova.framework: replacing existing signature
+2025-09-06 22:50:48 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Cordova.framework: signed bundle with Mach-O thin (arm64) [org.cocoapods.Cordova]
+2025-09-06 22:50:48 +0000  /usr/bin/codesign exited with 0
+2025-09-06 22:50:48 +0000  Entitlements for <IDEDistributionItem: 0x60000b1d34e0; bundleID='io.ionic.libs.filesystem.FilesystemLib', path='<DVTFilePath:0x60000ba41380:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135d6d50; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='io.ionic.libs.filesystem.FilesystemLib', executablePath='<DVTFilePath:0x60000bccae60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework/IONFilesystemLib'>', hardenedRuntime='0'>'>: {
+}
+2025-09-06 22:50:48 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-09-06 22:50:48 +0000  Entitlements for <IDEDistributionItem: 0x60000b1d34e0; bundleID='io.ionic.libs.filesystem.FilesystemLib', path='<DVTFilePath:0x60000ba41380:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135d6d50; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061803c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='io.ionic.libs.filesystem.FilesystemLib', executablePath='<DVTFilePath:0x60000bccae60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework/IONFilesystemLib'>', hardenedRuntime='0'>'> are: {
+}
+2025-09-06 22:50:48 +0000  Writing entitlements for <IDEDistributionItem: 0x60000b1d34e0; bundleID='io.ionic.libs.filesystem.FilesystemLib', path='<DVTFilePath:0x60000ba41380:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135d6d50; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006183e40; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='(null)', teamID='6Z8DF9BC32', identifier='io.ionic.libs.filesystem.FilesystemLib', executablePath='<DVTFilePath:0x60000bccae60:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/Frameworks/IONFilesystemLib.framework/IONFilesystemLib'>', hardenedRuntime='0'>'> to: /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~rTgp9B
+2025-09-06 22:50:48 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1' '--entitlements' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~rTgp9B' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/IONFilesystemLib.framework'
+2025-09-06 22:50:48 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/IONFilesystemLib.framework: replacing existing signature
+2025-09-06 22:50:48 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/IONFilesystemLib.framework: signed bundle with Mach-O thin (arm64) [io.ionic.libs.filesystem.FilesystemLib]
+2025-09-06 22:50:48 +0000  /usr/bin/codesign exited with 0
+2025-09-06 22:50:48 +0000  Entitlements for <IDEDistributionItem: 0x60000bef0180; bundleID='com.bookbridge.app', path='<DVTFilePath:0x60000b1ae580:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135d59f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000061815c0; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='{
+    "application-identifier" = "6Z8DF9BC32.com.bookbridge.app";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = 6Z8DF9BC32;
+    "get-task-allow" = 0;
+}', teamID='6Z8DF9BC32', identifier='com.bookbridge.app', executablePath='<DVTFilePath:0x60000b1aa160:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/App'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "6Z8DF9BC32.com.bookbridge.app";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = 6Z8DF9BC32;
+    "get-task-allow" = 0;
+}
+2025-09-06 22:50:48 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-09-06 22:50:48 +0000  Entitlements for <IDEDistributionItem: 0x60000bef0180; bundleID='com.bookbridge.app', path='<DVTFilePath:0x60000b1ae580:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135d59f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006183e40; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='{
+    "application-identifier" = "6Z8DF9BC32.com.bookbridge.app";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = 6Z8DF9BC32;
+    "get-task-allow" = 0;
+}', teamID='6Z8DF9BC32', identifier='com.bookbridge.app', executablePath='<DVTFilePath:0x60000b1aa160:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/App'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "6Z8DF9BC32.com.bookbridge.app";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = 6Z8DF9BC32;
+    "get-task-allow" = 0;
+}
+2025-09-06 22:50:48 +0000  Writing entitlements for <IDEDistributionItem: 0x60000bef0180; bundleID='com.bookbridge.app', path='<DVTFilePath:0x60000b1ae580:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000135d59f0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600006182100; name='Apple Distribution: Francois Tshibala (6Z8DF9BC32)', hash='3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1', serialNumber='63A92569C387D019753618C002483D87', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-09-06 11:03:17 +0000''>', entitlements='{
+    "application-identifier" = "6Z8DF9BC32.com.bookbridge.app";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = 6Z8DF9BC32;
+    "get-task-allow" = 0;
+}', teamID='6Z8DF9BC32', identifier='com.bookbridge.app', executablePath='<DVTFilePath:0x60000b1aa160:'/Users/user/Library/Developer/Xcode/Archives/2025-09-06/App 9-6-25, 3.58 PM.xcarchive/Products/Applications/App.app/App'>', hardenedRuntime='0'>'> to: /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~Ct3spR
+2025-09-06 22:50:48 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '3E4B42A9C011BFF0B83AD78CEBCDA39877014EA1' '--entitlements' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/entitlements~~~Ct3spR' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app'
+2025-09-06 22:50:48 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app: replacing existing signature
+2025-09-06 22:50:48 +0000  /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app: signed app bundle with Mach-O thin (arm64) [com.bookbridge.app]
+2025-09-06 22:50:48 +0000  /usr/bin/codesign exited with 0
+2025-09-06 22:50:48 +0000  Processing step: IDEDistributionZipODRItemStep
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-09-06 22:50:48 +0000  Processing step: IDEDistributionCreateIPAStep
+2025-09-06 22:50:48 +0000  Running /usr/bin/rsync '-8aPhhE' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Symbols' '--link-dest' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root'
+2025-09-06 22:50:48 +0000  building file list ... 
+2025-09-06 22:50:48 +0000   0 files...2025-09-06 22:50:48 +0000  10 files to consider
+2025-09-06 22:50:48 +0000  Symbols/
+2025-09-06 22:50:48 +0000  
+sent 573 bytes  received 26 bytes  1.17K bytes/sec
+total size is 1.67M  speedup is 2931.80
+2025-09-06 22:50:48 +0000  /usr/bin/rsync exited with 0
+2025-09-06 22:50:48 +0000  Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root' '/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Packages/App.ipa'
+2025-09-06 22:50:48 +0000  >>> Copying /var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root 
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:48 +0000  13035 bytes for ./Payload/App.app/_CodeSignature/CodeResources
+copying file ./Payload/App.app/App ... 
+2025-09-06 22:50:48 +0000  93648 bytes for ./Payload/App.app/App
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/AppIcon60x60@2x.png ... 
+4734 bytes for ./Payload/App.app/AppIcon60x60@2x.png
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib ... 
+2025-09-06 22:50:48 +0000  858 bytes for ./Payload/App.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib
+copying file ./Payload/App.app/Base.lproj/Main.storyboardc/Info.plist ... 
+258 bytes for ./Payload/App.app/Base.lproj/Main.storyboardc/Info.plist
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-snD-IY-ifK.nib ... 
+1278 bytes for ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-snD-IY-ifK.nib
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+924 bytes for ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+copying file ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2025-09-06 22:50:48 +0000  258 bytes for ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/Info.plist
+copying file ./Payload/App.app/config.xml ... 
+185 bytes for ./Payload/App.app/config.xml
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/public/cordova.js ... 
+0 bytes for ./Payload/App.app/public/cordova.js
+copying file ./Payload/App.app/public/cordova_plugins.js ... 
+0 bytes for ./Payload/App.app/public/cordova_plugins.js
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Assets.car ... 
+2025-09-06 22:50:48 +0000  299599 bytes for ./Payload/App.app/Assets.car
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/AppIcon76x76@2x~ipad.png ... 
+6563 bytes for ./Payload/App.app/AppIcon76x76@2x~ipad.png
+copying file ./Payload/App.app/capacitor.config.json ... 
+2025-09-06 22:50:48 +0000  448 bytes for ./Payload/App.app/capacitor.config.json
+copying file ./Payload/App.app/Frameworks/Capacitor.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:48 +0000  2252 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/Capacitor.framework/native-bridge.js ... 
+2025-09-06 22:50:48 +0000  52815 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/native-bridge.js
+copying file ./Payload/App.app/Frameworks/Capacitor.framework/Capacitor ... 
+2025-09-06 22:50:48 +0000  1532400 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/Capacitor
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/Capacitor.framework/PrivacyInfo.xcprivacy ... 
+373 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/PrivacyInfo.xcprivacy
+copying file ./Payload/App.app/Frameworks/Capacitor.framework/Info.plist ... 
+2025-09-06 22:50:48 +0000  789 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/Info.plist
+copying file ./Payload/App.app/Frameworks/CapacitorShare.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:48 +0000  1798 bytes for ./Payload/App.app/Frameworks/CapacitorShare.framework/_CodeSignature/CodeResources
+copying file ./Payload/App.app/Frameworks/CapacitorShare.framework/CapacitorShare ... 
+2025-09-06 22:50:48 +0000  129968 bytes for ./Payload/App.app/Frameworks/CapacitorShare.framework/CapacitorShare
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/CapacitorShare.framework/Info.plist ... 
+799 bytes for ./Payload/App.app/Frameworks/CapacitorShare.framework/Info.plist
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/CapacitorFilesystem.framework/_CodeSignature/CodeResources ... 
+1798 bytes for ./Payload/App.app/Frameworks/CapacitorFilesystem.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem ... 
+2025-09-06 22:50:48 +0000  284784 bytes for ./Payload/App.app/Frameworks/CapacitorFilesystem.framework/CapacitorFilesystem
+copying file ./Payload/App.app/Frameworks/CapacitorFilesystem.framework/Info.plist ... 
+2025-09-06 22:50:48 +0000  811 bytes for ./Payload/App.app/Frameworks/CapacitorFilesystem.framework/Info.plist
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/CapacitorNetwork.framework/_CodeSignature/CodeResources ... 
+1798 bytes for ./Payload/App.app/Frameworks/CapacitorNetwork.framework/_CodeSignature/CodeResources
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/CapacitorNetwork.framework/CapacitorNetwork ... 
+2025-09-06 22:50:48 +0000  208992 bytes for ./Payload/App.app/Frameworks/CapacitorNetwork.framework/CapacitorNetwork
+copying file ./Payload/App.app/Frameworks/CapacitorNetwork.framework/Info.plist ... 
+805 bytes for ./Payload/App.app/Frameworks/CapacitorNetwork.framework/Info.plist
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/CapacitorPreferences.framework/_CodeSignature/CodeResources ... 
+1798 bytes for ./Payload/App.app/Frameworks/CapacitorPreferences.framework/_CodeSignature/CodeResources
+copying file ./Payload/App.app/Frameworks/CapacitorPreferences.framework/CapacitorPreferences ... 
+2025-09-06 22:50:48 +0000  137872 bytes for ./Payload/App.app/Frameworks/CapacitorPreferences.framework/CapacitorPreferences
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/CapacitorPreferences.framework/Info.plist ... 
+2025-09-06 22:50:48 +0000  813 bytes for ./Payload/App.app/Frameworks/CapacitorPreferences.framework/Info.plist
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/Cordova.framework/_CodeSignature/CodeResources ... 
+2034 bytes for ./Payload/App.app/Frameworks/Cordova.framework/_CodeSignature/CodeResources
+copying file ./Payload/App.app/Frameworks/Cordova.framework/Cordova ... 
+2025-09-06 22:50:48 +0000  148048 bytes for ./Payload/App.app/Frameworks/Cordova.framework/Cordova
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/Cordova.framework/PrivacyInfo.xcprivacy ... 
+373 bytes for ./Payload/App.app/Frameworks/Cordova.framework/PrivacyInfo.xcprivacy
+copying file ./Payload/App.app/Frameworks/Cordova.framework/Info.plist ... 
+2025-09-06 22:50:48 +0000  785 bytes for ./Payload/App.app/Frameworks/Cordova.framework/Info.plist
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/IONFilesystemLib.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:48 +0000  1798 bytes for ./Payload/App.app/Frameworks/IONFilesystemLib.framework/_CodeSignature/CodeResources
+copying file ./Payload/App.app/Frameworks/IONFilesystemLib.framework/IONFilesystemLib ... 
+2025-09-06 22:50:48 +0000  165552 bytes for ./Payload/App.app/Frameworks/IONFilesystemLib.framework/IONFilesystemLib
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/IONFilesystemLib.framework/Info.plist ... 
+782 bytes for ./Payload/App.app/Frameworks/IONFilesystemLib.framework/Info.plist
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/CapacitorApp.framework/_CodeSignature/CodeResources ... 
+2025-09-06 22:50:48 +0000  1798 bytes for ./Payload/App.app/Frameworks/CapacitorApp.framework/_CodeSignature/CodeResources
+copying file ./Payload/App.app/Frameworks/CapacitorApp.framework/CapacitorApp ... 
+2025-09-06 22:50:48 +0000  140016 bytes for ./Payload/App.app/Frameworks/CapacitorApp.framework/CapacitorApp
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/Frameworks/CapacitorApp.framework/Info.plist ... 
+795 bytes for ./Payload/App.app/Frameworks/CapacitorApp.framework/Info.plist
+2025-09-06 22:50:48 +0000  copying file ./Payload/App.app/embedded.mobileprovision ... 
+2025-09-06 22:50:48 +0000  12188 bytes for ./Payload/App.app/embedded.mobileprovision
+copying file ./Payload/App.app/Info.plist ... 
+2025-09-06 22:50:48 +0000  1841 bytes for ./Payload/App.app/Info.plist
+copying file ./Payload/App.app/PkgInfo ... 
+8 bytes for ./Payload/App.app/PkgInfo
+2025-09-06 22:50:48 +0000  copying file ./Symbols/8B38204F-5C11-3520-9233-8BCCD1426422.symbols ... 
+2025-09-06 22:50:48 +0000  128004 bytes for ./Symbols/8B38204F-5C11-3520-9233-8BCCD1426422.symbols
+2025-09-06 22:50:48 +0000  copying file ./Symbols/77F32040-F525-319E-8156-5A63A512D2F0.symbols ... 
+2025-09-06 22:50:48 +0000  52028 bytes for ./Symbols/77F32040-F525-319E-8156-5A63A512D2F0.symbols
+2025-09-06 22:50:48 +0000  copying file ./Symbols/5E1D7CFB-23F0-3293-9D38-263B2493D3F9.symbols ... 
+2025-09-06 22:50:48 +0000  1187764 bytes for ./Symbols/5E1D7CFB-23F0-3293-9D38-263B2493D3F9.symbols
+2025-09-06 22:50:48 +0000  copying file ./Symbols/041E1D5C-F34C-3695-9E58-54EA447EDD99.symbols ... 
+2025-09-06 22:50:48 +0000  142756 bytes for ./Symbols/041E1D5C-F34C-3695-9E58-54EA447EDD99.symbols
+copying file ./Symbols/79712CB0-0C0B-3510-937F-80C11A62FB84.symbols ... 
+2025-09-06 22:50:48 +0000  97436 bytes for ./Symbols/79712CB0-0C0B-3510-937F-80C11A62FB84.symbols
+copying file ./Symbols/8ECCB7D4-0AED-3E89-866F-06E740B2391B.symbols ... 
+2025-09-06 22:50:48 +0000  32236 bytes for ./Symbols/8ECCB7D4-0AED-3E89-866F-06E740B2391B.symbols
+copying file ./Symbols/204C1476-7BCA-31B1-82CF-CC50DAD27666.symbols ... 
+2025-09-06 22:50:48 +0000  49660 bytes for ./Symbols/204C1476-7BCA-31B1-82CF-CC50DAD27666.symbols
+copying file ./Symbols/77A79DBA-4E34-34B3-A040-35AAF2A04354.symbols ... 
+2025-09-06 22:50:48 +0000  18484 bytes for ./Symbols/77A79DBA-4E34-34B3-A040-35AAF2A04354.symbols
+copying file ./Symbols/60DC215F-7E51-3A7D-9ECD-4D4830EB19BB.symbols ... 
+2025-09-06 22:50:48 +0000  47780 bytes for ./Symbols/60DC215F-7E51-3A7D-9ECD-4D4830EB19BB.symbols
+2025-09-06 22:50:48 +0000  /usr/bin/ditto exited with 0
+2025-09-06 22:50:48 +0000  Processing step: IDEDistributionAppStoreInformationStep
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2025-09-06 22:50:48 +0000  Processing step: IDEDistributionGenerateProcessedDistributionItems
+2025-09-06 22:50:48 +0000  IDEDistributionItem init <DVTFilePath:0x60000b8fec80:'/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorPreferences.framework'>
+2025-09-06 22:50:48 +0000  IDEDistributionItem init <DVTFilePath:0x60000ffbd570:'/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Capacitor.framework'>
+2025-09-06 22:50:48 +0000  IDEDistributionItem init <DVTFilePath:0x60000ba2bd00:'/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/IONFilesystemLib.framework'>
+2025-09-06 22:50:48 +0000  IDEDistributionItem init <DVTFilePath:0x60000b8ff980:'/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorNetwork.framework'>
+2025-09-06 22:50:48 +0000  IDEDistributionItem init <DVTFilePath:0x60000b8fd180:'/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorShare.framework'>
+2025-09-06 22:50:48 +0000  IDEDistributionItem init <DVTFilePath:0x60000bdae610:'/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/Cordova.framework'>
+2025-09-06 22:50:48 +0000  IDEDistributionItem init <DVTFilePath:0x60000b8fca00:'/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorFilesystem.framework'>
+2025-09-06 22:50:48 +0000  IDEDistributionItem init <DVTFilePath:0x60000bdaf170:'/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app/Frameworks/CapacitorApp.framework'>
+2025-09-06 22:50:48 +0000  IDEDistributionItem init <DVTFilePath:0x60000bea5740:'/var/folders/x9/3rk_sytd073164w2b0_ss1480000gn/T/XcodeDistPipeline.~~~EiytcI/Root/Payload/App.app'>
+2025-09-06 22:50:48 +0000  Processing step: IDEDistributionCreateManifestStep
+2025-09-06 22:50:48 +0000  Skipping step: IDEDistributionCreateManifestStep because it said so

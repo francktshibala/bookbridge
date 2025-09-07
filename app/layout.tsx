@@ -116,7 +116,7 @@ export default function RootLayout({
                   role="main" 
                   aria-label="BookBridge application" 
                   id="main-content"
-                  className="flex-1 px-4 py-8 w-full"
+                  className="flex-1 px-0 md:px-4 py-8 w-full"
                   style={{ backgroundColor: 'transparent' }}
                 >
                   {children}

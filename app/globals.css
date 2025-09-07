@@ -958,7 +958,7 @@
   @media (max-width: 768px) {
     /* Mobile page container adjustments */
     .page-content {
-      padding: 2rem 1rem !important;
+      padding: 2rem 0rem !important;
       gap: 2rem !important;
     }
     
@@ -966,7 +966,7 @@
     .features-grid {
       grid-template-columns: 1fr !important;
       gap: 2rem !important;
-      padding: 0 1rem !important;
+      padding: 0 !important;
     }
     
     .feature-card {
@@ -1160,6 +1160,46 @@
   @media (orientation: portrait) and (max-device-width: 430px) {
     .safe-area-top {
       padding-top: 70px !important;
+    }
+  }
+
+  /* Mobile Display Fixes */
+  @media (max-width: 768px) {
+    /* AI Chat Modal - Full width on mobile */
+    .ai-chat-modal {
+      max-width: 95vw !important;
+      max-height: 90vh !important;
+      border-radius: 16px !important;
+    }
+    
+    /* Reading Page - Minimal padding on mobile */
+    .main-content-container {
+      padding: 16px 8px !important;
+    }
+    
+    /* Reading content - full width on mobile */
+    .reading-content-container {
+      margin: 0 !important;
+      padding: 16px 8px !important;
+      border-radius: 16px !important;
+    }
+    
+    /* Book text - full width, like Speechify */
+    .book-text-wireframe {
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    .book-text-wireframe.simplified {
+      padding: 16px !important;
+    }
+    
+    /* Enhanced Books Grid - Center alignment */
+    .enhanced-books-grid {
+      justify-items: center !important;
+      max-width: 95vw !important;
+      margin: 0 auto !important;
     }
   }
 

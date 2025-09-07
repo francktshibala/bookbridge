@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { ESLControls } from '@/components/esl/ESLControls';
 import { VocabularyHighlighter } from '@/components/VocabularyHighlighter';
 import { PrecomputeAudioPlayer } from '@/components/PrecomputeAudioPlayer';
@@ -41,6 +42,7 @@ export default function BookReaderPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { preferences, announceToScreenReader } = useAccessibility();
+  const { isMobile } = useIsMobile();
   // PWA DISABLED: const { trackReadingTime, trackChapterCompletion } = useReadingEngagement();
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
@@ -835,7 +837,11 @@ export default function BookReaderPage() {
       </div>
 
       {/* Main Content */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 48px' }} className="main-content-container">
+      <div style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        padding: isMobile ? '16px 8px' : '64px 48px' 
+      }} className="main-content-container">
         {/* Old ESL Control Bar - removed in unified layout */}
         {false && (
         <div 
@@ -1840,13 +1846,14 @@ export default function BookReaderPage() {
           style={{
             background: 'rgba(26, 32, 44, 0.5)',
             backdropFilter: 'blur(20px)',
-            borderRadius: '24px',
-            padding: '48px 40px',
+            borderRadius: isMobile ? '16px' : '24px',
+            padding: isMobile ? '8px' : '48px 40px', // MINIMAL PADDING ON MOBILE
             boxShadow: '0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.15)',
             border: '1px solid rgba(102, 126, 234, 0.15)',
-            minHeight: '600px',
+            minHeight: isMobile ? '400px' : '600px',
             marginTop: '16px',
-            marginBottom: '100px' // Space for mobile audio controls
+            marginBottom: '100px', // Space for mobile audio controls
+            margin: isMobile ? '8px' : undefined
           }}
         >
           {/* Book Title */}
@@ -1867,7 +1874,14 @@ export default function BookReaderPage() {
           </div>
           
           {/* Book Text */}
-          <div className="book-content-wireframe">
+          <div 
+            className="book-content-wireframe"
+            style={{
+              maxWidth: isMobile ? '100%' : undefined,
+              margin: isMobile ? '0' : undefined,
+              padding: isMobile ? '0' : undefined
+            }}
+          >
             {simplificationLoading ? (
               <div style={{ 
                 display: 'flex', 

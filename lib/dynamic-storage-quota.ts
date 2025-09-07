@@ -605,7 +605,7 @@ export class DynamicStorageQuotaService {
   ): { suggestedQuota: number; reasoning: string[]; urgency: 'low' | 'medium' | 'high' } {
     const reasoning: string[] = [];
     let urgency: 'low' | 'medium' | 'high' = 'low';
-    let suggestedQuota = this.currentQuota!.total;
+    let suggestedQuota = this.currentQuota?.total || 100 * 1024 * 1024; // Default 100MB if null
 
     if (utilization > 0.8) {
       reasoning.push('High utilization detected - consider increasing quota');

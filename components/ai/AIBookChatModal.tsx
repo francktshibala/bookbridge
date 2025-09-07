@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ExternalBook } from '@/types/book-sources';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // Helper function to format AI responses with better paragraph structure
 const formatAIResponse = (content: string): string => {
@@ -287,6 +288,12 @@ export function AIBookChatModal({
   const [isLoading, setIsLoading] = useState(false);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const { isMobile, windowWidth } = useIsMobile();
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('[AIBookChatModal] Window width:', windowWidth, 'isMobile:', isMobile);
+  }, [windowWidth, isMobile]);
 
   // Initialize welcome message when book changes
   useEffect(() => {
@@ -430,10 +437,11 @@ export function AIBookChatModal({
             style={{
               background: '#0f172a',
               border: '1px solid #334155',
-              borderRadius: '20px',
+              borderRadius: isMobile ? '16px' : '20px',
               width: '100%',
-              maxWidth: '900px',
-              maxHeight: '80vh',
+              maxWidth: isMobile ? '100%' : '900px', // FULL WIDTH on mobile
+              maxHeight: isMobile ? '100vh' : '80vh', // FULL HEIGHT on mobile
+              margin: isMobile ? '0' : '0 auto',
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
@@ -766,7 +774,7 @@ export function AIBookChatModal({
                   background: '#1e293b',
                   borderTop: '1px solid #334155',
                   padding: '20px 24px',
-                  marginBottom: window.innerWidth <= 768 ? '20px' : '0'
+                  marginBottom: isMobile ? '20px' : '0'
                 }}
               >
                 <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>

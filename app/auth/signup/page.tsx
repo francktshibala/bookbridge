@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Mail, Lock, User, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -12,6 +13,9 @@ import Link from 'next/link';
 export default function SignupPage() {
   const router = useRouter();
   const { announceToScreenReader } = useAccessibility();
+  const { isMobile } = useIsMobile();
+  const { windowWidth } = useIsMobile();
+  const isVerySmall = windowWidth < 375; // iPhone SE and smaller
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -63,7 +67,9 @@ export default function SignupPage() {
           `
         }} />
         
-        <div className="relative flex items-center justify-center min-h-screen py-12 px-12">
+        <div className="relative flex items-center justify-center min-h-screen" style={{
+        padding: isVerySmall ? '4px 0px' : (isMobile ? '8px 4px' : '48px 48px')
+      }}>
           <div className="w-full max-w-md mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -76,7 +82,7 @@ export default function SignupPage() {
                 borderRadius: '24px',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.1)',
                 border: '1px solid var(--border-light)',
-                padding: '40px',
+                padding: isVerySmall ? '16px 8px' : (isMobile ? '24px 16px' : '40px'),
                 backdropFilter: 'blur(10px)',
                 textAlign: 'center'
               }}
@@ -106,7 +112,7 @@ export default function SignupPage() {
                 </motion.div>
                 
                 <h1 style={{
-                  fontSize: '2rem',
+                  fontSize: isVerySmall ? '20px' : (isMobile ? '24px' : '2rem'),
                   fontWeight: '800',
                   color: 'var(--text-primary)',
                   marginBottom: '16px',
@@ -168,25 +174,27 @@ export default function SignupPage() {
         `
       }} />
       
-      <div className="relative flex items-center justify-center min-h-screen py-12 px-12">
+      <div className="relative flex items-center justify-center min-h-screen" style={{
+        padding: isVerySmall ? '4px 0px' : (isMobile ? '8px 4px' : '48px 48px')
+      }}>
         <div className="w-full max-w-md mx-auto">
-        {/* Back Navigation */}
+        {/* Back Navigation - Moved to natural flow */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="absolute top-8 left-8"
+          className={isVerySmall ? "mb-4" : "mb-6"}
         >
           <Link 
             href="/"
             className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors font-medium"
             style={{
               textDecoration: 'none',
-              fontSize: '16px',
+              fontSize: isVerySmall ? '14px' : '16px',
               fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
             }}
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-4 h-4" />
             <span>Back to Home</span>
           </Link>
         </motion.div>
@@ -196,24 +204,26 @@ export default function SignupPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8"
+          className={isVerySmall ? "text-center mb-4" : "text-center mb-8"}
         >
           <AccessibleWrapper as="header">
             <h1 className="text-gradient" style={{
-              fontSize: 'var(--text-4xl)',
+              fontSize: isVerySmall ? '22px' : (isMobile ? '28px' : 'var(--text-4xl)'),
               fontWeight: '800',
-              marginBottom: '1rem',
-              lineHeight: '1.2',
+              marginBottom: isVerySmall ? '0.5rem' : '1rem',
+              lineHeight: isVerySmall ? '1.15' : '1.2',
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+              wordBreak: 'break-word',
+              hyphens: 'auto'
             }}>
               Create your BookBridge account
             </h1>
             <p style={{
-              fontSize: 'var(--text-lg)',
+              fontSize: isVerySmall ? '14px' : (isMobile ? '16px' : 'var(--text-lg)'),
               color: 'var(--text-secondary)',
               fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
               lineHeight: '1.6'
@@ -233,7 +243,7 @@ export default function SignupPage() {
             borderRadius: '24px',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.1)',
             border: '1px solid var(--border-light)',
-            padding: '40px',
+            padding: isMobile ? '24px 16px' : '40px',
             backdropFilter: 'blur(10px)'
           }}
         >
@@ -242,7 +252,11 @@ export default function SignupPage() {
               Signup Form
             </h2>
 
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <form onSubmit={handleSubmit} style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: isVerySmall ? '16px' : '24px' 
+            }}>
               {/* Premium Name Input */}
               <div>
                 <label htmlFor="name" style={{
@@ -258,7 +272,7 @@ export default function SignupPage() {
                 <div style={{ position: 'relative' }}>
                   <User className="w-5 h-5" style={{
                     position: 'absolute',
-                    left: '12px',
+                    left: isVerySmall ? '14px' : (isMobile ? '16px' : '12px'),
                     top: '50%',
                     transform: 'translateY(-50%)',
                     color: 'var(--text-secondary)',
@@ -274,7 +288,7 @@ export default function SignupPage() {
                     className="input-styled"
                     style={{
                       width: '100%',
-                      padding: '12px 16px 12px 44px',
+                      padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
                       color: 'var(--text-primary)',
                       background: 'var(--surface-elevated)',
                       border: '2px solid var(--border-light)',
@@ -305,7 +319,7 @@ export default function SignupPage() {
                 <div style={{ position: 'relative' }}>
                   <Mail className="w-5 h-5" style={{
                     position: 'absolute',
-                    left: '12px',
+                    left: isVerySmall ? '14px' : (isMobile ? '16px' : '12px'),
                     top: '50%',
                     transform: 'translateY(-50%)',
                     color: 'var(--text-secondary)',
@@ -321,7 +335,7 @@ export default function SignupPage() {
                     className="input-styled"
                     style={{
                       width: '100%',
-                      padding: '12px 16px 12px 44px',
+                      padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
                       color: 'var(--text-primary)',
                       background: 'var(--surface-elevated)',
                       border: '2px solid var(--border-light)',
@@ -352,7 +366,7 @@ export default function SignupPage() {
                 <div style={{ position: 'relative' }}>
                   <Lock className="w-5 h-5" style={{
                     position: 'absolute',
-                    left: '12px',
+                    left: isVerySmall ? '14px' : (isMobile ? '16px' : '12px'),
                     top: '50%',
                     transform: 'translateY(-50%)',
                     color: 'var(--text-secondary)',
@@ -369,7 +383,7 @@ export default function SignupPage() {
                     className="input-styled"
                     style={{
                       width: '100%',
-                      padding: '12px 16px 12px 44px',
+                      padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
                       color: 'var(--text-primary)',
                       background: 'var(--surface-elevated)',
                       border: '2px solid var(--border-light)',
