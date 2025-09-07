@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { ESLControls } from '@/components/esl/ESLControls';
 import { VocabularyHighlighter } from '@/components/VocabularyHighlighter';
 import { PrecomputeAudioPlayer } from '@/components/PrecomputeAudioPlayer';
@@ -41,6 +42,7 @@ export default function BookReaderPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { preferences, announceToScreenReader } = useAccessibility();
+  const { isMobile } = useIsMobile();
   // PWA DISABLED: const { trackReadingTime, trackChapterCompletion } = useReadingEngagement();
   const [bookContent, setBookContent] = useState<BookContent | null>(null);
   const [currentChunk, setCurrentChunk] = useState(0);
@@ -838,7 +840,7 @@ export default function BookReaderPage() {
       <div style={{ 
         maxWidth: '1200px', 
         margin: '0 auto', 
-        padding: window.innerWidth <= 768 ? '16px 8px' : '64px 48px' 
+        padding: isMobile ? '16px 8px' : '64px 48px' 
       }} className="main-content-container">
         {/* Old ESL Control Bar - removed in unified layout */}
         {false && (
