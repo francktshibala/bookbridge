@@ -2,6 +2,7 @@
 
 import { EnhancedBookCard } from './EnhancedBookCard';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface EnhancedBooksGridProps {
   books?: string[];
@@ -90,6 +91,7 @@ export function EnhancedBooksGrid({
   layout = 'grid-3x3',
   onAskAI
 }: EnhancedBooksGridProps) {
+  const { isMobile } = useIsMobile();
   
   const getGridClass = () => {
     switch (layout) {
@@ -141,9 +143,13 @@ export function EnhancedBooksGrid({
       <div 
         className={`enhanced-books-grid grid ${getGridClass()}`}
         style={{
+          display: 'grid',
           justifyItems: 'center',
-          maxWidth: enhancedBooksToShow.length <= 3 ? '900px' : '1200px',
-          margin: '0 auto'
+          alignItems: 'start',
+          maxWidth: isMobile ? '100%' : (enhancedBooksToShow.length <= 3 ? '900px' : '1200px'),
+          margin: '0 auto',
+          padding: isMobile ? '0 16px' : '0',
+          gridTemplateColumns: isMobile ? '1fr' : undefined
         }}
       >
         {enhancedBooksToShow.map((book, index) => (
@@ -174,24 +180,24 @@ export function EnhancedBooksGrid({
               alignItems: 'center',
               gap: '8px',
               padding: '16px 32px',
-              backgroundColor: '#667eea',
-              color: 'white',
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              color: '#60a5fa',
+              border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: '12px',
               fontSize: '16px',
               fontWeight: '600',
               textDecoration: 'none',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4)'
+              transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#5b6df0';
+              e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.3)';
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.5)';
+              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#667eea';
+              e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.2)';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)';
+              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
             }}
           >
             Explore All Enhanced Books

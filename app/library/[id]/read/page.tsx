@@ -1846,13 +1846,14 @@ export default function BookReaderPage() {
           style={{
             background: 'rgba(26, 32, 44, 0.5)',
             backdropFilter: 'blur(20px)',
-            borderRadius: '24px',
-            padding: '48px 40px',
+            borderRadius: isMobile ? '16px' : '24px',
+            padding: isMobile ? '8px' : '48px 40px', // MINIMAL PADDING ON MOBILE
             boxShadow: '0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.15)',
             border: '1px solid rgba(102, 126, 234, 0.15)',
-            minHeight: '600px',
+            minHeight: isMobile ? '400px' : '600px',
             marginTop: '16px',
-            marginBottom: '100px' // Space for mobile audio controls
+            marginBottom: '100px', // Space for mobile audio controls
+            margin: isMobile ? '8px' : undefined
           }}
         >
           {/* Book Title */}
@@ -1873,7 +1874,14 @@ export default function BookReaderPage() {
           </div>
           
           {/* Book Text */}
-          <div className="book-content-wireframe">
+          <div 
+            className="book-content-wireframe"
+            style={{
+              maxWidth: isMobile ? '100%' : undefined,
+              margin: isMobile ? '0' : undefined,
+              padding: isMobile ? '0' : undefined
+            }}
+          >
             {simplificationLoading ? (
               <div style={{ 
                 display: 'flex', 

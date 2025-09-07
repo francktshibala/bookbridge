@@ -151,20 +151,21 @@ export function EnhancedBookCard({ book, index = 0, onAskAI }: EnhancedBookCardP
           style={{
             flex: 1,
             height: '36px',
-            background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-            color: 'white',
-            border: 'none',
+            lineHeight: '36px',
+            background: 'rgba(59, 130, 246, 0.2)',
+            color: '#60a5fa',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
             borderRadius: '8px',
             fontSize: '14px',
             fontWeight: '500',
             textDecoration: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer'
+            display: 'inline-block',
+            textAlign: 'center',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
           }}
         >
-          Read Enhanced
+          Read
         </Link>
       </div>
     </motion.div>

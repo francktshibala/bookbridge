@@ -289,6 +289,11 @@ export function AIBookChatModal({
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const { isMobile, windowWidth } = useIsMobile();
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('[AIBookChatModal] Window width:', windowWidth, 'isMobile:', isMobile);
+  }, [windowWidth, isMobile]);
 
   // Initialize welcome message when book changes
   useEffect(() => {
@@ -434,8 +439,9 @@ export function AIBookChatModal({
               border: '1px solid #334155',
               borderRadius: isMobile ? '16px' : '20px',
               width: '100%',
-              maxWidth: isMobile ? '95vw' : '900px',
-              maxHeight: isMobile ? '90vh' : '80vh',
+              maxWidth: isMobile ? '100%' : '900px', // FULL WIDTH on mobile
+              maxHeight: isMobile ? '100vh' : '80vh', // FULL HEIGHT on mobile
+              margin: isMobile ? '0' : '0 auto',
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
