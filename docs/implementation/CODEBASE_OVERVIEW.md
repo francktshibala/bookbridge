@@ -49,6 +49,10 @@ This document establishes the universal accessibility vision while defining the 
 **Location**: `/docs/implementation/PROGRESSIVE_DISCLOSURE_AI_SYSTEM.md`  
 **Description**: Implementation report for revolutionary AI system that delivers 11x more educational value per interaction. Transforms basic 240-token responses into 1,300+ token sophisticated analysis through progressive disclosure UI. Features timeout fixes, enhanced formatting, and multi-agent response integration. Built upon existing AI tutoring foundation with age-adaptive language, Socratic questioning, and educational scaffolding.
 
+### **CHUNK_ARCHITECTURE_QUESTIONS.md**
+**Location**: `/CHUNK_ARCHITECTURE_QUESTIONS.md` *(Root level file)*  
+**Description**: Strategic architecture review and enhanced books content loading fix implementation guide. Contains architectural analysis comparing chunked vs continuous audio approaches (Speechify comparison), plus complete implementation status for fixing enhanced books' "0 of 0 words" display issues. **CRITICAL: Includes detailed implementation pattern with complete JavaScript code template for fixing remaining 6 enhanced books (Emma, Great Gatsby, Dr. Jekyll, etc.)** Documents Yellow Wallpaper fix completion with BookChunk record creation, API chunk inclusion, and database structure updates. Contains copy-paste code template with placeholder replacement instructions for systematic book fixes. Essential reference for enhanced books maintenance and architectural decision-making.
+
 ---
 
 ## 🏗️ **Core Application Structure**
@@ -160,6 +164,33 @@ This document establishes the universal accessibility vision while defining the 
 ### **GOOGLE_PLAY_ROLLOUT_STRATEGY.md**
 **Location**: `/docs/implementation/GOOGLE_PLAY_ROLLOUT_STRATEGY.md`  
 **Description**: Comprehensive post-approval rollout strategy for Google Play Store. Contains phased approach from internal testing (20-50 users) to closed testing (100-500 users) to staged production rollout (5% → 100%). Includes geographic tier strategy, monetization phases, device testing priorities, issue response plan, and success metrics. Provides emergency procedures and quick wins for maximizing early success while minimizing risk.
+
+### **ANDROID_BUILD_GUIDE.md** *(Quick Reference)*
+**Location**: `/docs/implementation/ANDROID_BUILD_GUIDE.md` *(Document to be created)*  
+**Description**: **QUICK REFERENCE** for Android release builds. Essential commands and troubleshooting for version updates and Play Store deployment:
+
+**Update Version Code & Build Process:**
+1. **Open Android Studio**: `npx cap open android`
+2. **Update Version**: File → Project Structure (Cmd+;) → Modules → app → Default Config → increment Version Code
+3. **Build Release**:
+   ```bash
+   cd android
+   export JAVA_HOME=/usr/local/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
+   export PATH=$JAVA_HOME/bin:$PATH
+   ./gradlew bundleRelease
+   ```
+4. **Upload File**: `android/app/build/outputs/bundle/release/app-release.aab` to Play Console
+
+**Common Issues:**
+- "Version code X has already been used" → Increment version code in Android Studio
+- Java version errors → Use OpenJDK 21 (path above)
+- Build timeout → Run `./gradlew bundleRelease` (without clean)
+
+**Required for Play Store:**
+- Content Rating questionnaire completion
+- Privacy Policy URL
+- Screenshots (2-8 required)  
+- App description
 
 ---
 

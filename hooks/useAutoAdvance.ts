@@ -34,18 +34,15 @@ export function useAutoAdvance({
       if (canAdvance) {
         console.log(`🎵 AUTO-ADVANCE: Starting navigation from chunk ${currentChunk} to ${currentChunk + 1}`);
         
-        // Brief pause before advancing
+        // Immediate navigation with audio-ready resume
+        console.log('🎵 AUTO-ADVANCE: Calling onNavigate with next, autoAdvance=true');
+        onNavigate('next', true); // Pass autoAdvance = true to preserve mode
+        
+        // Brief delay for audio player to recognize new content
         setTimeout(() => {
-          console.log('🎵 AUTO-ADVANCE: Calling onNavigate with next, autoAdvance=true');
-          onNavigate('next', true); // Pass autoAdvance = true to preserve mode
-          
-          // Auto-resume playback after page navigation
-          // Small delay to ensure new content is loaded
-          setTimeout(() => {
-            console.log('🎵 AUTO-ADVANCE: Auto-resuming playback on next chunk');
-            onPlayStateChange(true);
-          }, 800);
-        }, 500);
+          console.log('🎵 AUTO-ADVANCE: Auto-resuming playback on next chunk');
+          onPlayStateChange(true);
+        }, 200); // Small delay for audio readiness
       } else {
         // Reached end of book
         console.log('🏁 AUTO-ADVANCE: Reached end of book, stopping playback');
