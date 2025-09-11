@@ -133,6 +133,7 @@ This document establishes the universal accessibility vision while defining the 
 - **Mobile display optimization (100% complete)** - Full screen usage, responsive design
 - Audio system improvements and voice limitations
 - Database integration for real-time book status
+- **iOS App Store Submission (September 11, 2025)** - BookBridge Reader v1.0 submitted, currently "Waiting for Review"
 
 **🚨 Priority Tasks**:
 - Touch interactions for mobile experience
@@ -144,6 +145,14 @@ This document establishes the universal accessibility vision while defining the 
 - 10 enhanced books (50+ simplifications)
 - 19 limited books (< 50 simplifications)
 - 8 books with complete CEFR coverage (A1-C2)
+
+**📱 iOS App Store Status**:
+- **App Name**: BookBridge Reader
+- **Version**: 1.0 (Build 1)
+- **Submission Date**: September 11, 2025 at 2:06 PM
+- **Status**: Waiting for Review
+- **Submission ID**: 66fd0519-8745-4f66-bb17-4a6eb9700cf5
+- **Submitted By**: Francois Tshibala
 
 ### **AUDIO_PATH_CONFLICT_PREVENTION.md**
 **Location**: `/docs/archived/AUDIO_PATH_CONFLICT_PREVENTION.md`  
