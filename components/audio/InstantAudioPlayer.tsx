@@ -313,10 +313,19 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       const totalLoadTime = Date.now() - startTimeRef.current;
       console.log(`🎯 Total startup time: ${totalLoadTime}ms`);
       
-    } catch (error) {
-      console.error('Failed to play instant audio:', error);
+    } catch (error: any) {
+      // Gracefully handle AbortError from play-pause race during transitions
+      const message = typeof error?.message === 'string' ? error.message : '';
+      const name = typeof error?.name === 'string' ? error.name : '';
+      const isAbort = name === 'AbortError' || message.includes('interrupted by a call to pause');
+      if (isAbort) {
+        console.warn('🟡 Play was interrupted by a pause - ignoring (expected during transitions)');
+        updateProgress({ status: 'paused' });
+      } else {
+        console.error('Failed to play instant audio:', error);
+        setError('Failed to start audio playback');
+      }
       setIsPlaying(false);
-      setError('Failed to start audio playback');
     }
   };
 
@@ -459,10 +468,26 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       // Start word highlighting immediately - timing compensation happens in real-time tracking
       startWordHighlighting(nextSentenceAudio);
       
-    } catch (error) {
-      console.error('Failed to play next sentence:', error);
-      setIsPlaying(false);
-      setError('Playback interrupted');
+    } catch (error: any) {
+      // Treat AbortError as benign during quick transitions
+      const message = typeof error?.message === 'string' ? error.message : '';
+      const name = typeof error?.name === 'string' ? error.name : '';
+      const isAbort = name === 'AbortError' || message.includes('interrupted by a call to pause');
+      if (isAbort) {
+        console.warn('🟡 Next sentence play interrupted by pause - skipping this segment');
+        // Attempt to continue with following sentence if available
+        const after = nextIndex + 1;
+        if (after < audioQueue.length) {
+          playNextSentence(after);
+          return;
+        }
+        setIsPlaying(false);
+        updateProgress({ status: 'paused' });
+      } else {
+        console.error('Failed to play next sentence:', error);
+        setIsPlaying(false);
+        setError('Playback interrupted');
+      }
     }
   };
 
