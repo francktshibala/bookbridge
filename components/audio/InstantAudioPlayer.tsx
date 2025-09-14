@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TimingCalibrator } from '@/lib/audio/TimingCalibrator';
+import { chunkCache } from '@/lib/chunk-memory-cache';
+import { ChunkTransitionManager } from '@/lib/audio/ChunkTransitionManager';
 
 interface SentenceAudio {
   id: string;
@@ -37,6 +40,7 @@ interface AudioMetadata {
   totalSentences: number;
   totalDuration: number;
   cacheKey: string;
+  duration?: number; // Optional for compatibility
 }
 
 interface InstantAudioPlayerProps {
@@ -55,6 +59,7 @@ interface InstantAudioPlayerProps {
   onPlayingChange?: (playing: boolean) => void;
   cachedAudioUrl?: string | null;
   onAudioCache?: (audioUrl: string, metadata: any) => Promise<void>;
+  onSentenceChange?: (currentSentenceIndex: number, totalSentences: number) => void;
 }
 
 interface AudioProgressUpdate {
@@ -68,9 +73,8 @@ interface AudioProgressUpdate {
 
 // Configurable timing offset for synchronization tuning
 // This offset delays highlighting to account for audio pipeline latency
-// If highlighting is AHEAD of voice: INCREASE this value
-// If highlighting is BEHIND voice: DECREASE this value  
-const AUDIO_SYNC_OFFSET = 0.10; // 100ms - adjusted for better voice-to-highlight sync
+// Timing configuration - now using intelligent calibration
+const DEFAULT_SYNC_OFFSET = 0.30; // Moderate base offset; subtracting offset to delay highlight
 
 export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
   bookId,
@@ -85,7 +89,8 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
   onAutoScroll,
   className = '',
   isPlaying: externalIsPlaying,
-  onPlayingChange
+  onPlayingChange,
+  onSentenceChange
 }) => {
   // Audio state
   const [audioQueue, setAudioQueue] = useState<SentenceAudio[]>([]);
@@ -95,6 +100,7 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
   const [metadata, setMetadata] = useState<AudioMetadata | null>(null);
   const [isPreGenerated, setIsPreGenerated] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isPrefetching, setIsPrefetching] = useState(false);
   
   // Use external play state if provided, otherwise use internal
   const isPlaying = externalIsPlaying !== undefined ? externalIsPlaying : internalIsPlaying;
@@ -122,9 +128,14 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
   const startHighlightTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastHighlightedIndexRef = useRef<number>(-1);
   const lastProgressUpdateRef = useRef<number>(0);
-  const syncOffsetRef = useRef<number>(AUDIO_SYNC_OFFSET);
+  const syncOffsetRef = useRef<number>(DEFAULT_SYNC_OFFSET);
+  const calibratorRef = useRef<TimingCalibrator | null>(null);
+  const pendingOffsetRef = useRef<number | null>(null);
+  const transitionManagerRef = useRef<ChunkTransitionManager | null>(null);
   const calibrationCountRef = useRef<number>(0);
+  const disableAutoCalibrationRef = useRef<boolean>(false);
   const lastAutoScrollRef = useRef<number>(0);
+  const nextChunkCacheRef = useRef<SentenceAudio[] | null>(null);
 
   // Initialize audio elements pool
   useEffect(() => {
@@ -180,6 +191,39 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       }
     }
   }, [externalIsPlaying, internalIsPlaying]);
+
+  // Reset calibration when book or chunk changes to avoid cross-page drift
+  useEffect(() => {
+    // Reset timing state on chunk change to avoid speed drift
+    if (calibratorRef.current) calibratorRef.current.reset();
+    syncOffsetRef.current = DEFAULT_SYNC_OFFSET;
+    pendingOffsetRef.current = null;
+    lastHighlightedIndexRef.current = -1;
+    lastProgressUpdateRef.current = 0;
+    lastAutoScrollRef.current = 0;
+
+    // Critical: Clear any existing audio state and prepare for new chunk
+    console.log('🔄 Chunk changed, resetting audio state for chunk:', chunkIndex);
+    setIsLoading(false);
+    setError(null);
+    setIsPreGenerated(false);
+
+    // Stop any currently playing audio
+    if (currentAudioRef.current) {
+      currentAudioRef.current.pause();
+      currentAudioRef.current = null;
+    }
+
+    // Clear audio refs for fresh start
+    audioRefs.current.forEach(audio => {
+      audio.pause();
+      audio.src = '';
+    });
+
+    // Clear prefetch cache for new chunk
+    nextChunkCacheRef.current = null;
+    setIsPrefetching(false);
+  }, [bookId, chunkIndex]);
 
   // Update progress callback
   const updateProgress = useCallback((update: Partial<AudioProgressUpdate>) => {
@@ -249,11 +293,54 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     }
   };
 
-  // Get pre-generated audio from API
+  // Get pre-generated audio from cache or API
   const getPreGeneratedAudio = async (): Promise<{
     audioAssets: SentenceAudio[];
     metadata: AudioMetadata;
   } | null> => {
+    const cacheKey = chunkCache.getCacheKey(bookId, chunkIndex, cefrLevel);
+
+    // Check memory cache first
+    const cached = chunkCache.get(cacheKey);
+    if (cached) {
+      console.log('⚡ Using cached audio for instant loading!');
+      return {
+        audioAssets: cached.audioAssets,
+        metadata: {
+          bookId,
+          cefrLevel,
+          chunkIndex,
+          voiceId,
+          totalSentences: cached.audioAssets.length,
+          totalDuration: cached.audioAssets.reduce((sum, audio) => sum + audio.duration, 0),
+          cacheKey: cacheKey
+        }
+      };
+    }
+
+    // Check prefetch temp cache for auto-advance scenarios
+    if (nextChunkCacheRef.current) {
+      console.log('🚀 Using prefetched audio for instant transition!');
+      const cachedAudio = nextChunkCacheRef.current;
+      nextChunkCacheRef.current = null; // Clear temp cache after use
+
+      // Store in persistent cache for potential reuse
+      chunkCache.set(cacheKey, { audioAssets: cachedAudio });
+
+      return {
+        audioAssets: cachedAudio,
+        metadata: {
+          bookId,
+          cefrLevel,
+          chunkIndex,
+          voiceId,
+          totalSentences: cachedAudio.length,
+          totalDuration: cachedAudio.reduce((sum, audio) => sum + audio.duration, 0),
+          cacheKey: cacheKey
+        }
+      };
+    }
+
     try {
       const { ApiAdapter } = await import('../../lib/api-adapter');
       const response = await ApiAdapter.fetch(
@@ -263,19 +350,85 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       if (response.ok) {
         const data = await response.json();
         if (data.cached && data.audioAssets) {
+          // Store in cache for future use
+          chunkCache.set(cacheKey, { audioAssets: data.audioAssets });
+
           return {
             audioAssets: data.audioAssets,
             metadata: data.metadata
           };
         }
       }
-      
+
       return null;
     } catch (error) {
       console.error('Failed to get pre-generated audio:', error);
       return null;
     }
   };
+
+  // Prefetch multiple chunks using bulk API for maximum efficiency
+  const prefetchNextChunk = useCallback(async (nextChunk: number) => {
+    if (isPrefetching || !isEnhanced) return;
+
+    const cacheKey = chunkCache.getCacheKey(bookId, nextChunk, cefrLevel);
+
+    // Check if already cached
+    if (chunkCache.has(cacheKey)) {
+      console.log(`✅ Chunk ${nextChunk} already cached, skipping prefetch`);
+      return;
+    }
+
+    console.log(`🚀 Bulk prefetching 3 chunks starting from ${nextChunk} for seamless transitions`);
+    setIsPrefetching(true);
+
+    try {
+      const { ApiAdapter } = await import('../../lib/api-adapter');
+
+      // Use bulk API to fetch current + next 2 chunks in one query
+      const response = await ApiAdapter.fetch(
+        `/api/audio/pregenerated?bookId=${bookId}&cefrLevel=${cefrLevel}&chunkIndex=${nextChunk}&voiceId=${voiceId}&bulk=true&chunkCount=3`
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.cached && data.bulk && data.chunks) {
+          // Store all fetched chunks in cache
+          Object.entries(data.chunks).forEach(([chunkIdx, audioAssets]: [string, any]) => {
+            const bulkCacheKey = chunkCache.getCacheKey(bookId, parseInt(chunkIdx), cefrLevel);
+            chunkCache.set(bulkCacheKey, { audioAssets });
+
+            // Set immediate next chunk in temp ref for auto-advance
+            if (parseInt(chunkIdx) === nextChunk) {
+              nextChunkCacheRef.current = audioAssets;
+            }
+          });
+
+          const chunkCount = Object.keys(data.chunks).length;
+          console.log(`✅ Bulk prefetched ${chunkCount} chunks starting from ${nextChunk}`);
+        }
+      } else {
+        // Fallback to single chunk prefetch if bulk fails
+        console.log('🔄 Bulk prefetch failed, falling back to single chunk');
+        const fallbackResponse = await ApiAdapter.fetch(
+          `/api/audio/pregenerated?bookId=${bookId}&cefrLevel=${cefrLevel}&chunkIndex=${nextChunk}&voiceId=${voiceId}`
+        );
+
+        if (fallbackResponse.ok) {
+          const fallbackData = await fallbackResponse.json();
+          if (fallbackData.cached && fallbackData.audioAssets) {
+            chunkCache.set(cacheKey, { audioAssets: fallbackData.audioAssets });
+            nextChunkCacheRef.current = fallbackData.audioAssets;
+            console.log(`✅ Fallback prefetched chunk ${nextChunk} audio (${fallbackData.audioAssets.length} sentences)`);
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Prefetch failed:', error);
+    } finally {
+      setIsPrefetching(false);
+    }
+  }, [bookId, cefrLevel, voiceId, isEnhanced, isPrefetching]);
 
   // Play pre-generated audio instantly
   const playInstantAudio = async (audioAssets: SentenceAudio[]) => {
@@ -284,6 +437,8 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     console.log('🎵 playInstantAudio: Setting isPlaying to true');
     setIsPlaying(true);
     setCurrentSentence(0);
+    // Notify sentence index immediately
+    try { onSentenceChange?.(0, audioAssets.length); } catch {}
     updateProgress({ status: 'playing' });
 
     // Load and play first audio with proper abort handling
@@ -448,25 +603,58 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
     playNextSentence(nextSentenceIndex);
   }, [isPlaying, audioQueue.length]);
 
-  // Play next sentence seamlessly
+  // Play next sentence with smooth transition
   const playNextSentence = async (nextIndex: number) => {
     if (nextIndex >= audioQueue.length) return;
 
-    const nextAudio = audioRefs.current[nextIndex % audioRefs.current.length];
+    // Stop any ongoing highlighting to prevent overlap
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+
     const nextSentenceAudio = audioQueue[nextIndex];
 
-    // Preload next audio
-    nextAudio.src = nextSentenceAudio.audioUrl;
+    // Use transition manager for smooth chunk transitions
+    const nextAudio = transitionManagerRef.current
+      ? transitionManagerRef.current.getAudioElement(nextIndex, nextSentenceAudio.audioUrl)
+      : audioRefs.current[nextIndex % audioRefs.current.length];
+
+    if (!transitionManagerRef.current) {
+      nextAudio.src = nextSentenceAudio.audioUrl;
+    }
+
     nextAudio.addEventListener('ended', () => handleAudioEnded(nextIndex));
-    
-    setCurrentSentence(nextIndex);
+
+    const previousAudio = currentAudioRef.current;
     currentAudioRef.current = nextAudio;
+    setCurrentSentence(nextIndex);
+    // Notify sentence index on transition
+    try { onSentenceChange?.(nextIndex, audioQueue.length); } catch {}
+
+    // Apply any pending calibrated offset at sentence boundary to prevent mid-play jumps
+    if (pendingOffsetRef.current !== null) {
+      if (Math.abs(pendingOffsetRef.current - syncOffsetRef.current) > 0.001) {
+        console.log(`📊 Applying calibrated offset at sentence boundary: ${(pendingOffsetRef.current * 1000).toFixed(0)}ms (was ${(syncOffsetRef.current * 1000).toFixed(0)}ms)`);
+      }
+      syncOffsetRef.current = pendingOffsetRef.current;
+      pendingOffsetRef.current = null;
+    }
 
     try {
-      await nextAudio.play();
-      
-      // Start word highlighting immediately - timing compensation happens in real-time tracking
-      startWordHighlighting(nextSentenceAudio);
+      // Gentle debounce before starting the next sentence to avoid perceived speed-up
+      await new Promise(r => setTimeout(r, 120));
+      // Use smooth transition if manager available
+      if (transitionManagerRef.current && previousAudio) {
+        await transitionManagerRef.current.transitionToChunk(
+          previousAudio,
+          nextAudio,
+          () => startWordHighlighting(nextSentenceAudio)
+        );
+      } else {
+        await nextAudio.play();
+        startWordHighlighting(nextSentenceAudio);
+      }
       
     } catch (error: any) {
       // Treat AbortError as benign during quick transitions
@@ -521,8 +709,8 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       wordCount: sentenceAudio.wordTimings?.words?.length,
       duration: sentenceAudio.duration,
       method: sentenceAudio.wordTimings?.method,
-      initialOffset: `${AUDIO_SYNC_OFFSET * 1000}ms`,
-      fixApplied: 'Double compensation removed, timing direction corrected'
+      initialOffset: `${syncOffsetRef.current * 1000}ms`,
+      fixApplied: 'Subtracting sync offset to delay highlight'
     });
 
     // Expose debug state to window for AudioDebugOverlay
@@ -534,10 +722,36 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       sentenceAudio
     };
 
+    // Reset ALL timing state for new sentence/chunk to prevent acceleration
     lastHighlightedIndexRef.current = -1;
     lastProgressUpdateRef.current = 0;
-    syncOffsetRef.current = AUDIO_SYNC_OFFSET;
+    lastAutoScrollRef.current = 0;
     calibrationCountRef.current = 0;
+
+    // Initialize managers if needed
+    if (typeof window !== 'undefined') {
+      if (!calibratorRef.current) {
+        calibratorRef.current = new TimingCalibrator(DEFAULT_SYNC_OFFSET);
+      }
+      if (!transitionManagerRef.current) {
+        transitionManagerRef.current = new ChunkTransitionManager();
+      }
+
+      // Get calibrated offset for this book
+      const bookId = (window as any).__currentBookId || 'default';
+      syncOffsetRef.current = calibratorRef.current.getOptimalOffset(bookId);
+    } else {
+      syncOffsetRef.current = DEFAULT_SYNC_OFFSET;
+    }
+
+    // Apply any pending calibrated offset now that a new sentence highlighting starts
+    if (pendingOffsetRef.current !== null) {
+      if (Math.abs(pendingOffsetRef.current - syncOffsetRef.current) > 0.001) {
+        console.log(`📊 Applying pending calibrated offset at start of sentence: ${(pendingOffsetRef.current * 1000).toFixed(0)}ms (was ${(syncOffsetRef.current * 1000).toFixed(0)}ms)`);
+      }
+      syncOffsetRef.current = pendingOffsetRef.current;
+      pendingOffsetRef.current = null;
+    }
 
     // Start highlighting immediately - no startup delay to avoid double compensation
     const useDatabaseTimings = !!sentenceAudio.wordTimings?.words?.length;
@@ -549,51 +763,63 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       }
 
       const rawCurrentTime = currentAudioRef.current.currentTime;
-      // Add offset to delay highlighting so it matches audible output
-      const adjustedTime = rawCurrentTime + syncOffsetRef.current;
+      // SUBTRACT offset to delay highlighting so it matches audible output latency
+      const adjustedTime = Math.max(0, rawCurrentTime - syncOffsetRef.current);
 
       if (useDatabaseTimings) {
         const timings = sentenceAudio.wordTimings!.words;
-        const current = timings.find(t => adjustedTime >= t.startTime && adjustedTime <= t.endTime);
-        if (current && current.wordIndex !== lastHighlightedIndexRef.current) {
-          lastHighlightedIndexRef.current = current.wordIndex;
-          onWordHighlight(current.wordIndex); // RE-ENABLED: For auto-scroll functionality (highlighting still disabled in UI)
+        const current = timings.find(t => adjustedTime >= t.startTime && t.endTime >= adjustedTime);
+        if (current) {
+          // Anti-skip guard: prevent sudden jumps far ahead
+          const previousIndex = lastHighlightedIndexRef.current;
+          const candidate = current.wordIndex;
+          const bounded = previousIndex >= 0 && candidate > previousIndex + 20 ? previousIndex + 2 : candidate;
+
+          if (bounded !== previousIndex) {
+            lastHighlightedIndexRef.current = bounded;
+            onWordHighlight(bounded);
+          }
           
-          // Enhanced debug logging (disabled)
-          // console.log(`🎯 WORD HIGHLIGHT: "${current.word}" (index ${current.wordIndex}) at audio ${rawCurrentTime.toFixed(3)}s (adjusted: ${adjustedTime.toFixed(3)}s) | Word timing: ${current.startTime.toFixed(3)}-${current.endTime.toFixed(3)}s`);
+          // Detailed timing debug
+          console.log(`Audio: ${rawCurrentTime.toFixed(2)}s, Adjusted: ${adjustedTime.toFixed(2)}s (−${syncOffsetRef.current}s), Current word times: ${current.startTime}-${current.endTime}`);
           
           // Update debug state
           (window as any).__audioPlayerDebug = {
             ...(window as any).__audioPlayerDebug,
-            lastHighlightedIndex: current.wordIndex,
+            lastHighlightedIndex: lastHighlightedIndexRef.current,
             syncOffset: syncOffsetRef.current,
             currentWord: current,
             rawCurrentTime,
             adjustedTime
           };
 
-          // Auto-calibrate offset during first words to reduce lead/lag
-          if (calibrationCountRef.current < 3) {
-            // If we're highlighting early, we need more delay (positive offset)
-            // If we're highlighting late, we need less delay (smaller offset)
-            const highlightingLead = rawCurrentTime - current.startTime;
-            const targetOffset = Math.max(0.05, Math.min(0.3, highlightingLead));
-            
-            // Smooth update (EMA) - gradually adjust offset
-            syncOffsetRef.current = Math.max(0.05, Math.min(0.3, (syncOffsetRef.current * 0.8) + (targetOffset * 0.2)));
-            calibrationCountRef.current += 1;
-            
-            console.log(`🎯 AUTO-CALIBRATION: Word ${current.wordIndex} - Lead: ${(highlightingLead * 1000).toFixed(0)}ms, New offset: ${(syncOffsetRef.current * 1000).toFixed(0)}ms`);
+          // Record timing sample for intelligent calibration
+          if (!disableAutoCalibrationRef.current && calibratorRef.current) {
+            calibratorRef.current.recordSample(current.startTime, rawCurrentTime);
+
+            // Update offset if calibration confidence is high
+            const confidence = calibratorRef.current.getConfidence();
+            if (confidence > 0.7) {
+              const bookId = (window as any).__currentBookId || 'default';
+              const newOffset = calibratorRef.current.getOptimalOffset(bookId);
+
+              if (Math.abs(newOffset - syncOffsetRef.current) > 0.02) {
+                // Defer applying the new offset until sentence boundary to prevent mid-play jumps
+                pendingOffsetRef.current = newOffset;
+                console.log(`📊 Calibration computed (deferred): ${(newOffset * 1000).toFixed(0)}ms (confidence: ${(confidence * 100).toFixed(0)}%)`);
+              }
+            }
           }
         }
       } else {
         const words = text.split(/\s+/).filter(w => w.length > 0);
         const duration = Math.max(0.001, sentenceAudio.duration || 10);
+        // Use ADJUSTED time (delayed) for fallback to keep sync direction consistent
         const progress = Math.min(Math.max(0, adjustedTime) / duration, 1);
         const idx = Math.floor(progress * words.length);
         if (idx >= 0 && idx < words.length && idx !== lastHighlightedIndexRef.current) {
           lastHighlightedIndexRef.current = idx;
-          onWordHighlight(idx); // RE-ENABLED: For auto-scroll functionality (highlighting still disabled in UI)
+          onWordHighlight(idx); // Progressive fallback is chunk-global already
         }
       }
 
@@ -602,6 +828,11 @@ export const InstantAudioPlayer: React.FC<InstantAudioPlayerProps> = ({
       if (now - lastProgressUpdateRef.current >= 100) {
         lastProgressUpdateRef.current = now;
         updateProgress({ currentTime: rawCurrentTime, status: 'playing' });
+
+        // Prefetch next chunk when 80% through current chunk
+        if (sentenceAudio && rawCurrentTime / sentenceAudio.duration > 0.8) {
+          prefetchNextChunk(chunkIndex + 1);
+        }
       }
       
       // Auto-scroll at much lower frequency for smoothness (2Hz)

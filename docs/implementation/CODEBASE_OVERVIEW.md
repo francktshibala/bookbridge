@@ -4,6 +4,72 @@
 
 ---
 
+## 🌿 **Branch Strategy & Implementation Guide**
+
+### **Active Development Branches**
+
+#### **`main` - Production Branch**
+- **Purpose**: Stable production code
+- **Usage**: Never commit directly, only merge tested features
+- **Status**: Latest stable release
+
+#### **`fix/audio-flow-interruptions` - Current Books Tactical Improvements**
+- **Purpose**: Implementing current books bridge solution (4-week plan, $12.7K)
+- **Usage**: For all tactical improvements to existing enhanced books
+- **Current Work**: Phase 1-4 chunk transition optimizations
+- **Implementation Plan**: `/docs/implementation/CHUNK_TRANSITION_FIX_PLAN.md`
+- **Key Files**:
+  - `/hooks/useAutoAdvance.ts` - Remove hardcoded delays ✅ (Phase 1 complete)
+  - `/app/library/[id]/read/page.tsx` - Visual animation fixes (Phase 2)
+  - `/components/audio/InstantAudioPlayer.tsx` - Prefetch integration (Phase 2)
+  - `/lib/chunk-memory-cache.ts` - Memory cache system (Phase 2)
+
+#### **`research/future-and-current-books-architecture` - Research Documentation**
+- **Purpose**: Safe storage of comprehensive research and implementation plans
+- **Usage**: Documentation only, no active development
+- **Contains**:
+  - `docs/research/FUTURE_BOOKS_ARCHITECTURE_RESEARCH.md` (15-week, $121K plan)
+  - `docs/research/CURRENT_BOOKS_IMPROVEMENT_RESEARCH.md` (4-week, $12.7K plan)
+  - Updated codebase overview with implementation guides
+
+#### **Future Branch Strategy**
+- **`feature/continuous-architecture`** (planned) - For future books implementation (15-week strategic transformation)
+- **`feature/prefetch-optimization`** (planned) - Advanced prefetch system
+- **`feature/virtual-scrolling`** (planned) - Continuous text rendering
+
+### **Branch Usage Guidelines**
+
+#### **For Current Books Improvements (Tactical)**
+```bash
+git checkout fix/audio-flow-interruptions
+# Implement Phase 1-4 improvements
+# Files: useAutoAdvance.ts, InstantAudioPlayer.tsx, read/page.tsx
+```
+
+#### **For Future Books Architecture (Strategic)**
+```bash
+git checkout -b feature/continuous-architecture
+# Implement 15-week transformation plan
+# Files: New virtual scrolling, continuous text, database schema
+```
+
+#### **For Research & Documentation**
+```bash
+git checkout research/future-and-current-books-architecture
+# Read-only research documents
+# No active development, documentation reference only
+```
+
+### **Implementation Decision Matrix**
+
+| Requirement | Branch | Timeline | Investment | ROI |
+|-------------|--------|----------|------------|-----|
+| Fix current books quickly | `fix/audio-flow-interruptions` | 4 weeks | $12.7K | Immediate user satisfaction |
+| Transform to Speechify-level | `feature/continuous-architecture` | 15 weeks | $121K | Market competitive advantage |
+| Research documentation | `research/future-and-current-books-architecture` | Reference | $0 | Strategic planning |
+
+---
+
 ## 📚 **Project Overview & Mission**
 
 ### **README.md**

@@ -19,7 +19,7 @@ export function useAutoAdvance({
 }: UseAutoAdvanceOptions) {
   const [autoAdvanceEnabled, setAutoAdvanceEnabled] = useState(false);
 
-  const handleChunkComplete = useCallback(() => {
+  const handleChunkComplete = useCallback(async () => {
     console.log('🎵 AUTO-ADVANCE DEBUG: Chunk completed', {
       autoAdvanceEnabled,
       isEnhanced,
@@ -27,22 +27,23 @@ export function useAutoAdvance({
       totalChunks,
       canAdvance: currentChunk < totalChunks - 1
     });
-    
+
     if (isEnhanced && autoAdvanceEnabled) {
       const canAdvance = currentChunk < totalChunks - 1;
-      
+
       if (canAdvance) {
         console.log(`🎵 AUTO-ADVANCE: Starting navigation from chunk ${currentChunk} to ${currentChunk + 1}`);
-        
-        // Immediate navigation with audio-ready resume
+
+        // Immediate navigation with promise-based flow
         console.log('🎵 AUTO-ADVANCE: Calling onNavigate with next, autoAdvance=true');
-        onNavigate('next', true); // Pass autoAdvance = true to preserve mode
-        
-        // Brief delay for audio player to recognize new content
+        await onNavigate('next', true); // Pass autoAdvance = true to preserve mode
+
+        // Small delay for audio to load on new chunk, then resume
+        console.log('🎵 AUTO-ADVANCE: Waiting for audio readiness on next chunk');
         setTimeout(() => {
           console.log('🎵 AUTO-ADVANCE: Auto-resuming playback on next chunk');
           onPlayStateChange(true);
-        }, 200); // Small delay for audio readiness
+        }, 300); // 300ms for audio loading
       } else {
         // Reached end of book
         console.log('🏁 AUTO-ADVANCE: Reached end of book, stopping playback');
