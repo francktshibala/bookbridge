@@ -8,10 +8,12 @@ import { prisma } from '@/lib/prisma';
  * 
  * Query params:
  * - bookId: string
- * - cefrLevel: string  
+ * - cefrLevel: string
  * - chunkIndex: number
  * - voiceId: string
  * - cacheKey?: string (optional direct cache lookup)
+ * - bulk?: string ('true' to fetch multiple chunks)
+ * - chunkCount?: number (number of chunks to fetch ahead, default 3)
  */
 export async function GET(request: NextRequest) {
   try {
@@ -23,6 +25,8 @@ export async function GET(request: NextRequest) {
     const cefrLevel = searchParams.get('cefrLevel');
     const chunkIndex = searchParams.get('chunkIndex');
     const voiceId = searchParams.get('voiceId');
+    const bulk = searchParams.get('bulk');
+    const chunkCount = parseInt(searchParams.get('chunkCount') || '3');
 
     // Validate required parameters (unless using direct cache key)
     if (!cacheKey && (!bookId || !cefrLevel || !chunkIndex || !voiceId)) {
@@ -38,6 +42,80 @@ export async function GET(request: NextRequest) {
 
     const supabase = await createClient();
 
+    // Handle bulk chunk fetching
+    if (bulk === 'true') {
+      console.log(`🔍 Bulk fetching ${chunkCount} chunks starting from ${chunkIndex}`);
+
+      const startChunk = parseInt(chunkIndex!);
+      const chunkIndices = Array.from({ length: chunkCount }, (_, i) => startChunk + i);
+
+      // Fetch multiple chunks in one query
+      const { data: audioAssets, error } = await supabase
+        .from('audio_assets')
+        .select('*')
+        .eq('book_id', bookId)
+        .eq('cefr_level', cefrLevel)
+        .in('chunk_index', chunkIndices)
+        .eq('voice_id', voiceId)
+        .gte('expires_at', new Date().toISOString())
+        .order('chunk_index', { ascending: true })
+        .order('sentence_index', { ascending: true });
+
+      if (error) {
+        console.warn('Bulk audio fetch failed:', error);
+        return NextResponse.json({
+          cached: false,
+          message: 'Bulk fetch unavailable, use single chunk requests'
+        });
+      }
+
+      if (audioAssets && audioAssets.length > 0) {
+        console.log(`✅ Bulk fetched ${audioAssets.length} audio assets across ${chunkIndices.length} chunks`);
+
+        // Update last_accessed timestamp for all fetched chunks
+        await supabase
+          .from('audio_assets')
+          .update({ last_accessed: new Date().toISOString() })
+          .eq('book_id', bookId)
+          .eq('cefr_level', cefrLevel)
+          .in('chunk_index', chunkIndices)
+          .eq('voice_id', voiceId);
+
+        // Group assets by chunk
+        const groupedChunks = audioAssets.reduce((acc: any, asset: any) => {
+          const chunkKey = asset.chunk_index;
+          if (!acc[chunkKey]) acc[chunkKey] = [];
+
+          acc[chunkKey].push({
+            id: asset.id,
+            sentenceIndex: asset.sentence_index,
+            audioUrl: asset.audio_url,
+            duration: parseFloat(asset.duration),
+            wordTimings: asset.word_timings,
+            provider: asset.provider,
+            voiceId: asset.voice_id,
+            format: asset.format || 'mp3'
+          });
+
+          return acc;
+        }, {});
+
+        return NextResponse.json({
+          cached: true,
+          bulk: true,
+          chunks: groupedChunks,
+          message: `Bulk pre-generated audio ready: ${Object.keys(groupedChunks).length} chunks`
+        });
+      }
+
+      return NextResponse.json({
+        cached: false,
+        bulk: true,
+        message: 'No bulk pre-generated audio available'
+      });
+    }
+
+    // Single chunk logic (existing)
     // Generate cache key for this request
     const generatedCacheKey = `${bookId}_${cefrLevel}_${chunkIndex}_${voiceId}`;
     const lookupKey = cacheKey || generatedCacheKey;

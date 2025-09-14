@@ -73,7 +73,13 @@ export async function GET(
       
       // Try exact match first
       let storedContent = await prisma.bookContent.findUnique({
-        where: { bookId: trimmedId }
+        where: { bookId: trimmedId },
+        include: {
+          chunks: {
+            where: { cefrLevel: 'original' },
+            orderBy: { chunkIndex: 'asc' }
+          }
+        }
       })
 
       // Fallbacks: variant list, and heuristic matches
@@ -87,12 +93,27 @@ export async function GET(
                 { AND: [ { bookId: { startsWith: 'gutenberg-' } }, { bookId: { endsWith: numericId } } ] }
               ] : [])
             ]
+          },
+          include: {
+            chunks: {
+              where: { cefrLevel: 'original' },
+              orderBy: { chunkIndex: 'asc' }
+            }
           }
         })
       }
 
       if (storedContent) {
         console.log(`✅ Found book in database: ${storedContent.title}`)
+        
+        // Create chunks array from BookChunk relations if available
+        const chunks = storedContent.chunks?.length > 0 
+          ? storedContent.chunks.map(chunk => ({
+              chunkIndex: chunk.chunkIndex,
+              content: chunk.chunkText
+            }))
+          : null;
+        
         return NextResponse.json({
           id: storedContent.bookId,
           title: storedContent.title,
@@ -103,6 +124,7 @@ export async function GET(
           query,
           context: storedContent.fullText,
           content: storedContent.fullText,
+          chunks: chunks, // Include proper chunks structure
           source: 'database',
           wordCount: storedContent.wordCount,
           characterCount: storedContent.fullText.length,
@@ -247,7 +269,70 @@ export async function GET(
       console.error('Database lookup failed:', dbError)
     }
 
-    // At this point, book not found in database - return 404 with diagnostics
+    // External fallback: try Project Gutenberg if a numeric ID is present
+    if (numericId) {
+      try {
+        const candidates = [
+          `https://www.gutenberg.org/cache/epub/${numericId}/pg${numericId}.txt.utf8`,
+          `https://www.gutenberg.org/cache/epub/${numericId}/pg${numericId}.txt`,
+          `https://www.gutenberg.org/files/${numericId}/${numericId}-0.txt`,
+          `https://www.gutenberg.org/files/${numericId}/${numericId}.txt`
+        ]
+
+        let textContent: string | null = null
+        let lastStatus = 0
+        for (const url of candidates) {
+          try {
+            const resp = await fetch(url)
+            lastStatus = resp.status
+            if (resp.ok) {
+              const raw = await resp.text()
+              // Basic cleanup: strip Gutenberg header/footer
+              const startIdx = raw.indexOf('*** START')
+              const endIdx = raw.indexOf('*** END')
+              const sliced = startIdx >= 0 && endIdx > startIdx ? raw.slice(startIdx, endIdx) : raw
+              textContent = sliced.trim()
+              console.log(`✅ Loaded external Gutenberg text from ${url}`)
+              break
+            }
+          } catch (e) {
+            console.warn(`Failed external fetch ${url}:`, e)
+          }
+        }
+
+        if (textContent && textContent.length > 0) {
+          // Heuristic title/author if possible
+          const lines = textContent.split('\n').slice(0, 80)
+          const titleLine = lines.find(l => /Title:\s*/i.test(l)) || lines.find(l => /\S+/.test(l)) || 'Unknown Title'
+          const authorLine = lines.find(l => /Author:\s*/i.test(l)) || 'Unknown Author'
+          const title = titleLine.replace(/^Title:\s*/i, '').trim().slice(0, 120) || 'Unknown Title'
+          const author = authorLine.replace(/^Author:\s*/i, '').trim().slice(0, 120) || 'Unknown Author'
+
+          return NextResponse.json({
+            id: trimmedId,
+            title,
+            author,
+            cached: false,
+            external: true,
+            stored: false,
+            query,
+            context: textContent,
+            content: textContent,
+            source: 'external_gutenberg',
+            wordCount: textContent.split(/\s+/).length,
+            characterCount: textContent.length,
+            totalChunks: Math.ceil(textContent.length / 1500),
+            message: 'Content loaded from Project Gutenberg'
+          })
+        } else {
+          console.warn(`External Gutenberg fetch failed for ${numericId}, lastStatus=${lastStatus}`)
+        }
+      } catch (e) {
+        console.warn('External content fetch error:', e)
+      }
+    }
+
+    // At this point, book not found anywhere - return 404 with diagnostics
     return NextResponse.json(
       { 
         error: 'Book not found',

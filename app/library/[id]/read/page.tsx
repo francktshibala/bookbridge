@@ -273,6 +273,11 @@ export default function BookReaderPage() {
         if (simplifiedText) {
           console.log(`✅ SIMPLIFIED FETCH: Content loaded for chunk ${currentChunk}, setting as currentContent`);
           setCurrentContent(simplifiedText);
+          // Prefetch next chunk in the background if available
+          const nextIndex = currentChunk + 1;
+          if (bookContent.chunks[nextIndex]) {
+            prefetchNextSimplified(eslLevel, nextIndex);
+          }
         } else {
           console.log(`❌ SIMPLIFIED FETCH: No content returned for chunk ${currentChunk}`);
         }
@@ -405,7 +410,13 @@ export default function BookReaderPage() {
     console.log(`📚 LOADING CACHED SIMPLIFICATION: /api/books/${bookId}/cached-simplification?level=${level}&chunk=${chunkIndex}`);
     setSimplificationLoading(true);
     try {
-      const response = await fetch(`/api/books/${bookId}/cached-simplification?level=${level}&chunk=${chunkIndex}`);
+      const doFetch = async () => fetch(`/api/books/${bookId}/cached-simplification?level=${level}&chunk=${chunkIndex}`);
+      let response = await doFetch();
+      if (!response.ok) {
+        // Retry once after a short delay on transient issues
+        await new Promise(r => setTimeout(r, 200));
+        response = await doFetch();
+      }
       console.log(`🔥 API Response status: ${response.status}`);
       
       if (!response.ok) {
@@ -481,6 +492,13 @@ export default function BookReaderPage() {
     } finally {
       setSimplificationLoading(false);
     }
+  };
+
+  // Prefetch next simplified chunk to reduce transition stalls
+  const prefetchNextSimplified = async (level: string, nextChunkIndex: number) => {
+    try {
+      await fetch(`/api/books/${bookId}/cached-simplification?level=${level}&chunk=${nextChunkIndex}`, { method: 'GET', cache: 'no-store' });
+    } catch {}
   };
 
   // Session Timer Logic
@@ -576,18 +594,26 @@ export default function BookReaderPage() {
       const data = await response.json();
       console.log('Book data received:', data);
       
-      // The API returns content in 'context' property, not 'chunks'
+      // The API returns content in 'context' property and optionally 'chunks' for enhanced books
       if (data.context) {
-        // Split the content into manageable chunks for better reading experience
-        const chunkSize = 1500; // ~1500 characters per page for consistent experience
-        const fullText = data.context;
-        const chunks = [] as { chunkIndex: number; content: string }[];
+        let chunks = [] as { chunkIndex: number; content: string }[];
+        
+        // Use pre-structured chunks from enhanced books if available
+        if (data.chunks && Array.isArray(data.chunks)) {
+          chunks = data.chunks;
+          console.log(`Using ${chunks.length} pre-structured chunks from enhanced book`);
+        } else {
+          // Split the content into manageable chunks for better reading experience
+          const chunkSize = 1500; // ~1500 characters per page for consistent experience
+          const fullText = data.context;
 
-        for (let i = 0; i < fullText.length; i += chunkSize) {
-          chunks.push({
-            chunkIndex: chunks.length,
-            content: fullText.substring(i, i + chunkSize)
-          });
+          for (let i = 0; i < fullText.length; i += chunkSize) {
+            chunks.push({
+              chunkIndex: chunks.length,
+              content: fullText.substring(i, i + chunkSize)
+            });
+          }
+          console.log(`Split content into ${chunks.length} chunks of ~${chunkSize} characters`);
         }
         
         const bookData = {
@@ -602,7 +628,7 @@ export default function BookReaderPage() {
         
         // Pre-compute simplified chunk count (400-word pages) for alignment
         try {
-          const words = fullText.split(/\s+/);
+          const words = data.context.split(/\s+/);
           setSimplifiedTotalChunks(Math.ceil(words.length / 400));
         } catch {}
 
@@ -1839,9 +1865,9 @@ export default function BookReaderPage() {
         {/* Reading Content - Mobile Responsive */}
         <motion.div 
           key={currentChunk}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.1 }}
           className="reading-content-container"
           style={{
             background: 'rgba(26, 32, 44, 0.5)',
