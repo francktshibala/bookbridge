@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.bookbridge.app',
-  appName: 'BookBridge',
+  appId: 'com.francois.bookbridge',
+  appName: 'BookBridge ESL',
   webDir: 'out', // Will use static export for production
   server: {
     androidScheme: 'https',

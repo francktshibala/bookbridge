@@ -1,14 +1,14 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.bookbridge.app',
-  appName: 'BookBridge',
-  webDir: 'out', // Will use static export for production
+  appId: 'com.francois.bookbridge',
+  appName: 'BookBridge ESL',
+  webDir: 'out', // Next.js static export directory
   server: {
     androidScheme: 'https',
-    // For production: point to live server
+    // Use production server for release builds (Render domain)
     url: 'https://bookbridge-mkd7.onrender.com',
-    cleartext: true,
+    cleartext: false,
   },
   plugins: {
     SplashScreen: {
