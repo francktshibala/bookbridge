@@ -12,7 +12,10 @@ import { IntegratedAudioControls } from '@/components/IntegratedAudioControls';
 import { WireframeAudioControls } from '@/components/audio/WireframeAudioControls';
 import { ProgressiveAudioPlayer, InstantAudioPlayer } from '@/lib/dynamic-imports';
 import { WordHighlighter, useWordHighlighting } from '@/components/audio/WordHighlighter';
-import { AutoScrollHandler } from '@/components/audio/AutoScrollHandler';
+import { StableWordHighlighter, useStableWordHighlighting } from '@/components/audio/StableWordHighlighter';
+import { useSentenceAutoScroll } from '@/hooks/useSentenceAutoScroll';
+import { useWordAnchoredAutoScroll } from '@/hooks/useWordAnchoredAutoScroll';
+import { TimingCalibrationControl } from '@/components/audio/TimingCalibrationControl';
 import { SpeedControl } from '@/components/SpeedControl';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useAutoAdvance } from '@/hooks/useAutoAdvance';
@@ -86,6 +89,7 @@ export default function BookReaderPage() {
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
   const [isAutoAdvancing, setIsAutoAdvancing] = useState(false);
   const suppressPauseOnNextChunkRef = useRef(false);
+  const [currentSentenceIdx, setCurrentSentenceIdx] = useState<number>(-1);
 
   // Word highlighting integration
   const { currentWordIndex, handleWordHighlight, resetHighlighting } = useWordHighlighting();
@@ -96,11 +100,28 @@ export default function BookReaderPage() {
   const entrySource = searchParams.get('source'); // 'enhanced' | 'browse' | null
   const isEnhancedExperience = entrySource === 'enhanced' || bookContent?.stored === true;
   const isBrowseExperience = entrySource === 'browse';
-  
+
 
   // Enhanced book detection - calculated here to avoid hooks order issues
-  const isEnhancedBook = bookContent?.stored === true && 
+  const isEnhancedBook = bookContent?.stored === true &&
     (bookContent?.source === 'database' || bookContent?.source === 'enhanced_database' || bookContent?.enhanced === true);
+
+  // Auto-scroll hooks with 300ms compensation
+  useSentenceAutoScroll({
+    text: currentContent,
+    currentWordIndex: currentWordIndex,
+    isPlaying,
+    enabled: isPlaying
+  });
+
+  useWordAnchoredAutoScroll({
+    text: currentContent,
+    currentWordIndex: currentWordIndex,
+    isPlaying,
+    enabled: isPlaying
+  });
+
+  // Removed word-anchored auto-scroll to prevent conflicts with sentence-anchored scroll
 
   // Handle chunk navigation - defined with useCallback for stable reference
   const handleChunkNavigation = useCallback(async (direction: 'prev' | 'next', autoAdvance = false) => {
@@ -539,6 +560,30 @@ export default function BookReaderPage() {
   }, [sessionTimerActive, sessionTimeLeft]);
 
   // Scroll-to-pause behavior removed per user request
+  // Detect manual scroll-up to temporarily disable auto-scroll (without pausing audio)
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let disableUntil = 0;
+    const handler = () => {
+      const now = Date.now();
+      const currentY = window.scrollY;
+      const delta = currentY - lastY;
+      lastY = currentY;
+      // If user scrolls upward significantly while audio is playing, disable auto-scroll briefly
+      if (isPlaying && delta < -8) {
+        setUserScrolledUp(true);
+        setAutoScrollEnabled(false);
+        disableUntil = now + 3000; // 3s grace window
+      }
+      // Re-enable after grace window if user stops fighting
+      if (userScrolledUp && now > disableUntil) {
+        setUserScrolledUp(false);
+        setAutoScrollEnabled(true);
+      }
+    };
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler as any);
+  }, [isPlaying, userScrolledUp]);
 
   // Smooth auto-scroll handler that follows voice reading naturally
   const handleAutoScroll = (scrollProgress: number) => {
@@ -693,10 +738,11 @@ export default function BookReaderPage() {
     if (canGoNext && continuousPlayback) {
       console.log(`🎵 Auto-advancing to chunk ${currentChunk + 1} for continuous playback`);
       handleChunkNavigation('next', true);
-      // Small delay then resume playing on new page
+      // Force a clean re-trigger of playback to avoid timing drift or overlap
+      setIsPlaying(false);
       setTimeout(() => {
         setIsPlaying(true);
-      }, 200);
+      }, 250);
     } else {
       // Reached end of book or continuous playback disabled
       setIsPlaying(false);
@@ -1635,6 +1681,9 @@ export default function BookReaderPage() {
                       // Update loading state based on audio status
                       setIsAudioLoading(progress.status === 'loading');
                     }}
+                    onSentenceChange={(idx: number, total: number) => {
+                      setCurrentSentenceIdx(idx);
+                    }}
                     // onAutoScroll handled by separate AutoScrollHandler component
                     className="hidden"
                     isPlaying={isPlaying}
@@ -1862,6 +1911,20 @@ export default function BookReaderPage() {
           />
         )}
 
+        {/* Timing Calibration Control for Enhanced Books */}
+        {isEnhancedBook && currentWordIndex >= 0 && (
+          <TimingCalibrationControl
+            bookId={bookId}
+            onOffsetChange={(offset) => {
+              // Store the book ID for the calibrator
+              if (typeof window !== 'undefined') {
+                (window as any).__currentBookId = bookId;
+              }
+              console.log(`⚡ Timing offset adjusted to ${(offset * 1000).toFixed(0)}ms`);
+            }}
+          />
+        )}
+
         {/* Reading Content - Mobile Responsive */}
         <motion.div 
           key={currentChunk}
@@ -1962,27 +2025,30 @@ export default function BookReaderPage() {
                   aria-label="Book content"
                   tabIndex={0}
                 >
-                  {/* Enhanced books: Use WordHighlighter for text display with highlighting disabled */}
+                  {/* Enhanced books: Text with auto-scroll (highlighting disabled for now) */}
                   {isEnhancedBook ? (
-                    <div style={{ position: 'relative' }} data-content="true">
-                      {/* Auto-scroll handler - works independently of highlighting */}
-                      <AutoScrollHandler
+                    <div data-content="true" style={{
+                      color: '#e2e8f0',
+                      fontSize: '16px',
+                      lineHeight: '1.6',
+                      whiteSpace: 'pre-wrap',
+                      position: 'relative'
+                    }}>
+                      {currentContent || 'Loading content...'}
+                      {/* Disabled highlighting - focusing on auto-scroll
+                      <StableWordHighlighter
                         text={currentContent}
                         currentWordIndex={currentWordIndex}
                         isPlaying={isPlaying}
-                        enabled={autoScrollEnabled}
-                      />
-                      
-                      {/* Word highlighting - DISABLED but still displays text */}
-                      <WordHighlighter
-                        text={currentContent}
-                        currentWordIndex={-1} // DISABLED: Causes dizziness, doesn't match voice speed
-                        isPlaying={isPlaying}
-                        animationType="speechify"
                         highlightColor="#10b981"
                         showProgress={true}
-                        className="word-highlight-overlay"
+                        className="sentence-highlight-overlay"
+                        sentenceOnly={true}
+                        showSentenceBackground={true}
+                        sentenceHighlightColor="rgba(16, 185, 129, 0.15)"
+                        enableAutoScroll={true}
                       />
+                      */}
                     </div>
                   ) : (
                     /* Browse experience: Direct text display without highlighting */

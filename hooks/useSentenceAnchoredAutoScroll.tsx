@@ -8,6 +8,9 @@ interface SentenceAutoScrollConfig {
   enabled?: boolean;
 }
 
+// Timing compensation to match audio latency (aligns with word highlighting compensation)
+const SENTENCE_AUDIO_COMPENSATION = 300; // milliseconds
+
 /**
  * Sentence-anchored auto-scroll driven directly by audio's current sentence index.
  * - Robust to missing word highlighting
@@ -29,6 +32,7 @@ export function useSentenceAnchoredAutoScroll({
   const lastSentenceScrollAtRef = useRef<number>(0);
   const pendingSentenceIdxRef = useRef<number | null>(null);
   const pendingTimerRef = useRef<number | null>(null);
+  const rafIdRef = useRef<number | null>(null);
 
   // Parse sentences on text change
   useEffect(() => {
@@ -82,9 +86,12 @@ export function useSentenceAnchoredAutoScroll({
         pendingTimerRef.current = null;
         const anchorY2 = computeSentenceAnchorY(contentEl, text, sentences, Math.max(0, Math.min(targetIdx, sentences.length - 1)));
         if (anchorY2 !== null) {
-          performScroll(anchorY2, false);
-          lastSentenceRef.current = targetIdx;
-          lastSentenceScrollAtRef.current = Date.now();
+          if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+          rafIdRef.current = requestAnimationFrame(() => {
+            performScroll(anchorY2, false);
+            lastSentenceRef.current = targetIdx;
+            lastSentenceScrollAtRef.current = Date.now();
+          });
         }
       }, minSentenceInterval - elapsedSinceLast);
       return;
@@ -99,21 +106,33 @@ export function useSentenceAnchoredAutoScroll({
       return;
     }
 
-    // Debounce the very first scroll on a new page to allow layout to settle
+    // Apply audio compensation delay for harmony with audio timing
+    const scrollDelay = pageJustChangedRef.current ? 220 : SENTENCE_AUDIO_COMPENSATION;
+
     if (pageJustChangedRef.current) {
+      // Debounce the very first scroll on a new page to allow layout to settle
       if (initialScrollTimerRef.current) {
         window.clearTimeout(initialScrollTimerRef.current);
         initialScrollTimerRef.current = null;
       }
       initialScrollTimerRef.current = window.setTimeout(() => {
-        performScroll(anchorY, true);
-        lastSentenceRef.current = idx;
-        pageJustChangedRef.current = false;
-        initialScrollTimerRef.current = null;
-      }, 220);
+        if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = requestAnimationFrame(() => {
+          performScroll(anchorY, true);
+          lastSentenceRef.current = idx;
+          pageJustChangedRef.current = false;
+          initialScrollTimerRef.current = null;
+        });
+      }, scrollDelay);
     } else {
-      performScroll(anchorY, false);
-      lastSentenceRef.current = idx;
+      // Apply 300ms compensation to align sentence scroll with audio timing
+      setTimeout(() => {
+        if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = requestAnimationFrame(() => {
+          performScroll(anchorY, false);
+          lastSentenceRef.current = idx;
+        });
+      }, SENTENCE_AUDIO_COMPENSATION);
     }
 
     function computeSentenceAnchorY(
@@ -199,6 +218,21 @@ export function useSentenceAnchoredAutoScroll({
         window.scrollTo({ top: finalTarget, behavior: 'smooth' });
       }
     }
+    // Cleanup on effect re-run
+    return () => {
+      if (pendingTimerRef.current) {
+        window.clearTimeout(pendingTimerRef.current);
+        pendingTimerRef.current = null;
+      }
+      if (initialScrollTimerRef.current) {
+        window.clearTimeout(initialScrollTimerRef.current);
+        initialScrollTimerRef.current = null;
+      }
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+    };
   }, [text, currentSentenceIndex, isPlaying, enabled]);
 
   return {};

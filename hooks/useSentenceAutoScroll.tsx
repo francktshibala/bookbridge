@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { TextProcessor } from '@/lib/text-processor';
 
+// Timing compensation to match audio latency (aligns with word highlighting compensation)
+const SENTENCE_AUDIO_COMPENSATION = 300; // milliseconds
+
 export function useSentenceAutoScroll({
   text,
   currentWordIndex,
@@ -141,10 +144,13 @@ export function useSentenceAutoScroll({
               sentencePos: `${sentenceViewportPercent.toFixed(0)}%`
             });
 
-            window.scrollTo({
-              top: finalScrollPosition,
-              behavior: 'smooth'
-            });
+            // Apply 300ms compensation to align sentence scroll with audio timing
+            setTimeout(() => {
+              window.scrollTo({
+                top: finalScrollPosition,
+                behavior: 'smooth'
+              });
+            }, SENTENCE_AUDIO_COMPENSATION);
           }
         }
       }
