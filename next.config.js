@@ -129,6 +129,7 @@ const nextConfig = {
         '@capacitor/preferences': path.resolve(__dirname, 'stubs/capacitor/preferences.ts'),
         '@capacitor/network': path.resolve(__dirname, 'stubs/capacitor/network.ts'),
         '@capacitor/share': path.resolve(__dirname, 'stubs/capacitor/share.ts'),
+        '@squareetlabs/capacitor-subscriptions': path.resolve(__dirname, 'stubs/capacitor/subscriptions.ts'),
       };
       console.log('🔧 Capacitor stubs alias ENABLED');
     }
