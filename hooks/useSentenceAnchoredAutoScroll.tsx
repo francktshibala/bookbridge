@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { TextProcessor } from '@/lib/text-processor';
+import { TimingCalibrator } from '@/lib/audio/TimingCalibrator';
 
 interface SentenceAutoScrollConfig {
   text: string;
   currentSentenceIndex: number;
   isPlaying: boolean;
   enabled?: boolean;
+  bookId?: string;
 }
 
 /**
@@ -18,7 +20,8 @@ export function useSentenceAnchoredAutoScroll({
   text,
   currentSentenceIndex,
   isPlaying,
-  enabled = true
+  enabled = true,
+  bookId
 }: SentenceAutoScrollConfig) {
   const lastTextRef = useRef<string>('');
   const sentencesRef = useRef<string[]>([]);
@@ -29,6 +32,7 @@ export function useSentenceAnchoredAutoScroll({
   const lastSentenceScrollAtRef = useRef<number>(0);
   const pendingSentenceIdxRef = useRef<number | null>(null);
   const pendingTimerRef = useRef<number | null>(null);
+  const calibratorRef = useRef<TimingCalibrator>(new TimingCalibrator());
 
   // Parse sentences on text change
   useEffect(() => {
@@ -48,22 +52,90 @@ export function useSentenceAnchoredAutoScroll({
       lastTextRef.current = text;
       lastSentenceRef.current = -1;
       pageJustChangedRef.current = true;
+
+      // Clear any pending timers on page change
+      if (pendingTimerRef.current) {
+        window.clearTimeout(pendingTimerRef.current);
+        pendingTimerRef.current = null;
+      }
+      if (initialScrollTimerRef.current) {
+        window.clearTimeout(initialScrollTimerRef.current);
+        initialScrollTimerRef.current = null;
+      }
+
+      console.log('📄 New page detected - resetting scroll state');
     }
   }, [text]);
 
   useEffect(() => {
-    if (!enabled || !isPlaying || !text) return;
+    console.log('🔍 SENTENCE AUTO-SCROLL: Effect triggered', {
+      enabled,
+      isPlaying,
+      hasText: !!text,
+      textLength: text?.length || 0,
+      currentSentenceIndex,
+      lastSentenceRef: lastSentenceRef.current,
+      pageJustChanged: pageJustChangedRef.current,
+      sentenceCount: sentencesRef.current.length
+    });
+
+    if (!enabled || !isPlaying || !text) {
+      console.log('❌ SENTENCE AUTO-SCROLL: Early return', { enabled, isPlaying, hasText: !!text });
+      return;
+    }
 
     const contentEl = document.querySelector('[data-content="true"]') as HTMLElement | null;
-    if (!contentEl) return;
+    if (!contentEl) {
+      console.log('❌ SENTENCE AUTO-SCROLL: No content element found');
+      return;
+    }
 
     const sentences = sentencesRef.current;
-    if (sentences.length === 0) return;
+    if (sentences.length === 0) {
+      console.log('❌ SENTENCE AUTO-SCROLL: No sentences parsed');
+      return;
+    }
 
     const idx = Math.max(0, Math.min(currentSentenceIndex, sentences.length - 1));
 
-    // Skip if no change
-    if (idx === lastSentenceRef.current && !pageJustChangedRef.current) return;
+    console.log('🔍 SENTENCE AUTO-SCROLL: Processing sentence', {
+      idx,
+      lastSentenceRef: lastSentenceRef.current,
+      willSkip: idx === lastSentenceRef.current && !pageJustChangedRef.current && idx !== 0
+    });
+
+    // Skip if no change (but always proceed on page change or when going to sentence 0)
+    if (idx === lastSentenceRef.current && !pageJustChangedRef.current && idx !== 0) {
+      console.log('⏭️ SENTENCE AUTO-SCROLL: Skipping - no change');
+      return;
+    }
+
+    // Force immediate scroll to first sentence on page change
+    if (pageJustChangedRef.current) {
+      console.log('🔄 Page changed - forcing immediate scroll to top');
+
+      // Immediate, aggressive scroll to top of content
+      setTimeout(() => {
+        const contentRect = contentEl.getBoundingClientRect();
+        const targetY = contentRect.top + window.scrollY - 120; // 120px top margin for first sentence visibility
+
+        // Force immediate scroll without smooth behavior
+        window.scrollTo({ top: Math.max(0, targetY), behavior: 'instant' });
+
+        console.log('📍 Scrolled to top:', { targetY, currentScroll: window.scrollY });
+      }, 50); // Small delay to ensure DOM is ready
+
+      // Reset state for the new page
+      lastSentenceRef.current = -1;
+      lastSentenceScrollAtRef.current = Date.now();
+      pageJustChangedRef.current = false;
+
+      // If we're at sentence 0, we're done. Otherwise, let normal flow handle the current sentence
+      if (idx === 0) {
+        lastSentenceRef.current = 0;
+        return;
+      }
+    }
 
     const now = Date.now();
     const minSentenceInterval = 650; // ms between sentence-based scrolls (governor)
@@ -76,6 +148,18 @@ export function useSentenceAnchoredAutoScroll({
         window.clearTimeout(pendingTimerRef.current);
         pendingTimerRef.current = null;
       }
+      // Apply conservative timing calibration to debounced scroll (with error handling)
+      let calibratedOffset = 0;
+      try {
+        calibratedOffset = calibratorRef.current.getOptimalOffset(bookId) * 1000;
+      } catch (error) {
+        console.warn('Calibrator error, using default timing:', error);
+        calibratedOffset = 0;
+      }
+      const baseDelay = minSentenceInterval - elapsedSinceLast;
+      // Use calibration but with conservative bounds (min 500ms, max 800ms)
+      const calibratedDelay = Math.max(500, Math.min(800, baseDelay + calibratedOffset * 0.3));
+
       pendingTimerRef.current = window.setTimeout(() => {
         const targetIdx = pendingSentenceIdxRef.current ?? idx;
         pendingSentenceIdxRef.current = null;
@@ -85,8 +169,15 @@ export function useSentenceAnchoredAutoScroll({
           performScroll(anchorY2, false);
           lastSentenceRef.current = targetIdx;
           lastSentenceScrollAtRef.current = Date.now();
+
+          // Record timing sample for gradual calibration (with error handling)
+          try {
+            calibratorRef.current.recordSample(Date.now() - calibratedDelay, Date.now());
+          } catch (error) {
+            console.warn('Calibrator recording error:', error);
+          }
         }
-      }, minSentenceInterval - elapsedSinceLast);
+      }, calibratedDelay);
       return;
     }
     lastSentenceScrollAtRef.current = now;
@@ -105,12 +196,38 @@ export function useSentenceAnchoredAutoScroll({
         window.clearTimeout(initialScrollTimerRef.current);
         initialScrollTimerRef.current = null;
       }
+      // Apply conservative calibration to initial page scroll (with error handling)
+      let initialCalibrated = 0;
+      try {
+        initialCalibrated = calibratorRef.current.getOptimalOffset(bookId) * 1000;
+      } catch (error) {
+        console.warn('Initial calibrator error, using default:', error);
+        initialCalibrated = 0;
+      }
+      const initialDelay = Math.max(200, Math.min(400, 220 + initialCalibrated * 0.2));
+
       initialScrollTimerRef.current = window.setTimeout(() => {
         performScroll(anchorY, true);
         lastSentenceRef.current = idx;
         pageJustChangedRef.current = false;
         initialScrollTimerRef.current = null;
-      }, 220);
+
+        // Record timing sample for initial scroll calibration (with error handling)
+        try {
+          calibratorRef.current.recordSample(Date.now() - initialDelay, Date.now());
+          console.log('📊 Conservative calibration active:', {
+            delay: `${initialDelay.toFixed(0)}ms`,
+            confidence: calibratorRef.current.getConfidence().toFixed(2),
+            bookId: bookId || 'general'
+          });
+        } catch (error) {
+          console.warn('Initial calibrator recording error:', error);
+          console.log('📊 Calibration disabled, using fixed timing:', {
+            delay: `${initialDelay.toFixed(0)}ms`,
+            bookId: bookId || 'general'
+          });
+        }
+      }, initialDelay);
     } else {
       performScroll(anchorY, false);
       lastSentenceRef.current = idx;
@@ -122,6 +239,14 @@ export function useSentenceAnchoredAutoScroll({
       sentenceList: string[],
       sentenceIdx: number
     ): number | null {
+      console.log('🔍 COMPUTE SENTENCE ANCHOR:', {
+        sentenceIdx,
+        totalSentences: sentenceList.length,
+        rootElExists: !!rootEl,
+        fullTextLength: fullText.length,
+        targetSentence: sentenceList[sentenceIdx]?.substring(0, 50) + '...'
+      });
+
       // Compute char offset to start of sentenceIdx
       let startOffset = 0;
       for (let i = 0; i < sentenceIdx; i++) startOffset += sentenceList[i].length;
@@ -168,6 +293,13 @@ export function useSentenceAnchoredAutoScroll({
     }
 
     function performScroll(anchorY: number, initial: boolean) {
+      console.log('🎯 PERFORM SCROLL:', {
+        anchorY,
+        initial,
+        currentScroll: window.scrollY,
+        windowHeight: window.innerHeight
+      });
+
       const viewportH = window.innerHeight;
       const currentScroll = window.scrollY;
 
@@ -175,7 +307,10 @@ export function useSentenceAnchoredAutoScroll({
       const bottomTrigger = currentScroll + viewportH * 0.85;
 
       if (!initial) {
-        if (anchorY > topBand && anchorY < bottomTrigger) return;
+        if (anchorY > topBand && anchorY < bottomTrigger) {
+          console.log('⏭️ PERFORM SCROLL: Skipping - within viewport bands');
+          return;
+        }
       }
 
       // Place anchor lower on screen to keep previous 1–2 sentences visible
@@ -195,8 +330,24 @@ export function useSentenceAnchoredAutoScroll({
       const finalTarget = currentScroll + Math.max(-maxDelta, Math.min(maxDelta, forwardOnly - currentScroll));
 
       const threshold = initial ? 24 : 40;
-      if (Math.abs(finalTarget - currentScroll) > threshold) {
+      const scrollDistance = Math.abs(finalTarget - currentScroll);
+
+      console.log('🎯 PERFORM SCROLL: Final calculation', {
+        desired,
+        clamped,
+        forwardOnly,
+        finalTarget,
+        currentScroll,
+        scrollDistance,
+        threshold,
+        willScroll: scrollDistance > threshold
+      });
+
+      if (scrollDistance > threshold) {
+        console.log('✅ EXECUTING SCROLL to:', finalTarget);
         window.scrollTo({ top: finalTarget, behavior: 'smooth' });
+      } else {
+        console.log('⏭️ SCROLL SKIPPED: Distance too small');
       }
     }
   }, [text, currentSentenceIndex, isPlaying, enabled]);

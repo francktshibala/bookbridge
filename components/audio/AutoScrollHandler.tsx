@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState, useImperativeHandle, forwardRef } from 'react';
 
 interface AutoScrollHandlerProps {
   text: string;
@@ -9,12 +9,16 @@ interface AutoScrollHandlerProps {
   enabled?: boolean;
 }
 
-export const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({
+export interface AutoScrollHandlerRef {
+  resetToTop: () => void;
+}
+
+export const AutoScrollHandler = forwardRef<AutoScrollHandlerRef, AutoScrollHandlerProps>(({
   text,
   currentWordIndex,
   isPlaying,
   enabled = true
-}) => {
+}, ref) => {
   // Track viewport height changes for mobile browser UI
   const [viewportHeight, setViewportHeight] = useState(() => 
     typeof window !== 'undefined' ? (window.visualViewport?.height || window.innerHeight) : 0
@@ -67,6 +71,84 @@ export const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({
   const introStartMsRef = useRef<number>(Date.now());
   const firstAnchorSnapPendingRef = useRef<boolean>(false);
   const ignoreUserBlockUntilMsRef = useRef<number>(0);
+  const justChangedPageRef = useRef<boolean>(false);
+
+  // Debug: Log component mount and props
+  useEffect(() => {
+    console.log('🎯 AutoScrollHandler: Component mounted/props changed', {
+      enabled,
+      isPlaying,
+      currentWordIndex,
+      textLength: text?.length || 0,
+      timestamp: new Date().toISOString()
+    });
+  }, [enabled, isPlaying, currentWordIndex, text]);
+
+  // Create a function to reset scroll to top
+  const resetToTop = () => {
+    console.log('🔄 AutoScrollHandler: resetToTop called imperatively');
+
+    // Reset all internal state
+    targetScrollYRef.current = null;
+    lastIndexRef.current = -1;
+    lastTargetUpdateAtRef.current = 0;
+    stopAnimation();
+
+    // Enter intro mode
+    introModeRef.current = true;
+    introStartMsRef.current = Date.now();
+    firstAnchorSnapPendingRef.current = true;
+    ignoreUserBlockUntilMsRef.current = Date.now() + 800;
+    justChangedPageRef.current = true;
+
+    // Multiple attempts to ensure scroll happens
+    const scrollToTop = () => {
+      const contentEl = document.querySelector('[data-content="true"]') as HTMLElement | null;
+      if (contentEl) {
+        const rect = contentEl.getBoundingClientRect();
+        const topMargin = 50;
+        const target = Math.max(0, Math.round(rect.top + window.scrollY - topMargin));
+
+        console.log('🔄 AutoScrollHandler: Scrolling to top', {
+          target,
+          currentScroll: window.scrollY,
+          contentElTop: rect.top,
+          timestamp: new Date().toISOString()
+        });
+
+        // Try multiple scroll methods for reliability
+        const page = document.scrollingElement || document.documentElement;
+        if (page) {
+          page.scrollTop = target;
+        }
+        window.scrollTo(0, target);
+
+        // Verify scroll happened
+        setTimeout(() => {
+          const newScroll = window.scrollY;
+          console.log('🔄 AutoScrollHandler: Scroll verification', {
+            targetWas: target,
+            actualScroll: newScroll,
+            success: Math.abs(newScroll - target) < 50
+          });
+        }, 50);
+      }
+    };
+
+    // Immediate attempt
+    scrollToTop();
+
+    // RAF attempt for after render
+    requestAnimationFrame(scrollToTop);
+
+    // Delayed attempt as final backup
+    setTimeout(scrollToTop, 150);
+  };
+
+  // Expose resetToTop function via ref
+  useImperativeHandle(ref, () => ({
+    resetToTop
+  }), []);
 
   // Pause autoscroll briefly on user interaction
   useEffect(() => {
@@ -108,7 +190,9 @@ export const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({
     const targetY = targetScrollYRef.current;
     const isBlockedByUser = (Date.now() < userScrollBlockUntilRef.current) && !(introModeRef.current || Date.now() < ignoreUserBlockUntilMsRef.current);
 
-    if (targetY == null || !enabled || !isPlaying || isBlockedByUser) {
+    // Allow brief scrolling during intro/page-change even if isPlaying is false
+    const allowWhileIntro = introModeRef.current || justChangedPageRef.current || (Date.now() < ignoreUserBlockUntilMsRef.current);
+    if (targetY == null || !enabled || (!isPlaying && !allowWhileIntro) || isBlockedByUser) {
       stopAnimation();
       return;
     }
@@ -153,13 +237,38 @@ export const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({
 
   // Update target on word changes with hysteresis, predictive thresholds, and rate limiting
   useEffect(() => {
-    if (!enabled || !isPlaying || currentWordIndex < 0) return;
+    console.log('🎯 AutoScrollHandler: Word index effect triggered', {
+      currentWordIndex,
+      enabled,
+      isPlaying,
+      lastIndexRef: lastIndexRef.current,
+      introMode: introModeRef.current,
+      justChangedPage: justChangedPageRef.current,
+      ignoreUserBlockUntil: ignoreUserBlockUntilMsRef.current,
+      willReturn: !enabled || currentWordIndex < 0 || (!isPlaying && !(introModeRef.current || justChangedPageRef.current || Date.now() < ignoreUserBlockUntilMsRef.current)) || currentWordIndex === lastIndexRef.current
+    });
+
+    // Permit updates during intro/page-change windows even if paused
+    const canProceedWhilePaused = introModeRef.current || justChangedPageRef.current || (Date.now() < ignoreUserBlockUntilMsRef.current);
+    if (!enabled || currentWordIndex < 0) return;
+    if (!isPlaying && !canProceedWhilePaused) return;
     if (currentWordIndex === lastIndexRef.current) return;
 
     // Allow DOM to commit for the current word span
     const timeoutId = setTimeout(() => {
       const wordElement = document.getElementById(`scroll-word-${currentWordIndex}`);
-      if (!wordElement) return;
+
+      console.log('🎯 AutoScrollHandler: Looking for word element', {
+        wordId: `scroll-word-${currentWordIndex}`,
+        found: !!wordElement,
+        elementTop: wordElement?.getBoundingClientRect().top,
+        elementText: wordElement?.textContent?.substring(0, 20)
+      });
+
+      if (!wordElement) {
+        console.log('❌ AutoScrollHandler: Word element not found, returning');
+        return;
+      }
 
       // Transition out of intro mode after a short time or several words
       if (introModeRef.current) {
@@ -174,7 +283,13 @@ export const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({
       const topThreshold = Math.min(200, viewportHeight * 0.33);
       const bottomThreshold = viewportHeight - Math.min(200, viewportHeight * 0.20);
       const anchorFactor = introModeRef.current ? 0.42 : 0.50;
-      const anchorFromTop = viewportHeight * anchorFactor;
+      let anchorFromTop = viewportHeight * anchorFactor;
+
+      // Compensate fixed bottom controls if present
+      const bottomBar = document.querySelector('.mobile-audio-controls') as HTMLElement | null;
+      if (bottomBar && bottomBar.offsetHeight) {
+        anchorFromTop -= Math.max(0, bottomBar.offsetHeight * 0.25);
+      }
 
       // Only move if the word is approaching screen edges, or if we're far from anchor
       const needsScroll = rect.top < topThreshold || rect.bottom > bottomThreshold;
@@ -202,6 +317,7 @@ export const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({
           page.scrollTop = Math.max(0, Math.round(desiredY));
           stopAnimation();
           firstAnchorSnapPendingRef.current = false;
+          justChangedPageRef.current = false;
           lastIndexRef.current = currentWordIndex;
           lastTargetUpdateAtRef.current = nowMs;
           return;
@@ -231,7 +347,19 @@ export const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({
   // Reset / recalibrate on content change to handle chunk transitions cleanly
   useEffect(() => {
     if (lastTextRef.current !== text) {
+      const previousText = lastTextRef.current;
       lastTextRef.current = text;
+
+      console.log('📄 AutoScrollHandler: Text change detected!', {
+        previousTextLength: previousText?.length || 0,
+        newTextLength: text?.length || 0,
+        previousTextPreview: previousText?.substring(0, 50) + '...' || 'none',
+        newTextPreview: text?.substring(0, 50) + '...' || 'none',
+        isPlaying,  // Log playing state
+        enabled,    // Log enabled state
+        timestamp: new Date().toISOString()
+      });
+
 
       // Assume new chunk loads near top; reset targets and internal indices
       targetScrollYRef.current = null;
@@ -244,10 +372,117 @@ export const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({
       introStartMsRef.current = Date.now();
       firstAnchorSnapPendingRef.current = true;
       ignoreUserBlockUntilMsRef.current = Date.now() + 800;
+      justChangedPageRef.current = true;
 
-      // If we're at top and the first word enters view, do nothing; else gently snap near anchor for word 0 soon after
-      // Defer to next word index update to avoid double movement
+      // Force immediate scroll to top on text change
+      const forceScrollToTop = () => {
+        const contentEl = document.querySelector('[data-content="true"]') as HTMLElement | null;
+
+        console.log('🔍 AutoScrollHandler: DEBUG - Checking scroll environment', {
+          contentElExists: !!contentEl,
+          documentHeight: document.documentElement.scrollHeight,
+          windowHeight: window.innerHeight,
+          currentScroll: window.scrollY,
+          scrollingElement: document.scrollingElement?.tagName,
+          bodyOverflow: window.getComputedStyle(document.body).overflow,
+          htmlOverflow: window.getComputedStyle(document.documentElement).overflow
+        });
+
+        if (contentEl) {
+          const rect = contentEl.getBoundingClientRect();
+          const topMargin = 50; // Fixed 50px margin
+          const target = Math.max(0, Math.round(rect.top + window.scrollY - topMargin));
+
+          console.log('🔄 AutoScrollHandler: Force scrolling to top on text change', {
+            target,
+            currentScroll: window.scrollY,
+            contentElTop: rect.top,
+            contentElHeight: rect.height,
+            needsScroll: Math.abs(window.scrollY - target) > 10,
+            timestamp: new Date().toISOString()
+          });
+
+          // Store initial position for verification
+          const beforeScroll = window.scrollY;
+
+          // Use both methods for reliability
+          const page = document.scrollingElement || document.documentElement;
+          if (page) {
+            page.scrollTop = target;
+          }
+          window.scrollTo(0, target);
+
+          // Check if scroll actually happened
+          setTimeout(() => {
+            const afterScroll = window.scrollY;
+            console.log('🔄 AutoScrollHandler: Scroll verification', {
+              beforeScroll,
+              afterScroll,
+              target,
+              scrollChanged: beforeScroll !== afterScroll,
+              reachedTarget: Math.abs(afterScroll - target) < 10,
+              blocked: beforeScroll === afterScroll && Math.abs(beforeScroll - target) > 10
+            });
+
+            if (beforeScroll === afterScroll && Math.abs(beforeScroll - target) > 10) {
+              console.log('⚠️ SCROLL BLOCKED - Something is preventing scrolling!');
+            }
+          }, 10);
+        } else {
+          console.log('❌ AutoScrollHandler: Content element not found!');
+        }
+      };
+
+      // Try multiple times to ensure it works
+      forceScrollToTop();
+      requestAnimationFrame(forceScrollToTop);
+      setTimeout(forceScrollToTop, 100);
     }
+  }, [text]);
+
+  // Fallback: if page changed and no word events arrive promptly, nudge to top band
+  useEffect(() => {
+    if (!justChangedPageRef.current) return;
+
+    console.log('⏰ AutoScrollHandler: Setting up 350ms fallback timer for page change');
+
+    const timer = setTimeout(() => {
+      if (!justChangedPageRef.current) {
+        console.log('⏰ AutoScrollHandler: Fallback timer cancelled - page change flag cleared');
+        return;
+      }
+
+      console.log('⏰ AutoScrollHandler: Fallback timer executing after 350ms');
+
+      const page = document.scrollingElement || document.documentElement;
+      const contentEl = document.querySelector('[data-content="true"]') as HTMLElement | null;
+      if (!page || !contentEl) {
+        console.log('❌ AutoScrollHandler: Fallback failed - missing page or content element');
+        return;
+      }
+
+      const rect = contentEl.getBoundingClientRect();
+      const topMargin = Math.min(120, (window.visualViewport?.height || window.innerHeight) * 0.15);
+      const target = Math.max(0, Math.round(rect.top + window.scrollY - topMargin));
+
+      console.log('⏰ AutoScrollHandler: Fallback scrolling to:', {
+        target,
+        currentScroll: page.scrollTop,
+        topMargin,
+        contentTop: rect.top
+      });
+
+      page.scrollTop = target;
+      justChangedPageRef.current = false;
+      stopAnimation();
+
+      console.log('⏰ AutoScrollHandler: Fallback complete, new scroll position:', page.scrollTop);
+    }, 350);
+
+    return () => {
+      console.log('⏰ AutoScrollHandler: Clearing fallback timer');
+      clearTimeout(timer);
+    };
   }, [text]);
 
   // Render invisible word spans for position tracking
@@ -289,4 +524,4 @@ export const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({
       })}
     </div>
   );
-};
+});

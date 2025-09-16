@@ -111,9 +111,9 @@ export default function HomePage() {
       color: '#ffffff',
       position: 'relative'
     }}>
-      <div className="page-content" style={{ 
-        padding: '4rem 2rem', 
-        maxWidth: '1200px', 
+      <div className="page-content" style={{
+        padding: '4rem 2rem',
+        maxWidth: '1200px',
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',

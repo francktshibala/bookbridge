@@ -12,7 +12,8 @@ import { IntegratedAudioControls } from '@/components/IntegratedAudioControls';
 import { WireframeAudioControls } from '@/components/audio/WireframeAudioControls';
 import { ProgressiveAudioPlayer, InstantAudioPlayer } from '@/lib/dynamic-imports';
 import { WordHighlighter, useWordHighlighting } from '@/components/audio/WordHighlighter';
-import { AutoScrollHandler } from '@/components/audio/AutoScrollHandler';
+import { AutoScrollHandler, AutoScrollHandlerRef } from '@/components/audio/AutoScrollHandler';
+import { useGentleAutoScroll } from '@/hooks/useGentleAutoScroll';
 import { SpeedControl } from '@/components/SpeedControl';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useAutoAdvance } from '@/hooks/useAutoAdvance';
@@ -55,6 +56,57 @@ export default function BookReaderPage() {
   const [voiceProvider, setVoiceProvider] = useState<'standard' | 'openai' | 'elevenlabs'>('openai');
   const [selectedVoice, setSelectedVoice] = useState('alloy');
   const [currentContent, setCurrentContent] = useState<string>('');
+
+  // Track previous chunk for page transition detection
+  const prevChunkRef = useRef(currentChunk);
+  const autoScrollRef = useRef<AutoScrollHandlerRef>(null);
+
+  // Debug tracking for currentContent changes
+  useEffect(() => {
+    console.log('📝 CONTENT CHANGE DETECTED:', {
+      contentLength: currentContent.length,
+      currentChunk,
+      previousChunk: prevChunkRef.current,
+      isPageTransition: currentChunk !== prevChunkRef.current,
+      firstWords: currentContent.substring(0, 50) + (currentContent.length > 50 ? '...' : ''),
+      timestamp: new Date().toISOString()
+    });
+
+    // On page transitions, force auto-scroll reset and clear word indices
+    if (currentContent.length > 0 && currentChunk !== prevChunkRef.current) {
+      console.log('🚀 PAGE TRANSITION: Resetting scroll and word indices');
+
+      // Reset word indices for clean start
+      setImmediateWordIndex(-1);
+      resetHighlighting();
+
+      // Force scroll to top with multiple methods for reliability
+      autoScrollRef.current?.resetToTop();
+
+      // Backup: Direct scroll to top after a brief delay
+      setTimeout(() => {
+        const contentEl = document.querySelector('[data-content="true"]');
+        if (contentEl) {
+          const rect = contentEl.getBoundingClientRect();
+          const topMargin = 50;
+          const target = Math.max(0, rect.top + window.scrollY - topMargin);
+
+          console.log('🚀 PAGE TRANSITION: Backup scroll to top', {
+            target,
+            currentScroll: window.scrollY
+          });
+
+          window.scrollTo({
+            top: target,
+            behavior: 'instant'
+          });
+        }
+      }, 100);
+    }
+
+    // Update previous chunk reference
+    prevChunkRef.current = currentChunk;
+  }, [currentContent, currentChunk]);
   const [currentMode, setCurrentMode] = useState<'original' | 'simplified'>('original');
   const [simplifiedContent, setSimplifiedContent] = useState<string>('');
   const [isPlaying, setIsPlayingState] = useState(false);
@@ -90,7 +142,42 @@ export default function BookReaderPage() {
   // Word highlighting integration
   const { currentWordIndex, handleWordHighlight, resetHighlighting } = useWordHighlighting();
 
+  // Track immediate word index for auto-scroll (without delay)
+  const [immediateWordIndex, setImmediateWordIndex] = useState(-1);
+
+  // Track current sentence for sentence-based auto-scroll
+  const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+
   const bookId = params.id as string;
+
+  // Enhanced word highlight handler for both immediate auto-scroll and delayed highlighting
+  const handleWordHighlightWithAutoScroll = (wordIndex: number) => {
+    console.log('🎯 handleWordHighlightWithAutoScroll called with index:', wordIndex);
+
+    // Update immediate word index for auto-scroll (no delay)
+    setImmediateWordIndex(wordIndex);
+
+    // Call the original handler for delayed highlighting
+    handleWordHighlight(wordIndex);
+  };
+
+  // Use gentle auto-scroll - only 2 scrolls per page to prevent dizziness
+  console.log('🎯 CALLING useGentleAutoScroll with:', {
+    textLength: currentContent?.length || 0,
+    currentWordIndex: immediateWordIndex,
+    isPlaying,
+    enabled: autoScrollEnabled && !simplificationLoading,
+    autoScrollEnabled,
+    simplificationLoading
+  });
+
+  useGentleAutoScroll({
+    currentWordIndex: immediateWordIndex,
+    currentSentenceIndex, // Pass the REAL sentence data from audio
+    text: currentContent,
+    isPlaying,
+    enabled: autoScrollEnabled && !simplificationLoading
+  });
 
   // Two-tier experience detection
   const entrySource = searchParams.get('source'); // 'enhanced' | 'browse' | null
@@ -136,9 +223,10 @@ export default function BookReaderPage() {
         from: currentChunk,
         to: newChunk,
         autoAdvance,
-        currentMode
+        currentMode,
+        willUpdateContent: true
       });
-      
+
       // Set auto-advancing flag if this is an auto-advance to prevent scroll detection pause
       if (autoAdvance) {
         console.log('🔄 NAVIGATION: Setting auto-advancing flag to prevent scroll pause');
@@ -156,14 +244,26 @@ export default function BookReaderPage() {
       }
       
       setCurrentChunk(newChunk);
-      
+
       // Save reading position to localStorage
       localStorage.setItem(`reading-position-${bookId}`, newChunk.toString());
-      
+
+      // Reset word and sentence indices for clean page transition
+      console.log('🔄 NAVIGATION: Resetting indices for page transition');
+      setImmediateWordIndex(-1);
+      setCurrentSentenceIndex(0);  // Reset to first sentence
+      resetHighlighting();
+
+
       // Get the new content based on current mode
       const newOriginalContent = bookContent.chunks[newChunk]?.content || '';
       if (currentMode === 'original') {
-        console.log('🔄 NAVIGATION: Setting original content');
+        console.log('🔄 NAVIGATION: Setting original content', {
+          chunk: newChunk,
+          contentLength: newOriginalContent.length,
+          isAutoAdvance: autoAdvance,
+          firstWords: newOriginalContent.substring(0, 50) + '...'
+        });
         setCurrentContent(newOriginalContent);
       } else if (currentMode === 'simplified') {
         // For simplified mode, we'll rely on the useEffect that handles chunk changes
@@ -225,7 +325,11 @@ export default function BookReaderPage() {
       console.log('🔄 CHUNK CHANGE: Suppression ref active - keeping audio playing during auto-advance');
       suppressPauseOnNextChunkRef.current = false; // consume the one-shot guard
     } else {
-      console.log('🔄 CHUNK CHANGE: Stopping audio - manual navigation or no suppression');
+      console.log('🔄 CHUNK CHANGE: Stopping audio - manual navigation or no suppression', {
+        suppressRef: suppressPauseOnNextChunkRef.current,
+        isAutoAdvancing,
+        autoAdvanceEnabled
+      });
       setIsPlaying(false); // Stop audio when changing chunks manually
     }
     
@@ -640,6 +744,7 @@ export default function BookReaderPage() {
         const validChunk = Math.max(0, Math.min(initialChunk, chunks.length - 1));
         
         setCurrentChunk(validChunk);
+        console.log('🔄 PAGE TRANSITION: Setting new content for chunk', validChunk, 'Content length:', chunks[validChunk].content.length);
         setCurrentContent(chunks[validChunk].content);
         console.log(`Book split into ${chunks.length} chunks, starting at chunk ${validChunk}`);
         console.log('DEBUG: First chunk content length:', chunks[validChunk]?.content?.length || 0);
@@ -1618,7 +1723,7 @@ export default function BookReaderPage() {
                     isEnhanced={isEnhancedBook}
                     onWordHighlight={(wordIndex: number) => {
                       console.log('🎯 InstantAudioPlayer calling onWordHighlight with index:', wordIndex);
-                      handleWordHighlight(wordIndex);
+                      handleWordHighlightWithAutoScroll(wordIndex);
                     }}
                     onChunkComplete={() => {
                       console.log('🏁 InstantAudioPlayer onChunkComplete called');
@@ -1632,6 +1737,17 @@ export default function BookReaderPage() {
                         currentTime: progress.currentTime,
                         isPreGenerated: progress.isPreGenerated
                       });
+
+                      // Update current sentence for auto-scroll
+                      if (progress.currentSentence !== undefined) {
+                        console.log('🎯 SENTENCE INDEX UPDATE:', {
+                          currentSentence: progress.currentSentence,
+                          previousIndex: currentSentenceIndex,
+                          wordIndex: progress.wordIndex,
+                          isPlaying
+                        });
+                        setCurrentSentenceIndex(progress.currentSentence);
+                      }
                       // Update loading state based on audio status
                       setIsAudioLoading(progress.status === 'loading');
                     }}
@@ -1846,7 +1962,7 @@ export default function BookReaderPage() {
             onPreviewVoice={handlePreviewVoice}
             currentMode={currentMode}
             onModeChange={handleModeChange}
-            onWordHighlight={handleWordHighlight}
+            onWordHighlight={handleWordHighlightWithAutoScroll}
             autoAdvanceEnabled={autoAdvanceEnabled}
             onToggleAutoAdvance={toggleAutoAdvance}
           />
@@ -1965,12 +2081,13 @@ export default function BookReaderPage() {
                   {/* Enhanced books: Use WordHighlighter for text display with highlighting disabled */}
                   {isEnhancedBook ? (
                     <div style={{ position: 'relative' }} data-content="true">
-                      {/* Auto-scroll handler - works independently of highlighting */}
+                      {/* Auto-scroll handler - Creates word elements for scrolling */}
                       <AutoScrollHandler
+                        ref={autoScrollRef}
                         text={currentContent}
-                        currentWordIndex={currentWordIndex}
-                        isPlaying={isPlaying}
-                        enabled={autoScrollEnabled}
+                        currentWordIndex={-1}  // Disable its scrolling, just use for word elements
+                        isPlaying={false}  // Disable its scrolling
+                        enabled={false}  // Disable its scrolling
                       />
                       
                       {/* Word highlighting - DISABLED but still displays text */}

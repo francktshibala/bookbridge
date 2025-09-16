@@ -14,6 +14,8 @@ PODS:
   - CapacitorShare (7.0.2):
     - Capacitor
   - IONFilesystemLib (1.0.1)
+  - SquareetlabsCapacitorSubscriptions (1.0.19):
+    - Capacitor
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -23,6 +25,7 @@ DEPENDENCIES:
   - "CapacitorNetwork (from `../../node_modules/@capacitor/network`)"
   - "CapacitorPreferences (from `../../node_modules/@capacitor/preferences`)"
   - "CapacitorShare (from `../../node_modules/@capacitor/share`)"
+  - "SquareetlabsCapacitorSubscriptions (from `../../node_modules/@squareetlabs/capacitor-subscriptions`)"
 
 SPEC REPOS:
   trunk:
@@ -43,6 +46,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/preferences"
   CapacitorShare:
     :path: "../../node_modules/@capacitor/share"
+  SquareetlabsCapacitorSubscriptions:
+    :path: "../../node_modules/@squareetlabs/capacitor-subscriptions"
 
 SPEC CHECKSUMS:
   Capacitor: 28d6c01026a9a3f7156529498ec1f389a2a28dbc
@@ -53,7 +58,8 @@ SPEC CHECKSUMS:
   CapacitorPreferences: 65107ed7437d96ee72583df5763985e3c0ff2bc2
   CapacitorShare: be166411fa995ead2d39b104aa0aae56d8615c66
   IONFilesystemLib: 89258b8e3e85465da93127d25d7ce37f977e8a6f
+  SquareetlabsCapacitorSubscriptions: c22d5907dba23dcf7f0d78705f1e631d7633c4d5
 
-PODFILE CHECKSUM: 5c079ffd9e213b3fcb302fce24e617b97482fb03
+PODFILE CHECKSUM: 47990a280207bb149838d1e700a5322bff6754d1
 
 COCOAPODS: 1.16.2

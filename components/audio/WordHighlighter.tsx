@@ -287,17 +287,44 @@ function adjustColor(color: string, amount: number): string {
 // Hook for integrating word highlighter with audio player
 export const useWordHighlighting = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(-1);
-  
+  const highlightTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const handleWordHighlight = (wordIndex: number) => {
-    console.log('🎯 handleWordHighlight called with index:', wordIndex, 'previous index:', currentWordIndex);
-    setCurrentWordIndex(wordIndex);
+    console.log('🎯 handleWordHighlight called with index:', wordIndex, 'previous index:', currentWordIndex, '(3s delay applied)');
+
+    // Clear any existing timeout
+    if (highlightTimeoutRef.current) {
+      clearTimeout(highlightTimeoutRef.current);
+    }
+
+    // Apply 3-second delay to highlighting
+    highlightTimeoutRef.current = setTimeout(() => {
+      setCurrentWordIndex(wordIndex);
+      console.log('🎯 Highlighting applied after 3s delay for word index:', wordIndex);
+    }, 3000);
   };
   
   const resetHighlighting = () => {
     console.log('🔄 resetHighlighting called');
+
+    // Clear any pending highlight timeout
+    if (highlightTimeoutRef.current) {
+      clearTimeout(highlightTimeoutRef.current);
+      highlightTimeoutRef.current = null;
+    }
+
     setCurrentWordIndex(-1);
   };
-  
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (highlightTimeoutRef.current) {
+        clearTimeout(highlightTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return {
     currentWordIndex,
     handleWordHighlight,

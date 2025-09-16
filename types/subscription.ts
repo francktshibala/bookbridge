@@ -6,6 +6,16 @@ export interface Subscription {
   tier: SubscriptionTier;
   stripeCustomerId?: string;
   stripeSubscriptionId?: string;
+  appleOriginalTransactionId?: string;
+  appleLatestTransactionId?: string;
+  appleEnvironment?: 'Production' | 'Sandbox';
+  appleExpiresDate?: Date;
+  appleIsInBillingRetry?: boolean;
+  appleStatus?: string;
+  appleProductId?: string;
+  appleOfferType?: string;
+  appleRevocationReason?: string;
+  appleRevocationDate?: Date;
   currentPeriodStart?: Date;
   currentPeriodEnd?: Date;
   cancelAtPeriodEnd: boolean;

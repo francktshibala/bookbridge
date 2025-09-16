@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea" />
+      <stop offset="100%" style="stop-color:#764ba2" />
+    </linearGradient>
+
+    <!-- Clean white for the infinity -->
+    <linearGradient id="infinity" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff" />
+      <stop offset="50%" style="stop-color:#f8faff" />
+      <stop offset="100%" style="stop-color:#ffffff" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" rx="230" ry="230" fill="url(#bg)"/>
+
+  <!-- Infinity Symbol - Clean and Bold -->
+  <g transform="translate(512, 512)">
+    <!-- Create infinity using two circles and curves -->
+    <path d="M -150 -90
+             C -220 -90, -280 -30, -280 40
+             C -280 110, -220 170, -150 170
+             C -80 170, -20 110, 40 40
+             C 100 -30, 160 -90, 230 -90
+             C 300 -90, 360 -30, 360 40
+             C 360 110, 300 170, 230 170
+             C 160 170, 100 110, 40 40
+             C -20 -30, -80 -90, -150 -90"
+          fill="none"
+          stroke="white"
+          stroke-width="100"
+          stroke-linecap="round"
+          transform="rotate(-10)"
+          opacity="0.95"/>
+
+    <!-- Book pages detail in center -->
+    <g transform="rotate(-10)">
+      <!-- Left page lines -->
+      <rect x="-100" y="-30" width="60" height="6" fill="white" opacity="0.4" rx="3"/>
+      <rect x="-100" y="-10" width="50" height="6" fill="white" opacity="0.4" rx="3"/>
+      <rect x="-100" y="10" width="55" height="6" fill="white" opacity="0.4" rx="3"/>
+
+      <!-- Right page lines -->
+      <rect x="40" y="-30" width="60" height="6" fill="white" opacity="0.4" rx="3"/>
+      <rect x="50" y="-10" width="50" height="6" fill="white" opacity="0.4" rx="3"/>
+      <rect x="45" y="10" width="55" height="6" fill="white" opacity="0.4" rx="3"/>
+
+      <!-- Center spine -->
+      <rect x="-5" y="-50" width="10" height="100" fill="#667eea" opacity="0.2" rx="5"/>
+    </g>
+  </g>
+</svg>

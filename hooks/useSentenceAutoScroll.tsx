@@ -1,20 +1,25 @@
 import { useEffect, useRef } from 'react';
 import { TextProcessor } from '@/lib/text-processor';
+import { TimingCalibrator } from '@/lib/audio/TimingCalibrator';
 
 export function useSentenceAutoScroll({
   text,
   currentWordIndex,
   isPlaying,
-  enabled = true
+  enabled = true,
+  bookId
 }: {
   text: string;
   currentWordIndex: number;
   isPlaying: boolean;
   enabled?: boolean;
+  bookId?: string;
 }) {
   const lastSentenceIndex = useRef(-1);
   const lastTextRef = useRef<string>('');
   const pageJustChanged = useRef(false);
+  const calibrator = useRef<TimingCalibrator>(new TimingCalibrator());
+  const scrollStartTime = useRef<number>(0);
 
   useEffect(() => {
     if (!enabled || !isPlaying || !text) return;
@@ -135,16 +140,32 @@ export function useSentenceAutoScroll({
 
           // Only scroll if the change is significant (more than 40px)
           if (Math.abs(finalScrollPosition - currentScroll) > 40) {
-            console.log('📜 Auto-scrolling:', {
+            // Get dynamic offset from calibrator
+            const dynamicOffset = calibrator.current.getOptimalOffset(bookId);
+
+            console.log('📜 Auto-scrolling with dynamic timing:', {
               from: currentScroll,
               to: finalScrollPosition,
-              sentencePos: `${sentenceViewportPercent.toFixed(0)}%`
+              sentencePos: `${sentenceViewportPercent.toFixed(0)}%`,
+              dynamicOffset: `${(dynamicOffset * 1000).toFixed(0)}ms`,
+              confidence: calibrator.current.getConfidence().toFixed(2)
             });
 
-            window.scrollTo({
-              top: finalScrollPosition,
-              behavior: 'smooth'
-            });
+            // Record timing for calibration
+            scrollStartTime.current = Date.now();
+            const expectedScrollTime = scrollStartTime.current + (dynamicOffset * 1000);
+
+            // Apply dynamic timing compensation
+            setTimeout(() => {
+              window.scrollTo({
+                top: finalScrollPosition,
+                behavior: 'smooth'
+              });
+
+              // Record actual vs expected timing for learning
+              const actualScrollTime = Date.now();
+              calibrator.current.recordSample(expectedScrollTime, actualScrollTime);
+            }, dynamicOffset * 1000);
           }
         }
       }
