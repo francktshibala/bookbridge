@@ -1,5 +1,3 @@
-import jwt from 'jsonwebtoken';
-
 type AppleEnv = 'Production' | 'Sandbox';
 
 interface CreateJwtOptions {
@@ -9,7 +7,10 @@ interface CreateJwtOptions {
   privateKey: string; // contents of .p8 key
 }
 
-export function createAppleServerApiJWT(options: CreateJwtOptions): string {
+export async function createAppleServerApiJWT(options: CreateJwtOptions): Promise<string> {
+  // Dynamic import to avoid TypeScript compilation issues
+  const jwt = await import('jsonwebtoken');
+
   const nowSeconds = Math.floor(Date.now() / 1000);
 
   const payload = {
@@ -20,7 +21,7 @@ export function createAppleServerApiJWT(options: CreateJwtOptions): string {
     bid: options.bundleId,
   } as const;
 
-  const token = jwt.sign(payload, options.privateKey, {
+  const token = jwt.default.sign(payload, options.privateKey, {
     algorithm: 'ES256',
     keyid: options.keyId,
   });
