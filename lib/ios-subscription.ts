@@ -1,4 +1,29 @@
-import { Subscriptions } from '@squareetlabs/capacitor-subscriptions';
+// Use eval('require') to bypass TypeScript module resolution during compilation
+// This prevents build failures on platforms like Render where the package isn't available
+// The webpack alias will ensure the stub is used in non-iOS environments
+let Subscriptions: any;
+try {
+  Subscriptions = eval('require')('@squareetlabs/capacitor-subscriptions').Subscriptions;
+} catch (error) {
+  // Fallback to stub if import fails (e.g., server builds)
+  Subscriptions = {
+    async getProductDetails() {
+      return { responseCode: -1, responseMessage: 'Not available', data: null };
+    },
+    async purchaseProduct() {
+      return { responseCode: -1, responseMessage: 'Not available', data: null };
+    },
+    async getLatestTransaction() {
+      return { responseCode: -1, responseMessage: 'Not available', data: null };
+    },
+    async getCurrentEntitlements() {
+      return { responseCode: -1, responseMessage: 'Not available', data: [] };
+    },
+    async manageSubscriptions() {
+      console.warn('manageSubscriptions called in fallback environment');
+    }
+  };
+}
 
 export interface PurchaseResult {
   success: boolean;
@@ -81,7 +106,7 @@ export class IOSSubscriptionService {
       if (entitlements.responseCode === 0 && entitlements.data) {
         // Check if our product is in the entitlements
         const hasSubscription = entitlements.data.some(
-          transaction => transaction.productIdentifier === productId
+          (transaction: any) => transaction.productIdentifier === productId
         );
         return { hasSubscription, entitlements: entitlements.data };
       }
