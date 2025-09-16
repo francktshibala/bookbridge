@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Apple IAP env vars missing' }, { status: 500 });
     }
 
-    const jwt = await createAppleServerApiJWT({ keyId, issuerId, bundleId, privateKey });
+    const jwt = createAppleServerApiJWT({ keyId, issuerId, bundleId, privateKey });
     const resp = await getSubscriptionStatus({ originalTransactionId, environment, jwtToken: jwt });
 
     if (!resp.ok) {

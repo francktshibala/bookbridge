@@ -7,9 +7,9 @@ interface CreateJwtOptions {
   privateKey: string; // contents of .p8 key
 }
 
-export async function createAppleServerApiJWT(options: CreateJwtOptions): Promise<string> {
-  // Dynamic import to avoid TypeScript compilation issues
-  const jwt = await import('jsonwebtoken');
+export function createAppleServerApiJWT(options: CreateJwtOptions): string {
+  // Use require() to completely bypass TypeScript module resolution
+  const jwt = eval('require')('jsonwebtoken');
 
   const nowSeconds = Math.floor(Date.now() / 1000);
 
@@ -21,7 +21,7 @@ export async function createAppleServerApiJWT(options: CreateJwtOptions): Promis
     bid: options.bundleId,
   } as const;
 
-  const token = jwt.default.sign(payload, options.privateKey, {
+  const token = jwt.sign(payload, options.privateKey, {
     algorithm: 'ES256',
     keyid: options.keyId,
   });
