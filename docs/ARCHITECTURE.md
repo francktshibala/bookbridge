@@ -860,6 +860,37 @@ class ContentManager {
 
 ## Deployment Architecture
 
+### iOS Deployment Pipeline
+The app supports both web and native iOS deployment through Capacitor with sophisticated build configuration:
+
+```typescript
+// Multi-runtime build system for iOS + Web deployment
+// - Native iOS: Real Capacitor packages for mobile functionality
+// - Web/Server: Stubs for Capacitor packages, optimized webpack config
+// - Apple IAP: Full iOS In-App Purchase integration with server-side validation
+
+// next.config.js - Advanced webpack configuration
+serverExternalPackages: ['jsonwebtoken'],  // Node.js 20+ optimization
+webpack: (config, { isServer, nextRuntime }) => {
+  // Smart aliasing based on runtime environment
+  if (useCapacitorStubs) {
+    // Alias mobile packages to stubs for server builds
+    config.resolve.alias['@squareetlabs/capacitor-subscriptions'] = 'stubs/capacitor/subscriptions.ts';
+  }
+
+  // Client/edge builds get jsonwebtoken stub, server gets real package
+  if (!isServer) {
+    config.resolve.alias['jsonwebtoken'] = 'stubs/jsonwebtoken.ts';
+  }
+}
+```
+
+Key capabilities:
+- **Apple App Store**: Submitted iOS app with IAP functionality (Waiting for Review)
+- **Cross-platform**: Seamless development experience across web and mobile
+- **Build optimization**: Environment-specific package resolution prevents deployment failures
+- **Production-ready**: Advanced webpack configuration supports complex multi-runtime scenarios
+
 ### Vercel Configuration
 
 ```json
