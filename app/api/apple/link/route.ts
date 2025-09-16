@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+export const runtime = 'nodejs';
 import { createClient } from '@/lib/supabase/server';
 import { createAppleServerApiJWT, getSubscriptionStatus } from '@/lib/apple-server-api';
 

@@ -118,11 +118,14 @@ const nextConfig = {
   
   // Conditionally alias Capacitor packages to local stubs to avoid build-time resolution
   // issues in non-Capacitor environments (e.g., server builds on Render)
-  webpack: (config) => {
+  webpack: (config, { isServer, nextRuntime }) => {
+    // Ensure resolve exists
+    config.resolve = config.resolve || {};
+    config.resolve.alias = { ...(config.resolve.alias || {}) };
+
+    // 1) Alias Capacitor packages to stubs when CAPACITOR_STUBS=true
     if (useCapacitorStubs) {
-      config.resolve = config.resolve || {};
-      config.resolve.alias = {
-        ...(config.resolve.alias || {}),
+      Object.assign(config.resolve.alias, {
         '@capacitor/core': path.resolve(__dirname, 'stubs/capacitor/core.ts'),
         '@capacitor/app': path.resolve(__dirname, 'stubs/capacitor/app.ts'),
         '@capacitor/filesystem': path.resolve(__dirname, 'stubs/capacitor/filesystem.ts'),
@@ -130,9 +133,19 @@ const nextConfig = {
         '@capacitor/network': path.resolve(__dirname, 'stubs/capacitor/network.ts'),
         '@capacitor/share': path.resolve(__dirname, 'stubs/capacitor/share.ts'),
         '@squareetlabs/capacitor-subscriptions': path.resolve(__dirname, 'stubs/capacitor/subscriptions.ts'),
-      };
+      });
       console.log('🔧 Capacitor stubs alias ENABLED');
     }
+
+    // 2) Prevent bundling jsonwebtoken into any client/edge build by aliasing to a stub
+    //    Only allow real jsonwebtoken in Node.js server runtime.
+    const isEdge = nextRuntime === 'edge';
+    const isClient = !isServer;
+    if (isClient || isEdge) {
+      config.resolve.alias['jsonwebtoken'] = path.resolve(__dirname, 'stubs/jsonwebtoken.ts');
+      console.log('🔧 jsonwebtoken alias to stub ENABLED (client/edge)');
+    }
+
     return config;
   },
 }
