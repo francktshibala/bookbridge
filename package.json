@@ -45,6 +45,9 @@
   },
   "homepage": "https://github.com/francktshibala/bookbridge#readme",
   "description": "",
+  "engines": {
+    "node": ">=20 <21"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.56.0",
     "@capacitor/android": "^7.4.3",

@@ -80,6 +80,8 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Next.js 15 moved experimental.serverComponentsExternalPackages to serverExternalPackages
+  serverExternalPackages: ['jsonwebtoken'],
   
   // Static export disabled due to API routes - use .next build
   
@@ -144,6 +146,15 @@ const nextConfig = {
     if (isClient || isEdge) {
       config.resolve.alias['jsonwebtoken'] = path.resolve(__dirname, 'stubs/jsonwebtoken.ts');
       console.log('🔧 jsonwebtoken alias to stub ENABLED (client/edge)');
+    }
+
+    // 3) On the Node.js server build, externalize jsonwebtoken so webpack
+    //    doesn't try to bundle/resolve it during compilation.
+    if (isServer) {
+      const externals = Array.isArray(config.externals) ? config.externals : [];
+      externals.push({ jsonwebtoken: 'commonjs jsonwebtoken' });
+      config.externals = externals;
+      console.log('🔧 jsonwebtoken externalized for server build');
     }
 
     return config;
