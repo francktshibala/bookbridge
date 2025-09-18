@@ -203,9 +203,10 @@ This document establishes the universal accessibility vision while defining the 
 - **Mobile display optimization (100% complete)** - Full screen usage, responsive design
 - Audio system improvements and voice limitations
 - Database integration for real-time book status
-- **iOS App Store Submission (September 11, 2025)** - BookBridge Reader v1.0 submitted, currently "Waiting for Review"
+- **iOS App Store Submission (September 11, 2025)** - BookBridge Reader v1.0 submitted, **REJECTED TWICE**, comprehensive fix plan developed
 
 **🚨 Priority Tasks**:
+- **iOS App Store Resubmission** - Fix 4 rejection issues (iPad screenshots, IAP visibility, account deletion, products submission)
 - Touch interactions for mobile experience
 - PWA features for offline support
 - Native app deployment preparation
@@ -219,8 +220,10 @@ This document establishes the universal accessibility vision while defining the 
 **📱 iOS App Store Status**:
 - **App Name**: BookBridge Reader
 - **Version**: 1.0 (Build 1)
-- **Submission Date**: September 11, 2025 at 2:06 PM
-- **Status**: Waiting for Review
+- **Initial Submission**: September 11, 2025 at 2:06 PM
+- **Current Status**: **REJECTED (2nd rejection September 17, 2025)**
+- **Rejection Issues**: iPad screenshots (2.3.3), IAP not visible (2.1), Products not submitted (2.1), Account deletion missing (5.1.1v)
+- **Fix Plan Status**: Comprehensive implementation plan developed with 90-95% approval confidence
 - **Submission ID**: 66fd0519-8745-4f66-bb17-4a6eb9700cf5
 - **Submitted By**: Francois Tshibala
 
@@ -233,8 +236,12 @@ This document establishes the universal accessibility vision while defining the 
 **Description**: Comprehensive 3-agent research findings on the 3-5 second chunk transition delays breaking reading flow. Agent 1 identified 1300ms hardcoded delays in auto-advance logic and missing prefetch integration. Agent 2 analyzed database N+1 queries and caching gaps. Agent 3 examined UX issues including 0.4s animations and lack of transition feedback. Essential research foundation for achieving Speechify-level <100ms seamless transitions between chunks.
 
 ### **CHUNK_TRANSITION_FIX_PLAN.md**
-**Location**: `/docs/implementation/CHUNK_TRANSITION_FIX_PLAN.md`  
+**Location**: `/docs/implementation/CHUNK_TRANSITION_FIX_PLAN.md`
 **Description**: Safe, incremental implementation plan to fix chunk transition delays for current enhanced books and future generation. Phase 1 removes 1300ms hardcoded delays for immediate improvement. Phase 2 implements prefetch service, memory caching, and bulk queries. Phase 3 provides testing protocol starting with Pride & Prejudice. Phase 4 establishes future book template with seamless transition design. Includes rollback plan, feature flags, and critical path collision prevention.
+
+### **iOS_SUBMISSION_FIX_PLAN.md**
+**Location**: `/iOS_SUBMISSION_FIX_PLAN.md` *(Root level file)*
+**Description**: **COMPREHENSIVE iOS APP STORE REJECTION FIX PLAN**: Master implementation guide addressing all 4 rejection issues from Apple's September 17, 2025 review. Contains detailed solutions for iPad screenshots (2.3.3), IAP visibility (2.1), products submission (2.1), and account deletion (5.1.1v). **Features collaborative research from Claude + GPT-5** with 2024-2025 App Store insights including TestFlight changes, technical implementation patterns, and 90-95% approval confidence plan. **DEFINITIVE PLAN V2** includes production-ready code snippets, 4-point IAP discovery pattern, idempotent account deletion, enhanced testing protocols, and comprehensive review notes for Apple. **Timeline**: 16-20 hours over 2 days. **Key Innovation**: Fourth IAP touchpoint via premium feature gates, robust client/server component architecture, and bulletproof technical implementation. Essential for third submission success.
 
 ### **GOOGLE_PLAY_ROLLOUT_STRATEGY.md**
 **Location**: `/docs/implementation/GOOGLE_PLAY_ROLLOUT_STRATEGY.md`  
