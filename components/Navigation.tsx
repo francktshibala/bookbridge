@@ -30,6 +30,8 @@ export default function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/enhanced-collection', label: '✨ Enhanced Books' },
     { href: '/library', label: 'Browse All Books' },
+    // TOUCHPOINT 1: Premium navigation link
+    { href: '/upgrade', label: '🚀 Premium $5.99', isPremium: true },
   ];
 
   return (
@@ -82,10 +84,20 @@ export default function Navigation() {
                           ? 'nav-link-active'
                           : 'nav-link-inactive'
                       }`}
-                      style={{ 
+                      style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '6px'
+                        gap: '6px',
+                        // Special styling for premium link
+                        ...(link.isPremium && {
+                          background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                          color: 'white',
+                          fontWeight: '600',
+                          padding: '8px 16px',
+                          borderRadius: '20px',
+                          boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)',
+                          border: '1px solid rgba(16, 185, 129, 0.4)',
+                        })
                       }}
                     >
                       {(link as any).icon && React.createElement((link as any).icon, { size: 16 })}

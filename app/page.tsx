@@ -106,11 +106,12 @@ export default function HomePage() {
   };
 
   return (
-    <div className="page-container magical-bg min-h-screen" style={{ 
-      background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)', 
+    <div className="page-container magical-bg min-h-screen" style={{
+      background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
       color: '#ffffff',
       position: 'relative'
     }}>
+
       <div className="page-content" style={{
         padding: '4rem 2rem',
         maxWidth: '1200px',

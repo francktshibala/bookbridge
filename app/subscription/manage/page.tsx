@@ -3,15 +3,16 @@
 import { useState } from 'react';
 import { useSubscription } from '@/hooks/useSubscription';
 import { motion } from 'framer-motion';
-import { 
-  CreditCard, 
-  Calendar, 
-  Settings, 
-  AlertTriangle, 
+import {
+  CreditCard,
+  Calendar,
+  Settings,
+  AlertTriangle,
   CheckCircle,
   Sparkles,
   GraduationCap,
-  BookOpen
+  BookOpen,
+  Trash2
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -59,7 +60,7 @@ export default function ManageSubscriptionPage() {
     }
 
     setLoading('cancel');
-    
+
     try {
       const response = await fetch('/api/subscription/manage', {
         method: 'POST',
@@ -70,7 +71,7 @@ export default function ManageSubscriptionPage() {
       });
 
       const result = await response.json();
-      
+
       if (response.ok) {
         alert(result.message);
         window.location.reload();
@@ -80,6 +81,51 @@ export default function ManageSubscriptionPage() {
     } catch (error) {
       console.error('Failed to cancel subscription:', error);
       alert('Failed to cancel subscription. Please try again.');
+    } finally {
+      setLoading(null);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    const confirmed = confirm(
+      'PERMANENT ACTION: This will permanently delete your account and all associated data. This action cannot be undone. Are you absolutely sure?'
+    );
+
+    if (!confirmed) return;
+
+    const doubleConfirm = confirm(
+      'This is your final confirmation. Type "DELETE" in the next prompt to proceed.'
+    );
+
+    if (!doubleConfirm) return;
+
+    const userInput = prompt('Type "DELETE" (all caps) to confirm account deletion:');
+    if (userInput !== 'DELETE') {
+      alert('Account deletion cancelled. You must type "DELETE" exactly.');
+      return;
+    }
+
+    setLoading('delete');
+
+    try {
+      const response = await fetch('/api/account/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Your account has been permanently deleted. You will be logged out.');
+        window.location.href = '/';
+      } else {
+        alert(result.error || 'Failed to delete account. Please contact support.');
+      }
+    } catch (error) {
+      console.error('Failed to delete account:', error);
+      alert('Failed to delete account. Please contact support.');
     } finally {
       setLoading(null);
     }
@@ -289,36 +335,56 @@ export default function ManageSubscriptionPage() {
           >
             <h2 className="text-xl font-bold text-gray-900 mb-6">Actions</h2>
             
-            <div className="grid md:grid-cols-2 gap-6">
-              {isFreeTier ? (
-                <Link
-                  href="/subscription/pricing"
-                  className="flex items-center justify-center px-6 py-4 border-2 border-purple-500 text-purple-600 rounded-xl hover:bg-purple-50 transition-all font-semibold"
-                >
-                  <Sparkles className="w-5 h-5 mr-2" />
-                  Upgrade to Premium
-                </Link>
-              ) : (
-                <button
-                  onClick={handleBillingPortal}
-                  disabled={loading === 'portal'}
-                  className="flex items-center justify-center px-6 py-4 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all font-semibold disabled:opacity-50"
-                >
-                  <CreditCard className="w-5 h-5 mr-2" />
-                  {loading === 'portal' ? 'Loading...' : 'Manage Billing'}
-                </button>
-              )}
+            <div className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-6">
+                {isFreeTier ? (
+                  <Link
+                    href="/subscription/pricing"
+                    className="flex items-center justify-center px-6 py-4 border-2 border-purple-500 text-purple-600 rounded-xl hover:bg-purple-50 transition-all font-semibold"
+                  >
+                    <Sparkles className="w-5 h-5 mr-2" />
+                    Upgrade to Premium
+                  </Link>
+                ) : (
+                  <button
+                    onClick={handleBillingPortal}
+                    disabled={loading === 'portal'}
+                    className="flex items-center justify-center px-6 py-4 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all font-semibold disabled:opacity-50"
+                  >
+                    <CreditCard className="w-5 h-5 mr-2" />
+                    {loading === 'portal' ? 'Loading...' : 'Manage Billing'}
+                  </button>
+                )}
 
-              {(isPremium || isStudent) && !subscription?.cancelAtPeriodEnd && (
-                <button
-                  onClick={handleCancelSubscription}
-                  disabled={loading === 'cancel'}
-                  className="flex items-center justify-center px-6 py-4 border-2 border-red-500 text-red-600 rounded-xl hover:bg-red-50 transition-all font-semibold disabled:opacity-50"
-                >
-                  <AlertTriangle className="w-5 h-5 mr-2" />
-                  {loading === 'cancel' ? 'Processing...' : 'Cancel Subscription'}
-                </button>
-              )}
+                {(isPremium || isStudent) && !subscription?.cancelAtPeriodEnd && (
+                  <button
+                    onClick={handleCancelSubscription}
+                    disabled={loading === 'cancel'}
+                    className="flex items-center justify-center px-6 py-4 border-2 border-red-500 text-red-600 rounded-xl hover:bg-red-50 transition-all font-semibold disabled:opacity-50"
+                  >
+                    <AlertTriangle className="w-5 h-5 mr-2" />
+                    {loading === 'cancel' ? 'Processing...' : 'Cancel Subscription'}
+                  </button>
+                )}
+              </div>
+
+              {/* Account Deletion - Separate section for emphasis */}
+              <div className="pt-6 border-t border-gray-200">
+                <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-red-900 mb-2">Delete Account</h3>
+                  <p className="text-sm text-red-700 mb-4">
+                    Permanently delete your account and all associated data. This action cannot be undone.
+                  </p>
+                  <button
+                    onClick={handleDeleteAccount}
+                    disabled={loading === 'delete'}
+                    className="flex items-center justify-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all font-semibold disabled:opacity-50"
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    {loading === 'delete' ? 'Deleting Account...' : 'Delete Account'}
+                  </button>
+                </div>
+              </div>
             </div>
           </motion.div>
 
