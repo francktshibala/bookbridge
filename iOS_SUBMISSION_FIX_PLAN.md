@@ -9,7 +9,26 @@
 - ✅ **Step 4**: Account deletion implemented (in /subscription/manage with full data deletion API)
 
 ### Remaining:
-- ⏳ **Step 5**: Upload new build to TestFlight and submit for review
+- 🚫 **Step 5**: Upload new build to TestFlight and submit for review
+
+### ✅ RESOLVED BLOCKER (September 19, 2025):
+**Issue**: Xcode provisioning profile communication error
+- **Error**: "Communication with Apple failed" + "No profiles for 'com.francois.bookbridge' were found"
+- **Location**: Xcode → Signing & Capabilities
+- **Impact**: Cannot archive iOS app for TestFlight upload
+- **Status**: ✅ RESOLVED - App successfully uploaded to App Store Connect
+
+**Root Cause**: Apple Developer account had no registered devices, preventing provisioning profile generation.
+
+**SOLUTION THAT WORKED**:
+1. ✅ **Verified Apple Developer account status** - Account active, no payment issues
+2. ✅ **Downloaded certificates in Xcode** - Xcode → Settings → Accounts → Download certificates
+3. ✅ **Cleaned build cache** - `rm -rf ~/Library/Developer/Xcode/DerivedData` and `rm -rf ios/build`
+4. ✅ **Added device to Apple Developer Portal** - Connected iPhone, got UDID (`00008030-001651C602F8802E`), registered at developer.apple.com → Devices
+5. ✅ **Archive succeeded** - Provisioning profile generated automatically
+6. ✅ **Upload to App Store Connect successful**
+
+**Key Learning**: The "Communication with Apple failed" error was caused by having zero registered devices in Apple Developer account, not certificate issues. Adding any device (even if not used for testing) allows Apple to generate provisioning profiles.
 
 ## Second Rejection - September 17, 2025
 
