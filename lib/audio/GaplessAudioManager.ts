@@ -220,6 +220,95 @@ export class GaplessAudioManager {
   }
 
   /**
+   * Play a single audio file (for sentence-level playback)
+   */
+  async playAudio(
+    audioUrl: string,
+    options: {
+      onProgress?: (progress: number) => void;
+      onComplete?: () => void;
+    } = {}
+  ): Promise<void> {
+    try {
+      console.log(`🎵 Playing audio: ${audioUrl}`);
+
+      // Stop any currently playing audio
+      if (this.currentAudio && !this.currentAudio.paused) {
+        this.currentAudio.pause();
+      }
+
+      // Create new audio element
+      const audio = new Audio(audioUrl);
+      audio.crossOrigin = 'anonymous';
+
+      this.currentAudio = audio;
+
+      // Set up completion handler FIRST (before other events)
+      if (options.onComplete) {
+        const completeHandler = () => {
+          console.log(`🎵 Audio ended: ${audioUrl}`);
+          options.onComplete!();
+        };
+        audio.addEventListener('ended', completeHandler, { once: true });
+
+        // Also listen for error events that might prevent completion
+        audio.addEventListener('error', (e) => {
+          console.error(`🎵 Audio error: ${audioUrl}`, e);
+        });
+      }
+
+      // Set up progress tracking
+      if (options.onProgress) {
+        const progressHandler = () => {
+          if (audio.duration && audio.duration > 0) {
+            const progress = audio.currentTime / audio.duration;
+            options.onProgress!(progress);
+          }
+        };
+        audio.addEventListener('timeupdate', progressHandler);
+      }
+
+      // Wait for audio to be ready before playing
+      await new Promise<void>((resolve, reject) => {
+        const onCanPlay = () => {
+          audio.removeEventListener('canplay', onCanPlay);
+          audio.removeEventListener('error', onError);
+          resolve();
+        };
+
+        const onError = (e: any) => {
+          audio.removeEventListener('canplay', onCanPlay);
+          audio.removeEventListener('error', onError);
+          reject(new Error(`Failed to load audio: ${audioUrl}`));
+        };
+
+        audio.addEventListener('canplay', onCanPlay, { once: true });
+        audio.addEventListener('error', onError, { once: true });
+
+        // Start loading
+        audio.load();
+      });
+
+      // Play the audio
+      console.log(`🎵 Starting playback: ${audioUrl}`);
+      await audio.play();
+
+    } catch (error) {
+      console.error('Failed to play audio:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Pause current audio
+   */
+  pause() {
+    if (this.currentAudio && !this.currentAudio.paused) {
+      this.currentAudio.pause();
+    }
+  }
+
+  /**
    * Stop all audio
    */
   stop() {
@@ -228,9 +317,15 @@ export class GaplessAudioManager {
         buffer.audio.pause();
       }
     });
+
+    if (this.currentAudio && !this.currentAudio.paused) {
+      this.currentAudio.pause();
+    }
+
     this.currentAudio = null;
     this.nextAudio = null;
   }
+
 
   /**
    * Clean up audio from pool

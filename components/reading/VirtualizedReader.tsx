@@ -106,7 +106,29 @@ const HighlightOverlay: React.FC<HighlightOverlayProps> = ({
         className="select-none pointer-events-none"
         style={{ lineHeight: '1.6' }}
       >
-        {paragraph.content}
+        {/* Render sentences with data attributes for auto-scroll */}
+        {paragraph.sentences.map((sentence, index) => {
+          const isCurrentSentence = sentence.id === currentSentenceId;
+          return (
+            <span
+              key={sentence.id}
+              data-sentence-id={sentence.id}
+              className={`sentence ${isCurrentSentence ? 'current-sentence' : ''}`}
+              style={{
+                backgroundColor: isCurrentSentence ? 'rgba(59, 130, 246, 0.25)' : 'transparent',
+                borderRadius: isCurrentSentence ? '6px' : '0',
+                padding: isCurrentSentence ? '4px 6px' : '0',
+                border: isCurrentSentence ? '2px solid rgba(59, 130, 246, 0.4)' : '2px solid transparent',
+                fontWeight: isCurrentSentence ? '600' : '400',
+                transform: isCurrentSentence ? 'scale(1.01)' : 'scale(1)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              {sentence.text}
+              {index < paragraph.sentences.length - 1 ? ' ' : ''}
+            </span>
+          );
+        })}
       </div>
 
       {/* Highlighting overlay */}
@@ -121,21 +143,31 @@ const HighlightOverlay: React.FC<HighlightOverlayProps> = ({
             return (
               <motion.div
                 key={`${currentSentence.id}-${timing.wordIndex}`}
-                className={`absolute rounded-sm pointer-events-auto cursor-pointer ${
+                className={`absolute rounded-md border-2 pointer-events-auto cursor-pointer ${
                   isHighlighted
-                    ? 'bg-yellow-300 text-black'
-                    : 'bg-blue-100 text-blue-900'
+                    ? 'bg-yellow-200 border-yellow-400 shadow-lg'
+                    : 'bg-blue-50 border-blue-200 shadow-sm'
                 }`}
                 style={{
                   left: rect.left - containerRef.current!.getBoundingClientRect().left,
                   top: rect.top - containerRef.current!.getBoundingClientRect().top,
                   width: rect.width,
                   height: rect.height,
-                  zIndex: isHighlighted ? 20 : 10
+                  zIndex: isHighlighted ? 25 : 15
                 }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isHighlighted ? 0.8 : 0.3 }}
-                transition={{ duration: 0.15 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{
+                  opacity: isHighlighted ? 0.95 : 0.5,
+                  scale: isHighlighted ? 1.02 : 1,
+                  y: isHighlighted ? -1 : 0
+                }}
+                transition={{
+                  duration: 0.2,
+                  ease: 'easeOut',
+                  type: 'spring',
+                  stiffness: 400,
+                  damping: 25
+                }}
                 onClick={() => onWordClick?.(timing.wordIndex)}
               >
                 <span className="invisible">{timing.word}</span>
@@ -201,9 +233,30 @@ const ParagraphRenderer = React.memo<{
           onWordClick={onWordClick}
         />
       ) : (
-        // Simple text rendering for memory efficiency
+        // Simple text rendering for memory efficiency with sentence highlighting
         <div className="prose max-w-none text-gray-800 leading-relaxed">
-          {paragraph.content}
+          {paragraph.sentences.map((sentence, index) => {
+            const isCurrentSentence = sentence.id === currentSentenceId;
+            return (
+              <span
+                key={sentence.id}
+                data-sentence-id={sentence.id}
+                className={`sentence ${isCurrentSentence ? 'current-sentence' : ''}`}
+                style={{
+                  backgroundColor: isCurrentSentence ? 'rgba(59, 130, 246, 0.3)' : 'transparent',
+                  borderRadius: isCurrentSentence ? '6px' : '0',
+                  padding: isCurrentSentence ? '4px 6px' : '0',
+                  border: isCurrentSentence ? '2px solid rgba(59, 130, 246, 0.5)' : '2px solid transparent',
+                  fontWeight: isCurrentSentence ? '600' : '400',
+                  transform: isCurrentSentence ? 'scale(1.01)' : 'scale(1)',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {sentence.text}
+                {index < paragraph.sentences.length - 1 ? ' ' : ''}
+              </span>
+            );
+          })}
         </div>
       )}
     </div>
@@ -257,24 +310,42 @@ export const VirtualizedReader: React.FC<VirtualizedReaderProps> = ({
     }
   }, [onSentenceVisible]);
 
-  // Auto-scroll disabled to prevent jumping behavior during manual scrolling
-  // TODO: Implement smart auto-scroll that only activates during audio playback
-  /*
+  // Auto-scroll during audio playback
   useEffect(() => {
-    if (!currentSentenceId || !featureFlags.virtualizedScrolling) return;
+    console.log(`🔄 Auto-scroll check: sentenceId=${currentSentenceId}, virtualizedScrolling=${featureFlags.virtualizedScrolling}`);
 
-    const sentenceParagraphIndex = paragraphs.findIndex(p =>
-      p.sentences.some(s => s.id === currentSentenceId)
-    );
-
-    if (sentenceParagraphIndex >= 0) {
-      virtualizer.scrollToIndex(sentenceParagraphIndex, {
-        align: 'center',
-        behavior: 'smooth'
-      });
+    if (!currentSentenceId || !featureFlags.virtualizedScrolling) {
+      console.log(`🔄 Auto-scroll skipped: sentenceId=${!!currentSentenceId}, virtualizedScrolling=${featureFlags.virtualizedScrolling}`);
+      return;
     }
+
+    // For continuous reading, scroll to the sentence element directly
+    setTimeout(() => {
+      const sentenceElement = document.querySelector(`[data-sentence-id="${currentSentenceId}"]`);
+      if (sentenceElement) {
+        console.log(`🔄 Auto-scrolling to sentence element: ${currentSentenceId}`);
+        sentenceElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'nearest'
+        });
+      } else {
+        console.log(`🔄 Sentence element not found: ${currentSentenceId}`);
+        // Fallback to paragraph scrolling
+        const sentenceParagraphIndex = paragraphs.findIndex(p =>
+          p.sentences.some(s => s.id === currentSentenceId)
+        );
+
+        if (sentenceParagraphIndex >= 0) {
+          console.log(`🔄 Fallback: Auto-scrolling to paragraph ${sentenceParagraphIndex}`);
+          virtualizer.scrollToIndex(sentenceParagraphIndex, {
+            align: 'center',
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, 200);
   }, [currentSentenceId, paragraphs, virtualizer, featureFlags.virtualizedScrolling]);
-  */
 
   if (!featureFlags.virtualizedScrolling) {
     // Fallback to simple rendering
