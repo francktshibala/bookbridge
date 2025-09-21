@@ -60,9 +60,9 @@ const HighlightOverlay: React.FC<HighlightOverlayProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [wordRects, setWordRects] = useState<Map<number, DOMRect>>(new Map());
 
-  // Calculate word positions when paragraph changes
+  // Calculate word positions when paragraph changes - memory optimized
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !currentSentenceId || !highlightedWordIndex) return; // Only calculate when highlighting needed
 
     const textNode = containerRef.current.querySelector('[data-text]');
     if (!textNode) return;
@@ -70,24 +70,31 @@ const HighlightOverlay: React.FC<HighlightOverlayProps> = ({
     const range = document.createRange();
     const newWordRects = new Map<number, DOMRect>();
 
-    // Split text into words and measure positions
+    // Only calculate positions for words in current sentence to save memory
+    const currentSentence = paragraph.sentences.find(s => s.id === currentSentenceId);
+    if (!currentSentence?.wordTimings) return;
+
     const words = paragraph.content.split(/\s+/);
     let charIndex = 0;
 
-    words.forEach((word, wordIndex) => {
-      try {
-        range.setStart(textNode.firstChild!, charIndex);
-        range.setEnd(textNode.firstChild!, charIndex + word.length);
-        const rect = range.getBoundingClientRect();
-        newWordRects.set(wordIndex, rect);
-      } catch (error) {
-        // Skip problematic ranges
+    // Only measure words that have timing data
+    currentSentence.wordTimings.forEach((timing) => {
+      if (timing.wordIndex < words.length) {
+        try {
+          const wordStartIndex = words.slice(0, timing.wordIndex).join(' ').length + (timing.wordIndex > 0 ? 1 : 0);
+          const word = words[timing.wordIndex];
+          range.setStart(textNode.firstChild!, wordStartIndex);
+          range.setEnd(textNode.firstChild!, wordStartIndex + word.length);
+          const rect = range.getBoundingClientRect();
+          newWordRects.set(timing.wordIndex, rect);
+        } catch (error) {
+          // Skip problematic ranges
+        }
       }
-      charIndex += word.length + 1; // +1 for space
     });
 
     setWordRects(newWordRects);
-  }, [paragraph.content]);
+  }, [paragraph.content, currentSentenceId]);
 
   const currentSentence = paragraph.sentences.find(s => s.id === currentSentenceId);
 
@@ -142,7 +149,7 @@ const HighlightOverlay: React.FC<HighlightOverlayProps> = ({
 };
 
 /**
- * Individual paragraph renderer with performance optimizations
+ * Individual paragraph renderer with aggressive memory optimizations
  */
 const ParagraphRenderer = React.memo<{
   paragraph: Paragraph;
@@ -177,18 +184,28 @@ const ParagraphRenderer = React.memo<{
     return () => observer.disconnect();
   }, [onVisible]);
 
+  // Skip highlighting overlay if not needed to save memory
+  const showHighlighting = highlightedWordIndex !== undefined && currentSentenceId;
+
   return (
     <div
       ref={paragraphRef}
       className="paragraph-container mb-6 px-4"
       data-paragraph-id={paragraph.id}
     >
-      <HighlightOverlay
-        paragraph={paragraph}
-        currentSentenceId={currentSentenceId}
-        highlightedWordIndex={highlightedWordIndex}
-        onWordClick={onWordClick}
-      />
+      {showHighlighting ? (
+        <HighlightOverlay
+          paragraph={paragraph}
+          currentSentenceId={currentSentenceId}
+          highlightedWordIndex={highlightedWordIndex}
+          onWordClick={onWordClick}
+        />
+      ) : (
+        // Simple text rendering for memory efficiency
+        <div className="prose max-w-none text-gray-800 leading-relaxed">
+          {paragraph.content}
+        </div>
+      )}
     </div>
   );
 });
@@ -222,12 +239,12 @@ export const VirtualizedReader: React.FC<VirtualizedReaderProps> = ({
     return Math.max(60, lines * 24 + 32); // 24px line height + margins
   }, [paragraphs, isMobile]);
 
-  // Virtual scrolling with performance optimization
+  // Ultra-aggressive memory optimization for mobile
   const virtualizer = useVirtualizer({
     count: paragraphs.length,
     getScrollElement: () => parentRef.current,
     estimateSize,
-    overscan: isMobile ? 3 : 5, // Fewer items on mobile for memory
+    overscan: isMobile ? 0 : 2, // Zero overscan on mobile for maximum memory savings
     getItemKey: index => paragraphs[index]?.id || index
   });
 
@@ -240,7 +257,9 @@ export const VirtualizedReader: React.FC<VirtualizedReaderProps> = ({
     }
   }, [onSentenceVisible]);
 
-  // Auto-scroll to current sentence
+  // Auto-scroll disabled to prevent jumping behavior during manual scrolling
+  // TODO: Implement smart auto-scroll that only activates during audio playback
+  /*
   useEffect(() => {
     if (!currentSentenceId || !featureFlags.virtualizedScrolling) return;
 
@@ -255,6 +274,7 @@ export const VirtualizedReader: React.FC<VirtualizedReaderProps> = ({
       });
     }
   }, [currentSentenceId, paragraphs, virtualizer, featureFlags.virtualizedScrolling]);
+  */
 
   if (!featureFlags.virtualizedScrolling) {
     // Fallback to simple rendering
@@ -265,8 +285,8 @@ export const VirtualizedReader: React.FC<VirtualizedReaderProps> = ({
             key={paragraph.id}
             paragraph={paragraph}
             currentSentenceId={currentSentenceId}
-            highlightedWordIndex={highlightedWordIndex}
-            onWordClick={onWordClick}
+            highlightedWordIndex={isMobile ? undefined : highlightedWordIndex}
+            onWordClick={isMobile ? undefined : onWordClick}
             onVisible={() => handleParagraphVisible(paragraph)}
           />
         ))}
@@ -308,8 +328,8 @@ export const VirtualizedReader: React.FC<VirtualizedReaderProps> = ({
               <ParagraphRenderer
                 paragraph={paragraph}
                 currentSentenceId={currentSentenceId}
-                highlightedWordIndex={highlightedWordIndex}
-                onWordClick={onWordClick}
+                highlightedWordIndex={isMobile ? undefined : highlightedWordIndex}
+                onWordClick={isMobile ? undefined : onWordClick}
                 onVisible={() => handleParagraphVisible(paragraph)}
               />
             </div>

@@ -75,6 +75,20 @@ export function isContinuousReadingEnabled(config: FeatureFlagConfig = {}): bool
 }
 
 /**
+ * Check if continuous reading is enabled for a specific book
+ * Currently only enabled for Yellow Wallpaper in development
+ */
+export function isContinuousReadingEnabledForBook(bookId: string, userId?: string): boolean {
+  // Only enable for Yellow Wallpaper in development
+  if (process.env.NODE_ENV === 'development' && bookId === 'gutenberg-1952') {
+    return true;
+  }
+
+  // Future: Add user-specific rollout logic here
+  return false;
+}
+
+/**
  * Environment-based flag checking
  */
 export const FEATURE_FLAGS = {

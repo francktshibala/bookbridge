@@ -36,6 +36,18 @@ export function useGentleAutoScroll({
   const minScrollIntervalMs = 5000;      // Do not scroll more often than every 5 seconds
 
   useEffect(() => {
+    // Early exit: do nothing if not enabled or not playing
+    if (!enabled || !isPlaying) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🎯 useGentleAutoScroll: INACTIVE', { enabled, isPlaying });
+      }
+      return;
+    }
+
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🎯 useGentleAutoScroll: ACTIVE', { enabled, isPlaying });
+    }
+
     // Page transition reset
     if (text !== lastTextRef.current) {
       lastTextRef.current = text;
@@ -54,20 +66,10 @@ export function useGentleAutoScroll({
       const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
       sentencesRef.current = sentences;
 
-      // Scroll to top of new page (small offset)
-      setTimeout(() => {
-        const contentEl = document.querySelector('[data-content="true"]');
-        if (contentEl) {
-          const rect = (contentEl as HTMLElement).getBoundingClientRect();
-          const target = rect.top + window.scrollY - 120;
-          window.scrollTo({ top: Math.max(0, target), behavior: 'instant' as ScrollBehavior });
-        }
-      }, 100);
-
       return; // Do not continue processing this frame after a reset
     }
 
-    if (!enabled || !text) {
+    if (!text) {
       return;
     }
 

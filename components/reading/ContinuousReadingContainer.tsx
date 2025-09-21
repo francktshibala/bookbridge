@@ -87,21 +87,39 @@ export const ContinuousReadingContainer: React.FC<ContinuousReadingContainerProp
   const prefetchManagerRef = useRef<MobilePrefetchManager | undefined>(undefined);
   const performanceMonitorRef = useRef<MobilePerformanceMonitor | undefined>(undefined);
 
-  // Initialize managers
+  // Initialize managers and scroll restoration
   useEffect(() => {
     if (!featureFlags.continuousReading) return;
 
-    audioManagerRef.current = new GaplessAudioManager();
-    prefetchManagerRef.current = new MobilePrefetchManager();
-    performanceMonitorRef.current = new MobilePerformanceMonitor();
+    // Disable browser scroll restoration for smooth continuous reading
+    const originalScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
 
-    // Start performance monitoring
-    performanceMonitorRef.current.startMonitoring();
+    // Debug scroll tracking disabled for build compatibility
+
+    // Only initialize if not already initialized
+    if (!audioManagerRef.current) {
+      audioManagerRef.current = new GaplessAudioManager();
+    }
+    if (!prefetchManagerRef.current) {
+      prefetchManagerRef.current = new MobilePrefetchManager();
+    }
+    if (!performanceMonitorRef.current) {
+      performanceMonitorRef.current = new MobilePerformanceMonitor();
+      // Start performance monitoring only once
+      performanceMonitorRef.current.startMonitoring();
+    }
 
     return () => {
+      // Restore original scroll restoration behavior
+      window.history.scrollRestoration = originalScrollRestoration;
+
       audioManagerRef.current?.destroy();
+      audioManagerRef.current = undefined;
       prefetchManagerRef.current?.destroy();
+      prefetchManagerRef.current = undefined;
       performanceMonitorRef.current?.destroy();
+      performanceMonitorRef.current = undefined;
     };
   }, [featureFlags.continuousReading]);
 
@@ -117,27 +135,37 @@ export const ContinuousReadingContainer: React.FC<ContinuousReadingContainerProp
     try {
       const newParagraphs: Paragraph[] = [];
 
-      for (const chunk of bookContent.chunks) {
+      // Process only visible chunks to reduce memory footprint
+      const visibleChunkRange = 3; // Only process current chunk ± 1 for memory efficiency
+      const startChunk = Math.max(0, currentChunk - 1);
+      const endChunk = Math.min(bookContent.chunks.length - 1, currentChunk + 1);
+
+      for (let chunkIdx = startChunk; chunkIdx <= endChunk; chunkIdx++) {
+        const chunk = bookContent.chunks[chunkIdx];
+        if (!chunk) continue;
+
         // Split chunk content into paragraphs
         const paragraphTexts = chunk.content
           .split(/\n\s*\n/)
-          .filter(p => p.trim().length > 0);
+          .filter(p => p.trim().length > 0)
+          .slice(0, 20); // Limit to first 20 paragraphs per chunk for memory
 
         for (let i = 0; i < paragraphTexts.length; i++) {
           const paragraphText = paragraphTexts[i].trim();
 
-          // Split paragraph into sentences
+          // Simplified sentence splitting for memory efficiency
           const sentences = paragraphText
             .split(/(?<=[.!?])\s+/)
             .filter(s => s.trim().length > 0)
+            .slice(0, 10) // Limit sentences per paragraph
             .map((sentenceText, sentenceIndex) => {
               const sentence: Sentence = {
                 id: `${chunk.chunkIndex}-${i}-${sentenceIndex}`,
                 text: sentenceText.trim(),
-                startIndex: 0, // Will be calculated properly in production
+                startIndex: 0,
                 endIndex: sentenceText.length,
-                // Audio URL will be loaded on demand
-                audioUrl: `/api/books/${bookContent.id}/sentence-audio?chunk=${chunk.chunkIndex}&paragraph=${i}&sentence=${sentenceIndex}&level=${eslLevel}&voice=${selectedVoice}`
+                // Lazy load audio URLs only when needed
+                audioUrl: undefined
               };
 
               return sentence;
@@ -178,7 +206,7 @@ export const ContinuousReadingContainer: React.FC<ContinuousReadingContainerProp
     } finally {
       setLoading(false);
     }
-  }, [bookContent, currentChunk, eslLevel, selectedVoice, featureFlags]);
+  }, [bookContent?.chunks, bookContent?.id, currentChunk, eslLevel, selectedVoice, featureFlags?.predictivePrefetch]);
 
   // Convert chunks when content changes
   useEffect(() => {
@@ -199,7 +227,7 @@ export const ContinuousReadingContainer: React.FC<ContinuousReadingContainerProp
     if (paragraph && paragraph.chunkIndex !== currentChunk) {
       onChunkChange(paragraph.chunkIndex);
     }
-  }, [paragraphs, currentChunk, onChunkChange]);
+  }, [paragraphs.length, currentChunk, onChunkChange]);
 
   /**
    * Handle word click for seeking
@@ -213,7 +241,7 @@ export const ContinuousReadingContainer: React.FC<ContinuousReadingContainerProp
   }, [onWordHighlight]);
 
   /**
-   * Handle audio playback
+   * Handle audio playback with lazy URL loading
    */
   const handleAudioPlayback = useCallback(async () => {
     if (!audioManagerRef.current || !currentSentenceId) return;
@@ -222,7 +250,13 @@ export const ContinuousReadingContainer: React.FC<ContinuousReadingContainerProp
       .flatMap(p => p.sentences)
       .find(s => s.id === currentSentenceId);
 
-    if (!currentSentence?.audioUrl) return;
+    if (!currentSentence) return;
+
+    // Generate audio URL on demand to save memory
+    if (!currentSentence.audioUrl) {
+      const [chunkIndex, paragraphIndex, sentenceIndex] = currentSentence.id.split('-').map(Number);
+      currentSentence.audioUrl = `/api/books/${bookContent.id}/sentence-audio?chunk=${chunkIndex}&paragraph=${paragraphIndex}&sentence=${sentenceIndex}&level=${eslLevel}&voice=${selectedVoice}`;
+    }
 
     const startTime = performance.now();
 
@@ -258,7 +292,7 @@ export const ContinuousReadingContainer: React.FC<ContinuousReadingContainerProp
       console.error('Audio playback failed:', error);
       setError('Audio playback failed');
     }
-  }, [audioManagerRef, currentSentenceId, paragraphs, featureFlags]);
+  }, [currentSentenceId, paragraphs.length, featureFlags?.gaplessAudio]);
 
   // Handle play state changes
   useEffect(() => {

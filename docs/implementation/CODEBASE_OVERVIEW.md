@@ -498,6 +498,48 @@ Standard voices → Premium AI voice marketplace
 
 ---
 
+### **📚 Continuous Reading Strategy (January 2025 Update)**
+
+#### **Current Enhanced Books (Fake Continuous Approach)**
+**Problem**: 10 enhanced books have chunk-based structure incompatible with true continuous reading
+**Solution**: Implement "fake continuous" reading with clever preloading
+
+**Implementation Strategy**:
+1. **Invisible Preloading**: Load next 2-3 chunks in hidden DOM elements
+2. **Sequential Rendering**: Stack chunks vertically without visible boundaries
+3. **Audio Crossfading**: Smooth 100ms crossfade between chunk audio files
+4. **Scroll Continuity**: User scrolls naturally through preloaded content
+5. **Memory Management**: Only keep 5 chunks in memory (current ± 2)
+
+**Expected Result**: 90% of Speechify experience without regenerating existing books
+**Timeline**: 1-2 weeks implementation
+**Memory Impact**: ~50MB (5 chunks × 10MB average)
+
+#### **Future Books (True Continuous Reading)**
+**Requirement**: Generate new books with sentence-level structure from the start
+
+**Content Generation Requirements**:
+1. **Sentence-Level Audio**: Individual audio file per sentence
+2. **Word Timings**: Precise timestamps for each word
+3. **No Intro Phrases**: Clean audio without "Here is the simplified version..."
+4. **Continuous Text Storage**: Full text in database, not chunked
+5. **Proper Boundaries**: Sentence markers for smooth transitions
+
+**System Components** (Already Built):
+- `VirtualizedReader.tsx`: Handles infinite scroll
+- `GaplessAudioManager.ts`: Manages seamless audio
+- `MobilePrefetchManager.ts`: Smart content loading
+- `ContinuousReadingContainer.tsx`: Integration layer
+
+**Expected Result**: 100% Speechify-level experience
+**Timeline**: 2-3 weeks for generation pipeline + integration
+**Memory Impact**: <100MB with proper virtualization
+
+#### **Implementation Documentation**
+**Fake Continuous Plan**: See `/docs/implementation/FAKE_CONTINUOUS_PLAN.md` for GPT-5 approved strategy for current enhanced books. This approach delivers 90% Speechify experience by preloading chunks invisibly and crossfading audio without regenerating existing content structure.
+
+---
+
 ### **📚 Critical Research Needed: Text Simplification Quality**
 
 **URGENT INVESTIGATION REQUIRED**: Deep analysis of simplification accuracy and accessibility
