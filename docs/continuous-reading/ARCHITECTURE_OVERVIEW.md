@@ -203,6 +203,8 @@ docs/continuous-reading/
 ├── IMPLEMENTATION_CHECKLIST.md    -- START HERE: Complete workflow for new agents
 ├── LESSONS_LEARNED.md              -- Complete implementation guide
 ├── ARCHITECTURE_OVERVIEW.md        -- This file (technical deep-dive)
+├── IMPROVEMENT_ROADMAP.md          -- Scalability solutions and enhancements
+├── ALTERNATIVE_ARCHITECTURES.md    -- Plan B & C if current approach fails
 └── test-results/                   -- Validation documentation
 
 components/reading/
