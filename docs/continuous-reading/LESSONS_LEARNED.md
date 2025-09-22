@@ -70,16 +70,92 @@ for (let i = 0; i < currentSentenceIndex; i++) {
 globalWordIndex += currentWordInSentence;
 ```
 
+### 6. Bundle Generation Variable Scope Issue (Week 3)
+**Problem:** Bundle generation script failed with "ReferenceError: compressedPath is not defined"
+**Root Cause:** Variable declared inside try block but referenced outside in cleanup
+**Solution:** Declare variables outside try block and handle null cases
+```javascript
+// Before (broken)
+try {
+  const compressedPath = path.join(bundleTempDir, `${bundleId}_compressed.mp3`);
+  // ... compression logic
+} catch (error) {
+  // Continue with uncompressed
+}
+this.cleanupTempFiles([bundleOutputPath, compressedPath, ...sentenceFiles]); // ERROR
+
+// After (fixed)
+let compressedPath = null;
+try {
+  compressedPath = path.join(bundleTempDir, `${bundleId}_compressed.mp3`);
+  // ... compression logic
+} catch (error) {
+  compressedPath = null;
+}
+const filesToCleanup = [bundleOutputPath, ...sentenceFiles];
+if (compressedPath) filesToCleanup.push(compressedPath);
+this.cleanupTempFiles(filesToCleanup);
+```
+
+### 7. Real Book Bundle Architecture Success (Week 3)
+**Achievement:** Successfully applied bundle architecture to real book content (Moby Dick)
+**Key Success:** Moved from test data (44 sentences) to actual book content (75 sentences) with continuous reading
+**Implementation:** Used existing simplifications from gutenberg-2701, generated sentence-level bundles
+```javascript
+// Real book bundle generation pattern
+const BOOK_ID = 'gutenberg-2701';
+const SENTENCES_PER_BUNDLE = 4;
+
+// Sentence-level processing
+const sentences = this.splitIntoSentences(text);
+const bundles = [];
+for (let i = 0; i < sentences.length; i += SENTENCES_PER_BUNDLE) {
+  const bundleSentences = sentences.slice(i, i + SENTENCES_PER_BUNDLE);
+  bundles.push({
+    bundleIndex: Math.floor(i / SENTENCES_PER_BUNDLE),
+    sentences: bundleSentences
+  });
+}
+
+// Book-specific CDN paths (avoiding conflicts)
+const audioFileName = `${BOOK_ID}/${level}/${bundleId}.mp3`;
+```
+
+### 8. Missing BookContent Table Integration
+**Problem:** Real bundles API failed with "Book not found" despite successful bundle generation
+**Root Cause:** Bundle generation stored metadata but didn't create BookContent record
+**Solution:** Always upsert BookContent table when processing new books
+```javascript
+// Required for bundle API to work
+await prisma.bookContent.upsert({
+  where: { bookId: BOOK_ID },
+  update: {
+    title: 'Moby Dick (Chapters 1-8)',
+    author: 'Herman Melville',
+    fullText: simplification.simplifiedText,
+    era: 'modern',
+    wordCount: simplification.simplifiedText.split(' ').length,
+    totalChunks: 1
+  },
+  create: { /* same data */ }
+});
+```
+
 ## 📁 Files Modified/Created
 
 ### New Components
 - `components/reading/TestBookContinuousReader.tsx` - Main test component
 - `app/test-continuous-reading/page.tsx` - Test validation page
 - `app/api/test-book/sentences/route.ts` - Sentence data API
+- `app/test-real-bundles/page.tsx` - Real bundle audio test interface with resume functionality
+- `app/api/test-book/real-bundles/route.ts` - Real bundle data API
+- `lib/audio/BundleAudioManager.ts` - Bundle-specific audio manager
+- `scripts/generate-test-book-bundles.js` - Real bundled audio generator
+- `scripts/generate-gutenberg-2701-bundles.js` - Moby Dick bundle generator
 
 ### Enhanced Components
 - `components/reading/VirtualizedReader.tsx` - Added sentence rendering & auto-scroll
-- `lib/audio/GaplessAudioManager.ts` - Added `playAudio()` method for sentence-level
+- `lib/audio/GaplessAudioManager.ts` - Added `playAudio()` method for sentence-level + SlidingWindowManager
 - `scripts/generate-test-book-continuous.js` - Complete test book generator
 
 ### Architecture Files
@@ -121,18 +197,28 @@ if (sentenceElement) {
 
 ## 🎯 Success Metrics Achieved
 
+### ✅ COMPLETED - Week 3 Bundle Architecture
+- **Real book bundle generation** - Moby Dick (75 sentences, 19 bundles) ✅
+- **Resume playback functionality** - localStorage bookmark system ✅
+- **Database integration** - Both audio_assets and BookContent tables ✅
+- **Book-specific CDN paths** - Prevents audio conflicts ✅
+- **Bundle architecture validation** - True continuous reading achieved ✅
+
 ### User Experience
-- **Audio continuity:** 100% seamless sentence-to-sentence
-- **Visual feedback:** Strong highlighting visible to all users
-- **Mobile experience:** Optimized for 70% mobile user base
-- **Performance:** Within 100MB mobile memory limits
+- **Audio continuity:** 100% seamless sentence-to-sentence ✅
+- **Visual feedback:** Strong highlighting visible to all users ✅
+- **Mobile experience:** Optimized for 70% mobile user base ✅
+- **Performance:** Within 100MB mobile memory limits ✅
+- **Resume functionality:** Bookmark saves on pause, resumes perfectly ✅
 
 ### Technical Validation
-- **44 sentences tested** - all working continuously
-- **Auto-scroll working** - follows audio progression
-- **Word highlighting working** - real-time sync
-- **Mobile responsive** - perfect experience on mobile
-- **Play/pause controls** - instant response
+- **Test data:** 44 sentences (test book) - working ✅
+- **Real book data:** 75 sentences (Moby Dick) - working ✅
+- **Auto-scroll working** - follows audio progression ✅
+- **Word highlighting working** - real-time sync ✅
+- **Mobile responsive** - perfect experience on mobile ✅
+- **Play/pause controls** - instant response ✅
+- **Bundle API integration** - real-bundles endpoint working ✅
 
 ## 📋 Next Steps for Production
 
