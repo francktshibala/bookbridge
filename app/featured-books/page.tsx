@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 
 // Reuse the working types from test-real-bundles
@@ -29,10 +30,49 @@ interface RealBundleApiResponse {
   audioType: string;
 }
 
+// Featured books with bundle architecture
+interface FeaturedBook {
+  id: string;
+  title: string;
+  author: string;
+  description: string;
+  sentences: number;
+  bundles: number;
+  gradient: string;
+  abbreviation: string;
+}
+
+const FEATURED_BOOKS: FeaturedBook[] = [
+  {
+    id: 'test-continuous-bundles-001',
+    title: 'Test Book',
+    author: 'BookBridge Team',
+    description: 'Technical validation book with 44 sentences across 11 bundles. Proves bundle architecture works.',
+    sentences: 44,
+    bundles: 11,
+    gradient: 'from-blue-500 to-purple-600',
+    abbreviation: 'TB'
+  },
+  {
+    id: 'jane-eyre-scale-test-001',
+    title: 'Jane Eyre (Scale Test)',
+    author: 'Charlotte Brontë',
+    description: 'A1 simplified version with 100 sentences across 25 bundles. Scale test validation for bundle architecture.',
+    sentences: 100,
+    bundles: 25,
+    gradient: 'from-purple-500 to-pink-600',
+    abbreviation: 'JE'
+  }
+];
+
 export default function FeaturedBooksPage() {
+  // Book selection state
+  const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
+  const [showBookSelection, setShowBookSelection] = useState(true);
+
   // UI state
   const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
-  const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A2');
+  const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1');
 
   // Data state
   const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
@@ -52,11 +92,23 @@ export default function FeaturedBooksPage() {
   const handleNextBundleRef = useRef<() => void>(() => {});
   const isPlayingRef = useRef<boolean>(false); // Critical fix for React closure issue
 
-  // Get bookId from URL params
+  // Get bookId from selected book or URL params
   const getBookId = () => {
+    if (selectedBook) {
+      return selectedBook.id;
+    }
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      return params.get('bookId') || 'test-continuous-bundles-001';
+      const urlBookId = params.get('bookId');
+      if (urlBookId) {
+        // Auto-select book from URL
+        const book = FEATURED_BOOKS.find(b => b.id === urlBookId);
+        if (book) {
+          setSelectedBook(book);
+          setShowBookSelection(false);
+          return urlBookId;
+        }
+      }
     }
     return 'test-continuous-bundles-001';
   };
@@ -292,8 +344,125 @@ export default function FeaturedBooksPage() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Step 1: Just basic structure - mobile-first like wireframe */}
-      <div className="max-w-4xl mx-auto">
+      {/* Book Selection Screen */}
+      {showBookSelection && (
+        <div className="min-h-screen bg-gray-900 text-white">
+          <div className="max-w-6xl mx-auto px-4 py-8">
+
+            {/* Header */}
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                🎧 Featured Books
+              </h1>
+              <p className="text-gray-300 text-lg">
+                Experience true continuous reading with our bundle architecture
+              </p>
+              <div className="mt-4 px-4 py-2 bg-green-900/50 rounded-lg border border-green-500/30 inline-block">
+                <span className="text-green-300 text-sm font-medium">
+                  ✅ Speechify-Level Experience • Zero Audio Gaps • Resume Anywhere
+                </span>
+              </div>
+            </div>
+
+            {/* Featured Books Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              {FEATURED_BOOKS.map((book, index) => (
+                <motion.div
+                  key={book.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group cursor-pointer"
+                  onClick={() => {
+                    setSelectedBook(book);
+                    setShowBookSelection(false);
+                  }}
+                >
+                  <div className="bg-gray-800 rounded-xl border border-gray-700 hover:border-gray-600 transition-all duration-300 overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10">
+
+                    {/* Card Header with Gradient */}
+                    <div className={`h-32 bg-gradient-to-br ${book.gradient} relative`}>
+                      <div className="absolute inset-0 bg-black/20"></div>
+                      <div className="absolute top-4 left-4">
+                        <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                          <span className="text-white font-bold text-lg">{book.abbreviation}</span>
+                        </div>
+                      </div>
+                      <div className="absolute bottom-4 right-4 text-white/80 text-sm">
+                        {book.sentences} sentences • {book.bundles} bundles
+                      </div>
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-blue-300 transition-colors">
+                        {book.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm mb-3">by {book.author}</p>
+                      <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                        {book.description}
+                      </p>
+
+                      {/* Technical Features */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="px-2 py-1 bg-blue-900/50 text-blue-300 rounded text-xs">
+                          Bundle Architecture
+                        </span>
+                        <span className="px-2 py-1 bg-green-900/50 text-green-300 rounded text-xs">
+                          Continuous Reading
+                        </span>
+                        <span className="px-2 py-1 bg-purple-900/50 text-purple-300 rounded text-xs">
+                          Auto-Resume
+                        </span>
+                      </div>
+
+                      {/* Read Button */}
+                      <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-4 rounded-lg font-medium transition-all duration-200 transform group-hover:scale-[1.02]">
+                        🎧 Start Reading
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Info Section */}
+            <div className="bg-gray-800 rounded-xl border border-gray-700 p-6 text-center">
+              <h2 className="text-2xl font-semibold mb-4 text-white">
+                Why Featured Books?
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <div className="text-3xl mb-2">🚀</div>
+                  <h3 className="font-semibold text-white mb-2">Bundle Architecture</h3>
+                  <p className="text-gray-400 text-sm">
+                    4 sentences per audio file reduces CDN requests by 75%
+                  </p>
+                </div>
+                <div>
+                  <div className="text-3xl mb-2">🎵</div>
+                  <h3 className="font-semibold text-white mb-2">Zero Audio Gaps</h3>
+                  <p className="text-gray-400 text-sm">
+                    Seamless sentence-to-sentence playback like Speechify
+                  </p>
+                </div>
+                <div>
+                  <div className="text-3xl mb-2">📱</div>
+                  <h3 className="font-semibold text-white mb-2">Any Scale</h3>
+                  <p className="text-gray-400 text-sm">
+                    Memory usage stays constant regardless of book size
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* Reading Interface */}
+      {!showBookSelection && selectedBook && (
+        <div className="max-w-4xl mx-auto">
 
         {/* Header - Speechify Style (from wireframe) */}
         <div className="bg-gray-800 border-b border-gray-700">
@@ -301,7 +470,14 @@ export default function FeaturedBooksPage() {
 
             {/* Row 1: Back, Toggle, Settings */}
             <div className="flex items-center justify-between mb-4">
-              <button className="flex items-center text-gray-300 hover:text-white">
+              <button
+                onClick={() => {
+                  setShowBookSelection(true);
+                  setSelectedBook(null);
+                  handleStop();
+                }}
+                className="flex items-center text-gray-300 hover:text-white"
+              >
                 ← {/* Back arrow */}
               </button>
 
@@ -382,7 +558,7 @@ export default function FeaturedBooksPage() {
           {loading && (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
-              <p className="text-gray-400">Loading Moby Dick bundles...</p>
+              <p className="text-gray-400">Loading {selectedBook?.title} bundles...</p>
             </div>
           )}
 
@@ -508,7 +684,8 @@ export default function FeaturedBooksPage() {
           </div>
         </div>
 
-      </div>
+        </div>
+      )}
     </div>
   );
 }
