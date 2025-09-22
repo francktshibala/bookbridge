@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Return audio blob as response
-    return new Response(audioData.audioBlob, {
+    return new Response(audioData.audioBlob as BodyInit, {
       headers: {
         'Content-Type': 'audio/mpeg',
         'Content-Length': audioData.audioBlob.length.toString(),

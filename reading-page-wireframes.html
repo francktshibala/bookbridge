@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookBridge ESL - Reading Page Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* BookBridge Brand Colors */
+        :root {
+            --brand-primary: #667eea;
+            --brand-secondary: #764ba2;
+            --brand-accent: #f093fb;
+            --background-dark: #0f172a;
+            --surface-dark: #1e293b;
+            --surface-elevated: #334155;
+            --text-light: #e2e8f0;
+            --text-muted: #94a3b8;
+            --brand-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%);
+            background-attachment: fixed;
+            padding: 20px;
+            color: #ffffff;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--surface-dark);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 18px;
+        }
+
+        .designs-container {
+            display: grid;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .design-section {
+            background: var(--surface-dark);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .design-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .design-title {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .design-description {
+            color: var(--text-light);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .devices {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .device-wrapper {
+            position: relative;
+        }
+
+        .device-label {
+            font-size: 14px;
+            color: var(--brand-primary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Mobile Frame */
+        .mobile-frame {
+            width: 375px;
+            height: 812px;
+            border: 12px solid #1d1d1f;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
+            background: var(--background-dark);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        .mobile-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #1d1d1f;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        /* Desktop Frame */
+        .desktop-frame {
+            width: 100%;
+            max-width: 900px;
+            height: 600px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--surface-dark);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Design 1: Minimalist */
+        .minimalist-mobile {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: var(--background-dark);
+        }
+
+        .minimalist-content-wrapper {
+            flex: 1;
+            padding: 20px 16px;
+            background: var(--background-dark);
+            overflow-y: auto;
+            padding-bottom: 120px;
+        }
+
+        .minimalist-header {
+            padding: 50px 20px 0;
+            background: var(--surface-dark);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .original-simplified-toggle {
+            display: flex;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+            padding: 2px;
+        }
+
+        .toggle-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-light);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .toggle-btn.active {
+            background: var(--brand-gradient);
+            color: white;
+        }
+
+        .toggle-btn:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        .cefr-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .cefr-selector {
+            display: flex;
+            gap: 6px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .cefr-btn {
+            padding: 6px 12px;
+            font-size: 13px;
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-light);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            min-width: 36px;
+        }
+
+        .cefr-btn.active {
+            background: var(--brand-gradient);
+            color: white;
+        }
+
+        .cefr-btn:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        .back-arrow {
+            width: 24px;
+            height: 24px;
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
+        .settings-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
+        .minimalist-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .book-title {
+            font-size: 14px;
+            color: var(--brand-primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .chapter-title {
+            font-size: 24px;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .reading-text {
+            font-size: 22px;
+            line-height: 1.7;
+            color: var(--text-light);
+            font-family: 'Georgia', serif;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .reading-text p {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .reading-text .highlight {
+            background: linear-gradient(to right, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.2));
+            padding: 2px 0;
+            border-radius: 3px;
+            color: #ffffff;
+        }
+
+        .minimalist-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, var(--background-dark) 80%, transparent);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .control-btn-small {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface-elevated);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .control-btn-small:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .play-btn-large {
+            width: 56px;
+            height: 56px;
+            background: var(--brand-gradient);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--surface-elevated);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: var(--brand-gradient);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 100px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 35%;
+            background: var(--brand-gradient);
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Design 2: Modern Reader */
+        .modern-mobile {
+            height: 100%;
+            background: var(--background-dark);
+        }
+
+        .modern-header {
+            background: var(--brand-gradient);
+            padding: 50px 20px 30px;
+            color: white;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .modern-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .level-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .modern-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .modern-author {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .modern-content {
+            padding: 30px 24px;
+            background: var(--surface-dark);
+            margin: -20px 15px 0;
+            border-radius: 20px 20px 0 0;
+            min-height: calc(100% - 180px);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .modern-text {
+            font-size: 18px;
+            line-height: 1.75;
+            color: var(--text-light);
+            font-family: 'Palatino', 'Georgia', serif;
+        }
+
+        .modern-text p {
+            margin-bottom: 20px;
+        }
+
+        .floating-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--surface-elevated);
+            border-radius: 30px;
+            padding: 10px 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .floating-btn {
+            color: white;
+            font-size: 18px;
+            padding: 8px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .floating-btn:hover {
+            opacity: 1;
+        }
+
+        /* Design 3: Hybrid */
+        .hybrid-mobile {
+            height: 100%;
+            background: var(--background-dark);
+        }
+
+        .hybrid-header {
+            background: var(--surface-dark);
+            padding: 50px 20px 20px;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hybrid-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .chapter-indicator {
+            font-size: 12px;
+            color: var(--text-light);
+            background: rgba(102, 126, 234, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .hybrid-title {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .reading-progress {
+            font-size: 13px;
+            color: var(--brand-primary);
+        }
+
+        .hybrid-content {
+            padding: 25px 20px;
+            height: calc(100% - 200px);
+            overflow-y: auto;
+        }
+
+        .hybrid-text {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text-light);
+            background: var(--surface-elevated);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .hybrid-controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--surface-dark);
+            padding: 15px 20px;
+            border-top: 1px solid rgba(102, 126, 234, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .play-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .skip-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--surface-elevated);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .main-play-btn {
+            width: 56px;
+            height: 56px;
+            background: var(--brand-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+        }
+
+        .time-display {
+            text-align: right;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Desktop Styles */
+        .desktop-content {
+            height: 100%;
+            display: flex;
+        }
+
+        .desktop-sidebar {
+            width: 250px;
+            background: var(--surface-dark);
+            padding: 30px 20px;
+            border-right: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .desktop-main {
+            flex: 1;
+            padding: 40px 60px;
+            overflow-y: auto;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .desktop-text {
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        /* Features comparison */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5ea;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .feature-icon {
+            color: var(--brand-primary);
+            font-weight: bold;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .devices {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .mobile-frame {
+                margin: 0 auto;
+            }
+        }
+
+        .selection-prompt {
+            background: var(--brand-gradient);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .selection-prompt h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .selection-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .select-btn {
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .select-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 BookBridge ESL Reading Page Designs</h1>
+        <p class="subtitle">Three Professional Designs for the Ultimate Reading Experience</p>
+    </div>
+
+    <!-- Design 1: Minimalist -->
+    <div class="design-section">
+        <div class="design-header">
+            <h2 class="design-title">Option 1: Minimalist (Speechify-Inspired)</h2>
+            <p class="design-description">
+                Clean, distraction-free reading with floating controls that disappear when not needed.
+                Text takes center stage with beautiful typography. Invisible bundle boundaries create seamless flow.
+            </p>
+        </div>
+
+        <div class="devices">
+            <!-- Mobile Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Mobile (90% of users)</div>
+                <div class="mobile-frame">
+                    <div class="mobile-notch"></div>
+                    <div class="minimalist-mobile">
+                        <div class="minimalist-header">
+                            <div class="header-top">
+                                <div class="back-arrow">←</div>
+                                <div class="original-simplified-toggle">
+                                    <button class="toggle-btn">Original</button>
+                                    <button class="toggle-btn active">Simplified</button>
+                                </div>
+                                <div class="settings-icon">⚙️</div>
+                            </div>
+
+                            <div class="cefr-section">
+                                <div class="cefr-selector">
+                                    <button class="cefr-btn">A1</button>
+                                    <button class="cefr-btn">A2</button>
+                                    <button class="cefr-btn">B1</button>
+                                    <button class="cefr-btn active">B2</button>
+                                    <button class="cefr-btn">C1</button>
+                                    <button class="cefr-btn">C2</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="minimalist-content">
+                            <div class="minimalist-content-wrapper">
+                                <div class="book-title">MOBY DICK</div>
+                                <div class="chapter-title">Chapter 1: Loomings</div>
+
+                                <div class="reading-text">
+                                    <p><span class="highlight">Call me Ishmael.</span> Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore.</p>
+
+                                    <p>I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation.</p>
+
+                                    <p>Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses.</p>
+
+                                    <p>And bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill"></div>
+                        </div>
+
+                        <div class="minimalist-controls">
+                            <div class="control-btn-small" style="font-size: 14px; padding: 0 8px; border-radius: 22px; width: auto; min-width: 44px;">1.0x</div>
+                            <div class="control-btn-small">⏮</div>
+                            <div class="control-btn-small play-btn-large">▶️</div>
+                            <div class="control-btn-small">⏭</div>
+                            <div class="control-btn-small" style="font-size: 14px;">🎤</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Desktop</div>
+                <div class="desktop-frame">
+                    <div class="desktop-content">
+                        <div class="desktop-main" style="max-width: 100%; padding: 60px 80px;">
+                            <div style="max-width: 700px; margin: 0 auto;">
+                                <div style="margin-bottom: 30px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                        <div class="book-title" style="font-size: 16px;">MOBY DICK</div>
+                                        <div class="original-simplified-toggle" style="display: inline-flex;">
+                                            <button class="toggle-btn">Original</button>
+                                            <button class="toggle-btn active">Simplified</button>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex; justify-content: center;">
+                                        <div class="cefr-selector" style="display: inline-flex;">
+                                            <button class="cefr-btn">A1</button>
+                                            <button class="cefr-btn">A2</button>
+                                            <button class="cefr-btn">B1</button>
+                                            <button class="cefr-btn active">B2</button>
+                                            <button class="cefr-btn">C1</button>
+                                            <button class="cefr-btn">C2</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chapter-title" style="font-size: 36px; margin-bottom: 40px; color: #ffffff;">Chapter 1: Loomings</div>
+
+                                <div style="background: var(--surface-elevated); padding: 40px; border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.1); box-shadow: 0 1px 3px rgba(0,0,0,0.2);">
+                                    <div class="desktop-text">
+                                        <p style="margin-bottom: 25px;"><span class="highlight">Call me Ishmael.</span> Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.</p>
+
+                                        <p style="margin-bottom: 25px;">It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul.</p>
+                                    </div>
+                                </div>
+
+                                <div style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; align-items: center; background: var(--surface-elevated); padding: 15px 30px; border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border: 1px solid rgba(102, 126, 234, 0.2);">
+                                    <div style="padding: 8px 12px; background: rgba(102, 126, 234, 0.1); border-radius: 20px; color: var(--text-light); font-size: 14px; cursor: pointer;">1.0x</div>
+                                    <div class="control-btn">⏮</div>
+                                    <div class="control-btn play-btn" style="width: 60px; height: 60px;">▶️</div>
+                                    <div class="control-btn">⏭</div>
+                                    <div class="control-btn" style="font-size: 18px;">🎤</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Invisible bundle boundaries</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Auto-hiding controls</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Premium typography</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Distraction-free reading</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 2: Modern Reader -->
+    <div class="design-section">
+        <div class="design-header">
+            <h2 class="design-title">Option 2: Modern Reader (Magazine-Style)</h2>
+            <p class="design-description">
+                Bold, modern design with gradient headers and card-based content. Floating pill controls,
+                CEFR level badges, and smooth transitions. Perfect for younger audiences.
+            </p>
+        </div>
+
+        <div class="devices">
+            <!-- Mobile Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Mobile (90% of users)</div>
+                <div class="mobile-frame">
+                    <div class="mobile-notch"></div>
+                    <div class="modern-mobile">
+                        <div class="modern-header">
+                            <div class="modern-meta">
+                                <span>Chapter 1 of 135</span>
+                                <span class="level-badge">B2 LEVEL</span>
+                            </div>
+                            <div class="modern-title">Moby Dick</div>
+                            <div class="modern-author">by Herman Melville</div>
+                        </div>
+
+                        <div class="modern-content">
+                            <div class="modern-text">
+                                <p>Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore.</p>
+
+                                <p>I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation.</p>
+
+                                <p>Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses.</p>
+                            </div>
+                        </div>
+
+                        <div class="floating-controls">
+                            <span class="floating-btn" style="font-size: 14px; padding: 6px 10px;">1.0x</span>
+                            <span class="floating-btn" style="font-size: 18px;">⏮</span>
+                            <span class="floating-btn" style="font-size: 24px; background: var(--brand-gradient); border-radius: 50%; padding: 10px;">▶️</span>
+                            <span class="floating-btn" style="font-size: 18px;">⏭</span>
+                            <span class="floating-btn" style="font-size: 16px;">📖</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Desktop</div>
+                <div class="desktop-frame">
+                    <div style="height: 100%; background: var(--background-dark);">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; color: white;">
+                            <div style="max-width: 800px; margin: 0 auto;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                    <span style="font-size: 18px;">Chapter 1 of 135</span>
+                                    <span style="background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-weight: 600;">B2 LEVEL</span>
+                                </div>
+                                <h1 style="font-size: 42px; margin-bottom: 10px;">Moby Dick</h1>
+                                <p style="font-size: 18px; opacity: 0.9;">by Herman Melville</p>
+                            </div>
+                        </div>
+
+                        <div style="max-width: 800px; margin: -30px auto 0; background: var(--surface-dark); padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border: 1px solid rgba(102, 126, 234, 0.1);">
+                            <div class="desktop-text">
+                                <p style="margin-bottom: 25px;">Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.</p>
+
+                                <p>It is a way I have of driving off the spleen and regulating the circulation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Modern gradient design</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>CEFR level badges</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Floating pill controls</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Card-based layout</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 3: Hybrid -->
+    <div class="design-section">
+        <div class="design-header">
+            <h2 class="design-title">Option 3: Hybrid (Clean & Familiar)</h2>
+            <p class="design-description">
+                Balanced approach combining clean aesthetics with familiar controls. Fixed bottom bar with
+                smart controls, chapter progress indicators, and comfortable reading experience.
+            </p>
+        </div>
+
+        <div class="devices">
+            <!-- Mobile Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Mobile (90% of users)</div>
+                <div class="mobile-frame">
+                    <div class="mobile-notch"></div>
+                    <div class="hybrid-mobile">
+                        <div class="hybrid-header">
+                            <div class="hybrid-nav">
+                                <span style="font-size: 18px;">←</span>
+                                <span class="chapter-indicator">Chapter 1 / 135</span>
+                                <span style="font-size: 18px;">Aa</span>
+                            </div>
+                            <div class="hybrid-title">Moby Dick</div>
+                            <div class="reading-progress">B2 Level • 35% complete</div>
+                        </div>
+
+                        <div class="hybrid-content">
+                            <div class="hybrid-text">
+                                <p style="margin-bottom: 18px;">Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.</p>
+
+                                <p style="margin-bottom: 18px;">It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul.</p>
+
+                                <p>Whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me.</p>
+                            </div>
+                        </div>
+
+                        <div class="hybrid-controls">
+                            <div class="speed-control">
+                                <span>Speed</span>
+                                <strong>1.0x</strong>
+                            </div>
+                            <div class="play-controls">
+                                <div class="skip-btn">⏮</div>
+                                <div class="main-play-btn">▶️</div>
+                                <div class="skip-btn">⏭</div>
+                            </div>
+                            <div class="time-display">
+                                <div style="font-weight: 600;">5:42</div>
+                                <div style="font-size: 12px;">remaining</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Desktop</div>
+                <div class="desktop-frame">
+                    <div class="desktop-content">
+                        <div class="desktop-sidebar">
+                            <h3 style="font-size: 18px; margin-bottom: 20px; color: #ffffff;">Moby Dick</h3>
+                            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 30px;">Herman Melville</p>
+
+                            <div style="margin-bottom: 30px;">
+                                <div style="font-size: 12px; color: var(--brand-primary); margin-bottom: 8px;">READING LEVEL</div>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                                    <button style="padding: 8px; border: 1px solid rgba(102, 126, 234, 0.2); background: transparent; color: var(--text-light); border-radius: 8px; font-size: 12px;">A1</button>
+                                    <button style="padding: 8px; background: var(--brand-gradient); color: white; border: none; border-radius: 8px; font-size: 12px;">B2</button>
+                                    <button style="padding: 8px; border: 1px solid rgba(102, 126, 234, 0.2); background: transparent; color: var(--text-light); border-radius: 8px; font-size: 12px;">C1</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="font-size: 12px; color: var(--brand-primary); margin-bottom: 8px;">PROGRESS</div>
+                                <div style="background: rgba(255, 255, 255, 0.1); height: 4px; border-radius: 2px;">
+                                    <div style="width: 35%; height: 100%; background: var(--brand-gradient); border-radius: 2px; box-shadow: 0 0 8px rgba(102, 126, 234, 0.6);"></div>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Chapter 1 of 135</div>
+                            </div>
+                        </div>
+
+                        <div class="desktop-main">
+                            <h1 style="font-size: 32px; margin-bottom: 30px;">Chapter 1: Loomings</h1>
+
+                            <div class="desktop-text">
+                                <p style="margin-bottom: 25px;">Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.</p>
+
+                                <p style="margin-bottom: 25px;">It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth.</p>
+                            </div>
+
+                            <div style="position: fixed; bottom: 0; left: 250px; right: 0; background: var(--surface-dark); border-top: 1px solid rgba(102, 126, 234, 0.1); padding: 20px; display: flex; justify-content: center; align-items: center; gap: 40px;">
+                                <span style="color: var(--text-light);">Speed: 1.0x</span>
+                                <div style="display: flex; gap: 20px; align-items: center;">
+                                    <button style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(102, 126, 234, 0.2); background: var(--surface-elevated); color: white;">⏮</button>
+                                    <button style="width: 56px; height: 56px; border-radius: 50%; background: var(--brand-gradient); color: white; border: none; font-size: 24px; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);">▶️</button>
+                                    <button style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(102, 126, 234, 0.2); background: var(--surface-elevated); color: white;">⏭</button>
+                                </div>
+                                <span style="color: var(--text-light);">5:42 remaining</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Familiar controls</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Chapter progress</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Clean interface</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Speed & time display</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="selection-prompt">
+        <h2>🎯 Which Design Should We Implement?</h2>
+        <p>All three designs eliminate bundle cards, reduce button clutter, and create a seamless reading experience.</p>
+        <div class="selection-buttons">
+            <div class="select-btn">Option 1: Minimalist</div>
+            <div class="select-btn">Option 2: Modern</div>
+            <div class="select-btn">Option 3: Hybrid</div>
+        </div>
+    </div>
+
+</body>
+</html>

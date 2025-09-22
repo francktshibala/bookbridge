@@ -89,24 +89,6 @@ export default function DeploymentInitializer() {
     return null;
   }
 
-  // In development, show status indicator
-  return (
-    <div className="fixed bottom-4 right-4 z-50 bg-white border border-gray-300 rounded-lg shadow-lg p-3 text-sm">
-      <div className="flex items-center space-x-2">
-        <div className={`w-2 h-2 rounded-full ${
-          healthStatus === 'checking' ? 'bg-yellow-400' :
-          healthStatus === 'healthy' ? 'bg-green-400' : 'bg-red-400'
-        }`} />
-        <span className="font-medium">
-          {healthStatus === 'checking' ? 'Initializing...' :
-           healthStatus === 'healthy' ? 'PWA Ready' : 'Issues Detected'}
-        </span>
-      </div>
-      {healthStatus === 'unhealthy' && (
-        <div className="text-xs text-red-600 mt-1">
-          Check console for details
-        </div>
-      )}
-    </div>
-  );
+  // Don't show anything in development either for clean interface
+  return null;
 }
