@@ -141,6 +141,82 @@ await prisma.bookContent.upsert({
 });
 ```
 
+### 9. Bundle Completion Detection Fix (CRITICAL - January 22, 2025)
+**Problem:** Audio stops after first bundle without triggering `handleBundleComplete` callback
+**Root Cause:** Timing metadata mismatch - TTS generates variable audio duration (~10.1s) but metadata expects fixed duration (12s)
+**Impact:** Bundle-to-bundle progression fails, breaking continuous reading
+
+**Solution:** Added fallback detection for natural audio end
+```javascript
+// Enhanced completion detection in startSequentialMonitoring
+if (currentTime >= currentSentenceInBundle.endTime ||
+    (this.currentAudio.ended) ||
+    (currentTime >= this.currentAudio.duration - 0.1)) {
+  // Complete sentence and advance to next
+  this.handleBundleComplete(bundle);
+}
+```
+
+**Prevention:** Bundle generation scripts must measure actual TTS audio duration, not estimate fixed intervals
+
+### 10. Featured Books React Closure Issue
+**Problem:** Featured Books page missing `isPlayingRef` pattern, causing audio to stop after 2-3 sentences
+**Root Cause:** Same closure issue as documented in lesson #1, but wasn't applied to Featured Books
+**Solution:** Applied same `isPlayingRef` pattern to Featured Books page
+```javascript
+const isPlayingRef = useRef<boolean>(false);
+// Update both state and ref
+setIsPlaying(true);
+isPlayingRef.current = true;
+```
+
+### 11. Highlighting Delay Issue (Quality)
+**Problem:** Visual highlighting appears 2 seconds behind audio progression
+**Root Cause:** Browser audio buffering and timing calculation delays
+**Impact:** User sees sentence highlight after they've already heard it spoken
+**Status:** ⚠️ IDENTIFIED - Needs investigation and fix
+**Potential Solutions:**
+- Reduce browser audio buffer size
+- Pre-calculate timing offsets
+- Use audio context for more precise timing
+- Implement predictive highlighting (start highlight before audio)
+```javascript
+// Current: Highlighting follows audio exactly
+onSentenceStart: (sentence) => setCurrentSentence(sentence.sentenceIndex)
+
+// Proposed: Predictive highlighting with offset
+onSentenceStart: (sentence) => {
+  const highlightOffset = -200; // Start 200ms early
+  setTimeout(() => setCurrentSentence(sentence.sentenceIndex), highlightOffset);
+}
+```
+
+### 12. Audio Quality Issues During Scale Test
+**Problems Identified:**
+- **Sentence Skipping:** Random sentences occasionally skipped during playbook
+- **Stuttering:** Audio stutters during bundle-to-bundle transitions
+- **Timing Precision:** TTS generates variable-length audio vs fixed metadata expectations
+
+**Root Causes:**
+- Network latency during bundle loading
+- Browser audio context switching between bundles
+- Imprecise timing metadata from TTS generation
+
+**Quality Fixes Needed:**
+```javascript
+// 1. Preload next bundle before current completes
+if (currentBundleIndex === bundles.length - 2) {
+  preloadBundle(bundles[currentBundleIndex + 1]);
+}
+
+// 2. Add crossfade between bundles (micro-crossfade)
+const crossfadeDuration = 15; // 15ms overlap
+
+// 3. Measure actual TTS duration during generation
+const actualDuration = await measureAudioDuration(audioBuffer);
+bundle.sentences[i].endTime = startTime + actualDuration;
+```
+
 ## 📁 Files Modified/Created
 
 ### New Components

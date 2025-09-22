@@ -161,10 +161,15 @@ export class BundleAudioManager {
     this.isPlayingRef.current = true;
 
     const playNextSentence = async (sentenceIndex: number) => {
+      console.log(`🔍 playNextSentence called with index ${sentenceIndex}, isPlaying: ${this.isPlayingRef.current}`);
+
       if (!this.isPlayingRef.current) return;
 
       const sentence = bundle.sentences.find(s => s.sentenceIndex === sentenceIndex);
+      console.log(`🔍 Found sentence:`, sentence ? `${sentence.sentenceIndex}` : 'NOT FOUND');
+
       if (!sentence) {
+        console.log(`🏁 Bundle ${bundle.bundleId} complete - no sentence found for index ${sentenceIndex}`);
         // Check if we need to move to next bundle
         this.handleBundleComplete(bundle);
         return;
@@ -188,13 +193,20 @@ export class BundleAudioManager {
 
       // Set up completion handler
       audio.addEventListener('ended', () => {
-        console.log(`✅ Sentence ${sentenceIndex} complete`);
+        console.log(`✅ Sentence ${sentenceIndex} complete (isPlayingRef: ${this.isPlayingRef.current})`);
         this.options.onSentenceEnd?.(sentence);
 
         // Play next sentence after a small delay
         const nextIndex = sentenceIndex + 1;
+        console.log(`🔄 Attempting to advance to sentence ${nextIndex}, isPlaying: ${this.isPlayingRef.current}`);
+
         if (this.isPlayingRef.current) {
-          setTimeout(() => playNextSentence(nextIndex), 100);
+          setTimeout(() => {
+            console.log(`⏭️ Timeout triggered for sentence ${nextIndex}, isPlaying: ${this.isPlayingRef.current}`);
+            playNextSentence(nextIndex);
+          }, 100);
+        } else {
+          console.log(`⏹️ Not advancing to sentence ${nextIndex} - not playing`);
         }
       }, { once: true });
 
@@ -301,8 +313,16 @@ export class BundleAudioManager {
 
       const currentTime = this.currentAudio.currentTime;
 
-      // Check if current sentence is complete
-      if (currentTime >= currentSentenceInBundle.endTime) {
+      // Debug: Show timing progress for current sentence
+      if (currentSentenceInBundle && currentTime % 1 < 0.1) { // Log every second
+        console.log(`⏱️ Progress: ${currentTime.toFixed(1)}s / ${currentSentenceInBundle.endTime}s (sentence ${currentSentenceInBundle.sentenceIndex})`);
+      }
+
+      // Check if current sentence is complete OR if audio has naturally ended
+      if (currentTime >= currentSentenceInBundle.endTime ||
+          (this.currentAudio.ended) ||
+          (currentTime >= this.currentAudio.duration - 0.1)) {
+        console.log(`✅ Sentence ${currentSentenceInBundle.sentenceIndex} complete at ${currentTime}s (endTime: ${currentSentenceInBundle.endTime}s)`);
         this.options.onSentenceEnd?.(currentSentenceInBundle);
 
         // Find next sentence in bundle
@@ -316,7 +336,8 @@ export class BundleAudioManager {
           this.options.onSentenceStart?.(nextSentence);
           console.log(`🎵 Auto-advancing to sentence ${nextSentenceIndex}`);
         } else {
-          // Bundle complete
+          // Bundle complete - also check if we're near the end of audio
+          console.log(`🏁 No next sentence found. Audio duration: ${this.currentAudio.duration}s, currentTime: ${currentTime}s`);
           this.handleBundleComplete(bundle);
           return;
         }

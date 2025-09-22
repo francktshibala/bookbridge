@@ -50,15 +50,26 @@ export default function FeaturedBooksPage() {
   // Audio manager
   const audioManagerRef = useRef<BundleAudioManager | null>(null);
   const handleNextBundleRef = useRef<() => void>(() => {});
+  const isPlayingRef = useRef<boolean>(false); // Critical fix for React closure issue
 
-  // Check available levels for Moby Dick
+  // Get bookId from URL params
+  const getBookId = () => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('bookId') || 'test-continuous-bundles-001';
+    }
+    return 'test-continuous-bundles-001';
+  };
+
+  // Check available levels for the book
   const checkAvailableLevels = async () => {
-    const levels = ['original', 'a1', 'a2', 'b1', 'b2', 'c1', 'c2'];
+    const bookId = getBookId();
+    const levels = ['original', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
     const availability: {[key: string]: boolean} = {};
 
     for (const level of levels) {
       try {
-        const response = await fetch(`/api/test-book/real-bundles?bookId=test-continuous-bundles-001&level=${level}`);
+        const response = await fetch(`/api/test-book/real-bundles?bookId=${bookId}&level=${level}`);
         if (response.ok) {
           const data = await response.json();
           availability[level] = data.success === true;
@@ -71,7 +82,7 @@ export default function FeaturedBooksPage() {
     }
 
     setAvailableLevels(availability);
-    console.log('📋 Available levels for Moby Dick:', availability);
+    console.log(`📋 Available levels for ${bookId}:`, availability);
   };
 
   // Load bundle data
@@ -84,11 +95,27 @@ export default function FeaturedBooksPage() {
         // Check available levels first
         await checkAvailableLevels();
 
-        // Determine level parameter
-        const levelParam = contentMode === 'original' ? 'original' : cefrLevel.toLowerCase();
+        // Check URL for level parameter
+        const params = new URLSearchParams(window.location.search);
+        const urlLevel = params.get('level');
+
+        // Use URL level if provided, otherwise use state
+        let levelParam = contentMode === 'original' ? 'original' : cefrLevel;
+        if (urlLevel) {
+          levelParam = urlLevel.toUpperCase();
+          // Update state to match URL
+          if (urlLevel.toLowerCase() === 'original') {
+            setContentMode('original');
+            levelParam = 'original';
+          } else {
+            setContentMode('simplified');
+            setCefrLevel(urlLevel.toUpperCase() as any);
+          }
+        }
 
         // Fetch bundle data
-        const response = await fetch(`/api/test-book/real-bundles?bookId=test-continuous-bundles-001&level=${levelParam}`);
+        const bookId = getBookId();
+        const response = await fetch(`/api/test-book/real-bundles?bookId=${bookId}&level=${levelParam}`);
 
         if (response.ok) {
           const data: RealBundleApiResponse = await response.json();
@@ -100,17 +127,15 @@ export default function FeaturedBooksPage() {
               onSentenceStart: (sentence) => {
                 setCurrentSentenceIndex(sentence.sentenceIndex);
 
-                // Auto-scroll to current sentence - smoother
-                setTimeout(() => {
-                  const sentenceElement = document.querySelector(`[data-sentence="${sentence.sentenceIndex}"]`);
-                  if (sentenceElement) {
-                    sentenceElement.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center',
-                      inline: 'nearest'
-                    });
-                  }
-                }, 200);
+                // Auto-scroll to current sentence - immediate
+                const sentenceElement = document.querySelector(`[data-sentence="${sentence.sentenceIndex}"]`);
+                if (sentenceElement) {
+                  sentenceElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'nearest'
+                  });
+                }
               },
               onSentenceEnd: (sentence) => {
                 console.log(`✅ Sentence ended: ${sentence.sentenceIndex}`);
@@ -166,31 +191,49 @@ export default function FeaturedBooksPage() {
       setCurrentBundle(bundle.bundleId);
       setCurrentSentenceIndex(startSentenceIndex);
       setIsPlaying(true);
+      isPlayingRef.current = true;
 
       await audioManagerRef.current.playSequentialSentences(bundle, startSentenceIndex);
 
     } catch (error) {
       console.error('Sequential playback failed:', error);
       setIsPlaying(false);
+      isPlayingRef.current = false;
     }
   };
 
   const handleNextBundle = async () => {
-    if (!bundleData || !currentBundle) return;
+    console.log('🔄 handleNextBundle called', { bundleData: !!bundleData, currentBundle, isPlaying: isPlayingRef.current });
+
+    if (!bundleData || !currentBundle) {
+      console.log('❌ handleNextBundle early return - missing data');
+      return;
+    }
+
+    // Only continue if still playing
+    if (!isPlayingRef.current) {
+      console.log('❌ handleNextBundle early return - not playing');
+      return;
+    }
 
     const currentBundleIndex = bundleData.bundles.findIndex(b => b.bundleId === currentBundle);
     const nextBundle = bundleData.bundles[currentBundleIndex + 1];
+
+    console.log(`📊 Bundle progress: ${currentBundleIndex + 1}/${bundleData.bundles.length}`);
 
     if (nextBundle && nextBundle.sentences.length > 0) {
       console.log(`📦 Auto-advancing to next bundle: ${nextBundle.bundleId}`);
       const nextSentenceIndex = nextBundle.sentences[0].sentenceIndex;
 
       setTimeout(() => {
-        handlePlaySequential(nextSentenceIndex);
+        if (isPlayingRef.current) { // Check again before advancing
+          handlePlaySequential(nextSentenceIndex);
+        }
       }, 100);
     } else {
       console.log('🎉 All bundles complete!');
       setIsPlaying(false);
+      isPlayingRef.current = false;
       setCurrentBundle(null);
     }
   };
@@ -203,6 +246,7 @@ export default function FeaturedBooksPage() {
   const handlePause = () => {
     audioManagerRef.current?.pause();
     setIsPlaying(false);
+    isPlayingRef.current = false;
   };
 
   const handleResume = async () => {
