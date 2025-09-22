@@ -375,11 +375,12 @@ export default function FeaturedBooksPage() {
                           : 'hover:bg-gray-800/20 text-gray-100'
                       }`}
                       style={{
-                        fontSize: 'clamp(60px, 25vw, 300px)',
-                        lineHeight: '1.1',
-                        fontWeight: '500',
+                        fontSize: 'clamp(100px, 40vw, 500px) !important',
+                        lineHeight: '1.1 !important',
+                        fontWeight: '500 !important',
                         wordSpacing: '0.1em',
                         letterSpacing: '0.02em',
+                        display: 'inline-block !important',
                       }}
                       title={`Sentence ${sentence.sentenceIndex + 1} (${sentence.startTime.toFixed(1)}s - ${sentence.endTime.toFixed(1)}s)`}
                     >
