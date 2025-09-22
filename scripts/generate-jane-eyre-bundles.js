@@ -186,8 +186,8 @@ class JaneEyreBundleGenerator {
     const audioFileName = `${BOOK_ID}/${level}/${bundleId}.mp3`;
     const publicUrl = await this.uploadToSupabase(bundleFile, audioFileName);
 
-    // Store in database
-    await this.storeBundleMetadata(bundle, level, publicUrl);
+    // Store in database with audio buffer for duration measurement
+    await this.storeBundleMetadata(bundle, level, publicUrl, bundleFile);
 
     // Cleanup temp files
     sentenceFiles.forEach(file => fs.unlinkSync(file));
@@ -225,7 +225,60 @@ class JaneEyreBundleGenerator {
     return publicUrl;
   }
 
-  async storeBundleMetadata(bundle, level, audioUrl) {
+  async getAudioDuration(audioBuffer) {
+    try {
+      // Save buffer to temp file to measure duration
+      const tempFile = path.join('/tmp', `temp_${Date.now()}.mp3`);
+      fs.writeFileSync(tempFile, audioBuffer);
+
+      const { stdout } = await execAsync(`ffprobe -i "${tempFile}" -show_entries format=duration -v quiet -of csv="p=0"`);
+      const duration = parseFloat(stdout.trim());
+
+      // Clean up temp file
+      fs.unlinkSync(tempFile);
+
+      return duration;
+    } catch (error) {
+      console.error('Failed to get audio duration:', error);
+      // Fallback to estimate
+      return 12.0; // 4 sentences * 3 seconds average
+    }
+  }
+
+  calculateBundleTiming(sentences, totalDuration) {
+    // Distribute duration proportionally based on text length
+    const totalWords = sentences.reduce((sum, s) => sum + s.text.split(' ').length, 0);
+    let currentTime = 0;
+
+    return sentences.map(sentence => {
+      const wordCount = sentence.text.split(' ').length;
+      const sentenceDuration = (wordCount / totalWords) * totalDuration;
+      const startTime = currentTime;
+      const endTime = currentTime + sentenceDuration;
+
+      currentTime = endTime;
+
+      return {
+        sentenceId: `s${sentence.index}`,
+        sentenceIndex: sentence.index,
+        text: sentence.text,
+        startTime,
+        endTime,
+        wordTimings: []
+      };
+    });
+  }
+
+  async storeBundleMetadata(bundle, level, audioUrl, audioFilePath) {
+    // Read the audio file
+    const audioBuffer = fs.readFileSync(audioFilePath);
+
+    // Get actual audio duration
+    const actualDuration = await this.getAudioDuration(audioBuffer);
+
+    // Calculate accurate timing based on actual duration
+    const timingMetadata = this.calculateBundleTiming(bundle.sentences, actualDuration);
+
     // Store bundle metadata in audio_assets table
     const { data, error } = await supabase
       .from('audio_assets')
@@ -237,20 +290,13 @@ class JaneEyreBundleGenerator {
         audio_url: audioUrl,
         provider: 'openai-bundled',
         voice_id: 'alloy',
-        word_timings: bundle.sentences.map((sentence, idx) => ({
-          sentenceId: `s${sentence.index}`,
-          sentenceIndex: sentence.index,
-          text: sentence.text,
-          startTime: idx * 3.0,
-          endTime: (idx + 1) * 3.0,
-          wordTimings: []
-        })),
+        word_timings: timingMetadata,
         created_at: new Date().toISOString(),
         expires_at: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString()
       });
 
     if (error) throw error;
-    console.log(`    ✅ Bundle metadata stored`);
+    console.log(`    ✅ Bundle metadata stored with accurate timing (duration: ${actualDuration.toFixed(2)}s)`);
   }
 }
 

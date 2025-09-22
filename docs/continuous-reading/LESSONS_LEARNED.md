@@ -305,6 +305,61 @@ if (sentenceElement) {
 5. **Scale to larger books** (100+ sentences)
 6. **Add bookmark/progress tracking**
 
+### 13. Perfect Audio-Text Synchronization Solution (CRITICAL) ⭐
+**Problem**: Hardcoded 3-second intervals didn't match actual audio duration
+**Impact**: 2-second highlighting delay, sentence skipping, broken sync
+**Root Cause**: Jane Eyre used `idx * 3.0` while actual audio varied 2-5 seconds
+
+**SOLUTION**: Measure actual audio duration and distribute proportionally
+```javascript
+// The winning formula
+const actualDuration = await getAudioDuration(audioBuffer); // ffprobe measurement
+const timingMetadata = calculateBundleTiming(sentences, actualDuration); // proportional distribution
+```
+**Result**: Perfect Speechify-level synchronization achieved! ✅
+
+**Files Updated**:
+- `lib/audio/BundleAudioManager.ts` - Check sentence startTime for immediate highlighting
+- `scripts/generate-jane-eyre-bundles.js` - Actual duration measurement + proportional timing
+
+**Key Insight**: This timing strategy is THE KEY to continuous reading working perfectly!
+
+### 14. Critical Mistakes During Scaling Session (January 22, 2025) ⚠️
+**Context**: After achieving perfect sync with 100 sentences, attempted to scale to 6,949 sentences
+
+**MISTAKE #1: Lost Focus on Original Goal**
+- **Goal**: Scale to full book (6,949 sentences) to prove production readiness
+- **What Happened**: Got sidetracked by data loss and spent time on unnecessary intermediate solutions
+- **Lesson**: When scaling works, stick to the scaling plan - don't create new problems
+
+**MISTAKE #2: No Intermediate Caching**
+- **Problem**: Simplification script processed 6,982 sentences successfully but lost all work on database constraint error
+- **Cost**: $15-20 in OpenAI API calls wasted
+- **Fix Applied**: Added caching to save results before database storage
+- **Lesson**: ALWAYS cache expensive API operations before attempting database storage
+
+**MISTAKE #3: Confusion About Working vs Broken Systems**
+- **Problem**: Perfect sync was already achieved with 100 sentences, but continued "fixing" a working system
+- **What Happened**: Generated 137-sentence version unnecessarily when 100-sentence version was perfect
+- **Lesson**: Document what's working vs what needs scaling - don't fix what isn't broken
+
+**MISTAKE #4: Poor Session Goal Management**
+- **Problem**: Session goal shifted from "scale to production" to "fix sync issues" when sync was already fixed
+- **Result**: Wasted time and resources on already-solved problems
+- **Lesson**: Maintain clear session objectives and don't get sidetracked by tangential issues
+
+**CRITICAL PREVENTION STRATEGIES:**
+1. **Cache before database operations** - Never lose expensive API work
+2. **Test existing systems first** - Verify what's working before scaling
+3. **Stick to session goals** - Don't solve problems that don't exist
+4. **Document working baselines** - Know what success looks like before changing it
+
+**For Future Scaling Sessions:**
+- ✅ Test current working version first
+- ✅ Confirm scaling goal (not fixing goal)
+- ✅ Add caching to all expensive operations
+- ✅ Proceed with confidence when architecture is proven
+
 ## 🔗 References
 - **Test validation:** http://localhost:3002/test-continuous-reading
 - **API endpoint:** `/api/test-book/sentences`

@@ -10,11 +10,32 @@ const openai = new OpenAI({
 const BOOK_ID = 'jane-eyre-scale-test-001';
 const CEFR_LEVEL = process.argv[2] || 'A2'; // Pass level as argument
 const TEST_LIMIT = process.env.TEST_LIMIT ? parseInt(process.env.TEST_LIMIT) : null;
+const CACHE_FILE = `./cache/jane-eyre-${CEFR_LEVEL}-simplified.json`;
 
 async function simplifyJaneEyre() {
   console.log(`📚 Starting Jane Eyre simplification to ${CEFR_LEVEL} level...`);
   if (TEST_LIMIT) {
     console.log(`🧪 TEST MODE: Limited to first ${TEST_LIMIT} sentences`);
+  }
+
+  // Check for cached results first
+  if (fs.existsSync(CACHE_FILE)) {
+    console.log('💾 Found cached simplification, loading...');
+    try {
+      const cached = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'));
+      console.log(`✅ Loaded ${cached.length} cached sentences`);
+
+      // Store cached results in database
+      await storeCachedResults(cached);
+      return;
+    } catch (error) {
+      console.log('❌ Cache file corrupted, proceeding with fresh simplification');
+    }
+  }
+
+  // Create cache directory
+  if (!fs.existsSync('./cache')) {
+    fs.mkdirSync('./cache', { recursive: true });
   }
 
   // Read the raw text
@@ -79,10 +100,28 @@ async function simplifyJaneEyre() {
   // Join all simplified text
   const simplifiedText = simplifiedSentences.map(s => s.text).join(' ');
 
+  // Save to cache before database storage
+  console.log('💾 Saving to cache...');
+  fs.writeFileSync(CACHE_FILE, JSON.stringify(simplifiedSentences, null, 2));
+  console.log(`✅ Cached ${simplifiedSentences.length} sentences to ${CACHE_FILE}`);
+
   // Store in database
   console.log('💾 Storing simplification in database...');
-  await prisma.bookSimplification.create({
-    data: {
+  await prisma.bookSimplification.upsert({
+    where: {
+      book_id_target_level_chunk_index_version_key: {
+        bookId: BOOK_ID,
+        targetLevel: CEFR_LEVEL,
+        chunkIndex: 0,
+        versionKey: 'v1'
+      }
+    },
+    update: {
+      simplifiedText: simplifiedText,
+      wordCount: simplifiedSentences.length,
+      simplificationLogs: `Full book simplification completed: ${simplifiedSentences.length} sentences`
+    },
+    create: {
       bookId: BOOK_ID,
       targetLevel: CEFR_LEVEL,
       chunkIndex: 0,
@@ -143,6 +182,43 @@ function getGuidelinesForLevel(level) {
   };
 
   return guidelines[level] || guidelines['A2'];
+}
+
+async function storeCachedResults(cachedSentences) {
+  console.log('💾 Storing cached results in database...');
+
+  const simplifiedText = cachedSentences.map(s => s.text).join(' ');
+
+  await prisma.bookSimplification.upsert({
+    where: {
+      book_id_target_level_chunk_index_version_key: {
+        bookId: BOOK_ID,
+        targetLevel: CEFR_LEVEL,
+        chunkIndex: 0,
+        versionKey: 'v1'
+      }
+    },
+    update: {
+      simplifiedText: simplifiedText,
+      wordCount: cachedSentences.length,
+      simplificationLogs: `Loaded from cache: ${cachedSentences.length} sentences`
+    },
+    create: {
+      bookId: BOOK_ID,
+      targetLevel: CEFR_LEVEL,
+      chunkIndex: 0,
+      originalText: 'Cached result',
+      simplifiedText: simplifiedText,
+      vocabularyChanges: [],
+      culturalAnnotations: [],
+      qualityScore: null,
+      wordCount: cachedSentences.length,
+      versionKey: 'v1',
+      simplificationLogs: `Loaded from cache: ${cachedSentences.length} sentences`
+    }
+  });
+
+  console.log('✅ Cached results stored in database!');
 }
 
 // Run the simplification

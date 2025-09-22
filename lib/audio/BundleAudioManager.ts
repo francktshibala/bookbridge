@@ -318,16 +318,24 @@ export class BundleAudioManager {
         console.log(`⏱️ Progress: ${currentTime.toFixed(1)}s / ${currentSentenceInBundle.endTime}s (sentence ${currentSentenceInBundle.sentenceIndex})`);
       }
 
+      // Check for next sentence START TIME to highlight immediately
+      const nextSentenceIndex = currentSentenceInBundle.sentenceIndex + 1;
+      const nextSentence = bundle.sentences.find(s => s.sentenceIndex === nextSentenceIndex);
+
+      if (nextSentence && currentTime >= nextSentence.startTime) {
+        // Immediately highlight next sentence when its start time is reached
+        console.log(`🎯 Highlighting sentence ${nextSentenceIndex} at start time ${currentTime}s`);
+        this.options.onSentenceEnd?.(currentSentenceInBundle);
+        currentSentenceInBundle = nextSentence;
+        this.currentSentenceIndex = nextSentenceIndex;
+        this.options.onSentenceStart?.(nextSentence);
+      }
       // Check if current sentence is complete OR if audio has naturally ended
-      if (currentTime >= currentSentenceInBundle.endTime ||
+      else if (currentTime >= currentSentenceInBundle.endTime ||
           (this.currentAudio.ended) ||
           (currentTime >= this.currentAudio.duration - 0.1)) {
         console.log(`✅ Sentence ${currentSentenceInBundle.sentenceIndex} complete at ${currentTime}s (endTime: ${currentSentenceInBundle.endTime}s)`);
         this.options.onSentenceEnd?.(currentSentenceInBundle);
-
-        // Find next sentence in bundle
-        const nextSentenceIndex = currentSentenceInBundle.sentenceIndex + 1;
-        const nextSentence = bundle.sentences.find(s => s.sentenceIndex === nextSentenceIndex);
 
         if (nextSentence) {
           // Continue to next sentence

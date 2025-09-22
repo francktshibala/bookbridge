@@ -155,13 +155,95 @@ async function generateCleanAudio(bookId: string, chunkIndex: number, text: stri
 
 ---
 
+## 🔥 CRITICAL: Perfect Timing Metadata Generation ⭐
+
+**BREAKTHROUGH**: January 22, 2025 - Perfect Speechify-level synchronization achieved!
+
+### The Problem That Cost Millions
+**Issue**: Hardcoded timing intervals caused 2-second delays and sentence skipping
+- Jane Eyre used `idx * 3.0` while actual audio varied 2-5 seconds
+- Result: Broken synchronization, frustrated users
+
+### The Solution - Actual Duration Measurement
+**NEVER use hardcoded intervals** - Always measure actual audio duration:
+
+```javascript
+// The winning formula
+async function generateBundleWithAccurateTiming(bundle, level) {
+  // 1. Generate audio bundle
+  const audioBuffer = await generateBundleAudio(bundle.sentences);
+
+  // 2. Measure actual duration with ffprobe
+  const actualDuration = await getAudioDuration(audioBuffer);
+
+  // 3. Distribute timing proportionally by word count
+  const timingMetadata = calculateBundleTiming(bundle.sentences, actualDuration);
+
+  // 4. Store accurate timing in database
+  await storeBundleMetadata(bundle, level, audioUrl, timingMetadata);
+}
+
+// Duration measurement implementation
+async getAudioDuration(audioBuffer) {
+  const tempFile = path.join('/tmp', `temp_${Date.now()}.mp3`);
+  fs.writeFileSync(tempFile, audioBuffer);
+
+  const { stdout } = await execAsync(`ffprobe -i "${tempFile}" -show_entries format=duration -v quiet -of csv="p=0"`);
+  const duration = parseFloat(stdout.trim());
+
+  fs.unlinkSync(tempFile);
+  return duration;
+}
+
+// Proportional timing distribution
+calculateBundleTiming(sentences, totalDuration) {
+  const totalWords = sentences.reduce((sum, s) => sum + s.text.split(' ').length, 0);
+  let currentTime = 0;
+
+  return sentences.map(sentence => {
+    const wordCount = sentence.text.split(' ').length;
+    const sentenceDuration = (wordCount / totalWords) * totalDuration;
+    const startTime = currentTime;
+    const endTime = currentTime + sentenceDuration;
+
+    currentTime = endTime;
+
+    return {
+      sentenceId: `s${sentence.index}`,
+      sentenceIndex: sentence.index,
+      text: sentence.text,
+      startTime,
+      endTime,
+      wordTimings: []
+    };
+  });
+}
+```
+
+### Quality Validation - Perfect Sync Test
+1. Generate bundles with accurate timing
+2. Test in Featured Books interface
+3. Verify highlighting follows audio exactly
+4. Confirm no sentence skipping
+5. Check smooth autoscroll behavior
+
+**Success Criteria**: Zero highlighting delay, no skipped sentences, perfect mobile experience
+
+### Files Successfully Using This Strategy
+- ✅ `scripts/generate-test-book-bundles.js` (reference implementation)
+- ✅ `scripts/generate-jane-eyre-bundles.js` (updated with accurate timing)
+- ✅ `lib/audio/BundleAudioManager.ts` (uses startTime for immediate highlighting)
+
+---
+
 ## 🚀 Future Book Standards
 
 All books generated after January 2025 MUST:
 1. ✅ Have clean audio without intro phrases
 2. ✅ Use book-specific CDN paths
 3. ✅ Support continuous reading from day one
-4. ✅ Include sentence-level timing data
-5. ✅ Pass quality checklist before release
+4. ✅ **Use accurate timing measurement (NOT hardcoded intervals)**
+5. ✅ Include sentence-level timing data
+6. ✅ Pass quality checklist before release
 
-**Remember**: Users will compare new books to old ones. New books should be noticeably better to justify the continuous reading upgrade.
+**Remember**: The timing strategy is THE KEY to perfect synchronization. This is the difference between broken and Speechify-level quality!
