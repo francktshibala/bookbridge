@@ -465,6 +465,314 @@ This comprehensive benchmarking system transforms BookBridge's AI from unvalidat
 
 ---
 
+## 📚 **Jane Eyre Full-Scale Implementation Guide (January 2025)**
+
+### **🎯 Complete Step-by-Step Process for New Chat Sessions**
+
+This section provides a comprehensive guide for implementing full-scale book simplification and audio generation. Use this when starting a new chat session to continue Jane Eyre scaling or implement similar projects.
+
+#### **📁 Essential Files to Read First**
+
+**CRITICAL**: New chat should read these files in order to understand the complete process:
+
+1. **`docs/continuous-reading/LESSONS_LEARNED.md`** - Read lessons #14-20 for critical mistakes to avoid
+2. **`scripts/simplify-jane-eyre.js`** - Main simplification script with caching system
+3. **`scripts/generate-jane-eyre-bundles.js`** - Bundle generation with actual duration measurement
+4. **`scripts/cleanup-jane-eyre.js`** - Audio-only cleanup (SAFE)
+5. **`scripts/cleanup-jane-eyre-complete.js`** - Full cleanup (DANGEROUS - deletes everything)
+6. **`scripts/save-cached-simplification.js`** - Emergency recovery script for cached data
+7. **`scripts/check-existing-simplification.js`** - Check database status before starting
+
+#### **🚀 Implementation Workflow**
+
+**Phase 1: Assessment & Preparation**
+```bash
+# 1. Check current database status
+node scripts/check-existing-simplification.js
+
+# 2. Check for existing cache files
+ls -la cache/
+
+# 3. Verify no duplicate processes running
+ps aux | grep "simplify-jane-eyre\|generate-jane-eyre-bundles"
+
+# 4. Clean only audio if needed (SAFE cleanup)
+node scripts/cleanup-jane-eyre.js
+```
+
+**Phase 2: Text Simplification (20-25 minutes)**
+```bash
+# Generate A1 simplification with caching
+node scripts/simplify-jane-eyre.js A1
+
+# Expected output:
+# - Processes 6,982 sentences in batches of 10
+# - Creates cache/jane-eyre-A1-simplified.json
+# - Saves to database: bookSimplification table
+# - Cost: ~$15-20 in OpenAI API calls
+```
+
+**Phase 3: Audio Bundle Generation (45-60 minutes)**
+```bash
+# Generate audio bundles with actual duration measurement
+CEFR_LEVEL=A1 node scripts/generate-jane-eyre-bundles.js
+
+# Expected output:
+# - Creates ~2,587 bundles (4 sentences each)
+# - Uploads to Supabase CDN: jane-eyre-scale-test-001/A1/bundle_X.mp3
+# - Stores metadata in audio_assets table with precise timing
+# - Cost: ~$30-40 in OpenAI TTS API calls
+```
+
+#### **⚠️ Critical Prevention Strategies**
+
+**NEVER DO THESE (Documented failures):**
+1. **Don't run multiple scripts simultaneously** - causes database conflicts
+2. **Don't use `cleanup-jane-eyre-complete.js`** unless you want to delete everything
+3. **Don't lose focus on session goals** - scale working systems, don't fix them
+4. **Don't skip database validation** - test save operations before expensive API calls
+5. **Don't ignore caching** - always save intermediate results
+
+**ALWAYS DO THESE (Success patterns):**
+1. **Check existing processes first** - `ps aux | grep script-name`
+2. **Test database operations early** - validate schema and field names
+3. **Use audio-only cleanup** - `cleanup-jane-eyre.js` for conflicts
+4. **Monitor Supabase rate limits** - $20/month plan has storage limits
+5. **Save progress frequently** - cache after every successful batch
+
+#### **📊 Expected Results & Metrics**
+
+**Text Simplification Success:**
+- **Input**: 6,982 original Jane Eyre sentences
+- **Output**: ~10,346 simplified A1 sentences (some sentences split)
+- **Database**: 1 record in bookSimplification table
+- **Cache**: `cache/jane-eyre-A1-simplified.json` (~2-3MB)
+- **Time**: 20-25 minutes
+- **Cost**: $15-20 OpenAI API calls
+
+**Audio Bundle Generation Success:**
+- **Input**: 10,346 simplified sentences
+- **Output**: 2,587 audio bundles (4 sentences each)
+- **CDN Storage**: `jane-eyre-scale-test-001/A1/bundle_0.mp3` through `bundle_2586.mp3`
+- **Database**: 2,587 records in audio_assets table
+- **Time**: 45-60 minutes
+- **Cost**: $30-40 OpenAI TTS API calls
+
+#### **🔧 Troubleshooting Common Issues**
+
+**Issue**: "No simplification found for A1 level"
+```bash
+# Solution: Check if simplification exists
+node scripts/check-existing-simplification.js
+# If missing, run simplification first
+node scripts/simplify-jane-eyre.js A1
+```
+
+**Issue**: "Duplicate key value violates unique constraint"
+```bash
+# Solution: Clean only audio assets (not simplification)
+node scripts/cleanup-jane-eyre.js
+# Then restart bundle generation
+```
+
+**Issue**: "StorageUnknownError: Unexpected token '<'"
+```bash
+# Cause: Supabase rate limiting on $20/month plan
+# Solution: Wait 30-60 seconds and restart script
+# Script has built-in resume functionality
+```
+
+**Issue**: Database field validation errors
+```bash
+# Cause: Script using non-existent database fields
+# Solution: Check schema.prisma for correct field names
+# Remove fields like 'wordCount', 'simplificationLogs'
+```
+
+#### **💾 Recovery Procedures**
+
+**If simplification script fails after API calls:**
+```bash
+# 1. Check for cache file
+ls -la cache/jane-eyre-A1-simplified.json
+
+# 2. If cache exists, restore to database
+node scripts/save-cached-simplification.js
+
+# 3. If no cache, restart from beginning
+node scripts/simplify-jane-eyre.js A1
+```
+
+**If bundle generation fails mid-process:**
+```bash
+# 1. Check how many bundles completed
+node scripts/check-existing-simplification.js
+
+# 2. Script will automatically resume from last bundle
+CEFR_LEVEL=A1 node scripts/generate-jane-eyre-bundles.js
+```
+
+#### **📈 Scaling to Production**
+
+**After Jane Eyre Success:**
+1. **Test bundle architecture** - Use Featured Books page to verify playback
+2. **Apply to other books** - Use same process for additional titles
+3. **Implement in main app** - Integrate bundle system with enhanced collection
+4. **Monitor performance** - Track CDN usage and user experience
+
+**Book-Specific Adaptations:**
+- Change `BOOK_ID` constant in scripts
+- Update file paths in cleanup scripts
+- Modify metadata (title, author) in generation scripts
+- Ensure unique CDN paths: `${bookId}/${level}/bundle_${index}.mp3`
+
+#### **🎯 Success Validation**
+
+**How to Know It Worked:**
+1. **Database Check**: Query shows simplification + 2,587 audio records
+2. **CDN Check**: Files exist at `jane-eyre-scale-test-001/A1/bundle_X.mp3`
+3. **Featured Books**: Continuous playback works end-to-end
+4. **Mobile Test**: Auto-scroll and highlighting work on mobile
+5. **Resume Test**: Bookmarks save/restore properly
+
+**Expected Bundle Architecture Benefits:**
+- ✅ 75% reduction in CDN requests (2,587 vs 10,346 files)
+- ✅ <100MB memory usage with sliding window
+- ✅ Zero gaps between sentences
+- ✅ Perfect audio-text synchronization
+- ✅ Mobile-optimized with 40vw text scaling
+
+#### **🔗 Related Documentation**
+
+**For Deep Understanding:**
+- `/docs/continuous-reading/LESSONS_LEARNED.md` - Lessons #1-20 with all mistakes documented
+- `/HANDOVER_BUNDLE_ARCHITECTURE_IMPLEMENTATION.md` - Complete technical handover
+- `/scripts/generate-jane-eyre-bundles.js` - Comment-documented generation process
+- `/lib/audio/BundleAudioManager.ts` - Audio timing and synchronization logic
+
+**For Next Session:**
+Tell new chat to read this entire section + lessons learned file. They'll have complete context for continuing or scaling the implementation without repeating documented mistakes.
+
+---
+
+## 🔬 **Supabase Storage Issue Resolution Plan (January 23, 2025)**
+
+### **🎯 Research Completed - Implementation Ready**
+
+**Research Status**: ✅ COMPLETE - 3-agent investigation finished
+**Research File**: `docs/research/SUPABASE_STORAGE_ERROR_INVESTIGATION.md`
+**Problem**: Bundle generation fails at ~100 uploads with `StorageUnknownError: Unexpected token '<'`
+**Root Cause**: Supabase API gateway rate limiting returns HTML error pages instead of JSON
+
+### **📋 3-Phase Implementation Plan**
+
+#### **Phase 1: Immediate Fix (This Session)**
+**Goal**: Complete Jane Eyre A1 bundle generation (2,587 bundles)
+**Timeline**: 1-2 hours implementation + testing
+
+**Files to Create/Modify**:
+1. **`lib/upload/SupabaseUploadClient.js`** - Reusable retry client
+2. **`scripts/generate-jane-eyre-bundles.js`** - Add retry wrapper integration
+
+**Implementation**:
+```javascript
+// Quick integration in bundle script
+import { SupabaseUploadClient } from '../lib/upload/SupabaseUploadClient.js';
+
+const uploadClient = new SupabaseUploadClient(supabase);
+
+// Replace direct upload with retry logic
+const result = await uploadClient.uploadWithRetry(audioPath, audioBuffer);
+```
+
+**Expected Result**: 95%+ upload success rate with automatic retry handling
+
+#### **Phase 2: Production Architecture (Next Session)**
+**Goal**: Robust upload system for all future books
+**Timeline**: 1 day implementation
+
+**Files to Create**:
+1. **`lib/upload/ProductionUploadManager.js`** - Queue system with circuit breakers
+2. **`lib/upload/UploadProgressTracker.js`** - Progress persistence
+3. **`lib/upload/CircuitBreaker.js`** - Service health monitoring
+
+**Features**:
+- Queue-based processing with rate limiting
+- Circuit breaker pattern for service failures
+- Progress persistence and resume functionality
+- Real-time monitoring and metrics
+
+**Expected Result**: 99%+ reliability for large-scale uploads (10+ books)
+
+#### **Phase 3: Cost Optimization (Future)**
+**Goal**: Migrate to Cloudflare R2 for 99.98% cost reduction
+**Timeline**: 1-2 weeks migration
+
+**Benefits**:
+- **Storage Cost**: $8,220 → $1.80 over 3 years (25 books)
+- **Zero Egress**: No bandwidth charges for audio streaming
+- **Performance**: 330+ edge locations, ~50ms latency improvement
+- **Reliability**: Multi-cloud architecture with automatic failover
+
+### **🚀 Immediate Action Items**
+
+**Step 1: Create Retry Client**
+```bash
+# Create the upload client directory
+mkdir -p lib/upload
+
+# Implement retry logic based on Agent 2 findings
+# Files will include exponential backoff + jitter
+```
+
+**Step 2: Test Retry System**
+```bash
+# Test with small batch first (10 bundles)
+# Validate retry behavior with intentional failures
+# Monitor success rates and timing
+```
+
+**Step 3: Apply to Jane Eyre**
+```bash
+# Modify bundle generation script
+# Add progress tracking for resume capability
+# Complete full 2,587 bundle generation
+```
+
+### **📊 Success Metrics**
+
+**Phase 1 Success Criteria**:
+- ✅ Jane Eyre A1 bundles: 2,587/2,587 uploaded
+- ✅ Upload success rate: >95%
+- ✅ No manual intervention required
+- ✅ Progress tracking works for resume
+
+**Phase 2 Success Criteria**:
+- ✅ Queue system handles 10,000+ files reliably
+- ✅ Circuit breaker prevents cascade failures
+- ✅ Resume functionality from any failure point
+- ✅ Real-time monitoring and alerting
+
+**Phase 3 Success Criteria**:
+- ✅ Cost reduction: 99%+ vs current Supabase
+- ✅ Performance improvement: <50ms average latency
+- ✅ Multi-cloud reliability: 99.99% uptime
+- ✅ Zero disruption migration
+
+### **🔗 Reference Files**
+
+**Implementation Details**:
+- `docs/research/SUPABASE_STORAGE_ERROR_INVESTIGATION.md` - Complete research findings
+- `docs/continuous-reading/LESSONS_LEARNED.md` - Lesson #21 with code samples
+- Agent 1 findings: Rate limiting analysis and retry patterns
+- Agent 2 findings: Production architecture with queue system
+- Agent 3 findings: Cloudflare R2 migration strategy
+
+**Next Session Handoff**:
+New chat should read this section + research file for complete context on implementing the 3-phase plan. Priority is Phase 1 immediate fix to complete Jane Eyre project.
+
+---
+
 ## 📖 **Continuous Reading Implementation (January 2025)**
 
 ### **Current Plan: Mobile-First MVP (16-Week Implementation)**
