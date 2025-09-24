@@ -55,11 +55,11 @@ const FEATURED_BOOKS: FeaturedBook[] = [
   },
   {
     id: 'jane-eyre-scale-test-001',
-    title: 'Jane Eyre (Scale Test)',
+    title: 'Jane Eyre',
     author: 'Charlotte Brontë',
-    description: 'A1 simplified version with 100 sentences across 25 bundles. Scale test validation for bundle architecture.',
-    sentences: 100,
-    bundles: 25,
+    description: 'A1 simplified version with 10,338 sentences across 2,585 bundles. Full-scale continuous reading experience.',
+    sentences: 10338,
+    bundles: 2585,
     gradient: 'from-purple-500 to-pink-600',
     abbreviation: 'JE'
   }
@@ -121,15 +121,17 @@ export default function FeaturedBooksPage() {
 
     for (const level of levels) {
       try {
-        const response = await fetch(`/api/test-book/real-bundles?bookId=${bookId}&level=${level}`);
+        const response = await fetch(`/api/test-book/real-bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`, {
+          cache: 'no-store'
+        });
         if (response.ok) {
           const data = await response.json();
-          availability[level] = data.success === true;
+          availability[level.toLowerCase()] = data.success === true;
         } else {
-          availability[level] = false;
+          availability[level.toLowerCase()] = false;
         }
       } catch {
-        availability[level] = false;
+        availability[level.toLowerCase()] = false;
       }
     }
 
@@ -167,7 +169,9 @@ export default function FeaturedBooksPage() {
 
         // Fetch bundle data
         const bookId = getBookId();
-        const response = await fetch(`/api/test-book/real-bundles?bookId=${bookId}&level=${levelParam}`);
+        const response = await fetch(`/api/test-book/real-bundles?bookId=${bookId}&level=${levelParam}&t=${Date.now()}`, {
+          cache: 'no-store'
+        });
 
         if (response.ok) {
           const data: RealBundleApiResponse = await response.json();
@@ -175,8 +179,14 @@ export default function FeaturedBooksPage() {
 
           // Initialize audio manager
           if (!audioManagerRef.current) {
+            // Determine highlight lead based on availability of precise timings
+            const firstSentence = data?.bundles?.[0]?.sentences?.[0];
+            const hasPreciseTimings = Array.isArray(firstSentence?.wordTimings) && firstSentence.wordTimings.length > 0;
+            const leadMs = hasPreciseTimings ? 500 : 1400; // larger lead for synthesized timings
+
             const audioManager = new BundleAudioManager({
               onSentenceStart: (sentence) => {
+                // Immediate highlight; predictive lead handled inside BundleAudioManager
                 setCurrentSentenceIndex(sentence.sentenceIndex);
 
                 // Auto-scroll to current sentence - immediate
@@ -194,7 +204,9 @@ export default function FeaturedBooksPage() {
               },
               onBundleComplete: (bundleId) => {
                 console.log(`📦 Bundle complete: ${bundleId}`);
+                console.log(`🔍 isPlayingRef.current before handleNextBundle: ${isPlayingRef.current}`);
                 handleNextBundleRef.current();
+                console.log(`🔍 isPlayingRef.current after handleNextBundle: ${isPlayingRef.current}`);
               },
               onProgress: (currentTime, duration) => {
                 setPlaybackTime(currentTime);
@@ -247,6 +259,9 @@ export default function FeaturedBooksPage() {
 
       await audioManagerRef.current.playSequentialSentences(bundle, startSentenceIndex);
 
+      // This line executes when playSequentialSentences completes (bundle finished)
+      console.log(`📌 playSequentialSentences completed for bundle ${bundle.bundleId}, isPlayingRef.current = ${isPlayingRef.current}`);
+
     } catch (error) {
       console.error('Sequential playback failed:', error);
       setIsPlaying(false);
@@ -276,10 +291,17 @@ export default function FeaturedBooksPage() {
     if (nextBundle && nextBundle.sentences.length > 0) {
       console.log(`📦 Auto-advancing to next bundle: ${nextBundle.bundleId}`);
       const nextSentenceIndex = nextBundle.sentences[0].sentenceIndex;
+      console.log(`🎯 Next bundle starts at sentence ${nextSentenceIndex}`);
+      console.log(`📝 Bundle ${nextBundle.bundleId} contains:`,
+        nextBundle.sentences.map(s => `s${s.sentenceIndex}: "${s.text?.substring(0, 25)}..."`).join(', ')
+      );
 
       setTimeout(() => {
         if (isPlayingRef.current) { // Check again before advancing
+          console.log(`✅ Still playing, advancing to sentence ${nextSentenceIndex}`);
           handlePlaySequential(nextSentenceIndex);
+        } else {
+          console.log(`⛔ Playback was stopped, not advancing to next bundle`);
         }
       }, 100);
     } else {

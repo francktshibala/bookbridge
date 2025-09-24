@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { SupabaseUploadClient } from '../lib/upload/SupabaseUploadClient.js';
 
 const execAsync = promisify(exec);
 const prisma = new PrismaClient();
@@ -13,6 +14,15 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
+
+// Initialize SupabaseUploadClient with retry wrapper based on research findings
+const uploadClient = new SupabaseUploadClient(supabase, {
+  maxRetries: 5,
+  baseDelay: 250,
+  maxDelay: 15000,
+  rateLimitDelay: 250,
+  jitterRange: 250
+});
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -24,7 +34,7 @@ const SENTENCES_PER_BUNDLE = 4;
 
 class JaneEyreBundleGenerator {
   async generateBundles() {
-    console.log('📚 Starting Jane Eyre Scale Test bundle generation (6,949 sentences → 1,738 bundles)...');
+    console.log('📚 Starting Jane Eyre Scale Test bundle generation (6,949 sentences → 2,587 bundles for A1)...');
 
     // Create temp directory
     if (!fs.existsSync(TEMP_DIR)) {
@@ -91,8 +101,18 @@ class JaneEyreBundleGenerator {
 
     console.log(`Creating ${bundles.length} bundles`);
 
+    // Lookup existing uploads in storage and skip those bundles
+    const existingBundleIndices = await this.fetchExistingBundleIndices(level);
+    if (existingBundleIndices.size > 0) {
+      console.log(`🔎 Found ${existingBundleIndices.size} existing bundles in storage for ${BOOK_ID}/${level}. They will be skipped.`);
+    }
+
     // Generate audio for each bundle
     for (const bundle of bundles) {
+      if (existingBundleIndices.has(bundle.bundleIndex)) {
+        console.log(`⏭️  Skipping bundle_${bundle.bundleIndex} (already uploaded)`);
+        continue;
+      }
       await this.createBundleAudio(bundle, level);
     }
   }
@@ -104,7 +124,7 @@ class JaneEyreBundleGenerator {
     await prisma.bookContent.upsert({
       where: { bookId: BOOK_ID },
       update: {
-        title: 'Jane Eyre (Scale Test)',
+        title: 'Jane Eyre',
         author: 'Charlotte Brontë',
         fullText: fullText.substring(0, 50000), // Store first 50k chars
         era: 'victorian',
@@ -114,7 +134,7 @@ class JaneEyreBundleGenerator {
       },
       create: {
         bookId: BOOK_ID,
-        title: 'Jane Eyre (Scale Test)',
+        title: 'Jane Eyre',
         author: 'Charlotte Brontë',
         fullText: fullText.substring(0, 50000),
         era: 'victorian',
@@ -167,13 +187,11 @@ class JaneEyreBundleGenerator {
       const filename = path.join(levelDir, `${bundleId}_sentence_${i}.mp3`);
 
       console.log(`  Generating audio for sentence ${i}...`);
-      const mp3 = await openai.audio.speech.create({
+      const buffer = await this.generateTtsWithRetry({
+        text: sentence.text,
         model: 'tts-1-hd',
-        voice: 'alloy',
-        input: sentence.text,
+        voice: 'alloy'
       });
-
-      const buffer = Buffer.from(await mp3.arrayBuffer());
       fs.writeFileSync(filename, buffer);
       sentenceFiles.push(filename);
     }
@@ -194,6 +212,94 @@ class JaneEyreBundleGenerator {
     console.log(`✅ ${bundleId} complete`);
   }
 
+  // Fetch list of existing bundle indices from Supabase storage for the given level
+  async fetchExistingBundleIndices(level) {
+    const folderPath = `${BOOK_ID}/${level}`;
+    const pageSize = 1000;
+    let offset = 0;
+    const indices = new Set();
+
+    while (true) {
+      const { data, error } = await supabase.storage
+        .from('audio-files')
+        .list(folderPath, {
+          limit: pageSize,
+          offset,
+          sortBy: { column: 'name', order: 'asc' }
+        });
+
+      if (error) {
+        console.warn(`⚠️  Failed to list existing files for ${folderPath}: ${error.message}`);
+        break;
+      }
+
+      if (!data || data.length === 0) {
+        break;
+      }
+
+      for (const item of data) {
+        if (item && item.name && item.name.endsWith('.mp3')) {
+          const match = item.name.match(/^bundle_(\d+)\.mp3$/);
+          if (match) {
+            const idx = parseInt(match[1], 10);
+            if (!Number.isNaN(idx)) indices.add(idx);
+          }
+        }
+      }
+
+      if (data.length < pageSize) {
+        break;
+      }
+      offset += pageSize;
+    }
+
+    return indices;
+  }
+
+  // Generate TTS audio with retries for transient errors (e.g., network fetch failed)
+  async generateTtsWithRetry({ text, model, voice }) {
+    const maxRetries = 5;
+    const baseDelay = 250;
+
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const mp3 = await openai.audio.speech.create({
+          model,
+          voice,
+          input: text,
+        });
+        return Buffer.from(await mp3.arrayBuffer());
+      } catch (error) {
+        const lower = (error && error.message ? error.message : String(error)).toLowerCase();
+        const retryable = this.isRetryableTtsError(lower);
+        const isLast = attempt === maxRetries;
+
+        console.error(`  🚫 TTS error (attempt ${attempt + 1}/${maxRetries + 1}): ${error.message || error}`);
+
+        if (!retryable || isLast) {
+          throw error;
+        }
+
+        const delay = Math.min(baseDelay * Math.pow(2, attempt) + Math.random() * 1000, 15000);
+        console.log(`  ⏳ Retrying TTS in ${delay.toFixed(0)}ms...`);
+        await this.sleep(delay);
+      }
+    }
+  }
+
+  isRetryableTtsError(message) {
+    if (!message) return false;
+    if (message.includes('fetch failed')) return true;
+    if (message.includes('network') || message.includes('timeout') || message.includes('etimedout') || message.includes('econnreset')) return true;
+    if (message.includes('rate limit') || message.includes('too many requests') || message.includes('429')) return true;
+    if (message.includes('internal server error') || message.includes('service unavailable') || message.includes('bad gateway') || message.includes('5')) return true;
+    return false;
+  }
+
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   async concatenateAudio(inputFiles, outputFile) {
     const listFile = outputFile.replace('.mp3', '_list.txt');
     const listContent = inputFiles.map(file => `file '${file}'`).join('\n');
@@ -207,15 +313,11 @@ class JaneEyreBundleGenerator {
   async uploadToSupabase(filePath, fileName) {
     const fileBuffer = fs.readFileSync(filePath);
 
-    const { data, error } = await supabase.storage
-      .from('audio-files')
-      .upload(fileName, fileBuffer, {
-        contentType: 'audio/mp3',
-        cacheControl: '2592000',
-        upsert: true
-      });
-
-    if (error) throw error;
+    // Use SupabaseUploadClient with retry wrapper for reliable uploads
+    const result = await uploadClient.uploadWithRetry(fileName, fileBuffer, {
+      contentType: 'audio/mp3',
+      cacheControl: '2592000'
+    });
 
     const { data: { publicUrl } } = supabase.storage
       .from('audio-files')
@@ -276,8 +378,8 @@ class JaneEyreBundleGenerator {
     // Get actual audio duration
     const actualDuration = await this.getAudioDuration(audioBuffer);
 
-    // Calculate accurate timing based on actual duration
-    const timingMetadata = this.calculateBundleTiming(bundle.sentences, actualDuration);
+    // Calculate real sentence timing based on actual audio duration
+    const bundleTimings = this.calculateBundleTiming(bundle.sentences, actualDuration);
 
     // Store bundle metadata in audio_assets table
     const { data, error } = await supabase
@@ -290,13 +392,13 @@ class JaneEyreBundleGenerator {
         audio_url: audioUrl,
         provider: 'openai-bundled',
         voice_id: 'alloy',
-        word_timings: timingMetadata,
+        word_timings: bundleTimings, // Store actual timing metadata
         created_at: new Date().toISOString(),
         expires_at: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString()
       });
 
     if (error) throw error;
-    console.log(`    ✅ Bundle metadata stored with accurate timing (duration: ${actualDuration.toFixed(2)}s)`);
+    console.log(`    ✅ Bundle metadata stored with accurate timing (duration: ${actualDuration.toFixed(2)}s, ${bundleTimings.length} sentences)`);
   }
 }
 

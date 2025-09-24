@@ -313,10 +313,10 @@ export class BundleAudioManager {
 
       const currentTime = this.currentAudio.currentTime;
 
-      // Debug: Show timing progress for current sentence
-      if (currentSentenceInBundle && currentTime % 1 < 0.1) { // Log every second
-        console.log(`⏱️ Progress: ${currentTime.toFixed(1)}s / ${currentSentenceInBundle.endTime}s (sentence ${currentSentenceInBundle.sentenceIndex})`);
-      }
+      // Debug timing progress (disabled for production)
+      // if (currentSentenceInBundle && currentTime % 1 < 0.1) {
+      //   console.log(`⏱️ Progress: ${currentTime.toFixed(1)}s / ${currentSentenceInBundle.endTime}s (sentence ${currentSentenceInBundle.sentenceIndex})`);
+      // }
 
       // Check for next sentence START TIME to highlight immediately
       const nextSentenceIndex = currentSentenceInBundle.sentenceIndex + 1;
@@ -324,7 +324,6 @@ export class BundleAudioManager {
 
       if (nextSentence && currentTime >= nextSentence.startTime) {
         // Immediately highlight next sentence when its start time is reached
-        console.log(`🎯 Highlighting sentence ${nextSentenceIndex} at start time ${currentTime}s`);
         this.options.onSentenceEnd?.(currentSentenceInBundle);
         currentSentenceInBundle = nextSentence;
         this.currentSentenceIndex = nextSentenceIndex;
@@ -373,7 +372,18 @@ export class BundleAudioManager {
   private handleBundleComplete(bundle: BundleData) {
     console.log(`✅ Bundle ${bundle.bundleId} complete`);
 
-    this.stop();
+    // Just pause audio without changing playing state - parent handles transitions
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+    }
+    if (this.progressTimer) {
+      clearInterval(this.progressTimer);
+      this.progressTimer = null;
+    }
+
+    // DON'T set isPlaying or isPlayingRef to false here
+    // The parent component will manage the playing state during bundle transitions
+
     this.options.onBundleComplete?.(bundle.bundleId);
   }
 

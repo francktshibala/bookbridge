@@ -60,15 +60,36 @@ export async function GET(request: NextRequest) {
       }, { status: 404 });
     }
 
-    // Get audio assets - fallback to individual sentences if bundles not available
-    let { data: bundleAssets, error } = await supabase
-      .from('audio_assets')
-      .select('*')
-      .eq('book_id', bookId)
-      .eq('cefr_level', level)
-      .eq('chunk_index', 0)
-      .eq('provider', 'openai-bundled') // Try bundled first
-      .order('sentence_index', { ascending: true });
+    // Get audio assets - handle > 1000 rows for Jane Eyre
+    let bundleAssets: any[] = [];
+    let offset = 0;
+    const limit = 1000;
+    let hasMore = true;
+    let error: any = null;
+
+    while (hasMore) {
+      const { data: batch, error: batchError } = await supabase
+        .from('audio_assets')
+        .select('*')
+        .eq('book_id', bookId)
+        .eq('cefr_level', level)
+        .eq('chunk_index', 0)
+        .order('sentence_index', { ascending: true })
+        .range(offset, offset + limit - 1);
+
+      if (batchError) {
+        error = batchError;
+        break;
+      }
+
+      if (batch && batch.length > 0) {
+        bundleAssets = [...bundleAssets, ...batch];
+        offset += limit;
+        hasMore = batch.length === limit;
+      } else {
+        hasMore = false;
+      }
+    }
 
     // Fallback to individual sentences if no bundles found
     if (!bundleAssets || bundleAssets.length === 0) {
@@ -136,6 +157,9 @@ export async function GET(request: NextRequest) {
       }, { status: 404 });
     }
 
+    // We DON'T need display text splitting - use the actual stored sentences!
+    const sentencesPerBundle = 4;
+
     // Convert database records to bundle format
     const bundles: RealBundleData[] = bundleAssets.map((asset, index) => {
       const bundleIndex = asset.sentence_index; // In bundles, sentence_index = bundle_index
@@ -144,9 +168,19 @@ export async function GET(request: NextRequest) {
       // The word_timings field contains the full bundle timing metadata
       const bundleMetadata = asset.word_timings as any[];
 
-      // Calculate total duration from sentence timings
-      const totalDuration = bundleMetadata.length > 0
-        ? Math.max(...bundleMetadata.map(s => s.endTime))
+      // Use the actual stored metadata (which now has the real text and timing)
+      let synthesizedMetadata = bundleMetadata;
+
+      // The metadata should already have real sentences from fix-bundle-timing.js
+      // If it's still empty for some reason, return empty bundle
+      if (!Array.isArray(bundleMetadata) || bundleMetadata.length === 0) {
+        console.warn(`Bundle ${bundleIndex} has no metadata - skipping`);
+        synthesizedMetadata = [];
+      }
+
+      // Calculate total duration from sentence timings (synthesized or real)
+      const totalDuration = synthesizedMetadata.length > 0
+        ? Math.max(...synthesizedMetadata.map((s: any) => s.endTime))
         : 10.0; // Fallback estimate
 
       return {
@@ -154,7 +188,10 @@ export async function GET(request: NextRequest) {
         bundleIndex,
         audioUrl: asset.audio_url,
         totalDuration,
-        sentences: bundleMetadata.map(sentence => ({
+        sentences: (synthesizedMetadata as any[])
+          .slice()
+          .sort((a: any, b: any) => (a.sentenceIndex ?? a.sentence_index) - (b.sentenceIndex ?? b.sentence_index))
+          .map(sentence => ({
           sentenceId: sentence.sentenceId,
           sentenceIndex: sentence.sentenceIndex,
           text: sentence.text,

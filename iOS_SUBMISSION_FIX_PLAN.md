@@ -1997,7 +1997,133 @@ const paymentMethod = isIOS() ? 'apple' : 'stripe';
 - **Day 4**: Testing
 - **Day 5**: Resubmit to App Store
 
+---
+
+## Third Rejection - September 22, 2025 (NEW ISSUES)
+
+### Rejection Details
+**Submission ID**: e1e8d5b9-5e7c-4aa5-b5de-f377e93bf4c7
+**Review Date**: September 22, 2025
+**Version Reviewed**: 1.0
+
+### Status Analysis
+- ✅ **iPad Screenshots (2.3.3)**: ACCEPTED (not mentioned = passed)
+- ❌ **Demo Account Required (2.1)**: NEW ISSUE
+- ❌ **IAP Visibility (2.1)**: STILL FAILING (implementation not working)
+- ❌ **Account Deletion (5.1.1v)**: STILL FAILING (not found by reviewers)
+
+### Issues Identified by Apple (3 Total)
+
+#### Issue 1: Guideline 2.1 - Demo Account Required (NEW)
+**Problem**: Reviewers cannot access all app features without credentials.
+**Apple's Requirement**: Provide username/password in App Store Connect App Review Information section.
+
+#### Issue 2: Guideline 2.1 - IAP Still Not Locatable (PERSISTING)
+**Problem**: "We cannot locate any in-app purchases in the app and none of the in-app purchase products have not been submitted for review."
+**Apple's Requirement**: IAP must be discoverable and products must be submitted.
+
+#### Issue 3: Guideline 5.1.1(v) - Account Deletion Still Missing (PERSISTING)
+**Problem**: Reviewers still cannot find account deletion option.
+**Apple's Requirement**: Must be easily locatable in the app.
+
+---
+
+## DEFINITIVE SOLUTION PLAN - FOURTH SUBMISSION
+
+### Root Cause Analysis
+
+**Why Previous Fixes Failed:**
+1. **Demo Account Missing**: Reviewers couldn't log in to test implemented features
+2. **IAP Implementation Gap**: Code exists but not deployed/accessible to reviewers
+3. **Account Deletion Path**: Implementation exists but path not obvious to reviewers
+
+### SOLUTION STRATEGY - Zero Tolerance Approach
+
+#### Step 1: Create Demo Account (IMMEDIATE)
+```
+Demo Account for Reviewers:
+Email: apple.reviewer@bookbridge.test
+Password: AppleReview2025!
+
+Features Accessible:
+- Full premium access (bypass IAP for demo)
+- All reading features
+- AI tutoring
+- Account deletion option
+```
+
+#### Step 2: Bulletproof IAP Visibility (CRITICAL)
+**Current Issue**: Reviewers say "cannot locate any in-app purchases"
+
+**Enhanced Quad-Discovery Implementation:**
+```typescript
+// MANDATORY: Show on EVERY page for non-premium users
+// 1. Persistent header banner
+// 2. Navigation menu item
+// 3. Feature gate overlays
+// 4. Direct /upgrade page (no auth required)
+```
+
+#### Step 3: Account Deletion - Front and Center
+**Current Issue**: "does not include an option to initiate account deletion"
+
+**Enhanced Visibility:**
+```
+Settings → Account Settings → Delete Account (RED BUTTON)
+ALSO: User Profile → Delete My Account
+ALSO: /delete-account direct URL
+```
+
+#### Step 4: App Store Connect Products (CRITICAL)
+```
+Action Required:
+☐ Submit both IAP products for review in App Store Connect
+☐ Verify "Waiting for Review" status (not just "Ready to Submit")
+☐ Include review screenshots showing purchase flow
+```
+
+#### Step 5: Reviewer Notes Template
+```
+DEMO ACCOUNT PROVIDED:
+Email: apple.reviewer@bookbridge.test
+Password: AppleReview2025!
+
+TESTING INSTRUCTIONS:
+1. IAP Location (4 ways to find):
+   • Home screen: "Upgrade to Premium" banner at top
+   • Navigation: "Upgrade" menu item (always visible)
+   • Any locked feature: Tap → "Upgrade Now" button appears
+   • Direct URL: /upgrade (no login required)
+
+2. Account Deletion Location (3 ways):
+   • Settings → Account Settings → Delete Account (red button)
+   • User Profile → Delete My Account
+   • Direct URL: /delete-account
+
+3. Products Submitted: Both subscription products submitted for review
+```
+
+### Implementation Timeline (24-48 hours)
+
+#### Day 1 (8 hours)
+- **Hour 1-2**: Create and test demo account
+- **Hour 3-5**: Enhance IAP visibility (add missing touchpoints)
+- **Hour 6-8**: Fix account deletion visibility
+
+#### Day 2 (4 hours)
+- **Hour 1-2**: Submit IAP products in App Store Connect
+- **Hour 3-4**: Final testing and resubmission
+
+### Success Metrics
+- **Demo Account**: Apple reviewers can access all features
+- **IAP Discovery**: Visible within 5 seconds of opening app
+- **Account Deletion**: Findable in 2 taps from Settings
+- **Products Status**: "Waiting for Review" in App Store Connect
+
+---
+
 ## Resources
 - [Apple Human Interface Guidelines - App Icons](https://developer.apple.com/design/human-interface-guidelines/app-icons)
 - [StoreKit Documentation](https://developer.apple.com/documentation/storekit)
 - [IAP Best Practices](https://developer.apple.com/in-app-purchase/)
+- [App Store Connect Demo Account Setup](https://developer.apple.com/app-store-connect/app-review-information/)
