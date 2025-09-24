@@ -1,0 +1,29 @@
+{
+  "title": "The Legend of Sleepy Hollow - Modernized",
+  "author": "Washington Irving (modernized)",
+  "processedAt": "2025-09-24T20:06:45.663Z",
+  "stats": {
+    "original": {
+      "words": 12219,
+      "sentences": 335,
+      "characters": 69781
+    },
+    "modernized": {
+      "words": 7700,
+      "sentences": 327,
+      "characters": 43874
+    },
+    "changes": {
+      "wordDelta": -4519,
+      "sentenceDelta": -8,
+      "wordChangePercent": -36.983386529175874,
+      "sentenceChangePercent": -2.3880597014925375
+    }
+  },
+  "processing": {
+    "strategy": "conservative_modernization",
+    "preserveStoryMeaning": true,
+    "model": "gpt-4-turbo-preview",
+    "batchSize": 4
+  }
+}

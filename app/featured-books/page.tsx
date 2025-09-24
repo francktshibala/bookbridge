@@ -64,6 +64,16 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'MA'
   },
   {
+    id: 'sleepy-hollow-enhanced',
+    title: 'The Legend of Sleepy Hollow',
+    author: 'Washington Irving',
+    description: 'Classic American tale modernized for ESL learners. 325 sentences across 82 bundles with perfect text-audio harmony.',
+    sentences: 325,
+    bundles: 82,
+    gradient: 'from-orange-500 to-red-600',
+    abbreviation: 'SH'
+  },
+  {
     id: 'jane-eyre-scale-test-001',
     title: 'Jane Eyre',
     author: 'Charlotte Brontë',
