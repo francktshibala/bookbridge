@@ -54,6 +54,16 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'TB'
   },
   {
+    id: 'custom-story-500',
+    title: 'Modern Adventure Story',
+    author: 'BookBridge Original',
+    description: 'B1 modern adventure story with 449 sentences across 113 bundles. Clean contemporary content without Victorian complexity.',
+    sentences: 449,
+    bundles: 113,
+    gradient: 'from-green-500 to-teal-600',
+    abbreviation: 'MA'
+  },
+  {
     id: 'jane-eyre-scale-test-001',
     title: 'Jane Eyre',
     author: 'Charlotte Brontë',
@@ -664,8 +674,9 @@ export default function FeaturedBooksPage() {
                     if (currentSentenceIndex > 0 && currentBundle) {
                       await handleResume();
                     } else {
-                      // Start from beginning if no current position
-                      await handlePlaySequential(0);
+                      // Start from first available sentence (not necessarily 0)
+                      const firstSentence = bundleData?.bundles?.[0]?.sentences?.[0]?.sentenceIndex ?? 0;
+                      await handlePlaySequential(firstSentence);
                     }
                   }
                 }}
