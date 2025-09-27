@@ -609,11 +609,11 @@ export default function FeaturedBooksPage() {
       {!showBookSelection && selectedBook && (
         <div className="max-w-4xl mx-auto">
 
-        {/* Header - Clean Mobile + Desktop Controls */}
+        {/* Header - Matched Width with Content Container */}
 
-        {/* Mobile: Clean Speechify-Style Header */}
-        <div className="md:hidden bg-white border-b border-gray-200">
-          <div className="flex justify-between items-center px-4 py-3">
+        {/* Unified Header: Same width as content container below */}
+        <div className="bg-white border-b border-gray-200 mx-4 md:mx-8 rounded-t-lg">
+          <div className="flex justify-between items-center px-6 py-3">
             <button
               onClick={() => {
                 setShowBookSelection(true);
@@ -633,8 +633,8 @@ export default function FeaturedBooksPage() {
           </div>
         </div>
 
-        {/* Desktop: Full Controls */}
-        <div className="hidden md:block bg-gray-800 border-b border-gray-700">
+        {/* Desktop: Dark Controls Section - Removed for consistency */}
+        <div className="hidden">{/* Desktop dark controls removed for consistency */}
           <div className="p-4">
 
             {/* Row 1: Back, Toggle, Settings */}
@@ -674,7 +674,8 @@ export default function FeaturedBooksPage() {
                 </button>
               </div>
 
-              <div className="text-gray-300">⚙️</div> {/* Settings */}
+              {/* Settings icon removed - all controls are visible on desktop */}
+              <div></div>
             </div>
 
             {/* Row 2: CEFR Level Selector */}
@@ -722,7 +723,7 @@ export default function FeaturedBooksPage() {
         </div>
 
         {/* Real Moby Dick Content */}
-        <div className="pb-32 px-6 bg-white mx-4 md:mx-8 rounded-lg shadow-sm border border-gray-200">
+        <div className="pb-32 px-6 bg-white mx-4 md:mx-8 rounded-b-lg shadow-sm border-l border-r border-b border-gray-200">
 
           {loading && (
             <div className="text-center py-12">
