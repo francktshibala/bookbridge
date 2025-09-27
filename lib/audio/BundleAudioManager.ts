@@ -457,6 +457,16 @@ export class BundleAudioManager {
   }
 
   /**
+   * Set playback rate (speed) for current audio
+   */
+  setPlaybackRate(rate: number) {
+    if (this.currentAudio) {
+      this.currentAudio.playbackRate = rate;
+      console.log(`🎵 Playback rate set to: ${rate}x`);
+    }
+  }
+
+  /**
    * Clean up resources
    */
   destroy() {

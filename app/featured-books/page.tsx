@@ -85,6 +85,42 @@ const FEATURED_BOOKS: FeaturedBook[] = [
   }
 ];
 
+// Sleepy Hollow Chapter Structure (from enhancement plan)
+const SLEEPY_HOLLOW_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "The Schoolmaster of Sleepy Hollow",
+    startSentence: 0,
+    endSentence: 79,
+    startBundle: 0,
+    endBundle: 19
+  },
+  {
+    chapterNumber: 2,
+    title: "The Legend and the Lady",
+    startSentence: 80,
+    endSentence: 199,
+    startBundle: 20,
+    endBundle: 49
+  },
+  {
+    chapterNumber: 3,
+    title: "The Party and the Pursuit",
+    startSentence: 200,
+    endSentence: 279,
+    startBundle: 50,
+    endBundle: 69
+  },
+  {
+    chapterNumber: 4,
+    title: "The Encounter and the Mystery",
+    startSentence: 280,
+    endSentence: 324,
+    startBundle: 70,
+    endBundle: 81
+  }
+];
+
 export default function FeaturedBooksPage() {
   // Book selection state
   const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
@@ -93,6 +129,7 @@ export default function FeaturedBooksPage() {
   // UI state
   const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
   const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1');
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
 
   // Data state
   const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
@@ -106,6 +143,7 @@ export default function FeaturedBooksPage() {
   const [currentBundle, setCurrentBundle] = useState<string | null>(null);
   const [playbackTime, setPlaybackTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
 
   // Audio manager
   const audioManagerRef = useRef<BundleAudioManager | null>(null);
@@ -277,6 +315,9 @@ export default function FeaturedBooksPage() {
       setIsPlaying(true);
       isPlayingRef.current = true;
 
+      // Apply current playback speed
+      audioManagerRef.current.setPlaybackRate(playbackSpeed);
+
       await audioManagerRef.current.playSequentialSentences(bundle, startSentenceIndex);
 
       // This line executes when playSequentialSentences completes (bundle finished)
@@ -352,20 +393,36 @@ export default function FeaturedBooksPage() {
         const bundle = findBundleForSentence(currentSentenceIndex);
         if (bundle) {
           setIsPlaying(true);
+          isPlayingRef.current = true; // Make sure the play flag is set
+
+          // Apply current playback speed
+          audioManagerRef.current.setPlaybackRate(playbackSpeed);
+
           await audioManagerRef.current.playSequentialSentences(bundle, currentSentenceIndex);
+
+          // After playSequentialSentences completes, check if we should continue to next bundle
+          console.log(`📌 Resume playback completed for bundle ${bundle.bundleId}, checking for next bundle`);
+
+          // Only continue to next bundle if still playing
+          if (isPlayingRef.current) {
+            handleNextBundle();
+          }
         } else {
           // Fallback to resume if bundle not found
           await audioManagerRef.current.resume();
           setIsPlaying(true);
+          isPlayingRef.current = true;
         }
       } else {
         // Standard resume
         await audioManagerRef.current.resume();
         setIsPlaying(true);
+        isPlayingRef.current = true;
       }
     } catch (error) {
       console.error('Resume failed:', error);
       setIsPlaying(false);
+      isPlayingRef.current = false;
     }
   };
 
@@ -384,8 +441,54 @@ export default function FeaturedBooksPage() {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  // Speed control functionality
+  const SPEED_OPTIONS = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0];
+
+  const cycleSpeed = () => {
+    const currentIndex = SPEED_OPTIONS.indexOf(playbackSpeed);
+    const nextIndex = (currentIndex + 1) % SPEED_OPTIONS.length;
+    const newSpeed = SPEED_OPTIONS[nextIndex];
+    setPlaybackSpeed(newSpeed);
+
+    // Apply speed to current audio if playing
+    if (audioManagerRef.current && isPlaying) {
+      audioManagerRef.current.setPlaybackRate(newSpeed);
+    }
+  };
+
+  const formatSpeed = (speed: number) => {
+    return speed === 1.0 ? '1x' : `${speed}x`;
+  };
+
+  // Get current chapter info using detailed metadata
+  const getCurrentChapter = () => {
+    if (!selectedBook || selectedBook.id !== 'sleepy-hollow-enhanced') {
+      return { current: 1, total: 1, title: '', totalSentences: 0 };
+    }
+
+    // Use detailed chapter metadata
+    for (let i = 0; i < SLEEPY_HOLLOW_CHAPTERS.length; i++) {
+      const chapter = SLEEPY_HOLLOW_CHAPTERS[i];
+      if (currentSentenceIndex >= chapter.startSentence && currentSentenceIndex <= chapter.endSentence) {
+        return {
+          current: chapter.chapterNumber,
+          total: SLEEPY_HOLLOW_CHAPTERS.length,
+          title: chapter.title,
+          totalSentences: selectedBook.sentences
+        };
+      }
+    }
+
+    return {
+      current: 1,
+      total: SLEEPY_HOLLOW_CHAPTERS.length,
+      title: SLEEPY_HOLLOW_CHAPTERS[0].title,
+      totalSentences: selectedBook.sentences
+    }; // Default to chapter 1
+  };
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900">
       {/* Book Selection Screen */}
       {showBookSelection && (
         <div className="min-h-screen bg-gray-900 text-white">
@@ -506,8 +609,32 @@ export default function FeaturedBooksPage() {
       {!showBookSelection && selectedBook && (
         <div className="max-w-4xl mx-auto">
 
-        {/* Header - Speechify Style (from wireframe) */}
-        <div className="bg-gray-800 border-b border-gray-700">
+        {/* Header - Clean Mobile + Desktop Controls */}
+
+        {/* Mobile: Clean Speechify-Style Header */}
+        <div className="md:hidden bg-white border-b border-gray-200">
+          <div className="flex justify-between items-center px-4 py-3">
+            <button
+              onClick={() => {
+                setShowBookSelection(true);
+                setSelectedBook(null);
+                handleStop();
+              }}
+              className="text-gray-600 text-xl"
+            >
+              ←
+            </button>
+            <button
+              onClick={() => setShowSettingsModal(true)}
+              className="text-gray-600 text-lg font-medium hover:bg-gray-100 px-2 py-1 rounded"
+            >
+              Aa
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop: Full Controls */}
+        <div className="hidden md:block bg-gray-800 border-b border-gray-700">
           <div className="p-4">
 
             {/* Row 1: Back, Toggle, Settings */}
@@ -595,12 +722,12 @@ export default function FeaturedBooksPage() {
         </div>
 
         {/* Real Moby Dick Content */}
-        <div className="pb-28 px-6">
+        <div className="pb-32 px-6 bg-white mx-4 md:mx-8 rounded-lg shadow-sm border border-gray-200">
 
           {loading && (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
-              <p className="text-gray-400">Loading {selectedBook?.title} bundles...</p>
+              <p className="text-gray-600">Loading {selectedBook?.title} bundles...</p>
             </div>
           )}
 
@@ -618,31 +745,26 @@ export default function FeaturedBooksPage() {
           {bundleData && (
             <>
               {/* Book Title */}
-              <div className="text-center py-6">
-                <h1 className="text-4xl font-bold text-white mb-4">
+              <div className="text-center py-4">
+                <h1 className="text-2xl font-semibold text-gray-700 mb-4">
                   {bundleData.title.replace(/\s*\(Bundled\)$/i, '')}
                 </h1>
               </div>
 
               {/* Real Moby Dick Text - Speechify Style */}
-              <div className="text-gray-100">
+              <div className="px-4 py-4 text-left">
                 {bundleData.bundles.flatMap(bundle =>
                   bundle.sentences.map((sentence) => (
                     <span
                       key={sentence.sentenceId}
                       data-sentence={sentence.sentenceIndex}
-                      className={`inline cursor-pointer transition-all duration-700 ease-in-out px-2 py-1 rounded-lg ${
+                      className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 rounded mobile-reading-text ${
                         sentence.sentenceIndex === currentSentenceIndex && isPlaying
-                          ? 'bg-gradient-to-r from-blue-500/25 to-purple-600/25 text-white shadow-xl'
-                          : 'hover:bg-gray-800/20 text-gray-100'
+                          ? 'bg-blue-100'
+                          : 'hover:bg-gray-100'
                       }`}
                       style={{
-                        fontSize: 'clamp(100px, 40vw, 500px) !important',
-                        lineHeight: '1.1 !important',
-                        fontWeight: '500 !important',
-                        wordSpacing: '0.1em',
-                        letterSpacing: '0.02em',
-                        display: 'inline-block !important',
+                        textAlign: 'left'
                       }}
                       title={`Sentence ${sentence.sentenceIndex + 1} (${sentence.startTime.toFixed(1)}s - ${sentence.endTime.toFixed(1)}s)`}
                     >
@@ -657,21 +779,118 @@ export default function FeaturedBooksPage() {
 
         </div>
 
-        {/* Compact Rounded Control Bar - Fixed at bottom */}
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-800/95 backdrop-blur-sm rounded-t-2xl shadow-2xl z-50 border-t border-gray-600">
-          <div className="px-4 pt-4 pb-6">
+        {/* Settings Modal */}
+        {showSettingsModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
 
-            {/* Compact 5-Button Layout - Icons Only */}
-            <div className="flex items-center justify-between mb-3">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-900">Reading Settings</h2>
+                <button
+                  onClick={() => setShowSettingsModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-xl"
+                >
+                  ×
+                </button>
+              </div>
 
-              {/* Speed Control - Icon Only */}
-              <button className="flex items-center justify-center w-12 h-12 text-gray-300 hover:text-white hover:bg-gray-700 rounded-full transition-all">
-                <div className="text-lg font-semibold">1x</div>
-              </button>
+              {/* Modal Content */}
+              <div className="p-6 space-y-6">
 
-              {/* Previous - Icon Only */}
-              <button className="flex items-center justify-center w-12 h-12 text-gray-300 hover:text-white hover:bg-gray-700 rounded-full transition-all">
-                <div className="text-xl">⏮️</div>
+                {/* Content Mode Toggle */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">Text Version</label>
+                  <div className="flex bg-gray-100 rounded-lg p-1">
+                    <button
+                      onClick={() => setContentMode('simplified')}
+                      className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                        contentMode === 'simplified'
+                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
+                          : 'text-gray-600 hover:text-gray-900'
+                      }`}
+                    >
+                      Simplified
+                    </button>
+                    <button
+                      onClick={() => setContentMode('original')}
+                      className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                        contentMode === 'original'
+                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
+                          : 'text-gray-600 hover:text-gray-900'
+                      }`}
+                    >
+                      Original
+                    </button>
+                  </div>
+                </div>
+
+                {/* CEFR Level Selection */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">CEFR Level</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => (
+                      <button
+                        key={level}
+                        onClick={() => setCefrLevel(level)}
+                        className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                          cefrLevel === level
+                            ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Modal Footer */}
+              <div className="px-6 py-4 border-t border-gray-200">
+                <button
+                  onClick={() => setShowSettingsModal(false)}
+                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-md font-medium hover:from-blue-600 hover:to-purple-700 transition-all shadow-md"
+                >
+                  Apply Settings
+                </button>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Control Bar - Full Width */}
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
+          <div className="px-4 py-3">
+
+            {/* Progress Info Row */}
+            <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
+              <span>{formatTime(playbackTime)}</span>
+              <span>
+                Sentence {currentSentenceIndex + 1}/{getCurrentChapter().totalSentences} • Chapter {getCurrentChapter().current} of {getCurrentChapter().total}
+              </span>
+              <span>{formatTime(totalTime)}</span>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="w-full h-0.5 bg-gray-200 rounded-full mb-4">
+              <div
+                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-300"
+                style={{ width: `${totalTime > 0 ? (playbackTime / totalTime) * 100 : 0}%` }}
+              />
+            </div>
+
+            {/* Control Buttons Row */}
+            <div className="flex items-center justify-center gap-8">
+
+              {/* Speed Control */}
+              <button
+                onClick={cycleSpeed}
+                className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
+              >
+                <div className="text-sm font-semibold">{formatSpeed(playbackSpeed)}</div>
               </button>
 
               {/* Play/Pause - Center & Larger */}
@@ -690,38 +909,62 @@ export default function FeaturedBooksPage() {
                     }
                   }
                 }}
-                className="flex items-center justify-center w-16 h-16 text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg"
+                className="flex items-center justify-center w-14 h-14 text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all shadow-md"
               >
-                <div className="text-2xl">{isPlaying ? '⏸️' : '▶️'}</div>
+                <div className="text-xl">{isPlaying ? '⏸️' : '▶️'}</div>
               </button>
 
-              {/* Next - Icon Only */}
-              <button className="flex items-center justify-center w-12 h-12 text-gray-300 hover:text-white hover:bg-gray-700 rounded-full transition-all">
-                <div className="text-xl">⏭️</div>
-              </button>
-
-              {/* Voice - Icon Only */}
-              <button className="flex items-center justify-center w-12 h-12 text-gray-300 hover:text-white hover:bg-gray-700 rounded-full transition-all">
-                <div className="text-xl">🎙️</div>
+              {/* Voice */}
+              <button className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all">
+                <div className="text-lg">🎙️</div>
               </button>
 
             </div>
 
-            {/* Compact Progress Bar */}
-            <div className="flex items-center justify-between text-xs text-gray-400 mb-1">
-              <span>{formatTime(playbackTime)}</span>
-              <span className="text-gray-300 text-xs">
-                {bundleData ? bundleData.title.replace(/\s*\(Bundled\)$/i, '') : 'Chapter 1'}
-              </span>
-              <span>{formatTime(totalTime)}</span>
-            </div>
-            <div className="w-full bg-gray-700 rounded-full h-1">
-              <div
-                className="bg-gradient-to-r from-blue-500 to-purple-600 h-1 rounded-full transition-all"
-                style={{
-                  width: totalTime > 0 ? `${(playbackTime / totalTime) * 100}%` : '0%'
+          </div>
+        </div>
+
+        {/* Desktop Control Bar - Floating */}
+        <div className="hidden md:block fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 shadow-2xl">
+
+            {/* Control Buttons Row */}
+            <div className="flex items-center justify-center gap-7">
+
+              {/* Speed Control */}
+              <button
+                onClick={cycleSpeed}
+                className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105"
+              >
+                <div className="text-sm font-semibold">{formatSpeed(playbackSpeed)}</div>
+              </button>
+
+              {/* Play/Pause - Center & Larger */}
+              <button
+                onClick={async () => {
+                  if (isPlaying) {
+                    handlePause();
+                  } else {
+                    // Always try to resume first if we have a current position
+                    if (currentSentenceIndex > 0 && currentBundle) {
+                      await handleResume();
+                    } else {
+                      // Start from first available sentence (not necessarily 0)
+                      const firstSentence = bundleData?.bundles?.[0]?.sentences?.[0]?.sentenceIndex ?? 0;
+                      await handlePlaySequential(firstSentence);
+                    }
+                  }
                 }}
-              ></div>
+                className="flex items-center justify-center w-14 h-14 text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+              >
+                <div className="text-xl">{isPlaying ? '⏸️' : '▶️'}</div>
+              </button>
+
+              {/* Voice */}
+              <button className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105">
+                <div className="text-lg">🎙️</div>
+              </button>
+
             </div>
 
           </div>

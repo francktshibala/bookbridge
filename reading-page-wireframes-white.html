@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookBridge ESL - Professional Reading Page (White Theme)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* BookBridge Brand Colors - Updated for White Theme */
+        :root {
+            --brand-primary: #667eea;
+            --brand-secondary: #764ba2;
+            --brand-accent: #f093fb;
+            --background-light: #FFFFFF;
+            --background-page: #FAFAFA;
+            --surface-light: #FFFFFF;
+            --surface-border: #E5E7EB;
+            --text-primary: #1C1C1C;
+            --text-secondary: #4B5563;
+            --text-muted: #9CA3AF;
+            --highlight-color: #E0E7FF;
+            --highlight-active: #C7D2FE;
+            --brand-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #F5F5F7;
+            padding: 20px;
+            color: #1C1C1C;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #E5E7EB;
+        }
+
+        h1 {
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .designs-container {
+            display: grid;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .design-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            border: 1px solid #E5E7EB;
+        }
+
+        .design-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #F3F4F6;
+        }
+
+        .design-title {
+            font-size: 28px;
+            color: #1C1C1C;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .design-description {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .devices {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .device-wrapper {
+            position: relative;
+        }
+
+        .device-label {
+            font-size: 14px;
+            color: var(--brand-primary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Mobile Frame */
+        .mobile-frame {
+            width: 375px;
+            height: 812px;
+            border: 12px solid #1d1d1f;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .mobile-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #1d1d1f;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        /* Desktop Frame */
+        .desktop-frame {
+            width: 100%;
+            max-width: 900px;
+            height: 600px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Design 1: Speechify-Inspired (Best Option) */
+        .speechify-mobile {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #FFFFFF;
+        }
+
+        .speechify-header {
+            padding: 50px 20px 15px;
+            background: #FFFFFF;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .back-arrow {
+            color: #6B7280;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .settings-icon {
+            color: #6B7280;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .chapter-info {
+            text-align: center;
+            font-size: 13px;
+            color: #9CA3AF;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .book-title-header {
+            text-align: center;
+            font-size: 16px;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .speechify-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px 24px 120px;
+            background: #FFFFFF;
+        }
+
+        .reading-text-speechify {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #1C1C1C;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            letter-spacing: 0.01em;
+        }
+
+        .reading-text-speechify p {
+            margin-bottom: 28px;
+        }
+
+        .sentence-highlight {
+            background: #E0E7FF;
+            padding: 2px 0;
+            border-radius: 3px;
+            transition: background 0.3s ease;
+        }
+
+        .sentence-highlight.active {
+            background: #C7D2FE;
+        }
+
+        .speechify-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid #E5E7EB;
+            padding: 12px 20px 25px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #9CA3AF;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-speechify {
+            height: 2px;
+            background: #E5E7EB;
+            border-radius: 1px;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 35%;
+            background: var(--brand-primary);
+            border-radius: 1px;
+        }
+
+        .controls-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .control-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6B7280;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .control-btn:hover {
+            background: #F3F4F6;
+        }
+
+        .play-btn-main {
+            width: 54px;
+            height: 54px;
+            background: var(--brand-gradient);
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .speed-btn {
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* Design 2: Kindle-Style */
+        .kindle-mobile {
+            height: 100%;
+            background: #FBF9F5;
+        }
+
+        .kindle-header {
+            padding: 50px 20px 15px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .kindle-content {
+            padding: 25px 20px 120px;
+            background: #FBF9F5;
+        }
+
+        .kindle-text {
+            font-size: 18px;
+            line-height: 1.75;
+            color: #2C2C2C;
+            font-family: 'Bookerly', 'Georgia', serif;
+            text-align: justify;
+        }
+
+        .kindle-text p {
+            margin-bottom: 20px;
+            text-indent: 1.5em;
+        }
+
+        .kindle-text p:first-child {
+            text-indent: 0;
+        }
+
+        .kindle-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #E8E6E1;
+            padding: 15px 20px 25px;
+        }
+
+        /* Design 3: Apple Books Style */
+        .apple-mobile {
+            height: 100%;
+            background: #FEFEFE;
+        }
+
+        .apple-header {
+            padding: 50px 20px 20px;
+            background: linear-gradient(to bottom, #FFFFFF, #FAFAFA);
+        }
+
+        .apple-content {
+            padding: 20px 22px 120px;
+            background: #FEFEFE;
+        }
+
+        .apple-text {
+            font-size: 19px;
+            line-height: 1.65;
+            color: #000000;
+            font-family: 'San Francisco', -apple-system, sans-serif;
+            letter-spacing: -0.01em;
+        }
+
+        .apple-text p {
+            margin-bottom: 22px;
+        }
+
+        /* Desktop Styles */
+        .desktop-speechify {
+            height: 100%;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .desktop-header {
+            background: white;
+            border-bottom: 1px solid #F3F4F6;
+            padding: 20px 40px;
+        }
+
+        .desktop-main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 40px 100px;
+            overflow-y: auto;
+            background: #FAFAFA;
+        }
+
+        .reading-container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .desktop-text {
+            font-size: 22px;
+            line-height: 1.8;
+            color: #1C1C1C;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .desktop-text p {
+            margin-bottom: 32px;
+        }
+
+        .desktop-controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 16px 32px;
+            border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .desktop-controls .control-btn {
+            width: 44px;
+            height: 44px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .desktop-controls .control-btn:hover {
+            background: rgba(243, 244, 246, 0.8);
+            transform: scale(1.05);
+        }
+
+        .desktop-controls .play-btn-main {
+            width: 56px;
+            height: 56px;
+            font-size: 20px;
+        }
+
+        .desktop-controls .speed-btn {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Features comparison */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .feature-icon {
+            color: var(--brand-primary);
+            font-weight: bold;
+        }
+
+        @media (max-width: 1200px) {
+            .devices {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .mobile-frame {
+                margin: 0 auto;
+            }
+        }
+
+        .selection-prompt {
+            background: var(--brand-gradient);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .selection-prompt h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .recommendation {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 BookBridge Professional Reading Experience</h1>
+        <p class="subtitle">White Background Theme - Industry Standard for Reading Apps</p>
+    </div>
+
+    <!-- Design 1: Speechify-Inspired (RECOMMENDED) -->
+    <div class="design-section">
+        <div class="design-header">
+            <h2 class="design-title">Option 1: Speechify-Inspired ⭐ RECOMMENDED</h2>
+            <p class="design-description">
+                Clean white background with Georgia serif font at 20px. Subtle blue highlighting for current sentence.
+                Minimal controls that don't distract from reading. This is what Speechify, Kindle, and Apple Books use.
+            </p>
+        </div>
+
+        <div class="devices">
+            <!-- Mobile Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Mobile (Your Current Platform)</div>
+                <div class="mobile-frame">
+                    <div class="mobile-notch"></div>
+                    <div class="speechify-mobile">
+                        <div class="speechify-header">
+                            <div class="header-top">
+                                <span class="back-arrow">←</span>
+                                <span class="settings-icon">Aa</span>
+                            </div>
+                            <div class="chapter-info">CHAPTER 1 OF 4</div>
+                            <div class="book-title-header">The Legend of Sleepy Hollow</div>
+                        </div>
+
+                        <div class="speechify-content">
+                            <div class="reading-text-speechify">
+                                <p>
+                                    <span class="sentence-highlight active">In a quiet valley along the Hudson River, there was a small village called Tarry Town.</span>
+                                    <span class="sentence-highlight">About two miles from this village, there was a little valley which was one of the quietest places in the whole world.</span>
+                                    A small stream ran through it, making a murmuring sound that made people feel sleepy.
+                                </p>
+
+                                <p>
+                                    The valley was known as Sleepy Hollow, and its people were called Sleepy Hollow Boys.
+                                    A drowsy, dreamy feeling seemed to hang over the land.
+                                    Some say that the place was bewitched by an old Indian chief, the wizard of his tribe, before the country was discovered by Master Hendrick Hudson.
+                                </p>
+
+                                <p>
+                                    The dominant spirit that haunts this enchanted region is the ghost of a headless horseman.
+                                    Some say it is the ghost of a Hessian soldier, whose head had been carried away by a cannon ball during the Revolutionary War.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="speechify-controls">
+                            <div class="progress-info">
+                                <span>2:15</span>
+                                <span>Sentence 143/325 • Chapter 2 of 4</span>
+                                <span>6:25</span>
+                            </div>
+                            <div class="progress-bar-speechify">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <div class="controls-row">
+                                <button class="control-btn speed-btn">1x</button>
+                                <button class="control-btn play-btn-main">▶️</button>
+                                <button class="control-btn">🎙️</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Desktop</div>
+                <div class="desktop-frame">
+                    <div class="desktop-speechify">
+                        <div class="desktop-header">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <span style="color: #9CA3AF; font-size: 13px;">CHAPTER 1 OF 4</span>
+                                    <h2 style="font-size: 18px; color: #374151; margin-top: 4px;">The Legend of Sleepy Hollow</h2>
+                                </div>
+                                <div style="display: flex; gap: 20px;">
+                                    <button style="padding: 8px 16px; border: 1px solid #E5E7EB; background: white; border-radius: 6px; color: #374151; cursor: pointer;">Aa</button>
+                                    <button style="padding: 8px 16px; border: 1px solid #E5E7EB; background: white; border-radius: 6px; color: #374151; cursor: pointer;">Settings</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="desktop-main">
+                            <div class="reading-container">
+                                <div class="desktop-text">
+                                    <p>
+                                        <span class="sentence-highlight active">In a quiet valley along the Hudson River, there was a small village called Tarry Town.</span>
+                                        <span class="sentence-highlight">About two miles from this village, there was a little valley which was one of the quietest places in the whole world.</span>
+                                        A small stream ran through it, making a murmuring sound that made people feel sleepy.
+                                    </p>
+
+                                    <p>
+                                        The valley was known as Sleepy Hollow, and its people were called Sleepy Hollow Boys.
+                                        A drowsy, dreamy feeling seemed to hang over the land.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="desktop-controls">
+                            <button class="control-btn speed-btn">1x</button>
+                            <button class="control-btn play-btn-main">▶️</button>
+                            <button class="control-btn">🎙️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>White background reduces eye strain</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>20px Georgia serif font (optimal reading size)</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>1.8 line height for comfortable reading</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Subtle blue highlighting (#E0E7FF)</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Chapter progress indicators</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Minimal, non-distracting controls</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 2: Kindle-Style -->
+    <div class="design-section">
+        <div class="design-header">
+            <h2 class="design-title">Option 2: Kindle-Style (Warm Reading)</h2>
+            <p class="design-description">
+                Slightly warm background (#FBF9F5) mimicking paper. Justified text with traditional book formatting.
+                Perfect for long reading sessions.
+            </p>
+        </div>
+
+        <div class="devices">
+            <!-- Mobile Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Mobile</div>
+                <div class="mobile-frame">
+                    <div class="mobile-notch"></div>
+                    <div class="kindle-mobile">
+                        <div class="kindle-header">
+                            <div style="text-align: center; color: #6B7280; font-size: 14px;">
+                                The Legend of Sleepy Hollow
+                            </div>
+                        </div>
+
+                        <div class="kindle-content">
+                            <div class="kindle-text">
+                                <p>In a quiet valley along the Hudson River, there was a small village called Tarry Town. About two miles from this village, there was a little valley which was one of the quietest places in the whole world. A small stream ran through it, making a murmuring sound that made people feel sleepy.</p>
+
+                                <p>The valley was known as Sleepy Hollow, and its people were called Sleepy Hollow Boys. A drowsy, dreamy feeling seemed to hang over the land.</p>
+                            </div>
+                        </div>
+
+                        <div class="kindle-controls">
+                            <div style="display: flex; justify-content: center; gap: 30px;">
+                                <button style="background: none; border: none; color: #6B7280; font-size: 18px;">⏮</button>
+                                <button style="background: #374151; color: white; border: none; padding: 12px 24px; border-radius: 50px; font-size: 16px;">▶️ Play</button>
+                                <button style="background: none; border: none; color: #6B7280; font-size: 18px;">⏭</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 3: Apple Books Style -->
+    <div class="design-section">
+        <div class="design-header">
+            <h2 class="design-title">Option 3: Apple Books (Ultra Clean)</h2>
+            <p class="design-description">
+                Pure white with San Francisco font. Extremely minimal interface with focus purely on content.
+            </p>
+        </div>
+
+        <div class="devices">
+            <!-- Mobile Version -->
+            <div class="device-wrapper">
+                <div class="device-label">Mobile</div>
+                <div class="mobile-frame">
+                    <div class="mobile-notch"></div>
+                    <div class="apple-mobile">
+                        <div class="apple-header">
+                            <div style="text-align: center;">
+                                <div style="font-size: 13px; color: #8E8E93;">CHAPTER 1</div>
+                                <div style="font-size: 17px; color: #000000; font-weight: 600; margin-top: 4px;">The Legend of Sleepy Hollow</div>
+                            </div>
+                        </div>
+
+                        <div class="apple-content">
+                            <div class="apple-text">
+                                <p>In a quiet valley along the Hudson River, there was a small village called Tarry Town. About two miles from this village, there was a little valley which was one of the quietest places in the whole world.</p>
+
+                                <p>The valley was known as Sleepy Hollow, and its people were called Sleepy Hollow Boys.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="selection-prompt">
+        <h2>🎯 Recommendation: Option 1 (Speechify-Inspired)</h2>
+        <div class="recommendation">
+            Option 1 is the best choice because:
+            <br>• Matches industry leaders (Speechify, Natural Reader)
+            <br>• Perfect font size (20px) and line height (1.8)
+            <br>• Chapter structure ready for Sleepy Hollow
+            <br>• Subtle highlighting that doesn't distract
+            <br>• Controls that auto-hide when reading
+        </div>
+        <p style="margin-top: 20px;">Ready to implement this professional white-background reading experience in your Featured Books page!</p>
+    </div>
+
+</body>
+</html>
