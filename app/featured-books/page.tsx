@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
+import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -200,9 +201,11 @@ export default function FeaturedBooksPage() {
   const [playbackTime, setPlaybackTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
+  const [showChapterPicker, setShowChapterPicker] = useState(false);
 
   // Audio manager
   const audioManagerRef = useRef<BundleAudioManager | null>(null);
+  const playerRef = useRef<AudioBookPlayer | null>(null);
   const handleNextBundleRef = useRef<() => void>(() => {});
   const isPlayingRef = useRef<boolean>(false); // Critical fix for React closure issue
 
@@ -291,7 +294,7 @@ export default function FeaturedBooksPage() {
           const data: RealBundleApiResponse = await response.json();
           setBundleData(data);
 
-          // Initialize audio manager
+          // Initialize unified player and audio manager
           if (!audioManagerRef.current) {
             // Determine highlight lead based on audio provider
             const firstSentence = data?.bundles?.[0]?.sentences?.[0];
@@ -334,6 +337,13 @@ export default function FeaturedBooksPage() {
               }
             });
             audioManagerRef.current = audioManager;
+
+            // Create unified player with global sentence map and preloading
+            playerRef.current = new AudioBookPlayer(data.bundles, {
+              highlightLeadMs: leadMs,
+              preloadRadius: 1,
+              debug: false
+            });
           }
         } else {
           setError(`Level ${levelParam} not available for this book`);
@@ -495,6 +505,77 @@ export default function FeaturedBooksPage() {
     setCurrentSentenceIndex(0);
     setPlaybackTime(0);
     setTotalTime(0);
+  };
+
+  // Persist and restore progress
+  useEffect(() => {
+    const bookId = getBookId();
+    const key = `reading-progress-${bookId}`;
+    const data = {
+      bookId,
+      sentenceIndex: currentSentenceIndex,
+      timestamp: Date.now()
+    };
+    try {
+      localStorage.setItem(key, JSON.stringify(data));
+    } catch {}
+  }, [currentSentenceIndex]);
+
+  const continueReading = async () => {
+    const bookId = getBookId();
+    const key = `reading-progress-${bookId}`;
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+      if (typeof saved?.sentenceIndex === 'number') {
+        await handlePlaySequential(saved.sentenceIndex);
+      }
+    } catch {}
+  };
+
+  // Jump to any sentence (by absolute sentence index)
+  const jumpToSentence = async (targetIndex: number) => {
+    if (!playerRef.current) {
+      await handlePlaySequential(targetIndex);
+      return;
+    }
+    setIsPlaying(true);
+    isPlayingRef.current = true;
+    await playerRef.current.jumpToSentence(targetIndex);
+  };
+
+  // Mobile-optimized chapter picker
+  const ChapterPicker = () => {
+    const chapters = selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS : GREAT_GATSBY_CHAPTERS;
+    return (
+      <div className="flex items-center gap-1 w-full max-w-xs">
+        <select
+          className="border rounded px-1 py-1 text-xs flex-1 min-w-0"
+          onChange={async (e) => {
+            const chapterNum = Number(e.target.value);
+            const chapter = chapters.find(c => c.chapterNumber === chapterNum);
+            if (!chapter) return;
+
+            // Stop current playback first
+            handleStop();
+
+            // Wait a moment then jump to chapter
+            setTimeout(async () => {
+              setCurrentSentenceIndex(chapter.startSentence);
+              await jumpToSentence(chapter.startSentence);
+            }, 100);
+          }}
+          value={getCurrentChapter().current}
+        >
+          {chapters.map(c => (
+            <option key={c.chapterNumber} value={c.chapterNumber}>
+              Ch {c.chapterNumber}: {c.title.length > 20 ? c.title.substring(0, 20) + '...' : c.title}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
   };
 
   const formatTime = (seconds: number) => {
@@ -727,9 +808,15 @@ export default function FeaturedBooksPage() {
             >
               ←
             </button>
+
+            {/* Chapter Navigation - Disabled for systematic implementation later */}
+            <div className="flex-1 flex justify-center px-2">
+              {/* <ChapterPicker /> */}
+            </div>
+
             <button
               onClick={() => setShowSettingsModal(true)}
-              className="text-gray-600 text-lg font-medium hover:bg-gray-100 px-2 py-1 rounded"
+              className="text-gray-600 text-lg font-medium hover:bg-gray-100 px-2 py-1 rounded flex-shrink-0"
             >
               Aa
             </button>
@@ -870,7 +957,35 @@ export default function FeaturedBooksPage() {
                       style={{
                         textAlign: 'left'
                       }}
-                      title={`Sentence ${sentence.sentenceIndex + 1} (${sentence.startTime.toFixed(1)}s - ${sentence.endTime.toFixed(1)}s)`}
+                      title={`Sentence ${sentence.sentenceIndex + 1} (${sentence.startTime.toFixed(1)}s - ${sentence.endTime.toFixed(1)}s) - Click to jump`}
+                      onClick={async () => {
+                        console.log(`🖱️ Clicked sentence ${sentence.sentenceIndex}`);
+
+                        // FIRST: Stop any current playback completely
+                        if (audioManagerRef.current) {
+                          audioManagerRef.current.stop();
+                        }
+
+                        // Update highlight immediately (optimistic UI)
+                        setCurrentSentenceIndex(sentence.sentenceIndex);
+
+                        // Ensure playback state is active for continuation
+                        setIsPlaying(true);
+                        isPlayingRef.current = true;
+
+                        // Jump to sentence using the UI-connected audio manager
+                        if (playerRef.current && audioManagerRef.current) {
+                          const pos = playerRef.current.getSentencePosition(sentence.sentenceIndex);
+                          if (pos) {
+                            const targetBundle = bundleData.bundles[pos.bundleIndex];
+
+                            // Update current bundle state so handleNextBundle works correctly
+                            setCurrentBundle(targetBundle.bundleId);
+
+                            await audioManagerRef.current.playSequentialSentences(targetBundle, sentence.sentenceIndex);
+                          }
+                        }
+                      }}
                     >
                       {sentence.text}
                       {' '}

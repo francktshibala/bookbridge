@@ -41,12 +41,16 @@ export class BundleAudioManager {
   private currentBundle: BundleData | null = null;
   private currentSentenceIndex = -1;
   private progressTimer: number | null = null;
+  private rafId: number | null = null;
   private options: BundleAudioOptions = {};
   private isPlaying = false;
   private isPlayingRef: { current: boolean } = { current: false }; // Critical fix for closure issue
   private highlightLeadSeconds: number = 0;
   private durationScale: number = 1; // scales meta timings to match real audio duration
   private scaledSentences: Map<number, {startTime: number, endTime: number}> = new Map();
+  private suppressTransitionsUntil: number = 0; // hysteresis window after resume (performance.now timestamp)
+  private pausedAtTime: number = 0; // Store exact audio position when paused
+  private pausedAtSentence: number = -1; // Store sentence index when paused
 
   constructor(options: BundleAudioOptions = {}) {
     this.options = options;
@@ -83,8 +87,9 @@ export class BundleAudioManager {
         throw new Error('Failed to load bundle audio');
       }
 
-      // Set playback position to sentence start time
-      this.currentAudio.currentTime = targetSentence.startTime;
+      // Set playback position to scaled sentence start time
+      const scaled = this.scaledSentences.get(targetSentenceIndex);
+      this.currentAudio.currentTime = scaled ? scaled.startTime : targetSentence.startTime * this.durationScale;
       this.currentSentenceIndex = targetSentenceIndex;
       this.isPlaying = true;
       this.isPlayingRef.current = true; // Update ref too
@@ -140,8 +145,9 @@ export class BundleAudioManager {
         this.isPlaying = true;
         this.isPlayingRef.current = true; // Update ref too
 
-        // Start from sentence beginning
-        this.currentAudio.currentTime = startSentence.startTime;
+      // Start from scaled sentence beginning
+      const scaledStart = this.scaledSentences.get(startSentenceIndex)?.startTime || (startSentence.startTime * this.durationScale);
+      this.currentAudio.currentTime = scaledStart;
         this.startSequentialMonitoring(bundle, startSentenceIndex);
 
         // Play audio
@@ -197,10 +203,16 @@ export class BundleAudioManager {
         this.currentAudio.src = '';
       }
 
-      // Create new audio for this sentence
-      const audio = new Audio(audioUrl);
-      audio.crossOrigin = 'anonymous';
-      this.currentAudio = audio;
+      // Reuse existing audio element or create one if needed
+      if (!this.currentAudio) {
+        this.currentAudio = new Audio();
+        this.currentAudio.crossOrigin = 'anonymous';
+      }
+
+      // Stop and update source
+      this.currentAudio.pause();
+      this.currentAudio.src = audioUrl;
+      const audio = this.currentAudio;
 
       // Set up completion handler
       audio.addEventListener('ended', () => {
@@ -252,10 +264,17 @@ export class BundleAudioManager {
         this.currentAudio.load();
       }
 
-      // Create new audio element
-      const audio = new Audio();
-      audio.crossOrigin = 'anonymous';
-      audio.preload = 'auto';
+      // Reuse existing audio element or create one if needed
+      if (!this.currentAudio) {
+        this.currentAudio = new Audio();
+        this.currentAudio.crossOrigin = 'anonymous';
+      }
+
+      // Stop current audio and update source
+      this.currentAudio.pause();
+      this.currentAudio.src = bundle.audioUrl;
+      this.currentAudio.preload = 'auto';
+      const audio = this.currentAudio;
 
       const onCanPlay = () => {
         audio.removeEventListener('canplay', onCanPlay);
@@ -272,7 +291,9 @@ export class BundleAudioManager {
         const realDuration = audio.duration || bundle.totalDuration;
         // Guard against zeros and NaN
         if (metaDuration > 0 && realDuration > 0 && Number.isFinite(realDuration)) {
-          this.durationScale = realDuration / metaDuration;
+          const rawScale = realDuration / metaDuration;
+          // Clamp duration scale to avoid outliers
+          this.durationScale = Math.min(1.10, Math.max(0.85, rawScale));
         } else {
           this.durationScale = 1;
         }
@@ -286,9 +307,13 @@ export class BundleAudioManager {
           });
         });
 
-        console.log(`🧭 Duration calibration: meta=${metaDuration.toFixed(2)}s real=${realDuration.toFixed(2)}s scale=${this.durationScale.toFixed(3)}`);
+        if (process.env.NEXT_PUBLIC_AUDIO_DEBUG === '1') {
+          console.log(`🧭 Duration calibration: meta=${metaDuration.toFixed(2)}s real=${realDuration.toFixed(2)}s scale=${this.durationScale.toFixed(3)}`);
+        }
 
-        console.log(`✅ Bundle loaded: ${bundle.bundleId} (${bundle.totalDuration.toFixed(1)}s)`);
+        if (process.env.NEXT_PUBLIC_AUDIO_DEBUG === '1') {
+          console.log(`✅ Bundle loaded: ${bundle.bundleId} (${bundle.totalDuration.toFixed(1)}s)`);
+        }
         resolve();
       };
 
@@ -311,98 +336,80 @@ export class BundleAudioManager {
    * Monitor progress for single sentence playback
    */
   private startProgressMonitoring(targetSentence: BundleSentence) {
-    if (this.progressTimer) {
-      clearInterval(this.progressTimer);
-    }
+    this.stopMonitoring();
 
-    this.progressTimer = window.setInterval(() => {
+    const tick = () => {
       if (!this.currentAudio || !this.isPlayingRef.current) return;
 
-      const currentTime = this.currentAudio.currentTime;
-      const highlightTime = currentTime + this.highlightLeadSeconds;
-      const scaledEnd = this.scaledSentences.get(targetSentence.sentenceIndex)?.endTime || targetSentence.endTime * this.durationScale;
+      const rawTime = this.currentAudio.currentTime; // unscaled
+      const scaledEnd = this.scaledSentences.get(targetSentence.sentenceIndex)?.endTime || (targetSentence.endTime * this.durationScale);
 
-      // Check if sentence is complete
-      if (highlightTime >= scaledEnd) {
+      // Completion uses raw time vs scaled end (lead does not affect completion)
+      if (rawTime >= scaledEnd || this.currentAudio.ended || rawTime >= (this.currentAudio.duration - 0.05)) {
         this.handleSentenceComplete(targetSentence);
         return;
       }
 
-      // Report progress
-      this.options.onProgress?.(currentTime, scaledEnd);
+      this.options.onProgress?.(rawTime, this.currentAudio.duration);
+      this.rafId = requestAnimationFrame(tick);
+    };
 
-    }, 50); // Check every 50ms for precision
+    this.rafId = requestAnimationFrame(tick);
   }
 
   /**
    * Monitor progress for sequential sentence playback
    */
   private startSequentialMonitoring(bundle: BundleData, startIndex: number) {
-    if (this.progressTimer) {
-      clearInterval(this.progressTimer);
-    }
+    this.stopMonitoring();
 
     let currentSentenceInBundle = bundle.sentences.find(s => s.sentenceIndex === startIndex);
     if (!currentSentenceInBundle) return;
 
-    this.progressTimer = window.setInterval(() => {
+    const tick = () => {
       if (!this.currentAudio || !this.isPlayingRef.current || !currentSentenceInBundle) return;
 
-      const currentTime = this.currentAudio.currentTime;
-      const highlightTime = currentTime + this.highlightLeadSeconds;
+      const now = performance.now();
+      const rawTime = this.currentAudio.currentTime; // unscaled
+      const highlightTime = rawTime + this.highlightLeadSeconds;
 
-      // Debug timing progress for Great Gatsby
-      const scaledEnd = this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0;
-      if (currentSentenceInBundle && Math.floor(currentTime) !== Math.floor((currentTime - 0.05))) {
-        console.log(`⏱️ Progress: audio=${currentTime.toFixed(1)}s sentence=${currentSentenceInBundle.sentenceIndex} ends at ${scaledEnd.toFixed(1)}s (scale=${this.durationScale.toFixed(3)})`);
-      }
-
-      // Check for next sentence START TIME to highlight immediately
       const nextSentenceIndex = currentSentenceInBundle.sentenceIndex + 1;
       const nextSentence = bundle.sentences.find(s => s.sentenceIndex === nextSentenceIndex);
-      const nextScaledStart = this.scaledSentences.get(nextSentenceIndex)?.startTime || 0;
+      const nextScaledStart = nextSentence ? (this.scaledSentences.get(nextSentenceIndex)?.startTime || 0) : 0;
+      const currentScaledEnd = this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0;
 
-      if (nextSentence && highlightTime >= nextScaledStart) {
-        // Immediately highlight next sentence when its start time is reached
+      // Advance to next sentence when highlight reaches next start, but not during hysteresis window
+      if (nextSentence && nextScaledStart > 0 && highlightTime >= nextScaledStart && now >= this.suppressTransitionsUntil) {
         this.options.onSentenceEnd?.(currentSentenceInBundle);
         currentSentenceInBundle = nextSentence;
         this.currentSentenceIndex = nextSentenceIndex;
         this.options.onSentenceStart?.(nextSentence);
-      }
-      // Check if current sentence is complete OR if audio has naturally ended
-      else if (highlightTime >= (this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0) ||
-          (this.currentAudio.ended) ||
-          (currentTime >= this.currentAudio.duration - 0.05)) {
-        const scaledEnd = this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0;
-        console.log(`✅ Sentence ${currentSentenceInBundle.sentenceIndex} complete at ${currentTime.toFixed(1)}s (scaledEnd: ${scaledEnd.toFixed(1)}s)`);
-        this.options.onSentenceEnd?.(currentSentenceInBundle);
-
-        if (nextSentence) {
-          // Continue to next sentence
-          currentSentenceInBundle = nextSentence;
-          this.currentSentenceIndex = nextSentenceIndex;
-          this.options.onSentenceStart?.(nextSentence);
-          console.log(`🎵 Auto-advancing to sentence ${nextSentenceIndex}`);
-        } else {
-          // Bundle complete - also check if we're near the end of audio
-          console.log(`🏁 No next sentence found. Audio duration: ${this.currentAudio.duration}s, currentTime: ${currentTime}s`);
-          this.handleBundleComplete(bundle);
-          return;
+      } else {
+        // Complete current sentence using raw time vs scaled end
+        if ((currentScaledEnd > 0 && rawTime >= currentScaledEnd) || this.currentAudio.ended || rawTime >= (this.currentAudio.duration - 0.05)) {
+          this.options.onSentenceEnd?.(currentSentenceInBundle);
+          if (nextSentence) {
+            currentSentenceInBundle = nextSentence;
+            this.currentSentenceIndex = nextSentenceIndex;
+            this.options.onSentenceStart?.(nextSentence);
+          } else {
+            this.handleBundleComplete(bundle);
+            return;
+          }
         }
       }
 
-      // Report progress
-      this.options.onProgress?.(currentTime, bundle.totalDuration);
+      this.options.onProgress?.(rawTime, this.currentAudio.duration);
+      this.rafId = requestAnimationFrame(tick);
+    };
 
-    }, 50);
+    this.rafId = requestAnimationFrame(tick);
   }
 
   /**
    * Handle single sentence completion
    */
   private handleSentenceComplete(sentence: BundleSentence) {
-    console.log(`✅ Sentence ${sentence.sentenceIndex} complete`);
-
     this.pause();
     this.options.onSentenceEnd?.(sentence);
   }
@@ -433,15 +440,17 @@ export class BundleAudioManager {
    */
   pause() {
     if (this.currentAudio && !this.currentAudio.paused) {
+      // Store exact position before pausing
+      this.pausedAtTime = this.currentAudio.currentTime;
+      this.pausedAtSentence = this.currentSentenceIndex;
+      console.log(`⏸️ Paused at time: ${this.pausedAtTime.toFixed(2)}s, sentence: ${this.pausedAtSentence}`);
+
       this.currentAudio.pause();
     }
     this.isPlaying = false;
     this.isPlayingRef.current = false;
 
-    if (this.progressTimer) {
-      clearInterval(this.progressTimer);
-      this.progressTimer = null;
-    }
+    this.stopMonitoring();
   }
 
   /**
@@ -451,15 +460,26 @@ export class BundleAudioManager {
     if (this.currentAudio && this.currentAudio.paused) {
       this.isPlaying = true;
       this.isPlayingRef.current = true;
+
+      // Restore exact position from pause
+      if (this.pausedAtTime > 0 && this.pausedAtSentence >= 0) {
+        this.currentAudio.currentTime = this.pausedAtTime;
+        this.currentSentenceIndex = this.pausedAtSentence;
+        console.log(`▶️ Resuming from exact position: ${this.pausedAtTime.toFixed(2)}s, sentence: ${this.pausedAtSentence}`);
+      }
+
       await this.currentAudio.play();
 
-      // Restart monitoring based on current context
+      // Restart monitoring from the stored sentence index
       if (this.currentBundle && this.currentSentenceIndex >= 0) {
-        const currentSentence = this.currentBundle.sentences.find(
-          s => s.sentenceIndex === this.currentSentenceIndex
-        );
-        if (currentSentence) {
-          this.startProgressMonitoring(currentSentence);
+        // No need to recalculate - use stored sentence index
+        const activeSentence = this.currentBundle.sentences.find(s => s.sentenceIndex === this.currentSentenceIndex);
+        if (activeSentence) {
+          // Don't re-trigger onSentenceStart since we're continuing the same sentence
+
+          // Suppress transitions briefly to avoid skips
+          this.suppressTransitionsUntil = performance.now() + 200; // Back to 200ms suppression
+          this.startSequentialMonitoring(this.currentBundle, this.currentSentenceIndex);
         }
       }
     }
@@ -478,10 +498,11 @@ export class BundleAudioManager {
     this.isPlayingRef.current = false;
     this.currentSentenceIndex = -1;
 
-    if (this.progressTimer) {
-      clearInterval(this.progressTimer);
-      this.progressTimer = null;
-    }
+    // Reset stored pause position
+    this.pausedAtTime = 0;
+    this.pausedAtSentence = -1;
+
+    this.stopMonitoring();
   }
 
   /**
@@ -495,6 +516,31 @@ export class BundleAudioManager {
       currentTime: this.currentAudio?.currentTime || 0,
       duration: this.currentBundle?.totalDuration || 0
     };
+  }
+
+  /**
+   * Get current bundle (for cross-bundle jump detection)
+   */
+  getCurrentBundle(): BundleData | null {
+    return this.currentBundle;
+  }
+
+  /**
+   * Seek to specific time in current audio
+   */
+  seekToTime(time: number): void {
+    if (this.currentAudio) {
+      this.currentAudio.currentTime = time;
+      console.log(`⏩ Seeked to ${time.toFixed(2)}s`);
+    }
+  }
+
+  /**
+   * Set current sentence index (for same-bundle jumps)
+   */
+  setCurrentSentenceIndex(index: number): void {
+    this.currentSentenceIndex = index;
+    console.log(`📍 Sentence index set to ${index}`);
   }
 
   /**
@@ -520,6 +566,17 @@ export class BundleAudioManager {
     }
 
     this.currentBundle = null;
+  }
+
+  private stopMonitoring() {
+    if (this.progressTimer) {
+      clearInterval(this.progressTimer);
+      this.progressTimer = null;
+    }
+    if (this.rafId !== null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
   }
 }
 
