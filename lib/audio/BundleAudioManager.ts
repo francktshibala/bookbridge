@@ -29,6 +29,11 @@ interface BundleAudioOptions {
   onSentenceEnd?: (sentence: BundleSentence) => void;
   onBundleComplete?: (bundleId: string) => void;
   onProgress?: (currentTime: number, totalTime: number) => void;
+  /**
+   * Lead (in milliseconds) to apply to highlighting decisions.
+   * Negative values highlight earlier; positive values delay highlighting.
+   */
+  highlightLeadMs?: number;
 }
 
 export class BundleAudioManager {
@@ -39,9 +44,13 @@ export class BundleAudioManager {
   private options: BundleAudioOptions = {};
   private isPlaying = false;
   private isPlayingRef: { current: boolean } = { current: false }; // Critical fix for closure issue
+  private highlightLeadSeconds: number = 0;
 
   constructor(options: BundleAudioOptions = {}) {
     this.options = options;
+    if (typeof options.highlightLeadMs === 'number' && !Number.isNaN(options.highlightLeadMs)) {
+      this.highlightLeadSeconds = options.highlightLeadMs / 1000;
+    }
   }
 
   /**
@@ -283,7 +292,7 @@ export class BundleAudioManager {
     this.progressTimer = window.setInterval(() => {
       if (!this.currentAudio || !this.isPlayingRef.current) return;
 
-      const currentTime = this.currentAudio.currentTime;
+      const currentTime = this.currentAudio.currentTime + this.highlightLeadSeconds;
 
       // Check if sentence is complete
       if (currentTime >= targetSentence.endTime) {
@@ -292,7 +301,7 @@ export class BundleAudioManager {
       }
 
       // Report progress
-      this.options.onProgress?.(currentTime, targetSentence.endTime);
+      this.options.onProgress?.(Math.max(0, currentTime - this.highlightLeadSeconds), targetSentence.endTime);
 
     }, 50); // Check every 50ms for precision
   }
@@ -311,7 +320,7 @@ export class BundleAudioManager {
     this.progressTimer = window.setInterval(() => {
       if (!this.currentAudio || !this.isPlayingRef.current || !currentSentenceInBundle) return;
 
-      const currentTime = this.currentAudio.currentTime;
+      const currentTime = this.currentAudio.currentTime + this.highlightLeadSeconds;
 
       // Debug timing progress (disabled for production)
       // if (currentSentenceInBundle && currentTime % 1 < 0.1) {
@@ -351,7 +360,7 @@ export class BundleAudioManager {
       }
 
       // Report progress
-      this.options.onProgress?.(currentTime, bundle.totalDuration);
+      this.options.onProgress?.(Math.max(0, currentTime - this.highlightLeadSeconds), bundle.totalDuration);
 
     }, 50);
   }

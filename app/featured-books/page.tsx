@@ -44,26 +44,6 @@ interface FeaturedBook {
 
 const FEATURED_BOOKS: FeaturedBook[] = [
   {
-    id: 'test-continuous-bundles-001',
-    title: 'Test Book',
-    author: 'BookBridge Team',
-    description: 'Technical validation book with 44 sentences across 11 bundles. Proves bundle architecture works.',
-    sentences: 44,
-    bundles: 11,
-    gradient: 'from-blue-500 to-purple-600',
-    abbreviation: 'TB'
-  },
-  {
-    id: 'custom-story-500',
-    title: 'Modern Adventure Story',
-    author: 'BookBridge Original',
-    description: 'B1 modern adventure story with 449 sentences across 113 bundles. Clean contemporary content without Victorian complexity.',
-    sentences: 449,
-    bundles: 113,
-    gradient: 'from-green-500 to-teal-600',
-    abbreviation: 'MA'
-  },
-  {
     id: 'sleepy-hollow-enhanced',
     title: 'The Legend of Sleepy Hollow',
     author: 'Washington Irving',
@@ -74,14 +54,14 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'SH'
   },
   {
-    id: 'jane-eyre-scale-test-001',
-    title: 'Jane Eyre',
-    author: 'Charlotte Brontë',
-    description: 'A1 simplified version with 10,338 sentences across 2,585 bundles. Full-scale continuous reading experience.',
-    sentences: 10338,
-    bundles: 2585,
-    gradient: 'from-purple-500 to-pink-600',
-    abbreviation: 'JE'
+    id: 'great-gatsby-a2',
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+    description: 'Jazz Age masterpiece with A2 simplification. 3,605 sentences across 902 bundles narrated by Sarah.',
+    sentences: 3605,
+    bundles: 902,
+    gradient: 'from-green-500 to-teal-600',
+    abbreviation: 'GG'
   }
 ];
 
@@ -118,6 +98,82 @@ const SLEEPY_HOLLOW_CHAPTERS = [
     endSentence: 324,
     startBundle: 70,
     endBundle: 81
+  }
+];
+
+// Great Gatsby Chapter Structure (9 chapters, ~400 sentences each)
+const GREAT_GATSBY_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "Nick Arrives in West Egg",
+    startSentence: 0,
+    endSentence: 379,
+    startBundle: 0,
+    endBundle: 94
+  },
+  {
+    chapterNumber: 2,
+    title: "The Valley of Ashes",
+    startSentence: 380,
+    endSentence: 736,
+    startBundle: 95,
+    endBundle: 184
+  },
+  {
+    chapterNumber: 3,
+    title: "Gatsby's Party",
+    startSentence: 737,
+    endSentence: 1145,
+    startBundle: 185,
+    endBundle: 286
+  },
+  {
+    chapterNumber: 4,
+    title: "The Truth About Gatsby",
+    startSentence: 1146,
+    endSentence: 1561,
+    startBundle: 287,
+    endBundle: 390
+  },
+  {
+    chapterNumber: 5,
+    title: "The Reunion",
+    startSentence: 1562,
+    endSentence: 1879,
+    startBundle: 391,
+    endBundle: 469
+  },
+  {
+    chapterNumber: 6,
+    title: "The Past Revealed",
+    startSentence: 1880,
+    endSentence: 2162,
+    startBundle: 470,
+    endBundle: 540
+  },
+  {
+    chapterNumber: 7,
+    title: "The Confrontation",
+    startSentence: 2163,
+    endSentence: 2965,
+    startBundle: 541,
+    endBundle: 741
+  },
+  {
+    chapterNumber: 8,
+    title: "The Tragedy",
+    startSentence: 2966,
+    endSentence: 3322,
+    startBundle: 742,
+    endBundle: 830
+  },
+  {
+    chapterNumber: 9,
+    title: "The End of the Dream",
+    startSentence: 3323,
+    endSentence: 3604,
+    startBundle: 831,
+    endBundle: 901
   }
 ];
 
@@ -168,7 +224,7 @@ export default function FeaturedBooksPage() {
         }
       }
     }
-    return 'test-continuous-bundles-001';
+    return FEATURED_BOOKS[0].id; // Default to first book
   };
 
   // Check available levels for the book
@@ -237,12 +293,17 @@ export default function FeaturedBooksPage() {
 
           // Initialize audio manager
           if (!audioManagerRef.current) {
-            // Determine highlight lead based on availability of precise timings
+            // Determine highlight lead based on audio provider
             const firstSentence = data?.bundles?.[0]?.sentences?.[0];
             const hasPreciseTimings = Array.isArray(firstSentence?.wordTimings) && firstSentence.wordTimings.length > 0;
-            const leadMs = hasPreciseTimings ? 500 : 1400; // larger lead for synthesized timings
+
+            // For TTS (ElevenLabs), use immediate highlighting since timings are estimated
+            const audioProvider = data?.audioType || 'elevenlabs';
+            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || bookId === 'great-gatsby-a2';
+            const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400); // Negative lead for TTS to highlight earlier
 
             const audioManager = new BundleAudioManager({
+              highlightLeadMs: leadMs,
               onSentenceStart: (sentence) => {
                 // Immediate highlight; predictive lead handled inside BundleAudioManager
                 setCurrentSentenceIndex(sentence.sentenceIndex);
@@ -462,29 +523,40 @@ export default function FeaturedBooksPage() {
 
   // Get current chapter info using detailed metadata
   const getCurrentChapter = () => {
-    if (!selectedBook || selectedBook.id !== 'sleepy-hollow-enhanced') {
+    if (!selectedBook) {
       return { current: 1, total: 1, title: '', totalSentences: 0 };
     }
 
-    // Use detailed chapter metadata
-    for (let i = 0; i < SLEEPY_HOLLOW_CHAPTERS.length; i++) {
-      const chapter = SLEEPY_HOLLOW_CHAPTERS[i];
+    // Choose appropriate chapter structure
+    let chapters;
+    if (selectedBook.id === 'sleepy-hollow-enhanced') {
+      chapters = SLEEPY_HOLLOW_CHAPTERS;
+    } else if (selectedBook.id === 'great-gatsby-a2') {
+      chapters = GREAT_GATSBY_CHAPTERS;
+    } else {
+      return { current: 1, total: 1, title: '', totalSentences: selectedBook.sentences };
+    }
+
+    // Find current chapter based on sentence index
+    for (let i = 0; i < chapters.length; i++) {
+      const chapter = chapters[i];
       if (currentSentenceIndex >= chapter.startSentence && currentSentenceIndex <= chapter.endSentence) {
         return {
           current: chapter.chapterNumber,
-          total: SLEEPY_HOLLOW_CHAPTERS.length,
+          total: chapters.length,
           title: chapter.title,
           totalSentences: selectedBook.sentences
         };
       }
     }
 
+    // Default to first chapter
     return {
       current: 1,
-      total: SLEEPY_HOLLOW_CHAPTERS.length,
-      title: SLEEPY_HOLLOW_CHAPTERS[0].title,
+      total: chapters.length,
+      title: chapters[0].title,
       totalSentences: selectedBook.sentences
-    }; // Default to chapter 1
+    };
   };
 
   return (
@@ -500,17 +572,12 @@ export default function FeaturedBooksPage() {
                 🎧 Featured Books
               </h1>
               <p className="text-gray-300 text-lg">
-                Experience true continuous reading with our bundle architecture
+                Experience continuous reading with perfect text-audio harmony
               </p>
-              <div className="mt-4 px-4 py-2 bg-green-900/50 rounded-lg border border-green-500/30 inline-block">
-                <span className="text-green-300 text-sm font-medium">
-                  ✅ Speechify-Level Experience • Zero Audio Gaps • Resume Anywhere
-                </span>
-              </div>
             </div>
 
             {/* Featured Books Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
               {FEATURED_BOOKS.map((book, index) => (
                 <motion.div
                   key={book.id}
@@ -523,82 +590,117 @@ export default function FeaturedBooksPage() {
                     setShowBookSelection(false);
                   }}
                 >
-                  <div className="bg-gray-800 rounded-xl border border-gray-700 hover:border-gray-600 transition-all duration-300 overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10">
-
-                    {/* Card Header with Gradient */}
-                    <div className={`h-32 bg-gradient-to-br ${book.gradient} relative`}>
-                      <div className="absolute inset-0 bg-black/20"></div>
-                      <div className="absolute top-4 left-4">
-                        <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                          <span className="text-white font-bold text-lg">{book.abbreviation}</span>
-                        </div>
-                      </div>
-                      <div className="absolute bottom-4 right-4 text-white/80 text-sm">
-                        {book.sentences} sentences • {book.bundles} bundles
-                      </div>
-                    </div>
+                  <div
+                    style={{
+                      background: 'rgba(51, 65, 85, 0.5)',
+                      border: '1px solid #334155',
+                      borderRadius: '12px',
+                      padding: '16px',
+                      width: '100%'
+                    }}
+                  >
 
                     {/* Card Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-blue-300 transition-colors">
+                    <div>
+                      {/* Book Title */}
+                      <div style={{
+                        fontSize: '16px',
+                        fontWeight: '600',
+                        color: '#e2e8f0',
+                        marginBottom: '4px'
+                      }}>
                         {book.title}
-                      </h3>
-                      <p className="text-gray-400 text-sm mb-3">by {book.author}</p>
-                      <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                        {book.description}
-                      </p>
+                      </div>
 
-                      {/* Technical Features */}
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="px-2 py-1 bg-blue-900/50 text-blue-300 rounded text-xs">
-                          Bundle Architecture
+                      {/* Author */}
+                      <div style={{
+                        fontSize: '14px',
+                        color: '#94a3b8',
+                        marginBottom: '12px'
+                      }}>
+                        by {book.author}
+                      </div>
+
+                      {/* Meta Tags */}
+                      <div style={{
+                        display: 'flex',
+                        gap: '8px',
+                        marginBottom: '12px',
+                        flexWrap: 'wrap'
+                      }}>
+                        <span style={{
+                          padding: '4px 8px',
+                          background: 'rgba(59, 130, 246, 0.2)',
+                          color: '#60a5fa',
+                          borderRadius: '4px',
+                          fontSize: '11px'
+                        }}>
+                          {book.id === 'great-gatsby-a2' ? 'A2' : 'A1-C2'}
                         </span>
-                        <span className="px-2 py-1 bg-green-900/50 text-green-300 rounded text-xs">
-                          Continuous Reading
+                        <span style={{
+                          padding: '4px 8px',
+                          background: 'rgba(59, 130, 246, 0.2)',
+                          color: '#60a5fa',
+                          borderRadius: '4px',
+                          fontSize: '11px'
+                        }}>
+                          Classic
                         </span>
-                        <span className="px-2 py-1 bg-purple-900/50 text-purple-300 rounded text-xs">
-                          Auto-Resume
+                        <span style={{
+                          padding: '4px 8px',
+                          background: 'rgba(59, 130, 246, 0.2)',
+                          color: '#60a5fa',
+                          borderRadius: '4px',
+                          fontSize: '11px'
+                        }}>
+                          {book.id === 'great-gatsby-a2' ? '~7.5h' : '~2h'}
                         </span>
                       </div>
 
-                      {/* Read Button */}
-                      <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-4 rounded-lg font-medium transition-all duration-200 transform group-hover:scale-[1.02]">
-                        🎧 Start Reading
-                      </button>
+                      {/* Action Buttons */}
+                      <div style={{
+                        display: 'flex',
+                        gap: '8px'
+                      }}>
+                        <button
+                          style={{
+                            flex: 1,
+                            height: '36px',
+                            borderRadius: '8px',
+                            background: 'rgba(139, 92, 246, 0.2)',
+                            color: '#a78bfa',
+                            border: '1px solid rgba(139, 92, 246, 0.3)',
+                            fontSize: '14px',
+                            fontWeight: '500',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          Ask AI
+                        </button>
+                        <button
+                          onClick={() => {
+                            setSelectedBook(book);
+                            setShowBookSelection(false);
+                          }}
+                          style={{
+                            flex: 1,
+                            height: '36px',
+                            background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '8px',
+                            fontSize: '14px',
+                            fontWeight: '500',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          🎧 Start Reading
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
               ))}
-            </div>
-
-            {/* Info Section */}
-            <div className="bg-gray-800 rounded-xl border border-gray-700 p-6 text-center">
-              <h2 className="text-2xl font-semibold mb-4 text-white">
-                Why Featured Books?
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <div className="text-3xl mb-2">🚀</div>
-                  <h3 className="font-semibold text-white mb-2">Bundle Architecture</h3>
-                  <p className="text-gray-400 text-sm">
-                    4 sentences per audio file reduces CDN requests by 75%
-                  </p>
-                </div>
-                <div>
-                  <div className="text-3xl mb-2">🎵</div>
-                  <h3 className="font-semibold text-white mb-2">Zero Audio Gaps</h3>
-                  <p className="text-gray-400 text-sm">
-                    Seamless sentence-to-sentence playback like Speechify
-                  </p>
-                </div>
-                <div>
-                  <div className="text-3xl mb-2">📱</div>
-                  <h3 className="font-semibold text-white mb-2">Any Scale</h3>
-                  <p className="text-gray-400 text-sm">
-                    Memory usage stays constant regardless of book size
-                  </p>
-                </div>
-              </div>
             </div>
 
           </div>
@@ -734,8 +836,8 @@ export default function FeaturedBooksPage() {
 
           {error && (
             <div className="text-center py-12">
-              <div className="bg-red-900 rounded-lg p-6 max-w-md mx-auto">
-                <p className="text-red-300">{error}</p>
+              <div className="bg-white border border-blue-200 rounded-lg p-6 max-w-md mx-auto shadow-lg">
+                <p className="text-blue-600 font-medium">{error}</p>
                 <p className="text-gray-400 text-sm mt-2">
                   Try switching to Original or available levels
                 </p>

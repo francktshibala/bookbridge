@@ -60,34 +60,88 @@ export async function GET(request: NextRequest) {
       }, { status: 404 });
     }
 
-    // Get audio assets - handle > 1000 rows for Jane Eyre
+    // Try new BookChunk architecture first (for Great Gatsby, Sleepy Hollow)
     let bundleAssets: any[] = [];
-    let offset = 0;
-    const limit = 1000;
-    let hasMore = true;
     let error: any = null;
 
-    while (hasMore) {
-      const { data: batch, error: batchError } = await supabase
-        .from('audio_assets')
-        .select('*')
-        .eq('book_id', bookId)
-        .eq('cefr_level', level)
-        .eq('chunk_index', 0)
-        .order('sentence_index', { ascending: true })
-        .range(offset, offset + limit - 1);
+    const bookChunks = await prisma.bookChunk.findMany({
+      where: {
+        bookId: bookId,
+        cefrLevel: level.toUpperCase(),
+        audioFilePath: { not: null }
+      },
+      orderBy: { chunkIndex: 'asc' }
+    });
 
-      if (batchError) {
-        error = batchError;
-        break;
-      }
+    if (bookChunks && bookChunks.length > 0) {
+      console.log(`✅ Found ${bookChunks.length} chunks in BookChunk table`);
 
-      if (batch && batch.length > 0) {
-        bundleAssets = [...bundleAssets, ...batch];
-        offset += limit;
-        hasMore = batch.length === limit;
-      } else {
-        hasMore = false;
+      // Convert BookChunk data to bundle format
+      bundleAssets = bookChunks.map(chunk => {
+        // Generate audio URL from Supabase storage path
+        const audioUrl = supabase.storage
+          .from('audio-files')
+          .getPublicUrl(chunk.audioFilePath!)
+          .data.publicUrl;
+
+        // Split chunk text into sentences (4 per chunk)
+        const sentences = chunk.chunkText.split(/(?<=[.!?])\s+/).filter(s => s.trim());
+        const sentencesPerBundle = 4;
+
+        return {
+          book_id: bookId,
+          cefr_level: level,
+          chunk_index: 0,
+          sentence_index: chunk.chunkIndex,
+          audio_url: audioUrl,
+          provider: chunk.audioProvider || 'elevenlabs',
+          word_timings: sentences.slice(0, sentencesPerBundle).map((text, idx) => {
+            const words = text.trim().split(/\s+/).length;
+            const duration = Math.max(words * 0.4, 2.0); // ~0.4s per word, min 2s
+            const startTime = idx === 0 ? 0 : sentences.slice(0, idx).reduce((sum, prevText) => {
+              const prevWords = prevText.trim().split(/\s+/).length;
+              return sum + Math.max(prevWords * 0.4, 2.0);
+            }, 0);
+
+            return {
+              sentenceId: `${bookId}-${chunk.chunkIndex}-${idx}`,
+              sentenceIndex: chunk.chunkIndex * sentencesPerBundle + idx,
+              text: text.trim(),
+              startTime: startTime,
+              endTime: startTime + duration,
+              wordTimings: [] // No word-level timings for TTS
+            };
+          })
+        };
+      });
+    } else {
+      // Fallback to legacy audio_assets table
+      let offset = 0;
+      const limit = 1000;
+      let hasMore = true;
+
+      while (hasMore) {
+        const { data: batch, error: batchError } = await supabase
+          .from('audio_assets')
+          .select('*')
+          .eq('book_id', bookId)
+          .eq('cefr_level', level)
+          .eq('chunk_index', 0)
+          .order('sentence_index', { ascending: true })
+          .range(offset, offset + limit - 1);
+
+        if (batchError) {
+          error = batchError;
+          break;
+        }
+
+        if (batch && batch.length > 0) {
+          bundleAssets = [...bundleAssets, ...batch];
+          offset += limit;
+          hasMore = batch.length === limit;
+        } else {
+          hasMore = false;
+        }
       }
     }
 
