@@ -27,6 +27,7 @@ model User {
   usage            Usage[]
   eslVocabularyProgress ESLVocabularyProgress[]
   readingSessions ReadingSession[]
+  readingPositions ReadingPosition[]
 
   @@map("users")
 }
@@ -337,6 +338,42 @@ model PrecomputeQueue {
   @@index([status, priority])
   @@index([createdAt])
   @@map("precompute_queue")
+}
+
+model ReadingPosition {
+  id                   String   @id @default(cuid())
+  userId               String   @map("user_id")
+  bookId               String   @map("book_id")
+
+  // Position tracking
+  currentSentenceIndex Int      @default(0) @map("current_sentence_index")
+  currentBundleIndex   Int      @default(0) @map("current_bundle_index")
+  currentChapter       Int      @default(1) @map("current_chapter")
+  playbackTime         Float    @default(0) @map("playback_time")
+  totalTime            Float    @default(0) @map("total_time")
+
+  // Settings at time of save
+  cefrLevel            String   @default("B2") @map("cefr_level")
+  playbackSpeed        Float    @default(1.0) @map("playback_speed")
+  contentMode          String   @default("simplified") @map("content_mode")
+
+  // Metadata
+  lastAccessed         DateTime @default(now()) @map("last_accessed")
+  sessionDuration      Int      @default(0) @map("session_duration")
+  deviceType           String?  @map("device_type")
+
+  // Reading progress
+  completionPercentage Float    @default(0) @map("completion_percentage")
+  sentencesRead        Int      @default(0) @map("sentences_read")
+
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, bookId])
+  @@index([userId, lastAccessed])
+  @@map("reading_positions")
 }
 
 

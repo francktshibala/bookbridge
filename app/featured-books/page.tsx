@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
+import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -187,6 +188,9 @@ export default function FeaturedBooksPage() {
   const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
   const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1');
   const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [showChapterModal, setShowChapterModal] = useState(false);
+  const [showContinueReading, setShowContinueReading] = useState(false);
+  const [savedPosition, setSavedPosition] = useState<{sentenceIndex: number, timestamp: number} | null>(null);
 
   // Data state
   const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
@@ -197,6 +201,7 @@ export default function FeaturedBooksPage() {
   // Audio playback state
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+  const [currentChapter, setCurrentChapter] = useState(1);
   const [currentBundle, setCurrentBundle] = useState<string | null>(null);
   const [playbackTime, setPlaybackTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
@@ -208,6 +213,9 @@ export default function FeaturedBooksPage() {
   const playerRef = useRef<AudioBookPlayer | null>(null);
   const handleNextBundleRef = useRef<() => void>(() => {});
   const isPlayingRef = useRef<boolean>(false); // Critical fix for React closure issue
+  const userScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoScrollEnabledRef = useRef(true);
+  const [autoScrollPaused, setAutoScrollPaused] = useState(false);
 
   // Get bookId from selected book or URL params
   const getBookId = () => {
@@ -229,6 +237,39 @@ export default function FeaturedBooksPage() {
     }
     return FEATURED_BOOKS[0].id; // Default to first book
   };
+
+  // Detect user scrolling and pause auto-scroll temporarily
+  useEffect(() => {
+    const handleUserScroll = () => {
+      // Disable auto-scroll when user scrolls manually
+      autoScrollEnabledRef.current = false;
+      setAutoScrollPaused(true);
+
+      // Clear existing timeout
+      if (userScrollTimeoutRef.current) {
+        clearTimeout(userScrollTimeoutRef.current);
+      }
+
+      // Re-enable auto-scroll after 3 seconds of no scrolling
+      userScrollTimeoutRef.current = setTimeout(() => {
+        autoScrollEnabledRef.current = true;
+        setAutoScrollPaused(false);
+        console.log('Auto-scroll re-enabled after user inactivity');
+      }, 3000);
+    };
+
+    // Add scroll listener
+    window.addEventListener('wheel', handleUserScroll, { passive: true });
+    window.addEventListener('touchmove', handleUserScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleUserScroll);
+      window.removeEventListener('touchmove', handleUserScroll);
+      if (userScrollTimeoutRef.current) {
+        clearTimeout(userScrollTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Check available levels for the book
   const checkAvailableLevels = async () => {
@@ -296,13 +337,16 @@ export default function FeaturedBooksPage() {
 
           // Initialize unified player and audio manager
           if (!audioManagerRef.current) {
+            // Get bookId safely at the start
+            const currentBookId = getBookId();
+
             // Determine highlight lead based on audio provider
             const firstSentence = data?.bundles?.[0]?.sentences?.[0];
             const hasPreciseTimings = Array.isArray(firstSentence?.wordTimings) && firstSentence.wordTimings.length > 0;
 
             // For TTS (ElevenLabs), use immediate highlighting since timings are estimated
             const audioProvider = data?.audioType || 'elevenlabs';
-            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || bookId === 'great-gatsby-a2';
+            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2';
             // Use consistent TTS lead time for both books
             const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400);
 
@@ -312,14 +356,16 @@ export default function FeaturedBooksPage() {
                 // Immediate highlight; predictive lead handled inside BundleAudioManager
                 setCurrentSentenceIndex(sentence.sentenceIndex);
 
-                // Auto-scroll to current sentence - immediate
-                const sentenceElement = document.querySelector(`[data-sentence="${sentence.sentenceIndex}"]`);
-                if (sentenceElement) {
-                  sentenceElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                    inline: 'nearest'
-                  });
+                // Smart auto-scroll: only scroll if user hasn't manually scrolled recently
+                if (autoScrollEnabledRef.current) {
+                  const sentenceElement = document.querySelector(`[data-sentence="${sentence.sentenceIndex}"]`);
+                  if (sentenceElement) {
+                    sentenceElement.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'center',
+                      inline: 'nearest'
+                    });
+                  }
                 }
               },
               onSentenceEnd: (sentence) => {
@@ -338,13 +384,85 @@ export default function FeaturedBooksPage() {
             });
             audioManagerRef.current = audioManager;
 
+
             // Create unified player with global sentence map and preloading
-            playerRef.current = new AudioBookPlayer(data.bundles, {
-              highlightLeadMs: leadMs,
-              preloadRadius: 1,
-              debug: false
-            });
+            if (currentBookId) {
+              playerRef.current = new AudioBookPlayer(data.bundles, {
+                highlightLeadMs: leadMs,
+                preloadRadius: 1,
+                debug: false,
+                bookId: currentBookId,
+                onPositionUpdate: (position: ReadingPosition) => {
+                  // Update UI state when position changes
+                  setCurrentSentenceIndex(position.currentSentenceIndex);
+                  setCurrentChapter(position.currentChapter);
+                  // Update other UI elements as needed
+                  console.log('📍 Position updated:', {
+                    sentence: position.currentSentenceIndex,
+                    chapter: position.currentChapter,
+                    completion: position.completionPercentage.toFixed(1) + '%'
+                  });
+                }
+              });
+
+              // Load saved reading position from database after successful initialization
+              setTimeout(async () => {
+                try {
+                  const savedPosition = await readingPositionService.loadPosition(currentBookId);
+                  if (savedPosition && savedPosition.currentSentenceIndex > 0) {
+                    console.log('🔄 Loading saved position:', savedPosition.currentSentenceIndex);
+
+                    // Check how long ago the user last read
+                    const hoursSinceLastRead = savedPosition.lastAccessed
+                      ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
+                      : 999;
+
+                    // Always restore position to the UI
+                    setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
+                    setCurrentChapter(savedPosition.currentChapter);
+
+                    if (hoursSinceLastRead < 24) { // Within last 24 hours - show continue modal
+                      setSavedPosition({
+                        sentenceIndex: savedPosition.currentSentenceIndex,
+                        timestamp: new Date(savedPosition.lastAccessed || Date.now()).getTime()
+                      });
+                      setShowContinueReading(true);
+                    }
+
+                    // Update current settings from saved position
+                    if (savedPosition.cefrLevel) {
+                      setCefrLevel(savedPosition.cefrLevel as any);
+                    }
+                    if (savedPosition.playbackSpeed) {
+                      setPlaybackSpeed(savedPosition.playbackSpeed);
+                    }
+                    if (savedPosition.contentMode) {
+                      setContentMode(savedPosition.contentMode);
+                    }
+
+                    // Scroll to the saved position
+                    setTimeout(() => {
+                      const sentenceElement = document.querySelector(`[data-sentence-index="${savedPosition.currentSentenceIndex}"]`);
+                      if (sentenceElement) {
+                        sentenceElement.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'center'
+                        });
+                        console.log('📍 Scrolled to saved sentence:', savedPosition.currentSentenceIndex);
+                      } else {
+                        console.log('⚠️ Could not find sentence element for index:', savedPosition.currentSentenceIndex);
+                      }
+                    }, 1000); // Wait for DOM to be fully ready
+                  }
+                } catch (error) {
+                  console.error('Error loading saved reading position:', error);
+                }
+              }, 500); // Small delay to ensure DOM is ready
+            }
           }
+
+          // Position loading is now handled inside AudioBookPlayer initialization
+
         } else {
           setError(`Level ${levelParam} not available for this book`);
         }
@@ -360,6 +478,10 @@ export default function FeaturedBooksPage() {
 
     // Cleanup on unmount
     return () => {
+      // Save position before cleanup
+      if (playerRef.current) {
+        playerRef.current.forceSavePosition().catch(console.error);
+      }
       audioManagerRef.current?.destroy();
     };
   }, [contentMode, cefrLevel]);
@@ -450,10 +572,15 @@ export default function FeaturedBooksPage() {
     handleNextBundleRef.current = handleNextBundle;
   });
 
-  const handlePause = () => {
+  const handlePause = async () => {
     audioManagerRef.current?.pause();
     setIsPlaying(false);
     isPlayingRef.current = false;
+
+    // Save position when user pauses
+    if (playerRef.current) {
+      await playerRef.current.forceSavePosition();
+    }
   };
 
   const handleResume = async () => {
@@ -507,42 +634,41 @@ export default function FeaturedBooksPage() {
     setTotalTime(0);
   };
 
-  // Persist and restore progress
+  // Position tracking is now handled automatically by AudioBookPlayer
+
+  // Update AudioBookPlayer when settings change
   useEffect(() => {
-    const bookId = getBookId();
-    const key = `reading-progress-${bookId}`;
-    const data = {
-      bookId,
-      sentenceIndex: currentSentenceIndex,
-      timestamp: Date.now()
-    };
-    try {
-      localStorage.setItem(key, JSON.stringify(data));
-    } catch {}
-  }, [currentSentenceIndex]);
+    if (playerRef.current) {
+      playerRef.current.updateSettings(cefrLevel, playbackSpeed, contentMode);
+    }
+  }, [cefrLevel, playbackSpeed, contentMode]);
 
   const continueReading = async () => {
-    const bookId = getBookId();
-    const key = `reading-progress-${bookId}`;
-    try {
-      const raw = localStorage.getItem(key);
-      if (!raw) return;
-      const saved = JSON.parse(raw);
-      if (typeof saved?.sentenceIndex === 'number') {
-        await handlePlaySequential(saved.sentenceIndex);
-      }
-    } catch {}
+    if (savedPosition) {
+      setCurrentSentenceIndex(savedPosition.sentenceIndex);
+      setShowContinueReading(false);
+      await handlePlaySequential(savedPosition.sentenceIndex);
+    }
+  };
+
+  const startFromBeginning = async () => {
+    setShowContinueReading(false);
+    setCurrentSentenceIndex(0);
+    setCurrentChapter(1);
+
+    // Reset position in database
+    if (playerRef.current) {
+      await playerRef.current.resetPosition();
+    }
+
+    await handlePlaySequential(0);
   };
 
   // Jump to any sentence (by absolute sentence index)
   const jumpToSentence = async (targetIndex: number) => {
-    if (!playerRef.current) {
-      await handlePlaySequential(targetIndex);
-      return;
-    }
-    setIsPlaying(true);
-    isPlayingRef.current = true;
-    await playerRef.current.jumpToSentence(targetIndex);
+    // Always use handlePlaySequential for proper bundle continuation
+    // This ensures that after jumping to a chapter, playback continues through subsequent bundles
+    await handlePlaySequential(targetIndex);
   };
 
   // Mobile-optimized chapter picker
@@ -797,7 +923,7 @@ export default function FeaturedBooksPage() {
 
         {/* Unified Header: Same width as content container below */}
         <div className="bg-white border-b border-gray-200 mx-4 md:mx-8 rounded-t-lg">
-          <div className="flex justify-between items-center px-6 py-3">
+          <div className="flex justify-between items-center px-6 py-3 relative">
             <button
               onClick={() => {
                 setShowBookSelection(true);
@@ -809,9 +935,13 @@ export default function FeaturedBooksPage() {
               ←
             </button>
 
-            {/* Chapter Navigation - Disabled for systematic implementation later */}
-            <div className="flex-1 flex justify-center px-2">
-              {/* <ChapterPicker /> */}
+            {/* Auto-scroll Status */}
+            <div className="flex-1 flex justify-center items-center gap-2 px-2">
+              {autoScrollPaused && (
+                <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded animate-pulse">
+                  📍 Auto-scroll paused
+                </div>
+              )}
             </div>
 
             <button
@@ -1080,6 +1210,123 @@ export default function FeaturedBooksPage() {
           </div>
         )}
 
+        {/* Chapter Navigation Modal */}
+        {showChapterModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
+
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-900">Jump to Chapter</h2>
+                <button
+                  onClick={() => setShowChapterModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6">
+                <div className="space-y-2 max-h-64 overflow-y-auto">
+                  {(selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
+                    <button
+                      key={chapter.chapterNumber}
+                      onClick={async () => {
+                        setShowChapterModal(false);
+
+                        // Stop current playback first
+                        handleStop();
+
+                        // Wait a moment then jump to chapter and continue playing
+                        setTimeout(async () => {
+                          setCurrentSentenceIndex(chapter.startSentence);
+
+                          // Force auto-scroll to chapter start immediately
+                          autoScrollEnabledRef.current = true;
+                          setAutoScrollPaused(false);
+
+                          // Jump to chapter and continue playing
+                          await jumpToSentence(chapter.startSentence);
+
+                          // Ensure the sentence element scrolls into view
+                          setTimeout(() => {
+                            const sentenceElement = document.querySelector(`[data-sentence-index="${chapter.startSentence}"]`);
+                            if (sentenceElement) {
+                              sentenceElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                              });
+                            }
+                          }, 200);
+                        }, 100);
+                      }}
+                      className={`w-full text-left p-4 rounded-lg border transition-all ${
+                        getCurrentChapter().current === chapter.chapterNumber
+                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white border-blue-500'
+                          : 'bg-gray-50 hover:bg-gray-100 border-gray-200'
+                      }`}
+                    >
+                      <div className="font-medium">Chapter {chapter.chapterNumber}</div>
+                      <div className={`text-sm ${
+                        getCurrentChapter().current === chapter.chapterNumber
+                          ? 'text-blue-100'
+                          : 'text-gray-600'
+                      }`}>
+                        {chapter.title}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* Continue Reading Modal */}
+        {showContinueReading && savedPosition && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
+
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-900">Continue Reading?</h2>
+                <button
+                  onClick={() => setShowContinueReading(false)}
+                  className="text-gray-400 hover:text-gray-600 text-xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6">
+                <p className="text-gray-600 mb-6">
+                  You were reading sentence {savedPosition.sentenceIndex + 1} of {bundleData?.totalSentences || 0}.
+                  Would you like to continue where you left off?
+                </p>
+
+                <div className="flex gap-3">
+                  <button
+                    onClick={startFromBeginning}
+                    className="flex-1 py-3 px-4 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-all"
+                  >
+                    Start Over
+                  </button>
+                  <button
+                    onClick={continueReading}
+                    className="flex-1 py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all font-medium"
+                  >
+                    Continue Reading
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        )}
+
         {/* Mobile Control Bar - Full Width */}
         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
           <div className="px-4 py-3">
@@ -1102,7 +1349,7 @@ export default function FeaturedBooksPage() {
             </div>
 
             {/* Control Buttons Row */}
-            <div className="flex items-center justify-center gap-8">
+            <div className="flex items-center justify-center gap-6">
 
               {/* Speed Control */}
               <button
@@ -1133,7 +1380,15 @@ export default function FeaturedBooksPage() {
                 <div className="text-xl">{isPlaying ? '⏸️' : '▶️'}</div>
               </button>
 
-              {/* Voice */}
+              {/* Chapter Navigation */}
+              <button
+                onClick={() => setShowChapterModal(true)}
+                className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
+              >
+                <div className="text-lg">📖</div>
+              </button>
+
+              {/* Voice Selector */}
               <button className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all">
                 <div className="text-lg">🎙️</div>
               </button>
@@ -1148,7 +1403,7 @@ export default function FeaturedBooksPage() {
           <div className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 shadow-2xl">
 
             {/* Control Buttons Row */}
-            <div className="flex items-center justify-center gap-7">
+            <div className="flex items-center justify-center gap-5">
 
               {/* Speed Control */}
               <button
@@ -1179,7 +1434,15 @@ export default function FeaturedBooksPage() {
                 <div className="text-xl">{isPlaying ? '⏸️' : '▶️'}</div>
               </button>
 
-              {/* Voice */}
+              {/* Chapter Navigation */}
+              <button
+                onClick={() => setShowChapterModal(true)}
+                className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105"
+              >
+                <div className="text-lg">📖</div>
+              </button>
+
+              {/* Voice Selector */}
               <button className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105">
                 <div className="text-lg">🎙️</div>
               </button>

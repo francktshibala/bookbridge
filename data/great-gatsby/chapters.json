@@ -1,0 +1,102 @@
+[
+  {
+    "number": 1,
+    "title": "Nick Arrives in West Egg",
+    "startPosition": 494,
+    "endPosition": 33568,
+    "estimatedSentences": 255,
+    "words": 5893,
+    "theme": "Introduction to the narrator Nick and the wealthy East Egg society",
+    "marker": "I"
+  },
+  {
+    "number": 2,
+    "title": "The Valley of Ashes",
+    "startPosition": 33568,
+    "endPosition": 57238,
+    "estimatedSentences": 213,
+    "words": 4281,
+    "theme": "The moral wasteland and Tom's affair with Myrtle Wilson",
+    "marker": "II"
+  },
+  {
+    "number": 3,
+    "title": "Gatsby's Party",
+    "startPosition": 57238,
+    "endPosition": 89870,
+    "estimatedSentences": 265,
+    "words": 5735,
+    "theme": "Gatsby's lavish parties and Nick's growing fascination",
+    "marker": "III"
+  },
+  {
+    "number": 4,
+    "title": "The Truth About Gatsby",
+    "startPosition": 89870,
+    "endPosition": 120536,
+    "estimatedSentences": 273,
+    "words": 5457,
+    "theme": "Gatsby's mysterious background and connection to Meyer Wolfsheim",
+    "marker": "IV"
+  },
+  {
+    "number": 5,
+    "title": "The Reunion",
+    "startPosition": 120536,
+    "endPosition": 144144,
+    "estimatedSentences": 213,
+    "words": 4234,
+    "theme": "The arranged reunion between Gatsby and Daisy",
+    "marker": "V"
+  },
+  {
+    "number": 6,
+    "title": "The Past Revealed",
+    "startPosition": 144144,
+    "endPosition": 167019,
+    "estimatedSentences": 196,
+    "words": 4037,
+    "theme": "Gatsby's true origins and his transformation from James Gatz",
+    "marker": "VI"
+  },
+  {
+    "number": 7,
+    "title": "The Confrontation",
+    "startPosition": 167019,
+    "endPosition": 216321,
+    "estimatedSentences": 488,
+    "words": 8767,
+    "theme": "The hotel confrontation and the unraveling of relationships",
+    "marker": "VII"
+  },
+  {
+    "number": 8,
+    "title": "The Tragedy",
+    "startPosition": 216321,
+    "endPosition": 171,
+    "estimatedSentences": 1903,
+    "words": 38436,
+    "theme": "Myrtle's death and the aftermath of the tragedy",
+    "marker": "VIII"
+  },
+  {
+    "number": 9,
+    "title": "The End of the Dream",
+    "startPosition": 171,
+    "endPosition": 241864,
+    "estimatedSentences": 2118,
+    "words": 42966,
+    "theme": "Gatsby's death and Nick's reflections on the American Dream",
+    "marker": "IX"
+  },
+  {
+    "number": 9,
+    "title": "The End of the Dream",
+    "startPosition": 241864,
+    "endPosition": 270678,
+    "estimatedSentences": 262,
+    "words": 5226,
+    "theme": "Gatsby's death and Nick's reflections on the American Dream",
+    "marker": "IX"
+  }
+]

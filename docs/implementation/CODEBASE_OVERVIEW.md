@@ -104,8 +104,12 @@ This document establishes the universal accessibility vision while defining the 
 **Description**: Complete wireframe specifications for the ESL platform interface. Defines the visual design transformation from cluttered to clean reading experience. Contains CSS implementations for Phase 1 MVP (6 core features), Phase 2 vocabulary learning (tooltips and word highlighting), and Phase 3 polished experience (OpenAI TTS, progress tracking). Shows detailed before/after comparisons, mobile-responsive layouts, control bar consolidation with logical grouping, and current implementation improvements. Essential reference for UI/UX implementation and maintaining design consistency across the platform.
 
 ### **AUDIO_GENERATION_COMPLETE_WORKFLOW.md**
-**Location**: `/AUDIO_GENERATION_COMPLETE_WORKFLOW.md` *(Root level file)*  
+**Location**: `/AUDIO_GENERATION_COMPLETE_WORKFLOW.md` *(Root level file)*
 **Description**: Master reference guide for all audio generation work. Contains 4-phase workflow (setup, content preparation, audio generation, verification) with multi-computer coordination system. Tracks 5 completed books with production-ready CDN status. Includes troubleshooting guide, cost structure ($6.75 per book), performance standards, and quality assurance checklists. Critical for managing audio file generation across the platform.
+
+### **CONTINUOUS_READING_EXPERIENCE_ARCHITECTURE.md**
+**Location**: `/docs/CONTINUOUS_READING_EXPERIENCE_ARCHITECTURE.md`
+**Description**: Complete UX implementation guide for professional audiobook experiences. Covers the reading experience layer built on top of the bundle generation pipeline with Speechify-level sentence jumping, zero audio overlap patterns, and mobile-first design. **CRITICAL: Contains all essential scaling patterns including single HTMLAudioElement management, operation token race condition prevention, smart auto-scroll with user detection, and persistent chapter navigation.** Documents proven architecture tested with 900+ bundle books (Great Gatsby), mobile touch standards (44px targets), and performance SLA targets (<250ms sentence jumping, zero audio overlap tolerance). Includes critical mistakes to avoid, scaling checklist, and technical implementation references. Essential for implementing professional audiobook UX on any new book content.
 
 ### **PROGRESSIVE_VOICE_IMPLEMENTATION_PLAN.md**
 **Location**: `/PROGRESSIVE_VOICE_IMPLEMENTATION_PLAN.md` *(Root level file)*  

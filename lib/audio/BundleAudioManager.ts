@@ -29,6 +29,7 @@ interface BundleAudioOptions {
   onSentenceEnd?: (sentence: BundleSentence) => void;
   onBundleComplete?: (bundleId: string) => void;
   onProgress?: (currentTime: number, totalTime: number) => void;
+  onTimeUpdate?: (currentTime: number, totalTime: number) => void;
   /**
    * Lead (in milliseconds) to apply to highlighting decisions.
    * Negative values highlight earlier; positive values delay highlighting.
@@ -351,6 +352,7 @@ export class BundleAudioManager {
       }
 
       this.options.onProgress?.(rawTime, this.currentAudio.duration);
+      this.options.onTimeUpdate?.(rawTime, this.currentAudio.duration || 0);
       this.rafId = requestAnimationFrame(tick);
     };
 
@@ -400,6 +402,7 @@ export class BundleAudioManager {
       }
 
       this.options.onProgress?.(rawTime, this.currentAudio.duration);
+      this.options.onTimeUpdate?.(rawTime, this.currentAudio.duration || 0);
       this.rafId = requestAnimationFrame(tick);
     };
 
@@ -551,6 +554,38 @@ export class BundleAudioManager {
       this.currentAudio.playbackRate = rate;
       console.log(`🎵 Playback rate set to: ${rate}x`);
     }
+  }
+
+  /**
+   * Get current audio time
+   */
+  getCurrentTime(): number {
+    return this.currentAudio?.currentTime || 0;
+  }
+
+  /**
+   * Get total time of current audio
+   */
+  getTotalTime(): number {
+    return this.currentAudio?.duration || this.currentBundle?.totalDuration || 0;
+  }
+
+  /**
+   * Get current playback speed
+   */
+  getPlaybackSpeed(): number {
+    return this.currentAudio?.playbackRate || 1.0;
+  }
+
+  /**
+   * Expose callback setters for AudioBookPlayer
+   */
+  set onSentenceStart(callback: ((sentence: BundleSentence) => void) | undefined) {
+    this.options.onSentenceStart = callback;
+  }
+
+  set onTimeUpdate(callback: ((currentTime: number, totalTime: number) => void) | undefined) {
+    this.options.onTimeUpdate = callback;
   }
 
   /**

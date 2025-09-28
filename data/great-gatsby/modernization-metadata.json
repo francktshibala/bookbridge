@@ -1,0 +1,38 @@
+{
+  "title": "The Great Gatsby - Modernized",
+  "author": "F. Scott Fitzgerald (modernized for contemporary readers)",
+  "processedAt": "2025-09-28T02:09:27.826Z",
+  "stats": {
+    "original": {
+      "words": 48208,
+      "sentences": 2381,
+      "characters": 270678
+    },
+    "modernized": {
+      "words": 47665,
+      "sentences": 2414,
+      "characters": 270569
+    },
+    "changes": {
+      "wordDelta": -543,
+      "sentenceDelta": 33,
+      "wordChangePercent": -1.1263690673747095,
+      "sentenceChangePercent": 1.385972280554389
+    }
+  },
+  "processing": {
+    "strategy": "1920s_to_contemporary_modernization",
+    "preserveFitzgeraldStyle": true,
+    "preserveStoryMeaning": true,
+    "model": "gpt-4-turbo-preview",
+    "batchSize": 3,
+    "chapterAware": true
+  },
+  "modernizationFocus": [
+    "1920s expressions updated to contemporary language",
+    "Dated technology references modernized",
+    "Social attitudes expressed in contemporary terms",
+    "Literary style and symbolism fully preserved",
+    "Character development and plot unchanged"
+  ]
+}
