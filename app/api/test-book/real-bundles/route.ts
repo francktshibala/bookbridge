@@ -97,10 +97,13 @@ export async function GET(request: NextRequest) {
           provider: chunk.audioProvider || 'elevenlabs',
           word_timings: sentences.slice(0, sentencesPerBundle).map((text, idx) => {
             const words = text.trim().split(/\s+/).length;
-            const duration = Math.max(words * 0.4, 2.0); // ~0.4s per word, min 2s
+            // Adjust timing for different books - calibrated for each TTS voice
+            const secondsPerWord = bookId === 'great-gatsby-a2' ? 0.35 : 0.4;
+            const minDuration = bookId === 'great-gatsby-a2' ? 1.8 : 2.0;
+            const duration = Math.max(words * secondsPerWord, minDuration);
             const startTime = idx === 0 ? 0 : sentences.slice(0, idx).reduce((sum, prevText) => {
               const prevWords = prevText.trim().split(/\s+/).length;
-              return sum + Math.max(prevWords * 0.4, 2.0);
+              return sum + Math.max(prevWords * secondsPerWord, minDuration);
             }, 0);
 
             return {

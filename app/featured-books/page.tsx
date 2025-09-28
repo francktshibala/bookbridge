@@ -300,7 +300,8 @@ export default function FeaturedBooksPage() {
             // For TTS (ElevenLabs), use immediate highlighting since timings are estimated
             const audioProvider = data?.audioType || 'elevenlabs';
             const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || bookId === 'great-gatsby-a2';
-            const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400); // Negative lead for TTS to highlight earlier
+            // Use consistent TTS lead time for both books
+            const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400);
 
             const audioManager = new BundleAudioManager({
               highlightLeadMs: leadMs,

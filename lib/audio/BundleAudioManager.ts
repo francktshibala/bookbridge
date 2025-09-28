@@ -45,6 +45,8 @@ export class BundleAudioManager {
   private isPlaying = false;
   private isPlayingRef: { current: boolean } = { current: false }; // Critical fix for closure issue
   private highlightLeadSeconds: number = 0;
+  private durationScale: number = 1; // scales meta timings to match real audio duration
+  private scaledSentences: Map<number, {startTime: number, endTime: number}> = new Map();
 
   constructor(options: BundleAudioOptions = {}) {
     this.options = options;
@@ -262,6 +264,30 @@ export class BundleAudioManager {
         this.currentAudio = audio;
         this.currentBundle = bundle;
 
+        // Calibrate metadata timings to actual audio duration if needed
+        // Use the end of the last sentence as the metadata duration reference
+        const metaDuration = (bundle.sentences && bundle.sentences.length > 0)
+          ? Math.max(...bundle.sentences.map(s => s.endTime))
+          : bundle.totalDuration;
+        const realDuration = audio.duration || bundle.totalDuration;
+        // Guard against zeros and NaN
+        if (metaDuration > 0 && realDuration > 0 && Number.isFinite(realDuration)) {
+          this.durationScale = realDuration / metaDuration;
+        } else {
+          this.durationScale = 1;
+        }
+
+        // Precompute scaled sentence timings
+        this.scaledSentences.clear();
+        bundle.sentences.forEach(sentence => {
+          this.scaledSentences.set(sentence.sentenceIndex, {
+            startTime: sentence.startTime * this.durationScale,
+            endTime: sentence.endTime * this.durationScale
+          });
+        });
+
+        console.log(`🧭 Duration calibration: meta=${metaDuration.toFixed(2)}s real=${realDuration.toFixed(2)}s scale=${this.durationScale.toFixed(3)}`);
+
         console.log(`✅ Bundle loaded: ${bundle.bundleId} (${bundle.totalDuration.toFixed(1)}s)`);
         resolve();
       };
@@ -292,16 +318,18 @@ export class BundleAudioManager {
     this.progressTimer = window.setInterval(() => {
       if (!this.currentAudio || !this.isPlayingRef.current) return;
 
-      const currentTime = this.currentAudio.currentTime + this.highlightLeadSeconds;
+      const currentTime = this.currentAudio.currentTime;
+      const highlightTime = currentTime + this.highlightLeadSeconds;
+      const scaledEnd = this.scaledSentences.get(targetSentence.sentenceIndex)?.endTime || targetSentence.endTime * this.durationScale;
 
       // Check if sentence is complete
-      if (currentTime >= targetSentence.endTime) {
+      if (highlightTime >= scaledEnd) {
         this.handleSentenceComplete(targetSentence);
         return;
       }
 
       // Report progress
-      this.options.onProgress?.(Math.max(0, currentTime - this.highlightLeadSeconds), targetSentence.endTime);
+      this.options.onProgress?.(currentTime, scaledEnd);
 
     }, 50); // Check every 50ms for precision
   }
@@ -320,18 +348,21 @@ export class BundleAudioManager {
     this.progressTimer = window.setInterval(() => {
       if (!this.currentAudio || !this.isPlayingRef.current || !currentSentenceInBundle) return;
 
-      const currentTime = this.currentAudio.currentTime + this.highlightLeadSeconds;
+      const currentTime = this.currentAudio.currentTime;
+      const highlightTime = currentTime + this.highlightLeadSeconds;
 
-      // Debug timing progress (disabled for production)
-      // if (currentSentenceInBundle && currentTime % 1 < 0.1) {
-      //   console.log(`⏱️ Progress: ${currentTime.toFixed(1)}s / ${currentSentenceInBundle.endTime}s (sentence ${currentSentenceInBundle.sentenceIndex})`);
-      // }
+      // Debug timing progress for Great Gatsby
+      const scaledEnd = this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0;
+      if (currentSentenceInBundle && Math.floor(currentTime) !== Math.floor((currentTime - 0.05))) {
+        console.log(`⏱️ Progress: audio=${currentTime.toFixed(1)}s sentence=${currentSentenceInBundle.sentenceIndex} ends at ${scaledEnd.toFixed(1)}s (scale=${this.durationScale.toFixed(3)})`);
+      }
 
       // Check for next sentence START TIME to highlight immediately
       const nextSentenceIndex = currentSentenceInBundle.sentenceIndex + 1;
       const nextSentence = bundle.sentences.find(s => s.sentenceIndex === nextSentenceIndex);
+      const nextScaledStart = this.scaledSentences.get(nextSentenceIndex)?.startTime || 0;
 
-      if (nextSentence && currentTime >= nextSentence.startTime) {
+      if (nextSentence && highlightTime >= nextScaledStart) {
         // Immediately highlight next sentence when its start time is reached
         this.options.onSentenceEnd?.(currentSentenceInBundle);
         currentSentenceInBundle = nextSentence;
@@ -339,10 +370,11 @@ export class BundleAudioManager {
         this.options.onSentenceStart?.(nextSentence);
       }
       // Check if current sentence is complete OR if audio has naturally ended
-      else if (currentTime >= currentSentenceInBundle.endTime ||
+      else if (highlightTime >= (this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0) ||
           (this.currentAudio.ended) ||
-          (currentTime >= this.currentAudio.duration - 0.1)) {
-        console.log(`✅ Sentence ${currentSentenceInBundle.sentenceIndex} complete at ${currentTime}s (endTime: ${currentSentenceInBundle.endTime}s)`);
+          (currentTime >= this.currentAudio.duration - 0.05)) {
+        const scaledEnd = this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0;
+        console.log(`✅ Sentence ${currentSentenceInBundle.sentenceIndex} complete at ${currentTime.toFixed(1)}s (scaledEnd: ${scaledEnd.toFixed(1)}s)`);
         this.options.onSentenceEnd?.(currentSentenceInBundle);
 
         if (nextSentence) {
@@ -360,7 +392,7 @@ export class BundleAudioManager {
       }
 
       // Report progress
-      this.options.onProgress?.(Math.max(0, currentTime - this.highlightLeadSeconds), bundle.totalDuration);
+      this.options.onProgress?.(currentTime, bundle.totalDuration);
 
     }, 50);
   }

@@ -424,11 +424,53 @@ Error: Audio exists but no DB record
 Solution: Run reconciliation script to sync
 ```
 
-**6. Highlighting Lag**
+**6. Highlighting Lag (Critical TTS Issue)**
 ```
-Error: Text highlights behind audio
-Solution: Set negative leadMs (-500) for TTS audio
+Error: Text highlights behind/ahead of audio, inconsistent across sentences
+Root Cause: Asymmetric scaling - premature bundle completion when scale < 1
+Solution: Pre-compute scaled timings + fix duration comparisons
 ```
+
+**Detailed Fix for Perfect TTS Synchronization:**
+```javascript
+// In BundleAudioManager.ts
+class BundleAudioManager {
+  private scaledSentences: Map<number, {startTime: number, endTime: number}> = new Map();
+
+  // On bundle load: Pre-compute scaled timings
+  const scale = realDuration / metaDuration;
+  bundle.sentences.forEach(sentence => {
+    this.scaledSentences.set(sentence.sentenceIndex, {
+      startTime: sentence.startTime * scale,
+      endTime: sentence.endTime * scale
+    });
+  });
+
+  // In monitoring: Use raw currentTime, compare to pre-scaled times
+  const currentTime = audio.currentTime; // RAW, no scaling
+  const highlightTime = currentTime + leadSeconds; // Add lead for highlighting only
+
+  // Check transitions using pre-scaled times
+  if (highlightTime >= nextScaledStart) { /* transition */ }
+  if (highlightTime >= currentScaledEnd) { /* complete */ }
+
+  // Bundle completion: Use raw duration, not scaled
+  if (currentTime >= audio.duration - 0.05) { /* bundle done */ }
+}
+
+// Timing estimates in API (adjust per voice)
+const secondsPerWord = bookId === 'great-gatsby-a2' ? 0.35 : 0.4;
+const minDuration = bookId === 'great-gatsby-a2' ? 1.8 : 2.0;
+
+// Lead time: -500ms for all TTS (both books)
+const leadMs = isTTS ? -500 : 500;
+```
+
+**Why This Works:**
+- Eliminates timing drift from asymmetric scaling
+- Prevents premature bundle completion
+- Consistent timing space throughout
+- Each bundle auto-calibrates to actual audio duration
 
 ## Lessons Learned
 
@@ -438,6 +480,7 @@ Solution: Set negative leadMs (-500) for TTS audio
 3. **Schema assumptions** → wrong field names
 4. **No pilot testing** → went straight to full generation
 5. **Relative paths** → cache persistence issues
+6. **Asymmetric timing scaling** → highlighting lag/lead issues
 
 ### GPT-5 Validated Solutions
 1. **JSON output format** prevents parsing errors
@@ -445,6 +488,7 @@ Solution: Set negative leadMs (-500) for TTS audio
 3. **Pilot mode (20 bundles)** for $1 testing
 4. **Absolute path resolution** for reliability
 5. **Upsert operations** prevent duplicates
+6. **Pre-computed scaling** for perfect TTS sync
 
 ### Best Practices Established
 1. **Always start with pilot mode** (`--pilot` flag)
