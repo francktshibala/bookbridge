@@ -376,6 +376,128 @@ const BOOK_CHAPTERS = [
 ];
 ```
 
+### Chapter Navigation Implementation
+
+**CRITICAL**: Every new book requires manual chapter structure definition for proper navigation. Follow this exact process:
+
+#### 1. Analyze Book Structure
+Count total sentences after bundle generation:
+```bash
+# Check logs from bundle creation script
+grep "sentences" logs/book-creation.log
+# Example output: ✅ Loaded 731 real bundles with 2924 sentences
+```
+
+#### 2. Define Chapter Structure
+Create chapter definitions in `app/featured-books/page.tsx`:
+
+**Shakespeare Example (Romeo & Juliet):**
+```javascript
+const ROMEO_JULIET_CHAPTERS = [
+  { chapterNumber: 1, title: "Prologue & Act I, Scene 1", startSentence: 0, endSentence: 299 },
+  { chapterNumber: 2, title: "Act I, Scenes 2-5", startSentence: 300, endSentence: 599 },
+  { chapterNumber: 3, title: "Act II, Scenes 1-3", startSentence: 600, endSentence: 899 },
+  { chapterNumber: 4, title: "Act II, Scenes 4-6", startSentence: 900, endSentence: 1199 },
+  { chapterNumber: 5, title: "Act III, Scenes 1-3", startSentence: 1200, endSentence: 1499 },
+  { chapterNumber: 6, title: "Act III, Scenes 4-5", startSentence: 1500, endSentence: 1799 },
+  { chapterNumber: 7, title: "Act IV", startSentence: 1800, endSentence: 2099 },
+  { chapterNumber: 8, title: "Act V, Scenes 1-2", startSentence: 2100, endSentence: 2399 },
+  { chapterNumber: 9, title: "Act V, Scene 3 Part 1", startSentence: 2400, endSentence: 2699 },
+  { chapterNumber: 10, title: "Act V, Scene 3 Part 2", startSentence: 2700, endSentence: 2995 }
+];
+```
+
+**Victorian Literature Example (Jekyll & Hyde):**
+```javascript
+const JEKYLL_HYDE_CHAPTERS = [
+  { chapterNumber: 1, title: "Story of the Door", startSentence: 0, endSentence: 159 },
+  { chapterNumber: 2, title: "Search for Mr. Hyde", startSentence: 160, endSentence: 319 },
+  { chapterNumber: 3, title: "Dr. Jekyll Was Quite at Ease", startSentence: 320, endSentence: 479 },
+  { chapterNumber: 4, title: "The Carew Murder Case", startSentence: 480, endSentence: 639 },
+  { chapterNumber: 5, title: "Incident of the Letter", startSentence: 640, endSentence: 799 },
+  { chapterNumber: 6, title: "Remarkable Incident of Dr. Lanyon", startSentence: 800, endSentence: 959 },
+  { chapterNumber: 7, title: "Incident at the Window", startSentence: 960, endSentence: 1119 },
+  { chapterNumber: 8, title: "The Last Night", startSentence: 1120, endSentence: 1284 }
+];
+```
+
+#### 3. Update Navigation Logic (3 Locations)
+
+**Location 1: ChapterPicker Component (line ~720)**
+```javascript
+const chapters = selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
+                selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
+                selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
+                selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
+                selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS : GREAT_GATSBY_CHAPTERS;
+```
+
+**Location 2: getCurrentChapter Function (line ~740)**
+```javascript
+const chapters = book?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
+                book?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
+                book?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
+                book?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
+                book?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS : GREAT_GATSBY_CHAPTERS;
+```
+
+**Location 3: Chapter Modal Navigation (line ~1478)**
+```javascript
+{(selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
+  selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
+  selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
+  selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
+  selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
+```
+
+#### 4. Validation Checklist
+
+**Essential Validations:**
+- [ ] Total sentences match bundle creation logs
+- [ ] Last chapter's endSentence = total sentences - 1
+- [ ] No gaps between chapters (chapter N endSentence + 1 = chapter N+1 startSentence)
+- [ ] Chapter titles reflect book structure (Acts/Scenes for plays, thematic for novels)
+- [ ] All 3 navigation locations updated with new book ID
+
+**Test Chapter Navigation:**
+1. Open Featured Books page
+2. Select new book
+3. Click chapter picker (📖 button)
+4. Verify all chapters appear
+5. Click different chapters - should jump correctly
+6. Confirm no console errors about bundle bounds
+
+#### 5. Book-Specific Guidelines
+
+**For Shakespeare Plays:**
+- Use Act/Scene structure
+- ~10 chapters for full plays
+- Balance chapter length (~300 sentences each)
+
+**For Victorian Novels:**
+- Use original chapter structure when available
+- 6-8 chapters for novellas
+- Follow natural story progression
+
+**For Short Stories:**
+- 3-5 thematic chapters
+- Based on narrative structure
+- ~100-150 sentences per chapter
+
+#### 6. Common Mistakes to Avoid
+
+❌ **Wrong total sentence count**: Always verify against bundle logs
+❌ **Missing book ID**: Must add to all 3 navigation locations
+❌ **Chapter gaps**: Ensure continuous sentence coverage
+❌ **Generic titles**: Use book-specific, meaningful chapter names
+❌ **Unbalanced chapters**: Aim for relatively equal chapter lengths
+
+✅ **Success indicators:**
+- Chapter picker shows all chapters
+- No console errors when jumping
+- Smooth navigation between chapters
+- Auto-scroll works properly
+
 **Audio Manager Configuration:**
 ```javascript
 // TTS timing fix

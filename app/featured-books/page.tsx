@@ -69,11 +69,31 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     id: 'gutenberg-1952-A1',
     title: 'The Yellow Wallpaper',
     author: 'Charlotte Perkins Gilman',
-    description: 'Psychological masterpiece simplified to A1 level. 384 sentences across 96 bundles with Sarah\'s voice.',
-    sentences: 384,
-    bundles: 96,
+    description: 'Psychological masterpiece simplified to A1 level. 372 sentences across 93 bundles with Sarah\'s voice.',
+    sentences: 372,
+    bundles: 93,
     gradient: 'from-yellow-500 to-amber-600',
     abbreviation: 'YW'
+  },
+  {
+    id: 'gutenberg-1513',
+    title: 'Romeo and Juliet',
+    author: 'William Shakespeare',
+    description: 'Timeless love story modernized to A1 level. 2,996 sentences across 749 bundles with clear narration.',
+    sentences: 2996,
+    bundles: 749,
+    gradient: 'from-rose-500 to-pink-600',
+    abbreviation: 'RJ'
+  },
+  {
+    id: 'gutenberg-43',
+    title: 'Dr. Jekyll and Mr. Hyde',
+    author: 'Robert Louis Stevenson',
+    description: 'Classic gothic tale simplified to A1 level. 1,285 sentences across 322 bundles for easy reading.',
+    sentences: 1285,
+    bundles: 322,
+    gradient: 'from-purple-500 to-indigo-600',
+    abbreviation: 'JH'
   }
 ];
 
@@ -143,9 +163,161 @@ const YELLOW_WALLPAPER_CHAPTERS = [
     chapterNumber: 4,
     title: "The Final Revelation",
     startSentence: 280,
-    endSentence: 375,
+    endSentence: 371,
     startBundle: 70,
-    endBundle: 93
+    endBundle: 92
+  }
+];
+
+// Romeo and Juliet Chapter Structure (10 chapters based on Acts/Scenes)
+const ROMEO_JULIET_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "Act I: The Feud Begins",
+    startSentence: 0,
+    endSentence: 299,
+    startBundle: 0,
+    endBundle: 74
+  },
+  {
+    chapterNumber: 2,
+    title: "Act I: The Party",
+    startSentence: 300,
+    endSentence: 599,
+    startBundle: 75,
+    endBundle: 149
+  },
+  {
+    chapterNumber: 3,
+    title: "Act II: The Balcony",
+    startSentence: 600,
+    endSentence: 899,
+    startBundle: 150,
+    endBundle: 224
+  },
+  {
+    chapterNumber: 4,
+    title: "Act II: The Marriage",
+    startSentence: 900,
+    endSentence: 1199,
+    startBundle: 225,
+    endBundle: 299
+  },
+  {
+    chapterNumber: 5,
+    title: "Act III: The Fight",
+    startSentence: 1200,
+    endSentence: 1499,
+    startBundle: 300,
+    endBundle: 374
+  },
+  {
+    chapterNumber: 6,
+    title: "Act III: The Banishment",
+    startSentence: 1500,
+    endSentence: 1799,
+    startBundle: 375,
+    endBundle: 449
+  },
+  {
+    chapterNumber: 7,
+    title: "Act IV: The Potion",
+    startSentence: 1800,
+    endSentence: 2099,
+    startBundle: 450,
+    endBundle: 524
+  },
+  {
+    chapterNumber: 8,
+    title: "Act IV: The Wedding Plans",
+    startSentence: 2100,
+    endSentence: 2399,
+    startBundle: 525,
+    endBundle: 599
+  },
+  {
+    chapterNumber: 9,
+    title: "Act V: The Tomb",
+    startSentence: 2400,
+    endSentence: 2699,
+    startBundle: 600,
+    endBundle: 674
+  },
+  {
+    chapterNumber: 10,
+    title: "Act V: The Tragedy",
+    startSentence: 2700,
+    endSentence: 2995,
+    startBundle: 675,
+    endBundle: 748
+  }
+];
+
+// Jekyll & Hyde Chapter Structure (8 chapters) - Based on actual API sentence indices
+const JEKYLL_HYDE_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "Story of the Door",
+    startSentence: 0,
+    endSentence: 160,
+    startBundle: 0,
+    endBundle: 40
+  },
+  {
+    chapterNumber: 2,
+    title: "Search for Mr. Hyde",
+    startSentence: 164,
+    endSentence: 320,
+    startBundle: 41,
+    endBundle: 80
+  },
+  {
+    chapterNumber: 3,
+    title: "Dr. Jekyll Was Quite at Ease",
+    startSentence: 324,
+    endSentence: 480,
+    startBundle: 81,
+    endBundle: 120
+  },
+  {
+    chapterNumber: 4,
+    title: "The Carew Murder Case",
+    startSentence: 484,
+    endSentence: 640,
+    startBundle: 121,
+    endBundle: 160
+  },
+  {
+    chapterNumber: 5,
+    title: "Incident of the Letter",
+    startSentence: 644,
+    endSentence: 800,
+    startBundle: 161,
+    endBundle: 200
+  },
+  {
+    chapterNumber: 6,
+    title: "Remarkable Incident of Dr. Lanyon",
+    startSentence: 804,
+    endSentence: 960,
+    startBundle: 201,
+    endBundle: 240
+  },
+  {
+    chapterNumber: 7,
+    title: "Incident at the Window",
+    startSentence: 964,
+    endSentence: 1120,
+    startBundle: 241,
+    endBundle: 280
+  },
+  {
+    chapterNumber: 8,
+    title: "The Last Night",
+    startSentence: 1124,
+    endSentence: 1287,
+    startBundle: 281,
+    endBundle: 321
   }
 ];
 
@@ -325,7 +497,12 @@ export default function FeaturedBooksPage() {
 
     for (const level of levels) {
       try {
-        const response = await fetch(`/api/test-book/real-bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`, {
+        // Use specific API endpoint for Jekyll & Hyde
+        const apiUrl = bookId === 'gutenberg-43'
+          ? `/api/jekyll-hyde/bundles?bookId=${bookId}-${level}&level=${level}&t=${Date.now()}`
+          : `/api/test-book/real-bundles?bookId=${bookId}-${level}&level=${level}&t=${Date.now()}`;
+
+        const response = await fetch(apiUrl, {
           cache: 'no-store'
         });
         if (response.ok) {
@@ -373,7 +550,13 @@ export default function FeaturedBooksPage() {
 
         // Fetch bundle data
         const bookId = getBookId();
-        const response = await fetch(`/api/test-book/real-bundles?bookId=${bookId}&level=${levelParam}&t=${Date.now()}`, {
+
+        // Use specific API endpoint for Jekyll & Hyde
+        const apiUrl = bookId === 'gutenberg-43'
+          ? `/api/jekyll-hyde/bundles?bookId=${bookId}-${levelParam}&level=${levelParam}&t=${Date.now()}`
+          : `/api/test-book/real-bundles?bookId=${bookId}-${levelParam}&level=${levelParam}&t=${Date.now()}`;
+
+        const response = await fetch(apiUrl, {
           cache: 'no-store'
         });
 
@@ -535,6 +718,14 @@ export default function FeaturedBooksPage() {
   // Audio playback functions
   const findBundleForSentence = (sentenceIndex: number): BundleData | null => {
     if (!bundleData) return null;
+
+    // Bounds checking
+    const totalSentences = bundleData.totalSentences;
+    if (sentenceIndex < 0 || sentenceIndex >= totalSentences) {
+      console.warn(`Sentence index ${sentenceIndex} is out of bounds (0-${totalSentences - 1})`);
+      return null;
+    }
+
     return bundleData.bundles.find(bundle =>
       bundle.sentences.some(s => s.sentenceIndex === sentenceIndex)
     ) || null;
@@ -712,16 +903,28 @@ export default function FeaturedBooksPage() {
 
   // Jump to any sentence (by absolute sentence index)
   const jumpToSentence = async (targetIndex: number) => {
+    // Bounds checking to prevent out-of-range access
+    if (!bundleData) return;
+
+    const maxSentenceIndex = bundleData.totalSentences - 1;
+    const clampedIndex = Math.max(0, Math.min(targetIndex, maxSentenceIndex));
+
+    if (clampedIndex !== targetIndex) {
+      console.warn(`Sentence index ${targetIndex} clamped to ${clampedIndex} (valid range: 0-${maxSentenceIndex})`);
+    }
+
     // Always use handlePlaySequential for proper bundle continuation
     // This ensures that after jumping to a chapter, playback continues through subsequent bundles
-    await handlePlaySequential(targetIndex);
+    await handlePlaySequential(clampedIndex);
   };
 
   // Mobile-optimized chapter picker
   const ChapterPicker = () => {
     const chapters = selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
                     selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS : GREAT_GATSBY_CHAPTERS;
+                    selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
+                    selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
+                    selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS : GREAT_GATSBY_CHAPTERS;
     return (
       <div className="flex items-center gap-1 w-full max-w-xs">
         <select
@@ -791,6 +994,10 @@ export default function FeaturedBooksPage() {
       chapters = GREAT_GATSBY_CHAPTERS;
     } else if (selectedBook.id === 'gutenberg-1952-A1') {
       chapters = YELLOW_WALLPAPER_CHAPTERS;
+    } else if (selectedBook.id === 'gutenberg-1513') {
+      chapters = ROMEO_JULIET_CHAPTERS;
+    } else if (selectedBook.id === 'gutenberg-43') {
+      chapters = JEKYLL_HYDE_CHAPTERS;
     } else {
       return { current: 1, total: 1, title: '', totalSentences: selectedBook.sentences };
     }
@@ -1118,7 +1325,7 @@ export default function FeaturedBooksPage() {
               {/* Book Title */}
               <div className="text-center py-4">
                 <h1 className="text-2xl font-semibold text-gray-700 mb-4">
-                  {bundleData.title.replace(/\s*\(Bundled\)$/i, '')}
+                  {((bundleData as any).book?.title || bundleData.title || 'Unknown Title').replace(/\s*\(Bundled\)$/i, '')}
                 </h1>
               </div>
 
@@ -1281,7 +1488,9 @@ export default function FeaturedBooksPage() {
                 <div className="space-y-2 max-h-64 overflow-y-auto">
                   {(selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
                     selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
+                    selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
+                    selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
+                    selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
                     <button
                       key={chapter.chapterNumber}
                       onClick={async () => {
