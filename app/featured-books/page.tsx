@@ -64,6 +64,16 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     bundles: 902,
     gradient: 'from-green-500 to-teal-600',
     abbreviation: 'GG'
+  },
+  {
+    id: 'gutenberg-1952-A1',
+    title: 'The Yellow Wallpaper',
+    author: 'Charlotte Perkins Gilman',
+    description: 'Psychological masterpiece simplified to A1 level. 384 sentences across 96 bundles with Sarah\'s voice.',
+    sentences: 384,
+    bundles: 96,
+    gradient: 'from-yellow-500 to-amber-600',
+    abbreviation: 'YW'
   }
 ];
 
@@ -100,6 +110,42 @@ const SLEEPY_HOLLOW_CHAPTERS = [
     endSentence: 324,
     startBundle: 70,
     endBundle: 81
+  }
+];
+
+// Yellow Wallpaper Chapter Structure (psychological progression sections)
+const YELLOW_WALLPAPER_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "Arrival at the Estate",
+    startSentence: 0,
+    endSentence: 95,
+    startBundle: 0,
+    endBundle: 23
+  },
+  {
+    chapterNumber: 2,
+    title: "Growing Unease",
+    startSentence: 96,
+    endSentence: 187,
+    startBundle: 24,
+    endBundle: 46
+  },
+  {
+    chapterNumber: 3,
+    title: "Obsession with the Pattern",
+    startSentence: 188,
+    endSentence: 279,
+    startBundle: 47,
+    endBundle: 69
+  },
+  {
+    chapterNumber: 4,
+    title: "The Final Revelation",
+    startSentence: 280,
+    endSentence: 375,
+    startBundle: 70,
+    endBundle: 93
   }
 ];
 
@@ -673,7 +719,9 @@ export default function FeaturedBooksPage() {
 
   // Mobile-optimized chapter picker
   const ChapterPicker = () => {
-    const chapters = selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS : GREAT_GATSBY_CHAPTERS;
+    const chapters = selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
+                    selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
+                    selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS : GREAT_GATSBY_CHAPTERS;
     return (
       <div className="flex items-center gap-1 w-full max-w-xs">
         <select
@@ -741,6 +789,8 @@ export default function FeaturedBooksPage() {
       chapters = SLEEPY_HOLLOW_CHAPTERS;
     } else if (selectedBook.id === 'great-gatsby-a2') {
       chapters = GREAT_GATSBY_CHAPTERS;
+    } else if (selectedBook.id === 'gutenberg-1952-A1') {
+      chapters = YELLOW_WALLPAPER_CHAPTERS;
     } else {
       return { current: 1, total: 1, title: '', totalSentences: selectedBook.sentences };
     }
@@ -1229,7 +1279,9 @@ export default function FeaturedBooksPage() {
               {/* Modal Content */}
               <div className="p-6">
                 <div className="space-y-2 max-h-64 overflow-y-auto">
-                  {(selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
+                  {(selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
+                    selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
+                    selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
                     <button
                       key={chapter.chapterNumber}
                       onClick={async () => {

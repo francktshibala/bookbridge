@@ -12,7 +12,8 @@ This document consolidates all lessons learned from Sleepy Hollow and Great Gats
 6. [API Integration](#api-integration)
 7. [Frontend Integration](#frontend-integration)
 8. [Troubleshooting Guide](#troubleshooting-guide)
-9. [Lessons Learned](#lessons-learned)
+9. [ElevenLabs Synchronization Rules](#elevenlabs-synchronization-rules)
+10. [Lessons Learned](#lessons-learned)
 
 ## Pipeline Overview
 
@@ -390,6 +391,133 @@ const audioManager = new BundleAudioManager({
 });
 ```
 
+## ElevenLabs Synchronization Rules
+
+### Critical Timing Calibration for Perfect Highlighting
+
+**Problem Solved**: Great Gatsby (ElevenLabs) had 1-sentence highlighting lag vs Sleepy Hollow (OpenAI) perfect sync.
+
+#### **Voice Provider Timing Rules**
+
+```typescript
+// ElevenLabs (Sophisticated voices with variable pacing)
+const highlightLeadMs = -500; // Pre-highlight for TTS delay
+const durationScaleClamp = [0.85, 1.10]; // Allow timing adjustment
+const requiresPerBundleOffset = true; // Auto-correct drift per bundle
+
+// OpenAI (Consistent timing with word-level precision)
+const highlightLeadMs = 500; // Standard lead for precise timing
+const durationScaleClamp = [0.95, 1.05]; // Minimal scaling needed
+const requiresPerBundleOffset = false; // Word timings are accurate
+```
+
+#### **Generation-Time Best Practices**
+
+1. **Measure Real Audio Duration**
+   ```javascript
+   // During audio generation - CRITICAL
+   const audioBuffer = await generateElevenLabsAudio(text);
+   const realDuration = await getAudioDuration(audioBuffer);
+
+   // Store actual duration, not estimated
+   await prisma.audioSegment.create({
+     // ... other fields
+     duration: realDuration, // Use measured, not estimated
+     wordTimings: distributeTimingsProportionally(sentences, realDuration)
+   });
+   ```
+
+2. **Proportional Timing Distribution**
+   ```javascript
+   function distributeTimingsProportionally(sentences, realDuration) {
+     const totalEstimatedDuration = sentences.length * 0.4 * avgWordsPerSentence;
+     const scaleFactor = realDuration / totalEstimatedDuration;
+
+     return sentences.map((sentence, i) => ({
+       startTime: (i * estimatedSentenceDuration) * scaleFactor,
+       endTime: ((i + 1) * estimatedSentenceDuration) * scaleFactor,
+       // Store actual measured timing, not estimates
+     }));
+   }
+   ```
+
+#### **API Serving Rules**
+
+**CRITICAL**: Always prioritize stored timing metadata over runtime estimates.
+
+```typescript
+// ❌ WRONG: Re-estimating at serve time
+const wordTimings = sentences.map(s => estimateFromWordCount(s.text));
+
+// ✅ CORRECT: Use stored generation-time measurements
+const wordTimings = bundle.sentences.map(s => ({
+  startTime: s.storedStartTime, // From generation measurement
+  endTime: s.storedEndTime,     // From generation measurement
+  // Only estimate if stored data missing
+  ...(s.storedStartTime ? {} : estimateFromWordCount(s.text))
+}));
+```
+
+#### **Frontend Player Enhancements**
+
+1. **Per-Bundle Offset Correction**
+   ```typescript
+   // Auto-correct timing drift per bundle
+   class BundleOffsetCorrector {
+     private bundleOffsets = new Map<string, number>();
+
+     calibrateBundleOnFirstSentence(bundle: BundleData, audioCurrentTime: number) {
+       const firstSentence = bundle.sentences[0];
+       const expectedStart = firstSentence.startTime * this.durationScale;
+       const actualStart = audioCurrentTime;
+       const offset = actualStart - expectedStart;
+
+       // Store offset for this bundle
+       this.bundleOffsets.set(bundle.bundleId, offset);
+       console.log(`📐 Bundle ${bundle.bundleId} offset: ${offset.toFixed(2)}s`);
+     }
+
+     getAdjustedTime(bundleId: string, originalTime: number): number {
+       const offset = this.bundleOffsets.get(bundleId) || 0;
+       return originalTime + offset;
+     }
+   }
+   ```
+
+2. **Completion Check Rules**
+   ```typescript
+   // ❌ WRONG: Applying lead to completion checks
+   const isComplete = (currentTime + this.highlightLeadSeconds) >= scaledEndTime;
+
+   // ✅ CORRECT: Use raw currentTime for completion
+   const isComplete = currentTime >= scaledEndTime ||
+                     currentTime >= (audio.duration - 0.05);
+   ```
+
+#### **Validation Metrics**
+
+**Acceptance Criteria for Perfect Sync:**
+- Highlight drift median: **<100ms**
+- Highlight drift P95: **<250ms**
+- Pause/resume: **0 skips** over 50 cycles
+- Jump latency P95: **<250ms** over 20 random jumps
+
+#### **Voice-Specific Settings**
+
+```typescript
+const VOICE_CONFIGS = {
+  // ElevenLabs voices
+  'sarah': { leadMs: -500, scaleFactor: 0.95, requiresOffset: true },
+  'rachel': { leadMs: -450, scaleFactor: 0.98, requiresOffset: true },
+
+  // OpenAI voices
+  'alloy': { leadMs: 500, scaleFactor: 1.0, requiresOffset: false },
+  'echo': { leadMs: 400, scaleFactor: 1.0, requiresOffset: false }
+};
+```
+
+---
+
 ## Troubleshooting Guide
 
 ### Common Issues & Solutions
@@ -558,5 +686,133 @@ node scripts/generate-book-name-bundles.js
 # 6. Reconcile (if needed)
 node scripts/reconcile-book-name-orphans.js
 ```
+
+## Pipeline Validation Checklist
+
+### Critical Validation Steps (Learned from Yellow Wallpaper Implementation)
+
+**⚠️ NEVER skip these validations - they prevent hours of debugging!**
+
+#### 1. Pre-Implementation Cleanup
+```bash
+# ALWAYS clear cache and audio before fresh implementation
+node scripts/delete-book-name-complete.js
+# Verify deletion:
+# - Check database (Book + BookContent + BookChunks all removed)
+# - Check cache files deleted
+# - Check Supabase audio files deleted
+```
+
+#### 2. Database Structure Validation
+```bash
+# After each step, verify complete database structure:
+node scripts/verify-book-structure.js book-id
+
+# Must confirm:
+✅ Book record exists
+✅ BookContent record exists
+✅ BookChunks records exist (all bundles)
+✅ Audio file paths populated
+```
+
+#### 3. Text Consistency Validation
+```bash
+# CRITICAL: Verify cache-database text consistency
+node scripts/verify-text-consistency.js book-id
+
+# Must confirm:
+✅ Database text === Cache text (exactly)
+✅ All bundles have exactly 4 sentences
+✅ No compound sentences with multiple periods
+```
+
+#### 4. Audio Generation Validation
+```bash
+# Before full generation, ALWAYS run pilot test
+node scripts/generate-book-audio.js --pilot
+
+# Verify pilot results:
+✅ Audio files created in Supabase
+✅ Database audioFilePath updated
+✅ Browser cache cleared for testing
+✅ Audio-text synchronization perfect
+```
+
+#### 5. End-to-End Verification
+```bash
+# Final validation before marking complete
+node scripts/final-verification.js book-id
+
+# Must confirm:
+✅ All database relationships intact
+✅ Featured Books page displays correctly
+✅ Chapter navigation works
+✅ Audio plays with perfect text sync
+✅ No browser cache issues
+```
+
+### Common Mistakes & Prevention
+
+#### Mistake 1: Cache-Database Divergence
+**Problem**: Audio generated from cache while database has different text
+**Prevention**:
+- Always delete cache files before fresh implementation
+- Use content hashing to detect mismatches
+- Generate audio directly from database text, not cache
+
+#### Mistake 2: Incomplete Database Structure
+**Problem**: Missing Book record while having BookContent + BookChunks
+**Prevention**:
+- Bundle generation scripts must create Book record first
+- Always verify complete structure after each step
+- Use upsert operations for all database writes
+
+#### Mistake 3: Sentence Count Validation Failures
+**Problem**: GPT returns compound sentences, breaking 4-sentence validation
+**Prevention**:
+- Use smaller batches (20 sentences vs 40)
+- Explicit single-sentence prompts with strict validation
+- Retry failed batches automatically
+
+#### Mistake 4: Browser Cache Masking Issues
+**Problem**: Browser plays old cached audio, hiding real problems
+**Prevention**:
+- Always test in incognito mode first
+- Hard refresh (Cmd+Shift+R) for testing
+- Clear browser cache between implementations
+
+#### Mistake 5: Missing Chapter Structure
+**Problem**: Books work but show wrong chapters in UI
+**Prevention**:
+- Add chapter structure to Featured Books page constants
+- Update chapter selection logic for new books
+- Test chapter navigation after implementation
+
+### Implementation Success Criteria
+
+A book implementation is **COMPLETE** only when:
+
+1. **Database**: ✅ Book + BookContent + BookChunks all exist
+2. **Audio**: ✅ 95%+ bundles have audio files
+3. **Sync**: ✅ Audio text matches displayed text exactly
+4. **UI**: ✅ Featured Books page works perfectly
+5. **Chapters**: ✅ Chapter navigation works correctly
+6. **Cache**: ✅ No cache-database inconsistencies
+
+### Quick Verification Commands
+
+```bash
+# Complete validation in one command
+npm run verify-implementation book-id
+
+# This should run:
+# 1. Database structure check
+# 2. Text consistency check
+# 3. Audio file verification
+# 4. Frontend integration test
+# 5. Chapter navigation test
+```
+
+**Remember**: Perfect implementations like Sleepy Hollow and Yellow Wallpaper follow this checklist religiously. Skipping steps leads to hours of debugging.
 
 This guide consolidates all lessons learned and provides a bulletproof process for future audiobook implementations. The GPT-5 validated safeguards ensure reliable, cost-effective generation at scale.
