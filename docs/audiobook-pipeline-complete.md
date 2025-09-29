@@ -626,6 +626,18 @@ const leadMs = isTTS ? -500 : 500;
 5. **Verify API compatibility** before bulk operations
 6. **Test timing synchronization** early in process
 
+### Romeo and Juliet Implementation Mistakes (January 2025)
+
+**Critical Mistakes Made:**
+1. **Using nuclear clear script instead of targeted audio cleanup** - Deleted all 749 A1 bundles when only needed to clear audio files for regeneration. Used wrong cleanup script and forced complete regeneration of A1 simplification (15 minutes) instead of just clearing audio.
+
+2. **No resume capability in A1 simplification script** - Had to restart from scratch when text generation failed. Script lacked incremental save functionality, causing loss of progress and repeated API costs when encountering GPT-4 errors.
+
+**Lessons Learned:**
+- Always use audio-only cleanup scripts for regeneration, never complete deletion
+- Implement resume capability from day one with incremental progress saving
+- Verify script purpose before execution to avoid expensive mistakes
+
 ## Cost Analysis
 
 ### Proven Costs (ElevenLabs Creator Plan)
