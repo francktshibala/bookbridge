@@ -37,8 +37,8 @@ export async function GET(request: NextRequest) {
     const bookId = searchParams.get('bookId');
     const level = searchParams.get('level') || 'A1';
 
-    // This API is specifically for Jekyll & Hyde A1
-    if (bookId !== 'gutenberg-43-A1') {
+    // This API is specifically for Jekyll & Hyde A1 - accept both ID variants
+    if (bookId !== 'gutenberg-43-A1' && bookId !== 'gutenberg-43') {
       return NextResponse.json({
         success: false,
         error: 'This API only supports Jekyll & Hyde A1'
