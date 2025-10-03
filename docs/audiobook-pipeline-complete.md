@@ -205,6 +205,23 @@ const guidelines = {
 
 ### Step 4: Audio Bundle Generation
 
+#### Universal Timing Formula (CRITICAL)
+**IMPORTANT**: All books must use consistent timing calculation for proper audio-text synchronization:
+
+```javascript
+// Universal timing formula - REQUIRED for all books
+const words = text.trim().split(/\s+/).length;
+const secondsPerWord = 0.4;  // Standard rate for all books
+const minDuration = 2.0;      // Minimum duration per sentence
+const duration = Math.max(words * secondsPerWord, minDuration);
+```
+
+**Why This Matters:**
+- Ensures perfect audio-text synchronization
+- Prevents sentence skipping during playback
+- Maintains consistent reading experience across all books
+- Jekyll & Hyde had timing issues until standardized to this formula
+
 #### Smart Gap-Filling Generation (Recommended)
 **File: `scripts/generate-missing-audio-smart.js`**
 
