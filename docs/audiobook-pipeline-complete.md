@@ -204,6 +204,40 @@ const guidelines = {
 ```
 
 ### Step 4: Audio Bundle Generation
+
+#### Smart Gap-Filling Generation (Recommended)
+**File: `scripts/generate-missing-audio-smart.js`**
+
+**Best Practice Implementation for avoiding costly regeneration:**
+```javascript
+// Check existing files before generation
+async function audioFileExists(path) {
+  const { data } = await supabase.storage
+    .from('audio-files')
+    .list(path.split('/').slice(0, -1).join('/'), {
+      search: path.split('/').pop()
+    });
+  return data && data.length > 0;
+}
+
+// Generate only missing files
+const missingChunks = [];
+for (const chunk of chunks) {
+  const fileName = `${config.audioPath}${chunk.chunkIndex}.mp3`;
+  if (!(await audioFileExists(fileName))) {
+    missingChunks.push({ chunk, fileName });
+  }
+}
+
+// Upload with no-overwrite protection
+await supabase.storage.from('audio-files').upload(fileName, audioBuffer, {
+  upsert: false // Prevents overwriting existing files
+});
+```
+
+**Proven Results:** Generated 392 missing files across 5 books, avoided regenerating 1,500+ existing files, saved ~$15 in unnecessary costs.
+
+#### Traditional Generation (Legacy)
 **File: `scripts/generate-{book-name}-bundles.js`**
 
 **Pilot Mode Implementation:**
@@ -829,6 +863,10 @@ const leadMs = isTTS ? -500 : 500;
 4. **No pilot testing** → went straight to full generation
 5. **Relative paths** → cache persistence issues
 6. **Asymmetric timing scaling** → highlighting lag/lead issues
+7. **Mixed storage strategies** → Jekyll local files, Romeo in Supabase
+8. **Hardcoded API IDs** → Jekyll API only accepted specific ID format
+9. **Missing race condition handling** → Books showed wrong content briefly
+10. **No audio path verification** → Database had paths but files didn't exist
 
 ### GPT-5 Validated Solutions
 1. **JSON output format** prevents parsing errors
@@ -845,6 +883,39 @@ const leadMs = isTTS ? -500 : 500;
 4. **Plan for rate limits** (delays + error handling)
 5. **Verify API compatibility** before bulk operations
 6. **Test timing synchronization** early in process
+7. **Standardize storage locations** (always use Supabase for audio)
+8. **Accept multiple ID formats in APIs** (handle both `book-id` and `book-id-level`)
+9. **Implement request cancellation** (AbortController + request tokens)
+10. **Verify audio file existence** before marking as complete
+11. **Use smart gap-filling for audio generation** - Check Supabase storage existence before generation, use `upsert: false` to prevent overwrites, and generate only missing files to avoid costly regeneration
+
+### Featured Books Audio Infrastructure Issues (October 2025)
+
+**Critical Problems Discovered:**
+1. **Mixed Storage Architecture** - Romeo & Juliet audio was in `gutenberg-1513-A1/a1/chunk_X.mp3` but code expected `romeo-juliet/bundle_X.mp3`. Jekyll used local files while others used Supabase.
+
+2. **Hardcoded API Restrictions** - Jekyll & Hyde API only accepted `gutenberg-43-A1` but Featured Books passed `gutenberg-43`. This completely blocked Jekyll from loading.
+
+3. **Missing Audio Files** - Database had correct paths but actual MP3 files didn't exist:
+   - Romeo & Juliet: Missing 18 files (chunks 731-748)
+   - Jekyll & Hyde: No Supabase files, only local
+   - Sleepy Hollow: No audio generated at all
+
+4. **Race Conditions** - When switching books, the old book's content would briefly display before new book loaded. No request cancellation system existed.
+
+**Solutions Implemented:**
+- Updated database paths to match existing storage locations
+- Modified APIs to accept multiple ID formats
+- Generated missing audio files using ElevenLabs
+- Implemented AbortController with request tokens for race condition prevention
+- Standardized on Supabase storage for all audio files
+
+**Prevention Strategies:**
+- Always verify audio file existence before deployment
+- Use consistent storage patterns across all books
+- Make APIs flexible to accept variant ID formats
+- Implement request cancellation from day one
+- Test book switching extensively for race conditions
 
 ### Romeo and Juliet Implementation Mistakes (January 2025)
 
@@ -878,6 +949,8 @@ const leadMs = isTTS ? -500 : 500;
 - [ ] Set up chapter structure (4-9 chapters recommended)
 - [ ] Choose CEFR level and voice
 - [ ] Estimate costs (sentences × $0.01)
+- [ ] **NEW: Verify storage strategy (always use Supabase)**
+- [ ] **NEW: Check existing audio files before regeneration**
 
 ### Implementation Steps
 1. [ ] Run fetch script with chapter detection
@@ -893,8 +966,12 @@ const leadMs = isTTS ? -500 : 500;
 - [ ] Verify sentence count matches (no gaps)
 - [ ] Test audio playback and highlighting
 - [ ] Check chapter progression works
-- [ ] Confirm all 902 bundles in database
+- [ ] Confirm all bundles in database
 - [ ] Test resume capability
+- [ ] **NEW: Verify audio files actually exist in storage**
+- [ ] **NEW: Test book switching for race conditions**
+- [ ] **NEW: Check API accepts multiple ID formats**
+- [ ] **NEW: Confirm consistent storage paths**
 
 ## File Templates
 
