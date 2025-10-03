@@ -65,23 +65,36 @@ export async function GET(request: NextRequest) {
 
     // Convert cache data to API format
     const bundles: BundleMetadata[] = cacheData.bundles.map((bundle, index) => {
-      const bundleNumber = String(index + 1).padStart(3, '0');
-      const audioUrl = `/audio/jekyll-hyde-a1/bundle-${bundleNumber}.mp3`;
+      // Use correct Supabase storage path format
+      const audioUrl = `https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/jekyll-hyde/bundle_${index}.mp3`;
 
-      // Calculate estimated timings (2.5 seconds per sentence average)
-      const sentencesWithTimings = bundle.simplifiedSentences.map((text, sentenceIdx) => ({
-        sentenceId: `s${index * 4 + sentenceIdx}`,
-        sentenceIndex: index * 4 + sentenceIdx,
-        text: text.trim(),
-        startTime: sentenceIdx * 2.5,
-        endTime: (sentenceIdx + 1) * 2.5
-      }));
+      // Calculate dynamic timings based on word count (matches working API)
+      const sentencesWithTimings = bundle.simplifiedSentences.map((text, sentenceIdx) => {
+        const words = text.trim().split(/\s+/).length;
+        const secondsPerWord = 0.4; // Same as working API
+        const minDuration = 2.0;    // Same as working API
+        const duration = Math.max(words * secondsPerWord, minDuration);
+
+        // Calculate cumulative start time
+        const startTime = sentenceIdx === 0 ? 0 : bundle.simplifiedSentences.slice(0, sentenceIdx).reduce((sum, prevText) => {
+          const prevWords = prevText.trim().split(/\s+/).length;
+          return sum + Math.max(prevWords * secondsPerWord, minDuration);
+        }, 0);
+
+        return {
+          sentenceId: `s${index * 4 + sentenceIdx}`,
+          sentenceIndex: index * 4 + sentenceIdx,
+          text: text.trim(),
+          startTime: startTime,
+          endTime: startTime + duration
+        };
+      });
 
       return {
         bundleId: `bundle_${index}`,
         bundleIndex: index,
         audioUrl,
-        totalDuration: bundle.simplifiedSentences.length * 2.5,
+        totalDuration: sentencesWithTimings.reduce((total, sentence) => Math.max(total, sentence.endTime), 0),
         sentences: sentencesWithTimings
       };
     });

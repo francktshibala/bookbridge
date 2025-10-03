@@ -273,64 +273,64 @@ const JEKYLL_HYDE_CHAPTERS = [
     chapterNumber: 1,
     title: "Story of the Door",
     startSentence: 0,
-    endSentence: 160,
+    endSentence: 137,
     startBundle: 0,
-    endBundle: 40
+    endBundle: 34
   },
   {
     chapterNumber: 2,
     title: "Search for Mr. Hyde",
-    startSentence: 164,
-    endSentence: 320,
-    startBundle: 41,
-    endBundle: 80
+    startSentence: 138,
+    endSentence: 275,
+    startBundle: 35,
+    endBundle: 68
   },
   {
     chapterNumber: 3,
     title: "Dr. Jekyll Was Quite at Ease",
-    startSentence: 324,
-    endSentence: 480,
-    startBundle: 81,
-    endBundle: 120
+    startSentence: 276,
+    endSentence: 413,
+    startBundle: 69,
+    endBundle: 103
   },
   {
     chapterNumber: 4,
     title: "The Carew Murder Case",
-    startSentence: 484,
-    endSentence: 640,
-    startBundle: 121,
-    endBundle: 160
+    startSentence: 414,
+    endSentence: 551,
+    startBundle: 104,
+    endBundle: 137
   },
   {
     chapterNumber: 5,
     title: "Incident of the Letter",
-    startSentence: 644,
-    endSentence: 800,
-    startBundle: 161,
-    endBundle: 200
+    startSentence: 552,
+    endSentence: 689,
+    startBundle: 138,
+    endBundle: 172
   },
   {
     chapterNumber: 6,
     title: "Remarkable Incident of Dr. Lanyon",
-    startSentence: 804,
-    endSentence: 960,
-    startBundle: 201,
-    endBundle: 240
+    startSentence: 690,
+    endSentence: 827,
+    startBundle: 173,
+    endBundle: 206
   },
   {
     chapterNumber: 7,
     title: "Incident at the Window",
-    startSentence: 964,
-    endSentence: 1120,
-    startBundle: 241,
-    endBundle: 280
+    startSentence: 828,
+    endSentence: 965,
+    startBundle: 207,
+    endBundle: 241
   },
   {
     chapterNumber: 8,
     title: "The Last Night",
-    startSentence: 1124,
+    startSentence: 968,
     endSentence: 1287,
-    startBundle: 281,
+    startBundle: 242,
     endBundle: 321
   }
 ];
