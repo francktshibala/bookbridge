@@ -124,23 +124,43 @@ export async function GET(request: NextRequest) {
       .filter(s => s.length > 0)
       .map(s => s + (s.endsWith('.') || s.endsWith('!') || s.endsWith('?') ? '' : '.'));
 
-    // Create proper bundles
-    const bundles: BundleMetadata[] = allAudioAssets.map(asset => ({
-      bundleId: `bundle_${asset.sentence_index}`,
-      bundleIndex: asset.sentence_index,
-      audioUrl: asset.audio_url,
-      totalDuration: 10, // Default estimate
-      sentences: sentences.slice(
+    // Create proper bundles with Jekyll's dynamic timing method (CRITICAL FIX)
+    const bundles: BundleMetadata[] = allAudioAssets.map(asset => {
+      const bundleSentences = sentences.slice(
         asset.sentence_index * SENTENCES_PER_BUNDLE,
         (asset.sentence_index + 1) * SENTENCES_PER_BUNDLE
-      ).map((text, idx) => ({
-        sentenceId: `s${asset.sentence_index * SENTENCES_PER_BUNDLE + idx}`,
-        sentenceIndex: asset.sentence_index * SENTENCES_PER_BUNDLE + idx,
-        text,
-        startTime: idx * 2.5,
-        endTime: (idx + 1) * 2.5
-      }))
-    }));
+      );
+
+      // Calculate dynamic timings based on word count (Jekyll's method)
+      const sentencesWithTimings = bundleSentences.map((text, sentenceIdx) => {
+        const words = text.trim().split(/\s+/).length;
+        const secondsPerWord = 0.4; // Same as Jekyll
+        const minDuration = 2.0;    // Same as Jekyll
+        const duration = Math.max(words * secondsPerWord, minDuration);
+
+        // Calculate cumulative start time (Jekyll's method)
+        const startTime = sentenceIdx === 0 ? 0 : bundleSentences.slice(0, sentenceIdx).reduce((sum, prevText) => {
+          const prevWords = prevText.trim().split(/\s+/).length;
+          return sum + Math.max(prevWords * secondsPerWord, minDuration);
+        }, 0);
+
+        return {
+          sentenceId: `s${asset.sentence_index * SENTENCES_PER_BUNDLE + sentenceIdx}`,
+          sentenceIndex: asset.sentence_index * SENTENCES_PER_BUNDLE + sentenceIdx,
+          text: text.trim(),
+          startTime: startTime,
+          endTime: startTime + duration
+        };
+      });
+
+      return {
+        bundleId: `bundle_${asset.sentence_index}`,
+        bundleIndex: asset.sentence_index,
+        audioUrl: asset.audio_url,
+        totalDuration: sentencesWithTimings.reduce((total, sentence) => Math.max(total, sentence.endTime), 0),
+        sentences: sentencesWithTimings
+      };
+    });
 
     return NextResponse.json({
       success: true,
