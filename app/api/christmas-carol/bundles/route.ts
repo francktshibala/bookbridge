@@ -71,8 +71,8 @@ export async function GET(request: NextRequest) {
       let cumulativeTime = 0;
       const sentencesWithTimings = chunkSentences.map((text, sentenceIdx) => {
         const words = text.trim().split(/\s+/).length;
-        const secondsPerWord = 0.25; // Adjusted for Daniel voice (was 0.4 - too slow)
-        const minDuration = 1.5;     // Reduced minimum for faster Daniel voice
+        const secondsPerWord = 0.32; // Fine-tuned for Daniel voice (0.4 too slow, 0.25 too fast)
+        const minDuration = 1.8;     // Balanced minimum for Daniel voice
         const duration = Math.max(words * secondsPerWord, minDuration);
 
         const startTime = cumulativeTime;
