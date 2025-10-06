@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
 
     console.log(`✅ Loaded ${bookChunks.length} bundles from BookChunk table`);
 
-    // Convert BookChunk data to API format with Jekyll's timing method
+    // Convert BookChunk data to API format with CORRECTED timing (fix overlaps)
     const bundles: BundleMetadata[] = bookChunks.map((chunk, index) => {
       // Generate Supabase storage URL
       const audioUrl = `https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/${chunk.audioFilePath}`;
@@ -67,25 +67,24 @@ export async function GET(request: NextRequest) {
         .map(s => s.trim())
         .filter(s => s.length > 5);
 
-      // Calculate dynamic timings based on word count (Jekyll's proven method)
+      // Calculate dynamic timings with PROPER cumulative timing (no overlaps)
+      let cumulativeTime = 0;
       const sentencesWithTimings = chunkSentences.map((text, sentenceIdx) => {
         const words = text.trim().split(/\s+/).length;
         const secondsPerWord = 0.4; // Same as Jekyll
         const minDuration = 2.0;    // Same as Jekyll
         const duration = Math.max(words * secondsPerWord, minDuration);
 
-        // Calculate cumulative start time (Jekyll's method)
-        const startTime = sentenceIdx === 0 ? 0 : chunkSentences.slice(0, sentenceIdx).reduce((sum, prevText) => {
-          const prevWords = prevText.trim().split(/\s+/).length;
-          return sum + Math.max(prevWords * secondsPerWord, minDuration);
-        }, 0);
+        const startTime = cumulativeTime;
+        const endTime = startTime + duration;
+        cumulativeTime = endTime; // Update for next sentence
 
         return {
           sentenceId: `s${index * 4 + sentenceIdx}`,
           sentenceIndex: index * 4 + sentenceIdx,
           text: text.trim(),
           startTime: startTime,
-          endTime: startTime + duration
+          endTime: endTime
         };
       });
 
@@ -93,7 +92,7 @@ export async function GET(request: NextRequest) {
         bundleId: `bundle_${index}`,
         bundleIndex: index,
         audioUrl,
-        totalDuration: sentencesWithTimings.reduce((total, sentence) => Math.max(total, sentence.endTime), 0),
+        totalDuration: cumulativeTime, // Use final cumulative time
         sentences: sentencesWithTimings
       };
     });
