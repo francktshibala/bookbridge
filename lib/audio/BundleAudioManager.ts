@@ -340,6 +340,9 @@ export class BundleAudioManager {
             console.log(`⏱️ Long sentence ${sentence.sentenceIndex}: ${scaledStart.toFixed(2)}s - ${adjustedEnd.toFixed(2)}s (${words} words, min: ${minDuration.toFixed(2)}s)`);
             console.log(`📝 Text preview: "${sentence.text.substring(0, 60)}..."`);
           }
+
+          // DEBUG: Log all sentence timings for analysis
+          console.log(`📅 Sentence ${sentence.sentenceIndex}: ${scaledStart.toFixed(2)}s - ${adjustedEnd.toFixed(2)}s (${words}w, +${safetyTail.toFixed(2)}s safety)`);
         });
 
         if (process.env.NEXT_PUBLIC_AUDIO_DEBUG === '1') {
@@ -412,13 +415,32 @@ export class BundleAudioManager {
       const rawTime = this.currentAudio.currentTime; // unscaled
       const highlightTime = rawTime + this.highlightLeadSeconds;
 
+      // DEBUG: Log current timing state
+      if (Math.floor(rawTime * 10) % 5 === 0) { // Log every 500ms
+        console.log(`🎯 TIMING DEBUG: rawTime=${rawTime.toFixed(2)}s, highlightTime=${highlightTime.toFixed(2)}s, lead=${this.highlightLeadSeconds.toFixed(2)}s`);
+        console.log(`📍 Current sentence ${currentSentenceInBundle.sentenceIndex}: "${currentSentenceInBundle.text.substring(0, 40)}..."`);
+      }
+
       const nextSentenceIndex = currentSentenceInBundle.sentenceIndex + 1;
       const nextSentence = bundle.sentences.find(s => s.sentenceIndex === nextSentenceIndex);
       const nextScaledStart = nextSentence ? (this.scaledSentences.get(nextSentenceIndex)?.startTime || 0) : 0;
       const currentScaledEnd = this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0;
 
+      // DEBUG: Log timing comparison every few frames
+      if (Math.floor(rawTime * 10) % 3 === 0) { // Every 300ms
+        console.log(`🔄 TRANSITION CHECK: current=${currentSentenceInBundle.sentenceIndex}, next=${nextSentenceIndex}`);
+        console.log(`   ⏰ highlightTime=${highlightTime.toFixed(2)} vs nextStart=${nextScaledStart.toFixed(2)} (diff: ${(nextScaledStart - highlightTime).toFixed(2)}s)`);
+        console.log(`   ⏱️ rawTime=${rawTime.toFixed(2)} vs currentEnd=${currentScaledEnd.toFixed(2)} (diff: ${(currentScaledEnd - rawTime).toFixed(2)}s)`);
+      }
+
       // Advance to next sentence when highlight reaches next start, but not during hysteresis window
       if (nextSentence && nextScaledStart > 0 && highlightTime >= nextScaledStart && now >= this.suppressTransitionsUntil) {
+        console.log(`🚀 SENTENCE TRANSITION: ${currentSentenceInBundle.sentenceIndex} → ${nextSentenceIndex}`);
+        console.log(`   ⏰ Trigger: highlightTime(${highlightTime.toFixed(2)}) >= nextStart(${nextScaledStart.toFixed(2)})`);
+        console.log(`   🎵 Audio position: ${rawTime.toFixed(2)}s / ${this.currentAudio.duration.toFixed(2)}s`);
+        console.log(`   📝 Ending: "${currentSentenceInBundle.text.substring(0, 30)}..."`);
+        console.log(`   📝 Starting: "${nextSentence.text.substring(0, 30)}..."`);
+
         this.options.onSentenceEnd?.(currentSentenceInBundle);
         currentSentenceInBundle = nextSentence;
         this.currentSentenceIndex = nextSentenceIndex;
@@ -430,12 +452,19 @@ export class BundleAudioManager {
         const isSentenceComplete = currentScaledEnd > 0 && rawTime >= currentScaledEnd;
 
         if (isAudioEnded || isSentenceComplete) {
+          console.log(`✅ SENTENCE COMPLETION: ${currentSentenceInBundle.sentenceIndex}`);
+          console.log(`   🎵 Audio: ended=${this.currentAudio.ended}, rawTime=${rawTime.toFixed(2)}, duration=${this.currentAudio.duration.toFixed(2)}`);
+          console.log(`   ⏱️ Timing: scaledEnd=${currentScaledEnd.toFixed(2)}, complete=${isSentenceComplete}`);
+          console.log(`   📝 Completed: "${currentSentenceInBundle.text.substring(0, 50)}..."`);
+
           this.options.onSentenceEnd?.(currentSentenceInBundle);
           if (nextSentence) {
+            console.log(`   ➡️ Advancing to sentence ${nextSentenceIndex}`);
             currentSentenceInBundle = nextSentence;
             this.currentSentenceIndex = nextSentenceIndex;
             this.options.onSentenceStart?.(nextSentence);
           } else {
+            console.log(`   🏁 Bundle ${bundle.bundleId} complete - no more sentences`);
             this.handleBundleComplete(bundle);
             return;
           }
