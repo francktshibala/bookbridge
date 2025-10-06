@@ -325,10 +325,11 @@ export class BundleAudioManager {
           const scaledStart = sentence.startTime * clampedScale;
           const scaledEnd = sentence.endTime * clampedScale;
 
-          // Ensure minimum duration for long sentences (prevent cutoff)
+          // Ensure minimum duration for long sentences + safety tail for Daniel's delivery
           const words = sentence.text.split(/\s+/).length;
-          const minDuration = Math.max(words * 0.45, 2.5); // Increased from 0.4 to 0.45 for ElevenLabs Daniel
-          const adjustedEnd = Math.max(scaledEnd, scaledStart + minDuration);
+          const minDuration = Math.max(words * 0.45, 2.5); // ElevenLabs Daniel base timing
+          const safetyTail = 0.12; // 120ms safety buffer for breathing/tails (GPT-5 fix)
+          const adjustedEnd = Math.max(scaledEnd, scaledStart + minDuration) + safetyTail;
 
           this.scaledSentences.set(sentence.sentenceIndex, {
             startTime: scaledStart,
@@ -378,12 +379,11 @@ export class BundleAudioManager {
       const rawTime = this.currentAudio.currentTime; // unscaled
       const scaledEnd = this.scaledSentences.get(targetSentence.sentenceIndex)?.endTime || (targetSentence.endTime * this.durationScale);
 
-      // Completion uses raw time vs scaled end (lead does not affect completion)
-      // Add grace period for ElevenLabs voices to prevent early cutoff of long sentences
-      const isNearEnd = rawTime >= (scaledEnd + 0.1); // 100ms grace period
+      // Bundle completion: Use natural audio end only (GPT-5 fix)
+      // Lead affects highlighting only, NOT completion timing
       const isAudioEnded = this.currentAudio.ended || rawTime >= (this.currentAudio.duration - 0.05);
 
-      if (isNearEnd || isAudioEnded) {
+      if (isAudioEnded) {
         this.handleSentenceComplete(targetSentence);
         return;
       }
@@ -424,12 +424,12 @@ export class BundleAudioManager {
         this.currentSentenceIndex = nextSentenceIndex;
         this.options.onSentenceStart?.(nextSentence);
       } else {
-        // Complete current sentence using raw time vs scaled end
-        // Add grace period for ElevenLabs voices to prevent early cutoff
-        const isNearEnd = currentScaledEnd > 0 && rawTime >= (currentScaledEnd + 0.1); // 100ms grace period
+        // Complete current sentence: Use natural audio end for completion (GPT-5 fix)
+        // Lead affects highlighting only, NOT sentence completion
         const isAudioEnded = this.currentAudio.ended || rawTime >= (this.currentAudio.duration - 0.05);
+        const isSentenceComplete = currentScaledEnd > 0 && rawTime >= currentScaledEnd;
 
-        if (isNearEnd || isAudioEnded) {
+        if (isAudioEnded || isSentenceComplete) {
           this.options.onSentenceEnd?.(currentSentenceInBundle);
           if (nextSentence) {
             currentSentenceInBundle = nextSentence;

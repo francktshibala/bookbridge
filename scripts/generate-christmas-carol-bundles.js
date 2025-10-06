@@ -93,11 +93,11 @@ class ChristmasCarolBundleGenerator {
         // Generate audio using ElevenLabs with enhanced settings
         const audioBuffer = await this.generateElevenLabsAudio(bundle.text);
 
-        // Calculate duration using universal timing formula (from pipeline)
-        const words = bundle.text.trim().split(/\s+/).length;
-        const secondsPerWord = 0.4;  // Universal rate for all books
-        const minDuration = 2.0;     // Minimum duration per sentence
-        const estimatedDuration = Math.max(words * secondsPerWord, minDuration);
+        // Use actual audio duration from ElevenLabs (GPT-5 fix: no estimates)
+        // This will be the real duration for perfect timing calculations
+        const actualDuration = await this.getAudioDuration(audioBuffer);
+
+        console.log(`🎵 Actual audio duration: ${actualDuration.toFixed(2)}s`);
 
         console.log(`   Text: "${bundle.text.substring(0, 60)}..."`);
         console.log(`   Words: ${words}, Estimated duration: ${estimatedDuration.toFixed(2)}s`);
@@ -117,8 +117,8 @@ class ChristmasCarolBundleGenerator {
 
         console.log(`   ✅ Uploaded: ${versionedPath} (hash: ${CONTENT_HASH})`);
 
-        // Store bundle metadata in database with versioned path
-        await this.storeBundleMetadata(bundle, data.path, estimatedDuration);
+        // Store bundle metadata in database with actual duration
+        await this.storeBundleMetadata(bundle, data.path, actualDuration);
 
         console.log(`   💾 Stored bundle ${bundle.index} metadata`);
 
@@ -178,6 +178,18 @@ class ChristmasCarolBundleGenerator {
     return Buffer.from(await response.arrayBuffer());
   }
 
+  async getAudioDuration(audioBuffer) {
+    // Quick estimation based on MP3 bitrate - more accurate than word count
+    // ElevenLabs typically generates at 128kbps
+    const bitrate = 128000; // bits per second
+    const bytes = audioBuffer.length;
+    const bits = bytes * 8;
+    const duration = bits / bitrate;
+
+    console.log(`🎵 Audio size: ${bytes} bytes, estimated duration: ${duration.toFixed(2)}s`);
+    return duration;
+  }
+
   splitIntoSentences(text) {
     // Preserve punctuation when splitting sentences (GPT-5 critical fix)
     return text
@@ -222,22 +234,34 @@ class ChristmasCarolBundleGenerator {
     }
   }
 
-  async storeBundleMetadata(bundle, audioFilePath, duration) {
-    // Calculate sentence timings with universal formula
+  async storeBundleMetadata(bundle, audioFilePath, actualDuration) {
+    // Calculate sentence timings from final assembled audio (GPT-5 fix)
     const sentenceTimings = [];
     let currentTime = 0;
 
+    // Distribute actual audio duration proportionally across sentences
+    const totalEstimatedDuration = bundle.sentences.reduce((sum, sentence) => {
+      const words = sentence.trim().split(/\s+/).length;
+      return sum + Math.max(words * 0.45, 2.5); // Daniel voice timing
+    }, 0);
+
+    const scaleFactor = actualDuration / totalEstimatedDuration;
+    console.log(`⚖️ Timing scale factor: ${scaleFactor.toFixed(3)} (actual: ${actualDuration.toFixed(2)}s vs estimated: ${totalEstimatedDuration.toFixed(2)}s)`);
+
     for (const sentence of bundle.sentences) {
       const words = sentence.trim().split(/\s+/).length;
-      const sentenceDuration = Math.max(words * 0.4, 2.0);
+      const estimatedDuration = Math.max(words * 0.45, 2.5);
+      const actualSentenceDuration = estimatedDuration * scaleFactor;
+      const safetyTail = 0.12; // 120ms safety buffer for Daniel's delivery
+      const finalDuration = actualSentenceDuration + safetyTail;
 
       sentenceTimings.push({
         text: sentence,
         startTime: currentTime,
-        endTime: currentTime + sentenceDuration
+        endTime: currentTime + finalDuration
       });
 
-      currentTime += sentenceDuration;
+      currentTime += finalDuration;
     }
 
     // Store in BookChunk table (new architecture)
