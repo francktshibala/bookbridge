@@ -1141,6 +1141,37 @@ npm run verify-implementation book-id
 
 **Remember**: Perfect implementations like Sleepy Hollow and Yellow Wallpaper follow this checklist religiously. Skipping steps leads to hours of debugging.
 
+---
+
+## TTS Enhancement Research Integration
+
+### 3-Layer Enhancement Architecture (Research-Validated)
+
+Following extensive research documented in `/research/tts-enhancement-research.md`, we have a **GPT-5 endorsed "strong plan"** for achieving Speechify-level naturalness through TTS-only enhancements that preserve Dickens' text integrity.
+
+#### Enhancement Integration into Pipeline
+**Current**: Fetch → Modernize → Simplify → **Generate bundles** → Store
+**Enhanced**: Fetch → Modernize → Simplify → **3-Layer Enhancement** → Store
+
+**Layer 1 (Voice Optimization)**: Josh voice + ElevenLabs Flash v2.5 + optimized parameters (stability 0.55, speed 0.88-0.92, 125-130 WPM)
+**Layer 2 (Strategic Pausing)**: Per-sentence generation → punctuation-based pause insertion → bundle assembly with timing recalculation
+**Layer 3 (Audio Processing)**: Sync-safe processing (-16 LUFS, 2-3 kHz ESL boost) with ffprobe duration verification
+
+#### Success Metrics
+- **MOS ≥4.2**: Professional audiobook naturalness
+- **+5-10% comprehension**: ESL learner improvement via strategic pacing
+- **P95 timing <250ms**: Maintained word highlight synchronization
+- **Engagement**: Reduced skip/seek behavior through natural prosody
+
+#### Critical Implementation Rules
+- **Never add silences post-timing calculation** - compute from final assembled audio
+- **Preserve all existing architecture** - bundle structure, database schema, CDN storage unchanged
+- **Duration-preserving processing only** - automated ffprobe verification required
+
+This research provides a drop-in enhancement to existing pipeline infrastructure without architectural changes.
+
+---
+
 ## Essential Speechify-Level Features Roadmap
 
 ### Current UI Features Already Implemented
