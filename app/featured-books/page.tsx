@@ -792,7 +792,7 @@ export default function FeaturedBooksPage() {
 
             // For TTS (ElevenLabs), use immediate highlighting since timings are estimated
             const audioProvider = data?.audioType || 'elevenlabs';
-            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2';
+            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2' || currentBookId === 'christmas-carol-enhanced-v2';
             // Use consistent TTS lead time for both books
             const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400);
 
