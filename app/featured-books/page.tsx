@@ -578,9 +578,11 @@ export default function FeaturedBooksPage() {
           });
           availability[level.toLowerCase()] = response.ok;
         } else {
-          // Use consistent API endpoint for all books
+          // Use dedicated APIs for working books, fallback to test-book for others
           const apiUrl = bookId === 'gutenberg-43'
             ? `/api/jekyll-hyde/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
+            : bookId === 'christmas-carol-enhanced-v2'
+            ? `/api/christmas-carol/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
             : `/api/test-book/real-bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`;
 
           const response = await fetch(apiUrl, {
@@ -754,9 +756,11 @@ export default function FeaturedBooksPage() {
             return;
           }
 
-          // Use consistent API endpoint for all books
+          // Use dedicated APIs for working books, fallback to test-book for others
           const apiUrl = selectedId === 'gutenberg-43'
             ? `/api/jekyll-hyde/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
+            : selectedId === 'christmas-carol-enhanced-v2'
+            ? `/api/christmas-carol/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
             : `/api/test-book/real-bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`;
 
           const response = await fetch(apiUrl, {
