@@ -1157,6 +1157,39 @@ A book implementation is **COMPLETE** only when:
 **Problem**: Deleted BookContent but not BookChunk records, causing broken text persistence
 **Cost**: Multiple cleanup attempts, user confusion
 **Solution**: Always clean both BookContent AND BookChunk tables when regenerating
+
+### Christmas Carol Daniel Voice Implementation (December 2024) - ONGOING
+
+#### Current Status: Sentence Completion Issue
+**Problem**: Christmas Carol with Daniel voice has excellent voice-highlighting harmony, but skips 2-3 sentences per bundle
+- ✅ **Working**: Voice-highlighting synchronization is perfect
+- ✅ **Working**: Dedicated API with proper cumulative timing (no overlaps)
+- ✅ **Working**: Daniel voice quality is natural and impressive
+- ❌ **Issue**: Some sentences don't complete - voice skips to next bundle early
+
+#### Implemented Solutions (Successful)
+1. **Created Dedicated API**: `/api/christmas-carol/bundles` matching Jekyll's success pattern
+2. **Fixed Timing Overlaps**: Corrected cumulative timing to prevent `nextStart < currentEnd`
+3. **Added TTS Detection**: Christmas Carol now gets proper ElevenLabs timing parameters
+4. **Comprehensive Debug Logging**: Detailed timing analysis for troubleshooting
+
+#### Current Investigation: 3 Potential Root Causes
+1. **Bundle Completion Logic**: Audio manager completing bundle before all sentences processed
+2. **Audio Duration Mismatch**: Daniel voice audio shorter than calculated sentence timings
+3. **Sentence Data Gaps**: Missing sentences in bundle causing sequence skips
+
+#### Next Steps for Tomorrow
+- Investigate actual audio duration vs calculated timing for Daniel voice
+- Check if bundles have complete sentence data (4 sentences each)
+- Debug bundle completion trigger logic
+- **Goal**: Achieve Jekyll-level perfection with natural Daniel voice
+
+#### Files Modified
+- `/app/api/christmas-carol/bundles/route.ts` - Dedicated API with corrected timing
+- `/app/featured-books/page.tsx` - TTS detection for Christmas Carol
+- `/lib/audio/BundleAudioManager.ts` - Comprehensive debug logging
+
+**Critical for UX**: Fixing this will make Christmas Carol as impressive as Jekyll & Hyde, maintaining natural voice quality while ensuring complete sentence playback.
 **Prevention**: Create comprehensive cleanup scripts that handle all related tables
 
 ### Quick Verification Commands
