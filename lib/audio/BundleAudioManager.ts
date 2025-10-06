@@ -423,18 +423,20 @@ export class BundleAudioManager {
 
       const nextSentenceIndex = currentSentenceInBundle.sentenceIndex + 1;
       const nextSentence = bundle.sentences.find(s => s.sentenceIndex === nextSentenceIndex);
-      const nextScaledStart = nextSentence ? (this.scaledSentences.get(nextSentenceIndex)?.startTime || 0) : 0;
+      // CRITICAL FIX: Don't default to 0 when nextSentence doesn't exist
+      const nextScaledStart = nextSentence ? (this.scaledSentences.get(nextSentenceIndex)?.startTime || 0) : Infinity;
       const currentScaledEnd = this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0;
 
       // DEBUG: Log timing comparison every few frames
       if (Math.floor(rawTime * 10) % 3 === 0) { // Every 300ms
-        console.log(`🔄 TRANSITION CHECK: current=${currentSentenceInBundle.sentenceIndex}, next=${nextSentenceIndex}`);
-        console.log(`   ⏰ highlightTime=${highlightTime.toFixed(2)} vs nextStart=${nextScaledStart.toFixed(2)} (diff: ${(nextScaledStart - highlightTime).toFixed(2)}s)`);
+        console.log(`🔄 TRANSITION CHECK: current=${currentSentenceInBundle.sentenceIndex}, next=${nextSentenceIndex} (exists: ${!!nextSentence})`);
+        console.log(`   ⏰ highlightTime=${highlightTime.toFixed(2)} vs nextStart=${nextScaledStart === Infinity ? 'Infinity' : nextScaledStart.toFixed(2)} (diff: ${nextScaledStart === Infinity ? 'N/A' : (nextScaledStart - highlightTime).toFixed(2)}s)`);
         console.log(`   ⏱️ rawTime=${rawTime.toFixed(2)} vs currentEnd=${currentScaledEnd.toFixed(2)} (diff: ${(currentScaledEnd - rawTime).toFixed(2)}s)`);
       }
 
       // Advance to next sentence when highlight reaches next start, but not during hysteresis window
-      if (nextSentence && nextScaledStart > 0 && highlightTime >= nextScaledStart && now >= this.suppressTransitionsUntil) {
+      // CRITICAL FIX: Check nextSentence exists AND nextScaledStart is valid (not Infinity)
+      if (nextSentence && nextScaledStart !== Infinity && nextScaledStart > 0 && highlightTime >= nextScaledStart && now >= this.suppressTransitionsUntil) {
         console.log(`🚀 SENTENCE TRANSITION: ${currentSentenceInBundle.sentenceIndex} → ${nextSentenceIndex}`);
         console.log(`   ⏰ Trigger: highlightTime(${highlightTime.toFixed(2)}) >= nextStart(${nextScaledStart.toFixed(2)})`);
         console.log(`   🎵 Audio position: ${rawTime.toFixed(2)}s / ${this.currentAudio.duration.toFixed(2)}s`);
