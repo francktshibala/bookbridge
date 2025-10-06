@@ -1125,6 +1125,40 @@ A book implementation is **COMPLETE** only when:
 5. **Chapters**: ✅ Chapter navigation works correctly
 6. **Cache**: ✅ No cache-database inconsistencies
 
+### Critical Lessons from Christmas Carol Implementation (January 2025)
+
+**MAJOR COSTLY MISTAKES TO AVOID:**
+
+#### 1. Text Processing Pipeline Corruption
+**Problem**: Sentence splitting logic `split(/[.!?]+/)` **removes punctuation**, corrupting clean A1 text despite perfect database content.
+**Cost**: Multiple regeneration cycles, wasted API calls, hours of debugging
+**Solution**: Use `split(/(?<=[.!?])\s+/)` to preserve punctuation during sentence parsing
+**Prevention**: Always test sentence splitting with sample text before bulk generation
+
+#### 2. Cache vs Database Inconsistency
+**Problem**: APIs reading from cache files instead of database, serving stale broken content despite database fixes
+**Cost**: 6+ regeneration attempts, confusion about data source of truth
+**Solution**: Make APIs read from BookContent table first, use cache as fallback only
+**Prevention**: Always verify API data source matches intended content before audio generation
+
+#### 3. Voice ID Research Failures
+**Problem**: Research recommended "Josh" voice ID that doesn't exist in account, resulting in female voice instead of male
+**Cost**: Multiple audio regenerations with wrong voice
+**Solution**: Validate voice IDs against actual ElevenLabs account before implementation
+**Prevention**: Always run `curl -X GET "https://api.elevenlabs.io/v1/voices"` to verify available voices
+
+#### 4. Missing Versioned Audio Paths
+**Problem**: Audio URL conflicts when regenerating - old cached audio served despite new generation
+**Cost**: Browser caching issues, inconsistent user experience
+**Solution**: Implement content-hash versioned paths: `book-id/level/[hash]/bundle_X.mp3`
+**Prevention**: Include voice ID + settings in hash calculation for unique paths
+
+#### 5. Incomplete Data Cleanup
+**Problem**: Deleted BookContent but not BookChunk records, causing broken text persistence
+**Cost**: Multiple cleanup attempts, user confusion
+**Solution**: Always clean both BookContent AND BookChunk tables when regenerating
+**Prevention**: Create comprehensive cleanup scripts that handle all related tables
+
 ### Quick Verification Commands
 
 ```bash

@@ -48,7 +48,9 @@ export class BundleAudioManager {
   private isPlayingRef: { current: boolean } = { current: false }; // Critical fix for closure issue
   private highlightLeadSeconds: number = 0;
   private durationScale: number = 1; // scales meta timings to match real audio duration
+  private durationScaleClamp = [0.85, 1.10]; // Allow 85-110% timing adjustment for ElevenLabs voices
   private scaledSentences: Map<number, {startTime: number, endTime: number}> = new Map();
+  private bundleOffsets: Map<string, number> = new Map(); // Per-bundle timing offset for ElevenLabs drift correction
   private suppressTransitionsUntil: number = 0; // hysteresis window after resume (performance.now timestamp)
   private pausedAtTime: number = 0; // Store exact audio position when paused
   private pausedAtSentence: number = -1; // Store sentence index when paused
@@ -146,9 +148,10 @@ export class BundleAudioManager {
         this.isPlaying = true;
         this.isPlayingRef.current = true; // Update ref too
 
-      // Start from scaled sentence beginning
+      // Start from scaled sentence beginning with offset correction
       const scaledStart = this.scaledSentences.get(startSentenceIndex)?.startTime || (startSentence.startTime * this.durationScale);
-      this.currentAudio.currentTime = scaledStart;
+      const bundleOffset = this.bundleOffsets.get(bundle.bundleId) || 0;
+      this.currentAudio.currentTime = scaledStart + bundleOffset;
         this.startSequentialMonitoring(bundle, startSentenceIndex);
 
         // Play audio
@@ -180,14 +183,23 @@ export class BundleAudioManager {
 
     const playNextSentence = async (sentenceIndex: number) => {
       console.log(`🔍 playNextSentence called with index ${sentenceIndex}, isPlaying: ${this.isPlayingRef.current}`);
+      console.log(`📊 DEBUG: Bundle ${bundle.bundleId} has ${bundle.sentences.length} sentences`);
+      console.log(`📊 DEBUG: Available sentence indexes:`, bundle.sentences.map(s => s.sentenceIndex));
 
       if (!this.isPlayingRef.current) return;
 
       const sentence = bundle.sentences.find(s => s.sentenceIndex === sentenceIndex);
-      console.log(`🔍 Found sentence:`, sentence ? `${sentence.sentenceIndex}` : 'NOT FOUND');
+      console.log(`🔍 Found sentence:`, sentence ? `${sentence.sentenceIndex}: "${sentence.text.substring(0, 50)}..."` : 'NOT FOUND');
+
+      if (sentence) {
+        console.log(`⏱️ DEBUG: Sentence ${sentenceIndex} timing: ${sentence.startTime}s - ${sentence.endTime}s (${(sentence.endTime - sentence.startTime).toFixed(2)}s duration)`);
+        console.log(`📝 DEBUG: Sentence text length: ${sentence.text.length} chars, word count: ${sentence.text.split(/\s+/).length}`);
+      }
 
       if (!sentence) {
-        console.log(`🏁 Bundle ${bundle.bundleId} complete - no sentence found for index ${sentenceIndex}`);
+        console.log(`❌ SKIP DETECTED: Bundle ${bundle.bundleId} complete - no sentence found for index ${sentenceIndex}`);
+        console.log(`❌ SKIP ANALYSIS: Requested ${sentenceIndex}, but available are:`, bundle.sentences.map(s => s.sentenceIndex));
+        console.log(`❌ POTENTIAL CAUSE: Long sentence skipping or timing issue`);
         // Check if we need to move to next bundle
         this.handleBundleComplete(bundle);
         return;
@@ -299,13 +311,34 @@ export class BundleAudioManager {
           this.durationScale = 1;
         }
 
-        // Precompute scaled sentence timings
+        // Precompute scaled sentence timings with clamping (pipeline fix for ElevenLabs)
         this.scaledSentences.clear();
+
+        // Clamp the scale to prevent extreme timing distortions
+        const rawScale = this.durationScale;
+        const clampedScale = Math.max(this.durationScaleClamp[0], Math.min(this.durationScaleClamp[1], rawScale));
+
+        console.log(`📐 Bundle ${bundle.bundleId} timing scale: ${rawScale.toFixed(3)} (clamped to ${clampedScale.toFixed(3)})`);
+        console.log(`⏱️ Bundle duration - Meta: ${metaDuration.toFixed(2)}s, Real: ${realDuration.toFixed(2)}s`);
+
         bundle.sentences.forEach(sentence => {
+          const scaledStart = sentence.startTime * clampedScale;
+          const scaledEnd = sentence.endTime * clampedScale;
+
+          // Ensure minimum duration for long sentences (prevent cutoff)
+          const words = sentence.text.split(/\s+/).length;
+          const minDuration = Math.max(words * 0.45, 2.5); // Increased from 0.4 to 0.45 for ElevenLabs Daniel
+          const adjustedEnd = Math.max(scaledEnd, scaledStart + minDuration);
+
           this.scaledSentences.set(sentence.sentenceIndex, {
-            startTime: sentence.startTime * this.durationScale,
-            endTime: sentence.endTime * this.durationScale
+            startTime: scaledStart,
+            endTime: adjustedEnd
           });
+
+          if (words > 15) { // Log details for longer sentences that might be problematic
+            console.log(`⏱️ Long sentence ${sentence.sentenceIndex}: ${scaledStart.toFixed(2)}s - ${adjustedEnd.toFixed(2)}s (${words} words, min: ${minDuration.toFixed(2)}s)`);
+            console.log(`📝 Text preview: "${sentence.text.substring(0, 60)}..."`);
+          }
         });
 
         if (process.env.NEXT_PUBLIC_AUDIO_DEBUG === '1') {
@@ -346,7 +379,11 @@ export class BundleAudioManager {
       const scaledEnd = this.scaledSentences.get(targetSentence.sentenceIndex)?.endTime || (targetSentence.endTime * this.durationScale);
 
       // Completion uses raw time vs scaled end (lead does not affect completion)
-      if (rawTime >= scaledEnd || this.currentAudio.ended || rawTime >= (this.currentAudio.duration - 0.05)) {
+      // Add grace period for ElevenLabs voices to prevent early cutoff of long sentences
+      const isNearEnd = rawTime >= (scaledEnd + 0.1); // 100ms grace period
+      const isAudioEnded = this.currentAudio.ended || rawTime >= (this.currentAudio.duration - 0.05);
+
+      if (isNearEnd || isAudioEnded) {
         this.handleSentenceComplete(targetSentence);
         return;
       }
@@ -388,7 +425,11 @@ export class BundleAudioManager {
         this.options.onSentenceStart?.(nextSentence);
       } else {
         // Complete current sentence using raw time vs scaled end
-        if ((currentScaledEnd > 0 && rawTime >= currentScaledEnd) || this.currentAudio.ended || rawTime >= (this.currentAudio.duration - 0.05)) {
+        // Add grace period for ElevenLabs voices to prevent early cutoff
+        const isNearEnd = currentScaledEnd > 0 && rawTime >= (currentScaledEnd + 0.1); // 100ms grace period
+        const isAudioEnded = this.currentAudio.ended || rawTime >= (this.currentAudio.duration - 0.05);
+
+        if (isNearEnd || isAudioEnded) {
           this.options.onSentenceEnd?.(currentSentenceInBundle);
           if (nextSentence) {
             currentSentenceInBundle = nextSentence;

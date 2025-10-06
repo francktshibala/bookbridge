@@ -94,22 +94,53 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     bundles: 80,
     gradient: 'from-orange-500 to-red-600',
     abbreviation: 'SH'
+  },
+  {
+    id: 'christmas-carol-enhanced-v2',
+    title: 'A Christmas Carol (Enhanced)',
+    author: 'Charles Dickens',
+    description: 'Dickens classic with clean A1 text and Daniel voice narration. 40 sentences across 10 bundles with research-optimized TTS settings.',
+    sentences: 40,
+    bundles: 10,
+    gradient: 'from-emerald-500 to-teal-600',
+    abbreviation: 'CC'
   }
 ];
 
 // Smart book-to-level mapping for featured books (single level per book)
 const BOOK_LEVEL_MAP: { [bookId: string]: string } = {
-  'great-gatsby-a2': 'A2',        // Only has A2 level
-  'gutenberg-1952-A1': 'A1',       // Yellow Wallpaper - A1 level
-  'gutenberg-1513': 'A1',          // Romeo & Juliet - A1 level
-  'gutenberg-43': 'A1',            // Jekyll & Hyde - A1 level (fixed)
-  'sleepy-hollow-enhanced': 'A1'   // Sleepy Hollow - A1 level (fixed)
+  'great-gatsby-a2': 'A2',                  // Only has A2 level
+  'gutenberg-1952-A1': 'A1',                // Yellow Wallpaper - A1 level
+  'gutenberg-1513': 'A1',                   // Romeo & Juliet - A1 level
+  'gutenberg-43': 'A1',                     // Jekyll & Hyde - A1 level (fixed)
+  'sleepy-hollow-enhanced': 'A1',           // Sleepy Hollow - A1 level (fixed)
+  'christmas-carol-enhanced-v2': 'A1'       // A Christmas Carol - Enhanced clean version
 };
 
 // Get the correct CEFR level for a book
 const getBookDefaultLevel = (bookId: string): string => {
   return BOOK_LEVEL_MAP[bookId] || 'A1'; // Fallback to A1
 };
+
+// Christmas Carol Chapter Structure (pilot version - 40 sentences)
+const CHRISTMAS_CAROL_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "Stave 1 - Opening",
+    startSentence: 0,
+    endSentence: 19,
+    startBundle: 0,
+    endBundle: 4
+  },
+  {
+    chapterNumber: 2,
+    title: "Stave 1 - Continued",
+    startSentence: 20,
+    endSentence: 39,
+    startBundle: 5,
+    endBundle: 9
+  }
+];
 
 // Sleepy Hollow Chapter Structure (from enhancement plan)
 const SLEEPY_HOLLOW_CHAPTERS = [
@@ -1125,7 +1156,8 @@ export default function FeaturedBooksPage() {
                     selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
                     selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
                     selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS : GREAT_GATSBY_CHAPTERS;
+                    selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS :
+                    selectedBook?.id === 'christmas-carol-enhanced-v2' ? CHRISTMAS_CAROL_CHAPTERS : GREAT_GATSBY_CHAPTERS;
     return (
       <div className="flex items-center gap-1 w-full max-w-xs">
         <select
@@ -1199,6 +1231,8 @@ export default function FeaturedBooksPage() {
       chapters = ROMEO_JULIET_CHAPTERS;
     } else if (selectedBook.id === 'gutenberg-43') {
       chapters = JEKYLL_HYDE_CHAPTERS;
+    } else if (selectedBook.id === 'christmas-carol-enhanced-v2') {
+      chapters = CHRISTMAS_CAROL_CHAPTERS;
     } else {
       return { current: 1, total: 1, title: '', totalSentences: selectedBook.sentences };
     }
@@ -1697,7 +1731,8 @@ export default function FeaturedBooksPage() {
                     selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
                     selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
                     selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
+                    selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS :
+                    selectedBook?.id === 'christmas-carol-enhanced-v2' ? CHRISTMAS_CAROL_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
                     <button
                       key={chapter.chapterNumber}
                       onClick={async () => {
