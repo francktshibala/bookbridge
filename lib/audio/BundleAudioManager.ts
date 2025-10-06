@@ -321,6 +321,23 @@ export class BundleAudioManager {
         console.log(`📐 Bundle ${bundle.bundleId} timing scale: ${rawScale.toFixed(3)} (clamped to ${clampedScale.toFixed(3)})`);
         console.log(`⏱️ Bundle duration - Meta: ${metaDuration.toFixed(2)}s, Real: ${realDuration.toFixed(2)}s`);
 
+        // CRITICAL DEBUG: Compare our timing formula vs actual audio duration
+        const calculatedTotal = bundle.sentences.reduce((sum, s) => {
+          const words = s.text.split(/\s+/).length;
+          return sum + Math.max(words * 0.4, 2.0);  // Our Jekyll formula
+        }, 0);
+
+        console.log(`🔍 DURATION ANALYSIS FOR CHRISTMAS CAROL:`);
+        console.log(`   🧮 Our formula (0.4s/word + 2.0s min): ${calculatedTotal.toFixed(2)}s`);
+        console.log(`   🎵 Actual Daniel voice audio: ${realDuration.toFixed(2)}s`);
+        console.log(`   ⚠️ Timing difference: ${(realDuration - calculatedTotal).toFixed(2)}s`);
+        console.log(`   📈 Daniel voice scale factor: ${(realDuration / calculatedTotal).toFixed(3)}x`);
+
+        if (Math.abs(realDuration - calculatedTotal) > 2) {
+          console.log(`🚨 MAJOR DANIEL VOICE MISMATCH: Our timing is ${Math.abs(realDuration - calculatedTotal).toFixed(1)}s off!`);
+          console.log(`💡 This explains why sentences don't complete - our timing is wrong for Daniel voice`);
+        }
+
         bundle.sentences.forEach(sentence => {
           const scaledStart = sentence.startTime * clampedScale;
           const scaledEnd = sentence.endTime * clampedScale;
@@ -336,13 +353,25 @@ export class BundleAudioManager {
             endTime: adjustedEnd
           });
 
-          if (words > 15) { // Log details for longer sentences that might be problematic
-            console.log(`⏱️ Long sentence ${sentence.sentenceIndex}: ${scaledStart.toFixed(2)}s - ${adjustedEnd.toFixed(2)}s (${words} words, min: ${minDuration.toFixed(2)}s)`);
-            console.log(`📝 Text preview: "${sentence.text.substring(0, 60)}..."`);
+          // DEBUG: Detailed sentence timing analysis
+          const originalDuration = sentence.endTime - sentence.startTime;
+          const expectedDuration = Math.max(words * 0.4, 2.0);
+          const actualScaledDuration = adjustedEnd - scaledStart;
+
+          console.log(`📅 Sentence ${sentence.sentenceIndex} TIMING BREAKDOWN:`);
+          console.log(`   📝 "${sentence.text.substring(0, 40)}${sentence.text.length > 40 ? '...' : ''}"`);
+          console.log(`   🧮 Expected (${words}w * 0.4): ${expectedDuration.toFixed(2)}s`);
+          console.log(`   🎵 API timing: ${originalDuration.toFixed(2)}s`);
+          console.log(`   📊 After scaling+safety: ${actualScaledDuration.toFixed(2)}s`);
+          console.log(`   ⏱️ Final range: ${scaledStart.toFixed(2)}s - ${adjustedEnd.toFixed(2)}s`);
+
+          if (Math.abs(originalDuration - expectedDuration) > 1) {
+            console.log(`   🚨 SENTENCE MISMATCH: API timing differs from our formula by ${Math.abs(originalDuration - expectedDuration).toFixed(2)}s`);
           }
 
-          // DEBUG: Log all sentence timings for analysis
-          console.log(`📅 Sentence ${sentence.sentenceIndex}: ${scaledStart.toFixed(2)}s - ${adjustedEnd.toFixed(2)}s (${words}w, +${safetyTail.toFixed(2)}s safety)`);
+          if (words > 15) {
+            console.log(`   🚫 LONG SENTENCE ALERT: ${words} words might cause completion issues`);
+          }
         });
 
         if (process.env.NEXT_PUBLIC_AUDIO_DEBUG === '1') {
@@ -495,8 +524,23 @@ export class BundleAudioManager {
   private handleBundleComplete(bundle: BundleData) {
     console.log(`✅ Bundle ${bundle.bundleId} complete`);
 
-    // Just pause audio without changing playing state - parent handles transitions
+    // CRITICAL DEBUG: Log actual vs expected completion time
     if (this.currentAudio) {
+      const actualDuration = this.currentAudio.duration;
+      const currentTime = this.currentAudio.currentTime;
+      const expectedDuration = bundle.totalDuration;
+
+      console.log(`🏁 BUNDLE COMPLETION ANALYSIS:`);
+      console.log(`   🎵 Actual audio duration: ${actualDuration.toFixed(2)}s`);
+      console.log(`   ⏰ Stopped at time: ${currentTime.toFixed(2)}s`);
+      console.log(`   🧮 Expected duration: ${expectedDuration.toFixed(2)}s`);
+      console.log(`   ⚠️ Time remaining: ${(actualDuration - currentTime).toFixed(2)}s`);
+
+      if (actualDuration - currentTime > 0.5) {
+        console.log(`🚨 EARLY COMPLETION: Stopped ${(actualDuration - currentTime).toFixed(1)}s before audio end!`);
+        console.log(`💡 This is why sentences don't finish - bundle completing too early`);
+      }
+
       this.currentAudio.pause();
     }
     if (this.progressTimer) {
