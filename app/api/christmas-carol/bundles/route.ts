@@ -71,8 +71,8 @@ export async function GET(request: NextRequest) {
       let cumulativeTime = 0;
       const sentencesWithTimings = chunkSentences.map((text, sentenceIdx) => {
         const words = text.trim().split(/\s+/).length;
-        const secondsPerWord = 0.4; // Same as Jekyll
-        const minDuration = 2.0;    // Same as Jekyll
+        const secondsPerWord = 0.25; // Adjusted for Daniel voice (was 0.4 - too slow)
+        const minDuration = 1.5;     // Reduced minimum for faster Daniel voice
         const duration = Math.max(words * secondsPerWord, minDuration);
 
         const startTime = cumulativeTime;
