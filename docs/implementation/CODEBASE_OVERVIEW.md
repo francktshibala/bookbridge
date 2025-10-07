@@ -1382,4 +1382,12 @@ The pipeline is now proven and documented for rapid audiobook expansion. Next bo
 
 ---
 
+## 🛡️ **Master Prevention Documentation**
+
+### **MASTER_MISTAKES_PREVENTION.md**
+**Location**: `/docs/MASTER_MISTAKES_PREVENTION.md`
+**Description**: Consolidated prevention guide for audiobook implementation that consolidates lessons from all successful and failed book generations. **CRITICAL REFERENCE**: Organized by implementation phase (Fetching → Modernization → Simplification → Audio → Bundle Architecture → Database) with specific prevention strategies for each stage. Contains compound sentence generation patterns for natural A2 flow (11-13 words vs robotic micro-sentences), universal timing formula (0.4s/word + 2.0s minimum) from Jekyll lessons, race condition prevention strategies, content hashing for version control, and emergency recovery procedures. **Essential for avoiding costly mistakes**: Prevents database conflicts, API call losses, text-audio mismatches, and expensive regeneration cycles. All new audiobook implementations must reference this guide to ensure reliable, high-quality generation without repeating documented failures.
+
+---
+
 *This overview covers the most critical files for understanding BookBridge ESL's architecture, research foundations, mobile strategy, AI quality assurance, continuous reading implementation, and current development status.*

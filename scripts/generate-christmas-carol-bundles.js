@@ -99,6 +99,8 @@ class ChristmasCarolBundleGenerator {
 
         console.log(`🎵 Actual audio duration: ${actualDuration.toFixed(2)}s`);
 
+        const words = bundle.text.split(/\s+/).length;
+        const estimatedDuration = words * 0.4;
         console.log(`   Text: "${bundle.text.substring(0, 60)}..."`);
         console.log(`   Words: ${words}, Estimated duration: ${estimatedDuration.toFixed(2)}s`);
 

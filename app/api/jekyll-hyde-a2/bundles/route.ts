@@ -3,11 +3,6 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-interface ChristmasCarolBundle {
-  bundleId: number;
-  sentences: string[];
-}
-
 interface BundleMetadata {
   bundleId: string;
   bundleIndex: number;
@@ -26,23 +21,23 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const bookId = searchParams.get('bookId');
-    const level = searchParams.get('level') || 'A1';
+    const level = searchParams.get('level') || 'A2';
 
-    // This API is specifically for Christmas Carol Enhanced v2
-    if (bookId !== 'christmas-carol-enhanced-v2') {
+    // This API is specifically for Jekyll & Hyde A2
+    if (bookId !== 'gutenberg-43') {
       return NextResponse.json({
         success: false,
-        error: 'This API only supports Christmas Carol Enhanced v2'
+        error: 'This API only supports Jekyll & Hyde A2'
       }, { status: 400 });
     }
 
-    console.log(`🎄 Loading Christmas Carol bundles for level: ${level}`);
+    console.log(`🎭 Loading Jekyll & Hyde A2 bundles with natural compound sentences...`);
 
-    // Get bundles from BookChunk table (like Jekyll but using BookChunk architecture)
+    // Get A2 bundles from BookChunk table
     const bookChunks = await prisma.bookChunk.findMany({
       where: {
-        bookId: 'christmas-carol-enhanced-v2',
-        cefrLevel: 'A1'
+        bookId: 'gutenberg-43',
+        cefrLevel: 'A2'
       },
       orderBy: { chunkIndex: 'asc' }
     });
@@ -50,13 +45,13 @@ export async function GET(request: NextRequest) {
     if (!bookChunks || bookChunks.length === 0) {
       return NextResponse.json({
         success: false,
-        error: 'No bundles found for Christmas Carol Enhanced v2'
+        error: 'No A2 bundles found for Jekyll & Hyde'
       }, { status: 404 });
     }
 
-    console.log(`✅ Loaded ${bookChunks.length} bundles from BookChunk table`);
+    console.log(`✅ Loaded ${bookChunks.length} A2 bundles with natural compound sentences`);
 
-    // Convert BookChunk data to API format with CORRECTED timing (fix overlaps)
+    // Convert BookChunk data to API format with perfect timing
     const bundles: BundleMetadata[] = [];
     let totalSentencesProcessed = 0;
 
@@ -64,24 +59,20 @@ export async function GET(request: NextRequest) {
       // Generate Supabase storage URL
       const audioUrl = `https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/${chunk.audioFilePath}`;
 
-      // Split chunk text into sentences (variable count - not always 4!)
+      // Split chunk text into sentences (preserving punctuation)
       const chunkSentences = chunk.chunkText
         .split(/(?<=[.!?])\s+/)
         .map(s => s.trim())
         .filter(s => s.length > 5);
 
-      // Handle bundles with fewer than 4 sentences (like Bundle 8 with only 3)
-      console.log(`Bundle ${index}: ${chunkSentences.length} sentences`);
-      if (chunkSentences.length < 4) {
-        console.warn(`⚠️ Bundle ${index} has only ${chunkSentences.length} sentences (expected 4)`);
-      }
+      console.log(`Bundle ${index}: ${chunkSentences.length} sentences (A2 natural compound)`);
 
-      // Calculate dynamic timings with PROPER cumulative timing (no overlaps)
+      // Calculate timing with perfect cumulative progression
       let cumulativeTime = 0;
       const sentencesWithTimings = chunkSentences.map((text, sentenceIdx) => {
         const words = text.trim().split(/\s+/).length;
-        const secondsPerWord = 0.4; // Back to original Jekyll timing
-        const minDuration = 2.0;    // Back to original Jekyll minimum
+        const secondsPerWord = 0.4; // Standard timing
+        const minDuration = 2.0;    // Minimum duration
         const duration = Math.max(words * secondsPerWord, minDuration);
 
         const startTime = cumulativeTime;
@@ -101,7 +92,7 @@ export async function GET(request: NextRequest) {
         bundleId: `bundle_${index}`,
         bundleIndex: index,
         audioUrl,
-        totalDuration: cumulativeTime, // Use final cumulative time
+        totalDuration: cumulativeTime,
         sentences: sentencesWithTimings
       };
 
@@ -111,7 +102,7 @@ export async function GET(request: NextRequest) {
 
     // Get book metadata
     const bookContent = await prisma.bookContent.findFirst({
-      where: { bookId: 'christmas-carol-enhanced-v2' }
+      where: { bookId: 'gutenberg-43-A2' }
     });
 
     const totalSentences = bundles.reduce((sum, bundle) => sum + bundle.sentences.length, 0);
@@ -120,18 +111,19 @@ export async function GET(request: NextRequest) {
       success: true,
       book: {
         id: bookId,
-        title: bookContent?.title || 'A Christmas Carol (Enhanced)',
-        author: bookContent?.author || 'Charles Dickens'
+        title: bookContent?.title || 'Dr. Jekyll and Mr. Hyde (A2)',
+        author: bookContent?.author || 'Robert Louis Stevenson'
       },
-      level: 'A1',
+      level: 'A2',
       totalBundles: bundles.length,
       totalSentences,
       bundles,
-      source: 'dedicated-api' // Indicates this came from dedicated API for debugging
+      source: 'dedicated-api-a2',
+      voiceSettings: 'Daniel voice + speed 0.90'
     });
 
   } catch (error) {
-    console.error('Christmas Carol API error:', error);
+    console.error('Jekyll Hyde A2 API error:', error);
     return NextResponse.json({
       success: false,
       error: 'Internal server error'

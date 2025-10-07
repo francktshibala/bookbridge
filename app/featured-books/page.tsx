@@ -77,13 +77,43 @@ const FEATURED_BOOKS: FeaturedBook[] = [
   },
   {
     id: 'gutenberg-43',
-    title: 'Dr. Jekyll and Mr. Hyde',
+    title: 'Dr. Jekyll and Mr. Hyde (A2)',
     author: 'Robert Louis Stevenson',
-    description: 'Classic gothic tale simplified to A1 level. 1,285 sentences across 322 bundles for easy reading.',
-    sentences: 1285,
-    bundles: 322,
+    description: 'Gothic classic with natural compound sentences. A2 level with Daniel voice narration.',
+    sentences: 100,
+    bundles: 25,
     gradient: 'from-purple-500 to-indigo-600',
     abbreviation: 'JH'
+  },
+  {
+    id: 'digital-library-test',
+    title: 'Maya Story - Speed Test',
+    author: 'BookBridge AI',
+    description: 'Maya learns English online. Voice: Daniel (Speed 0.90). 20 sentences, 5 bundles.',
+    sentences: 20,
+    bundles: 5,
+    gradient: 'from-blue-500 to-cyan-600',
+    abbreviation: 'M1'
+  },
+  {
+    id: 'digital-library-test-2',
+    title: 'Maya Story - Style Test',
+    author: 'BookBridge AI',
+    description: 'Same story. Voice: Daniel (Speed 0.90 + Style 0.1). Test expressiveness vs sync.',
+    sentences: 20,
+    bundles: 5,
+    gradient: 'from-purple-500 to-blue-600',
+    abbreviation: 'M2'
+  },
+  {
+    id: 'digital-library-test-3',
+    title: 'Maya Story - Default Test',
+    author: 'BookBridge AI',
+    description: 'Same story. Voice: Daniel (Pure defaults). Baseline for comparison.',
+    sentences: 20,
+    bundles: 5,
+    gradient: 'from-gray-500 to-slate-600',
+    abbreviation: 'M3'
   },
   {
     id: 'sleepy-hollow-enhanced',
@@ -112,9 +142,12 @@ const BOOK_LEVEL_MAP: { [bookId: string]: string } = {
   'great-gatsby-a2': 'A2',                  // Only has A2 level
   'gutenberg-1952-A1': 'A1',                // Yellow Wallpaper - A1 level
   'gutenberg-1513': 'A1',                   // Romeo & Juliet - A1 level
-  'gutenberg-43': 'A1',                     // Jekyll & Hyde - A1 level (fixed)
+  'gutenberg-43': 'A2',                     // Jekyll & Hyde - A2 level (natural compound sentences)
   'sleepy-hollow-enhanced': 'A1',           // Sleepy Hollow - A1 level (fixed)
-  'christmas-carol-enhanced-v2': 'A1'       // A Christmas Carol - Enhanced clean version
+  'christmas-carol-enhanced-v2': 'A1',      // A Christmas Carol - Enhanced clean version
+  'digital-library-test': 'A2',             // Digital Library Test Story - A2 level
+  'digital-library-test-2': 'A2',           // Maya Story Style Test - A2 level
+  'digital-library-test-3': 'A2'            // Maya Story Default Test - A2 level
 };
 
 // Get the correct CEFR level for a book
@@ -580,9 +613,15 @@ export default function FeaturedBooksPage() {
         } else {
           // Use dedicated APIs for working books, fallback to test-book for others
           const apiUrl = bookId === 'gutenberg-43'
-            ? `/api/jekyll-hyde/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
+            ? `/api/jekyll-hyde-a2/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
             : bookId === 'christmas-carol-enhanced-v2'
             ? `/api/christmas-carol/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
+            : bookId === 'digital-library-test'
+            ? `/api/digital-library-test/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
+            : bookId === 'digital-library-test-2'
+            ? `/api/digital-library-test-2/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
+            : bookId === 'digital-library-test-3'
+            ? `/api/digital-library-test-3/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
             : `/api/test-book/real-bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`;
 
           const response = await fetch(apiUrl, {
@@ -758,9 +797,15 @@ export default function FeaturedBooksPage() {
 
           // Use dedicated APIs for working books, fallback to test-book for others
           const apiUrl = selectedId === 'gutenberg-43'
-            ? `/api/jekyll-hyde/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
+            ? `/api/jekyll-hyde-a2/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
             : selectedId === 'christmas-carol-enhanced-v2'
             ? `/api/christmas-carol/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
+            : selectedId === 'digital-library-test'
+            ? `/api/digital-library-test/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
+            : selectedId === 'digital-library-test-2'
+            ? `/api/digital-library-test-2/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
+            : selectedId === 'digital-library-test-3'
+            ? `/api/digital-library-test-3/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
             : `/api/test-book/real-bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`;
 
           const response = await fetch(apiUrl, {
@@ -796,7 +841,7 @@ export default function FeaturedBooksPage() {
 
             // For TTS (ElevenLabs), use immediate highlighting since timings are estimated
             const audioProvider = data?.audioType || 'elevenlabs';
-            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2' || currentBookId === 'christmas-carol-enhanced-v2';
+            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2' || currentBookId === 'christmas-carol-enhanced-v2' || currentBookId === 'digital-library-test' || currentBookId === 'digital-library-test-2' || currentBookId === 'digital-library-test-3';
             // Use consistent TTS lead time for both books
             const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400);
 
