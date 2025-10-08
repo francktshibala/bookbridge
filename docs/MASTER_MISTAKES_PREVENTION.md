@@ -6,39 +6,137 @@
 
 ---
 
-## 🚨 CRITICAL: Always Check These First
+## 📋 COMPLETE BOOK IMPLEMENTATION CHECKLIST
 
-### Process Management
+**Follow this exact order for every new book implementation:**
+
+### Phase 1: Pre-Implementation Setup
 ```bash
-# 1. Check for running processes (MANDATORY)
-ps aux | grep -E "(generate|simplify|modernize)" | grep -v grep
+# ✅ 1. Environment & Process Check
+ps aux | grep -E "(generate|simplify|modernize)" | grep -v grep  # Kill any conflicts
+source .env.local                                                # Load environment
+npx prisma db pull                                              # Verify database schema
 
-# 2. Kill conflicting processes if found
-kill -9 [process_id]
-
-# 3. Load environment variables properly
-source .env.local
-
-# 4. Clear browser cache for debugging
-# Use incognito mode or Cmd+Shift+R for testing
+# ✅ 2. Project Planning
+# - Choose book ID format: "book-name-level" (e.g., "gift-of-the-magi")
+# - Select CEFR level: A1, A2, B1 (start with A1 for classics)
+# - Choose voice: Use proven M1 settings (speed 0.90 + eleven_monolingual_v1)
+# - Estimate cost: sentences × $0.01 for audio generation
+# - Plan chapter structure: 4-8 chapters for optimal UX
 ```
 
-### Database Schema Validation
+### Phase 2: Text Acquisition & Processing
 ```bash
-# 5. Verify schema before database operations
-npx prisma db pull
-# Check schema.prisma for exact field names and constraints
+# ✅ 3. Fetch Original Text
+node scripts/fetch-[book-name].js
+# - Extract between specific Project Gutenberg markers
+# - Save to cache with proper content boundaries
+# - Verify sentence count and text quality
 
-# 6. Test database operations early
-# Don't wait until after expensive API calls
+# ✅ 4. Chapter Detection (BEFORE simplification)
+node scripts/detect-[book-name]-chapters.js
+# - Run GPT-5's 3-pass hybrid detection system
+# - Generate era-appropriate chapter titles (no spoilers)
+# - Ensure 100% sentence coverage with no gaps
+# - Target 5-12 chapters with balanced lengths
+
+# ✅ 5. Text Modernization (Victorian/Classical only)
+node scripts/modernize-[book-name].js --fresh
+# - Separate step from simplification
+# - Preserve story meaning 100%
+# - Update archaic language only
+
+# ✅ 6. Text Simplification
+node scripts/simplify-[book-name].js [LEVEL]
+# - Maintain exact 1:1 sentence count mapping (CRITICAL)
+# - Generate compound sentences for natural flow (NOT micro-sentences)
+#   * A1: 8-12 words average with simple connectors "and", "but", "when"
+#   * A2: 11-13 words average with connectors "and", "but", "so", "then"
+#   * AVOID: "He is tall. He walks fast. He goes home." (robotic 4-word micro-sentences)
+#   * CORRECT A1: "He is tall and walks fast to his home." (natural 9 words)
+#   * CORRECT A2: "He is tall and walks fast, then goes home because he is tired." (natural 13 words)
+# - Preserve punctuation for proper formatting
+# - Cache results after every API batch
+# - Validate natural reading flow before proceeding
 ```
 
-### Critical Prevention Rules
+### Phase 3: Audio & Bundle Generation
+```bash
+# ✅ 7. Audio Generation (PILOT FIRST)
+node scripts/generate-[book-name]-bundles.js --pilot
+# - Test with 5-10 bundles first (~$0.15 cost)
+# - Use proven M1 voice settings (speed 0.90)
+# - Ensure proper sentence punctuation preservation
+# - Save audio to book-specific CDN paths
+# - Measure actual duration (never estimate)
+
+# ✅ 8. Bundle Architecture Validation
+# - Verify 4-sentence bundle structure
+# - Check text-audio alignment perfection
+# - Validate bundle sequence (0, 1, 2... no gaps)
+# - Test resume capability
+```
+
+### Phase 4: API & Database Integration
+```bash
+# ✅ 9. API Endpoint Creation
+# - Create /api/[book-name]/bundles/route.ts
+# - Include hardcoded chapter structure from detection
+# - Test API returns proper sentence punctuation
+# - Verify audio URLs are accessible
+
+# ✅ 10. Database Structure Creation
+# - Create Book record
+# - Create BookContent record
+# - Verify BookChunks exist (handled by bundle generation)
+# - Test complete database relationships
+```
+
+### Phase 5: Featured Books Integration
+```bash
+# ✅ 11. UI Integration (3 MANDATORY locations)
+# Location 1: Add book to FEATURED_BOOKS array
+# Location 2: Add chapter structure (BOOK_NAME_CHAPTERS)
+# Location 3: Update getCurrentChapter() function
+# Location 4: Update ChapterPicker component
+# Location 5: Add to BOOK_DEFAULT_LEVELS
+# Location 6: Add API endpoint mapping
+
+# ✅ 12. Chapter Header Display (automatic)
+# - Verify chapters appear as headers within text
+# - Test chapter navigation dropdown works
+# - Confirm chapter jump functionality
+```
+
+### Phase 6: Testing & Validation
+```bash
+# ✅ 13. Complete System Test
+npm run dev                                    # Start development server
+# - Test Featured Books page loads book correctly
+# - Verify text displays with chapter headers
+# - Test audio playback and sentence highlighting
+# - Confirm chapter navigation works
+# - Test in incognito mode (clear cache)
+
+# ✅ 14. Final Validation Checklist
+# - [ ] Bundle sequence complete (0, 1, 2... no gaps)
+# - [ ] Text-audio alignment perfect (no content mismatches)
+# - [ ] Audio files exist and play correctly
+# - [ ] Chapter headers display within text
+# - [ ] Chapter navigation dropdown functional
+# - [ ] Database structure complete (Book + BookContent + BookChunks)
+# - [ ] Sentence punctuation preserved properly
+# - [ ] Text formatting displays correctly (no wall of text)
+```
+
+## 🚨 CRITICAL PREVENTION RULES
+
 - **NEVER run multiple scripts simultaneously** - causes database conflicts
-- **NEVER skip pilot testing** - always test with 10-20 bundles first
-- **NEVER lose focus on session goals** - scale working systems, don't fix them
-- **NEVER use nuclear cleanup scripts** unless you want to delete everything
-- **NEVER ignore caching** - always save intermediate results
+- **NEVER skip pilot testing** - always test with 5-10 bundles first
+- **NEVER skip chapter UI integration** - chapters without UI are invisible
+- **NEVER lose sentence punctuation** - use match() not split() for sentences
+- **NEVER estimate audio duration** - always measure actual TTS output
+- **NEVER use generic CDN paths** - use book-specific paths to prevent collisions
 
 ---
 
@@ -151,6 +249,155 @@ function saveProgressToCache(sentences) {
 
 ---
 
+## 📖 Chapter Detection Phase (After Modernization, Before Simplification)
+
+### Critical Implementation Order
+**MANDATORY**: Run chapter detection after text fetching/modernization but BEFORE simplification to avoid:
+- Inconsistent chapter boundaries across CEFR levels
+- Lost narrative structure during text processing
+- Manual chapter creation after expensive generation
+
+### 3-Pass Hybrid Detection System (GPT-5 Validated)
+
+#### Pass 1: Heuristics Detection
+```javascript
+// CORRECT: Detect explicit structural markers
+const chapterMarkers = [
+  /^CHAPTER [IVXLCDM]+\.?\s*$/i,     // Roman numerals
+  /^CHAPTER \d+\.?\s*$/i,            // Arabic numerals
+  /^CHAPTER [A-Z]+\.?\s*$/i,         // Word numbers
+  /^ACT [IVXLCDM]+/i,               // Play acts
+  /^SCENE [IVXLCDM]+/i,             // Play scenes
+  /^[A-Z\s]{10,}$/,                 // All-caps lines
+  /^\*\*\*+\s*$/,                   // Separator lines
+];
+
+// Test coverage: ensure 100% of sentences are assigned to chapters
+// Flag: sections <200 words or >3000 words for review
+```
+
+#### Pass 2: AI Scene Change Detection
+```javascript
+// CORRECT: When weak structural markers detected
+const sceneChangePrompt = `
+Analyze this text for natural chapter breaks. Look for:
+- Time jumps ("The next morning", "Three days later")
+- Location changes (new settings, travel)
+- POV shifts (new character focus)
+- Narrative tension drops (end of conflict, resolution)
+
+Return confidence score (0-100) and suggested break points.
+Era: ${bookEra} | Length: ${totalSentences} sentences
+Target: 5-12 chapters with balanced lengths
+`;
+```
+
+#### Pass 3: Form-Aware Processing
+```javascript
+// CORRECT: Literary form-specific handling
+const formHandlers = {
+  novel: generateChapterTitles,
+  play: enforceActSceneStructure,
+  novella: createThematicSections,
+  shortStory: identifyPsychologicalBeats
+};
+
+// Victorian/19th century title generation
+const titlePrompt = `
+Generate chapter title for this section:
+- Style: Victorian era, formal but engaging
+- Length: 4-8 words maximum
+- Tone: Neutral, no spoilers
+- Examples: "The Mysterious Door", "A Midnight Visitor"
+- Avoid: modern slang, emotional extremes, plot reveals
+`;
+```
+
+### Quality Validation Checklist
+- **Coverage**: 100% sentences assigned, no overlaps
+- **Balance**: No chapter <150 or >2000 words (flag for review)
+- **Titles**: Era-appropriate, spoiler-free, <8 words
+- **Confidence**: Auto-approve scores ≥80%, manual review <80%
+
+### Database Schema Requirements
+```sql
+-- MANDATORY: Add before any chapter processing
+CREATE TABLE chapters (
+  id TEXT PRIMARY KEY,
+  bookId TEXT NOT NULL,
+  chapterIndex INTEGER NOT NULL,
+  title TEXT NOT NULL,
+  startSentence INTEGER NOT NULL,
+  endSentence INTEGER NOT NULL,
+  confidence INTEGER DEFAULT 100,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(bookId, chapterIndex)
+);
+```
+
+### Pilot Testing Protocol
+```bash
+# ALWAYS test with short books first (5-10 bundles)
+# Validate chapter detection before scaling to full books
+# Check UI integration with existing chapter navigation
+```
+
+### UI Integration Requirements (MANDATORY)
+**After chapter detection, ALWAYS implement UI integration in 3 locations:**
+
+1. **Chapter Structure Definition** (`featured-books/page.tsx`):
+```javascript
+// Add chapter structure for your book
+const YOUR_BOOK_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "Chapter Title Here",
+    startSentence: 0,
+    endSentence: 19,
+    startBundle: 0,
+    endBundle: 4
+  },
+  // ... more chapters
+];
+```
+
+2. **Chapter Navigation Mapping** (2 locations in same file):
+```javascript
+// Location 1: getCurrentChapter() function
+} else if (selectedBook.id === 'your-book-id') {
+  chapters = YOUR_BOOK_CHAPTERS;
+} else {
+
+// Location 2: ChapterPicker component
+selectedBook?.id === 'your-book-id' ? YOUR_BOOK_CHAPTERS :
+```
+
+3. **Chapter Header Display** (automatically works):
+```javascript
+// Text rendering with headers - implemented universally
+const chapters = getBookChapters();
+const chapter = chapters.find(ch => ch.startSentence === sentence.sentenceIndex);
+if (chapter) {
+  // Displays: "Chapter 1: Title" as styled header
+}
+```
+
+**Critical UI Requirements:**
+- Chapter headers appear **within the text** at sentence boundaries
+- Chapter navigation dropdown shows all chapters
+- Chapter jump functionality works via dropdown selection
+- Current chapter highlighting updates during playback
+
+### Common Chapter Detection Mistakes
+- **DON'T** run detection after simplification (creates inconsistencies)
+- **DON'T** skip confidence scoring (leads to poor title quality)
+- **DON'T** ignore literary form (plays need Act/Scene structure)
+- **DON'T** generate spoiler titles (ruins reading experience)
+- **DON'T** create too many chapters (>15) or too few (<3)
+- **DON'T** forget UI integration - chapters without UI integration are invisible to users
+
+---
+
 ## ✂️ Text Simplification Phase
 
 ### Compound Sentence Generation (Not Micro-Sentences)
@@ -189,12 +436,13 @@ if (simplifiedChunkSentences.length !== chunk.length) {
 const guidelines = {
   'A1': `- Use 500-1000 most common words
          - Present and simple past tense only
-         - Short sentences (4-8 words average)
+         - Natural compound sentences (8-12 words average - PROVEN BY MAYA STORY)
+         - Simple connectors: "and", "but", "when"
          - No cultural references`,
   'A2': `- Use 1200-1500 most common words
          - Present and simple past tense
-         - Medium sentences (11-13 words average - COMPOUND FLOW)
-         - Simple connecting words (and, but, because)
+         - Natural compound sentences (11-13 words average - COMPOUND FLOW)
+         - More connectors: "and", "but", "so", "then", "because"
          - Explain cultural references simply`,
   'B1': `- Use 2000-2500 most common words
          - All basic tenses, some conditional
@@ -265,6 +513,47 @@ const duration = Math.max(words * secondsPerWord, minDuration);
 - Prevents sentence skipping during playbook
 - Maintains consistent reading experience
 - Jekyll & Hyde had timing issues until standardized to this formula
+
+### Maya Story Voice Testing Results (PROVEN SETTINGS)
+
+**Test Book**: "The Digital Library" (Maya story) - 3 systematic voice tests
+
+#### M1 Test (WINNER - 🏆 Perfect Synchronization)
+```javascript
+// PROVEN FORMULA: Daniel voice + speed 0.90 + defaults
+const WINNING_VOICE_SETTINGS = {
+  voice: 'Daniel' (onwK4e9ZLuTAKqWW03F9),
+  model: 'eleven_monolingual_v1',  // NOT eleven_flash_v2_5
+  speed: 0.90,  // CRITICAL: this speed achieved perfect sync
+  stability: 0.5,        // ElevenLabs default
+  similarity_boost: 0.75, // ElevenLabs default
+  style: 0.0,            // ElevenLabs default
+  use_speaker_boost: true
+};
+```
+
+#### M2 Test (Failed - Broken Sync)
+- Daniel voice + speed 0.90 + **eleven_flash_v2_5 model**
+- **Result**: Better quality but broken synchronization
+- **Lesson**: eleven_flash_v2_5 causes timing issues
+
+#### M3 Test (Failed - Christmas Carol Settings)
+- Daniel voice + Christmas Carol research settings
+- Settings: stability 0.55, style 0.0, speed 0.88, similarity_boost 0.75
+- **Result**: Less optimal than M1
+
+**Critical Finding**: **Speed 0.90 + eleven_monolingual_v1** is the proven baseline for perfect synchronization. Apply this formula to any voice:
+```javascript
+// Universal proven settings for any ElevenLabs voice
+const PROVEN_SETTINGS = {
+  speed: 0.90,                    // M1 validated speed
+  model: 'eleven_monolingual_v1', // NOT eleven_flash_v2_5
+  stability: 0.5,                 // ElevenLabs defaults
+  similarity_boost: 0.75,         // ElevenLabs defaults
+  style: 0.0,                     // ElevenLabs defaults
+  use_speaker_boost: true
+};
+```
 
 ### Book-Specific CDN Paths (NEVER Generic)
 ```javascript

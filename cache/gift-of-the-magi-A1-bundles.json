@@ -1,0 +1,182 @@
+{
+  "bookId": "gift-of-the-magi",
+  "title": "The Gift of the Magi (A1 Level)",
+  "author": "O. Henry",
+  "cefrLevel": "A1",
+  "voiceSettings": {
+    "voice_id": "EXAVITQu4vr4xnSDxMaL",
+    "model_id": "eleven_monolingual_v1",
+    "voice_settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    }
+  },
+  "totalBundles": 5,
+  "totalSentences": 20,
+  "bundles": [
+    {
+      "bundleIndex": 0,
+      "bundleId": "bundle_0",
+      "sentences": [
+        {
+          "sentenceIndex": 0,
+          "text": "One dollar and eighty-seven cents.",
+          "startTime": 0,
+          "endTime": 2
+        },
+        {
+          "sentenceIndex": 1,
+          "text": "That was all.",
+          "startTime": 2,
+          "endTime": 4
+        },
+        {
+          "sentenceIndex": 2,
+          "text": "Della had only this money.",
+          "startTime": 4,
+          "endTime": 6
+        },
+        {
+          "sentenceIndex": 3,
+          "text": "She wanted to buy Jim a gift.",
+          "startTime": 6,
+          "endTime": 8
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_0.mp3",
+      "totalDuration": 8
+    },
+    {
+      "bundleIndex": 1,
+      "bundleId": "bundle_1",
+      "sentences": [
+        {
+          "sentenceIndex": 4,
+          "text": "Christmas was tomorrow.",
+          "startTime": 0,
+          "endTime": 2
+        },
+        {
+          "sentenceIndex": 5,
+          "text": "She was sad about the money.",
+          "startTime": 2,
+          "endTime": 4
+        },
+        {
+          "sentenceIndex": 6,
+          "text": "She sat down and cried.",
+          "startTime": 4,
+          "endTime": 6
+        },
+        {
+          "sentenceIndex": 7,
+          "text": "She loved Jim very much.",
+          "startTime": 6,
+          "endTime": 8
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_1.mp3",
+      "totalDuration": 8
+    },
+    {
+      "bundleIndex": 2,
+      "bundleId": "bundle_2",
+      "sentences": [
+        {
+          "sentenceIndex": 8,
+          "text": "He worked hard every day.",
+          "startTime": 0,
+          "endTime": 2
+        },
+        {
+          "sentenceIndex": 9,
+          "text": "She wanted something special for him.",
+          "startTime": 2,
+          "endTime": 4
+        },
+        {
+          "sentenceIndex": 10,
+          "text": "But she had no money.",
+          "startTime": 4,
+          "endTime": 6
+        },
+        {
+          "sentenceIndex": 11,
+          "text": "She looked in the mirror.",
+          "startTime": 6,
+          "endTime": 8
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_2.mp3",
+      "totalDuration": 8
+    },
+    {
+      "bundleIndex": 3,
+      "bundleId": "bundle_3",
+      "sentences": [
+        {
+          "sentenceIndex": 12,
+          "text": "Her hair was very long.",
+          "startTime": 0,
+          "endTime": 2
+        },
+        {
+          "sentenceIndex": 13,
+          "text": "It was beautiful brown hair.",
+          "startTime": 2,
+          "endTime": 4
+        },
+        {
+          "sentenceIndex": 14,
+          "text": "She had an idea about her hair.",
+          "startTime": 4,
+          "endTime": 6
+        },
+        {
+          "sentenceIndex": 15,
+          "text": "She could sell her hair.",
+          "startTime": 6,
+          "endTime": 8
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_3.mp3",
+      "totalDuration": 8
+    },
+    {
+      "bundleIndex": 4,
+      "bundleId": "bundle_4",
+      "sentences": [
+        {
+          "sentenceIndex": 16,
+          "text": "Hair was worth money sometimes.",
+          "startTime": 0,
+          "endTime": 2
+        },
+        {
+          "sentenceIndex": 17,
+          "text": "She put on her coat.",
+          "startTime": 2,
+          "endTime": 4
+        },
+        {
+          "sentenceIndex": 18,
+          "text": "She went to the street.",
+          "startTime": 4,
+          "endTime": 6
+        },
+        {
+          "sentenceIndex": 19,
+          "text": "She found a hair shop.",
+          "startTime": 6,
+          "endTime": 8
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_4.mp3",
+      "totalDuration": 8
+    }
+  ],
+  "createdAt": "2025-10-08T18:11:52.649Z"
+}

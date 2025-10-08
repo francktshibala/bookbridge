@@ -86,6 +86,16 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'JH'
   },
   {
+    id: 'gift-of-the-magi',
+    title: 'The Gift of the Magi',
+    author: 'O. Henry',
+    description: 'Heartwarming Christmas story with chapter detection. A1 level with 6 thematic chapters. PILOT: 5 bundles available.',
+    sentences: 51,
+    bundles: 5,
+    gradient: 'from-red-500 to-green-600',
+    abbreviation: 'GM'
+  },
+  {
     id: 'digital-library-test',
     title: 'Maya Story - Speed Test',
     author: 'BookBridge AI',
@@ -154,6 +164,7 @@ const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'gutenberg-43': 'A2',  // Default to A2 for Jekyll & Hyde
   'sleepy-hollow-enhanced': 'A1',
   'christmas-carol-enhanced-v2': 'A1',
+  'gift-of-the-magi': 'A1',
   'digital-library-test': 'A2',
   'digital-library-test-2': 'A2',
   'digital-library-test-3': 'A2'
@@ -183,6 +194,9 @@ const getBookApiEndpoint = (bookId: string, level: string): string => {
   }
   if (bookId === 'digital-library-test-3') {
     return '/api/digital-library-test-3/bundles';
+  }
+  if (bookId === 'gift-of-the-magi') {
+    return '/api/gift-of-magi/bundles';
   }
 
   // Default to test-book API
@@ -278,6 +292,50 @@ const YELLOW_WALLPAPER_CHAPTERS = [
     endSentence: 371,
     startBundle: 70,
     endBundle: 92
+  }
+];
+
+// Gift of the Magi Chapter Structure (PILOT VERSION - 5 bundles, 20 sentences)
+const GIFT_OF_THE_MAGI_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "Pennies and Parsimony",
+    startSentence: 0,
+    endSentence: 3,
+    startBundle: 0,
+    endBundle: 0
+  },
+  {
+    chapterNumber: 2,
+    title: "Della's Christmas Eve Predicament",
+    startSentence: 4,
+    endSentence: 7,
+    startBundle: 1,
+    endBundle: 1
+  },
+  {
+    chapterNumber: 3,
+    title: "Saving for Jim's Present",
+    startSentence: 8,
+    endSentence: 11,
+    startBundle: 2,
+    endBundle: 2
+  },
+  {
+    chapterNumber: 4,
+    title: "The Hair Sacrifice",
+    startSentence: 12,
+    endSentence: 15,
+    startBundle: 3,
+    endBundle: 3
+  },
+  {
+    chapterNumber: 5,
+    title: "The Journey to the Shop",
+    startSentence: 16,
+    endSentence: 19,
+    startBundle: 4,
+    endBundle: 4
   }
 ];
 
@@ -642,7 +700,8 @@ export default function FeaturedBooksPage() {
       'christmas-carol-enhanced-v2': 'A1',
       'digital-library-test': 'A2',
       'digital-library-test-2': 'A2',
-      'digital-library-test-3': 'A2'
+      'digital-library-test-3': 'A2',
+      'gift-of-the-magi': 'A1'
     };
 
     // Handle multi-level books
@@ -1261,7 +1320,8 @@ export default function FeaturedBooksPage() {
                     selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
                     selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
                     selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS :
-                    selectedBook?.id === 'christmas-carol-enhanced-v2' ? CHRISTMAS_CAROL_CHAPTERS : GREAT_GATSBY_CHAPTERS;
+                    selectedBook?.id === 'christmas-carol-enhanced-v2' ? CHRISTMAS_CAROL_CHAPTERS :
+                    selectedBook?.id === 'gift-of-the-magi' ? GIFT_OF_THE_MAGI_CHAPTERS : GREAT_GATSBY_CHAPTERS;
     return (
       <div className="flex items-center gap-1 w-full max-w-xs">
         <select
@@ -1337,6 +1397,8 @@ export default function FeaturedBooksPage() {
       chapters = JEKYLL_HYDE_CHAPTERS;
     } else if (selectedBook.id === 'christmas-carol-enhanced-v2') {
       chapters = CHRISTMAS_CAROL_CHAPTERS;
+    } else if (selectedBook.id === 'gift-of-the-magi') {
+      chapters = GIFT_OF_THE_MAGI_CHAPTERS;
     } else {
       return { current: 1, total: 1, title: '', totalSentences: selectedBook.sentences };
     }
@@ -1361,6 +1423,28 @@ export default function FeaturedBooksPage() {
       title: chapters[0].title,
       totalSentences: selectedBook.sentences
     };
+  };
+
+  // Get chapters for the current book
+  const getBookChapters = () => {
+    if (!selectedBook) return [];
+
+    if (selectedBook.id === 'sleepy-hollow-enhanced') {
+      return SLEEPY_HOLLOW_CHAPTERS;
+    } else if (selectedBook.id === 'great-gatsby-a2') {
+      return GREAT_GATSBY_CHAPTERS;
+    } else if (selectedBook.id === 'gutenberg-1952-A1') {
+      return YELLOW_WALLPAPER_CHAPTERS;
+    } else if (selectedBook.id === 'gutenberg-1513') {
+      return ROMEO_JULIET_CHAPTERS;
+    } else if (selectedBook.id === 'gutenberg-43') {
+      return JEKYLL_HYDE_CHAPTERS;
+    } else if (selectedBook.id === 'christmas-carol-enhanced-v2') {
+      return CHRISTMAS_CAROL_CHAPTERS;
+    } else if (selectedBook.id === 'gift-of-the-magi') {
+      return GIFT_OF_THE_MAGI_CHAPTERS;
+    }
+    return [];
   };
 
   return (
@@ -1668,56 +1752,79 @@ export default function FeaturedBooksPage() {
                 </h1>
               </div>
 
-              {/* Real Moby Dick Text - Speechify Style */}
+              {/* Real Text with Chapter Headers - Speechify Style */}
               <div className="px-4 py-4 text-left">
-                {bundleData.bundles.flatMap(bundle =>
-                  bundle.sentences.map((sentence) => (
-                    <span
-                      key={sentence.sentenceId}
-                      data-sentence={sentence.sentenceIndex}
-                      className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 rounded mobile-reading-text ${
-                        sentence.sentenceIndex === currentSentenceIndex && isPlaying
-                          ? 'bg-blue-100'
-                          : 'hover:bg-gray-100'
-                      }`}
-                      style={{
-                        textAlign: 'left'
-                      }}
-                      title={`Sentence ${sentence.sentenceIndex + 1} (${sentence.startTime.toFixed(1)}s - ${sentence.endTime.toFixed(1)}s) - Click to jump`}
-                      onClick={async () => {
-                        console.log(`🖱️ Clicked sentence ${sentence.sentenceIndex}`);
+                {(() => {
+                  const chapters = getBookChapters();
+                  const allSentences = bundleData.bundles.flatMap(bundle => bundle.sentences);
+                  const result: React.ReactElement[] = [];
 
-                        // FIRST: Stop any current playback completely
-                        if (audioManagerRef.current) {
-                          audioManagerRef.current.stop();
-                        }
+                  allSentences.forEach((sentence, index) => {
+                    // Check if this sentence starts a new chapter
+                    const chapter = chapters.find(ch => ch.startSentence === sentence.sentenceIndex);
 
-                        // Update highlight immediately (optimistic UI)
-                        setCurrentSentenceIndex(sentence.sentenceIndex);
+                    if (chapter) {
+                      // Add chapter header
+                      result.push(
+                        <div key={`chapter-${chapter.chapterNumber}`} className="mb-6 mt-8 first:mt-0">
+                          <h2 className="text-xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4">
+                            Chapter {chapter.chapterNumber}: {chapter.title}
+                          </h2>
+                        </div>
+                      );
+                    }
 
-                        // Ensure playback state is active for continuation
-                        setIsPlaying(true);
-                        isPlayingRef.current = true;
+                    // Add the sentence
+                    result.push(
+                      <span
+                        key={sentence.sentenceId}
+                        data-sentence={sentence.sentenceIndex}
+                        className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 rounded mobile-reading-text ${
+                          sentence.sentenceIndex === currentSentenceIndex && isPlaying
+                            ? 'bg-blue-100'
+                            : 'hover:bg-gray-100'
+                        }`}
+                        style={{
+                          textAlign: 'left'
+                        }}
+                        title={`Sentence ${sentence.sentenceIndex + 1} (${sentence.startTime.toFixed(1)}s - ${sentence.endTime.toFixed(1)}s) - Click to jump`}
+                        onClick={async () => {
+                          console.log(`🖱️ Clicked sentence ${sentence.sentenceIndex}`);
 
-                        // Jump to sentence using the UI-connected audio manager
-                        if (playerRef.current && audioManagerRef.current) {
-                          const pos = playerRef.current.getSentencePosition(sentence.sentenceIndex);
-                          if (pos) {
-                            const targetBundle = bundleData.bundles[pos.bundleIndex];
-
-                            // Update current bundle state so handleNextBundle works correctly
-                            setCurrentBundle(targetBundle.bundleId);
-
-                            await audioManagerRef.current.playSequentialSentences(targetBundle, sentence.sentenceIndex);
+                          // FIRST: Stop any current playback completely
+                          if (audioManagerRef.current) {
+                            audioManagerRef.current.stop();
                           }
-                        }
-                      }}
-                    >
-                      {sentence.text}
-                      {' '}
-                    </span>
-                  ))
-                )}
+
+                          // Update highlight immediately (optimistic UI)
+                          setCurrentSentenceIndex(sentence.sentenceIndex);
+
+                          // Ensure playback state is active for continuation
+                          setIsPlaying(true);
+                          isPlayingRef.current = true;
+
+                          // Jump to sentence using the UI-connected audio manager
+                          if (playerRef.current && audioManagerRef.current) {
+                            const pos = playerRef.current.getSentencePosition(sentence.sentenceIndex);
+                            if (pos) {
+                              const targetBundle = bundleData.bundles[pos.bundleIndex];
+
+                              // Update current bundle state so handleNextBundle works correctly
+                              setCurrentBundle(targetBundle.bundleId);
+
+                              await audioManagerRef.current.playSequentialSentences(targetBundle, sentence.sentenceIndex);
+                            }
+                          }
+                        }}
+                      >
+                        {sentence.text}
+                        {' '}
+                      </span>
+                    );
+                  });
+
+                  return result;
+                })()}
               </div>
             </>
           )}
