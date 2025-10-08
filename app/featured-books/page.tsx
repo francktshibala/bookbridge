@@ -137,22 +137,56 @@ const FEATURED_BOOKS: FeaturedBook[] = [
   }
 ];
 
-// Smart book-to-level mapping for featured books (single level per book)
-const BOOK_LEVEL_MAP: { [bookId: string]: string } = {
-  'great-gatsby-a2': 'A2',                  // Only has A2 level
-  'gutenberg-1952-A1': 'A1',                // Yellow Wallpaper - A1 level
-  'gutenberg-1513': 'A1',                   // Romeo & Juliet - A1 level
-  'gutenberg-43': 'A2',                     // Jekyll & Hyde - A2 level (natural compound sentences)
-  'sleepy-hollow-enhanced': 'A1',           // Sleepy Hollow - A1 level (fixed)
-  'christmas-carol-enhanced-v2': 'A1',      // A Christmas Carol - Enhanced clean version
-  'digital-library-test': 'A2',             // Digital Library Test Story - A2 level
-  'digital-library-test-2': 'A2',           // Maya Story Style Test - A2 level
-  'digital-library-test-3': 'A2'            // Maya Story Default Test - A2 level
+// Dynamic API mappings for books with multiple levels
+const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
+  'gutenberg-43': {
+    'A1': '/api/jekyll-hyde/bundles',
+    'A2': '/api/jekyll-hyde-a2/bundles'
+  },
+  // Single-level books use the default /api/test-book/real-bundles
+};
+
+// Default levels for books (used as starting point)
+const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
+  'great-gatsby-a2': 'A2',
+  'gutenberg-1952-A1': 'A1',
+  'gutenberg-1513': 'A1',
+  'gutenberg-43': 'A2',  // Default to A2 for Jekyll & Hyde
+  'sleepy-hollow-enhanced': 'A1',
+  'christmas-carol-enhanced-v2': 'A1',
+  'digital-library-test': 'A2',
+  'digital-library-test-2': 'A2',
+  'digital-library-test-3': 'A2'
 };
 
 // Get the correct CEFR level for a book
 const getBookDefaultLevel = (bookId: string): string => {
-  return BOOK_LEVEL_MAP[bookId] || 'A1'; // Fallback to A1
+  return BOOK_DEFAULT_LEVELS[bookId] || 'A1';
+};
+
+// Get the API endpoint for a specific book and level
+const getBookApiEndpoint = (bookId: string, level: string): string => {
+  // Check if book has custom API mappings
+  if (BOOK_API_MAPPINGS[bookId] && BOOK_API_MAPPINGS[bookId][level]) {
+    return BOOK_API_MAPPINGS[bookId][level];
+  }
+
+  // Use dedicated APIs for specific books
+  if (bookId === 'christmas-carol-enhanced-v2') {
+    return '/api/christmas-carol/bundles';
+  }
+  if (bookId === 'digital-library-test') {
+    return '/api/digital-library-test/bundles';
+  }
+  if (bookId === 'digital-library-test-2') {
+    return '/api/digital-library-test-2/bundles';
+  }
+  if (bookId === 'digital-library-test-3') {
+    return '/api/digital-library-test-3/bundles';
+  }
+
+  // Default to test-book API
+  return '/api/test-book/real-bundles';
 };
 
 // Christmas Carol Chapter Structure (pilot version - 40 sentences)
@@ -493,6 +527,7 @@ export default function FeaturedBooksPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [availableLevels, setAvailableLevels] = useState<{[key: string]: boolean}>({});
+  const [currentBookAvailableLevels, setCurrentBookAvailableLevels] = useState<string[]>([]);
 
   // Audio playback state
   const [isPlaying, setIsPlaying] = useState(false);
@@ -592,73 +627,99 @@ export default function FeaturedBooksPage() {
 
   // Check available levels for a book with request guarding
   const checkAvailableLevels = async (bookId: string, signal: AbortSignal, reqId: string) => {
-    const levels = ['original', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
     const availability: {[key: string]: boolean} = {};
 
-    for (const level of levels) {
-      // Guard: check if request is still current
-      if (currentRequestIdRef.current !== reqId || signal.aborted) {
-        console.log(`🛑 Availability check aborted for ${reqId}`);
-        return;
-      }
+    // Define which books have multi-level support vs single-level
+    const multiLevelBooks: { [key: string]: string[] } = {
+      'gutenberg-43': ['A1', 'A2'], // Jekyll & Hyde has both A1 and A2
+    };
 
-      try {
-        if (level === 'original') {
-          // Check if original content is available via content API
-          const response = await fetch(`/api/books/${bookId}/content`, {
-            cache: 'no-store',
-            signal
-          });
-          availability[level.toLowerCase()] = response.ok;
-        } else {
-          // Use dedicated APIs for working books, fallback to test-book for others
-          const apiUrl = bookId === 'gutenberg-43'
-            ? `/api/jekyll-hyde-a2/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
-            : bookId === 'christmas-carol-enhanced-v2'
-            ? `/api/christmas-carol/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
-            : bookId === 'digital-library-test'
-            ? `/api/digital-library-test/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
-            : bookId === 'digital-library-test-2'
-            ? `/api/digital-library-test-2/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
-            : bookId === 'digital-library-test-3'
-            ? `/api/digital-library-test-3/bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`
-            : `/api/test-book/real-bundles?bookId=${bookId}&level=${level}&t=${Date.now()}`;
+    const singleLevelBooks: { [key: string]: string } = {
+      'great-gatsby-a2': 'A2',
+      'gutenberg-1952-A1': 'A1',
+      'gutenberg-1513': 'A1',
+      'sleepy-hollow-enhanced': 'A1',
+      'christmas-carol-enhanced-v2': 'A1',
+      'digital-library-test': 'A2',
+      'digital-library-test-2': 'A2',
+      'digital-library-test-3': 'A2'
+    };
+
+    // Handle multi-level books
+    if (multiLevelBooks[bookId]) {
+      for (const level of multiLevelBooks[bookId]) {
+        // For Jekyll & Hyde, test both A1 and A2 APIs
+        try {
+          const apiEndpoint = getBookApiEndpoint(bookId, level);
+          const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${level}&t=${Date.now()}`;
 
           const response = await fetch(apiUrl, {
             cache: 'no-store',
             signal
           });
+
           if (response.ok) {
             const data = await response.json();
-            // Accept single-level books as valid
             availability[level.toLowerCase()] = data.success === true;
           } else {
             availability[level.toLowerCase()] = false;
           }
+        } catch (error: any) {
+          if (error.name === 'AbortError') {
+            console.log(`🛑 Availability fetch aborted for ${level}`);
+            return;
+          }
+          availability[level.toLowerCase()] = false;
         }
-      } catch (error: any) {
-        if (error.name === 'AbortError') {
-          console.log(`🛑 Availability fetch aborted for ${level}`);
-          return;
-        }
-        availability[level.toLowerCase()] = false;
       }
     }
 
-    // Ensure at least one level is marked as available
+    // Handle single-level books
+    else if (singleLevelBooks[bookId]) {
+      const bookLevel = singleLevelBooks[bookId];
+      availability[bookLevel.toLowerCase()] = true;
+      console.log(`📋 Single-level book ${bookId} set to ${bookLevel}`);
+    }
+
+    // Handle original content check for all books
+    try {
+      const response = await fetch(`/api/books/${bookId}/content`, {
+        cache: 'no-store',
+        signal
+      });
+      availability['original'] = response.ok;
+    } catch (error: any) {
+      if (error.name === 'AbortError') {
+        console.log(`🛑 Original content check aborted`);
+        return;
+      }
+      availability['original'] = false;
+    }
+
+    // Fallback: ensure at least one level is marked as available
     const hasAnyLevel = Object.values(availability).some(v => v === true);
     if (!hasAnyLevel) {
-      // Use book-specific default level for single-level books
       const defaultLevel = getBookDefaultLevel(bookId);
       availability[defaultLevel.toLowerCase()] = true;
-      console.log(`📋 No levels detected, defaulting to ${defaultLevel} for ${bookId}`);
+      console.log(`📋 Fallback: No levels detected, defaulting to ${defaultLevel} for ${bookId}`);
     }
 
     // Guard: only update state if this is still the current request
     if (currentRequestIdRef.current === reqId && !signal.aborted) {
       setAvailableLevels(availability);
+
+      // Extract available levels for the current book (excluding 'original')
+      const bookLevels = Object.entries(availability)
+        .filter(([level, available]) => level !== 'original' && available)
+        .map(([level]) => level.toUpperCase());
+
+      setCurrentBookAvailableLevels(bookLevels);
       console.log(`📋 Available levels for ${bookId}:`, availability);
+      console.log(`📋 CEFR levels for ${bookId}:`, bookLevels);
     }
+
+    // Return availability results for immediate use
+    return availability;
   };
 
   // Load bundle data
@@ -696,16 +757,8 @@ export default function FeaturedBooksPage() {
           }
         }
 
-        // Use book's available level if current level doesn't exist
-        const bookDefaultLevel = getBookDefaultLevel(selectedId);
-        if (levelParam !== 'original' && levelParam !== bookDefaultLevel) {
-          console.log(`📋 Level ${levelParam} not available for ${selectedId}, using default level: ${bookDefaultLevel}`);
-          levelParam = bookDefaultLevel;
-          // Update UI state to match
-          if (currentRequestIdRef.current === reqId) {
-            setCefrLevel(bookDefaultLevel as any);
-          }
-        }
+        // Don't force fallback here - let availability detection happen first
+        // We'll check availability after checkAvailableLevels is called
 
         // Guard: only proceed if this is still the current request
         if (currentRequestIdRef.current !== reqId) {
@@ -720,7 +773,18 @@ export default function FeaturedBooksPage() {
         }
 
         // Check available levels with abort signal
-        await checkAvailableLevels(selectedId, abortController.signal, reqId);
+        const availabilityResults = await checkAvailableLevels(selectedId, abortController.signal, reqId);
+
+        // Apply proper fallback logic based on actual availability
+        if (availabilityResults && levelParam !== 'original' && !availabilityResults[levelParam.toLowerCase()]) {
+          const bookDefaultLevel = getBookDefaultLevel(selectedId);
+          console.log(`📋 Level ${levelParam} not available for ${selectedId}, using default level: ${bookDefaultLevel}`);
+          levelParam = bookDefaultLevel;
+          // Update UI state to match
+          if (currentRequestIdRef.current === reqId) {
+            setCefrLevel(bookDefaultLevel as any);
+          }
+        }
 
 
         let data: RealBundleApiResponse | null = null;
@@ -795,18 +859,9 @@ export default function FeaturedBooksPage() {
             return;
           }
 
-          // Use dedicated APIs for working books, fallback to test-book for others
-          const apiUrl = selectedId === 'gutenberg-43'
-            ? `/api/jekyll-hyde-a2/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
-            : selectedId === 'christmas-carol-enhanced-v2'
-            ? `/api/christmas-carol/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
-            : selectedId === 'digital-library-test'
-            ? `/api/digital-library-test/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
-            : selectedId === 'digital-library-test-2'
-            ? `/api/digital-library-test-2/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
-            : selectedId === 'digital-library-test-3'
-            ? `/api/digital-library-test-3/bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`
-            : `/api/test-book/real-bundles?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`;
+          // Use dynamic API endpoint detection
+          const apiEndpoint = getBookApiEndpoint(selectedId, levelParam);
+          const apiUrl = `${apiEndpoint}?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`;
 
           const response = await fetch(apiUrl, {
             cache: 'no-store',
@@ -1539,12 +1594,12 @@ export default function FeaturedBooksPage() {
               <div></div>
             </div>
 
-            {/* Row 2: CEFR Level Selector */}
+            {/* Row 2: CEFR Level Selector - Always show, but disable unavailable levels */}
             <div className="flex justify-center">
               <div className="flex bg-gray-700 rounded-lg p-1 gap-1">
                 {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => {
                   const isOriginalMode = contentMode === 'original';
-                  const isLevelAvailable = availableLevels[level.toLowerCase()];
+                  const isLevelAvailable = availableLevels[level.toLowerCase()] === true;
                   const isDisabled = isOriginalMode || !isLevelAvailable;
 
                   return (
@@ -1552,7 +1607,7 @@ export default function FeaturedBooksPage() {
                       key={level}
                       onClick={() => {
                         if (!isDisabled) {
-                          setCefrLevel(level);
+                          setCefrLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
                           // Ensure we're in simplified mode when selecting CEFR level
                           setContentMode('simplified');
                         }
@@ -1719,19 +1774,41 @@ export default function FeaturedBooksPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-3">CEFR Level</label>
                   <div className="grid grid-cols-3 gap-2">
-                    {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => (
-                      <button
-                        key={level}
-                        onClick={() => setCefrLevel(level)}
-                        className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
-                          cefrLevel === level
-                            ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
-                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                        }`}
-                      >
-                        {level}
-                      </button>
-                    ))}
+                    {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => {
+                      const isOriginalMode = contentMode === 'original';
+                      const isLevelAvailable = availableLevels[level.toLowerCase()] === true;
+                      const isDisabled = isOriginalMode || !isLevelAvailable;
+
+                      return (
+                        <button
+                          key={level}
+                          onClick={() => {
+                            if (!isDisabled) {
+                              setCefrLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
+                              // Ensure we're in simplified mode when selecting CEFR level
+                              setContentMode('simplified');
+                            }
+                          }}
+                          disabled={isDisabled}
+                          className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                            cefrLevel === level && contentMode === 'simplified'
+                              ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
+                              : isDisabled
+                              ? 'bg-gray-200 text-gray-400 cursor-not-allowed opacity-50'
+                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                          }`}
+                          title={
+                            isOriginalMode
+                              ? 'Switch to Simplified mode to use CEFR levels'
+                              : !isLevelAvailable
+                              ? `${level} not available for this book`
+                              : `Switch to ${level} level`
+                          }
+                        >
+                          {level}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 

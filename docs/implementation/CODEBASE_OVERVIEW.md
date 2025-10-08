@@ -152,8 +152,35 @@ This document establishes the universal accessibility vision while defining the 
 **Description**: Consolidated audio control component with grouped functionality (content controls, audio controls, navigation). Implements enhanced book detection for voice limitations, CEFR level selection, and smart play/auto-advance features. Core component for clean reading interface with visual dividers and professional layout.
 
 ### **Smart Play Button**
-**Location**: `/components/audio/SmartPlayButton.tsx`  
+**Location**: `/components/audio/SmartPlayButton.tsx`
 **Description**: Advanced play/pause control with auto-advance functionality created in Phase 9. Shows dynamic states (Play/Auto/Manual) with smart color coding (green for auto, blue for manual). Reduces cognitive load by combining play and auto-advance controls into single interface.
+
+### **CEFR Level Selection Architecture**
+**Location**: `/app/featured-books/page.tsx` (lines 628-723, 1747-1781)
+**Description**: Dynamic multi-level CEFR selection system supporting both single-level and multi-level books. **Key Components**:
+
+**Multi-Level Book Support**:
+- Jekyll & Hyde (`gutenberg-43`): A1 (/api/jekyll-hyde/bundles) + A2 (/api/jekyll-hyde-a2/bundles)
+- Dynamic API endpoint mapping via `BOOK_API_MAPPINGS` configuration
+- Real-time availability testing for each level
+
+**Single-Level Book Support**:
+- Direct level assignment without API testing for performance
+- Books like Great Gatsby (A2), Yellow Wallpaper (A1), Romeo & Juliet (A1)
+- Immediate availability marking based on known book levels
+
+**Smart Availability Detection**:
+- `checkAvailableLevels()` function with book-specific logic
+- Multi-level books: Tests all configured APIs
+- Single-level books: Sets known level directly
+- Fallback protection ensures at least one level is always available
+
+**UI Behavior**:
+- Always displays all 6 CEFR levels (A1-C2) in both main interface and settings modal
+- Disables unavailable levels with grayed-out styling and helpful tooltips
+- Proper state synchronization between availability detection and UI rendering
+
+**Critical Fix Applied**: Fixed premature fallback logic that was forcing default levels before availability detection completed. Now properly waits for availability results before applying fallback logic, enabling Jekyll & Hyde A1 level to be clickable and functional.
 
 ---
 
