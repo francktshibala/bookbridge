@@ -96,6 +96,16 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'GM'
   },
   {
+    id: 'the-devoted-friend',
+    title: 'The Devoted Friend',
+    author: 'Oscar Wilde',
+    description: 'Moral fairy tale about true friendship vs exploitation. A1 level with Sarah voice narration. PILOT: 10 bundles available.',
+    sentences: 40,
+    bundles: 10,
+    gradient: 'from-blue-500 to-purple-600',
+    abbreviation: 'DF'
+  },
+  {
     id: 'anne-of-green-gables-a2',
     title: 'Anne of Green Gables',
     author: 'L. M. Montgomery',
@@ -229,6 +239,9 @@ const getBookApiEndpoint = (bookId: string, level: string): string => {
   }
   if (bookId === 'anne-of-green-gables-a2') {
     return '/api/anne-of-green-gables-a2/bundles';
+  }
+  if (bookId === 'the-devoted-friend') {
+    return '/api/devoted-friend-a1/bundles';
   }
 
   // Default to test-book API
@@ -787,6 +800,7 @@ export default function FeaturedBooksPage() {
       'digital-library-test': 'A2',
       'digital-library-test-2': 'A2',
       'digital-library-test-3': 'A2',
+      'the-devoted-friend': 'A1',
     };
 
     // Handle multi-level books
