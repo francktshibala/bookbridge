@@ -1,0 +1,62 @@
+{
+  "id": "the-necklace",
+  "title": "The Necklace",
+  "author": "Guy de Maupassant",
+  "type": "short-story",
+  "totalSentences": 196,
+  "sections": [
+    {
+      "sectionNumber": 1,
+      "title": "The Invitation",
+      "startSentence": 0,
+      "endSentence": 78,
+      "bundleStart": 0,
+      "bundleEnd": 19,
+      "description": "Mathilde's dissatisfaction, the ball invitation, securing dress and necklace",
+      "emotionalTone": "yearning, frustration, rising hope"
+    },
+    {
+      "sectionNumber": 2,
+      "title": "The Ball",
+      "startSentence": 79,
+      "endSentence": 98,
+      "bundleStart": 20,
+      "bundleEnd": 24,
+      "description": "The night of triumph where Mathilde shines in high society",
+      "emotionalTone": "joy, triumph, intoxication"
+    },
+    {
+      "sectionNumber": 3,
+      "title": "The Loss",
+      "startSentence": 99,
+      "endSentence": 138,
+      "bundleStart": 25,
+      "bundleEnd": 34,
+      "description": "Discovery of missing necklace, desperate search, decision to replace",
+      "emotionalTone": "horror, desperation, mounting dread"
+    },
+    {
+      "sectionNumber": 4,
+      "title": "The Sacrifice",
+      "startSentence": 139,
+      "endSentence": 178,
+      "bundleStart": 35,
+      "bundleEnd": 44,
+      "description": "Ten years of poverty and hard labor to pay the debt",
+      "emotionalTone": "endurance, hardship, resignation"
+    },
+    {
+      "sectionNumber": 5,
+      "title": "The Truth",
+      "startSentence": 179,
+      "endSentence": 195,
+      "bundleStart": 45,
+      "bundleEnd": 48,
+      "description": "The devastating revelation about the fake necklace",
+      "emotionalTone": "devastating irony, tragic revelation"
+    }
+  ],
+  "createdAt": "2025-10-09T03:25:00.000Z",
+  "followsMasterPrevention": true,
+  "guidelines": "5 thematic sections for emotional flow, spoiler-free headers, under 30-minute story"
+}
