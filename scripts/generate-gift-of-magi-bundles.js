@@ -14,7 +14,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-// PROVEN SETTINGS: Sarah voice + M1 winning formula
+// M1 PROVEN VOICE SETTINGS
 const SARAH_VOICE_SETTINGS = {
   voice_id: 'EXAVITQu4vr4xnSDxMaL',  // Sarah voice ID
   model_id: 'eleven_monolingual_v1',  // M1 proven model (NOT eleven_flash_v2_5)
@@ -26,6 +26,28 @@ const SARAH_VOICE_SETTINGS = {
     use_speaker_boost: true
   }
 };
+
+const DANIEL_VOICE_SETTINGS = {
+  voice_id: 'onwK4e9ZLuTAKqWW03F9',  // Daniel voice ID
+  model_id: 'eleven_monolingual_v1',  // M1 proven model (NOT eleven_flash_v2_5)
+  voice_settings: {
+    stability: 0.5,        // ElevenLabs default (M1 proven)
+    similarity_boost: 0.75, // ElevenLabs default (M1 proven)
+    style: 0.0,            // ElevenLabs default (M1 proven)
+    speed: 0.90,           // M1 PROVEN SPEED for perfect sync
+    use_speaker_boost: true
+  }
+};
+
+// VOICE MAPPING: A1 → Sarah, A2/B1 → Daniel (per Master Mistakes Prevention)
+function getVoiceForLevel(level) {
+  const voiceMapping = {
+    'A1': SARAH_VOICE_SETTINGS,
+    'A2': SARAH_VOICE_SETTINGS, // Keep A2 as Sarah (already working)
+    'B1': DANIEL_VOICE_SETTINGS  // B1 uses Daniel
+  };
+  return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
+}
 
 const BOOK_ID = 'gift-of-the-magi';
 
@@ -56,8 +78,11 @@ class GiftOfMagiBundleGenerator {
   }
 
   async generateBundles() {
-    console.log('🎁 Generating "The Gift of the Magi" bundles with Sarah voice...');
-    console.log(`🎯 Using M1 proven settings: Sarah voice + speed ${SARAH_VOICE_SETTINGS.voice_settings.speed} + eleven_monolingual_v1`);
+    const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
+    const voiceName = voiceSettings === SARAH_VOICE_SETTINGS ? 'Sarah' : 'Daniel';
+
+    console.log(`🎁 Generating "The Gift of the Magi" bundles with ${voiceName} voice...`);
+    console.log(`🎯 Using M1 proven settings: ${voiceName} voice + speed ${voiceSettings.voice_settings.speed} + eleven_monolingual_v1`);
 
     if (this.isPilot) {
       console.log('🧪 PILOT MODE: Generating first 5 bundles only (~$0.15 cost)');
@@ -125,7 +150,7 @@ class GiftOfMagiBundleGenerator {
         title: `The Gift of the Magi (${CEFR_LEVEL} Level)`,
         author: 'O. Henry',
         cefrLevel: CEFR_LEVEL,
-        voiceSettings: SARAH_VOICE_SETTINGS,
+        voiceSettings: voiceSettings,
         totalBundles: bundles.length,
         totalSentences: bundles.reduce((sum, b) => sum + b.sentences.length, 0),
         bundles: bundles,
@@ -156,8 +181,9 @@ class GiftOfMagiBundleGenerator {
 
       console.log(`   📝 Text: "${bundleText.substring(0, 60)}..." (${bundleText.split(' ').length} words)`);
 
-      // Generate audio with Sarah voice + M1 settings
-      const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${SARAH_VOICE_SETTINGS.voice_id}`, {
+      // Generate audio with selected voice + M1 settings
+      const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
+      const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceSettings.voice_id}`, {
         method: 'POST',
         headers: {
           'Accept': 'audio/mpeg',
@@ -166,8 +192,8 @@ class GiftOfMagiBundleGenerator {
         },
         body: JSON.stringify({
           text: bundleText,
-          model_id: SARAH_VOICE_SETTINGS.model_id,
-          voice_settings: SARAH_VOICE_SETTINGS.voice_settings
+          model_id: voiceSettings.model_id,
+          voice_settings: voiceSettings.voice_settings
         })
       });
 
@@ -179,7 +205,8 @@ class GiftOfMagiBundleGenerator {
       console.log(`   🎵 Generated ${Math.round(audioBuffer.byteLength / 1024)}KB audio`);
 
       // Upload to Supabase with book-specific path (prevent collisions)
-      const fileName = `${BOOK_ID}/${CEFR_LEVEL}/sarah/${bundle.bundleId}.mp3`;
+      const voiceName = voiceSettings === SARAH_VOICE_SETTINGS ? 'sarah' : 'daniel';
+      const fileName = `${BOOK_ID}/${CEFR_LEVEL}/${voiceName}/${bundle.bundleId}.mp3`;
 
       const { data, error } = await supabase.storage
         .from('audio-files')
@@ -195,14 +222,21 @@ class GiftOfMagiBundleGenerator {
       const audioUrl = `https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/${fileName}`;
       bundle.audioUrl = audioUrl;
 
-      // Calculate sentence timings using exact Necklace A1 proven timing (Sarah voice works perfectly)
-      // Use same timing as Necklace A1 that you confirmed works perfectly with Sarah
-      const secondsPerWord = 0.30;  // Proven working timing from Necklace A1 with Sarah
+      // GPT-5 recommended timing: speed-aware + length penalty + safety tail
+      const baseSecondsPerWord = voiceSettings === SARAH_VOICE_SETTINGS ? 0.30 : 0.4;
+      const speedAdjustment = voiceSettings.voice_settings.speed; // 0.90
+      const adjustedSecondsPerWord = baseSecondsPerWord / speedAdjustment; // 0.4 / 0.90 = 0.44s
 
       let currentTime = 0;
       bundle.sentences.forEach(sentence => {
-        const words = sentence.text.trim().split(/\\s+/).length;
-        const duration = Math.max(words * secondsPerWord, 2.0);
+        const words = sentence.text.trim().split(/\s+/).length;
+
+        // GPT-5 formula: base + length penalty + safety tail
+        const baseDuration = words * adjustedSecondsPerWord;
+        const longSentencePenalty = words > 15 ? (words - 15) * 0.05 : 0; // Extra time for complex sentences
+        const safetyTail = 0.12; // 120ms safety buffer
+
+        const duration = baseDuration + longSentencePenalty + safetyTail;
 
         sentence.startTime = currentTime;
         sentence.endTime = currentTime + duration;

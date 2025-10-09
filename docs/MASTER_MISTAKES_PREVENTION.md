@@ -583,18 +583,31 @@ while (attempt < maxAttempts && !simplifiedSentenceTexts) {
 
 ## 🎵 Audio Generation Phase
 
-### Universal Timing Formula (CRITICAL)
+### Universal Timing Formula (CRITICAL - GPT-5 Enhanced)
 ```javascript
-// MANDATORY: Voice-specific timing formulas for perfect synchronization
-const words = text.trim().split(/\s+/).length;
+// GPT-5 PROVEN FORMULA: Speed-aware + length penalty + safety tail
+function calculateSentenceTiming(words, voice, speed, cefrLevel) {
+  // Base timing rates (proven M1 settings)
+  const baseSecondsPerWord = voice === 'Sarah' ? 0.30 : 0.40;
 
-// Voice-specific proven timing rates (M1 proven settings)
-const DANIEL_TIMING = 0.4;   // Daniel voice + speed 0.90 + eleven_monolingual_v1
-const SARAH_TIMING = 0.30;   // Sarah voice + speed 0.90 + eleven_monolingual_v1
+  // Speed adjustment (CRITICAL for speed 0.90)
+  const adjustedSecondsPerWord = baseSecondsPerWord / speed; // 0.40/0.90 = 0.44s
 
-const secondsPerWord = voiceId === 'Sarah' ? SARAH_TIMING : DANIEL_TIMING;
-const minDuration = 2.0;      // Minimum duration per sentence
-const duration = Math.max(words * secondsPerWord, minDuration);
+  // CEFR-specific length penalties for complex sentences
+  const lengthPenalties = {
+    'A1': words > 12 ? (words - 12) * 0.03 : 0,
+    'A2': words > 14 ? (words - 14) * 0.04 : 0,
+    'B1': words > 15 ? (words - 15) * 0.05 : 0
+  };
+
+  // Safety tail prevents audio cutoffs
+  const safetyTail = 0.12; // 120ms buffer
+
+  return words * adjustedSecondsPerWord + lengthPenalties[cefrLevel] + safetyTail;
+}
+
+// Example usage:
+const duration = calculateSentenceTiming(wordCount, voiceType, 0.90, 'B1');
 ```
 
 **Voice-Specific Proven Settings:**

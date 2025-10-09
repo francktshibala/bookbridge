@@ -180,7 +180,8 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
   },
   'gift-of-the-magi': {
     'A1': '/api/gift-of-the-magi-a1/bundles',
-    'A2': '/api/gift-of-the-magi-a2/bundles'
+    'A2': '/api/gift-of-the-magi-a2/bundles',
+    'B1': '/api/gift-of-the-magi-b1/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };
@@ -774,7 +775,7 @@ export default function FeaturedBooksPage() {
     const multiLevelBooks: { [key: string]: string[] } = {
       'gutenberg-43': ['A1', 'A2'], // Jekyll & Hyde has both A1 and A2
       'the-necklace': ['A1', 'A2', 'B1'], // The Necklace has A1, A2, and B1
-      'gift-of-the-magi': ['A1', 'A2'], // Gift of the Magi has both A1 and A2
+      'gift-of-the-magi': ['A1', 'A2', 'B1'], // Gift of the Magi has A1, A2, and B1
     };
 
     const singleLevelBooks: { [key: string]: string } = {
