@@ -1226,6 +1226,13 @@ export default function FeaturedBooksPage() {
           setIsPlaying(true);
           isPlayingRef.current = true; // Make sure the play flag is set
 
+          // Force trigger highlighting state update by re-setting current sentence
+          const currentSentence = currentSentenceIndex;
+          setCurrentSentenceIndex(-1); // Clear briefly
+          setTimeout(() => {
+            setCurrentSentenceIndex(currentSentence); // Restore to trigger re-render
+          }, 10);
+
           // Apply current playback speed
           audioManagerRef.current.setPlaybackRate(playbackSpeed);
 
@@ -1723,7 +1730,7 @@ export default function FeaturedBooksPage() {
         </div>
 
         {/* Real Moby Dick Content */}
-        <div className="pb-32 px-6 bg-white mx-4 md:mx-8 rounded-b-lg shadow-sm border-l border-r border-b border-gray-200">
+        <div className="pb-32 px-3 bg-white mx-4 md:mx-8 rounded-b-lg shadow-sm border-l border-r border-b border-gray-200">
 
           {loading && (
             <div className="text-center py-12">
@@ -1748,7 +1755,9 @@ export default function FeaturedBooksPage() {
               {/* Book Title */}
               <div className="text-center py-4">
                 <h1 className="text-2xl font-semibold text-gray-700 mb-4">
-                  {((bundleData as any).book?.title || bundleData.title || 'Unknown Title').replace(/\s*\(Bundled\)$/i, '')}
+                  {((bundleData as any).book?.title || bundleData.title || 'Unknown Title')
+                    .replace(/\s*\(Bundled\)$/i, '')
+                    .replace(/\s*\([A-C][12]?\s*Level\)$/i, '')}
                 </h1>
               </div>
 
@@ -1779,9 +1788,11 @@ export default function FeaturedBooksPage() {
                       <span
                         key={sentence.sentenceId}
                         data-sentence={sentence.sentenceIndex}
-                        className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 rounded mobile-reading-text ${
+                        className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 mr-1 rounded mobile-reading-text ${
                           sentence.sentenceIndex === currentSentenceIndex && isPlaying
-                            ? 'bg-blue-100'
+                            ? 'bg-blue-200 text-blue-900 font-medium border border-blue-300'
+                            : sentence.sentenceIndex === currentSentenceIndex + 1 && isPlaying
+                            ? 'bg-slate-100 text-gray-600'
                             : 'hover:bg-gray-100'
                         }`}
                         style={{
@@ -1804,23 +1815,35 @@ export default function FeaturedBooksPage() {
                           isPlayingRef.current = true;
 
                           // Jump to sentence using the UI-connected audio manager
-                          if (playerRef.current && audioManagerRef.current) {
-                            const pos = playerRef.current.getSentencePosition(sentence.sentenceIndex);
-                            if (pos) {
-                              const targetBundle = bundleData.bundles[pos.bundleIndex];
+                          if (audioManagerRef.current) {
+                            const targetBundle = findBundleForSentence(sentence.sentenceIndex);
+                            if (targetBundle) {
+                              console.log(`🎯 Jumping to sentence ${sentence.sentenceIndex} in bundle ${targetBundle.bundleId}, audioUrl: ${targetBundle.audioUrl}`);
+
+                              // Ensure bundle has audio URL
+                              if (!targetBundle.audioUrl) {
+                                console.error(`Bundle ${targetBundle.bundleId} has no audioUrl`);
+                                return;
+                              }
 
                               // Update current bundle state so handleNextBundle works correctly
                               setCurrentBundle(targetBundle.bundleId);
 
                               await audioManagerRef.current.playSequentialSentences(targetBundle, sentence.sentenceIndex);
+                            } else {
+                              console.error(`No bundle found for sentence ${sentence.sentenceIndex}`);
                             }
                           }
                         }}
                       >
                         {sentence.text}
-                        {' '}
                       </span>
                     );
+
+                    // Add paragraph break every 4 sentences (bundle boundaries)
+                    if ((index + 1) % 4 === 0 && index < allSentences.length - 1) {
+                      result.push(<div key={`paragraph-break-${sentence.sentenceIndex}`} className="mb-6"></div>);
+                    }
                   });
 
                   return result;

@@ -10,6 +10,20 @@
 
 **Follow this exact order for every new book implementation:**
 
+### Phase 0: System Validation (MANDATORY FIRST)
+```bash
+# ✅ 0. System Readiness Check
+node scripts/validate-system.js
+# - Test all API connections (Claude, ElevenLabs, Pinecone, Supabase)
+# - Check storage quotas and available disk space
+# - Verify network connectivity and speed
+# - Validate all environment variables and API keys
+# - Estimate total cost and require user confirmation
+# - Check system resources (RAM >4GB, disk >1GB free)
+# - Verify Project Gutenberg book accessibility
+# - STOP HERE if any validation fails
+```
+
 ### Phase 1: Pre-Implementation Setup
 ```bash
 # ✅ 1. Environment & Process Check
@@ -131,6 +145,8 @@ npm run dev                                    # Start development server
 
 ## 🚨 CRITICAL PREVENTION RULES
 
+- **NEVER start without system validation** - run validate-system.js first
+- **NEVER proceed without cost confirmation** - expensive API calls add up fast
 - **NEVER run multiple scripts simultaneously** - causes database conflicts
 - **NEVER skip pilot testing** - always test with 5-10 bundles first
 - **NEVER skip chapter UI integration** - chapters without UI are invisible
