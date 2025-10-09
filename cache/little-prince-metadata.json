@@ -1,0 +1,10 @@
+{
+  "id": "little-prince",
+  "title": "The Little Prince",
+  "author": "Antoine de Saint-Exupéry",
+  "source": "https://www.gutenberg.org/files/456/456-h/456-h.htm",
+  "fetchedAt": "2025-10-09T02:12:38.657Z",
+  "sentenceCount": 2894,
+  "wordCount": 43318,
+  "status": "raw"
+}

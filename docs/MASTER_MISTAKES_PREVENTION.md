@@ -31,7 +31,24 @@ ps aux | grep -E "(generate|simplify|modernize)" | grep -v grep  # Kill any conf
 source .env.local                                                # Load environment
 npx prisma db pull                                              # Verify database schema
 
-# ✅ 2. Project Planning
+# ✅ 2. Script Level Validation (MANDATORY FIRST - prevents runtime failures)
+# BEFORE running any scripts, manually inspect the code to verify:
+# For simplification scripts (simplify-[book-name].js):
+# - VALID_LEVELS array includes target level: const VALID_LEVELS = ['A1', 'A2', 'B1'];
+# - AI guidelines exist for target level: A1_GUIDELINES, A2_GUIDELINES, B1_GUIDELINES
+# - Word count validation includes target level: A1: 6-12 words, A2: 8-15 words, B1: 12-25 words
+#
+# For bundle generation scripts (generate-[book-name]-bundles.js):
+# - VALID_LEVELS array includes target level: const VALID_LEVELS = ['A1', 'A2', 'B1'];
+# - Voice ID constants are defined: SARAH_VOICE_ID, DANIEL_VOICE_ID
+# - getVoiceForLevel() function maps all levels: A1 → Sarah, A2/B1 → Daniel
+# - No hardcoded VOICE_ID references (search for "VOICE_ID" not in getVoiceForLevel())
+#
+# For API endpoints:
+# - Check /api/[book-name]-[level]/bundles/route.ts exists for target level
+# - Verify book ID validation includes both formats: 'book-name' and 'book-name-level'
+
+# ✅ 3. Project Planning
 # - Choose book ID format: "book-name-level" (e.g., "gift-of-the-magi")
 # - Select CEFR level: A1, A2, B1 (start with A1 for classics)
 # - Choose voice: Use proven M1 settings (speed 0.90 + eleven_monolingual_v1)
@@ -41,34 +58,57 @@ npx prisma db pull                                              # Verify databas
 
 ### Phase 2: Text Acquisition & Processing
 ```bash
-# ✅ 3. Fetch Original Text
+# ✅ 4. Fetch Original Text
 node scripts/fetch-[book-name].js
 # - Extract between specific Project Gutenberg markers
 # - Save to cache with proper content boundaries
 # - Verify sentence count and text quality
 
-# ✅ 4. Chapter Detection (BEFORE simplification)
+# ✅ 5. Chapter/Structure Detection (BEFORE simplification)
 node scripts/detect-[book-name]-chapters.js
-# - Run GPT-5's 3-pass hybrid detection system
-# - Generate era-appropriate chapter titles (no spoilers)
-# - Ensure 100% sentence coverage with no gaps
-# - Target 5-12 chapters with balanced lengths
+# - NOVELS/BOOKS: Run GPT-5's 3-pass hybrid detection system
+#   * Generate era-appropriate chapter titles (no spoilers)
+#   * Ensure 100% sentence coverage with no gaps
+#   * Target 5-12 chapters with balanced lengths
+# - SHORT STORIES: Plan thematic headings for visual breaks
+#   * "The Party," "The Loss," "The Truth" (for emotional flow)
+#   * 3-5 sections maximum for stories under 30 minutes
 
-# ✅ 5. Text Modernization (Victorian/Classical only)
+# ✅ 6. Text Modernization (Victorian/Classical only)
 node scripts/modernize-[book-name].js --fresh
 # - Separate step from simplification
 # - Preserve story meaning 100%
 # - Update archaic language only
 
-# ✅ 6. Text Simplification
+# ✅ 7. Text Simplification (CRITICAL: Check script level validation first!)
 node scripts/simplify-[book-name].js [LEVEL]
+# Example commands: node scripts/simplify-the-necklace.js A1
+# BEFORE RUNNING: Verify script supports the target level
+# - Check script has A1/A2/B1 level validation arrays
+# - Verify voice selection logic includes target level
+# - Confirm AI guidelines exist for target level
+#
+# ⚠️ A1 SPECIFIC VALIDATIONS (learned from A1 implementation issues):
+# - Verify A1 is in VALID_LEVELS array: ['A1', 'A2', 'B1']
+# - Check getVoiceForLevel() function supports A1 → Sarah voice
+# - Confirm A1_GUIDELINES exist with 12-word sentence limits
+# - Validate script has A1 word count validation (6-12 words)
+#
 # - Maintain exact 1:1 sentence count mapping (CRITICAL)
 # - Generate compound sentences for natural flow (NOT micro-sentences)
-#   * A1: 8-12 words average with simple connectors "and", "but", "when"
-#   * A2: 11-13 words average with connectors "and", "but", "so", "then"
+#   * A1: 6-12 words average with simple connectors "and", "but", "when"
+#   * A2: 8-15 words average with connectors "and", "but", "so", "then"
+#   * B1: 12-25 words average with connectors "however", "meanwhile", "therefore"
 #   * AVOID: "He is tall. He walks fast. He goes home." (robotic 4-word micro-sentences)
 #   * CORRECT A1: "He is tall and walks fast to his home." (natural 9 words)
 #   * CORRECT A2: "He is tall and walks fast, then goes home because he is tired." (natural 13 words)
+#   * CORRECT B1: "He is tall and walks fast; however, he goes home because he feels tired after work." (natural 16 words)
+# - ENFORCE SENTENCE LENGTH LIMITS to prevent highlighting issues:
+#   * A1: Maximum 12 words per sentence (add to AI prompt)
+#   * A2: Maximum 15 words per sentence (add to AI prompt)
+#   * B1: Maximum 25 words per sentence (add to AI prompt)
+#   * Include in prompt: "Each sentence should express one complete thought"
+#   * Include in prompt: "Avoid semicolons - use periods instead"
 # - Preserve punctuation for proper formatting
 # - Cache results after every API batch
 # - Validate natural reading flow before proceeding
@@ -76,15 +116,27 @@ node scripts/simplify-[book-name].js [LEVEL]
 
 ### Phase 3: Audio & Bundle Generation
 ```bash
-# ✅ 7. Audio Generation (PILOT FIRST)
-node scripts/generate-[book-name]-bundles.js --pilot
+# ✅ 8. Audio Generation (PILOT FIRST - CRITICAL: Check script level validation!)
+node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
+# Example commands: node scripts/generate-necklace-bundles.js A1 --pilot
+# BEFORE RUNNING: Verify script supports the target level
+# - Check script has A1/A2/B1 level validation arrays
+# - Verify getVoiceForLevel() function includes target level
+# - Confirm voice ID constants are defined (SARAH_VOICE_ID, DANIEL_VOICE_ID)
+#
+# ⚠️ A1 SPECIFIC VALIDATIONS (learned from A1 implementation issues):
+# - Verify A1 is in VALID_LEVELS array: ['A1', 'A2', 'B1']
+# - Check getVoiceForLevel() maps A1 → SARAH_VOICE_ID correctly
+# - Confirm no hardcoded VOICE_ID references (use getVoiceForLevel() instead)
+# - Validate A1 API endpoint exists: /api/[book-name]-a1/bundles/route.ts
+#
 # - Test with 5-10 bundles first (~$0.15 cost)
 # - Use proven M1 voice settings (speed 0.90)
 # - Ensure proper sentence punctuation preservation
 # - Save audio to book-specific CDN paths
 # - Measure actual duration (never estimate)
 
-# ✅ 8. Bundle Architecture Validation
+# ✅ 9. Bundle Architecture Validation
 # - Verify 4-sentence bundle structure
 # - Check text-audio alignment perfection
 # - Validate bundle sequence (0, 1, 2... no gaps)
@@ -93,22 +145,36 @@ node scripts/generate-[book-name]-bundles.js --pilot
 
 ### Phase 4: API & Database Integration
 ```bash
-# ✅ 9. API Endpoint Creation
+# ✅ 10. API Endpoint Creation
 # - Create /api/[book-name]/bundles/route.ts
 # - Include hardcoded chapter structure from detection
 # - Test API returns proper sentence punctuation
 # - Verify audio URLs are accessible
 
-# ✅ 10. Database Structure Creation
+# ✅ 11. Database Structure Creation
 # - Create Book record
 # - Create BookContent record
 # - Verify BookChunks exist (handled by bundle generation)
 # - Test complete database relationships
 ```
 
-### Phase 5: Featured Books Integration
+### Phase 5: Display Headers (AFTER audio generation)
 ```bash
-# ✅ 11. UI Integration (3 MANDATORY locations)
+# ✅ 12. Add Display Headers (final presentation step)
+# - SHORT STORIES: Add thematic headings for visual flow
+#   * "The Party," "The Loss," "The Truth" (emotional progression)
+#   * Insert headers at natural story breaks
+#   * Keep headers concise and spoiler-free
+# - NOVELS/BOOKS: Add chapter headers from Phase 2 detection
+#   * "CHAPTER I: Mrs. Rachel Lynde Is Surprised"
+#   * Use detected chapter structure
+#   * Maintain consistent formatting
+# NOTE: Headers are added LAST to avoid affecting AI simplification/audio
+```
+
+### Phase 6: Featured Books Integration
+```bash
+# ✅ 13. UI Integration (6 MANDATORY locations)
 # Location 1: Add book to FEATURED_BOOKS array
 # Location 2: Add chapter structure (BOOK_NAME_CHAPTERS)
 # Location 3: Update getCurrentChapter() function
@@ -116,15 +182,15 @@ node scripts/generate-[book-name]-bundles.js --pilot
 # Location 5: Add to BOOK_DEFAULT_LEVELS
 # Location 6: Add API endpoint mapping
 
-# ✅ 12. Chapter Header Display (automatic)
+# ✅ 14. Chapter Header Display (automatic)
 # - Verify chapters appear as headers within text
 # - Test chapter navigation dropdown works
 # - Confirm chapter jump functionality
 ```
 
-### Phase 6: Testing & Validation
+### Phase 7: Testing & Validation
 ```bash
-# ✅ 13. Complete System Test
+# ✅ 15. Complete System Test
 npm run dev                                    # Start development server
 # - Test Featured Books page loads book correctly
 # - Verify text displays with chapter headers
@@ -132,7 +198,7 @@ npm run dev                                    # Start development server
 # - Confirm chapter navigation works
 # - Test in incognito mode (clear cache)
 
-# ✅ 14. Final Validation Checklist
+# ✅ 16. Final Validation Checklist
 # - [ ] Bundle sequence complete (0, 1, 2... no gaps)
 # - [ ] Text-audio alignment perfect (no content mismatches)
 # - [ ] Audio files exist and play correctly
@@ -153,6 +219,8 @@ npm run dev                                    # Start development server
 - **NEVER lose sentence punctuation** - use match() not split() for sentences
 - **NEVER estimate audio duration** - always measure actual TTS output
 - **NEVER use generic CDN paths** - use book-specific paths to prevent collisions
+- **NEVER run script without level validation** - verify A1/A2/B1 support in script code first
+- **NEVER assume voice mapping exists** - check getVoiceForLevel() function for target level
 
 ---
 
@@ -517,18 +585,24 @@ while (attempt < maxAttempts && !simplifiedSentenceTexts) {
 
 ### Universal Timing Formula (CRITICAL)
 ```javascript
-// MANDATORY: All books must use consistent timing calculation
+// MANDATORY: Voice-specific timing formulas for perfect synchronization
 const words = text.trim().split(/\s+/).length;
-const secondsPerWord = 0.4;  // Standard rate for all books
+
+// Voice-specific proven timing rates (M1 proven settings)
+const DANIEL_TIMING = 0.4;   // Daniel voice + speed 0.90 + eleven_monolingual_v1
+const SARAH_TIMING = 0.30;   // Sarah voice + speed 0.90 + eleven_monolingual_v1
+
+const secondsPerWord = voiceId === 'Sarah' ? SARAH_TIMING : DANIEL_TIMING;
 const minDuration = 2.0;      // Minimum duration per sentence
 const duration = Math.max(words * secondsPerWord, minDuration);
 ```
 
-**Why This Formula:**
-- Ensures perfect audio-text synchronization across all books
-- Prevents sentence skipping during playbook
-- Maintains consistent reading experience
-- Jekyll & Hyde had timing issues until standardized to this formula
+**Voice-Specific Proven Settings:**
+- **Daniel**: 0.4s per word (M1 proven: onwK4e9ZLuTAKqWW03F9 + speed 0.90 + eleven_monolingual_v1)
+- **Sarah**: 0.30s per word (M1 proven: EXAVITQu4vr4xnSDxMaL + speed 0.90 + eleven_monolingual_v1)
+- **Critical**: NEVER use custom timing formulas - only these proven rates
+- **Result**: Perfect audio-text synchronization, prevents sentence skipping
+- **Validation**: Gift of the Magi A2 confirmed Sarah timing works perfectly
 
 ### Maya Story Voice Testing Results (PROVEN SETTINGS)
 

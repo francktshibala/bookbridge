@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
 
     console.log(`🎁 Loading The Gift of the Magi bundles for level: ${level}`);
 
-    // Load bundles from cache file (complete 13 bundles with Sarah voice)
+    // Load bundles from cache file (since we haven't created BookContent/BookChunk records yet)
     let bundlesData;
     try {
       const bundlesPath = path.join(process.cwd(), 'cache', 'gift-of-the-magi-A1-bundles.json');
@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
       totalSentences,
       bundles,
       chapters, // Add chapter structure for UI
-      source: 'updated-complete-version' // Indicates this is the complete 13-bundle version
+      source: 'cache-file' // Indicates this came from cache file for debugging
     });
 
   } catch (error) {

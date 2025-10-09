@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Generate The Necklace bundles with voices (A1, A2 and B1 levels)
- * Based on Anne of Green Gables bundle generation architecture
+ * Generate Anne of Green Gables bundles with Daniel voice (A2 level)
+ * Based on Christmas Carol bundle generation architecture
  */
 
 import { PrismaClient } from '@prisma/client';
@@ -22,73 +22,64 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-// Voice settings optimized for short stories (from Master Prevention Guide)
-const VOICE_SETTINGS = {
-  stability: 0.55,       // Clear and adaptable
+// Daniel voice settings optimized for A2 level (from Master Prevention Guide)
+const DANIEL_VOICE_SETTINGS = {
+  stability: 0.55,       // Clear and adaptable for A2 comprehension
   style: 0.0,           // Natural delivery without stylistic emphasis
-  speed: 0.90,          // PROVEN: speed 0.90 from Master Prevention
+  speed: 0.90,          // PROVEN: Daniel voice + speed 0.90 from Master Prevention
   similarity_boost: 0.75,
   use_speaker_boost: true
 };
 
+const BOOK_ID = 'anne-of-green-gables-a2';
 const DANIEL_VOICE_ID = 'onwK4e9ZLuTAKqWW03F9'; // Daniel voice (male, clear)
-const SARAH_VOICE_ID = 'EXAVITQu4vr4xnSDxMaL';   // Sarah voice (female, clear)
+const VOICE_ID = DANIEL_VOICE_ID;
 
-// Voice selection by level
-const getVoiceForLevel = (level) => {
-  return level === 'A1' ? SARAH_VOICE_ID : DANIEL_VOICE_ID;
-};
-
+// Content hash for versioned paths
+const CONTENT_HASH = crypto.createHash('md5').update(`${BOOK_ID}-${VOICE_ID}-${JSON.stringify(DANIEL_VOICE_SETTINGS)}`).digest('hex').substring(0, 8);
+const TEMP_DIR = '/tmp/anne-bundles';
 const SENTENCES_PER_BUNDLE = 4;
 
-class NecklaceBundleGenerator {
+class AnneBundleGenerator {
   constructor() {
     this.isPilot = process.argv.includes('--pilot');
-    this.level = process.argv.find(arg => ['A1', 'A2', 'B1'].includes(arg)) || 'A2';
-    this.bookId = `the-necklace-${this.level.toLowerCase()}`;
-    this.maxBundles = this.isPilot ? 5 : Infinity; // Pilot mode: 5 bundles for testing
-
-    // Content hash for versioned paths
-    const voiceId = getVoiceForLevel(this.level);
-    this.contentHash = crypto.createHash('md5').update(`${this.bookId}-${voiceId}-${JSON.stringify(VOICE_SETTINGS)}`).digest('hex').substring(0, 8);
-    this.tempDir = `/tmp/necklace-bundles-${this.level}`;
+    this.maxBundles = this.isPilot ? 10 : Infinity; // Pilot mode: 10 bundles for testing
   }
 
   async generateBundles() {
-    console.log(`💎 Starting "The Necklace" bundle generation (${this.level} level)...`);
-    const voiceName = this.level === 'A1' ? 'Sarah' : 'Daniel';
-    console.log(`🎯 ${voiceName} voice settings: stability ${VOICE_SETTINGS.stability}, speed ${VOICE_SETTINGS.speed}`);
+    console.log('📚 Starting Anne of Green Gables bundle generation with A2 flow...');
+    console.log(`🎯 Daniel voice settings: stability ${DANIEL_VOICE_SETTINGS.stability}, speed ${DANIEL_VOICE_SETTINGS.speed}s/word`);
 
     if (this.isPilot) {
-      console.log('🧪 PILOT MODE: Generating first 5 bundles only (~$0.25 cost)');
+      console.log('🧪 PILOT MODE: Generating first 10 bundles only (~$0.50 cost)');
     }
 
     // Create temp directory
-    if (!fs.existsSync(this.tempDir)) {
-      fs.mkdirSync(this.tempDir, { recursive: true });
+    if (!fs.existsSync(TEMP_DIR)) {
+      fs.mkdirSync(TEMP_DIR, { recursive: true });
     }
 
-    // Create book content record first
+    // Create book content record first (required for foreign key constraint)
     await this.createBookContentRecord();
 
-    // Read simplified text from cache
+    // Read A2 simplified text from cache
     const cacheDir = path.join(process.cwd(), 'cache');
-    const simplifiedFile = path.join(cacheDir, `the-necklace-${this.level}-simplified.txt`);
+    const simplifiedFile = path.join(cacheDir, 'anne-of-green-gables-A2-simplified-pilot.txt');
 
     if (!fs.existsSync(simplifiedFile)) {
-      throw new Error(`${this.level} simplified text not found: ${simplifiedFile}. Run simplify-the-necklace.js ${this.level} first!`);
+      throw new Error(`A2 simplified text not found: ${simplifiedFile}. Run simplify-anne-of-green-gables.js first!`);
     }
 
     const simplifiedText = fs.readFileSync(simplifiedFile, 'utf-8');
-    console.log(`📖 Loaded ${this.level} simplified text: ${simplifiedText.length} characters`);
+    console.log(`📖 Loaded A2 simplified text: ${simplifiedText.length} characters`);
 
     // Split into sentences
     const sentences = this.splitIntoSentences(simplifiedText);
 
-    console.log(`📊 ${this.level} text statistics:`);
+    console.log(`📊 A2 text statistics:`);
     console.log(`   - Total sentences: ${sentences.length}`);
     console.log(`   - Estimated bundles: ${Math.ceil(sentences.length / SENTENCES_PER_BUNDLE)}`);
-    console.log(`   - ${this.level} level: Natural ${this.level === 'A2' ? 'compound' : 'complex'} sentences`);
+    console.log(`   - A2 compound sentences: YES`);
 
     // Create bundles (4 sentences each)
     const bundles = this.createBundles(sentences);
@@ -107,7 +98,7 @@ class NecklaceBundleGenerator {
       console.log(`🎵 Processing bundle ${bundle.index + 1}/${bundlesToProcess.length}...`);
 
       try {
-        // Generate audio using ElevenLabs with selected voice
+        // Generate audio using ElevenLabs with Daniel voice
         const audioBuffer = await this.generateElevenLabsAudio(bundle.text);
 
         // Get actual audio duration
@@ -116,12 +107,12 @@ class NecklaceBundleGenerator {
         console.log(`🎵 Actual audio duration: ${actualDuration.toFixed(2)}s`);
 
         const words = bundle.text.split(/\s+/).length;
-        const estimatedDuration = words * 0.32; // Daniel voice timing
+        const estimatedDuration = words * DANIEL_VOICE_SETTINGS.speed;
         console.log(`   Text: "${bundle.text.substring(0, 80)}..."`);
         console.log(`   Words: ${words}, Estimated duration: ${estimatedDuration.toFixed(2)}s`);
 
         // Upload to Supabase with versioned path
-        const versionedPath = `${this.bookId}/${this.level}/${this.contentHash}/bundle_${bundle.index}.mp3`;
+        const versionedPath = `${BOOK_ID}/A2/${CONTENT_HASH}/bundle_${bundle.index}.mp3`;
         const { data, error } = await supabase.storage
           .from('audio-files')
           .upload(versionedPath, audioBuffer, {
@@ -133,7 +124,7 @@ class NecklaceBundleGenerator {
           throw new Error(`Supabase upload failed: ${error.message}`);
         }
 
-        console.log(`   ✅ Uploaded: ${versionedPath} (hash: ${this.contentHash})`);
+        console.log(`   ✅ Uploaded: ${versionedPath} (hash: ${CONTENT_HASH})`);
 
         // Store bundle metadata in database
         await this.storeBundleMetadata(bundle, data.path, actualDuration);
@@ -158,24 +149,22 @@ class NecklaceBundleGenerator {
       }
     }
 
-    console.log('🎉 "The Necklace" bundle generation complete!');
+    console.log('🎉 Anne of Green Gables bundle generation complete!');
     console.log('');
     console.log('📊 Generation Summary:');
     console.log(`   - Total bundles: ${bundlesToProcess.length}`);
-    console.log(`   - Level: ${this.level}`);
-    console.log(`   - Voice: Daniel (ElevenLabs) with proven settings`);
-    console.log(`   - CDN path: ${this.bookId}/${this.level}/${this.contentHash}/bundle_X.mp3`);
-    console.log(`   - ${this.level} ${this.level === 'A2' ? 'compound' : 'complex'} sentences: Applied natural flow rules`);
+    console.log(`   - Voice: Daniel (ElevenLabs) with A2 settings`);
+    console.log(`   - CDN path: ${BOOK_ID}/A2/${CONTENT_HASH}/bundle_X.mp3`);
+    console.log(`   - A2 compound sentences: Applied natural flow rules`);
     console.log('');
     console.log('🚀 Next steps:');
-    console.log('1. Add "The Necklace" card to Featured Books page');
-    console.log('2. Test continuous playback with multi-level support');
-    console.log('3. Measure impact vs longer books');
+    console.log('1. Add Anne of Green Gables card to Featured Books page');
+    console.log('2. Test continuous playback with A2 voice');
+    console.log('3. Measure A2 comprehension improvements');
   }
 
   async generateElevenLabsAudio(text) {
-    const voiceId = getVoiceForLevel(this.level);
-    const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+    const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`, {
       method: 'POST',
       headers: {
         'Accept': 'audio/mpeg',
@@ -185,7 +174,7 @@ class NecklaceBundleGenerator {
       body: JSON.stringify({
         text: text,
         model_id: 'eleven_monolingual_v1', // Daniel's optimized model
-        voice_settings: VOICE_SETTINGS
+        voice_settings: DANIEL_VOICE_SETTINGS
       })
     });
 
@@ -209,22 +198,11 @@ class NecklaceBundleGenerator {
   }
 
   splitIntoSentences(text) {
-    // Preserve punctuation when splitting sentences with improved logic for B1 level
-    const sentences = text
-      .split(/(?<=[.!?])\s+(?=[A-Z"]|$)/) // Split on sentence endings followed by capital letter or quote
+    // Preserve punctuation when splitting sentences
+    return text
+      .split(/(?<=[.!?])\s+/)
       .map(s => s.trim())
       .filter(s => s.length > 5);
-
-    // For B1 level, further split quote-separated sentences for better highlighting
-    if (this.level === 'B1') {
-      return sentences.flatMap(sentence => {
-        // Handle cases like: "Ah, the good stew!" "I cannot imagine..."
-        const quoteSplit = sentence.split(/(?<=["'][.!?])\s+(?=["'][A-Z])/);
-        return quoteSplit.map(s => s.trim()).filter(s => s.length > 5);
-      });
-    }
-
-    return sentences;
   }
 
   createBundles(sentences) {
@@ -250,8 +228,8 @@ class NecklaceBundleGenerator {
     try {
       const existingChunks = await prisma.bookChunk.findMany({
         where: {
-          bookId: this.bookId,
-          cefrLevel: this.level
+          bookId: BOOK_ID,
+          cefrLevel: 'A2'
         },
         select: { chunkIndex: true }
       });
@@ -268,24 +246,21 @@ class NecklaceBundleGenerator {
     const sentenceTimings = [];
     let currentTime = 0;
 
-    // Use different timing for A1 vs A2 vs B1 (more complex levels need more time)
-    const secondsPerWord = this.level === 'A1' ? 0.30 : (this.level === 'A2' ? 0.32 : 0.40);
-    const safetyBuffer = this.level === 'A1' ? 0.1 : (this.level === 'A2' ? 0.1 : 0.2);
-
+    // Use 0.32s per word + 2.0s minimum (Daniel voice timing from Christmas Carol)
     const totalEstimatedDuration = bundle.sentences.reduce((sum, sentence) => {
       const words = sentence.trim().split(/\s+/).length;
-      return sum + Math.max(words * secondsPerWord, 2.0);
+      return sum + Math.max(words * 0.32, 2.0); // Daniel voice timing
     }, 0);
 
     const scaleFactor = actualDuration / totalEstimatedDuration;
     console.log(`⚖️ Timing scale factor: ${scaleFactor.toFixed(3)} (actual: ${actualDuration.toFixed(2)}s vs estimated: ${totalEstimatedDuration.toFixed(2)}s)`);
-    console.log(`🎯 Using ${this.level} timing: ${secondsPerWord}s/word + ${safetyBuffer}s buffer`);
 
     for (const sentence of bundle.sentences) {
       const words = sentence.trim().split(/\s+/).length;
-      const estimatedDuration = Math.max(words * secondsPerWord, 2.0);
+      const estimatedDuration = Math.max(words * 0.32, 2.0);
       const actualSentenceDuration = estimatedDuration * scaleFactor;
-      const finalDuration = actualSentenceDuration + safetyBuffer;
+      const safetyTail = 0.1; // 100ms safety buffer for Daniel's delivery
+      const finalDuration = actualSentenceDuration + safetyTail;
 
       sentenceTimings.push({
         text: sentence,
@@ -300,54 +275,55 @@ class NecklaceBundleGenerator {
     await prisma.bookChunk.upsert({
       where: {
         bookId_cefrLevel_chunkIndex: {
-          bookId: this.bookId,
-          cefrLevel: this.level,
+          bookId: BOOK_ID,
+          cefrLevel: 'A2',
           chunkIndex: bundle.index
         }
       },
       create: {
-        bookId: this.bookId,
-        cefrLevel: this.level,
+        bookId: BOOK_ID,
+        cefrLevel: 'A2',
         chunkIndex: bundle.index,
         chunkText: bundle.text,
         wordCount: bundle.text.split(/\s+/).length,
         audioFilePath: audioFilePath,
         audioProvider: 'elevenlabs',
-        audioVoiceId: getVoiceForLevel(this.level),
+        audioVoiceId: VOICE_ID,
         isSimplified: true
       },
       update: {
         chunkText: bundle.text,
         audioFilePath: audioFilePath,
         audioProvider: 'elevenlabs',
-        audioVoiceId: getVoiceForLevel(this.level)
+        audioVoiceId: VOICE_ID
       }
     });
+
   }
 
   async createBookContentRecord() {
-    console.log(`📝 Creating book content record (${this.level})...`);
+    console.log('📝 Creating book content record...');
 
     // Read the simplified text to get accurate word count
     const cacheDir = path.join(process.cwd(), 'cache');
-    const simplifiedFile = path.join(cacheDir, `the-necklace-${this.level}-simplified.txt`);
+    const simplifiedFile = path.join(cacheDir, 'anne-of-green-gables-A2-simplified-pilot.txt');
     const simplifiedText = fs.readFileSync(simplifiedFile, 'utf-8');
     const wordCount = simplifiedText.split(/\s+/).length;
 
     await prisma.bookContent.upsert({
-      where: { bookId: this.bookId },
+      where: { bookId: BOOK_ID },
       create: {
-        bookId: this.bookId,
-        title: 'The Necklace',
-        author: 'Guy de Maupassant',
+        bookId: BOOK_ID,
+        title: 'Anne of Green Gables',
+        author: 'L. M. Montgomery',
         fullText: simplifiedText,
-        era: 'modern',
+        era: 'early-modern',
         wordCount: wordCount,
         totalChunks: Math.ceil(this.splitIntoSentences(simplifiedText).length / SENTENCES_PER_BUNDLE)
       },
       update: {
-        title: 'The Necklace',
-        author: 'Guy de Maupassant',
+        title: 'Anne of Green Gables',
+        author: 'L. M. Montgomery',
         fullText: simplifiedText,
         wordCount: wordCount,
         totalChunks: Math.ceil(this.splitIntoSentences(simplifiedText).length / SENTENCES_PER_BUNDLE)
@@ -361,7 +337,7 @@ class NecklaceBundleGenerator {
 // Run the script
 async function main() {
   try {
-    const generator = new NecklaceBundleGenerator();
+    const generator = new AnneBundleGenerator();
     await generator.generateBundles();
   } catch (error) {
     console.error('❌ Bundle generation failed:', error.message);

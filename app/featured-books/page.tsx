@@ -89,11 +89,31 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     id: 'gift-of-the-magi',
     title: 'The Gift of the Magi',
     author: 'O. Henry',
-    description: 'Heartwarming Christmas story with chapter detection. A1 level with 6 thematic chapters. PILOT: 5 bundles available.',
+    description: 'Heartwarming Christmas story with Sarah voice narration. A1 level with 6 thematic chapters. Complete 13 bundles available.',
     sentences: 51,
-    bundles: 5,
+    bundles: 13,
     gradient: 'from-red-500 to-green-600',
     abbreviation: 'GM'
+  },
+  {
+    id: 'anne-of-green-gables-a2',
+    title: 'Anne of Green Gables',
+    author: 'L. M. Montgomery',
+    description: 'Coming-of-age classic with A2 natural compound sentences. Enhanced with Daniel voice narration. PILOT: 6 bundles available.',
+    sentences: 23,
+    bundles: 6,
+    gradient: 'from-emerald-500 to-green-600',
+    abbreviation: 'AG'
+  },
+  {
+    id: 'the-necklace',
+    title: 'The Necklace',
+    author: 'Guy de Maupassant',
+    description: 'Powerful short story about desire and sacrifice. A1, A2 & B1 levels with thematic sections. Perfect 15-minute emotional journey with Sarah (A1) & Daniel (A2/B1) voices.',
+    sentences: 20,
+    bundles: 5,
+    gradient: 'from-purple-500 to-pink-600',
+    abbreviation: 'TN'
   },
   {
     id: 'digital-library-test',
@@ -153,6 +173,15 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A1': '/api/jekyll-hyde/bundles',
     'A2': '/api/jekyll-hyde-a2/bundles'
   },
+  'the-necklace': {
+    'A1': '/api/the-necklace-a1/bundles',
+    'A2': '/api/the-necklace-a2/bundles',
+    'B1': '/api/the-necklace-b1/bundles'
+  },
+  'gift-of-the-magi': {
+    'A1': '/api/gift-of-the-magi-a1/bundles',
+    'A2': '/api/gift-of-the-magi-a2/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -164,7 +193,9 @@ const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'gutenberg-43': 'A2',  // Default to A2 for Jekyll & Hyde
   'sleepy-hollow-enhanced': 'A1',
   'christmas-carol-enhanced-v2': 'A1',
-  'gift-of-the-magi': 'A1',
+  'anne-of-green-gables-a2': 'A2',  // Default to A2 for Anne of Green Gables
+  'the-necklace': 'A1',  // Default to A1 for The Necklace (A1/A2/B1 support)
+  'gift-of-the-magi': 'A1',  // Default to A1 for Gift of the Magi (A1/A2 support)
   'digital-library-test': 'A2',
   'digital-library-test-2': 'A2',
   'digital-library-test-3': 'A2'
@@ -195,8 +226,8 @@ const getBookApiEndpoint = (bookId: string, level: string): string => {
   if (bookId === 'digital-library-test-3') {
     return '/api/digital-library-test-3/bundles';
   }
-  if (bookId === 'gift-of-the-magi') {
-    return '/api/gift-of-magi/bundles';
+  if (bookId === 'anne-of-green-gables-a2') {
+    return '/api/anne-of-green-gables-a2/bundles';
   }
 
   // Default to test-book API
@@ -259,6 +290,50 @@ const SLEEPY_HOLLOW_CHAPTERS = [
   }
 ];
 
+// The Necklace Chapter Structure (thematic sections for emotional flow)
+const THE_NECKLACE_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "The Invitation",
+    startSentence: 0,
+    endSentence: 78,
+    startBundle: 0,
+    endBundle: 19
+  },
+  {
+    chapterNumber: 2,
+    title: "The Ball",
+    startSentence: 79,
+    endSentence: 98,
+    startBundle: 20,
+    endBundle: 24
+  },
+  {
+    chapterNumber: 3,
+    title: "The Loss",
+    startSentence: 99,
+    endSentence: 138,
+    startBundle: 25,
+    endBundle: 34
+  },
+  {
+    chapterNumber: 4,
+    title: "The Sacrifice",
+    startSentence: 139,
+    endSentence: 178,
+    startBundle: 35,
+    endBundle: 44
+  },
+  {
+    chapterNumber: 5,
+    title: "The Truth",
+    startSentence: 179,
+    endSentence: 195,
+    startBundle: 45,
+    endBundle: 48
+  }
+];
+
 // Yellow Wallpaper Chapter Structure (psychological progression sections)
 const YELLOW_WALLPAPER_CHAPTERS = [
   {
@@ -295,47 +370,55 @@ const YELLOW_WALLPAPER_CHAPTERS = [
   }
 ];
 
-// Gift of the Magi Chapter Structure (PILOT VERSION - 5 bundles, 20 sentences)
+// Gift of the Magi Chapter Structure (A1 SIMPLIFIED - 13 bundles, 51 sentences)
 const GIFT_OF_THE_MAGI_CHAPTERS = [
   {
     chapterNumber: 1,
     title: "Pennies and Parsimony",
     startSentence: 0,
-    endSentence: 3,
+    endSentence: 7,
     startBundle: 0,
-    endBundle: 0
+    endBundle: 1
   },
   {
     chapterNumber: 2,
     title: "Della's Christmas Eve Predicament",
-    startSentence: 4,
-    endSentence: 7,
-    startBundle: 1,
-    endBundle: 1
+    startSentence: 8,
+    endSentence: 19,
+    startBundle: 2,
+    endBundle: 4
   },
   {
     chapterNumber: 3,
     title: "Saving for Jim's Present",
-    startSentence: 8,
-    endSentence: 11,
-    startBundle: 2,
-    endBundle: 2
+    startSentence: 20,
+    endSentence: 31,
+    startBundle: 5,
+    endBundle: 7
   },
   {
     chapterNumber: 4,
-    title: "The Hair Sacrifice",
-    startSentence: 12,
-    endSentence: 15,
-    startBundle: 3,
-    endBundle: 3
+    title: "The Unrivaled Platinum Chain",
+    startSentence: 32,
+    endSentence: 39,
+    startBundle: 8,
+    endBundle: 9
   },
   {
     chapterNumber: 5,
-    title: "The Journey to the Shop",
-    startSentence: 16,
-    endSentence: 19,
-    startBundle: 4,
-    endBundle: 4
+    title: "Jim's Quiet Entrance",
+    startSentence: 40,
+    endSentence: 47,
+    startBundle: 10,
+    endBundle: 11
+  },
+  {
+    chapterNumber: 6,
+    title: "Awakening to Love's Worth",
+    startSentence: 48,
+    endSentence: 50,
+    startBundle: 12,
+    endBundle: 12
   }
 ];
 
@@ -690,6 +773,8 @@ export default function FeaturedBooksPage() {
     // Define which books have multi-level support vs single-level
     const multiLevelBooks: { [key: string]: string[] } = {
       'gutenberg-43': ['A1', 'A2'], // Jekyll & Hyde has both A1 and A2
+      'the-necklace': ['A1', 'A2', 'B1'], // The Necklace has A1, A2, and B1
+      'gift-of-the-magi': ['A1', 'A2'], // Gift of the Magi has both A1 and A2
     };
 
     const singleLevelBooks: { [key: string]: string } = {
@@ -701,7 +786,6 @@ export default function FeaturedBooksPage() {
       'digital-library-test': 'A2',
       'digital-library-test-2': 'A2',
       'digital-library-test-3': 'A2',
-      'gift-of-the-magi': 'A1'
     };
 
     // Handle multi-level books
@@ -1450,6 +1534,8 @@ export default function FeaturedBooksPage() {
       return CHRISTMAS_CAROL_CHAPTERS;
     } else if (selectedBook.id === 'gift-of-the-magi') {
       return GIFT_OF_THE_MAGI_CHAPTERS;
+    } else if (selectedBook.id === 'the-necklace') {
+      return THE_NECKLACE_CHAPTERS;
     }
     return [];
   };
@@ -1988,7 +2074,8 @@ export default function FeaturedBooksPage() {
                     selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
                     selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
                     selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS :
-                    selectedBook?.id === 'christmas-carol-enhanced-v2' ? CHRISTMAS_CAROL_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
+                    selectedBook?.id === 'christmas-carol-enhanced-v2' ? CHRISTMAS_CAROL_CHAPTERS :
+                    selectedBook?.id === 'the-necklace' ? THE_NECKLACE_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
                     <button
                       key={chapter.chapterNumber}
                       onClick={async () => {

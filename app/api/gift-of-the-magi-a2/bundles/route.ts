@@ -23,28 +23,28 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const bookId = searchParams.get('bookId');
-    const level = searchParams.get('level') || 'A1';
+    const level = searchParams.get('level') || 'A2';
 
-    // This API supports The Gift of the Magi for A1 level
-    if (bookId !== 'gift-of-the-magi' && bookId !== 'gift-of-the-magi-a1') {
+    // This API supports The Gift of the Magi for A2 level
+    if (bookId !== 'gift-of-the-magi' && bookId !== 'gift-of-the-magi-a2') {
       return NextResponse.json({
         success: false,
-        error: 'This API only supports The Gift of the Magi A1'
+        error: 'This API only supports The Gift of the Magi A2'
       }, { status: 400 });
     }
 
     console.log(`🎁 Loading The Gift of the Magi bundles for level: ${level}`);
 
-    // Load bundles from cache file (complete 13 bundles with Sarah voice)
+    // Load bundles from cache file (A2 bundles with Sarah voice)
     let bundlesData;
     try {
-      const bundlesPath = path.join(process.cwd(), 'cache', 'gift-of-the-magi-A1-bundles.json');
+      const bundlesPath = path.join(process.cwd(), 'cache', 'gift-of-the-magi-A2-bundles.json');
       const bundlesFile = fs.readFileSync(bundlesPath, 'utf-8');
       bundlesData = JSON.parse(bundlesFile);
     } catch (error) {
       return NextResponse.json({
         success: false,
-        error: 'Could not load Gift of the Magi bundles'
+        error: 'Could not load Gift of the Magi A2 bundles'
       }, { status: 404 });
     }
 
@@ -84,16 +84,16 @@ export async function GET(request: NextRequest) {
         title: 'The Gift of the Magi',
         author: 'O. Henry'
       },
-      level: 'A1',
+      level: 'A2',
       totalBundles: bundles.length,
       totalSentences,
       bundles,
       chapters, // Add chapter structure for UI
-      source: 'updated-complete-version' // Indicates this is the complete 13-bundle version
+      source: 'complete-a2-version' // Indicates this is the complete A2 version
     });
 
   } catch (error) {
-    console.error('The Gift of the Magi A1 API error:', error);
+    console.error('The Gift of the Magi A2 API error:', error);
     return NextResponse.json({
       success: false,
       error: 'Internal server error'

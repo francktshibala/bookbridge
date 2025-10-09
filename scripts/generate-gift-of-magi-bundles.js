@@ -28,7 +28,26 @@ const SARAH_VOICE_SETTINGS = {
 };
 
 const BOOK_ID = 'gift-of-the-magi';
-const CEFR_LEVEL = 'A1';
+
+// SCRIPT LEVEL VALIDATION - MANDATORY FIRST (prevents runtime failures)
+const VALID_LEVELS = ['A1', 'A2', 'B1'];
+
+// Get target level from command line argument
+const targetLevel = process.argv[2];
+
+// Validate level before proceeding
+if (!targetLevel) {
+  console.error('❌ Error: Please specify a CEFR level (A1, A2, or B1)');
+  console.log('Usage: node scripts/generate-gift-of-magi-bundles.js [A1|A2|B1]');
+  process.exit(1);
+}
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
 
 class GiftOfMagiBundleGenerator {
   constructor() {
@@ -176,11 +195,14 @@ class GiftOfMagiBundleGenerator {
       const audioUrl = `https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/${fileName}`;
       bundle.audioUrl = audioUrl;
 
-      // Calculate sentence timings using universal formula (0.4s/word + 2s min)
+      // Calculate sentence timings using exact Necklace A1 proven timing (Sarah voice works perfectly)
+      // Use same timing as Necklace A1 that you confirmed works perfectly with Sarah
+      const secondsPerWord = 0.30;  // Proven working timing from Necklace A1 with Sarah
+
       let currentTime = 0;
       bundle.sentences.forEach(sentence => {
         const words = sentence.text.trim().split(/\\s+/).length;
-        const duration = Math.max(words * 0.4, 2.0); // Universal timing formula
+        const duration = Math.max(words * secondsPerWord, 2.0);
 
         sentence.startTime = currentTime;
         sentence.endTime = currentTime + duration;

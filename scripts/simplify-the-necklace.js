@@ -16,9 +16,28 @@ config({ path: '.env.local' });
 const BOOK_INFO = {
   id: 'the-necklace',
   inputFile: 'the-necklace-raw.txt',
+  outputFileA1: 'the-necklace-A1-simplified.txt',
   outputFileA2: 'the-necklace-A2-simplified.txt',
   outputFileB1: 'the-necklace-B1-simplified.txt'
 };
+
+// A1 Simplification Guidelines
+const A1_GUIDELINES = `
+- Use 500-1000 most common words
+- Present and simple past tense only
+- Natural compound sentences (8-12 words average - PROVEN BY MAYA STORY)
+- MAXIMUM 12 WORDS PER SENTENCE (Master Prevention - prevents highlighting issues)
+- Simple connectors: "and", "but", "when" (use sparingly, only when natural)
+- No cultural references or explain very simply
+- Maintain exact 1:1 sentence count mapping (CRITICAL)
+- Generate natural flow sentences (NOT forced micro-sentences)
+- AVOID: "She is sad. She cries. She goes." (robotic micro-sentences)
+- CORRECT A1: "She is sad and cries." OR "She is sad. She cries because she feels bad." (natural flow)
+- Each sentence should express one complete thought
+- Avoid semicolons - use periods instead
+- Preserve punctuation for proper formatting
+- Validate natural reading flow
+`;
 
 // A2 Simplification Guidelines (same as Anne of Green Gables)
 const A2_GUIDELINES = `
@@ -77,7 +96,7 @@ function cleanSentenceForAPI(sentence) {
 async function callOpenAI(sentence, level) {
   return new Promise((resolve, reject) => {
     const cleanSentence = cleanSentenceForAPI(sentence);
-    const guidelines = level === 'A2' ? A2_GUIDELINES : B1_GUIDELINES;
+    const guidelines = level === 'A1' ? A1_GUIDELINES : (level === 'A2' ? A2_GUIDELINES : B1_GUIDELINES);
 
     const data = JSON.stringify({
       model: 'gpt-4o-mini',
@@ -91,8 +110,8 @@ ${guidelines}
 Original sentence: "${cleanSentence}"
 
 Requirements:
-1. Use ${level === 'A2' ? '1200-1500' : '2000-2500'} most common words only
-2. Create ${level === 'A2' ? 'natural compound sentences (11-13 words average)' : 'flowing complex sentences (15-18 words average)'}
+1. Use ${level === 'A1' ? '500-1000' : (level === 'A2' ? '1200-1500' : '2000-2500')} most common words only
+2. Create ${level === 'A1' ? 'natural compound sentences (8-12 words average)' : (level === 'A2' ? 'natural compound sentences (11-13 words average)' : 'flowing complex sentences (15-18 words average)')}
 3. CRITICAL: Maximum ${level === 'A2' ? '15' : '25'} words per sentence (prevents highlighting issues)
 4. Each sentence should express one complete thought
 5. Avoid semicolons - use periods instead
@@ -151,7 +170,7 @@ Simplified sentence:`
 async function callClaudeAPI(sentence, level) {
   return new Promise((resolve, reject) => {
     const cleanSentence = cleanSentenceForAPI(sentence);
-    const guidelines = level === 'A2' ? A2_GUIDELINES : B1_GUIDELINES;
+    const guidelines = level === 'A1' ? A1_GUIDELINES : (level === 'A2' ? A2_GUIDELINES : B1_GUIDELINES);
 
     const data = JSON.stringify({
       model: 'claude-3-5-haiku-20241022',
@@ -165,8 +184,8 @@ ${guidelines}
 Original sentence: "${cleanSentence}"
 
 Requirements:
-1. Use ${level === 'A2' ? '1200-1500' : '2000-2500'} most common words only
-2. Create ${level === 'A2' ? 'natural compound sentences (11-13 words average)' : 'flowing complex sentences (15-18 words average)'}
+1. Use ${level === 'A1' ? '500-1000' : (level === 'A2' ? '1200-1500' : '2000-2500')} most common words only
+2. Create ${level === 'A1' ? 'natural compound sentences (8-12 words average)' : (level === 'A2' ? 'natural compound sentences (11-13 words average)' : 'flowing complex sentences (15-18 words average)')}
 3. CRITICAL: Maximum ${level === 'A2' ? '15' : '25'} words per sentence (prevents highlighting issues)
 4. Each sentence should express one complete thought
 5. Avoid semicolons - use periods instead
@@ -282,12 +301,13 @@ async function simplifyTheNecklace(level = 'A2') {
 
         // Count words to verify guidelines and sentence limits
         const wordCount = simplified.split(/\s+/).length;
-        const expectedRange = level === 'A2' ? '8-15' : '12-25';
-        const maxLimit = level === 'A2' ? 15 : 25;
+        const expectedRange = level === 'A1' ? '6-12' : (level === 'A2' ? '8-15' : '12-25');
+        const maxLimit = level === 'A1' ? 12 : (level === 'A2' ? 15 : 25);
         console.log(`📊 Word count: ${wordCount} words (max: ${maxLimit})`);
 
-        if (level === 'A2' && (wordCount < 8 || wordCount > 15)) {
-          console.log(`⚠️ A2 word count outside range (8-15), but keeping result`);
+        if ((level === 'A1' && (wordCount < 6 || wordCount > 12)) ||
+            (level === 'A2' && (wordCount < 8 || wordCount > 15))) {
+          console.log(`⚠️ ${level} word count outside range (${expectedRange}), but keeping result`);
         } else if (level === 'B1' && (wordCount < 12 || wordCount > 25)) {
           console.log(`⚠️ B1 word count outside range (12-25), but keeping result`);
         }
@@ -350,7 +370,7 @@ Requirements:
     const simplifiedText = simplifiedSentences.join(' ');
 
     // Save simplified text
-    const outputFile = level === 'A2' ? BOOK_INFO.outputFileA2 : BOOK_INFO.outputFileB1;
+    const outputFile = level === 'A1' ? BOOK_INFO.outputFileA1 : (level === 'A2' ? BOOK_INFO.outputFileA2 : BOOK_INFO.outputFileB1);
     const outputPath = path.join(cacheDir, `the-necklace-${level}-simplified${isPilot ? '-pilot' : ''}.txt`);
     fs.writeFileSync(outputPath, simplifiedText, 'utf-8');
     console.log(`💾 Saved ${isPilot ? 'pilot' : 'full'} simplification to: ${outputPath}`);
@@ -397,8 +417,8 @@ Requirements:
 // Run if called directly
 if (import.meta.url === `file://${process.argv[1]}`) {
   const level = process.argv[2] || 'A2';
-  if (!['A2', 'B1'].includes(level)) {
-    console.error('❌ Level must be A2 or B1');
+  if (!['A1', 'A2', 'B1'].includes(level)) {
+    console.error('❌ Level must be A1, A2, or B1');
     process.exit(1);
   }
   simplifyTheNecklace(level);

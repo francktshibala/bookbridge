@@ -1,8 +1,8 @@
 {
   "bookId": "gift-of-the-magi",
-  "title": "The Gift of the Magi (A1 Level)",
+  "title": "The Gift of the Magi (A2 Level)",
   "author": "O. Henry",
-  "cefrLevel": "A1",
+  "cefrLevel": "A2",
   "voiceSettings": {
     "voice_id": "EXAVITQu4vr4xnSDxMaL",
     "model_id": "eleven_monolingual_v1",
@@ -14,8 +14,8 @@
       "use_speaker_boost": true
     }
   },
-  "totalBundles": 13,
-  "totalSentences": 51,
+  "totalBundles": 12,
+  "totalSentences": 47,
   "bundles": [
     {
       "bundleIndex": 0,
@@ -23,30 +23,30 @@
       "sentences": [
         {
           "sentenceIndex": 0,
-          "text": "One dollar and eighty-seven cents.",
+          "text": "One dollar and eighty-seven cents was all the money that Della had saved.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 1,
-          "text": "That was all.",
+          "text": "That was everything she had after saving for months.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 2,
-          "text": "Della had only this money.",
+          "text": "Della counted her money again, but it was still only one dollar and eighty-seven cents.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 3,
-          "text": "She wanted to buy Jim a gift.",
+          "text": "She wanted to buy Jim a special Christmas gift.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_0.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_0.mp3",
       "totalDuration": 8
     },
     {
@@ -55,30 +55,30 @@
       "sentences": [
         {
           "sentenceIndex": 4,
-          "text": "Christmas was tomorrow.",
+          "text": "Christmas was coming tomorrow, and she felt desperate about the money situation.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 5,
-          "text": "She was sad about the money.",
+          "text": "She sat down on her old couch and started crying softly.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 6,
-          "text": "She sat down and cried.",
+          "text": "She loved Jim very much and wanted to make him happy.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 7,
-          "text": "She loved Jim very much.",
+          "text": "He worked hard every day at his office job.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_1.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_1.mp3",
       "totalDuration": 8
     },
     {
@@ -87,30 +87,30 @@
       "sentences": [
         {
           "sentenceIndex": 8,
-          "text": "He worked hard every day.",
+          "text": "She desperately wanted to find something special and meaningful for him.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 9,
-          "text": "She wanted something special for him.",
+          "text": "But she had no money left after paying all their bills.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 10,
-          "text": "But she had no money.",
+          "text": "She walked to the mirror and looked at her reflection carefully.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 11,
-          "text": "She looked in the mirror.",
+          "text": "Her beautiful hair was very long and reached her waist gracefully.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_2.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_2.mp3",
       "totalDuration": 8
     },
     {
@@ -119,30 +119,30 @@
       "sentences": [
         {
           "sentenceIndex": 12,
-          "text": "Her hair was very long.",
+          "text": "It was thick, shiny brown hair that everyone always admired.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 13,
-          "text": "It was beautiful brown hair.",
+          "text": "Suddenly she had a brilliant idea about selling her precious hair.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 14,
-          "text": "She had an idea about her hair.",
+          "text": "She knew that women sometimes sold their hair to make money.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 15,
-          "text": "She could sell her hair.",
+          "text": "She quickly put on her winter coat and rushed outside.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_3.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_3.mp3",
       "totalDuration": 8
     },
     {
@@ -151,30 +151,30 @@
       "sentences": [
         {
           "sentenceIndex": 16,
-          "text": "Hair was worth money sometimes.",
+          "text": "She hurried down the street until she found a shop that bought hair.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 17,
-          "text": "She put on her coat.",
+          "text": "The woman in the shop examined her hair and bought it immediately.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 18,
-          "text": "She went to the street.",
+          "text": "Della received twenty dollars for her beautiful hair, which was enough money.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 19,
-          "text": "She found a hair shop.",
+          "text": "Now she finally had enough money to buy Jim's Christmas present.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_4.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_4.mp3",
       "totalDuration": 8
     },
     {
@@ -183,30 +183,30 @@
       "sentences": [
         {
           "sentenceIndex": 20,
-          "text": "The woman bought her hair.",
+          "text": "She felt both happy and sad about losing her beautiful hair.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 21,
-          "text": "Della got twenty dollars for it.",
+          "text": "Her lovely hair was completely gone, and she looked very different without it.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 22,
-          "text": "Now she had money for Jim.",
+          "text": "She went shopping to find the perfect gift for her husband.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 23,
-          "text": "She was happy but sad.",
+          "text": "She discovered a beautiful platinum watch chain in an elegant jewelry store.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_5.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_5.mp3",
       "totalDuration": 8
     },
     {
@@ -215,30 +215,30 @@
       "sentences": [
         {
           "sentenceIndex": 24,
-          "text": "Her hair was gone now.",
+          "text": "It was absolutely perfect for Jim's precious gold pocket watch that he treasured.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 25,
-          "text": "She looked very different without hair.",
+          "text": "Jim loved his grandfather's gold watch more than anything else he owned.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 26,
-          "text": "She went to find a gift.",
+          "text": "The expensive chain cost exactly twenty dollars, which was all her money.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 27,
-          "text": "She saw a beautiful watch chain.",
+          "text": "She bought the beautiful chain for Jim without any hesitation.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_6.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_6.mp3",
       "totalDuration": 8
     },
     {
@@ -247,30 +247,30 @@
       "sentences": [
         {
           "sentenceIndex": 28,
-          "text": "It was perfect for Jim's watch.",
+          "text": "She returned home with the special gift and felt nervous about Jim's reaction.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 29,
-          "text": "Jim loved his gold watch.",
+          "text": "She was very worried about how Jim would react to her short hair.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 30,
-          "text": "The chain cost twenty dollars.",
+          "text": "What would Jim think when he saw her completely different appearance?",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 31,
-          "text": "She bought the chain for Jim.",
+          "text": "She prepared their dinner carefully and waited anxiously for him to come home.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_7.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_7.mp3",
       "totalDuration": 8
     },
     {
@@ -279,30 +279,30 @@
       "sentences": [
         {
           "sentenceIndex": 32,
-          "text": "She went home with the gift.",
+          "text": "Jim came home from work and stopped suddenly when he saw her.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 33,
-          "text": "She was worried about her hair.",
+          "text": "He looked at Della with a strange, surprised expression on his face.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 34,
-          "text": "What would Jim think about it.",
+          "text": "He immediately noticed her short hair and seemed shocked by the dramatic change.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 35,
-          "text": "She made dinner and waited.",
+          "text": "He was completely surprised and couldn't believe what he was seeing.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_8.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_8.mp3",
       "totalDuration": 8
     },
     {
@@ -311,30 +311,30 @@
       "sentences": [
         {
           "sentenceIndex": 36,
-          "text": "Jim came home from work.",
+          "text": "Della nervously explained why she had sold her precious hair for money.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 37,
-          "text": "He looked at Della strangely.",
+          "text": "She proudly showed him the beautiful platinum watch chain she had bought.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 38,
-          "text": "He saw her short hair.",
+          "text": "Jim looked at her with a sad but loving smile on his face.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 39,
-          "text": "He was very surprised about it.",
+          "text": "He told her that he also had a special surprise for her.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_9.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_9.mp3",
       "totalDuration": 8
     },
     {
@@ -343,30 +343,30 @@
       "sentences": [
         {
           "sentenceIndex": 40,
-          "text": "Della explained about the hair.",
+          "text": "He had sold his precious watch earlier that day to buy something special.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 41,
-          "text": "She showed him the watch chain.",
+          "text": "He had bought beautiful decorative combs for her long, lovely hair.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 42,
-          "text": "Jim smiled at her sadly.",
+          "text": "The expensive combs were specifically designed for her beautiful long hair that was now gone.",
           "startTime": 4,
           "endTime": 6
         },
         {
           "sentenceIndex": 43,
-          "text": "He had a surprise too.",
+          "text": "Now both of their thoughtful gifts were completely useless to each other.",
           "startTime": 6,
           "endTime": 8
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_10.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_10.mp3",
       "totalDuration": 8
     },
     {
@@ -375,58 +375,26 @@
       "sentences": [
         {
           "sentenceIndex": 44,
-          "text": "He sold his watch today.",
+          "text": "But they realized that they loved each other more than ever before.",
           "startTime": 0,
           "endTime": 2
         },
         {
           "sentenceIndex": 45,
-          "text": "He bought beautiful combs for her hair.",
+          "text": "The gifts had shown their true, deep love and sacrifice for each other.",
           "startTime": 2,
           "endTime": 4
         },
         {
           "sentenceIndex": 46,
-          "text": "The combs were for her long hair.",
-          "startTime": 4,
-          "endTime": 6
-        },
-        {
-          "sentenceIndex": 47,
-          "text": "Now the gifts were not useful.",
-          "startTime": 6,
-          "endTime": 8
-        }
-      ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_11.mp3",
-      "totalDuration": 8
-    },
-    {
-      "bundleIndex": 12,
-      "bundleId": "bundle_12",
-      "sentences": [
-        {
-          "sentenceIndex": 48,
-          "text": "But they loved each other more.",
-          "startTime": 0,
-          "endTime": 2
-        },
-        {
-          "sentenceIndex": 49,
-          "text": "The gifts showed their true love.",
-          "startTime": 2,
-          "endTime": 4
-        },
-        {
-          "sentenceIndex": 50,
-          "text": "They were the wisest people of all.",
+          "text": "They were truly the wisest and most loving people in the world.",
           "startTime": 4,
           "endTime": 6
         }
       ],
-      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A1/sarah/bundle_12.mp3",
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/A2/sarah/bundle_11.mp3",
       "totalDuration": 6
     }
   ],
-  "createdAt": "2025-10-09T07:17:35.461Z"
+  "createdAt": "2025-10-09T08:38:40.096Z"
 }

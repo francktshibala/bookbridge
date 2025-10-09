@@ -14,11 +14,62 @@ const openai = new OpenAI({
 });
 
 const BOOK_ID = 'gift-of-the-magi';
-const CEFR_LEVEL = 'A1';  // Start with A1 for testing
+
+// SCRIPT LEVEL VALIDATION - MANDATORY FIRST (prevents runtime failures)
+const VALID_LEVELS = ['A1', 'A2', 'B1'];
+
+// Get target level from command line argument
+const targetLevel = process.argv[2];
+
+// Validate level before proceeding
+if (!targetLevel) {
+  console.error('❌ Error: Please specify a CEFR level (A1, A2, or B1)');
+  console.log('Usage: node scripts/simplify-gift-of-magi.js [A1|A2|B1]');
+  process.exit(1);
+}
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
+
+// CEFR Level Guidelines
+const A1_GUIDELINES = `
+- Simple present and past tense only
+- 6-12 words per sentence (compound sentences allowed)
+- Basic vocabulary (most common 1000 words)
+- Simple sentence structures
+- Clear subject-verb-object patterns
+`;
+
+const A2_GUIDELINES = `
+- Present, past, and simple future tenses
+- 8-15 words per sentence (complex sentences allowed)
+- Expanded vocabulary (2000+ words, some descriptive language)
+- Coordinating conjunctions (and, but, so)
+- Relative clauses with "that" and "who"
+`;
+
+const B1_GUIDELINES = `
+- All basic tenses plus present perfect
+- 12-25 words per sentence (complex structures)
+- Rich vocabulary (3000+ words, abstract concepts)
+- Subordinating conjunctions and varied sentence structures
+- Past perfect for sequence of events
+`;
+
+// Word count validation by level
+const WORD_COUNT_LIMITS = {
+  'A1': { min: 6, max: 12 },
+  'A2': { min: 8, max: 15 },
+  'B1': { min: 12, max: 25 }
+};
 
 async function simplifyGiftOfMagi() {
-  console.log('✂️ Simplifying "The Gift of the Magi" to A1 level...');
-  console.log('📖 Following master file: Compound sentences (8-10 words), perfect 1:1 mapping\\n');
+  console.log(`✂️ Simplifying "The Gift of the Magi" to ${CEFR_LEVEL} level...`);
+  console.log(`📖 Word count: ${WORD_COUNT_LIMITS[CEFR_LEVEL].min}-${WORD_COUNT_LIMITS[CEFR_LEVEL].max} words per sentence\\n`);
 
   try {
     // Load original text
@@ -113,16 +164,25 @@ async function simplifyGiftOfMagi() {
 }
 
 async function simplifyChunk(sentences, chunkNumber) {
+  // Get appropriate guidelines for the target level
+  const guidelines = {
+    'A1': A1_GUIDELINES,
+    'A2': A2_GUIDELINES,
+    'B1': B1_GUIDELINES
+  }[CEFR_LEVEL];
+
+  const wordLimits = WORD_COUNT_LIMITS[CEFR_LEVEL];
+
   const simplificationPrompt = `
-Simplify these sentences from "The Gift of the Magi" to A1 CEFR level.
+Simplify these sentences from "The Gift of the Magi" to ${CEFR_LEVEL} CEFR level.
 
 CRITICAL RULES:
 1. Return EXACTLY ${sentences.length} sentences (one simplified sentence per original)
-2. Use 8-10 words per sentence (A1 appropriate)
-3. Use simple A1 vocabulary only
+2. Use ${wordLimits.min}-${wordLimits.max} words per sentence (${CEFR_LEVEL} appropriate)
+3. Follow ${CEFR_LEVEL} guidelines: ${guidelines}
 4. Keep all names: Della, Jim, etc.
 5. Preserve story meaning and emotion
-6. Use simple connectors: "and", "but", "so", "then"
+6. Use appropriate connectors for ${CEFR_LEVEL} level
 
 Original sentences to simplify:
 ${sentences.map((s, i) => `${i + 1}. ${s.trim()}.`).join('\\n')}
