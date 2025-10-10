@@ -1,0 +1,62 @@
+{
+  "index": 40,
+  "sentences": [
+    {
+      "sentenceIndex": 160,
+      "text": "On no account, cried little Hans, and he jumped out of bed, dressed himself, and went to the barn."
+    },
+    {
+      "sentenceIndex": 161,
+      "text": "He worked there all day long until sunset, and at sunset, the Miller came to see how he was doing."
+    },
+    {
+      "sentenceIndex": 162,
+      "text": "'Have you fixed the hole in the roof yet, little Hans?' cried the Miller in a cheerful voice."
+    },
+    {
+      "sentenceIndex": 163,
+      "text": "'It is completely fixed,' answered little Hans as he came down the ladder."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_40.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_40.mp3",
+  "duration": 33.98111111111111,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 160,
+      "startTime": 0,
+      "endTime": 8.764444444444443,
+      "text": "On no account, cried little Hans, and he jumped out of bed, dressed himself, and went to the barn."
+    },
+    {
+      "sentenceIndex": 161,
+      "startTime": 8.764444444444443,
+      "endTime": 18.023333333333333,
+      "text": "He worked there all day long until sunset, and at sunset, the Miller came to see how he was doing."
+    },
+    {
+      "sentenceIndex": 162,
+      "startTime": 18.023333333333333,
+      "endTime": 26.293333333333333,
+      "text": "'Have you fixed the hole in the roof yet, little Hans?' cried the Miller in a cheerful voice."
+    },
+    {
+      "sentenceIndex": 163,
+      "startTime": 26.293333333333333,
+      "endTime": 32.19111111111111,
+      "text": "'It is completely fixed,' answered little Hans as he came down the ladder."
+    }
+  ],
+  "wordCount": 70,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:09:12.389Z"
+  }
+}

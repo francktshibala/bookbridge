@@ -1,0 +1,62 @@
+{
+  "index": 17,
+  "sentences": [
+    {
+      "sentenceIndex": 68,
+      "text": "But he was young, so you should forgive him."
+    },
+    {
+      "sentenceIndex": 69,
+      "text": "'Is that the end of the story?'"
+    },
+    {
+      "sentenceIndex": 70,
+      "text": "Certainly not, answered the Linnet, that is the beginning."
+    },
+    {
+      "sentenceIndex": 71,
+      "text": "Then you are behind the times, said the Water-rat."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_17.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_17.mp3",
+  "duration": 16.031111111111112,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 68,
+      "startTime": 0,
+      "endTime": 4.12,
+      "text": "But he was young, so you should forgive him."
+    },
+    {
+      "sentenceIndex": 69,
+      "startTime": 4.12,
+      "endTime": 7.351111111111111,
+      "text": "'Is that the end of the story?'"
+    },
+    {
+      "sentenceIndex": 70,
+      "startTime": 7.351111111111111,
+      "endTime": 11.47111111111111,
+      "text": "Certainly not, answered the Linnet, that is the beginning."
+    },
+    {
+      "sentenceIndex": 71,
+      "startTime": 11.47111111111111,
+      "endTime": 15.591111111111111,
+      "text": "Then you are behind the times, said the Water-rat."
+    }
+  ],
+  "wordCount": 34,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:39:43.657Z"
+  }
+}

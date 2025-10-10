@@ -1,0 +1,62 @@
+{
+  "index": 10,
+  "sentences": [
+    {
+      "sentenceIndex": 40,
+      "text": "The neighbors thought it was strange that the rich Miller never gave Hans anything."
+    },
+    {
+      "sentenceIndex": 41,
+      "text": "The Miller had many sacks of flour, cows, and sheep, but Hans did not care."
+    },
+    {
+      "sentenceIndex": 42,
+      "text": "Hans loved to listen to the Miller's talks about friendship."
+    },
+    {
+      "sentenceIndex": 43,
+      "text": "Hans worked in his garden and was happy in spring, summer, and autumn."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_10.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_10.mp3",
+  "duration": 18.653333333333332,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 40,
+      "startTime": 0,
+      "endTime": 4.846666666666666,
+      "text": "The neighbors thought it was strange that the rich Miller never gave Hans anything."
+    },
+    {
+      "sentenceIndex": 41,
+      "startTime": 4.846666666666666,
+      "endTime": 10.056666666666665,
+      "text": "The Miller had many sacks of flour, cows, and sheep, but Hans did not care."
+    },
+    {
+      "sentenceIndex": 42,
+      "startTime": 10.056666666666665,
+      "endTime": 13.509999999999998,
+      "text": "Hans loved to listen to the Miller's talks about friendship."
+    },
+    {
+      "sentenceIndex": 43,
+      "startTime": 13.509999999999998,
+      "endTime": 17.993333333333332,
+      "text": "Hans worked in his garden and was happy in spring, summer, and autumn."
+    }
+  ],
+  "wordCount": 52,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:50:24.820Z"
+  }
+}

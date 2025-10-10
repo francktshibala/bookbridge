@@ -1,0 +1,62 @@
+{
+  "index": 11,
+  "sentences": [
+    {
+      "sentenceIndex": 44,
+      "text": "The Miller would say to his wife, 'There is no point in visiting Hans while it is snowing because people in trouble should be left alone.'"
+    },
+    {
+      "sentenceIndex": 45,
+      "text": "He believed this was true friendship, and he was sure he was right."
+    },
+    {
+      "sentenceIndex": 46,
+      "text": "He decided to wait until spring to visit Hans, thinking Hans would be happy to give him a big basket of flowers."
+    },
+    {
+      "sentenceIndex": 47,
+      "text": "His wife, sitting by the warm fire, said, 'You are very thoughtful about others.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_11.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_11.mp3",
+  "duration": 35.89333333333333,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 44,
+      "startTime": 0,
+      "endTime": 12.155555555555557,
+      "text": "The Miller would say to his wife, 'There is no point in visiting Hans while it is snowing because people in trouble should be left alone.'"
+    },
+    {
+      "sentenceIndex": 45,
+      "startTime": 12.155555555555557,
+      "endTime": 18.053333333333335,
+      "text": "He believed this was true friendship, and he was sure he was right."
+    },
+    {
+      "sentenceIndex": 46,
+      "startTime": 18.053333333333335,
+      "endTime": 28.27111111111111,
+      "text": "He decided to wait until spring to visit Hans, thinking Hans would be happy to give him a big basket of flowers."
+    },
+    {
+      "sentenceIndex": 47,
+      "startTime": 28.27111111111111,
+      "endTime": 34.61333333333333,
+      "text": "His wife, sitting by the warm fire, said, 'You are very thoughtful about others.'"
+    }
+  ],
+  "wordCount": 75,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:39:10.484Z"
+  }
+}

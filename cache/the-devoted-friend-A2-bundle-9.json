@@ -1,0 +1,62 @@
+{
+  "index": 9,
+  "sentences": [
+    {
+      "sentenceIndex": 36,
+      "text": "Columbine, Ladysmock, Marjoram, and Wild Basil grew in their time, so there were always nice flowers and smells."
+    },
+    {
+      "sentenceIndex": 37,
+      "text": "Little Hans had many friends, but his best friend was Hugh the Miller."
+    },
+    {
+      "sentenceIndex": 38,
+      "text": "Hugh the Miller loved Hans so much that he always took flowers or fruit from his garden."
+    },
+    {
+      "sentenceIndex": 39,
+      "text": "The Miller said, 'Real friends share everything,' and Hans felt proud to have such a good friend."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_9.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_9.mp3",
+  "duration": 31.04888888888889,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 36,
+      "startTime": 0,
+      "endTime": 8.28,
+      "text": "Columbine, Ladysmock, Marjoram, and Wild Basil grew in their time, so there were always nice flowers and smells."
+    },
+    {
+      "sentenceIndex": 37,
+      "startTime": 8.28,
+      "endTime": 14.177777777777777,
+      "text": "Little Hans had many friends, but his best friend was Hugh the Miller."
+    },
+    {
+      "sentenceIndex": 38,
+      "startTime": 14.177777777777777,
+      "endTime": 21.973333333333333,
+      "text": "Hugh the Miller loved Hans so much that he always took flowers or fruit from his garden."
+    },
+    {
+      "sentenceIndex": 39,
+      "startTime": 21.973333333333333,
+      "endTime": 29.76888888888889,
+      "text": "The Miller said, 'Real friends share everything,' and Hans felt proud to have such a good friend."
+    }
+  ],
+  "wordCount": 65,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:30:39.926Z"
+  }
+}

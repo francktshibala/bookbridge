@@ -1,0 +1,62 @@
+{
+  "index": 25,
+  "sentences": [
+    {
+      "sentenceIndex": 100,
+      "text": "Hans explained that he had to sell many things because winter was very hard for him, and he had no money to buy bread."
+    },
+    {
+      "sentenceIndex": 101,
+      "text": "He sold the silver buttons from his Sunday coat, then his silver chain, and after that, he sold his big pipe."
+    },
+    {
+      "sentenceIndex": 102,
+      "text": "Finally, Hans sold his wheelbarrow, but he plans to buy everything back now."
+    },
+    {
+      "sentenceIndex": 103,
+      "text": "The Miller told Hans that he would give him his wheelbarrow."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_25.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_25.mp3",
+  "duration": 33.486666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 100,
+      "startTime": 0,
+      "endTime": 11.236666666666666,
+      "text": "Hans explained that he had to sell many things because winter was very hard for him, and he had no money to buy bread."
+    },
+    {
+      "sentenceIndex": 101,
+      "startTime": 11.236666666666666,
+      "endTime": 20.990000000000002,
+      "text": "He sold the silver buttons from his Sunday coat, then his silver chain, and after that, he sold his big pipe."
+    },
+    {
+      "sentenceIndex": 102,
+      "startTime": 20.990000000000002,
+      "endTime": 26.88777777777778,
+      "text": "Finally, Hans sold his wheelbarrow, but he plans to buy everything back now."
+    },
+    {
+      "sentenceIndex": 103,
+      "startTime": 26.88777777777778,
+      "endTime": 31.896666666666672,
+      "text": "The Miller told Hans that he would give him his wheelbarrow."
+    }
+  ],
+  "wordCount": 69,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:07:18.149Z"
+  }
+}

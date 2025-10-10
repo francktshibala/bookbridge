@@ -1,0 +1,62 @@
+{
+  "index": 18,
+  "sentences": [
+    {
+      "sentenceIndex": 72,
+      "text": "He said, 'Good stories start with the end and then the start.'"
+    },
+    {
+      "sentenceIndex": 73,
+      "text": "This is the new way."
+    },
+    {
+      "sentenceIndex": 74,
+      "text": "I heard about it from a critic near the pond."
+    },
+    {
+      "sentenceIndex": 75,
+      "text": "The critic talked a lot, and he seemed right."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_18.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_18.mp3",
+  "duration": 12.84,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 72,
+      "startTime": 0,
+      "endTime": 4.12,
+      "text": "He said, 'Good stories start with the end and then the start.'"
+    },
+    {
+      "sentenceIndex": 73,
+      "startTime": 4.12,
+      "endTime": 5.906666666666666,
+      "text": "This is the new way."
+    },
+    {
+      "sentenceIndex": 74,
+      "startTime": 5.906666666666666,
+      "endTime": 9.36,
+      "text": "I heard about it from a critic near the pond."
+    },
+    {
+      "sentenceIndex": 75,
+      "startTime": 9.36,
+      "endTime": 12.48,
+      "text": "The critic talked a lot, and he seemed right."
+    }
+  ],
+  "wordCount": 36,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:07.730Z"
+  }
+}

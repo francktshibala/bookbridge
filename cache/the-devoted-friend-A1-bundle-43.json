@@ -1,0 +1,62 @@
+{
+  "index": 43,
+  "sentences": [
+    {
+      "sentenceIndex": 172,
+      "text": "Little Hans asked, 'Do you really think I will?'"
+    },
+    {
+      "sentenceIndex": 173,
+      "text": "The Miller answered, 'I am sure you will.'"
+    },
+    {
+      "sentenceIndex": 174,
+      "text": "He said, 'Now you fixed the roof, go home and rest, because I need you to take my sheep to the mountain tomorrow.'"
+    },
+    {
+      "sentenceIndex": 175,
+      "text": "Hans was afraid to say no, so the next morning he took the sheep to the mountain."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_43.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_43.mp3",
+  "duration": 20.470000000000002,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 172,
+      "startTime": 0,
+      "endTime": 3.12,
+      "text": "Little Hans asked, 'Do you really think I will?'"
+    },
+    {
+      "sentenceIndex": 173,
+      "startTime": 3.12,
+      "endTime": 5.906666666666666,
+      "text": "The Miller answered, 'I am sure you will.'"
+    },
+    {
+      "sentenceIndex": 174,
+      "startTime": 5.906666666666666,
+      "endTime": 14.023333333333332,
+      "text": "He said, 'Now you fixed the roof, go home and rest, because I need you to take my sheep to the mountain tomorrow.'"
+    },
+    {
+      "sentenceIndex": 175,
+      "startTime": 14.023333333333332,
+      "endTime": 19.959999999999997,
+      "text": "Hans was afraid to say no, so the next morning he took the sheep to the mountain."
+    }
+  ],
+  "wordCount": 57,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:02:02.574Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 20,
+  "sentences": [
+    {
+      "sentenceIndex": 80,
+      "text": "‘What a good heart you have!’ said his Wife."
+    },
+    {
+      "sentenceIndex": 81,
+      "text": "‘You always think of others, and you are kind.’"
+    },
+    {
+      "sentenceIndex": 82,
+      "text": "‘Take the big basket with you for the flowers.’"
+    },
+    {
+      "sentenceIndex": 83,
+      "text": "The Miller tied the sails with a chain and went down the hill."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_20.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_20.mp3",
+  "duration": 14.293333333333331,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 80,
+      "startTime": 0,
+      "endTime": 3.12,
+      "text": "‘What a good heart you have!’ said his Wife."
+    },
+    {
+      "sentenceIndex": 81,
+      "startTime": 3.12,
+      "endTime": 6.24,
+      "text": "‘You always think of others, and you are kind.’"
+    },
+    {
+      "sentenceIndex": 82,
+      "startTime": 6.24,
+      "endTime": 9.36,
+      "text": "‘Take the big basket with you for the flowers.’"
+    },
+    {
+      "sentenceIndex": 83,
+      "startTime": 9.36,
+      "endTime": 13.843333333333334,
+      "text": "The Miller tied the sails with a chain and went down the hill."
+    }
+  ],
+  "wordCount": 40,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:17.657Z"
+  }
+}

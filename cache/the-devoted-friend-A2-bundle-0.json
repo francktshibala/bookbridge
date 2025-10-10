@@ -1,0 +1,62 @@
+{
+  "index": 0,
+  "sentences": [
+    {
+      "sentenceIndex": 0,
+      "text": "One morning, the old Water-rat looked out of his hole."
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "He had bright eyes and stiff grey whiskers, and his tail was long and black."
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "The little ducks were swimming in the pond, looking like yellow canaries, and their mother was teaching them to stand on their heads in the water."
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "She was pure white with red legs, and she kept saying they must learn to stand on their heads to be in the best society."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_0.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_0.mp3",
+  "duration": 36.37777777777777,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "startTime": 0,
+      "endTime": 4.564444444444445,
+      "text": "One morning, the old Water-rat looked out of his hole."
+    },
+    {
+      "sentenceIndex": 1,
+      "startTime": 4.564444444444445,
+      "endTime": 11.391111111111112,
+      "text": "He had bright eyes and stiff grey whiskers, and his tail was long and black."
+    },
+    {
+      "sentenceIndex": 2,
+      "startTime": 11.391111111111112,
+      "endTime": 23.546666666666667,
+      "text": "The little ducks were swimming in the pond, looking like yellow canaries, and their mother was teaching them to stand on their heads in the water."
+    },
+    {
+      "sentenceIndex": 3,
+      "startTime": 23.546666666666667,
+      "endTime": 35.217777777777776,
+      "text": "She was pure white with red legs, and she kept saying they must learn to stand on their heads to be in the best society."
+    }
+  ],
+  "wordCount": 76,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:29:49.235Z"
+  }
+}

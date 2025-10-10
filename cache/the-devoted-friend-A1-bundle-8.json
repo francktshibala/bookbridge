@@ -1,0 +1,62 @@
+{
+  "index": 8,
+  "sentences": [
+    {
+      "sentenceIndex": 32,
+      "text": "He lived alone in a small house and worked in his garden every day."
+    },
+    {
+      "sentenceIndex": 33,
+      "text": "His garden was the most beautiful in the area."
+    },
+    {
+      "sentenceIndex": 34,
+      "text": "He had Sweet-william, Gilly-flowers, and Shepherds’-purses in his garden."
+    },
+    {
+      "sentenceIndex": 35,
+      "text": "There were also Roses, Crocuses, and Violets."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_8.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_8.mp3",
+  "duration": 13.93,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 32,
+      "startTime": 0,
+      "endTime": 4.846666666666666,
+      "text": "He lived alone in a small house and worked in his garden every day."
+    },
+    {
+      "sentenceIndex": 33,
+      "startTime": 4.846666666666666,
+      "endTime": 7.966666666666666,
+      "text": "His garden was the most beautiful in the area."
+    },
+    {
+      "sentenceIndex": 34,
+      "startTime": 7.966666666666666,
+      "endTime": 11.086666666666666,
+      "text": "He had Sweet-william, Gilly-flowers, and Shepherds’-purses in his garden."
+    },
+    {
+      "sentenceIndex": 35,
+      "startTime": 11.086666666666666,
+      "endTime": 13.54,
+      "text": "There were also Roses, Crocuses, and Violets."
+    }
+  ],
+  "wordCount": 39,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:42:12.083Z"
+  }
+}

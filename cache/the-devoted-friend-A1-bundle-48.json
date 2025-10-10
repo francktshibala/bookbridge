@@ -1,0 +1,62 @@
+{
+  "index": 48,
+  "sentences": [
+    {
+      "sentenceIndex": 192,
+      "text": "But you must lend me your lantern, because the night is very dark, and I might fall."
+    },
+    {
+      "sentenceIndex": 193,
+      "text": "'I am sorry,' said the Miller, 'but it is my new lantern, and I would be sad if it broke."
+    },
+    {
+      "sentenceIndex": 194,
+      "text": "'Never mind, I will go without it,' said little Hans, and he put on his coat and cap."
+    },
+    {
+      "sentenceIndex": 195,
+      "text": "What a terrible storm it was!"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_48.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_48.mp3",
+  "duration": 21.923333333333332,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 192,
+      "startTime": 0,
+      "endTime": 5.9366666666666665,
+      "text": "But you must lend me your lantern, because the night is very dark, and I might fall."
+    },
+    {
+      "sentenceIndex": 193,
+      "startTime": 5.9366666666666665,
+      "endTime": 12.963333333333333,
+      "text": "'I am sorry,' said the Miller, 'but it is my new lantern, and I would be sad if it broke."
+    },
+    {
+      "sentenceIndex": 194,
+      "startTime": 12.963333333333333,
+      "endTime": 19.263333333333332,
+      "text": "'Never mind, I will go without it,' said little Hans, and he put on his coat and cap."
+    },
+    {
+      "sentenceIndex": 195,
+      "startTime": 19.263333333333332,
+      "endTime": 21.383333333333333,
+      "text": "What a terrible storm it was!"
+    }
+  ],
+  "wordCount": 61,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:03:29.284Z"
+  }
+}

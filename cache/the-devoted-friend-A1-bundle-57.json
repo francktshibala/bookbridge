@@ -1,0 +1,62 @@
+{
+  "index": 57,
+  "sentences": [
+    {
+      "sentenceIndex": 228,
+      "text": "I think you should have told me that."
+    },
+    {
+      "sentenceIndex": 229,
+      "text": "You should have told me before you began."
+    },
+    {
+      "sentenceIndex": 230,
+      "text": "If you did that, I would not listen to you."
+    },
+    {
+      "sentenceIndex": 231,
+      "text": "Now I can say it, so he shouted 'Pooh' loudly."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_57.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_57.mp3",
+  "duration": 12.84,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 228,
+      "startTime": 0,
+      "endTime": 2.7866666666666666,
+      "text": "I think you should have told me that."
+    },
+    {
+      "sentenceIndex": 229,
+      "startTime": 2.7866666666666666,
+      "endTime": 5.573333333333333,
+      "text": "You should have told me before you began."
+    },
+    {
+      "sentenceIndex": 230,
+      "startTime": 5.573333333333333,
+      "endTime": 9.026666666666667,
+      "text": "If you did that, I would not listen to you."
+    },
+    {
+      "sentenceIndex": 231,
+      "startTime": 9.026666666666667,
+      "endTime": 12.48,
+      "text": "Now I can say it, so he shouted 'Pooh' loudly."
+    }
+  ],
+  "wordCount": 36,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:04:16.307Z"
+  }
+}

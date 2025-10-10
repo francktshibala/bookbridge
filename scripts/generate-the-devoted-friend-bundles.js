@@ -43,7 +43,7 @@ const DANIEL_VOICE_SETTINGS = {
 function getVoiceForLevel(level) {
   const voiceMapping = {
     'A1': SARAH_VOICE_SETTINGS,
-    'A2': SARAH_VOICE_SETTINGS, // Keep A2 as Sarah (already working)
+    'A2': DANIEL_VOICE_SETTINGS, // A2 uses Daniel (proven settings)
     'B1': DANIEL_VOICE_SETTINGS  // B1 uses Daniel
   };
   return voiceMapping[level] || DANIEL_VOICE_SETTINGS;

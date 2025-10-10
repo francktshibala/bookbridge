@@ -1,0 +1,62 @@
+{
+  "index": 27,
+  "sentences": [
+    {
+      "sentenceIndex": 108,
+      "text": "The Miller assured Hans that he would give him the wheelbarrow, so Hans should not worry."
+    },
+    {
+      "sentenceIndex": 109,
+      "text": "Hans felt very happy and thought the Miller was truly generous, which made his round face glow with pleasure."
+    },
+    {
+      "sentenceIndex": 110,
+      "text": "I can fix it easily because I have a plank of wood at home."
+    },
+    {
+      "sentenceIndex": 111,
+      "text": "A plank of wood is exactly what I need for my barn roof, said the Miller."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_27.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_27.mp3",
+  "duration": 31.50888888888889,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 108,
+      "startTime": 0,
+      "endTime": 7.2811111111111115,
+      "text": "The Miller assured Hans that he would give him the wheelbarrow, so Hans should not worry."
+    },
+    {
+      "sentenceIndex": 109,
+      "startTime": 7.2811111111111115,
+      "endTime": 16.045555555555556,
+      "text": "Hans felt very happy and thought the Miller was truly generous, which made his round face glow with pleasure."
+    },
+    {
+      "sentenceIndex": 110,
+      "startTime": 16.045555555555556,
+      "endTime": 22.387777777777778,
+      "text": "I can fix it easily because I have a plank of wood at home."
+    },
+    {
+      "sentenceIndex": 111,
+      "startTime": 22.387777777777778,
+      "endTime": 29.66888888888889,
+      "text": "A plank of wood is exactly what I need for my barn roof, said the Miller."
+    }
+  ],
+  "wordCount": 65,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:07:31.889Z"
+  }
+}

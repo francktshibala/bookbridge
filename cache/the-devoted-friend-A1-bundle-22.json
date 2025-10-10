@@ -1,0 +1,62 @@
+{
+  "index": 22,
+  "sentences": [
+    {
+      "sentenceIndex": 88,
+      "text": "‘I had a hard time, but now it is spring.’"
+    },
+    {
+      "sentenceIndex": 89,
+      "text": "‘I am happy, and my flowers are doing well.’"
+    },
+    {
+      "sentenceIndex": 90,
+      "text": "The Miller said, 'We talked about you in winter, Hans.'"
+    },
+    {
+      "sentenceIndex": 91,
+      "text": "Hans said, 'That is kind; I thought you forgot me.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_22.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_22.mp3",
+  "duration": 13.93,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 88,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "‘I had a hard time, but now it is spring.’"
+    },
+    {
+      "sentenceIndex": 89,
+      "startTime": 3.453333333333333,
+      "endTime": 6.573333333333333,
+      "text": "‘I am happy, and my flowers are doing well.’"
+    },
+    {
+      "sentenceIndex": 90,
+      "startTime": 6.573333333333333,
+      "endTime": 10.026666666666667,
+      "text": "The Miller said, 'We talked about you in winter, Hans.'"
+    },
+    {
+      "sentenceIndex": 91,
+      "startTime": 10.026666666666667,
+      "endTime": 13.48,
+      "text": "Hans said, 'That is kind; I thought you forgot me.'"
+    }
+  ],
+  "wordCount": 39,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:27.719Z"
+  }
+}

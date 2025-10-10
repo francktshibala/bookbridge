@@ -1,0 +1,62 @@
+{
+  "index": 23,
+  "sentences": [
+    {
+      "sentenceIndex": 92,
+      "text": "The Miller was surprised and said, 'Hans, I am surprised at you because friendship never forgets.'"
+    },
+    {
+      "sentenceIndex": 93,
+      "text": "He added, 'That is the wonderful thing about friendship, but maybe you don't understand the beauty of life.'"
+    },
+    {
+      "sentenceIndex": 94,
+      "text": "Then, he noticed Hans's flowers and said, 'How lovely your primroses are looking, by the way!'"
+    },
+    {
+      "sentenceIndex": 95,
+      "text": "Hans agreed, saying, 'They are certainly very lovely, and I am lucky to have so many of them.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_23.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_23.mp3",
+  "duration": 32.992222222222225,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 92,
+      "startTime": 0,
+      "endTime": 7.2811111111111115,
+      "text": "The Miller was surprised and said, 'Hans, I am surprised at you because friendship never forgets.'"
+    },
+    {
+      "sentenceIndex": 93,
+      "startTime": 7.2811111111111115,
+      "endTime": 15.551111111111112,
+      "text": "He added, 'That is the wonderful thing about friendship, but maybe you don't understand the beauty of life.'"
+    },
+    {
+      "sentenceIndex": 94,
+      "startTime": 15.551111111111112,
+      "endTime": 22.832222222222224,
+      "text": "Then, he noticed Hans's flowers and said, 'How lovely your primroses are looking, by the way!'"
+    },
+    {
+      "sentenceIndex": 95,
+      "startTime": 22.832222222222224,
+      "endTime": 31.102222222222224,
+      "text": "Hans agreed, saying, 'They are certainly very lovely, and I am lucky to have so many of them.'"
+    }
+  ],
+  "wordCount": 68,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:07:03.880Z"
+  }
+}

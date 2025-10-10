@@ -1,0 +1,62 @@
+{
+  "index": 28,
+  "sentences": [
+    {
+      "sentenceIndex": 112,
+      "text": "There is a big hole in the roof, and the corn will get wet if I don't fix it."
+    },
+    {
+      "sentenceIndex": 113,
+      "text": "It's very lucky you told me about the plank, he added."
+    },
+    {
+      "sentenceIndex": 114,
+      "text": "It's amazing how one good action leads to another good action."
+    },
+    {
+      "sentenceIndex": 115,
+      "text": "I gave you my wheelbarrow, and now you will give me your plank."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_28.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_28.mp3",
+  "duration": 26.07,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 112,
+      "startTime": 0,
+      "endTime": 8.764444444444443,
+      "text": "There is a big hole in the roof, and the corn will get wet if I don't fix it."
+    },
+    {
+      "sentenceIndex": 113,
+      "startTime": 8.764444444444443,
+      "endTime": 13.773333333333333,
+      "text": "It's very lucky you told me about the plank, he added."
+    },
+    {
+      "sentenceIndex": 114,
+      "startTime": 13.773333333333333,
+      "endTime": 18.782222222222224,
+      "text": "It's amazing how one good action leads to another good action."
+    },
+    {
+      "sentenceIndex": 115,
+      "startTime": 18.782222222222224,
+      "endTime": 24.680000000000003,
+      "text": "I gave you my wheelbarrow, and now you will give me your plank."
+    }
+  ],
+  "wordCount": 54,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:07:37.605Z"
+  }
+}

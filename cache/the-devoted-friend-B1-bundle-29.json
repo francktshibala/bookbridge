@@ -1,0 +1,62 @@
+{
+  "index": 29,
+  "sentences": [
+    {
+      "sentenceIndex": 116,
+      "text": "The wheelbarrow is worth more than the plank, but true friendship doesn't care about that."
+    },
+    {
+      "sentenceIndex": 117,
+      "text": "Please get the plank quickly, and I will start working on my barn today."
+    },
+    {
+      "sentenceIndex": 118,
+      "text": "Certainly, said little Hans, and he ran to the shed to get the plank."
+    },
+    {
+      "sentenceIndex": 119,
+      "text": "He pulled the plank out of the shed and brought it to the Miller."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_29.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_29.mp3",
+  "duration": 27.553333333333338,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 116,
+      "startTime": 0,
+      "endTime": 6.786666666666667,
+      "text": "The wheelbarrow is worth more than the plank, but true friendship doesn't care about that."
+    },
+    {
+      "sentenceIndex": 117,
+      "startTime": 6.786666666666667,
+      "endTime": 13.12888888888889,
+      "text": "Please get the plank quickly, and I will start working on my barn today."
+    },
+    {
+      "sentenceIndex": 118,
+      "startTime": 13.12888888888889,
+      "endTime": 19.471111111111114,
+      "text": "Certainly, said little Hans, and he ran to the shed to get the plank."
+    },
+    {
+      "sentenceIndex": 119,
+      "startTime": 19.471111111111114,
+      "endTime": 25.813333333333336,
+      "text": "He pulled the plank out of the shed and brought it to the Miller."
+    }
+  ],
+  "wordCount": 57,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:07:43.810Z"
+  }
+}

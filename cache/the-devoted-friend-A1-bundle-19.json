@@ -1,0 +1,62 @@
+{
+  "index": 19,
+  "sentences": [
+    {
+      "sentenceIndex": 76,
+      "text": "He had blue glasses and no hair."
+    },
+    {
+      "sentenceIndex": 77,
+      "text": "He always said 'Pooh!' to the young man."
+    },
+    {
+      "sentenceIndex": 78,
+      "text": "But please continue your story."
+    },
+    {
+      "sentenceIndex": 79,
+      "text": "The Linnet said, 'After winter, the Miller visited little Hans.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_19.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_19.mp3",
+  "duration": 10.659999999999998,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 76,
+      "startTime": 0,
+      "endTime": 2.453333333333333,
+      "text": "He had blue glasses and no hair."
+    },
+    {
+      "sentenceIndex": 77,
+      "startTime": 2.453333333333333,
+      "endTime": 5.24,
+      "text": "He always said 'Pooh!' to the young man."
+    },
+    {
+      "sentenceIndex": 78,
+      "startTime": 5.24,
+      "endTime": 7.026666666666667,
+      "text": "But please continue your story."
+    },
+    {
+      "sentenceIndex": 79,
+      "startTime": 7.026666666666667,
+      "endTime": 10.48,
+      "text": "The Linnet said, 'After winter, the Miller visited little Hans.'"
+    }
+  ],
+  "wordCount": 30,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:12.331Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 37,
+  "sentences": [
+    {
+      "sentenceIndex": 148,
+      "text": "'I will give you my wheelbarrow, so work harder.'"
+    },
+    {
+      "sentenceIndex": 149,
+      "text": "'Friends must say what they mean,' said the Miller."
+    },
+    {
+      "sentenceIndex": 150,
+      "text": "Anyone can say nice things and try to please, but a true friend says hard things and does not mind causing pain."
+    },
+    {
+      "sentenceIndex": 151,
+      "text": "If he is a true friend, he likes it because he knows he is doing good."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_37.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_37.mp3",
+  "duration": 20.106666666666666,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 148,
+      "startTime": 0,
+      "endTime": 3.12,
+      "text": "'I will give you my wheelbarrow, so work harder.'"
+    },
+    {
+      "sentenceIndex": 149,
+      "startTime": 3.12,
+      "endTime": 6.24,
+      "text": "'Friends must say what they mean,' said the Miller."
+    },
+    {
+      "sentenceIndex": 150,
+      "startTime": 6.24,
+      "endTime": 13.993333333333332,
+      "text": "Anyone can say nice things and try to please, but a true friend says hard things and does not mind causing pain."
+    },
+    {
+      "sentenceIndex": 151,
+      "startTime": 13.993333333333332,
+      "endTime": 19.566666666666666,
+      "text": "If he is a true friend, he likes it because he knows he is doing good."
+    }
+  ],
+  "wordCount": 56,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:01:26.487Z"
+  }
+}

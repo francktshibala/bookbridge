@@ -1,0 +1,62 @@
+{
+  "index": 9,
+  "sentences": [
+    {
+      "sentenceIndex": 36,
+      "text": "This meant there were always beautiful sights and pleasant smells in the garden."
+    },
+    {
+      "sentenceIndex": 37,
+      "text": "Little Hans had many friends, but his most loyal friend was big Hugh the Miller."
+    },
+    {
+      "sentenceIndex": 38,
+      "text": "The rich Miller was so devoted to Hans that he never passed the garden without picking flowers or taking fruits like plums and cherries when they were in season."
+    },
+    {
+      "sentenceIndex": 39,
+      "text": "The Miller often said that real friends should share everything, and Hans felt proud to have a friend with such noble ideas."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_9.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_9.mp3",
+  "duration": 38.431111111111115,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 36,
+      "startTime": 0,
+      "endTime": 5.897777777777779,
+      "text": "This meant there were always beautiful sights and pleasant smells in the garden."
+    },
+    {
+      "sentenceIndex": 37,
+      "startTime": 5.897777777777779,
+      "endTime": 12.684444444444445,
+      "text": "Little Hans had many friends, but his most loyal friend was big Hugh the Miller."
+    },
+    {
+      "sentenceIndex": 38,
+      "startTime": 12.684444444444445,
+      "endTime": 26.39333333333333,
+      "text": "The rich Miller was so devoted to Hans that he never passed the garden without picking flowers or taking fruits like plums and cherries when they were in season."
+    },
+    {
+      "sentenceIndex": 39,
+      "startTime": 26.39333333333333,
+      "endTime": 36.64111111111111,
+      "text": "The Miller often said that real friends should share everything, and Hans felt proud to have a friend with such noble ideas."
+    }
+  ],
+  "wordCount": 79,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:05:21.628Z"
+  }
+}

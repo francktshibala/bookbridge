@@ -1,0 +1,62 @@
+{
+  "index": 24,
+  "sentences": [
+    {
+      "sentenceIndex": 96,
+      "text": "He said, 'I will sell them and buy my wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 97,
+      "text": "The Miller asked, 'Buy back your wheelbarrow?'"
+    },
+    {
+      "sentenceIndex": 98,
+      "text": "He said, 'Did you sell your wheelbarrow, Hans?'"
+    },
+    {
+      "sentenceIndex": 99,
+      "text": "He said, 'That was a very silly thing to do!'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_24.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_24.mp3",
+  "duration": 12.476666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 96,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "He said, 'I will sell them and buy my wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 97,
+      "startTime": 3.453333333333333,
+      "endTime": 5.906666666666666,
+      "text": "The Miller asked, 'Buy back your wheelbarrow?'"
+    },
+    {
+      "sentenceIndex": 98,
+      "startTime": 5.906666666666666,
+      "endTime": 8.693333333333333,
+      "text": "He said, 'Did you sell your wheelbarrow, Hans?'"
+    },
+    {
+      "sentenceIndex": 99,
+      "startTime": 8.693333333333333,
+      "endTime": 12.146666666666667,
+      "text": "He said, 'That was a very silly thing to do!'"
+    }
+  ],
+  "wordCount": 35,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:38.107Z"
+  }
+}

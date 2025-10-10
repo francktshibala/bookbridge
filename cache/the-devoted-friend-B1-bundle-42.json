@@ -1,0 +1,62 @@
+{
+  "index": 42,
+  "sentences": [
+    {
+      "sentenceIndex": 168,
+      "text": "Little Hans felt happy to hear this, and he was grateful for the Miller's kind words."
+    },
+    {
+      "sentenceIndex": 169,
+      "text": "He knew that working hard and helping others would bring him joy and good ideas."
+    },
+    {
+      "sentenceIndex": 170,
+      "text": "The Miller said, 'They will come to you, but you must work harder.'"
+    },
+    {
+      "sentenceIndex": 171,
+      "text": "Right now, you only know how to be a friend, but one day you will understand friendship better."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_42.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_42.mp3",
+  "duration": 30.02555555555556,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 168,
+      "startTime": 0,
+      "endTime": 7.2811111111111115,
+      "text": "Little Hans felt happy to hear this, and he was grateful for the Miller's kind words."
+    },
+    {
+      "sentenceIndex": 169,
+      "startTime": 7.2811111111111115,
+      "endTime": 14.067777777777778,
+      "text": "He knew that working hard and helping others would bring him joy and good ideas."
+    },
+    {
+      "sentenceIndex": 170,
+      "startTime": 14.067777777777778,
+      "endTime": 19.965555555555557,
+      "text": "The Miller said, 'They will come to you, but you must work harder.'"
+    },
+    {
+      "sentenceIndex": 171,
+      "startTime": 19.965555555555557,
+      "endTime": 28.235555555555557,
+      "text": "Right now, you only know how to be a friend, but one day you will understand friendship better."
+    }
+  ],
+  "wordCount": 62,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:09:27.235Z"
+  }
+}

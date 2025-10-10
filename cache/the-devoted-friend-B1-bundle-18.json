@@ -1,0 +1,62 @@
+{
+  "index": 18,
+  "sentences": [
+    {
+      "sentenceIndex": 72,
+      "text": "Nowadays, every good storyteller starts with the end, continues with the beginning, and finishes with the middle."
+    },
+    {
+      "sentenceIndex": 73,
+      "text": "This is the new way of telling stories."
+    },
+    {
+      "sentenceIndex": 74,
+      "text": "I learned about it recently from a critic who was walking around the pond with a young man."
+    },
+    {
+      "sentenceIndex": 75,
+      "text": "The critic talked a lot about it, and I think he was right because he wore blue glasses and was bald, and he always said 'Pooh!' to the young man's comments."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_18.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_18.mp3",
+  "duration": 35.95888888888889,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 72,
+      "startTime": 0,
+      "endTime": 7.775555555555556,
+      "text": "Nowadays, every good storyteller starts with the end, continues with the beginning, and finishes with the middle."
+    },
+    {
+      "sentenceIndex": 73,
+      "startTime": 7.775555555555556,
+      "endTime": 11.451111111111112,
+      "text": "This is the new way of telling stories."
+    },
+    {
+      "sentenceIndex": 74,
+      "startTime": 11.451111111111112,
+      "endTime": 19.721111111111114,
+      "text": "I learned about it recently from a critic who was walking around the pond with a young man."
+    },
+    {
+      "sentenceIndex": 75,
+      "startTime": 19.721111111111114,
+      "endTime": 34.418888888888894,
+      "text": "The critic talked a lot about it, and I think he was right because he wore blue glasses and was bald, and he always said 'Pooh!' to the young man's comments."
+    }
+  ],
+  "wordCount": 74,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:06:28.852Z"
+  }
+}

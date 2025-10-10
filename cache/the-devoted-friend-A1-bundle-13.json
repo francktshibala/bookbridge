@@ -1,0 +1,62 @@
+{
+  "index": 13,
+  "sentences": [
+    {
+      "sentenceIndex": 52,
+      "text": "'If Hans is in trouble, I will share my food and show him my rabbits.'"
+    },
+    {
+      "sentenceIndex": 53,
+      "text": "'What a silly boy you are!'"
+    },
+    {
+      "sentenceIndex": 54,
+      "text": "cried the Miller; 'I don't know why you go to school."
+    },
+    {
+      "sentenceIndex": 55,
+      "text": "You do not learn anything."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_13.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_13.mp3",
+  "duration": 13.203333333333331,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 52,
+      "startTime": 0,
+      "endTime": 5.21,
+      "text": "'If Hans is in trouble, I will share my food and show him my rabbits.'"
+    },
+    {
+      "sentenceIndex": 53,
+      "startTime": 5.21,
+      "endTime": 7.33,
+      "text": "'What a silly boy you are!'"
+    },
+    {
+      "sentenceIndex": 54,
+      "startTime": 7.33,
+      "endTime": 11.116666666666667,
+      "text": "cried the Miller; 'I don't know why you go to school."
+    },
+    {
+      "sentenceIndex": 55,
+      "startTime": 11.116666666666667,
+      "endTime": 12.903333333333334,
+      "text": "You do not learn anything."
+    }
+  ],
+  "wordCount": 37,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:50:40.744Z"
+  }
+}

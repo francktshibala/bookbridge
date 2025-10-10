@@ -1,0 +1,62 @@
+{
+  "index": 24,
+  "sentences": [
+    {
+      "sentenceIndex": 96,
+      "text": "I will take them to the market and sell them to the Burgomaster’s daughter, then buy back my wheelbarrow with the money."
+    },
+    {
+      "sentenceIndex": 97,
+      "text": "‘Buy back your wheelbarrow?"
+    },
+    {
+      "sentenceIndex": 98,
+      "text": "Do you mean you have sold it?"
+    },
+    {
+      "sentenceIndex": 99,
+      "text": "That was a very silly thing to do!"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_24.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_24.mp3",
+  "duration": 19.422222222222228,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 96,
+      "startTime": 0,
+      "endTime": 10.217777777777778,
+      "text": "I will take them to the market and sell them to the Burgomaster’s daughter, then buy back my wheelbarrow with the money."
+    },
+    {
+      "sentenceIndex": 97,
+      "startTime": 10.217777777777778,
+      "endTime": 12.115555555555556,
+      "text": "‘Buy back your wheelbarrow?"
+    },
+    {
+      "sentenceIndex": 98,
+      "startTime": 12.115555555555556,
+      "endTime": 15.346666666666668,
+      "text": "Do you mean you have sold it?"
+    },
+    {
+      "sentenceIndex": 99,
+      "startTime": 15.346666666666668,
+      "endTime": 19.022222222222222,
+      "text": "That was a very silly thing to do!"
+    }
+  ],
+  "wordCount": 41,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:22.803Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 45,
+  "sentences": [
+    {
+      "sentenceIndex": 180,
+      "text": "The Miller said, 'He will give me his wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 181,
+      "text": "Hans worked for the Miller, and he wrote about friendship."
+    },
+    {
+      "sentenceIndex": 182,
+      "text": "One evening, Hans sat by the fire, and he heard a knock."
+    },
+    {
+      "sentenceIndex": 183,
+      "text": "It was a wild night, and the wind was very loud."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_45.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_45.mp3",
+  "duration": 15.02,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 180,
+      "startTime": 0,
+      "endTime": 3.12,
+      "text": "The Miller said, 'He will give me his wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 181,
+      "startTime": 3.12,
+      "endTime": 6.573333333333333,
+      "text": "Hans worked for the Miller, and he wrote about friendship."
+    },
+    {
+      "sentenceIndex": 182,
+      "startTime": 6.573333333333333,
+      "endTime": 10.693333333333333,
+      "text": "One evening, Hans sat by the fire, and he heard a knock."
+    },
+    {
+      "sentenceIndex": 183,
+      "startTime": 10.693333333333333,
+      "endTime": 14.48,
+      "text": "It was a wild night, and the wind was very loud."
+    }
+  ],
+  "wordCount": 42,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:02:14.846Z"
+  }
+}

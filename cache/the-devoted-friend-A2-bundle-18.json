@@ -1,0 +1,62 @@
+{
+  "index": 18,
+  "sentences": [
+    {
+      "sentenceIndex": 72,
+      "text": "Every good storyteller now starts with the end and then goes to the beginning, finishing with the middle."
+    },
+    {
+      "sentenceIndex": 73,
+      "text": "That is the new way."
+    },
+    {
+      "sentenceIndex": 74,
+      "text": "I heard about it from a critic who walked by the pond with a young man."
+    },
+    {
+      "sentenceIndex": 75,
+      "text": "He talked a lot about it, and I think he was right because he wore blue glasses and was bald, and whenever the young man spoke, he said 'Pooh!'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_18.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_18.mp3",
+  "duration": 32.50222222222222,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 72,
+      "startTime": 0,
+      "endTime": 8.28,
+      "text": "Every good storyteller now starts with the end and then goes to the beginning, finishing with the middle."
+    },
+    {
+      "sentenceIndex": 73,
+      "startTime": 8.28,
+      "endTime": 10.622222222222222,
+      "text": "That is the new way."
+    },
+    {
+      "sentenceIndex": 74,
+      "startTime": 10.622222222222222,
+      "endTime": 17.933333333333334,
+      "text": "I heard about it from a critic who walked by the pond with a young man."
+    },
+    {
+      "sentenceIndex": 75,
+      "startTime": 17.933333333333334,
+      "endTime": 31.54222222222222,
+      "text": "He talked a lot about it, and I think he was right because he wore blue glasses and was bald, and whenever the young man spoke, he said 'Pooh!'"
+    }
+  ],
+  "wordCount": 68,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:39:50.415Z"
+  }
+}

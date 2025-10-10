@@ -379,7 +379,9 @@ export class BundleAudioManager {
         }
 
         if (process.env.NEXT_PUBLIC_AUDIO_DEBUG === '1') {
-          console.log(`✅ Bundle loaded: ${bundle.bundleId} (${bundle.totalDuration.toFixed(1)}s)`);
+          const safeTotal = Number(bundle.totalDuration);
+          const printableTotal = Number.isFinite(safeTotal) ? `${safeTotal.toFixed(1)}s` : 'N/A';
+          console.log(`✅ Bundle loaded: ${bundle.bundleId} (${printableTotal})`);
         }
         resolve();
       };
@@ -526,18 +528,31 @@ export class BundleAudioManager {
 
     // CRITICAL DEBUG: Log actual vs expected completion time
     if (this.currentAudio) {
-      const actualDuration = this.currentAudio.duration;
-      const currentTime = this.currentAudio.currentTime;
-      const expectedDuration = bundle.totalDuration;
+      const actualDurationRaw = this.currentAudio.duration;
+      const currentTimeRaw = this.currentAudio.currentTime;
+      const expectedFromBundle = (bundle as any).totalDuration ?? (bundle as any).duration;
+
+      // Fallbacks: use sentence metadata max endTime, then audio duration
+      const validEndTimes = Array.isArray(bundle.sentences) && bundle.sentences.length > 0
+        ? bundle.sentences.map(s => s.endTime).filter(t => typeof t === 'number' && Number.isFinite(t))
+        : [];
+      const metaEnd = validEndTimes.length > 0 ? Math.max(...validEndTimes) : undefined;
+
+      const expectedDuration = [expectedFromBundle, metaEnd, actualDurationRaw]
+        .map(v => (typeof v === 'number' && Number.isFinite(v) ? v : undefined))
+        .find(v => v !== undefined) ?? 0;
+
+      const actualDuration = Number.isFinite(actualDurationRaw) ? actualDurationRaw : (expectedDuration || 0);
+      const currentTime = Number.isFinite(currentTimeRaw) ? currentTimeRaw : 0;
 
       console.log(`🏁 BUNDLE COMPLETION ANALYSIS:`);
-      console.log(`   🎵 Actual audio duration: ${actualDuration.toFixed(2)}s`);
-      console.log(`   ⏰ Stopped at time: ${currentTime.toFixed(2)}s`);
-      console.log(`   🧮 Expected duration: ${expectedDuration.toFixed(2)}s`);
-      console.log(`   ⚠️ Time remaining: ${(actualDuration - currentTime).toFixed(2)}s`);
+      console.log(`   🎵 Actual audio duration: ${Number(actualDuration).toFixed(2)}s`);
+      console.log(`   ⏰ Stopped at time: ${Number(currentTime).toFixed(2)}s`);
+      console.log(`   🧮 Expected duration: ${Number(expectedDuration).toFixed(2)}s`);
+      console.log(`   ⚠️ Time remaining: ${Number(actualDuration - currentTime).toFixed(2)}s`);
 
-      if (actualDuration - currentTime > 0.5) {
-        console.log(`🚨 EARLY COMPLETION: Stopped ${(actualDuration - currentTime).toFixed(1)}s before audio end!`);
+      if ((actualDuration - currentTime) > 0.5) {
+        console.log(`🚨 EARLY COMPLETION: Stopped ${Number(actualDuration - currentTime).toFixed(1)}s before audio end!`);
         console.log(`💡 This is why sentences don't finish - bundle completing too early`);
       }
 

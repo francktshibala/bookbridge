@@ -193,6 +193,11 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A2': '/api/gift-of-the-magi-a2/bundles',
     'B1': '/api/gift-of-the-magi-b1/bundles'
   },
+  'the-devoted-friend': {
+    'A1': '/api/devoted-friend-a1/bundles',
+    'A2': '/api/devoted-friend-a2/bundles',
+    'B1': '/api/devoted-friend-b1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -239,9 +244,6 @@ const getBookApiEndpoint = (bookId: string, level: string): string => {
   }
   if (bookId === 'anne-of-green-gables-a2') {
     return '/api/anne-of-green-gables-a2/bundles';
-  }
-  if (bookId === 'the-devoted-friend') {
-    return '/api/devoted-friend-a1/bundles';
   }
 
   // Default to test-book API
@@ -789,6 +791,7 @@ export default function FeaturedBooksPage() {
       'gutenberg-43': ['A1', 'A2'], // Jekyll & Hyde has both A1 and A2
       'the-necklace': ['A1', 'A2', 'B1'], // The Necklace has A1, A2, and B1
       'gift-of-the-magi': ['A1', 'A2', 'B1'], // Gift of the Magi has A1, A2, and B1
+      'the-devoted-friend': ['A1', 'A2', 'B1'], // The Devoted Friend has A1, A2, and B1
     };
 
     const singleLevelBooks: { [key: string]: string } = {
@@ -800,7 +803,6 @@ export default function FeaturedBooksPage() {
       'digital-library-test': 'A2',
       'digital-library-test-2': 'A2',
       'digital-library-test-3': 'A2',
-      'the-devoted-friend': 'A1',
     };
 
     // Handle multi-level books

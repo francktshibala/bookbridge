@@ -1,0 +1,62 @@
+{
+  "index": 6,
+  "sentences": [
+    {
+      "sentenceIndex": 24,
+      "text": "Is the story about me?"
+    },
+    {
+      "sentenceIndex": 25,
+      "text": "asked the Water-rat."
+    },
+    {
+      "sentenceIndex": 26,
+      "text": "If it is, I will listen because I love stories."
+    },
+    {
+      "sentenceIndex": 27,
+      "text": "It is about you, said the Linnet, and he flew down."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_6.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_6.mp3",
+  "duration": 10.296666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 24,
+      "startTime": 0,
+      "endTime": 1.7866666666666666,
+      "text": "Is the story about me?"
+    },
+    {
+      "sentenceIndex": 25,
+      "startTime": 1.7866666666666666,
+      "endTime": 2.9066666666666667,
+      "text": "asked the Water-rat."
+    },
+    {
+      "sentenceIndex": 26,
+      "startTime": 2.9066666666666667,
+      "endTime": 6.359999999999999,
+      "text": "If it is, I will listen because I love stories."
+    },
+    {
+      "sentenceIndex": 27,
+      "startTime": 6.359999999999999,
+      "endTime": 10.146666666666667,
+      "text": "It is about you, said the Linnet, and he flew down."
+    }
+  ],
+  "wordCount": 29,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:42:01.001Z"
+  }
+}

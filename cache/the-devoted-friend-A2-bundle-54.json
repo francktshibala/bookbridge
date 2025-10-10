@@ -1,0 +1,62 @@
+{
+  "index": 54,
+  "sentences": [
+    {
+      "sentenceIndex": 216,
+      "text": "'Well, that is the end,' said the Linnet."
+    },
+    {
+      "sentenceIndex": 217,
+      "text": "'But what happened to the Miller?'"
+    },
+    {
+      "sentenceIndex": 218,
+      "text": "asked the Water-rat."
+    },
+    {
+      "sentenceIndex": 219,
+      "text": "asked the Water-rat."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_54.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_54.mp3",
+  "duration": 9.248888888888889,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 216,
+      "startTime": 0,
+      "endTime": 3.675555555555556,
+      "text": "'Well, that is the end,' said the Linnet."
+    },
+    {
+      "sentenceIndex": 217,
+      "startTime": 3.675555555555556,
+      "endTime": 6.462222222222223,
+      "text": "'But what happened to the Miller?'"
+    },
+    {
+      "sentenceIndex": 218,
+      "startTime": 6.462222222222223,
+      "endTime": 7.915555555555557,
+      "text": "asked the Water-rat."
+    },
+    {
+      "sentenceIndex": 219,
+      "startTime": 7.915555555555557,
+      "endTime": 9.36888888888889,
+      "text": "asked the Water-rat."
+    }
+  ],
+  "wordCount": 20,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:43:49.726Z"
+  }
+}

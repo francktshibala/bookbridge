@@ -1,0 +1,62 @@
+{
+  "index": 7,
+  "sentences": [
+    {
+      "sentenceIndex": 28,
+      "text": "Once upon a time, there was an honest boy named Hans."
+    },
+    {
+      "sentenceIndex": 29,
+      "text": "Was he very special?"
+    },
+    {
+      "sentenceIndex": 30,
+      "text": "The Water-rat asked a question."
+    },
+    {
+      "sentenceIndex": 31,
+      "text": "The Linnet said, 'No, he was not special, but he had a kind heart and a funny face.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_7.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_7.mp3",
+  "duration": 13.566666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 28,
+      "startTime": 0,
+      "endTime": 3.7866666666666666,
+      "text": "Once upon a time, there was an honest boy named Hans."
+    },
+    {
+      "sentenceIndex": 29,
+      "startTime": 3.7866666666666666,
+      "endTime": 5.24,
+      "text": "Was he very special?"
+    },
+    {
+      "sentenceIndex": 30,
+      "startTime": 5.24,
+      "endTime": 7.026666666666667,
+      "text": "The Water-rat asked a question."
+    },
+    {
+      "sentenceIndex": 31,
+      "startTime": 7.026666666666667,
+      "endTime": 13.326666666666668,
+      "text": "The Linnet said, 'No, he was not special, but he had a kind heart and a funny face.'"
+    }
+  ],
+  "wordCount": 38,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:42:06.294Z"
+  }
+}

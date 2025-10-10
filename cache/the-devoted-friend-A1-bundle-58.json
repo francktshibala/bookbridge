@@ -1,0 +1,62 @@
+{
+  "index": 58,
+  "sentences": [
+    {
+      "sentenceIndex": 232,
+      "text": "He moved his tail and went back to his hole."
+    },
+    {
+      "sentenceIndex": 233,
+      "text": "The Duck came and asked about the Water-rat."
+    },
+    {
+      "sentenceIndex": 234,
+      "text": "The Duck said, 'He has many good things.'"
+    },
+    {
+      "sentenceIndex": 235,
+      "text": "'But I have a mother's feelings,' she added."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_58.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_58.mp3",
+  "duration": 12.113333333333332,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 232,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "He moved his tail and went back to his hole."
+    },
+    {
+      "sentenceIndex": 233,
+      "startTime": 3.453333333333333,
+      "endTime": 6.24,
+      "text": "The Duck came and asked about the Water-rat."
+    },
+    {
+      "sentenceIndex": 234,
+      "startTime": 6.24,
+      "endTime": 9.026666666666667,
+      "text": "The Duck said, 'He has many good things.'"
+    },
+    {
+      "sentenceIndex": 235,
+      "startTime": 9.026666666666667,
+      "endTime": 11.813333333333334,
+      "text": "'But I have a mother's feelings,' she added."
+    }
+  ],
+  "wordCount": 34,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:04:21.095Z"
+  }
+}

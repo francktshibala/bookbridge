@@ -1,0 +1,62 @@
+{
+  "index": 38,
+  "sentences": [
+    {
+      "sentenceIndex": 152,
+      "text": "'I am very sorry,' said little Hans, rubbing his eyes and taking off his night-cap, 'but I was so tired that I stayed in bed to listen to the birds sing."
+    },
+    {
+      "sentenceIndex": 153,
+      "text": "Do you know I work better after hearing the birds?"
+    },
+    {
+      "sentenceIndex": 154,
+      "text": "'I am glad,' said the Miller, patting little Hans on the back, 'because I want you to come to the mill when you are dressed and fix my barn roof."
+    },
+    {
+      "sentenceIndex": 155,
+      "text": "Poor little Hans wanted to work in his garden because his flowers had no water for two days, but he did not want to say no to the Miller because he was a good friend."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_38.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_38.mp3",
+  "duration": 38.273333333333326,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 152,
+      "startTime": 0,
+      "endTime": 11.023333333333332,
+      "text": "'I am very sorry,' said little Hans, rubbing his eyes and taking off his night-cap, 'but I was so tired that I stayed in bed to listen to the birds sing."
+    },
+    {
+      "sentenceIndex": 153,
+      "startTime": 11.023333333333332,
+      "endTime": 14.476666666666665,
+      "text": "Do you know I work better after hearing the birds?"
+    },
+    {
+      "sentenceIndex": 154,
+      "startTime": 14.476666666666665,
+      "endTime": 25.136666666666663,
+      "text": "'I am glad,' said the Miller, patting little Hans on the back, 'because I want you to come to the mill when you are dressed and fix my barn roof."
+    },
+    {
+      "sentenceIndex": 155,
+      "startTime": 25.136666666666663,
+      "endTime": 37.61333333333333,
+      "text": "Poor little Hans wanted to work in his garden because his flowers had no water for two days, but he did not want to say no to the Miller because he was a good friend."
+    }
+  ],
+  "wordCount": 106,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:01:36.031Z"
+  }
+}

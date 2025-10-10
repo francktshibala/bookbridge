@@ -1,0 +1,62 @@
+{
+  "index": 59,
+  "sentences": [
+    {
+      "sentenceIndex": 236,
+      "text": "The Linnet explained, 'I told him a story with a moral.'"
+    },
+    {
+      "sentenceIndex": 237,
+      "text": "'Ah!' said the Duck."
+    },
+    {
+      "sentenceIndex": 238,
+      "text": "'That is always a very dangerous thing to do,' said the Duck."
+    },
+    {
+      "sentenceIndex": 239,
+      "text": "And I agree with her completely."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_59.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_59.mp3",
+  "duration": 15.546666666666667,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 236,
+      "startTime": 0,
+      "endTime": 5.008888888888889,
+      "text": "The Linnet explained, 'I told him a story with a moral.'"
+    },
+    {
+      "sentenceIndex": 237,
+      "startTime": 5.008888888888889,
+      "endTime": 6.906666666666667,
+      "text": "'Ah!' said the Duck."
+    },
+    {
+      "sentenceIndex": 238,
+      "startTime": 6.906666666666667,
+      "endTime": 12.360000000000001,
+      "text": "'That is always a very dangerous thing to do,' said the Duck."
+    },
+    {
+      "sentenceIndex": 239,
+      "startTime": 12.360000000000001,
+      "endTime": 15.146666666666668,
+      "text": "And I agree with her completely."
+    }
+  ],
+  "wordCount": 33,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:44:16.092Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 9,
+  "sentences": [
+    {
+      "sentenceIndex": 36,
+      "text": "Many flowers grew in order, so there were always nice things to see and smell."
+    },
+    {
+      "sentenceIndex": 37,
+      "text": "Little Hans had many friends, but big Hugh the Miller was the best."
+    },
+    {
+      "sentenceIndex": 38,
+      "text": "The Miller loved Hans and often took flowers or fruit from his garden."
+    },
+    {
+      "sentenceIndex": 39,
+      "text": "The Miller said, 'Real friends share everything,' and Hans felt proud."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_9.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_9.mp3",
+  "duration": 18.653333333333332,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 36,
+      "startTime": 0,
+      "endTime": 5.21,
+      "text": "Many flowers grew in order, so there were always nice things to see and smell."
+    },
+    {
+      "sentenceIndex": 37,
+      "startTime": 5.21,
+      "endTime": 9.693333333333333,
+      "text": "Little Hans had many friends, but big Hugh the Miller was the best."
+    },
+    {
+      "sentenceIndex": 38,
+      "startTime": 9.693333333333333,
+      "endTime": 14.176666666666666,
+      "text": "The Miller loved Hans and often took flowers or fruit from his garden."
+    },
+    {
+      "sentenceIndex": 39,
+      "startTime": 14.176666666666666,
+      "endTime": 17.96333333333333,
+      "text": "The Miller said, 'Real friends share everything,' and Hans felt proud."
+    }
+  ],
+  "wordCount": 52,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:42:17.873Z"
+  }
+}

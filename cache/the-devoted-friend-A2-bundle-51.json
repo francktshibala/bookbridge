@@ -1,0 +1,62 @@
+{
+  "index": 51,
+  "sentences": [
+    {
+      "sentenceIndex": 204,
+      "text": "But the storm got worse, and the rain fell heavily, so little Hans could not see where he was going or keep up with the horse."
+    },
+    {
+      "sentenceIndex": 205,
+      "text": "Finally, he lost his way and wandered onto the moor, which was very dangerous because it had deep holes, and there poor little Hans drowned."
+    },
+    {
+      "sentenceIndex": 206,
+      "text": "Some goatherds found his body the next day floating in a big pool of water and brought it back to the cottage."
+    },
+    {
+      "sentenceIndex": 207,
+      "text": "Everyone went to little Hans' funeral because he was very popular, and the Miller was the chief mourner."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_51.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_51.mp3",
+  "duration": 43.644444444444446,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 204,
+      "startTime": 0,
+      "endTime": 12.155555555555557,
+      "text": "But the storm got worse, and the rain fell heavily, so little Hans could not see where he was going or keep up with the horse."
+    },
+    {
+      "sentenceIndex": 205,
+      "startTime": 12.155555555555557,
+      "endTime": 23.826666666666668,
+      "text": "Finally, he lost his way and wandered onto the moor, which was very dangerous because it had deep holes, and there poor little Hans drowned."
+    },
+    {
+      "sentenceIndex": 206,
+      "startTime": 23.826666666666668,
+      "endTime": 34.044444444444444,
+      "text": "Some goatherds found his body the next day floating in a big pool of water and brought it back to the cottage."
+    },
+    {
+      "sentenceIndex": 207,
+      "startTime": 34.044444444444444,
+      "endTime": 42.324444444444445,
+      "text": "Everyone went to little Hans' funeral because he was very popular, and the Miller was the chief mourner."
+    }
+  ],
+  "wordCount": 91,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:43:29.697Z"
+  }
+}

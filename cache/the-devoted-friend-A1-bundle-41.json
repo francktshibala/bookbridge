@@ -1,0 +1,62 @@
+{
+  "index": 41,
+  "sentences": [
+    {
+      "sentenceIndex": 164,
+      "text": "'Did you fix the roof, little Hans?' asked the Miller."
+    },
+    {
+      "sentenceIndex": 165,
+      "text": "'Yes, it is fixed,' said little Hans."
+    },
+    {
+      "sentenceIndex": 166,
+      "text": "The Miller said, 'Work for others is good.'"
+    },
+    {
+      "sentenceIndex": 167,
+      "text": "'I like to hear you talk,' said little Hans."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_41.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_41.mp3",
+  "duration": 12.113333333333332,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 164,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "'Did you fix the roof, little Hans?' asked the Miller."
+    },
+    {
+      "sentenceIndex": 165,
+      "startTime": 3.453333333333333,
+      "endTime": 5.906666666666666,
+      "text": "'Yes, it is fixed,' said little Hans."
+    },
+    {
+      "sentenceIndex": 166,
+      "startTime": 5.906666666666666,
+      "endTime": 8.693333333333333,
+      "text": "The Miller said, 'Work for others is good.'"
+    },
+    {
+      "sentenceIndex": 167,
+      "startTime": 8.693333333333333,
+      "endTime": 11.813333333333333,
+      "text": "'I like to hear you talk,' said little Hans."
+    }
+  ],
+  "wordCount": 34,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:01:51.062Z"
+  }
+}

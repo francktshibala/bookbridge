@@ -1,0 +1,62 @@
+{
+  "index": 1,
+  "sentences": [
+    {
+      "sentenceIndex": 4,
+      "text": "She said, 'You must stand on your heads to be in the best society.'"
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "She showed them how to do it, but they did not listen."
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "The ducks were young, and they did not know about society."
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "'What bad children!' said the old Water-rat."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_1.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_1.mp3",
+  "duration": 15.746666666666664,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 4,
+      "startTime": 0,
+      "endTime": 4.846666666666666,
+      "text": "She said, 'You must stand on your heads to be in the best society.'"
+    },
+    {
+      "sentenceIndex": 5,
+      "startTime": 4.846666666666666,
+      "endTime": 8.966666666666665,
+      "text": "She showed them how to do it, but they did not listen."
+    },
+    {
+      "sentenceIndex": 6,
+      "startTime": 8.966666666666665,
+      "endTime": 12.753333333333332,
+      "text": "The ducks were young, and they did not know about society."
+    },
+    {
+      "sentenceIndex": 7,
+      "startTime": 12.753333333333332,
+      "endTime": 15.206666666666665,
+      "text": "'What bad children!' said the old Water-rat."
+    }
+  ],
+  "wordCount": 44,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:41:37.047Z"
+  }
+}

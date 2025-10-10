@@ -1,0 +1,62 @@
+{
+  "index": 5,
+  "sentences": [
+    {
+      "sentenceIndex": 20,
+      "text": "What would you do in return?"
+    },
+    {
+      "sentenceIndex": 21,
+      "text": "asked the little bird, swinging on a silver branch and flapping his wings."
+    },
+    {
+      "sentenceIndex": 22,
+      "text": "I don't understand you, said the Water-rat."
+    },
+    {
+      "sentenceIndex": 23,
+      "text": "Let me tell you a story about it, said the Linnet."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_5.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_5.mp3",
+  "duration": 17.48444444444445,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 20,
+      "startTime": 0,
+      "endTime": 2.786666666666667,
+      "text": "What would you do in return?"
+    },
+    {
+      "sentenceIndex": 21,
+      "startTime": 2.786666666666667,
+      "endTime": 8.684444444444445,
+      "text": "asked the little bird, swinging on a silver branch and flapping his wings."
+    },
+    {
+      "sentenceIndex": 22,
+      "startTime": 8.684444444444445,
+      "endTime": 11.915555555555557,
+      "text": "I don't understand you, said the Water-rat."
+    },
+    {
+      "sentenceIndex": 23,
+      "startTime": 11.915555555555557,
+      "endTime": 16.924444444444447,
+      "text": "Let me tell you a story about it, said the Linnet."
+    }
+  ],
+  "wordCount": 37,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:30:16.448Z"
+  }
+}

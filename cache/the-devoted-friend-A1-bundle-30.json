@@ -1,0 +1,62 @@
+{
+  "index": 30,
+  "sentences": [
+    {
+      "sentenceIndex": 120,
+      "text": "The Miller looked at the plank and said, 'It is not very big.'"
+    },
+    {
+      "sentenceIndex": 121,
+      "text": "He said, 'I need it for my barn, so I cannot give you any.'"
+    },
+    {
+      "sentenceIndex": 122,
+      "text": "He added, 'I gave you my wheelbarrow, so give me flowers.'"
+    },
+    {
+      "sentenceIndex": 123,
+      "text": "He gave Hans a basket and said, 'Fill it full.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_30.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_30.mp3",
+  "duration": 17.2,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 120,
+      "startTime": 0,
+      "endTime": 4.483333333333333,
+      "text": "The Miller looked at the plank and said, 'It is not very big.'"
+    },
+    {
+      "sentenceIndex": 121,
+      "startTime": 4.483333333333333,
+      "endTime": 9.329999999999998,
+      "text": "He said, 'I need it for my barn, so I cannot give you any.'"
+    },
+    {
+      "sentenceIndex": 122,
+      "startTime": 9.329999999999998,
+      "endTime": 13.116666666666665,
+      "text": "He added, 'I gave you my wheelbarrow, so give me flowers.'"
+    },
+    {
+      "sentenceIndex": 123,
+      "startTime": 13.116666666666665,
+      "endTime": 16.57,
+      "text": "He gave Hans a basket and said, 'Fill it full.'"
+    }
+  ],
+  "wordCount": 48,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:52:07.672Z"
+  }
+}

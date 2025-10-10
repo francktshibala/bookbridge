@@ -1,0 +1,62 @@
+{
+  "index": 2,
+  "sentences": [
+    {
+      "sentenceIndex": 8,
+      "text": "\"Ah!"
+    },
+    {
+      "sentenceIndex": 9,
+      "text": "\" said the Water-rat, thinking about what the Duck had said."
+    },
+    {
+      "sentenceIndex": 10,
+      "text": "The Water-rat said he knows nothing about how parents feel because he is not a family man."
+    },
+    {
+      "sentenceIndex": 11,
+      "text": "He has never been married and does not plan to get married in the future."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_2.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_2.mp3",
+  "duration": 21.125555555555557,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 8,
+      "startTime": 0,
+      "endTime": 0.5644444444444445,
+      "text": "\"Ah!"
+    },
+    {
+      "sentenceIndex": 9,
+      "startTime": 0.5644444444444445,
+      "endTime": 5.573333333333334,
+      "text": "\" said the Water-rat, thinking about what the Duck had said."
+    },
+    {
+      "sentenceIndex": 10,
+      "startTime": 5.573333333333334,
+      "endTime": 13.34888888888889,
+      "text": "The Water-rat said he knows nothing about how parents feel because he is not a family man."
+    },
+    {
+      "sentenceIndex": 11,
+      "startTime": 13.34888888888889,
+      "endTime": 20.135555555555555,
+      "text": "He has never been married and does not plan to get married in the future."
+    }
+  ],
+  "wordCount": 44,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:04:30.276Z"
+  }
+}

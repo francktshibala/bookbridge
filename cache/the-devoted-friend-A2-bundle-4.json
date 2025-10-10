@@ -1,0 +1,62 @@
+{
+  "index": 4,
+  "sentences": [
+    {
+      "sentenceIndex": 16,
+      "text": "She stood on her head to show her children a good example."
+    },
+    {
+      "sentenceIndex": 17,
+      "text": "The Water-rat thought it was a silly question."
+    },
+    {
+      "sentenceIndex": 18,
+      "text": "He cried out loudly and said it was silly."
+    },
+    {
+      "sentenceIndex": 19,
+      "text": "He expected his devoted friend to be devoted to him, of course."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_4.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_4.mp3",
+  "duration": 19.422222222222228,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 16,
+      "startTime": 0,
+      "endTime": 5.453333333333334,
+      "text": "She stood on her head to show her children a good example."
+    },
+    {
+      "sentenceIndex": 17,
+      "startTime": 5.453333333333334,
+      "endTime": 9.12888888888889,
+      "text": "The Water-rat thought it was a silly question."
+    },
+    {
+      "sentenceIndex": 18,
+      "startTime": 9.12888888888889,
+      "endTime": 13.248888888888889,
+      "text": "He cried out loudly and said it was silly."
+    },
+    {
+      "sentenceIndex": 19,
+      "startTime": 13.248888888888889,
+      "endTime": 18.702222222222222,
+      "text": "He expected his devoted friend to be devoted to him, of course."
+    }
+  ],
+  "wordCount": 41,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:30:11.663Z"
+  }
+}

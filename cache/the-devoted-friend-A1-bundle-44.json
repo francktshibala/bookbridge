@@ -1,0 +1,62 @@
+{
+  "index": 44,
+  "sentences": [
+    {
+      "sentenceIndex": 176,
+      "text": "It took him all day, and he was very tired, so he slept in his chair until morning."
+    },
+    {
+      "sentenceIndex": 177,
+      "text": "Hans said, 'I will enjoy my garden,' and he started working."
+    },
+    {
+      "sentenceIndex": 178,
+      "text": "But he could not care for his flowers, because the Miller always asked him to do jobs."
+    },
+    {
+      "sentenceIndex": 179,
+      "text": "Hans was sad sometimes, because he thought his flowers felt forgotten, but he was happy to help his friend."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_44.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_44.mp3",
+  "duration": 23.376666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 176,
+      "startTime": 0,
+      "endTime": 6.3,
+      "text": "It took him all day, and he was very tired, so he slept in his chair until morning."
+    },
+    {
+      "sentenceIndex": 177,
+      "startTime": 6.3,
+      "endTime": 10.086666666666666,
+      "text": "Hans said, 'I will enjoy my garden,' and he started working."
+    },
+    {
+      "sentenceIndex": 178,
+      "startTime": 10.086666666666666,
+      "endTime": 16.023333333333333,
+      "text": "But he could not care for his flowers, because the Miller always asked him to do jobs."
+    },
+    {
+      "sentenceIndex": 179,
+      "startTime": 16.023333333333333,
+      "endTime": 22.686666666666667,
+      "text": "Hans was sad sometimes, because he thought his flowers felt forgotten, but he was happy to help his friend."
+    }
+  ],
+  "wordCount": 65,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:02:09.884Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 28,
+  "sentences": [
+    {
+      "sentenceIndex": 112,
+      "text": "There is a big hole in the roof, and rain will come in."
+    },
+    {
+      "sentenceIndex": 113,
+      "text": "I am lucky you told me about the wood."
+    },
+    {
+      "sentenceIndex": 114,
+      "text": "One good action always brings another good action."
+    },
+    {
+      "sentenceIndex": 115,
+      "text": "I gave you my wheelbarrow, and you will give me your wood."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_28.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_28.mp3",
+  "duration": 15.02,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 112,
+      "startTime": 0,
+      "endTime": 4.483333333333333,
+      "text": "There is a big hole in the roof, and rain will come in."
+    },
+    {
+      "sentenceIndex": 113,
+      "startTime": 4.483333333333333,
+      "endTime": 7.6033333333333335,
+      "text": "I am lucky you told me about the wood."
+    },
+    {
+      "sentenceIndex": 114,
+      "startTime": 7.6033333333333335,
+      "endTime": 10.39,
+      "text": "One good action always brings another good action."
+    },
+    {
+      "sentenceIndex": 115,
+      "startTime": 10.39,
+      "endTime": 14.510000000000002,
+      "text": "I gave you my wheelbarrow, and you will give me your wood."
+    }
+  ],
+  "wordCount": 42,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:57.393Z"
+  }
+}

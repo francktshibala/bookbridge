@@ -1,0 +1,62 @@
+{
+  "index": 44,
+  "sentences": [
+    {
+      "sentenceIndex": 176,
+      "text": "Hans said, 'I will have a wonderful time in my garden,' and he started working right away."
+    },
+    {
+      "sentenceIndex": 177,
+      "text": "But he never had time for his flowers because the Miller always asked him to do long tasks or help at the mill."
+    },
+    {
+      "sentenceIndex": 178,
+      "text": "Hans felt very sad sometimes because he was worried his flowers would think he forgot them."
+    },
+    {
+      "sentenceIndex": 179,
+      "text": "He comforted himself by thinking that the Miller was his best friend."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_44.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_44.mp3",
+  "duration": 32.50222222222222,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 176,
+      "startTime": 0,
+      "endTime": 7.7955555555555565,
+      "text": "Hans said, 'I will have a wonderful time in my garden,' and he started working right away."
+    },
+    {
+      "sentenceIndex": 177,
+      "startTime": 7.7955555555555565,
+      "endTime": 18.497777777777777,
+      "text": "But he never had time for his flowers because the Miller always asked him to do long tasks or help at the mill."
+    },
+    {
+      "sentenceIndex": 178,
+      "startTime": 18.497777777777777,
+      "endTime": 25.808888888888887,
+      "text": "Hans felt very sad sometimes because he was worried his flowers would think he forgot them."
+    },
+    {
+      "sentenceIndex": 179,
+      "startTime": 25.808888888888887,
+      "endTime": 31.26222222222222,
+      "text": "He comforted himself by thinking that the Miller was his best friend."
+    }
+  ],
+  "wordCount": 68,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:42:36.864Z"
+  }
+}

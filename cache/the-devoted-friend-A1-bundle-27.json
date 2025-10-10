@@ -1,0 +1,62 @@
+{
+  "index": 27,
+  "sentences": [
+    {
+      "sentenceIndex": 108,
+      "text": "He has a new wheelbarrow for himself now."
+    },
+    {
+      "sentenceIndex": 109,
+      "text": "Hans said, 'You are generous,' and he was happy."
+    },
+    {
+      "sentenceIndex": 110,
+      "text": "I can fix it because I have wood at home."
+    },
+    {
+      "sentenceIndex": 111,
+      "text": "A piece of wood is what I need for my barn."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_27.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_27.mp3",
+  "duration": 13.566666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 108,
+      "startTime": 0,
+      "endTime": 2.7866666666666666,
+      "text": "He has a new wheelbarrow for himself now."
+    },
+    {
+      "sentenceIndex": 109,
+      "startTime": 2.7866666666666666,
+      "endTime": 5.906666666666666,
+      "text": "Hans said, 'You are generous,' and he was happy."
+    },
+    {
+      "sentenceIndex": 110,
+      "startTime": 5.906666666666666,
+      "endTime": 9.36,
+      "text": "I can fix it because I have wood at home."
+    },
+    {
+      "sentenceIndex": 111,
+      "startTime": 9.36,
+      "endTime": 13.146666666666667,
+      "text": "A piece of wood is what I need for my barn."
+    }
+  ],
+  "wordCount": 38,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:52.084Z"
+  }
+}

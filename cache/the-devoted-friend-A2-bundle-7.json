@@ -1,0 +1,62 @@
+{
+  "index": 7,
+  "sentences": [
+    {
+      "sentenceIndex": 28,
+      "text": "Once upon a time, said the Linnet, there was an honest little boy named Hans."
+    },
+    {
+      "sentenceIndex": 29,
+      "text": "Was he very special?"
+    },
+    {
+      "sentenceIndex": 30,
+      "text": "The Water-rat asked a question."
+    },
+    {
+      "sentenceIndex": 31,
+      "text": "The Linnet said, 'No, he was not special, except for his kind heart and funny, happy face.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_7.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_7.mp3",
+  "duration": 19.422222222222228,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 28,
+      "startTime": 0,
+      "endTime": 6.826666666666667,
+      "text": "Once upon a time, said the Linnet, there was an honest little boy named Hans."
+    },
+    {
+      "sentenceIndex": 29,
+      "startTime": 6.826666666666667,
+      "endTime": 8.724444444444444,
+      "text": "Was he very special?"
+    },
+    {
+      "sentenceIndex": 30,
+      "startTime": 8.724444444444444,
+      "endTime": 11.066666666666666,
+      "text": "The Water-rat asked a question."
+    },
+    {
+      "sentenceIndex": 31,
+      "startTime": 11.066666666666666,
+      "endTime": 18.862222222222222,
+      "text": "The Linnet said, 'No, he was not special, except for his kind heart and funny, happy face.'"
+    }
+  ],
+  "wordCount": 41,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:30:26.077Z"
+  }
+}

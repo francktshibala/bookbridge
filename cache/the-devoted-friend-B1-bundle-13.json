@@ -1,0 +1,62 @@
+{
+  "index": 13,
+  "sentences": [
+    {
+      "sentenceIndex": 52,
+      "text": "The Miller replied, 'What a foolish boy you are!"
+    },
+    {
+      "sentenceIndex": 53,
+      "text": "I don't understand why we send you to school if you don't learn anything.'"
+    },
+    {
+      "sentenceIndex": 54,
+      "text": "He continued, 'If Hans came here and saw our warm fire, good supper, and big barrel of red wine, he might become jealous."
+    },
+    {
+      "sentenceIndex": 55,
+      "text": "Jealousy is a terrible thing and can ruin a person’s character."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_13.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_13.mp3",
+  "duration": 27.553333333333338,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 52,
+      "startTime": 0,
+      "endTime": 4.12,
+      "text": "The Miller replied, 'What a foolish boy you are!"
+    },
+    {
+      "sentenceIndex": 53,
+      "startTime": 4.12,
+      "endTime": 10.462222222222223,
+      "text": "I don't understand why we send you to school if you don't learn anything.'"
+    },
+    {
+      "sentenceIndex": 54,
+      "startTime": 10.462222222222223,
+      "endTime": 21.204444444444448,
+      "text": "He continued, 'If Hans came here and saw our warm fire, good supper, and big barrel of red wine, he might become jealous."
+    },
+    {
+      "sentenceIndex": 55,
+      "startTime": 21.204444444444448,
+      "endTime": 26.21333333333334,
+      "text": "Jealousy is a terrible thing and can ruin a person’s character."
+    }
+  ],
+  "wordCount": 57,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:05:55.479Z"
+  }
+}

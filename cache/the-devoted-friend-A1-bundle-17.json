@@ -1,0 +1,62 @@
+{
+  "index": 17,
+  "sentences": [
+    {
+      "sentenceIndex": 68,
+      "text": "The boy was ashamed, and he cried into his tea."
+    },
+    {
+      "sentenceIndex": 69,
+      "text": "He was young, so you must forgive him."
+    },
+    {
+      "sentenceIndex": 70,
+      "text": "The Linnet said, 'Certainly not, that is the start.'"
+    },
+    {
+      "sentenceIndex": 71,
+      "text": "The Water-rat said, 'You are behind the times.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_17.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_17.mp3",
+  "duration": 12.476666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 68,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "The boy was ashamed, and he cried into his tea."
+    },
+    {
+      "sentenceIndex": 69,
+      "startTime": 3.453333333333333,
+      "endTime": 6.24,
+      "text": "He was young, so you must forgive him."
+    },
+    {
+      "sentenceIndex": 70,
+      "startTime": 6.24,
+      "endTime": 9.36,
+      "text": "The Linnet said, 'Certainly not, that is the start.'"
+    },
+    {
+      "sentenceIndex": 71,
+      "startTime": 9.36,
+      "endTime": 12.146666666666667,
+      "text": "The Water-rat said, 'You are behind the times.'"
+    }
+  ],
+  "wordCount": 35,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:03.033Z"
+  }
+}
