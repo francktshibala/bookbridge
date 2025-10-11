@@ -1,0 +1,67 @@
+{
+  "bookId": "lady-with-dog",
+  "title": "The Lady with the Dog",
+  "author": "Anton Chekhov",
+  "literaryForm": "short-story",
+  "detectionMethod": "3-pass-hybrid",
+  "totalSentences": 337,
+  "totalWords": 6372,
+  "chapters": [
+    {
+      "chapterIndex": 0,
+      "title": "An Intriguing New Arrival",
+      "startSentence": 0,
+      "endSentence": 22,
+      "sentenceCount": 23,
+      "wordCount": 632,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 1,
+      "title": "Conversations in Yalta",
+      "startSentence": 23,
+      "endSentence": 64,
+      "sentenceCount": 42,
+      "wordCount": 695,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 2,
+      "title": "An Unspoken Understanding",
+      "startSentence": 65,
+      "endSentence": 119,
+      "sentenceCount": 55,
+      "wordCount": 820,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 3,
+      "title": "Silence at Oreanda",
+      "startSentence": 120,
+      "endSentence": 199,
+      "sentenceCount": 80,
+      "wordCount": 1771,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 4,
+      "title": "Arranging an Encounter",
+      "startSentence": 200,
+      "endSentence": 279,
+      "sentenceCount": 80,
+      "wordCount": 1364,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 5,
+      "title": "Parting in Silence",
+      "startSentence": 280,
+      "endSentence": 336,
+      "sentenceCount": 57,
+      "wordCount": 1123,
+      "confidence": 85
+    }
+  ],
+  "validationIssues": [],
+  "createdAt": "2025-10-11T20:23:38.412Z"
+}

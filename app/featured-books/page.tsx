@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
+import { useWakeLock } from '@/lib/hooks/useWakeLock';
+import { useMediaSession } from '@/lib/hooks/useMediaSession';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -174,6 +176,16 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     bundles: 10,
     gradient: 'from-emerald-500 to-teal-600',
     abbreviation: 'CC'
+  },
+  {
+    id: 'lady-with-dog',
+    title: 'The Lady with the Dog',
+    author: 'Anton Chekhov',
+    description: 'Psychological masterpiece about unexpected love. A1 level with Sarah voice narration across 6 thematic chapters.',
+    sentences: 349,
+    bundles: 88,
+    gradient: 'from-blue-500 to-purple-600',
+    abbreviation: 'LD'
   }
 ];
 
@@ -198,6 +210,9 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A2': '/api/devoted-friend-a2/bundles',
     'B1': '/api/devoted-friend-b1/bundles'
   },
+  'lady-with-dog': {
+    'A1': '/api/lady-with-dog-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -212,6 +227,7 @@ const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'anne-of-green-gables-a2': 'A2',  // Default to A2 for Anne of Green Gables
   'the-necklace': 'A1',  // Default to A1 for The Necklace (A1/A2/B1 support)
   'gift-of-the-magi': 'A1',  // Default to A1 for Gift of the Magi (A1/A2 support)
+  'lady-with-dog': 'A1',  // Default to A1 for The Lady with the Dog
   'digital-library-test': 'A2',
   'digital-library-test-2': 'A2',
   'digital-library-test-3': 'A2'
@@ -792,6 +808,7 @@ export default function FeaturedBooksPage() {
       'the-necklace': ['A1', 'A2', 'B1'], // The Necklace has A1, A2, and B1
       'gift-of-the-magi': ['A1', 'A2', 'B1'], // Gift of the Magi has A1, A2, and B1
       'the-devoted-friend': ['A1', 'A2', 'B1'], // The Devoted Friend has A1, A2, and B1
+      'lady-with-dog': ['A1'], // The Lady with the Dog has A1
     };
 
     const singleLevelBooks: { [key: string]: string } = {
@@ -1556,6 +1573,68 @@ export default function FeaturedBooksPage() {
     }
     return [];
   };
+
+  // Activate wake lock to prevent screen from turning off during playback
+  useWakeLock(isPlaying);
+
+  // Set up media session for lock screen controls
+  useMediaSession(isPlaying, {
+    title: selectedBook?.title || 'BookBridge Audiobook',
+    artist: selectedBook?.author || 'Unknown Author',
+    album: `Level ${cefrLevel}`,
+    onPlay: () => {
+      if (audioManagerRef.current && !isPlaying) {
+        handleResume();
+      }
+    },
+    onPause: () => {
+      if (audioManagerRef.current && isPlaying) {
+        handlePause();
+      }
+    },
+    onSeekBackward: () => {
+      // Go to previous sentence
+      const prevIndex = Math.max(0, currentSentenceIndex - 1);
+      if (bundleData) {
+        const prevBundle = findBundleForSentence(prevIndex);
+        if (prevBundle && audioManagerRef.current) {
+          audioManagerRef.current.stop();
+          setCurrentBundle(prevBundle.bundleId);
+          handlePlaySequential(prevIndex);
+        }
+      }
+    },
+    onSeekForward: () => {
+      // Go to next sentence
+      const nextIndex = currentSentenceIndex + 1;
+      if (bundleData && nextIndex < bundleData.totalSentences) {
+        const nextBundle = findBundleForSentence(nextIndex);
+        if (nextBundle && audioManagerRef.current) {
+          audioManagerRef.current.stop();
+          setCurrentBundle(nextBundle.bundleId);
+          handlePlaySequential(nextIndex);
+        }
+      }
+    },
+    onPreviousTrack: () => {
+      // Go to previous bundle
+      if (currentBundle && bundleData) {
+        const currentBundleObj = bundleData.bundles.find(b => b.bundleId === currentBundle);
+        if (currentBundleObj && currentBundleObj.bundleIndex > 0) {
+          const prevBundle = bundleData.bundles[currentBundleObj.bundleIndex - 1];
+          if (prevBundle && audioManagerRef.current) {
+            audioManagerRef.current.stop();
+            setCurrentBundle(prevBundle.bundleId);
+            handlePlaySequential(prevBundle.sentences[0].sentenceIndex);
+          }
+        }
+      }
+    },
+    onNextTrack: () => {
+      // Go to next bundle
+      handleNextBundle();
+    }
+  });
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">

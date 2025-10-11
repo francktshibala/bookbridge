@@ -134,7 +134,31 @@ node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
 # - Use proven M1 voice settings (speed 0.90)
 # - Ensure proper sentence punctuation preservation
 # - Save audio to book-specific CDN paths
-# - Measure actual duration (never estimate)
+# - Generate audio files first
+
+# ✅ 8.5. Audio Duration Measurement (NEW - CRITICAL FOR SYNC)
+node scripts/measure-audio-durations.js [book-name] [LEVEL]
+# - Uses ffprobe to measure actual audio duration
+# - Updates BookChunk records with real timings
+# - Recalculates sentence boundaries within bundles
+# - REQUIRED: Install ffmpeg first: brew install ffmpeg (Mac) or apt-get install ffmpeg (Linux)
+#
+# TIMING FORMULA UPDATES (for estimation fallback only):
+# - Sarah voice at 0.90 speed: 0.33-0.35 seconds per word (not 0.30)
+# - Safety buffer: 0.15-0.20s per sentence (not 0.12s)
+# - Length penalty: +0.03s per word for sentences over 12 words
+# - Always scale by actual/estimated ratio when available
+#
+# BEST PRACTICE: Always measure, never estimate
+# - This eliminates audio cutoffs and sync issues permanently
+# - Works with existing bundle architecture (4 sentences per bundle)
+# - Each sentence gets exact start/end times from real audio
+#
+# TROUBLESHOOTING: For existing books with sync issues:
+# node scripts/measure-audio-durations.js [book-name] [level]
+# - Analyzes existing audio files and logs exact timings
+# - Use this data to fix problematic books manually
+# - Validates audio quality before deploying new books
 
 # ✅ 9. Bundle Architecture Validation
 # - Verify 4-sentence bundle structure
@@ -145,11 +169,39 @@ node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
 
 ### Phase 4: API & Database Integration
 ```bash
-# ✅ 10. API Endpoint Creation
+# ✅ 10. API Endpoint Creation (WITH MEASUREMENT APPROACH)
 # - Create /api/[book-name]/bundles/route.ts
+# - CRITICAL: Use real-time audio measurement template (prevents sync issues)
 # - Include hardcoded chapter structure from detection
 # - Test API returns proper sentence punctuation
 # - Verify audio URLs are accessible
+#
+# MEASUREMENT APPROACH TEMPLATE (copy this code pattern):
+# ```typescript
+# // Real-time ffprobe measurement for perfect sync
+# let actualDuration = null;
+# try {
+#   const { execSync } = require('child_process');
+#   const command = `ffprobe -v quiet -show_entries format=duration -of csv=p=0 "${audioUrl}"`;
+#   const result = execSync(command, { encoding: 'utf-8' }).trim();
+#   actualDuration = parseFloat(result);
+# } catch (error) {
+#   console.log(`Could not measure duration for bundle ${index}, using estimated timings`);
+# }
+#
+# if (actualDuration && !isNaN(actualDuration) && actualDuration > 0) {
+#   // Use measured duration for proportional sentence timing
+#   const totalWords = chunkSentences.reduce((sum, sentence) => sum + sentence.split(/\s+/).length, 0);
+#   sentencesWithTimings = chunkSentences.map((text, sentenceIdx) => {
+#     const words = text.trim().split(/\s+/).length;
+#     const wordRatio = words / totalWords;
+#     const estimatedDuration = actualDuration * wordRatio;
+#     // ... proportional timing calculation
+#   });
+# } else {
+#   // Fallback to improved estimates: 0.35 SPW + 0.20s buffer + length penalty
+# }
+# ```
 
 # ✅ 11. Database Structure Creation
 # - Create Book record
