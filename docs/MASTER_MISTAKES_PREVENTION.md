@@ -112,18 +112,54 @@ node scripts/simplify-[book-name].js [LEVEL]
 # - Preserve punctuation for proper formatting
 # - Cache results after every API batch
 # - Validate natural reading flow before proceeding
+#
+# ⚠️ AI SENTENCE COUNT ALIGNMENT ISSUE (GPT-5 SOLUTION):
+# PROBLEM: AI returns wrong sentence count (e.g., 11 instead of 10), breaking 1:1 mapping
+# SOLUTION: Implement structured prompting + auto-repair system:
+#   1. Use JSON format with IDs: [{"id":"s1","text":"..."}, {"id":"s2","text":"..."}]
+#   2. Set temperature=0, top_p=0 for deterministic output
+#   3. Add auto-repair: merge shortest adjacent sentences if too many, split longest at punctuation if too few
+#   4. Include in simplification scripts for production reliability
+#   5. This prevents costly regeneration and maintains perfect audio-text sync
 ```
 
 ### Phase 3: Audio & Bundle Generation
 ```bash
-# ✅ 8. Audio Generation with INTEGRATED MEASUREMENT (PILOT FIRST!)
-# ONE-TIME SETUP (for duration caching):
+# ✅ 8. Audio Generation with PAYLOAD VERIFICATION (PILOT FIRST!)
+# ONE-TIME SETUP (for verification & duration caching):
 node scripts/add-audio-metadata-column.js  # Add JSONB field to database
 brew install ffmpeg                         # Install ffmpeg for measurements
 
-# GENERATION WITH AUTO-MEASUREMENT:
+# GENERATION WITH VERIFICATION & AUTO-MEASUREMENT:
 node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
 # Example: node scripts/generate-necklace-bundles.js A1 --pilot
+
+# ⚠️ MANDATORY TTS PAYLOAD VERIFICATION (learned from "invisible sentences" bug):
+# Add to generation script BEFORE calling TTS API:
+#   const textHash = crypto.createHash('sha256').update(bundleText).digest('hex').substring(0, 16);
+#   const sentenceCount = bundle.sentences.length; // ✅ Use array count (GPT-5 recommendation)
+#   console.log(`TTS Input: "${bundleText}"`);
+#   console.log(`Hash: ${textHash}, Sentences: ${sentenceCount}`);
+#   // ✅ FLEXIBLE BUNDLE SIZE (learned from The Dead A1 generation):
+#   const expectedSentences = bundle.index === bundles.length - 1 ? [3, 4] : [4];
+#   if (!expectedSentences.includes(bundle.sentences.length)) {
+#     throw new Error(`Bundle ${bundle.index}: Expected ${expectedSentences.join(' or ')} sentences, got ${bundle.sentences.length}`);
+#   }
+# This prevents TTS from receiving extra sentences that cause "invisible audio" issues
+#
+# ⚠️ CRITICAL LEARNING: FLEXIBLE FINAL BUNDLE SIZES (The Dead A1 case):
+# Problem: 451 sentences ÷ 4 = 112.75, leaving final bundle with only 3 sentences
+# Solution: Allow 3-4 sentences in final bundle to prevent generation failures
+# Implementation: Check if bundle.index === bundles.length - 1 for flexible validation
+# This prevents costly regeneration when sentence counts don't divide evenly by 4
+#
+# ⚠️ SENTENCE BOUNDARY PROTECTION (learned from title abbreviation bugs):
+# NEVER re-split bundle text - use sentence array as single source of truth:
+#   const bundleText = bundle.sentences.map(s => s.text).join(' '); // ✅ Safe joining
+#   const sentenceCount = bundle.sentences.length; // ✅ Use array count, not regex
+# AVOID: bundleText.split(/[.!?]+/) // ❌ Breaks on Mr./Mrs./Dr./St./etc.
+# This prevents "Mr. Smith", "Dr. Jones", "St. John" from creating false sentence boundaries
+# The sentence array is authoritative - TTS payload must match exactly what API displays
 #
 # ⚠️ CRITICAL: Update generation script to measure & cache:
 # After audio upload, add:

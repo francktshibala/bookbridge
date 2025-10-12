@@ -128,6 +128,16 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'TN'
   },
   {
+    id: 'the-dead',
+    title: 'The Dead',
+    author: 'James Joyce',
+    description: 'Modernist masterpiece about love, memory, and mortality. Joyce\'s most celebrated story simplified to A1 level. 451 sentences across 113 bundles with Sarah voice narration.',
+    sentences: 451,
+    bundles: 113,
+    gradient: 'from-blue-500 to-indigo-600',
+    abbreviation: 'TD'
+  },
+  {
     id: 'digital-library-test',
     title: 'Maya Story - Speed Test',
     author: 'BookBridge AI',
@@ -810,6 +820,7 @@ export default function FeaturedBooksPage() {
       'gift-of-the-magi': ['A1', 'A2', 'B1'], // Gift of the Magi has A1, A2, and B1
       'the-devoted-friend': ['A1', 'A2', 'B1'], // The Devoted Friend has A1, A2, and B1
       'lady-with-dog': ['A1', 'A2'], // The Lady with the Dog has A1 and A2
+      'the-dead': ['A1'], // The Dead has A1 level
     };
 
     const singleLevelBooks: { [key: string]: string } = {
@@ -986,6 +997,7 @@ export default function FeaturedBooksPage() {
 
             // Transform original content to bundle format
             const sentences = contentData.content.split(/[.!?]+/).filter((s: string) => s.trim().length > 0);
+            console.log('🚨 GPT-5 DIAGNOSTIC: Using text-splitting fallback path! This breaks on Mr./Dr./etc.');
             const sentencesPerBundle = 4;
             const bundles: BundleData[] = [];
 

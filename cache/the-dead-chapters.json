@@ -1,0 +1,46 @@
+{
+  "bookId": "the-dead",
+  "title": "The Dead",
+  "author": "James Joyce",
+  "totalSentences": 1013,
+  "chapterCount": 5,
+  "chapters": [
+    {
+      "title": "The Christmas Party",
+      "description": "Gabriel arrives at his aunts' annual Christmas party",
+      "startSentence": 0,
+      "endSentence": 250,
+      "theme": "Social gathering, family dynamics"
+    },
+    {
+      "title": "Conversations and Dancing",
+      "description": "Gabriel talks with guests and gives his speech",
+      "startSentence": 250,
+      "endSentence": 500,
+      "theme": "Social interactions, Irish culture"
+    },
+    {
+      "title": "The Journey Home",
+      "description": "Gabriel and Gretta leave the party and go to the hotel",
+      "startSentence": 500,
+      "endSentence": 750,
+      "theme": "Intimacy, anticipation"
+    },
+    {
+      "title": "Gretta's Memory",
+      "description": "Gretta tells Gabriel about Michael Furey, her first love",
+      "startSentence": 750,
+      "endSentence": 900,
+      "theme": "Past love, revelation"
+    },
+    {
+      "title": "Gabriel's Epiphany",
+      "description": "Gabriel realizes his wife's true feelings and his own mortality",
+      "startSentence": 900,
+      "endSentence": 1013,
+      "theme": "Self-realization, universal human connection"
+    }
+  ],
+  "generatedAt": "2025-10-12T05:55:33.822Z",
+  "structure": "thematic-short-story"
+}

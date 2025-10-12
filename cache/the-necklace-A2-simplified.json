@@ -1,0 +1,1621 @@
+{
+  "sentences": [
+    {
+      "sentenceIndex": 0,
+      "originalText": "_The Necklace_\r\n\nShe was one of those pretty and charming girls who are sometimes, as if\r\nby a mistake of destiny, born in a family of clerks.",
+      "simplifiedText": "She was a pretty and charming girl born into a clerk's family.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 1,
+      "originalText": "She had no dowry,\r\nno expectations, no means of being known, understood, loved, wedded, by\r\nany rich and distinguished man; and she let herself be married to a\r\nlittle clerk at the Ministry of Public Instruction.",
+      "simplifiedText": "She had no dowry or hopes and married a small clerk.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 2,
+      "originalText": "She dressed plainly because she could not dress well, but she was as\r\nunhappy as though she had really fallen from her proper station; since\r\nwith women there is neither caste nor rank; and beauty, grace, and\r\ncharm act instead of family and birth.",
+      "simplifiedText": "She dressed simply because she couldn't afford better, feeling unhappy.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 3,
+      "originalText": "Natural fineness, instinct for\r\nwhat is elegant, suppleness of wit, are the sole hierarchy, and make\r\nfrom women of the people the equals of the very greatest ladies.",
+      "simplifiedText": "Natural elegance and wit make women equal to the greatest ladies.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 4,
+      "originalText": "She suffered ceaselessly, feeling herself born for all the delicacies\r\nand all the luxuries.",
+      "simplifiedText": "She constantly suffered, feeling she was meant for luxury.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 5,
+      "originalText": "She suffered from the poverty of her dwelling,\r\nfrom the wretched look of the walls, from the worn-out chairs, from the\r\nugliness of the curtains.",
+      "simplifiedText": "She suffered from her home's poverty and its worn-out appearance.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 6,
+      "originalText": "All those things, of which another woman of\r\nher rank would never even have been conscious, tortured her and made\r\nher angry.",
+      "simplifiedText": "Things unnoticed by others of her rank tortured and angered her.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 7,
+      "originalText": "The sight of the little Breton peasant who did her humble\r\nhousework aroused in her regrets which were despairing, and distracted\r\ndreams.",
+      "simplifiedText": "Seeing the peasant doing housework made her feel regret and dream.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 8,
+      "originalText": "She thought of the silent antechambers hung with Oriental\r\ntapestry, lit by tall bronze candelabra, and of the two great footmen\r\nin knee breeches who sleep in the big armchairs, made drowsy by the\r\nheavy warmth of the hot-air stove.",
+      "simplifiedText": "She imagined silent rooms with tapestries and footmen in knee breeches.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 9,
+      "originalText": "She thought of the long\r\n_salons_ fatted up with ancient silk, of the delicate furniture\r\ncarrying priceless curiosities, and of the coquettish perfumed boudoirs\r\nmade for talks at five o'clock with intimate friends, with men famous\r\nand sought after, whom all women envy and whose attention they all\r\ndesire.",
+      "simplifiedText": "She thought of elegant rooms with silk, fine furniture, and famous guests.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 10,
+      "originalText": "When she sat down to dinner, before the round table covered with a\r\ntablecloth three days old, opposite her husband, who uncovered the soup\r\ntureen and declared with an enchanted air, \"Ah, the good\r\n_pot-au-feu_!",
+      "simplifiedText": "She sat at the table with her husband, who praised the soup.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 11,
+      "originalText": "I don't know anything better than that,\" she thought\r\nof dainty dinners, of shining silverware, of tapestry which peopled the\r\nwalls with ancient personages and with strange birds flying in the\r\nmidst of a fairy forest; and she thought of delicious dishes served on\r\nmarvelous plates, and of the whispered gallantries which you listen to\r\nwith a sphinx-like smile, while you are eating the pink flesh of a\r\ntrout or the wings of a quail.",
+      "simplifiedText": "She dreamed of fancy dinners, silverware, and beautiful tapestries on the walls.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 12,
+      "originalText": "She had no dresses, no jewels, nothing.",
+      "simplifiedText": "She had no nice dresses or jewelry.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 13,
+      "originalText": "And she loved nothing but that;\r\nshe felt made for that.",
+      "simplifiedText": "She loved only those things and felt she was meant for them.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 14,
+      "originalText": "She would so have liked to please, to be\r\nenvied, to be charming, to be sought after.",
+      "simplifiedText": "She wanted to be admired, envied, and sought after.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 15,
+      "originalText": "She had a friend, a former schoolmate at the convent, who was rich, and\r\nwhom she did not like to go and see any more, because she suffered so\r\nmuch when she came back.",
+      "simplifiedText": "She had a rich friend from school but avoided visiting her.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 16,
+      "originalText": "But, one evening, her husband returned home with a triumphant air, and\r\nholding a large envelope in his hand.",
+      "simplifiedText": "One evening, her husband came home excited, holding a large envelope.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 17,
+      "originalText": "\"There,\" said he, \"here is something for you.",
+      "simplifiedText": "He said, \"Here is something for you.\"",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 18,
+      "originalText": "\"\r\n\r\nShe tore the paper sharply, and drew out a printed card which bore\r\nthese words:\r\n\r\n\"The Minister of Public Instruction and Mme.",
+      "simplifiedText": "She quickly opened it and found a printed invitation.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 19,
+      "originalText": "Georges Ramponneau request\r\nthe honor of M.",
+      "simplifiedText": "It was from the Minister of Public Instruction and Mme. Georges Ramponneau.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 20,
+      "originalText": "and Mme.",
+      "simplifiedText": "and Mrs. Loisel.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 21,
+      "originalText": "Loisel's company at the palace of the Ministry\r\non Monday evening, January 18th.",
+      "simplifiedText": "Loisel's invitation to the Ministry's palace on January 18th.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 22,
+      "originalText": "\"\r\n\r\nInstead of being delighted, as her husband hoped, she threw the\r\ninvitation on the table with disdain, murmuring:\r\n\r\n\"What do you want me to do with that?",
+      "simplifiedText": "Instead of being happy, she threw the invitation on the table.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 23,
+      "originalText": "\"\r\n\r\n\"But, my dear, I thought you would be glad.",
+      "simplifiedText": "\"But, my dear, I thought you would be pleased.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 24,
+      "originalText": "You never go out, and this\r\nis such a fine opportunity.",
+      "simplifiedText": "You never go out, and this is a great chance.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 25,
+      "originalText": "I had awful trouble to get it.",
+      "simplifiedText": "I had a lot of trouble getting it.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 26,
+      "originalText": "Everyone\r\nwants to go; it is very select, and they are not giving many\r\ninvitations to clerks.",
+      "simplifiedText": "Everyone wants to go; it is very exclusive and limited.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 27,
+      "originalText": "The whole official world will be there.",
+      "simplifiedText": "The entire official world will attend the event.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 28,
+      "originalText": "\"\r\n\r\nShe looked at him with an irritated eye, and she said, impatiently:\r\n\r\n\"And what do you want me to put on my back?",
+      "simplifiedText": "She looked at him angrily and asked what to wear.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 29,
+      "originalText": "\"\r\n\r\nHe had not thought of that; he stammered:\r\n\r\n\"Why, the dress you go to the theater in.",
+      "simplifiedText": "He hadn't thought of that and suggested her theater dress.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 30,
+      "originalText": "It looks very well, to me.",
+      "simplifiedText": "It looks very good to me.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 31,
+      "originalText": "\"\r\n\r\nHe stopped, distracted, seeing that his wife was crying.",
+      "simplifiedText": "He stopped, distracted, because his wife was crying.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 32,
+      "originalText": "Two great\r\ntears descended slowly from the corners of her eyes toward the corners\r\nof her mouth.",
+      "simplifiedText": "Two big tears slowly fell from her eyes to her mouth.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 33,
+      "originalText": "He stuttered:\r\n\r\n\"What's the matter?",
+      "simplifiedText": "He stuttered, \"What is wrong?\"",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 34,
+      "originalText": "What's the matter?",
+      "simplifiedText": "What is wrong?",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 35,
+      "originalText": "\"\r\n\r\nBut, by a violent effort, she had conquered her grief, and she replied,\r\nwith a calm voice, while she wiped her wet cheeks:\r\n\r\n\"Nothing.",
+      "simplifiedText": "But she controlled her sadness and said calmly, \"Nothing.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 36,
+      "originalText": "Only I have no dress, and therefore I can't go to this ball.",
+      "simplifiedText": "I have no dress, so I can't go to the ball.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 37,
+      "originalText": "Give your card to some colleague whose wife is better equipped than I.",
+      "simplifiedText": "Give your invitation to a colleague whose wife is better dressed.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 38,
+      "originalText": "\"\r\n\r\nHe was in despair.",
+      "simplifiedText": "He felt hopeless.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 39,
+      "originalText": "He resumed:\r\n\r\n\"Come, let us see, Mathilde.",
+      "simplifiedText": "He continued, \"Come, let's think, Mathilde.\"",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 40,
+      "originalText": "How much would it cost, a suitable dress,\r\nwhich you could use on other occasions, something very simple?",
+      "simplifiedText": "How much would a simple dress cost for other occasions?",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 41,
+      "originalText": "\"\r\n\r\nShe reflected several seconds, making her calculations and wondering\r\nalso what sum she could ask without drawing on herself an immediate\r\nrefusal and a frightened exclamation from the economical clerk.",
+      "simplifiedText": "She thought for a few seconds, calculating and considering her options.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 42,
+      "originalText": "Finally, she replied, hesitatingly:\r\n\r\n\"I don't know exactly, but I think I could manage it with four hundred\r\nfrancs.",
+      "simplifiedText": "Finally, she said, \"I think I could manage with four hundred francs.\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 43,
+      "originalText": "\"\r\n\r\nHe had grown a little pale, because he was laying aside just that\r\namount to buy a gun and treat himself to a little shooting next summer\r\non the plain of Nanterre, with several friends who went to shoot larks\r\ndown there of a Sunday.",
+      "simplifiedText": "He turned pale because he was saving that amount for a gun.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 44,
+      "originalText": "But he said:\r\n\r\n\"All right.",
+      "simplifiedText": "But he said, \"All right.\"",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 45,
+      "originalText": "I will give you four hundred francs.",
+      "simplifiedText": "I will give you four hundred francs.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 46,
+      "originalText": "And try to have a\r\npretty dress.",
+      "simplifiedText": "Try to get a nice dress.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 47,
+      "originalText": "\"\r\n\r\nThe day of the ball drew near, and Mme.",
+      "simplifiedText": "The day of the ball was approaching, and Mme.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 48,
+      "originalText": "Loisel seemed sad, uneasy,\r\nanxious.",
+      "simplifiedText": "Loisel felt sad, uneasy, and anxious.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 49,
+      "originalText": "Her dress was ready, however.",
+      "simplifiedText": "However, her dress was ready.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 50,
+      "originalText": "Her husband said to her one\r\nevening:\r\n\r\n\"What is the matter?",
+      "simplifiedText": "Her husband asked her one evening, \"What is wrong?\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 51,
+      "originalText": "Come, you've been so queer these last three days.",
+      "simplifiedText": "He said, \"You've been acting strangely these last three days.\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 52,
+      "originalText": "\"\r\n\r\nAnd she answered:\r\n\r\n\"It annoys me not to have a single jewel, not a single stone, nothing\r\nto put on.",
+      "simplifiedText": "She replied, \"It bothers me not to have any jewelry to wear.\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 53,
+      "originalText": "I shall look like distress.",
+      "simplifiedText": "\"I will look like I am in distress,\" she said.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 54,
+      "originalText": "I should almost rather not go at\r\nall.",
+      "simplifiedText": "\"I would almost prefer not to go at all.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 55,
+      "originalText": "\"\r\n\r\nHe resumed:\r\n\r\n\"You might wear natural flowers.",
+      "simplifiedText": "He suggested, \"You could wear natural flowers instead.\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 56,
+      "originalText": "It's very stylish at this time of the\r\nyear.",
+      "simplifiedText": "\"They are very fashionable at this time of year,\" he added.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 57,
+      "originalText": "For ten francs you can get two or three magnificent roses.",
+      "simplifiedText": "\"For ten francs, you can buy two or three beautiful roses.\"",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 58,
+      "originalText": "\"\r\n\r\nShe was not convinced.",
+      "simplifiedText": "She was still not convinced by his suggestion.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 59,
+      "originalText": "\"No; there's nothing more humiliating than to look poor among other\r\nwomen who are rich.",
+      "simplifiedText": "\"No, nothing is more embarrassing than looking poor among rich women.\"",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 60,
+      "originalText": "\"\r\n\r\nBut her husband cried:\r\n\r\n\"How stupid you are!",
+      "simplifiedText": "But her husband said, \"You are being silly!\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 61,
+      "originalText": "Go look up your friend Mme.",
+      "simplifiedText": "Go ask your friend Mme. Forestier for some jewelry.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 62,
+      "originalText": "Forestier, and ask her\r\nto lend you some jewels.",
+      "simplifiedText": "Ask her to lend you some of her jewels.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 63,
+      "originalText": "You're quite thick enough with her to do\r\nthat.",
+      "simplifiedText": "You are close enough to her to ask.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 64,
+      "originalText": "\"\r\n\r\nShe uttered a cry of joy:\r\n\r\n\"It's true.",
+      "simplifiedText": "She cried with joy, \"That's true!\"",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 65,
+      "originalText": "I never thought of it.",
+      "simplifiedText": "I never thought about that before.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 66,
+      "originalText": "\"\r\n\r\nThe next day she went to her friend and told of her distress.",
+      "simplifiedText": "The next day, she told her friend about her problem.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 67,
+      "originalText": "Mme.",
+      "simplifiedText": "Mme. Forestier went to a wardrobe with glass doors.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 68,
+      "originalText": "Forestier went to a wardrobe with a glass door, took out a large\r\njewel box, brought it back, opened it, and said to Mme.",
+      "simplifiedText": "She took out a large jewel box and opened it.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 69,
+      "originalText": "Loisel:\r\n\r\n\"Choose, my dear.",
+      "simplifiedText": "She said to Mme. Loisel, \"Choose, my dear.\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 70,
+      "originalText": "\"\r\n\r\nShe saw first of all some bracelets, then a pearl necklace, then a\r\nVenetian cross, gold and precious stones of admirable workmanship.",
+      "simplifiedText": "She first saw bracelets, then a pearl necklace, and a Venetian cross.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 71,
+      "originalText": "She\r\ntried on the ornaments before the glass, hesitated, could not make up\r\nher mind to part with them, to give them back.",
+      "simplifiedText": "She tried on the jewelry, hesitated, and couldn't decide to return them.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 72,
+      "originalText": "She kept asking:\r\n\r\n\"Haven't you any more?",
+      "simplifiedText": "She kept asking, \"Don't you have any more?\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 73,
+      "originalText": "\"\r\n\r\n\"Why, yes.",
+      "simplifiedText": "\"Yes, I do.\"",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 74,
+      "originalText": "Look.",
+      "simplifiedText": "\"Look here.\"",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 75,
+      "originalText": "I don't know what you like.",
+      "simplifiedText": "\"I don't know what you prefer.\"",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 76,
+      "originalText": "\"\r\n\r\nAll of a sudden she discovered, in a black satin box, a superb necklace\r\nof diamonds, and her heart began to beat with an immoderate desire.",
+      "simplifiedText": "Suddenly, she found a diamond necklace in a black satin box.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 77,
+      "originalText": "Her\r\nhands trembled as she took it.",
+      "simplifiedText": "Her hands shook as she picked it up.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 78,
+      "originalText": "She fastened it around her throat,\r\noutside her high-necked dress, and remained lost in ecstasy at the\r\nsight of herself.",
+      "simplifiedText": "She put it around her neck and admired herself in the mirror.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 79,
+      "originalText": "Then she asked, hesitating, filled with anguish:\r\n\r\n\"Can you lend me that, only that?",
+      "simplifiedText": "Then she asked, hesitating, \"Can you lend me just that one?\"",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 80,
+      "originalText": "\"\r\n\r\n\"Why, yes, certainly.",
+      "simplifiedText": "\"Yes, of course.\"",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 81,
+      "originalText": "\"\r\n\r\nShe sprang upon the neck of her friend, kissed her passionately, then\r\nfled with her treasure.",
+      "simplifiedText": "She hugged her friend, kissed her, and ran away.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 82,
+      "originalText": "* * * * *\r\n\r\nThe day of the ball arrived.",
+      "simplifiedText": "The day of the ball finally came.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 83,
+      "originalText": "Mme.",
+      "simplifiedText": "Mme.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 84,
+      "originalText": "Loisel made a great success.",
+      "simplifiedText": "Loisel was very successful at the ball.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 85,
+      "originalText": "She was\r\nprettier than them all, elegant, gracious, smiling, and crazy with joy.",
+      "simplifiedText": "She was prettier than everyone, elegant, and full of joy.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 86,
+      "originalText": "All the men looked at her, asked her name, endeavored to be introduced.",
+      "simplifiedText": "All the men looked at her and wanted to meet her.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 87,
+      "originalText": "All the attachés of the Cabinet wanted to waltz with her.",
+      "simplifiedText": "The Cabinet members wanted to dance with her.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 88,
+      "originalText": "She was\r\nremarked by the minister himself.",
+      "simplifiedText": "Even the minister noticed her.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 89,
+      "originalText": "She danced with intoxication, with passion, made drunk by pleasure,\r\nforgetting all, in the triumph of her beauty, in the glory of her\r\nsuccess, in a sort of cloud of happiness composed of all this homage,\r\nof all this admiration, of all these awakened desires, and of that\r\nsense of complete victory which is so sweet to woman's heart.",
+      "simplifiedText": "She danced with joy, forgetting everything in her success and beauty.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 90,
+      "originalText": "She went away about four o'clock in the morning.",
+      "simplifiedText": "She left around four in the morning.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 91,
+      "originalText": "Her husband had been\r\nsleeping since midnight, in a little deserted anteroom, with three\r\nother gentlemen whose wives were having a very good time.",
+      "simplifiedText": "Her husband had been sleeping since midnight with three other men.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 92,
+      "originalText": "He threw over her shoulders the wraps which he had brought, modest\r\nwraps of common life, whose poverty contrasted with the elegance of the\r\nball dress.",
+      "simplifiedText": "He put a simple wrap over her shoulders, contrasting with her dress.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 93,
+      "originalText": "She felt this and wanted to escape so as not to be remarked\r\nby the other women, who were enveloping themselves in costly furs.",
+      "simplifiedText": "She felt embarrassed and wanted to leave quickly, avoiding other women.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 94,
+      "originalText": "Loisel held her back.",
+      "simplifiedText": "Loisel stopped her from leaving.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 95,
+      "originalText": "\"Wait a bit.",
+      "simplifiedText": "\"Wait a moment.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 96,
+      "originalText": "You will catch cold outside.",
+      "simplifiedText": "You might catch a cold outside.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 97,
+      "originalText": "I will go and call a cab.",
+      "simplifiedText": "I will go and find a cab.\"",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 98,
+      "originalText": "\"\r\n\r\nBut she did not listen to him, and rapidly descended the stairs.",
+      "simplifiedText": "But she ignored him and hurried down the stairs.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 99,
+      "originalText": "When\r\nthey were in the street they did not find a carriage; and they began to\r\nlook for one, shouting after the cabmen whom they saw passing by at a\r\ndistance.",
+      "simplifiedText": "In the street, they couldn't find a carriage and started looking.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 100,
+      "originalText": "They went down toward the Seine, in despair, shivering with cold.",
+      "simplifiedText": "They walked down to the Seine, feeling cold and hopeless.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 101,
+      "originalText": "At\r\nlast they found on the quay one of those ancient noctambulent coupés\r\nwhich, exactly as if they were ashamed to show their misery during the\r\nday, are never seen round Paris until after nightfall.",
+      "simplifiedText": "Finally, they found an old carriage on the quay, hidden until night.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 102,
+      "originalText": "It took them to their door in the Rue des Martyrs, and once more,\r\nsadly, they climbed up homeward.",
+      "simplifiedText": "It took them home to Rue des Martyrs, where they climbed sadly.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 103,
+      "originalText": "All was ended for her.",
+      "simplifiedText": "Everything was over for her.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 104,
+      "originalText": "And as to him,\r\nhe reflected that he must be at the Ministry at ten o'clock.",
+      "simplifiedText": "He thought he must be at the Ministry by ten.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 105,
+      "originalText": "She removed the wraps, which covered her shoulders, before the glass,\r\nso as once more to see herself in all her glory.",
+      "simplifiedText": "She took off her wraps to see herself in the mirror again.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 106,
+      "originalText": "But suddenly she\r\nuttered a cry.",
+      "simplifiedText": "Suddenly, she screamed.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 107,
+      "originalText": "She had no longer the necklace around her neck!",
+      "simplifiedText": "The necklace was no longer around her neck!",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 108,
+      "originalText": "Her husband, already half undressed, demanded:\r\n\r\n\"What is the matter with you?",
+      "simplifiedText": "Her husband, half undressed, asked, \"What is wrong with you?\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 109,
+      "originalText": "\"\r\n\r\nShe turned madly toward him:\r\n\r\n\"I have--I have--I've lost Mme.",
+      "simplifiedText": "She turned to him frantically, \"I have lost Mme.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 110,
+      "originalText": "Forestier's necklace.",
+      "simplifiedText": "Forestier's necklace was missing.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 111,
+      "originalText": "\"\r\n\r\nHe stood up, distracted.",
+      "simplifiedText": "He stood up, looking very worried.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 112,
+      "originalText": "\"What!",
+      "simplifiedText": "\"What happened?\"",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 113,
+      "originalText": "--how?",
+      "simplifiedText": "\"How did this occur?\"",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 114,
+      "originalText": "--Impossible!",
+      "simplifiedText": "\"This is impossible!\"",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 115,
+      "originalText": "\"\r\n\r\nAnd they looked in the folds of her dress, in the folds of her cloak,\r\nin her pockets, everywhere.",
+      "simplifiedText": "They searched her dress, cloak, and pockets thoroughly.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 116,
+      "originalText": "They did not find it.",
+      "simplifiedText": "They could not find the necklace anywhere.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 117,
+      "originalText": "He asked:\r\n\r\n\"You're sure you had it on when you left the ball?",
+      "simplifiedText": "He asked, \"Are you sure you wore it when you left?\"",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 118,
+      "originalText": "\"\r\n\r\n\"Yes, I felt it in the vestibule of the palace.",
+      "simplifiedText": "\"Yes, I felt it in the palace entrance,\" she replied.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 119,
+      "originalText": "\"\r\n\r\n\"But if you had lost it in the street we should have heard it fall.",
+      "simplifiedText": "\"If it fell in the street, we would have heard it.\"",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 120,
+      "originalText": "It\r\nmust be in the cab.",
+      "simplifiedText": "It must be inside the taxi.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 121,
+      "originalText": "\"\r\n\r\n\"Yes.",
+      "simplifiedText": "\"Yes,\" she replied.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 122,
+      "originalText": "Probably.",
+      "simplifiedText": "It is likely.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 123,
+      "originalText": "Did you take his number?",
+      "simplifiedText": "Did you get his phone number?",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 124,
+      "originalText": "\"\r\n\r\n\"No.",
+      "simplifiedText": "\"No,\" he answered.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 125,
+      "originalText": "And you, didn't you notice it?",
+      "simplifiedText": "And you, didn't you see it?",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 126,
+      "originalText": "\"\r\n\r\n\"No.",
+      "simplifiedText": "\"No,\" she said.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 127,
+      "originalText": "\"\r\n\r\nThey looked, thunderstruck, at one another.",
+      "simplifiedText": "They looked at each other, shocked.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 128,
+      "originalText": "At last Loisel put on his\r\nclothes.",
+      "simplifiedText": "Finally, Loisel put on his clothes.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 129,
+      "originalText": "\"I shall go back on foot,\" said he, \"over the whole route which we have\r\ntaken, to see if I can't find it.",
+      "simplifiedText": "\"I will walk back the entire way to find it,\" he said.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 130,
+      "originalText": "\"\r\n\r\nAnd he went out.",
+      "simplifiedText": "And then he left the house.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 131,
+      "originalText": "She sat waiting on a chair in her ball dress, without\r\nstrength to go to bed, overwhelmed, without fire, without a thought.",
+      "simplifiedText": "She sat in her ball dress, too tired to move, feeling hopeless.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 132,
+      "originalText": "Her husband came back about seven o'clock.",
+      "simplifiedText": "Her husband returned home around seven o'clock.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 133,
+      "originalText": "He had found nothing.",
+      "simplifiedText": "He had not found anything.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 134,
+      "originalText": "He went to Police Headquarters, to the newspaper offices, to offer a\r\nreward; he went to the cab companies--everywhere, in fact, whither he\r\nwas urged by the least suspicion of hope.",
+      "simplifiedText": "He visited the police, newspapers, and cab companies, hoping for a clue.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 135,
+      "originalText": "She waited all day, in the same condition of mad fear before this\r\nterrible calamity.",
+      "simplifiedText": "She spent the day in fear, worried about the disaster.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 136,
+      "originalText": "Loisel returned at night with a hollow, pale face; he had discovered\r\nnothing.",
+      "simplifiedText": "Loisel came back at night, looking pale and tired, with no news.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 137,
+      "originalText": "\"You must write to your friend,\" said he, \"that you have broken the\r\nclasp of her necklace and that you are having it mended.",
+      "simplifiedText": "\"You should tell your friend,\" he said, \"that the necklace clasp broke.\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 138,
+      "originalText": "That will give\r\nus time to turn round.",
+      "simplifiedText": "\"This will give us some time to figure things out.\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 139,
+      "originalText": "\"\r\n\r\nShe wrote at his dictation.",
+      "simplifiedText": "She wrote the letter as he instructed.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 140,
+      "originalText": "At the end of a week they had lost all hope.",
+      "simplifiedText": "By the week's end, they had lost all their hope.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 141,
+      "originalText": "And Loisel, who had aged five years, declared:\r\n\r\n\"We must consider how to replace that ornament.",
+      "simplifiedText": "Loisel, who looked five years older, said, \"We must replace the necklace.\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 142,
+      "originalText": "\"\r\n\r\nThe next day they took the box which had contained it, and they went to\r\nthe jeweler whose name was found within.",
+      "simplifiedText": "The next day, they took the box to the jeweler named inside.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 143,
+      "originalText": "He consulted his books.",
+      "simplifiedText": "He checked his records.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 144,
+      "originalText": "\"It was not I, madame, who sold that necklace; I must simply have\r\nfurnished the case.",
+      "simplifiedText": "\"I did not sell that necklace, madame; I only provided the box.\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 145,
+      "originalText": "\"\r\n\r\nThen they went from jeweler to jeweler, searching for a necklace like\r\nthe other, consulting their memories, sick both of them with chagrin\r\nand with anguish.",
+      "simplifiedText": "They visited many jewelers, searching for a similar necklace, feeling upset.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 146,
+      "originalText": "They found, in a shop at the Palais Royal, a string of diamonds which\r\nseemed to them exactly like the one they looked for.",
+      "simplifiedText": "At a shop in the Palais Royal, they found similar diamonds.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 147,
+      "originalText": "It was worth forty\r\nthousand francs.",
+      "simplifiedText": "The necklace was valued at forty thousand francs.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 148,
+      "originalText": "They could have it for thirty-six.",
+      "simplifiedText": "They could buy it for thirty-six thousand francs.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 149,
+      "originalText": "So they begged the jeweler not to sell it for three days yet.",
+      "simplifiedText": "They asked the jeweler to hold it for three more days.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 150,
+      "originalText": "And they\r\nmade a bargain that he should buy it back for thirty-four thousand\r\nfrancs in case they found the other one before the end of February.",
+      "simplifiedText": "They agreed he would buy it back for thirty-four thousand francs.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 151,
+      "originalText": "Loisel possessed eighteen thousand francs which his father had left\r\nhim.",
+      "simplifiedText": "Loisel had eighteen thousand francs from his father.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 152,
+      "originalText": "He would borrow the rest.",
+      "simplifiedText": "He planned to borrow the rest.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 153,
+      "originalText": "He did borrow, asking a thousand francs of one, five hundred of\r\nanother, five louis here, three louis there.",
+      "simplifiedText": "He borrowed a thousand francs from one, five hundred from another.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 154,
+      "originalText": "He gave notes, took up\r\nruinous obligations, dealt with usurers, and all the race of lenders.",
+      "simplifiedText": "He signed notes, took on debts, and dealt with moneylenders.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 155,
+      "originalText": "He compromised all the rest of his life, risked his signature without\r\neven knowing if he could meet it; and, frightened by the pains yet to\r\ncome, by the black misery which was about to fall upon him, by the\r\nprospect of all the physical privations and of all the moral tortures\r\nwhich he was to suffer, he went to get the new necklace, putting down\r\nupon the merchant's counter thirty-six thousand francs.",
+      "simplifiedText": "He risked his future, fearing the misery and hardship to come.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 156,
+      "originalText": "When Mme.",
+      "simplifiedText": "When Mme.",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 157,
+      "originalText": "Loisel took back the necklace, Mme.",
+      "simplifiedText": "Loisel returned the necklace, Mme.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 158,
+      "originalText": "Forestier said to her,\r\nwith a chilly manner:\r\n\r\n\"You should have returned it sooner, I might have needed it.",
+      "simplifiedText": "Forestier coldly said, \"You should have returned it sooner.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 159,
+      "originalText": "\"\r\n\r\nShe did not open the case, as her friend had so much feared.",
+      "simplifiedText": "She did not open the case, as her friend feared.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 160,
+      "originalText": "If she had\r\ndetected the substitution, what would she have thought, what would she\r\nhave said?",
+      "simplifiedText": "If she noticed the switch, what would she think or say?",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 161,
+      "originalText": "Would she not have taken Mme.",
+      "simplifiedText": "Would she think Mme. Loisel was a thief?",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 162,
+      "originalText": "Loisel for a thief?",
+      "simplifiedText": "Would she accuse Mme. Loisel of stealing?",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 163,
+      "originalText": "Mme.",
+      "simplifiedText": "Mme. Loisel understood the harsh life of the poor.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 164,
+      "originalText": "Loisel now knew the horrible existence of the needy.",
+      "simplifiedText": "She suddenly faced her situation with bravery.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 165,
+      "originalText": "She took her\r\npart, moreover, all on a sudden, with heroism.",
+      "simplifiedText": "The terrible debt had to be repaid.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 166,
+      "originalText": "That dreadful debt must\r\nbe paid.",
+      "simplifiedText": "She was determined to pay it back.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 167,
+      "originalText": "She would pay it.",
+      "simplifiedText": "They let their servant go and moved to a small attic.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 168,
+      "originalText": "They dismissed their servant; they changed\r\ntheir lodgings; they rented a garret under the roof.",
+      "simplifiedText": "She learned the hard work of cleaning and cooking.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 169,
+      "originalText": "She came to know what heavy housework meant and the odious cares of the\r\nkitchen.",
+      "simplifiedText": "She experienced the difficult and unpleasant tasks of the kitchen.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 170,
+      "originalText": "She washed the dishes, using her rosy nails on the greasy pots\r\nand pans.",
+      "simplifiedText": "She cleaned the dishes with her rosy nails on greasy pots.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 171,
+      "originalText": "She washed the dirty linen, the shirts, and the dish-cloths,\r\nwhich she dried upon a line; she carried the slops down to the street\r\nevery morning, and carried up the water, stopping for breath at every\r\nlanding.",
+      "simplifiedText": "She washed clothes and dish-cloths, dried them, and carried water upstairs.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 172,
+      "originalText": "And, dressed like a woman of the people, she went to the\r\nfruiterer, the grocer, the butcher, her basket on her arm, bargaining,\r\ninsulted, defending her miserable money sou by sou.",
+      "simplifiedText": "Dressed like a common woman, she shopped and argued for better prices.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 173,
+      "originalText": "Each month they had to meet some notes, renew others, obtain more time.",
+      "simplifiedText": "Every month they had to pay some debts and delay others.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 174,
+      "originalText": "Her husband worked in the evening making a fair copy of some\r\ntradesman's accounts, and late at night he often copied manuscript for\r\nfive sous a page.",
+      "simplifiedText": "Her husband worked at night copying accounts and manuscripts for money.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 175,
+      "originalText": "And this life lasted ten years.",
+      "simplifiedText": "This difficult life continued for ten years.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 176,
+      "originalText": "At the end of ten years they had paid everything, everything, with the\r\nrates of usury, and the accumulations of the compound interest.",
+      "simplifiedText": "After ten years, they paid all debts with high interest.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 177,
+      "originalText": "Mme.",
+      "simplifiedText": "Mme.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 178,
+      "originalText": "Loisel looked old now.",
+      "simplifiedText": "Loisel appeared old now.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 179,
+      "originalText": "She had become the woman of impoverished\r\nhouseholds--strong and hard and rough.",
+      "simplifiedText": "She became a strong, tough woman from a poor household.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 180,
+      "originalText": "With frowsy hair, skirts askew,\r\nand red hands, she talked loud while washing the floor with great\r\nswishes of water.",
+      "simplifiedText": "With messy hair and red hands, she loudly cleaned the floor.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 181,
+      "originalText": "But sometimes, when her husband was at the office,\r\nshe sat down near the window, and she thought of that gay evening of\r\nlong ago, of that ball where she had been so beautiful and so feted.",
+      "simplifiedText": "Sometimes, when her husband was at work, she remembered a fun party.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 182,
+      "originalText": "What would have happened if she had not lost that necklace?",
+      "simplifiedText": "What if she had not lost that necklace?",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 183,
+      "originalText": "Who knows?",
+      "simplifiedText": "Who can say?",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 184,
+      "originalText": "who knows?",
+      "simplifiedText": "Who can say?",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 185,
+      "originalText": "How life is strange and changeful!",
+      "simplifiedText": "Life is strange and always changing!",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 186,
+      "originalText": "How little a thing is\r\nneeded for us to be lost or to be saved!",
+      "simplifiedText": "A small thing can make us lost or saved!",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 187,
+      "originalText": "But, one Sunday, having gone to take a walk in the Champs Élysées to\r\nrefresh herself from the labors of the week, she suddenly perceived a\r\nwoman who was leading a child.",
+      "simplifiedText": "One Sunday, she saw a woman with a child in the park.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 188,
+      "originalText": "It was Mme.",
+      "simplifiedText": "It was Mme.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 189,
+      "originalText": "Forestier, still young,\r\nstill beautiful, still charming.",
+      "simplifiedText": "Forestier, still young, still beautiful, still charming.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 190,
+      "originalText": "Mme.",
+      "simplifiedText": "Mme. Loisel was feeling emotional.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 191,
+      "originalText": "Loisel felt moved.",
+      "simplifiedText": "She wondered if she would talk to her.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 192,
+      "originalText": "Was she going to speak to her?",
+      "simplifiedText": "Yes, she definitely would.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 193,
+      "originalText": "Yes, certainly.",
+      "simplifiedText": "Now that she had paid, she would tell her everything.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 194,
+      "originalText": "And now that she had paid, she was going to tell her all about it.",
+      "simplifiedText": "Why not do it now?",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 195,
+      "originalText": "Why\r\nnot?",
+      "simplifiedText": "She approached her.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 196,
+      "originalText": "She went up.",
+      "simplifiedText": "\"Hello, Jeanne.\"",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 197,
+      "originalText": "\"Good day, Jeanne.",
+      "simplifiedText": "The other woman was surprised to be spoken to so casually.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 198,
+      "originalText": "\"\r\n\r\nThe other, astonished to be familiarly addressed by this plain\r\ngood-wife, did not recognize her at all, and stammered:\r\n\r\n\"But--madame!",
+      "simplifiedText": "She did not recognize her and said, \"But, madame!\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 199,
+      "originalText": "--I do not know--You must have mistaken.",
+      "simplifiedText": "\"I do not know you. You must be mistaken.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 200,
+      "originalText": "\"\r\n\r\n\"No.",
+      "simplifiedText": "\"No.\"",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 201,
+      "originalText": "I am Mathilde Loisel.",
+      "simplifiedText": "I am Mathilde Loisel.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 202,
+      "originalText": "\"\r\n\r\nHer friend uttered a cry.",
+      "simplifiedText": "Her friend cried out in surprise.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 203,
+      "originalText": "\"Oh, my poor Mathilde!",
+      "simplifiedText": "\"Oh, my poor Mathilde!\"",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 204,
+      "originalText": "How you are changed!",
+      "simplifiedText": "\"You have changed so much!\"",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 205,
+      "originalText": "\"\r\n\r\n\"Yes, I have had days hard enough, since I have seen you, days wretched\r\nenough--and that because of you!",
+      "simplifiedText": "\"Yes, I have had very hard days since I saw you.\"",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 206,
+      "originalText": "\"\r\n\r\n\"Of me!",
+      "simplifiedText": "\"Because of me?\"",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 207,
+      "originalText": "How so?",
+      "simplifiedText": "\"How is that possible?\"",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 208,
+      "originalText": "\"\r\n\r\n\"Do you remember that diamond necklace which you lent me to wear at the\r\nministerial ball?",
+      "simplifiedText": "\"Do you remember the diamond necklace you lent me for the ball?\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 209,
+      "originalText": "\"\r\n\r\n\"Yes.",
+      "simplifiedText": "\"Yes.\"",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 210,
+      "originalText": "Well?",
+      "simplifiedText": "What happened?",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 211,
+      "originalText": "\"\r\n\r\n\"Well, I lost it.",
+      "simplifiedText": "I lost the necklace.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 212,
+      "originalText": "\"\r\n\r\n\"What do you mean?",
+      "simplifiedText": "What are you saying?",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 213,
+      "originalText": "You brought it back.",
+      "simplifiedText": "You returned the necklace.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 214,
+      "originalText": "\"\r\n\r\n\"I brought you back another just like it.",
+      "simplifiedText": "I gave you another necklace like it.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 215,
+      "originalText": "And for this we have been ten\r\nyears paying.",
+      "simplifiedText": "We spent ten years paying for it.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 216,
+      "originalText": "You can understand that it was not easy for us, us who\r\nhad nothing.",
+      "simplifiedText": "It was hard for us because we had nothing.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 217,
+      "originalText": "At last it is ended, and I am very glad.",
+      "simplifiedText": "Finally, it is over, and I am relieved.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 218,
+      "originalText": "\"\r\n\r\nMme.",
+      "simplifiedText": "Madame.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 219,
+      "originalText": "Forestier had stopped.",
+      "simplifiedText": "Forestier paused.",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 220,
+      "originalText": "\"You say that you bought a necklace of diamonds to replace mine?",
+      "simplifiedText": "Did you say you bought a diamond necklace to replace mine?",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 221,
+      "originalText": "\"\r\n\r\n\"Yes.",
+      "simplifiedText": "Yes, I did.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 222,
+      "originalText": "You never noticed it, then!",
+      "simplifiedText": "You never noticed the difference!",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 223,
+      "originalText": "They were very like.",
+      "simplifiedText": "They looked very similar.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 224,
+      "originalText": "\"\r\n\r\nAnd she smiled with a joy which was proud and naïve at once.",
+      "simplifiedText": "She smiled with a proud and innocent joy.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 225,
+      "originalText": "Mme.",
+      "simplifiedText": "Madame Forestier was deeply moved.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 226,
+      "originalText": "Forestier, strongly moved, took her two hands.",
+      "simplifiedText": "She took Mathilde's hands in hers.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 227,
+      "originalText": "\"Oh, my poor Mathilde!",
+      "simplifiedText": "Oh, my poor Mathilde!",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 228,
+      "originalText": "Why, my necklace was paste.",
+      "simplifiedText": "My necklace was just a fake.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 229,
+      "originalText": "It was worth at most\r\nfive hundred francs!",
+      "simplifiedText": "It was worth at most five hundred francs!",
+      "level": "A2",
+      "wordCount": 8
+    }
+  ],
+  "metadata": {
+    "bookId": "the-necklace",
+    "cefrLevel": "A2",
+    "totalSentences": 230,
+    "inProgress": false,
+    "completedAt": "2025-10-12T05:34:59.901Z"
+  }
+}

@@ -39,17 +39,17 @@ const DANIEL_VOICE_SETTINGS = {
   }
 };
 
-// VOICE MAPPING FOR NECKLACE: A1 → Daniel, A2 → Sarah (user requested), B1 → Daniel
+// VOICE MAPPING FOR THE DEAD: A1 → Sarah, A2 → Sarah, B1 → Daniel
 function getVoiceForLevel(level) {
   const voiceMapping = {
-    'A1': DANIEL_VOICE_SETTINGS, // A1 uses Daniel for Necklace (user request)
-    'A2': SARAH_VOICE_SETTINGS,  // A2 uses Sarah (user request)
+    'A1': SARAH_VOICE_SETTINGS,  // A1 uses Sarah for The Dead
+    'A2': SARAH_VOICE_SETTINGS,  // A2 uses Sarah
     'B1': DANIEL_VOICE_SETTINGS  // B1 uses Daniel
   };
-  return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
+  return voiceMapping[level] || SARAH_VOICE_SETTINGS;
 }
 
-const BOOK_ID = 'the-necklace';
+const BOOK_ID = 'the-dead';
 
 // SCRIPT LEVEL VALIDATION - MANDATORY FIRST (prevents runtime failures)
 const VALID_LEVELS = ['A1', 'A2', 'B1'];
@@ -57,11 +57,12 @@ const VALID_LEVELS = ['A1', 'A2', 'B1'];
 // Get target level from command line argument
 const targetLevel = process.argv[2];
 const isPilot = process.argv.includes('--pilot');
+const isPilot5 = process.argv.includes('--pilot-5');
 
 // Validate level before proceeding
 if (!targetLevel) {
   console.error('❌ Error: Please specify a CEFR level (A1, A2, or B1)');
-  console.log('Usage: node scripts/generate-necklace-bundles.js [A1|A2|B1] [--pilot]');
+  console.log('Usage: node scripts/generate-the-dead-bundles.js [A1|A2|B1] [--pilot]');
   process.exit(1);
 }
 
@@ -74,11 +75,13 @@ const CEFR_LEVEL = targetLevel;
 const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
 
 console.log(`🎵 Generating bundles for "${BOOK_ID}" at ${CEFR_LEVEL} level`);
-const voiceName = CEFR_LEVEL === 'A2' ? 'Sarah' : 'Daniel';
+const voiceName = CEFR_LEVEL === 'B1' ? 'Daniel' : 'Sarah';
 console.log(`🗣️ Using voice: ${voiceSettings.voice_id} (${voiceName})`);
 
 if (isPilot) {
   console.log('🧪 PILOT MODE: Will generate only first 3 bundles (~$0.30 cost)');
+} else if (isPilot5) {
+  console.log('🧪 PILOT-5 MODE: Will generate first 5 bundles (~$0.50 cost)');
 }
 
 // IMPROVED TIMING FORMULA (Based on real measurement analysis)
@@ -160,24 +163,24 @@ async function uploadToSupabase(audioBuffer, fileName, maxRetries = 3) {
   throw lastError;
 }
 
-async function generateNecklaceBundles() {
-  console.log(`\n📚 Starting bundle generation for "The Necklace" (${CEFR_LEVEL})...`);
+async function generateTheDeadBundles() {
+  console.log(`\n📚 Starting bundle generation for "The Dead" (${CEFR_LEVEL})...`);
 
   try {
-    // Load simplified sentences from cache (TXT format for necklace)
-    const cacheFile = path.join(process.cwd(), 'cache', `${BOOK_ID}-${CEFR_LEVEL}-simplified.txt`);
+    // Load simplified sentences from cache (JSON format for The Dead)
+    const cacheFile = path.join(process.cwd(), 'cache', `${BOOK_ID}-${CEFR_LEVEL}-simplified.json`);
 
     if (!fs.existsSync(cacheFile)) {
       throw new Error(`Simplified cache not found: ${cacheFile}. Run simplify script first.`);
     }
 
-    const simplifiedText = fs.readFileSync(cacheFile, 'utf8');
-    const sentences = simplifiedText.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 5);
+    const cacheData = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+    const sentences = cacheData.sentences.map(s => s.simplifiedText);
 
-    const simplifiedSentences = sentences.map((text, index) => ({
+    const simplifiedSentences = cacheData.sentences.map((sentence, index) => ({
       sentenceIndex: index,
-      simplifiedText: text.trim(),
-      wordCount: text.trim().split(/\s+/).length
+      simplifiedText: sentence.simplifiedText.trim(),
+      wordCount: sentence.wordCount
     }));
 
     console.log(`📖 Loaded ${simplifiedSentences.length} simplified sentences`);
@@ -206,26 +209,27 @@ async function generateNecklaceBundles() {
     await prisma.bookContent.upsert({
       where: { bookId: BOOK_ID },
       update: {
-        title: 'The Necklace',
-        author: 'Guy de Maupassant',
+        title: 'The Dead',
+        author: 'James Joyce',
         fullText: totalText,
-        era: 'french-realist',
+        era: 'modernist',
         wordCount: totalText.split(/\s+/).length,
         totalChunks: bundles.length
       },
       create: {
         bookId: BOOK_ID,
-        title: 'The Necklace',
-        author: 'Guy de Maupassant',
+        title: 'The Dead',
+        author: 'James Joyce',
         fullText: totalText,
-        era: 'french-realist',
+        era: 'modernist',
         wordCount: totalText.split(/\s+/).length,
         totalChunks: bundles.length
       }
     });
 
-    // Limit to pilot if requested (3 bundles max for cost control)
-    const bundlesToProcess = isPilot ? bundles.slice(0, 3) : bundles;
+    // Limit to pilot if requested (3 or 5 bundles max for cost control)
+    const bundlesToProcess = isPilot ? bundles.slice(0, 3) :
+                             isPilot5 ? bundles.slice(0, 5) : bundles;
     console.log(`🔄 Will process ${bundlesToProcess.length} bundles`);
 
     // Check for existing bundles to enable resume
@@ -243,15 +247,45 @@ async function generateNecklaceBundles() {
     console.log(`📊 Resume capability: ${existingIndices.size} existing, ${newBundles.length} new bundles`);
 
     let processedCount = 0;
-    const voiceType = CEFR_LEVEL === 'A1' ? 'Sarah' : 'Daniel';
+    const voiceType = CEFR_LEVEL === 'B1' ? 'Daniel' : 'Sarah';
 
     for (const bundle of newBundles) {
       try {
         console.log(`\n🎵 Processing bundle ${bundle.index}/${bundles.length - 1}...`);
 
-        // Combine sentences for audio
-        const bundleText = bundle.sentences.map(s => s.text).join(' ');
+        // Combine sentences for audio with proper punctuation handling
+        const bundleText = bundle.sentences.map(s => {
+          const text = s.text.trim();
+          // Ensure sentence ends with proper punctuation
+          return text.match(/[.!?]$/) ? text : text + '.';
+        }).join(' ');
         const totalWords = bundle.sentences.reduce((sum, s) => sum + s.wordCount, 0);
+
+        // GPT-5 VERIFICATION: Log exact TTS input and generate content hash
+        const crypto = await import('crypto');
+        const textHash = crypto.createHash('sha256').update(bundleText).digest('hex').substring(0, 16);
+        const sentenceCount = bundle.sentences.length; // ✅ Use array count (GPT-5 recommendation)
+
+        console.log(`   🔍 TTS Verification:`);
+        console.log(`   📝 Exact text: "${bundleText}"`);
+        console.log(`   📊 Text hash: ${textHash}`);
+        console.log(`   📐 Sentence array count: ${sentenceCount} (expected: 4)`);
+        console.log(`   ✅ Bundle sentences: ${bundle.sentences.map(s => `"${s.text.substring(0, 30)}..."`).join(', ')}`);
+
+        // GPT-5 GUARDRAIL: Assert 3-4 sentences (allow shorter final bundle)
+        const expectedSentences = bundle.index === bundles.length - 1 ? [3, 4] : [4];
+        if (!expectedSentences.includes(bundle.sentences.length)) {
+          throw new Error(`Bundle ${bundle.index}: Expected ${expectedSentences.join(' or ')} sentences, got ${bundle.sentences.length}`);
+        }
+
+        // Verify TTS payload matches exactly what API will display
+        const apiSentences = bundle.sentences.map(s => s.text);
+        const ttsText = apiSentences.join(' ');
+        if (bundleText !== ttsText) {
+          console.warn(`   ⚠️ WARNING: TTS payload differs from sentence array join!`);
+          console.warn(`   📝 Expected: "${ttsText}"`);
+          console.warn(`   📝 Actual: "${bundleText}"`);
+        }
 
         console.log(`   📝 Text: "${bundleText.substring(0, 100)}..."`);
         console.log(`   📊 ${totalWords} words, ${bundle.sentences.length} sentences`);
@@ -260,8 +294,9 @@ async function generateNecklaceBundles() {
         console.log('   🎙️ Generating audio...');
         const audioBuffer = await generateElevenLabsAudio(bundleText, voiceSettings);
 
-        // Book-specific CDN path (prevents audio collisions)
-        const audioFileName = `${BOOK_ID}/${CEFR_LEVEL}/${voiceSettings.voice_id}/bundle_${bundle.index}.mp3`;
+        // Book-specific CDN path with timestamp versioning (forces fresh audio)
+        const timestamp = Date.now();
+        const audioFileName = `${BOOK_ID}/${CEFR_LEVEL}/${voiceSettings.voice_id}/fixed_${timestamp}_bundle_${bundle.index}.mp3`;
 
         console.log('   ☁️ Uploading to Supabase...');
         try {
@@ -318,15 +353,17 @@ async function generateNecklaceBundles() {
           };
         });
 
-        // Prepare audio duration metadata for caching
-        const audioDurationMetadata = measuredDuration ? {
+        // Prepare audio duration metadata for caching - ALWAYS store sentence boundaries
+        const audioDurationMetadata = {
           version: 1,
           measuredDuration: measuredDuration,
+          estimatedDuration: finalDuration,
           sentenceTimings: sentenceTimings,
+          exactSentences: bundle.sentences.map(s => s.text), // Store exact sentences used for audio
           measuredAt: new Date().toISOString(),
-          method: 'ffprobe-proportional',
+          method: measuredDuration ? 'ffprobe-proportional' : 'estimation-proportional',
           // Note: audioHash and fileSize can be added later for full production
-        } : null;
+        };
 
         // Save to database with cached duration metadata
         await prisma.bookChunk.create({
@@ -365,6 +402,8 @@ async function generateNecklaceBundles() {
 
     if (isPilot) {
       console.log(`\n🧪 PILOT COMPLETE - Run without --pilot flag for full generation`);
+    } else if (isPilot5) {
+      console.log(`\n🧪 PILOT-5 COMPLETE - Run without --pilot-5 flag for full generation`);
     }
 
   } catch (error) {
@@ -377,9 +416,9 @@ async function generateNecklaceBundles() {
 
 // Run if called directly
 if (import.meta.url === `file://${process.argv[1]}`) {
-  generateNecklaceBundles()
+  generateTheDeadBundles()
     .then(() => console.log('\n🎉 Bundle generation completed successfully!'))
     .catch(console.error);
 }
 
-export { generateNecklaceBundles };
+export { generateTheDeadBundles };
