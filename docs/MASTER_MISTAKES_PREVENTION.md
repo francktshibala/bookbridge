@@ -46,6 +46,29 @@
 
 **Proven ROI**: Lady with the Dog + The Dead implementations = zero debugging time, perfect results.
 
+## 🔄 MANDATORY STEP-BY-STEP WORKFLOW
+
+**CRITICAL**: Based on The Dead A2 implementation experience, attempting all phases at once causes costly mistakes. **ALWAYS follow this workflow:**
+
+### Step-by-Step Implementation Protocol:
+1. **Read One Phase Completely** - Study all details, requirements, and validation steps
+2. **Agent Implementation** - Claude implements that single phase following exact specifications
+3. **User Validation** - User confirms phase completion and gives explicit "go ahead"
+4. **Next Phase** - Only proceed to next phase after explicit approval
+
+### Why This Prevents Mistakes:
+- **Cost Prevention**: Avoids expensive API regeneration from missed requirements
+- **Quality Assurance**: Each phase validated before building on it
+- **Error Isolation**: Problems caught immediately, not after multiple phases
+- **Attention to Detail**: Prevents rushing through critical configurations
+
+### Examples of Phase-by-Phase Success:
+- **Phase 1**: Validated script support for A2 + Daniel voice mapping → Go ahead
+- **Phase 3**: Confirmed 113 bundles generated with Solution 1 → Go ahead
+- **Phase 4.5**: Fixed multiLevelBooks array for clickable buttons → Complete
+
+**NEVER attempt multiple phases simultaneously - this workflow is now MANDATORY for all implementations.**
+
 ---
 
 **Purpose**: Consolidated prevention strategies from all audiobook implementations to avoid costly mistakes and ensure successful book generation.
@@ -351,8 +374,10 @@ node scripts/backfill-audio-durations.js
 # Location 2: Add to BOOK_DEFAULT_LEVELS object (around line 245):
 # 'your-book-id': 'A1',  // Default level
 #
-# Location 3: Verify availableLevels object includes your book:
-# 'your-book-id': ['A1'], // or ['A1', 'A2', 'B1']
+# Location 3: Add to multiLevelBooks array (around line 822) - CRITICAL FOR LEVEL BUTTONS:
+# 'your-book-id': ['A1', 'A2'], // Must include ALL implemented levels for UI buttons
+# SYMPTOM: Level buttons not clickable despite working API
+# CAUSE: Missing levels in multiLevelBooks array
 #
 # ⚠️ VALIDATION TEST: Before any UI testing, run:
 node -e "

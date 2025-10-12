@@ -225,7 +225,8 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A2': '/api/lady-with-dog-a2/bundles'
   },
   'the-dead': {
-    'A1': '/api/the-dead-a1/bundles'
+    'A1': '/api/the-dead-a1/bundles',
+    'A2': '/api/the-dead-a2/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };
@@ -824,7 +825,7 @@ export default function FeaturedBooksPage() {
       'gift-of-the-magi': ['A1', 'A2', 'B1'], // Gift of the Magi has A1, A2, and B1
       'the-devoted-friend': ['A1', 'A2', 'B1'], // The Devoted Friend has A1, A2, and B1
       'lady-with-dog': ['A1', 'A2'], // The Lady with the Dog has A1 and A2
-      'the-dead': ['A1'], // The Dead has A1 level
+      'the-dead': ['A1', 'A2'], // The Dead has A1 and A2 levels
     };
 
     const singleLevelBooks: { [key: string]: string } = {
