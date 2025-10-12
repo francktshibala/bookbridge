@@ -224,6 +224,9 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A1': '/api/lady-with-dog-a1/bundles',
     'A2': '/api/lady-with-dog-a2/bundles'
   },
+  'the-dead': {
+    'A1': '/api/the-dead-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -239,6 +242,7 @@ const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'the-necklace': 'A1',  // Default to A1 for The Necklace (A1/A2/B1 support)
   'gift-of-the-magi': 'A1',  // Default to A1 for Gift of the Magi (A1/A2 support)
   'lady-with-dog': 'A1',  // Default to A1 for The Lady with the Dog
+  'the-dead': 'A1',  // Default to A1 for The Dead
   'digital-library-test': 'A2',
   'digital-library-test-2': 'A2',
   'digital-library-test-3': 'A2'

@@ -95,8 +95,8 @@ export async function GET(request: NextRequest) {
         // Use cached sentence timings if available (PREFERRED PATH - exact boundaries)
         if (metadata.sentenceTimings && Array.isArray(metadata.sentenceTimings)) {
           sentencesWithTimings = metadata.sentenceTimings.map((timing: any, idx: number) => ({
-            sentenceId: `s${totalSentencesProcessed + idx}`,
-            sentenceIndex: totalSentencesProcessed + idx,
+            sentenceId: `s${timing.sentenceIndex}`,
+            sentenceIndex: timing.sentenceIndex, // Use the original sentenceIndex from metadata
             text: timing.text,
             startTime: timing.startTime,
             endTime: timing.endTime
@@ -196,7 +196,7 @@ export async function GET(request: NextRequest) {
       };
 
       bundles.push(bundle);
-      totalSentencesProcessed += sentencesWithTimings.length;
+      // Note: totalSentencesProcessed not needed since we use original indices from metadata
     });
 
     // Get book metadata
