@@ -116,35 +116,40 @@ node scripts/simplify-[book-name].js [LEVEL]
 
 ### Phase 3: Audio & Bundle Generation
 ```bash
-# ✅ 8. Audio Generation (PILOT FIRST - CRITICAL: Check script level validation!)
-node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
-# Example commands: node scripts/generate-necklace-bundles.js A1 --pilot
-# BEFORE RUNNING: Verify script supports the target level
-# - Check script has A1/A2/B1 level validation arrays
-# - Verify getVoiceForLevel() function includes target level
-# - Confirm voice ID constants are defined (SARAH_VOICE_ID, DANIEL_VOICE_ID)
-#
-# ⚠️ A1 SPECIFIC VALIDATIONS (learned from A1 implementation issues):
-# - Verify A1 is in VALID_LEVELS array: ['A1', 'A2', 'B1']
-# - Check getVoiceForLevel() maps A1 → SARAH_VOICE_ID correctly
-# - Confirm no hardcoded VOICE_ID references (use getVoiceForLevel() instead)
-# - Validate A1 API endpoint exists: /api/[book-name]-a1/bundles/route.ts
-#
-# - Test with 5-10 bundles first (~$0.15 cost)
-# - Use proven M1 voice settings (speed 0.90)
-# - Ensure proper sentence punctuation preservation
-# - Save audio to book-specific CDN paths
-# - Generate audio files first
+# ✅ 8. Audio Generation with INTEGRATED MEASUREMENT (PILOT FIRST!)
+# ONE-TIME SETUP (for duration caching):
+node scripts/add-audio-metadata-column.js  # Add JSONB field to database
+brew install ffmpeg                         # Install ffmpeg for measurements
 
-# ✅ 8.5. Audio Duration Measurement (NEW - CRITICAL FOR SYNC)
-node scripts/measure-audio-durations.js [book-name] [LEVEL]
-# - Uses ffprobe to measure actual audio duration
-# - Updates BookChunk records with real timings
-# - Recalculates sentence boundaries within bundles
-# - REQUIRED: Install ffmpeg first: brew install ffmpeg (Mac) or apt-get install ffmpeg (Linux)
+# GENERATION WITH AUTO-MEASUREMENT:
+node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
+# Example: node scripts/generate-necklace-bundles.js A1 --pilot
 #
-# TIMING FORMULA UPDATES (for estimation fallback only):
-# - Sarah voice at 0.90 speed: 0.33-0.35 seconds per word (not 0.30)
+# ⚠️ CRITICAL: Update generation script to measure & cache:
+# After audio upload, add:
+#   const duration = getAudioDuration(audioUrl);  // ffprobe measurement
+#   const metadata = {
+#     version: 1,
+#     measuredDuration: duration,
+#     sentenceTimings: calculateTimings(sentences, duration),
+#     measuredAt: new Date().toISOString(),
+#     method: 'ffprobe-proportional'
+#   };
+#   await prisma.bookChunk.update({
+#     where: { id: chunk.id },
+#     data: { audioDurationMetadata: metadata }
+#   });
+#
+# BENEFITS:
+# - First load: Measures once during generation
+# - All subsequent loads: 2-3 seconds (uses cached data)
+# - No more 45-second waits or ffprobe on API calls
+#
+# FOR EXISTING BOOKS (backfill):
+node scripts/backfill-audio-durations.js
+# - Measures all existing audio files
+# - Populates audioDurationMetadata for past books
+# - Run once per book, then fast forever
 # - Safety buffer: 0.15-0.20s per sentence (not 0.12s)
 # - Length penalty: +0.03s per word for sentences over 12 words
 # - Always scale by actual/estimated ratio when available
@@ -169,17 +174,25 @@ node scripts/measure-audio-durations.js [book-name] [LEVEL]
 
 ### Phase 4: API & Database Integration
 ```bash
-# ✅ 10. API Endpoint Creation (WITH MEASUREMENT APPROACH)
-# - Create /api/[book-name]/bundles/route.ts
-# - CRITICAL: Use real-time audio measurement template (prevents sync issues)
-# - Include hardcoded chapter structure from detection
-# - Test API returns proper sentence punctuation
-# - Verify audio URLs are accessible
+# ✅ 10. API Endpoint Creation (USE CACHED DURATIONS ONLY!)
+# Create /api/[book-name]/bundles/route.ts
+# CRITICAL CHANGE: Never measure in API, only read cached data:
 #
-# MEASUREMENT APPROACH TEMPLATE (copy this code pattern):
 # ```typescript
-# // Real-time ffprobe measurement for perfect sync
-# let actualDuration = null;
+# const chunks = await prisma.bookChunk.findMany({
+#   where: { bookId, cefrLevel },
+#   select: {
+#     chunkText: true,
+#     audioFilePath: true,
+#     audioDurationMetadata: true  // ← REQUIRED
+#   }
+# });
+#
+# // Use cached timings (2-3 second loads):
+# if (chunk.audioDurationMetadata) {
+#   const metadata = chunk.audioDurationMetadata;
+#   totalDuration = metadata.measuredDuration;
+#   sentenceTimings = metadata.sentenceTimings;
 # try {
 #   const { execSync } = require('child_process');
 #   const command = `ffprobe -v quiet -show_entries format=duration -of csv=p=0 "${audioUrl}"`;

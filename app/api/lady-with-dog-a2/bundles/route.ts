@@ -24,13 +24,13 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const bookId = searchParams.get('bookId');
-    const level = searchParams.get('level') || 'A1';
+    const level = searchParams.get('level') || 'A2';
 
-    // This API supports The Lady with the Dog for A1 level
-    if (bookId !== 'lady-with-dog' && bookId !== 'lady-with-dog-a1') {
+    // This API supports The Lady with the Dog for A2 level
+    if (bookId !== 'lady-with-dog' && bookId !== 'lady-with-dog-a2') {
       return NextResponse.json({
         success: false,
-        error: 'This API only supports The Lady with the Dog A1'
+        error: 'This API only supports The Lady with the Dog A2'
       }, { status: 400 });
     }
 
@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
     const bookChunks = await prisma.bookChunk.findMany({
       where: {
         bookId: 'lady-with-dog',
-        cefrLevel: 'A1'
+        cefrLevel: 'A2'
       },
       orderBy: { chunkIndex: 'asc' },
       select: {
@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
     if (!bookChunks || bookChunks.length === 0) {
       return NextResponse.json({
         success: false,
-        error: 'No bundles found for The Lady with the Dog A1'
+        error: 'No bundles found for The Lady with the Dog A2'
       }, { status: 404 });
     }
 
@@ -209,7 +209,7 @@ export async function GET(request: NextRequest) {
         title: bookContent?.title || 'The Lady with the Dog',
         author: bookContent?.author || 'Anton Chekhov'
       },
-      level: 'A1',
+      level: 'A2',
       totalBundles: bundles.length,
       totalSentences,
       bundles,
@@ -218,7 +218,7 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('The Lady with the Dog A1 API error:', error);
+    console.error('The Lady with the Dog A2 API error:', error);
     return NextResponse.json({
       success: false,
       error: 'Internal server error'

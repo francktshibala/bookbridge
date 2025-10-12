@@ -269,7 +269,25 @@ model BookChunk {
   audioFilePath String?  @map("audio_file_path") // Path to generated audio file
   audioProvider String?  @map("audio_provider")  // 'openai', 'elevenlabs', etc.
   audioVoiceId  String?  @map("audio_voice_id")  // Voice used for generation
-  
+
+  // Audio duration caching (JSONB for performance)
+  audioDurationMetadata Json? @map("audio_duration_metadata") @db.Json
+  // Structure: {
+  //   version: number,              // Algorithm version for cache invalidation
+  //   measuredDuration: number,     // Total duration in seconds
+  //   sentenceTimings: [{           // Array of sentence timings
+  //     sentenceIndex: number,
+  //     text: string,
+  //     startTime: number,
+  //     endTime: number,
+  //     duration: number
+  //   }],
+  //   measuredAt: string,          // ISO date when measured
+  //   audioHash: string,           // SHA-256 of audio file
+  //   fileSize: number,            // File size in bytes
+  //   method: string               // 'ffprobe-proportional'
+  // }
+
   createdAt    DateTime @default(now()) @map("created_at")
   
   bookContent BookContent @relation(fields: [bookId], references: [bookId], onDelete: Cascade)

@@ -211,7 +211,8 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'B1': '/api/devoted-friend-b1/bundles'
   },
   'lady-with-dog': {
-    'A1': '/api/lady-with-dog-a1/bundles'
+    'A1': '/api/lady-with-dog-a1/bundles',
+    'A2': '/api/lady-with-dog-a2/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };
@@ -808,7 +809,7 @@ export default function FeaturedBooksPage() {
       'the-necklace': ['A1', 'A2', 'B1'], // The Necklace has A1, A2, and B1
       'gift-of-the-magi': ['A1', 'A2', 'B1'], // Gift of the Magi has A1, A2, and B1
       'the-devoted-friend': ['A1', 'A2', 'B1'], // The Devoted Friend has A1, A2, and B1
-      'lady-with-dog': ['A1'], // The Lady with the Dog has A1
+      'lady-with-dog': ['A1', 'A2'], // The Lady with the Dog has A1 and A2
     };
 
     const singleLevelBooks: { [key: string]: string } = {

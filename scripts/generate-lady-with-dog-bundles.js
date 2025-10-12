@@ -268,35 +268,60 @@ async function generateLadyWithDogBundles() {
           }
         }
 
-        // Calculate timing with proven formula
-        const estimatedDuration = calculateSentenceTiming(
+        // MEASURE ACTUAL DURATION for perfect sync (NEW!)
+        const audioUrl = supabase.storage
+          .from('audio-files')
+          .getPublicUrl(audioFileName)
+          .data.publicUrl;
+
+        let measuredDuration = null;
+        try {
+          const { execSync } = require('child_process');
+          const command = `ffprobe -v quiet -show_entries format=duration -of csv=p=0 "${audioUrl}"`;
+          const result = execSync(command, { encoding: 'utf-8' }).trim();
+          measuredDuration = parseFloat(result);
+          console.log(`   ⏱️ Measured duration: ${measuredDuration.toFixed(3)}s`);
+        } catch (error) {
+          console.log('   ⚠️ Could not measure duration, using estimation');
+        }
+
+        // Use measured duration or fall back to estimation
+        const finalDuration = measuredDuration || calculateSentenceTiming(
           totalWords,
           voiceType,
           voiceSettings.voice_settings.speed,
           CEFR_LEVEL
         );
 
-        // Calculate sentence timings
+        // Calculate proportional sentence timings
         let currentTime = 0;
         const sentenceTimings = bundle.sentences.map(sentence => {
+          const wordRatio = sentence.wordCount / totalWords;
+          const duration = finalDuration * wordRatio;
           const startTime = currentTime;
-          const duration = calculateSentenceTiming(
-            sentence.wordCount,
-            voiceType,
-            voiceSettings.voice_settings.speed,
-            CEFR_LEVEL
-          );
-          currentTime += duration;
+          const endTime = currentTime + duration;
+          currentTime = endTime;
 
           return {
             sentenceIndex: sentence.sentenceIndex,
             text: sentence.text,
             startTime: parseFloat(startTime.toFixed(3)),
+            endTime: parseFloat(endTime.toFixed(3)),
             duration: parseFloat(duration.toFixed(3))
           };
         });
 
-        // Save to database using existing schema
+        // Prepare audio duration metadata for caching
+        const audioDurationMetadata = measuredDuration ? {
+          version: 1,
+          measuredDuration: measuredDuration,
+          sentenceTimings: sentenceTimings,
+          measuredAt: new Date().toISOString(),
+          method: 'ffprobe-proportional',
+          // Note: audioHash and fileSize can be added later for full production
+        } : null;
+
+        // Save to database with cached duration metadata
         await prisma.bookChunk.create({
           data: {
             bookId: BOOK_ID,
@@ -307,7 +332,8 @@ async function generateLadyWithDogBundles() {
             isSimplified: true,
             audioFilePath: audioFileName, // Store only the relative path
             audioProvider: 'elevenlabs',
-            audioVoiceId: voiceSettings.voice_id
+            audioVoiceId: voiceSettings.voice_id,
+            audioDurationMetadata: audioDurationMetadata // Cache the measured duration
           }
         });
 
