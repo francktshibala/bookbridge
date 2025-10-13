@@ -19,6 +19,8 @@ import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
 import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
+import { ContinuousReadingContainer } from '@/components/reading/ContinuousReadingContainer';
+import { isContinuousReadingEnabledForBook } from '@/lib/feature-flags';
 // PWA COMPLETELY DISABLED FOR TESTING
 // import { useReadingEngagement } from '@/components/InstallPrompt';
 // import { ReadingProgressTracker } from '@/components/sync/ReadingProgressTracker';
@@ -80,28 +82,34 @@ export default function BookReaderPage() {
       setImmediateWordIndex(-1);
       resetHighlighting();
 
-      // Force scroll to top with multiple methods for reliability
-      autoScrollRef.current?.resetToTop();
+      // Disable auto-scroll reset for continuous reading mode
+      if (!(isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id))) {
+        // Force scroll to top with multiple methods for reliability
+        autoScrollRef.current?.resetToTop();
+      }
 
-      // Backup: Direct scroll to top after a brief delay
-      setTimeout(() => {
-        const contentEl = document.querySelector('[data-content="true"]');
-        if (contentEl) {
-          const rect = contentEl.getBoundingClientRect();
-          const topMargin = 50;
-          const target = Math.max(0, rect.top + window.scrollY - topMargin);
+      // Disable backup scroll for continuous reading mode
+      if (!(isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id))) {
+        // Backup: Direct scroll to top after a brief delay
+        setTimeout(() => {
+          const contentEl = document.querySelector('[data-content="true"]');
+          if (contentEl) {
+            const rect = contentEl.getBoundingClientRect();
+            const topMargin = 50;
+            const target = Math.max(0, rect.top + window.scrollY - topMargin);
 
-          console.log('🚀 PAGE TRANSITION: Backup scroll to top', {
-            target,
-            currentScroll: window.scrollY
-          });
+            console.log('🚀 PAGE TRANSITION: Backup scroll to top', {
+              target,
+              currentScroll: window.scrollY
+            });
 
-          window.scrollTo({
-            top: target,
-            behavior: 'instant'
-          });
-        }
-      }, 100);
+            window.scrollTo({
+              top: target,
+              behavior: 'instant'
+            });
+          }
+        }, 100);
+      }
     }
 
     // Update previous chunk reference
@@ -171,23 +179,23 @@ export default function BookReaderPage() {
     simplificationLoading
   });
 
+  // Two-tier experience detection
+  const entrySource = searchParams.get('source'); // 'enhanced' | 'browse' | null
+  const isEnhancedExperience = entrySource === 'enhanced' || bookContent?.stored === true;
+  const isBrowseExperience = entrySource === 'browse';
+
+
+  // Enhanced book detection - calculated here to avoid hooks order issues
+  const isEnhancedBook = bookContent?.stored === true &&
+    (bookContent?.source === 'database' || bookContent?.source === 'enhanced_database' || bookContent?.enhanced === true);
+
   useGentleAutoScroll({
     currentWordIndex: immediateWordIndex,
     currentSentenceIndex, // Pass the REAL sentence data from audio
     text: currentContent,
     isPlaying,
-    enabled: autoScrollEnabled && !simplificationLoading
+    enabled: autoScrollEnabled && !simplificationLoading && !(isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id))
   });
-
-  // Two-tier experience detection
-  const entrySource = searchParams.get('source'); // 'enhanced' | 'browse' | null
-  const isEnhancedExperience = entrySource === 'enhanced' || bookContent?.stored === true;
-  const isBrowseExperience = entrySource === 'browse';
-  
-
-  // Enhanced book detection - calculated here to avoid hooks order issues
-  const isEnhancedBook = bookContent?.stored === true && 
-    (bookContent?.source === 'database' || bookContent?.source === 'enhanced_database' || bookContent?.enhanced === true);
 
   // Handle chunk navigation - defined with useCallback for stable reference
   const handleChunkNavigation = useCallback(async (direction: 'prev' | 'next', autoAdvance = false) => {
@@ -647,6 +655,9 @@ export default function BookReaderPage() {
   // Smooth auto-scroll handler that follows voice reading naturally
   const handleAutoScroll = (scrollProgress: number) => {
     if (!autoScrollEnabled || userScrolledUp || !currentContent) return;
+
+    // Disable auto-scroll for continuous reading mode
+    if (isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id)) return;
     
     // Get the main content container
     const contentContainer = document.querySelector('[data-content="true"]');
@@ -2078,29 +2089,55 @@ export default function BookReaderPage() {
                   aria-label="Book content"
                   tabIndex={0}
                 >
-                  {/* Enhanced books: Use WordHighlighter for text display with highlighting disabled */}
+                  {/* Enhanced books: Use ContinuousReadingContainer for Yellow Wallpaper, WordHighlighter for others */}
+                  {(() => {
+                    const isContinuous = isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id);
+                    console.log('🔍 CONTINUOUS READING DEBUG:', {
+                      bookId,
+                      isEnhancedBook,
+                      isContinuous,
+                      userId: user?.id
+                    });
+                    return null;
+                  })()}
                   {isEnhancedBook ? (
-                    <div style={{ position: 'relative' }} data-content="true">
-                      {/* Auto-scroll handler - Creates word elements for scrolling */}
-                      <AutoScrollHandler
-                        ref={autoScrollRef}
-                        text={currentContent}
-                        currentWordIndex={-1}  // Disable its scrolling, just use for word elements
-                        isPlaying={false}  // Disable its scrolling
-                        enabled={false}  // Disable its scrolling
-                      />
-                      
-                      {/* Word highlighting - DISABLED but still displays text */}
-                      <WordHighlighter
-                        text={currentContent}
-                        currentWordIndex={-1} // DISABLED: Causes dizziness, doesn't match voice speed
+                    isContinuousReadingEnabledForBook(bookId, user?.id) ? (
+                      /* Yellow Wallpaper: Continuous reading mode */
+                      <ContinuousReadingContainer
+                        bookContent={bookContent}
+                        currentChunk={currentChunk}
+                        eslLevel={eslLevel}
+                        voiceProvider={voiceProvider}
+                        selectedVoice={selectedVoice}
                         isPlaying={isPlaying}
-                        animationType="speechify"
-                        highlightColor="#10b981"
-                        showProgress={true}
-                        className="word-highlight-overlay"
+                        onPlayStateChange={(playing) => setIsPlaying(playing)}
+                        onChunkChange={(chunkIndex) => setCurrentChunk(chunkIndex)}
+                        onWordHighlight={(wordIndex) => setImmediateWordIndex(wordIndex)}
                       />
-                    </div>
+                    ) : (
+                      /* Other enhanced books: Standard chunk-based mode */
+                      <div style={{ position: 'relative' }} data-content="true">
+                        {/* Auto-scroll handler - Creates word elements for scrolling */}
+                        <AutoScrollHandler
+                          ref={autoScrollRef}
+                          text={currentContent}
+                          currentWordIndex={-1}  // Disable its scrolling, just use for word elements
+                          isPlaying={false}  // Disable its scrolling
+                          enabled={false}  // Disable its scrolling
+                        />
+
+                        {/* Word highlighting - DISABLED but still displays text */}
+                        <WordHighlighter
+                          text={currentContent}
+                          currentWordIndex={-1} // DISABLED: Causes dizziness, doesn't match voice speed
+                          isPlaying={isPlaying}
+                          animationType="speechify"
+                          highlightColor="#10b981"
+                          showProgress={true}
+                          className="word-highlight-overlay"
+                        />
+                      </div>
+                    )
                   ) : (
                     /* Browse experience: Direct text display without highlighting */
                     <div data-content="true" style={{ 
