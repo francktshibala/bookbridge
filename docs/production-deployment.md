@@ -237,16 +237,141 @@ If critical issues are detected:
 
 ---
 
+## 📖 Audiobook Deployment Strategy (4-Wave Approach)
+
+### Overview
+Successfully deployed complete audiobook functionality for 10 books using a phased 4-wave strategy to ensure zero feature degradation and safe production rollout.
+
+### Wave 1: Backend Infrastructure ✅
+**Goal**: Deploy database schema and API infrastructure
+**Commits**: `6099360...d86d49a`
+- ✅ Added `audioDurationMetadata` JSONB field to BookChunk model
+- ✅ Added `ReadingPosition` model for cross-device progress tracking
+- ✅ Updated User model with readingPositions relation
+- ✅ Deployed 8 dedicated API endpoints for working books
+- ✅ Fixed Stripe API version compatibility (production: 2025-06-30.basil)
+
+**Lesson Learned**: Stripe API versions differ between local dev and production environments
+
+### Wave 2: Frontend Components ✅
+**Goal**: Deploy full audiobook UI functionality
+**Commits**: `d86d49a...9cb00b2`
+- ✅ Navigation rebranded from "Featured Books" to "Simplified Books"
+- ✅ Copied all audiobook components from continuous-reading-mvp branch:
+  - `BundleAudioManager.ts` - Core audio management
+  - `AudioBookPlayer.ts` - Player implementation
+  - `reading-position.ts` - Progress tracking service
+  - `useWakeLock.ts` - Screen wake lock functionality
+  - `useMediaSession.ts` - Media session integration
+- ✅ Zero feature degradation achieved
+
+**Lesson Learned**: Copy all required components rather than using feature flags for complete functionality
+
+### Wave 3: Enable Working Books ✅
+**Goal**: Connect 5 working books to dedicated APIs
+**Commits**: `9cb00b2...20f15e4`
+- ✅ The Necklace (A1/A2): `/api/the-necklace-a1/bundles`, `/api/the-necklace-a2/bundles`
+- ✅ The Dead (A1/A2): `/api/the-dead-a1/bundles`, `/api/the-dead-a2/bundles`
+- ✅ Lady with the Dog (A1/A2): `/api/lady-with-dog-a1/bundles`, `/api/lady-with-dog-a2/bundles`
+- ✅ The Metamorphosis (A1): `/api/the-metamorphosis-a1/bundles`
+- ✅ Gift of the Magi (A2): `/api/gift-of-the-magi-a2/bundles`
+- ✅ Updated BOOK_API_MAPPINGS to use dedicated endpoints
+
+### Wave 4: Complete Library ✅
+**Goal**: Enable remaining 5 books with dedicated APIs
+**Commits**: `20f15e4...55c3501`
+- ✅ Dr. Jekyll and Mr. Hyde (A1/A2): `/api/jekyll-hyde/bundles`, `/api/jekyll-hyde-a2/bundles`
+- ✅ The Devoted Friend (A1/A2/B1): `/api/devoted-friend-a1/bundles`, `/api/devoted-friend-a2/bundles`, `/api/devoted-friend-b1/bundles`
+- ✅ The Great Gatsby (A2): `/api/great-gatsby-a2/bundles`
+- ✅ The Yellow Wallpaper (A1): `/api/yellow-wallpaper-a1/bundles`
+- ✅ The Legend of Sleepy Hollow (A1): `/api/sleepy-hollow-a1/bundles`
+
+**Final Result**: All 10 books on Simplified Books page have full audiobook functionality
+
+### Technical Architecture Deployed
+
+#### Database Schema (Solution 1)
+```sql
+-- BookChunk model enhancements
+audioDurationMetadata: JSONB field storing ffprobe measurements and sentence timings
+
+-- ReadingPosition model (new)
+userId, bookId, currentSentenceIndex, currentBundleIndex, cefrLevel, playbackSpeed, contentMode
+```
+
+#### API Architecture
+- **18 dedicated bundle endpoints** serving audiobook data
+- **Bundle-based audio delivery** with cached timing metadata
+- **Supabase storage integration** for audio file URLs
+- **Reading position persistence** across devices
+
+#### Frontend Components
+- **BundleAudioManager**: Manages audio loading, caching, and playback coordination
+- **AudioBookPlayer**: Complete player UI with sentence highlighting and progress tracking
+- **Wake Lock Integration**: Prevents screen from turning off during playback
+- **Media Session API**: Native media controls and background playback support
+
+### Deployment Lessons Learned
+
+#### 1. Environment Compatibility
+**Issue**: Local dev environment had newer Stripe API version than production
+**Solution**: Always use production-compatible API versions
+**Best Practice**: Test builds locally before every deployment
+
+#### 2. Cherry-picking Strategy
+**Issue**: Large commits mixed schema + API + frontend changes causing merge conflicts
+**Solution**: Manual extraction of specific changes rather than fighting complex merges
+**Best Practice**: Keep commits focused on single concerns when possible
+
+#### 3. Dependency Management
+**Issue**: API routes expected schema fields that didn't exist in partial deployments
+**Solution**: Deploy schema changes before APIs that depend on them
+**Best Practice**: Follow dependency order: Schema → APIs → Frontend
+
+#### 4. Feature Completeness
+**Issue**: Feature flags would have created complexity without benefit
+**Solution**: Copy all required components for complete functionality
+**Best Practice**: For mature features, deploy complete functionality rather than progressive rollout
+
+#### 5. Production Verification
+**Issue**: Complex features need thorough production testing
+**Solution**: Test core functionality immediately after deployment
+**Best Practice**: Have a standard verification checklist for each wave
+
+### Deployment Checklist Used
+
+#### Pre-Wave Checklist
+- [ ] Identify all dependencies for the wave
+- [ ] Build and test locally (`npm run build`)
+- [ ] Verify no breaking changes to existing functionality
+- [ ] Plan rollback strategy if needed
+
+#### Post-Wave Checklist
+- [ ] Verify deployment succeeded on Render
+- [ ] Test core functionality in production
+- [ ] Check for any regression in existing features
+- [ ] Monitor error logs for first 30 minutes
+- [ ] Document any lessons learned
+
+### Performance Impact
+- **Zero downtime** during all 4 waves
+- **No performance degradation** measured
+- **Successful audiobook playback** for all 10 books
+- **Complete feature parity** with local development
+
+---
+
 ## 🎯 Next Steps After Deployment
 
-1. **Monitor key metrics** for first 48 hours
-2. **Collect user feedback** on PWA experience
-3. **Analyze emerging markets performance**
-4. **Plan Phase 2 features** (push notifications, background audio)
-5. **Expand to additional countries** based on performance
+1. **Monitor audiobook performance metrics** for first 48 hours
+2. **Collect user feedback** on audiobook experience
+3. **Analyze usage patterns** across all 10 books
+4. **Plan additional book integrations** using established patterns
+5. **Monitor reading position sync** across devices
 
 For deployment support, check:
 - GitHub repository issues
 - `/api/deployment/health` for system status
 - Browser developer tools for PWA debugging
-- Vercel deployment logs for build issues
+- Render deployment logs for build issues
+- Individual book APIs: `/api/{book-id}/bundles` for audiobook functionality
