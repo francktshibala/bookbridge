@@ -35,10 +35,28 @@ export async function GET(request: NextRequest) {
 
     console.log(`💎 Loading The Necklace bundles for level: ${level}`);
 
+    // Fast-fail check: count bundles first to avoid timeout
+    const chunkCount = await prisma.bookChunk.count({
+      where: {
+        bookId: 'the-necklace',
+        cefrLevel: 'B1'
+      }
+    });
+
+    if (chunkCount === 0) {
+      return NextResponse.json({
+        success: false,
+        error: 'No bundles found for The Necklace B1'
+      }, {
+        status: 404,
+        headers: { 'Cache-Control': 'no-store' }
+      });
+    }
+
     // Get bundles from BookChunk table
     const bookChunks = await prisma.bookChunk.findMany({
       where: {
-        bookId: 'the-necklace-b1',
+        bookId: 'the-necklace',
         cefrLevel: 'B1'
       },
       orderBy: { chunkIndex: 'asc' }
@@ -110,7 +128,7 @@ export async function GET(request: NextRequest) {
 
     // Get book metadata
     const bookContent = await prisma.bookContent.findFirst({
-      where: { bookId: 'the-necklace-b1' }
+      where: { bookId: 'the-necklace' }
     });
 
     // Load section data for thematic headers

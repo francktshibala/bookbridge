@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
 import { config } from 'dotenv';
+import { execSync } from 'child_process';
 
 // Load environment variables
 config({ path: '.env.local' });
@@ -40,11 +41,20 @@ const DANIEL_VOICE_SETTINGS = {
 };
 
 // VOICE MAPPING FOR NECKLACE: A1 → Daniel, A2 → Sarah (user requested), B1 → Daniel
+// Updated: Using Daniel voice for A1 as requested
+const DANIEL_VOICE_ID = 'TX3LPaxmHKxFdv7VOQHJ'; // Daniel voice for A1/B1
+
 function getVoiceForLevel(level) {
   const voiceMapping = {
-    'A1': DANIEL_VOICE_SETTINGS, // A1 uses Daniel for Necklace (user request)
+    'A1': {
+      ...DANIEL_VOICE_SETTINGS,
+      voice_id: DANIEL_VOICE_ID  // Use Daniel (TX3LPaxmHKxFdv7VOQHJ) for A1
+    },
     'A2': SARAH_VOICE_SETTINGS,  // A2 uses Sarah (user request)
-    'B1': DANIEL_VOICE_SETTINGS  // B1 uses Daniel
+    'B1': {
+      ...DANIEL_VOICE_SETTINGS,
+      voice_id: DANIEL_VOICE_ID  // Use Daniel (TX3LPaxmHKxFdv7VOQHJ) for B1
+    }
   };
   return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
 }
@@ -275,30 +285,39 @@ async function generateNecklaceBundles() {
           }
         }
 
-        // MEASURE ACTUAL DURATION for perfect sync (NEW!)
-        const audioUrl = supabase.storage
-          .from('audio-files')
-          .getPublicUrl(audioFileName)
-          .data.publicUrl;
+        // MEASURE ACTUAL DURATION for perfect sync (SOLUTION 1 - CRITICAL!)
+        // Save audio buffer to temp file for ffprobe measurement
+        const tempFile = path.join(process.cwd(), 'temp', `bundle_${bundle.index}_temp.mp3`);
+
+        // Ensure temp directory exists
+        if (!fs.existsSync(path.join(process.cwd(), 'temp'))) {
+          fs.mkdirSync(path.join(process.cwd(), 'temp'), { recursive: true });
+        }
+
+        // Write audio buffer to temp file
+        fs.writeFileSync(tempFile, Buffer.from(audioBuffer));
 
         let measuredDuration = null;
         try {
-          const { execSync } = require('child_process');
-          const command = `ffprobe -v quiet -show_entries format=duration -of csv=p=0 "${audioUrl}"`;
+          const command = `ffprobe -v quiet -show_entries format=duration -of csv=p=0 "${tempFile}"`;
           const result = execSync(command, { encoding: 'utf-8' }).trim();
           measuredDuration = parseFloat(result);
-          console.log(`   ⏱️ Measured duration: ${measuredDuration.toFixed(3)}s`);
+          console.log(`   ⏱️ MEASURED DURATION: ${measuredDuration.toFixed(3)}s (Solution 1 - exact)`);
         } catch (error) {
-          console.log('   ⚠️ Could not measure duration, using estimation');
+          console.error('   ❌ CRITICAL: Could not measure duration:', error.message);
+          throw new Error('Solution 1 requires ffprobe measurement - cannot proceed without it');
+        } finally {
+          // Clean up temp file
+          if (fs.existsSync(tempFile)) {
+            fs.unlinkSync(tempFile);
+          }
         }
 
-        // Use measured duration or fall back to estimation
-        const finalDuration = measuredDuration || calculateSentenceTiming(
-          totalWords,
-          voiceType,
-          voiceSettings.voice_settings.speed,
-          CEFR_LEVEL
-        );
+        // SOLUTION 1: Always use measured duration (MANDATORY - no fallback)
+        if (!measuredDuration) {
+          throw new Error('Solution 1 requires measured duration - cannot proceed with estimation');
+        }
+        const finalDuration = measuredDuration;
 
         // Calculate proportional sentence timings
         let currentTime = 0;

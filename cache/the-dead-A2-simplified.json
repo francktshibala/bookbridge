@@ -1,0 +1,3168 @@
+{
+  "sentences": [
+    {
+      "sentenceIndex": 0,
+      "originalText": "Lily, the caretaker’s daughter, was practically running around.",
+      "simplifiedText": "Lily, the caretaker's daughter, was almost running everywhere.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 1,
+      "originalText": "She had just brought one gentleman into the small pantry behind the office on the ground floor and helped him off with his overcoat when the wheezy hall-door bell rang again, and she had to dash down the bare hallway to let in another guest.",
+      "simplifiedText": "She had just helped a man with his coat when the bell rang again, so she hurried to let in another guest.",
+      "level": "A2",
+      "wordCount": 22
+    },
+    {
+      "sentenceIndex": 2,
+      "originalText": "It was lucky for her she didn’t have to attend to the ladies as well.",
+      "simplifiedText": "She was glad she didn't have to help the ladies too.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 3,
+      "originalText": "But Miss Kate and Miss Julia had thought of that and had turned the bathroom upstairs into a ladies’ dressing-room.",
+      "simplifiedText": "Miss Kate and Miss Julia had made the upstairs bathroom a ladies' dressing-room.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 4,
+      "originalText": "Miss Kate and Miss Julia were there, chatting and laughing and fussing, walking after each other to the top of the stairs, peering down over the banisters and calling down to Lily to ask her who had arrived.",
+      "simplifiedText": "Miss Kate and Miss Julia were chatting, laughing, and calling down to Lily to ask who had arrived.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 5,
+      "originalText": "The Misses Morkan’s annual dance was always a big event.",
+      "simplifiedText": "The Misses Morkan's yearly dance was always a major event.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 6,
+      "originalText": "Everyone who knew them came to it: family members, old family friends, members of Julia’s choir, any of Kate’s pupils who were old enough, and even some of Mary Jane’s pupils too.",
+      "simplifiedText": "Everyone they knew came: family, old friends, choir members, and students.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 7,
+      "originalText": "It had never once been a flop.",
+      "simplifiedText": "It had never been a failure.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 8,
+      "originalText": "For as long as anyone could remember, it had always gone off splendidly; ever since Kate and Julia, after their brother Pat’s death, had left the house in Stoney Batter and taken Mary Jane, their only niece, to live with them in the dark, gaunt house on Usher’s Island, the upper part of which they rented from Mr.",
+      "simplifiedText": "For as long as anyone remembered, it was always successful; since Kate and Julia moved with Mary Jane after their brother Pat died.",
+      "level": "A2",
+      "wordCount": 23
+    },
+    {
+      "sentenceIndex": 9,
+      "originalText": "Fulham, the corn dealer on the ground floor.",
+      "simplifiedText": "They rented the upper part of the house from Mr. Fulham, the corn dealer.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 10,
+      "originalText": "That was a good thirty years ago if it was a day.",
+      "simplifiedText": "That was a good thirty years ago, if not more.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 11,
+      "originalText": "Mary Jane, who was then a little girl in short clothes, was now the main support of the household, as she had the organ in Haddington Road.",
+      "simplifiedText": "Mary Jane, once a little girl, now supported the household with her organ.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 12,
+      "originalText": "She had been through the Academy and gave a pupils’ concert every year in the upper room of the Antient Concert Rooms.",
+      "simplifiedText": "She attended the Academy and held a concert every year.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 13,
+      "originalText": "Many of her pupils came from the better-class families on the Kingstown and Dalkey line.",
+      "simplifiedText": "Many of her students came from wealthy families near Kingstown and Dalkey.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 14,
+      "originalText": "Old as they were, her aunts also did their share.",
+      "simplifiedText": "Even though they were old, her aunts helped too.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 15,
+      "originalText": "Julia, though she was quite grey, was still the leading soprano in Adam and Eve’s, and Kate, being too frail to go out much, gave music lessons to beginners on the old square piano in the back room.",
+      "simplifiedText": "Julia, with grey hair, sang as the lead soprano, while Kate taught piano.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 16,
+      "originalText": "Lily, the caretaker’s daughter, did housemaid’s work for them.",
+      "simplifiedText": "Lily, the caretaker’s daughter, worked as their housemaid.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 17,
+      "originalText": "Though their life was modest, they believed in eating well; the best of everything: diamond-bone sirloins, three-shilling tea, and the best bottled stout.",
+      "simplifiedText": "Their life was simple, but they enjoyed good food and drinks.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 18,
+      "originalText": "But Lily seldom made a mistake in the orders, so she got on well with her three mistresses.",
+      "simplifiedText": "Lily rarely made mistakes with orders, so she got along well.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 19,
+      "originalText": "They were fussy, that was all.",
+      "simplifiedText": "They were just a bit particular, that was all.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 20,
+      "originalText": "But the only thing they wouldn’t tolerate was back talk.",
+      "simplifiedText": "But they would not allow any back talk.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 21,
+      "originalText": "Of course, they had good reason to be fussy on such a night.",
+      "simplifiedText": "They had a good reason to be picky that night.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 22,
+      "originalText": "And it was long after ten o’clock, yet there was no sign of Gabriel and his wife.",
+      "simplifiedText": "It was after ten, but Gabriel and his wife were not there.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 23,
+      "originalText": "Besides, they were dreadfully afraid that Freddy Malins might show up drunk.",
+      "simplifiedText": "They were very worried Freddy Malins might arrive drunk.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 24,
+      "originalText": "They wouldn’t want any of Mary Jane’s pupils to see him under the influence; and when he was like that, he was sometimes very hard to manage.",
+      "simplifiedText": "They did not want Mary Jane’s students to see him drunk; he was hard to control then.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 25,
+      "originalText": "Freddy Malins always came late, but they wondered what could be keeping Gabriel: and that was what brought them every two minutes to the banisters to ask Lily if Gabriel or Freddy had arrived.",
+      "simplifiedText": "Freddy Malins was always late, but they wondered why Gabriel was delayed.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 26,
+      "originalText": "“Oh, Mr.",
+      "simplifiedText": "“Oh, Mr.",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 27,
+      "originalText": "Conroy,” said Lily to Gabriel when she opened the door for him, “Miss Kate and Miss Julia thought you were never coming.",
+      "simplifiedText": "Conroy,” Lily said to Gabriel, “Miss Kate and Miss Julia thought you would never come.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 28,
+      "originalText": "Good night, Mrs.",
+      "simplifiedText": "Good night, Mrs.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 29,
+      "originalText": "Conroy.",
+      "simplifiedText": "Conroy.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 30,
+      "originalText": "”\n\n“I bet they did,” said Gabriel, “but they forget that my wife here takes three mortal hours to get ready.",
+      "simplifiedText": "\"I think they did,\" said Gabriel, \"but my wife takes hours to get ready.\"",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 31,
+      "originalText": "”\n\nHe stood on the mat, scraping the snow from his boots, while Lily led his wife to the foot of the stairs and called out:\n\n“Miss Kate, here’s Mrs.",
+      "simplifiedText": "He stood on the mat, cleaning snow from his boots, while Lily led his wife to the stairs.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 32,
+      "originalText": "Conroy.",
+      "simplifiedText": "\"Miss Kate, here’s Mrs. Conroy.\"",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 33,
+      "originalText": "”\n\nKate and Julia came toddling down the dark stairs at once.",
+      "simplifiedText": "Kate and Julia came down the dark stairs quickly.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 34,
+      "originalText": "Both of them kissed Gabriel’s wife, said she must be frozen, and asked if Gabriel was with her.",
+      "simplifiedText": "They kissed Gabriel’s wife, said she must be cold, and asked if Gabriel was with her.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 35,
+      "originalText": "“Here I am, fit as a fiddle, Aunt Kate!",
+      "simplifiedText": "\"Here I am, feeling great, Aunt Kate!\"",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 36,
+      "originalText": "Go on up.",
+      "simplifiedText": "\"Go on up.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 37,
+      "originalText": "I’ll follow,” called out Gabriel from the dark.",
+      "simplifiedText": "I’ll follow,\" Gabriel called from the dark.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 38,
+      "originalText": "He continued scraping his feet vigorously while the three women went upstairs, laughing, to the ladies’ dressing-room.",
+      "simplifiedText": "He kept cleaning his feet while the women went upstairs, laughing.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 39,
+      "originalText": "A light fringe of snow lay like a cape on the shoulders of his overcoat and like toe caps on the toes of his boots; and, as the buttons of his overcoat slipped with a squeaking noise through the snow-stiffened fabric, a cold, fragrant air from outside escaped from crevices and folds.",
+      "simplifiedText": "A light layer of snow covered his coat and boots, and cold air escaped as he moved.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 40,
+      "originalText": "“Is it snowing again, Mr.",
+      "simplifiedText": "“Is it snowing again, Mr. Conroy?”",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 41,
+      "originalText": "Conroy?",
+      "simplifiedText": "Lily asked him.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 42,
+      "originalText": "” asked Lily.",
+      "simplifiedText": "She went into the pantry to help with his coat.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 43,
+      "originalText": "She had gone ahead of him into the pantry to help him off with his overcoat.",
+      "simplifiedText": "Gabriel smiled at how she said his name and looked at her.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 44,
+      "originalText": "Gabriel smiled at the three syllables she had given his surname and glanced at her.",
+      "simplifiedText": "She was a slim girl with pale skin and hay-colored hair.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 45,
+      "originalText": "She was a slim, growing girl, pale in complexion and with hay-colored hair.",
+      "simplifiedText": "The pantry light made her look even paler.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 46,
+      "originalText": "The gas in the pantry made her look even paler.",
+      "simplifiedText": "Gabriel knew her as a child with a rag doll.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 47,
+      "originalText": "Gabriel had known her when she was a child and used to sit on the lowest step nursing a rag doll.",
+      "simplifiedText": "“Yes, Lily,” he said, “I think it will snow all night.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 48,
+      "originalText": "“Yes, Lily,” he answered, “and I think we’re in for a night of it.",
+      "simplifiedText": "He looked at the ceiling, which shook from footsteps above.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 49,
+      "originalText": "”\n\nHe looked up at the pantry ceiling, which was shaking with the stamping and shuffling of feet on the floor above, listened for a moment to the piano, and then glanced at the girl, who was folding his overcoat carefully at the end of a shelf.",
+      "simplifiedText": "He listened to the piano and watched her fold his coat.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 50,
+      "originalText": "“Tell me, Lily,” he said in a friendly tone, “do you still go to school?",
+      "simplifiedText": "\"Tell me, Lily,\" he asked kindly, \"do you still attend school?\"",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 51,
+      "originalText": "”\n\n“Oh no, sir,” she answered.",
+      "simplifiedText": "\"Oh no, sir,\" she replied.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 52,
+      "originalText": "“I finished school this year and more.",
+      "simplifiedText": "\"I finished school this year and more.\"",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 53,
+      "originalText": "”\n\n“Oh, then,” said Gabriel cheerfully, “I suppose we’ll be going to your wedding one of these fine days with your young man, eh?",
+      "simplifiedText": "\"Oh, then,\" Gabriel said happily, \"are you getting married soon?\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 54,
+      "originalText": "”\n\nThe girl glanced back at him over her shoulder and said with great bitterness:\n\n“The men nowadays are only all talk and what they can get out of you.",
+      "simplifiedText": "The girl looked back bitterly and said, \"Men only talk and take.\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 55,
+      "originalText": "”\n\nGabriel blushed as if he felt he had made a mistake and, without looking at her, kicked off his boots and flicked actively with his scarf at his patent-leather shoes.",
+      "simplifiedText": "Gabriel blushed, feeling awkward, and focused on his shoes.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 56,
+      "originalText": "He was a stout, tallish young man.",
+      "simplifiedText": "He was a stout, somewhat tall young man.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 57,
+      "originalText": "The high color of his cheeks pushed upwards even to his forehead where it scattered itself in a few formless patches of pale red; and on his hairless face, the polished lenses and the bright gilt rims of the glasses which screened his delicate and restless eyes sparkled restlessly.",
+      "simplifiedText": "His cheeks were red, and his glasses sparkled on his face.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 58,
+      "originalText": "His glossy black hair was parted in the middle and brushed in a long curve behind his ears where it curled slightly beneath the groove left by his hat.",
+      "simplifiedText": "His shiny black hair was parted and curled behind his ears.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 59,
+      "originalText": "When he had flicked shine into his shoes, he stood up and pulled his waistcoat down more tightly on his plump body.",
+      "simplifiedText": "After shining his shoes, he adjusted his waistcoat on his body.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 60,
+      "originalText": "Then he took a coin rapidly from his pocket.",
+      "simplifiedText": "Then he quickly took a coin from his pocket.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 61,
+      "originalText": "“Oh Lily,” he said, thrusting it into her hands, “it’s Christmas-time, isn’t it?",
+      "simplifiedText": "“Oh Lily,” he said, putting it in her hands, “it’s Christmas, isn’t it?",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 62,
+      "originalText": "Just ...",
+      "simplifiedText": "Just...",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 63,
+      "originalText": "here’s a little....",
+      "simplifiedText": "here’s a little...",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 64,
+      "originalText": "”\n\nHe walked rapidly towards the door.",
+      "simplifiedText": "” He quickly walked towards the door.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 65,
+      "originalText": "“Oh no, sir!",
+      "simplifiedText": "“Oh no, sir!",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 66,
+      "originalText": "” cried the girl, following him.",
+      "simplifiedText": "” the girl cried, following him.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 67,
+      "originalText": "“Really, sir, I wouldn’t take it.",
+      "simplifiedText": "“Really, sir, I cannot take it.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 68,
+      "originalText": "”\n\n“Christmas-time!",
+      "simplifiedText": "” “Christmas!",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 69,
+      "originalText": "Christmas-time!",
+      "simplifiedText": "Christmas!",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 70,
+      "originalText": "” said Gabriel, almost trotting to the stairs and waving his hand to her in dismissal.",
+      "simplifiedText": "Gabriel hurried to the stairs, waving goodbye to her.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 71,
+      "originalText": "The girl, seeing that he had gained the stairs, called out after him:\n\n“Well, thank you, sir.",
+      "simplifiedText": "The girl thanked him as he reached the stairs.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 72,
+      "originalText": "”\n\nHe waited outside the drawing-room door until the waltz should finish, listening to the skirts that swept against it and to the shuffling of feet.",
+      "simplifiedText": "He waited outside the room, listening to the music and footsteps.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 73,
+      "originalText": "He was still discomposed by the girl’s bitter and sudden retort.",
+      "simplifiedText": "He was still upset by the girl's sudden, harsh reply.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 74,
+      "originalText": "It had cast a gloom over him which he tried to dispel by arranging his cuffs and the bows of his tie.",
+      "simplifiedText": "He felt gloomy and tried to cheer up by fixing his tie.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 75,
+      "originalText": "He then took from his waistcoat pocket a little paper and glanced at the headings he had made for his speech.",
+      "simplifiedText": "He took a paper from his pocket and looked at his speech notes.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 76,
+      "originalText": "He was undecided about the lines from Robert Browning for he feared they would be above the heads of his audience.",
+      "simplifiedText": "He worried the Robert Browning lines might be too difficult for them.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 77,
+      "originalText": "Some quotation that they would recognize from Shakespeare or from the Melodies would be better.",
+      "simplifiedText": "A quote from Shakespeare or the Melodies might be better.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 78,
+      "originalText": "The indelicate clacking of the men’s heels and the shuffling of their soles reminded him that their level of culture differed from his.",
+      "simplifiedText": "The men's noisy shoes reminded him of their different cultural levels.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 79,
+      "originalText": "He would only make himself ridiculous by quoting poetry to them which they could not understand.",
+      "simplifiedText": "Quoting poetry they couldn't understand would make him look foolish.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 80,
+      "originalText": "They would think that he was showing off his superior education.",
+      "simplifiedText": "They thought he was showing off his better education.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 81,
+      "originalText": "He would fail with them just as he had failed with the girl in the pantry.",
+      "simplifiedText": "He failed with them like he failed with the pantry girl.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 82,
+      "originalText": "He had taken up a wrong tone.",
+      "simplifiedText": "He used the wrong tone.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 83,
+      "originalText": "His whole speech was a mistake from first to last, an utter failure.",
+      "simplifiedText": "His entire speech was a complete mistake and failure.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 84,
+      "originalText": "Just then his aunts and his wife came out of the ladies’ dressing-room.",
+      "simplifiedText": "Then his aunts and wife came out of the dressing-room.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 85,
+      "originalText": "His aunts were two small plainly dressed old women.",
+      "simplifiedText": "His aunts were two small, simply dressed old women.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 86,
+      "originalText": "Aunt Julia was an inch or so the taller.",
+      "simplifiedText": "Aunt Julia was a little taller.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 87,
+      "originalText": "Her hair, drawn low over the tops of her ears, was grey; and grey also, with darker shadows, was her large flaccid face.",
+      "simplifiedText": "Her hair was grey, and her large face was also grey.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 88,
+      "originalText": "Though she was stout in build and stood erect, her slow eyes and parted lips gave her the appearance of a woman who did not know where she was or where she was going.",
+      "simplifiedText": "She was stout and stood straight, but her eyes were slow.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 89,
+      "originalText": "Aunt Kate was more lively.",
+      "simplifiedText": "Aunt Kate was more energetic.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 90,
+      "originalText": "Her face, healthier than her sister’s, was all puckers and creases, like a shriveled red apple, and her hair, braided in the same old-fashioned way, had not lost its ripe nut color.",
+      "simplifiedText": "Her face was wrinkled like a dried apple, but healthier than her sister's.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 91,
+      "originalText": "They both kissed Gabriel frankly.",
+      "simplifiedText": "They both kissed Gabriel openly.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 92,
+      "originalText": "He was their favorite nephew, the son of their dead elder sister, Ellen, who had married T.",
+      "simplifiedText": "He was their favorite nephew, Ellen's son, who married T.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 93,
+      "originalText": "J.",
+      "simplifiedText": "J.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 94,
+      "originalText": "Conroy of the Port and Docks.",
+      "simplifiedText": "Conroy worked at the Port and Docks.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 95,
+      "originalText": "“Gretta tells me you’re not going to take a cab back to Monkstown tonight, Gabriel,” said Aunt Kate.",
+      "simplifiedText": "Aunt Kate said, “Gretta says you won't take a cab tonight, Gabriel.”",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 96,
+      "originalText": "“No,” said Gabriel, turning to his wife, “we had quite enough of that last year, hadn’t we?",
+      "simplifiedText": "Gabriel replied, “No, we had enough of that last year, right?”",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 97,
+      "originalText": "Don’t you remember, Aunt Kate, what a cold Gretta got out of it?",
+      "simplifiedText": "“Remember, Aunt Kate, how Gretta caught a cold from it?”",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 98,
+      "originalText": "Cab windows rattling all the way, and the east wind blowing in after we passed Merrion.",
+      "simplifiedText": "The cab windows rattled, and the east wind blew in after Merrion.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 99,
+      "originalText": "Very jolly it was.",
+      "simplifiedText": "It was very cheerful.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 100,
+      "originalText": "Gretta caught a dreadful cold.",
+      "simplifiedText": "Gretta got a very bad cold.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 101,
+      "originalText": "”\n\nAunt Kate frowned severely and nodded her head at every word.",
+      "simplifiedText": "Aunt Kate frowned and nodded at each word.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 102,
+      "originalText": "“Quite right, Gabriel, quite right,” she said.",
+      "simplifiedText": "She said, \"You are right, Gabriel, you are right.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 103,
+      "originalText": "“You can’t be too careful.",
+      "simplifiedText": "\"You cannot be too careful,\" she added.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 104,
+      "originalText": "”\n\n“But as for Gretta there,” said Gabriel, “she’d walk home in the snow if she were let.",
+      "simplifiedText": "Gabriel said, \"Gretta would walk home in the snow.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 105,
+      "originalText": "”\n\nMrs.",
+      "simplifiedText": "Mrs. Conroy laughed at this.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 106,
+      "originalText": "Conroy laughed.",
+      "simplifiedText": "She found it amusing.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 107,
+      "originalText": "“Don’t mind him, Aunt Kate,” she said.",
+      "simplifiedText": "She told Aunt Kate, \"Do not listen to him.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 108,
+      "originalText": "“He’s really an awful bother, what with green shades for Tom’s eyes at night and making him do the dumb-bells, and forcing Eva to eat the porridge.",
+      "simplifiedText": "\"He is a bother with Tom's eyes and Eva's porridge.\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 109,
+      "originalText": "The poor child!",
+      "simplifiedText": "The poor child needs help.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 110,
+      "originalText": "And she simply hates the sight of it!...",
+      "simplifiedText": "And she really hates to see it!",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 111,
+      "originalText": "Oh, but you’ll never guess what he makes me wear now!",
+      "simplifiedText": "Oh, but you will never guess what he makes me wear now!",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 112,
+      "originalText": "”\n\nShe broke out into a peal of laughter and glanced at her husband, whose admiring and happy eyes had been wandering from her dress to her face and hair.",
+      "simplifiedText": "She laughed loudly and looked at her husband, who admired her.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 113,
+      "originalText": "The two aunts laughed heartily too, for Gabriel’s concern was a standing joke with them.",
+      "simplifiedText": "The two aunts laughed a lot because Gabriel's worry was funny to them.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 114,
+      "originalText": "“Goloshes!",
+      "simplifiedText": "\"Goloshes!\"",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 115,
+      "originalText": "” said Mrs.",
+      "simplifiedText": "said Mrs.",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 116,
+      "originalText": "Conroy.",
+      "simplifiedText": "Conroy.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 117,
+      "originalText": "“That’s the latest.",
+      "simplifiedText": "\"That's the newest thing.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 118,
+      "originalText": "Whenever it’s wet underfoot I must put on my goloshes.",
+      "simplifiedText": "When it's wet outside, I must wear my goloshes.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 119,
+      "originalText": "Tonight even he wanted me to put them on, but I wouldn’t.",
+      "simplifiedText": "Tonight, he wanted me to wear them, but I refused.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 120,
+      "originalText": "The next thing he’ll buy me will be a diving suit.",
+      "simplifiedText": "The next thing he will buy me is a diving suit.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 121,
+      "originalText": "”\n\nGabriel laughed nervously and patted his tie reassuringly while Aunt Kate nearly doubled herself, so heartily did she enjoy the joke.",
+      "simplifiedText": "Gabriel laughed nervously and patted his tie, while Aunt Kate laughed a lot.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 122,
+      "originalText": "The smile soon faded from Aunt Julia’s face and her mirthless eyes were directed towards her nephew’s face.",
+      "simplifiedText": "Aunt Julia's smile faded, and she looked at her nephew's face.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 123,
+      "originalText": "After a pause she asked:\n\n“And what are goloshes, Gabriel?",
+      "simplifiedText": "After a pause, she asked, \"And what are goloshes, Gabriel?\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 124,
+      "originalText": "”\n\n“Goloshes, Julia!",
+      "simplifiedText": "\"Goloshes, Julia!\"",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 125,
+      "originalText": "” exclaimed her sister.",
+      "simplifiedText": "exclaimed her sister.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 126,
+      "originalText": "“Goodness me, don’t you know what goloshes are?",
+      "simplifiedText": "\"Goodness me, don't you know what goloshes are?\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 127,
+      "originalText": "You wear them over your ...",
+      "simplifiedText": "You wear them over your...",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 128,
+      "originalText": "over your boots, Gretta, isn’t it?",
+      "simplifiedText": "over your boots, Gretta, isn't it?",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 129,
+      "originalText": "”\n\n“Yes,” said Mrs.",
+      "simplifiedText": "\"Yes,\" said Mrs.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 130,
+      "originalText": "Conroy.",
+      "simplifiedText": "Conroy was there.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 131,
+      "originalText": "“Rubber things.",
+      "simplifiedText": "They talked about rubber things.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 132,
+      "originalText": "We both have a pair now.",
+      "simplifiedText": "Now, we both own a pair.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 133,
+      "originalText": "Gabriel says everyone wears them on the continent.",
+      "simplifiedText": "Gabriel says everyone wears them in Europe.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 134,
+      "originalText": "”\n\n“Oh, on the continent,” murmured Aunt Julia, nodding her head slowly.",
+      "simplifiedText": "Aunt Julia nodded slowly, saying, “Oh, in Europe.”",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 135,
+      "originalText": "Gabriel knitted his brows and said, as if he were slightly angered:\n\n“It’s nothing very wonderful but Gretta thinks it very funny because she says the word reminds her of Christy Minstrels.",
+      "simplifiedText": "Gabriel frowned slightly, saying it reminded Gretta of Christy Minstrels.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 136,
+      "originalText": "”\n\n“But tell me, Gabriel,” said Aunt Kate, with brisk tact.",
+      "simplifiedText": "Aunt Kate asked Gabriel with interest.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 137,
+      "originalText": "“Of course, you’ve seen about the room.",
+      "simplifiedText": "“Have you arranged the room?”",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 138,
+      "originalText": "Gretta was saying....",
+      "simplifiedText": "Gretta mentioned something about it.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 139,
+      "originalText": "”\n\n“Oh, the room is all right,” replied Gabriel.",
+      "simplifiedText": "Gabriel replied, “The room is fine.”",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 140,
+      "originalText": "“I’ve taken one in the Gresham.",
+      "simplifiedText": "I have booked a room at the Gresham.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 141,
+      "originalText": "”\n\n“To be sure,” said Aunt Kate, “by far the best thing to do.",
+      "simplifiedText": "Yes, Aunt Kate said, that is the best choice.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 142,
+      "originalText": "And the children, Gretta, you’re not anxious about them?",
+      "simplifiedText": "Gretta, are you worried about the children?",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 143,
+      "originalText": "”\n\n“Oh, for one night,” said Mrs.",
+      "simplifiedText": "Oh, just for one night, Mrs. Conroy replied.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 144,
+      "originalText": "Conroy.",
+      "simplifiedText": "Conroy.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 145,
+      "originalText": "“Besides, Bessie will look after them.",
+      "simplifiedText": "Bessie will take care of them.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 146,
+      "originalText": "”\n\n“To be sure,” said Aunt Kate again.",
+      "simplifiedText": "Yes, Aunt Kate agreed again.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 147,
+      "originalText": "“What a comfort it is to have a girl like that, one you can depend on!",
+      "simplifiedText": "It's comforting to have a reliable girl like her!",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 148,
+      "originalText": "There’s that Lily, I’m sure I don’t know what has come over her lately.",
+      "simplifiedText": "I don't know what has happened to Lily recently.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 149,
+      "originalText": "She’s not the girl she was at all.",
+      "simplifiedText": "She is not the same girl anymore.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 150,
+      "originalText": "”\n\nGabriel was about to ask his aunt some questions on this point but she broke off suddenly to gaze after her sister who had wandered down the stairs and was craning her neck over the banisters.",
+      "simplifiedText": "Gabriel wanted to ask his aunt questions, but she stopped.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 151,
+      "originalText": "“Now, I ask you,” she said almost testily, “where is Julia going?",
+      "simplifiedText": "She asked, \"Where is Julia going?\" almost angrily.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 152,
+      "originalText": "Julia!",
+      "simplifiedText": "Julia!",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 153,
+      "originalText": "Julia!",
+      "simplifiedText": "Julia!",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 154,
+      "originalText": "Where are you going?",
+      "simplifiedText": "Where are you going?",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 155,
+      "originalText": "”\n\nJulia, who had gone halfway down one flight, came back and announced blandly:\n\n“Here’s Freddy.",
+      "simplifiedText": "Julia returned and said calmly, \"Here’s Freddy.\"",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 156,
+      "originalText": "”\n\nAt the same moment a clapping of hands and a final flourish of the pianist told that the waltz had ended.",
+      "simplifiedText": "The pianist finished, and the waltz ended with applause.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 157,
+      "originalText": "The drawing-room door was opened from within and some couples came out.",
+      "simplifiedText": "The drawing-room door opened, and some couples walked out.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 158,
+      "originalText": "Aunt Kate drew Gabriel aside hurriedly and whispered into his ear:\n\n“Slip down, Gabriel, like a good fellow and see if he’s all right, and don’t let him up if he’s drunk.",
+      "simplifiedText": "Aunt Kate whispered to Gabriel to check if Freddy was drunk.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 159,
+      "originalText": "I’m sure he’s drunk.",
+      "simplifiedText": "I think he is drunk.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 160,
+      "originalText": "I’m sure he is.",
+      "simplifiedText": "I am certain he is.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 161,
+      "originalText": "”\n\nGabriel went to the stairs and listened over the banisters.",
+      "simplifiedText": "Gabriel walked to the stairs and listened carefully.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 162,
+      "originalText": "He could hear two persons talking in the pantry.",
+      "simplifiedText": "He heard two people talking in the pantry.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 163,
+      "originalText": "Then he recognized Freddy Malins’ laugh.",
+      "simplifiedText": "Then he knew it was Freddy Malins laughing.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 164,
+      "originalText": "He went down the stairs noisily.",
+      "simplifiedText": "He went down the stairs making noise.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 165,
+      "originalText": "“It’s such a relief,” said Aunt Kate to Mrs.",
+      "simplifiedText": "\"It is such a relief,\" Aunt Kate said to Mrs. Conroy.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 166,
+      "originalText": "Conroy, “that Gabriel is here.",
+      "simplifiedText": "\"I am glad Gabriel is here,\" she continued.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 167,
+      "originalText": "I always feel easier in my mind when he’s here....",
+      "simplifiedText": "I always feel better when he is around.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 168,
+      "originalText": "Julia, there’s Miss Daly and Miss Power will take some refreshment.",
+      "simplifiedText": "Julia, Miss Daly and Miss Power want some refreshments.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 169,
+      "originalText": "Thanks for your beautiful waltz, Miss Daly.",
+      "simplifiedText": "Thank you for your lovely waltz, Miss Daly.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 170,
+      "originalText": "It made lovely time.",
+      "simplifiedText": "It was a wonderful time.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 171,
+      "originalText": "”\n\nA tall wizen-faced man, with a stiff grizzled moustache and swarthy skin, who was passing out with his partner said:\n\n“And may we have some refreshment, too, Miss Morkan?",
+      "simplifiedText": "A tall man with a grey moustache asked for drinks.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 172,
+      "originalText": "”\n\n“Julia,” said Aunt Kate summarily, “and here’s Mr.",
+      "simplifiedText": "Aunt Kate said, \"Julia, here is Mr.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 173,
+      "originalText": "Browne and Miss Furlong.",
+      "simplifiedText": "Browne and Miss Furlong are here.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 174,
+      "originalText": "Take them in, Julia, with Miss Daly and Miss Power.",
+      "simplifiedText": "Take them in, Julia, with Miss Daly and Miss Power.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 175,
+      "originalText": "”\n\n“I’m the man for the ladies,” said Mr.",
+      "simplifiedText": "Mr. Browne said, \"I am popular with the ladies.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 176,
+      "originalText": "Browne, pursing his lips until his moustache bristled and smiling in all his wrinkles.",
+      "simplifiedText": "He smiled, making his moustache bristle and wrinkles show.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 177,
+      "originalText": "“You know, Miss Morkan, the reason they are so fond of me is——”\n\nHe did not finish his sentence, but, seeing that Aunt Kate was out of earshot, at once led the three young ladies into the back room.",
+      "simplifiedText": "Miss Morkan, they like me because—\" He stopped speaking.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 178,
+      "originalText": "The middle of the room was occupied by two square tables placed end to end, and on these Aunt Julia and the caretaker were straightening and smoothing a large cloth.",
+      "simplifiedText": "Two tables were in the middle, covered with a large cloth.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 179,
+      "originalText": "On the sideboard were arrayed dishes and plates, and glasses and bundles of knives and forks and spoons.",
+      "simplifiedText": "Dishes, plates, and utensils were neatly arranged on the sideboard.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 180,
+      "originalText": "The top of the closed square piano served also as a sideboard for food and sweets.",
+      "simplifiedText": "The piano top was also used as a food table.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 181,
+      "originalText": "At a smaller sideboard in one corner two young men were standing, drinking hop-bitters.",
+      "simplifiedText": "Two young men stood at a small table, drinking hop-bitters.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 182,
+      "originalText": "Mr.",
+      "simplifiedText": "Mr. Browne led his group to the table.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 183,
+      "originalText": "Browne led his charges there and invited them all, in jest, to some ladies’ punch, hot, strong, and sweet.",
+      "simplifiedText": "He jokingly invited them to try some ladies’ punch.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 184,
+      "originalText": "As they said they never took anything strong he opened three bottles of lemonade for them.",
+      "simplifiedText": "They refused strong drinks, so he gave them lemonade.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 185,
+      "originalText": "Then he asked one of the young men to move aside, and, taking hold of the decanter, filled out for himself a goodly measure of whisky.",
+      "simplifiedText": "He asked a man to move, then poured himself some whisky.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 186,
+      "originalText": "The young men eyed him respectfully while he took a trial sip.",
+      "simplifiedText": "The young men watched him respectfully as he tasted it.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 187,
+      "originalText": "“God help me,” he said, smiling, “it’s the doctor’s orders.",
+      "simplifiedText": "He smiled and said, 'It’s the doctor’s orders.'",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 188,
+      "originalText": "”\n\nHis wizened face broke into a broader smile, and the three young ladies laughed in musical echo to his pleasantry, swaying their bodies to and fro, with nervous jerks of their shoulders.",
+      "simplifiedText": "His face smiled wider, and the ladies laughed musically.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 189,
+      "originalText": "The boldest said:\n\n“Oh, now, Mr.",
+      "simplifiedText": "The boldest lady said, 'Oh, now, Mr. Browne.'",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 190,
+      "originalText": "Browne, I’m sure the doctor never ordered anything of the kind.",
+      "simplifiedText": "Browne, I know the doctor did not order that.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 191,
+      "originalText": "”\n\nMr.",
+      "simplifiedText": "Mr.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 192,
+      "originalText": "Browne took another sip of his whisky and said, with sidling mimicry:\n\n“Well, you see, I’m like the famous Mrs.",
+      "simplifiedText": "Browne sipped his whisky and said, imitating someone:",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 193,
+      "originalText": "Cassidy, who is reported to have said: ‘Now, Mary Grimes, if I don’t take it, make me take it, for I feel I want it.",
+      "simplifiedText": "\"Like Mrs. Cassidy said: 'Mary, if I don't take it, make me.'\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 194,
+      "originalText": "’”\n\nHis hot face had leaned forward a little too confidentially and he had assumed a very low Dublin accent so that the young ladies, with one instinct, received his speech in silence.",
+      "simplifiedText": "His face was red, and he spoke in a low Dublin accent.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 195,
+      "originalText": "Miss Furlong, who was one of Mary Jane’s pupils, asked Miss Daly what was the name of the pretty waltz she had played; and Mr.",
+      "simplifiedText": "Miss Furlong asked Miss Daly the name of the waltz she played.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 196,
+      "originalText": "Browne, seeing that he was ignored, turned promptly to the two young men who were more appreciative.",
+      "simplifiedText": "Browne, feeling ignored, turned to two young men who listened.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 197,
+      "originalText": "A red-faced young woman, dressed in pansy, came into the room, excitedly clapping her hands and crying:\n\n“Quadrilles!",
+      "simplifiedText": "A red-faced woman in a pansy dress entered, clapping and shouting:",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 198,
+      "originalText": "Quadrilles!",
+      "simplifiedText": "\"Quadrilles!",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 199,
+      "originalText": "”\n\nClose on her heels came Aunt Kate, crying:\n\n“Two gentlemen and three ladies, Mary Jane!",
+      "simplifiedText": "\" Aunt Kate followed, saying: \"Two men and three women, Mary Jane!\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 200,
+      "originalText": "”\n\n“Oh, here’s Mr.",
+      "simplifiedText": "Oh, here is Mr. Bergin.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 201,
+      "originalText": "Bergin and Mr.",
+      "simplifiedText": "And here is Mr. Kerrigan.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 202,
+      "originalText": "Kerrigan,” said Mary Jane.",
+      "simplifiedText": "Mary Jane said this.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 203,
+      "originalText": "“Mr.",
+      "simplifiedText": "Mr. Kerrigan,",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 204,
+      "originalText": "Kerrigan, will you take Miss Power?",
+      "simplifiedText": "Will you dance with Miss Power?",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 205,
+      "originalText": "Miss Furlong, may I get you a partner, Mr.",
+      "simplifiedText": "Miss Furlong, can I find you a partner, Mr. Bergin?",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 206,
+      "originalText": "Bergin.",
+      "simplifiedText": "Mr. Bergin.",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 207,
+      "originalText": "Oh, that’ll just do now.",
+      "simplifiedText": "That will work now.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 208,
+      "originalText": "”\n\n“Three ladies, Mary Jane,” said Aunt Kate.",
+      "simplifiedText": "Three ladies, Mary Jane, said Aunt Kate.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 209,
+      "originalText": "The two young gentlemen asked the ladies if they might have the pleasure, and Mary Jane turned to Miss Daly.",
+      "simplifiedText": "The young men asked the ladies if they could dance.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 210,
+      "originalText": "“Oh, Miss Daly, you’re really awfully good, after playing for the last two dances, but really we’re so short of ladies tonight.",
+      "simplifiedText": "Miss Daly, you are very kind to play for us again.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 211,
+      "originalText": "”\n\n“I don’t mind in the least, Miss Morkan.",
+      "simplifiedText": "I do not mind at all, Miss Morkan.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 212,
+      "originalText": "”\n\n“But I’ve a nice partner for you, Mr.",
+      "simplifiedText": "I have a nice partner for you, Mr.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 213,
+      "originalText": "Bartell D’Arcy, the tenor.",
+      "simplifiedText": "Bartell D’Arcy, the singer.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 214,
+      "originalText": "I’ll get him to sing later on.",
+      "simplifiedText": "I will ask him to sing later.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 215,
+      "originalText": "All Dublin is raving about him.",
+      "simplifiedText": "Everyone in Dublin is talking about him.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 216,
+      "originalText": "”\n\n“Lovely voice, lovely voice!",
+      "simplifiedText": "He has a lovely voice, a truly lovely voice!",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 217,
+      "originalText": "” said Aunt Kate.",
+      "simplifiedText": "Aunt Kate said this.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 218,
+      "originalText": "As the piano had twice begun the prelude to the first figure Mary Jane led her recruits quickly from the room.",
+      "simplifiedText": "As the piano started, Mary Jane led her group out quickly.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 219,
+      "originalText": "They had hardly gone when Aunt Julia wandered slowly into the room, looking behind her at something.",
+      "simplifiedText": "They left, and Aunt Julia slowly entered, looking back at something.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 220,
+      "originalText": "“What is the matter, Julia?",
+      "simplifiedText": "\"What is wrong, Julia?\"",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 221,
+      "originalText": "” asked Aunt Kate anxiously.",
+      "simplifiedText": "Aunt Kate asked with concern.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 222,
+      "originalText": "“Who is it?",
+      "simplifiedText": "\"Who is it?\"",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 223,
+      "originalText": "”\n\nJulia, who was carrying in a column of table-napkins, turned to her sister and said, simply, as if the question had surprised her:\n\n“It’s only Freddy, Kate, and Gabriel with him.",
+      "simplifiedText": "Julia, holding table-napkins, turned and said, \"It's Freddy and Gabriel.\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 224,
+      "originalText": "”\n\nIn fact right behind her Gabriel could be seen piloting Freddy Malins across the landing.",
+      "simplifiedText": "Gabriel was guiding Freddy Malins across the landing behind her.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 225,
+      "originalText": "The latter, a young man of about forty, was of Gabriel’s size and build, with very round shoulders.",
+      "simplifiedText": "Freddy, about forty, was similar in size to Gabriel.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 226,
+      "originalText": "His face was fleshy and pallid, touched with color only at the thick hanging lobes of his ears and at the wide wings of his nose.",
+      "simplifiedText": "His face was pale, with color only on his ears and nose.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 227,
+      "originalText": "He had coarse features, a blunt nose, a convex and receding brow, tumid and protruded lips.",
+      "simplifiedText": "He had rough features, a blunt nose, and thick lips.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 228,
+      "originalText": "His heavy-lidded eyes and the disorder of his scanty hair made him look sleepy.",
+      "simplifiedText": "His sleepy look came from heavy eyelids and messy hair.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 229,
+      "originalText": "He was laughing heartily in a high key at a story which he had been telling Gabriel on the stairs and at the same time rubbing the knuckles of his left fist backwards and forwards into his left eye.",
+      "simplifiedText": "He laughed loudly at a story he told Gabriel on the stairs.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 230,
+      "originalText": "“Good evening, Freddy,” said Aunt Julia.",
+      "simplifiedText": "“Good evening, Freddy,” Aunt Julia said.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 231,
+      "originalText": "Freddy Malins bade the Misses Morkan good evening in what seemed an offhand fashion by reason of the habitual catch in his voice and then, seeing that Mr.",
+      "simplifiedText": "Freddy Malins greeted the Misses Morkan casually due to his voice.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 232,
+      "originalText": "Browne was grinning at him from the sideboard, crossed the room on rather shaky legs and began to repeat in an undertone the story he had just told to Gabriel.",
+      "simplifiedText": "Mr. Browne grinned, and Freddy walked unsteadily to retell his story.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 233,
+      "originalText": "“He’s not so bad, is he?",
+      "simplifiedText": "“He’s not so bad, is he?",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 234,
+      "originalText": "” said Aunt Kate to Gabriel.",
+      "simplifiedText": "” Aunt Kate asked Gabriel.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 235,
+      "originalText": "Gabriel’s brows were dark but he raised them quickly and answered:\n\n“Oh, no, hardly noticeable.",
+      "simplifiedText": "Gabriel frowned but quickly replied, “Oh, no, hardly noticeable.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 236,
+      "originalText": "”\n\n“Now, isn’t he a terrible fellow!",
+      "simplifiedText": "”\n\n“Isn’t he a terrible fellow!",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 237,
+      "originalText": "” she said.",
+      "simplifiedText": "” she remarked.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 238,
+      "originalText": "“And his poor mother made him take the pledge on New Year’s Eve.",
+      "simplifiedText": "“His poor mother made him promise on New Year’s Eve.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 239,
+      "originalText": "But come on, Gabriel, into the drawing-room.",
+      "simplifiedText": "Come on, Gabriel, let’s go into the drawing-room.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 240,
+      "originalText": "”\n\nBefore leaving the room with Gabriel she signaled to Mr.",
+      "simplifiedText": "Before leaving with Gabriel, she signaled to Mr. Browne.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 241,
+      "originalText": "Browne by frowning and shaking her forefinger in warning to and fro.",
+      "simplifiedText": "She frowned and shook her finger to warn Mr. Browne.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 242,
+      "originalText": "Mr.",
+      "simplifiedText": "Mr. Browne nodded and spoke to Freddy Malins.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 243,
+      "originalText": "Browne nodded in answer and, when she had gone, said to Freddy Malins:\n\n“Now, then, Teddy, I’m going to fill you out a good glass of lemonade just to buck you up.",
+      "simplifiedText": "He said, 'Teddy, I’ll give you lemonade to cheer you up.'",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 244,
+      "originalText": "”\n\nFreddy Malins, who was nearing the climax of his story, waved the offer aside impatiently but Mr.",
+      "simplifiedText": "Freddy Malins waved away the offer, focused on his story.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 245,
+      "originalText": "Browne, having first called Freddy Malins’ attention to a disarray in his dress, filled out and handed him a full glass of lemonade.",
+      "simplifiedText": "Mr. Browne pointed out Freddy's messy clothes and gave him lemonade.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 246,
+      "originalText": "Freddy Malins’ left hand accepted the glass mechanically, his right hand being engaged in the mechanical readjustment of his dress.",
+      "simplifiedText": "Freddy took the glass with his left hand, fixing his clothes.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 247,
+      "originalText": "Mr.",
+      "simplifiedText": "Mr. Browne poured himself a glass of whisky.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 248,
+      "originalText": "Browne, whose face was once more wrinkling with mirth, poured out for himself a glass of whisky while Freddy Malins exploded, before he had well reached the climax of his story, in a kink of high-pitched bronchitic laughter and, setting down his untasted and overflowing glass, began to rub the knuckles of his left fist backwards and forwards into his left eye, repeating words of his last phrase as well as his fit of laughter would allow him.",
+      "simplifiedText": "Freddy laughed loudly, set down his full glass, and rubbed his eye.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 249,
+      "originalText": "Gabriel could not listen while Mary Jane was playing her Academy piece, full of runs and difficult passages, to the hushed drawing-room.",
+      "simplifiedText": "Gabriel couldn't listen while Mary Jane played a difficult piano piece.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 250,
+      "originalText": "He liked music but the piece she was playing had no melody for him and he doubted whether it had any melody for the other listeners, though they had begged Mary Jane to play something.",
+      "simplifiedText": "He liked music, but Mary's piece had no melody for him.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 251,
+      "originalText": "Four young men, who had come from the refreshment-room to stand in the doorway at the sound of the piano, had gone away quietly in couples after a few minutes.",
+      "simplifiedText": "Four young men left quietly after listening for a few minutes.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 252,
+      "originalText": "The only persons who seemed to follow the music were Mary Jane herself, her hands racing along the keyboard or lifted from it at the pauses like those of a priestess in momentary imprecation, and Aunt Kate standing at her elbow to turn the page.",
+      "simplifiedText": "Only Mary Jane and Aunt Kate seemed to follow the music.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 253,
+      "originalText": "Gabriel’s eyes, irritated by the floor, which glittered with beeswax under the heavy chandelier, wandered to the wall above the piano.",
+      "simplifiedText": "Gabriel's eyes wandered to the wall above the piano.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 254,
+      "originalText": "A picture of the balcony scene in _Romeo and Juliet_ hung there and beside it was a picture of the two murdered princes in the Tower which Aunt Julia had worked in red, blue and brown wools when she was a girl.",
+      "simplifiedText": "A picture of _Romeo and Juliet_ hung beside another picture.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 255,
+      "originalText": "Probably in the school they had gone to as girls that kind of work had been taught for one year.",
+      "simplifiedText": "They probably learned that kind of work in school as girls.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 256,
+      "originalText": "His mother had worked for him as a birthday present a waistcoat of purple tabinet, with little foxes’ heads upon it, lined with brown satin and having round mulberry buttons.",
+      "simplifiedText": "His mother made him a purple waistcoat with foxes' heads.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 257,
+      "originalText": "It was strange that his mother had had no musical talent though Aunt Kate used to call her the brains carrier of the Morkan family.",
+      "simplifiedText": "It was strange his mother had no musical talent.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 258,
+      "originalText": "Both she and Julia had always seemed a little proud of their serious and matronly sister.",
+      "simplifiedText": "Julia and she were proud of their serious sister.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 259,
+      "originalText": "Her photograph stood before the pierglass.",
+      "simplifiedText": "Her photograph was in front of the pierglass.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 260,
+      "originalText": "She held an open book on her knees and was pointing out something in it to Constantine who, dressed in a man-o’-war suit, lay at her feet.",
+      "simplifiedText": "She held a book and showed something to Constantine, who lay nearby.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 261,
+      "originalText": "It was she who had chosen the name of her sons for she was very sensible of the dignity of family life.",
+      "simplifiedText": "She chose her sons' names because she valued family dignity.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 262,
+      "originalText": "Thanks to her, Constantine was now senior curate in Balbrigan and, thanks to her, Gabriel himself had taken his degree in the Royal University.",
+      "simplifiedText": "Thanks to her, Constantine was a senior curate, and Gabriel graduated.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 263,
+      "originalText": "A shadow passed over his face as he remembered her sullen opposition to his marriage.",
+      "simplifiedText": "He felt sad remembering her opposition to his marriage.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 264,
+      "originalText": "Some slighting phrases she had used still rankled in his memory; she had once spoken of Gretta as being country cute and that was not true of Gretta at all.",
+      "simplifiedText": "Her unkind words about Gretta being 'country cute' still bothered him.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 265,
+      "originalText": "It was Gretta who had nursed her during all her last long illness in their house at Monkstown.",
+      "simplifiedText": "Gretta cared for her during her long illness at Monkstown.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 266,
+      "originalText": "He knew that Mary Jane must be near the end of her piece for she was playing again the opening melody with runs of scales after every bar and while he waited for the end the resentment died down in his heart.",
+      "simplifiedText": "He knew Mary Jane was finishing her piece, and his anger faded.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 267,
+      "originalText": "The piece ended with a trill of octaves in the treble and a final deep octave in the bass.",
+      "simplifiedText": "The piece ended with high and low notes.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 268,
+      "originalText": "Great applause greeted Mary Jane as, blushing and rolling up her music nervously, she escaped from the room.",
+      "simplifiedText": "People clapped for Mary Jane as she nervously left the room.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 269,
+      "originalText": "The most vigorous clapping came from the four young men in the doorway who had gone away to the refreshment-room at the beginning of the piece but had come back when the piano had stopped.",
+      "simplifiedText": "The loudest clapping came from four men who returned after leaving.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 270,
+      "originalText": "Lancers were arranged.",
+      "simplifiedText": "The dancers were organized into pairs.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 271,
+      "originalText": "Gabriel found himself partnered with Miss Ivors.",
+      "simplifiedText": "Gabriel was paired with Miss Ivors.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 272,
+      "originalText": "She was a frank-mannered talkative young lady, with a freckled face and prominent brown eyes.",
+      "simplifiedText": "She was a friendly, talkative young woman with freckles and big brown eyes.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 273,
+      "originalText": "She did not wear a low-cut bodice and the large brooch which was fixed in the front of her collar bore on it an Irish device and motto.",
+      "simplifiedText": "She wore a high-necked dress, and her brooch had an Irish symbol and motto.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 274,
+      "originalText": "When they had taken their places she said abruptly:\n\n“I have a bone to pick with you.",
+      "simplifiedText": "After they sat down, she suddenly said, \"I have an issue with you.\"",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 275,
+      "originalText": "”\n\n“With me?",
+      "simplifiedText": "\"With me?\"",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 276,
+      "originalText": "” said Gabriel.",
+      "simplifiedText": "Gabriel replied.",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 277,
+      "originalText": "She nodded her head gravely.",
+      "simplifiedText": "She nodded seriously.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 278,
+      "originalText": "“What is it?",
+      "simplifiedText": "\"What is it?\"",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 279,
+      "originalText": "” asked Gabriel, smiling at her serious manner.",
+      "simplifiedText": "Gabriel asked, smiling at her serious expression.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 280,
+      "originalText": "“Who is G.",
+      "simplifiedText": "\"Who is G. C.?\" asked Miss Ivors, looking at him.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 281,
+      "originalText": "C.?",
+      "simplifiedText": "Gabriel blushed and almost frowned, pretending not to understand.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 282,
+      "originalText": "” answered Miss Ivors, turning her eyes upon him.",
+      "simplifiedText": "Miss Ivors said, \"Oh, innocent Amy!\"",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 283,
+      "originalText": "Gabriel blushed and was about to knit his brows, as if he did not understand, when she said bluntly:\n\n“Oh, innocent Amy!",
+      "simplifiedText": "\"I know you write for The Daily Express,\" she said.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 284,
+      "originalText": "I have found out that you write for _The Daily Express_.",
+      "simplifiedText": "\"Aren't you ashamed of yourself now?\" she asked.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 285,
+      "originalText": "Now, aren’t you ashamed of yourself?",
+      "simplifiedText": "Gabriel asked, \"Why should I feel ashamed?\"",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 286,
+      "originalText": "”\n\n“Why should I be ashamed of myself?",
+      "simplifiedText": "He blinked and tried to smile at her.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 287,
+      "originalText": "” asked Gabriel, blinking his eyes and trying to smile.",
+      "simplifiedText": "Miss Ivors said, \"I am ashamed of you.\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 288,
+      "originalText": "“Well, I’m ashamed of you,” said Miss Ivors frankly.",
+      "simplifiedText": "\"You write for a paper like that,\" she added.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 289,
+      "originalText": "“To say you’d write for a paper like that.",
+      "simplifiedText": "Gabriel felt embarrassed by her straightforward words.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 290,
+      "originalText": "I didn’t think you were a West Briton.",
+      "simplifiedText": "I did not think you were from West Britain.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 291,
+      "originalText": "”\n\nA look of perplexity appeared on Gabriel’s face.",
+      "simplifiedText": "Gabriel looked confused and puzzled by her words.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 292,
+      "originalText": "It was true that he wrote a literary column every Wednesday in _The Daily Express_, for which he was paid fifteen shillings.",
+      "simplifiedText": "He wrote a column every Wednesday for The Daily Express.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 293,
+      "originalText": "But that did not make him a West Briton surely.",
+      "simplifiedText": "But that did not mean he was a West Briton.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 294,
+      "originalText": "The books he received for review were almost more welcome than the small cheque.",
+      "simplifiedText": "The books he got for review were more exciting than the money.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 295,
+      "originalText": "He loved to feel the covers and turn over the pages of newly printed books.",
+      "simplifiedText": "He loved touching the covers and flipping through new books.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 296,
+      "originalText": "Nearly every day when his teaching in the college was ended he used to wander down the quays to the second-hand booksellers, to Hickey’s on Bachelor’s Walk, to Webb’s or Massey’s on Aston’s Quay, or to O’Clohissey’s in the by-street.",
+      "simplifiedText": "After teaching, he often visited second-hand bookshops along the quays.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 297,
+      "originalText": "He did not know how to meet her charge.",
+      "simplifiedText": "He did not know how to respond to her accusation.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 298,
+      "originalText": "He wanted to say that literature was above politics.",
+      "simplifiedText": "He wanted to say that literature was more important than politics.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 299,
+      "originalText": "But they were friends of many years’ standing and their careers had been parallel, first at the university and then as teachers: he could not risk a grandiose phrase with her.",
+      "simplifiedText": "They were long-time friends and colleagues, so he avoided grand words.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 300,
+      "originalText": "He continued blinking his eyes and trying to smile and murmured lamely that he saw nothing political in writing reviews of books.",
+      "simplifiedText": "He kept blinking and tried to smile, saying reviews aren't political.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 301,
+      "originalText": "When their turn to cross had come he was still perplexed and inattentive.",
+      "simplifiedText": "When it was their turn to cross, he was still confused.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 302,
+      "originalText": "Miss Ivors promptly took his hand in a warm grasp and said in a soft friendly tone:\n\n“Of course, I was only joking.",
+      "simplifiedText": "Miss Ivors warmly shook his hand and said softly, \"I was joking.\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 303,
+      "originalText": "Come, we cross now.",
+      "simplifiedText": "Come on, let's cross now.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 304,
+      "originalText": "”\n\nWhen they were together again she spoke of the University question and Gabriel felt more at ease.",
+      "simplifiedText": "When they were together again, she talked about the University.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 305,
+      "originalText": "A friend of hers had shown her his review of Browning’s poems.",
+      "simplifiedText": "A friend showed her his review of Browning’s poems.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 306,
+      "originalText": "That was how she had found out the secret: but she liked the review immensely.",
+      "simplifiedText": "That's how she discovered the secret, but she loved the review.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 307,
+      "originalText": "Then she said suddenly:\n\n“Oh, Mr.",
+      "simplifiedText": "Then she suddenly said, \"Oh, Mr.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 308,
+      "originalText": "Conroy, will you come for an excursion to the Aran Isles this summer?",
+      "simplifiedText": "Conroy, will you join an excursion to the Aran Isles this summer?",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 309,
+      "originalText": "We’re going to stay there a whole month.",
+      "simplifiedText": "We plan to stay there for a whole month.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 310,
+      "originalText": "It will be splendid out in the Atlantic.",
+      "simplifiedText": "The weather will be wonderful in the Atlantic Ocean.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 311,
+      "originalText": "You ought to come.",
+      "simplifiedText": "You should definitely join us.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 312,
+      "originalText": "Mr.",
+      "simplifiedText": "Mr.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 313,
+      "originalText": "Clancy is coming, and Mr.",
+      "simplifiedText": "Clancy will be there, and so will Mr.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 314,
+      "originalText": "Kilkelly and Kathleen Kearney.",
+      "simplifiedText": "Kilkelly and Kathleen Kearney are coming too.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 315,
+      "originalText": "It would be splendid for Gretta too if she’d come.",
+      "simplifiedText": "It would be great for Gretta if she joined us.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 316,
+      "originalText": "She’s from Connacht, isn’t she?",
+      "simplifiedText": "She is from Connacht, right?",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 317,
+      "originalText": "”\n\n“Her people are,” said Gabriel shortly.",
+      "simplifiedText": "\"Her family is,\" Gabriel replied briefly.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 318,
+      "originalText": "“But you will come, won’t you?",
+      "simplifiedText": "\"But you will come, won't you?",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 319,
+      "originalText": "” said Miss Ivors, laying her warm hand eagerly on his arm.",
+      "simplifiedText": "\" Miss Ivors asked, eagerly placing her warm hand on his arm.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 320,
+      "originalText": "“The fact is,” said Gabriel, “I have just arranged to go——”\n\n“Go where?",
+      "simplifiedText": "\"The truth is,\" Gabriel said, \"I just planned to go—\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 321,
+      "originalText": "” asked Miss Ivors.",
+      "simplifiedText": "\"Go where?\" Miss Ivors asked.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 322,
+      "originalText": "“Well, you know, every year I go for a cycling tour with some fellows and so——”\n\n“But where?",
+      "simplifiedText": "\"Every year, I go cycling with friends, so—\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 323,
+      "originalText": "” asked Miss Ivors.",
+      "simplifiedText": "\"But where?\" Miss Ivors asked again.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 324,
+      "originalText": "“Well, we usually go to France or Belgium or perhaps Germany,” said Gabriel awkwardly.",
+      "simplifiedText": "\"We usually go to France, Belgium, or maybe Germany,\" Gabriel said.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 325,
+      "originalText": "“And why do you go to France and Belgium,” said Miss Ivors, “instead of visiting your own land?",
+      "simplifiedText": "\"Why do you visit France and Belgium,\" Miss Ivors asked, \"instead of your own country?\"",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 326,
+      "originalText": "”\n\n“Well,” said Gabriel, “it’s partly to keep in touch with the languages and partly for a change.",
+      "simplifiedText": "\"Well,\" Gabriel replied, \"to practice languages and for a change.\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 327,
+      "originalText": "”\n\n“And haven’t you your own language to keep in touch with—Irish?",
+      "simplifiedText": "\"Don't you have your own language to practice—Irish?\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 328,
+      "originalText": "” asked Miss Ivors.",
+      "simplifiedText": "Miss Ivors asked.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 329,
+      "originalText": "“Well,” said Gabriel, “if it comes to that, you know, Irish is not my language.",
+      "simplifiedText": "\"Well,\" Gabriel said, \"Irish isn't really my language, you know.\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 330,
+      "originalText": "”\n\nTheir neighbors had turned to listen to the cross-examination.",
+      "simplifiedText": "Their neighbors stopped to listen to the questioning.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 331,
+      "originalText": "Gabriel glanced right and left nervously and tried to keep his good humor under the ordeal which was making a blush invade his forehead.",
+      "simplifiedText": "Gabriel looked around nervously, trying to stay calm despite blushing.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 332,
+      "originalText": "“And haven’t you your own land to visit,” continued Miss Ivors, “that you know nothing of, your own people, and your own country?",
+      "simplifiedText": "Miss Ivors asked if he knew his own land and people.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 333,
+      "originalText": "”\n\n“Oh, to tell you the truth,” retorted Gabriel suddenly, “I’m sick of my own country, sick of it!",
+      "simplifiedText": "Gabriel replied suddenly, saying he was tired of his country.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 334,
+      "originalText": "”\n\n“Why?",
+      "simplifiedText": "Miss Ivors asked, \"Why?\"",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 335,
+      "originalText": "” asked Miss Ivors.",
+      "simplifiedText": "Miss Ivors questioned him further.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 336,
+      "originalText": "Gabriel did not answer for his retort had heated him.",
+      "simplifiedText": "Gabriel didn't respond because he was upset by his own words.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 337,
+      "originalText": "“Why?",
+      "simplifiedText": "Miss Ivors asked again, \"Why?\"",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 338,
+      "originalText": "” repeated Miss Ivors.",
+      "simplifiedText": "Miss Ivors repeated her question.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 339,
+      "originalText": "They had to go visiting together and, as he had not answered her, Miss Ivors said warmly:\n\n“Of course, you’ve no answer.",
+      "simplifiedText": "They had to visit together, and Miss Ivors said warmly, \"You have no answer.\"",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 340,
+      "originalText": "”\n\nGabriel tried to cover his agitation by taking part in the dance with great energy.",
+      "simplifiedText": "Gabriel tried to hide his worry by dancing energetically.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 341,
+      "originalText": "He avoided her eyes for he had seen a sour expression on her face.",
+      "simplifiedText": "He avoided her eyes because she looked unhappy.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 342,
+      "originalText": "But when they met in the long chain he was surprised to feel his hand firmly pressed.",
+      "simplifiedText": "When they met, he was surprised by her firm handshake.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 343,
+      "originalText": "She looked at him from under her brows for a moment quizzically until he smiled.",
+      "simplifiedText": "She looked at him curiously until he smiled.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 344,
+      "originalText": "Then, just as the chain was about to start again, she stood on tiptoe and whispered into his ear:\n\n“West Briton!",
+      "simplifiedText": "As the chain started again, she whispered, \"West Briton!\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 345,
+      "originalText": "”\n\nWhen the lancers were over Gabriel went away to a remote corner of the room where Freddy Malins’ mother was sitting.",
+      "simplifiedText": "After the dance, Gabriel went to a quiet corner.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 346,
+      "originalText": "She was a stout feeble old woman with white hair.",
+      "simplifiedText": "There sat Freddy Malins’ mother, a weak old woman with white hair.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 347,
+      "originalText": "Her voice had a catch in it like her son’s and she stuttered slightly.",
+      "simplifiedText": "Her voice was like her son's, with a slight stutter.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 348,
+      "originalText": "She had been told that Freddy had come and that he was nearly all right.",
+      "simplifiedText": "She heard Freddy had arrived and was almost fine.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 349,
+      "originalText": "Gabriel asked her whether she had had a good crossing.",
+      "simplifiedText": "Gabriel asked if she had a good journey.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 350,
+      "originalText": "She lived with her married daughter in Glasgow and came to Dublin on a visit once a year.",
+      "simplifiedText": "She lived with her daughter in Glasgow and visited Dublin yearly.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 351,
+      "originalText": "She answered placidly that she had had a beautiful crossing and that the captain had been most attentive to her.",
+      "simplifiedText": "She calmly said the crossing was nice and the captain was attentive.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 352,
+      "originalText": "She spoke also of the beautiful house her daughter kept in Glasgow, and of all the friends they had there.",
+      "simplifiedText": "She talked about her daughter's lovely house and their friends in Glasgow.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 353,
+      "originalText": "While her tongue rambled on Gabriel tried to banish from his mind all memory of the unpleasant incident with Miss Ivors.",
+      "simplifiedText": "As she talked, Gabriel tried to forget the incident with Miss Ivors.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 354,
+      "originalText": "Of course the girl or woman, or whatever she was, was an enthusiast but there was a time for all things.",
+      "simplifiedText": "The girl was an enthusiast, but there is a time for everything.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 355,
+      "originalText": "Perhaps he ought not to have answered her like that.",
+      "simplifiedText": "Maybe he should not have replied to her like that.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 356,
+      "originalText": "But she had no right to call him a West Briton before people, even in joke.",
+      "simplifiedText": "She should not have called him a West Briton, even as a joke.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 357,
+      "originalText": "She had tried to make him ridiculous before people, heckling him and staring at him with her rabbit’s eyes.",
+      "simplifiedText": "She tried to embarrass him, questioning and staring with her rabbit eyes.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 358,
+      "originalText": "He saw his wife making her way towards him through the waltzing couples.",
+      "simplifiedText": "He saw his wife moving towards him through the dancing couples.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 359,
+      "originalText": "When she reached him she said into his ear:\n\n“Gabriel, Aunt Kate wants to know won’t you carve the goose as usual.",
+      "simplifiedText": "When she reached him, she whispered, 'Gabriel, Aunt Kate wants you to carve the goose.'",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 360,
+      "originalText": "Miss Daly will carve the ham and I’ll do the pudding.",
+      "simplifiedText": "Miss Daly will cut the ham, and I will make the pudding.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 361,
+      "originalText": "”\n\n“All right,” said Gabriel.",
+      "simplifiedText": "\"Okay,\" Gabriel replied.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 362,
+      "originalText": "“She’s sending in the younger ones first as soon as this waltz is over so that we’ll have the table to ourselves.",
+      "simplifiedText": "She will send the younger ones in after this waltz ends.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 363,
+      "originalText": "”\n\n“Were you dancing?",
+      "simplifiedText": "\"Were you dancing?\"",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 364,
+      "originalText": "” asked Gabriel.",
+      "simplifiedText": "Gabriel asked.",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 365,
+      "originalText": "“Of course I was.",
+      "simplifiedText": "\"Yes, I was dancing.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 366,
+      "originalText": "Didn’t you see me?",
+      "simplifiedText": "Did you not see me?\"",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 367,
+      "originalText": "What row had you with Molly Ivors?",
+      "simplifiedText": "What argument did you have with Molly Ivors?",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 368,
+      "originalText": "”\n\n“No row.",
+      "simplifiedText": "\"No argument.\"",
+      "level": "A2",
+      "wordCount": 2
+    },
+    {
+      "sentenceIndex": 369,
+      "originalText": "Why?",
+      "simplifiedText": "Why do you ask?\"",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 370,
+      "originalText": "Did she say so?",
+      "simplifiedText": "Did she really say that?",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 371,
+      "originalText": "”\n\n“Something like that.",
+      "simplifiedText": "She said something similar to that.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 372,
+      "originalText": "I’m trying to get that Mr.",
+      "simplifiedText": "I am trying to persuade Mr. D’Arcy to sing.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 373,
+      "originalText": "D’Arcy to sing.",
+      "simplifiedText": "Mr. D’Arcy is reluctant to sing.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 374,
+      "originalText": "He’s full of conceit, I think.",
+      "simplifiedText": "I think he is very conceited.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 375,
+      "originalText": "”\n\n“There was no row,” said Gabriel moodily, “only she wanted me to go for a trip to the west of Ireland and I said I wouldn’t.",
+      "simplifiedText": "There was no argument, Gabriel said moodily, she wanted me to visit western Ireland, but I refused.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 376,
+      "originalText": "”\n\nHis wife clasped her hands excitedly and gave a little jump.",
+      "simplifiedText": "His wife clasped her hands with excitement and jumped a little.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 377,
+      "originalText": "“Oh, do go, Gabriel,” she cried.",
+      "simplifiedText": "Please go, Gabriel, she exclaimed.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 378,
+      "originalText": "“I’d love to see Galway again.",
+      "simplifiedText": "I would love to visit Galway again.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 379,
+      "originalText": "”\n\n“You can go if you like,” said Gabriel coldly.",
+      "simplifiedText": "You can go if you want, Gabriel replied coldly.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 380,
+      "originalText": "She looked at him for a moment, then turned to Mrs.",
+      "simplifiedText": "She looked at him briefly, then turned to Mrs. Malins.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 381,
+      "originalText": "Malins and said:\n\n“There’s a nice husband for you, Mrs.",
+      "simplifiedText": "She said, \"There’s a nice husband for you, Mrs. Malins.\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 382,
+      "originalText": "Malins.",
+      "simplifiedText": "Mrs. Malins continued speaking without noticing the interruption.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 383,
+      "originalText": "”\n\nWhile she was threading her way back across the room Mrs.",
+      "simplifiedText": "She told Gabriel about the beautiful places in Scotland.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 384,
+      "originalText": "Malins, without adverting to the interruption, went on to tell Gabriel what beautiful places there were in Scotland and beautiful scenery.",
+      "simplifiedText": "Her son-in-law took them to the lakes every year.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 385,
+      "originalText": "Her son-in-law brought them every year to the lakes and they used to go fishing.",
+      "simplifiedText": "They used to go fishing, and he was a great fisher.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 386,
+      "originalText": "Her son-in-law was a splendid fisher.",
+      "simplifiedText": "One day he caught a big fish, and it was cooked for dinner.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 387,
+      "originalText": "One day he caught a beautiful big fish and the man in the hotel cooked it for their dinner.",
+      "simplifiedText": "Gabriel barely listened to what she was saying.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 388,
+      "originalText": "Gabriel hardly heard what she said.",
+      "simplifiedText": "As supper approached, he thought about his speech and the quote.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 389,
+      "originalText": "Now that supper was coming near he began to think again about his speech and about the quotation.",
+      "simplifiedText": "He was preoccupied with his upcoming speech and the quotation.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 390,
+      "originalText": "When he saw Freddy Malins coming across the room to visit his mother Gabriel left the chair free for him and retired into the embrasure of the window.",
+      "simplifiedText": "Gabriel saw Freddy Malins coming and left the chair for him.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 391,
+      "originalText": "The room had already cleared and from the back room came the clatter of plates and knives.",
+      "simplifiedText": "The room was emptying, and sounds of dishes came from the back.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 392,
+      "originalText": "Those who still remained in the drawing-room seemed tired of dancing and were conversing quietly in little groups.",
+      "simplifiedText": "People left in the room were tired and talking in small groups.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 393,
+      "originalText": "Gabriel’s warm trembling fingers tapped the cold pane of the window.",
+      "simplifiedText": "Gabriel's warm fingers tapped the cold window glass.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 394,
+      "originalText": "How cool it must be outside!",
+      "simplifiedText": "It must be very cool outside!",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 395,
+      "originalText": "How pleasant it would be to walk out alone, first along by the river and then through the park!",
+      "simplifiedText": "Walking alone by the river and through the park would be nice.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 396,
+      "originalText": "The snow would be lying on the branches of the trees and forming a bright cap on the top of the Wellington Monument.",
+      "simplifiedText": "Snow would cover the tree branches and the Wellington Monument.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 397,
+      "originalText": "How much more pleasant it would be there than at the supper-table!",
+      "simplifiedText": "It would be nicer there than at the supper table!",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 398,
+      "originalText": "He ran over the headings of his speech: Irish hospitality, sad memories, the Three Graces, Paris, the quotation from Browning.",
+      "simplifiedText": "He thought about his speech topics: Irish hospitality, memories, and more.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 399,
+      "originalText": "He repeated to himself a phrase he had written in his review: “One feels that one is listening to a thought-tormented music.",
+      "simplifiedText": "He repeated a phrase he wrote: 'One hears thought-tormented music.'",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 400,
+      "originalText": "” Miss Ivors had praised the review.",
+      "simplifiedText": "Miss Ivors complimented the review.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 401,
+      "originalText": "Was she sincere?",
+      "simplifiedText": "Was she being honest?",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 402,
+      "originalText": "Had she really any life of her own behind all her propagandism?",
+      "simplifiedText": "Did she have her own life beyond her activism?",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 403,
+      "originalText": "There had never been any ill-feeling between them until that night.",
+      "simplifiedText": "They had always gotten along until that night.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 404,
+      "originalText": "It unnerved him to think that she would be at the supper-table, looking up at him while he spoke with her critical quizzing eyes.",
+      "simplifiedText": "He felt uneasy knowing she would watch him with critical eyes.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 405,
+      "originalText": "Perhaps she would not be sorry to see him fail in his speech.",
+      "simplifiedText": "Maybe she wanted him to fail in his speech.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 406,
+      "originalText": "An idea came into his mind and gave him courage.",
+      "simplifiedText": "An idea inspired him and gave him confidence.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 407,
+      "originalText": "He would say, alluding to Aunt Kate and Aunt Julia: “Ladies and Gentlemen, the generation which is now on the wane among us may have had its faults but for my part I think it had certain qualities of hospitality, of humor, of humanity, which the new and very serious and hypereducated generation that is growing up around us seems to me to lack.",
+      "simplifiedText": "He planned to say the older generation had qualities the new lacks.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 408,
+      "originalText": "” Very good: that was one for Miss Ivors.",
+      "simplifiedText": "That would be a good remark for Miss Ivors.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 409,
+      "originalText": "What did he care that his aunts were only two ignorant old women?",
+      "simplifiedText": "Why should he care if his aunts were just old and ignorant?",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 410,
+      "originalText": "A murmur in the room attracted his attention.",
+      "simplifiedText": "A soft sound in the room caught his attention.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 411,
+      "originalText": "Mr.",
+      "simplifiedText": "Mr. Browne was coming from the door with Aunt Julia.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 412,
+      "originalText": "Browne was advancing from the door, gallantly escorting Aunt Julia, who leaned upon his arm, smiling and hanging her head.",
+      "simplifiedText": "She leaned on his arm, smiling and looking down.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 413,
+      "originalText": "An irregular musketry of applause escorted her also as far as the piano and then, as Mary Jane seated herself on the stool, and Aunt Julia, no longer smiling, half turned so as to pitch her voice fairly into the room, gradually ceased.",
+      "simplifiedText": "Clapping followed her to the piano, then stopped as she sang.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 414,
+      "originalText": "Gabriel recognized the prelude.",
+      "simplifiedText": "Gabriel knew the beginning of the song.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 415,
+      "originalText": "It was that of an old song of Aunt Julia’s—_Arrayed for the Bridal_.",
+      "simplifiedText": "It was an old song Aunt Julia loved, _Arrayed for the Bridal_.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 416,
+      "originalText": "Her voice, strong and clear in tone, attacked with great spirit the runs which embellish the air and though she sang very rapidly she did not miss even the smallest of the grace notes.",
+      "simplifiedText": "Her strong voice sang the fast notes without missing any.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 417,
+      "originalText": "To follow the voice, without looking at the singer’s face, was to feel and share the excitement of swift and secure flight.",
+      "simplifiedText": "Listening to her voice felt like flying quickly and safely.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 418,
+      "originalText": "Gabriel applauded loudly with all the others at the close of the song and loud applause was borne in from the invisible supper-table.",
+      "simplifiedText": "Gabriel clapped loudly with everyone when the song ended.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 419,
+      "originalText": "It sounded so genuine that a little color struggled into Aunt Julia’s face as she bent to replace in the music-stand the old leather-bound songbook that had her initials on the cover.",
+      "simplifiedText": "The applause was real, and Aunt Julia blushed as she put away the songbook.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 420,
+      "originalText": "Freddy Malins, who had listened with his head perched sideways to hear her better, was still applauding when everyone else had ceased and talking animatedly to his mother who nodded her head gravely and slowly in acquiescence.",
+      "simplifiedText": "Freddy Malins listened closely and kept clapping after others stopped.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 421,
+      "originalText": "At last, when he could clap no more, he stood up suddenly and hurried across the room to Aunt Julia whose hand he seized and held in both his hands, shaking it when words failed him or the catch in his voice proved too much for him.",
+      "simplifiedText": "When he stopped clapping, he quickly went to Aunt Julia.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 422,
+      "originalText": "“I was just telling my mother,” he said, “I never heard you sing so well, never.",
+      "simplifiedText": "“I told my mother,” he said, “you sang so well tonight.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 423,
+      "originalText": "No, I never heard your voice so good as it is tonight.",
+      "simplifiedText": "I never heard your voice sound as good as tonight.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 424,
+      "originalText": "Now!",
+      "simplifiedText": "Now!",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 425,
+      "originalText": "Would you believe that now?",
+      "simplifiedText": "Can you believe it now?",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 426,
+      "originalText": "That’s the truth.",
+      "simplifiedText": "That is the truth.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 427,
+      "originalText": "Honestly, that’s the truth.",
+      "simplifiedText": "Honestly, that is the truth.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 428,
+      "originalText": "I never heard your voice sound so fresh and so ...",
+      "simplifiedText": "I never heard your voice sound so fresh and...",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 429,
+      "originalText": "so clear and fresh, never.",
+      "simplifiedText": "so clear and fresh, never before.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 430,
+      "originalText": "”\n\nAunt Julia smiled broadly and murmured something about compliments as she released her hand from his grasp.",
+      "simplifiedText": "Aunt Julia smiled and said something nice as she let go of his hand.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 431,
+      "originalText": "Mr.",
+      "simplifiedText": "Mr. Browne reached out his hand to her.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 432,
+      "originalText": "Browne extended his open hand towards her and said to those who were near him in the manner of a showman introducing a prodigy to an audience:\n\n“Miss Julia Morkan, my latest discovery!",
+      "simplifiedText": "He introduced Miss Julia Morkan as his new discovery.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 433,
+      "originalText": "”\n\nHe was laughing very heartily at this himself when Freddy Malins turned to him and said:\n\n“Well, Browne, if you’re serious you might make a worse discovery.",
+      "simplifiedText": "He laughed, and Freddy Malins said he could find worse.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 434,
+      "originalText": "All I can say is I never heard her sing half so well as long as I am coming here.",
+      "simplifiedText": "I never heard her sing so well in all my visits.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 435,
+      "originalText": "And that’s the honest truth.",
+      "simplifiedText": "That is the honest truth.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 436,
+      "originalText": "”\n\n“Neither did I,” said Mr.",
+      "simplifiedText": "Neither did I, said Mr. Browne.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 437,
+      "originalText": "Browne.",
+      "simplifiedText": "Browne.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 438,
+      "originalText": "“I think her voice has greatly improved.",
+      "simplifiedText": "I think her voice has improved a lot.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 439,
+      "originalText": "”\n\nAunt Julia shrugged her shoulders and said with meek pride:\n\n“Thirty years ago I hadn’t a bad voice as voices go.",
+      "simplifiedText": "Aunt Julia shrugged and said she had a good voice years ago.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 440,
+      "originalText": "”\n\n“I often told Julia,” said Aunt Kate emphatically, “that she was simply thrown away in that choir.",
+      "simplifiedText": "\"I often told Julia,\" said Aunt Kate strongly, \"she was wasted in that choir.\"",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 441,
+      "originalText": "But she never would be said by me.",
+      "simplifiedText": "But she never listened to me.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 442,
+      "originalText": "”\n\nShe turned as if to appeal to the good sense of the others against a refractory child while Aunt Julia gazed in front of her, a vague smile of reminiscence playing on her face.",
+      "simplifiedText": "She looked to others for support, while Aunt Julia smiled at memories.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 443,
+      "originalText": "“No,” continued Aunt Kate, “she wouldn’t be said or led by anyone, slaving there in that choir night and day, night and day.",
+      "simplifiedText": "\"No,\" Aunt Kate continued, \"she wouldn't listen, working hard in that choir.\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 444,
+      "originalText": "Six o’clock on Christmas morning!",
+      "simplifiedText": "Six o'clock on Christmas morning!",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 445,
+      "originalText": "And all for what?",
+      "simplifiedText": "And all for what purpose?",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 446,
+      "originalText": "”\n\n“Well, isn’t it for the honor of God, Aunt Kate?",
+      "simplifiedText": "\"Well, isn't it for God's honor, Aunt Kate?\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 447,
+      "originalText": "” asked Mary Jane, twisting round on the piano-stool and smiling.",
+      "simplifiedText": "asked Mary Jane, turning on the piano stool and smiling.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 448,
+      "originalText": "Aunt Kate turned fiercely on her niece and said:\n\n“I know all about the honor of God, Mary Jane, but I think it’s not at all honorable for the pope to turn out the women out of the choirs that have slaved there all their lives and put little whipper-snappers of boys over their heads.",
+      "simplifiedText": "Aunt Kate angrily replied, \"I know about God's honor, Mary Jane, but it's unfair for the pope to replace women with young boys in the choir.\"",
+      "level": "A2",
+      "wordCount": 26
+    },
+    {
+      "sentenceIndex": 449,
+      "originalText": "I suppose it is for the good of the Church if the pope does it.",
+      "simplifiedText": "I suppose it's for the Church's good if the pope does it.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 450,
+      "originalText": "But it’s not just, Mary Jane, and it’s not right.",
+      "simplifiedText": "However, it is not only Mary Jane, and it is unfair.",
+      "level": "A2",
+      "wordCount": 11
+    }
+  ],
+  "metadata": {
+    "bookId": "the-dead",
+    "cefrLevel": "A2",
+    "totalSentences": 451,
+    "inProgress": false,
+    "completedAt": "2025-10-12T22:14:10.547Z"
+  }
+}

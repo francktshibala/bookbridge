@@ -214,6 +214,20 @@ brew install ffmpeg                         # Install ffprobe for measurements
 node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
 # Example: node scripts/generate-necklace-bundles.js A1 --pilot
 
+# ⚠️ CRITICAL FFPROBE IMPLEMENTATION (learned from The Necklace A1):
+# For ES modules (import syntax), ffprobe measurement requires:
+#   1. Import execSync at top: import { execSync } from 'child_process';
+#   2. Save audio buffer to temp file first (ffprobe cannot read remote URLs):
+#      const tempFile = path.join(process.cwd(), 'temp', `bundle_${index}_temp.mp3`);
+#      fs.writeFileSync(tempFile, Buffer.from(audioBuffer));
+#   3. Measure the local file:
+#      const command = `ffprobe -v quiet -show_entries format=duration -of csv=p=0 "${tempFile}"`;
+#      const result = execSync(command, { encoding: 'utf-8' }).trim();
+#      const measuredDuration = parseFloat(result);
+#   4. Clean up temp file after measurement:
+#      if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
+# This prevents "require is not defined" errors and ensures accurate measurement
+
 # ⚠️ MANDATORY TTS PAYLOAD VERIFICATION (learned from "invisible sentences" bug):
 # Add to generation script BEFORE calling TTS API:
 #   const textHash = crypto.createHash('sha256').update(bundleText).digest('hex').substring(0, 16);
