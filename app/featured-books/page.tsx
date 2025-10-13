@@ -157,35 +157,32 @@ const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
 
 // Dynamic API mappings for books with multiple levels
 const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
-  'gutenberg-43': {
-    'A1': '/api/jekyll-hyde/bundles',
-    'A2': '/api/jekyll-hyde-a2/bundles'
-  },
-  'gift-of-the-magi': {
-    'A1': '/api/gift-of-the-magi-a1/bundles',
-    'A2': '/api/gift-of-the-magi-a2/bundles',
-    'B1': '/api/gift-of-the-magi-b1/bundles'
-  },
-  'the-devoted-friend': {
-    'A1': '/api/devoted-friend-a1/bundles',
-    'A2': '/api/devoted-friend-a2/bundles',
-    'B1': '/api/devoted-friend-b1/bundles'
-  },
-  'lady-with-dog': {
-    'A1': '/api/lady-with-dog-a1/bundles',
-    'A2': '/api/lady-with-dog-a2/bundles'
+  'the-necklace': {
+    'A1': '/api/the-necklace-a1/bundles',
+    'A2': '/api/the-necklace-a2/bundles'
   },
   'the-dead': {
     'A1': '/api/the-dead-a1/bundles',
     'A2': '/api/the-dead-a2/bundles'
   },
+  'lady-with-dog': {
+    'A1': '/api/lady-with-dog-a1/bundles',
+    'A2': '/api/lady-with-dog-a2/bundles'
+  },
   'the-metamorphosis': {
     'A1': '/api/the-metamorphosis-a1/bundles'
   },
-  'the-necklace': {
-    'A1': '/api/the-necklace-a1/bundles',
-    'A2': '/api/the-necklace-a2/bundles',
-    'B1': '/api/the-necklace-b1/bundles'
+  'gift-of-the-magi': {
+    'A2': '/api/gift-of-the-magi-a2/bundles'
+  },
+  'gutenberg-43': {
+    'A1': '/api/jekyll-hyde/bundles',
+    'A2': '/api/jekyll-hyde-a2/bundles'
+  },
+  'the-devoted-friend': {
+    'A1': '/api/devoted-friend-a1/bundles',
+    'A2': '/api/devoted-friend-a2/bundles',
+    'B1': '/api/devoted-friend-b1/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };
