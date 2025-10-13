@@ -175,6 +175,15 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
   'gift-of-the-magi': {
     'A2': '/api/gift-of-the-magi-a2/bundles'
   },
+  'great-gatsby-a2': {
+    'A2': '/api/great-gatsby-a2/bundles'
+  },
+  'gutenberg-1952-A1': {
+    'A1': '/api/yellow-wallpaper-a1/bundles'
+  },
+  'sleepy-hollow-enhanced': {
+    'A1': '/api/sleepy-hollow-a1/bundles'
+  },
   'gutenberg-43': {
     'A1': '/api/jekyll-hyde/bundles',
     'A2': '/api/jekyll-hyde-a2/bundles'
