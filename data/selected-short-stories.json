@@ -38,7 +38,17 @@
       "description": "Woman borrows 'expensive' necklace, loses it, works 10 years to replace it, learns it was fake",
       "genre": "Irony/Social Commentary",
       "publicDomain": true,
-      "gutenbergId": "3090"
+      "gutenbergId": "3090",
+      "implemented": true,
+      "cefrLevels": ["A1", "A2"],
+      "thematicSections": [
+        "The Invitation",
+        "The Ball",
+        "The Loss",
+        "The Sacrifice",
+        "The Truth"
+      ],
+      "completedDate": "2025-01-12"
     },
     {
       "rank": 8,
@@ -68,7 +78,17 @@
       "description": "Man realizes his wife still loves someone who died for her years ago",
       "genre": "Modernist/Literary",
       "publicDomain": true,
-      "gutenbergId": "2814"
+      "gutenbergId": "2814",
+      "implemented": true,
+      "cefrLevels": ["A1"],
+      "thematicSections": [
+        "The Party Begins",
+        "Dinner and Dancing",
+        "Gabriel's Speech",
+        "The Journey Home",
+        "The Revelation"
+      ],
+      "completedDate": "2025-01-12"
     },
     {
       "rank": 12,
@@ -88,7 +108,17 @@
       "description": "Vacation affair becomes unexpected true love for two married people",
       "genre": "Realist/Romance",
       "publicDomain": true,
-      "gutenbergId": "13415"
+      "gutenbergId": "13415",
+      "implemented": true,
+      "cefrLevels": ["A1"],
+      "thematicSections": [
+        "First Meeting",
+        "The Affair Begins",
+        "Departure and Separation",
+        "The Reunion",
+        "True Love Revealed"
+      ],
+      "completedDate": "2025-01-12"
     },
     {
       "rank": 14,
@@ -205,7 +235,14 @@
     "totalSelected": 20,
     "publicDomain": 9,
     "copyrighted": 11,
+    "implemented": 3,
+    "implementedTitles": ["The Necklace", "The Dead", "The Lady with the Dog"],
+    "completedCefrLevels": {
+      "A1": 3,
+      "A2": 1
+    },
     "dateCreated": "2025-01-11",
-    "notes": "These stories were selected for their literary impact, emotional power, and suitability for BookBridge's simplified reading approach. Public domain stories can be implemented immediately."
+    "lastUpdated": "2025-01-12",
+    "notes": "These stories were selected for their literary impact, emotional power, and suitability for BookBridge's simplified reading approach. Public domain stories can be implemented immediately. First 3 stories completed with thematic sections for enhanced UI navigation."
   }
 }

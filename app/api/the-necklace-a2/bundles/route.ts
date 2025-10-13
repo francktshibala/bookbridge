@@ -87,11 +87,11 @@ export async function GET(request: NextRequest) {
 
       console.log(`Bundle ${index}: ${chunkSentences.length} sentences`);
 
-      // Calculate dynamic timings using Daniel voice formula (0.32s per word)
+      // Calculate dynamic timings using Sarah voice formula (0.35s per word)
       let cumulativeTime = 0;
       const sentencesWithTimings = chunkSentences.map((text, sentenceIdx) => {
         const words = text.trim().split(/\s+/).length;
-        const secondsPerWord = 0.32; // Daniel voice timing
+        const secondsPerWord = 0.35; // Sarah voice timing (A2 level)
         const minDuration = 2.0;     // Minimum duration for short sentences
         const duration = Math.max(words * secondsPerWord, minDuration);
 

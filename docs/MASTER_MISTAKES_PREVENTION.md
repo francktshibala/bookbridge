@@ -228,6 +228,27 @@ node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
 #      if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
 # This prevents "require is not defined" errors and ensures accurate measurement
 
+# ⚠️ ELEVENLABS API RELIABILITY (learned from Daniel/Sarah voice failures):
+# ElevenLabs API can fail due to rate limits, quota exceeded, network timeouts, or invalid voice IDs
+# MANDATORY: Implement robust retry logic in all generation scripts:
+#   1. Voice ID validation before requests:
+#      const VALIDATED_VOICES = {
+#        'daniel': 'onwK4e9ZLuTAKqWW03F9',  // British deep news presenter
+#        'sarah': 'EXAVITQu4vr4xnSDxMaL'   // American soft news
+#      };
+#   2. Retry with exponential backoff (3 attempts minimum):
+#      for (let attempt = 1; attempt <= 3; attempt++) {
+#        try { /* TTS API call */ }
+#        catch (error) {
+#          if (attempt === 3) throw error;
+#          await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempt)));
+#        }
+#      }
+#   3. API status validation before processing batches:
+#      Check ElevenLabs quota and rate limits before starting generation
+#   4. Graceful degradation: If one voice fails, continue with working voice
+# This prevents costly regeneration and ensures reliable audio production
+
 # ⚠️ MANDATORY TTS PAYLOAD VERIFICATION (learned from "invisible sentences" bug):
 # Add to generation script BEFORE calling TTS API:
 #   const textHash = crypto.createHash('sha256').update(bundleText).digest('hex').substring(0, 16);
@@ -479,6 +500,21 @@ console.log(url);
 # - No console errors about failed audio loads
 # - Bundle navigation works smoothly
 ```
+
+# ✅ 13. Thematic Sections JSON Files (MANDATORY for UI Navigation)
+# PROBLEM: Books work but show no chapter headers or navigation
+# CAUSE: Missing sections JSON file in cache/ directory
+# COST: Poor UX + no thematic navigation
+
+# REQUIRED: Create cache/{book-id}-sections.json with 5 thematic sections:
+# Format: cache/the-necklace-sections.json (follow existing pattern)
+# - spoiler-free titles ("The Invitation", "The Ball", "The Loss")
+# - emotional progression mapping story structure
+# - proper sentence/bundle ranges for navigation
+# - emotionalTone descriptions for user guidance
+
+# VALIDATION: Check file exists in cache/ directory before building
+ls cache/{book-id}-sections.json
 
 ### Phase 5: Display Headers (AFTER audio generation)
 ```bash
