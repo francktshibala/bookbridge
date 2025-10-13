@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
-import { createClient as createServiceClient } from '@supabase/supabase-js';
-import { prisma } from '@/lib/prisma';
-import { contentExtractor } from '@/lib/content-extractor';
-import { enhancedContentChunker } from '@/lib/content-chunker-enhanced';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 export async function GET(
   request: NextRequest,
@@ -11,179 +9,55 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    console.log('Fetching book content for ID:', id);
+    console.log('Fetching content from BookContent DB for ID:', id);
 
-    // Get user from Supabase auth
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-    if (authError || !user) {
-      console.error('Auth error:', authError);
-      return NextResponse.json(
-        { error: 'Authentication required' },
-        { status: 401 }
-      );
-    }
-
-    // Get book metadata from database
-    const book = await prisma.book.findUnique({
-      where: { id },
-      select: {
-        id: true,
-        title: true,
-        author: true,
-        filename: true,
-        fileSize: true,
-        language: true,
-        publicDomain: true
-      }
+    // Read from database first (GPT-5 fix)
+    const bookContent = await prisma.bookContent.findFirst({
+      where: { bookId: id }
     });
 
-    if (!book) {
-      return NextResponse.json(
-        { error: 'Book not found' },
-        { status: 404 }
-      );
+    if (bookContent) {
+      console.log('✅ Found content in BookContent DB');
+      return NextResponse.json({
+        id,
+        title: bookContent.title,
+        author: bookContent.author,
+        content: bookContent.fullText,
+        contentType: 'text',
+        language: 'en'
+      });
     }
 
-    if (!book.filename) {
-      return NextResponse.json(
-        { error: 'No file associated with this book' },
-        { status: 404 }
-      );
+    // Fallback to Book table if BookContent doesn't exist
+    const book = await prisma.book.findFirst({
+      where: { id: id }
+    });
+
+    if (book) {
+      console.log('✅ Found content in Book table');
+      return NextResponse.json({
+        id,
+        title: book.title,
+        author: book.author,
+        content: book.description || 'No content available',
+        contentType: 'text',
+        language: 'en'
+      });
     }
 
-    // Create service role client for storage access to bypass RLS
-    const storageSupabase = createServiceClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    console.log('❌ Book not found in database, returning 404');
+    return NextResponse.json(
+      { error: `Book not found in database: ${id}` },
+      { status: 404 }
     );
 
-    console.log('Downloading file from storage:', book.filename);
-    const { data: fileData, error: downloadError } = await storageSupabase
-      .storage
-      .from('book-files')
-      .download(book.filename);
-
-    if (downloadError || !fileData) {
-      console.error('Download error:', downloadError);
-      return NextResponse.json(
-        { error: 'Failed to retrieve book file' },
-        { status: 500 }
-      );
-    }
-
-    // Extract file type
-    const fileType = book.filename.split('.').pop()?.toLowerCase() || 'txt';
-    
-    try {
-      // Convert blob to buffer
-      const arrayBuffer = await fileData.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
-      
-      // Extract content using the content extractor
-      const extractedContent = await contentExtractor.extract(buffer, fileType);
-      
-      // Check if we need to return chunks instead of full content
-      const { searchParams } = new URL(request.url);
-      const query = searchParams.get('query');
-      const returnChunks = searchParams.get('chunks') === 'true';
-      
-      if (returnChunks || query) {
-        // Create and index chunks from the extracted content
-        const chunks = await enhancedContentChunker.chunkAndIndex(
-          book.id,
-          extractedContent.text,
-          extractedContent.chapters
-        );
-        
-        // If there's a query, find relevant chunks using vector search
-        let relevantChunks: any[];
-        let context: string | null = null;
-        
-        if (query) {
-          relevantChunks = await enhancedContentChunker.findRelevantChunksAsync(
-            book.id,
-            chunks,
-            query,
-            5
-          );
-          context = await enhancedContentChunker.createEnhancedContextFromQuery(
-            book.id,
-            chunks,
-            query,
-            3000
-          );
-        } else {
-          relevantChunks = chunks.slice(0, 10); // Return first 10 chunks if no query
-        }
-        
-        return NextResponse.json({
-          id: book.id,
-          title: book.title,
-          author: book.author,
-          chunks: relevantChunks,
-          context,
-          totalChunks: chunks.length,
-          contentType: fileType,
-          fileSize: book.fileSize,
-          language: extractedContent.metadata?.language || book.language,
-          metadata: {
-            ...extractedContent.metadata,
-            originalFileSize: book.fileSize
-          }
-        });
-      }
-      
-      // Return full content (for backward compatibility)
-      return NextResponse.json({
-        id: book.id,
-        title: book.title,
-        author: book.author,
-        content: extractedContent.text,
-        chapters: extractedContent.chapters,
-        contentType: fileType,
-        fileSize: book.fileSize,
-        language: extractedContent.metadata?.language || book.language,
-        metadata: {
-          ...extractedContent.metadata,
-          originalFileSize: book.fileSize
-        }
-      });
-    } catch (extractionError) {
-      console.error('Content extraction error:', extractionError);
-      
-      // Fallback for text files
-      if (fileType === 'txt') {
-        const text = await fileData.text();
-        return NextResponse.json({
-          id: book.id,
-          title: book.title,
-          author: book.author,
-          content: text,
-          contentType: 'text',
-          fileSize: book.fileSize,
-          language: book.language
-        });
-      }
-      
-      return NextResponse.json({
-        id: book.id,
-        title: book.title,
-        author: book.author,
-        content: null,
-        contentType: fileType,
-        fileSize: book.fileSize,
-        language: book.language,
-        error: `Failed to extract content: ${extractionError instanceof Error ? extractionError.message : 'Unknown error'}`
-      });
-    }
-
   } catch (error) {
-    console.error('Book content API error:', error);
+    console.error('Content API error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
     );
+  } finally {
+    await prisma.$disconnect();
   }
 }
