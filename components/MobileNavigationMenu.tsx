@@ -31,6 +31,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
   const navigationItems = [
     { href: '/', label: 'Home', icon: '🏠' },
     { href: '/enhanced-collection', label: '✨ Enhanced Books', icon: '✨' },
+    { href: '/featured-books', label: '🎧 Simplified Books', icon: '🎧' },
     { href: '/library', label: 'Browse All Books', icon: '📚' },
   ];
 

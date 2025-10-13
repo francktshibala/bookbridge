@@ -29,6 +29,7 @@ export default function Navigation() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/enhanced-collection', label: '✨ Enhanced Books' },
+    { href: '/featured-books', label: '🎧 Simplified Books' },
     { href: '/library', label: 'Browse All Books' },
     // TOUCHPOINT 1: Premium navigation link
     { href: '/upgrade', label: '🚀 Premium $5.99', isPremium: true },
