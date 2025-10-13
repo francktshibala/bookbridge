@@ -165,6 +165,29 @@ If critical issues are detected:
 ## 🔍 Troubleshooting
 
 ### Common Issues
+
+#### **Stripe API Version Conflicts** ⚠️
+**Issue**: TypeScript error during build: `Type '"2025-06-30.basil"' is not assignable to type '"2025-08-27.basil"'`
+**Root Cause**: Local dev environment has newer Stripe package with updated API version types, but production requires older stable version
+**Solutions**:
+1. **Quick Fix**: Use type assertion: `apiVersion: '2025-06-30.basil' as any`
+2. **Long-term**: Update production Stripe account to support newer API versions
+3. **Prevention**: Lock Stripe package version in package.json: `"stripe": "~18.5.0"`
+
+**Best Practice**: Always test builds locally with production-compatible API versions before deployment
+
+#### **Missing Component Dependencies**
+**Issue**: Constructor errors like `"__lib_audio_AudioBookPlayer__WEBPACK_IMPORTED_MODULE_1__ is not a constructor"`
+**Root Cause**: Components exist in feature branches but missing from main branch
+**Solution**: Copy complete component architecture, don't cherry-pick partial implementations
+**Prevention**: Use dependency mapping before deployments
+
+#### **Environment Compatibility**
+**Issue**: Features work locally but fail in production
+**Root Cause**: Different environment configurations between local/production
+**Solution**: Always run `npm run build` locally before deploying
+**Prevention**: Maintain .env.example with all required variables
+
 1. **Service Worker not registering**
    - Check HTTPS requirement
    - Verify next-pwa configuration
