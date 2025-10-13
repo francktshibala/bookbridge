@@ -75,16 +75,40 @@ export function isContinuousReadingEnabled(config: FeatureFlagConfig = {}): bool
 }
 
 /**
+ * Books with working bundle APIs (auto-detection like Enhanced Books)
+ * This replaces the need for environment variables
+ */
+const BOOKS_WITH_BUNDLE_APIS = new Set([
+  // Books with dedicated bundle APIs
+  'the-necklace',
+  'the-dead',
+  'the-metamorphosis',
+  'lady-with-dog',
+  'gift-of-the-magi',
+  'gutenberg-43',        // Jekyll & Hyde
+  'the-devoted-friend',
+  'gutenberg-1952-A1',   // Yellow Wallpaper
+  'sleepy-hollow-enhanced',
+  'great-gatsby-a2',
+
+  // Also support the variation IDs
+  'gutenberg-1952',      // Yellow Wallpaper alternative ID
+  'jekyll-hyde',         // Jekyll & Hyde alternative ID
+  'yellow-wallpaper',    // Yellow Wallpaper alternative ID
+  'sleepy-hollow',       // Sleepy Hollow alternative ID
+]);
+
+/**
  * Check if continuous reading is enabled for a specific book
- * Uses environment-based allowlist for production rollout
+ * Auto-detects books with working bundle APIs (like Enhanced Books page)
  */
 export function isContinuousReadingEnabledForBook(bookId: string, userId?: string): boolean {
-  // Development: Enable for Yellow Wallpaper
-  if (process.env.NODE_ENV === 'development' && bookId === 'gutenberg-1952') {
+  // Auto-detect books with bundle APIs (no environment variables needed)
+  if (BOOKS_WITH_BUNDLE_APIS.has(bookId)) {
     return true;
   }
 
-  // Production: Check environment allowlist
+  // Fallback: Still support environment allowlist for manual overrides
   const allowedBooks = process.env.NEXT_PUBLIC_CONTINUOUS_READING_BOOKS?.split(',') || [];
   if (allowedBooks.includes(bookId)) {
     return true;

@@ -384,6 +384,41 @@ userId, bookId, currentSentenceIndex, currentBundleIndex, cefrLevel, playbackSpe
 
 ---
 
+## 🚀 Continuous Reading Auto-Detection Pattern
+
+### Overview
+Implemented auto-detection for continuous reading functionality, eliminating need for environment variables.
+
+### Architecture Changes
+1. **Feature Flag Auto-Detection** (`lib/feature-flags.ts`)
+   - Books with bundle APIs are auto-detected via `BOOKS_WITH_BUNDLE_APIS` Set
+   - No environment variables required for new books
+   - Scales automatically to 100+ books
+
+2. **API Endpoint Mappings** (`app/featured-books/page.tsx`)
+   - `BOOK_API_MAPPINGS`: Maps book IDs to CEFR level endpoints
+   - `BOOK_DEFAULT_LEVELS`: Specifies default CEFR level per book
+   - Example:
+   ```typescript
+   'the-necklace': {
+     'A1': '/api/the-necklace-a1/bundles',
+     'A2': '/api/the-necklace-a2/bundles',
+     'B1': '/api/the-necklace-b1/bundles'
+   }
+   ```
+
+3. **Adding New Books**
+   - Create API route: `/api/{book-id}-{level}/bundles/route.ts`
+   - Add to `BOOK_API_MAPPINGS` in featured-books page
+   - Add to `BOOKS_WITH_BUNDLE_APIS` in feature-flags
+   - Generate bundle data in database
+
+### Known Requirements
+Books need bundle data in database to function. Missing data causes levels not to load.
+Current missing data:
+- Gift of Magi: A1, B1 levels
+- The Devoted Friend: All levels (A1, A2, B1)
+
 ## 🎯 Next Steps After Deployment
 
 1. **Monitor audiobook performance metrics** for first 48 hours
@@ -391,6 +426,7 @@ userId, bookId, currentSentenceIndex, currentBundleIndex, cefrLevel, playbackSpe
 3. **Analyze usage patterns** across all 10 books
 4. **Plan additional book integrations** using established patterns
 5. **Monitor reading position sync** across devices
+6. **Generate missing bundle data** for Gift of Magi A1/B1 and Devoted Friend
 
 For deployment support, check:
 - GitHub repository issues
