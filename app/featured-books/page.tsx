@@ -382,6 +382,94 @@ const THE_NECKLACE_CHAPTERS = [
   }
 ];
 
+// The Dead Chapter Structure (thematic sections for emotional flow)
+const THE_DEAD_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "The Party Begins",
+    startSentence: 0,
+    endSentence: 35,
+    startBundle: 0,
+    endBundle: 8
+  },
+  {
+    chapterNumber: 2,
+    title: "Dinner and Dancing",
+    startSentence: 36,
+    endSentence: 71,
+    startBundle: 9,
+    endBundle: 17
+  },
+  {
+    chapterNumber: 3,
+    title: "Gabriel's Speech",
+    startSentence: 72,
+    endSentence: 107,
+    startBundle: 18,
+    endBundle: 26
+  },
+  {
+    chapterNumber: 4,
+    title: "The Journey Home",
+    startSentence: 108,
+    endSentence: 143,
+    startBundle: 27,
+    endBundle: 35
+  },
+  {
+    chapterNumber: 5,
+    title: "The Revelation",
+    startSentence: 144,
+    endSentence: 179,
+    startBundle: 36,
+    endBundle: 44
+  }
+];
+
+// The Lady with the Dog Chapter Structure (thematic sections for emotional flow)
+const THE_LADY_WITH_DOG_CHAPTERS = [
+  {
+    chapterNumber: 1,
+    title: "First Meeting",
+    startSentence: 0,
+    endSentence: 32,
+    startBundle: 0,
+    endBundle: 7
+  },
+  {
+    chapterNumber: 2,
+    title: "The Affair Begins",
+    startSentence: 33,
+    endSentence: 65,
+    startBundle: 8,
+    endBundle: 16
+  },
+  {
+    chapterNumber: 3,
+    title: "Departure and Separation",
+    startSentence: 66,
+    endSentence: 98,
+    startBundle: 17,
+    endBundle: 24
+  },
+  {
+    chapterNumber: 4,
+    title: "The Reunion",
+    startSentence: 99,
+    endSentence: 131,
+    startBundle: 25,
+    endBundle: 32
+  },
+  {
+    chapterNumber: 5,
+    title: "True Love Revealed",
+    startSentence: 132,
+    endSentence: 164,
+    startBundle: 33,
+    endBundle: 40
+  }
+];
+
 // Yellow Wallpaper Chapter Structure (psychological progression sections)
 const YELLOW_WALLPAPER_CHAPTERS = [
   {
@@ -1542,6 +1630,12 @@ export default function FeaturedBooksPage() {
       chapters = CHRISTMAS_CAROL_CHAPTERS;
     } else if (selectedBook.id === 'gift-of-the-magi') {
       chapters = GIFT_OF_THE_MAGI_CHAPTERS;
+    } else if (selectedBook.id === 'the-necklace') {
+      chapters = THE_NECKLACE_CHAPTERS;
+    } else if (selectedBook.id === 'the-dead') {
+      chapters = THE_DEAD_CHAPTERS;
+    } else if (selectedBook.id === 'lady-with-dog') {
+      chapters = THE_LADY_WITH_DOG_CHAPTERS;
     } else {
       return { current: 1, total: 1, title: '', totalSentences: selectedBook.sentences };
     }
@@ -1588,6 +1682,10 @@ export default function FeaturedBooksPage() {
       return GIFT_OF_THE_MAGI_CHAPTERS;
     } else if (selectedBook.id === 'the-necklace') {
       return THE_NECKLACE_CHAPTERS;
+    } else if (selectedBook.id === 'the-dead') {
+      return THE_DEAD_CHAPTERS;
+    } else if (selectedBook.id === 'lady-with-dog') {
+      return THE_LADY_WITH_DOG_CHAPTERS;
     }
     return [];
   };
@@ -2189,7 +2287,9 @@ export default function FeaturedBooksPage() {
                     selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
                     selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS :
                     selectedBook?.id === 'christmas-carol-enhanced-v2' ? CHRISTMAS_CAROL_CHAPTERS :
-                    selectedBook?.id === 'the-necklace' ? THE_NECKLACE_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
+                    selectedBook?.id === 'the-necklace' ? THE_NECKLACE_CHAPTERS :
+                    selectedBook?.id === 'the-dead' ? THE_DEAD_CHAPTERS :
+                    selectedBook?.id === 'lady-with-dog' ? THE_LADY_WITH_DOG_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
                     <button
                       key={chapter.chapterNumber}
                       onClick={async () => {

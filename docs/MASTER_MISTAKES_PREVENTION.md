@@ -516,6 +516,17 @@ console.log(url);
 # VALIDATION: Check file exists in cache/ directory before building
 ls cache/{book-id}-sections.json
 
+# CRITICAL FRONTEND INTEGRATION (added after Lady with Dog/Dead fix):
+# 1. Create chapter constants in featured-books/page.tsx:
+#    const THE_BOOK_CHAPTERS = [...sections...];
+# 2. Add to ChapterPicker conditional logic (3 locations):
+#    - selectedBook?.id === 'book-id' ? THE_BOOK_CHAPTERS :
+#    - getCurrentChapter() function: } else if (selectedBook.id === 'book-id') { chapters = THE_BOOK_CHAPTERS; }
+#    - getBookChapters() function: } else if (selectedBook.id === 'book-id') { return THE_BOOK_CHAPTERS; }
+# 3. CRITICAL: Verify book ID matches FEATURED_BOOKS array exactly
+#    - Use exact ID from FEATURED_BOOKS (e.g., 'lady-with-dog', not 'the-lady-with-the-dog')
+#    - ID mismatch = chapters won't show despite working JSON files
+
 ### Phase 5: Display Headers (AFTER audio generation)
 ```bash
 # ✅ 17. Add Display Headers (final presentation step)
