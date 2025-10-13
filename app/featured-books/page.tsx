@@ -46,77 +46,9 @@ interface FeaturedBook {
   abbreviation: string;
 }
 
-const FEATURED_BOOKS: FeaturedBook[] = [
-  {
-    id: 'great-gatsby-a2',
-    title: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    description: 'Jazz Age masterpiece with A2 simplification. 3,605 sentences across 902 bundles narrated by Sarah.',
-    sentences: 3605,
-    bundles: 902,
-    gradient: 'from-green-500 to-teal-600',
-    abbreviation: 'GG'
-  },
-  {
-    id: 'gutenberg-1952-A1',
-    title: 'The Yellow Wallpaper',
-    author: 'Charlotte Perkins Gilman',
-    description: 'Psychological masterpiece simplified to A1 level. 372 sentences across 93 bundles with immersive narration.',
-    sentences: 372,
-    bundles: 93,
-    gradient: 'from-yellow-500 to-amber-600',
-    abbreviation: 'YW'
-  },
-  {
-    id: 'gutenberg-1513',
-    title: 'Romeo and Juliet',
-    author: 'William Shakespeare',
-    description: 'Timeless love story modernized to A1 level. 2,996 sentences across 749 bundles with clear narration.',
-    sentences: 2996,
-    bundles: 749,
-    gradient: 'from-rose-500 to-pink-600',
-    abbreviation: 'RJ'
-  },
-  {
-    id: 'gutenberg-43',
-    title: 'Dr. Jekyll and Mr. Hyde (A2)',
-    author: 'Robert Louis Stevenson',
-    description: 'Gothic classic with natural compound sentences. A2 level with Daniel voice narration.',
-    sentences: 100,
-    bundles: 25,
-    gradient: 'from-purple-500 to-indigo-600',
-    abbreviation: 'JH'
-  },
-  {
-    id: 'gift-of-the-magi',
-    title: 'The Gift of the Magi',
-    author: 'O. Henry',
-    description: 'Heartwarming Christmas story with Sarah voice narration. A1 level with 6 thematic chapters. Complete 13 bundles available.',
-    sentences: 51,
-    bundles: 13,
-    gradient: 'from-red-500 to-green-600',
-    abbreviation: 'GM'
-  },
-  {
-    id: 'the-devoted-friend',
-    title: 'The Devoted Friend',
-    author: 'Oscar Wilde',
-    description: 'Moral fairy tale about true friendship vs exploitation. A1 level with Sarah voice narration. PILOT: 10 bundles available.',
-    sentences: 40,
-    bundles: 10,
-    gradient: 'from-blue-500 to-purple-600',
-    abbreviation: 'DF'
-  },
-  {
-    id: 'anne-of-green-gables-a2',
-    title: 'Anne of Green Gables',
-    author: 'L. M. Montgomery',
-    description: 'Coming-of-age classic with A2 natural compound sentences. Enhanced with Daniel voice narration. PILOT: 6 bundles available.',
-    sentences: 23,
-    bundles: 6,
-    gradient: 'from-emerald-500 to-green-600',
-    abbreviation: 'AG'
-  },
+
+const ALL_FEATURED_BOOKS: FeaturedBook[] = [
+  // ✅ WORKING BOOKS - Perfect Experience (Top Priority)
   {
     id: 'the-necklace',
     title: 'The Necklace',
@@ -148,34 +80,66 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'TM'
   },
   {
-    id: 'digital-library-test',
-    title: 'Maya Story - Speed Test',
-    author: 'BookBridge AI',
-    description: 'Maya learns English online. Voice: Daniel (Speed 0.90). 20 sentences, 5 bundles.',
-    sentences: 20,
-    bundles: 5,
-    gradient: 'from-blue-500 to-cyan-600',
-    abbreviation: 'M1'
+    id: 'lady-with-dog',
+    title: 'The Lady with the Dog',
+    author: 'Anton Chekhov',
+    description: 'Psychological masterpiece about unexpected love. A1 level with Sarah voice narration across 6 thematic chapters.',
+    sentences: 349,
+    bundles: 88,
+    gradient: 'from-blue-500 to-purple-600',
+    abbreviation: 'LD'
   },
   {
-    id: 'digital-library-test-2',
-    title: 'Maya Story - Style Test',
-    author: 'BookBridge AI',
-    description: 'Same story. Voice: Daniel (Speed 0.90 + Style 0.1). Test expressiveness vs sync.',
-    sentences: 20,
-    bundles: 5,
-    gradient: 'from-purple-500 to-blue-600',
-    abbreviation: 'M2'
+    id: 'gift-of-the-magi',
+    title: 'The Gift of the Magi',
+    author: 'O. Henry',
+    description: 'Heartwarming Christmas story with Sarah voice narration. A1 level with 6 thematic chapters. Complete 13 bundles available.',
+    sentences: 51,
+    bundles: 13,
+    gradient: 'from-red-500 to-green-600',
+    abbreviation: 'GM'
+  },
+
+  // 📚 OTHER BOOKS - Various Status
+  {
+    id: 'great-gatsby-a2',
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+    description: 'Jazz Age masterpiece with A2 simplification. 3,605 sentences across 902 bundles narrated by Sarah.',
+    sentences: 3605,
+    bundles: 902,
+    gradient: 'from-green-500 to-teal-600',
+    abbreviation: 'GG'
   },
   {
-    id: 'digital-library-test-3',
-    title: 'Maya Story - Default Test',
-    author: 'BookBridge AI',
-    description: 'Same story. Voice: Daniel (Pure defaults). Baseline for comparison.',
-    sentences: 20,
-    bundles: 5,
-    gradient: 'from-gray-500 to-slate-600',
-    abbreviation: 'M3'
+    id: 'gutenberg-1952-A1',
+    title: 'The Yellow Wallpaper',
+    author: 'Charlotte Perkins Gilman',
+    description: 'Psychological masterpiece simplified to A1 level. 372 sentences across 93 bundles with immersive narration.',
+    sentences: 372,
+    bundles: 93,
+    gradient: 'from-yellow-500 to-amber-600',
+    abbreviation: 'YW'
+  },
+  {
+    id: 'gutenberg-43',
+    title: 'Dr. Jekyll and Mr. Hyde (A2)',
+    author: 'Robert Louis Stevenson',
+    description: 'Gothic classic with natural compound sentences. A2 level with Daniel voice narration.',
+    sentences: 100,
+    bundles: 25,
+    gradient: 'from-purple-500 to-indigo-600',
+    abbreviation: 'JH'
+  },
+  {
+    id: 'the-devoted-friend',
+    title: 'The Devoted Friend',
+    author: 'Oscar Wilde',
+    description: 'Moral fairy tale about true friendship vs exploitation. A1 level with Sarah voice narration. PILOT: 10 bundles available.',
+    sentences: 40,
+    bundles: 10,
+    gradient: 'from-blue-500 to-purple-600',
+    abbreviation: 'DF'
   },
   {
     id: 'sleepy-hollow-enhanced',
@@ -187,27 +151,9 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-orange-500 to-red-600',
     abbreviation: 'SH'
   },
-  {
-    id: 'christmas-carol-enhanced-v2',
-    title: 'A Christmas Carol (Enhanced)',
-    author: 'Charles Dickens',
-    description: 'Dickens classic with clean A1 text and Daniel voice narration. 40 sentences across 10 bundles with research-optimized TTS settings.',
-    sentences: 40,
-    bundles: 10,
-    gradient: 'from-emerald-500 to-teal-600',
-    abbreviation: 'CC'
-  },
-  {
-    id: 'lady-with-dog',
-    title: 'The Lady with the Dog',
-    author: 'Anton Chekhov',
-    description: 'Psychological masterpiece about unexpected love. A1 level with Sarah voice narration across 6 thematic chapters.',
-    sentences: 349,
-    bundles: 88,
-    gradient: 'from-blue-500 to-purple-600',
-    abbreviation: 'LD'
-  }
 ];
+
+const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
 
 // Dynamic API mappings for books with multiple levels
 const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
@@ -248,19 +194,13 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
 const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'great-gatsby-a2': 'A2',
   'gutenberg-1952-A1': 'A1',
-  'gutenberg-1513': 'A1',
   'gutenberg-43': 'A2',  // Default to A2 for Jekyll & Hyde
   'sleepy-hollow-enhanced': 'A1',
-  'christmas-carol-enhanced-v2': 'A1',
-  'anne-of-green-gables-a2': 'A2',  // Default to A2 for Anne of Green Gables
   'the-necklace': 'A1',  // Default to A1 for The Necklace (A1/A2/B1 support)
   'gift-of-the-magi': 'A1',  // Default to A1 for Gift of the Magi (A1/A2 support)
   'lady-with-dog': 'A1',  // Default to A1 for The Lady with the Dog
   'the-dead': 'A1',  // Default to A1 for The Dead
-  'the-metamorphosis': 'A1',  // Default to A1 for The Metamorphosis
-  'digital-library-test': 'A2',
-  'digital-library-test-2': 'A2',
-  'digital-library-test-3': 'A2'
+  'the-metamorphosis': 'A1'  // Default to A1 for The Metamorphosis
 };
 
 // Get the correct CEFR level for a book
@@ -276,46 +216,12 @@ const getBookApiEndpoint = (bookId: string, level: string): string => {
   }
 
   // Use dedicated APIs for specific books
-  if (bookId === 'christmas-carol-enhanced-v2') {
-    return '/api/christmas-carol/bundles';
-  }
-  if (bookId === 'digital-library-test') {
-    return '/api/digital-library-test/bundles';
-  }
-  if (bookId === 'digital-library-test-2') {
-    return '/api/digital-library-test-2/bundles';
-  }
-  if (bookId === 'digital-library-test-3') {
-    return '/api/digital-library-test-3/bundles';
-  }
-  if (bookId === 'anne-of-green-gables-a2') {
-    return '/api/anne-of-green-gables-a2/bundles';
-  }
 
   // Default to test-book API
   return '/api/test-book/real-bundles';
 };
 
 // Christmas Carol Chapter Structure (pilot version - 40 sentences)
-const CHRISTMAS_CAROL_CHAPTERS = [
-  {
-    chapterNumber: 1,
-    title: "Stave 1 - Opening",
-    startSentence: 0,
-    endSentence: 19,
-    startBundle: 0,
-    endBundle: 4
-  },
-  {
-    chapterNumber: 2,
-    title: "Stave 1 - Continued",
-    startSentence: 20,
-    endSentence: 39,
-    startBundle: 5,
-    endBundle: 9
-  }
-];
-
 // Sleepy Hollow Chapter Structure (from enhancement plan)
 const SLEEPY_HOLLOW_CHAPTERS = [
   {
@@ -569,90 +475,6 @@ const GIFT_OF_THE_MAGI_CHAPTERS = [
     endSentence: 50,
     startBundle: 12,
     endBundle: 12
-  }
-];
-
-// Romeo and Juliet Chapter Structure (10 chapters based on Acts/Scenes)
-const ROMEO_JULIET_CHAPTERS = [
-  {
-    chapterNumber: 1,
-    title: "Act I: The Feud Begins",
-    startSentence: 0,
-    endSentence: 299,
-    startBundle: 0,
-    endBundle: 74
-  },
-  {
-    chapterNumber: 2,
-    title: "Act I: The Party",
-    startSentence: 300,
-    endSentence: 599,
-    startBundle: 75,
-    endBundle: 149
-  },
-  {
-    chapterNumber: 3,
-    title: "Act II: The Balcony",
-    startSentence: 600,
-    endSentence: 899,
-    startBundle: 150,
-    endBundle: 224
-  },
-  {
-    chapterNumber: 4,
-    title: "Act II: The Marriage",
-    startSentence: 900,
-    endSentence: 1199,
-    startBundle: 225,
-    endBundle: 299
-  },
-  {
-    chapterNumber: 5,
-    title: "Act III: The Fight",
-    startSentence: 1200,
-    endSentence: 1499,
-    startBundle: 300,
-    endBundle: 374
-  },
-  {
-    chapterNumber: 6,
-    title: "Act III: The Banishment",
-    startSentence: 1500,
-    endSentence: 1799,
-    startBundle: 375,
-    endBundle: 449
-  },
-  {
-    chapterNumber: 7,
-    title: "Act IV: The Potion",
-    startSentence: 1800,
-    endSentence: 2099,
-    startBundle: 450,
-    endBundle: 524
-  },
-  {
-    chapterNumber: 8,
-    title: "Act IV: The Wedding Plans",
-    startSentence: 2100,
-    endSentence: 2399,
-    startBundle: 525,
-    endBundle: 599
-  },
-  {
-    chapterNumber: 9,
-    title: "Act V: The Tomb",
-    startSentence: 2400,
-    endSentence: 2699,
-    startBundle: 600,
-    endBundle: 674
-  },
-  {
-    chapterNumber: 10,
-    title: "Act V: The Tragedy",
-    startSentence: 2700,
-    endSentence: 2995,
-    startBundle: 675,
-    endBundle: 748
   }
 ];
 
@@ -934,12 +756,7 @@ export default function FeaturedBooksPage() {
     const singleLevelBooks: { [key: string]: string } = {
       'great-gatsby-a2': 'A2',
       'gutenberg-1952-A1': 'A1',
-      'gutenberg-1513': 'A1',
       'sleepy-hollow-enhanced': 'A1',
-      'christmas-carol-enhanced-v2': 'A1',
-      'digital-library-test': 'A2',
-      'digital-library-test-2': 'A2',
-      'digital-library-test-3': 'A2',
     };
 
     // Handle multi-level books
@@ -1194,7 +1011,7 @@ export default function FeaturedBooksPage() {
 
             // For TTS (ElevenLabs), use immediate highlighting since timings are estimated
             const audioProvider = data?.audioType || 'elevenlabs';
-            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2' || currentBookId === 'christmas-carol-enhanced-v2' || currentBookId === 'digital-library-test' || currentBookId === 'digital-library-test-2' || currentBookId === 'digital-library-test-3';
+            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2';
             // Use consistent TTS lead time for both books
             const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400);
 
@@ -1564,9 +1381,7 @@ export default function FeaturedBooksPage() {
     const chapters = selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
                     selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
                     selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
                     selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS :
-                    selectedBook?.id === 'christmas-carol-enhanced-v2' ? CHRISTMAS_CAROL_CHAPTERS :
                     selectedBook?.id === 'gift-of-the-magi' ? GIFT_OF_THE_MAGI_CHAPTERS : GREAT_GATSBY_CHAPTERS;
     return (
       <div className="flex items-center gap-1 w-full max-w-xs">
@@ -1637,12 +1452,8 @@ export default function FeaturedBooksPage() {
       chapters = GREAT_GATSBY_CHAPTERS;
     } else if (selectedBook.id === 'gutenberg-1952-A1') {
       chapters = YELLOW_WALLPAPER_CHAPTERS;
-    } else if (selectedBook.id === 'gutenberg-1513') {
-      chapters = ROMEO_JULIET_CHAPTERS;
     } else if (selectedBook.id === 'gutenberg-43') {
       chapters = JEKYLL_HYDE_CHAPTERS;
-    } else if (selectedBook.id === 'christmas-carol-enhanced-v2') {
-      chapters = CHRISTMAS_CAROL_CHAPTERS;
     } else if (selectedBook.id === 'gift-of-the-magi') {
       chapters = GIFT_OF_THE_MAGI_CHAPTERS;
     } else if (selectedBook.id === 'the-necklace') {
@@ -1687,12 +1498,8 @@ export default function FeaturedBooksPage() {
       return GREAT_GATSBY_CHAPTERS;
     } else if (selectedBook.id === 'gutenberg-1952-A1') {
       return YELLOW_WALLPAPER_CHAPTERS;
-    } else if (selectedBook.id === 'gutenberg-1513') {
-      return ROMEO_JULIET_CHAPTERS;
     } else if (selectedBook.id === 'gutenberg-43') {
       return JEKYLL_HYDE_CHAPTERS;
-    } else if (selectedBook.id === 'christmas-carol-enhanced-v2') {
-      return CHRISTMAS_CAROL_CHAPTERS;
     } else if (selectedBook.id === 'gift-of-the-magi') {
       return GIFT_OF_THE_MAGI_CHAPTERS;
     } else if (selectedBook.id === 'the-necklace') {
@@ -1777,14 +1584,14 @@ export default function FeaturedBooksPage() {
             {/* Header */}
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                🎧 Featured Books
+                🎧 Simplified Books
               </h1>
               <p className="text-gray-300 text-lg">
                 Experience continuous reading with perfect text-audio harmony
               </p>
             </div>
 
-            {/* Featured Books Grid */}
+            {/* Simplified Books Grid */}
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
               {FEATURED_BOOKS.map((book, index) => (
                 <motion.div
@@ -2299,9 +2106,7 @@ export default function FeaturedBooksPage() {
                   {(selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
                     selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
                     selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-1513' ? ROMEO_JULIET_CHAPTERS :
                     selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS :
-                    selectedBook?.id === 'christmas-carol-enhanced-v2' ? CHRISTMAS_CAROL_CHAPTERS :
                     selectedBook?.id === 'the-necklace' ? THE_NECKLACE_CHAPTERS :
                     selectedBook?.id === 'the-dead' ? THE_DEAD_CHAPTERS :
                     selectedBook?.id === 'lady-with-dog' ? THE_LADY_WITH_DOG_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
