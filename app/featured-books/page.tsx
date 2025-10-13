@@ -159,7 +159,8 @@ const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
 const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
   'the-necklace': {
     'A1': '/api/the-necklace-a1/bundles',
-    'A2': '/api/the-necklace-a2/bundles'
+    'A2': '/api/the-necklace-a2/bundles',
+    'B1': '/api/the-necklace-b1/bundles'
   },
   'the-dead': {
     'A1': '/api/the-dead-a1/bundles',
@@ -173,7 +174,9 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A1': '/api/the-metamorphosis-a1/bundles'
   },
   'gift-of-the-magi': {
-    'A2': '/api/gift-of-the-magi-a2/bundles'
+    'A1': '/api/gift-of-the-magi-a1/bundles',
+    'A2': '/api/gift-of-the-magi-a2/bundles',
+    'B1': '/api/gift-of-the-magi-b1/bundles'
   },
   'great-gatsby-a2': {
     'A2': '/api/great-gatsby-a2/bundles'
