@@ -18,7 +18,10 @@
       "description": "Poor couple sell their treasures to buy each other Christmas gifts that become useless",
       "genre": "Romance/Irony",
       "publicDomain": true,
-      "gutenbergId": "7256"
+      "gutenbergId": "7256",
+      "implemented": true,
+      "cefrLevels": ["A1", "A2", "B1"],
+      "completedDate": "2025-01-13"
     },
     {
       "rank": 5,
@@ -249,11 +252,12 @@
     "totalSelected": 20,
     "publicDomain": 9,
     "copyrighted": 11,
-    "implemented": 4,
-    "implementedTitles": ["The Necklace", "The Dead", "The Lady with the Dog", "The Metamorphosis"],
+    "implemented": 5,
+    "implementedTitles": ["The Gift of the Magi", "The Necklace", "The Dead", "The Lady with the Dog", "The Metamorphosis"],
     "completedCefrLevels": {
-      "A1": 4,
-      "A2": 1
+      "A1": 5,
+      "A2": 2,
+      "B1": 1
     },
     "dateCreated": "2025-01-11",
     "lastUpdated": "2025-01-13",
