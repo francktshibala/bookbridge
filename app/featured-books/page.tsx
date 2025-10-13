@@ -138,6 +138,16 @@ const FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'TD'
   },
   {
+    id: 'the-metamorphosis',
+    title: 'The Metamorphosis',
+    author: 'Franz Kafka',
+    description: 'Kafka\'s absurdist masterpiece about transformation and alienation. A man wakes as a giant bug. Simplified to A1 level. 280 sentences across 70 bundles with Sarah voice narration.',
+    sentences: 280,
+    bundles: 70,
+    gradient: 'from-gray-500 to-slate-600',
+    abbreviation: 'TM'
+  },
+  {
     id: 'digital-library-test',
     title: 'Maya Story - Speed Test',
     author: 'BookBridge AI',
@@ -223,6 +233,9 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A1': '/api/the-dead-a1/bundles',
     'A2': '/api/the-dead-a2/bundles'
   },
+  'the-metamorphosis': {
+    'A1': '/api/the-metamorphosis-a1/bundles'
+  },
   'the-necklace': {
     'A1': '/api/the-necklace-a1/bundles',
     'A2': '/api/the-necklace-a2/bundles',
@@ -244,6 +257,7 @@ const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'gift-of-the-magi': 'A1',  // Default to A1 for Gift of the Magi (A1/A2 support)
   'lady-with-dog': 'A1',  // Default to A1 for The Lady with the Dog
   'the-dead': 'A1',  // Default to A1 for The Dead
+  'the-metamorphosis': 'A1',  // Default to A1 for The Metamorphosis
   'digital-library-test': 'A2',
   'digital-library-test-2': 'A2',
   'digital-library-test-3': 'A2'
@@ -914,6 +928,7 @@ export default function FeaturedBooksPage() {
       'the-devoted-friend': ['A1', 'A2', 'B1'], // The Devoted Friend has A1, A2, and B1
       'lady-with-dog': ['A1', 'A2'], // The Lady with the Dog has A1 and A2
       'the-dead': ['A1', 'A2'], // The Dead has A1 and A2 levels
+      'the-metamorphosis': ['A1'], // The Metamorphosis has A1 level
     };
 
     const singleLevelBooks: { [key: string]: string } = {

@@ -28,7 +28,21 @@
       "description": "Man wakes up as giant bug, family gradually rejects him until he dies",
       "genre": "Absurdist/Psychological",
       "publicDomain": true,
-      "gutenbergId": "5200"
+      "gutenbergId": "5200",
+      "implemented": true,
+      "cefrLevels": ["A1-partial"],
+      "status": "pilot-complete",
+      "completedBundles": 70,
+      "totalBundles": 209,
+      "completedSentences": 280,
+      "totalSentences": 835,
+      "resumePoint": {
+        "nextBundleIndex": 70,
+        "nextSentenceIndex": 280,
+        "voiceSettings": "Sarah A1 proven settings"
+      },
+      "textQualityNotes": "A1 simplification has micro-sentences instead of natural compound flow - needs re-simplification for better readability",
+      "completedDate": "2025-01-13"
     },
     {
       "rank": 7,
@@ -235,14 +249,14 @@
     "totalSelected": 20,
     "publicDomain": 9,
     "copyrighted": 11,
-    "implemented": 3,
-    "implementedTitles": ["The Necklace", "The Dead", "The Lady with the Dog"],
+    "implemented": 4,
+    "implementedTitles": ["The Necklace", "The Dead", "The Lady with the Dog", "The Metamorphosis"],
     "completedCefrLevels": {
-      "A1": 3,
+      "A1": 4,
       "A2": 1
     },
     "dateCreated": "2025-01-11",
-    "lastUpdated": "2025-01-12",
-    "notes": "These stories were selected for their literary impact, emotional power, and suitability for BookBridge's simplified reading approach. Public domain stories can be implemented immediately. First 3 stories completed with thematic sections for enhanced UI navigation."
+    "lastUpdated": "2025-01-13",
+    "notes": "These stories were selected for their literary impact, emotional power, and suitability for BookBridge's simplified reading approach. Public domain stories can be implemented immediately. 4 stories completed - The Metamorphosis as pilot with 70/209 bundles, expandable when budget allows."
   }
 }
