@@ -27,6 +27,7 @@ model User {
   usage            Usage[]
   eslVocabularyProgress ESLVocabularyProgress[]
   readingSessions ReadingSession[]
+  readingPositions ReadingPosition[]
 
   @@map("users")
 }
@@ -268,7 +269,25 @@ model BookChunk {
   audioFilePath String?  @map("audio_file_path") // Path to generated audio file
   audioProvider String?  @map("audio_provider")  // 'openai', 'elevenlabs', etc.
   audioVoiceId  String?  @map("audio_voice_id")  // Voice used for generation
-  
+
+  // Audio duration caching (JSONB for performance)
+  audioDurationMetadata Json? @map("audio_duration_metadata") @db.Json
+  // Structure: {
+  //   version: number,              // Algorithm version for cache invalidation
+  //   measuredDuration: number,     // Total duration in seconds
+  //   sentenceTimings: [{           // Array of sentence timings
+  //     sentenceIndex: number,
+  //     text: string,
+  //     startTime: number,
+  //     endTime: number,
+  //     duration: number
+  //   }],
+  //   measuredAt: string,          // ISO date when measured
+  //   audioHash: string,           // SHA-256 of audio file
+  //   fileSize: number,            // File size in bytes
+  //   method: string               // 'ffprobe-proportional'
+  // }
+
   createdAt    DateTime @default(now()) @map("created_at")
   
   bookContent BookContent @relation(fields: [bookId], references: [bookId], onDelete: Cascade)
@@ -337,6 +356,34 @@ model PrecomputeQueue {
   @@index([status, priority])
   @@index([createdAt])
   @@map("precompute_queue")
+}
+
+model ReadingPosition {
+  id                   String   @id @default(cuid())
+  userId               String   @map("user_id")
+  bookId               String   @map("book_id")
+
+  // Position tracking
+  currentSentenceIndex Int      @default(0) @map("current_sentence_index")
+  currentBundleIndex   Int      @default(0) @map("current_bundle_index")
+
+  // Settings memory
+  cefrLevel            String   @default("A1") @map("cefr_level")
+  playbackSpeed        Float    @default(1.0) @map("playback_speed")
+  contentMode          String   @default("simplified") @map("content_mode") // 'simplified' | 'original'
+
+  // Timestamps
+  lastReadAt           DateTime @updatedAt @map("last_read_at")
+  createdAt            DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, bookId])
+  @@index([userId])
+  @@index([bookId])
+  @@index([lastReadAt])
+  @@map("reading_positions")
 }
 
 
