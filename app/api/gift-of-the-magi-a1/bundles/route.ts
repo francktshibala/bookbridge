@@ -1,7 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import fs from 'fs';
+import path from 'path';
 
 const prisma = new PrismaClient();
+
+interface BundleMetadata {
+  bundleId: string;
+  bundleIndex: number;
+  audioUrl: string;
+  totalDuration: number;
+  sentences: Array<{
+    sentenceId: string;
+    sentenceIndex: number;
+    text: string;
+    startTime: number;
+    endTime: number;
+  }>;
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,93 +33,63 @@ export async function GET(request: NextRequest) {
       }, { status: 400 });
     }
 
-    console.log(`🎁 Loading The Gift of the Magi A1 bundles with Solution 1...`);
+    console.log(`🎁 Loading The Gift of the Magi bundles for level: ${level}`);
 
-    // Load bundles from database with Solution 1 architecture
-    const bundles = await prisma.bookChunk.findMany({
-      where: {
-        bookId: 'gift-of-the-magi',
-        cefrLevel: 'A1'
-      },
-      orderBy: {
-        chunkIndex: 'asc'
-      }
-    });
-
-    if (bundles.length === 0) {
+    // Load bundles from cache file (since we haven't created BookContent/BookChunk records yet)
+    let bundlesData;
+    try {
+      const bundlesPath = path.join(process.cwd(), 'cache', 'gift-of-the-magi-A1-bundles.json');
+      const bundlesFile = fs.readFileSync(bundlesPath, 'utf-8');
+      bundlesData = JSON.parse(bundlesFile);
+    } catch (error) {
       return NextResponse.json({
         success: false,
-        error: 'No A1 bundles found in database'
+        error: 'Could not load Gift of the Magi bundles'
       }, { status: 404 });
     }
 
-    console.log(`✅ Loaded ${bundles.length} A1 bundles from database with Solution 1`);
+    console.log(`✅ Loaded ${bundlesData.totalBundles} bundles from cache file`);
 
-    // Get the CDN base URL
-    const cdnBaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-      ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/audio-files/`
-      : 'https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/';
+    // Convert bundle data to API format
+    const bundles: BundleMetadata[] = bundlesData.bundles.map((bundle: any) => ({
+      bundleId: bundle.bundleId,
+      bundleIndex: bundle.bundleIndex,
+      audioUrl: bundle.audioUrl,
+      totalDuration: bundle.totalDuration,
+      sentences: bundle.sentences.map((sentence: any) => ({
+        sentenceId: `s${sentence.sentenceIndex}`,
+        sentenceIndex: sentence.sentenceIndex,
+        text: sentence.text,
+        startTime: sentence.startTime,
+        endTime: sentence.endTime
+      }))
+    }));
 
-    // Convert database bundles to API format using Solution 1 metadata
-    const formattedBundles = bundles.map((bundle) => {
-      const metadata = bundle.audioDurationMetadata as any;
-
-      if (!metadata || !metadata.sentenceTimings) {
-        console.error(`Bundle ${bundle.chunkIndex} missing Solution 1 metadata!`);
-        return null;
-      }
-
-      return {
-        bundleId: `gift-of-the-magi-a1-${bundle.chunkIndex}`,
-        bundleIndex: bundle.chunkIndex,
-        audioUrl: cdnBaseUrl + bundle.audioFilePath,
-        totalDuration: metadata.measuredDuration || 0,
-        sentences: metadata.sentenceTimings.map((timing: any) => ({
-          sentenceId: `s${timing.sentenceIndex}`,
-          sentenceIndex: timing.sentenceIndex,
-          text: timing.text,
-          startTime: timing.startTime,
-          endTime: timing.endTime
-        }))
-      };
-    }).filter(Boolean);
-
-    const totalSentences = formattedBundles.reduce(
-      (sum, bundle) => sum + (bundle?.sentences?.length || 0),
-      0
-    );
-
-    // Load chapter data for thematic headers (optional)
+    // Load chapter data for thematic headers
     let chapters = null;
     try {
-      const path = await import('path');
-      const fs = await import('fs');
       const chaptersPath = path.join(process.cwd(), 'cache', 'gift-of-the-magi-chapters.json');
-      if (fs.existsSync(chaptersPath)) {
-        const chaptersData = fs.readFileSync(chaptersPath, 'utf-8');
-        chapters = JSON.parse(chaptersData).chapters;
-      }
+      const chaptersData = fs.readFileSync(chaptersPath, 'utf-8');
+      chapters = JSON.parse(chaptersData).chapters;
     } catch (error) {
-      console.log('Chapters not available');
+      console.log('Could not load chapters data:', error instanceof Error ? error.message : 'Unknown error');
     }
+
+    const totalSentences = bundles.reduce((sum, bundle) => sum + bundle.sentences.length, 0);
 
     return NextResponse.json({
       success: true,
-      bookId: 'gift-of-the-magi',
-      title: 'The Gift of the Magi',
-      author: 'O. Henry',
+      book: {
+        id: 'gift-of-the-magi',
+        title: 'The Gift of the Magi',
+        author: 'O. Henry'
+      },
       level: 'A1',
-      bundleCount: formattedBundles.length,
+      totalBundles: bundles.length,
       totalSentences,
-      bundles: formattedBundles,
-      chapters,
-      audioType: 'solution1', // Indicates this uses Solution 1 architecture
-      metadata: {
-        voice: 'Sarah',
-        voiceId: 'EXAVITQu4vr4xnSDxMaL',
-        speed: 0.90,
-        implementation: 'Solution 1 with ffprobe measurement'
-      }
+      bundles,
+      chapters, // Add chapter structure for UI
+      source: 'cache-file' // Indicates this came from cache file for debugging
     });
 
   } catch (error) {
@@ -115,8 +101,4 @@ export async function GET(request: NextRequest) {
   } finally {
     await prisma.$disconnect();
   }
-}
-
-export async function HEAD() {
-  return new Response(null, { status: 200 });
 }

@@ -1,0 +1,62 @@
+{
+  "index": 43,
+  "sentences": [
+    {
+      "sentenceIndex": 172,
+      "text": "Little Hans asked, 'Do you really think I will understand it?'"
+    },
+    {
+      "sentenceIndex": 173,
+      "text": "The Miller replied, 'I am sure you will, but now that you have fixed the roof, you should go home and rest because I need you to take my sheep to the mountain tomorrow.'"
+    },
+    {
+      "sentenceIndex": 174,
+      "text": "Poor little Hans was too scared to say anything, and early the next morning, the Miller brought his sheep to Hans's cottage, and Hans took them to the mountain."
+    },
+    {
+      "sentenceIndex": 175,
+      "text": "It took Hans the entire day to go there and back, and when he returned, he was so tired that he fell asleep in his chair and did not wake up until it was morning."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_43.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_43.mp3",
+  "duration": 53.26444444444445,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 172,
+      "startTime": 0,
+      "endTime": 5.008888888888889,
+      "text": "Little Hans asked, 'Do you really think I will understand it?'"
+    },
+    {
+      "sentenceIndex": 173,
+      "startTime": 5.008888888888889,
+      "endTime": 21.190000000000005,
+      "text": "The Miller replied, 'I am sure you will, but now that you have fixed the roof, you should go home and rest because I need you to take my sheep to the mountain tomorrow.'"
+    },
+    {
+      "sentenceIndex": 174,
+      "startTime": 21.190000000000005,
+      "endTime": 34.89888888888889,
+      "text": "Poor little Hans was too scared to say anything, and early the next morning, the Miller brought his sheep to Hans's cottage, and Hans took them to the mountain."
+    },
+    {
+      "sentenceIndex": 175,
+      "startTime": 34.89888888888889,
+      "endTime": 51.57444444444445,
+      "text": "It took Hans the entire day to go there and back, and when he returned, he was so tired that he fell asleep in his chair and did not wake up until it was morning."
+    }
+  ],
+  "wordCount": 109,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:09:36.776Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 0,
+  "sentences": [
+    {
+      "sentenceIndex": 0,
+      "text": "One morning the old Water-rat looked out of his hole."
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "He had bright eyes and grey whiskers, and his tail was long."
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "The little ducks swam in the pond, and they looked like yellow birds."
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "Their mother was white with red legs, and she taught them to stand on their heads."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_0.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_0.mp3",
+  "duration": 18.290000000000003,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "One morning the old Water-rat looked out of his hole."
+    },
+    {
+      "sentenceIndex": 1,
+      "startTime": 3.453333333333333,
+      "endTime": 7.573333333333333,
+      "text": "He had bright eyes and grey whiskers, and his tail was long."
+    },
+    {
+      "sentenceIndex": 2,
+      "startTime": 7.573333333333333,
+      "endTime": 12.056666666666667,
+      "text": "The little ducks swam in the pond, and they looked like yellow birds."
+    },
+    {
+      "sentenceIndex": 3,
+      "startTime": 12.056666666666667,
+      "endTime": 17.63,
+      "text": "Their mother was white with red legs, and she taught them to stand on their heads."
+    }
+  ],
+  "wordCount": 51,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:41:31.581Z"
+  }
+}

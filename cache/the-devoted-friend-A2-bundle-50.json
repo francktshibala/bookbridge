@@ -1,0 +1,62 @@
+{
+  "index": 50,
+  "sentences": [
+    {
+      "sentenceIndex": 200,
+      "text": "'Little Hans, Doctor.'"
+    },
+    {
+      "sentenceIndex": 201,
+      "text": "'What do you want, little Hans?'"
+    },
+    {
+      "sentenceIndex": 202,
+      "text": "'The Miller's son fell from a ladder and hurt himself, so the Miller wants you to come quickly.'"
+    },
+    {
+      "sentenceIndex": 203,
+      "text": "'All right!' said the Doctor, and he got his horse, his big boots, and his lantern, then came downstairs and rode towards the Miller's house with little Hans following him."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_50.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_50.mp3",
+  "duration": 27.173333333333336,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 200,
+      "startTime": 0,
+      "endTime": 1.4533333333333336,
+      "text": "'Little Hans, Doctor.'"
+    },
+    {
+      "sentenceIndex": 201,
+      "startTime": 1.4533333333333336,
+      "endTime": 4.24,
+      "text": "'What do you want, little Hans?'"
+    },
+    {
+      "sentenceIndex": 202,
+      "startTime": 4.24,
+      "endTime": 12.52,
+      "text": "'The Miller's son fell from a ladder and hurt himself, so the Miller wants you to come quickly.'"
+    },
+    {
+      "sentenceIndex": 203,
+      "startTime": 12.52,
+      "endTime": 26.613333333333333,
+      "text": "'All right!' said the Doctor, and he got his horse, his big boots, and his lantern, then came downstairs and rode towards the Miller's house with little Hans following him."
+    }
+  ],
+  "wordCount": 57,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:43:20.437Z"
+  }
+}

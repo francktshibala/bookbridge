@@ -1,0 +1,62 @@
+{
+  "index": 30,
+  "sentences": [
+    {
+      "sentenceIndex": 120,
+      "text": "The Miller looked at the plank and said it was not very big, so he was afraid there would be none left for Hans after fixing his barn roof."
+    },
+    {
+      "sentenceIndex": 121,
+      "text": "He said it was not his fault, and since he gave Hans his wheelbarrow, he wanted some flowers in return."
+    },
+    {
+      "sentenceIndex": 122,
+      "text": "The Miller gave Hans a basket and told him to fill it completely."
+    },
+    {
+      "sentenceIndex": 123,
+      "text": "Hans asked if he really had to fill it completely."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_30.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_30.mp3",
+  "duration": 34.44,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 120,
+      "startTime": 0,
+      "endTime": 13.608888888888888,
+      "text": "The Miller looked at the plank and said it was not very big, so he was afraid there would be none left for Hans after fixing his barn roof."
+    },
+    {
+      "sentenceIndex": 121,
+      "startTime": 13.608888888888888,
+      "endTime": 22.857777777777777,
+      "text": "He said it was not his fault, and since he gave Hans his wheelbarrow, he wanted some flowers in return."
+    },
+    {
+      "sentenceIndex": 122,
+      "startTime": 22.857777777777777,
+      "endTime": 28.755555555555556,
+      "text": "The Miller gave Hans a basket and told him to fill it completely."
+    },
+    {
+      "sentenceIndex": 123,
+      "startTime": 28.755555555555556,
+      "endTime": 33.32,
+      "text": "Hans asked if he really had to fill it completely."
+    }
+  ],
+  "wordCount": 72,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:59.321Z"
+  }
+}

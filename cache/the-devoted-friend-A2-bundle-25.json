@@ -1,0 +1,62 @@
+{
+  "index": 25,
+  "sentences": [
+    {
+      "sentenceIndex": 100,
+      "text": "Hans said he had to sell things because he needed money."
+    },
+    {
+      "sentenceIndex": 101,
+      "text": "Winter was hard for him, and he had no money for bread."
+    },
+    {
+      "sentenceIndex": 102,
+      "text": "He sold his silver buttons, silver chain, big pipe, and wheelbarrow."
+    },
+    {
+      "sentenceIndex": 103,
+      "text": "But now he plans to buy them all back again."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_25.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_25.mp3",
+  "duration": 20.875555555555557,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 100,
+      "startTime": 0,
+      "endTime": 5.008888888888889,
+      "text": "Hans said he had to sell things because he needed money."
+    },
+    {
+      "sentenceIndex": 101,
+      "startTime": 5.008888888888889,
+      "endTime": 10.462222222222223,
+      "text": "Winter was hard for him, and he had no money for bread."
+    },
+    {
+      "sentenceIndex": 102,
+      "startTime": 10.462222222222223,
+      "endTime": 15.471111111111114,
+      "text": "He sold his silver buttons, silver chain, big pipe, and wheelbarrow."
+    },
+    {
+      "sentenceIndex": 103,
+      "startTime": 15.471111111111114,
+      "endTime": 20.035555555555558,
+      "text": "But now he plans to buy them all back again."
+    }
+  ],
+  "wordCount": 44,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:28.201Z"
+  }
+}

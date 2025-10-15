@@ -1,0 +1,62 @@
+{
+  "index": 20,
+  "sentences": [
+    {
+      "sentenceIndex": 80,
+      "text": "‘Why, you have a good heart!’ cried his Wife."
+    },
+    {
+      "sentenceIndex": 81,
+      "text": "‘You always think of others, and that is nice."
+    },
+    {
+      "sentenceIndex": 82,
+      "text": "Take the big basket with you for the flowers.’"
+    },
+    {
+      "sentenceIndex": 83,
+      "text": "The Miller tied the windmill sails with a strong chain and went down the hill."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_20.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_20.mp3",
+  "duration": 19.90666666666667,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 80,
+      "startTime": 0,
+      "endTime": 4.12,
+      "text": "‘Why, you have a good heart!’ cried his Wife."
+    },
+    {
+      "sentenceIndex": 81,
+      "startTime": 4.12,
+      "endTime": 8.24,
+      "text": "‘You always think of others, and that is nice."
+    },
+    {
+      "sentenceIndex": 82,
+      "startTime": 8.24,
+      "endTime": 12.36,
+      "text": "Take the big basket with you for the flowers.’"
+    },
+    {
+      "sentenceIndex": 83,
+      "startTime": 12.36,
+      "endTime": 19.186666666666667,
+      "text": "The Miller tied the windmill sails with a strong chain and went down the hill."
+    }
+  ],
+  "wordCount": 42,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:01.064Z"
+  }
+}

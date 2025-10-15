@@ -1,0 +1,62 @@
+{
+  "index": 2,
+  "sentences": [
+    {
+      "sentenceIndex": 8,
+      "text": "\"That's not true,\" replied the Duck, \"everyone has to start somewhere, and parents must be patient.\""
+    },
+    {
+      "sentenceIndex": 9,
+      "text": "\"Ah!\""
+    },
+    {
+      "sentenceIndex": 10,
+      "text": "I know nothing about how parents feel because I am not a family man."
+    },
+    {
+      "sentenceIndex": 11,
+      "text": "I have never been married, and I do not plan to marry."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_2.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_2.mp3",
+  "duration": 20.391111111111112,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 8,
+      "startTime": 0,
+      "endTime": 7.311111111111112,
+      "text": "\"That's not true,\" replied the Duck, \"everyone has to start somewhere, and parents must be patient.\""
+    },
+    {
+      "sentenceIndex": 9,
+      "startTime": 7.311111111111112,
+      "endTime": 7.8755555555555565,
+      "text": "\"Ah!\""
+    },
+    {
+      "sentenceIndex": 10,
+      "startTime": 7.8755555555555565,
+      "endTime": 14.21777777777778,
+      "text": "I know nothing about how parents feel because I am not a family man."
+    },
+    {
+      "sentenceIndex": 11,
+      "startTime": 14.21777777777778,
+      "endTime": 19.671111111111113,
+      "text": "I have never been married, and I do not plan to marry."
+    }
+  ],
+  "wordCount": 43,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:30:01.021Z"
+  }
+}

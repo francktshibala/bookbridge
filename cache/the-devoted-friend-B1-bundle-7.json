@@ -1,0 +1,62 @@
+{
+  "index": 7,
+  "sentences": [
+    {
+      "sentenceIndex": 28,
+      "text": "The Linnet continued with his story, hoping the Water-rat would understand the lesson."
+    },
+    {
+      "sentenceIndex": 29,
+      "text": "The Water-rat listened carefully, eager to hear more about Hans and his adventures."
+    },
+    {
+      "sentenceIndex": 30,
+      "text": "The Water-rat asked a question, and the Linnet replied that the man was not famous, but he had a kind heart and a funny, friendly face."
+    },
+    {
+      "sentenceIndex": 31,
+      "text": "He lived alone in a small cottage, and he worked in his garden every day."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_7.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_7.mp3",
+  "duration": 32.49777777777778,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 28,
+      "startTime": 0,
+      "endTime": 5.897777777777779,
+      "text": "The Linnet continued with his story, hoping the Water-rat would understand the lesson."
+    },
+    {
+      "sentenceIndex": 29,
+      "startTime": 5.897777777777779,
+      "endTime": 11.795555555555557,
+      "text": "The Water-rat listened carefully, eager to hear more about Hans and his adventures."
+    },
+    {
+      "sentenceIndex": 30,
+      "startTime": 11.795555555555557,
+      "endTime": 24.021111111111114,
+      "text": "The Water-rat asked a question, and the Linnet replied that the man was not famous, but he had a kind heart and a funny, friendly face."
+    },
+    {
+      "sentenceIndex": 31,
+      "startTime": 24.021111111111114,
+      "endTime": 30.80777777777778,
+      "text": "He lived alone in a small cottage, and he worked in his garden every day."
+    }
+  ],
+  "wordCount": 67,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:05:04.380Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 41,
+  "sentences": [
+    {
+      "sentenceIndex": 164,
+      "text": "'Ah!' said the Miller, 'there is no work more enjoyable than the work one does for others.'"
+    },
+    {
+      "sentenceIndex": 165,
+      "text": "'It is certainly a great privilege to hear you speak,' answered little Hans, sitting down and wiping his forehead, 'a very great privilege.'"
+    },
+    {
+      "sentenceIndex": 166,
+      "text": "But I am afraid I will never have such beautiful ideas as you have."
+    },
+    {
+      "sentenceIndex": 167,
+      "text": "'Oh!' replied the Miller, 'you will have wonderful ideas if you keep working hard.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_41.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_41.mp3",
+  "duration": 32.992222222222225,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 164,
+      "startTime": 0,
+      "endTime": 7.775555555555556,
+      "text": "'Ah!' said the Miller, 'there is no work more enjoyable than the work one does for others.'"
+    },
+    {
+      "sentenceIndex": 165,
+      "startTime": 7.775555555555556,
+      "endTime": 18.51777777777778,
+      "text": "'It is certainly a great privilege to hear you speak,' answered little Hans, sitting down and wiping his forehead, 'a very great privilege.'"
+    },
+    {
+      "sentenceIndex": 166,
+      "startTime": 18.51777777777778,
+      "endTime": 24.860000000000003,
+      "text": "But I am afraid I will never have such beautiful ideas as you have."
+    },
+    {
+      "sentenceIndex": 167,
+      "startTime": 24.860000000000003,
+      "endTime": 31.202222222222225,
+      "text": "'Oh!' replied the Miller, 'you will have wonderful ideas if you keep working hard.'"
+    }
+  ],
+  "wordCount": 68,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:09:20.349Z"
+  }
+}

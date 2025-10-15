@@ -1,0 +1,62 @@
+{
+  "index": 8,
+  "sentences": [
+    {
+      "sentenceIndex": 32,
+      "text": "His garden was the most beautiful in the whole countryside, and everyone admired it."
+    },
+    {
+      "sentenceIndex": 33,
+      "text": "There were many flowers like Sweet-william, Gilly-flowers, and Shepherds’-purses, which made the garden colorful."
+    },
+    {
+      "sentenceIndex": 34,
+      "text": "You could also find damask Roses, yellow Roses, lilac Crocuses, and Violets in gold, purple, and white colors."
+    },
+    {
+      "sentenceIndex": 35,
+      "text": "As the months passed, flowers like Columbine, Ladysmock, Marjoram, Wild Basil, Cowslip, Flower-de-luce, Daffodil, and Clove-Pink bloomed in their turn."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_8.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_8.mp3",
+  "duration": 32.00333333333334,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 32,
+      "startTime": 0,
+      "endTime": 6.342222222222222,
+      "text": "His garden was the most beautiful in the whole countryside, and everyone admired it."
+    },
+    {
+      "sentenceIndex": 33,
+      "startTime": 6.342222222222222,
+      "endTime": 12.684444444444445,
+      "text": "There were many flowers like Sweet-william, Gilly-flowers, and Shepherds’-purses, which made the garden colorful."
+    },
+    {
+      "sentenceIndex": 34,
+      "startTime": 12.684444444444445,
+      "endTime": 20.954444444444444,
+      "text": "You could also find damask Roses, yellow Roses, lilac Crocuses, and Violets in gold, purple, and white colors."
+    },
+    {
+      "sentenceIndex": 35,
+      "startTime": 20.954444444444444,
+      "endTime": 30.21333333333333,
+      "text": "As the months passed, flowers like Columbine, Ladysmock, Marjoram, Wild Basil, Cowslip, Flower-de-luce, Daffodil, and Clove-Pink bloomed in their turn."
+    }
+  ],
+  "wordCount": 66,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:05:13.489Z"
+  }
+}

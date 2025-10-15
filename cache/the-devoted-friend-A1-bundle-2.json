@@ -1,0 +1,62 @@
+{
+  "index": 2,
+  "sentences": [
+    {
+      "sentenceIndex": 8,
+      "text": "'They should be punished,' he said."
+    },
+    {
+      "sentenceIndex": 9,
+      "text": "The Duck replied, 'They are learning, and parents must be patient.'"
+    },
+    {
+      "sentenceIndex": 10,
+      "text": "The Water-rat said he knows nothing about parents."
+    },
+    {
+      "sentenceIndex": 11,
+      "text": "He is not married, and he does not want to be."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_2.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_2.mp3",
+  "duration": 12.84,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 8,
+      "startTime": 0,
+      "endTime": 2.12,
+      "text": "'They should be punished,' he said."
+    },
+    {
+      "sentenceIndex": 9,
+      "startTime": 2.12,
+      "endTime": 5.906666666666666,
+      "text": "The Duck replied, 'They are learning, and parents must be patient.'"
+    },
+    {
+      "sentenceIndex": 10,
+      "startTime": 5.906666666666666,
+      "endTime": 8.693333333333333,
+      "text": "The Water-rat said he knows nothing about parents."
+    },
+    {
+      "sentenceIndex": 11,
+      "startTime": 8.693333333333333,
+      "endTime": 12.48,
+      "text": "He is not married, and he does not want to be."
+    }
+  ],
+  "wordCount": 36,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:41:42.262Z"
+  }
+}

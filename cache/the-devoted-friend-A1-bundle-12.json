@@ -1,0 +1,62 @@
+{
+  "index": 12,
+  "sentences": [
+    {
+      "sentenceIndex": 48,
+      "text": "The Miller's wife said he was very thoughtful about others."
+    },
+    {
+      "sentenceIndex": 49,
+      "text": "She said it was nice to hear him talk about friendship."
+    },
+    {
+      "sentenceIndex": 50,
+      "text": "'Can we ask little Hans to come here?'"
+    },
+    {
+      "sentenceIndex": 51,
+      "text": "said the Miller's youngest son."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_12.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_12.mp3",
+  "duration": 12.113333333333332,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 48,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "The Miller's wife said he was very thoughtful about others."
+    },
+    {
+      "sentenceIndex": 49,
+      "startTime": 3.453333333333333,
+      "endTime": 7.24,
+      "text": "She said it was nice to hear him talk about friendship."
+    },
+    {
+      "sentenceIndex": 50,
+      "startTime": 7.24,
+      "endTime": 10.026666666666667,
+      "text": "'Can we ask little Hans to come here?'"
+    },
+    {
+      "sentenceIndex": 51,
+      "startTime": 10.026666666666667,
+      "endTime": 11.813333333333334,
+      "text": "said the Miller's youngest son."
+    }
+  ],
+  "wordCount": 34,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:50:36.208Z"
+  }
+}

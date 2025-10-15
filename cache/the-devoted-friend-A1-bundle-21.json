@@ -1,0 +1,62 @@
+{
+  "index": 21,
+  "sentences": [
+    {
+      "sentenceIndex": 84,
+      "text": "‘Good morning, little Hans,’ said the Miller."
+    },
+    {
+      "sentenceIndex": 85,
+      "text": "‘Good morning,’ said Hans, smiling and holding his spade."
+    },
+    {
+      "sentenceIndex": 86,
+      "text": "‘How have you been all winter?’ asked the Miller."
+    },
+    {
+      "sentenceIndex": 87,
+      "text": "‘Thank you for asking,’ said Hans."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_21.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_21.mp3",
+  "duration": 11.023333333333332,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 84,
+      "startTime": 0,
+      "endTime": 2.453333333333333,
+      "text": "‘Good morning, little Hans,’ said the Miller."
+    },
+    {
+      "sentenceIndex": 85,
+      "startTime": 2.453333333333333,
+      "endTime": 5.573333333333333,
+      "text": "‘Good morning,’ said Hans, smiling and holding his spade."
+    },
+    {
+      "sentenceIndex": 86,
+      "startTime": 5.573333333333333,
+      "endTime": 8.693333333333333,
+      "text": "‘How have you been all winter?’ asked the Miller."
+    },
+    {
+      "sentenceIndex": 87,
+      "startTime": 8.693333333333333,
+      "endTime": 10.813333333333333,
+      "text": "‘Thank you for asking,’ said Hans."
+    }
+  ],
+  "wordCount": 31,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:22.418Z"
+  }
+}

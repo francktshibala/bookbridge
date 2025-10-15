@@ -1,0 +1,62 @@
+{
+  "index": 45,
+  "sentences": [
+    {
+      "sentenceIndex": 180,
+      "text": "Besides, he used to say, he will give me his wheelbarrow, and that is very generous."
+    },
+    {
+      "sentenceIndex": 181,
+      "text": "So little Hans worked for the Miller, and the Miller talked a lot about friendship, which Hans wrote in a notebook and read every night because he was a good student."
+    },
+    {
+      "sentenceIndex": 182,
+      "text": "One evening, little Hans was sitting by his fire when he heard a loud knock at the door."
+    },
+    {
+      "sentenceIndex": 183,
+      "text": "It was a wild night, and the wind was blowing and roaring around the house so much that at first he thought it was just the storm."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_45.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_45.mp3",
+  "duration": 44.12888888888889,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 180,
+      "startTime": 0,
+      "endTime": 7.311111111111112,
+      "text": "Besides, he used to say, he will give me his wheelbarrow, and that is very generous."
+    },
+    {
+      "sentenceIndex": 181,
+      "startTime": 7.311111111111112,
+      "endTime": 21.88888888888889,
+      "text": "So little Hans worked for the Miller, and the Miller talked a lot about friendship, which Hans wrote in a notebook and read every night because he was a good student."
+    },
+    {
+      "sentenceIndex": 182,
+      "startTime": 21.88888888888889,
+      "endTime": 30.168888888888887,
+      "text": "One evening, little Hans was sitting by his fire when he heard a loud knock at the door."
+    },
+    {
+      "sentenceIndex": 183,
+      "startTime": 30.168888888888887,
+      "endTime": 42.80888888888889,
+      "text": "It was a wild night, and the wind was blowing and roaring around the house so much that at first he thought it was just the storm."
+    }
+  ],
+  "wordCount": 92,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:42:45.623Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 38,
+  "sentences": [
+    {
+      "sentenceIndex": 152,
+      "text": "'I am very sorry,' said little Hans, rubbing his eyes and taking off his night-cap, 'but I was so tired that I stayed in bed to listen to the birds sing."
+    },
+    {
+      "sentenceIndex": 153,
+      "text": "Do you know I always work better after hearing the birds sing?"
+    },
+    {
+      "sentenceIndex": 154,
+      "text": "'I am glad to hear that,' said the Miller, patting little Hans on the back, 'because I need you to come to the mill and fix my barn roof after you get dressed."
+    },
+    {
+      "sentenceIndex": 155,
+      "text": "Poor little Hans wanted to work in his garden because his flowers needed water, but he did not want to say no to the Miller, who was a good friend."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_38.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_38.mp3",
+  "duration": 50.91111111111111,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 152,
+      "startTime": 0,
+      "endTime": 14.577777777777778,
+      "text": "'I am very sorry,' said little Hans, rubbing his eyes and taking off his night-cap, 'but I was so tired that I stayed in bed to listen to the birds sing."
+    },
+    {
+      "sentenceIndex": 153,
+      "startTime": 14.577777777777778,
+      "endTime": 20.031111111111112,
+      "text": "Do you know I always work better after hearing the birds sing?"
+    },
+    {
+      "sentenceIndex": 154,
+      "startTime": 20.031111111111112,
+      "endTime": 35.57777777777778,
+      "text": "'I am glad to hear that,' said the Miller, patting little Hans on the back, 'because I need you to come to the mill and fix my barn roof after you get dressed."
+    },
+    {
+      "sentenceIndex": 155,
+      "startTime": 35.57777777777778,
+      "endTime": 49.67111111111112,
+      "text": "Poor little Hans wanted to work in his garden because his flowers needed water, but he did not want to say no to the Miller, who was a good friend."
+    }
+  ],
+  "wordCount": 106,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:41:58.109Z"
+  }
+}

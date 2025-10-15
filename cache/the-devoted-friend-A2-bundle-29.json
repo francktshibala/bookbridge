@@ -1,0 +1,62 @@
+{
+  "index": 29,
+  "sentences": [
+    {
+      "sentenceIndex": 116,
+      "text": "I gave you my wheelbarrow, and now you will give me your plank."
+    },
+    {
+      "sentenceIndex": 117,
+      "text": "Of course, the wheelbarrow is worth more than the plank, but true friendship doesn't care about that."
+    },
+    {
+      "sentenceIndex": 118,
+      "text": "Please get it now, and I will start working on my barn today."
+    },
+    {
+      "sentenceIndex": 119,
+      "text": "'Certainly,' said little Hans, and he ran to the shed and pulled out the plank."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_29.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_29.mp3",
+  "duration": 27.65777777777778,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 116,
+      "startTime": 0,
+      "endTime": 5.897777777777779,
+      "text": "I gave you my wheelbarrow, and now you will give me your plank."
+    },
+    {
+      "sentenceIndex": 117,
+      "startTime": 5.897777777777779,
+      "endTime": 13.693333333333335,
+      "text": "Of course, the wheelbarrow is worth more than the plank, but true friendship doesn't care about that."
+    },
+    {
+      "sentenceIndex": 118,
+      "startTime": 13.693333333333335,
+      "endTime": 19.591111111111115,
+      "text": "Please get it now, and I will start working on my barn today."
+    },
+    {
+      "sentenceIndex": 119,
+      "startTime": 19.591111111111115,
+      "endTime": 26.417777777777783,
+      "text": "'Certainly,' said little Hans, and he ran to the shed and pulled out the plank."
+    }
+  ],
+  "wordCount": 58,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:52.163Z"
+  }
+}

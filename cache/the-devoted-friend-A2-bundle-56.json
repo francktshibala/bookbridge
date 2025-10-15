@@ -1,0 +1,62 @@
+{
+  "index": 56,
+  "sentences": [
+    {
+      "sentenceIndex": 224,
+      "text": "\"The what?\" shouted the Water-rat."
+    },
+    {
+      "sentenceIndex": 225,
+      "text": "\"The lesson,\" said the Linnet."
+    },
+    {
+      "sentenceIndex": 226,
+      "text": "\"Do you mean the story has a lesson?\" asked the Water-rat."
+    },
+    {
+      "sentenceIndex": 227,
+      "text": "\"Yes, it does,\" replied the Linnet."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_56.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_56.mp3",
+  "duration": 12.639999999999999,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 224,
+      "startTime": 0,
+      "endTime": 2.3422222222222224,
+      "text": "\"The what?\" shouted the Water-rat."
+    },
+    {
+      "sentenceIndex": 225,
+      "startTime": 2.3422222222222224,
+      "endTime": 4.684444444444445,
+      "text": "\"The lesson,\" said the Linnet."
+    },
+    {
+      "sentenceIndex": 226,
+      "startTime": 4.684444444444445,
+      "endTime": 9.693333333333335,
+      "text": "\"Do you mean the story has a lesson?\" asked the Water-rat."
+    },
+    {
+      "sentenceIndex": 227,
+      "startTime": 9.693333333333335,
+      "endTime": 12.480000000000002,
+      "text": "\"Yes, it does,\" replied the Linnet."
+    }
+  ],
+  "wordCount": 27,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:43:59.032Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 10,
+  "sentences": [
+    {
+      "sentenceIndex": 40,
+      "text": "Sometimes the neighbors thought it was strange that the rich Miller never gave Hans anything, even though he had a lot of flour, cows, and sheep; but Hans loved listening to the Miller's talks about friendship."
+    },
+    {
+      "sentenceIndex": 41,
+      "text": "Little Hans worked hard in his garden."
+    },
+    {
+      "sentenceIndex": 42,
+      "text": "He was happy in spring, summer, and autumn, but in winter, he had no fruit or flowers to sell, so he was often cold and hungry, and sometimes he went to bed with only dried pears or nuts."
+    },
+    {
+      "sentenceIndex": 43,
+      "text": "In winter, he was also very lonely because the Miller never visited him."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_10.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_10.mp3",
+  "duration": 45.09777777777778,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 40,
+      "startTime": 0,
+      "endTime": 17,
+      "text": "Sometimes the neighbors thought it was strange that the rich Miller never gave Hans anything, even though he had a lot of flour, cows, and sheep; but Hans loved listening to the Miller's talks about friendship."
+    },
+    {
+      "sentenceIndex": 41,
+      "startTime": 17,
+      "endTime": 20.23111111111111,
+      "text": "Little Hans worked hard in his garden."
+    },
+    {
+      "sentenceIndex": 42,
+      "startTime": 20.23111111111111,
+      "endTime": 38.2,
+      "text": "He was happy in spring, summer, and autumn, but in winter, he had no fruit or flowers to sell, so he was often cold and hungry, and sometimes he went to bed with only dried pears or nuts."
+    },
+    {
+      "sentenceIndex": 43,
+      "startTime": 38.2,
+      "endTime": 44.09777777777778,
+      "text": "In winter, he was also very lonely because the Miller never visited him."
+    }
+  ],
+  "wordCount": 94,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:39:02.386Z"
+  }
+}

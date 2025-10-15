@@ -1,0 +1,62 @@
+{
+  "index": 26,
+  "sentences": [
+    {
+      "sentenceIndex": 104,
+      "text": "The Miller said, 'I will give you my wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 105,
+      "text": "It is broken, and one side is gone."
+    },
+    {
+      "sentenceIndex": 106,
+      "text": "The Miller said, 'I am generous, not like others.'"
+    },
+    {
+      "sentenceIndex": 107,
+      "text": "He thinks generosity is important in friendship."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_26.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_26.mp3",
+  "duration": 11.75,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 104,
+      "startTime": 0,
+      "endTime": 3.12,
+      "text": "The Miller said, 'I will give you my wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 105,
+      "startTime": 3.12,
+      "endTime": 5.906666666666666,
+      "text": "It is broken, and one side is gone."
+    },
+    {
+      "sentenceIndex": 106,
+      "startTime": 5.906666666666666,
+      "endTime": 9.026666666666667,
+      "text": "The Miller said, 'I am generous, not like others.'"
+    },
+    {
+      "sentenceIndex": 107,
+      "startTime": 9.026666666666667,
+      "endTime": 11.48,
+      "text": "He thinks generosity is important in friendship."
+    }
+  ],
+  "wordCount": 33,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:47.557Z"
+  }
+}

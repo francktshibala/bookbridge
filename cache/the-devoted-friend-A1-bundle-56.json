@@ -1,0 +1,62 @@
+{
+  "index": 56,
+  "sentences": [
+    {
+      "sentenceIndex": 224,
+      "text": "The moral, said the Linnet."
+    },
+    {
+      "sentenceIndex": 225,
+      "text": "Do you mean the story has a moral? asked the Water-rat."
+    },
+    {
+      "sentenceIndex": 226,
+      "text": "Certainly, said the Linnet."
+    },
+    {
+      "sentenceIndex": 227,
+      "text": "Well, really, said the Water-rat angrily."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_56.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_56.mp3",
+  "duration": 9.206666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 224,
+      "startTime": 0,
+      "endTime": 1.7866666666666666,
+      "text": "The moral, said the Linnet."
+    },
+    {
+      "sentenceIndex": 225,
+      "startTime": 1.7866666666666666,
+      "endTime": 5.573333333333333,
+      "text": "Do you mean the story has a moral? asked the Water-rat."
+    },
+    {
+      "sentenceIndex": 226,
+      "startTime": 5.573333333333333,
+      "endTime": 7.026666666666666,
+      "text": "Certainly, said the Linnet."
+    },
+    {
+      "sentenceIndex": 227,
+      "startTime": 7.026666666666666,
+      "endTime": 9.146666666666667,
+      "text": "Well, really, said the Water-rat angrily."
+    }
+  ],
+  "wordCount": 26,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:04:12.030Z"
+  }
+}

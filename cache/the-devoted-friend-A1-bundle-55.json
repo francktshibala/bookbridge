@@ -1,0 +1,62 @@
+{
+  "index": 55,
+  "sentences": [
+    {
+      "sentenceIndex": 220,
+      "text": "Oh, I really don't know and I don't care."
+    },
+    {
+      "sentenceIndex": 221,
+      "text": "You have no sympathy in your nature, said the Water-rat."
+    },
+    {
+      "sentenceIndex": 222,
+      "text": "I am afraid you don't see the moral, said the Linnet."
+    },
+    {
+      "sentenceIndex": 223,
+      "text": "The what? screamed the Water-rat."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_55.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_55.mp3",
+  "duration": 12.476666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 220,
+      "startTime": 0,
+      "endTime": 3.12,
+      "text": "Oh, I really don't know and I don't care."
+    },
+    {
+      "sentenceIndex": 221,
+      "startTime": 3.12,
+      "endTime": 6.573333333333333,
+      "text": "You have no sympathy in your nature, said the Water-rat."
+    },
+    {
+      "sentenceIndex": 222,
+      "startTime": 6.573333333333333,
+      "endTime": 10.36,
+      "text": "I am afraid you don't see the moral, said the Linnet."
+    },
+    {
+      "sentenceIndex": 223,
+      "startTime": 10.36,
+      "endTime": 12.146666666666667,
+      "text": "The what? screamed the Water-rat."
+    }
+  ],
+  "wordCount": 35,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:04:07.809Z"
+  }
+}

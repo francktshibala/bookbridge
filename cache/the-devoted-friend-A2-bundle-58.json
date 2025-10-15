@@ -1,0 +1,62 @@
+{
+  "index": 58,
+  "sentences": [
+    {
+      "sentenceIndex": 232,
+      "text": "The Duck asked, 'And how do you like the Water-rat?'"
+    },
+    {
+      "sentenceIndex": 233,
+      "text": "The Duck came paddling up a few minutes later."
+    },
+    {
+      "sentenceIndex": 234,
+      "text": "The Duck said, 'He has many good points, but I have a mother's feelings, and I cry when I see a confirmed bachelor.'"
+    },
+    {
+      "sentenceIndex": 235,
+      "text": "The Linnet replied, 'I am afraid I have annoyed him.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_58.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_58.mp3",
+  "duration": 24.751111111111115,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 232,
+      "startTime": 0,
+      "endTime": 4.564444444444445,
+      "text": "The Duck asked, 'And how do you like the Water-rat?'"
+    },
+    {
+      "sentenceIndex": 233,
+      "startTime": 4.564444444444445,
+      "endTime": 8.684444444444445,
+      "text": "The Duck came paddling up a few minutes later."
+    },
+    {
+      "sentenceIndex": 234,
+      "startTime": 8.684444444444445,
+      "endTime": 19.386666666666667,
+      "text": "The Duck said, 'He has many good points, but I have a mother's feelings, and I cry when I see a confirmed bachelor.'"
+    },
+    {
+      "sentenceIndex": 235,
+      "startTime": 19.386666666666667,
+      "endTime": 23.95111111111111,
+      "text": "The Linnet replied, 'I am afraid I have annoyed him.'"
+    }
+  ],
+  "wordCount": 52,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:44:11.533Z"
+  }
+}

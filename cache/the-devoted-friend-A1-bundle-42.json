@@ -1,0 +1,62 @@
+{
+  "index": 42,
+  "sentences": [
+    {
+      "sentenceIndex": 168,
+      "text": "'I will never have your ideas,' he added."
+    },
+    {
+      "sentenceIndex": 169,
+      "text": "'Oh!' said the Miller with a smile."
+    },
+    {
+      "sentenceIndex": 170,
+      "text": "The Miller said, 'They will come to you, but you must work hard.'"
+    },
+    {
+      "sentenceIndex": 171,
+      "text": "Now you only know how to be a friend, but one day you will know why."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_42.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_42.mp3",
+  "duration": 15.746666666666664,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 168,
+      "startTime": 0,
+      "endTime": 2.7866666666666666,
+      "text": "'I will never have your ideas,' he added."
+    },
+    {
+      "sentenceIndex": 169,
+      "startTime": 2.7866666666666666,
+      "endTime": 5.24,
+      "text": "'Oh!' said the Miller with a smile."
+    },
+    {
+      "sentenceIndex": 170,
+      "startTime": 5.24,
+      "endTime": 9.723333333333333,
+      "text": "The Miller said, 'They will come to you, but you must work hard.'"
+    },
+    {
+      "sentenceIndex": 171,
+      "startTime": 9.723333333333333,
+      "endTime": 15.296666666666667,
+      "text": "Now you only know how to be a friend, but one day you will know why."
+    }
+  ],
+  "wordCount": 44,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:01:56.159Z"
+  }
+}

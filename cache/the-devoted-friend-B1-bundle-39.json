@@ -1,0 +1,62 @@
+{
+  "index": 39,
+  "sentences": [
+    {
+      "sentenceIndex": 156,
+      "text": "Hans asked in a shy and timid voice, 'Do you think it would be unfriendly if I said I was busy?'"
+    },
+    {
+      "sentenceIndex": 157,
+      "text": "The Miller replied, 'Well, I don't think it's much to ask, especially since I'm going to give you my wheelbarrow, but if you refuse, I'll go and do it myself.'"
+    },
+    {
+      "sentenceIndex": 158,
+      "text": "Hans felt a bit guilty because the Miller was always so kind to him."
+    },
+    {
+      "sentenceIndex": 159,
+      "text": "He decided to help the Miller, even though he really wanted to work in his own garden."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_39.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_39.mp3",
+  "duration": 39.91444444444445,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 156,
+      "startTime": 0,
+      "endTime": 9.753333333333334,
+      "text": "Hans asked in a shy and timid voice, 'Do you think it would be unfriendly if I said I was busy?'"
+    },
+    {
+      "sentenceIndex": 157,
+      "startTime": 9.753333333333334,
+      "endTime": 23.956666666666667,
+      "text": "The Miller replied, 'Well, I don't think it's much to ask, especially since I'm going to give you my wheelbarrow, but if you refuse, I'll go and do it myself.'"
+    },
+    {
+      "sentenceIndex": 158,
+      "startTime": 23.956666666666667,
+      "endTime": 30.29888888888889,
+      "text": "Hans felt a bit guilty because the Miller was always so kind to him."
+    },
+    {
+      "sentenceIndex": 159,
+      "startTime": 30.29888888888889,
+      "endTime": 38.074444444444445,
+      "text": "He decided to help the Miller, even though he really wanted to work in his own garden."
+    }
+  ],
+  "wordCount": 82,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:09:05.425Z"
+  }
+}

@@ -1,0 +1,3722 @@
+[
+  {
+    "index": 0,
+    "sentences": [
+      {
+        "sentenceIndex": 0,
+        "text": "One morning, the old Water-rat looked out of his hole."
+      },
+      {
+        "sentenceIndex": 1,
+        "text": "He had bright eyes and stiff grey whiskers, and his tail was long and black."
+      },
+      {
+        "sentenceIndex": 2,
+        "text": "The little ducks were swimming in the pond, looking like yellow canaries, and their mother was teaching them to stand on their heads in the water."
+      },
+      {
+        "sentenceIndex": 3,
+        "text": "She was pure white with red legs, and she kept saying they must learn to stand on their heads to be in the best society."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_0.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_0.mp3",
+    "duration": 36.37777777777777,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 0,
+        "startTime": 0,
+        "endTime": 4.564444444444445,
+        "text": "One morning, the old Water-rat looked out of his hole."
+      },
+      {
+        "sentenceIndex": 1,
+        "startTime": 4.564444444444445,
+        "endTime": 11.391111111111112,
+        "text": "He had bright eyes and stiff grey whiskers, and his tail was long and black."
+      },
+      {
+        "sentenceIndex": 2,
+        "startTime": 11.391111111111112,
+        "endTime": 23.546666666666667,
+        "text": "The little ducks were swimming in the pond, looking like yellow canaries, and their mother was teaching them to stand on their heads in the water."
+      },
+      {
+        "sentenceIndex": 3,
+        "startTime": 23.546666666666667,
+        "endTime": 35.217777777777776,
+        "text": "She was pure white with red legs, and she kept saying they must learn to stand on their heads to be in the best society."
+      }
+    ],
+    "wordCount": 76,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:29:49.235Z"
+    }
+  },
+  {
+    "index": 1,
+    "sentences": [
+      {
+        "sentenceIndex": 4,
+        "text": "Every now and then, she showed them how to do it."
+      },
+      {
+        "sentenceIndex": 5,
+        "text": "But the little ducks did not listen to her."
+      },
+      {
+        "sentenceIndex": 6,
+        "text": "They were too young to understand why being in society was important."
+      },
+      {
+        "sentenceIndex": 7,
+        "text": "\"What disobedient children!\" cried the old Water-rat; \"they deserve to be drowned.\""
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_1.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_1.mp3",
+    "duration": 20.875555555555557,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 4,
+        "startTime": 0,
+        "endTime": 5.008888888888889,
+        "text": "Every now and then, she showed them how to do it."
+      },
+      {
+        "sentenceIndex": 5,
+        "startTime": 5.008888888888889,
+        "endTime": 9.12888888888889,
+        "text": "But the little ducks did not listen to her."
+      },
+      {
+        "sentenceIndex": 6,
+        "startTime": 9.12888888888889,
+        "endTime": 14.582222222222224,
+        "text": "They were too young to understand why being in society was important."
+      },
+      {
+        "sentenceIndex": 7,
+        "startTime": 14.582222222222224,
+        "endTime": 20.035555555555558,
+        "text": "\"What disobedient children!\" cried the old Water-rat; \"they deserve to be drowned.\""
+      }
+    ],
+    "wordCount": 44,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:29:54.562Z"
+    }
+  },
+  {
+    "index": 2,
+    "sentences": [
+      {
+        "sentenceIndex": 8,
+        "text": "\"That's not true,\" replied the Duck, \"everyone has to start somewhere, and parents must be patient.\""
+      },
+      {
+        "sentenceIndex": 9,
+        "text": "\"Ah!\""
+      },
+      {
+        "sentenceIndex": 10,
+        "text": "I know nothing about how parents feel because I am not a family man."
+      },
+      {
+        "sentenceIndex": 11,
+        "text": "I have never been married, and I do not plan to marry."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_2.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_2.mp3",
+    "duration": 20.391111111111112,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 8,
+        "startTime": 0,
+        "endTime": 7.311111111111112,
+        "text": "\"That's not true,\" replied the Duck, \"everyone has to start somewhere, and parents must be patient.\""
+      },
+      {
+        "sentenceIndex": 9,
+        "startTime": 7.311111111111112,
+        "endTime": 7.8755555555555565,
+        "text": "\"Ah!\""
+      },
+      {
+        "sentenceIndex": 10,
+        "startTime": 7.8755555555555565,
+        "endTime": 14.21777777777778,
+        "text": "I know nothing about how parents feel because I am not a family man."
+      },
+      {
+        "sentenceIndex": 11,
+        "startTime": 14.21777777777778,
+        "endTime": 19.671111111111113,
+        "text": "I have never been married, and I do not plan to marry."
+      }
+    ],
+    "wordCount": 43,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:30:01.021Z"
+    }
+  },
+  {
+    "index": 3,
+    "sentences": [
+      {
+        "sentenceIndex": 12,
+        "text": "Love is nice, but I think friendship is more important."
+      },
+      {
+        "sentenceIndex": 13,
+        "text": "I believe nothing is nobler or rarer than a true friendship."
+      },
+      {
+        "sentenceIndex": 14,
+        "text": "The Green Linnet, sitting in a willow tree, asked about the duties of a devoted friend."
+      },
+      {
+        "sentenceIndex": 15,
+        "text": "The Duck also wanted to know, so she swam to the end of the pond."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_3.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_3.mp3",
+    "duration": 24.751111111111115,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 12,
+        "startTime": 0,
+        "endTime": 4.564444444444445,
+        "text": "Love is nice, but I think friendship is more important."
+      },
+      {
+        "sentenceIndex": 13,
+        "startTime": 4.564444444444445,
+        "endTime": 9.573333333333334,
+        "text": "I believe nothing is nobler or rarer than a true friendship."
+      },
+      {
+        "sentenceIndex": 14,
+        "startTime": 9.573333333333334,
+        "endTime": 16.884444444444448,
+        "text": "The Green Linnet, sitting in a willow tree, asked about the duties of a devoted friend."
+      },
+      {
+        "sentenceIndex": 15,
+        "startTime": 16.884444444444448,
+        "endTime": 23.711111111111116,
+        "text": "The Duck also wanted to know, so she swam to the end of the pond."
+      }
+    ],
+    "wordCount": 52,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:30:06.788Z"
+    }
+  },
+  {
+    "index": 4,
+    "sentences": [
+      {
+        "sentenceIndex": 16,
+        "text": "She stood on her head to show her children a good example."
+      },
+      {
+        "sentenceIndex": 17,
+        "text": "The Water-rat thought it was a silly question."
+      },
+      {
+        "sentenceIndex": 18,
+        "text": "He cried out loudly and said it was silly."
+      },
+      {
+        "sentenceIndex": 19,
+        "text": "He expected his devoted friend to be devoted to him, of course."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_4.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_4.mp3",
+    "duration": 19.422222222222228,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 16,
+        "startTime": 0,
+        "endTime": 5.453333333333334,
+        "text": "She stood on her head to show her children a good example."
+      },
+      {
+        "sentenceIndex": 17,
+        "startTime": 5.453333333333334,
+        "endTime": 9.12888888888889,
+        "text": "The Water-rat thought it was a silly question."
+      },
+      {
+        "sentenceIndex": 18,
+        "startTime": 9.12888888888889,
+        "endTime": 13.248888888888889,
+        "text": "He cried out loudly and said it was silly."
+      },
+      {
+        "sentenceIndex": 19,
+        "startTime": 13.248888888888889,
+        "endTime": 18.702222222222222,
+        "text": "He expected his devoted friend to be devoted to him, of course."
+      }
+    ],
+    "wordCount": 41,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:30:11.663Z"
+    }
+  },
+  {
+    "index": 5,
+    "sentences": [
+      {
+        "sentenceIndex": 20,
+        "text": "What would you do in return?"
+      },
+      {
+        "sentenceIndex": 21,
+        "text": "asked the little bird, swinging on a silver branch and flapping his wings."
+      },
+      {
+        "sentenceIndex": 22,
+        "text": "I don't understand you, said the Water-rat."
+      },
+      {
+        "sentenceIndex": 23,
+        "text": "Let me tell you a story about it, said the Linnet."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_5.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_5.mp3",
+    "duration": 17.48444444444445,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 20,
+        "startTime": 0,
+        "endTime": 2.786666666666667,
+        "text": "What would you do in return?"
+      },
+      {
+        "sentenceIndex": 21,
+        "startTime": 2.786666666666667,
+        "endTime": 8.684444444444445,
+        "text": "asked the little bird, swinging on a silver branch and flapping his wings."
+      },
+      {
+        "sentenceIndex": 22,
+        "startTime": 8.684444444444445,
+        "endTime": 11.915555555555557,
+        "text": "I don't understand you, said the Water-rat."
+      },
+      {
+        "sentenceIndex": 23,
+        "startTime": 11.915555555555557,
+        "endTime": 16.924444444444447,
+        "text": "Let me tell you a story about it, said the Linnet."
+      }
+    ],
+    "wordCount": 37,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:30:16.448Z"
+    }
+  },
+  {
+    "index": 6,
+    "sentences": [
+      {
+        "sentenceIndex": 24,
+        "text": "Is the story about me?"
+      },
+      {
+        "sentenceIndex": 25,
+        "text": "asked the Water-rat."
+      },
+      {
+        "sentenceIndex": 26,
+        "text": "If it is, I will listen because I love stories."
+      },
+      {
+        "sentenceIndex": 27,
+        "text": "It is about you, said the Linnet, and he flew down to the bank to tell the story."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_6.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_6.mp3",
+    "duration": 17,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 24,
+        "startTime": 0,
+        "endTime": 2.3422222222222224,
+        "text": "Is the story about me?"
+      },
+      {
+        "sentenceIndex": 25,
+        "startTime": 2.3422222222222224,
+        "endTime": 3.795555555555556,
+        "text": "asked the Water-rat."
+      },
+      {
+        "sentenceIndex": 26,
+        "startTime": 3.795555555555556,
+        "endTime": 8.360000000000001,
+        "text": "If it is, I will listen because I love stories."
+      },
+      {
+        "sentenceIndex": 27,
+        "startTime": 8.360000000000001,
+        "endTime": 16.64,
+        "text": "It is about you, said the Linnet, and he flew down to the bank to tell the story."
+      }
+    ],
+    "wordCount": 36,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:30:21.044Z"
+    }
+  },
+  {
+    "index": 7,
+    "sentences": [
+      {
+        "sentenceIndex": 28,
+        "text": "Once upon a time, said the Linnet, there was an honest little boy named Hans."
+      },
+      {
+        "sentenceIndex": 29,
+        "text": "Was he very special?"
+      },
+      {
+        "sentenceIndex": 30,
+        "text": "The Water-rat asked a question."
+      },
+      {
+        "sentenceIndex": 31,
+        "text": "The Linnet said, 'No, he was not special, except for his kind heart and funny, happy face.'"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_7.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_7.mp3",
+    "duration": 19.422222222222228,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 28,
+        "startTime": 0,
+        "endTime": 6.826666666666667,
+        "text": "Once upon a time, said the Linnet, there was an honest little boy named Hans."
+      },
+      {
+        "sentenceIndex": 29,
+        "startTime": 6.826666666666667,
+        "endTime": 8.724444444444444,
+        "text": "Was he very special?"
+      },
+      {
+        "sentenceIndex": 30,
+        "startTime": 8.724444444444444,
+        "endTime": 11.066666666666666,
+        "text": "The Water-rat asked a question."
+      },
+      {
+        "sentenceIndex": 31,
+        "startTime": 11.066666666666666,
+        "endTime": 18.862222222222222,
+        "text": "The Linnet said, 'No, he was not special, except for his kind heart and funny, happy face.'"
+      }
+    ],
+    "wordCount": 41,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:30:26.077Z"
+    }
+  },
+  {
+    "index": 8,
+    "sentences": [
+      {
+        "sentenceIndex": 32,
+        "text": "He lived alone in a small cottage and worked in his garden every day."
+      },
+      {
+        "sentenceIndex": 33,
+        "text": "His garden was the most beautiful in the whole area."
+      },
+      {
+        "sentenceIndex": 34,
+        "text": "There were Sweet-william, Gilly-flowers, Shepherds’-purses, and Fair-maids of France."
+      },
+      {
+        "sentenceIndex": 35,
+        "text": "He had damask Roses, yellow Roses, lilac Crocuses, and purple Violets."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_8.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_8.mp3",
+    "duration": 20.875555555555557,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 32,
+        "startTime": 0,
+        "endTime": 6.342222222222222,
+        "text": "He lived alone in a small cottage and worked in his garden every day."
+      },
+      {
+        "sentenceIndex": 33,
+        "startTime": 6.342222222222222,
+        "endTime": 10.906666666666666,
+        "text": "His garden was the most beautiful in the whole area."
+      },
+      {
+        "sentenceIndex": 34,
+        "startTime": 10.906666666666666,
+        "endTime": 15.026666666666667,
+        "text": "There were Sweet-william, Gilly-flowers, Shepherds’-purses, and Fair-maids of France."
+      },
+      {
+        "sentenceIndex": 35,
+        "startTime": 15.026666666666667,
+        "endTime": 20.035555555555558,
+        "text": "He had damask Roses, yellow Roses, lilac Crocuses, and purple Violets."
+      }
+    ],
+    "wordCount": 44,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:30:32.244Z"
+    }
+  },
+  {
+    "index": 9,
+    "sentences": [
+      {
+        "sentenceIndex": 36,
+        "text": "Columbine, Ladysmock, Marjoram, and Wild Basil grew in their time, so there were always nice flowers and smells."
+      },
+      {
+        "sentenceIndex": 37,
+        "text": "Little Hans had many friends, but his best friend was Hugh the Miller."
+      },
+      {
+        "sentenceIndex": 38,
+        "text": "Hugh the Miller loved Hans so much that he always took flowers or fruit from his garden."
+      },
+      {
+        "sentenceIndex": 39,
+        "text": "The Miller said, 'Real friends share everything,' and Hans felt proud to have such a good friend."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_9.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_9.mp3",
+    "duration": 31.04888888888889,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 36,
+        "startTime": 0,
+        "endTime": 8.28,
+        "text": "Columbine, Ladysmock, Marjoram, and Wild Basil grew in their time, so there were always nice flowers and smells."
+      },
+      {
+        "sentenceIndex": 37,
+        "startTime": 8.28,
+        "endTime": 14.177777777777777,
+        "text": "Little Hans had many friends, but his best friend was Hugh the Miller."
+      },
+      {
+        "sentenceIndex": 38,
+        "startTime": 14.177777777777777,
+        "endTime": 21.973333333333333,
+        "text": "Hugh the Miller loved Hans so much that he always took flowers or fruit from his garden."
+      },
+      {
+        "sentenceIndex": 39,
+        "startTime": 21.973333333333333,
+        "endTime": 29.76888888888889,
+        "text": "The Miller said, 'Real friends share everything,' and Hans felt proud to have such a good friend."
+      }
+    ],
+    "wordCount": 65,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:30:39.926Z"
+    }
+  },
+  {
+    "index": 10,
+    "sentences": [
+      {
+        "sentenceIndex": 40,
+        "text": "Sometimes the neighbors thought it was strange that the rich Miller never gave Hans anything, even though he had a lot of flour, cows, and sheep; but Hans loved listening to the Miller's talks about friendship."
+      },
+      {
+        "sentenceIndex": 41,
+        "text": "Little Hans worked hard in his garden."
+      },
+      {
+        "sentenceIndex": 42,
+        "text": "He was happy in spring, summer, and autumn, but in winter, he had no fruit or flowers to sell, so he was often cold and hungry, and sometimes he went to bed with only dried pears or nuts."
+      },
+      {
+        "sentenceIndex": 43,
+        "text": "In winter, he was also very lonely because the Miller never visited him."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_10.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_10.mp3",
+    "duration": 45.09777777777778,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 40,
+        "startTime": 0,
+        "endTime": 17,
+        "text": "Sometimes the neighbors thought it was strange that the rich Miller never gave Hans anything, even though he had a lot of flour, cows, and sheep; but Hans loved listening to the Miller's talks about friendship."
+      },
+      {
+        "sentenceIndex": 41,
+        "startTime": 17,
+        "endTime": 20.23111111111111,
+        "text": "Little Hans worked hard in his garden."
+      },
+      {
+        "sentenceIndex": 42,
+        "startTime": 20.23111111111111,
+        "endTime": 38.2,
+        "text": "He was happy in spring, summer, and autumn, but in winter, he had no fruit or flowers to sell, so he was often cold and hungry, and sometimes he went to bed with only dried pears or nuts."
+      },
+      {
+        "sentenceIndex": 43,
+        "startTime": 38.2,
+        "endTime": 44.09777777777778,
+        "text": "In winter, he was also very lonely because the Miller never visited him."
+      }
+    ],
+    "wordCount": 94,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:02.386Z"
+    }
+  },
+  {
+    "index": 11,
+    "sentences": [
+      {
+        "sentenceIndex": 44,
+        "text": "The Miller would say to his wife, 'There is no point in visiting Hans while it is snowing because people in trouble should be left alone.'"
+      },
+      {
+        "sentenceIndex": 45,
+        "text": "He believed this was true friendship, and he was sure he was right."
+      },
+      {
+        "sentenceIndex": 46,
+        "text": "He decided to wait until spring to visit Hans, thinking Hans would be happy to give him a big basket of flowers."
+      },
+      {
+        "sentenceIndex": 47,
+        "text": "His wife, sitting by the warm fire, said, 'You are very thoughtful about others.'"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_11.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_11.mp3",
+    "duration": 35.89333333333333,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 44,
+        "startTime": 0,
+        "endTime": 12.155555555555557,
+        "text": "The Miller would say to his wife, 'There is no point in visiting Hans while it is snowing because people in trouble should be left alone.'"
+      },
+      {
+        "sentenceIndex": 45,
+        "startTime": 12.155555555555557,
+        "endTime": 18.053333333333335,
+        "text": "He believed this was true friendship, and he was sure he was right."
+      },
+      {
+        "sentenceIndex": 46,
+        "startTime": 18.053333333333335,
+        "endTime": 28.27111111111111,
+        "text": "He decided to wait until spring to visit Hans, thinking Hans would be happy to give him a big basket of flowers."
+      },
+      {
+        "sentenceIndex": 47,
+        "startTime": 28.27111111111111,
+        "endTime": 34.61333333333333,
+        "text": "His wife, sitting by the warm fire, said, 'You are very thoughtful about others.'"
+      }
+    ],
+    "wordCount": 75,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:10.484Z"
+    }
+  },
+  {
+    "index": 12,
+    "sentences": [
+      {
+        "sentenceIndex": 48,
+        "text": "She enjoyed listening to him talk about friendship."
+      },
+      {
+        "sentenceIndex": 49,
+        "text": "She thought even the clergyman could not speak as beautifully as he did, though the clergyman lived in a big house and wore a gold ring."
+      },
+      {
+        "sentenceIndex": 50,
+        "text": "'But could we not ask little Hans to come here?'"
+      },
+      {
+        "sentenceIndex": 51,
+        "text": "said the Miller's youngest son."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_12.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_12.mp3",
+    "duration": 23.297777777777778,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 48,
+        "startTime": 0,
+        "endTime": 3.675555555555556,
+        "text": "She enjoyed listening to him talk about friendship."
+      },
+      {
+        "sentenceIndex": 49,
+        "startTime": 3.675555555555556,
+        "endTime": 15.831111111111113,
+        "text": "She thought even the clergyman could not speak as beautifully as he did, though the clergyman lived in a big house and wore a gold ring."
+      },
+      {
+        "sentenceIndex": 50,
+        "startTime": 15.831111111111113,
+        "endTime": 20.395555555555557,
+        "text": "'But could we not ask little Hans to come here?'"
+      },
+      {
+        "sentenceIndex": 51,
+        "startTime": 20.395555555555557,
+        "endTime": 22.73777777777778,
+        "text": "said the Miller's youngest son."
+      }
+    ],
+    "wordCount": 49,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:16.272Z"
+    }
+  },
+  {
+    "index": 13,
+    "sentences": [
+      {
+        "sentenceIndex": 52,
+        "text": "'If poor Hans is in trouble, I will share my porridge and show him my white rabbits.'"
+      },
+      {
+        "sentenceIndex": 53,
+        "text": "'What a silly boy you are!'"
+      },
+      {
+        "sentenceIndex": 54,
+        "text": "cried the Miller. 'I don't know why we send you to school."
+      },
+      {
+        "sentenceIndex": 55,
+        "text": "You don't seem to learn anything."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_13.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_13.mp3",
+    "duration": 19.422222222222228,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 52,
+        "startTime": 0,
+        "endTime": 7.7955555555555565,
+        "text": "'If poor Hans is in trouble, I will share my porridge and show him my white rabbits.'"
+      },
+      {
+        "sentenceIndex": 53,
+        "startTime": 7.7955555555555565,
+        "endTime": 10.582222222222224,
+        "text": "'What a silly boy you are!'"
+      },
+      {
+        "sentenceIndex": 54,
+        "startTime": 10.582222222222224,
+        "endTime": 16.035555555555558,
+        "text": "cried the Miller. 'I don't know why we send you to school."
+      },
+      {
+        "sentenceIndex": 55,
+        "startTime": 16.035555555555558,
+        "endTime": 18.822222222222223,
+        "text": "You don't seem to learn anything."
+      }
+    ],
+    "wordCount": 41,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:20.825Z"
+    }
+  },
+  {
+    "index": 14,
+    "sentences": [
+      {
+        "sentenceIndex": 56,
+        "text": "If little Hans came here and saw our warm fire, good supper, and red wine, he might get envious, and envy is terrible and spoils nature."
+      },
+      {
+        "sentenceIndex": 57,
+        "text": "I will not let Hans' nature be spoiled."
+      },
+      {
+        "sentenceIndex": 58,
+        "text": "I am his best friend, and I will watch over him so he is not tempted."
+      },
+      {
+        "sentenceIndex": 59,
+        "text": "Besides, if Hans came here, he might ask for flour on credit, and I can't do that.'"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_14.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_14.mp3",
+    "duration": 32.01777777777778,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 56,
+        "startTime": 0,
+        "endTime": 12.155555555555557,
+        "text": "If little Hans came here and saw our warm fire, good supper, and red wine, he might get envious, and envy is terrible and spoils nature."
+      },
+      {
+        "sentenceIndex": 57,
+        "startTime": 12.155555555555557,
+        "endTime": 15.831111111111113,
+        "text": "I will not let Hans' nature be spoiled."
+      },
+      {
+        "sentenceIndex": 58,
+        "startTime": 15.831111111111113,
+        "endTime": 23.142222222222223,
+        "text": "I am his best friend, and I will watch over him so he is not tempted."
+      },
+      {
+        "sentenceIndex": 59,
+        "startTime": 23.142222222222223,
+        "endTime": 30.93777777777778,
+        "text": "Besides, if Hans came here, he might ask for flour on credit, and I can't do that.'"
+      }
+    ],
+    "wordCount": 67,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:28.101Z"
+    }
+  },
+  {
+    "index": 15,
+    "sentences": [
+      {
+        "sentenceIndex": 60,
+        "text": "Flour and friendship are different, and they should not be mixed."
+      },
+      {
+        "sentenceIndex": 61,
+        "text": "The words are spelled differently and mean different things."
+      },
+      {
+        "sentenceIndex": 62,
+        "text": "Everyone can understand that."
+      },
+      {
+        "sentenceIndex": 63,
+        "text": "'You speak very well!'"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_15.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_15.mp3",
+    "duration": 13.124444444444444,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 60,
+        "startTime": 0,
+        "endTime": 5.008888888888889,
+        "text": "Flour and friendship are different, and they should not be mixed."
+      },
+      {
+        "sentenceIndex": 61,
+        "startTime": 5.008888888888889,
+        "endTime": 9.12888888888889,
+        "text": "The words are spelled differently and mean different things."
+      },
+      {
+        "sentenceIndex": 62,
+        "startTime": 9.12888888888889,
+        "endTime": 11.026666666666667,
+        "text": "Everyone can understand that."
+      },
+      {
+        "sentenceIndex": 63,
+        "startTime": 11.026666666666667,
+        "endTime": 12.924444444444445,
+        "text": "'You speak very well!'"
+      }
+    ],
+    "wordCount": 28,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:33.007Z"
+    }
+  },
+  {
+    "index": 16,
+    "sentences": [
+      {
+        "sentenceIndex": 64,
+        "text": "said the Miller's Wife, as she poured a large glass of warm ale; 'I feel sleepy now."
+      },
+      {
+        "sentenceIndex": 65,
+        "text": "It feels just like being in church."
+      },
+      {
+        "sentenceIndex": 66,
+        "text": "'Many people act well,' said the Miller, 'but few talk well, which shows talking is harder and better.'"
+      },
+      {
+        "sentenceIndex": 67,
+        "text": "He looked at his son, who felt ashamed and cried into his tea."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_16.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_16.mp3",
+    "duration": 26.204444444444448,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 64,
+        "startTime": 0,
+        "endTime": 7.7955555555555565,
+        "text": "said the Miller's Wife, as she poured a large glass of warm ale; 'I feel sleepy now."
+      },
+      {
+        "sentenceIndex": 65,
+        "startTime": 7.7955555555555565,
+        "endTime": 11.026666666666667,
+        "text": "It feels just like being in church."
+      },
+      {
+        "sentenceIndex": 66,
+        "startTime": 11.026666666666667,
+        "endTime": 19.306666666666665,
+        "text": "'Many people act well,' said the Miller, 'but few talk well, which shows talking is harder and better.'"
+      },
+      {
+        "sentenceIndex": 67,
+        "startTime": 19.306666666666665,
+        "endTime": 25.204444444444444,
+        "text": "He looked at his son, who felt ashamed and cried into his tea."
+      }
+    ],
+    "wordCount": 55,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:38.799Z"
+    }
+  },
+  {
+    "index": 17,
+    "sentences": [
+      {
+        "sentenceIndex": 68,
+        "text": "But he was young, so you should forgive him."
+      },
+      {
+        "sentenceIndex": 69,
+        "text": "'Is that the end of the story?'"
+      },
+      {
+        "sentenceIndex": 70,
+        "text": "Certainly not, answered the Linnet, that is the beginning."
+      },
+      {
+        "sentenceIndex": 71,
+        "text": "Then you are behind the times, said the Water-rat."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_17.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_17.mp3",
+    "duration": 16.031111111111112,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 68,
+        "startTime": 0,
+        "endTime": 4.12,
+        "text": "But he was young, so you should forgive him."
+      },
+      {
+        "sentenceIndex": 69,
+        "startTime": 4.12,
+        "endTime": 7.351111111111111,
+        "text": "'Is that the end of the story?'"
+      },
+      {
+        "sentenceIndex": 70,
+        "startTime": 7.351111111111111,
+        "endTime": 11.47111111111111,
+        "text": "Certainly not, answered the Linnet, that is the beginning."
+      },
+      {
+        "sentenceIndex": 71,
+        "startTime": 11.47111111111111,
+        "endTime": 15.591111111111111,
+        "text": "Then you are behind the times, said the Water-rat."
+      }
+    ],
+    "wordCount": 34,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:43.657Z"
+    }
+  },
+  {
+    "index": 18,
+    "sentences": [
+      {
+        "sentenceIndex": 72,
+        "text": "Every good storyteller now starts with the end and then goes to the beginning, finishing with the middle."
+      },
+      {
+        "sentenceIndex": 73,
+        "text": "That is the new way."
+      },
+      {
+        "sentenceIndex": 74,
+        "text": "I heard about it from a critic who walked by the pond with a young man."
+      },
+      {
+        "sentenceIndex": 75,
+        "text": "He talked a lot about it, and I think he was right because he wore blue glasses and was bald, and whenever the young man spoke, he said 'Pooh!'"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_18.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_18.mp3",
+    "duration": 32.50222222222222,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 72,
+        "startTime": 0,
+        "endTime": 8.28,
+        "text": "Every good storyteller now starts with the end and then goes to the beginning, finishing with the middle."
+      },
+      {
+        "sentenceIndex": 73,
+        "startTime": 8.28,
+        "endTime": 10.622222222222222,
+        "text": "That is the new way."
+      },
+      {
+        "sentenceIndex": 74,
+        "startTime": 10.622222222222222,
+        "endTime": 17.933333333333334,
+        "text": "I heard about it from a critic who walked by the pond with a young man."
+      },
+      {
+        "sentenceIndex": 75,
+        "startTime": 17.933333333333334,
+        "endTime": 31.54222222222222,
+        "text": "He talked a lot about it, and I think he was right because he wore blue glasses and was bald, and whenever the young man spoke, he said 'Pooh!'"
+      }
+    ],
+    "wordCount": 68,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:50.415Z"
+    }
+  },
+  {
+    "index": 19,
+    "sentences": [
+      {
+        "sentenceIndex": 76,
+        "text": "But please continue with your story."
+      },
+      {
+        "sentenceIndex": 77,
+        "text": "I really like the Miller."
+      },
+      {
+        "sentenceIndex": 78,
+        "text": "I have many beautiful thoughts, so we have a lot in common."
+      },
+      {
+        "sentenceIndex": 79,
+        "text": "Well, said the Linnet, hopping on one leg, when winter ended and primroses opened, the Miller told his wife he would visit little Hans."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_19.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_19.mp3",
+    "duration": 22.32888888888889,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 76,
+        "startTime": 0,
+        "endTime": 2.786666666666667,
+        "text": "But please continue with your story."
+      },
+      {
+        "sentenceIndex": 77,
+        "startTime": 2.786666666666667,
+        "endTime": 5.1288888888888895,
+        "text": "I really like the Miller."
+      },
+      {
+        "sentenceIndex": 78,
+        "startTime": 5.1288888888888895,
+        "endTime": 10.582222222222224,
+        "text": "I have many beautiful thoughts, so we have a lot in common."
+      },
+      {
+        "sentenceIndex": 79,
+        "startTime": 10.582222222222224,
+        "endTime": 21.768888888888892,
+        "text": "Well, said the Linnet, hopping on one leg, when winter ended and primroses opened, the Miller told his wife he would visit little Hans."
+      }
+    ],
+    "wordCount": 47,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:39:56.045Z"
+    }
+  },
+  {
+    "index": 20,
+    "sentences": [
+      {
+        "sentenceIndex": 80,
+        "text": "‘Why, you have a good heart!’ cried his Wife."
+      },
+      {
+        "sentenceIndex": 81,
+        "text": "‘You always think of others, and that is nice."
+      },
+      {
+        "sentenceIndex": 82,
+        "text": "Take the big basket with you for the flowers.’"
+      },
+      {
+        "sentenceIndex": 83,
+        "text": "The Miller tied the windmill sails with a strong chain and went down the hill."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_20.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_20.mp3",
+    "duration": 19.90666666666667,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 80,
+        "startTime": 0,
+        "endTime": 4.12,
+        "text": "‘Why, you have a good heart!’ cried his Wife."
+      },
+      {
+        "sentenceIndex": 81,
+        "startTime": 4.12,
+        "endTime": 8.24,
+        "text": "‘You always think of others, and that is nice."
+      },
+      {
+        "sentenceIndex": 82,
+        "startTime": 8.24,
+        "endTime": 12.36,
+        "text": "Take the big basket with you for the flowers.’"
+      },
+      {
+        "sentenceIndex": 83,
+        "startTime": 12.36,
+        "endTime": 19.186666666666667,
+        "text": "The Miller tied the windmill sails with a strong chain and went down the hill."
+      }
+    ],
+    "wordCount": 42,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:01.064Z"
+    }
+  },
+  {
+    "index": 21,
+    "sentences": [
+      {
+        "sentenceIndex": 84,
+        "text": "He had the basket on his arm."
+      },
+      {
+        "sentenceIndex": 85,
+        "text": "‘Good morning, little Hans,’ said the Miller."
+      },
+      {
+        "sentenceIndex": 86,
+        "text": "‘Good morning,’ said Hans, smiling and leaning on his spade."
+      },
+      {
+        "sentenceIndex": 87,
+        "text": "‘How have you been all winter?’ asked the Miller."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_21.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_21.mp3",
+    "duration": 15.546666666666667,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 84,
+        "startTime": 0,
+        "endTime": 3.2311111111111113,
+        "text": "He had the basket on his arm."
+      },
+      {
+        "sentenceIndex": 85,
+        "startTime": 3.2311111111111113,
+        "endTime": 6.4622222222222225,
+        "text": "‘Good morning, little Hans,’ said the Miller."
+      },
+      {
+        "sentenceIndex": 86,
+        "startTime": 6.4622222222222225,
+        "endTime": 11.026666666666667,
+        "text": "‘Good morning,’ said Hans, smiling and leaning on his spade."
+      },
+      {
+        "sentenceIndex": 87,
+        "startTime": 11.026666666666667,
+        "endTime": 15.146666666666668,
+        "text": "‘How have you been all winter?’ asked the Miller."
+      }
+    ],
+    "wordCount": 33,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:05.875Z"
+    }
+  },
+  {
+    "index": 22,
+    "sentences": [
+      {
+        "sentenceIndex": 88,
+        "text": "‘It is very nice of you to ask,’ said Hans."
+      },
+      {
+        "sentenceIndex": 89,
+        "text": "‘I had a hard time, but now spring is here, and I am happy.’"
+      },
+      {
+        "sentenceIndex": 90,
+        "text": "‘We often talked about you during the winter, Hans,’ said the Miller, ‘and we wondered how you were doing."
+      },
+      {
+        "sentenceIndex": 91,
+        "text": "‘That was kind of you,’ said Hans, ‘I was a bit afraid you had forgotten me."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_22.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_22.mp3",
+    "duration": 28.142222222222227,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 88,
+        "startTime": 0,
+        "endTime": 4.564444444444445,
+        "text": "‘It is very nice of you to ask,’ said Hans."
+      },
+      {
+        "sentenceIndex": 89,
+        "startTime": 4.564444444444445,
+        "endTime": 10.906666666666666,
+        "text": "‘I had a hard time, but now spring is here, and I am happy.’"
+      },
+      {
+        "sentenceIndex": 90,
+        "startTime": 10.906666666666666,
+        "endTime": 19.67111111111111,
+        "text": "‘We often talked about you during the winter, Hans,’ said the Miller, ‘and we wondered how you were doing."
+      },
+      {
+        "sentenceIndex": 91,
+        "startTime": 19.67111111111111,
+        "endTime": 26.98222222222222,
+        "text": "‘That was kind of you,’ said Hans, ‘I was a bit afraid you had forgotten me."
+      }
+    ],
+    "wordCount": 59,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:11.754Z"
+    }
+  },
+  {
+    "index": 23,
+    "sentences": [
+      {
+        "sentenceIndex": 92,
+        "text": "‘Hans, I am surprised at you,’ said the Miller; ‘friendship never forgets."
+      },
+      {
+        "sentenceIndex": 93,
+        "text": "That is the wonderful thing about friendship, but I think you don’t understand the poetry of life."
+      },
+      {
+        "sentenceIndex": 94,
+        "text": "By the way, your primroses are looking lovely!"
+      },
+      {
+        "sentenceIndex": 95,
+        "text": "‘They are very lovely,’ said Hans, ‘and I am lucky to have so many."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_23.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_23.mp3",
+    "duration": 24.26666666666667,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 92,
+        "startTime": 0,
+        "endTime": 5.453333333333334,
+        "text": "‘Hans, I am surprised at you,’ said the Miller; ‘friendship never forgets."
+      },
+      {
+        "sentenceIndex": 93,
+        "startTime": 5.453333333333334,
+        "endTime": 13.24888888888889,
+        "text": "That is the wonderful thing about friendship, but I think you don’t understand the poetry of life."
+      },
+      {
+        "sentenceIndex": 94,
+        "startTime": 13.24888888888889,
+        "endTime": 16.924444444444447,
+        "text": "By the way, your primroses are looking lovely!"
+      },
+      {
+        "sentenceIndex": 95,
+        "startTime": 16.924444444444447,
+        "endTime": 23.26666666666667,
+        "text": "‘They are very lovely,’ said Hans, ‘and I am lucky to have so many."
+      }
+    ],
+    "wordCount": 51,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:17.538Z"
+    }
+  },
+  {
+    "index": 24,
+    "sentences": [
+      {
+        "sentenceIndex": 96,
+        "text": "I will take them to the market and sell them to the Burgomaster’s daughter, then buy back my wheelbarrow with the money."
+      },
+      {
+        "sentenceIndex": 97,
+        "text": "‘Buy back your wheelbarrow?"
+      },
+      {
+        "sentenceIndex": 98,
+        "text": "Do you mean you have sold it?"
+      },
+      {
+        "sentenceIndex": 99,
+        "text": "That was a very silly thing to do!"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_24.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_24.mp3",
+    "duration": 19.422222222222228,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 96,
+        "startTime": 0,
+        "endTime": 10.217777777777778,
+        "text": "I will take them to the market and sell them to the Burgomaster’s daughter, then buy back my wheelbarrow with the money."
+      },
+      {
+        "sentenceIndex": 97,
+        "startTime": 10.217777777777778,
+        "endTime": 12.115555555555556,
+        "text": "‘Buy back your wheelbarrow?"
+      },
+      {
+        "sentenceIndex": 98,
+        "startTime": 12.115555555555556,
+        "endTime": 15.346666666666668,
+        "text": "Do you mean you have sold it?"
+      },
+      {
+        "sentenceIndex": 99,
+        "startTime": 15.346666666666668,
+        "endTime": 19.022222222222222,
+        "text": "That was a very silly thing to do!"
+      }
+    ],
+    "wordCount": 41,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:22.803Z"
+    }
+  },
+  {
+    "index": 25,
+    "sentences": [
+      {
+        "sentenceIndex": 100,
+        "text": "Hans said he had to sell things because he needed money."
+      },
+      {
+        "sentenceIndex": 101,
+        "text": "Winter was hard for him, and he had no money for bread."
+      },
+      {
+        "sentenceIndex": 102,
+        "text": "He sold his silver buttons, silver chain, big pipe, and wheelbarrow."
+      },
+      {
+        "sentenceIndex": 103,
+        "text": "But now he plans to buy them all back again."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_25.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_25.mp3",
+    "duration": 20.875555555555557,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 100,
+        "startTime": 0,
+        "endTime": 5.008888888888889,
+        "text": "Hans said he had to sell things because he needed money."
+      },
+      {
+        "sentenceIndex": 101,
+        "startTime": 5.008888888888889,
+        "endTime": 10.462222222222223,
+        "text": "Winter was hard for him, and he had no money for bread."
+      },
+      {
+        "sentenceIndex": 102,
+        "startTime": 10.462222222222223,
+        "endTime": 15.471111111111114,
+        "text": "He sold his silver buttons, silver chain, big pipe, and wheelbarrow."
+      },
+      {
+        "sentenceIndex": 103,
+        "startTime": 15.471111111111114,
+        "endTime": 20.035555555555558,
+        "text": "But now he plans to buy them all back again."
+      }
+    ],
+    "wordCount": 44,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:28.201Z"
+    }
+  },
+  {
+    "index": 26,
+    "sentences": [
+      {
+        "sentenceIndex": 104,
+        "text": "The Miller told Hans he would give him his wheelbarrow."
+      },
+      {
+        "sentenceIndex": 105,
+        "text": "The wheelbarrow is not in good shape, but he will still give it."
+      },
+      {
+        "sentenceIndex": 106,
+        "text": "The Miller thinks he is generous, even if others might disagree."
+      },
+      {
+        "sentenceIndex": 107,
+        "text": "He believes generosity is important in friendship and has a new wheelbarrow."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_26.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_26.mp3",
+    "duration": 21.84444444444445,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 104,
+        "startTime": 0,
+        "endTime": 4.564444444444445,
+        "text": "The Miller told Hans he would give him his wheelbarrow."
+      },
+      {
+        "sentenceIndex": 105,
+        "startTime": 4.564444444444445,
+        "endTime": 10.462222222222223,
+        "text": "The wheelbarrow is not in good shape, but he will still give it."
+      },
+      {
+        "sentenceIndex": 106,
+        "startTime": 10.462222222222223,
+        "endTime": 15.471111111111114,
+        "text": "The Miller thinks he is generous, even if others might disagree."
+      },
+      {
+        "sentenceIndex": 107,
+        "startTime": 15.471111111111114,
+        "endTime": 20.924444444444447,
+        "text": "He believes generosity is important in friendship and has a new wheelbarrow."
+      }
+    ],
+    "wordCount": 46,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:33.882Z"
+    }
+  },
+  {
+    "index": 27,
+    "sentences": [
+      {
+        "sentenceIndex": 108,
+        "text": "He reassures Hans that he will give him the wheelbarrow."
+      },
+      {
+        "sentenceIndex": 109,
+        "text": "Hans felt happy and said the Miller was really generous."
+      },
+      {
+        "sentenceIndex": 110,
+        "text": "I can fix it easily because I have a plank of wood."
+      },
+      {
+        "sentenceIndex": 111,
+        "text": "'A plank of wood!'"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_27.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_27.mp3",
+    "duration": 17,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 108,
+        "startTime": 0,
+        "endTime": 4.564444444444445,
+        "text": "He reassures Hans that he will give him the wheelbarrow."
+      },
+      {
+        "sentenceIndex": 109,
+        "startTime": 4.564444444444445,
+        "endTime": 9.12888888888889,
+        "text": "Hans felt happy and said the Miller was really generous."
+      },
+      {
+        "sentenceIndex": 110,
+        "startTime": 9.12888888888889,
+        "endTime": 14.582222222222224,
+        "text": "I can fix it easily because I have a plank of wood."
+      },
+      {
+        "sentenceIndex": 111,
+        "startTime": 14.582222222222224,
+        "endTime": 16.480000000000004,
+        "text": "'A plank of wood!'"
+      }
+    ],
+    "wordCount": 36,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:38.525Z"
+    }
+  },
+  {
+    "index": 28,
+    "sentences": [
+      {
+        "sentenceIndex": 112,
+        "text": "said the Miller, 'That is exactly what I need for my barn roof."
+      },
+      {
+        "sentenceIndex": 113,
+        "text": "There is a big hole in it, and the corn will get wet if I don't fix it."
+      },
+      {
+        "sentenceIndex": 114,
+        "text": "How lucky you told me about it!"
+      },
+      {
+        "sentenceIndex": 115,
+        "text": "It's amazing how one good action leads to another."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_28.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_28.mp3",
+    "duration": 22.32888888888889,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 112,
+        "startTime": 0,
+        "endTime": 5.897777777777779,
+        "text": "said the Miller, 'That is exactly what I need for my barn roof."
+      },
+      {
+        "sentenceIndex": 113,
+        "startTime": 5.897777777777779,
+        "endTime": 14.177777777777777,
+        "text": "There is a big hole in it, and the corn will get wet if I don't fix it."
+      },
+      {
+        "sentenceIndex": 114,
+        "startTime": 14.177777777777777,
+        "endTime": 17.40888888888889,
+        "text": "How lucky you told me about it!"
+      },
+      {
+        "sentenceIndex": 115,
+        "startTime": 17.40888888888889,
+        "endTime": 21.52888888888889,
+        "text": "It's amazing how one good action leads to another."
+      }
+    ],
+    "wordCount": 47,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:45.750Z"
+    }
+  },
+  {
+    "index": 29,
+    "sentences": [
+      {
+        "sentenceIndex": 116,
+        "text": "I gave you my wheelbarrow, and now you will give me your plank."
+      },
+      {
+        "sentenceIndex": 117,
+        "text": "Of course, the wheelbarrow is worth more than the plank, but true friendship doesn't care about that."
+      },
+      {
+        "sentenceIndex": 118,
+        "text": "Please get it now, and I will start working on my barn today."
+      },
+      {
+        "sentenceIndex": 119,
+        "text": "'Certainly,' said little Hans, and he ran to the shed and pulled out the plank."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_29.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_29.mp3",
+    "duration": 27.65777777777778,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 116,
+        "startTime": 0,
+        "endTime": 5.897777777777779,
+        "text": "I gave you my wheelbarrow, and now you will give me your plank."
+      },
+      {
+        "sentenceIndex": 117,
+        "startTime": 5.897777777777779,
+        "endTime": 13.693333333333335,
+        "text": "Of course, the wheelbarrow is worth more than the plank, but true friendship doesn't care about that."
+      },
+      {
+        "sentenceIndex": 118,
+        "startTime": 13.693333333333335,
+        "endTime": 19.591111111111115,
+        "text": "Please get it now, and I will start working on my barn today."
+      },
+      {
+        "sentenceIndex": 119,
+        "startTime": 19.591111111111115,
+        "endTime": 26.417777777777783,
+        "text": "'Certainly,' said little Hans, and he ran to the shed and pulled out the plank."
+      }
+    ],
+    "wordCount": 58,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:52.163Z"
+    }
+  },
+  {
+    "index": 30,
+    "sentences": [
+      {
+        "sentenceIndex": 120,
+        "text": "The Miller looked at the plank and said it was not very big, so he was afraid there would be none left for Hans after fixing his barn roof."
+      },
+      {
+        "sentenceIndex": 121,
+        "text": "He said it was not his fault, and since he gave Hans his wheelbarrow, he wanted some flowers in return."
+      },
+      {
+        "sentenceIndex": 122,
+        "text": "The Miller gave Hans a basket and told him to fill it completely."
+      },
+      {
+        "sentenceIndex": 123,
+        "text": "Hans asked if he really had to fill it completely."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_30.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_30.mp3",
+    "duration": 34.44,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 120,
+        "startTime": 0,
+        "endTime": 13.608888888888888,
+        "text": "The Miller looked at the plank and said it was not very big, so he was afraid there would be none left for Hans after fixing his barn roof."
+      },
+      {
+        "sentenceIndex": 121,
+        "startTime": 13.608888888888888,
+        "endTime": 22.857777777777777,
+        "text": "He said it was not his fault, and since he gave Hans his wheelbarrow, he wanted some flowers in return."
+      },
+      {
+        "sentenceIndex": 122,
+        "startTime": 22.857777777777777,
+        "endTime": 28.755555555555556,
+        "text": "The Miller gave Hans a basket and told him to fill it completely."
+      },
+      {
+        "sentenceIndex": 123,
+        "startTime": 28.755555555555556,
+        "endTime": 33.32,
+        "text": "Hans asked if he really had to fill it completely."
+      }
+    ],
+    "wordCount": 72,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:40:59.321Z"
+    }
+  },
+  {
+    "index": 31,
+    "sentences": [
+      {
+        "sentenceIndex": 124,
+        "text": "Hans felt sad because the basket was big, and he knew he would have no flowers left for the market."
+      },
+      {
+        "sentenceIndex": 125,
+        "text": "The Miller said he gave Hans his wheelbarrow, so asking for a few flowers was not much."
+      },
+      {
+        "sentenceIndex": 126,
+        "text": "He thought true friendship should be free from any selfishness."
+      },
+      {
+        "sentenceIndex": 127,
+        "text": "Hans called the Miller his dear friend and said he could have all the flowers."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_31.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_31.mp3",
+    "duration": 29.59555555555556,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 124,
+        "startTime": 0,
+        "endTime": 9.248888888888889,
+        "text": "Hans felt sad because the basket was big, and he knew he would have no flowers left for the market."
+      },
+      {
+        "sentenceIndex": 125,
+        "startTime": 9.248888888888889,
+        "endTime": 17.044444444444444,
+        "text": "The Miller said he gave Hans his wheelbarrow, so asking for a few flowers was not much."
+      },
+      {
+        "sentenceIndex": 126,
+        "startTime": 17.044444444444444,
+        "endTime": 21.608888888888888,
+        "text": "He thought true friendship should be free from any selfishness."
+      },
+      {
+        "sentenceIndex": 127,
+        "startTime": 21.608888888888888,
+        "endTime": 28.435555555555556,
+        "text": "Hans called the Miller his dear friend and said he could have all the flowers."
+      }
+    ],
+    "wordCount": 62,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:41:06.110Z"
+    }
+  },
+  {
+    "index": 32,
+    "sentences": [
+      {
+        "sentenceIndex": 128,
+        "text": "Hans said he valued the Miller's opinion more than his silver buttons, and he picked all his primroses to fill the basket."
+      },
+      {
+        "sentenceIndex": 129,
+        "text": "The Miller said goodbye to Hans as he went up the hill with the plank and the big basket."
+      },
+      {
+        "sentenceIndex": 130,
+        "text": "'Good-bye,' said little Hans, and he started digging happily because he was excited about the wheelbarrow."
+      },
+      {
+        "sentenceIndex": 131,
+        "text": "The next day, he was nailing some honeysuckle to the porch when he heard the Miller calling him from the road."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_32.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_32.mp3",
+    "duration": 37.34666666666667,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 128,
+        "startTime": 0,
+        "endTime": 10.217777777777778,
+        "text": "Hans said he valued the Miller's opinion more than his silver buttons, and he picked all his primroses to fill the basket."
+      },
+      {
+        "sentenceIndex": 129,
+        "startTime": 10.217777777777778,
+        "endTime": 18.98222222222222,
+        "text": "The Miller said goodbye to Hans as he went up the hill with the plank and the big basket."
+      },
+      {
+        "sentenceIndex": 130,
+        "startTime": 18.98222222222222,
+        "endTime": 26.29333333333333,
+        "text": "'Good-bye,' said little Hans, and he started digging happily because he was excited about the wheelbarrow."
+      },
+      {
+        "sentenceIndex": 131,
+        "startTime": 26.29333333333333,
+        "endTime": 36.026666666666664,
+        "text": "The next day, he was nailing some honeysuckle to the porch when he heard the Miller calling him from the road."
+      }
+    ],
+    "wordCount": 78,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:41:13.869Z"
+    }
+  },
+  {
+    "index": 33,
+    "sentences": [
+      {
+        "sentenceIndex": 132,
+        "text": "Hans quickly climbed down the ladder, ran through the garden, and looked over the wall."
+      },
+      {
+        "sentenceIndex": 133,
+        "text": "He saw the Miller with a large sack of flour on his back."
+      },
+      {
+        "sentenceIndex": 134,
+        "text": "'Dear little Hans,' said the Miller, 'could you carry this sack of flour to market for me?'"
+      },
+      {
+        "sentenceIndex": 135,
+        "text": "'Oh, I am so sorry,' said Hans, 'but I am really busy today."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_33.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_33.mp3",
+    "duration": 27.65777777777778,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 132,
+        "startTime": 0,
+        "endTime": 6.826666666666667,
+        "text": "Hans quickly climbed down the ladder, ran through the garden, and looked over the wall."
+      },
+      {
+        "sentenceIndex": 133,
+        "startTime": 6.826666666666667,
+        "endTime": 12.724444444444446,
+        "text": "He saw the Miller with a large sack of flour on his back."
+      },
+      {
+        "sentenceIndex": 134,
+        "startTime": 12.724444444444446,
+        "endTime": 20.520000000000003,
+        "text": "'Dear little Hans,' said the Miller, 'could you carry this sack of flour to market for me?'"
+      },
+      {
+        "sentenceIndex": 135,
+        "startTime": 20.520000000000003,
+        "endTime": 26.417777777777783,
+        "text": "'Oh, I am so sorry,' said Hans, 'but I am really busy today."
+      }
+    ],
+    "wordCount": 58,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:41:20.101Z"
+    }
+  },
+  {
+    "index": 34,
+    "sentences": [
+      {
+        "sentenceIndex": 136,
+        "text": "I need to nail up all my creepers, water my flowers, and roll my grass."
+      },
+      {
+        "sentenceIndex": 137,
+        "text": "'Well,' said the Miller, 'since I am giving you my wheelbarrow, it seems unfriendly to refuse.'"
+      },
+      {
+        "sentenceIndex": 138,
+        "text": "'Oh, don't say that,' cried little Hans, 'I wouldn't be unfriendly for anything,' and he ran to get his cap and carried the big sack on his shoulders."
+      },
+      {
+        "sentenceIndex": 139,
+        "text": "It was a very hot day, the road was very dusty, and before Hans reached the sixth milestone, he was so tired that he had to sit down and rest."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_34.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_34.mp3",
+    "duration": 42.675555555555555,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 136,
+        "startTime": 0,
+        "endTime": 6.826666666666667,
+        "text": "I need to nail up all my creepers, water my flowers, and roll my grass."
+      },
+      {
+        "sentenceIndex": 137,
+        "startTime": 6.826666666666667,
+        "endTime": 14.137777777777778,
+        "text": "'Well,' said the Miller, 'since I am giving you my wheelbarrow, it seems unfriendly to refuse.'"
+      },
+      {
+        "sentenceIndex": 138,
+        "startTime": 14.137777777777778,
+        "endTime": 27.26222222222222,
+        "text": "'Oh, don't say that,' cried little Hans, 'I wouldn't be unfriendly for anything,' and he ran to get his cap and carried the big sack on his shoulders."
+      },
+      {
+        "sentenceIndex": 139,
+        "startTime": 27.26222222222222,
+        "endTime": 41.355555555555554,
+        "text": "It was a very hot day, the road was very dusty, and before Hans reached the sixth milestone, he was so tired that he had to sit down and rest."
+      }
+    ],
+    "wordCount": 89,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:41:29.026Z"
+    }
+  },
+  {
+    "index": 35,
+    "sentences": [
+      {
+        "sentenceIndex": 140,
+        "text": "However, he went on bravely, and at last he reached the market."
+      },
+      {
+        "sentenceIndex": 141,
+        "text": "After he waited some time, he sold the flour for a good price, and then he went home quickly because he was afraid of meeting robbers."
+      },
+      {
+        "sentenceIndex": 142,
+        "text": "'It was a hard day,' said little Hans as he went to bed, 'but I am glad I helped the Miller because he is my best friend, and he will give me his wheelbarrow.'"
+      },
+      {
+        "sentenceIndex": 143,
+        "text": "Early the next morning, the Miller came to get money for his flour, but little Hans was still in bed because he was very tired."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_35.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_35.mp3",
+    "duration": 46.55111111111111,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 140,
+        "startTime": 0,
+        "endTime": 5.453333333333334,
+        "text": "However, he went on bravely, and at last he reached the market."
+      },
+      {
+        "sentenceIndex": 141,
+        "startTime": 5.453333333333334,
+        "endTime": 17.60888888888889,
+        "text": "After he waited some time, he sold the flour for a good price, and then he went home quickly because he was afraid of meeting robbers."
+      },
+      {
+        "sentenceIndex": 142,
+        "startTime": 17.60888888888889,
+        "endTime": 33.64,
+        "text": "'It was a hard day,' said little Hans as he went to bed, 'but I am glad I helped the Miller because he is my best friend, and he will give me his wheelbarrow.'"
+      },
+      {
+        "sentenceIndex": 143,
+        "startTime": 33.64,
+        "endTime": 45.31111111111111,
+        "text": "Early the next morning, the Miller came to get money for his flour, but little Hans was still in bed because he was very tired."
+      }
+    ],
+    "wordCount": 97,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:41:37.117Z"
+    }
+  },
+  {
+    "index": 36,
+    "sentences": [
+      {
+        "sentenceIndex": 144,
+        "text": "'Really,' said the Miller, 'you are very lazy."
+      },
+      {
+        "sentenceIndex": 145,
+        "text": "Since I will give you my wheelbarrow, I think you should work harder."
+      },
+      {
+        "sentenceIndex": 146,
+        "text": "Idleness is a big sin, and I don't like my friends to be lazy."
+      },
+      {
+        "sentenceIndex": 147,
+        "text": "You must not mind me speaking honestly to you."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_36.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_36.mp3",
+    "duration": 20.875555555555557,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 144,
+        "startTime": 0,
+        "endTime": 3.675555555555556,
+        "text": "'Really,' said the Miller, 'you are very lazy."
+      },
+      {
+        "sentenceIndex": 145,
+        "startTime": 3.675555555555556,
+        "endTime": 9.573333333333334,
+        "text": "Since I will give you my wheelbarrow, I think you should work harder."
+      },
+      {
+        "sentenceIndex": 146,
+        "startTime": 9.573333333333334,
+        "endTime": 15.915555555555557,
+        "text": "Idleness is a big sin, and I don't like my friends to be lazy."
+      },
+      {
+        "sentenceIndex": 147,
+        "startTime": 15.915555555555557,
+        "endTime": 20.035555555555558,
+        "text": "You must not mind me speaking honestly to you."
+      }
+    ],
+    "wordCount": 44,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:41:42.439Z"
+    }
+  },
+  {
+    "index": 37,
+    "sentences": [
+      {
+        "sentenceIndex": 148,
+        "text": "I would not do this if I were not your friend."
+      },
+      {
+        "sentenceIndex": 149,
+        "text": "But what is the use of friendship if one cannot say what one means?"
+      },
+      {
+        "sentenceIndex": 150,
+        "text": "Anyone can say nice things and try to please others, but a true friend tells the truth even if it hurts."
+      },
+      {
+        "sentenceIndex": 151,
+        "text": "In fact, a true friend likes to be honest because it helps you."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_37.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_37.mp3",
+    "duration": 28.142222222222227,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 148,
+        "startTime": 0,
+        "endTime": 5.008888888888889,
+        "text": "I would not do this if I were not your friend."
+      },
+      {
+        "sentenceIndex": 149,
+        "startTime": 5.008888888888889,
+        "endTime": 11.351111111111113,
+        "text": "But what is the use of friendship if one cannot say what one means?"
+      },
+      {
+        "sentenceIndex": 150,
+        "startTime": 11.351111111111113,
+        "endTime": 21.084444444444443,
+        "text": "Anyone can say nice things and try to please others, but a true friend tells the truth even if it hurts."
+      },
+      {
+        "sentenceIndex": 151,
+        "startTime": 21.084444444444443,
+        "endTime": 26.982222222222223,
+        "text": "In fact, a true friend likes to be honest because it helps you."
+      }
+    ],
+    "wordCount": 59,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:41:48.407Z"
+    }
+  },
+  {
+    "index": 38,
+    "sentences": [
+      {
+        "sentenceIndex": 152,
+        "text": "'I am very sorry,' said little Hans, rubbing his eyes and taking off his night-cap, 'but I was so tired that I stayed in bed to listen to the birds sing."
+      },
+      {
+        "sentenceIndex": 153,
+        "text": "Do you know I always work better after hearing the birds sing?"
+      },
+      {
+        "sentenceIndex": 154,
+        "text": "'I am glad to hear that,' said the Miller, patting little Hans on the back, 'because I need you to come to the mill and fix my barn roof after you get dressed."
+      },
+      {
+        "sentenceIndex": 155,
+        "text": "Poor little Hans wanted to work in his garden because his flowers needed water, but he did not want to say no to the Miller, who was a good friend."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_38.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_38.mp3",
+    "duration": 50.91111111111111,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 152,
+        "startTime": 0,
+        "endTime": 14.577777777777778,
+        "text": "'I am very sorry,' said little Hans, rubbing his eyes and taking off his night-cap, 'but I was so tired that I stayed in bed to listen to the birds sing."
+      },
+      {
+        "sentenceIndex": 153,
+        "startTime": 14.577777777777778,
+        "endTime": 20.031111111111112,
+        "text": "Do you know I always work better after hearing the birds sing?"
+      },
+      {
+        "sentenceIndex": 154,
+        "startTime": 20.031111111111112,
+        "endTime": 35.57777777777778,
+        "text": "'I am glad to hear that,' said the Miller, patting little Hans on the back, 'because I need you to come to the mill and fix my barn roof after you get dressed."
+      },
+      {
+        "sentenceIndex": 155,
+        "startTime": 35.57777777777778,
+        "endTime": 49.67111111111112,
+        "text": "Poor little Hans wanted to work in his garden because his flowers needed water, but he did not want to say no to the Miller, who was a good friend."
+      }
+    ],
+    "wordCount": 106,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:41:58.109Z"
+    }
+  },
+  {
+    "index": 39,
+    "sentences": [
+      {
+        "sentenceIndex": 156,
+        "text": "'Do you think it would be unfriendly if I said I was busy?"
+      },
+      {
+        "sentenceIndex": 157,
+        "text": "' he asked in a shy and quiet voice."
+      },
+      {
+        "sentenceIndex": 158,
+        "text": "'Well, honestly,' replied the Miller, 'I don't think it's much to ask since I plan to give you my wheelbarrow, but if you refuse, I will do it myself."
+      },
+      {
+        "sentenceIndex": 159,
+        "text": "' 'Oh!"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_39.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_39.mp3",
+    "duration": 25.235555555555557,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 156,
+        "startTime": 0,
+        "endTime": 5.897777777777779,
+        "text": "'Do you think it would be unfriendly if I said I was busy?"
+      },
+      {
+        "sentenceIndex": 157,
+        "startTime": 5.897777777777779,
+        "endTime": 10.017777777777779,
+        "text": "' he asked in a shy and quiet voice."
+      },
+      {
+        "sentenceIndex": 158,
+        "startTime": 10.017777777777779,
+        "endTime": 23.626666666666665,
+        "text": "'Well, honestly,' replied the Miller, 'I don't think it's much to ask since I plan to give you my wheelbarrow, but if you refuse, I will do it myself."
+      },
+      {
+        "sentenceIndex": 159,
+        "startTime": 23.626666666666665,
+        "endTime": 24.635555555555555,
+        "text": "' 'Oh!"
+      }
+    ],
+    "wordCount": 53,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:42:04.661Z"
+    }
+  },
+  {
+    "index": 40,
+    "sentences": [
+      {
+        "sentenceIndex": 160,
+        "text": "Little Hans cried, 'On no account!' and jumped out of bed."
+      },
+      {
+        "sentenceIndex": 161,
+        "text": "He dressed himself and went up to the barn quickly."
+      },
+      {
+        "sentenceIndex": 162,
+        "text": "Hans worked there all day long until sunset."
+      },
+      {
+        "sentenceIndex": 163,
+        "text": "At sunset, the Miller came to see how Hans was doing."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_40.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_40.mp3",
+    "duration": 18.93777777777778,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 160,
+        "startTime": 0,
+        "endTime": 5.008888888888889,
+        "text": "Little Hans cried, 'On no account!' and jumped out of bed."
+      },
+      {
+        "sentenceIndex": 161,
+        "startTime": 5.008888888888889,
+        "endTime": 9.573333333333334,
+        "text": "He dressed himself and went up to the barn quickly."
+      },
+      {
+        "sentenceIndex": 162,
+        "startTime": 9.573333333333334,
+        "endTime": 13.24888888888889,
+        "text": "Hans worked there all day long until sunset."
+      },
+      {
+        "sentenceIndex": 163,
+        "startTime": 13.24888888888889,
+        "endTime": 18.25777777777778,
+        "text": "At sunset, the Miller came to see how Hans was doing."
+      }
+    ],
+    "wordCount": 40,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:42:09.884Z"
+    }
+  },
+  {
+    "index": 41,
+    "sentences": [
+      {
+        "sentenceIndex": 164,
+        "text": "'Have you fixed the hole in the roof yet, little Hans?' the Miller asked cheerfully."
+      },
+      {
+        "sentenceIndex": 165,
+        "text": "'It is completely fixed,' answered little Hans, coming down the ladder."
+      },
+      {
+        "sentenceIndex": 166,
+        "text": "'Ah!' said the Miller, 'Working for others is the best work.'"
+      },
+      {
+        "sentenceIndex": 167,
+        "text": "'It is a great privilege to hear you talk,' said little Hans, sitting down and wiping his forehead."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_41.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_41.mp3",
+    "duration": 26.204444444444448,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 164,
+        "startTime": 0,
+        "endTime": 6.826666666666667,
+        "text": "'Have you fixed the hole in the roof yet, little Hans?' the Miller asked cheerfully."
+      },
+      {
+        "sentenceIndex": 165,
+        "startTime": 6.826666666666667,
+        "endTime": 11.835555555555556,
+        "text": "'It is completely fixed,' answered little Hans, coming down the ladder."
+      },
+      {
+        "sentenceIndex": 166,
+        "startTime": 11.835555555555556,
+        "endTime": 16.844444444444445,
+        "text": "'Ah!' said the Miller, 'Working for others is the best work.'"
+      },
+      {
+        "sentenceIndex": 167,
+        "startTime": 16.844444444444445,
+        "endTime": 25.124444444444443,
+        "text": "'It is a great privilege to hear you talk,' said little Hans, sitting down and wiping his forehead."
+      }
+    ],
+    "wordCount": 55,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:42:16.537Z"
+    }
+  },
+  {
+    "index": 42,
+    "sentences": [
+      {
+        "sentenceIndex": 168,
+        "text": "'I am afraid I will never have such beautiful ideas as you have.'"
+      },
+      {
+        "sentenceIndex": 169,
+        "text": "'Oh!' replied the Miller."
+      },
+      {
+        "sentenceIndex": 170,
+        "text": "The Miller said, 'They will come to you, but you must work harder.'"
+      },
+      {
+        "sentenceIndex": 171,
+        "text": "Right now, you only know how to be a friend, but one day you will understand why."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_42.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_42.mp3",
+    "duration": 22.32888888888889,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 168,
+        "startTime": 0,
+        "endTime": 5.897777777777779,
+        "text": "'I am afraid I will never have such beautiful ideas as you have.'"
+      },
+      {
+        "sentenceIndex": 169,
+        "startTime": 5.897777777777779,
+        "endTime": 7.7955555555555565,
+        "text": "'Oh!' replied the Miller."
+      },
+      {
+        "sentenceIndex": 170,
+        "startTime": 7.7955555555555565,
+        "endTime": 13.693333333333335,
+        "text": "The Miller said, 'They will come to you, but you must work harder.'"
+      },
+      {
+        "sentenceIndex": 171,
+        "startTime": 13.693333333333335,
+        "endTime": 21.48888888888889,
+        "text": "Right now, you only know how to be a friend, but one day you will understand why."
+      }
+    ],
+    "wordCount": 47,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:42:22.065Z"
+    }
+  },
+  {
+    "index": 43,
+    "sentences": [
+      {
+        "sentenceIndex": 172,
+        "text": "Little Hans asked, 'Do you really think I will?'"
+      },
+      {
+        "sentenceIndex": 173,
+        "text": "The Miller replied, 'I am sure you will, but now you should rest because I need you to take my sheep to the mountain tomorrow.'"
+      },
+      {
+        "sentenceIndex": 174,
+        "text": "Hans was too scared to say no, so the next morning, the Miller brought the sheep to Hans's house, and Hans took them to the mountain."
+      },
+      {
+        "sentenceIndex": 175,
+        "text": "It took Hans all day to go there and back, and when he got home, he was so tired that he fell asleep in his chair and did not wake up until morning."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_43.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_43.mp3",
+    "duration": 44.61333333333334,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 172,
+        "startTime": 0,
+        "endTime": 4.12,
+        "text": "Little Hans asked, 'Do you really think I will?'"
+      },
+      {
+        "sentenceIndex": 173,
+        "startTime": 4.12,
+        "endTime": 15.79111111111111,
+        "text": "The Miller replied, 'I am sure you will, but now you should rest because I need you to take my sheep to the mountain tomorrow.'"
+      },
+      {
+        "sentenceIndex": 174,
+        "startTime": 15.79111111111111,
+        "endTime": 27.946666666666665,
+        "text": "Hans was too scared to say no, so the next morning, the Miller brought the sheep to Hans's house, and Hans took them to the mountain."
+      },
+      {
+        "sentenceIndex": 175,
+        "startTime": 27.946666666666665,
+        "endTime": 43.49333333333333,
+        "text": "It took Hans all day to go there and back, and when he got home, he was so tired that he fell asleep in his chair and did not wake up until morning."
+      }
+    ],
+    "wordCount": 93,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:42:30.058Z"
+    }
+  },
+  {
+    "index": 44,
+    "sentences": [
+      {
+        "sentenceIndex": 176,
+        "text": "Hans said, 'I will have a wonderful time in my garden,' and he started working right away."
+      },
+      {
+        "sentenceIndex": 177,
+        "text": "But he never had time for his flowers because the Miller always asked him to do long tasks or help at the mill."
+      },
+      {
+        "sentenceIndex": 178,
+        "text": "Hans felt very sad sometimes because he was worried his flowers would think he forgot them."
+      },
+      {
+        "sentenceIndex": 179,
+        "text": "He comforted himself by thinking that the Miller was his best friend."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_44.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_44.mp3",
+    "duration": 32.50222222222222,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 176,
+        "startTime": 0,
+        "endTime": 7.7955555555555565,
+        "text": "Hans said, 'I will have a wonderful time in my garden,' and he started working right away."
+      },
+      {
+        "sentenceIndex": 177,
+        "startTime": 7.7955555555555565,
+        "endTime": 18.497777777777777,
+        "text": "But he never had time for his flowers because the Miller always asked him to do long tasks or help at the mill."
+      },
+      {
+        "sentenceIndex": 178,
+        "startTime": 18.497777777777777,
+        "endTime": 25.808888888888887,
+        "text": "Hans felt very sad sometimes because he was worried his flowers would think he forgot them."
+      },
+      {
+        "sentenceIndex": 179,
+        "startTime": 25.808888888888887,
+        "endTime": 31.26222222222222,
+        "text": "He comforted himself by thinking that the Miller was his best friend."
+      }
+    ],
+    "wordCount": 68,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:42:36.864Z"
+    }
+  },
+  {
+    "index": 45,
+    "sentences": [
+      {
+        "sentenceIndex": 180,
+        "text": "Besides, he used to say, he will give me his wheelbarrow, and that is very generous."
+      },
+      {
+        "sentenceIndex": 181,
+        "text": "So little Hans worked for the Miller, and the Miller talked a lot about friendship, which Hans wrote in a notebook and read every night because he was a good student."
+      },
+      {
+        "sentenceIndex": 182,
+        "text": "One evening, little Hans was sitting by his fire when he heard a loud knock at the door."
+      },
+      {
+        "sentenceIndex": 183,
+        "text": "It was a wild night, and the wind was blowing and roaring around the house so much that at first he thought it was just the storm."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_45.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_45.mp3",
+    "duration": 44.12888888888889,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 180,
+        "startTime": 0,
+        "endTime": 7.311111111111112,
+        "text": "Besides, he used to say, he will give me his wheelbarrow, and that is very generous."
+      },
+      {
+        "sentenceIndex": 181,
+        "startTime": 7.311111111111112,
+        "endTime": 21.88888888888889,
+        "text": "So little Hans worked for the Miller, and the Miller talked a lot about friendship, which Hans wrote in a notebook and read every night because he was a good student."
+      },
+      {
+        "sentenceIndex": 182,
+        "startTime": 21.88888888888889,
+        "endTime": 30.168888888888887,
+        "text": "One evening, little Hans was sitting by his fire when he heard a loud knock at the door."
+      },
+      {
+        "sentenceIndex": 183,
+        "startTime": 30.168888888888887,
+        "endTime": 42.80888888888889,
+        "text": "It was a wild night, and the wind was blowing and roaring around the house so much that at first he thought it was just the storm."
+      }
+    ],
+    "wordCount": 92,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:42:45.623Z"
+    }
+  },
+  {
+    "index": 46,
+    "sentences": [
+      {
+        "sentenceIndex": 184,
+        "text": "But then there was a second knock and a third, each louder than before."
+      },
+      {
+        "sentenceIndex": 185,
+        "text": "'It is a poor traveler,' said little Hans to himself, and he ran to the door."
+      },
+      {
+        "sentenceIndex": 186,
+        "text": "There was the Miller with a lantern in one hand and a big stick in the other."
+      },
+      {
+        "sentenceIndex": 187,
+        "text": "'Dear little Hans,' cried the Miller, 'I am in big trouble."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_46.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_46.mp3",
+    "duration": 27.65777777777778,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 184,
+        "startTime": 0,
+        "endTime": 6.342222222222222,
+        "text": "But then there was a second knock and a third, each louder than before."
+      },
+      {
+        "sentenceIndex": 185,
+        "startTime": 6.342222222222222,
+        "endTime": 13.653333333333334,
+        "text": "'It is a poor traveler,' said little Hans to himself, and he ran to the door."
+      },
+      {
+        "sentenceIndex": 186,
+        "startTime": 13.653333333333334,
+        "endTime": 21.44888888888889,
+        "text": "There was the Miller with a lantern in one hand and a big stick in the other."
+      },
+      {
+        "sentenceIndex": 187,
+        "startTime": 21.44888888888889,
+        "endTime": 26.457777777777782,
+        "text": "'Dear little Hans,' cried the Miller, 'I am in big trouble."
+      }
+    ],
+    "wordCount": 58,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:42:51.763Z"
+    }
+  },
+  {
+    "index": 47,
+    "sentences": [
+      {
+        "sentenceIndex": 188,
+        "text": "My little boy fell off a ladder and hurt himself, and I am going to get the Doctor."
+      },
+      {
+        "sentenceIndex": 189,
+        "text": "But he lives far away, and it is such a bad night, so I thought it would be better if you went instead of me."
+      },
+      {
+        "sentenceIndex": 190,
+        "text": "You know I will give you my wheelbarrow, so you should help me in return."
+      },
+      {
+        "sentenceIndex": 191,
+        "text": "'Certainly,' cried little Hans, 'I am happy you came to me, and I will start right away."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_47.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_47.mp3",
+    "duration": 35.89333333333333,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 188,
+        "startTime": 0,
+        "endTime": 8.28,
+        "text": "My little boy fell off a ladder and hurt himself, and I am going to get the Doctor."
+      },
+      {
+        "sentenceIndex": 189,
+        "startTime": 8.28,
+        "endTime": 19.95111111111111,
+        "text": "But he lives far away, and it is such a bad night, so I thought it would be better if you went instead of me."
+      },
+      {
+        "sentenceIndex": 190,
+        "startTime": 19.95111111111111,
+        "endTime": 26.77777777777778,
+        "text": "You know I will give you my wheelbarrow, so you should help me in return."
+      },
+      {
+        "sentenceIndex": 191,
+        "startTime": 26.77777777777778,
+        "endTime": 34.57333333333334,
+        "text": "'Certainly,' cried little Hans, 'I am happy you came to me, and I will start right away."
+      }
+    ],
+    "wordCount": 75,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:42:59.032Z"
+    }
+  },
+  {
+    "index": 48,
+    "sentences": [
+      {
+        "sentenceIndex": 192,
+        "text": "But you must lend me your lantern because it is so dark that I might fall."
+      },
+      {
+        "sentenceIndex": 193,
+        "text": "'I am very sorry,' said the Miller, 'but it is my new lantern, and I would lose a lot if it got damaged."
+      },
+      {
+        "sentenceIndex": 194,
+        "text": "'Well, never mind, I will go without it,' cried little Hans, and he put on his big fur coat, his warm red cap, and a scarf around his neck, then he left."
+      },
+      {
+        "sentenceIndex": 195,
+        "text": "What a terrible storm it was!"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_48.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_48.mp3",
+    "duration": 36.86222222222222,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 192,
+        "startTime": 0,
+        "endTime": 7.311111111111112,
+        "text": "But you must lend me your lantern because it is so dark that I might fall."
+      },
+      {
+        "sentenceIndex": 193,
+        "startTime": 7.311111111111112,
+        "endTime": 18.013333333333335,
+        "text": "'I am very sorry,' said the Miller, 'but it is my new lantern, and I would lose a lot if it got damaged."
+      },
+      {
+        "sentenceIndex": 194,
+        "startTime": 18.013333333333335,
+        "endTime": 33.07555555555556,
+        "text": "'Well, never mind, I will go without it,' cried little Hans, and he put on his big fur coat, his warm red cap, and a scarf around his neck, then he left."
+      },
+      {
+        "sentenceIndex": 195,
+        "startTime": 33.07555555555556,
+        "endTime": 35.86222222222223,
+        "text": "What a terrible storm it was!"
+      }
+    ],
+    "wordCount": 77,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:43:07.122Z"
+    }
+  },
+  {
+    "index": 49,
+    "sentences": [
+      {
+        "sentenceIndex": 196,
+        "text": "The night was so dark that little Hans could hardly see, and the wind was so strong that he could barely stand."
+      },
+      {
+        "sentenceIndex": 197,
+        "text": "However, he was very brave, and after walking for about three hours, he arrived at the Doctor's house and knocked on the door."
+      },
+      {
+        "sentenceIndex": 198,
+        "text": "'Who is there?"
+      },
+      {
+        "sentenceIndex": 199,
+        "text": "' cried the Doctor, looking out of his bedroom window."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_49.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_49.mp3",
+    "duration": 27.65777777777778,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 196,
+        "startTime": 0,
+        "endTime": 10.217777777777778,
+        "text": "The night was so dark that little Hans could hardly see, and the wind was so strong that he could barely stand."
+      },
+      {
+        "sentenceIndex": 197,
+        "startTime": 10.217777777777778,
+        "endTime": 20.92,
+        "text": "However, he was very brave, and after walking for about three hours, he arrived at the Doctor's house and knocked on the door."
+      },
+      {
+        "sentenceIndex": 198,
+        "startTime": 20.92,
+        "endTime": 22.373333333333335,
+        "text": "'Who is there?"
+      },
+      {
+        "sentenceIndex": 199,
+        "startTime": 22.373333333333335,
+        "endTime": 26.93777777777778,
+        "text": "' cried the Doctor, looking out of his bedroom window."
+      }
+    ],
+    "wordCount": 58,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:43:13.709Z"
+    }
+  },
+  {
+    "index": 50,
+    "sentences": [
+      {
+        "sentenceIndex": 200,
+        "text": "'Little Hans, Doctor.'"
+      },
+      {
+        "sentenceIndex": 201,
+        "text": "'What do you want, little Hans?'"
+      },
+      {
+        "sentenceIndex": 202,
+        "text": "'The Miller's son fell from a ladder and hurt himself, so the Miller wants you to come quickly.'"
+      },
+      {
+        "sentenceIndex": 203,
+        "text": "'All right!' said the Doctor, and he got his horse, his big boots, and his lantern, then came downstairs and rode towards the Miller's house with little Hans following him."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_50.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_50.mp3",
+    "duration": 27.173333333333336,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 200,
+        "startTime": 0,
+        "endTime": 1.4533333333333336,
+        "text": "'Little Hans, Doctor.'"
+      },
+      {
+        "sentenceIndex": 201,
+        "startTime": 1.4533333333333336,
+        "endTime": 4.24,
+        "text": "'What do you want, little Hans?'"
+      },
+      {
+        "sentenceIndex": 202,
+        "startTime": 4.24,
+        "endTime": 12.52,
+        "text": "'The Miller's son fell from a ladder and hurt himself, so the Miller wants you to come quickly.'"
+      },
+      {
+        "sentenceIndex": 203,
+        "startTime": 12.52,
+        "endTime": 26.613333333333333,
+        "text": "'All right!' said the Doctor, and he got his horse, his big boots, and his lantern, then came downstairs and rode towards the Miller's house with little Hans following him."
+      }
+    ],
+    "wordCount": 57,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:43:20.437Z"
+    }
+  },
+  {
+    "index": 51,
+    "sentences": [
+      {
+        "sentenceIndex": 204,
+        "text": "But the storm got worse, and the rain fell heavily, so little Hans could not see where he was going or keep up with the horse."
+      },
+      {
+        "sentenceIndex": 205,
+        "text": "Finally, he lost his way and wandered onto the moor, which was very dangerous because it had deep holes, and there poor little Hans drowned."
+      },
+      {
+        "sentenceIndex": 206,
+        "text": "Some goatherds found his body the next day floating in a big pool of water and brought it back to the cottage."
+      },
+      {
+        "sentenceIndex": 207,
+        "text": "Everyone went to little Hans' funeral because he was very popular, and the Miller was the chief mourner."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_51.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_51.mp3",
+    "duration": 43.644444444444446,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 204,
+        "startTime": 0,
+        "endTime": 12.155555555555557,
+        "text": "But the storm got worse, and the rain fell heavily, so little Hans could not see where he was going or keep up with the horse."
+      },
+      {
+        "sentenceIndex": 205,
+        "startTime": 12.155555555555557,
+        "endTime": 23.826666666666668,
+        "text": "Finally, he lost his way and wandered onto the moor, which was very dangerous because it had deep holes, and there poor little Hans drowned."
+      },
+      {
+        "sentenceIndex": 206,
+        "startTime": 23.826666666666668,
+        "endTime": 34.044444444444444,
+        "text": "Some goatherds found his body the next day floating in a big pool of water and brought it back to the cottage."
+      },
+      {
+        "sentenceIndex": 207,
+        "startTime": 34.044444444444444,
+        "endTime": 42.324444444444445,
+        "text": "Everyone went to little Hans' funeral because he was very popular, and the Miller was the chief mourner."
+      }
+    ],
+    "wordCount": 91,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:43:29.697Z"
+    }
+  },
+  {
+    "index": 52,
+    "sentences": [
+      {
+        "sentenceIndex": 208,
+        "text": "'As I was his best friend,' said the Miller, 'it is only fair that I should have the best place,' so he walked at the front of the procession in a long black cloak, and sometimes he wiped his eyes with a big handkerchief."
+      },
+      {
+        "sentenceIndex": 209,
+        "text": "The funeral was very sad, and everyone missed little Hans a lot."
+      },
+      {
+        "sentenceIndex": 210,
+        "text": "'Little Hans is a big loss to everyone,' said the Blacksmith, after the funeral, while they sat in the inn, drinking spiced wine and eating sweet cakes."
+      },
+      {
+        "sentenceIndex": 211,
+        "text": "'He is a big loss to me too,' said the Miller, 'because I almost gave him my wheelbarrow, and now I don't know what to do with it."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_52.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_52.mp3",
+    "duration": 53.333333333333336,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 208,
+        "startTime": 0,
+        "endTime": 20.875555555555557,
+        "text": "'As I was his best friend,' said the Miller, 'it is only fair that I should have the best place,' so he walked at the front of the procession in a long black cloak, and sometimes he wiped his eyes with a big handkerchief."
+      },
+      {
+        "sentenceIndex": 209,
+        "startTime": 20.875555555555557,
+        "endTime": 26.32888888888889,
+        "text": "The funeral was very sad, and everyone missed little Hans a lot."
+      },
+      {
+        "sentenceIndex": 210,
+        "startTime": 26.32888888888889,
+        "endTime": 38.96888888888889,
+        "text": "'Little Hans is a big loss to everyone,' said the Blacksmith, after the funeral, while they sat in the inn, drinking spiced wine and eating sweet cakes."
+      },
+      {
+        "sentenceIndex": 211,
+        "startTime": 38.96888888888889,
+        "endTime": 52.093333333333334,
+        "text": "'He is a big loss to me too,' said the Miller, 'because I almost gave him my wheelbarrow, and now I don't know what to do with it."
+      }
+    ],
+    "wordCount": 111,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:43:40.509Z"
+    }
+  },
+  {
+    "index": 53,
+    "sentences": [
+      {
+        "sentenceIndex": 212,
+        "text": "It is in my way at home, and it is in such bad shape that I couldn't sell it for anything."
+      },
+      {
+        "sentenceIndex": 213,
+        "text": "I will make sure not to give anything away again."
+      },
+      {
+        "sentenceIndex": 214,
+        "text": "Being generous always causes problems."
+      },
+      {
+        "sentenceIndex": 215,
+        "text": "'Well?' said the Water-rat, after a long pause."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_53.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_53.mp3",
+    "duration": 20.875555555555557,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 212,
+        "startTime": 0,
+        "endTime": 9.733333333333333,
+        "text": "It is in my way at home, and it is in such bad shape that I couldn't sell it for anything."
+      },
+      {
+        "sentenceIndex": 213,
+        "startTime": 9.733333333333333,
+        "endTime": 14.297777777777778,
+        "text": "I will make sure not to give anything away again."
+      },
+      {
+        "sentenceIndex": 214,
+        "startTime": 14.297777777777778,
+        "endTime": 16.64,
+        "text": "Being generous always causes problems."
+      },
+      {
+        "sentenceIndex": 215,
+        "startTime": 16.64,
+        "endTime": 20.315555555555555,
+        "text": "'Well?' said the Water-rat, after a long pause."
+      }
+    ],
+    "wordCount": 44,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:43:45.616Z"
+    }
+  },
+  {
+    "index": 54,
+    "sentences": [
+      {
+        "sentenceIndex": 216,
+        "text": "'Well, that is the end,' said the Linnet."
+      },
+      {
+        "sentenceIndex": 217,
+        "text": "'But what happened to the Miller?'"
+      },
+      {
+        "sentenceIndex": 218,
+        "text": "asked the Water-rat."
+      },
+      {
+        "sentenceIndex": 219,
+        "text": "asked the Water-rat."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_54.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_54.mp3",
+    "duration": 9.248888888888889,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 216,
+        "startTime": 0,
+        "endTime": 3.675555555555556,
+        "text": "'Well, that is the end,' said the Linnet."
+      },
+      {
+        "sentenceIndex": 217,
+        "startTime": 3.675555555555556,
+        "endTime": 6.462222222222223,
+        "text": "'But what happened to the Miller?'"
+      },
+      {
+        "sentenceIndex": 218,
+        "startTime": 6.462222222222223,
+        "endTime": 7.915555555555557,
+        "text": "asked the Water-rat."
+      },
+      {
+        "sentenceIndex": 219,
+        "startTime": 7.915555555555557,
+        "endTime": 9.36888888888889,
+        "text": "asked the Water-rat."
+      }
+    ],
+    "wordCount": 20,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:43:49.726Z"
+    }
+  },
+  {
+    "index": 55,
+    "sentences": [
+      {
+        "sentenceIndex": 220,
+        "text": "Oh!"
+      },
+      {
+        "sentenceIndex": 221,
+        "text": "I really don't know, and I don't care either,\" said the Linnet."
+      },
+      {
+        "sentenceIndex": 222,
+        "text": "\"Then you have no sympathy,\" said the Water-rat."
+      },
+      {
+        "sentenceIndex": 223,
+        "text": "\"I think you don't understand the story's lesson,\" said the Linnet."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_55.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_55.mp3",
+    "duration": 15.062222222222223,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 220,
+        "startTime": 0,
+        "endTime": 0.5644444444444445,
+        "text": "Oh!"
+      },
+      {
+        "sentenceIndex": 221,
+        "startTime": 0.5644444444444445,
+        "endTime": 6.017777777777779,
+        "text": "I really don't know, and I don't care either,\" said the Linnet."
+      },
+      {
+        "sentenceIndex": 222,
+        "startTime": 6.017777777777779,
+        "endTime": 9.693333333333335,
+        "text": "\"Then you have no sympathy,\" said the Water-rat."
+      },
+      {
+        "sentenceIndex": 223,
+        "startTime": 9.693333333333335,
+        "endTime": 14.702222222222225,
+        "text": "\"I think you don't understand the story's lesson,\" said the Linnet."
+      }
+    ],
+    "wordCount": 32,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:43:54.332Z"
+    }
+  },
+  {
+    "index": 56,
+    "sentences": [
+      {
+        "sentenceIndex": 224,
+        "text": "\"The what?\" shouted the Water-rat."
+      },
+      {
+        "sentenceIndex": 225,
+        "text": "\"The lesson,\" said the Linnet."
+      },
+      {
+        "sentenceIndex": 226,
+        "text": "\"Do you mean the story has a lesson?\" asked the Water-rat."
+      },
+      {
+        "sentenceIndex": 227,
+        "text": "\"Yes, it does,\" replied the Linnet."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_56.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_56.mp3",
+    "duration": 12.639999999999999,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 224,
+        "startTime": 0,
+        "endTime": 2.3422222222222224,
+        "text": "\"The what?\" shouted the Water-rat."
+      },
+      {
+        "sentenceIndex": 225,
+        "startTime": 2.3422222222222224,
+        "endTime": 4.684444444444445,
+        "text": "\"The lesson,\" said the Linnet."
+      },
+      {
+        "sentenceIndex": 226,
+        "startTime": 4.684444444444445,
+        "endTime": 9.693333333333335,
+        "text": "\"Do you mean the story has a lesson?\" asked the Water-rat."
+      },
+      {
+        "sentenceIndex": 227,
+        "startTime": 9.693333333333335,
+        "endTime": 12.480000000000002,
+        "text": "\"Yes, it does,\" replied the Linnet."
+      }
+    ],
+    "wordCount": 27,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:43:59.032Z"
+    }
+  },
+  {
+    "index": 57,
+    "sentences": [
+      {
+        "sentenceIndex": 228,
+        "text": "\"Well, really,\" said the Water-rat angrily, \"you should have told me before.\""
+      },
+      {
+        "sentenceIndex": 229,
+        "text": "\"I think you should have said that at the start,\" he added."
+      },
+      {
+        "sentenceIndex": 230,
+        "text": "If you had done that, I would not have listened to you, and I would have said 'Pooh,' like the critic."
+      },
+      {
+        "sentenceIndex": 231,
+        "text": "However, I can say it now, so he shouted 'Pooh' loudly, then he whisked his tail and went back to his hole."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_57.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_57.mp3",
+    "duration": 32.01777777777778,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 228,
+        "startTime": 0,
+        "endTime": 5.453333333333334,
+        "text": "\"Well, really,\" said the Water-rat angrily, \"you should have told me before.\""
+      },
+      {
+        "sentenceIndex": 229,
+        "startTime": 5.453333333333334,
+        "endTime": 10.906666666666668,
+        "text": "\"I think you should have said that at the start,\" he added."
+      },
+      {
+        "sentenceIndex": 230,
+        "startTime": 10.906666666666668,
+        "endTime": 20.64,
+        "text": "If you had done that, I would not have listened to you, and I would have said 'Pooh,' like the critic."
+      },
+      {
+        "sentenceIndex": 231,
+        "startTime": 20.64,
+        "endTime": 30.857777777777777,
+        "text": "However, I can say it now, so he shouted 'Pooh' loudly, then he whisked his tail and went back to his hole."
+      }
+    ],
+    "wordCount": 67,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:44:05.901Z"
+    }
+  },
+  {
+    "index": 58,
+    "sentences": [
+      {
+        "sentenceIndex": 232,
+        "text": "The Duck asked, 'And how do you like the Water-rat?'"
+      },
+      {
+        "sentenceIndex": 233,
+        "text": "The Duck came paddling up a few minutes later."
+      },
+      {
+        "sentenceIndex": 234,
+        "text": "The Duck said, 'He has many good points, but I have a mother's feelings, and I cry when I see a confirmed bachelor.'"
+      },
+      {
+        "sentenceIndex": 235,
+        "text": "The Linnet replied, 'I am afraid I have annoyed him.'"
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_58.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_58.mp3",
+    "duration": 24.751111111111115,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 232,
+        "startTime": 0,
+        "endTime": 4.564444444444445,
+        "text": "The Duck asked, 'And how do you like the Water-rat?'"
+      },
+      {
+        "sentenceIndex": 233,
+        "startTime": 4.564444444444445,
+        "endTime": 8.684444444444445,
+        "text": "The Duck came paddling up a few minutes later."
+      },
+      {
+        "sentenceIndex": 234,
+        "startTime": 8.684444444444445,
+        "endTime": 19.386666666666667,
+        "text": "The Duck said, 'He has many good points, but I have a mother's feelings, and I cry when I see a confirmed bachelor.'"
+      },
+      {
+        "sentenceIndex": 235,
+        "startTime": 19.386666666666667,
+        "endTime": 23.95111111111111,
+        "text": "The Linnet replied, 'I am afraid I have annoyed him.'"
+      }
+    ],
+    "wordCount": 52,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:44:11.533Z"
+    }
+  },
+  {
+    "index": 59,
+    "sentences": [
+      {
+        "sentenceIndex": 236,
+        "text": "The Linnet explained, 'I told him a story with a moral.'"
+      },
+      {
+        "sentenceIndex": 237,
+        "text": "'Ah!' said the Duck."
+      },
+      {
+        "sentenceIndex": 238,
+        "text": "'That is always a very dangerous thing to do,' said the Duck."
+      },
+      {
+        "sentenceIndex": 239,
+        "text": "And I agree with her completely."
+      }
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_59.mp3",
+    "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_59.mp3",
+    "duration": 15.546666666666667,
+    "sentenceTimings": [
+      {
+        "sentenceIndex": 236,
+        "startTime": 0,
+        "endTime": 5.008888888888889,
+        "text": "The Linnet explained, 'I told him a story with a moral.'"
+      },
+      {
+        "sentenceIndex": 237,
+        "startTime": 5.008888888888889,
+        "endTime": 6.906666666666667,
+        "text": "'Ah!' said the Duck."
+      },
+      {
+        "sentenceIndex": 238,
+        "startTime": 6.906666666666667,
+        "endTime": 12.360000000000001,
+        "text": "'That is always a very dangerous thing to do,' said the Duck."
+      },
+      {
+        "sentenceIndex": 239,
+        "startTime": 12.360000000000001,
+        "endTime": 15.146666666666668,
+        "text": "And I agree with her completely."
+      }
+    ],
+    "wordCount": 33,
+    "metadata": {
+      "voiceId": "onwK4e9ZLuTAKqWW03F9",
+      "voiceSettings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "speed": 0.9,
+        "use_speaker_boost": true
+      },
+      "generatedAt": "2025-10-10T08:44:16.092Z"
+    }
+  }
+]

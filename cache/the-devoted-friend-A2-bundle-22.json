@@ -1,0 +1,62 @@
+{
+  "index": 22,
+  "sentences": [
+    {
+      "sentenceIndex": 88,
+      "text": "‘It is very nice of you to ask,’ said Hans."
+    },
+    {
+      "sentenceIndex": 89,
+      "text": "‘I had a hard time, but now spring is here, and I am happy.’"
+    },
+    {
+      "sentenceIndex": 90,
+      "text": "‘We often talked about you during the winter, Hans,’ said the Miller, ‘and we wondered how you were doing."
+    },
+    {
+      "sentenceIndex": 91,
+      "text": "‘That was kind of you,’ said Hans, ‘I was a bit afraid you had forgotten me."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_22.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_22.mp3",
+  "duration": 28.142222222222227,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 88,
+      "startTime": 0,
+      "endTime": 4.564444444444445,
+      "text": "‘It is very nice of you to ask,’ said Hans."
+    },
+    {
+      "sentenceIndex": 89,
+      "startTime": 4.564444444444445,
+      "endTime": 10.906666666666666,
+      "text": "‘I had a hard time, but now spring is here, and I am happy.’"
+    },
+    {
+      "sentenceIndex": 90,
+      "startTime": 10.906666666666666,
+      "endTime": 19.67111111111111,
+      "text": "‘We often talked about you during the winter, Hans,’ said the Miller, ‘and we wondered how you were doing."
+    },
+    {
+      "sentenceIndex": 91,
+      "startTime": 19.67111111111111,
+      "endTime": 26.98222222222222,
+      "text": "‘That was kind of you,’ said Hans, ‘I was a bit afraid you had forgotten me."
+    }
+  ],
+  "wordCount": 59,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:11.754Z"
+  }
+}

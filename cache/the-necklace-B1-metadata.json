@@ -1,0 +1,11 @@
+{
+  "id": "the-necklace",
+  "level": "B1",
+  "originalSentences": 230,
+  "processedSentences": 230,
+  "outputSentences": 230,
+  "estimatedCost": 1.0549999999999995,
+  "createdAt": "2025-10-09T05:10:29.458Z",
+  "status": "full-completed",
+  "guidelines": "\n- Use 2000-2500 most common words\n- All tenses allowed but keep clear\n- Complex sentences with cultural context (15-18 words average)\n- MAXIMUM 25 WORDS PER SENTENCE (Master Prevention - prevents highlighting issues)\n- More sophisticated connectors: \"although\", \"however\", \"meanwhile\", \"therefore\"\n- Keep some cultural references with brief explanations\n- Maintain exact 1:1 sentence count mapping (CRITICAL)\n- Generate flowing complex sentences (NOT choppy short ones)\n- AVOID: \"She was sad. She cried. She felt bad.\" (simplified too much)\n- CORRECT B1: \"She was deeply unhappy and began to cry because she felt misunderstood by everyone around her.\" (natural 16 words)\n- Each sentence should express one complete thought\n- Avoid semicolons - use periods instead\n- Preserve original style and nuance where possible\n- Maintain emotional depth and literary quality\n"
+}

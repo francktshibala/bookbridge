@@ -1,0 +1,62 @@
+{
+  "index": 52,
+  "sentences": [
+    {
+      "sentenceIndex": 208,
+      "text": "Everyone went to little Hans' funeral because he was popular, and the Miller was the chief mourner."
+    },
+    {
+      "sentenceIndex": 209,
+      "text": "The Miller said he was Hans' best friend, so he walked at the front and wiped his eyes with a big handkerchief."
+    },
+    {
+      "sentenceIndex": 210,
+      "text": "‘Little Hans is a big loss to everyone,’ said the Blacksmith."
+    },
+    {
+      "sentenceIndex": 211,
+      "text": "They sat in the inn, drank wine, and ate cakes."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_52.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_52.mp3",
+  "duration": 21.560000000000002,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 208,
+      "startTime": 0,
+      "endTime": 5.9366666666666665,
+      "text": "Everyone went to little Hans' funeral because he was popular, and the Miller was the chief mourner."
+    },
+    {
+      "sentenceIndex": 209,
+      "startTime": 5.9366666666666665,
+      "endTime": 13.69,
+      "text": "The Miller said he was Hans' best friend, so he walked at the front and wiped his eyes with a big handkerchief."
+    },
+    {
+      "sentenceIndex": 210,
+      "startTime": 13.69,
+      "endTime": 17.476666666666667,
+      "text": "‘Little Hans is a big loss to everyone,’ said the Blacksmith."
+    },
+    {
+      "sentenceIndex": 211,
+      "startTime": 17.476666666666667,
+      "endTime": 20.93,
+      "text": "They sat in the inn, drank wine, and ate cakes."
+    }
+  ],
+  "wordCount": 60,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:03:53.557Z"
+  }
+}

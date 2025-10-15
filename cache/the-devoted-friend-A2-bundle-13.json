@@ -1,0 +1,62 @@
+{
+  "index": 13,
+  "sentences": [
+    {
+      "sentenceIndex": 52,
+      "text": "'If poor Hans is in trouble, I will share my porridge and show him my white rabbits.'"
+    },
+    {
+      "sentenceIndex": 53,
+      "text": "'What a silly boy you are!'"
+    },
+    {
+      "sentenceIndex": 54,
+      "text": "cried the Miller. 'I don't know why we send you to school."
+    },
+    {
+      "sentenceIndex": 55,
+      "text": "You don't seem to learn anything."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_13.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_13.mp3",
+  "duration": 19.422222222222228,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 52,
+      "startTime": 0,
+      "endTime": 7.7955555555555565,
+      "text": "'If poor Hans is in trouble, I will share my porridge and show him my white rabbits.'"
+    },
+    {
+      "sentenceIndex": 53,
+      "startTime": 7.7955555555555565,
+      "endTime": 10.582222222222224,
+      "text": "'What a silly boy you are!'"
+    },
+    {
+      "sentenceIndex": 54,
+      "startTime": 10.582222222222224,
+      "endTime": 16.035555555555558,
+      "text": "cried the Miller. 'I don't know why we send you to school."
+    },
+    {
+      "sentenceIndex": 55,
+      "startTime": 16.035555555555558,
+      "endTime": 18.822222222222223,
+      "text": "You don't seem to learn anything."
+    }
+  ],
+  "wordCount": 41,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:39:20.825Z"
+  }
+}

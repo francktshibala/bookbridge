@@ -1,0 +1,62 @@
+{
+  "index": 30,
+  "sentences": [
+    {
+      "sentenceIndex": 120,
+      "text": "The Miller looked at the plank and said it was not very big, so he was worried that after fixing his barn roof, there wouldn't be any wood left for Hans's wheelbarrow, but he insisted it wasn't his fault."
+    },
+    {
+      "sentenceIndex": 121,
+      "text": "Now that the Miller had given Hans the wheelbarrow, he thought Hans should give him some flowers in return."
+    },
+    {
+      "sentenceIndex": 122,
+      "text": "The Miller handed Hans a basket and told him to fill it completely with flowers."
+    },
+    {
+      "sentenceIndex": 123,
+      "text": "Hans asked if he really had to fill the basket completely."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_30.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_30.mp3",
+  "duration": 40.903333333333336,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 120,
+      "startTime": 0,
+      "endTime": 18.653333333333336,
+      "text": "The Miller looked at the plank and said it was not very big, so he was worried that after fixing his barn roof, there wouldn't be any wood left for Hans's wheelbarrow, but he insisted it wasn't his fault."
+    },
+    {
+      "sentenceIndex": 121,
+      "startTime": 18.653333333333336,
+      "endTime": 27.41777777777778,
+      "text": "Now that the Miller had given Hans the wheelbarrow, he thought Hans should give him some flowers in return."
+    },
+    {
+      "sentenceIndex": 122,
+      "startTime": 27.41777777777778,
+      "endTime": 34.20444444444445,
+      "text": "The Miller handed Hans a basket and told him to fill it completely with flowers."
+    },
+    {
+      "sentenceIndex": 123,
+      "startTime": 34.20444444444445,
+      "endTime": 39.21333333333334,
+      "text": "Hans asked if he really had to fill the basket completely."
+    }
+  ],
+  "wordCount": 84,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:07:51.883Z"
+  }
+}

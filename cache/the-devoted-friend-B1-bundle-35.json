@@ -1,0 +1,62 @@
+{
+  "index": 35,
+  "sentences": [
+    {
+      "sentenceIndex": 140,
+      "text": "However, he continued bravely, and eventually he reached the market."
+    },
+    {
+      "sentenceIndex": 141,
+      "text": "After waiting there for some time, he sold the sack of flour for a very good price, and then he returned home immediately because he was afraid he might meet robbers if he stayed too late."
+    },
+    {
+      "sentenceIndex": 142,
+      "text": "'It has certainly been a hard day,' said little Hans to himself as he was going to bed, 'but I am glad I did not refuse the Miller because he is my best friend, and besides, he is going to give me his wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 143,
+      "text": "Early the next morning, the Miller came to get the money for his sack of flour, but little Hans was so tired that he was still in bed."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_35.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_35.mp3",
+  "duration": 57.714444444444446,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 140,
+      "startTime": 0,
+      "endTime": 4.564444444444445,
+      "text": "However, he continued bravely, and eventually he reached the market."
+    },
+    {
+      "sentenceIndex": 141,
+      "startTime": 4.564444444444445,
+      "endTime": 21.734444444444446,
+      "text": "After waiting there for some time, he sold the sack of flour for a very good price, and then he returned home immediately because he was afraid he might meet robbers if he stayed too late."
+    },
+    {
+      "sentenceIndex": 142,
+      "startTime": 21.734444444444446,
+      "endTime": 42.86,
+      "text": "'It has certainly been a hard day,' said little Hans to himself as he was going to bed, 'but I am glad I did not refuse the Miller because he is my best friend, and besides, he is going to give me his wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 143,
+      "startTime": 42.86,
+      "endTime": 56.074444444444445,
+      "text": "Early the next morning, the Miller came to get the money for his sack of flour, but little Hans was so tired that he was still in bed."
+    }
+  ],
+  "wordCount": 118,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:08:33.372Z"
+  }
+}

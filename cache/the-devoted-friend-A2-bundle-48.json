@@ -1,0 +1,62 @@
+{
+  "index": 48,
+  "sentences": [
+    {
+      "sentenceIndex": 192,
+      "text": "But you must lend me your lantern because it is so dark that I might fall."
+    },
+    {
+      "sentenceIndex": 193,
+      "text": "'I am very sorry,' said the Miller, 'but it is my new lantern, and I would lose a lot if it got damaged."
+    },
+    {
+      "sentenceIndex": 194,
+      "text": "'Well, never mind, I will go without it,' cried little Hans, and he put on his big fur coat, his warm red cap, and a scarf around his neck, then he left."
+    },
+    {
+      "sentenceIndex": 195,
+      "text": "What a terrible storm it was!"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_48.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_48.mp3",
+  "duration": 36.86222222222222,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 192,
+      "startTime": 0,
+      "endTime": 7.311111111111112,
+      "text": "But you must lend me your lantern because it is so dark that I might fall."
+    },
+    {
+      "sentenceIndex": 193,
+      "startTime": 7.311111111111112,
+      "endTime": 18.013333333333335,
+      "text": "'I am very sorry,' said the Miller, 'but it is my new lantern, and I would lose a lot if it got damaged."
+    },
+    {
+      "sentenceIndex": 194,
+      "startTime": 18.013333333333335,
+      "endTime": 33.07555555555556,
+      "text": "'Well, never mind, I will go without it,' cried little Hans, and he put on his big fur coat, his warm red cap, and a scarf around his neck, then he left."
+    },
+    {
+      "sentenceIndex": 195,
+      "startTime": 33.07555555555556,
+      "endTime": 35.86222222222223,
+      "text": "What a terrible storm it was!"
+    }
+  ],
+  "wordCount": 77,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:43:07.122Z"
+  }
+}

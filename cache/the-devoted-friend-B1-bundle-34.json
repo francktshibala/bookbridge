@@ -1,0 +1,62 @@
+{
+  "index": 34,
+  "sentences": [
+    {
+      "sentenceIndex": 136,
+      "text": "'I need to nail up my plants, water my flowers, and roll the grass,' he explained."
+    },
+    {
+      "sentenceIndex": 137,
+      "text": "The Miller replied, 'Since I'm giving you my wheelbarrow, it's not nice to refuse my request.'"
+    },
+    {
+      "sentenceIndex": 138,
+      "text": "'Oh, don't say that,' cried Hans, 'I don't want to be unfriendly,' and he got his cap and carried the sack."
+    },
+    {
+      "sentenceIndex": 139,
+      "text": "The day was very hot, the road was dusty, and Hans was so tired by the sixth milestone that he had to rest."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_34.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_34.mp3",
+  "duration": 36.94777777777777,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 136,
+      "startTime": 0,
+      "endTime": 7.2811111111111115,
+      "text": "'I need to nail up my plants, water my flowers, and roll the grass,' he explained."
+    },
+    {
+      "sentenceIndex": 137,
+      "startTime": 7.2811111111111115,
+      "endTime": 14.562222222222223,
+      "text": "The Miller replied, 'Since I'm giving you my wheelbarrow, it's not nice to refuse my request.'"
+    },
+    {
+      "sentenceIndex": 138,
+      "startTime": 14.562222222222223,
+      "endTime": 24.315555555555555,
+      "text": "'Oh, don't say that,' cried Hans, 'I don't want to be unfriendly,' and he got his cap and carried the sack."
+    },
+    {
+      "sentenceIndex": 139,
+      "startTime": 24.315555555555555,
+      "endTime": 35.05777777777778,
+      "text": "The day was very hot, the road was dusty, and Hans was so tired by the sixth milestone that he had to rest."
+    }
+  ],
+  "wordCount": 76,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:08:22.416Z"
+  }
+}

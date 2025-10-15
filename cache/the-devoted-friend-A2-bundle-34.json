@@ -1,0 +1,62 @@
+{
+  "index": 34,
+  "sentences": [
+    {
+      "sentenceIndex": 136,
+      "text": "I need to nail up all my creepers, water my flowers, and roll my grass."
+    },
+    {
+      "sentenceIndex": 137,
+      "text": "'Well,' said the Miller, 'since I am giving you my wheelbarrow, it seems unfriendly to refuse.'"
+    },
+    {
+      "sentenceIndex": 138,
+      "text": "'Oh, don't say that,' cried little Hans, 'I wouldn't be unfriendly for anything,' and he ran to get his cap and carried the big sack on his shoulders."
+    },
+    {
+      "sentenceIndex": 139,
+      "text": "It was a very hot day, the road was very dusty, and before Hans reached the sixth milestone, he was so tired that he had to sit down and rest."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_34.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_34.mp3",
+  "duration": 42.675555555555555,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 136,
+      "startTime": 0,
+      "endTime": 6.826666666666667,
+      "text": "I need to nail up all my creepers, water my flowers, and roll my grass."
+    },
+    {
+      "sentenceIndex": 137,
+      "startTime": 6.826666666666667,
+      "endTime": 14.137777777777778,
+      "text": "'Well,' said the Miller, 'since I am giving you my wheelbarrow, it seems unfriendly to refuse.'"
+    },
+    {
+      "sentenceIndex": 138,
+      "startTime": 14.137777777777778,
+      "endTime": 27.26222222222222,
+      "text": "'Oh, don't say that,' cried little Hans, 'I wouldn't be unfriendly for anything,' and he ran to get his cap and carried the big sack on his shoulders."
+    },
+    {
+      "sentenceIndex": 139,
+      "startTime": 27.26222222222222,
+      "endTime": 41.355555555555554,
+      "text": "It was a very hot day, the road was very dusty, and before Hans reached the sixth milestone, he was so tired that he had to sit down and rest."
+    }
+  ],
+  "wordCount": 89,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:41:29.026Z"
+  }
+}

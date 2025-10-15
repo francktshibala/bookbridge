@@ -1,0 +1,62 @@
+{
+  "index": 31,
+  "sentences": [
+    {
+      "sentenceIndex": 124,
+      "text": "Hans felt sad because the basket was very big, and if he filled it, he would have no flowers left to sell at the market, which he needed to do to get his silver buttons back."
+    },
+    {
+      "sentenceIndex": 125,
+      "text": "The Miller replied that since he had given Hans the wheelbarrow, it wasn't too much to ask for a few flowers."
+    },
+    {
+      "sentenceIndex": 126,
+      "text": "He believed that true friendship should be free from any selfishness."
+    },
+    {
+      "sentenceIndex": 127,
+      "text": "Hans, feeling grateful, told the Miller he was welcome to all the flowers in his garden."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_31.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_31.mp3",
+  "duration": 40.903333333333336,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 124,
+      "startTime": 0,
+      "endTime": 17.17,
+      "text": "Hans felt sad because the basket was very big, and if he filled it, he would have no flowers left to sell at the market, which he needed to do to get his silver buttons back."
+    },
+    {
+      "sentenceIndex": 125,
+      "startTime": 17.17,
+      "endTime": 26.923333333333336,
+      "text": "The Miller replied that since he had given Hans the wheelbarrow, it wasn't too much to ask for a few flowers."
+    },
+    {
+      "sentenceIndex": 126,
+      "startTime": 26.923333333333336,
+      "endTime": 31.932222222222226,
+      "text": "He believed that true friendship should be free from any selfishness."
+    },
+    {
+      "sentenceIndex": 127,
+      "startTime": 31.932222222222226,
+      "endTime": 39.21333333333334,
+      "text": "Hans, feeling grateful, told the Miller he was welcome to all the flowers in his garden."
+    }
+  ],
+  "wordCount": 84,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:07:59.930Z"
+  }
+}

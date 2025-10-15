@@ -1,0 +1,62 @@
+{
+  "index": 23,
+  "sentences": [
+    {
+      "sentenceIndex": 92,
+      "text": "The Miller said, 'Hans, friendship never forgets.'"
+    },
+    {
+      "sentenceIndex": 93,
+      "text": "He said, 'You do not understand the poetry of life.'"
+    },
+    {
+      "sentenceIndex": 94,
+      "text": "He said, 'Your flowers are very lovely!'"
+    },
+    {
+      "sentenceIndex": 95,
+      "text": "Hans said, 'Yes, they are lovely, and I am lucky.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_23.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_23.mp3",
+  "duration": 12.113333333333332,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 92,
+      "startTime": 0,
+      "endTime": 2.453333333333333,
+      "text": "The Miller said, 'Hans, friendship never forgets.'"
+    },
+    {
+      "sentenceIndex": 93,
+      "startTime": 2.453333333333333,
+      "endTime": 5.906666666666666,
+      "text": "He said, 'You do not understand the poetry of life.'"
+    },
+    {
+      "sentenceIndex": 94,
+      "startTime": 5.906666666666666,
+      "endTime": 8.36,
+      "text": "He said, 'Your flowers are very lovely!'"
+    },
+    {
+      "sentenceIndex": 95,
+      "startTime": 8.36,
+      "endTime": 11.813333333333333,
+      "text": "Hans said, 'Yes, they are lovely, and I am lucky.'"
+    }
+  ],
+  "wordCount": 34,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:51:32.914Z"
+  }
+}

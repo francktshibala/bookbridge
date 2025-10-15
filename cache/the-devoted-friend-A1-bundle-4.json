@@ -1,0 +1,62 @@
+{
+  "index": 4,
+  "sentences": [
+    {
+      "sentenceIndex": 16,
+      "text": "The Duck wanted to know too, so she swam away."
+    },
+    {
+      "sentenceIndex": 17,
+      "text": "The Water-rat thought it was a silly question."
+    },
+    {
+      "sentenceIndex": 18,
+      "text": "He said a good friend should be loyal to him."
+    },
+    {
+      "sentenceIndex": 19,
+      "text": "He thinks a friend must always be there for him."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_4.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_4.mp3",
+  "duration": 13.566666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 16,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "The Duck wanted to know too, so she swam away."
+    },
+    {
+      "sentenceIndex": 17,
+      "startTime": 3.453333333333333,
+      "endTime": 6.24,
+      "text": "The Water-rat thought it was a silly question."
+    },
+    {
+      "sentenceIndex": 18,
+      "startTime": 6.24,
+      "endTime": 9.693333333333333,
+      "text": "He said a good friend should be loyal to him."
+    },
+    {
+      "sentenceIndex": 19,
+      "startTime": 9.693333333333333,
+      "endTime": 13.146666666666667,
+      "text": "He thinks a friend must always be there for him."
+    }
+  ],
+  "wordCount": 38,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:41:52.071Z"
+  }
+}

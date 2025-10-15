@@ -1,0 +1,36 @@
+{
+  "title": "A Christmas Carol",
+  "author": "Charles Dickens",
+  "gutenbergId": 46,
+  "originalUrl": "https://www.gutenberg.org/files/46/46-0.txt",
+  "fetchDate": "2025-10-06T00:44:18.024Z",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "STAVE I: MARLEY was dead: to begin with. There is no doubt",
+      "startIndex": 599
+    },
+    {
+      "number": 2,
+      "title": "STAVE II: WHEN Scrooge awoke, it was so dark, that looking out of bed,",
+      "startIndex": 36557
+    },
+    {
+      "number": 3,
+      "title": "STAVE III: AWAKING in the middle of a prodigiously tough snore, and",
+      "startIndex": 70347
+    },
+    {
+      "number": 4,
+      "title": "STAVE IV: THE Phantom slowly, gravely, silently, approached. When",
+      "startIndex": 116376
+    },
+    {
+      "number": 5,
+      "title": "STAVE V: YES! and the bedpost was his own. The bed was his own,",
+      "startIndex": 145229
+    }
+  ],
+  "estimatedSentences": 1808,
+  "textLength": 157652
+}

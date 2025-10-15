@@ -1,0 +1,62 @@
+{
+  "index": 46,
+  "sentences": [
+    {
+      "sentenceIndex": 184,
+      "text": "Hans thought it was the storm, but he heard more knocks."
+    },
+    {
+      "sentenceIndex": 185,
+      "text": "Hans said, 'It is a traveler,' and he went to the door."
+    },
+    {
+      "sentenceIndex": 186,
+      "text": "The Miller stood there with a lantern and a stick."
+    },
+    {
+      "sentenceIndex": 187,
+      "text": "The Miller said, 'Dear Hans, I have a big problem.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_46.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_46.mp3",
+  "duration": 15.383333333333331,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 184,
+      "startTime": 0,
+      "endTime": 3.7866666666666666,
+      "text": "Hans thought it was the storm, but he heard more knocks."
+    },
+    {
+      "sentenceIndex": 185,
+      "startTime": 3.7866666666666666,
+      "endTime": 7.906666666666666,
+      "text": "Hans said, 'It is a traveler,' and he went to the door."
+    },
+    {
+      "sentenceIndex": 186,
+      "startTime": 7.906666666666666,
+      "endTime": 11.36,
+      "text": "The Miller stood there with a lantern and a stick."
+    },
+    {
+      "sentenceIndex": 187,
+      "startTime": 11.36,
+      "endTime": 14.813333333333333,
+      "text": "The Miller said, 'Dear Hans, I have a big problem.'"
+    }
+  ],
+  "wordCount": 43,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:02:20.122Z"
+  }
+}

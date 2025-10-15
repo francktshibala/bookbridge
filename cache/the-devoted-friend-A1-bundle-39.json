@@ -1,0 +1,62 @@
+{
+  "index": 39,
+  "sentences": [
+    {
+      "sentenceIndex": 156,
+      "text": "'Do you think it is unfriendly if I say I am busy?"
+    },
+    {
+      "sentenceIndex": 157,
+      "text": "' he asked in a shy voice."
+    },
+    {
+      "sentenceIndex": 158,
+      "text": "'Well,' said the Miller, 'I do not think it is much to ask, since I will give you my wheelbarrow, but if you say no, I will do it myself."
+    },
+    {
+      "sentenceIndex": 159,
+      "text": "' 'Oh!"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_39.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_39.mp3",
+  "duration": 18.290000000000003,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 156,
+      "startTime": 0,
+      "endTime": 4.12,
+      "text": "'Do you think it is unfriendly if I say I am busy?"
+    },
+    {
+      "sentenceIndex": 157,
+      "startTime": 4.12,
+      "endTime": 6.573333333333333,
+      "text": "' he asked in a shy voice."
+    },
+    {
+      "sentenceIndex": 158,
+      "startTime": 6.573333333333333,
+      "endTime": 17.23333333333333,
+      "text": "'Well,' said the Miller, 'I do not think it is much to ask, since I will give you my wheelbarrow, but if you say no, I will do it myself."
+    },
+    {
+      "sentenceIndex": 159,
+      "startTime": 17.23333333333333,
+      "endTime": 18.019999999999996,
+      "text": "' 'Oh!"
+    }
+  ],
+  "wordCount": 51,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:01:41.626Z"
+  }
+}

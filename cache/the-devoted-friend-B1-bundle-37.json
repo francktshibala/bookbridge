@@ -1,0 +1,62 @@
+{
+  "index": 37,
+  "sentences": [
+    {
+      "sentenceIndex": 148,
+      "text": "Of course, I would not dream of doing so if I were not your friend."
+    },
+    {
+      "sentenceIndex": 149,
+      "text": "But what is the good of friendship if one cannot say exactly what one means?"
+    },
+    {
+      "sentenceIndex": 150,
+      "text": "Anyone can say nice things and try to please others, but a true friend will say unpleasant things and doesn't mind causing discomfort."
+    },
+    {
+      "sentenceIndex": 151,
+      "text": "In fact, if he is a real friend, he prefers it because he knows he is doing good."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_37.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_37.mp3",
+  "duration": 34.47555555555555,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 148,
+      "startTime": 0,
+      "endTime": 6.786666666666667,
+      "text": "Of course, I would not dream of doing so if I were not your friend."
+    },
+    {
+      "sentenceIndex": 149,
+      "startTime": 6.786666666666667,
+      "endTime": 13.573333333333334,
+      "text": "But what is the good of friendship if one cannot say exactly what one means?"
+    },
+    {
+      "sentenceIndex": 150,
+      "startTime": 13.573333333333334,
+      "endTime": 24.315555555555555,
+      "text": "Anyone can say nice things and try to please others, but a true friend will say unpleasant things and doesn't mind causing discomfort."
+    },
+    {
+      "sentenceIndex": 151,
+      "startTime": 24.315555555555555,
+      "endTime": 32.58555555555556,
+      "text": "In fact, if he is a real friend, he prefers it because he knows he is doing good."
+    }
+  ],
+  "wordCount": 71,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:08:46.489Z"
+  }
+}

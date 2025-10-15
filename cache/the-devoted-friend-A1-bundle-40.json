@@ -1,0 +1,62 @@
+{
+  "index": 40,
+  "sentences": [
+    {
+      "sentenceIndex": 160,
+      "text": "Little Hans cried and jumped out of bed."
+    },
+    {
+      "sentenceIndex": 161,
+      "text": "He dressed himself and went to the barn."
+    },
+    {
+      "sentenceIndex": 162,
+      "text": "He worked all day until sunset."
+    },
+    {
+      "sentenceIndex": 163,
+      "text": "At sunset, the Miller came to see him."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_40.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_40.mp3",
+  "duration": 10.659999999999998,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 160,
+      "startTime": 0,
+      "endTime": 2.7866666666666666,
+      "text": "Little Hans cried and jumped out of bed."
+    },
+    {
+      "sentenceIndex": 161,
+      "startTime": 2.7866666666666666,
+      "endTime": 5.573333333333333,
+      "text": "He dressed himself and went to the barn."
+    },
+    {
+      "sentenceIndex": 162,
+      "startTime": 5.573333333333333,
+      "endTime": 7.693333333333333,
+      "text": "He worked all day until sunset."
+    },
+    {
+      "sentenceIndex": 163,
+      "startTime": 7.693333333333333,
+      "endTime": 10.48,
+      "text": "At sunset, the Miller came to see him."
+    }
+  ],
+  "wordCount": 30,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:01:45.777Z"
+  }
+}

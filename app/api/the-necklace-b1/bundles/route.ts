@@ -1,7 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import fs from 'fs';
+import path from 'path';
 
 const prisma = new PrismaClient();
+
+interface BundleMetadata {
+  bundleId: string;
+  bundleIndex: number;
+  audioUrl: string;
+  totalDuration: number;
+  sentences: Array<{
+    sentenceId: string;
+    sentenceIndex: number;
+    text: string;
+    startTime: number;
+    endTime: number;
+  }>;
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,93 +33,129 @@ export async function GET(request: NextRequest) {
       }, { status: 400 });
     }
 
-    console.log(`💎 Loading The Necklace B1 bundles with Solution 1...`);
+    console.log(`💎 Loading The Necklace bundles for level: ${level}`);
 
-    // Load bundles from database with Solution 1 architecture
-    const bundles = await prisma.bookChunk.findMany({
+    // Fast-fail check: count bundles first to avoid timeout
+    const chunkCount = await prisma.bookChunk.count({
+      where: {
+        bookId: 'the-necklace',
+        cefrLevel: 'B1'
+      }
+    });
+
+    if (chunkCount === 0) {
+      return NextResponse.json({
+        success: false,
+        error: 'No bundles found for The Necklace B1'
+      }, {
+        status: 404,
+        headers: { 'Cache-Control': 'no-store' }
+      });
+    }
+
+    // Get bundles from BookChunk table
+    const bookChunks = await prisma.bookChunk.findMany({
       where: {
         bookId: 'the-necklace',
         cefrLevel: 'B1'
       },
-      orderBy: {
-        chunkIndex: 'asc'
-      }
+      orderBy: { chunkIndex: 'asc' }
     });
 
-    if (bundles.length === 0) {
+    if (!bookChunks || bookChunks.length === 0) {
       return NextResponse.json({
         success: false,
-        error: 'No B1 bundles found in database'
+        error: 'No bundles found for The Necklace B1'
       }, { status: 404 });
     }
 
-    console.log(`✅ Loaded ${bundles.length} B1 bundles from database with Solution 1`);
+    console.log(`✅ Loaded ${bookChunks.length} bundles from BookChunk table`);
 
-    // Get the CDN base URL
-    const cdnBaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-      ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/audio-files/`
-      : 'https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/';
+    // Convert BookChunk data to API format with proper timing
+    const bundles: BundleMetadata[] = [];
+    let totalSentencesProcessed = 0;
 
-    // Convert database bundles to API format using Solution 1 metadata
-    const formattedBundles = bundles.map((bundle) => {
-      const metadata = bundle.audioDurationMetadata as any;
+    bookChunks.forEach((chunk, index) => {
+      // Generate Supabase storage URL
+      const audioUrl = `https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/${chunk.audioFilePath}`;
 
-      if (!metadata || !metadata.sentenceTimings) {
-        console.error(`Bundle ${bundle.chunkIndex} missing Solution 1 metadata!`);
-        return null;
-      }
+      // Split chunk text into sentences with improved regex for complex B1 punctuation
+      const chunkSentences = chunk.chunkText
+        .split(/(?<=[.!?])\s+(?=[A-Z"]|$)/) // Split on sentence endings followed by capital letter or quote
+        .map(s => s.trim())
+        .filter(s => s.length > 5)
+        // Further split on quote-separated sentences like "sentence!" "Another sentence."
+        .flatMap(sentence => {
+          // Handle cases like: "Ah, the good stew!" "I cannot imagine..."
+          const quoteSplit = sentence.split(/(?<=["'][.!?])\s+(?=["'][A-Z])/);
+          return quoteSplit.map(s => s.trim()).filter(s => s.length > 5);
+        });
 
-      return {
-        bundleId: `the-necklace-b1-${bundle.chunkIndex}`,
-        bundleIndex: bundle.chunkIndex,
-        audioUrl: cdnBaseUrl + bundle.audioFilePath,
-        totalDuration: metadata.measuredDuration || 0,
-        sentences: metadata.sentenceTimings.map((timing: any) => ({
-          sentenceId: `s${timing.sentenceIndex}`,
-          sentenceIndex: timing.sentenceIndex,
-          text: timing.text,
-          startTime: timing.startTime,
-          endTime: timing.endTime
-        }))
+      console.log(`Bundle ${index}: ${chunkSentences.length} sentences`);
+
+      // Calculate dynamic timings using B1-optimized formula (0.40s per word for complex sentences)
+      let cumulativeTime = 0;
+      const sentencesWithTimings = chunkSentences.map((text, sentenceIdx) => {
+        const words = text.trim().split(/\s+/).length;
+        const secondsPerWord = 0.40; // B1 timing: slower for complex sentences
+        const minDuration = 2.0;     // Minimum duration for short sentences
+        const duration = Math.max(words * secondsPerWord, minDuration);
+
+        const startTime = cumulativeTime;
+        const endTime = startTime + duration;
+        cumulativeTime = endTime; // Update for next sentence
+
+        return {
+          sentenceId: `s${totalSentencesProcessed + sentenceIdx}`,
+          sentenceIndex: totalSentencesProcessed + sentenceIdx,
+          text: text.trim(),
+          startTime: startTime,
+          endTime: endTime
+        };
+      });
+
+      const bundle = {
+        bundleId: `bundle_${index}`,
+        bundleIndex: index,
+        audioUrl,
+        totalDuration: cumulativeTime, // Use final cumulative time
+        sentences: sentencesWithTimings
       };
-    }).filter(Boolean);
 
-    const totalSentences = formattedBundles.reduce(
-      (sum, bundle) => sum + (bundle?.sentences?.length || 0),
-      0
-    );
+      bundles.push(bundle);
+      totalSentencesProcessed += sentencesWithTimings.length;
+    });
 
-    // Load chapter data for thematic headers (optional)
-    let chapters = null;
+    // Get book metadata
+    const bookContent = await prisma.bookContent.findFirst({
+      where: { bookId: 'the-necklace' }
+    });
+
+    // Load section data for thematic headers
+    let sections = null;
     try {
-      const path = await import('path');
-      const fs = await import('fs');
-      const chaptersPath = path.join(process.cwd(), 'cache', 'the-necklace-chapters.json');
-      if (fs.existsSync(chaptersPath)) {
-        const chaptersData = fs.readFileSync(chaptersPath, 'utf-8');
-        chapters = JSON.parse(chaptersData).chapters;
-      }
+      const sectionsPath = path.join(process.cwd(), 'cache', 'the-necklace-sections.json');
+      const sectionsData = fs.readFileSync(sectionsPath, 'utf-8');
+      sections = JSON.parse(sectionsData).sections;
     } catch (error) {
-      console.log('Chapters not available');
+      console.log('Could not load sections data:', error instanceof Error ? error.message : 'Unknown error');
     }
+
+    const totalSentences = bundles.reduce((sum, bundle) => sum + bundle.sentences.length, 0);
 
     return NextResponse.json({
       success: true,
-      bookId: 'the-necklace',
-      title: 'The Necklace',
-      author: 'Guy de Maupassant',
+      book: {
+        id: bookId,
+        title: bookContent?.title || 'The Necklace',
+        author: bookContent?.author || 'Guy de Maupassant'
+      },
       level: 'B1',
-      bundleCount: formattedBundles.length,
+      totalBundles: bundles.length,
       totalSentences,
-      bundles: formattedBundles,
-      chapters,
-      audioType: 'solution1', // Indicates this uses Solution 1 architecture
-      metadata: {
-        voice: 'Sarah',
-        voiceId: 'EXAVITQu4vr4xnSDxMaL',
-        speed: 0.90,
-        implementation: 'Solution 1 with ffprobe measurement'
-      }
+      bundles,
+      sections, // Add thematic sections for UI
+      source: 'dedicated-api' // Indicates this came from dedicated API for debugging
     });
 
   } catch (error) {
@@ -115,8 +167,4 @@ export async function GET(request: NextRequest) {
   } finally {
     await prisma.$disconnect();
   }
-}
-
-export async function HEAD() {
-  return new Response(null, { status: 200 });
 }

@@ -1,0 +1,62 @@
+{
+  "index": 21,
+  "sentences": [
+    {
+      "sentenceIndex": 84,
+      "text": "He had the basket on his arm."
+    },
+    {
+      "sentenceIndex": 85,
+      "text": "‘Good morning, little Hans,’ said the Miller."
+    },
+    {
+      "sentenceIndex": 86,
+      "text": "‘Good morning,’ said Hans, smiling and leaning on his spade."
+    },
+    {
+      "sentenceIndex": 87,
+      "text": "‘How have you been all winter?’ asked the Miller."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_21.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_21.mp3",
+  "duration": 15.546666666666667,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 84,
+      "startTime": 0,
+      "endTime": 3.2311111111111113,
+      "text": "He had the basket on his arm."
+    },
+    {
+      "sentenceIndex": 85,
+      "startTime": 3.2311111111111113,
+      "endTime": 6.4622222222222225,
+      "text": "‘Good morning, little Hans,’ said the Miller."
+    },
+    {
+      "sentenceIndex": 86,
+      "startTime": 6.4622222222222225,
+      "endTime": 11.026666666666667,
+      "text": "‘Good morning,’ said Hans, smiling and leaning on his spade."
+    },
+    {
+      "sentenceIndex": 87,
+      "startTime": 11.026666666666667,
+      "endTime": 15.146666666666668,
+      "text": "‘How have you been all winter?’ asked the Miller."
+    }
+  ],
+  "wordCount": 33,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:05.875Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "the-lady-with-the-dog",
+  "title": "The Lady with the Dog",
+  "author": "Anton Chekhov",
+  "type": "short-story",
+  "totalSentences": 165,
+  "sections": [
+    {
+      "sectionNumber": 1,
+      "title": "First Meeting",
+      "startSentence": 0,
+      "endSentence": 32,
+      "bundleStart": 0,
+      "bundleEnd": 7,
+      "description": "Gurov notices Anna and her white Pomeranian at the Yalta resort",
+      "emotionalTone": "curiosity, casual attraction, vacation mood"
+    },
+    {
+      "sectionNumber": 2,
+      "title": "The Affair Begins",
+      "startSentence": 33,
+      "endSentence": 65,
+      "bundleStart": 8,
+      "bundleEnd": 16,
+      "description": "Their romance develops amid the beauty of Yalta",
+      "emotionalTone": "passion, guilt, temporary escape from reality"
+    },
+    {
+      "sectionNumber": 3,
+      "title": "Departure and Separation",
+      "startSentence": 66,
+      "endSentence": 98,
+      "bundleStart": 17,
+      "bundleEnd": 24,
+      "description": "Anna returns to her husband, Gurov to his life in Moscow",
+      "emotionalTone": "regret, assumed finality, return to routine"
+    },
+    {
+      "sectionNumber": 4,
+      "title": "The Reunion",
+      "startSentence": 99,
+      "endSentence": 131,
+      "bundleStart": 25,
+      "bundleEnd": 32,
+      "description": "Gurov seeks out Anna in her hometown, reigniting their connection",
+      "emotionalTone": "longing, risk-taking, desperate pursuit"
+    },
+    {
+      "sectionNumber": 5,
+      "title": "True Love Revealed",
+      "startSentence": 132,
+      "endSentence": 164,
+      "bundleStart": 33,
+      "bundleEnd": 40,
+      "description": "Both realize their affair has become genuine, lasting love",
+      "emotionalTone": "profound recognition, bittersweet acceptance, mature love"
+    }
+  ],
+  "createdAt": "2025-01-12T00:00:00.000Z",
+  "followsMasterPrevention": true,
+  "guidelines": "5 thematic sections following Chekhov's transformation arc, spoiler-free headers, progression from casual to profound love"
+}

@@ -1,0 +1,507 @@
+# Mobile Testing CI/CD Pipeline
+# Automated testing on real devices for BookBridge mobile experience
+# Prevents deployment on memory failures and ensures 95% mobile scenario coverage
+
+name: Mobile Testing Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Daily device testing at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  NODE_VERSION: '18'
+  MEMORY_LIMIT_MB: 150  # 2GB RAM device constraint
+  MIN_PERFORMANCE_SCORE: 85
+
+jobs:
+  # Fast Jest tests for mobile-specific logic
+  mobile-unit-tests:
+    name: Mobile Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run mobile memory tests
+      run: |
+        npm test -- __tests__/mobile/memory-management.test.ts \
+          --coverage --coverageReporters=json-summary \
+          --maxWorkers=2
+
+    - name: Run touch interaction tests
+      run: |
+        npm test -- __tests__/mobile/touch-interactions.test.ts \
+          --coverage --coverageReporters=json-summary \
+          --maxWorkers=2
+
+    - name: Run device compatibility tests
+      run: |
+        npm test -- __tests__/mobile/device-compatibility.test.ts \
+          --coverage --coverageReporters=json-summary \
+          --maxWorkers=2
+
+    - name: Run audio-mobile integration tests
+      run: |
+        npm test -- __tests__/mobile/audio-mobile-integration.test.ts \
+          --coverage --coverageReporters=json-summary \
+          --maxWorkers=2
+
+    - name: Check test coverage
+      run: |
+        COVERAGE=$(cat coverage/coverage-summary.json | jq '.total.lines.pct')
+        echo "Mobile test coverage: $COVERAGE%"
+        if (( $(echo "$COVERAGE < 90" | bc -l) )); then
+          echo "❌ Mobile test coverage below 90%"
+          exit 1
+        fi
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: mobile-unit-test-results
+        path: |
+          coverage/
+          test-results/
+
+  # Browser testing with mobile viewports and user agents
+  mobile-browser-tests:
+    name: Mobile Browser Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      matrix:
+        browser: ['chromium', 'webkit', 'firefox']
+        device: ['iPhone SE', 'iPhone 12', 'Pixel 7', 'Galaxy A13']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Playwright
+      run: npx playwright install ${{ matrix.browser }}
+
+    - name: Build application
+      run: |
+        export MEMORY_LIMIT=${{ env.MEMORY_LIMIT_MB }}
+        npm run build
+
+    - name: Run Playwright mobile tests
+      run: |
+        npx playwright test --project=${{ matrix.browser }} \
+          --grep="mobile" \
+          --reporter=json \
+          --output-dir=test-results/${{ matrix.browser }}-${{ matrix.device }}
+      env:
+        DEVICE_NAME: ${{ matrix.device }}
+        BROWSER_NAME: ${{ matrix.browser }}
+
+    - name: Upload browser test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: browser-tests-${{ matrix.browser }}-${{ matrix.device }}
+        path: test-results/
+
+  # iOS Simulator testing
+  ios-simulator-tests:
+    name: iOS Simulator Tests
+    runs-on: macos-latest
+    timeout-minutes: 45
+
+    strategy:
+      matrix:
+        ios-version: ['15.5', '16.4', '17.0']
+        device: ['iPhone SE (3rd generation)', 'iPhone 14', 'iPhone 15 Pro']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Capacitor dependencies
+      run: |
+        npm install -g @capacitor/cli
+        npx cap add ios
+
+    - name: Build for iOS
+      run: |
+        npm run build:capacitor
+        npx cap copy ios
+
+    - name: List available simulators
+      run: xcrun simctl list devices available
+
+    - name: Boot iOS Simulator
+      run: |
+        DEVICE_ID=$(xcrun simctl list devices available | grep "${{ matrix.device }}" | grep "${{ matrix.ios-version }}" | head -1 | sed 's/.*(\([^)]*\)).*/\1/')
+        echo "Using device ID: $DEVICE_ID"
+        xcrun simctl boot "$DEVICE_ID" || true
+        echo "DEVICE_ID=$DEVICE_ID" >> $GITHUB_ENV
+
+    - name: Install app in simulator
+      run: |
+        cd ios/App
+        xcodebuild -workspace App.xcworkspace \
+          -scheme App \
+          -configuration Debug \
+          -destination "id=${{ env.DEVICE_ID }}" \
+          -derivedDataPath build/ \
+          install
+
+    - name: Run iOS accessibility tests
+      run: |
+        # Custom script to test accessibility compliance
+        node scripts/ios-accessibility-test.js \
+          --device-id "${{ env.DEVICE_ID }}" \
+          --ios-version "${{ matrix.ios-version }}"
+
+    - name: Test memory usage on iOS
+      run: |
+        # Monitor memory usage during app lifecycle
+        node scripts/ios-memory-monitor.js \
+          --device-id "${{ env.DEVICE_ID }}" \
+          --duration 300 \
+          --max-memory ${{ env.MEMORY_LIMIT_MB }}
+
+    - name: Test audio performance
+      run: |
+        # Test audio latency and buffer management
+        node scripts/ios-audio-test.js \
+          --device-id "${{ env.DEVICE_ID }}" \
+          --test-duration 60
+
+    - name: Upload iOS test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: ios-tests-${{ matrix.device }}-${{ matrix.ios-version }}
+        path: |
+          test-results/ios/
+          ios/App/build/Logs/
+
+  # Android Emulator testing
+  android-emulator-tests:
+    name: Android Emulator Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    strategy:
+      matrix:
+        api-level: [26, 30, 33]  # Android 8.0, 11, 13
+        arch: [x86_64]
+        profile: ['pixel_2', 'pixel_4', 'pixel_6_pro']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Install Capacitor
+      run: |
+        npm install -g @capacitor/cli
+        npx cap add android
+
+    - name: Build for Android
+      run: |
+        npm run build:capacitor
+        npx cap copy android
+        npx cap sync android
+
+    - name: AVD Cache
+      uses: actions/cache@v4
+      id: avd-cache
+      with:
+        path: |
+          ~/.android/avd/*
+          ~/.android/adb*
+        key: avd-${{ matrix.api-level }}-${{ matrix.arch }}-${{ matrix.profile }}
+
+    - name: Create AVD and generate snapshot for caching
+      if: steps.avd-cache.outputs.cache-hit != 'true'
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: ${{ matrix.api-level }}
+        arch: ${{ matrix.arch }}
+        profile: ${{ matrix.profile }}
+        force-avd-creation: false
+        emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+        disable-animations: false
+        script: echo "Generated AVD snapshot for caching."
+
+    - name: Run Android tests
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: ${{ matrix.api-level }}
+        arch: ${{ matrix.arch }}
+        profile: ${{ matrix.profile }}
+        force-avd-creation: false
+        emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+        disable-animations: true
+        script: |
+          # Install and launch app
+          cd android
+          ./gradlew assembleDebug
+          adb install app/build/outputs/apk/debug/app-debug.apk
+
+          # Run comprehensive Android tests
+          adb shell am start -n io.ionic.starter/.MainActivity
+
+          # Memory usage test
+          node ../scripts/android-memory-test.js \
+            --api-level ${{ matrix.api-level }} \
+            --profile ${{ matrix.profile }} \
+            --max-memory ${{ env.MEMORY_LIMIT_MB }}
+
+          # Touch interaction test
+          node ../scripts/android-touch-test.js \
+            --duration 120
+
+          # Audio performance test
+          node ../scripts/android-audio-test.js \
+            --duration 180
+
+          # Battery usage test
+          node ../scripts/android-battery-test.js \
+            --duration 300
+
+    - name: Upload Android test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: android-tests-api${{ matrix.api-level }}-${{ matrix.profile }}
+        path: |
+          test-results/android/
+          android/app/build/reports/
+
+  # Real device testing (requires BrowserStack or similar)
+  real-device-tests:
+    name: Real Device Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    if: github.event_name == 'schedule' || contains(github.event.pull_request.labels.*.name, 'test-real-devices')
+
+    strategy:
+      matrix:
+        device:
+          - { name: "iPhone SE", os: "iOS", version: "15" }
+          - { name: "iPhone 14", os: "iOS", version: "16" }
+          - { name: "Samsung Galaxy A13", os: "Android", version: "12" }
+          - { name: "Google Pixel 7", os: "Android", version: "13" }
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build application
+      run: npm run build
+
+    - name: Run BrowserStack tests
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+      run: |
+        # Run tests on real devices via BrowserStack
+        npx wdio run config/browserstack-mobile.conf.js \
+          --device "${{ matrix.device.name }}" \
+          --os "${{ matrix.device.os }}" \
+          --osVersion "${{ matrix.device.version }}"
+
+    - name: Upload real device results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: real-device-${{ matrix.device.name }}-${{ matrix.device.os }}${{ matrix.device.version }}
+        path: test-results/browserstack/
+
+  # Performance analysis and reporting
+  mobile-performance-analysis:
+    name: Mobile Performance Analysis
+    runs-on: ubuntu-latest
+    needs: [mobile-unit-tests, mobile-browser-tests]
+    if: always()
+    timeout-minutes: 15
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download all test artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: all-test-results/
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Generate performance report
+      run: |
+        node scripts/analyze-mobile-performance.js \
+          --results-dir all-test-results/ \
+          --output mobile-performance-report.json \
+          --min-score ${{ env.MIN_PERFORMANCE_SCORE }}
+
+    - name: Check performance thresholds
+      run: |
+        PERFORMANCE_SCORE=$(cat mobile-performance-report.json | jq '.overallScore')
+        echo "Mobile performance score: $PERFORMANCE_SCORE"
+
+        if (( $(echo "$PERFORMANCE_SCORE < ${{ env.MIN_PERFORMANCE_SCORE }}" | bc -l) )); then
+          echo "❌ Mobile performance below threshold (${{ env.MIN_PERFORMANCE_SCORE }})"
+          cat mobile-performance-report.json | jq '.failedTests'
+          exit 1
+        else
+          echo "✅ Mobile performance meets standards"
+        fi
+
+    - name: Generate compatibility matrix
+      run: |
+        node scripts/generate-compatibility-matrix.js \
+          --results-dir all-test-results/ \
+          --output compatibility-matrix.html
+
+    - name: Upload performance analysis
+      uses: actions/upload-artifact@v4
+      with:
+        name: mobile-performance-analysis
+        path: |
+          mobile-performance-report.json
+          compatibility-matrix.html
+
+    - name: Comment PR with results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('mobile-performance-report.json', 'utf8'));
+
+          const comment = `## 📱 Mobile Testing Results
+
+          **Performance Score:** ${report.overallScore}/100
+          **Memory Usage:** ${report.memoryUsage.average}MB (max: ${report.memoryUsage.max}MB)
+          **Device Coverage:** ${report.deviceCoverage}%
+          **Test Pass Rate:** ${report.passRate}%
+
+          ### Device Compatibility
+          ${report.deviceResults.map(d => `- ${d.name}: ${d.score}/100`).join('\n')}
+
+          ### Key Metrics
+          - Audio startup latency: ${report.audio.startupLatency}ms
+          - Touch response time: ${report.touch.responseTime}ms
+          - Memory efficiency: ${report.memory.efficiency}%
+
+          ${report.overallScore >= 85 ? '✅ Ready for mobile deployment' : '❌ Needs mobile optimization'}`;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+
+  # Deployment gate
+  mobile-deployment-gate:
+    name: Mobile Deployment Gate
+    runs-on: ubuntu-latest
+    needs: [mobile-performance-analysis, ios-simulator-tests, android-emulator-tests]
+    if: always() && github.ref == 'refs/heads/main'
+    timeout-minutes: 5
+
+    steps:
+    - name: Check all mobile tests passed
+      run: |
+        echo "Checking mobile test results..."
+
+        if [[ "${{ needs.mobile-performance-analysis.result }}" != "success" ]]; then
+          echo "❌ Mobile performance analysis failed"
+          exit 1
+        fi
+
+        if [[ "${{ needs.ios-simulator-tests.result }}" != "success" ]]; then
+          echo "❌ iOS simulator tests failed"
+          exit 1
+        fi
+
+        if [[ "${{ needs.android-emulator-tests.result }}" != "success" ]]; then
+          echo "❌ Android emulator tests failed"
+          exit 1
+        fi
+
+        echo "✅ All mobile tests passed - deployment approved"
+
+    - name: Update deployment status
+      run: |
+        echo "Mobile testing completed successfully"
+        echo "Ready for production deployment"

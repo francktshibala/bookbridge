@@ -1,0 +1,62 @@
+{
+  "index": 3,
+  "sentences": [
+    {
+      "sentenceIndex": 12,
+      "text": "He thinks love is nice, but he believes friendship is much more important."
+    },
+    {
+      "sentenceIndex": 13,
+      "text": "In fact, he believes nothing in the world is better or more special than a true friendship."
+    },
+    {
+      "sentenceIndex": 14,
+      "text": "A Green Linnet, sitting in a nearby willow tree, asked what he thinks a devoted friend should do."
+    },
+    {
+      "sentenceIndex": 15,
+      "text": "The Duck also wanted to know, so she swam to the end of the pond to show her children a good example."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_3.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_3.mp3",
+  "duration": 33.98111111111111,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 12,
+      "startTime": 0,
+      "endTime": 5.897777777777779,
+      "text": "He thinks love is nice, but he believes friendship is much more important."
+    },
+    {
+      "sentenceIndex": 13,
+      "startTime": 5.897777777777779,
+      "endTime": 13.673333333333336,
+      "text": "In fact, he believes nothing in the world is better or more special than a true friendship."
+    },
+    {
+      "sentenceIndex": 14,
+      "startTime": 13.673333333333336,
+      "endTime": 21.943333333333335,
+      "text": "A Green Linnet, sitting in a nearby willow tree, asked what he thinks a devoted friend should do."
+    },
+    {
+      "sentenceIndex": 15,
+      "startTime": 21.943333333333335,
+      "endTime": 32.19111111111111,
+      "text": "The Duck also wanted to know, so she swam to the end of the pond to show her children a good example."
+    }
+  ],
+  "wordCount": 70,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:04:37.164Z"
+  }
+}

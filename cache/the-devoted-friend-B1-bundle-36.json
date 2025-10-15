@@ -1,0 +1,62 @@
+{
+  "index": 36,
+  "sentences": [
+    {
+      "sentenceIndex": 144,
+      "text": "'Upon my word,' said the Miller, 'you are very lazy."
+    },
+    {
+      "sentenceIndex": 145,
+      "text": "Really, considering that I am going to give you my wheelbarrow, I think you should work harder."
+    },
+    {
+      "sentenceIndex": 146,
+      "text": "Idleness is a great sin, and I certainly don’t like any of my friends to be idle or sluggish."
+    },
+    {
+      "sentenceIndex": 147,
+      "text": "You must not mind my speaking quite plainly to you."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_36.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_36.mp3",
+  "duration": 27.05888888888889,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 144,
+      "startTime": 0,
+      "endTime": 4.564444444444445,
+      "text": "'Upon my word,' said the Miller, 'you are very lazy."
+    },
+    {
+      "sentenceIndex": 145,
+      "startTime": 4.564444444444445,
+      "endTime": 12.34,
+      "text": "Really, considering that I am going to give you my wheelbarrow, I think you should work harder."
+    },
+    {
+      "sentenceIndex": 146,
+      "startTime": 12.34,
+      "endTime": 21.104444444444443,
+      "text": "Idleness is a great sin, and I certainly don’t like any of my friends to be idle or sluggish."
+    },
+    {
+      "sentenceIndex": 147,
+      "startTime": 21.104444444444443,
+      "endTime": 25.668888888888887,
+      "text": "You must not mind my speaking quite plainly to you."
+    }
+  ],
+  "wordCount": 56,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:08:39.392Z"
+  }
+}

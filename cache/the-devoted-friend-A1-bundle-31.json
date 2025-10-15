@@ -1,0 +1,62 @@
+{
+  "index": 31,
+  "sentences": [
+    {
+      "sentenceIndex": 124,
+      "text": "Hans felt sad because the basket was big, and he needed flowers for the market."
+    },
+    {
+      "sentenceIndex": 125,
+      "text": "The Miller said, 'I gave you my wheelbarrow, so I want flowers.'"
+    },
+    {
+      "sentenceIndex": 126,
+      "text": "He said, 'True friendship is not selfish, I think.'"
+    },
+    {
+      "sentenceIndex": 127,
+      "text": "Hans said, 'My dear friend, you can have all my flowers.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_31.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_31.mp3",
+  "duration": 16.836666666666666,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 124,
+      "startTime": 0,
+      "endTime": 5.21,
+      "text": "Hans felt sad because the basket was big, and he needed flowers for the market."
+    },
+    {
+      "sentenceIndex": 125,
+      "startTime": 5.21,
+      "endTime": 9.33,
+      "text": "The Miller said, 'I gave you my wheelbarrow, so I want flowers.'"
+    },
+    {
+      "sentenceIndex": 126,
+      "startTime": 9.33,
+      "endTime": 12.45,
+      "text": "He said, 'True friendship is not selfish, I think.'"
+    },
+    {
+      "sentenceIndex": 127,
+      "startTime": 12.45,
+      "endTime": 16.236666666666665,
+      "text": "Hans said, 'My dear friend, you can have all my flowers.'"
+    }
+  ],
+  "wordCount": 47,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:52:13.456Z"
+  }
+}

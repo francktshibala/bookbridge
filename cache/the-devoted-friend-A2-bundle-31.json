@@ -1,0 +1,62 @@
+{
+  "index": 31,
+  "sentences": [
+    {
+      "sentenceIndex": 124,
+      "text": "Hans felt sad because the basket was big, and he knew he would have no flowers left for the market."
+    },
+    {
+      "sentenceIndex": 125,
+      "text": "The Miller said he gave Hans his wheelbarrow, so asking for a few flowers was not much."
+    },
+    {
+      "sentenceIndex": 126,
+      "text": "He thought true friendship should be free from any selfishness."
+    },
+    {
+      "sentenceIndex": 127,
+      "text": "Hans called the Miller his dear friend and said he could have all the flowers."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_31.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_31.mp3",
+  "duration": 29.59555555555556,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 124,
+      "startTime": 0,
+      "endTime": 9.248888888888889,
+      "text": "Hans felt sad because the basket was big, and he knew he would have no flowers left for the market."
+    },
+    {
+      "sentenceIndex": 125,
+      "startTime": 9.248888888888889,
+      "endTime": 17.044444444444444,
+      "text": "The Miller said he gave Hans his wheelbarrow, so asking for a few flowers was not much."
+    },
+    {
+      "sentenceIndex": 126,
+      "startTime": 17.044444444444444,
+      "endTime": 21.608888888888888,
+      "text": "He thought true friendship should be free from any selfishness."
+    },
+    {
+      "sentenceIndex": 127,
+      "startTime": 21.608888888888888,
+      "endTime": 28.435555555555556,
+      "text": "Hans called the Miller his dear friend and said he could have all the flowers."
+    }
+  ],
+  "wordCount": 62,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:41:06.110Z"
+  }
+}

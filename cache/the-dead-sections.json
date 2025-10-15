@@ -1,0 +1,62 @@
+{
+  "id": "the-dead",
+  "title": "The Dead",
+  "author": "James Joyce",
+  "type": "short-story",
+  "totalSentences": 180,
+  "sections": [
+    {
+      "sectionNumber": 1,
+      "title": "The Party Begins",
+      "startSentence": 0,
+      "endSentence": 35,
+      "bundleStart": 0,
+      "bundleEnd": 8,
+      "description": "Gabriel arrives at the Misses Morkan's annual dance party",
+      "emotionalTone": "festive, social gathering, mild awkwardness"
+    },
+    {
+      "sectionNumber": 2,
+      "title": "Dinner and Dancing",
+      "startSentence": 36,
+      "endSentence": 71,
+      "bundleStart": 9,
+      "bundleEnd": 17,
+      "description": "The feast, conversations, and dancing at the party",
+      "emotionalTone": "warmth, nostalgia, Irish tradition"
+    },
+    {
+      "sectionNumber": 3,
+      "title": "Gabriel's Speech",
+      "startSentence": 72,
+      "endSentence": 107,
+      "bundleStart": 18,
+      "bundleEnd": 26,
+      "description": "Gabriel gives his annual speech about hospitality and memory",
+      "emotionalTone": "eloquent, thoughtful, melancholic"
+    },
+    {
+      "sectionNumber": 4,
+      "title": "The Journey Home",
+      "startSentence": 108,
+      "endSentence": 143,
+      "bundleStart": 27,
+      "bundleEnd": 35,
+      "description": "Gabriel and Gretta leave the party and head to their hotel",
+      "emotionalTone": "intimate, romantic anticipation, snow falling"
+    },
+    {
+      "sectionNumber": 5,
+      "title": "The Revelation",
+      "startSentence": 144,
+      "endSentence": 179,
+      "bundleStart": 36,
+      "bundleEnd": 44,
+      "description": "Gretta's memories of Michael Furey and Gabriel's epiphany",
+      "emotionalTone": "devastating revelation, profound sadness, spiritual awakening"
+    }
+  ],
+  "createdAt": "2025-01-12T00:00:00.000Z",
+  "followsMasterPrevention": true,
+  "guidelines": "5 thematic sections following Joyce's narrative structure, spoiler-free headers, emotional progression from festive to profound"
+}

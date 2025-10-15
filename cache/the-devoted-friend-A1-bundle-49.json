@@ -1,0 +1,62 @@
+{
+  "index": 49,
+  "sentences": [
+    {
+      "sentenceIndex": 196,
+      "text": "The night was so dark that little Hans could not see, and the wind was very strong."
+    },
+    {
+      "sentenceIndex": 197,
+      "text": "But he was brave, and after walking for three hours, he got to the Doctor’s house."
+    },
+    {
+      "sentenceIndex": 198,
+      "text": "He knocked on the door."
+    },
+    {
+      "sentenceIndex": 199,
+      "text": "'Who is there?' asked the Doctor, looking out of his window."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_49.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_49.mp3",
+  "duration": 17.563333333333333,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 196,
+      "startTime": 0,
+      "endTime": 5.9366666666666665,
+      "text": "The night was so dark that little Hans could not see, and the wind was very strong."
+    },
+    {
+      "sentenceIndex": 197,
+      "startTime": 5.9366666666666665,
+      "endTime": 11.51,
+      "text": "But he was brave, and after walking for three hours, he got to the Doctor’s house."
+    },
+    {
+      "sentenceIndex": 198,
+      "startTime": 11.51,
+      "endTime": 13.296666666666667,
+      "text": "He knocked on the door."
+    },
+    {
+      "sentenceIndex": 199,
+      "startTime": 13.296666666666667,
+      "endTime": 17.083333333333332,
+      "text": "'Who is there?' asked the Doctor, looking out of his window."
+    }
+  ],
+  "wordCount": 49,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:03:35.142Z"
+  }
+}

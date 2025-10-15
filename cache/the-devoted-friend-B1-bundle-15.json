@@ -1,0 +1,62 @@
+{
+  "index": 15,
+  "sentences": [
+    {
+      "sentenceIndex": 60,
+      "text": "Flour and friendship are two different things, and they should not be mixed up."
+    },
+    {
+      "sentenceIndex": 61,
+      "text": "The words 'flour' and 'friendship' are spelled differently, and they mean different things."
+    },
+    {
+      "sentenceIndex": 62,
+      "text": "Everyone can understand that these words are not the same."
+    },
+    {
+      "sentenceIndex": 63,
+      "text": "The Miller's Wife said, 'You speak so well!' while she poured herself a large glass of warm ale."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_15.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_15.mp3",
+  "duration": 26.564444444444447,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 60,
+      "startTime": 0,
+      "endTime": 6.342222222222222,
+      "text": "Flour and friendship are two different things, and they should not be mixed up."
+    },
+    {
+      "sentenceIndex": 61,
+      "startTime": 6.342222222222222,
+      "endTime": 12.240000000000002,
+      "text": "The words 'flour' and 'friendship' are spelled differently, and they mean different things."
+    },
+    {
+      "sentenceIndex": 62,
+      "startTime": 12.240000000000002,
+      "endTime": 16.804444444444446,
+      "text": "Everyone can understand that these words are not the same."
+    },
+    {
+      "sentenceIndex": 63,
+      "startTime": 16.804444444444446,
+      "endTime": 25.074444444444445,
+      "text": "The Miller's Wife said, 'You speak so well!' while she poured herself a large glass of warm ale."
+    }
+  ],
+  "wordCount": 55,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:06:07.940Z"
+  }
+}

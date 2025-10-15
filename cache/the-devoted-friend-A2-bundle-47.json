@@ -1,0 +1,62 @@
+{
+  "index": 47,
+  "sentences": [
+    {
+      "sentenceIndex": 188,
+      "text": "My little boy fell off a ladder and hurt himself, and I am going to get the Doctor."
+    },
+    {
+      "sentenceIndex": 189,
+      "text": "But he lives far away, and it is such a bad night, so I thought it would be better if you went instead of me."
+    },
+    {
+      "sentenceIndex": 190,
+      "text": "You know I will give you my wheelbarrow, so you should help me in return."
+    },
+    {
+      "sentenceIndex": 191,
+      "text": "'Certainly,' cried little Hans, 'I am happy you came to me, and I will start right away."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_47.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_47.mp3",
+  "duration": 35.89333333333333,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 188,
+      "startTime": 0,
+      "endTime": 8.28,
+      "text": "My little boy fell off a ladder and hurt himself, and I am going to get the Doctor."
+    },
+    {
+      "sentenceIndex": 189,
+      "startTime": 8.28,
+      "endTime": 19.95111111111111,
+      "text": "But he lives far away, and it is such a bad night, so I thought it would be better if you went instead of me."
+    },
+    {
+      "sentenceIndex": 190,
+      "startTime": 19.95111111111111,
+      "endTime": 26.77777777777778,
+      "text": "You know I will give you my wheelbarrow, so you should help me in return."
+    },
+    {
+      "sentenceIndex": 191,
+      "startTime": 26.77777777777778,
+      "endTime": 34.57333333333334,
+      "text": "'Certainly,' cried little Hans, 'I am happy you came to me, and I will start right away."
+    }
+  ],
+  "wordCount": 75,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:42:59.032Z"
+  }
+}

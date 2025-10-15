@@ -1,0 +1,62 @@
+{
+  "index": 34,
+  "sentences": [
+    {
+      "sentenceIndex": 136,
+      "text": "He had to nail up plants and water flowers."
+    },
+    {
+      "sentenceIndex": 137,
+      "text": "The Miller said Hans was unfriendly to refuse."
+    },
+    {
+      "sentenceIndex": 138,
+      "text": "Hans said he was not unfriendly and took the sack."
+    },
+    {
+      "sentenceIndex": 139,
+      "text": "The day was hot, and Hans got tired and rested."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_34.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_34.mp3",
+  "duration": 13.203333333333331,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 136,
+      "startTime": 0,
+      "endTime": 3.12,
+      "text": "He had to nail up plants and water flowers."
+    },
+    {
+      "sentenceIndex": 137,
+      "startTime": 3.12,
+      "endTime": 5.906666666666666,
+      "text": "The Miller said Hans was unfriendly to refuse."
+    },
+    {
+      "sentenceIndex": 138,
+      "startTime": 5.906666666666666,
+      "endTime": 9.36,
+      "text": "Hans said he was not unfriendly and took the sack."
+    },
+    {
+      "sentenceIndex": 139,
+      "startTime": 9.36,
+      "endTime": 12.813333333333333,
+      "text": "The day was hot, and Hans got tired and rested."
+    }
+  ],
+  "wordCount": 37,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:52:28.351Z"
+  }
+}

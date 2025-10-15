@@ -1,0 +1,62 @@
+{
+  "index": 6,
+  "sentences": [
+    {
+      "sentenceIndex": 24,
+      "text": "'If it is, I will listen because I really like fiction,' he added."
+    },
+    {
+      "sentenceIndex": 25,
+      "text": "'It relates to you,' answered the Linnet, and he flew down to the riverbank to tell the story."
+    },
+    {
+      "sentenceIndex": 26,
+      "text": "'Once upon a time,' began the Linnet, 'there was an honest little fellow named Hans.'"
+    },
+    {
+      "sentenceIndex": 27,
+      "text": "'Was he very special or famous?' asked the Water-rat."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_6.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_6.mp3",
+  "duration": 26.564444444444447,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 24,
+      "startTime": 0,
+      "endTime": 5.897777777777779,
+      "text": "'If it is, I will listen because I really like fiction,' he added."
+    },
+    {
+      "sentenceIndex": 25,
+      "startTime": 5.897777777777779,
+      "endTime": 14.16777777777778,
+      "text": "'It relates to you,' answered the Linnet, and he flew down to the riverbank to tell the story."
+    },
+    {
+      "sentenceIndex": 26,
+      "startTime": 14.16777777777778,
+      "endTime": 20.954444444444448,
+      "text": "'Once upon a time,' began the Linnet, 'there was an honest little fellow named Hans.'"
+    },
+    {
+      "sentenceIndex": 27,
+      "startTime": 20.954444444444448,
+      "endTime": 25.07444444444445,
+      "text": "'Was he very special or famous?' asked the Water-rat."
+    }
+  ],
+  "wordCount": 55,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:04:57.002Z"
+  }
+}

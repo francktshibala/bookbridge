@@ -1,0 +1,62 @@
+{
+  "index": 41,
+  "sentences": [
+    {
+      "sentenceIndex": 164,
+      "text": "'Have you fixed the hole in the roof yet, little Hans?' the Miller asked cheerfully."
+    },
+    {
+      "sentenceIndex": 165,
+      "text": "'It is completely fixed,' answered little Hans, coming down the ladder."
+    },
+    {
+      "sentenceIndex": 166,
+      "text": "'Ah!' said the Miller, 'Working for others is the best work.'"
+    },
+    {
+      "sentenceIndex": 167,
+      "text": "'It is a great privilege to hear you talk,' said little Hans, sitting down and wiping his forehead."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_41.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_41.mp3",
+  "duration": 26.204444444444448,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 164,
+      "startTime": 0,
+      "endTime": 6.826666666666667,
+      "text": "'Have you fixed the hole in the roof yet, little Hans?' the Miller asked cheerfully."
+    },
+    {
+      "sentenceIndex": 165,
+      "startTime": 6.826666666666667,
+      "endTime": 11.835555555555556,
+      "text": "'It is completely fixed,' answered little Hans, coming down the ladder."
+    },
+    {
+      "sentenceIndex": 166,
+      "startTime": 11.835555555555556,
+      "endTime": 16.844444444444445,
+      "text": "'Ah!' said the Miller, 'Working for others is the best work.'"
+    },
+    {
+      "sentenceIndex": 167,
+      "startTime": 16.844444444444445,
+      "endTime": 25.124444444444443,
+      "text": "'It is a great privilege to hear you talk,' said little Hans, sitting down and wiping his forehead."
+    }
+  ],
+  "wordCount": 55,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:42:16.537Z"
+  }
+}

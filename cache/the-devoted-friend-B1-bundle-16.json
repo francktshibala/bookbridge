@@ -1,0 +1,62 @@
+{
+  "index": 16,
+  "sentences": [
+    {
+      "sentenceIndex": 64,
+      "text": "She continued, 'Listening to you makes me feel sleepy, just like being in church.'"
+    },
+    {
+      "sentenceIndex": 65,
+      "text": "The Miller replied, 'Many people can act well, but few can talk well, which is much harder and better.'"
+    },
+    {
+      "sentenceIndex": 66,
+      "text": "He looked seriously at his little son, who felt embarrassed, lowered his head, and cried into his tea."
+    },
+    {
+      "sentenceIndex": 67,
+      "text": "The boy was very young, so you should forgive him for his mistake."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_16.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_16.mp3",
+  "duration": 31.014444444444447,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 64,
+      "startTime": 0,
+      "endTime": 6.342222222222222,
+      "text": "She continued, 'Listening to you makes me feel sleepy, just like being in church.'"
+    },
+    {
+      "sentenceIndex": 65,
+      "startTime": 6.342222222222222,
+      "endTime": 15.106666666666666,
+      "text": "The Miller replied, 'Many people can act well, but few can talk well, which is much harder and better.'"
+    },
+    {
+      "sentenceIndex": 66,
+      "startTime": 15.106666666666666,
+      "endTime": 23.376666666666665,
+      "text": "He looked seriously at his little son, who felt embarrassed, lowered his head, and cried into his tea."
+    },
+    {
+      "sentenceIndex": 67,
+      "startTime": 23.376666666666665,
+      "endTime": 29.274444444444445,
+      "text": "The boy was very young, so you should forgive him for his mistake."
+    }
+  ],
+  "wordCount": 64,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:06:15.448Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 50,
+  "sentences": [
+    {
+      "sentenceIndex": 200,
+      "text": "Little Hans, Doctor."
+    },
+    {
+      "sentenceIndex": 201,
+      "text": "What do you want, little Hans?"
+    },
+    {
+      "sentenceIndex": 202,
+      "text": "The Miller's son fell and hurt himself, and the Miller wants you to come now."
+    },
+    {
+      "sentenceIndex": 203,
+      "text": "All right!"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_50.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_50.mp3",
+  "duration": 9.206666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 200,
+      "startTime": 0,
+      "endTime": 1.12,
+      "text": "Little Hans, Doctor."
+    },
+    {
+      "sentenceIndex": 201,
+      "startTime": 1.12,
+      "endTime": 3.24,
+      "text": "What do you want, little Hans?"
+    },
+    {
+      "sentenceIndex": 202,
+      "startTime": 3.24,
+      "endTime": 8.45,
+      "text": "The Miller's son fell and hurt himself, and the Miller wants you to come now."
+    },
+    {
+      "sentenceIndex": 203,
+      "startTime": 8.45,
+      "endTime": 9.236666666666666,
+      "text": "All right!"
+    }
+  ],
+  "wordCount": 26,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:03:39.213Z"
+  }
+}

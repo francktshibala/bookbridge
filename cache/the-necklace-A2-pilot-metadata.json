@@ -1,0 +1,11 @@
+{
+  "id": "the-necklace",
+  "level": "A2",
+  "originalSentences": 230,
+  "processedSentences": 20,
+  "outputSentences": 20,
+  "estimatedCost": 0.10000000000000002,
+  "createdAt": "2025-10-09T03:24:55.981Z",
+  "status": "pilot-completed",
+  "guidelines": "\n- Use 1200-1500 most common words\n- Present and simple past tense\n- Natural compound sentences (11-13 words average - COMPOUND FLOW)\n- More connectors: \"and\", \"but\", \"so\", \"then\", \"because\"\n- Explain cultural references simply\n- Maintain exact 1:1 sentence count mapping (CRITICAL)\n- Generate compound sentences for natural flow (NOT micro-sentences)\n- AVOID: \"She is sad. She cries. She feels bad.\" (robotic micro-sentences)\n- CORRECT A2: \"She is sad and cries because she feels bad inside.\" (natural 11 words)\n- Preserve punctuation for proper formatting\n- Validate natural reading flow\n"
+}

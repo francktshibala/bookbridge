@@ -1,0 +1,62 @@
+{
+  "index": 32,
+  "sentences": [
+    {
+      "sentenceIndex": 128,
+      "text": "He picked all his flowers and filled the Miller's basket."
+    },
+    {
+      "sentenceIndex": 129,
+      "text": "The Miller said, 'Good-bye, Hans,' and went up the hill."
+    },
+    {
+      "sentenceIndex": 130,
+      "text": "Hans said goodbye and started to dig happily."
+    },
+    {
+      "sentenceIndex": 131,
+      "text": "The next day, Hans heard the Miller calling him."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_32.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_32.mp3",
+  "duration": 13.203333333333331,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 128,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "He picked all his flowers and filled the Miller's basket."
+    },
+    {
+      "sentenceIndex": 129,
+      "startTime": 3.453333333333333,
+      "endTime": 6.906666666666666,
+      "text": "The Miller said, 'Good-bye, Hans,' and went up the hill."
+    },
+    {
+      "sentenceIndex": 130,
+      "startTime": 6.906666666666666,
+      "endTime": 9.693333333333333,
+      "text": "Hans said goodbye and started to dig happily."
+    },
+    {
+      "sentenceIndex": 131,
+      "startTime": 9.693333333333333,
+      "endTime": 12.813333333333333,
+      "text": "The next day, Hans heard the Miller calling him."
+    }
+  ],
+  "wordCount": 37,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:52:18.299Z"
+  }
+}

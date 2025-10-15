@@ -1,0 +1,62 @@
+{
+  "index": 46,
+  "sentences": [
+    {
+      "sentenceIndex": 184,
+      "text": "But then there was a second knock and a third, each louder than before."
+    },
+    {
+      "sentenceIndex": 185,
+      "text": "'It is a poor traveler,' said little Hans to himself, and he ran to the door."
+    },
+    {
+      "sentenceIndex": 186,
+      "text": "There was the Miller with a lantern in one hand and a big stick in the other."
+    },
+    {
+      "sentenceIndex": 187,
+      "text": "'Dear little Hans,' cried the Miller, 'I am in big trouble."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_46.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_46.mp3",
+  "duration": 27.65777777777778,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 184,
+      "startTime": 0,
+      "endTime": 6.342222222222222,
+      "text": "But then there was a second knock and a third, each louder than before."
+    },
+    {
+      "sentenceIndex": 185,
+      "startTime": 6.342222222222222,
+      "endTime": 13.653333333333334,
+      "text": "'It is a poor traveler,' said little Hans to himself, and he ran to the door."
+    },
+    {
+      "sentenceIndex": 186,
+      "startTime": 13.653333333333334,
+      "endTime": 21.44888888888889,
+      "text": "There was the Miller with a lantern in one hand and a big stick in the other."
+    },
+    {
+      "sentenceIndex": 187,
+      "startTime": 21.44888888888889,
+      "endTime": 26.457777777777782,
+      "text": "'Dear little Hans,' cried the Miller, 'I am in big trouble."
+    }
+  ],
+  "wordCount": 58,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:42:51.763Z"
+  }
+}
