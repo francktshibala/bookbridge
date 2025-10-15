@@ -1,0 +1,62 @@
+{
+  "index": 57,
+  "sentences": [
+    {
+      "sentenceIndex": 228,
+      "text": "\"Well, really,\" said the Water-rat angrily, \"you should have told me before.\""
+    },
+    {
+      "sentenceIndex": 229,
+      "text": "\"I think you should have said that at the start,\" he added."
+    },
+    {
+      "sentenceIndex": 230,
+      "text": "If you had done that, I would not have listened to you, and I would have said 'Pooh,' like the critic."
+    },
+    {
+      "sentenceIndex": 231,
+      "text": "However, I can say it now, so he shouted 'Pooh' loudly, then he whisked his tail and went back to his hole."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_57.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_57.mp3",
+  "duration": 32.01777777777778,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 228,
+      "startTime": 0,
+      "endTime": 5.453333333333334,
+      "text": "\"Well, really,\" said the Water-rat angrily, \"you should have told me before.\""
+    },
+    {
+      "sentenceIndex": 229,
+      "startTime": 5.453333333333334,
+      "endTime": 10.906666666666668,
+      "text": "\"I think you should have said that at the start,\" he added."
+    },
+    {
+      "sentenceIndex": 230,
+      "startTime": 10.906666666666668,
+      "endTime": 20.64,
+      "text": "If you had done that, I would not have listened to you, and I would have said 'Pooh,' like the critic."
+    },
+    {
+      "sentenceIndex": 231,
+      "startTime": 20.64,
+      "endTime": 30.857777777777777,
+      "text": "However, I can say it now, so he shouted 'Pooh' loudly, then he whisked his tail and went back to his hole."
+    }
+  ],
+  "wordCount": 67,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:44:05.901Z"
+  }
+}

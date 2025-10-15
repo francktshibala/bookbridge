@@ -1,0 +1,62 @@
+{
+  "index": 52,
+  "sentences": [
+    {
+      "sentenceIndex": 208,
+      "text": "'As I was his best friend,' said the Miller, 'it is only fair that I should have the best place,' so he walked at the front of the procession in a long black cloak, and sometimes he wiped his eyes with a big handkerchief."
+    },
+    {
+      "sentenceIndex": 209,
+      "text": "The funeral was very sad, and everyone missed little Hans a lot."
+    },
+    {
+      "sentenceIndex": 210,
+      "text": "'Little Hans is a big loss to everyone,' said the Blacksmith, after the funeral, while they sat in the inn, drinking spiced wine and eating sweet cakes."
+    },
+    {
+      "sentenceIndex": 211,
+      "text": "'He is a big loss to me too,' said the Miller, 'because I almost gave him my wheelbarrow, and now I don't know what to do with it."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_52.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_52.mp3",
+  "duration": 53.333333333333336,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 208,
+      "startTime": 0,
+      "endTime": 20.875555555555557,
+      "text": "'As I was his best friend,' said the Miller, 'it is only fair that I should have the best place,' so he walked at the front of the procession in a long black cloak, and sometimes he wiped his eyes with a big handkerchief."
+    },
+    {
+      "sentenceIndex": 209,
+      "startTime": 20.875555555555557,
+      "endTime": 26.32888888888889,
+      "text": "The funeral was very sad, and everyone missed little Hans a lot."
+    },
+    {
+      "sentenceIndex": 210,
+      "startTime": 26.32888888888889,
+      "endTime": 38.96888888888889,
+      "text": "'Little Hans is a big loss to everyone,' said the Blacksmith, after the funeral, while they sat in the inn, drinking spiced wine and eating sweet cakes."
+    },
+    {
+      "sentenceIndex": 211,
+      "startTime": 38.96888888888889,
+      "endTime": 52.093333333333334,
+      "text": "'He is a big loss to me too,' said the Miller, 'because I almost gave him my wheelbarrow, and now I don't know what to do with it."
+    }
+  ],
+  "wordCount": 111,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:43:40.509Z"
+  }
+}

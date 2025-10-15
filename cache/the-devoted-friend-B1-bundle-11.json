@@ -1,0 +1,62 @@
+{
+  "index": 11,
+  "sentences": [
+    {
+      "sentenceIndex": 44,
+      "text": "The Miller used to tell his wife, 'There is no point in visiting little Hans while the snow is here because people in trouble should be left alone and not bothered by visitors."
+    },
+    {
+      "sentenceIndex": 45,
+      "text": "That is my idea of friendship, and I believe I am right."
+    },
+    {
+      "sentenceIndex": 46,
+      "text": "I will wait until spring to visit him, and then he can give me a large basket of primroses, which will make him happy."
+    },
+    {
+      "sentenceIndex": 47,
+      "text": "You are certainly very thoughtful about others,' replied the Wife, sitting in her comfortable chair by the warm fire, 'very thoughtful indeed."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_11.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_11.mp3",
+  "duration": 44.364444444444445,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 44,
+      "startTime": 0,
+      "endTime": 15.686666666666667,
+      "text": "The Miller used to tell his wife, 'There is no point in visiting little Hans while the snow is here because people in trouble should be left alone and not bothered by visitors."
+    },
+    {
+      "sentenceIndex": 45,
+      "startTime": 15.686666666666667,
+      "endTime": 21.14,
+      "text": "That is my idea of friendship, and I believe I am right."
+    },
+    {
+      "sentenceIndex": 46,
+      "startTime": 21.14,
+      "endTime": 32.376666666666665,
+      "text": "I will wait until spring to visit him, and then he can give me a large basket of primroses, which will make him happy."
+    },
+    {
+      "sentenceIndex": 47,
+      "startTime": 32.376666666666665,
+      "endTime": 42.62444444444444,
+      "text": "You are certainly very thoughtful about others,' replied the Wife, sitting in her comfortable chair by the warm fire, 'very thoughtful indeed."
+    }
+  ],
+  "wordCount": 91,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:05:41.132Z"
+  }
+}

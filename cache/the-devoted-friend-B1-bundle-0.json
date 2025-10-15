@@ -1,0 +1,62 @@
+{
+  "index": 0,
+  "sentences": [
+    {
+      "sentenceIndex": 0,
+      "text": "One morning, the old Water-rat poked his head out of his hole."
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "His eyes were bright and beady, his whiskers were stiff and grey, and his tail looked like a long piece of black rubber."
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "The little ducks were swimming in the pond, looking like yellow canaries, while their mother, who was pure white with red legs, tried to teach them to stand on their heads in the water."
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "\"You will never be in the best society unless you can stand on your heads,\" she kept telling them, and she often showed them how to do it."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_0.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_0.mp3",
+  "duration": 47.33111111111111,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "startTime": 0,
+      "endTime": 5.453333333333334,
+      "text": "One morning, the old Water-rat poked his head out of his hole."
+    },
+    {
+      "sentenceIndex": 1,
+      "startTime": 5.453333333333334,
+      "endTime": 16.195555555555558,
+      "text": "His eyes were bright and beady, his whiskers were stiff and grey, and his tail looked like a long piece of black rubber."
+    },
+    {
+      "sentenceIndex": 2,
+      "startTime": 16.195555555555558,
+      "endTime": 32.37666666666667,
+      "text": "The little ducks were swimming in the pond, looking like yellow canaries, while their mother, who was pure white with red legs, tried to teach them to stand on their heads in the water."
+    },
+    {
+      "sentenceIndex": 3,
+      "startTime": 32.37666666666667,
+      "endTime": 45.59111111111112,
+      "text": "\"You will never be in the best society unless you can stand on your heads,\" she kept telling them, and she often showed them how to do it."
+    }
+  ],
+  "wordCount": 97,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:04:18.154Z"
+  }
+}

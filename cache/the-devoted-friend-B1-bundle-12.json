@@ -1,0 +1,62 @@
+{
+  "index": 12,
+  "sentences": [
+    {
+      "sentenceIndex": 48,
+      "text": "It is a pleasure to hear you talk about friendship."
+    },
+    {
+      "sentenceIndex": 49,
+      "text": "Even the clergyman, who lives in a big house and wears a gold ring, could not say such beautiful things as you do."
+    },
+    {
+      "sentenceIndex": 50,
+      "text": "The Miller's youngest son asked, 'Could we invite little Hans to our house?'"
+    },
+    {
+      "sentenceIndex": 51,
+      "text": "He said, 'If Hans is having a hard time, I will share my porridge and show him my white rabbits.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_12.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_12.mp3",
+  "duration": 32.00333333333334,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 48,
+      "startTime": 0,
+      "endTime": 4.564444444444445,
+      "text": "It is a pleasure to hear you talk about friendship."
+    },
+    {
+      "sentenceIndex": 49,
+      "startTime": 4.564444444444445,
+      "endTime": 15.306666666666668,
+      "text": "Even the clergyman, who lives in a big house and wears a gold ring, could not say such beautiful things as you do."
+    },
+    {
+      "sentenceIndex": 50,
+      "startTime": 15.306666666666668,
+      "endTime": 21.204444444444448,
+      "text": "The Miller's youngest son asked, 'Could we invite little Hans to our house?'"
+    },
+    {
+      "sentenceIndex": 51,
+      "startTime": 21.204444444444448,
+      "endTime": 30.46333333333334,
+      "text": "He said, 'If Hans is having a hard time, I will share my porridge and show him my white rabbits.'"
+    }
+  ],
+  "wordCount": 66,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:05:48.357Z"
+  }
+}

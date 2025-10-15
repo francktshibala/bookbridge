@@ -1,0 +1,62 @@
+{
+  "index": 35,
+  "sentences": [
+    {
+      "sentenceIndex": 140,
+      "text": "However, he went on bravely, and at last he reached the market."
+    },
+    {
+      "sentenceIndex": 141,
+      "text": "After he waited some time, he sold the flour for a good price, and then he went home quickly because he was afraid of meeting robbers."
+    },
+    {
+      "sentenceIndex": 142,
+      "text": "'It was a hard day,' said little Hans as he went to bed, 'but I am glad I helped the Miller because he is my best friend, and he will give me his wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 143,
+      "text": "Early the next morning, the Miller came to get money for his flour, but little Hans was still in bed because he was very tired."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_35.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_35.mp3",
+  "duration": 46.55111111111111,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 140,
+      "startTime": 0,
+      "endTime": 5.453333333333334,
+      "text": "However, he went on bravely, and at last he reached the market."
+    },
+    {
+      "sentenceIndex": 141,
+      "startTime": 5.453333333333334,
+      "endTime": 17.60888888888889,
+      "text": "After he waited some time, he sold the flour for a good price, and then he went home quickly because he was afraid of meeting robbers."
+    },
+    {
+      "sentenceIndex": 142,
+      "startTime": 17.60888888888889,
+      "endTime": 33.64,
+      "text": "'It was a hard day,' said little Hans as he went to bed, 'but I am glad I helped the Miller because he is my best friend, and he will give me his wheelbarrow.'"
+    },
+    {
+      "sentenceIndex": 143,
+      "startTime": 33.64,
+      "endTime": 45.31111111111111,
+      "text": "Early the next morning, the Miller came to get money for his flour, but little Hans was still in bed because he was very tired."
+    }
+  ],
+  "wordCount": 97,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:41:37.117Z"
+  }
+}

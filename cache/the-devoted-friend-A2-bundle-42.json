@@ -1,0 +1,62 @@
+{
+  "index": 42,
+  "sentences": [
+    {
+      "sentenceIndex": 168,
+      "text": "'I am afraid I will never have such beautiful ideas as you have.'"
+    },
+    {
+      "sentenceIndex": 169,
+      "text": "'Oh!' replied the Miller."
+    },
+    {
+      "sentenceIndex": 170,
+      "text": "The Miller said, 'They will come to you, but you must work harder.'"
+    },
+    {
+      "sentenceIndex": 171,
+      "text": "Right now, you only know how to be a friend, but one day you will understand why."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_42.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_42.mp3",
+  "duration": 22.32888888888889,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 168,
+      "startTime": 0,
+      "endTime": 5.897777777777779,
+      "text": "'I am afraid I will never have such beautiful ideas as you have.'"
+    },
+    {
+      "sentenceIndex": 169,
+      "startTime": 5.897777777777779,
+      "endTime": 7.7955555555555565,
+      "text": "'Oh!' replied the Miller."
+    },
+    {
+      "sentenceIndex": 170,
+      "startTime": 7.7955555555555565,
+      "endTime": 13.693333333333335,
+      "text": "The Miller said, 'They will come to you, but you must work harder.'"
+    },
+    {
+      "sentenceIndex": 171,
+      "startTime": 13.693333333333335,
+      "endTime": 21.48888888888889,
+      "text": "Right now, you only know how to be a friend, but one day you will understand why."
+    }
+  ],
+  "wordCount": 47,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:42:22.065Z"
+  }
+}

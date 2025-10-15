@@ -1,0 +1,2454 @@
+{
+  "sentences": [
+    {
+      "sentenceIndex": 0,
+      "originalText": "It was said that a new person had appeared on the boardwalk: a lady with a little dog.",
+      "simplifiedText": "People said a new person was on the boardwalk: a lady with a small dog.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 1,
+      "originalText": "Dmitri Dmitritch Gurov, who had been in Yalta for two weeks and was quite settled there, had started taking an interest in new arrivals.",
+      "simplifiedText": "Dmitri Dmitritch Gurov had been in Yalta for two weeks and liked to watch new people.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 2,
+      "originalText": "Sitting in Verney's pavilion, he saw a fair-haired young woman of medium height, wearing a beret, walking along the boardwalk; a white Pomeranian dog was running behind her.",
+      "simplifiedText": "In Verney's pavilion, he saw a young woman with fair hair and a beret, and a white dog followed her.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 3,
+      "originalText": "Later, he saw her in the public gardens and the square several times a day.",
+      "simplifiedText": "He later saw her in the gardens and square many times each day.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 4,
+      "originalText": "She was always alone, wearing the same beret, and always with the same white dog; no one knew who she was, and everyone called her simply \"the lady with the dog.",
+      "simplifiedText": "She was always alone, wore the same beret, and had the same white dog; no one knew her name, so they called her 'the lady with the dog.'",
+      "level": "A2",
+      "wordCount": 28
+    },
+    {
+      "sentenceIndex": 5,
+      "originalText": "\" \"If she's here alone without a husband or friends, it wouldn't hurt to get to know her,\" Gurov thought.",
+      "simplifiedText": "Gurov thought, 'If she is alone here without a husband or friends, I should meet her.'",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 6,
+      "originalText": "He was under forty, but he already had a twelve-year-old daughter and two sons in school.",
+      "simplifiedText": "He was not yet forty, but he had a twelve-year-old daughter and two sons in school.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 7,
+      "originalText": "He had married young, while still a student, and by now his wife seemed much older than him.",
+      "simplifiedText": "He married young, while still a student, and now his wife seemed much older than him.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 8,
+      "originalText": "She was a tall, dignified woman with dark eyebrows, who considered herself intellectual.",
+      "simplifiedText": "His wife was tall and dignified, with dark eyebrows, and she thought she was intellectual.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 9,
+      "originalText": "She read a lot, used phonetic spelling, called her husband not Dmitri but Dimitri, and he secretly thought she was unintelligent, narrow-minded, inelegant, was afraid of her, and didn't like being at home.",
+      "simplifiedText": "She read a lot, used phonetic spelling, called him Dimitri, and he thought she was not smart, was afraid of her, and disliked being at home.",
+      "level": "A2",
+      "wordCount": 26
+    },
+    {
+      "sentenceIndex": 10,
+      "originalText": "He had started being unfaithful to her long ago—had been unfaithful often, and probably because of that, almost always spoke poorly of women, and when they were discussed in his presence, he would call them \"the lower race.",
+      "simplifiedText": "Dmitri Dmitritch Gurov had been unfaithful to his wife for a long time, and he often spoke poorly of women.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 11,
+      "originalText": "\" It seemed to him that he had been so schooled by bitter experience that he might call them what he liked, yet he couldn't go two days without \"the lower race.",
+      "simplifiedText": "He thought he knew women well, but he couldn't live without them for more than two days.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 12,
+      "originalText": "\" In the company of men, he was bored and not himself, cold and uncommunicative; but with women, he felt free, knew what to say and how to behave, and was at ease even when silent.",
+      "simplifiedText": "With men, he felt bored and cold, but with women, he felt free and knew how to behave.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 13,
+      "originalText": "In his appearance, character, and whole nature, there was something attractive and elusive that drew women to him; he knew that, and some force seemed to draw him to them as well.",
+      "simplifiedText": "His appearance and character attracted women, and he felt drawn to them too.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 14,
+      "originalText": "Experience often repeated, truly bitter experience, had taught him long ago that with decent people, especially those from Moscow—always slow to move and indecisive—every intimacy, which at first pleasantly diversifies life and seems a light and charming adventure, inevitably becomes a regular problem of extreme complexity, and eventually the situation becomes unbearable.",
+      "simplifiedText": "He learned that relationships with decent people, especially from Moscow, often became complicated and unbearable.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 15,
+      "originalText": "But at every fresh meeting with an interesting woman, this experience seemed to slip from his memory, and he was eager for life, and everything seemed simple and amusing.",
+      "simplifiedText": "Yet, when he met an interesting woman, he forgot this and felt eager for life.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 16,
+      "originalText": "One evening he was dining in the gardens, and the lady in the beret came up slowly to take the next table.",
+      "simplifiedText": "One evening, he was dining in the gardens when a lady in a beret sat at the next table.",
+      "level": "A2",
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 17,
+      "originalText": "Her expression, her walk, her dress, and the way she did her hair told him she was a lady, that she was married, that she was in Yalta for the first time and alone, and that she was bored there.",
+      "simplifiedText": "Her expression, walk, and dress showed she was a lady, married, and in Yalta for the first time, feeling bored.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 18,
+      "originalText": "The stories told of the immorality in places like Yalta are largely untrue; he despised them and knew that such stories were mostly made up by people who would have been glad to sin if they could; but when the lady sat down at the next table three steps from him, he remembered these tales of easy conquests, of trips to the mountains, and the tempting thought of a swift, fleeting love affair, a romance with an unknown woman, whose name he didn't know, suddenly took hold of him.",
+      "simplifiedText": "He knew stories about Yalta's immorality were mostly false, but when she sat near him, he thought of a quick romance.",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 19,
+      "originalText": "He beckoned coaxingly to the Pomeranian, and when the dog came up to him, he shook his finger at it.",
+      "simplifiedText": "He called the lady's Pomeranian, and when it came, he shook his finger at it.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 20,
+      "originalText": "The Pomeranian growled; Gurov shook his finger at it again.",
+      "simplifiedText": "The Pomeranian growled, and Gurov shook his finger at it again.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 21,
+      "originalText": "The lady looked at him and immediately lowered her eyes.",
+      "simplifiedText": "The lady looked at him, then quickly lowered her eyes.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 22,
+      "originalText": "\"He doesn't bite,\" she said, blushing.",
+      "simplifiedText": "\"He doesn't bite,\" she said, and she blushed.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 23,
+      "originalText": "\"Can I give him a bone?",
+      "simplifiedText": "\"Can I give him a bone?\" he asked.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 24,
+      "originalText": "\" he asked; and when she nodded, he asked politely, \"Have you been in Yalta long?",
+      "simplifiedText": "When she nodded, he asked politely, \"Have you been in Yalta long?\"",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 25,
+      "originalText": "\" \"Five days.",
+      "simplifiedText": "\"Five days,\" she replied.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 26,
+      "originalText": "\" \"And I've already been here two weeks.",
+      "simplifiedText": "\"I've already been here two weeks,\" he said.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 27,
+      "originalText": "\" There was a brief silence.",
+      "simplifiedText": "There was a brief silence between them.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 28,
+      "originalText": "\"Time goes fast, and yet it's so dull here!",
+      "simplifiedText": "\"Time goes fast, but it's so dull here!\"",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 29,
+      "originalText": "\" she said, not looking at him.",
+      "simplifiedText": "she said, without looking at him.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 30,
+      "originalText": "\"That's just what people say.",
+      "simplifiedText": "\"That's just what people say,\" she remarked.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 31,
+      "originalText": "A provincial will live in Belyov or Zhidra and not be bored, and when he comes here it's 'Oh, the boredom!",
+      "simplifiedText": "A person from Belyov or Zhidra might not be bored there, but when they come here, they say, 'Oh, the boredom!'",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 32,
+      "originalText": "Oh, the dust!",
+      "simplifiedText": "They complain about the dust and act like they are from Grenada.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 33,
+      "originalText": "' You'd think he came from Grenada.",
+      "simplifiedText": "Anna Sergeyevna laughed at this.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 34,
+      "originalText": "\" She laughed.",
+      "simplifiedText": "They ate in silence like strangers, but after dinner, they walked together.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 35,
+      "originalText": "Then both continued eating in silence, like strangers, but after dinner, they walked side by side; and there sprang up between them the light, jesting conversation of people who are free and satisfied, to whom it doesn't matter where they go or what they talk about.",
+      "simplifiedText": "They talked lightly, like people who are free and happy, not caring where they went.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 36,
+      "originalText": "They walked and talked about the strange light on the sea: the water was a soft, warm lilac hue, and there was a golden streak from the moon upon it.",
+      "simplifiedText": "They discussed the strange light on the sea, which was a soft lilac color with a golden streak from the moon.",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 37,
+      "originalText": "They talked about how sultry it was after a hot day.",
+      "simplifiedText": "They also talked about how hot it was after the day.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 38,
+      "originalText": "Gurov told her he was from Moscow, that he had a degree in Arts but worked in a bank; that he had trained as an opera singer but had given it up, that he owned two houses in Moscow.",
+      "simplifiedText": "Gurov told her he was from Moscow, had a degree in Arts, worked in a bank, and once trained as an opera singer.",
+      "level": "A2",
+      "wordCount": 23
+    },
+    {
+      "sentenceIndex": 39,
+      "originalText": "And from her, he learned that she had grown up in Petersburg but had lived in S---- since her marriage two years before, that she was staying another month in Yalta, and that her husband, who needed a holiday too, might come to fetch her.",
+      "simplifiedText": "He learned that she grew up in Petersburg, lived in S---- since her marriage two years ago, and was staying in Yalta for another month.",
+      "level": "A2",
+      "wordCount": 25
+    },
+    {
+      "sentenceIndex": 40,
+      "originalText": "She wasn't sure whether her husband had a job in a government department or under the Provincial Council—and was amused by her own ignorance.",
+      "simplifiedText": "Anna Sergeyevna was not sure if her husband worked for the government or the Provincial Council, and she found this funny.",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 41,
+      "originalText": "And Gurov learned, too, that she was called Anna Sergeyevna.",
+      "simplifiedText": "Gurov learned that her name was Anna Sergeyevna.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 42,
+      "originalText": "Later, he thought about her in his hotel room—thought she would certainly meet him the next day; it was bound to happen.",
+      "simplifiedText": "Later, in his hotel room, he thought about her and believed they would meet again the next day.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 43,
+      "originalText": "As he got into bed, he thought how recently she had been a schoolgirl, doing lessons like his own daughter; he recalled the shyness, the awkwardness, that was still evident in her laugh and her manner of talking with a stranger.",
+      "simplifiedText": "As he went to bed, he remembered that she was recently a schoolgirl, like his daughter, and noticed her shyness and awkwardness.",
+      "level": "A2",
+      "wordCount": 22
+    },
+    {
+      "sentenceIndex": 44,
+      "originalText": "This must have been the first time in her life she had been alone in surroundings where she was followed, looked at, and spoken to merely from a secret motive she could hardly fail to guess.",
+      "simplifiedText": "This was probably the first time she was alone in a place where people watched and talked to her for reasons she could guess.",
+      "level": "A2",
+      "wordCount": 24
+    },
+    {
+      "sentenceIndex": 45,
+      "originalText": "He recalled her slender, delicate neck, her lovely grey eyes.",
+      "simplifiedText": "He remembered her slender neck and her beautiful grey eyes.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 46,
+      "originalText": "\"There's something touching about her, anyway,\" he thought, and fell asleep.",
+      "simplifiedText": "\"There's something touching about her,\" he thought, and then he fell asleep.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 47,
+      "originalText": "II\n\nA week had passed since they had met.",
+      "simplifiedText": "A week had passed since they met.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 48,
+      "originalText": "It was a holiday.",
+      "simplifiedText": "It was a holiday.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 49,
+      "originalText": "It was stifling indoors, while in the street, the wind whirled the dust around and blew people's hats off.",
+      "simplifiedText": "It was hot inside, and outside, the wind blew dust and people's hats off.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 50,
+      "originalText": "It was a thirsty day, and Gurov often went into the pavilion, urging Anna Sergeyevna to have a drink or an ice cream.",
+      "simplifiedText": "It was a hot day, and Gurov often went to the pavilion, asking Anna Sergeyevna to have a drink or ice cream.",
+      "level": "A2",
+      "wordCount": 22
+    },
+    {
+      "sentenceIndex": 51,
+      "originalText": "One didn't know what to do with oneself.",
+      "simplifiedText": "People didn't know what to do with themselves.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 52,
+      "originalText": "In the evening, when the wind had dropped a little, they went out on the pier to see the steamer come in.",
+      "simplifiedText": "In the evening, when the wind was calmer, they went to the pier to see the steamer arrive.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 53,
+      "originalText": "There were many people walking about the harbor; they had gathered to welcome someone, bringing bouquets.",
+      "simplifiedText": "Many people were walking around the harbor; they came to welcome someone with flowers.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 54,
+      "originalText": "And two peculiarities of a well-dressed Yalta crowd were very conspicuous: the elderly ladies were dressed like young ones, and there were many generals.",
+      "simplifiedText": "Two things stood out in the well-dressed Yalta crowd: older ladies dressed like young ones, and there were many generals.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 55,
+      "originalText": "Due to the rough sea, the steamer arrived late, after the sun had set, and it took a long time turning about before it reached the pier.",
+      "simplifiedText": "Because the sea was rough, the steamer came late, after sunset, and it took a long time to reach the pier.",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 56,
+      "originalText": "Anna Sergeyevna looked through her lorgnette at the steamer and the passengers as though looking for acquaintances, and when she turned to Gurov, her eyes were shining.",
+      "simplifiedText": "Anna Sergeyevna looked through her lorgnette at the steamer and passengers, as if searching for friends, and her eyes shone when she turned to Gurov.",
+      "level": "A2",
+      "wordCount": 25
+    },
+    {
+      "sentenceIndex": 57,
+      "originalText": "She talked a lot and asked disconnected questions, forgetting the next moment what she had asked; then she dropped her lorgnette in the crowd.",
+      "simplifiedText": "She talked a lot and asked random questions, forgetting them soon; then she dropped her lorgnette in the crowd.",
+      "level": "A2",
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 58,
+      "originalText": "The festive crowd began to disperse; it was too dark to see people's faces.",
+      "simplifiedText": "The happy crowd started to leave; it was too dark to see faces.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 59,
+      "originalText": "The wind had completely dropped, but Gurov and Anna Sergeyevna still stood as though waiting to see someone else come from the steamer.",
+      "simplifiedText": "The wind had stopped completely, but Gurov and Anna Sergeyevna still stood as if waiting for someone else from the steamer.",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 60,
+      "originalText": "Anna Sergeyevna was silent now, and sniffed the flowers without looking at Gurov.",
+      "simplifiedText": "Anna Sergeyevna was quiet and smelled the flowers without looking at Gurov.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 61,
+      "originalText": "\"The weather is better this evening,\" he said.",
+      "simplifiedText": "Gurov said, 'The weather is nicer this evening.'",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 62,
+      "originalText": "\"Where shall we go now?",
+      "simplifiedText": "'Where shall we go now?' he asked.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 63,
+      "originalText": "Shall we drive somewhere?",
+      "simplifiedText": "'Shall we drive somewhere?' he continued.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 64,
+      "originalText": "\" She made no answer.",
+      "simplifiedText": "She did not answer him.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 65,
+      "originalText": "Then he looked at her intently, and all at once put his arm around her and kissed her on the lips, breathing in the moisture and the fragrance of the flowers; and he immediately looked around, anxiously wondering whether anyone had seen them.",
+      "simplifiedText": "He looked at her closely, then hugged and kissed her, smelling the flowers, and quickly checked if anyone saw them.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 66,
+      "originalText": "\"Let's go to your hotel,\" he said softly.",
+      "simplifiedText": "He softly said, 'Let's go to your hotel.'",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 67,
+      "originalText": "And both walked quickly.",
+      "simplifiedText": "They both walked quickly together.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 68,
+      "originalText": "The room was close and smelled of the scent she had bought at the Japanese shop.",
+      "simplifiedText": "The hotel room was warm and smelled like the perfume she bought at the Japanese shop.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 69,
+      "originalText": "Gurov looked at her and thought: \"What different people one meets in the world!",
+      "simplifiedText": "Gurov looked at her and thought about how many different people he meets in the world.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 70,
+      "originalText": "\" From the past, he preserved memories of careless, good-natured women, who loved cheerfully and were grateful to him for the happiness he gave them, however brief it might be; and of women like his wife who loved without any genuine feeling, with superfluous phrases, affectedly, hysterically, with an expression that suggested it was not love nor passion, but something more significant; and of two or three others, very beautiful, cold women, on whose faces he had caught a glimpse of a rapacious expression—an obstinate desire to snatch from life more than it could give, and these were capricious, unreflecting, domineering, unintelligent women not in their first youth, and when Gurov grew cold to them, their beauty excited his hatred, and the lace on their linen seemed to him like scales.",
+      "simplifiedText": "Dmitri Dmitritch Gurov remembered women from his past who loved him happily, even if it was brief.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 71,
+      "originalText": "But in this case, there was still the shyness, the awkwardness of inexperienced youth, an awkward feeling; and there was a sense of consternation as though someone had suddenly knocked at the door.",
+      "simplifiedText": "He also remembered women like his wife, who loved without real feeling and used too many words.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 72,
+      "originalText": "The attitude of Anna Sergeyevna—\"the lady with the dog\"—to what had happened was somehow peculiar, very serious, as though it were her fall—so it seemed, and it was strange and inappropriate.",
+      "simplifiedText": "There were also beautiful women who wanted more from life than it could give.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 73,
+      "originalText": "Her face dropped and faded, and on both sides of it, her long hair hung down mournfully; she mused in a dejected attitude like \"the woman who was a sinner\" in an old-fashioned picture.",
+      "simplifiedText": "These women were demanding and not very smart, and Gurov grew to dislike them.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 74,
+      "originalText": "\"It's wrong,\" she said.",
+      "simplifiedText": "But with Anna Sergeyevna, there was a new feeling of shyness and awkwardness.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 75,
+      "originalText": "\"You'll be the first to despise me now.",
+      "simplifiedText": "Anna Sergeyevna, the lady with the dog, took what happened very seriously.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 76,
+      "originalText": "\" There was a watermelon on the table.",
+      "simplifiedText": "She seemed sad and thoughtful, like a woman in an old painting.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 77,
+      "originalText": "Gurov cut himself a slice and began eating it without haste.",
+      "simplifiedText": "\"It's wrong,\" she said, feeling guilty.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 78,
+      "originalText": "There followed at least half an hour of silence.",
+      "simplifiedText": "\"You'll be the first to despise me now,\" she added.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 79,
+      "originalText": "Anna Sergeyevna was touching; there was about her the purity of a good, simple woman who had seen little of life.",
+      "simplifiedText": "Gurov ate a slice of watermelon slowly, and they sat in silence for a while.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 80,
+      "originalText": "The solitary candle burning on the table threw a faint light on her face, yet it was clear that she was very unhappy.",
+      "simplifiedText": "The candle on the table gave a soft light, and Anna looked unhappy.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 81,
+      "originalText": "\"How could I despise you?",
+      "simplifiedText": "\"How could I despise you?\" asked Gurov.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 82,
+      "originalText": "\" asked Gurov.",
+      "simplifiedText": "\"You don't know what you're saying,\" he added.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 83,
+      "originalText": "\"You don't know what you're saying.",
+      "simplifiedText": "\"God forgive me,\" she said, and her eyes were full of tears.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 84,
+      "originalText": "\" \"God forgive me,\" she said, and her eyes filled with tears.",
+      "simplifiedText": "\"It's terrible,\" she continued.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 85,
+      "originalText": "\"It's awful.",
+      "simplifiedText": "\"You seem to think you need forgiveness,\" Gurov said.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 86,
+      "originalText": "\" \"You seem to feel you need to be forgiven.",
+      "simplifiedText": "\"Forgiveness?\" she asked.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 87,
+      "originalText": "\" \"Forgiven?",
+      "simplifiedText": "\"No, I don't need that.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 88,
+      "originalText": "No.",
+      "simplifiedText": "I am a bad woman, and I despise myself.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 89,
+      "originalText": "I'm a bad, low woman; I despise myself and don't try to justify myself.",
+      "simplifiedText": "I don't try to make excuses for my actions.\"",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 90,
+      "originalText": "It's not my husband but myself I've deceived.",
+      "simplifiedText": "I have not deceived my husband, but I have deceived myself.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 91,
+      "originalText": "And not just now; I've been deceiving myself for a long time.",
+      "simplifiedText": "I have been deceiving myself for a long time, not just now.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 92,
+      "originalText": "My husband may be a good, honest man, but he's a flunkey!",
+      "simplifiedText": "My husband might be a good and honest man, but he is a flunkey.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 93,
+      "originalText": "I don't know what he does there, what his work is, but I know he's a flunkey!",
+      "simplifiedText": "I do not know what he does at work, but I know he is a flunkey.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 94,
+      "originalText": "I was twenty when I married him.",
+      "simplifiedText": "I was twenty years old when I married him.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 95,
+      "originalText": "I've been tormented by curiosity; I wanted something better.",
+      "simplifiedText": "I have been curious and wanted something better in life.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 96,
+      "originalText": "'There must be a different sort of life,' I said to myself.",
+      "simplifiedText": "I told myself, 'There must be a different kind of life.'",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 97,
+      "originalText": "I wanted to live!",
+      "simplifiedText": "I wanted to live a full life!",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 98,
+      "originalText": "To live, to live!...",
+      "simplifiedText": "I wanted to live, to really live!",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 99,
+      "originalText": "I was fired by curiosity ...",
+      "simplifiedText": "I was filled with curiosity and desire for more.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 100,
+      "originalText": "you don't understand it, but, I swear to God, I couldn't control myself; something happened to me: I couldn't be restrained.",
+      "simplifiedText": "You don't understand, but I swear I couldn't control myself; something happened to me.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 101,
+      "originalText": "I told my husband I was ill and came here....",
+      "simplifiedText": "I told my husband I was sick and came here.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 102,
+      "originalText": "And here I've been walking about as though I were dazed, like a mad creature; ...",
+      "simplifiedText": "Here, I've been walking around like I'm dazed, like I'm mad.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 103,
+      "originalText": "and now I've become a vulgar, contemptible woman whom anyone may despise.",
+      "simplifiedText": "Now, I've become a vulgar woman whom anyone can despise.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 104,
+      "originalText": "\" Gurov felt bored already, listening to her.",
+      "simplifiedText": "Gurov already felt bored while listening to her.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 105,
+      "originalText": "He was irritated by the naïve tone, by this remorse, so unexpected and inopportune; but for the tears in her eyes, he might have thought she was joking or playing a part.",
+      "simplifiedText": "He was annoyed by her naive tone and unexpected remorse, but her tears stopped him from thinking she was joking.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 106,
+      "originalText": "\"I don't understand,\" he said softly.",
+      "simplifiedText": "\"I don't understand,\" he said softly.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 107,
+      "originalText": "\"What is it you want?",
+      "simplifiedText": "\"What do you want?\"",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 108,
+      "originalText": "\" She hid her face on his chest and pressed close to him.",
+      "simplifiedText": "She hid her face on his chest and pressed close to him.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 109,
+      "originalText": "\"Believe me, believe me, I beg you ...",
+      "simplifiedText": "\"Believe me, believe me, I beg you...\"",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 110,
+      "originalText": "\" she said.",
+      "simplifiedText": "Anna said she loves a pure and honest life, and she hates sin.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 111,
+      "originalText": "\"I love a pure, honest life, and sin is loathsome to me.",
+      "simplifiedText": "She told Dmitri Dmitritch Gurov that she doesn't know what she is doing.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 112,
+      "originalText": "I don't know what I'm doing.",
+      "simplifiedText": "Simple people say that the Evil One has tricked them.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 113,
+      "originalText": "Simple people say: 'The Evil One has beguiled me.",
+      "simplifiedText": "Anna said she feels the same way now, like the Evil One has tricked her.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 114,
+      "originalText": "' And I may say of myself now that the Evil One has beguiled me.",
+      "simplifiedText": "Gurov told her to hush and not worry.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 115,
+      "originalText": "\" \"Hush, hush!...",
+      "simplifiedText": "He looked at her scared eyes, kissed her, and spoke softly.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 116,
+      "originalText": "\" he muttered.",
+      "simplifiedText": "Gradually, Anna felt better, and they both started laughing.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 117,
+      "originalText": "He looked at her fixed, scared eyes, kissed her, talked softly and affectionately, and gradually she was comforted, and her cheerfulness returned; they both began laughing.",
+      "simplifiedText": "Later, when they went out, the boardwalk was empty.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 118,
+      "originalText": "Afterwards, when they went out, there wasn't a soul on the boardwalk.",
+      "simplifiedText": "The town of Yalta with its cypresses looked very quiet and still.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 119,
+      "originalText": "The town with its cypresses had quite a deathlike air, but the sea still broke noisily on the shore; a single barge was rocking on the waves, and a lantern was blinking sleepily on it.",
+      "simplifiedText": "The sea was noisy, and a single barge rocked on the waves with a sleepy lantern blinking on it.",
+      "level": "A2",
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 120,
+      "originalText": "They found a cab and drove to Oreanda.",
+      "simplifiedText": "They found a cab and drove to Oreanda together.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 121,
+      "originalText": "\"I found out your surname in the hall just now: it was written on the board—Von Diderits,\" said Gurov.",
+      "simplifiedText": "\"I found your last name in the hall; it was Von Diderits,\" said Gurov.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 122,
+      "originalText": "\"Is your husband a German?",
+      "simplifiedText": "\"Is your husband a German?\" he asked.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 123,
+      "originalText": "\" \"No; I believe his grandfather was a German, but he's an Orthodox Russian himself.",
+      "simplifiedText": "\"No, his grandfather was, but he is an Orthodox Russian.\"",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 124,
+      "originalText": "\" At Oreanda, they sat on a bench not far from the church, looked down at the sea, and were silent.",
+      "simplifiedText": "At Oreanda, they sat on a bench near the church and looked at the sea silently.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 125,
+      "originalText": "Yalta was hardly visible through the morning mist; white clouds stood motionless on the mountain tops.",
+      "simplifiedText": "Yalta was hard to see through the morning mist, and white clouds were still on the mountains.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 126,
+      "originalText": "The leaves didn't stir on the trees, grasshoppers chirped, and the monotonous hollow sound of the sea rising up from below spoke of the peace, of the eternal sleep awaiting us.",
+      "simplifiedText": "The leaves did not move, grasshoppers chirped, and the sea's sound spoke of peace.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 127,
+      "originalText": "So it must have sounded when there was no Yalta, no Oreanda here; so it sounds now, and it will sound as indifferently and monotonously when we are all no more.",
+      "simplifiedText": "It must have sounded like this when there was no Yalta or Oreanda; it will sound the same when we are gone.",
+      "level": "A2",
+      "wordCount": 22
+    },
+    {
+      "sentenceIndex": 128,
+      "originalText": "And in this constancy, in this complete indifference to the life and death of each of us, there lies hidden, perhaps, a pledge of our eternal salvation, of the unceasing movement of life upon earth, of unceasing progress towards perfection.",
+      "simplifiedText": "In this constancy and indifference, there might be a promise of eternal salvation and life's progress.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 129,
+      "originalText": "Sitting beside a young woman who in the dawn seemed so lovely, soothed and spellbound in these magical surroundings—the sea, mountains, clouds, the open sky—Gurov thought how in reality everything is beautiful in this world when one reflects: everything except what we think or do ourselves when we forget our human dignity and the higher aims of our existence.",
+      "simplifiedText": "Sitting with a lovely young woman in the dawn, Gurov thought everything is beautiful except when we forget our dignity.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 130,
+      "originalText": "A man walked up to them—probably a keeper—looked at them and walked away.",
+      "simplifiedText": "A man walked up to them, looked at them, and then left.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 131,
+      "originalText": "And this detail seemed mysterious and beautiful, too.",
+      "simplifiedText": "This detail seemed mysterious and beautiful to them.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 132,
+      "originalText": "They saw a steamer come from Theodosia, with its lights out in the glow of dawn.",
+      "simplifiedText": "They saw a steamer from Theodosia with lights in the dawn.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 133,
+      "originalText": "\"There's dew on the grass,\" said Anna Sergeyevna, after a silence.",
+      "simplifiedText": "\"There's dew on the grass,\" said Anna Sergeyevna after silence.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 134,
+      "originalText": "\"Yes.",
+      "simplifiedText": "\"Yes.",
+      "level": "A2",
+      "wordCount": 1
+    },
+    {
+      "sentenceIndex": 135,
+      "originalText": "It's time to go home.",
+      "simplifiedText": "It's time to go home.\"",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 136,
+      "originalText": "\" They went back to the town.",
+      "simplifiedText": "They went back to the town together.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 137,
+      "originalText": "Then they met every day at noon on the boardwalk, lunched and dined together, went for walks, admired the sea.",
+      "simplifiedText": "They met every day at noon, ate together, and admired the sea.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 138,
+      "originalText": "She complained that she slept badly, that her heart throbbed violently; asked the same questions, troubled now by jealousy and now by the fear that he didn't respect her enough.",
+      "simplifiedText": "She said she slept badly and worried he didn't respect her.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 139,
+      "originalText": "And often in the square or gardens, when there was no one near them, he suddenly drew her to him and kissed her passionately.",
+      "simplifiedText": "Often, when alone, he would hold her and kiss her passionately.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 140,
+      "originalText": "Complete idleness, these kisses in broad daylight while he looked around in dread of someone seeing them, the heat, the smell of the sea, and the continual passing to and fro before him of idle, well-dressed, well-fed people, made a new man of him; he told Anna Sergeyevna how beautiful she was, how fascinating.",
+      "simplifiedText": "The kisses in daylight and the sea's smell made Gurov feel new, so he told Anna Sergeyevna she was beautiful and fascinating.",
+      "level": "A2",
+      "wordCount": 22
+    },
+    {
+      "sentenceIndex": 141,
+      "originalText": "He was impatiently passionate, he wouldn't move a step away from her, while she was often pensive and continually urged him to confess that he didn't respect her, didn't love her in the least, and thought of her as nothing but a common woman.",
+      "simplifiedText": "He was very passionate and stayed close to her, but she often thought he did not respect or love her.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 142,
+      "originalText": "Rather late almost every evening they drove somewhere out of town, to Oreanda or to the waterfall; and the expedition was always a success, the scenery invariably impressed them as grand and beautiful.",
+      "simplifiedText": "Almost every evening, they drove out of town to Oreanda or the waterfall, and they always found the scenery beautiful.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 143,
+      "originalText": "They were expecting her husband to come, but a letter came from him, saying that there was something wrong with his eyes, and he begged his wife to come home as quickly as possible.",
+      "simplifiedText": "They expected her husband to come, but he sent a letter saying his eyes were bad and asked her to come home quickly.",
+      "level": "A2",
+      "wordCount": 23
+    },
+    {
+      "sentenceIndex": 144,
+      "originalText": "Anna Sergeyevna made haste to go.",
+      "simplifiedText": "Anna Sergeyevna hurried to leave.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 145,
+      "originalText": "\"It's a good thing I'm going away,\" she said to Gurov.",
+      "simplifiedText": "\"It's good I'm leaving,\" she said to Gurov.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 146,
+      "originalText": "\"It's the finger of destiny!",
+      "simplifiedText": "\"It's destiny's decision!\"",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 147,
+      "originalText": "\" She went by coach and he went with her.",
+      "simplifiedText": "She went by coach, and he went with her.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 148,
+      "originalText": "They drove the whole day.",
+      "simplifiedText": "They drove all day.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 149,
+      "originalText": "When she had gotten into a compartment of the express, and when the second bell had rung, she said: \"Let me look at you once more ...",
+      "simplifiedText": "When she got into the train compartment and the second bell rang, she said, \"Let me look at you once more...\"",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 150,
+      "originalText": "look at you once again.",
+      "simplifiedText": "Dmitri Dmitritch Gurov wanted to look at Anna Sergeyevna once more.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 151,
+      "originalText": "That's right.",
+      "simplifiedText": "Anna said, 'That's right.'",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 152,
+      "originalText": "\" She didn't shed tears, but was so sad that she seemed ill, and her face was quivering.",
+      "simplifiedText": "She didn't cry, but she looked so sad and almost sick.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 153,
+      "originalText": "\"I'll remember you ...",
+      "simplifiedText": "'I'll remember you and think of you,' she said.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 154,
+      "originalText": "think of you,\" she said.",
+      "simplifiedText": "'God be with you; be happy,' she added.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 155,
+      "originalText": "\"God be with you; be happy.",
+      "simplifiedText": "'Don't remember anything bad about me,' she told him.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 156,
+      "originalText": "Don't remember anything bad about me.",
+      "simplifiedText": "'We are parting forever, and it must be this way,' she said.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 157,
+      "originalText": "We're parting forever—it must be so, for we should never have met.",
+      "simplifiedText": "'We should never have met,' Anna continued.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 158,
+      "originalText": "Well, God be with you.",
+      "simplifiedText": "'Well, God be with you,' she finished.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 159,
+      "originalText": "\" The train moved off quickly, its lights soon vanished from sight, and a minute later there was no sound of it, as though everything had conspired together to end as quickly as possible that sweet delirium, that madness.",
+      "simplifiedText": "The train left quickly, and soon it was gone, making everything feel like a dream that ended fast.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 160,
+      "originalText": "Left alone on the platform, and gazing into the dark distance, Gurov listened to the chirping of the grasshoppers and the hum of the telegraph wires, feeling as though he had only just woken up.",
+      "simplifiedText": "Gurov stood alone on the platform and listened to the sounds around him.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 161,
+      "originalText": "And he thought, musing, that there had been another episode or adventure in his life, and it, too, was over, and nothing was left of it but a memory....",
+      "simplifiedText": "He felt like he had just woken up from a dream.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 162,
+      "originalText": "He was moved, sad, and conscious of a slight remorse.",
+      "simplifiedText": "He thought about his time with Anna and felt it was just a memory now.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 163,
+      "originalText": "This young woman whom he would never meet again had not been happy with him; he was genuinely warm and affectionate with her, but yet in his manner, his tone, and his caresses there had been a shade of light irony, the coarse condescension of a happy man who was, besides, almost twice her age.",
+      "simplifiedText": "Gurov felt sad and a little guilty about how things ended.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 164,
+      "originalText": "All the time she had called him kind, exceptional, lofty; obviously he had seemed to her different from what he really was, so he had unintentionally deceived her....",
+      "simplifiedText": "Anna was not happy with him, even though he was kind to her.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 165,
+      "originalText": "Here at the station was already a scent of autumn; it was a cold evening.",
+      "simplifiedText": "He was much older and treated her with a bit of irony.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 166,
+      "originalText": "\"It's time for me to go north,\" thought Gurov as he left the platform.",
+      "simplifiedText": "Anna thought he was special, but he had deceived her without meaning to.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 167,
+      "originalText": "\"High time!",
+      "simplifiedText": "The station smelled like autumn, and the evening was cold.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 168,
+      "originalText": "\"\n\nIII\n\nAt home in Moscow, everything was in its winter routine; the stoves were heated, and in the morning it was still dark when the children were having breakfast and getting ready for school, and the nurse would light the lamp for a short time.",
+      "simplifiedText": "Gurov thought, 'It's time for me to go north.'",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 169,
+      "originalText": "The frosts had begun already.",
+      "simplifiedText": "In Moscow, it was winter, and the frosts had already begun.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 170,
+      "originalText": "When the first snow has fallen, on the first day of sledding, it is pleasant to see the white earth, the white roofs, to draw soft, delicious breath, and the season brings back the days of one's youth.",
+      "simplifiedText": "When the first snow falls, it is nice to see the white earth and roofs, and it reminds one of youth.",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 171,
+      "originalText": "The old limes and birches, white with hoar-frost, have a good-natured expression; they are nearer to one's heart than cypresses and palms, and near them one doesn't want to be thinking of the sea and the mountains.",
+      "simplifiedText": "The old limes and birches look friendly, and they feel closer to the heart than cypresses and palms.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 172,
+      "originalText": "Gurov was Moscow born; he arrived in Moscow on a fine frosty day, and when he put on his fur coat and warm gloves, and walked along Petrovka, and when on Saturday evening he heard the ringing of the bells, his recent trip and the places he had seen lost all charm for him.",
+      "simplifiedText": "Gurov was born in Moscow; he arrived there on a cold day, and when he walked along Petrovka, his recent trip lost its charm.",
+      "level": "A2",
+      "wordCount": 24
+    },
+    {
+      "sentenceIndex": 173,
+      "originalText": "Little by little he became absorbed in Moscow life, greedily read three newspapers a day, and declared he didn't read the Moscow papers on principle!",
+      "simplifiedText": "He slowly got used to Moscow life, read three newspapers a day, and said he didn't read Moscow papers on principle.",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 174,
+      "originalText": "He already felt a longing to go to restaurants, clubs, dinner-parties, anniversary celebrations, and he felt flattered at entertaining distinguished lawyers and artists, and at playing cards with a professor at the doctors' club.",
+      "simplifiedText": "He wanted to go to restaurants, clubs, and parties, and he liked entertaining important lawyers and artists.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 175,
+      "originalText": "He could already eat a whole plateful of salt fish and cabbage.",
+      "simplifiedText": "He could eat a whole plate of salt fish and cabbage.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 176,
+      "originalText": "In another month, he fancied, the image of Anna Sergeyevna would be shrouded in a mist in his memory, and only from time to time would visit him in his dreams with a touching smile as others did.",
+      "simplifiedText": "He thought that in a month, Anna Sergeyevna's image would fade, and she would only appear in his dreams.",
+      "level": "A2",
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 177,
+      "originalText": "But more than a month passed, real winter had come, and everything was still clear in his memory as though he had parted with Anna Sergeyevna only the day before.",
+      "simplifiedText": "But more than a month passed, winter came, and he still remembered Anna Sergeyevna clearly.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 178,
+      "originalText": "And his memories glowed more and more vividly.",
+      "simplifiedText": "His memories of her became even more vivid.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 179,
+      "originalText": "When in the evening stillness he heard from his study the voices of his children, preparing their lessons, or when he listened to a song or the organ at the restaurant, or the storm howled in the chimney, suddenly everything would rise up in his memory: what had happened on the pier, and the early morning with the mist on the mountains, and the steamer coming from Theodosia, and the kisses.",
+      "simplifiedText": "When he heard his children or music, everything came back to him: the pier, the misty mountains, the steamer, and the kisses.",
+      "level": "A2",
+      "wordCount": 22
+    },
+    {
+      "sentenceIndex": 180,
+      "originalText": "He would pace a long time about his room, remembering it all and smiling; then his memories passed into dreams, and in his mind, the past was mingled with what was to come.",
+      "simplifiedText": "Dmitri Dmitritch Gurov walked in his room, thinking and smiling about Anna Sergeyevna.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 181,
+      "originalText": "Anna Sergeyevna didn't visit him in dreams, but followed him everywhere like a shadow and haunted him.",
+      "simplifiedText": "He dreamed about the past and thought about the future with her.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 182,
+      "originalText": "When he shut his eyes he saw her as though she were living before him, and she seemed to him lovelier, younger, more tender than she was; and he imagined himself finer than he had been in Yalta.",
+      "simplifiedText": "Anna did not visit his dreams, but he felt her presence everywhere.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 183,
+      "originalText": "In the evenings she peeped out at him from the bookcase, from the fireplace, from the corner—he heard her breathing, the caressing rustle of her dress.",
+      "simplifiedText": "When he closed his eyes, he saw her and thought she was more beautiful.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 184,
+      "originalText": "In the street, he watched the women, looking for someone like her.",
+      "simplifiedText": "In the evenings, he imagined her in his room, hearing her dress and breathing.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 185,
+      "originalText": "He was tormented by an intense desire to confide his memories to someone.",
+      "simplifiedText": "Outside, he looked at women, hoping to see someone like Anna.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 186,
+      "originalText": "But in his home, it was impossible to talk of his love, and he had no one outside; he couldn't talk to his tenants nor to anyone at the bank.",
+      "simplifiedText": "He wanted to tell someone about his memories and feelings.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 187,
+      "originalText": "And what had he to talk of?",
+      "simplifiedText": "At home, he could not talk about his love for Anna.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 188,
+      "originalText": "Had he been in love, then?",
+      "simplifiedText": "He had no one to share his thoughts with at work or outside.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 189,
+      "originalText": "Had there been anything beautiful, poetic, or edifying or simply interesting in his relations with Anna Sergeyevna?",
+      "simplifiedText": "He wondered if he was truly in love and if their time together was special.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 190,
+      "originalText": "And there was nothing for him but to talk vaguely of love, of woman, and no one guessed what it meant; only his wife twitched her black eyebrows, and said: \"The part of a lady-killer doesn't suit you at all, Dimitri.",
+      "simplifiedText": "Dmitri Dmitritch Gurov often talked about love and women, but no one understood him.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 191,
+      "originalText": "\" One evening, coming out of the doctors' club with an official with whom he had been playing cards, he couldn't resist saying: \"If only you knew what a fascinating woman I met in Yalta!",
+      "simplifiedText": "His wife did not believe him and said he was not a lady-killer.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 192,
+      "originalText": "\" The official got into his sledge and was driving away, but turned suddenly and shouted: \"Dmitri Dmitritch!",
+      "simplifiedText": "One evening, he left the doctors' club with a friend after playing cards.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 193,
+      "originalText": "\" \"What?",
+      "simplifiedText": "He told his friend about meeting a fascinating woman in Yalta.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 194,
+      "originalText": "\" \"You were right this evening: the sturgeon was a bit too strong!",
+      "simplifiedText": "The friend got into his sledge and shouted back to Dmitri Dmitritch.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 195,
+      "originalText": "\" These words, so ordinary, for some reason moved Gurov to indignation, and struck him as degrading and unclean.",
+      "simplifiedText": "He said the sturgeon they had eaten was too strong.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 196,
+      "originalText": "What savage manners, what people!",
+      "simplifiedText": "These simple words made Gurov feel angry and upset.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 197,
+      "originalText": "What senseless nights, what uninteresting, uneventful days!",
+      "simplifiedText": "He thought about the rude people and their savage manners.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 198,
+      "originalText": "The rage for card-playing, the gluttony, the drunkenness, the continual talk always about the same thing.",
+      "simplifiedText": "He felt his days were boring and nights were pointless.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 199,
+      "originalText": "Useless pursuits and conversations always about the same things absorb the better part of one's time, the better part of one's strength, and in the end, there is left a life groveling and curtailed, worthless and trivial, and there is no escaping or getting away from it—just as though one were in a madhouse or a prison.",
+      "simplifiedText": "Gurov believed his life was wasted on useless things and he could not escape it.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 200,
+      "originalText": "Gurov didn't sleep all night and was filled with indignation.",
+      "simplifiedText": "Gurov didn't sleep all night because he was upset.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 201,
+      "originalText": "And he had a headache all the next day.",
+      "simplifiedText": "He had a headache the whole next day.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 202,
+      "originalText": "And the next night he slept badly; he sat up in bed, thinking, or paced up and down his room.",
+      "simplifiedText": "The next night, he slept badly and paced his room.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 203,
+      "originalText": "He was sick of his children, sick of the bank; he had no desire to go anywhere or to talk of anything.",
+      "simplifiedText": "He was tired of his children and the bank, and he didn't want to talk.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 204,
+      "originalText": "During the holidays in December, he prepared for a journey, and told his wife he was going to Petersburg to do something in the interests of a young friend—and he set off for S----.",
+      "simplifiedText": "In December, he planned a trip and told his wife he was going to Petersburg for a friend.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 205,
+      "originalText": "What for?",
+      "simplifiedText": "But why was he really going?",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 206,
+      "originalText": "He didn't very well know himself.",
+      "simplifiedText": "He wasn't sure himself.",
+      "level": "A2",
+      "wordCount": 4
+    },
+    {
+      "sentenceIndex": 207,
+      "originalText": "He wanted to see Anna Sergeyevna and to talk with her—to arrange a meeting, if possible.",
+      "simplifiedText": "He wanted to see Anna Sergeyevna and talk to her.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 208,
+      "originalText": "He reached S---- in the morning and took the best room at the hotel, in which the floor was covered with grey army cloth, and on the table was an inkstand, grey with dust and adorned with a figure on horseback, with its hat in its hand and its head broken off.",
+      "simplifiedText": "He arrived in S---- in the morning and got the best room at the hotel.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 209,
+      "originalText": "The hotel porter gave him the necessary information; Von Diderits lived in a house of his own in Old Gontcharny Street—it wasn't far from the hotel: he was rich and lived in good style, and had his own horses; everyone in the town knew him.",
+      "simplifiedText": "The porter told him Von Diderits lived nearby and was well-known in town.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 210,
+      "originalText": "The porter pronounced the name \"Dridirits.",
+      "simplifiedText": "The porter said the name 'Dridirits.'",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 211,
+      "originalText": "\" Gurov went without haste to Old Gontcharny Street and found the house.",
+      "simplifiedText": "Gurov walked slowly to Old Gontcharny Street and found the house.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 212,
+      "originalText": "Just opposite the house stretched a long grey fence adorned with nails.",
+      "simplifiedText": "Across from the house was a long grey fence with nails on it.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 213,
+      "originalText": "\"One would run away from a fence like that,\" thought Gurov, looking from the fence to the windows of the house and back again.",
+      "simplifiedText": "Gurov thought, 'One would want to run away from a fence like that,' as he looked at the house.",
+      "level": "A2",
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 214,
+      "originalText": "He considered: today was a holiday, and the husband would probably be at home.",
+      "simplifiedText": "He thought today was a holiday, so Anna's husband might be home.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 215,
+      "originalText": "And in any case, it would be tactless to go into the house and upset her.",
+      "simplifiedText": "It would be rude to go inside and upset Anna.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 216,
+      "originalText": "If he were to send her a note it might fall into her husband's hands, and then it might ruin everything.",
+      "simplifiedText": "If he sent her a note, her husband might find it and ruin everything.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 217,
+      "originalText": "The best thing was to trust to chance.",
+      "simplifiedText": "The best idea was to wait for a chance.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 218,
+      "originalText": "And he kept walking up and down the street by the fence, waiting for the chance.",
+      "simplifiedText": "He walked up and down the street by the fence, hoping for a chance.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 219,
+      "originalText": "He saw a beggar go in at the gate and dogs fly at him; then an hour later he heard a piano, and the sounds were faint and indistinct.",
+      "simplifiedText": "He saw a beggar enter the gate and dogs bark at him; later, he heard faint piano music.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 220,
+      "originalText": "Probably it was Anna Sergeyevna playing.",
+      "simplifiedText": "Maybe it was Anna Sergeyevna playing.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 221,
+      "originalText": "The front door suddenly opened, and an old woman came out, followed by the familiar white Pomeranian.",
+      "simplifiedText": "The front door opened suddenly, and an old woman came out with the white Pomeranian.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 222,
+      "originalText": "Gurov was on the point of calling to the dog, but his heart began beating violently, and in his excitement, he couldn't remember the dog's name.",
+      "simplifiedText": "Gurov wanted to call the dog, but his heart beat fast, and he forgot the dog's name.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 223,
+      "originalText": "He walked up and down, and loathed the grey fence more and more, and by now he thought irritably that Anna Sergeyevna had forgotten him, and was perhaps already amusing herself with someone else, and that that was very natural in a young woman who had nothing to look at from morning till night but that confounded fence.",
+      "simplifiedText": "He walked up and down, hating the grey fence more, and thought Anna Sergeyevna forgot him.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 224,
+      "originalText": "He went back to his hotel room and sat for a long while on the sofa, not knowing what to do, then he had dinner and a long nap.",
+      "simplifiedText": "He thought she might be with someone else, which was normal for a young woman with nothing to see but the fence.",
+      "level": "A2",
+      "wordCount": 22
+    },
+    {
+      "sentenceIndex": 225,
+      "originalText": "\"How stupid and worrying it is!",
+      "simplifiedText": "He went back to his hotel room and sat on the sofa for a long time, unsure what to do.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 226,
+      "originalText": "\" he thought when he woke and looked at the dark windows: it was already evening.",
+      "simplifiedText": "Then he had dinner and took a long nap.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 227,
+      "originalText": "\"Here I've had a good sleep for some reason.",
+      "simplifiedText": "When he woke up and saw the dark windows, he thought, 'How stupid and worrying this is!'",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 228,
+      "originalText": "What shall I do in the night?",
+      "simplifiedText": "He wondered why he had slept so well and asked himself what to do at night.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 229,
+      "originalText": "\" He sat on the bed, which was covered by a cheap grey blanket, such as one sees in hospitals, and he taunted himself in his vexation: \"So much for the lady with the dog ...",
+      "simplifiedText": "He sat on the bed with a cheap grey blanket and mocked himself, thinking about the lady with the dog.",
+      "level": "A2",
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 230,
+      "originalText": "so much for the adventure....",
+      "simplifiedText": "Dmitri Dmitritch Gurov thought about his adventure with Anna Sergeyevna.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 231,
+      "originalText": "You're in a nice fix....",
+      "simplifiedText": "He felt he was in a difficult situation.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 232,
+      "originalText": "\" That morning at the station a poster in large letters had caught his eye.",
+      "simplifiedText": "That morning, he saw a large poster at the station.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 233,
+      "originalText": "\"The Geisha\" was to be performed for the first time.",
+      "simplifiedText": "It said 'The Geisha' would be performed for the first time.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 234,
+      "originalText": "He thought of this and went to the theatre.",
+      "simplifiedText": "He thought about this and decided to go to the theatre.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 235,
+      "originalText": "\"It's quite possible she may go to the first performance,\" he thought.",
+      "simplifiedText": "He wondered if Anna Sergeyevna might go to the first performance.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 236,
+      "originalText": "The theatre was full.",
+      "simplifiedText": "The theatre was very crowded.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 237,
+      "originalText": "As in all provincial theatres, there was a fog above the chandelier, the gallery was noisy and restless; in the front row, the local dandies were standing up before the beginning of the performance, with their hands behind them; in the Governor's box, the Governor's daughter, wearing a boa, was sitting in the front seat, while the Governor himself lurked modestly behind the curtain with only his hands visible; the orchestra was a long time tuning up; the stage curtain swayed.",
+      "simplifiedText": "Like in all small town theatres, there was a fog above the chandelier, and the gallery was noisy; in the front row, local young men stood with hands behind them; in the Governor's box, his daughter sat in front, wearing a boa, while the Governor hid behind the curtain with only his hands showing; the orchestra took a long time to tune, and the stage curtain moved.",
+      "level": "A2",
+      "wordCount": 67
+    },
+    {
+      "sentenceIndex": 238,
+      "originalText": "All the time the audience were coming in and taking their seats Gurov looked at them eagerly.",
+      "simplifiedText": "While people were coming in and finding their seats, Gurov watched them closely.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 239,
+      "originalText": "Anna Sergeyevna, too, came in.",
+      "simplifiedText": "Anna Sergeyevna also came in.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 240,
+      "originalText": "She sat down in the third row, and when Gurov looked at her his heart contracted, and he understood clearly that for him there was in the whole world no creature so near, so precious, and so important to him; she, this little woman, in no way remarkable, lost in a provincial crowd, with a vulgar lorgnette in her hand, filled his whole life now, was his sorrow and his joy, the one happiness that he now desired for himself, and to the sounds of the inferior orchestra, of the wretched provincial violins, he thought how lovely she was.",
+      "simplifiedText": "She sat in the third row, and Gurov felt his heart tighten when he saw her.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 241,
+      "originalText": "He thought and dreamed.",
+      "simplifiedText": "He knew she was the most important person in his life now.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 242,
+      "originalText": "A young man with small side-whiskers, tall and stooping, came in with Anna Sergeyevna and sat down beside her; he bent his head at every step and seemed to be continually bowing.",
+      "simplifiedText": "Anna was not special to others, but she was his joy and sorrow.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 243,
+      "originalText": "Most likely this was the husband whom at Yalta, in a rush of bitter feeling, she had called a flunkey.",
+      "simplifiedText": "He thought about how lovely she was while the orchestra played.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 244,
+      "originalText": "And there really was in his long figure, his side-whiskers, and the small bald patch on his head, something of the flunkey's obsequiousness; his smile was sugary, and in his buttonhole, there was some badge of distinction like the number on a waiter.",
+      "simplifiedText": "A young man with small side-whiskers came in with Anna and sat beside her.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 245,
+      "originalText": "During the first interval, the husband went away to smoke; she remained alone in her seat.",
+      "simplifiedText": "This man was probably her husband, whom she called a flunkey in Yalta.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 246,
+      "originalText": "Gurov, who was sitting in the stalls, too, went up to her and said in a trembling voice, with a forced smile: \"Good evening.",
+      "simplifiedText": "His appearance and sugary smile made him look like a servant.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 247,
+      "originalText": "\" She glanced at him and turned pale, then glanced again with horror, unable to believe her eyes, and tightly gripped the fan and the lorgnette in her hands, evidently struggling with herself not to faint.",
+      "simplifiedText": "During the first break, her husband went to smoke, leaving her alone.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 248,
+      "originalText": "Both were silent.",
+      "simplifiedText": "Gurov, who was also there, went to her and said, 'Good evening.'",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 249,
+      "originalText": "She was sitting, he was standing, frightened by her confusion and not venturing to sit down beside her.",
+      "simplifiedText": "She looked at him, turned pale, and held her fan tightly, trying not to faint.",
+      "level": "A2",
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 250,
+      "originalText": "The violins and the flute began tuning up.",
+      "simplifiedText": "The violins and flute started to play music.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 251,
+      "originalText": "He felt suddenly frightened; it seemed as though all the people in the boxes were looking at them.",
+      "simplifiedText": "He suddenly felt scared because it seemed everyone was watching them.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 252,
+      "originalText": "She got up and went quickly to the door; he followed her, and both walked senselessly along passages, and up and down stairs, and figures in legal, scholastic, and civil service uniforms, all wearing badges, flitted before their eyes.",
+      "simplifiedText": "Anna stood up and went to the door quickly, and he followed her.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 253,
+      "originalText": "They caught glimpses of ladies, of fur coats hanging on pegs; the drafts blew on them, bringing a smell of stale tobacco.",
+      "simplifiedText": "They walked through halls and up and down stairs without thinking.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 254,
+      "originalText": "And Gurov, whose heart was beating violently, thought: \"Oh, heavens!",
+      "simplifiedText": "They saw people in uniforms and ladies with fur coats.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 255,
+      "originalText": "Why are these people here and this orchestra!...",
+      "simplifiedText": "The air was cold, and it smelled like old tobacco.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 256,
+      "originalText": "\" And at that instant he recalled how when he had seen Anna Sergeyevna off at the station he had thought that everything was over and they would never meet again.",
+      "simplifiedText": "Gurov's heart was beating fast, and he thought, 'Oh, heavens!'",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 257,
+      "originalText": "But how far they were still from the end!",
+      "simplifiedText": "He wondered why there were so many people and an orchestra.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 258,
+      "originalText": "On the narrow, gloomy staircase over which was written \"To the Amphitheatre,\" she stopped.",
+      "simplifiedText": "He remembered thinking at the station that they would never meet again.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 259,
+      "originalText": "\"How you have frightened me!",
+      "simplifiedText": "But they were far from the end, and on the stairs, she stopped.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 260,
+      "originalText": "\" she said, breathing hard, still pale and overwhelmed.",
+      "simplifiedText": "Anna breathed hard and looked pale because she was overwhelmed.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 261,
+      "originalText": "\"Oh, how you have frightened me!",
+      "simplifiedText": "\"Oh, you have frightened me so much!\" she said.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 262,
+      "originalText": "I am half dead.",
+      "simplifiedText": "\"I feel half dead now.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 263,
+      "originalText": "Why have you come?",
+      "simplifiedText": "Why have you come here?",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 264,
+      "originalText": "Why?",
+      "simplifiedText": "Why?\" she asked.",
+      "level": "A2",
+      "wordCount": 3
+    },
+    {
+      "sentenceIndex": 265,
+      "originalText": "\" \"But do understand, Anna, do understand ...",
+      "simplifiedText": "\"But please understand, Anna, please understand,\" Dmitri said quickly.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 266,
+      "originalText": "\" he said hastily in a low voice.",
+      "simplifiedText": "He spoke in a low voice because he was serious.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 267,
+      "originalText": "\"I beg you to understand....",
+      "simplifiedText": "\"I beg you to understand,\" he repeated.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 268,
+      "originalText": "\" She looked at him with dread, with entreaty, with love; she looked at him intently, to keep his features more distinctly in her memory.",
+      "simplifiedText": "Anna looked at him with fear, with pleading, and with love.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 269,
+      "originalText": "\"I am so unhappy,\" she went on, not heeding him.",
+      "simplifiedText": "She said, \"I am so unhappy,\" and did not listen to him.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 270,
+      "originalText": "\"I have thought of nothing but you all the time; I live only in the thought of you.",
+      "simplifiedText": "I have thought about you all the time, and I live only for you.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 271,
+      "originalText": "And I wanted to forget, to forget you; but why, oh, why, have you come?",
+      "simplifiedText": "I wanted to forget you, but why did you come here?",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 272,
+      "originalText": "\" On the landing above them, two schoolboys were smoking and looking down, but that was nothing to Gurov; he drew Anna Sergeyevna to him, and began kissing her face, her cheeks, and her hands.",
+      "simplifiedText": "Two schoolboys were smoking above them, but Gurov did not care.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 273,
+      "originalText": "\"What are you doing, what are you doing!",
+      "simplifiedText": "He pulled Anna Sergeyevna close and kissed her face and hands.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 274,
+      "originalText": "\" she cried in horror, pushing him away.",
+      "simplifiedText": "\"What are you doing?\" she cried in horror, pushing him away.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 275,
+      "originalText": "\"We are mad.",
+      "simplifiedText": "\"We are mad,\" she said.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 276,
+      "originalText": "Go away today; go away at once....",
+      "simplifiedText": "\"Go away today; leave at once,\" she begged.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 277,
+      "originalText": "I beg you by all that is sacred, I implore you....",
+      "simplifiedText": "\"I ask you by all that is sacred, please go,\" she implored.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 278,
+      "originalText": "There are people coming this way!",
+      "simplifiedText": "\"There are people coming this way!\" she warned.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 279,
+      "originalText": "\" Someone was coming up the stairs.",
+      "simplifiedText": "Someone was coming up the stairs.",
+      "level": "A2",
+      "wordCount": 6
+    },
+    {
+      "sentenceIndex": 280,
+      "originalText": "\"You must go away,\" Anna Sergeyevna went on in a whisper.",
+      "simplifiedText": "Anna Sergeyevna whispered, 'You must go away.'",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 281,
+      "originalText": "\"Do you hear, Dmitri Dmitritch?",
+      "simplifiedText": "'Do you hear, Dmitri Dmitritch?' she asked.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 282,
+      "originalText": "I will come and see you in Moscow.",
+      "simplifiedText": "'I will come and see you in Moscow,' she promised.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 283,
+      "originalText": "I have never been happy; I am miserable now, and I never, never shall be happy, never!",
+      "simplifiedText": "'I have never been happy, and I am miserable now.'",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 284,
+      "originalText": "Don't make me suffer still more!",
+      "simplifiedText": "'I will never, never be happy, so don't make me suffer more!'",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 285,
+      "originalText": "I swear I'll come to Moscow.",
+      "simplifiedText": "'I swear I'll come to Moscow,' she said.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 286,
+      "originalText": "But now let us part.",
+      "simplifiedText": "'But now let us part,' she insisted.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 287,
+      "originalText": "My precious, good, dear one, we must part!",
+      "simplifiedText": "'My precious, good, dear one, we must part!' she cried.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 288,
+      "originalText": "\" She pressed his hand and began rapidly going downstairs, looking around at him, and from her eyes, he could see that she really was unhappy.",
+      "simplifiedText": "She pressed his hand and quickly went downstairs, looking back at him, and he saw she was really unhappy.",
+      "level": "A2",
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 289,
+      "originalText": "Gurov stood for a little while, listened, then, when all sound had died away, he found his coat and left the theatre.",
+      "simplifiedText": "Gurov stood for a while, listened, and when all was quiet, he found his coat and left the theatre.",
+      "level": "A2",
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 290,
+      "originalText": "IV\n\nAnd Anna Sergeyevna began coming to see him in Moscow.",
+      "simplifiedText": "Anna Sergeyevna started visiting Gurov in Moscow.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 291,
+      "originalText": "Once in two or three months, she left S----, telling her husband that she was going to consult a doctor about an internal complaint—and her husband believed her, and didn't believe her.",
+      "simplifiedText": "Every two or three months, she left S----, telling her husband she needed to see a doctor, and he believed her but also had doubts.",
+      "level": "A2",
+      "wordCount": 25
+    },
+    {
+      "sentenceIndex": 292,
+      "originalText": "In Moscow, she stayed at the Slaviansky Bazaar hotel, and at once sent a man in a red cap to Gurov.",
+      "simplifiedText": "In Moscow, she stayed at the Slaviansky Bazaar hotel and sent a man in a red cap to Gurov.",
+      "level": "A2",
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 293,
+      "originalText": "Gurov went to see her, and no one in Moscow knew of it.",
+      "simplifiedText": "Gurov visited her, and nobody in Moscow knew about it.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 294,
+      "originalText": "Once he was going to see her in this way on a winter morning (the messenger had come the evening before when he was out).",
+      "simplifiedText": "One winter morning, he planned to visit her after a messenger came the night before when he was out.",
+      "level": "A2",
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 295,
+      "originalText": "With him walked his daughter, whom he wanted to take to school: it was on the way.",
+      "simplifiedText": "He walked with his daughter, who he wanted to take to school because it was on the way.",
+      "level": "A2",
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 296,
+      "originalText": "Snow was falling in big wet flakes.",
+      "simplifiedText": "Big, wet snowflakes were falling.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 297,
+      "originalText": "\"It's three degrees above freezing-point, and yet it is snowing,\" said Gurov to his daughter.",
+      "simplifiedText": "Gurov said to his daughter, 'It's three degrees above freezing, yet it's snowing.'",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 298,
+      "originalText": "\"The thaw is only on the surface of the earth; there is quite a different temperature at a greater height in the atmosphere.",
+      "simplifiedText": "He explained, 'The ground is thawing, but higher in the sky, it's colder.'",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 299,
+      "originalText": "\" \"And why are there no thunderstorms in the winter, father?",
+      "simplifiedText": "His daughter asked, 'Why are there no thunderstorms in winter, father?'",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 300,
+      "originalText": "\" He explained that, too.",
+      "simplifiedText": "He explained everything to her.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 301,
+      "originalText": "He talked, thinking all the while that he was going to see her, and no living soul knew of it, and probably never would know.",
+      "simplifiedText": "He talked while thinking about seeing her, and nobody knew about it.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 302,
+      "originalText": "He had two lives: one, open, seen and known by all who cared to know, full of relative truth and of relative falsehood, exactly like the lives of his friends and acquaintances; and another life running its course in secret.",
+      "simplifiedText": "He had two lives: one was open and known by everyone, and the other was secret.",
+      "level": "A2",
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 303,
+      "originalText": "And through some strange, perhaps accidental, conjunction of circumstances, everything that was essential, of interest and of value to him, everything in which he was sincere and didn't deceive himself, everything that made the kernel of his life, was hidden from other people; and all that was false in him, the sheath in which he hid himself to conceal the truth—such, for instance, as his work in the bank, his discussions at the club, his \"lower race,\" his presence with his wife at anniversary festivities—all that was open.",
+      "simplifiedText": "Everything important to him was hidden, but his false life was open to others.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 304,
+      "originalText": "And he judged others by himself, not believing in what he saw, and always believing that every man had his real, most interesting life under the cover of secrecy and under the cover of night.",
+      "simplifiedText": "He thought others were like him, hiding their true lives in secret.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 305,
+      "originalText": "All personal life rested on secrecy, and possibly it was partly on that account that civilized man was so nervously anxious that personal privacy should be respected.",
+      "simplifiedText": "He believed personal life needed secrecy, and privacy was important for everyone.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 306,
+      "originalText": "After leaving his daughter at school, Gurov went on to the Slaviansky Bazaar.",
+      "simplifiedText": "After leaving his daughter at school, Gurov went to the Slaviansky Bazaar.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 307,
+      "originalText": "He took off his fur coat below, went upstairs, and softly knocked at the door.",
+      "simplifiedText": "He took off his fur coat, went upstairs, and knocked on the door.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 308,
+      "originalText": "Anna Sergeyevna, wearing his favorite grey dress, exhausted by the journey and the suspense, had been expecting him since the evening before.",
+      "simplifiedText": "Anna Sergeyevna, in a grey dress, was tired but waiting for him.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 309,
+      "originalText": "She was pale; she looked at him, and didn't smile, and he had hardly come in when she fell on his chest.",
+      "simplifiedText": "She was pale, looked at him without smiling, and hugged him tightly.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 310,
+      "originalText": "Their kiss was slow and prolonged, as though they hadn't met for two years.",
+      "simplifiedText": "Their kiss was slow and long, like they hadn't met for years.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 311,
+      "originalText": "\"Well, how are you getting on there?",
+      "simplifiedText": "Dmitri Dmitritch Gurov asked Anna Sergeyevna, 'How are you doing there?'",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 312,
+      "originalText": "\" he asked.",
+      "simplifiedText": "'What is new with you?' he continued.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 313,
+      "originalText": "\"What news?",
+      "simplifiedText": "Anna replied, 'Wait, I will tell you soon.'",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 314,
+      "originalText": "\" \"Wait; I'll tell you directly....",
+      "simplifiedText": "'I can't talk right now,' she said.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 315,
+      "originalText": "I can't talk.",
+      "simplifiedText": "Anna couldn't speak because she was crying.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 316,
+      "originalText": "\" She couldn't speak; she was crying.",
+      "simplifiedText": "She turned away and pressed her handkerchief to her eyes.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 317,
+      "originalText": "She turned away from him and pressed her handkerchief to her eyes.",
+      "simplifiedText": "'Let her cry for a while,' he thought to himself.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 318,
+      "originalText": "\"Let her have her cry out.",
+      "simplifiedText": "'I will sit down and wait for her,' he decided.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 319,
+      "originalText": "I'll sit down and wait,\" he thought, and he sat down in an armchair.",
+      "simplifiedText": "Then he sat down in an armchair and waited.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 320,
+      "originalText": "Then he rang and asked for tea to be brought to him, and while he drank his tea, she remained standing at the window with her back to him.",
+      "simplifiedText": "Dmitri Dmitritch Gurov asked for tea, and Anna Sergeyevna stood by the window.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 321,
+      "originalText": "She was crying from emotion, from the miserable consciousness that their life was so hard for them; they could only meet in secret, hiding themselves from people, like thieves!",
+      "simplifiedText": "She cried because their life was hard and they had to meet in secret.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 322,
+      "originalText": "Wasn't their life shattered?",
+      "simplifiedText": "They felt like their life was broken.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 323,
+      "originalText": "\"Come, do stop!",
+      "simplifiedText": "\"Please, stop crying!\" he said.",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 324,
+      "originalText": "\" he said.",
+      "simplifiedText": "He knew their love would not end soon.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 325,
+      "originalText": "It was evident to him that this love of theirs wouldn't soon be over, that he couldn't see the end of it.",
+      "simplifiedText": "Anna Sergeyevna loved him more every day.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 326,
+      "originalText": "Anna Sergeyevna grew more and more attached to him.",
+      "simplifiedText": "She adored him and could not imagine their love ending.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 327,
+      "originalText": "She adored him, and it was unthinkable to say to her that it was bound to have an end someday; besides, she wouldn't have believed it!",
+      "simplifiedText": "He walked to her and held her shoulders to comfort her.",
+      "level": "A2",
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 328,
+      "originalText": "He went up to her and took her by the shoulders to say something affectionate and cheering, and at that moment he saw himself in the mirror.",
+      "simplifiedText": "When he looked in the mirror, he saw himself.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 329,
+      "originalText": "His hair was already beginning to turn grey.",
+      "simplifiedText": "His hair was starting to turn grey.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 330,
+      "originalText": "And it seemed strange to him that he had grown so much older, so much plainer during the last few years.",
+      "simplifiedText": "Dmitri Dmitritch Gurov thought it was strange that he looked older now.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 331,
+      "originalText": "The shoulders on which his hands rested were warm and quivering.",
+      "simplifiedText": "Anna Sergeyevna's shoulders were warm and shaking under his hands.",
+      "level": "A2",
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 332,
+      "originalText": "He felt compassion for this life, still so warm and lovely, but probably already not far from beginning to fade and wither like his own.",
+      "simplifiedText": "He felt sorry for her life, which was still beautiful but might soon fade like his own.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 333,
+      "originalText": "Why did she love him so much?",
+      "simplifiedText": "He wondered why Anna loved him so much.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 334,
+      "originalText": "He always seemed to women different from what he was, and they loved in him not himself, but the man created by their imagination, whom they had been eagerly seeking all their lives; and afterwards, when they noticed their mistake, they loved him all the same.",
+      "simplifiedText": "Women always saw him differently and loved the man they imagined him to be.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 335,
+      "originalText": "And not one of them had been happy with him.",
+      "simplifiedText": "None of the women had been happy with him.",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 336,
+      "originalText": "Time passed, he had made their acquaintance, got on with them, parted, but he had never once loved; it was anything you like, but not love.",
+      "simplifiedText": "Time went by, he met women, got along with them, and parted, but he never truly loved.",
+      "level": "A2",
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 337,
+      "originalText": "And only now when his head was grey he had fallen properly, really in love—for the first time in his life.",
+      "simplifiedText": "Now, with his grey hair, he fell in love for the first time.",
+      "level": "A2",
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 338,
+      "originalText": "Anna Sergeyevna and he loved each other like people very close and akin, like husband and wife, like tender friends; it seemed to them that fate itself had meant them for one another, and they couldn't understand why he had a wife and she a husband; and it was as though they were a pair of birds of passage, caught and forced to live in different cages.",
+      "simplifiedText": "Anna Sergeyevna and he loved each other deeply, like husband and wife, and they felt fate meant them to be together.",
+      "level": "A2",
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 339,
+      "originalText": "They forgave each other for what they were ashamed of in their past, they forgave everything in the present, and felt that this love of theirs had changed them both.",
+      "simplifiedText": "They forgave each other's past mistakes and felt their love had changed them both.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 340,
+      "originalText": "In moments of depression in the past, he had comforted himself with any arguments that came into his mind, but now he no longer cared for arguments; he felt profound compassion, he wanted to be sincere and tender....",
+      "simplifiedText": "In the past, Dmitri Dmitritch Gurov used to comfort himself with arguments, but now he just felt deep compassion and wanted to be sincere and tender.",
+      "level": "A2",
+      "wordCount": 26
+    },
+    {
+      "sentenceIndex": 341,
+      "originalText": "\"Don't cry, my darling,\" he said.",
+      "simplifiedText": "\"Don't cry, my darling,\" he said softly.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 342,
+      "originalText": "\"You've had your cry; that's enough....",
+      "simplifiedText": "\"You've had your cry; that's enough now.",
+      "level": "A2",
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 343,
+      "originalText": "Let's talk now, let's think of some plan.",
+      "simplifiedText": "Let's talk and think of a plan together.",
+      "level": "A2",
+      "wordCount": 8
+    },
+    {
+      "sentenceIndex": 344,
+      "originalText": "\" Then they spent a long while taking counsel together, talked of how to avoid the necessity for secrecy, for deception, for living in different towns and not seeing each other for long at a time.",
+      "simplifiedText": "They spent a long time discussing how to avoid secrecy and deception.",
+      "level": "A2",
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 345,
+      "originalText": "How could they be free from this intolerable bondage?",
+      "simplifiedText": "They talked about living in different towns and not seeing each other for long.",
+      "level": "A2",
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 346,
+      "originalText": "\"How?",
+      "simplifiedText": "How could they be free from this difficult situation?",
+      "level": "A2",
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 347,
+      "originalText": "How?",
+      "simplifiedText": "\"How can we do it?",
+      "level": "A2",
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 348,
+      "originalText": "\" he asked, clutching his head.",
+      "simplifiedText": "How?\" he asked, holding his head in his hands.",
+      "level": "A2",
+      "wordCount": 9
+    }
+  ],
+  "metadata": {
+    "bookId": "lady-with-dog",
+    "cefrLevel": "A2",
+    "totalSentences": 349,
+    "inProgress": false,
+    "completedAt": "2025-10-12T04:15:04.682Z"
+  }
+}

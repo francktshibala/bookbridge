@@ -1,0 +1,62 @@
+{
+  "index": 4,
+  "sentences": [
+    {
+      "sentenceIndex": 16,
+      "text": "The Water-rat thought the question was silly and did not understand why they asked."
+    },
+    {
+      "sentenceIndex": 17,
+      "text": "He said he would expect his devoted friend to always be loyal to him."
+    },
+    {
+      "sentenceIndex": 18,
+      "text": "The Duck stood on her head in the water to teach her children how to behave."
+    },
+    {
+      "sentenceIndex": 19,
+      "text": "The Water-rat seemed to think that friendship was all about others being devoted to him."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_4.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_4.mp3",
+  "duration": 28.542222222222225,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 16,
+      "startTime": 0,
+      "endTime": 6.342222222222222,
+      "text": "The Water-rat thought the question was silly and did not understand why they asked."
+    },
+    {
+      "sentenceIndex": 17,
+      "startTime": 6.342222222222222,
+      "endTime": 12.684444444444445,
+      "text": "He said he would expect his devoted friend to always be loyal to him."
+    },
+    {
+      "sentenceIndex": 18,
+      "startTime": 12.684444444444445,
+      "endTime": 19.965555555555557,
+      "text": "The Duck stood on her head in the water to teach her children how to behave."
+    },
+    {
+      "sentenceIndex": 19,
+      "startTime": 19.965555555555557,
+      "endTime": 26.752222222222223,
+      "text": "The Water-rat seemed to think that friendship was all about others being devoted to him."
+    }
+  ],
+  "wordCount": 59,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:04:43.791Z"
+  }
+}

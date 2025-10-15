@@ -1,0 +1,62 @@
+{
+  "index": 28,
+  "sentences": [
+    {
+      "sentenceIndex": 112,
+      "text": "said the Miller, 'That is exactly what I need for my barn roof."
+    },
+    {
+      "sentenceIndex": 113,
+      "text": "There is a big hole in it, and the corn will get wet if I don't fix it."
+    },
+    {
+      "sentenceIndex": 114,
+      "text": "How lucky you told me about it!"
+    },
+    {
+      "sentenceIndex": 115,
+      "text": "It's amazing how one good action leads to another."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_28.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_28.mp3",
+  "duration": 22.32888888888889,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 112,
+      "startTime": 0,
+      "endTime": 5.897777777777779,
+      "text": "said the Miller, 'That is exactly what I need for my barn roof."
+    },
+    {
+      "sentenceIndex": 113,
+      "startTime": 5.897777777777779,
+      "endTime": 14.177777777777777,
+      "text": "There is a big hole in it, and the corn will get wet if I don't fix it."
+    },
+    {
+      "sentenceIndex": 114,
+      "startTime": 14.177777777777777,
+      "endTime": 17.40888888888889,
+      "text": "How lucky you told me about it!"
+    },
+    {
+      "sentenceIndex": 115,
+      "startTime": 17.40888888888889,
+      "endTime": 21.52888888888889,
+      "text": "It's amazing how one good action leads to another."
+    }
+  ],
+  "wordCount": 47,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:45.750Z"
+  }
+}

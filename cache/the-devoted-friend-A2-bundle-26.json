@@ -1,0 +1,62 @@
+{
+  "index": 26,
+  "sentences": [
+    {
+      "sentenceIndex": 104,
+      "text": "The Miller told Hans he would give him his wheelbarrow."
+    },
+    {
+      "sentenceIndex": 105,
+      "text": "The wheelbarrow is not in good shape, but he will still give it."
+    },
+    {
+      "sentenceIndex": 106,
+      "text": "The Miller thinks he is generous, even if others might disagree."
+    },
+    {
+      "sentenceIndex": 107,
+      "text": "He believes generosity is important in friendship and has a new wheelbarrow."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_26.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_26.mp3",
+  "duration": 21.84444444444445,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 104,
+      "startTime": 0,
+      "endTime": 4.564444444444445,
+      "text": "The Miller told Hans he would give him his wheelbarrow."
+    },
+    {
+      "sentenceIndex": 105,
+      "startTime": 4.564444444444445,
+      "endTime": 10.462222222222223,
+      "text": "The wheelbarrow is not in good shape, but he will still give it."
+    },
+    {
+      "sentenceIndex": 106,
+      "startTime": 10.462222222222223,
+      "endTime": 15.471111111111114,
+      "text": "The Miller thinks he is generous, even if others might disagree."
+    },
+    {
+      "sentenceIndex": 107,
+      "startTime": 15.471111111111114,
+      "endTime": 20.924444444444447,
+      "text": "He believes generosity is important in friendship and has a new wheelbarrow."
+    }
+  ],
+  "wordCount": 46,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:33.882Z"
+  }
+}

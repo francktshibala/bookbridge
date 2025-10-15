@@ -1,0 +1,3584 @@
+{
+  "bookId": "gutenberg-1952-A1",
+  "originalBookId": "gutenberg-1952",
+  "title": "The Yellow Wallpaper (A1 Level)",
+  "author": "Charlotte Perkins Gilman",
+  "cefrLevel": "A1",
+  "totalBundles": 94,
+  "bundles": [
+    {
+      "bundleIndex": 0,
+      "bundleId": "bundle_0",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-0-0",
+          "sentenceIndex": 0,
+          "text": "John and I got a big house for the summer.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-0-1",
+          "sentenceIndex": 1,
+          "text": "A big house is very romantic.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-0-2",
+          "sentenceIndex": 2,
+          "text": "This place is strange.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-0-3",
+          "sentenceIndex": 3,
+          "text": "Why is the rent so cheap?",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 1,
+      "bundleId": "bundle_1",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-1-0",
+          "sentenceIndex": 4,
+          "text": "Why was it empty for so long?",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-1-1",
+          "sentenceIndex": 5,
+          "text": "John often laughs at me.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-1-2",
+          "sentenceIndex": 6,
+          "text": "John is very practical.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-1-3",
+          "sentenceIndex": 7,
+          "text": "John doesn't believe in things he can't see.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 2,
+      "bundleId": "bundle_2",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-2-0",
+          "sentenceIndex": 8,
+          "text": "John is a doctor and I'm not getting better.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-2-1",
+          "sentenceIndex": 9,
+          "text": "He thinks I'm not sick.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-2-2",
+          "sentenceIndex": 10,
+          "text": "What can I do?",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-2-3",
+          "sentenceIndex": 11,
+          "text": "If a good doctor says you're not sick, what can you do?",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 3,
+      "bundleId": "bundle_3",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-3-0",
+          "sentenceIndex": 12,
+          "text": "My brother is also a doctor and agrees with John.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-3-1",
+          "sentenceIndex": 13,
+          "text": "I take medicine and do things to get better.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-3-2",
+          "sentenceIndex": 14,
+          "text": "I don't agree with them.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-3-3",
+          "sentenceIndex": 15,
+          "text": "I think work would be good for me.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 4,
+      "bundleId": "bundle_4",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-4-0",
+          "sentenceIndex": 16,
+          "text": "But what can I do?",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-4-1",
+          "sentenceIndex": 17,
+          "text": "I wrote for a bit but it made me tired.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-4-2",
+          "sentenceIndex": 18,
+          "text": "I wish I could talk to more people but John says no.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-4-3",
+          "sentenceIndex": 19,
+          "text": "So I'll talk about the house.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 5,
+      "bundleId": "bundle_5",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-5-0",
+          "sentenceIndex": 20,
+          "text": "This place is very beautiful.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-5-1",
+          "sentenceIndex": 21,
+          "text": "It's far from the road and the village.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-5-2",
+          "sentenceIndex": 22,
+          "text": "It looks like English places with walls and many small houses.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-5-3",
+          "sentenceIndex": 23,
+          "text": "The garden is very nice!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 6,
+      "bundleId": "bundle_6",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-6-0",
+          "sentenceIndex": 24,
+          "text": "The garden is big and has many paths.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-6-1",
+          "sentenceIndex": 25,
+          "text": "There were greenhouses, but they are broken now.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-6-2",
+          "sentenceIndex": 26,
+          "text": "The big house has been empty for many years.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-6-3",
+          "sentenceIndex": 27,
+          "text": "I feel something strange about the house.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 7,
+      "bundleId": "bundle_7",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-7-0",
+          "sentenceIndex": 28,
+          "text": "John said I was feeling a draft and closed the window.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-7-1",
+          "sentenceIndex": 29,
+          "text": "Sometimes I get very angry with John.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-7-2",
+          "sentenceIndex": 30,
+          "text": "I was not this worried before.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-7-3",
+          "sentenceIndex": 31,
+          "text": "I think I am worried because I am sad.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 8,
+      "bundleId": "bundle_8",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-8-0",
+          "sentenceIndex": 32,
+          "text": "John says I should control myself more.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-8-1",
+          "sentenceIndex": 33,
+          "text": "I don't like our room.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-8-2",
+          "sentenceIndex": 34,
+          "text": "I wanted a room with roses and old curtains.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-8-3",
+          "sentenceIndex": 35,
+          "text": "But John did not agree.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 9,
+      "bundleId": "bundle_9",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-9-0",
+          "sentenceIndex": 36,
+          "text": "John said there was not enough space for two beds.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-9-1",
+          "sentenceIndex": 37,
+          "text": "John is very careful and gives me many instructions.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-9-2",
+          "sentenceIndex": 38,
+          "text": "I have a plan for each hour and John takes care of me.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-9-3",
+          "sentenceIndex": 39,
+          "text": "John said we came here for me to rest and get fresh air.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 10,
+      "bundleId": "bundle_10",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-10-0",
+          "sentenceIndex": 40,
+          "text": "We can always breathe fresh air.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-10-1",
+          "sentenceIndex": 41,
+          "text": "We took the top room of the house.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-10-2",
+          "sentenceIndex": 42,
+          "text": "The room is big with many windows.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-10-3",
+          "sentenceIndex": 43,
+          "text": "The room was a nursery then a playground.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 11,
+      "bundleId": "bundle_11",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-11-0",
+          "sentenceIndex": 44,
+          "text": "There are rings on the walls.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-11-1",
+          "sentenceIndex": 45,
+          "text": "The yellow paper looks like boys used it.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-11-2",
+          "sentenceIndex": 46,
+          "text": "The yellow paper is off the wall near my bed.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-11-3",
+          "sentenceIndex": 47,
+          "text": "I have never seen worse yellow paper.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 12,
+      "bundleId": "bundle_12",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-12-0",
+          "sentenceIndex": 48,
+          "text": "The pattern on the yellow paper is bad.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-12-1",
+          "sentenceIndex": 49,
+          "text": "The pattern is hard to follow and makes you study it.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-12-2",
+          "sentenceIndex": 50,
+          "text": "The color is a bad yellow.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-12-3",
+          "sentenceIndex": 51,
+          "text": "The color is orange in some places.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 13,
+      "bundleId": "bundle_13",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-13-0",
+          "sentenceIndex": 52,
+          "text": "The children did not like it.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-13-1",
+          "sentenceIndex": 53,
+          "text": "I would not like to live in this room.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-13-2",
+          "sentenceIndex": 54,
+          "text": "John is coming and he does not like me writing.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-13-3",
+          "sentenceIndex": 55,
+          "text": "I have not felt like writing for two weeks.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 14,
+      "bundleId": "bundle_14",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-14-0",
+          "sentenceIndex": 56,
+          "text": "I am writing by the window in the room.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-14-1",
+          "sentenceIndex": 57,
+          "text": "John is away all day and sometimes at night.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-14-2",
+          "sentenceIndex": 58,
+          "text": "I am happy my case is not bad.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-14-3",
+          "sentenceIndex": 59,
+          "text": "I am very worried and sad.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 15,
+      "bundleId": "bundle_15",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-15-0",
+          "sentenceIndex": 60,
+          "text": "It's just worry.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-15-1",
+          "sentenceIndex": 61,
+          "text": "I feel bad not doing my job!",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-15-2",
+          "sentenceIndex": 62,
+          "text": "I wanted to help John but I am a problem.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-15-3",
+          "sentenceIndex": 63,
+          "text": "It's hard for me to do small things like dressing and managing things.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 16,
+      "bundleId": "bundle_16",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-16-0",
+          "sentenceIndex": 64,
+          "text": "Mary is good with the baby.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-16-1",
+          "sentenceIndex": 65,
+          "text": "The baby is so sweet!",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-16-2",
+          "sentenceIndex": 66,
+          "text": "I can't be with him, it makes me worried.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-16-3",
+          "sentenceIndex": 67,
+          "text": "John has never been worried.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 17,
+      "bundleId": "bundle_17",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-17-0",
+          "sentenceIndex": 68,
+          "text": "He laughs at me about this yellow paper!",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-17-1",
+          "sentenceIndex": 69,
+          "text": "He wanted to change the yellow paper but then said it was bad for me.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-17-2",
+          "sentenceIndex": 70,
+          "text": "He said if we change the yellow paper, I will worry about other things.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-17-3",
+          "sentenceIndex": 71,
+          "text": "He said this house is helping me and he doesn't want to change it.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 18,
+      "bundleId": "bundle_18",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-18-0",
+          "sentenceIndex": 72,
+          "text": "I said let's move downstairs, the rooms are nice.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-18-1",
+          "sentenceIndex": 73,
+          "text": "He hugged me and said we can even go to the basement.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-18-2",
+          "sentenceIndex": 74,
+          "text": "He is right about the bed and windows.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-18-3",
+          "sentenceIndex": 75,
+          "text": "The room is big and nice, I don't want to make him sad.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 19,
+      "bundleId": "bundle_19",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-19-0",
+          "sentenceIndex": 76,
+          "text": "I like the big room but not the yellow paper.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-19-1",
+          "sentenceIndex": 77,
+          "text": "I can see the garden and trees from one window.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-19-2",
+          "sentenceIndex": 78,
+          "text": "From another window, I can see the sea and a small dock.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-19-3",
+          "sentenceIndex": 79,
+          "text": "I think I see people walking but John told me to control my thoughts.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 20,
+      "bundleId": "bundle_20",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-20-0",
+          "sentenceIndex": 80,
+          "text": "I try sometimes.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-20-1",
+          "sentenceIndex": 81,
+          "text": "I wish I could write to feel better.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-20-2",
+          "sentenceIndex": 82,
+          "text": "I get tired when I try.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-20-3",
+          "sentenceIndex": 83,
+          "text": "I feel lost without help in my work.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 21,
+      "bundleId": "bundle_21",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-21-0",
+          "sentenceIndex": 84,
+          "text": "John says we will invite Henry and Julia when I am better.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-21-1",
+          "sentenceIndex": 85,
+          "text": "I want to get better quickly.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-21-2",
+          "sentenceIndex": 86,
+          "text": "I should not think about that.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-21-3",
+          "sentenceIndex": 87,
+          "text": "The yellow paper looks bad to me.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 22,
+      "bundleId": "bundle_22",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-22-0",
+          "sentenceIndex": 88,
+          "text": "There is a spot on the paper that looks like a face.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-22-1",
+          "sentenceIndex": 89,
+          "text": "I am mad at the paper.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-22-2",
+          "sentenceIndex": 90,
+          "text": "The eyes on the paper are everywhere.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-22-3",
+          "sentenceIndex": 91,
+          "text": "There is a place where the eyes on the paper are not aligned.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 23,
+      "bundleId": "bundle_23",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-23-0",
+          "sentenceIndex": 92,
+          "text": "I have never seen a thing show so much.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-23-1",
+          "sentenceIndex": 93,
+          "text": "As a kid, I found walls and furniture scary and fun.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-23-2",
+          "sentenceIndex": 94,
+          "text": "I remember friendly furniture in our old house.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-23-3",
+          "sentenceIndex": 95,
+          "text": "I felt safe in one chair in our old house.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 24,
+      "bundleId": "bundle_24",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-24-0",
+          "sentenceIndex": 96,
+          "text": "The furniture in this room is from downstairs.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-24-1",
+          "sentenceIndex": 97,
+          "text": "This room was a playroom before.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-24-2",
+          "sentenceIndex": 98,
+          "text": "The kids made a big mess in this room.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-24-3",
+          "sentenceIndex": 99,
+          "text": "The yellow paper is torn and hard to remove.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 25,
+      "bundleId": "bundle_25",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-25-0",
+          "sentenceIndex": 100,
+          "text": "The floor is scratched and the big bed looks like it was in a war.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-25-1",
+          "sentenceIndex": 101,
+          "text": "I don't mind anything but the yellow paper.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-25-2",
+          "sentenceIndex": 102,
+          "text": "John's sister is coming.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-25-3",
+          "sentenceIndex": 103,
+          "text": "She is a nice girl and takes good care of me.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 26,
+      "bundleId": "bundle_26",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-26-0",
+          "sentenceIndex": 104,
+          "text": "I must not let her see me write.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-26-1",
+          "sentenceIndex": 105,
+          "text": "She loves cleaning the house and likes her job.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-26-2",
+          "sentenceIndex": 106,
+          "text": "She thinks writing made me sick.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-26-3",
+          "sentenceIndex": 107,
+          "text": "I can write when she is not here and watch her from the window.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 27,
+      "bundleId": "bundle_27",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-27-0",
+          "sentenceIndex": 108,
+          "text": "There is a window that looks at the road and one that looks at the field.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-27-1",
+          "sentenceIndex": 109,
+          "text": "The field is beautiful with big trees and grass.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-27-2",
+          "sentenceIndex": 110,
+          "text": "The yellow paper has a pattern that you can only see in some light.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-27-3",
+          "sentenceIndex": 111,
+          "text": "Where the sun hits the paper, I can see a strange shape.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 28,
+      "bundleId": "bundle_28",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-28-0",
+          "sentenceIndex": 112,
+          "text": "His sister is on the stairs.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-28-1",
+          "sentenceIndex": 113,
+          "text": "The Fourth of July is over.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-28-2",
+          "sentenceIndex": 114,
+          "text": "The guests have gone and I am tired.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-28-3",
+          "sentenceIndex": 115,
+          "text": "John thought it would be good for me to see my family.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 29,
+      "bundleId": "bundle_29",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-29-0",
+          "sentenceIndex": 116,
+          "text": "I did not do any work.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-29-1",
+          "sentenceIndex": 117,
+          "text": "Jennie does all the work now.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-29-2",
+          "sentenceIndex": 118,
+          "text": "But I am still tired.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-29-3",
+          "sentenceIndex": 119,
+          "text": "John says if I don't get better, he will send me to the doctor.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 30,
+      "bundleId": "bundle_30",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-30-0",
+          "sentenceIndex": 120,
+          "text": "I don't want to go there.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-30-1",
+          "sentenceIndex": 121,
+          "text": "I had a friend who saw the same doctor as me.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-30-2",
+          "sentenceIndex": 122,
+          "text": "It's a long trip.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-30-3",
+          "sentenceIndex": 123,
+          "text": "I don't want to do anything and I feel very bad.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 31,
+      "bundleId": "bundle_31",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-31-0",
+          "sentenceIndex": 124,
+          "text": "I cry a lot.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-31-1",
+          "sentenceIndex": 125,
+          "text": "I don't cry when John or others are here, only when I'm alone.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-31-2",
+          "sentenceIndex": 126,
+          "text": "I am alone a lot now.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-31-3",
+          "sentenceIndex": 127,
+          "text": "John is busy and Jennie leaves me alone when I want.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 32,
+      "bundleId": "bundle_32",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-32-0",
+          "sentenceIndex": 128,
+          "text": "I walk in the garden, sit on the porch and spend time in my room.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-32-1",
+          "sentenceIndex": 129,
+          "text": "I like the room, even with the yellow paper.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-32-2",
+          "sentenceIndex": 130,
+          "text": "Maybe I like it because of the yellow paper.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-32-3",
+          "sentenceIndex": 131,
+          "text": "I think about it all the time!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 33,
+      "bundleId": "bundle_33",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-33-0",
+          "sentenceIndex": 132,
+          "text": "I lie in bed and look at the pattern for hours.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-33-1",
+          "sentenceIndex": 133,
+          "text": "It's like a workout.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-33-2",
+          "sentenceIndex": 134,
+          "text": "I start at the bottom and try to follow the pattern.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-33-3",
+          "sentenceIndex": 135,
+          "text": "I know about design and this yellow paper doesn't follow any rules.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 34,
+      "bundleId": "bundle_34",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-34-0",
+          "sentenceIndex": 136,
+          "text": "The pattern repeats sideways.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-34-1",
+          "sentenceIndex": 137,
+          "text": "Each line looks different.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-34-2",
+          "sentenceIndex": 138,
+          "text": "They connect at an angle and look like running seaweed.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-34-3",
+          "sentenceIndex": 139,
+          "text": "The design stretches sideways and it's hard to understand.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 35,
+      "bundleId": "bundle_35",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-35-0",
+          "sentenceIndex": 140,
+          "text": "They used a strip as a border, adding to the confusion.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-35-1",
+          "sentenceIndex": 141,
+          "text": "In one part of the room, the yellow paper is almost whole.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-35-2",
+          "sentenceIndex": 142,
+          "text": "When the light fades and the sun shines on it, I see shapes.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-35-3",
+          "sentenceIndex": 143,
+          "text": "It's hard to follow it.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 36,
+      "bundleId": "bundle_36",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-36-0",
+          "sentenceIndex": 144,
+          "text": "I think I will sleep.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-36-1",
+          "sentenceIndex": 145,
+          "text": "I don't know why I'm writing this.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-36-2",
+          "sentenceIndex": 146,
+          "text": "I don't want to.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-36-3",
+          "sentenceIndex": 147,
+          "text": "I don't feel like it.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 37,
+      "bundleId": "bundle_37",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-37-0",
+          "sentenceIndex": 148,
+          "text": "John would think it's silly.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-37-1",
+          "sentenceIndex": 149,
+          "text": "I need to say how I feel and think.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-37-2",
+          "sentenceIndex": 150,
+          "text": "But it's getting harder to do.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-37-3",
+          "sentenceIndex": 151,
+          "text": "I'm often tired and I lie down a lot.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 38,
+      "bundleId": "bundle_38",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-38-0",
+          "sentenceIndex": 152,
+          "text": "John wants me to stay strong and gives me fish oil and pills.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-38-1",
+          "sentenceIndex": 153,
+          "text": "Dear John!",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-38-2",
+          "sentenceIndex": 154,
+          "text": "He loves me and doesn't like to see me sick.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-38-3",
+          "sentenceIndex": 155,
+          "text": "I tried to talk to him about visiting Henry and Julia.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 39,
+      "bundleId": "bundle_39",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-39-0",
+          "sentenceIndex": 156,
+          "text": "But he said I wasn't well enough to go.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-39-1",
+          "sentenceIndex": 157,
+          "text": "It's hard for me to think clearly.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-39-2",
+          "sentenceIndex": 158,
+          "text": "I guess I'm just worried and sad.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-39-3",
+          "sentenceIndex": 159,
+          "text": "John took care of me and read to me until I was tired.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 40,
+      "bundleId": "bundle_40",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-40-0",
+          "sentenceIndex": 160,
+          "text": "Only I can help myself.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-40-1",
+          "sentenceIndex": 161,
+          "text": "The baby is happy and not in the room with the yellow paper.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-40-2",
+          "sentenceIndex": 162,
+          "text": "The child would have used it if we hadn't.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-40-3",
+          "sentenceIndex": 163,
+          "text": "I am lucky to escape!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 41,
+      "bundleId": "bundle_41",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-41-0",
+          "sentenceIndex": 164,
+          "text": "I don't want my child to live in that room.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-41-1",
+          "sentenceIndex": 165,
+          "text": "I am glad John kept me here.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-41-2",
+          "sentenceIndex": 166,
+          "text": "I can handle it better than a baby.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-41-3",
+          "sentenceIndex": 167,
+          "text": "I don't talk about it but I watch it.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 42,
+      "bundleId": "bundle_42",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-42-0",
+          "sentenceIndex": 168,
+          "text": "Only I know what's in the yellow paper.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-42-1",
+          "sentenceIndex": 169,
+          "text": "The shapes in the pattern become clearer every day.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-42-2",
+          "sentenceIndex": 170,
+          "text": "The shape is always the same.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-42-3",
+          "sentenceIndex": 171,
+          "text": "It looks like a woman hiding behind the pattern.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 43,
+      "bundleId": "bundle_43",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-43-0",
+          "sentenceIndex": 172,
+          "text": "I don't like it.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-43-1",
+          "sentenceIndex": 173,
+          "text": "I wish John would take me away.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-43-2",
+          "sentenceIndex": 174,
+          "text": "It's hard to talk to John about how I feel.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-43-3",
+          "sentenceIndex": 175,
+          "text": "I tried it last night.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 44,
+      "bundleId": "bundle_44",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-44-0",
+          "sentenceIndex": 176,
+          "text": "It was a night with moonlight.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-44-1",
+          "sentenceIndex": 177,
+          "text": "The moon shines like the sun.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-44-2",
+          "sentenceIndex": 178,
+          "text": "I don't like seeing it move slowly through the window.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-44-3",
+          "sentenceIndex": 179,
+          "text": "John was sleeping so I watched the moonlight on the yellow paper.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 45,
+      "bundleId": "bundle_45",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-45-0",
+          "sentenceIndex": 180,
+          "text": "A person behind seemed to shake the yellow paper, wanting to get out.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-45-1",
+          "sentenceIndex": 181,
+          "text": "I got up quietly to see if the paper moved, and John woke up.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-45-2",
+          "sentenceIndex": 182,
+          "text": "He asked, 'What is it, little girl?'",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-45-3",
+          "sentenceIndex": 183,
+          "text": "He told me not to walk around or I'll get cold.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 46,
+      "bundleId": "bundle_46",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-46-0",
+          "sentenceIndex": 184,
+          "text": "He said we can't leave because our lease isn't up.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-46-1",
+          "sentenceIndex": 185,
+          "text": "He can't leave town because our big house is being fixed.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-46-2",
+          "sentenceIndex": 186,
+          "text": "He said he would take me away if I was in danger.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-46-3",
+          "sentenceIndex": 187,
+          "text": "He said he's a doctor and he knows I'm better.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 47,
+      "bundleId": "bundle_47",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-47-0",
+          "sentenceIndex": 188,
+          "text": "He said I'm eating more and looking better.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-47-1",
+          "sentenceIndex": 189,
+          "text": "He said he feels more relaxed about me.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-47-2",
+          "sentenceIndex": 190,
+          "text": "I said I don't weigh more and I eat less when he's not here.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-47-3",
+          "sentenceIndex": 191,
+          "text": "He said I can be as sick as I want.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 48,
+      "bundleId": "bundle_48",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-48-0",
+          "sentenceIndex": 192,
+          "text": "He said we should sleep and talk in the morning.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-48-1",
+          "sentenceIndex": 193,
+          "text": "I asked him not to leave.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-48-2",
+          "sentenceIndex": 194,
+          "text": "He said he can't leave and we'll go on a trip in three weeks.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-48-3",
+          "sentenceIndex": 195,
+          "text": "He said I'm better and looked at me sternly when I disagreed.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 49,
+      "bundleId": "bundle_49",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-49-0",
+          "sentenceIndex": 196,
+          "text": "He asked me not to think I'm not better.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-49-1",
+          "sentenceIndex": 197,
+          "text": "He said it's a bad thought.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-49-2",
+          "sentenceIndex": 198,
+          "text": "He asked me to trust him as a doctor.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-49-3",
+          "sentenceIndex": 199,
+          "text": "I stayed awake for hours thinking about the yellow paper.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 50,
+      "bundleId": "bundle_50",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-50-0",
+          "sentenceIndex": 200,
+          "text": "The color is ugly and the pattern is very bad.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-50-1",
+          "sentenceIndex": 201,
+          "text": "You think you know it, but then it changes.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-50-2",
+          "sentenceIndex": 202,
+          "text": "It feels like a hard hit in the face.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-50-3",
+          "sentenceIndex": 203,
+          "text": "It feels like a bad dream.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 51,
+      "bundleId": "bundle_51",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-51-0",
+          "sentenceIndex": 204,
+          "text": "The outside pattern looks like a fungus.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-51-1",
+          "sentenceIndex": 205,
+          "text": "Think of mushrooms growing in many ways - that's how it is.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-51-2",
+          "sentenceIndex": 206,
+          "text": "Sometimes!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-51-3",
+          "sentenceIndex": 207,
+          "text": "The yellow paper changes with the light.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 52,
+      "bundleId": "bundle_52",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-52-0",
+          "sentenceIndex": 208,
+          "text": "When the first sun ray comes in, it changes fast.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-52-1",
+          "sentenceIndex": 209,
+          "text": "That's why I always look at it.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-52-2",
+          "sentenceIndex": 210,
+          "text": "In moonlight, it looks different.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-52-3",
+          "sentenceIndex": 211,
+          "text": "At night, it becomes bars in any light.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 53,
+      "bundleId": "bundle_53",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-53-0",
+          "sentenceIndex": 212,
+          "text": "I mean the outside pattern, and the woman behind it is clear.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-53-1",
+          "sentenceIndex": 213,
+          "text": "It took time to see a woman in the pattern.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-53-2",
+          "sentenceIndex": 214,
+          "text": "During the day, she is calm.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-53-3",
+          "sentenceIndex": 215,
+          "text": "I think the pattern makes her still.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 54,
+      "bundleId": "bundle_54",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-54-0",
+          "sentenceIndex": 216,
+          "text": "It's hard to understand.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-54-1",
+          "sentenceIndex": 217,
+          "text": "It keeps me quiet for a long time.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-54-2",
+          "sentenceIndex": 218,
+          "text": "I lie down a lot now.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-54-3",
+          "sentenceIndex": 219,
+          "text": "John says sleep is good for me.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 55,
+      "bundleId": "bundle_55",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-55-0",
+          "sentenceIndex": 220,
+          "text": "He made me rest for an hour after each meal.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-55-1",
+          "sentenceIndex": 221,
+          "text": "I think it's a bad habit because I don't sleep.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-55-2",
+          "sentenceIndex": 222,
+          "text": "I don't tell them I'm awake.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-55-3",
+          "sentenceIndex": 223,
+          "text": "I'm starting to be scared of John.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 56,
+      "bundleId": "bundle_56",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-56-0",
+          "sentenceIndex": 224,
+          "text": "John and Jennie act weird sometimes.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-56-1",
+          "sentenceIndex": 225,
+          "text": "Sometimes I think it's the yellow paper.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-56-2",
+          "sentenceIndex": 226,
+          "text": "I saw John looking at the yellow paper.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-56-3",
+          "sentenceIndex": 227,
+          "text": "Jennie too.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 57,
+      "bundleId": "bundle_57",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-57-0",
+          "sentenceIndex": 228,
+          "text": "I saw Jennie touch the yellow paper.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-57-1",
+          "sentenceIndex": 229,
+          "text": "She got mad when I asked her about the yellow paper.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-57-2",
+          "sentenceIndex": 230,
+          "text": "She said the yellow paper makes everything yellow.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-57-3",
+          "sentenceIndex": 231,
+          "text": "She sounded nice.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 58,
+      "bundleId": "bundle_58",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-58-0",
+          "sentenceIndex": 232,
+          "text": "But I know she was looking at the yellow paper.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-58-1",
+          "sentenceIndex": 233,
+          "text": "Life is more fun now.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-58-2",
+          "sentenceIndex": 234,
+          "text": "I have more things to look forward to.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-58-3",
+          "sentenceIndex": 235,
+          "text": "I eat better and I'm less worried.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 59,
+      "bundleId": "bundle_59",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-59-0",
+          "sentenceIndex": 236,
+          "text": "John is happy to see me get better.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-59-1",
+          "sentenceIndex": 237,
+          "text": "John said I'm doing well despite the yellow paper.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-59-2",
+          "sentenceIndex": 238,
+          "text": "I laughed it off.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-59-3",
+          "sentenceIndex": 239,
+          "text": "I didn't tell him it was because of the yellow paper.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 60,
+      "bundleId": "bundle_60",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-60-0",
+          "sentenceIndex": 240,
+          "text": "He may want to take me away.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-60-1",
+          "sentenceIndex": 241,
+          "text": "I don't want to leave until I know.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-60-2",
+          "sentenceIndex": 242,
+          "text": "One more week will be enough.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-60-3",
+          "sentenceIndex": 243,
+          "text": "I feel much better!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 61,
+      "bundleId": "bundle_61",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-61-0",
+          "sentenceIndex": 244,
+          "text": "I don't sleep at night but sleep a lot in the day.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-61-1",
+          "sentenceIndex": 245,
+          "text": "It's hard and confusing in the day.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-61-2",
+          "sentenceIndex": 246,
+          "text": "There are always new things on the fungus.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-61-3",
+          "sentenceIndex": 247,
+          "text": "I can't keep track of them.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 62,
+      "bundleId": "bundle_62",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-62-0",
+          "sentenceIndex": 248,
+          "text": "The yellow paper is strange!",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-62-1",
+          "sentenceIndex": 249,
+          "text": "It reminds me of bad yellow things.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-62-2",
+          "sentenceIndex": 250,
+          "text": "The paper has a smell!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-62-3",
+          "sentenceIndex": 251,
+          "text": "I noticed the smell when we came in.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 63,
+      "bundleId": "bundle_63",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-63-0",
+          "sentenceIndex": 252,
+          "text": "The smell is here after a week of fog and rain.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-63-1",
+          "sentenceIndex": 253,
+          "text": "The smell is all over the house.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-63-2",
+          "sentenceIndex": 254,
+          "text": "I find the smell in many rooms.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-63-3",
+          "sentenceIndex": 255,
+          "text": "The smell gets in my hair.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 64,
+      "bundleId": "bundle_64",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-64-0",
+          "sentenceIndex": 256,
+          "text": "I can smell it even when I go for a ride.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-64-1",
+          "sentenceIndex": 257,
+          "text": "The smell is very special!",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-64-2",
+          "sentenceIndex": 258,
+          "text": "I've tried to know what it smells like.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-64-3",
+          "sentenceIndex": 259,
+          "text": "The smell is not bad but it stays.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 65,
+      "bundleId": "bundle_65",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-65-0",
+          "sentenceIndex": 260,
+          "text": "This wet weather is bad.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-65-1",
+          "sentenceIndex": 261,
+          "text": "I wake up and see it over me.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-65-2",
+          "sentenceIndex": 262,
+          "text": "It used to bother me.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-65-3",
+          "sentenceIndex": 263,
+          "text": "I thought about burning the house to remove the smell.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 66,
+      "bundleId": "bundle_66",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-66-0",
+          "sentenceIndex": 264,
+          "text": "But now I am used to it.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-66-1",
+          "sentenceIndex": 265,
+          "text": "It looks like the color of the paper!",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-66-2",
+          "sentenceIndex": 266,
+          "text": "A yellow smell.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-66-3",
+          "sentenceIndex": 267,
+          "text": "There's a weird mark on this wall, near the bottom.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 67,
+      "bundleId": "bundle_67",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-67-0",
+          "sentenceIndex": 268,
+          "text": "A line that goes around the room.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-67-1",
+          "sentenceIndex": 269,
+          "text": "It goes behind all the furniture, except the bed.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-67-2",
+          "sentenceIndex": 270,
+          "text": "I wonder how it was done and why.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-67-3",
+          "sentenceIndex": 271,
+          "text": "Going round and round makes me feel dizzy!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 68,
+      "bundleId": "bundle_68",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-68-0",
+          "sentenceIndex": 272,
+          "text": "I have found something at last.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-68-1",
+          "sentenceIndex": 273,
+          "text": "I've figured it out by watching a lot at night.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-68-2",
+          "sentenceIndex": 274,
+          "text": "The front pattern moves.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-68-3",
+          "sentenceIndex": 275,
+          "text": "The woman behind shakes it!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 69,
+      "bundleId": "bundle_69",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-69-0",
+          "sentenceIndex": 276,
+          "text": "Sometimes I think there are many women behind.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-69-1",
+          "sentenceIndex": 277,
+          "text": "In bright spots she stays still, in dark spots she shakes the bars.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-69-2",
+          "sentenceIndex": 278,
+          "text": "She always tries to climb through.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-69-3",
+          "sentenceIndex": 279,
+          "text": "But no one can climb through that pattern.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 70,
+      "bundleId": "bundle_70",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-70-0",
+          "sentenceIndex": 280,
+          "text": "They get in, then the yellow paper makes them worried and turns them white.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-70-1",
+          "sentenceIndex": 281,
+          "text": "If those heads were not there, it would be better.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-70-2",
+          "sentenceIndex": 282,
+          "text": "I think that woman goes out in the day!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-70-3",
+          "sentenceIndex": 283,
+          "text": "I have seen her, I'll tell you why.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 71,
+      "bundleId": "bundle_71",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-71-0",
+          "sentenceIndex": 284,
+          "text": "I can see her from all my windows!",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-71-1",
+          "sentenceIndex": 285,
+          "text": "It's the same woman, she's always moving slowly in the day.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-71-2",
+          "sentenceIndex": 286,
+          "text": "I see her moving slowly up and down the long road.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-71-3",
+          "sentenceIndex": 287,
+          "text": "I see her moving around the garden.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 72,
+      "bundleId": "bundle_72",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-72-0",
+          "sentenceIndex": 288,
+          "text": "I see her on the road, hiding when a car comes.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-72-1",
+          "sentenceIndex": 289,
+          "text": "I don't blame her.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-72-2",
+          "sentenceIndex": 290,
+          "text": "It must be hard to be seen moving slowly in the day!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-72-3",
+          "sentenceIndex": 291,
+          "text": "I always lock the door when I move slowly in the day.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 73,
+      "bundleId": "bundle_73",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-73-0",
+          "sentenceIndex": 292,
+          "text": "I can't do it at night, John would know.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-73-1",
+          "sentenceIndex": 293,
+          "text": "John is strange now, I don't want to make him sad.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-73-2",
+          "sentenceIndex": 294,
+          "text": "I wish he would use another room!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-73-3",
+          "sentenceIndex": 295,
+          "text": "I don't want anyone else to see that woman at night.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 74,
+      "bundleId": "bundle_74",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-74-0",
+          "sentenceIndex": 296,
+          "text": "I wonder if I could see her from all the windows.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-74-1",
+          "sentenceIndex": 297,
+          "text": "I can only see out of one window at a time.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-74-2",
+          "sentenceIndex": 298,
+          "text": "Even though I always see her, she might move faster than me!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-74-3",
+          "sentenceIndex": 299,
+          "text": "I've seen her moving fast in the open country, like a cloud shadow.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 75,
+      "bundleId": "bundle_75",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-75-0",
+          "sentenceIndex": 300,
+          "text": "I wish I could take off the top pattern.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-75-1",
+          "sentenceIndex": 301,
+          "text": "I will try it slowly.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-75-2",
+          "sentenceIndex": 302,
+          "text": "I found something weird but won't say it now.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-75-3",
+          "sentenceIndex": 303,
+          "text": "It's not good to trust people too much.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 76,
+      "bundleId": "bundle_76",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-76-0",
+          "sentenceIndex": 304,
+          "text": "We have two days to take off the yellow paper and John may see.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-76-1",
+          "sentenceIndex": 305,
+          "text": "I don't like his eyes.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-76-2",
+          "sentenceIndex": 306,
+          "text": "He asked Jennie many things about me.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-76-3",
+          "sentenceIndex": 307,
+          "text": "She gave a good report.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 77,
+      "bundleId": "bundle_77",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-77-0",
+          "sentenceIndex": 308,
+          "text": "She said I sleep a lot in the day.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-77-1",
+          "sentenceIndex": 309,
+          "text": "John knows I don't sleep well at night but I'm quiet.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-77-2",
+          "sentenceIndex": 310,
+          "text": "He asked me many things and acted kind.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-77-3",
+          "sentenceIndex": 311,
+          "text": "I can see through him!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 78,
+      "bundleId": "bundle_78",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-78-0",
+          "sentenceIndex": 312,
+          "text": "I don't blame him for acting like this after sleeping under the yellow paper.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-78-1",
+          "sentenceIndex": 313,
+          "text": "It interests me, but John and Jennie are affected by it.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-78-2",
+          "sentenceIndex": 314,
+          "text": "Hurray!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-78-3",
+          "sentenceIndex": 315,
+          "text": "This is the last day, but it's enough.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 79,
+      "bundleId": "bundle_79",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-79-0",
+          "sentenceIndex": 316,
+          "text": "John is in town and will be back in the evening.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-79-1",
+          "sentenceIndex": 317,
+          "text": "Jennie wanted to sleep with me.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-79-2",
+          "sentenceIndex": 318,
+          "text": "I told her I would sleep better alone.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-79-3",
+          "sentenceIndex": 319,
+          "text": "That was smart, because I wasn't alone.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 80,
+      "bundleId": "bundle_80",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-80-0",
+          "sentenceIndex": 320,
+          "text": "When it was night, I ran to help her.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-80-1",
+          "sentenceIndex": 321,
+          "text": "We took off a lot of yellow paper.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-80-2",
+          "sentenceIndex": 322,
+          "text": "The paper was as high as my head.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-80-3",
+          "sentenceIndex": 323,
+          "text": "I said I would finish it today when the sun came up.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 81,
+      "bundleId": "bundle_81",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-81-0",
+          "sentenceIndex": 324,
+          "text": "They are moving my things back tomorrow.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-81-1",
+          "sentenceIndex": 325,
+          "text": "Jennie was surprised, but I said I did it because I was angry.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-81-2",
+          "sentenceIndex": 326,
+          "text": "She said she wanted to do it too, but I should not get tired.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-81-3",
+          "sentenceIndex": 327,
+          "text": "She told on herself that time!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 82,
+      "bundleId": "bundle_82",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-82-0",
+          "sentenceIndex": 328,
+          "text": "I'm here and no one touches the yellow paper but me.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-82-1",
+          "sentenceIndex": 329,
+          "text": "She wanted me to leave the room.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-82-2",
+          "sentenceIndex": 330,
+          "text": "I said it was quiet and clean now, so I would sleep.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-82-3",
+          "sentenceIndex": 331,
+          "text": "Now she's gone, and the big bed is all that's left.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 83,
+      "bundleId": "bundle_83",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-83-0",
+          "sentenceIndex": 332,
+          "text": "We'll sleep downstairs tonight and go home by boat tomorrow.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-83-1",
+          "sentenceIndex": 333,
+          "text": "I like the room now that it's empty.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-83-2",
+          "sentenceIndex": 334,
+          "text": "The children ran a lot here!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-83-3",
+          "sentenceIndex": 335,
+          "text": "This bed is almost broken!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 84,
+      "bundleId": "bundle_84",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-84-0",
+          "sentenceIndex": 336,
+          "text": "But I need to start working.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-84-1",
+          "sentenceIndex": 337,
+          "text": "I've locked the door and thrown the key outside.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-84-2",
+          "sentenceIndex": 338,
+          "text": "I don't want to leave or let anyone in until John comes.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-84-3",
+          "sentenceIndex": 339,
+          "text": "I want to surprise John.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 85,
+      "bundleId": "bundle_85",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-85-0",
+          "sentenceIndex": 340,
+          "text": "I have a rope here that Jennie didn't find.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-85-1",
+          "sentenceIndex": 341,
+          "text": "If the woman tries to run, I can tie her up!",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-85-2",
+          "sentenceIndex": 342,
+          "text": "I forgot I can't reach far without something to stand on!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-85-3",
+          "sentenceIndex": 343,
+          "text": "This bed doesn't move!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 86,
+      "bundleId": "bundle_86",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-86-0",
+          "sentenceIndex": 344,
+          "text": "I tried to move the bed until I was tired.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-86-1",
+          "sentenceIndex": 345,
+          "text": "Then I took off all the yellow paper I could reach.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-86-2",
+          "sentenceIndex": 346,
+          "text": "The yellow paper sticks badly and the pattern likes it!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-86-3",
+          "sentenceIndex": 347,
+          "text": "All those heads and eyes and growths laugh at me!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 87,
+      "bundleId": "bundle_87",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-87-0",
+          "sentenceIndex": 348,
+          "text": "I'm getting so mad I might do something big.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-87-1",
+          "sentenceIndex": 349,
+          "text": "Jumping out the window would be good exercise, but the bars are too strong.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-87-2",
+          "sentenceIndex": 350,
+          "text": "But, I wouldn't do it.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-87-3",
+          "sentenceIndex": 351,
+          "text": "Of course not.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 88,
+      "bundleId": "bundle_88",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-88-0",
+          "sentenceIndex": 352,
+          "text": "I know that move is wrong and could be misunderstood.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-88-1",
+          "sentenceIndex": 353,
+          "text": "I don't like to look out the windows—there are too many fast women.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-88-2",
+          "sentenceIndex": 354,
+          "text": "I wonder if they all come from the yellow paper like me?",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-88-3",
+          "sentenceIndex": 355,
+          "text": "But now I'm tied up with my hidden rope—you won't find me on the road!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 89,
+      "bundleId": "bundle_89",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-89-0",
+          "sentenceIndex": 356,
+          "text": "I guess I'll have to go back behind the pattern when it's night, and that's hard!",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-89-1",
+          "sentenceIndex": 357,
+          "text": "It's nice to be in this big room and move as I want!",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-89-2",
+          "sentenceIndex": 358,
+          "text": "I don't want to go outside.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-89-3",
+          "sentenceIndex": 359,
+          "text": "I won't, even if Jennie asks me to.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 90,
+      "bundleId": "bundle_90",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-90-0",
+          "sentenceIndex": 360,
+          "text": "You have to move low outside where it's green, not yellow.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-90-1",
+          "sentenceIndex": 361,
+          "text": "I can move easily here and I know my way.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-90-2",
+          "sentenceIndex": 362,
+          "text": "Look, John is at the door!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-90-3",
+          "sentenceIndex": 363,
+          "text": "You can't open it, young man!",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 91,
+      "bundleId": "bundle_91",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-91-0",
+          "sentenceIndex": 364,
+          "text": "He shouts and hits a lot!",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-91-1",
+          "sentenceIndex": 365,
+          "text": "Now he wants an axe.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-91-2",
+          "sentenceIndex": 366,
+          "text": "It's bad to break that nice door!",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-91-3",
+          "sentenceIndex": 367,
+          "text": "I told John the key is under a leaf by the steps.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 92,
+      "bundleId": "bundle_92",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-92-0",
+          "sentenceIndex": 368,
+          "text": "Then he asked me to open the door.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-92-1",
+          "sentenceIndex": 369,
+          "text": "I said I can't and the key is under a leaf by the door.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-92-2",
+          "sentenceIndex": 370,
+          "text": "He found the key and came in.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-92-3",
+          "sentenceIndex": 371,
+          "text": "He stopped at the door.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    },
+    {
+      "bundleIndex": 93,
+      "bundleId": "bundle_93",
+      "sentences": [
+        {
+          "sentenceId": "gutenberg-1952-A1-93-0",
+          "sentenceIndex": 372,
+          "text": "He asked what's happening.",
+          "startTime": 0,
+          "endTime": 2.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-93-1",
+          "sentenceIndex": 373,
+          "text": "I kept moving and looked back at him.",
+          "startTime": 2.5,
+          "endTime": 5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-93-2",
+          "sentenceIndex": 374,
+          "text": "I said I got out and it's not because of you or Jane.",
+          "startTime": 5,
+          "endTime": 7.5,
+          "wordTimings": []
+        },
+        {
+          "sentenceId": "gutenberg-1952-A1-93-3",
+          "sentenceIndex": 375,
+          "text": "I took down the yellow paper so you can't lock me up.",
+          "startTime": 7.5,
+          "endTime": 10,
+          "wordTimings": []
+        }
+      ]
+    }
+  ],
+  "completed": true,
+  "createdAt": "2025-09-29T02:46:21.566Z"
+}

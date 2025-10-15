@@ -1,0 +1,62 @@
+{
+  "index": 12,
+  "sentences": [
+    {
+      "sentenceIndex": 48,
+      "text": "She enjoyed listening to him talk about friendship."
+    },
+    {
+      "sentenceIndex": 49,
+      "text": "She thought even the clergyman could not speak as beautifully as he did, though the clergyman lived in a big house and wore a gold ring."
+    },
+    {
+      "sentenceIndex": 50,
+      "text": "'But could we not ask little Hans to come here?'"
+    },
+    {
+      "sentenceIndex": 51,
+      "text": "said the Miller's youngest son."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_12.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_12.mp3",
+  "duration": 23.297777777777778,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 48,
+      "startTime": 0,
+      "endTime": 3.675555555555556,
+      "text": "She enjoyed listening to him talk about friendship."
+    },
+    {
+      "sentenceIndex": 49,
+      "startTime": 3.675555555555556,
+      "endTime": 15.831111111111113,
+      "text": "She thought even the clergyman could not speak as beautifully as he did, though the clergyman lived in a big house and wore a gold ring."
+    },
+    {
+      "sentenceIndex": 50,
+      "startTime": 15.831111111111113,
+      "endTime": 20.395555555555557,
+      "text": "'But could we not ask little Hans to come here?'"
+    },
+    {
+      "sentenceIndex": 51,
+      "startTime": 20.395555555555557,
+      "endTime": 22.73777777777778,
+      "text": "said the Miller's youngest son."
+    }
+  ],
+  "wordCount": 49,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:39:16.272Z"
+  }
+}

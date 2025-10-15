@@ -1,0 +1,62 @@
+{
+  "index": 5,
+  "sentences": [
+    {
+      "sentenceIndex": 20,
+      "text": "'And what would you do in return?' asked the little bird as he swung on a silver branch and flapped his small wings."
+    },
+    {
+      "sentenceIndex": 21,
+      "text": "'I don't understand you,' replied the Water-rat."
+    },
+    {
+      "sentenceIndex": 22,
+      "text": "'Let me tell you a story about this topic,' said the Linnet."
+    },
+    {
+      "sentenceIndex": 23,
+      "text": "'Is the story about me?' asked the Water-rat."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_5.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_5.mp3",
+  "duration": 24.092222222222226,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 20,
+      "startTime": 0,
+      "endTime": 10.742222222222223,
+      "text": "'And what would you do in return?' asked the little bird as he swung on a silver branch and flapped his small wings."
+    },
+    {
+      "sentenceIndex": 21,
+      "startTime": 10.742222222222223,
+      "endTime": 13.973333333333334,
+      "text": "'I don't understand you,' replied the Water-rat."
+    },
+    {
+      "sentenceIndex": 22,
+      "startTime": 13.973333333333334,
+      "endTime": 19.42666666666667,
+      "text": "'Let me tell you a story about this topic,' said the Linnet."
+    },
+    {
+      "sentenceIndex": 23,
+      "startTime": 19.42666666666667,
+      "endTime": 23.102222222222224,
+      "text": "'Is the story about me?' asked the Water-rat."
+    }
+  ],
+  "wordCount": 50,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:04:49.908Z"
+  }
+}

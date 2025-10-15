@@ -1,0 +1,62 @@
+{
+  "index": 14,
+  "sentences": [
+    {
+      "sentenceIndex": 56,
+      "text": "If Hans saw our fire, food, and wine, he might get jealous, and jealousy is a bad thing."
+    },
+    {
+      "sentenceIndex": 57,
+      "text": "I will not let Hans become jealous."
+    },
+    {
+      "sentenceIndex": 58,
+      "text": "I am his best friend, and I will help him and keep him away from bad things."
+    },
+    {
+      "sentenceIndex": 59,
+      "text": "If Hans came here, he might ask for flour, and I cannot give him that.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_14.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_14.mp3",
+  "duration": 20.470000000000002,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 56,
+      "startTime": 0,
+      "endTime": 6.3,
+      "text": "If Hans saw our fire, food, and wine, he might get jealous, and jealousy is a bad thing."
+    },
+    {
+      "sentenceIndex": 57,
+      "startTime": 6.3,
+      "endTime": 8.753333333333334,
+      "text": "I will not let Hans become jealous."
+    },
+    {
+      "sentenceIndex": 58,
+      "startTime": 8.753333333333334,
+      "endTime": 14.690000000000001,
+      "text": "I am his best friend, and I will help him and keep him away from bad things."
+    },
+    {
+      "sentenceIndex": 59,
+      "startTime": 14.690000000000001,
+      "endTime": 19.900000000000002,
+      "text": "If Hans came here, he might ask for flour, and I cannot give him that.'"
+    }
+  ],
+  "wordCount": 57,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:50:46.951Z"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "anne-of-green-gables",
+  "title": "Anne of Green Gables",
+  "author": "L. M. Montgomery",
+  "source": "https://www.gutenberg.org/files/45/45-0.txt",
+  "gutenbergId": "45",
+  "fetchedAt": "2025-10-09T02:17:22.591Z",
+  "sentenceCount": 7404,
+  "wordCount": 102502,
+  "status": "raw"
+}

@@ -1,0 +1,19 @@
+{
+  "title": "The Legend of Sleepy Hollow",
+  "author": "Washington Irving",
+  "source": "Project Gutenberg",
+  "url": "https://www.gutenberg.org/files/41/41-0.txt",
+  "fetchedAt": "2025-09-24T19:53:15.725Z",
+  "stats": {
+    "characters": 69781,
+    "words": 12219,
+    "estimatedSentences": 335,
+    "paragraphs": 85,
+    "estimatedPages": 49
+  },
+  "processing": {
+    "startMarker": "THE LEGEND OF SLEEPY HOLLOW",
+    "endMarker": "RIP VAN WINKLE",
+    "cleaned": true
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 44,
+  "sentences": [
+    {
+      "sentenceIndex": 176,
+      "text": "Hans said, 'I will have a wonderful time in my garden,' and he started working right away."
+    },
+    {
+      "sentenceIndex": 177,
+      "text": "However, he could never take care of his flowers because his friend, the Miller, always came by and sent him on long trips or asked for help at the mill."
+    },
+    {
+      "sentenceIndex": 178,
+      "text": "Little Hans often felt very upset because he worried his flowers would think he had forgotten them, but he comforted himself by remembering that the Miller was his best friend."
+    },
+    {
+      "sentenceIndex": 179,
+      "text": "Even though Hans was busy helping the Miller, he hoped to spend time in his garden soon."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_44.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_44.mp3",
+  "duration": 45.84777777777778,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 176,
+      "startTime": 0,
+      "endTime": 7.775555555555556,
+      "text": "Hans said, 'I will have a wonderful time in my garden,' and he started working right away."
+    },
+    {
+      "sentenceIndex": 177,
+      "startTime": 7.775555555555556,
+      "endTime": 21.97888888888889,
+      "text": "However, he could never take care of his flowers because his friend, the Miller, always came by and sent him on long trips or asked for help at the mill."
+    },
+    {
+      "sentenceIndex": 178,
+      "startTime": 21.97888888888889,
+      "endTime": 36.18222222222222,
+      "text": "Little Hans often felt very upset because he worried his flowers would think he had forgotten them, but he comforted himself by remembering that the Miller was his best friend."
+    },
+    {
+      "sentenceIndex": 179,
+      "startTime": 36.18222222222222,
+      "endTime": 43.95777777777778,
+      "text": "Even though Hans was busy helping the Miller, he hoped to spend time in his garden soon."
+    }
+  ],
+  "wordCount": 94,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:09:45.871Z"
+  }
+}

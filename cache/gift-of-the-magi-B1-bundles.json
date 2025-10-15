@@ -1,0 +1,228 @@
+{
+  "bookId": "gift-of-the-magi",
+  "title": "The Gift of the Magi (B1 Level)",
+  "author": "O. Henry",
+  "cefrLevel": "B1",
+  "voiceSettings": {
+    "voice_id": "onwK4e9ZLuTAKqWW03F9",
+    "model_id": "eleven_monolingual_v1",
+    "voice_settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    }
+  },
+  "totalBundles": 7,
+  "totalSentences": 25,
+  "bundles": [
+    {
+      "bundleIndex": 0,
+      "bundleId": "bundle_0",
+      "sentences": [
+        {
+          "sentenceIndex": 0,
+          "text": "One dollar and eighty-seven cents represented the entirety of Della's accumulated savings after months of careful financial planning.",
+          "startTime": 0,
+          "endTime": 8.27
+        },
+        {
+          "sentenceIndex": 1,
+          "text": "Despite her persistent efforts to economize on household expenses, this modest sum was insufficient for purchasing a meaningful Christmas present.",
+          "startTime": 8.27,
+          "endTime": 17.528888888888886
+        },
+        {
+          "sentenceIndex": 2,
+          "text": "Tomorrow would mark Christmas Day, and she desperately wanted to demonstrate her profound affection for Jim through a thoughtful and significant gift.",
+          "startTime": 17.528888888888886,
+          "endTime": 27.776666666666664
+        },
+        {
+          "sentenceIndex": 3,
+          "text": "She collapsed onto their threadbare sofa and began weeping softly, overwhelmed by frustration and disappointment regarding their challenging financial circumstances.",
+          "startTime": 27.776666666666664,
+          "endTime": 37.035555555555554
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/B1/daniel/bundle_0.mp3",
+      "totalDuration": 37.035555555555554
+    },
+    {
+      "bundleIndex": 1,
+      "bundleId": "bundle_1",
+      "sentences": [
+        {
+          "sentenceIndex": 4,
+          "text": "Jim worked diligently at his office position, earning a meager salary that barely covered their essential living expenses and monthly obligations.",
+          "startTime": 0,
+          "endTime": 9.753333333333334
+        },
+        {
+          "sentenceIndex": 5,
+          "text": "Although they loved each other deeply, their limited resources constantly prevented them from expressing their affection through material gestures.",
+          "startTime": 9.753333333333334,
+          "endTime": 18.517777777777777
+        },
+        {
+          "sentenceIndex": 6,
+          "text": "Della approached the mirror and examined her reflection carefully, suddenly recognizing that she possessed one valuable asset that could potentially solve their predicament.",
+          "startTime": 18.517777777777777,
+          "endTime": 29.259999999999998
+        },
+        {
+          "sentenceIndex": 7,
+          "text": "Her magnificent hair cascaded gracefully down to her waist, shimmering with rich brown highlights that everyone consistently admired and praised.",
+          "startTime": 29.259999999999998,
+          "endTime": 38.51888888888889
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/B1/daniel/bundle_1.mp3",
+      "totalDuration": 38.51888888888889
+    },
+    {
+      "bundleIndex": 2,
+      "bundleId": "bundle_2",
+      "sentences": [
+        {
+          "sentenceIndex": 8,
+          "text": "Women occasionally sold their hair to wigmakers, and perhaps this desperate situation warranted such a drastic but necessary sacrifice.",
+          "startTime": 0,
+          "endTime": 8.764444444444443
+        },
+        {
+          "sentenceIndex": 9,
+          "text": "Without hesitation, she donned her winter coat and ventured into the busy streets, determined to locate a establishment that purchased hair.",
+          "startTime": 8.764444444444443,
+          "endTime": 18.517777777777777
+        },
+        {
+          "sentenceIndex": 10,
+          "text": "After several inquiries, she discovered a shop where the proprietor immediately expressed interest in her beautiful locks.",
+          "startTime": 18.517777777777777,
+          "endTime": 26.293333333333333
+        },
+        {
+          "sentenceIndex": 11,
+          "text": "The woman examined Della's hair thoroughly and offered twenty dollars, which would provide sufficient funds for Jim's Christmas gift.",
+          "startTime": 26.293333333333333,
+          "endTime": 35.05777777777777
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/B1/daniel/bundle_2.mp3",
+      "totalDuration": 35.05777777777777
+    },
+    {
+      "bundleIndex": 3,
+      "bundleId": "bundle_3",
+      "sentences": [
+        {
+          "sentenceIndex": 12,
+          "text": "Feeling simultaneously liberated and melancholy about her dramatically altered appearance, Della began searching the local stores for an appropriate present.",
+          "startTime": 0,
+          "endTime": 9.258888888888889
+        },
+        {
+          "sentenceIndex": 13,
+          "text": "In an elegant jewelry establishment, she discovered an exquisite platinum watch chain that would perfectly complement Jim's treasured gold pocket watch.",
+          "startTime": 9.258888888888889,
+          "endTime": 19.01222222222222
+        },
+        {
+          "sentenceIndex": 14,
+          "text": "This timepiece, inherited from his beloved grandfather, represented his most prized possession, though it lacked a proper chain.",
+          "startTime": 19.01222222222222,
+          "endTime": 27.28222222222222
+        },
+        {
+          "sentenceIndex": 15,
+          "text": "The magnificent chain cost exactly twenty dollars, consuming her entire budget, but she purchased it without any reservation or regret.",
+          "startTime": 27.28222222222222,
+          "endTime": 36.54111111111111
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/B1/daniel/bundle_3.mp3",
+      "totalDuration": 36.54111111111111
+    },
+    {
+      "bundleIndex": 4,
+      "bundleId": "bundle_4",
+      "sentences": [
+        {
+          "sentenceIndex": 16,
+          "text": "Returning home with her precious acquisition, she prepared dinner while anxiously anticipating Jim's reaction to both her transformed appearance and his wonderful surprise gift.",
+          "startTime": 0,
+          "endTime": 11.236666666666666
+        },
+        {
+          "sentenceIndex": 17,
+          "text": "When Jim arrived home from his exhausting workday, he stopped abruptly in the doorway, staring at Della with an expression of complete bewilderment and shock.",
+          "startTime": 11.236666666666666,
+          "endTime": 22.967777777777776
+        },
+        {
+          "sentenceIndex": 18,
+          "text": "Her dramatically shortened hair had fundamentally changed her appearance, leaving him momentarily speechless and visibly disturbed by the unexpected transformation that greeted him.",
+          "startTime": 22.967777777777776,
+          "endTime": 33.71
+        },
+        {
+          "sentenceIndex": 19,
+          "text": "Della nervously explained her desperate decision to sell her precious hair, proudly displaying the beautiful platinum chain she had selected specifically for his cherished timepiece.",
+          "startTime": 33.71,
+          "endTime": 45.44111111111111
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/B1/daniel/bundle_4.mp3",
+      "totalDuration": 45.44111111111111
+    },
+    {
+      "bundleIndex": 5,
+      "bundleId": "bundle_5",
+      "sentences": [
+        {
+          "sentenceIndex": 20,
+          "text": "Jim listened quietly, then smiled sadly before revealing that he also had prepared a special Christmas surprise for her that would prove ironically inappropriate.",
+          "startTime": 0,
+          "endTime": 11.236666666666666
+        },
+        {
+          "sentenceIndex": 21,
+          "text": "He had sold his grandfather's gold watch earlier that day to purchase an expensive set of ornate decorative combs designed specifically for arranging and adorning long, beautiful hair.",
+          "startTime": 11.236666666666666,
+          "endTime": 24.45111111111111
+        },
+        {
+          "sentenceIndex": 22,
+          "text": "These luxurious accessories were now completely useless since she had sacrificed her magnificent locks for his gift.",
+          "startTime": 24.45111111111111,
+          "endTime": 32.22666666666667
+        },
+        {
+          "sentenceIndex": 23,
+          "text": "Although their carefully chosen presents had become practically worthless due to their simultaneous sacrifices, they realized that their actions had demonstrated the profound depth of their mutual love and devotion.",
+          "startTime": 32.22666666666667,
+          "endTime": 46.43
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/B1/daniel/bundle_5.mp3",
+      "totalDuration": 46.43
+    },
+    {
+      "bundleIndex": 6,
+      "bundleId": "bundle_6",
+      "sentences": [
+        {
+          "sentenceIndex": 24,
+          "text": "Their willingness to sacrifice their most treasured possessions for each other's happiness revealed a wisdom and understanding that transcended material wealth and worldly possessions, making them truly the wisest people in their community.",
+          "startTime": 0,
+          "endTime": 15.686666666666667
+        }
+      ],
+      "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/gift-of-the-magi/B1/daniel/bundle_6.mp3",
+      "totalDuration": 15.686666666666667
+    }
+  ],
+  "createdAt": "2025-10-09T20:16:24.581Z"
+}

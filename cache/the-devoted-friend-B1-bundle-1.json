@@ -1,0 +1,62 @@
+{
+  "index": 1,
+  "sentences": [
+    {
+      "sentenceIndex": 4,
+      "text": "But the little ducks did not listen to her."
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "They were so young that they did not understand how important it is to be part of society."
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "\"What disobedient children!\" cried the old Water-rat; \"they really deserve to be drowned.\""
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "\"That's not true,\" replied the Duck, \"everyone has to start somewhere, and parents should be patient.\""
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_1.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_1.mp3",
+  "duration": 27.05888888888889,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 4,
+      "startTime": 0,
+      "endTime": 4.12,
+      "text": "But the little ducks did not listen to her."
+    },
+    {
+      "sentenceIndex": 5,
+      "startTime": 4.12,
+      "endTime": 12.39,
+      "text": "They were so young that they did not understand how important it is to be part of society."
+    },
+    {
+      "sentenceIndex": 6,
+      "startTime": 12.39,
+      "endTime": 18.28777777777778,
+      "text": "\"What disobedient children!\" cried the old Water-rat; \"they really deserve to be drowned.\""
+    },
+    {
+      "sentenceIndex": 7,
+      "startTime": 18.28777777777778,
+      "endTime": 25.568888888888893,
+      "text": "\"That's not true,\" replied the Duck, \"everyone has to start somewhere, and parents should be patient.\""
+    }
+  ],
+  "wordCount": 56,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:04:24.981Z"
+  }
+}

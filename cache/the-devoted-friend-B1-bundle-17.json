@@ -1,0 +1,62 @@
+{
+  "index": 17,
+  "sentences": [
+    {
+      "sentenceIndex": 68,
+      "text": "The Water-rat then asked, 'Is that the end of the story?'"
+    },
+    {
+      "sentenceIndex": 69,
+      "text": "The conversation continued with curiosity about what would happen next."
+    },
+    {
+      "sentenceIndex": 70,
+      "text": "Certainly not, replied the Linnet, because that is the beginning of the story."
+    },
+    {
+      "sentenceIndex": 71,
+      "text": "Then you are not up to date, said the Water-rat."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_17.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_17.mp3",
+  "duration": 21.125555555555557,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 68,
+      "startTime": 0,
+      "endTime": 5.008888888888889,
+      "text": "The Water-rat then asked, 'Is that the end of the story?'"
+    },
+    {
+      "sentenceIndex": 69,
+      "startTime": 5.008888888888889,
+      "endTime": 9.573333333333334,
+      "text": "The conversation continued with curiosity about what would happen next."
+    },
+    {
+      "sentenceIndex": 70,
+      "startTime": 9.573333333333334,
+      "endTime": 15.471111111111114,
+      "text": "Certainly not, replied the Linnet, because that is the beginning of the story."
+    },
+    {
+      "sentenceIndex": 71,
+      "startTime": 15.471111111111114,
+      "endTime": 20.035555555555558,
+      "text": "Then you are not up to date, said the Water-rat."
+    }
+  ],
+  "wordCount": 44,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:06:21.078Z"
+  }
+}

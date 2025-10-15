@@ -1,0 +1,74 @@
+{
+  "bookId": "gift-of-the-magi",
+  "title": "The Gift of the Magi",
+  "author": "O. Henry",
+  "literaryForm": "short-story",
+  "detectionMethod": "3-pass-hybrid",
+  "totalSentences": 277,
+  "totalWords": 1,
+  "chapters": [
+    {
+      "chapterIndex": 0,
+      "title": "Pennies and Parsimony",
+      "startSentence": 0,
+      "endSentence": 5,
+      "sentenceCount": 6,
+      "wordCount": 1,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 1,
+      "title": "Della's Christmas Eve Predicament",
+      "startSentence": 6,
+      "endSentence": 24,
+      "sentenceCount": 19,
+      "wordCount": 1,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 2,
+      "title": "Saving for Jim's Present",
+      "startSentence": 25,
+      "endSentence": 66,
+      "sentenceCount": 42,
+      "wordCount": 1,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 3,
+      "title": "The Unrivaled Platinum Chain",
+      "startSentence": 67,
+      "endSentence": 88,
+      "sentenceCount": 22,
+      "wordCount": 1,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 4,
+      "title": "Jim's Quiet Entrance",
+      "startSentence": 89,
+      "endSentence": 119,
+      "sentenceCount": 31,
+      "wordCount": 1,
+      "confidence": 85
+    },
+    {
+      "chapterIndex": 5,
+      "title": "Awakening to Love's Worth",
+      "startSentence": 120,
+      "endSentence": 276,
+      "sentenceCount": 157,
+      "wordCount": 1,
+      "confidence": 85
+    }
+  ],
+  "validationIssues": [
+    "Chapter 1 too short (1 words)",
+    "Chapter 2 too short (1 words)",
+    "Chapter 3 too short (1 words)",
+    "Chapter 4 too short (1 words)",
+    "Chapter 5 too short (1 words)",
+    "Chapter 6 too short (1 words)"
+  ],
+  "createdAt": "2025-10-08T17:52:29.420Z"
+}

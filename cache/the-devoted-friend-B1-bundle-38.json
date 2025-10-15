@@ -1,0 +1,62 @@
+{
+  "index": 38,
+  "sentences": [
+    {
+      "sentenceIndex": 152,
+      "text": "Little Hans said, 'I'm very sorry,' as he rubbed his eyes and took off his night-cap, 'but I was so tired that I thought I would stay in bed for a while and listen to the birds sing.'"
+    },
+    {
+      "sentenceIndex": 153,
+      "text": "Did you know that I always work better after I hear the birds sing?"
+    },
+    {
+      "sentenceIndex": 154,
+      "text": "The Miller replied, 'Well, I'm glad to hear that,' and he patted little Hans on the back, 'because I need you to come to the mill as soon as you're dressed and fix my barn roof for me.'"
+    },
+    {
+      "sentenceIndex": 155,
+      "text": "Poor little Hans really wanted to work in his garden because his flowers hadn't been watered for two days, but he didn't want to say no to the Miller because he was such a good friend."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_38.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_38.mp3",
+  "duration": 61.67000000000001,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 152,
+      "startTime": 0,
+      "endTime": 18.15888888888889,
+      "text": "Little Hans said, 'I'm very sorry,' as he rubbed his eyes and took off his night-cap, 'but I was so tired that I thought I would stay in bed for a while and listen to the birds sing.'"
+    },
+    {
+      "sentenceIndex": 153,
+      "startTime": 18.15888888888889,
+      "endTime": 24.50111111111111,
+      "text": "Did you know that I always work better after I hear the birds sing?"
+    },
+    {
+      "sentenceIndex": 154,
+      "startTime": 24.50111111111111,
+      "endTime": 42.66,
+      "text": "The Miller replied, 'Well, I'm glad to hear that,' and he patted little Hans on the back, 'because I need you to come to the mill as soon as you're dressed and fix my barn roof for me.'"
+    },
+    {
+      "sentenceIndex": 155,
+      "startTime": 42.66,
+      "endTime": 59.83,
+      "text": "Poor little Hans really wanted to work in his garden because his flowers hadn't been watered for two days, but he didn't want to say no to the Miller because he was such a good friend."
+    }
+  ],
+  "wordCount": 126,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:08:57.174Z"
+  }
+}

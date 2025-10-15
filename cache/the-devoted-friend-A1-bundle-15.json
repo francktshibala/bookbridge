@@ -1,0 +1,62 @@
+{
+  "index": 15,
+  "sentences": [
+    {
+      "sentenceIndex": 60,
+      "text": "Flour and friendship are different things, and they should not mix."
+    },
+    {
+      "sentenceIndex": 61,
+      "text": "The words are spelled differently, and they mean different things."
+    },
+    {
+      "sentenceIndex": 62,
+      "text": "Everyone can see that."
+    },
+    {
+      "sentenceIndex": 63,
+      "text": "The Miller's Wife said, 'You talk very well!'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_15.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_15.mp3",
+  "duration": 11.75,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 60,
+      "startTime": 0,
+      "endTime": 3.7866666666666666,
+      "text": "Flour and friendship are different things, and they should not mix."
+    },
+    {
+      "sentenceIndex": 61,
+      "startTime": 3.7866666666666666,
+      "endTime": 7.24,
+      "text": "The words are spelled differently, and they mean different things."
+    },
+    {
+      "sentenceIndex": 62,
+      "startTime": 7.24,
+      "endTime": 8.693333333333333,
+      "text": "Everyone can see that."
+    },
+    {
+      "sentenceIndex": 63,
+      "startTime": 8.693333333333333,
+      "endTime": 11.48,
+      "text": "The Miller's Wife said, 'You talk very well!'"
+    }
+  ],
+  "wordCount": 33,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:50:51.937Z"
+  }
+}

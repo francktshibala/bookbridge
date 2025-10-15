@@ -1,0 +1,62 @@
+{
+  "index": 33,
+  "sentences": [
+    {
+      "sentenceIndex": 132,
+      "text": "Hans ran to the garden and looked over the wall."
+    },
+    {
+      "sentenceIndex": 133,
+      "text": "The Miller had a big sack of flour."
+    },
+    {
+      "sentenceIndex": 134,
+      "text": "The Miller asked Hans to carry the sack to market."
+    },
+    {
+      "sentenceIndex": 135,
+      "text": "Hans said he was sorry but he was busy."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_33.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_33.mp3",
+  "duration": 13.203333333333331,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 132,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "Hans ran to the garden and looked over the wall."
+    },
+    {
+      "sentenceIndex": 133,
+      "startTime": 3.453333333333333,
+      "endTime": 6.24,
+      "text": "The Miller had a big sack of flour."
+    },
+    {
+      "sentenceIndex": 134,
+      "startTime": 6.24,
+      "endTime": 9.693333333333333,
+      "text": "The Miller asked Hans to carry the sack to market."
+    },
+    {
+      "sentenceIndex": 135,
+      "startTime": 9.693333333333333,
+      "endTime": 12.813333333333333,
+      "text": "Hans said he was sorry but he was busy."
+    }
+  ],
+  "wordCount": 37,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:52:23.175Z"
+  }
+}

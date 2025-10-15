@@ -1,0 +1,62 @@
+{
+  "index": 29,
+  "sentences": [
+    {
+      "sentenceIndex": 116,
+      "text": "The wheelbarrow is worth more, but friends do not care."
+    },
+    {
+      "sentenceIndex": 117,
+      "text": "Please get the wood now, and I will fix my barn today."
+    },
+    {
+      "sentenceIndex": 118,
+      "text": "Certainly, said little Hans, and he ran to the shed."
+    },
+    {
+      "sentenceIndex": 119,
+      "text": "He pulled the wood out and gave it to the Miller."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_29.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_29.mp3",
+  "duration": 15.383333333333331,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 116,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "The wheelbarrow is worth more, but friends do not care."
+    },
+    {
+      "sentenceIndex": 117,
+      "startTime": 3.453333333333333,
+      "endTime": 7.573333333333333,
+      "text": "Please get the wood now, and I will fix my barn today."
+    },
+    {
+      "sentenceIndex": 118,
+      "startTime": 7.573333333333333,
+      "endTime": 11.026666666666667,
+      "text": "Certainly, said little Hans, and he ran to the shed."
+    },
+    {
+      "sentenceIndex": 119,
+      "startTime": 11.026666666666667,
+      "endTime": 14.813333333333334,
+      "text": "He pulled the wood out and gave it to the Miller."
+    }
+  ],
+  "wordCount": 43,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:52:02.405Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 16,
+  "sentences": [
+    {
+      "sentenceIndex": 64,
+      "text": "said the Miller's Wife, as she poured a large glass of warm ale; 'I feel sleepy now."
+    },
+    {
+      "sentenceIndex": 65,
+      "text": "It feels just like being in church."
+    },
+    {
+      "sentenceIndex": 66,
+      "text": "'Many people act well,' said the Miller, 'but few talk well, which shows talking is harder and better.'"
+    },
+    {
+      "sentenceIndex": 67,
+      "text": "He looked at his son, who felt ashamed and cried into his tea."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_16.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_16.mp3",
+  "duration": 26.204444444444448,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 64,
+      "startTime": 0,
+      "endTime": 7.7955555555555565,
+      "text": "said the Miller's Wife, as she poured a large glass of warm ale; 'I feel sleepy now."
+    },
+    {
+      "sentenceIndex": 65,
+      "startTime": 7.7955555555555565,
+      "endTime": 11.026666666666667,
+      "text": "It feels just like being in church."
+    },
+    {
+      "sentenceIndex": 66,
+      "startTime": 11.026666666666667,
+      "endTime": 19.306666666666665,
+      "text": "'Many people act well,' said the Miller, 'but few talk well, which shows talking is harder and better.'"
+    },
+    {
+      "sentenceIndex": 67,
+      "startTime": 19.306666666666665,
+      "endTime": 25.204444444444444,
+      "text": "He looked at his son, who felt ashamed and cried into his tea."
+    }
+  ],
+  "wordCount": 55,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:39:38.799Z"
+  }
+}

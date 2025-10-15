@@ -1,0 +1,62 @@
+{
+  "index": 8,
+  "sentences": [
+    {
+      "sentenceIndex": 32,
+      "text": "He lived alone in a small cottage and worked in his garden every day."
+    },
+    {
+      "sentenceIndex": 33,
+      "text": "His garden was the most beautiful in the whole area."
+    },
+    {
+      "sentenceIndex": 34,
+      "text": "There were Sweet-william, Gilly-flowers, Shepherds’-purses, and Fair-maids of France."
+    },
+    {
+      "sentenceIndex": 35,
+      "text": "He had damask Roses, yellow Roses, lilac Crocuses, and purple Violets."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_8.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_8.mp3",
+  "duration": 20.875555555555557,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 32,
+      "startTime": 0,
+      "endTime": 6.342222222222222,
+      "text": "He lived alone in a small cottage and worked in his garden every day."
+    },
+    {
+      "sentenceIndex": 33,
+      "startTime": 6.342222222222222,
+      "endTime": 10.906666666666666,
+      "text": "His garden was the most beautiful in the whole area."
+    },
+    {
+      "sentenceIndex": 34,
+      "startTime": 10.906666666666666,
+      "endTime": 15.026666666666667,
+      "text": "There were Sweet-william, Gilly-flowers, Shepherds’-purses, and Fair-maids of France."
+    },
+    {
+      "sentenceIndex": 35,
+      "startTime": 15.026666666666667,
+      "endTime": 20.035555555555558,
+      "text": "He had damask Roses, yellow Roses, lilac Crocuses, and purple Violets."
+    }
+  ],
+  "wordCount": 44,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:30:32.244Z"
+  }
+}

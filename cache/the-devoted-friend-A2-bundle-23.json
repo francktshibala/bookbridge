@@ -1,0 +1,62 @@
+{
+  "index": 23,
+  "sentences": [
+    {
+      "sentenceIndex": 92,
+      "text": "‘Hans, I am surprised at you,’ said the Miller; ‘friendship never forgets."
+    },
+    {
+      "sentenceIndex": 93,
+      "text": "That is the wonderful thing about friendship, but I think you don’t understand the poetry of life."
+    },
+    {
+      "sentenceIndex": 94,
+      "text": "By the way, your primroses are looking lovely!"
+    },
+    {
+      "sentenceIndex": 95,
+      "text": "‘They are very lovely,’ said Hans, ‘and I am lucky to have so many."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_23.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_23.mp3",
+  "duration": 24.26666666666667,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 92,
+      "startTime": 0,
+      "endTime": 5.453333333333334,
+      "text": "‘Hans, I am surprised at you,’ said the Miller; ‘friendship never forgets."
+    },
+    {
+      "sentenceIndex": 93,
+      "startTime": 5.453333333333334,
+      "endTime": 13.24888888888889,
+      "text": "That is the wonderful thing about friendship, but I think you don’t understand the poetry of life."
+    },
+    {
+      "sentenceIndex": 94,
+      "startTime": 13.24888888888889,
+      "endTime": 16.924444444444447,
+      "text": "By the way, your primroses are looking lovely!"
+    },
+    {
+      "sentenceIndex": 95,
+      "startTime": 16.924444444444447,
+      "endTime": 23.26666666666667,
+      "text": "‘They are very lovely,’ said Hans, ‘and I am lucky to have so many."
+    }
+  ],
+  "wordCount": 51,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:40:17.538Z"
+  }
+}

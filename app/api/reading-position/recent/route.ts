@@ -19,22 +19,23 @@ export async function GET(request: NextRequest) {
     const recentPositions = await prisma.readingPosition.findMany({
       where: {
         userId: user.id,
-        currentSentenceIndex: {
+        sentencesRead: {
           gt: 0 // Only include books where user has actually read something
         }
       },
       orderBy: {
-        lastReadAt: 'desc'
+        lastAccessed: 'desc'
       },
       take: limit,
       select: {
         bookId: true,
         currentSentenceIndex: true,
-        currentBundleIndex: true,
-        cefrLevel: true,
-        playbackSpeed: true,
-        contentMode: true,
-        lastReadAt: true
+        currentChapter: true,
+        completionPercentage: true,
+        sentencesRead: true,
+        lastAccessed: true,
+        sessionDuration: true,
+        cefrLevel: true
       }
     });
 
@@ -63,7 +64,7 @@ export async function GET(request: NextRequest) {
           bookAuthor: bookMeta?.author || 'Unknown Author',
           totalSentences: bookMeta?.totalSentences || 0,
           progressText: `Sentence ${position.currentSentenceIndex + 1}${bookMeta?.totalSentences ? ` of ${bookMeta.totalSentences}` : ''}`,
-          readingTimeMinutes: 0 // TODO: Calculate from session data if needed
+          readingTimeMinutes: Math.round(position.sessionDuration / 60)
         };
       })
     );

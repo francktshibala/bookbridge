@@ -1,0 +1,62 @@
+{
+  "index": 33,
+  "sentences": [
+    {
+      "sentenceIndex": 132,
+      "text": "Hans quickly climbed down the ladder, ran through the garden, and looked over the wall."
+    },
+    {
+      "sentenceIndex": 133,
+      "text": "He saw the Miller with a large sack of flour on his back."
+    },
+    {
+      "sentenceIndex": 134,
+      "text": "'Dear little Hans,' said the Miller, 'could you carry this sack of flour to market for me?'"
+    },
+    {
+      "sentenceIndex": 135,
+      "text": "'Oh, I am so sorry,' said Hans, 'but I am really busy today."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_33.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_33.mp3",
+  "duration": 27.65777777777778,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 132,
+      "startTime": 0,
+      "endTime": 6.826666666666667,
+      "text": "Hans quickly climbed down the ladder, ran through the garden, and looked over the wall."
+    },
+    {
+      "sentenceIndex": 133,
+      "startTime": 6.826666666666667,
+      "endTime": 12.724444444444446,
+      "text": "He saw the Miller with a large sack of flour on his back."
+    },
+    {
+      "sentenceIndex": 134,
+      "startTime": 12.724444444444446,
+      "endTime": 20.520000000000003,
+      "text": "'Dear little Hans,' said the Miller, 'could you carry this sack of flour to market for me?'"
+    },
+    {
+      "sentenceIndex": 135,
+      "startTime": 20.520000000000003,
+      "endTime": 26.417777777777783,
+      "text": "'Oh, I am so sorry,' said Hans, 'but I am really busy today."
+    }
+  ],
+  "wordCount": 58,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:41:20.101Z"
+  }
+}

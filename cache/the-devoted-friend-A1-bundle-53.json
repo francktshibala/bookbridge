@@ -1,0 +1,62 @@
+{
+  "index": 53,
+  "sentences": [
+    {
+      "sentenceIndex": 212,
+      "text": "‘He is a big loss to me,’ said the Miller."
+    },
+    {
+      "sentenceIndex": 213,
+      "text": "‘I almost gave him my wheelbarrow, and now I am lost."
+    },
+    {
+      "sentenceIndex": 214,
+      "text": "The wheelbarrow is old and hard to sell."
+    },
+    {
+      "sentenceIndex": 215,
+      "text": "I will not give away things again."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_53.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_53.mp3",
+  "duration": 12.84,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 212,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "‘He is a big loss to me,’ said the Miller."
+    },
+    {
+      "sentenceIndex": 213,
+      "startTime": 3.453333333333333,
+      "endTime": 7.24,
+      "text": "‘I almost gave him my wheelbarrow, and now I am lost."
+    },
+    {
+      "sentenceIndex": 214,
+      "startTime": 7.24,
+      "endTime": 10.026666666666667,
+      "text": "The wheelbarrow is old and hard to sell."
+    },
+    {
+      "sentenceIndex": 215,
+      "startTime": 10.026666666666667,
+      "endTime": 12.48,
+      "text": "I will not give away things again."
+    }
+  ],
+  "wordCount": 36,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:03:58.010Z"
+  }
+}

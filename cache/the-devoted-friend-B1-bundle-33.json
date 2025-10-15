@@ -1,0 +1,62 @@
+{
+  "index": 33,
+  "sentences": [
+    {
+      "sentenceIndex": 132,
+      "text": "He quickly got off the ladder, ran through the garden, and looked over the wall."
+    },
+    {
+      "sentenceIndex": 133,
+      "text": "The Miller was standing there with a big sack of flour on his back."
+    },
+    {
+      "sentenceIndex": 134,
+      "text": "'Dear Hans,' said the Miller, 'could you carry this sack of flour to the market for me?'"
+    },
+    {
+      "sentenceIndex": 135,
+      "text": "'I'm really sorry,' said Hans, 'but I'm very busy today with my garden work.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_33.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_33.mp3",
+  "duration": 29.03666666666667,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 132,
+      "startTime": 0,
+      "endTime": 6.786666666666667,
+      "text": "He quickly got off the ladder, ran through the garden, and looked over the wall."
+    },
+    {
+      "sentenceIndex": 133,
+      "startTime": 6.786666666666667,
+      "endTime": 13.12888888888889,
+      "text": "The Miller was standing there with a big sack of flour on his back."
+    },
+    {
+      "sentenceIndex": 134,
+      "startTime": 13.12888888888889,
+      "endTime": 20.904444444444444,
+      "text": "'Dear Hans,' said the Miller, 'could you carry this sack of flour to the market for me?'"
+    },
+    {
+      "sentenceIndex": 135,
+      "startTime": 20.904444444444444,
+      "endTime": 27.246666666666666,
+      "text": "'I'm really sorry,' said Hans, 'but I'm very busy today with my garden work.'"
+    }
+  ],
+  "wordCount": 60,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:08:14.496Z"
+  }
+}

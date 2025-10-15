@@ -1,0 +1,62 @@
+{
+  "index": 26,
+  "sentences": [
+    {
+      "sentenceIndex": 104,
+      "text": "The wheelbarrow is not in good condition because one side is missing, and the wheel-spokes are broken."
+    },
+    {
+      "sentenceIndex": 105,
+      "text": "Despite its condition, the Miller still wanted to give it to Hans."
+    },
+    {
+      "sentenceIndex": 106,
+      "text": "The Miller said he was very generous, and many people might think he was foolish for giving it away."
+    },
+    {
+      "sentenceIndex": 107,
+      "text": "He believes that being generous is important in friendship, and he already has a new wheelbarrow for himself."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_26.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_26.mp3",
+  "duration": 32.00333333333334,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 104,
+      "startTime": 0,
+      "endTime": 7.775555555555556,
+      "text": "The wheelbarrow is not in good condition because one side is missing, and the wheel-spokes are broken."
+    },
+    {
+      "sentenceIndex": 105,
+      "startTime": 7.775555555555556,
+      "endTime": 13.22888888888889,
+      "text": "Despite its condition, the Miller still wanted to give it to Hans."
+    },
+    {
+      "sentenceIndex": 106,
+      "startTime": 13.22888888888889,
+      "endTime": 21.993333333333332,
+      "text": "The Miller said he was very generous, and many people might think he was foolish for giving it away."
+    },
+    {
+      "sentenceIndex": 107,
+      "startTime": 21.993333333333332,
+      "endTime": 30.263333333333332,
+      "text": "He believes that being generous is important in friendship, and he already has a new wheelbarrow for himself."
+    }
+  ],
+  "wordCount": 66,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:07:25.227Z"
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "selectedShortStories": [
+    {
+      "rank": 1,
+      "title": "The Lottery",
+      "author": "Shirley Jackson",
+      "year": 1948,
+      "description": "A village holds an annual lottery where the 'winner' is stoned to death by neighbors",
+      "genre": "Horror/Social Commentary",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 2,
+      "title": "The Gift of the Magi",
+      "author": "O. Henry",
+      "year": 1905,
+      "description": "Poor couple sell their treasures to buy each other Christmas gifts that become useless",
+      "genre": "Romance/Irony",
+      "publicDomain": true,
+      "gutenbergId": "7256",
+      "implemented": true,
+      "cefrLevels": ["A1", "A2", "B1"],
+      "completedDate": "2025-01-13"
+    },
+    {
+      "rank": 5,
+      "title": "The Metamorphosis",
+      "author": "Franz Kafka",
+      "year": 1915,
+      "description": "Man wakes up as giant bug, family gradually rejects him until he dies",
+      "genre": "Absurdist/Psychological",
+      "publicDomain": true,
+      "gutenbergId": "5200",
+      "implemented": true,
+      "cefrLevels": ["A1-partial"],
+      "status": "pilot-complete",
+      "completedBundles": 70,
+      "totalBundles": 209,
+      "completedSentences": 280,
+      "totalSentences": 835,
+      "resumePoint": {
+        "nextBundleIndex": 70,
+        "nextSentenceIndex": 280,
+        "voiceSettings": "Sarah A1 proven settings"
+      },
+      "textQualityNotes": "A1 simplification has micro-sentences instead of natural compound flow - needs re-simplification for better readability",
+      "completedDate": "2025-01-13"
+    },
+    {
+      "rank": 7,
+      "title": "The Necklace",
+      "author": "Guy de Maupassant",
+      "year": 1884,
+      "description": "Woman borrows 'expensive' necklace, loses it, works 10 years to replace it, learns it was fake",
+      "genre": "Irony/Social Commentary",
+      "publicDomain": true,
+      "gutenbergId": "3090",
+      "implemented": true,
+      "cefrLevels": ["A1", "A2"],
+      "thematicSections": [
+        "The Invitation",
+        "The Ball",
+        "The Loss",
+        "The Sacrifice",
+        "The Truth"
+      ],
+      "completedDate": "2025-01-12"
+    },
+    {
+      "rank": 8,
+      "title": "A Rose for Emily",
+      "author": "William Faulkner",
+      "year": 1930,
+      "description": "Town discovers reclusive woman has been sleeping next to her dead lover's corpse for years",
+      "genre": "Southern Gothic",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 10,
+      "title": "Hills Like White Elephants",
+      "author": "Ernest Hemingway",
+      "year": 1927,
+      "description": "Couple discusses abortion without ever saying the word",
+      "genre": "Minimalist/Literary",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 11,
+      "title": "The Dead",
+      "author": "James Joyce",
+      "year": 1914,
+      "description": "Man realizes his wife still loves someone who died for her years ago",
+      "genre": "Modernist/Literary",
+      "publicDomain": true,
+      "gutenbergId": "2814",
+      "implemented": true,
+      "cefrLevels": ["A1"],
+      "thematicSections": [
+        "The Party Begins",
+        "Dinner and Dancing",
+        "Gabriel's Speech",
+        "The Journey Home",
+        "The Revelation"
+      ],
+      "completedDate": "2025-01-12"
+    },
+    {
+      "rank": 12,
+      "title": "Cathedral",
+      "author": "Raymond Carver",
+      "year": 1983,
+      "description": "Prejudiced man learns empathy by drawing a cathedral with blind visitor",
+      "genre": "Minimalist/Literary",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 13,
+      "title": "The Lady with the Dog",
+      "author": "Anton Chekhov",
+      "year": 1899,
+      "description": "Vacation affair becomes unexpected true love for two married people",
+      "genre": "Realist/Romance",
+      "publicDomain": true,
+      "gutenbergId": "13415",
+      "implemented": true,
+      "cefrLevels": ["A1"],
+      "thematicSections": [
+        "First Meeting",
+        "The Affair Begins",
+        "Departure and Separation",
+        "The Reunion",
+        "True Love Revealed"
+      ],
+      "completedDate": "2025-01-12"
+    },
+    {
+      "rank": 14,
+      "title": "A Good Man Is Hard to Find",
+      "author": "Flannery O'Connor",
+      "year": 1953,
+      "description": "Family meets escaped killer on vacation; grandmother's selfishness dooms them all",
+      "genre": "Southern Gothic",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 15,
+      "title": "The Story of an Hour",
+      "author": "Kate Chopin",
+      "year": 1894,
+      "description": "Woman feels free when told husband died, then dies of shock when he walks in alive",
+      "genre": "Feminist/Irony",
+      "publicDomain": true,
+      "gutenbergId": "160"
+    },
+    {
+      "rank": 16,
+      "title": "Flowers for Algernon",
+      "author": "Daniel Keyes",
+      "year": 1959,
+      "description": "Disabled man becomes genius through experiment, then regresses back",
+      "genre": "Science Fiction/Tragedy",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 17,
+      "title": "Harrison Bergeron",
+      "author": "Kurt Vonnegut",
+      "year": 1961,
+      "description": "Future where government forces everyone to be equal through handicaps",
+      "genre": "Dystopian/Satire",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 18,
+      "title": "The Ones Who Walk Away from Omelas",
+      "author": "Ursula K. Le Guin",
+      "year": 1973,
+      "description": "Perfect city's happiness depends on one child's endless suffering",
+      "genre": "Philosophical/Fantasy",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 24,
+      "title": "The Birds",
+      "author": "Daphne du Maurier",
+      "year": 1952,
+      "description": "Birds suddenly start attacking humans everywhere",
+      "genre": "Horror/Thriller",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 25,
+      "title": "The Veldt",
+      "author": "Ray Bradbury",
+      "year": 1950,
+      "description": "Virtual reality nursery becomes too real, children use it to kill parents",
+      "genre": "Science Fiction/Horror",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 28,
+      "title": "The Scarlet Ibis",
+      "author": "James Hurst",
+      "year": 1960,
+      "description": "Boy pushes disabled brother too hard to be 'normal,' brother dies",
+      "genre": "Tragedy/Coming-of-age",
+      "publicDomain": false,
+      "gutenbergId": null
+    },
+    {
+      "rank": 30,
+      "title": "Désirée's Baby",
+      "author": "Kate Chopin",
+      "year": 1893,
+      "description": "Husband rejects wife thinking she has Black ancestry, turns out it's him",
+      "genre": "Tragedy/Social Commentary",
+      "publicDomain": true,
+      "gutenbergId": "160"
+    },
+    {
+      "rank": 32,
+      "title": "The Bet",
+      "author": "Anton Chekhov",
+      "year": 1889,
+      "description": "Lawyer bets 15 years in prison to prove life imprisonment better than death penalty",
+      "genre": "Philosophical/Moral Tale",
+      "publicDomain": true,
+      "gutenbergId": "13410"
+    },
+    {
+      "rank": 33,
+      "title": "The Lady, or the Tiger?",
+      "author": "Frank R. Stockton",
+      "year": 1882,
+      "description": "Princess must choose whether lover opens door to marriage or death",
+      "genre": "Psychological/Open-ended",
+      "publicDomain": true,
+      "gutenbergId": "396"
+    }
+  ],
+  "metadata": {
+    "totalSelected": 20,
+    "publicDomain": 9,
+    "copyrighted": 11,
+    "implemented": 5,
+    "implementedTitles": ["The Gift of the Magi", "The Necklace", "The Dead", "The Lady with the Dog", "The Metamorphosis"],
+    "completedCefrLevels": {
+      "A1": 5,
+      "A2": 2,
+      "B1": 1
+    },
+    "dateCreated": "2025-01-11",
+    "lastUpdated": "2025-01-13",
+    "notes": "These stories were selected for their literary impact, emotional power, and suitability for BookBridge's simplified reading approach. Public domain stories can be implemented immediately. 4 stories completed - The Metamorphosis as pilot with 70/209 bundles, expandable when budget allows."
+  }
+}

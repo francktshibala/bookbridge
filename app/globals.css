@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mobile Reading Text - Speechify Style - Maximum Specificity */
+div span.mobile-reading-text[data-sentence] {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 1.8 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+  letter-spacing: 0.01em !important;
+  color: #1f2937 !important;
+}
+
+/* Active sentence highlighting - Speechify style */
+div span.mobile-reading-text[data-sentence].bg-blue-100 {
+  background: #E0E7FF !important;
+  color: #1e40af !important;
+  border-radius: 4px !important;
+  transition: all 0.3s ease !important;
+}
+
 @layer base {
   /* Reset default margins and padding */
   * {
@@ -368,6 +386,36 @@
 
   .reading-text.simplified {
     color: var(--color-accent);
+  }
+
+  /* Mobile Reading Text - Speechify Style - Maximum Specificity */
+  div span.mobile-reading-text[data-sentence] {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    line-height: 1.8 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+    letter-spacing: 0.01em !important;
+    color: #1f2937 !important;
+  }
+
+  /* Alternative fallback with even higher specificity */
+  .text-left div span.mobile-reading-text.inline {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    line-height: 1.8 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+    letter-spacing: 0.01em !important;
+    color: #1f2937 !important;
+  }
+
+  /* Ultimate fallback - highest possible specificity */
+  html body div span.mobile-reading-text {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    line-height: 1.8 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+    letter-spacing: 0.01em !important;
+    color: #1f2937 !important;
   }
 
   /* Skip links container */

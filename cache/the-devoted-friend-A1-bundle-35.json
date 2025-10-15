@@ -1,0 +1,62 @@
+{
+  "index": 35,
+  "sentences": [
+    {
+      "sentenceIndex": 140,
+      "text": "He went on bravely and reached the market."
+    },
+    {
+      "sentenceIndex": 141,
+      "text": "He waited and sold the flour for a good price."
+    },
+    {
+      "sentenceIndex": 142,
+      "text": "Then he went home quickly because he feared robbers."
+    },
+    {
+      "sentenceIndex": 143,
+      "text": "Hans said, 'It was a hard day, but I am glad.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_35.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_35.mp3",
+  "duration": 13.566666666666665,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 140,
+      "startTime": 0,
+      "endTime": 2.7866666666666666,
+      "text": "He went on bravely and reached the market."
+    },
+    {
+      "sentenceIndex": 141,
+      "startTime": 2.7866666666666666,
+      "endTime": 6.24,
+      "text": "He waited and sold the flour for a good price."
+    },
+    {
+      "sentenceIndex": 142,
+      "startTime": 6.24,
+      "endTime": 9.36,
+      "text": "Then he went home quickly because he feared robbers."
+    },
+    {
+      "sentenceIndex": 143,
+      "startTime": 9.36,
+      "endTime": 13.146666666666667,
+      "text": "Hans said, 'It was a hard day, but I am glad.'"
+    }
+  ],
+  "wordCount": 38,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:01:15.252Z"
+  }
+}

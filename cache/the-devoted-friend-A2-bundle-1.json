@@ -1,0 +1,62 @@
+{
+  "index": 1,
+  "sentences": [
+    {
+      "sentenceIndex": 4,
+      "text": "Every now and then, she showed them how to do it."
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "But the little ducks did not listen to her."
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "They were too young to understand why being in society was important."
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "\"What disobedient children!\" cried the old Water-rat; \"they deserve to be drowned.\""
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_1.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_1.mp3",
+  "duration": 20.875555555555557,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 4,
+      "startTime": 0,
+      "endTime": 5.008888888888889,
+      "text": "Every now and then, she showed them how to do it."
+    },
+    {
+      "sentenceIndex": 5,
+      "startTime": 5.008888888888889,
+      "endTime": 9.12888888888889,
+      "text": "But the little ducks did not listen to her."
+    },
+    {
+      "sentenceIndex": 6,
+      "startTime": 9.12888888888889,
+      "endTime": 14.582222222222224,
+      "text": "They were too young to understand why being in society was important."
+    },
+    {
+      "sentenceIndex": 7,
+      "startTime": 14.582222222222224,
+      "endTime": 20.035555555555558,
+      "text": "\"What disobedient children!\" cried the old Water-rat; \"they deserve to be drowned.\""
+    }
+  ],
+  "wordCount": 44,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:29:54.562Z"
+  }
+}

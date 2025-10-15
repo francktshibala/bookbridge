@@ -1,0 +1,62 @@
+{
+  "index": 51,
+  "sentences": [
+    {
+      "sentenceIndex": 204,
+      "text": "The Doctor got his horse, his boots, and his lantern, and rode to the Miller's house with little Hans walking behind."
+    },
+    {
+      "sentenceIndex": 205,
+      "text": "The storm got worse, and the rain was heavy, so little Hans could not see or keep up with the horse."
+    },
+    {
+      "sentenceIndex": 206,
+      "text": "He lost his way and wandered onto the moor, which was dangerous, and there he drowned."
+    },
+    {
+      "sentenceIndex": 207,
+      "text": "Goatherds found his body the next day in a pool of water and took it to the cottage."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_51.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_51.mp3",
+  "duration": 27.37333333333333,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 204,
+      "startTime": 0,
+      "endTime": 7.39,
+      "text": "The Doctor got his horse, his boots, and his lantern, and rode to the Miller's house with little Hans walking behind."
+    },
+    {
+      "sentenceIndex": 205,
+      "startTime": 7.39,
+      "endTime": 14.78,
+      "text": "The storm got worse, and the rain was heavy, so little Hans could not see or keep up with the horse."
+    },
+    {
+      "sentenceIndex": 206,
+      "startTime": 14.78,
+      "endTime": 20.35333333333333,
+      "text": "He lost his way and wandered onto the moor, which was dangerous, and there he drowned."
+    },
+    {
+      "sentenceIndex": 207,
+      "startTime": 20.35333333333333,
+      "endTime": 26.653333333333332,
+      "text": "Goatherds found his body the next day in a pool of water and took it to the cottage."
+    }
+  ],
+  "wordCount": 76,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:03:46.710Z"
+  }
+}

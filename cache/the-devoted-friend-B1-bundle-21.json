@@ -1,0 +1,62 @@
+{
+  "index": 21,
+  "sentences": [
+    {
+      "sentenceIndex": 84,
+      "text": "Hans was leaning on his spade and smiled widely as he replied, 'Good morning.'"
+    },
+    {
+      "sentenceIndex": 85,
+      "text": "The Miller asked Hans how he had been during the winter."
+    },
+    {
+      "sentenceIndex": 86,
+      "text": "Hans was pleased and said, 'It's very kind of you to ask, really very kind.'"
+    },
+    {
+      "sentenceIndex": 87,
+      "text": "He admitted that he had a difficult time, but now spring was here."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_21.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_21.mp3",
+  "duration": 25.575555555555557,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 84,
+      "startTime": 0,
+      "endTime": 6.342222222222222,
+      "text": "Hans was leaning on his spade and smiled widely as he replied, 'Good morning.'"
+    },
+    {
+      "sentenceIndex": 85,
+      "startTime": 6.342222222222222,
+      "endTime": 11.351111111111113,
+      "text": "The Miller asked Hans how he had been during the winter."
+    },
+    {
+      "sentenceIndex": 86,
+      "startTime": 11.351111111111113,
+      "endTime": 18.137777777777778,
+      "text": "Hans was pleased and said, 'It's very kind of you to ask, really very kind.'"
+    },
+    {
+      "sentenceIndex": 87,
+      "startTime": 18.137777777777778,
+      "endTime": 24.035555555555558,
+      "text": "He admitted that he had a difficult time, but now spring was here."
+    }
+  ],
+  "wordCount": 53,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:06:48.505Z"
+  }
+}

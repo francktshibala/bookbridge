@@ -187,15 +187,6 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A2': '/api/the-necklace-a2/bundles',
     'B1': '/api/the-necklace-b1/bundles'
   },
-  'gutenberg-1952-A1': {
-    'A1': '/api/yellow-wallpaper-a1/bundles'
-  },
-  'sleepy-hollow-enhanced': {
-    'A1': '/api/sleepy-hollow-a1/bundles'
-  },
-  'great-gatsby-a2': {
-    'A2': '/api/great-gatsby-a2/bundles'
-  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 

@@ -1,0 +1,62 @@
+{
+  "index": 43,
+  "sentences": [
+    {
+      "sentenceIndex": 172,
+      "text": "Little Hans asked, 'Do you really think I will?'"
+    },
+    {
+      "sentenceIndex": 173,
+      "text": "The Miller replied, 'I am sure you will, but now you should rest because I need you to take my sheep to the mountain tomorrow.'"
+    },
+    {
+      "sentenceIndex": 174,
+      "text": "Hans was too scared to say no, so the next morning, the Miller brought the sheep to Hans's house, and Hans took them to the mountain."
+    },
+    {
+      "sentenceIndex": 175,
+      "text": "It took Hans all day to go there and back, and when he got home, he was so tired that he fell asleep in his chair and did not wake up until morning."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_43.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_43.mp3",
+  "duration": 44.61333333333334,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 172,
+      "startTime": 0,
+      "endTime": 4.12,
+      "text": "Little Hans asked, 'Do you really think I will?'"
+    },
+    {
+      "sentenceIndex": 173,
+      "startTime": 4.12,
+      "endTime": 15.79111111111111,
+      "text": "The Miller replied, 'I am sure you will, but now you should rest because I need you to take my sheep to the mountain tomorrow.'"
+    },
+    {
+      "sentenceIndex": 174,
+      "startTime": 15.79111111111111,
+      "endTime": 27.946666666666665,
+      "text": "Hans was too scared to say no, so the next morning, the Miller brought the sheep to Hans's house, and Hans took them to the mountain."
+    },
+    {
+      "sentenceIndex": 175,
+      "startTime": 27.946666666666665,
+      "endTime": 43.49333333333333,
+      "text": "It took Hans all day to go there and back, and when he got home, he was so tired that he fell asleep in his chair and did not wake up until morning."
+    }
+  ],
+  "wordCount": 93,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:42:30.058Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 59,
+  "sentences": [
+    {
+      "sentenceIndex": 236,
+      "text": "'I cry when I see a single man,' she said."
+    },
+    {
+      "sentenceIndex": 237,
+      "text": "'I think I made him angry,' said the Linnet."
+    },
+    {
+      "sentenceIndex": 238,
+      "text": "'I told him a story with a lesson,' he said."
+    },
+    {
+      "sentenceIndex": 239,
+      "text": "'That is very dangerous,' said the Duck, and I agree."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_59.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_59.mp3",
+  "duration": 13.93,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 236,
+      "startTime": 0,
+      "endTime": 3.453333333333333,
+      "text": "'I cry when I see a single man,' she said."
+    },
+    {
+      "sentenceIndex": 237,
+      "startTime": 3.453333333333333,
+      "endTime": 6.573333333333333,
+      "text": "'I think I made him angry,' said the Linnet."
+    },
+    {
+      "sentenceIndex": 238,
+      "startTime": 6.573333333333333,
+      "endTime": 10.026666666666667,
+      "text": "'I told him a story with a lesson,' he said."
+    },
+    {
+      "sentenceIndex": 239,
+      "startTime": 10.026666666666667,
+      "endTime": 13.48,
+      "text": "'That is very dangerous,' said the Duck, and I agree."
+    }
+  ],
+  "wordCount": 39,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T22:04:26.113Z"
+  }
+}

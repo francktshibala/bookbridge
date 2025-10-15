@@ -1,0 +1,62 @@
+{
+  "index": 36,
+  "sentences": [
+    {
+      "sentenceIndex": 144,
+      "text": "'Really,' said the Miller, 'you are very lazy."
+    },
+    {
+      "sentenceIndex": 145,
+      "text": "Since I will give you my wheelbarrow, I think you should work harder."
+    },
+    {
+      "sentenceIndex": 146,
+      "text": "Idleness is a big sin, and I don't like my friends to be lazy."
+    },
+    {
+      "sentenceIndex": 147,
+      "text": "You must not mind me speaking honestly to you."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_36.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_36.mp3",
+  "duration": 20.875555555555557,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 144,
+      "startTime": 0,
+      "endTime": 3.675555555555556,
+      "text": "'Really,' said the Miller, 'you are very lazy."
+    },
+    {
+      "sentenceIndex": 145,
+      "startTime": 3.675555555555556,
+      "endTime": 9.573333333333334,
+      "text": "Since I will give you my wheelbarrow, I think you should work harder."
+    },
+    {
+      "sentenceIndex": 146,
+      "startTime": 9.573333333333334,
+      "endTime": 15.915555555555557,
+      "text": "Idleness is a big sin, and I don't like my friends to be lazy."
+    },
+    {
+      "sentenceIndex": 147,
+      "startTime": 15.915555555555557,
+      "endTime": 20.035555555555558,
+      "text": "You must not mind me speaking honestly to you."
+    }
+  ],
+  "wordCount": 44,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:41:42.439Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 53,
+  "sentences": [
+    {
+      "sentenceIndex": 212,
+      "text": "It is in my way at home, and it is in such bad shape that I couldn't sell it for anything."
+    },
+    {
+      "sentenceIndex": 213,
+      "text": "I will make sure not to give anything away again."
+    },
+    {
+      "sentenceIndex": 214,
+      "text": "Being generous always causes problems."
+    },
+    {
+      "sentenceIndex": 215,
+      "text": "'Well?' said the Water-rat, after a long pause."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_53.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_53.mp3",
+  "duration": 20.875555555555557,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 212,
+      "startTime": 0,
+      "endTime": 9.733333333333333,
+      "text": "It is in my way at home, and it is in such bad shape that I couldn't sell it for anything."
+    },
+    {
+      "sentenceIndex": 213,
+      "startTime": 9.733333333333333,
+      "endTime": 14.297777777777778,
+      "text": "I will make sure not to give anything away again."
+    },
+    {
+      "sentenceIndex": 214,
+      "startTime": 14.297777777777778,
+      "endTime": 16.64,
+      "text": "Being generous always causes problems."
+    },
+    {
+      "sentenceIndex": 215,
+      "startTime": 16.64,
+      "endTime": 20.315555555555555,
+      "text": "'Well?' said the Water-rat, after a long pause."
+    }
+  ],
+  "wordCount": 44,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:43:45.616Z"
+  }
+}

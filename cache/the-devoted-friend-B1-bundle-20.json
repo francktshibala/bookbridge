@@ -1,0 +1,62 @@
+{
+  "index": 20,
+  "sentences": [
+    {
+      "sentenceIndex": 80,
+      "text": "The wife said, 'You have such a good heart because you always think about other people.'"
+    },
+    {
+      "sentenceIndex": 81,
+      "text": "She reminded him to take the big basket for the flowers."
+    },
+    {
+      "sentenceIndex": 82,
+      "text": "The Miller tied the windmill's sails with a strong iron chain and went down the hill with the basket."
+    },
+    {
+      "sentenceIndex": 83,
+      "text": "'Good morning, little Hans,' said the Miller when he saw him."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_20.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_20.mp3",
+  "duration": 27.553333333333338,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 80,
+      "startTime": 0,
+      "endTime": 7.2811111111111115,
+      "text": "The wife said, 'You have such a good heart because you always think about other people.'"
+    },
+    {
+      "sentenceIndex": 81,
+      "startTime": 7.2811111111111115,
+      "endTime": 12.290000000000001,
+      "text": "She reminded him to take the big basket for the flowers."
+    },
+    {
+      "sentenceIndex": 82,
+      "startTime": 12.290000000000001,
+      "endTime": 21.054444444444442,
+      "text": "The Miller tied the windmill's sails with a strong iron chain and went down the hill with the basket."
+    },
+    {
+      "sentenceIndex": 83,
+      "startTime": 21.054444444444442,
+      "endTime": 26.063333333333333,
+      "text": "'Good morning, little Hans,' said the Miller when he saw him."
+    }
+  ],
+  "wordCount": 57,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:06:42.371Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 14,
+  "sentences": [
+    {
+      "sentenceIndex": 56,
+      "text": "If little Hans came here and saw our warm fire, good supper, and red wine, he might get envious, and envy is terrible and spoils nature."
+    },
+    {
+      "sentenceIndex": 57,
+      "text": "I will not let Hans' nature be spoiled."
+    },
+    {
+      "sentenceIndex": 58,
+      "text": "I am his best friend, and I will watch over him so he is not tempted."
+    },
+    {
+      "sentenceIndex": 59,
+      "text": "Besides, if Hans came here, he might ask for flour on credit, and I can't do that.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_14.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_14.mp3",
+  "duration": 32.01777777777778,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 56,
+      "startTime": 0,
+      "endTime": 12.155555555555557,
+      "text": "If little Hans came here and saw our warm fire, good supper, and red wine, he might get envious, and envy is terrible and spoils nature."
+    },
+    {
+      "sentenceIndex": 57,
+      "startTime": 12.155555555555557,
+      "endTime": 15.831111111111113,
+      "text": "I will not let Hans' nature be spoiled."
+    },
+    {
+      "sentenceIndex": 58,
+      "startTime": 15.831111111111113,
+      "endTime": 23.142222222222223,
+      "text": "I am his best friend, and I will watch over him so he is not tempted."
+    },
+    {
+      "sentenceIndex": 59,
+      "startTime": 23.142222222222223,
+      "endTime": 30.93777777777778,
+      "text": "Besides, if Hans came here, he might ask for flour on credit, and I can't do that.'"
+    }
+  ],
+  "wordCount": 67,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:39:28.101Z"
+  }
+}

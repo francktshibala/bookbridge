@@ -1,0 +1,62 @@
+{
+  "index": 55,
+  "sentences": [
+    {
+      "sentenceIndex": 220,
+      "text": "Oh!"
+    },
+    {
+      "sentenceIndex": 221,
+      "text": "I really don't know, and I don't care either,\" said the Linnet."
+    },
+    {
+      "sentenceIndex": 222,
+      "text": "\"Then you have no sympathy,\" said the Water-rat."
+    },
+    {
+      "sentenceIndex": 223,
+      "text": "\"I think you don't understand the story's lesson,\" said the Linnet."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_55.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_55.mp3",
+  "duration": 15.062222222222223,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 220,
+      "startTime": 0,
+      "endTime": 0.5644444444444445,
+      "text": "Oh!"
+    },
+    {
+      "sentenceIndex": 221,
+      "startTime": 0.5644444444444445,
+      "endTime": 6.017777777777779,
+      "text": "I really don't know, and I don't care either,\" said the Linnet."
+    },
+    {
+      "sentenceIndex": 222,
+      "startTime": 6.017777777777779,
+      "endTime": 9.693333333333335,
+      "text": "\"Then you have no sympathy,\" said the Water-rat."
+    },
+    {
+      "sentenceIndex": 223,
+      "startTime": 9.693333333333335,
+      "endTime": 14.702222222222225,
+      "text": "\"I think you don't understand the story's lesson,\" said the Linnet."
+    }
+  ],
+  "wordCount": 32,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:43:54.332Z"
+  }
+}

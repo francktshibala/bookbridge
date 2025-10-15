@@ -1,0 +1,62 @@
+{
+  "index": 5,
+  "sentences": [
+    {
+      "sentenceIndex": 20,
+      "text": "What will you do for me?"
+    },
+    {
+      "sentenceIndex": 21,
+      "text": "asked the little bird, swinging and flapping his wings."
+    },
+    {
+      "sentenceIndex": 22,
+      "text": "I don't understand you, said the Water-rat."
+    },
+    {
+      "sentenceIndex": 23,
+      "text": "Let me tell you a story, said the Linnet."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_5.mp3",
+  "audioFileName": "the-devoted-friend/A1/EXAVITQu4vr4xnSDxMaL/bundle_5.mp3",
+  "duration": 11.023333333333332,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 20,
+      "startTime": 0,
+      "endTime": 2.12,
+      "text": "What will you do for me?"
+    },
+    {
+      "sentenceIndex": 21,
+      "startTime": 2.12,
+      "endTime": 5.24,
+      "text": "asked the little bird, swinging and flapping his wings."
+    },
+    {
+      "sentenceIndex": 22,
+      "startTime": 5.24,
+      "endTime": 7.693333333333333,
+      "text": "I don't understand you, said the Water-rat."
+    },
+    {
+      "sentenceIndex": 23,
+      "startTime": 7.693333333333333,
+      "endTime": 10.813333333333333,
+      "text": "Let me tell you a story, said the Linnet."
+    }
+  ],
+  "wordCount": 31,
+  "metadata": {
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-09T21:41:56.805Z"
+  }
+}

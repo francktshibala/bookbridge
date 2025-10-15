@@ -1,0 +1,62 @@
+{
+  "index": 32,
+  "sentences": [
+    {
+      "sentenceIndex": 128,
+      "text": "Hans said he valued the Miller's good opinion more than his silver buttons, so he picked all his primroses and filled the Miller's basket."
+    },
+    {
+      "sentenceIndex": 129,
+      "text": "The Miller said goodbye to Hans as he walked up the hill with the plank on his shoulder and the big basket in his hand."
+    },
+    {
+      "sentenceIndex": 130,
+      "text": "Little Hans said goodbye and started digging happily because he was excited about the wheelbarrow."
+    },
+    {
+      "sentenceIndex": 131,
+      "text": "The next day, Hans was fixing some honeysuckle on the porch when he heard the Miller calling him."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_32.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_32.mp3",
+  "duration": 39.91444444444445,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 128,
+      "startTime": 0,
+      "endTime": 11.236666666666666,
+      "text": "Hans said he valued the Miller's good opinion more than his silver buttons, so he picked all his primroses and filled the Miller's basket."
+    },
+    {
+      "sentenceIndex": 129,
+      "startTime": 11.236666666666666,
+      "endTime": 22.967777777777776,
+      "text": "The Miller said goodbye to Hans as he walked up the hill with the plank on his shoulder and the big basket in his hand."
+    },
+    {
+      "sentenceIndex": 130,
+      "startTime": 22.967777777777776,
+      "endTime": 29.754444444444445,
+      "text": "Little Hans said goodbye and started digging happily because he was excited about the wheelbarrow."
+    },
+    {
+      "sentenceIndex": 131,
+      "startTime": 29.754444444444445,
+      "endTime": 38.02444444444444,
+      "text": "The next day, Hans was fixing some honeysuckle on the porch when he heard the Miller calling him."
+    }
+  ],
+  "wordCount": 82,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:08:08.110Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "index": 39,
+  "sentences": [
+    {
+      "sentenceIndex": 156,
+      "text": "'Do you think it would be unfriendly if I said I was busy?"
+    },
+    {
+      "sentenceIndex": 157,
+      "text": "' he asked in a shy and quiet voice."
+    },
+    {
+      "sentenceIndex": 158,
+      "text": "'Well, honestly,' replied the Miller, 'I don't think it's much to ask since I plan to give you my wheelbarrow, but if you refuse, I will do it myself."
+    },
+    {
+      "sentenceIndex": 159,
+      "text": "' 'Oh!"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_39.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_39.mp3",
+  "duration": 25.235555555555557,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 156,
+      "startTime": 0,
+      "endTime": 5.897777777777779,
+      "text": "'Do you think it would be unfriendly if I said I was busy?"
+    },
+    {
+      "sentenceIndex": 157,
+      "startTime": 5.897777777777779,
+      "endTime": 10.017777777777779,
+      "text": "' he asked in a shy and quiet voice."
+    },
+    {
+      "sentenceIndex": 158,
+      "startTime": 10.017777777777779,
+      "endTime": 23.626666666666665,
+      "text": "'Well, honestly,' replied the Miller, 'I don't think it's much to ask since I plan to give you my wheelbarrow, but if you refuse, I will do it myself."
+    },
+    {
+      "sentenceIndex": 159,
+      "startTime": 23.626666666666665,
+      "endTime": 24.635555555555555,
+      "text": "' 'Oh!"
+    }
+  ],
+  "wordCount": 53,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:42:04.661Z"
+  }
+}

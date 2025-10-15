@@ -1,0 +1,62 @@
+{
+  "index": 3,
+  "sentences": [
+    {
+      "sentenceIndex": 12,
+      "text": "Love is nice, but I think friendship is more important."
+    },
+    {
+      "sentenceIndex": 13,
+      "text": "I believe nothing is nobler or rarer than a true friendship."
+    },
+    {
+      "sentenceIndex": 14,
+      "text": "The Green Linnet, sitting in a willow tree, asked about the duties of a devoted friend."
+    },
+    {
+      "sentenceIndex": 15,
+      "text": "The Duck also wanted to know, so she swam to the end of the pond."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_3.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_3.mp3",
+  "duration": 24.751111111111115,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 12,
+      "startTime": 0,
+      "endTime": 4.564444444444445,
+      "text": "Love is nice, but I think friendship is more important."
+    },
+    {
+      "sentenceIndex": 13,
+      "startTime": 4.564444444444445,
+      "endTime": 9.573333333333334,
+      "text": "I believe nothing is nobler or rarer than a true friendship."
+    },
+    {
+      "sentenceIndex": 14,
+      "startTime": 9.573333333333334,
+      "endTime": 16.884444444444448,
+      "text": "The Green Linnet, sitting in a willow tree, asked about the duties of a devoted friend."
+    },
+    {
+      "sentenceIndex": 15,
+      "startTime": 16.884444444444448,
+      "endTime": 23.711111111111116,
+      "text": "The Duck also wanted to know, so she swam to the end of the pond."
+    }
+  ],
+  "wordCount": 52,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:30:06.788Z"
+  }
+}

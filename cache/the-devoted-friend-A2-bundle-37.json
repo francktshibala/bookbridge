@@ -1,0 +1,62 @@
+{
+  "index": 37,
+  "sentences": [
+    {
+      "sentenceIndex": 148,
+      "text": "I would not do this if I were not your friend."
+    },
+    {
+      "sentenceIndex": 149,
+      "text": "But what is the use of friendship if one cannot say what one means?"
+    },
+    {
+      "sentenceIndex": 150,
+      "text": "Anyone can say nice things and try to please others, but a true friend tells the truth even if it hurts."
+    },
+    {
+      "sentenceIndex": 151,
+      "text": "In fact, a true friend likes to be honest because it helps you."
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_37.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_37.mp3",
+  "duration": 28.142222222222227,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 148,
+      "startTime": 0,
+      "endTime": 5.008888888888889,
+      "text": "I would not do this if I were not your friend."
+    },
+    {
+      "sentenceIndex": 149,
+      "startTime": 5.008888888888889,
+      "endTime": 11.351111111111113,
+      "text": "But what is the use of friendship if one cannot say what one means?"
+    },
+    {
+      "sentenceIndex": 150,
+      "startTime": 11.351111111111113,
+      "endTime": 21.084444444444443,
+      "text": "Anyone can say nice things and try to please others, but a true friend tells the truth even if it hurts."
+    },
+    {
+      "sentenceIndex": 151,
+      "startTime": 21.084444444444443,
+      "endTime": 26.982222222222223,
+      "text": "In fact, a true friend likes to be honest because it helps you."
+    }
+  ],
+  "wordCount": 59,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:41:48.407Z"
+  }
+}

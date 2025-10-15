@@ -1,0 +1,62 @@
+{
+  "index": 15,
+  "sentences": [
+    {
+      "sentenceIndex": 60,
+      "text": "Flour and friendship are different, and they should not be mixed."
+    },
+    {
+      "sentenceIndex": 61,
+      "text": "The words are spelled differently and mean different things."
+    },
+    {
+      "sentenceIndex": 62,
+      "text": "Everyone can understand that."
+    },
+    {
+      "sentenceIndex": 63,
+      "text": "'You speak very well!'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_15.mp3",
+  "audioFileName": "the-devoted-friend/A2/onwK4e9ZLuTAKqWW03F9/bundle_15.mp3",
+  "duration": 13.124444444444444,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 60,
+      "startTime": 0,
+      "endTime": 5.008888888888889,
+      "text": "Flour and friendship are different, and they should not be mixed."
+    },
+    {
+      "sentenceIndex": 61,
+      "startTime": 5.008888888888889,
+      "endTime": 9.12888888888889,
+      "text": "The words are spelled differently and mean different things."
+    },
+    {
+      "sentenceIndex": 62,
+      "startTime": 9.12888888888889,
+      "endTime": 11.026666666666667,
+      "text": "Everyone can understand that."
+    },
+    {
+      "sentenceIndex": 63,
+      "startTime": 11.026666666666667,
+      "endTime": 12.924444444444445,
+      "text": "'You speak very well!'"
+    }
+  ],
+  "wordCount": 28,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T08:39:33.007Z"
+  }
+}

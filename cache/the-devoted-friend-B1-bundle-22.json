@@ -1,0 +1,62 @@
+{
+  "index": 22,
+  "sentences": [
+    {
+      "sentenceIndex": 88,
+      "text": "Hans felt happy because all his flowers were growing well."
+    },
+    {
+      "sentenceIndex": 89,
+      "text": "He was glad that the hard winter was over and he could enjoy the spring."
+    },
+    {
+      "sentenceIndex": 90,
+      "text": "The Miller said, 'We often talked about you during the winter, Hans, and wondered how you were doing.'"
+    },
+    {
+      "sentenceIndex": 91,
+      "text": "Hans replied, 'That was kind of you, but I was a bit worried you had forgotten me.'"
+    }
+  ],
+  "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_22.mp3",
+  "audioFileName": "the-devoted-friend/B1/onwK4e9ZLuTAKqWW03F9/bundle_22.mp3",
+  "duration": 29.03666666666667,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 88,
+      "startTime": 0,
+      "endTime": 4.564444444444445,
+      "text": "Hans felt happy because all his flowers were growing well."
+    },
+    {
+      "sentenceIndex": 89,
+      "startTime": 4.564444444444445,
+      "endTime": 11.351111111111113,
+      "text": "He was glad that the hard winter was over and he could enjoy the spring."
+    },
+    {
+      "sentenceIndex": 90,
+      "startTime": 11.351111111111113,
+      "endTime": 19.621111111111112,
+      "text": "The Miller said, 'We often talked about you during the winter, Hans, and wondered how you were doing.'"
+    },
+    {
+      "sentenceIndex": 91,
+      "startTime": 19.621111111111112,
+      "endTime": 27.39666666666667,
+      "text": "Hans replied, 'That was kind of you, but I was a bit worried you had forgotten me.'"
+    }
+  ],
+  "wordCount": 60,
+  "metadata": {
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceSettings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "speed": 0.9,
+      "use_speaker_boost": true
+    },
+    "generatedAt": "2025-10-10T09:06:55.549Z"
+  }
+}
