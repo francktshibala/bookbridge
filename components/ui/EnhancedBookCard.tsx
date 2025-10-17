@@ -32,33 +32,41 @@ export function EnhancedBookCard({ book, index = 0, onAskAI }: EnhancedBookCardP
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ scale: 1.01 }}
+      whileHover={{ scale: 1.01, y: -2 }}
+      className="neo-classic-card theme-transition"
       style={{
-        background: 'rgba(51, 65, 85, 0.5)',
-        border: '1px solid #334155',
+        background: 'linear-gradient(135deg, var(--bg-primary), var(--bg-secondary))',
+        border: '2px solid var(--accent-secondary)',
         borderRadius: '12px',
         padding: '16px',
         marginBottom: '16px',
-        width: '100%'
+        width: '100%',
+        boxShadow: '0 6px 20px rgba(205, 127, 50, 0.2)',
+        cursor: 'pointer',
+        minHeight: '140px',
+        display: 'grid',
+        alignContent: 'end'
       }}
     >
       {/* Book Title */}
-      <div style={{
+      <div className="neo-classic-subtitle" style={{
         fontSize: '16px',
-        fontWeight: '600',
-        color: '#e2e8f0',
-        marginBottom: '4px'
+        fontWeight: '700',
+        color: 'var(--text-accent)',
+        marginBottom: '4px',
+        fontFamily: 'Playfair Display, serif'
       }}>
         {book.title}
       </div>
 
       {/* Author */}
-      <div style={{
-        fontSize: '14px',
-        color: '#94a3b8',
-        marginBottom: '12px'
+      <div className="neo-classic-meta" style={{
+        fontSize: '11px',
+        color: 'var(--text-secondary)',
+        marginBottom: '12px',
+        opacity: '0.85'
       }}>
-        by {book.author}
+        {book.author}
       </div>
 
       {/* Meta Tags */}
@@ -68,39 +76,47 @@ export function EnhancedBookCard({ book, index = 0, onAskAI }: EnhancedBookCardP
         marginBottom: '12px',
         flexWrap: 'wrap'
       }}>
-        <span style={{
+        <span className="neo-classic-badge" style={{
           padding: '4px 8px',
-          background: 'rgba(59, 130, 246, 0.2)',
-          color: '#60a5fa',
-          borderRadius: '4px',
-          fontSize: '11px'
+          background: 'rgba(205, 127, 50, 0.1)',
+          color: 'var(--text-accent)',
+          border: '1px solid var(--text-accent)',
+          borderRadius: '999px',
+          fontSize: '11px',
+          fontWeight: '600'
         }}>
           {book.cefr.min}-{book.cefr.max}
         </span>
-        <span style={{
+        <span className="neo-classic-badge" style={{
           padding: '4px 8px',
-          background: 'rgba(59, 130, 246, 0.2)',
-          color: '#60a5fa',
-          borderRadius: '4px',
-          fontSize: '11px'
+          background: 'rgba(205, 127, 50, 0.1)',
+          color: 'var(--text-accent)',
+          border: '1px solid var(--text-accent)',
+          borderRadius: '999px',
+          fontSize: '11px',
+          fontWeight: '600'
         }}>
           {book.genre || 'Classic'}
         </span>
-        <span style={{
+        <span className="neo-classic-badge" style={{
           padding: '4px 8px',
-          background: 'rgba(59, 130, 246, 0.2)',
-          color: '#60a5fa',
-          borderRadius: '4px',
-          fontSize: '11px'
+          background: 'rgba(205, 127, 50, 0.1)',
+          color: 'var(--text-accent)',
+          border: '1px solid var(--text-accent)',
+          borderRadius: '999px',
+          fontSize: '11px',
+          fontWeight: '600'
         }}>
           {book.estimatedReadingTime || '~4h'}
         </span>
-        <span style={{
+        <span className="neo-classic-badge-enhanced" style={{
           padding: '4px 8px',
-          background: 'rgba(16, 185, 129, 0.2)',
-          color: '#10b981',
-          borderRadius: '4px',
-          fontSize: '11px'
+          background: 'rgba(205, 127, 50, 0.1)',
+          color: 'var(--accent-secondary)',
+          border: '1px solid var(--accent-secondary)',
+          borderRadius: '999px',
+          fontSize: '11px',
+          fontWeight: '600'
         }}>
           Enhanced ⚡
         </span>
@@ -112,60 +128,35 @@ export function EnhancedBookCard({ book, index = 0, onAskAI }: EnhancedBookCardP
         )}
       </div>
 
-      {/* Action Buttons */}
-      <div style={{
-        display: 'flex',
-        gap: '8px'
-      }}>
-        <button
-          onClick={() => {
-            if (onAskAI) {
-              onAskAI({
-                id: book.id,
-                title: book.title,
-                author: book.author,
-                description: `Enhanced ESL edition with ${book.cefr.min}-${book.cefr.max} difficulty levels available`,
-                subjects: book.genre ? [book.genre] : ['Literature'],
-                language: 'en',
-                source: 'gutenberg',
-                popularity: 1
-              });
-            }
-          }}
-          style={{
-            flex: 1,
-            height: '36px',
-            borderRadius: '8px',
-            background: 'rgba(139, 92, 246, 0.2)',
-            color: '#a78bfa',
-            border: '1px solid rgba(139, 92, 246, 0.3)',
-            fontSize: '14px',
-            fontWeight: '500',
-            cursor: 'pointer'
-          }}
-        >
-          Ask AI
-        </button>
+      {/* Action Button - Wireframe Style */}
+      <div style={{ marginTop: '8px' }}>
         <Link
           href={`/library/${book.id}/read`}
+          className="neo-classic-card-button"
           style={{
-            flex: 1,
-            height: '36px',
-            lineHeight: '36px',
-            background: 'rgba(59, 130, 246, 0.2)',
-            color: '#60a5fa',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
-            borderRadius: '8px',
-            fontSize: '14px',
-            fontWeight: '500',
+            fontSize: '12px',
+            padding: '6px 10px',
+            borderRadius: '999px',
+            background: 'rgba(255, 255, 255, 0.9)',
+            color: 'var(--text-accent)',
+            border: '1px solid var(--text-accent)',
             textDecoration: 'none',
             display: 'inline-block',
-            textAlign: 'center',
+            fontWeight: '600',
             cursor: 'pointer',
-            transition: 'all 0.2s ease'
+            transition: 'all 0.2s ease',
+            width: 'fit-content'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--accent-primary)';
+            e.currentTarget.style.color = 'var(--bg-primary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+            e.currentTarget.style.color = 'var(--text-accent)';
           }}
         >
-          Read
+          Start Reading
         </Link>
       </div>
     </motion.div>

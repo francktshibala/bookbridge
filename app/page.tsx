@@ -106,13 +106,13 @@ export default function HomePage() {
   };
 
   return (
-    <div className="page-container magical-bg min-h-screen" style={{
-      background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
-      color: '#ffffff',
+    <div className="page-container magical-bg min-h-screen theme-transition" style={{
+      background: 'var(--bg-primary)',
+      color: 'var(--text-primary)',
       position: 'relative'
     }}>
 
-      <div className="page-content" style={{
+      <div className="page-content theme-transition" style={{
         padding: '4rem 2rem',
         maxWidth: '1200px',
         margin: '0 auto',
@@ -356,18 +356,18 @@ export default function HomePage() {
           }}
         >
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <h2 style={{
+            <h2 className="neo-classic-title" style={{
               fontSize: '2rem',
               fontWeight: 'bold',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
+              color: 'var(--text-accent)',
               marginBottom: '0.5rem'
             }}>
               How It Works
             </h2>
-            <p style={{ color: '#94a3b8', fontSize: '1.125rem' }}>
+            <p className="neo-classic-subtitle" style={{
+              color: 'var(--text-secondary)',
+              fontSize: '1.125rem'
+            }}>
               Three simple steps to start reading at your level
             </p>
           </div>
@@ -388,11 +388,12 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.2, duration: 0.5 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                style={{ 
+                className="neo-classic-surface theme-transition"
+                style={{
                   textAlign: 'center',
                   position: 'relative',
-                  background: 'rgba(30, 41, 59, 0.8)',
-                  border: '1px solid #334155',
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-light)',
                   borderRadius: '12px',
                   padding: '1.5rem 1rem',
                   cursor: 'pointer',
@@ -402,11 +403,11 @@ export default function HomePage() {
                   maxWidth: '280px'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#10b981';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(16, 185, 129, 0.3)';
+                  e.currentTarget.style.borderColor = 'var(--accent-secondary)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(205, 127, 50, 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#334155';
+                  e.currentTarget.style.borderColor = 'var(--border-light)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
@@ -444,16 +445,16 @@ export default function HomePage() {
                 }}>
                   📚
                 </div>
-                <h3 style={{
+                <h3 className="neo-classic-subtitle" style={{
                   fontSize: '1.25rem',
                   fontWeight: 'bold',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   marginBottom: '0.5rem'
                 }}>
                   Choose Your Level
                 </h3>
-                <p style={{
-                  color: '#94a3b8',
+                <p className="neo-classic-body" style={{
+                  color: 'var(--text-secondary)',
                   lineHeight: '1.5',
                   marginBottom: '0.75rem',
                   fontSize: '0.9rem'
@@ -482,11 +483,12 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.4, duration: 0.5 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                style={{ 
+                className="neo-classic-surface theme-transition"
+                style={{
                   textAlign: 'center',
                   position: 'relative',
-                  background: 'rgba(30, 41, 59, 0.8)',
-                  border: '1px solid #334155',
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-light)',
                   borderRadius: '12px',
                   padding: '1.5rem 1rem',
                   cursor: 'pointer',
@@ -538,16 +540,16 @@ export default function HomePage() {
                 }}>
                   🎧
                 </div>
-                <h3 style={{
+                <h3 className="neo-classic-subtitle" style={{
                   fontSize: '1.25rem',
                   fontWeight: 'bold',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   marginBottom: '0.5rem'
                 }}>
                   Listen & Read
                 </h3>
-                <p style={{
-                  color: '#94a3b8',
+                <p className="neo-classic-body" style={{
+                  color: 'var(--text-secondary)',
                   lineHeight: '1.5',
                   marginBottom: '0.75rem',
                   fontSize: '0.9rem'
@@ -572,11 +574,12 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.6, duration: 0.5 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                style={{ 
+                className="neo-classic-surface theme-transition"
+                style={{
                   textAlign: 'center',
                   position: 'relative',
-                  background: 'rgba(30, 41, 59, 0.8)',
-                  border: '1px solid #334155',
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-light)',
                   borderRadius: '12px',
                   padding: '1.5rem 1rem',
                   cursor: 'pointer',
@@ -628,16 +631,16 @@ export default function HomePage() {
                 }}>
                   🤖
                 </div>
-                <h3 style={{
+                <h3 className="neo-classic-subtitle" style={{
                   fontSize: '1.25rem',
                   fontWeight: 'bold',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   marginBottom: '0.5rem'
                 }}>
                   Ask AI Tutor
                 </h3>
-                <p style={{
-                  color: '#94a3b8',
+                <p className="neo-classic-body" style={{
+                  color: 'var(--text-secondary)',
                   lineHeight: '1.5',
                   marginBottom: '0.75rem',
                   fontSize: '0.9rem'

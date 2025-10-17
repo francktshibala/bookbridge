@@ -38,17 +38,17 @@ export default function Navigation() {
 
   return (
     <>
-      <nav style={{ 
-        backgroundColor: '#1a1a2e', 
-        borderBottom: '1px solid rgba(102, 126, 234, 0.2)', 
-        color: '#ffffff',
+      <nav className="theme-transition" style={{
+        backgroundColor: 'var(--bg-primary)',
+        borderBottom: '1px solid var(--border-light)',
+        color: 'var(--text-primary)',
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.1)',
+        boxShadow: 'var(--shadow-soft)',
         // Runtime fallback padding for iOS portrait simulator
         paddingTop: safeAreaTop ? `${safeAreaTop}px` : undefined,
-      }} className="safe-area-top">
+      }}>
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: 'none' }}>
           <div className="flex justify-between items-center h-16" style={{ width: '100%' }}>
             {/* Left side - Logo and Navigation */}
@@ -92,7 +92,7 @@ export default function Navigation() {
                         gap: '6px',
                         // Special styling for premium link
                         ...(link.isPremium && {
-                          background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                          background: 'var(--accent-secondary)',
                           color: 'white',
                           fontWeight: '600',
                           padding: '8px 16px',
@@ -129,7 +129,7 @@ export default function Navigation() {
                     style={{
                       width: '24px',
                       height: '3px',
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: 'var(--accent-primary)',
                       borderRadius: '2px',
                       transform: isMobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
                       transition: 'all 0.3s ease'
@@ -139,7 +139,7 @@ export default function Navigation() {
                     style={{
                       width: '24px',
                       height: '3px',
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: 'var(--accent-primary)',
                       borderRadius: '2px',
                       opacity: isMobileMenuOpen ? 0 : 1,
                       transition: 'all 0.3s ease'
@@ -149,7 +149,7 @@ export default function Navigation() {
                     style={{
                       width: '24px',
                       height: '3px',
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: 'var(--accent-primary)',
                       borderRadius: '2px',
                       transform: isMobileMenuOpen ? 'rotate(-45deg) translate(7px, -6px)' : 'none',
                       transition: 'all 0.3s ease'
@@ -177,7 +177,7 @@ export default function Navigation() {
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                     className="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 hover-lift-sm"
                     style={{ 
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: 'var(--accent-primary)',
                       minWidth: '44px',
                       minHeight: '44px',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -186,11 +186,11 @@ export default function Navigation() {
                     aria-expanded={isUserMenuOpen}
                     aria-haspopup="true"
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'linear-gradient(135deg, #7c8ef8 0%, #8b5fd6 100%)';
+                      e.currentTarget.style.background = 'var(--accent-secondary)';
                       e.currentTarget.style.boxShadow = '0 6px 12px rgba(102, 126, 234, 0.4)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                      e.currentTarget.style.background = 'var(--accent-primary)';
                       e.currentTarget.style.boxShadow = '0 4px 8px rgba(102, 126, 234, 0.3)';
                     }}
                   >
@@ -215,14 +215,14 @@ export default function Navigation() {
                          }}>
                       <div className="py-3" role="menu" aria-orientation="vertical">
                         <div className="px-6 py-3" style={{ 
-                          color: '#f7fafc',
+                          color: 'var(--text-primary)',
                           borderBottom: '1px solid rgba(102, 126, 234, 0.1)',
                           marginBottom: '8px'
                         }}>
                           <div style={{
                             fontSize: '12px',
                             fontWeight: '500',
-                            color: '#a5b4fc',
+                            color: 'var(--text-secondary)',
                             marginBottom: '4px',
                             textTransform: 'uppercase',
                             letterSpacing: '0.5px'
@@ -230,7 +230,7 @@ export default function Navigation() {
                           <div style={{
                             fontSize: '16px',
                             fontWeight: '600',
-                            color: '#f7fafc',
+                            color: 'var(--text-primary)',
                             wordBreak: 'break-word',
                             lineHeight: '1.4',
                             maxWidth: '100%',

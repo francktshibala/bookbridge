@@ -444,11 +444,10 @@ div span.mobile-reading-text[data-sentence].bg-blue-100 {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   }
   
-  /* Force dark theme application */
+  /* Theme-driven application (replaces forced dark override) */
   html, body {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%) !important;
-    background-attachment: fixed !important;
-    color: #ffffff !important;
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
     margin: 0 !important;
     padding: 0 !important;
   }
