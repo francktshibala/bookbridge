@@ -121,61 +121,86 @@ export default function HomePage() {
         alignItems: 'center',
         gap: '2.5rem'
       }}>
-        {/* Hero Section */}
-        <motion.section 
+        {/* Neo-Classic Hero Section */}
+        <motion.section
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          aria-labelledby="welcome-heading" 
-          className="page-header text-center hero-section"
-          style={{ marginBottom: '2rem' }}
+          aria-labelledby="welcome-heading"
+          className="homepage-hero neo-classic-surface-elevated theme-transition"
+          style={{
+            marginBottom: '2rem',
+            background: 'var(--bg-primary)',
+            borderRadius: '16px',
+            padding: '4rem 2rem',
+            border: '1px solid var(--border-light)',
+            boxShadow: 'var(--shadow-soft)'
+          }}
         >
-          <motion.h1 
-            id="welcome-heading"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-gradient hero-title"
-            style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}
-          >
-            Read Classic Literature at Your English Level
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="hero-subtitle"
-            style={{ 
-              color: '#94a3b8', 
-              marginBottom: '3rem', 
-              fontSize: '1.125rem', 
-              maxWidth: '800px', 
-              margin: '0 auto 3rem auto',
-              lineHeight: '1.6'
-            }}
-          >
-            AI-powered text simplification • Word-by-word audio • Vocabulary learning
-          </motion.p>
+          <div className="elegant-container max-w-4xl mx-auto">
+            <motion.h1
+              id="welcome-heading"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="neo-classic-title text-center"
+              style={{
+                fontSize: '3.5rem',
+                marginBottom: '1.5rem',
+                color: 'var(--text-accent)'
+              }}
+            >
+              Read Classic Literature at Your English Level
+            </motion.h1>
 
-          {/* CEFR Level Selector */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-3 mb-8"
-          >
-            {cefrLevels.map((level, index) => (
-              <motion.button
-                key={level}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedLevel(level)}
-                className="cefr-level-button"
-                style={{
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="neo-classic-subtitle text-center"
+              style={{
+                color: 'var(--text-secondary)',
+                marginBottom: '3rem',
+                fontSize: '1.25rem',
+                maxWidth: '700px',
+                margin: '0 auto 3rem auto',
+                lineHeight: '1.6'
+              }}
+            >
+              Experience timeless works through AI-powered adaptation
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="neo-classic-caption text-center"
+              style={{
+                color: 'var(--text-tertiary)',
+                marginBottom: '2rem'
+              }}
+            >
+              AI-Powered Text Simplification • Synchronized Audio • Vocabulary Learning
+            </motion.div>
+
+            {/* CEFR Level Selector */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex flex-wrap justify-center gap-3 mb-8"
+            >
+              {cefrLevels.map((level, index) => (
+                <motion.button
+                  key={level}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setSelectedLevel(level)}
+                  className="cefr-level-button"
+                  style={{
                   width: '60px',
                   height: '60px',
                   borderRadius: '50%',
@@ -195,15 +220,15 @@ export default function HomePage() {
               >
                 {level}
               </motion.button>
-            ))}
-          </motion.div>
+              ))}
+            </motion.div>
 
-          {/* Sample Text Demo */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            style={{
+            {/* Sample Text Demo */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+              style={{
               backgroundColor: '#1e293b',
               borderRadius: '16px',
               padding: '1.5rem 2rem',
@@ -259,14 +284,14 @@ export default function HomePage() {
             }}>
               From Pride and Prejudice
             </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Action Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.6 }}
-            className="flex gap-6 justify-center flex-wrap hero-buttons"
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.6 }}
+              className="flex gap-6 justify-center flex-wrap hero-buttons"
           >
             <motion.a 
               href="/library/gutenberg-1342/read"
@@ -298,7 +323,8 @@ export default function HomePage() {
             >
               Take Level Assessment
             </motion.a>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.section>
 
 

@@ -10,37 +10,58 @@ interface ThemeSwitcherProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export function ThemeSwitcher({
-  className = '',
-  showLabels = true,
-  size = 'md'
-}: ThemeSwitcherProps) {
-  const { theme, setTheme } = useTheme();
+// SSR-safe wrapper component
+export function ThemeSwitcher(props: ThemeSwitcherProps) {
   const [mounted, setMounted] = useState(false);
 
-  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    return (
-      <div className={`theme-switcher ${className}`}>
-        <div className="neo-classic-control-group">
-          {showLabels && (
-            <label className="neo-classic-label text-xs uppercase tracking-wide mb-2 block">
-              Reading Theme
-            </label>
-          )}
-          <div className="theme-selector-buttons flex rounded-lg overflow-hidden border border-[var(--border-light)]">
-            <div className="theme-btn flex-1 bg-[var(--accent-primary)] text-[var(--bg-primary)] font-semibold px-3 py-2 text-sm">
-              ☀️ {showLabels && 'Light'}
-            </div>
+    return <ThemeSwitcherPlaceholder {...props} />;
+  }
+
+  return <ThemeSwitcherClient {...props} />;
+}
+
+// Static placeholder for SSR
+function ThemeSwitcherPlaceholder({
+  className = '',
+  showLabels = true,
+  size = 'md'
+}: ThemeSwitcherProps) {
+  const sizeClasses = {
+    sm: 'text-xs px-2 py-1',
+    md: 'text-sm px-3 py-2',
+    lg: 'text-base px-4 py-3'
+  };
+
+  return (
+    <div className={`theme-switcher ${className}`}>
+      <div className="neo-classic-control-group">
+        {showLabels && (
+          <label className="neo-classic-label text-xs uppercase tracking-wide mb-2 block">
+            Reading Theme
+          </label>
+        )}
+        <div className="theme-selector-buttons flex rounded-lg overflow-hidden border border-[var(--border-light)]">
+          <div className={`theme-btn flex-1 bg-[var(--accent-primary)] text-[var(--bg-primary)] font-semibold ${sizeClasses[size]}`}>
+            ☀️ {showLabels && 'Light'}
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+// Client-side component that uses theme context
+function ThemeSwitcherClient({
+  className = '',
+  showLabels = true,
+  size = 'md'
+}: ThemeSwitcherProps) {
+  const { theme, setTheme } = useTheme();
 
   const themes: { value: ThemeVariant; label: string; icon: string; description: string }[] = [
     {
@@ -161,7 +182,6 @@ export function ThemeSwitcher({
 
 // Compact floating theme switcher for corner placement
 export function FloatingThemeSwitcher({ className = '' }: { className?: string }) {
-  const { theme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -169,12 +189,24 @@ export function FloatingThemeSwitcher({ className = '' }: { className?: string }
   }, []);
 
   if (!mounted) {
-    return (
-      <div className={`floating-theme-switcher fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-light)] ${className}`}>
-        <span className="text-lg">☀️</span>
-      </div>
-    );
+    return <FloatingThemeSwitcherPlaceholder className={className} />;
   }
+
+  return <FloatingThemeSwitcherClient className={className} />;
+}
+
+// Static placeholder for SSR
+function FloatingThemeSwitcherPlaceholder({ className = '' }: { className?: string }) {
+  return (
+    <div className={`floating-theme-switcher fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-light)] ${className}`}>
+      <span className="text-lg">☀️</span>
+    </div>
+  );
+}
+
+// Client-side component that uses theme context
+function FloatingThemeSwitcherClient({ className = '' }: { className?: string }) {
+  const { theme, toggleTheme } = useTheme();
 
   const themeIcons = {
     light: '☀️',
