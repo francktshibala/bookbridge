@@ -10,7 +10,7 @@ import { useAuth } from '@/components/SimpleAuthProvider';
 import { useMobileNavigation } from '@/hooks/useMobileNavigation';
 import MobileNavigationMenu from '@/components/MobileNavigationMenu';
 import { useSafeAreaTop } from '@/hooks/useSafeAreaTop';
-// import { ThemeSwitcher } from '@/components/theme/ThemeSwitcher';
+import { ThemeSwitcher } from '@/components/theme/ThemeSwitcher';
 
 export default function Navigation() {
   const router = useRouter();
@@ -159,12 +159,17 @@ export default function Navigation() {
               </button>
             </div>
 
-            {/* Right side - User menu and Auth buttons */}
-            <div className="desktop-user-menu items-center" style={{ minWidth: 'fit-content', paddingRight: '40px', marginRight: '24px' }}>
+            {/* Right side - Theme switcher, User menu and Auth buttons */}
+            <div className="desktop-user-menu items-center gap-4" style={{ minWidth: 'fit-content', paddingRight: '40px', marginRight: '24px', display: 'flex' }}>
+              {/* Theme Switcher */}
+              <div className="theme-switcher-nav">
+                <ThemeSwitcher showLabels={false} size="sm" />
+              </div>
+
               {user ? (
                 <>
                   {/* Subscription Status */}
-                  <div className="mr-6">
+                  <div className="mr-2">
                     <SubscriptionStatus />
                   </div>
                 <div className="relative">
