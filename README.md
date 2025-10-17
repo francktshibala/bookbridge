@@ -114,6 +114,15 @@ Unlike generic AI assistants, BookBridge:
 - **Lifelong Learners**: Explore classics with guidance
 - **Accessibility**: Screen reader support and voice navigation
 
+## 📋 Development Documentation
+
+### **UI/UX Transformation Plans**
+- **`UI_UX_TRANSFORMATION_PLAN.md`** - Comprehensive functionality roadmap to transform BookBridge into a "Spotify for ESL Audiobooks" with features like search, mini-player, gamification, and social sharing
+- **`VISUAL_STYLE_IMPLEMENTATION_PLAN.md`** - Complete Neo-Classic Academic Prestige theme specifications with 3 variations (Light/Dark/Sepia) and typography system
+- **`NEO_CLASSIC_TRANSFORMATION_PLAN.md`** - 8-phase page-by-page transformation strategy to apply Neo-Classic styling across the application
+
+**Implementation Strategy**: Apply visual styling first (Neo-Classic plan), then add functional features (UI/UX plan) using the established theme system.
+
 ## 🚀 Getting Started
 1. Browse the catalog of millions of books
 2. Start a conversation about any book you're reading
