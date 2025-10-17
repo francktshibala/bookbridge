@@ -204,18 +204,16 @@ export default function HomePage() {
                   width: '60px',
                   height: '60px',
                   borderRadius: '50%',
-                  background: selectedLevel === level 
-                    ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-                    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  border: 'none',
-                  color: 'white',
+                  background: selectedLevel === level ? 'var(--accent-primary)' : 'var(--accent-secondary)',
+                  border: '1px solid var(--border-light)',
+                  color: 'var(--bg-secondary)',
                   fontSize: '16px',
                   fontWeight: '600',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   boxShadow: selectedLevel === level
-                    ? '0 4px 12px rgba(16, 185, 129, 0.4)'
-                    : '0 4px 12px rgba(102, 126, 234, 0.4)'
+                    ? '0 4px 12px rgba(var(--accent-primary-rgb), 0.35)'
+                    : '0 4px 12px rgba(var(--accent-secondary-rgb), 0.35)'
                 }}
               >
                 {level}
@@ -229,15 +227,15 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.6 }}
               style={{
-              backgroundColor: '#1e293b',
+              backgroundColor: 'var(--bg-secondary)',
               borderRadius: '16px',
               padding: '1.5rem 2rem',
               marginBottom: '1.5rem',
-              border: '1px solid #334155',
-              background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+              border: '1px solid var(--border-light)',
+              background: 'var(--bg-secondary)',
               maxWidth: '900px',
               width: '100%',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+              boxShadow: '0 8px 32px var(--shadow-soft)',
               margin: '0 auto 1.5rem auto',
               display: 'flex',
               flexDirection: 'column',
@@ -252,7 +250,7 @@ export default function HomePage() {
               <span style={{
                 fontSize: '0.875rem',
                 fontWeight: '600',
-                color: '#10b981',
+                color: 'var(--accent-secondary)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em'
               }}>
@@ -267,7 +265,7 @@ export default function HomePage() {
               style={{
                 fontSize: '1.125rem',
                 lineHeight: '1.7',
-                color: '#f1f5f9',
+                color: 'var(--text-primary)',
                 textAlign: 'center',
                 fontStyle: 'italic',
                 margin: '0 auto',
@@ -280,7 +278,7 @@ export default function HomePage() {
               textAlign: 'center',
               marginTop: '1rem',
               fontSize: '0.875rem',
-              color: '#64748b'
+              color: 'var(--text-tertiary)'
             }}>
               From Pride and Prejudice
             </div>
@@ -317,8 +315,8 @@ export default function HomePage() {
                 textDecoration: 'none',
                 borderRadius: '12px',
                 background: 'transparent',
-                border: '2px solid #667eea',
-                color: '#667eea'
+                border: '2px solid var(--accent-primary)',
+                color: 'var(--accent-primary)'
               }}
             >
               Take Level Assessment
@@ -419,14 +417,14 @@ export default function HomePage() {
                   transform: 'translateX(-50%)',
                   width: '24px',
                   height: '24px',
-                  background: '#10b981',
+                  background: 'var(--accent-secondary)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '12px',
                   fontWeight: 'bold',
-                  color: 'white'
+                  color: 'var(--bg-secondary)'
                 }}>
                   1
                 </div>
@@ -435,13 +433,13 @@ export default function HomePage() {
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  background: 'var(--accent-secondary)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 0.75rem auto',
                   fontSize: '1.5rem',
-                  boxShadow: '0 4px 16px rgba(16, 185, 129, 0.3)'
+                  boxShadow: '0 4px 16px rgba(var(--accent-secondary-rgb), 0.3)'
                 }}>
                   📚
                 </div>
@@ -468,8 +466,8 @@ export default function HomePage() {
                       padding: '2px 8px',
                       borderRadius: '4px',
                       fontSize: '12px',
-                      background: 'rgba(16, 185, 129, 0.2)',
-                      color: '#10b981'
+                      background: 'rgba(var(--accent-secondary-rgb), 0.15)',
+                      color: 'var(--accent-secondary)'
                     }}>
                       {level}
                     </span>
@@ -498,11 +496,11 @@ export default function HomePage() {
                   maxWidth: '280px'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#3b82f6';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(59, 130, 246, 0.3)';
+                  e.currentTarget.style.borderColor = 'var(--accent-primary)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(var(--accent-primary-rgb), 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#334155';
+                  e.currentTarget.style.borderColor = 'var(--border-light)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
@@ -514,14 +512,14 @@ export default function HomePage() {
                   transform: 'translateX(-50%)',
                   width: '24px',
                   height: '24px',
-                  background: '#3b82f6',
+                  background: 'var(--accent-primary)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '12px',
                   fontWeight: 'bold',
-                  color: 'white'
+                  color: 'var(--bg-secondary)'
                 }}>
                   2
                 </div>
@@ -530,13 +528,13 @@ export default function HomePage() {
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                  background: 'var(--accent-primary)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 0.75rem auto',
                   fontSize: '1.5rem',
-                  boxShadow: '0 4px 16px rgba(59, 130, 246, 0.3)'
+                  boxShadow: '0 4px 16px rgba(var(--accent-primary-rgb), 0.3)'
                 }}>
                   🎧
                 </div>
@@ -558,13 +556,13 @@ export default function HomePage() {
                 </p>
                 {/* Mini demo */}
                 <div style={{
-                  background: 'rgba(59, 130, 246, 0.1)',
+                  background: 'rgba(var(--accent-primary-rgb), 0.1)',
                   padding: '8px 12px',
                   borderRadius: '8px',
                   fontSize: '12px',
-                  color: '#3b82f6'
+                  color: 'var(--accent-primary)'
                 }}>
-                  <span style={{ background: 'rgba(59, 130, 246, 0.3)', padding: '2px 4px', borderRadius: '2px' }}>Word</span> highlighting demo
+                  <span style={{ background: 'rgba(var(--accent-primary-rgb), 0.3)', padding: '2px 4px', borderRadius: '2px' }}>Word</span> highlighting demo
                 </div>
               </motion.div>
 
@@ -589,11 +587,11 @@ export default function HomePage() {
                   maxWidth: '280px'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#8b5cf6';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(139, 92, 246, 0.3)';
+                  e.currentTarget.style.borderColor = 'var(--accent-tertiary)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(var(--accent-tertiary-rgb), 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#334155';
+                  e.currentTarget.style.borderColor = 'var(--border-light)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
@@ -605,14 +603,14 @@ export default function HomePage() {
                   transform: 'translateX(-50%)',
                   width: '24px',
                   height: '24px',
-                  background: '#8b5cf6',
+                  background: 'var(--accent-tertiary)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '12px',
                   fontWeight: 'bold',
-                  color: 'white'
+                  color: 'var(--bg-secondary)'
                 }}>
                   3
                 </div>
@@ -621,13 +619,13 @@ export default function HomePage() {
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+                  background: 'var(--accent-tertiary)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 0.75rem auto',
                   fontSize: '1.5rem',
-                  boxShadow: '0 4px 16px rgba(139, 92, 246, 0.3)'
+                  boxShadow: '0 4px 16px rgba(var(--accent-tertiary-rgb), 0.3)'
                 }}>
                   🤖
                 </div>
@@ -650,10 +648,10 @@ export default function HomePage() {
                 {/* Mini demo */}
                 <div style={{
                   fontSize: '12px',
-                  color: '#8b5cf6'
+                  color: 'var(--accent-tertiary)'
                 }}>
                   <a href="#ai-demo" style={{
-                    color: '#8b5cf6',
+                    color: 'var(--accent-tertiary)',
                     textDecoration: 'none',
                     display: 'inline-flex',
                     alignItems: 'center',

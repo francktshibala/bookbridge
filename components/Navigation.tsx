@@ -29,18 +29,18 @@ export default function Navigation() {
   // Show some navigation items for all users, with user-specific items when logged in
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/enhanced-collection', label: '✨ Enhanced Books' },
-    { href: '/featured-books', label: '🎧 Simplified Books' },
+    { href: '/enhanced-collection', label: 'Enhanced Books' },
+    { href: '/featured-books', label: 'Simplified Books' },
     { href: '/library', label: 'Browse All Books' },
     // TOUCHPOINT 1: Premium navigation link
-    { href: '/upgrade', label: '🚀 Premium $5.99', isPremium: true },
+    { href: '/upgrade', label: 'Premium $5.99', isPremium: true },
   ];
 
   return (
     <>
       <nav className="theme-transition" style={{
-        backgroundColor: 'var(--bg-primary)',
-        borderBottom: '1px solid var(--border-light)',
+        backgroundColor: 'var(--overlay-medium)',
+        borderBottom: '2px solid var(--accent-primary)',
         color: 'var(--text-primary)',
         position: 'sticky',
         top: 0,
@@ -49,58 +49,42 @@ export default function Navigation() {
         // Runtime fallback padding for iOS portrait simulator
         paddingTop: safeAreaTop ? `${safeAreaTop}px` : undefined,
       }}>
-        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: 'none' }}>
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1200px' }}>
           <div className="flex justify-between items-center h-16" style={{ width: '100%' }}>
             {/* Left side - Logo and Navigation */}
             <div className="flex items-center justify-between w-full" style={{ alignItems: 'center', height: '100%' }}>
               <div className="flex items-center space-x-6">
                 {/* Logo */}
-                <Link href="/" style={{ 
-                  textDecoration: 'none', 
-                  outline: 'none', 
-                  margin: 0, 
+                <Link href="/" style={{
+                  textDecoration: 'none',
+                  outline: 'none',
+                  margin: 0,
                   padding: 0,
                   height: '100%',
                   display: 'flex',
                   alignItems: 'center',
                   lineHeight: '1'
                 }} className="flex items-center">
-                  <span className="text-gradient" style={{ 
-                    fontSize: '24px', 
-                    margin: 0, 
-                    padding: 0,
+                  <span style={{
+                    fontFamily: 'Playfair Display, serif',
+                    fontWeight: 800,
+                    fontSize: '28px',
+                    color: 'var(--text-accent)',
+                    letterSpacing: '0.5px',
                     lineHeight: '1'
                   }}>
-                    BookBridge ESL
+                    BookBridge
                   </span>
                 </Link>
                 
                 {/* Desktop Navigation Links */}
-                <div className="desktop-nav-links items-center space-x-2">
+                <div className="desktop-nav-links items-center" style={{ gap: '30px', display: 'flex' }}>
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`nav-link-styled ${
-                        pathname === link.href
-                          ? 'nav-link-active'
-                          : 'nav-link-inactive'
-                      }`}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        // Special styling for premium link
-                        ...(link.isPremium && {
-                          background: 'var(--accent-secondary)',
-                          color: 'white',
-                          fontWeight: '600',
-                          padding: '8px 16px',
-                          borderRadius: '20px',
-                          boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)',
-                          border: '1px solid rgba(16, 185, 129, 0.4)',
-                        })
-                      }}
+                      className={`nav-link-styled ${pathname === link.href ? 'nav-link-active' : 'nav-link-inactive'} ${link.isPremium ? 'nav-link-premium' : ''}`}
+                      style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
                     >
                       {(link as any).icon && React.createElement((link as any).icon, { size: 16 })}
                       {link.label}
@@ -112,15 +96,23 @@ export default function Navigation() {
               {/* Mobile Hamburger Menu Button - MOVED TO RIGHT */}
               <button
                 onClick={toggleMobileMenu}
-                className="mobile-hamburger p-2 rounded-lg hover:bg-gray-700 hover:bg-opacity-30 transition-colors"
+                className="mobile-hamburger p-2 rounded-lg transition-colors theme-transition"
                 style={{
                   minWidth: '44px',
                   minHeight: '44px',
-                  backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                  border: '1px solid rgba(102, 126, 234, 0.3)',
+                  backgroundColor: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-light)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--accent-secondary)';
+                  e.currentTarget.style.borderColor = 'var(--accent-secondary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--bg-secondary)';
+                  e.currentTarget.style.borderColor = 'var(--border-light)';
                 }}
                 aria-label="Toggle mobile menu"
               >
@@ -160,54 +152,54 @@ export default function Navigation() {
             </div>
 
             {/* Right side - Theme switcher, User menu and Auth buttons */}
-            <div className="desktop-user-menu items-center gap-4" style={{ minWidth: 'fit-content', paddingRight: '40px', marginRight: '24px', display: 'flex' }}>
+            <div className="desktop-user-menu items-center gap-4" style={{ minWidth: 'fit-content', paddingRight: '24px', marginRight: '16px', display: 'flex' }}>
               {/* Theme Switcher */}
-              <div className="theme-switcher-nav">
+              <div className="theme-switcher-nav" style={{ display: 'flex', alignItems: 'center' }}>
                 <ThemeSwitcher showLabels={false} size="sm" />
               </div>
 
               {user ? (
                 <>
-                  {/* Subscription Status */}
-                  <div className="mr-2">
-                    <SubscriptionStatus />
-                  </div>
+                  {/* Subscription Status hidden in nav to avoid duplication with Premium CTA */}
                 <div className="relative">
                   <button
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                    className="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 hover-lift-sm"
-                    style={{ 
+                    className="flex items-center text-sm rounded-full focus:outline-none hover-lift-sm theme-transition"
+                    style={{
                       background: 'var(--accent-primary)',
                       minWidth: '44px',
                       minHeight: '44px',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      boxShadow: '0 4px 8px rgba(102, 126, 234, 0.3)'
+                      boxShadow: 'var(--shadow-soft)',
+                      border: '1px solid var(--accent-primary)'
                     }}
                     aria-expanded={isUserMenuOpen}
                     aria-haspopup="true"
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = 'var(--accent-secondary)';
-                      e.currentTarget.style.boxShadow = '0 6px 12px rgba(102, 126, 234, 0.4)';
+                      e.currentTarget.style.boxShadow = '0 6px 12px rgba(205, 127, 50, 0.4)';
+                      e.currentTarget.style.borderColor = 'var(--accent-secondary)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = 'var(--accent-primary)';
-                      e.currentTarget.style.boxShadow = '0 4px 8px rgba(102, 126, 234, 0.3)';
+                      e.currentTarget.style.boxShadow = 'var(--shadow-soft)';
+                      e.currentTarget.style.borderColor = 'var(--accent-primary)';
                     }}
                   >
                     <span className="sr-only">Open user menu</span>
                     <div className="h-10 w-10 rounded-full flex items-center justify-center">
-                      <span className="text-sm font-medium text-white">
+                      <span className="text-sm font-medium" style={{ color: 'var(--bg-primary)' }}>
                         {user.email?.[0].toUpperCase()}
                       </span>
                     </div>
                   </button>
 
                   {isUserMenuOpen && (
-                    <div className="origin-top-right absolute right-0 mt-2 rounded-lg shadow-lg border z-50 smooth-appear"
+                    <div className="origin-top-right absolute right-0 mt-2 rounded-lg shadow-lg border z-50 smooth-appear theme-transition"
                          style={{
-                           backgroundColor: 'rgba(26, 26, 46, 0.95)',
-                           borderColor: 'rgba(102, 126, 234, 0.2)',
-                           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(102, 126, 234, 0.2)',
+                           backgroundColor: 'var(--bg-secondary)',
+                           borderColor: 'var(--border-light)',
+                           boxShadow: 'var(--shadow-deep)',
                            backdropFilter: 'blur(20px)',
                            minWidth: '400px',
                            maxWidth: '500px',
@@ -216,7 +208,7 @@ export default function Navigation() {
                       <div className="py-3" role="menu" aria-orientation="vertical">
                         <div className="px-6 py-3" style={{ 
                           color: 'var(--text-primary)',
-                          borderBottom: '1px solid rgba(102, 126, 234, 0.1)',
+                          borderBottom: '1px solid var(--border-light)',
                           marginBottom: '8px'
                         }}>
                           <div style={{

@@ -120,18 +120,14 @@ export function EnhancedBooksGrid({
         <h2 style={{
           fontSize: '36px',
           fontWeight: 'bold',
-          color: '#ffffff',
-          marginBottom: '16px',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text'
+          color: 'var(--text-accent)',
+          marginBottom: '16px'
         }}>
           ESL Enhanced Collection
         </h2>
         <p style={{
           fontSize: '18px',
-          color: '#94a3b8',
+          color: 'var(--text-secondary)',
           maxWidth: '600px',
           margin: '0 auto'
         }}>
@@ -180,9 +176,9 @@ export function EnhancedBooksGrid({
               alignItems: 'center',
               gap: '8px',
               padding: '16px 32px',
-              backgroundColor: 'rgba(59, 130, 246, 0.2)',
-              color: '#60a5fa',
-              border: '1px solid rgba(59, 130, 246, 0.3)',
+              backgroundColor: 'var(--accent-primary)',
+              color: 'var(--bg-secondary)',
+              border: '2px solid var(--accent-primary)',
               borderRadius: '12px',
               fontSize: '16px',
               fontWeight: '600',
@@ -190,14 +186,14 @@ export function EnhancedBooksGrid({
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.3)';
+              e.currentTarget.style.backgroundColor = 'var(--accent-secondary)';
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+              e.currentTarget.style.borderColor = 'var(--accent-secondary)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.2)';
+              e.currentTarget.style.backgroundColor = 'var(--accent-primary)';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+              e.currentTarget.style.borderColor = 'var(--accent-primary)';
             }}
           >
             Explore All Enhanced Books
@@ -217,26 +213,26 @@ export function EnhancedBooksGrid({
           gap: '24px',
           marginTop: '64px',
           padding: '32px',
-          backgroundColor: 'rgba(30, 41, 59, 0.8)',
+          backgroundColor: 'var(--bg-secondary)',
           borderRadius: '16px',
-          border: '1px solid #475569'
+          border: '1px solid var(--border-light)'
         }}
       >
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#10b981' }}>7</div>
-          <div style={{ fontSize: '14px', color: '#94a3b8', marginTop: '4px' }}>Enhanced Books</div>
+          <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--accent-secondary)' }}>7</div>
+          <div style={{ fontSize: '14px', color: 'var(--text-secondary)', marginTop: '4px' }}>Enhanced Books</div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#3b82f6' }}>6</div>
-          <div style={{ fontSize: '14px', color: '#94a3b8', marginTop: '4px' }}>CEFR Levels</div>
+          <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--accent-primary)' }}>6</div>
+          <div style={{ fontSize: '14px', color: 'var(--text-secondary)', marginTop: '4px' }}>CEFR Levels</div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#8b5cf6' }}>250+</div>
-          <div style={{ fontSize: '14px', color: '#94a3b8', marginTop: '4px' }}>Simplified Chapters</div>
+          <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--accent-primary)' }}>250+</div>
+          <div style={{ fontSize: '14px', color: 'var(--text-secondary)', marginTop: '4px' }}>Simplified Chapters</div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f59e0b' }}>100%</div>
-          <div style={{ fontSize: '14px', color: '#94a3b8', marginTop: '4px' }}>Audio Support</div>
+          <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--accent-secondary)' }}>100%</div>
+          <div style={{ fontSize: '14px', color: 'var(--text-secondary)', marginTop: '4px' }}>Audio Support</div>
         </div>
       </motion.div>
     </div>

@@ -5,11 +5,9 @@ import React from 'react';
 export default function Footer() {
   return (
     <footer role="contentinfo" className="mt-auto border-t smooth-appear" style={{ 
-      backgroundColor: 'rgba(15, 23, 42, 0.8)',
-      borderColor: '#334155',
+      backgroundColor: 'var(--bg-secondary)',
+      borderColor: 'var(--border-light)',
       borderTopWidth: '1px',
-      backdropFilter: 'blur(20px)',
-      WebkitBackdropFilter: 'blur(20px)',
       position: 'relative',
       overflow: 'hidden',
       width: '100%'
@@ -37,14 +35,14 @@ export default function Footer() {
           }}>
             <h3 style={{ 
               fontSize: '1.25rem',
-              color: '#ffffff',
+              color: 'var(--text-accent)',
               fontWeight: 'bold',
               marginBottom: '0.5rem'
             }}>
               BookBridge ESL
             </h3>
             <p style={{ 
-              color: '#94a3b8',
+              color: 'var(--text-secondary)',
               fontSize: '0.875rem',
               lineHeight: '1.5'
             }}>
@@ -57,7 +55,7 @@ export default function Footer() {
             minWidth: '150px'
           }}>
             <h4 style={{ 
-              color: '#e2e8f0',
+              color: 'var(--text-primary)',
               fontSize: '1rem',
               fontWeight: '600',
               marginBottom: '1rem'
@@ -66,33 +64,33 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <a href="/enhanced-books" style={{ 
-                color: '#94a3b8',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 transition: 'color 0.2s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}>
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
                 Enhanced Books
               </a>
               <a href="/ai-tutor" style={{ 
-                color: '#94a3b8',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 transition: 'color 0.2s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}>
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
                 AI Tutor
               </a>
               <a href="/pricing" style={{ 
-                color: '#94a3b8',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 transition: 'color 0.2s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}>
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
                 Pricing
               </a>
             </div>
@@ -103,7 +101,7 @@ export default function Footer() {
             minWidth: '150px'
           }}>
             <h4 style={{ 
-              color: '#e2e8f0',
+              color: 'var(--text-primary)',
               fontSize: '1rem',
               fontWeight: '600',
               marginBottom: '1rem'
@@ -112,33 +110,33 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <a href="/help" style={{ 
-                color: '#94a3b8',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 transition: 'color 0.2s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}>
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
                 Help Center
               </a>
               <a href="/accessibility" style={{ 
-                color: '#94a3b8',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 transition: 'color 0.2s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}>
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
                 Accessibility
               </a>
               <a href="/contact" style={{ 
-                color: '#94a3b8',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 transition: 'color 0.2s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}>
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
                 Contact
               </a>
             </div>
@@ -149,7 +147,7 @@ export default function Footer() {
             minWidth: '150px'
           }}>
             <h4 style={{ 
-              color: '#e2e8f0',
+              color: 'var(--text-primary)',
               fontSize: '1rem',
               fontWeight: '600',
               marginBottom: '1rem'
@@ -158,23 +156,23 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <a href="/privacy" style={{ 
-                color: '#94a3b8',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 transition: 'color 0.2s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}>
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
                 Privacy Policy
               </a>
               <a href="/terms" style={{ 
-                color: '#94a3b8',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 transition: 'color 0.2s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#94a3b8'}>
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
                 Terms of Service
               </a>
             </div>
@@ -186,12 +184,12 @@ export default function Footer() {
         <div style={{
           marginTop: '2rem',
           paddingTop: '1rem',
-          borderTop: '1px solid #374151',
+          borderTop: '1px solid var(--border-light)',
           textAlign: 'center',
           width: '100%'
         }}>
           <p style={{ 
-            color: '#64748b',
+            color: 'var(--text-tertiary)',
             fontSize: '0.875rem'
           }}>
             © 2025 BookBridge. All rights reserved.
