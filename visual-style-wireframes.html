@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookBridge Visual Style Wireframes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Charter:wght@400;700&family=Literata:wght@400;600&family=Source+Serif+Pro:wght@400;600;700&family=Playfair+Display:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --transition: 180ms ease;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .app { display: grid; grid-template-rows: auto 1fr; min-height: 100vh; }
+    header { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 12px 16px; position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
+    header .left, header .right { display: flex; align-items: center; gap: 8px; }
+    header .title { font-weight: 700; letter-spacing: 0.3px; }
+    .selector { display: flex; gap: 8px; flex-wrap: wrap; }
+    .selector button { cursor: pointer; border: 1px solid rgba(0,0,0,.1); border-radius: 999px; padding: 8px 12px; background: white; transition: var(--transition); }
+    .selector button.active { background: black; color: white; border-color: black; }
+
+    main { padding: 24px; display: grid; gap: 28px; }
+    .row { display: grid; gap: 16px; }
+    @media (min-width: 900px) {
+      .row { grid-template-columns: 1.4fr 1fr; align-items: start; }
+    }
+    .panel { border-radius: var(--radius); padding: 16px; border: 1px solid rgba(0,0,0,.08); background: rgba(255,255,255,.6); backdrop-filter: blur(6px); }
+    .panel h3 { margin: 0 0 8px; font-size: 16px; opacity: .9; }
+    .panel p { margin: 0 0 8px; font-size: 13px; opacity: .8; }
+
+    /* Shared components */
+    .homepage { display: grid; gap: 12px; border-radius: var(--radius); padding: 16px; transition: var(--transition); }
+    .hero { display: grid; gap: 8px; }
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge { font-size: 11px; padding: 4px 8px; border-radius: 999px; border: 1px solid currentColor; opacity: .85; }
+    .cta { display: flex; gap: 8px; }
+    .cta button { padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(0,0,0,.1); cursor: pointer; transition: var(--transition); }
+    .cta button.primary { color: white; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+    .card { position: relative; border-radius: 10px; padding: 12px; min-height: 140px; display: grid; align-content: end; transition: transform var(--transition), box-shadow var(--transition); cursor: pointer; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.12); }
+    .card .meta { font-size: 11px; opacity: .85; }
+    .card .title { font-weight: 700; }
+    .card .button { margin-top: 8px; font-size: 12px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.9); width: fit-content; }
+
+    .reader { display: grid; grid-template-rows: 1fr auto; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(0,0,0,.08); }
+    .page { padding: 18px; line-height: 1.6; font-size: 16px; }
+    .sentence { padding: 2px 4px; border-radius: 6px; transition: background var(--transition); }
+    .sentence:hover { background: rgba(0,0,0,.06); }
+    .controls { display: flex; gap: 8px; align-items: center; justify-content: center; padding: 10px; border-top: 1px solid rgba(0,0,0,.08); }
+    .pill { padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(0,0,0,.12); background: white; cursor: pointer; }
+
+    .palette { display: flex; gap: 8px; flex-wrap: wrap; }
+    .swatch { width: 22px; height: 22px; border-radius: 6px; border: 1px solid rgba(0,0,0,.12); }
+    .typo { display: grid; gap: 6px; font-size: 13px; opacity: .85; }
+
+    /* THEMES */
+    /* 1) Literary Heritage (Enhanced Vintage Press) */
+    .theme-vintage .app { background: #F7F1E8; color: #2B1810; }
+    .theme-vintage header { background: rgba(247, 241, 232, .95); border-bottom: 2px solid #8B1538; }
+    .theme-vintage .homepage { background: linear-gradient(180deg, #F7F1E8, #F0E6D6); border: 2px solid #D4AF37; box-shadow: 0 4px 20px rgba(139, 21, 56, 0.1); }
+    .theme-vintage .badge { border-color: #8B1538; color: #8B1538; background: rgba(212, 175, 55, 0.1); font-weight: 600; }
+    .theme-vintage .cta button { background: #F7F1E8; border: 2px solid #8B1538; color: #8B1538; }
+    .theme-vintage .cta .primary { background: #8B1538; border-color: #8B1538; color: #F7F1E8; box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3); }
+    .theme-vintage .card { background: linear-gradient(135deg, #F7F1E8, #EFE3D0); border: 2px solid #D4AF37; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.2); }
+    .theme-vintage .reader { background: #FFFEF9; border: 1px solid #D4AF37; }
+    .theme-vintage h2, .theme-vintage .title, .theme-vintage .panel h3 { font-family: 'Crimson Pro', serif; font-weight: 700; letter-spacing: .3px; color: #8B1538; }
+    .theme-vintage, .theme-vintage .panel, .theme-vintage .page { font-family: 'Charter', serif; }
+
+    /* 2) Modern Literary (Enhanced Gallery Minimal) */
+    .theme-gallery .app { background: #1B2951; color: #F0F4F8; }
+    .theme-gallery header { background: rgba(27, 41, 81, .95); border-bottom: 2px solid #FDB813; }
+    .theme-gallery .homepage { background: linear-gradient(180deg, rgba(240, 244, 248, .08), rgba(240, 244, 248, .04)); border: 2px solid #FDB813; box-shadow: 0 4px 20px rgba(253, 184, 19, 0.2); }
+    .theme-gallery .badge { border-color: #FDB813; color: #FDB813; background: rgba(253, 184, 19, 0.1); font-weight: 600; }
+    .theme-gallery .cta button { background: #2A3B6B; color: #F0F4F8; border: 2px solid #FDB813; }
+    .theme-gallery .cta .primary { background: #FDB813; border-color: #FDB813; color: #1B2951; box-shadow: 0 4px 12px rgba(253, 184, 19, 0.3); }
+    .theme-gallery .card { background: linear-gradient(135deg, #243460, #2A3B6B); border: 2px solid #FDB813; box-shadow: 0 6px 20px rgba(253, 184, 19, 0.15); }
+    .theme-gallery .card .button { background: #F0F4F8; color: #1B2951; }
+    .theme-gallery .reader { background: #233058; border: 1px solid #FDB813; }
+    .theme-gallery .sentence:hover { background: rgba(253, 184, 19, 0.1); }
+    .theme-gallery h2, .theme-gallery .title, .theme-gallery .panel h3 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: .3px; color: #FDB813; }
+    .theme-gallery, .theme-gallery .panel, .theme-gallery .page { font-family: 'Literata', serif; }
+
+    /* 3) Academic Prestige (Enhanced Neo-Classic Library) */
+    .theme-library .app { background: #F4F1EB; color: #1A1A1A; }
+    .theme-library header { background: rgba(244, 241, 235, .95); border-bottom: 2px solid #002147; }
+    .theme-library .homepage { background: linear-gradient(180deg, #F4F1EB, #EBE5D6); border: 2px solid #CD7F32; box-shadow: 0 4px 20px rgba(0, 33, 71, 0.1); }
+    .theme-library .badge { border-color: #002147; color: #002147; background: rgba(205, 127, 50, 0.1); font-weight: 600; }
+    .theme-library .cta button { background: #F4F1EB; border: 2px solid #002147; color: #002147; }
+    .theme-library .cta .primary { background: #002147; border-color: #002147; color: #F4F1EB; box-shadow: 0 4px 12px rgba(0, 33, 71, 0.3); }
+    .theme-library .card { background: linear-gradient(135deg, #F4F1EB, #E8E0CF); border: 2px solid #CD7F32; box-shadow: 0 6px 20px rgba(205, 127, 50, 0.2); }
+    .theme-library .reader { background: #FFFFFE; border: 1px solid #CD7F32; }
+    .theme-library h2, .theme-library .title, .theme-library .panel h3 { font-family: 'Playfair Display', serif; font-weight: 800; letter-spacing: .3px; color: #002147; }
+    .theme-library, .theme-library .panel, .theme-library .page { font-family: 'Source Serif Pro', serif; }
+
+    /* Section labels */
+    .label { font-size: 12px; opacity: .6; letter-spacing: .06em; text-transform: uppercase; }
+  </style>
+</head>
+<body class="theme-library">
+  <div class="app">
+    <header>
+      <div class="left">
+        <div class="title">BookBridge Wireframes</div>
+        <div class="label">Select a visual style</div>
+      </div>
+      <div class="selector" id="themeBtns">
+        <button data-theme="theme-vintage">Vintage Press</button>
+        <button data-theme="theme-gallery">Gallery Minimal</button>
+        <button data-theme="theme-library" class="active">Neo‑Classic Library</button>
+      </div>
+      <div class="right">
+        <span class="label" id="themeInfo">Neo‑Classic Library</span>
+      </div>
+    </header>
+
+    <main>
+      <!-- ROW: Homepage + Palette/Type -->
+      <div class="row">
+        <div class="panel">
+          <h3>Homepage Hero</h3>
+          <div class="homepage">
+            <div class="hero">
+              <div class="label">Tagline</div>
+              <h2 style="margin:0">Read Classic Literature at Your English Level</h2>
+              <div class="badges">
+                <span class="badge">A1</span>
+                <span class="badge">A2</span>
+                <span class="badge">B1</span>
+                <span class="badge">B2</span>
+                <span class="badge">C1</span>
+                <span class="badge">C2</span>
+              </div>
+              <div class="cta">
+                <button class="primary">▶ Try a 10‑second demo</button>
+                <button>Browse all books</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Palette & Typography</h3>
+          <p class="label">Colors</p>
+          <div class="palette" id="palette"></div>
+          <p class="label" style="margin-top:10px">Typography</p>
+          <div class="typo" id="typo"></div>
+        </div>
+      </div>
+
+      <!-- ROW: Book Grid + Reading Interface -->
+      <div class="row">
+        <div class="panel">
+          <h3>Book Grid</h3>
+          <div class="grid">
+            <div class="card">
+              <div class="meta">Guy de Maupassant</div>
+              <div class="title">The Necklace</div>
+              <div class="button">Start Reading</div>
+            </div>
+            <div class="card">
+              <div class="meta">James Joyce</div>
+              <div class="title">The Dead</div>
+              <div class="button">Start Reading</div>
+            </div>
+            <div class="card">
+              <div class="meta">Franz Kafka</div>
+              <div class="title">The Metamorphosis</div>
+              <div class="button">Start Reading</div>
+            </div>
+            <div class="card">
+              <div class="meta">Anton Chekhov</div>
+              <div class="title">The Lady with the Dog</div>
+              <div class="button">Start Reading</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Reading Interface</h3>
+          <div class="reader">
+            <div class="page" id="pageText">
+              <span class="sentence">She was one of those pretty and charming girls, born, as if by an error of fate, into a family of clerks.</span>
+              <span class="sentence">She had no dowry, no expectations, no means of becoming known or appreciated, loved and married by a man both prosperous and famous; and she allowed herself to marry a petty clerk in the office of the Board of Education.</span>
+              <span class="sentence">She dressed plainly because she could not dress well, but she was unhappy as if she had really fallen from a higher station.</span>
+              <span class="sentence">For women have no caste or class; their beauty, their grace, and their charm serve them in place of birth and fortune.</span>
+            </div>
+            <div class="controls">
+              <button class="pill">⏮︎</button>
+              <button class="pill">▶︎ / ⏸︎</button>
+              <button class="pill">⏭︎</button>
+              <button class="pill">1.0×</button>
+              <button class="pill">Aa</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const themes = {
+      'theme-vintage': {
+        name: 'Vintage Press',
+        palette: ['#f7f4ec','#e5decd','#c9b79a','#6b5136','#2e2218'],
+        typo: ['Headings: "Baskerville", serif','Body: Georgia, serif','Labels: Small caps']
+      },
+      'theme-gallery': {
+        name: 'Gallery Minimal',
+        palette: ['#0c0c0c','#151515','#2a2a2a','#eaeaea','#2f6df6'],
+        typo: ['Headings: "Inter", sans-serif','Body: System UI, sans-serif','Labels: Mono, letter-spaced']
+      },
+      'theme-library': {
+        name: 'Neo‑Classic Library',
+        palette: ['#ffffff','#f5f7ff','#e3e8ff','#3b82f6','#171717'],
+        typo: ['Headings: "Source Serif", serif','Body: San Francisco / Segoe UI','Labels: Small caps']
+      }
+    };
+
+    const body = document.body;
+    const themeBtns = document.getElementById('themeBtns');
+    const themeInfo = document.getElementById('themeInfo');
+    const palette = document.getElementById('palette');
+    const typo = document.getElementById('typo');
+
+    function applyTheme(themeKey) {
+      body.className = themeKey;
+      const data = themes[themeKey];
+      themeInfo.textContent = data.name;
+      palette.innerHTML = '';
+      data.palette.forEach(c => {
+        const sw = document.createElement('div');
+        sw.className = 'swatch';
+        sw.style.background = c;
+        palette.appendChild(sw);
+      });
+      typo.innerHTML = '';
+      data.typo.forEach(t => {
+        const p = document.createElement('div');
+        p.textContent = t;
+        typo.appendChild(p);
+      });
+      Array.from(themeBtns.querySelectorAll('button')).forEach(b => b.classList.toggle('active', b.dataset.theme === themeKey));
+    }
+
+    themeBtns.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-theme]');
+      if (!btn) return;
+      applyTheme(btn.dataset.theme);
+    });
+
+    // Initialize from current body class
+    applyTheme(body.className || 'theme-library');
+  </script>
+</body>
+</html>
+
+

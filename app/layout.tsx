@@ -18,6 +18,7 @@ import OnboardingManager from '@/components/onboarding/OnboardingManager';
 import { PerformanceProvider } from '@/components/PerformanceProvider';
 import DeploymentInitializer from '@/components/DeploymentInitializer';
 import { PWAAnalyticsProvider } from '@/components/PWAAnalyticsProvider';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -64,9 +65,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body 
-        className="antialiased min-h-screen flex flex-col overflow-x-hidden magical-bg" 
-        style={{ backgroundColor: '#0f172a', color: '#ffffff' }}
+      <body
+        className="antialiased min-h-screen flex flex-col overflow-x-hidden theme-transition"
         suppressHydrationWarning
       >
         <SkipLinks />
@@ -87,13 +87,14 @@ export default function RootLayout({
           className="sr-only"
         />
         
-        <SimpleAuthProvider>
-          <AccessibilityProvider>
-            <KeyboardNavigationProvider>
-              <VoiceNavigationWrapper>
-                <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
-                  <PWAAnalyticsProvider enableTracking={true}>
-                    <OnboardingManager enableAutoOnboarding={true}>
+        <ThemeProvider>
+          <SimpleAuthProvider>
+            <AccessibilityProvider>
+              <KeyboardNavigationProvider>
+                <VoiceNavigationWrapper>
+                  <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
+                    <PWAAnalyticsProvider enableTracking={true}>
+                      <OnboardingManager enableAutoOnboarding={true}>
                 {/* Service Worker Registration */}
                 <ServiceWorkerRegistration />
                 
@@ -129,13 +130,14 @@ export default function RootLayout({
                 
                 {/* Deployment Initialization */}
                 <DeploymentInitializer />
-                    </OnboardingManager>
-                  </PWAAnalyticsProvider>
-                </PerformanceProvider>
-              </VoiceNavigationWrapper>
-            </KeyboardNavigationProvider>
-          </AccessibilityProvider>
-        </SimpleAuthProvider>
+                      </OnboardingManager>
+                    </PWAAnalyticsProvider>
+                  </PerformanceProvider>
+                </VoiceNavigationWrapper>
+              </KeyboardNavigationProvider>
+            </AccessibilityProvider>
+          </SimpleAuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

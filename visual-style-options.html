@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookBridge Visual Style Options</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Literata:opsz,wght@7..72,300;7..72,400;7..72,500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .styles-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .style-option {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .style-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .style-header {
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .style-content {
+            padding: 0;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Literary Café Style */
+        .literary-cafe {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+        }
+
+        .literary-cafe .style-content {
+            background: linear-gradient(135deg, #FDF6E3 0%, #F5E6D3 100%);
+            color: #5D4037;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .literary-cafe .mock-nav {
+            background: #6F4E37;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #F5E6D3;
+        }
+
+        .literary-cafe .mock-hero {
+            padding: 2rem;
+            text-align: center;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23D4B896" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23D4B896" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23D4B896" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+        }
+
+        .literary-cafe h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #4A2C2A;
+            margin-bottom: 1rem;
+        }
+
+        .literary-cafe .mock-books {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1rem 2rem;
+        }
+
+        .literary-cafe .mock-book {
+            background: #FFF8DC;
+            border: 2px solid #D4AF37;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+        }
+
+        .literary-cafe .mock-book h3 {
+            font-family: 'Playfair Display', serif;
+            color: #8B4513;
+            margin-bottom: 0.5rem;
+        }
+
+        .literary-cafe .cefr-badge {
+            background: #D4AF37;
+            color: #4A2C2A;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Modern Bookstore Style */
+        .modern-bookstore {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .modern-bookstore .style-content {
+            background: #FFFFFF;
+            color: #2D3748;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .modern-bookstore .mock-nav {
+            background: #FFFFFF;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E2E8F0;
+            color: #2D3748;
+        }
+
+        .modern-bookstore .mock-hero {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
+        }
+
+        .modern-bookstore h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            color: #1A202C;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .modern-bookstore .mock-books {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            padding: 1.5rem 2rem;
+            background: #FFFFFF;
+        }
+
+        .modern-bookstore .mock-book {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .modern-bookstore .mock-book:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .modern-bookstore .mock-book h3 {
+            font-family: 'Inter', sans-serif;
+            color: #1A202C;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .modern-bookstore .cefr-badge {
+            background: #48BB78;
+            color: #FFFFFF;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Scholar's Study Style */
+        .scholars-study {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+        }
+
+        .scholars-study .style-content {
+            background: linear-gradient(135deg, #FFF8E1 0%, #F3E5AB 100%);
+            color: #1a365d;
+            font-family: 'Literata', serif;
+        }
+
+        .scholars-study .mock-nav {
+            background: #1a365d;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #FFF8E1;
+        }
+
+        .scholars-study .mock-hero {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="academic" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M25 5 L45 25 L25 45 L5 25 Z" fill="none" stroke="%23B8860B" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23academic)"/></svg>') repeat;
+        }
+
+        .scholars-study h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #744210;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .scholars-study .mock-books {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1rem 2rem;
+        }
+
+        .scholars-study .mock-book {
+            background: #FFFDE7;
+            border: 2px solid #B8860B;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 3px 10px rgba(184, 134, 11, 0.2);
+            position: relative;
+        }
+
+        .scholars-study .mock-book::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #B8860B, #DAA520);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .scholars-study .mock-book h3 {
+            font-family: 'Playfair Display', serif;
+            color: #744210;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .scholars-study .cefr-badge {
+            background: #8B0000;
+            color: #FFF8E1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .style-description {
+            text-align: center;
+            margin: 1rem 2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .selection-footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #2D3748;
+            color: white;
+        }
+
+        .selection-footer h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .selection-footer p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .style-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .feature strong {
+            color: #48BB78;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .styles-container {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .style-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BookBridge Visual Style Options</h1>
+        <p>Choose the design direction that best reflects your vision for a premium ESL literature platform</p>
+    </div>
+
+    <div class="styles-container">
+        <!-- Literary Café Style -->
+        <div class="style-option literary-cafe" onclick="selectStyle('literary-cafe')">
+            <div class="style-header">
+                <h2>📚 Literary Café</h2>
+                <p>Warm • Classic • Inviting</p>
+            </div>
+            <div class="style-content">
+                <div class="mock-nav">
+                    <div class="brand-name">BookBridge</div>
+                    <div class="nav-items">Home • Books • Premium</div>
+                </div>
+                <div class="mock-hero">
+                    <h2>Classic Literature, Perfectly Simplified</h2>
+                    <p style="margin-bottom: 1.5rem;">Experience timeless stories in your cozy reading corner</p>
+                    <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+                        <span class="cefr-badge">A1</span>
+                        <span class="cefr-badge">A2</span>
+                        <span class="cefr-badge">B1</span>
+                        <span class="cefr-badge">B2</span>
+                    </div>
+                </div>
+                <div class="mock-books">
+                    <div class="mock-book">
+                        <h3>Pride & Prejudice</h3>
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">by Jane Austen</p>
+                        <span class="cefr-badge">B1</span>
+                    </div>
+                    <div class="mock-book">
+                        <h3>The Great Gatsby</h3>
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">by F. Scott Fitzgerald</p>
+                        <span class="cefr-badge">A2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="style-description">
+                Inspired by cozy bookshops and libraries. Warm browns, cream colors, and serif fonts create an inviting atmosphere for literature lovers.
+            </div>
+        </div>
+
+        <!-- Modern Bookstore Style -->
+        <div class="style-option modern-bookstore" onclick="selectStyle('modern-bookstore')">
+            <div class="style-header">
+                <h2>🏪 Modern Bookstore</h2>
+                <p>Clean • Bright • Contemporary</p>
+            </div>
+            <div class="style-content">
+                <div class="mock-nav">
+                    <div class="brand-name">BookBridge</div>
+                    <div class="nav-items">Home • Books • Premium</div>
+                </div>
+                <div class="mock-hero">
+                    <h2>Literature at Your Level</h2>
+                    <p style="margin-bottom: 1.5rem;">Clean, modern reading experience for today's learners</p>
+                    <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+                        <span class="cefr-badge">A1</span>
+                        <span class="cefr-badge">A2</span>
+                        <span class="cefr-badge">B1</span>
+                        <span class="cefr-badge">B2</span>
+                    </div>
+                </div>
+                <div class="mock-books">
+                    <div class="mock-book">
+                        <h3>Pride & Prejudice</h3>
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem; color: #718096;">by Jane Austen</p>
+                        <span class="cefr-badge">B1</span>
+                    </div>
+                    <div class="mock-book">
+                        <h3>The Great Gatsby</h3>
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem; color: #718096;">by F. Scott Fitzgerald</p>
+                        <span class="cefr-badge">A2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="style-description">
+                Inspired by Apple Books and modern bookstores. Clean whites, subtle grays, and sans-serif fonts prioritize content and readability.
+            </div>
+        </div>
+
+        <!-- Scholar's Study Style -->
+        <div class="style-option scholars-study" onclick="selectStyle('scholars-study')">
+            <div class="style-header">
+                <h2>🎓 Scholar's Study</h2>
+                <p>Academic • Elegant • Prestigious</p>
+            </div>
+            <div class="style-content">
+                <div class="mock-nav">
+                    <div class="brand-name">BookBridge</div>
+                    <div class="nav-items">Home • Books • Premium</div>
+                </div>
+                <div class="mock-hero">
+                    <h2>Academic Excellence in Literature</h2>
+                    <p style="margin-bottom: 1.5rem;">Scholarly approach to language learning through great works</p>
+                    <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+                        <span class="cefr-badge">A1</span>
+                        <span class="cefr-badge">A2</span>
+                        <span class="cefr-badge">B1</span>
+                        <span class="cefr-badge">B2</span>
+                    </div>
+                </div>
+                <div class="mock-books">
+                    <div class="mock-book">
+                        <h3>Pride & Prejudice</h3>
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">by Jane Austen</p>
+                        <span class="cefr-badge">B1</span>
+                    </div>
+                    <div class="mock-book">
+                        <h3>The Great Gatsby</h3>
+                        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">by F. Scott Fitzgerald</p>
+                        <span class="cefr-badge">A2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="style-description">
+                Inspired by university libraries and academic institutions. Deep blues, warm golds, and serif fonts convey scholarly authority and prestige.
+            </div>
+        </div>
+    </div>
+
+    <div class="selection-footer">
+        <h2>Each Style Transforms Your Experience</h2>
+        <p>All options maintain your current functionality while dramatically improving the visual appeal for literature lovers.</p>
+
+        <div class="style-features">
+            <div class="feature">
+                <strong>📚 Literary Café</strong>
+                Perfect for: Cozy reading experience, traditional book lovers, warm and inviting atmosphere
+            </div>
+            <div class="feature">
+                <strong>🏪 Modern Bookstore</strong>
+                Perfect for: Clean aesthetic, younger audience, focus on content over decoration
+            </div>
+            <div class="feature">
+                <strong>🎓 Scholar's Study</strong>
+                Perfect for: Academic prestige, serious learners, institutional credibility
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectStyle(styleName) {
+            // Visual feedback
+            document.querySelectorAll('.style-option').forEach(option => {
+                option.style.outline = 'none';
+            });
+
+            event.currentTarget.style.outline = '4px solid #48BB78';
+            event.currentTarget.style.outlineOffset = '4px';
+
+            // Show selection
+            const styleNames = {
+                'literary-cafe': 'Literary Café',
+                'modern-bookstore': 'Modern Bookstore',
+                'scholars-study': "Scholar's Study"
+            };
+
+            alert(`Great choice! You selected: ${styleNames[styleName]}\n\nThis will be your new BookBridge visual style. The warm, literary aesthetic will make your platform feel more like a premium reading experience.`);
+        }
+
+        // Add hover effects
+        document.querySelectorAll('.style-option').forEach(option => {
+            option.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+
+            option.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

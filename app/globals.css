@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -42,8 +44,7 @@ div span.mobile-reading-text[data-sentence].bg-blue-100 {
   }
   
   :root {
-    /* Portfolio-Inspired Dark Theme (Default) */
-    /* Dark theme with sophisticated gradients */
+    /* Legacy Dark Theme Variables (keeping for backward compatibility) */
     --text-primary: #ffffff;      /* High contrast on dark */
     --text-secondary: #e2e8f0;    /* Subtle gray text */
     --accent-primary: #d32f2f;    /* 5.5:1 contrast */
@@ -146,6 +147,253 @@ div span.mobile-reading-text[data-sentence].bg-blue-100 {
     --z-split-view: 100;
     --z-modal: 110;
     --z-tooltip: 120;
+  }
+
+  /* ===== NEO-CLASSIC THEME SYSTEM ===== */
+
+  /* Light Theme - Academic Prestige */
+  .theme-light {
+    --bg-primary: #F4F1EB;        /* Warm parchment */
+    --bg-secondary: #FFFFFF;      /* Clean white */
+    --bg-tertiary: #FBF9F5;       /* Subtle warm white */
+
+    --text-primary: #2C1810;      /* Rich brown */
+    --text-secondary: #5D4E37;    /* Medium brown */
+    --text-tertiary: #8B7355;     /* Light brown */
+    --text-accent: #002147;       /* Oxford blue */
+    --text-muted: #A0927B;        /* Muted brown */
+
+    --accent-primary: #002147;    /* Oxford blue */
+    --accent-secondary: #CD7F32;  /* Bronze */
+    --accent-tertiary: #B8860B;   /* Dark goldenrod */
+
+    --border-light: #E5DDD4;      /* Light border */
+    --border-medium: #D4C4B0;     /* Medium border */
+    --border-dark: #C7B299;       /* Dark border */
+
+    --shadow-soft: rgba(44, 24, 16, 0.1);
+    --shadow-medium: rgba(44, 24, 16, 0.15);
+    --shadow-strong: rgba(44, 24, 16, 0.25);
+
+    --overlay-light: rgba(244, 241, 235, 0.9);
+    --overlay-medium: rgba(244, 241, 235, 0.95);
+
+    --accent-primary-rgb: 0, 33, 71;
+    --accent-secondary-rgb: 205, 127, 50;
+  }
+
+  /* Dark Theme - Midnight Library */
+  .theme-dark {
+    --bg-primary: #1A1611;        /* Dark parchment */
+    --bg-secondary: #2A231C;      /* Warm dark */
+    --bg-tertiary: #332B22;       /* Elevated dark */
+
+    --text-primary: #F4F1EB;      /* Light parchment */
+    --text-secondary: #C7B299;    /* Muted gold */
+    --text-tertiary: #A89481;     /* Darker muted */
+    --text-accent: #FFD700;       /* Gold accent */
+    --text-muted: #8B7D6B;        /* Very muted */
+
+    --accent-primary: #FFD700;    /* Gold */
+    --accent-secondary: #CD7F32;  /* Bronze */
+    --accent-tertiary: #B8860B;   /* Dark gold */
+
+    --border-light: #3D342A;      /* Dark border */
+    --border-medium: #4A3F33;     /* Medium dark border */
+    --border-dark: #5A4D3F;       /* Lighter dark border */
+
+    --shadow-soft: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.4);
+    --shadow-strong: rgba(0, 0, 0, 0.6);
+
+    --overlay-light: rgba(26, 22, 17, 0.9);
+    --overlay-medium: rgba(26, 22, 17, 0.95);
+
+    --accent-primary-rgb: 255, 215, 0;
+    --accent-secondary-rgb: 205, 127, 50;
+  }
+
+  /* Sepia Theme - Vintage Reading */
+  .theme-sepia {
+    --bg-primary: #F5E6D3;        /* Warm sepia */
+    --bg-secondary: #FFF8F0;      /* Light sepia */
+    --bg-tertiary: #F0E4D0;       /* Medium sepia */
+
+    --text-primary: #3E2723;      /* Dark brown */
+    --text-secondary: #5D4037;    /* Medium brown */
+    --text-tertiary: #795548;     /* Light brown */
+    --text-accent: #8D4004;       /* Sepia accent */
+    --text-muted: #A1887F;        /* Sepia muted */
+
+    --accent-primary: #8D4004;    /* Sepia */
+    --accent-secondary: #BF6000;  /* Sepia secondary */
+    --accent-tertiary: #FF8F00;   /* Warm amber */
+
+    --border-light: #E8D5C4;      /* Sepia border */
+    --border-medium: #DCC4A8;     /* Medium sepia border */
+    --border-dark: #D0B28C;       /* Dark sepia border */
+
+    --shadow-soft: rgba(62, 39, 35, 0.15);
+    --shadow-medium: rgba(62, 39, 35, 0.25);
+    --shadow-strong: rgba(62, 39, 35, 0.4);
+
+    --overlay-light: rgba(245, 230, 211, 0.9);
+    --overlay-medium: rgba(245, 230, 211, 0.95);
+
+    --accent-primary-rgb: 141, 64, 4;
+    --accent-secondary-rgb: 191, 96, 0;
+  }
+
+  /* Typography Classes for Neo-Classic Theme */
+  .neo-classic-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: var(--text-accent);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .neo-classic-subtitle {
+    font-family: 'Source Serif Pro', Georgia, serif;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  .neo-classic-body {
+    font-family: 'Source Serif Pro', Georgia, serif;
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  .neo-classic-caption {
+    font-family: 'Source Serif Pro', Georgia, serif;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Component Base Classes */
+  .neo-classic-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-soft);
+    transition: all 0.3s ease;
+  }
+
+  .neo-classic-card:hover {
+    border-color: var(--border-medium);
+    box-shadow: 0 4px 16px var(--shadow-medium);
+    transform: translateY(-2px);
+  }
+
+  .neo-classic-button {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .neo-classic-button:hover {
+    background: var(--accent-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow-soft);
+  }
+
+  .neo-classic-button-secondary {
+    background: transparent;
+    color: var(--accent-primary);
+    border: 2px solid var(--accent-primary);
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .neo-classic-button-secondary:hover {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+  }
+
+  .neo-classic-input {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'Source Serif Pro', serif;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .neo-classic-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb), 0.1);
+  }
+
+  .neo-classic-surface {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+  }
+
+  .neo-classic-surface-elevated {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    box-shadow: 0 1px 3px var(--shadow-soft);
+  }
+
+  .neo-classic-overlay {
+    background: var(--overlay-light);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Theme Transition Animations */
+  .theme-transition {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  /* Theme-aware focus indicators */
+  .neo-classic-focus:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-primary), 0 0 0 4px rgba(var(--accent-primary-rgb), 0.2);
+  }
+
+  /* Reading-specific styles */
+  .neo-classic-reading-text {
+    font-family: 'Source Serif Pro', Georgia, serif;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .neo-classic-reading-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 16px var(--shadow-soft);
   }
 
   /* High contrast mode */
