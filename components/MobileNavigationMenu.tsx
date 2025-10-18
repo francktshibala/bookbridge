@@ -65,8 +65,8 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
       />
       
       {/* Slide-out Menu */}
-      <div 
-        className="mobile-nav-menu"
+      <div
+        className="mobile-nav-menu bg-[var(--bg-primary)] text-[var(--text-primary)]"
         style={{
           position: 'fixed',
           top: '0',
@@ -74,25 +74,24 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
           height: '100vh',
           width: '320px',
           zIndex: '9999',
-          backgroundColor: 'rgba(26, 26, 46, 0.98)',
           backdropFilter: 'blur(20px)',
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           boxShadow: '-4px 0 20px rgba(0, 0, 0, 0.3)',
-          border: '1px solid rgba(102, 126, 234, 0.2)',
+          border: '1px solid var(--border-light)',
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '24px' }}>
           {/* Header with Close Button */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', paddingTop: '16px' }}>
-            <h2 className="text-white text-lg font-semibold">Menu</h2>
+            <h2 className="text-[var(--text-primary)] text-lg font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>Menu</h2>
             <button
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-gray-700 hover:bg-opacity-30 transition-colors"
+              className="p-2 rounded-lg hover:bg-[var(--bg-secondary)] transition-colors"
               style={{
                 backgroundColor: 'transparent',
                 border: 'none',
-                color: '#e2e8f0',
+                color: 'var(--text-primary)',
                 fontSize: '24px',
                 minWidth: '44px',
                 minHeight: '44px',
@@ -151,15 +150,15 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                       fontSize: '16px',
                       fontWeight: '500',
                       minHeight: '56px',
-                      backgroundColor: 'rgba(102, 126, 234, 0.8)',
-                      color: '#ffffff',
+                      backgroundColor: 'var(--accent-primary)',
+                      color: 'var(--bg-primary)',
                       transition: 'all 0.2s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 1)';
+                      e.currentTarget.style.backgroundColor = 'var(--accent-secondary)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.8)';
+                      e.currentTarget.style.backgroundColor = 'var(--accent-primary)';
                     }}
                   >
                     Sign In
@@ -178,17 +177,17 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                       fontWeight: '500',
                       minHeight: '56px',
                       backgroundColor: 'transparent',
-                      color: '#60a5fa',
-                      border: '1px solid rgba(102, 126, 234, 0.4)',
+                      color: 'var(--accent-primary)',
+                      border: '1px solid var(--border-light)',
                       transition: 'all 0.2s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
-                      e.currentTarget.style.color = '#ffffff';
+                      e.currentTarget.style.backgroundColor = 'var(--bg-secondary)';
+                      e.currentTarget.style.color = 'var(--text-primary)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#60a5fa';
+                      e.currentTarget.style.color = 'var(--accent-primary)';
                     }}
                   >
                     Sign Up
@@ -203,7 +202,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
             <div style={{ 
               marginTop: 'auto', 
               paddingTop: '20px', 
-              borderTop: '1px solid rgba(102, 126, 234, 0.2)' 
+              borderTop: '1px solid var(--border-light)' 
             }}>
               <button
                 onClick={handleSignOut}
@@ -224,7 +223,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.color = 'var(--text-primary)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent';
