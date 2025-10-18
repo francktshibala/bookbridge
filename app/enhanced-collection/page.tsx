@@ -28,11 +28,6 @@ const ENHANCED_FEATURES = [
     description: '6 CEFR levels (A1-C2)'
   },
   {
-    icon: '🎧',
-    title: 'Premium Audio',
-    description: '12 voices, word highlighting'
-  },
-  {
     icon: '📚',
     title: 'Vocabulary Builder',
     description: 'Interactive word definitions'
@@ -40,7 +35,12 @@ const ENHANCED_FEATURES = [
   {
     icon: '📊',
     title: 'Progress Tracking',
-    description: 'Reading analytics'
+    description: 'Reading analytics & comprehension'
+  },
+  {
+    icon: '📖',
+    title: 'Academic Reading',
+    description: 'Focus on text comprehension'
   }
 ];
 
@@ -220,122 +220,71 @@ export default function EnhancedCollectionDynamic() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        whileHover={{ scale: 1.01 }}
+        whileHover={{ y: -4 }}
+        className="bg-[var(--bg-secondary)] border border-[var(--accent-secondary)] rounded-xl p-4 flex flex-col shadow-sm hover:shadow-md transition-all duration-200"
         style={{
-          background: 'rgba(51, 65, 85, 0.5)',
-          border: '1px solid #334155',
-          borderRadius: '12px',
-          padding: '16px',
-          marginBottom: '16px',
-          width: '100%'
+          height: '240px',
+          width: '320px',
+          boxShadow: '0 2px 8px var(--shadow-soft)',
+          cursor: 'pointer'
         }}
       >
-        {/* Book Title */}
-        <div style={{
-          fontSize: '16px',
-          fontWeight: '600',
-          color: '#e2e8f0',
-          marginBottom: '4px'
-        }}>
-          {book.title}
-        </div>
+        {/* Book Content - Top Section */}
+        <div className="flex-1 flex flex-col">
+          {/* Book Title */}
+          <h3
+            className="text-lg font-bold text-[var(--text-accent)] mb-2 line-clamp-2"
+            style={{
+              fontFamily: 'Playfair Display, serif',
+              lineHeight: '1.3',
+              minHeight: '2.6em'
+            }}
+          >
+            {book.title}
+          </h3>
 
-        {/* Author */}
-        <div style={{
-          fontSize: '14px',
-          color: '#94a3b8',
-          marginBottom: '12px'
-        }}>
-          by {book.author}
-        </div>
+          {/* Author */}
+          <p
+            className="text-sm text-[var(--text-secondary)] mb-3"
+            style={{ fontFamily: 'Source Serif Pro, serif' }}
+          >
+            by {book.author}
+          </p>
 
-        {/* Meta Tags */}
-        <div style={{
-          display: 'flex',
-          gap: '8px',
-          marginBottom: '12px',
-          flexWrap: 'wrap'
-        }}>
-          <span style={{
-            padding: '4px 8px',
-            background: 'rgba(59, 130, 246, 0.2)',
-            color: '#60a5fa',
-            borderRadius: '4px',
-            fontSize: '11px'
-          }}>
-            {book.cefrLevels}
-          </span>
-          <span style={{
-            padding: '4px 8px',
-            background: 'rgba(59, 130, 246, 0.2)',
-            color: '#60a5fa',
-            borderRadius: '4px',
-            fontSize: '11px'
-          }}>
-            {book.genre}
-          </span>
-          <span style={{
-            padding: '4px 8px',
-            background: 'rgba(59, 130, 246, 0.2)',
-            color: '#60a5fa',
-            borderRadius: '4px',
-            fontSize: '11px'
-          }}>
-            ~{book.estimatedHours}h
-          </span>
-          {book.status === 'enhanced' && (
-            <span style={{
-              padding: '4px 8px',
-              background: 'rgba(16, 185, 129, 0.2)',
-              color: '#10b981',
-              borderRadius: '4px',
-              fontSize: '11px'
-            }}>
-              Enhanced ⚡
+          {/* Meta Tags */}
+          <div className="flex flex-wrap gap-2 mb-4 flex-1">
+            <span className="px-2.5 py-0.5 bg-transparent text-[var(--accent-primary)] rounded-full text-xs font-medium border border-[var(--accent-primary)]/40">
+              {book.cefrLevels}
             </span>
-          )}
+            <span className="px-2.5 py-0.5 bg-transparent text-[var(--accent-secondary)] rounded-full text-xs font-medium border border-[var(--accent-secondary)]/40">
+              {book.genre}
+            </span>
+            <span className="px-2.5 py-0.5 bg-transparent text-[var(--text-secondary)] rounded-full text-xs font-medium border border-[var(--text-secondary)]/40">
+              ~{book.estimatedHours}h
+            </span>
+            {book.status === 'enhanced' && (
+              <span className="px-2.5 py-0.5 bg-transparent text-green-600 rounded-full text-xs font-medium border border-green-500/40">
+                Enhanced ⚡
+              </span>
+            )}
+          </div>
         </div>
 
-        {/* Action Buttons */}
-        <div style={{
-          display: 'flex',
-          gap: '8px'
-        }}>
+        {/* Action Buttons - Bottom Section */}
+          <div className="flex gap-3 mt-auto">
           <button
             onClick={() => handleAskAI(book)}
-            style={{
-              flex: 1,
-              height: '36px',
-              borderRadius: '8px',
-              background: 'rgba(139, 92, 246, 0.2)',
-              color: '#a78bfa',
-              border: '1px solid rgba(139, 92, 246, 0.3)',
-              fontSize: '14px',
-              fontWeight: '500',
-              cursor: 'pointer'
-            }}
+            className="flex-1 h-8 rounded-full border border-[var(--accent-primary)] bg-transparent text-[var(--accent-primary)] text-xs font-semibold hover:bg-[var(--accent-primary)] hover:text-[var(--bg-secondary)] transition-all duration-150"
+            style={{ fontFamily: 'Source Serif Pro, serif' }}
           >
             Ask AI
           </button>
           <a
             href={`/library/${book.id}/read`}
-            style={{
-              flex: 1,
-              height: '36px',
-              background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '8px',
-              fontSize: '14px',
-              fontWeight: '500',
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer'
-            }}
+            className="flex-1 h-8 bg-[var(--accent-primary)] text-[var(--bg-secondary)] rounded-full text-xs font-semibold hover:bg-[var(--accent-secondary)] transition-all duration-150 flex items-center justify-center no-underline"
+            style={{ fontFamily: 'Source Serif Pro, serif' }}
           >
-            {book.status === 'enhanced' ? 'Read Enhanced' : 'Read Original'}
+            Start Reading
           </a>
         </div>
       </motion.div>
@@ -371,16 +320,8 @@ export default function EnhancedCollectionDynamic() {
           <p className="text-lg text-red-500" style={{ fontFamily: 'Source Serif Pro, serif' }}>{error}</p>
           <button
             onClick={fetchEnhancedBooks}
-            style={{
-              marginTop: '20px',
-              padding: '12px 24px',
-              background: '#667eea',
-              border: 'none',
-              borderRadius: '12px',
-              color: 'white',
-              fontWeight: '600',
-              cursor: 'pointer'
-            }}
+            className="mt-5 px-6 py-3 bg-[var(--accent-primary)] text-[var(--bg-primary)] rounded-lg font-semibold cursor-pointer hover:bg-[var(--accent-secondary)] transition-all"
+            style={{ fontFamily: 'Source Serif Pro, serif' }}
           >
             Try Again
           </button>
@@ -403,7 +344,7 @@ export default function EnhancedCollectionDynamic() {
             ✨ Enhanced Collection
           </h1>
           <p className="text-lg text-[var(--text-secondary)]" style={{ fontFamily: 'Source Serif Pro, serif' }}>
-            Classic literature enhanced with AI-powered ESL learning tools
+            Classic literature with AI-powered text simplification and vocabulary learning
           </p>
           <p className="text-sm text-[var(--text-secondary)] mt-2" style={{ fontFamily: 'Source Serif Pro, serif' }}>
             Automatically updated with {books.length} books from our database
@@ -434,23 +375,12 @@ export default function EnhancedCollectionDynamic() {
                 onClick={() => handleGenreChange(genre)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                style={{
-                  padding: '8px 20px',
-                  background: selectedGenre === genre 
-                    ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
-                    : 'transparent',
-                  border: `2px solid ${selectedGenre === genre ? 'transparent' : '#334155'}`,
-                  borderRadius: '24px',
-                  color: selectedGenre === genre ? 'white' : '#94a3b8',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  whiteSpace: 'nowrap',
-                  minWidth: 'fit-content',
-                  minHeight: '44px',
-                  boxShadow: selectedGenre === genre ? '0 4px 12px rgba(102, 126, 234, 0.3)' : 'none',
-                  flexShrink: 0
-                }}
+                className={`px-5 py-2 rounded-full font-semibold cursor-pointer transition-all whitespace-nowrap min-w-fit min-h-[44px] flex-shrink-0 ${
+                  selectedGenre === genre
+                    ? 'bg-[var(--accent-primary)] text-[var(--bg-primary)] shadow-lg'
+                    : 'bg-transparent text-[var(--text-secondary)] border-2 border-[var(--border-light)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)]'
+                }`}
+                style={{ fontFamily: 'Source Serif Pro, serif' }}
               >
                 {genre} ({genre === 'All' ? books.length : books.filter(b => b.genre === genre).length})
               </motion.button>
@@ -469,12 +399,28 @@ export default function EnhancedCollectionDynamic() {
             height: 4px;
           }
           .genre-filter-container::-webkit-scrollbar-track {
-            background: rgba(51, 65, 85, 0.3);
+            background: var(--bg-secondary);
             border-radius: 2px;
           }
           .genre-filter-container::-webkit-scrollbar-thumb {
-            background: rgba(102, 126, 234, 0.5);
+            background: var(--accent-primary);
             border-radius: 2px;
+          }
+
+          /* Centered, smaller cards grid to match wireframe */
+          .enhanced-collection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 320px);
+            gap: 28px;
+            justify-content: center;
+            max-width: none;
+            padding: 0;
+          }
+          @media (max-width: 1100px) {
+            .enhanced-collection-grid { grid-template-columns: repeat(2, 320px); }
+          }
+          @media (max-width: 740px) {
+            .enhanced-collection-grid { grid-template-columns: repeat(1, 320px); }
           }
         `}</style>
 
@@ -482,7 +428,7 @@ export default function EnhancedCollectionDynamic() {
         {/* Enhanced Books Section */}
         {enhancedBooks.length > 0 && (
           <>
-            <div className="enhanced-collection-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4" style={{
+            <div className="enhanced-collection-grid mx-auto" style={{
                 marginBottom: hasMoreBooks ? '40px' : '60px'
               }}>
                 {visibleEnhancedBooks.map((book) => (
@@ -497,20 +443,11 @@ export default function EnhancedCollectionDynamic() {
                     onClick={handleLoadMore}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    style={{
-                    padding: '12px 24px',
-                    borderRadius: '12px',
-                    border: '2px solid #10b981',
-                    background: 'transparent',
-                    color: '#10b981',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  Load More Books ({enhancedBooks.length - visibleCount} remaining)
-                </motion.button>
+                    className="px-6 py-3 rounded-lg border-2 border-[var(--accent-primary)] bg-transparent text-[var(--accent-primary)] text-base font-semibold cursor-pointer transition-all hover:bg-[var(--accent-primary)] hover:text-[var(--bg-primary)]"
+                    style={{ fontFamily: 'Source Serif Pro, serif' }}
+                  >
+                    Load More Books ({enhancedBooks.length - visibleCount} remaining)
+                  </motion.button>
               </div>
             )}
           </>
