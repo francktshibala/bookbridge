@@ -229,63 +229,51 @@ export default function EnhancedCollectionDynamic() {
           cursor: 'pointer'
         }}
       >
-        {/* Book Content - Top Section */}
-        <div className="flex-1 flex flex-col">
+        {/* Card Content */}
+        <div>
           {/* Book Title */}
-          <h3
-            className="text-lg font-bold text-[var(--text-accent)] mb-2 line-clamp-2"
-            style={{
-              fontFamily: 'Playfair Display, serif',
-              lineHeight: '1.3',
-              minHeight: '2.6em'
-            }}
-          >
+          <div className="text-lg font-bold text-[var(--text-accent)] mb-1 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
             {book.title}
-          </h3>
-
+          </div>
           {/* Author */}
-          <p
-            className="text-sm text-[var(--text-secondary)] mb-3"
-            style={{ fontFamily: 'Source Serif Pro, serif' }}
-          >
+          <div className="text-sm text-[var(--text-secondary)] mb-3" style={{ fontFamily: 'Source Serif Pro, serif' }}>
             by {book.author}
-          </p>
-
-          {/* Meta Tags */}
-          <div className="flex flex-wrap gap-2 mb-4 flex-1">
-            <span className="px-2.5 py-0.5 bg-transparent text-[var(--accent-primary)] rounded-full text-xs font-medium border border-[var(--accent-primary)]/40">
+          </div>
+          {/* Meta Tags - Compact Style */}
+          <div className="flex gap-2 mb-3 flex-wrap">
+            <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
               {book.cefrLevels}
             </span>
-            <span className="px-2.5 py-0.5 bg-transparent text-[var(--accent-secondary)] rounded-full text-xs font-medium border border-[var(--accent-secondary)]/40">
+            <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
               {book.genre}
             </span>
-            <span className="px-2.5 py-0.5 bg-transparent text-[var(--text-secondary)] rounded-full text-xs font-medium border border-[var(--text-secondary)]/40">
+            <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
               ~{book.estimatedHours}h
             </span>
             {book.status === 'enhanced' && (
-              <span className="px-2.5 py-0.5 bg-transparent text-green-600 rounded-full text-xs font-medium border border-green-500/40">
+              <span className="px-2 py-1 bg-green-500/10 text-green-600 border border-green-500/30 rounded-full text-xs font-medium">
                 Enhanced ⚡
               </span>
             )}
           </div>
-        </div>
 
-        {/* Action Buttons - Bottom Section */}
-          <div className="flex gap-3 mt-auto">
-          <button
-            onClick={() => handleAskAI(book)}
-            className="flex-1 h-8 rounded-full border border-[var(--accent-primary)] bg-transparent text-[var(--accent-primary)] text-xs font-semibold hover:bg-[var(--accent-primary)] hover:text-[var(--bg-secondary)] transition-all duration-150"
-            style={{ fontFamily: 'Source Serif Pro, serif' }}
-          >
-            Ask AI
-          </button>
-          <a
-            href={`/library/${book.id}/read`}
-            className="flex-1 h-8 bg-[var(--accent-primary)] text-[var(--bg-secondary)] rounded-full text-xs font-semibold hover:bg-[var(--accent-secondary)] transition-all duration-150 flex items-center justify-center no-underline"
-            style={{ fontFamily: 'Source Serif Pro, serif' }}
-          >
-            Start Reading
-          </a>
+          {/* Action Buttons - Compact Style */}
+          <div className="flex gap-2 mt-auto">
+            <button
+              onClick={() => handleAskAI(book)}
+              className="flex-1 h-9 rounded-lg bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)]/60 transition-all duration-200 text-sm font-medium"
+              style={{ fontFamily: 'Source Serif Pro, serif' }}
+            >
+              Ask AI
+            </button>
+            <a
+              href={`/library/${book.id}/read`}
+              className="flex-1 h-9 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center no-underline"
+              style={{ fontFamily: 'Source Serif Pro, serif' }}
+            >
+              Start Reading
+            </a>
+          </div>
         </div>
       </motion.div>
     );
