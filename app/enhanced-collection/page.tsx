@@ -352,7 +352,7 @@ export default function EnhancedCollectionDynamic() {
       }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: '48px', marginBottom: '20px' }}>📚</div>
-          <p style={{ fontSize: '18px', color: '#94a3b8' }}>Loading enhanced collection...</p>
+          <p className="text-lg text-[var(--text-secondary)]" style={{ fontFamily: 'Source Serif Pro, serif' }}>Loading enhanced collection...</p>
         </div>
       </div>
     );
@@ -368,7 +368,7 @@ export default function EnhancedCollectionDynamic() {
       }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: '48px', marginBottom: '20px' }}>❌</div>
-          <p style={{ fontSize: '18px', color: '#ef4444' }}>{error}</p>
+          <p className="text-lg text-red-500" style={{ fontFamily: 'Source Serif Pro, serif' }}>{error}</p>
           <button
             onClick={fetchEnhancedBooks}
             style={{
@@ -390,7 +390,7 @@ export default function EnhancedCollectionDynamic() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', padding: '40px 20px' }}>
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]" style={{ padding: '40px 20px' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Header */}
         <motion.div
@@ -399,20 +399,13 @@ export default function EnhancedCollectionDynamic() {
           className="enhanced-collection-mobile-header"
           style={{ textAlign: 'center', marginBottom: '60px' }}
         >
-          <h1 style={{ 
-            fontSize: '48px', 
-            fontWeight: 'bold',
-            marginBottom: '16px',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}>
+          <h1 className="text-4xl font-bold mb-4 text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
             ✨ Enhanced Collection
           </h1>
-          <p style={{ fontSize: '18px', color: '#94a3b8' }}>
+          <p className="text-lg text-[var(--text-secondary)]" style={{ fontFamily: 'Source Serif Pro, serif' }}>
             Classic literature enhanced with AI-powered ESL learning tools
           </p>
-          <p style={{ fontSize: '14px', color: '#64748b', marginTop: '8px' }}>
+          <p className="text-sm text-[var(--text-secondary)] mt-2" style={{ fontFamily: 'Source Serif Pro, serif' }}>
             Automatically updated with {books.length} books from our database
           </p>
         </motion.div>
@@ -483,26 +476,13 @@ export default function EnhancedCollectionDynamic() {
             background: rgba(102, 126, 234, 0.5);
             border-radius: 2px;
           }
-          
-          @media (min-width: 769px) {
-            .enhanced-collection-grid {
-              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-              max-width: 1200px !important;
-              gap: 24px !important;
-            }
-          }
         `}</style>
 
 
         {/* Enhanced Books Section */}
         {enhancedBooks.length > 0 && (
           <>
-            <div className="enhanced-collection-grid" style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr',
-                gap: '16px',
-                maxWidth: '600px',
-                margin: '0 auto',
+            <div className="enhanced-collection-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4" style={{
                 marginBottom: hasMoreBooks ? '40px' : '60px'
               }}>
                 {visibleEnhancedBooks.map((book) => (
@@ -539,24 +519,10 @@ export default function EnhancedCollectionDynamic() {
         {/* Processing Books Section */}
         {processingBooks.length > 0 && (
           <>
-            <h2 style={{ 
-              fontSize: '24px', 
-              marginBottom: '24px', 
-              color: '#fbbf24',
-              textAlign: 'center',
-              maxWidth: '600px',
-              margin: '0 auto 24px auto'
-            }}>
+            <h2 className="text-2xl font-semibold mb-6 text-yellow-500 text-center mx-auto max-w-[600px]" style={{ fontFamily: 'Playfair Display, serif' }}>
               🔄 Currently Processing ({processingBooks.length})
             </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr',
-              gap: '16px',
-              maxWidth: '600px',
-              margin: '0 auto',
-              marginBottom: '60px'
-            }}>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4 mb-16">
               {processingBooks.map((book) => (
                 <BookCard key={book.id} book={book} />
               ))}
@@ -567,23 +533,10 @@ export default function EnhancedCollectionDynamic() {
         {/* Planned Books Section */}
         {plannedBooks.length > 0 && (
           <>
-            <h2 style={{ 
-              fontSize: '24px', 
-              marginBottom: '24px', 
-              color: '#9ca3af',
-              textAlign: 'center',
-              maxWidth: '600px',
-              margin: '0 auto 24px auto'
-            }}>
+            <h2 className="text-2xl font-semibold mb-6 text-[var(--text-secondary)] text-center mx-auto max-w-[600px]" style={{ fontFamily: 'Playfair Display, serif' }}>
               📅 Planned for Enhancement ({plannedBooks.length})
             </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr',
-              gap: '16px',
-              maxWidth: '600px',
-              margin: '0 auto'
-            }}>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
               {plannedBooks.map((book) => (
                 <BookCard key={book.id} book={book} />
               ))}

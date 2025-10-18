@@ -337,27 +337,172 @@ This document outlines the comprehensive transformation plan to implement the Ne
 
 ---
 
-### Phase 7: Audio & Interactive Features
-**Duration**: 2 days
+### Phase 7: Enhanced Books Collection & Reading Pages Transformation
+**Duration**: 2-3 days
 **Dependencies**: Phase 6
 **Priority**: High
+**Target Files**:
+- `app/enhanced-collection/page.tsx` (Enhanced Books Collection)
+- `app/library/[id]/read/page.tsx` (Enhanced Books Reading Page)
+**Reference**: Apply same Neo-Classic transformation as Simplified Books
 
-#### 7.1 Audio Control Styling
-- **Files**:
-  - `components/AudioPlayer.tsx`
-  - `components/AudioPlayerWithHighlighting.tsx`
-  - `components/IntegratedAudioControls.tsx`
-- **Changes**:
-  - Replace modern audio controls with classic academic styling
-  - Add bronze/gold progress bars
-  - Implement elegant play/pause buttons
+**Current Status**: 🔄 **PENDING** - Ready for implementation
 
-#### 7.2 Voice Selection Modal
-- **File**: `components/VoiceSelectionModal.tsx`
-- **Changes**:
-  - Transform modal design to match Neo-Classic theme
-  - Add elegant dropdown styling
-  - Implement theme-aware colors
+🎯 **STRATEGY**: Create text-focused experience (Enhanced Books = Text Simplification, Simplified Books = Audio Experience)
+
+#### 7.1 Enhanced Collection Page Background & Layout ⏳ PENDING
+**Target**: Transform collection page foundation
+**Duration**: 45 minutes
+
+**Background Transformation**:
+- [ ] Replace dark theme (`bg-gray-900`) with `bg-[var(--bg-primary)]`
+- [ ] Update text colors to theme-aware variables
+- [ ] Transform main container to use Neo-Classic styling
+- [ ] Apply parchment/academic background across all themes
+
+**Layout Updates**:
+- [ ] Change from single-column to 3-column wireframe layout
+- [ ] Transform grid from `gridTemplateColumns: '1fr'` to responsive grid
+- [ ] Apply same spacing and proportions as Simplified Books
+- [ ] Ensure proper mobile responsiveness
+
+#### 7.2 Enhanced Collection Typography System ⏳ PENDING
+**Target**: Apply Neo-Classic fonts and text hierarchy
+**Duration**: 30 minutes
+
+**Typography Integration**:
+- [ ] Page title: Apply Playfair Display font
+- [ ] Subtitle: Source Serif Pro for description text
+- [ ] Section headers: Playfair Display for "Enhanced", "Processing", "Planned"
+- [ ] Genre filters: Source Serif Pro with theme colors
+
+**Text Color Updates**:
+- [ ] Primary headings: `var(--text-accent)` colors
+- [ ] Body text: `var(--text-primary)` and `var(--text-secondary)`
+- [ ] Meta information: Consistent theme-aware colors
+
+#### 7.3 Enhanced Collection Book Cards Redesign ⏳ PENDING
+**Target**: Transform cards to match Simplified Books wireframe
+**Duration**: 60 minutes
+
+**Card Structure**:
+- [ ] Replace dark cards (`rgba(51, 65, 85, 0.5)`) with `bg-[var(--bg-secondary)]`
+- [ ] Add bronze/gold borders (`border-[var(--accent-primary)]/30`)
+- [ ] Apply fixed height (`h-48`) for wireframe proportions
+- [ ] Add hover effects and shadows
+
+**Card Content**:
+- [ ] Book titles: Playfair Display with `var(--text-accent)`
+- [ ] Authors: Source Serif Pro with `var(--text-secondary)`
+- [ ] Meta tags: Theme-aware pill styling
+- [ ] Status indicators: Enhanced/Processing/Planned with theme colors
+
+#### 7.4 Remove Audio Features & Focus on Text ⏳ PENDING
+**Target**: Eliminate audio references, emphasize text simplification
+**Duration**: 30 minutes
+
+**Feature Updates**:
+- [ ] Remove "Premium Audio" from ENHANCED_FEATURES array
+- [ ] Remove "12 voices, word highlighting" description
+- [ ] Update features to focus on: Text Simplification, Vocabulary Builder, Progress Tracking
+- [ ] Change button text from "Read Enhanced" to "Start Reading"
+
+**Content Messaging**:
+- [ ] Update descriptions to emphasize CEFR simplification
+- [ ] Remove audio-related terminology
+- [ ] Focus on academic reading and vocabulary building
+
+#### 7.5 Enhanced Collection Button Transformation ⏳ PENDING
+**Target**: Apply Neo-Classic button styling
+**Duration**: 30 minutes
+
+**Button Updates**:
+- [ ] "Ask AI": Theme-aware outlined style with `var(--accent-primary)`
+- [ ] "Start Reading": Solid theme accent background
+- [ ] Genre filter buttons: Neo-Classic styling with theme variables
+- [ ] Load More button: Transform to theme accent colors
+
+**Interaction States**:
+- [ ] Hover effects: Subtle color transitions
+- [ ] Active states: Theme-appropriate highlighting
+- [ ] Typography: Source Serif Pro for consistency
+
+#### 7.6 Enhanced Reading Page Foundation ⏳ PENDING
+**Target**: Transform reading interface background and layout
+**Duration**: 45 minutes
+
+**Background & Container**:
+- [ ] Apply same background styling as Simplified Books reading page
+- [ ] Header transformation: Back button, settings, chapter navigation
+- [ ] Content container: Theme-aware styling with borders
+- [ ] Remove audio control areas
+
+**Navigation Elements**:
+- [ ] Back button: Circular theme-aware styling
+- [ ] Settings button: "Aa" button with theme colors
+- [ ] Breadcrumbs: Theme-appropriate text colors
+
+#### 7.7 Enhanced Reading Remove Audio Systems ⏳ PENDING
+**Target**: Strip audio components, keep text simplification
+**Duration**: 60 minutes
+
+**Audio Component Removal**:
+- [ ] Disable `PrecomputeAudioPlayer` component
+- [ ] Remove `AudioPlayerWithHighlighting` integration
+- [ ] Eliminate `IntegratedAudioControls` and voice selection
+- [ ] Remove audio-related state management
+
+**Keep Text Features**:
+- [ ] Maintain CEFR level controls for text simplification
+- [ ] Preserve vocabulary highlighting and definitions
+- [ ] Keep text-only reading experience
+- [ ] Maintain progress tracking for reading
+
+#### 7.8 Enhanced Reading Typography & Content ⏳ PENDING
+**Target**: Apply Neo-Classic text styling to reading content
+**Duration**: 45 minutes
+
+**Content Typography**:
+- [ ] Book title: Playfair Display with theme accent colors
+- [ ] Chapter headers: Playfair Display with proper hierarchy
+- [ ] Body text: Source Serif Pro for readability
+- [ ] CEFR level indicators: Theme-aware styling
+
+**Text Controls**:
+- [ ] Simplification level selector: Neo-Classic button styling
+- [ ] Vocabulary highlighting: Theme-appropriate colors
+- [ ] Reading settings: Academic styling for controls
+
+#### 7.9 Enhanced Pages Mobile Responsiveness ⏳ PENDING
+**Target**: Ensure optimal mobile experience
+**Duration**: 30 minutes
+
+**Mobile Optimizations**:
+- [ ] Enhanced collection: Responsive grid and card sizing
+- [ ] Enhanced reading: Mobile-friendly text controls
+- [ ] Touch targets: Minimum 44px for accessibility
+- [ ] Text sizing: Appropriate scaling for mobile reading
+
+**Success Criteria**:
+- [ ] All enhanced pages use consistent Neo-Classic theming
+- [ ] Audio features completely removed from enhanced experience
+- [ ] Text simplification and vocabulary features preserved
+- [ ] Clear differentiation: Enhanced = Text Focus, Simplified = Audio Focus
+- [ ] Wireframe-perfect card layout matching Simplified Books
+- [ ] Mobile experience optimized for text-focused reading
+
+---
+
+### Phase 8: Legacy Audio & Interactive Features (Optional)
+**Duration**: 2 days
+**Dependencies**: Phase 7
+**Priority**: Low
+**Status**: Deferred - Focus on text-based experiences
+
+#### 8.1 Legacy Audio Components (If Needed)
+- **Files**: Various audio components
+- **Changes**: Update any remaining audio components for consistency
+- **Note**: Enhanced Books will be audio-free, so this phase may not be needed
 
 ---
 
@@ -523,7 +668,7 @@ This document outlines the comprehensive transformation plan to implement the Ne
 ### Successfully Completed Phases:
 - **✅ Phase 1**: Theme Infrastructure & Core Components
 - **✅ Phase 2**: Homepage Transformation
-- **✅ Phase 3**: Reading Interface Transformation (Featured Books Page) + Mobile Enhancements
+- **✅ Phase 3**: Reading Interface Transformation (Simplified Books) + Mobile Enhancements
 - **✅ Phase 4**: Books Grid & Collection
 - **✅ Phase 5**: Navigation & Layout
 - **✅ Phase 6**: Theme Switcher & Controls
@@ -555,9 +700,10 @@ This document outlines the comprehensive transformation plan to implement the Ne
   - Hamburger menu theming works perfectly across all themes
   - Highlighting system enhanced for mobile visibility
 
-### Remaining Phases (Future Work):
-- **Phase 7**: Audio & Interactive Features (advanced audio controls)
-- **Phase 8**: Admin & Utility Pages
+### Remaining Phases (Current Work):
+- **🔄 Phase 7**: Enhanced Books Collection & Reading Pages Transformation
+- **Phase 8**: Legacy Audio & Interactive Features (Optional)
+- **Phase 9**: Admin & Utility Pages
 
 ### Next Steps:
 - Continue with MiniPlayer component implementation
