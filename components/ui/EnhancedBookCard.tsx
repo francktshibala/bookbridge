@@ -137,8 +137,8 @@ export function EnhancedBookCard({ book, index = 0, onAskAI }: EnhancedBookCardP
             fontSize: '12px',
             padding: '6px 10px',
             borderRadius: '999px',
-            background: 'rgba(255, 255, 255, 0.9)',
-            color: 'var(--text-accent)',
+            background: 'var(--accent-primary)',
+            color: 'var(--bg-primary)',
             border: '1px solid var(--text-accent)',
             textDecoration: 'none',
             display: 'inline-block',
@@ -148,12 +148,12 @@ export function EnhancedBookCard({ book, index = 0, onAskAI }: EnhancedBookCardP
             width: 'fit-content'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'var(--accent-primary)';
+            e.currentTarget.style.background = 'var(--accent-secondary)';
             e.currentTarget.style.color = 'var(--bg-primary)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-            e.currentTarget.style.color = 'var(--text-accent)';
+            e.currentTarget.style.background = 'var(--accent-primary)';
+            e.currentTarget.style.color = 'var(--bg-primary)';
           }}
         >
           Start Reading

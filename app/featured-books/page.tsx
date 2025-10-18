@@ -1737,7 +1737,7 @@ export default function FeaturedBooksPage() {
                 setSelectedBook(null);
                 handleStop();
               }}
-              className="text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] transition-colors"
+              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
             >
               ←
             </button>
@@ -1745,7 +1745,7 @@ export default function FeaturedBooksPage() {
             {/* Auto-scroll Status */}
             <div className="flex-1 flex justify-center items-center gap-2 px-2">
               {autoScrollPaused && (
-                <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded animate-pulse">
+                <div className="text-xs text-[var(--text-secondary)] bg-[var(--accent-primary)]/10 px-2 py-1 rounded animate-pulse border border-[var(--accent-primary)]/20">
                   📍 Auto-scroll paused
                 </div>
               )}
@@ -1753,7 +1753,7 @@ export default function FeaturedBooksPage() {
 
             <button
               onClick={() => setShowSettingsModal(true)}
-              className="text-[var(--text-secondary)] text-lg font-medium hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] px-2 py-1 rounded flex-shrink-0 transition-colors"
+              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-base font-medium hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
             >
               Aa
             </button>
@@ -1977,14 +1977,14 @@ export default function FeaturedBooksPage() {
         {/* Settings Modal */}
         {showSettingsModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
+            <div className="bg-[var(--bg-secondary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20">
 
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900">Reading Settings</h2>
+              <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Reading Settings</h2>
                 <button
                   onClick={() => setShowSettingsModal(false)}
-                  className="text-gray-400 hover:text-gray-600 text-xl"
+                  className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
                 >
                   ×
                 </button>
@@ -1995,14 +1995,14 @@ export default function FeaturedBooksPage() {
 
                 {/* Content Mode Toggle */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">Text Version</label>
-                  <div className="flex bg-gray-100 rounded-lg p-1">
+                  <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Text Version</label>
+                  <div className="flex bg-[var(--bg-primary)] rounded-lg p-1 border border-[var(--border-light)]">
                     <button
                       onClick={() => setContentMode('simplified')}
                       className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
                         contentMode === 'simplified'
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
-                          : 'text-gray-600 hover:text-gray-900'
+                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                       }`}
                     >
                       Simplified
@@ -2011,8 +2011,8 @@ export default function FeaturedBooksPage() {
                       onClick={() => setContentMode('original')}
                       className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
                         contentMode === 'original'
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
-                          : 'text-gray-600 hover:text-gray-900'
+                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                       }`}
                     >
                       Original
@@ -2022,7 +2022,7 @@ export default function FeaturedBooksPage() {
 
                 {/* CEFR Level Selection */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">CEFR Level</label>
+                  <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">CEFR Level</label>
                   <div className="grid grid-cols-3 gap-2">
                     {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => {
                       const isOriginalMode = contentMode === 'original';
@@ -2042,10 +2042,10 @@ export default function FeaturedBooksPage() {
                           disabled={isDisabled}
                           className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
                             cefrLevel === level && contentMode === 'simplified'
-                              ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
+                              ? 'bg-[var(--accent-primary)] text-white shadow-sm'
                               : isDisabled
-                              ? 'bg-gray-200 text-gray-400 cursor-not-allowed opacity-50'
-                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                              ? 'bg-[var(--bg-primary)] text-[var(--text-secondary)]/50 cursor-not-allowed opacity-50'
+                              : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--border-light)]'
                           }`}
                           title={
                             isOriginalMode
@@ -2065,7 +2065,7 @@ export default function FeaturedBooksPage() {
               </div>
 
               {/* Modal Footer */}
-              <div className="px-6 py-4 border-t border-gray-200">
+              <div className="px-6 py-4 border-t border-[var(--border-light)]">
                 <button
                   onClick={async () => {
                     setShowSettingsModal(false);
@@ -2074,7 +2074,7 @@ export default function FeaturedBooksPage() {
                     setCefrLevel(cefrLevel);
                     setContentMode(contentMode);
                   }}
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-md font-medium hover:from-blue-600 hover:to-purple-700 transition-all shadow-md"
+                  className="w-full bg-[var(--accent-primary)] text-white py-2 px-4 rounded-md font-medium hover:bg-[var(--accent-secondary)] transition-all shadow-md"
                 >
                   Apply Settings
                 </button>
@@ -2087,14 +2087,14 @@ export default function FeaturedBooksPage() {
         {/* Chapter Navigation Modal */}
         {showChapterModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
+            <div className="bg-[var(--bg-secondary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20">
 
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900">Jump to Chapter</h2>
+              <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Jump to Chapter</h2>
                 <button
                   onClick={() => setShowChapterModal(false)}
-                  className="text-gray-400 hover:text-gray-600 text-xl"
+                  className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
                 >
                   ×
                 </button>
@@ -2143,15 +2143,19 @@ export default function FeaturedBooksPage() {
                       }}
                       className={`w-full text-left p-4 rounded-lg border transition-all ${
                         getCurrentChapter().current === chapter.chapterNumber
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white border-blue-500'
-                          : 'bg-gray-50 hover:bg-gray-100 border-gray-200'
+                          ? 'bg-[var(--accent-primary)] text-white border-[var(--accent-primary)] shadow-sm'
+                          : 'bg-[var(--bg-primary)] hover:bg-[var(--accent-primary)]/10 border-[var(--border-light)]'
                       }`}
                     >
-                      <div className="font-medium">Chapter {chapter.chapterNumber}</div>
+                      <div className={`font-medium ${
+                        getCurrentChapter().current === chapter.chapterNumber
+                          ? 'text-[var(--bg-primary)]'
+                          : 'text-[var(--text-primary)]'
+                      }`}>Chapter {chapter.chapterNumber}</div>
                       <div className={`text-sm ${
                         getCurrentChapter().current === chapter.chapterNumber
-                          ? 'text-blue-100'
-                          : 'text-gray-600'
+                          ? 'text-[var(--bg-primary)]/80'
+                          : 'text-[var(--text-secondary)]'
                       }`}>
                         {chapter.title}
                       </div>
@@ -2208,11 +2212,11 @@ export default function FeaturedBooksPage() {
         )}
 
         {/* Mobile Control Bar - Full Width */}
-        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[var(--bg-secondary)] border-t border-[var(--border-light)] shadow-lg z-50">
           <div className="px-4 py-3">
 
             {/* Progress Info Row */}
-            <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
+            <div className="flex justify-between items-center text-xs text-[var(--text-secondary)] mb-2">
               <span>{formatTime(playbackTime)}</span>
               <span>
                 Sentence {currentSentenceIndex + 1}/{getCurrentChapter().totalSentences} • Chapter {getCurrentChapter().current} of {getCurrentChapter().total}
@@ -2221,9 +2225,9 @@ export default function FeaturedBooksPage() {
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full h-0.5 bg-gray-200 rounded-full mb-4">
+            <div className="w-full h-0.5 bg-[var(--border-light)] rounded-full mb-4">
               <div
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-300"
+                className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-300"
                 style={{ width: `${totalTime > 0 ? (playbackTime / totalTime) * 100 : 0}%` }}
               />
             </div>
@@ -2234,7 +2238,7 @@ export default function FeaturedBooksPage() {
               {/* Speed Control */}
               <button
                 onClick={cycleSpeed}
-                className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
+                className="flex items-center justify-center w-9 h-9 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all"
               >
                 <div className="text-sm font-semibold">{formatSpeed(playbackSpeed)}</div>
               </button>
@@ -2261,8 +2265,8 @@ export default function FeaturedBooksPage() {
                 }}
                 className={`flex items-center justify-center w-14 h-14 text-white rounded-full transition-all shadow-md ${
                   contentMode === 'original'
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700'
+                    ? 'bg-[var(--text-secondary)]/50 cursor-not-allowed'
+                    : 'bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)]'
                 }`}
                 disabled={contentMode === 'original'}
               >
@@ -2272,13 +2276,13 @@ export default function FeaturedBooksPage() {
               {/* Chapter Navigation */}
               <button
                 onClick={() => setShowChapterModal(true)}
-                className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
+                className="flex items-center justify-center w-9 h-9 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all"
               >
                 <div className="text-lg">📖</div>
               </button>
 
               {/* Voice Selector */}
-              <button className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all">
+              <button className="flex items-center justify-center w-9 h-9 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all">
                 <div className="text-lg">🎙️</div>
               </button>
 
@@ -2289,7 +2293,7 @@ export default function FeaturedBooksPage() {
 
         {/* Desktop Control Bar - Floating */}
         <div className="hidden md:block fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 shadow-2xl">
+          <div className="bg-[var(--bg-secondary)]/95 backdrop-blur-xl border-2 border-[var(--accent-secondary)]/20 rounded-full px-8 py-4 shadow-2xl">
 
             {/* Control Buttons Row */}
             <div className="flex items-center justify-center gap-5">
@@ -2297,7 +2301,7 @@ export default function FeaturedBooksPage() {
               {/* Speed Control */}
               <button
                 onClick={cycleSpeed}
-                className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105"
+                className="flex items-center justify-center w-11 h-11 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all hover:scale-105"
               >
                 <div className="text-sm font-semibold">{formatSpeed(playbackSpeed)}</div>
               </button>
@@ -2324,8 +2328,8 @@ export default function FeaturedBooksPage() {
                 }}
                 className={`flex items-center justify-center w-14 h-14 text-white rounded-full transition-all shadow-lg hover:shadow-xl ${
                   contentMode === 'original'
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700'
+                    ? 'bg-[var(--text-secondary)]/50 cursor-not-allowed'
+                    : 'bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)]'
                 }`}
                 disabled={contentMode === 'original'}
               >
@@ -2335,13 +2339,13 @@ export default function FeaturedBooksPage() {
               {/* Chapter Navigation */}
               <button
                 onClick={() => setShowChapterModal(true)}
-                className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105"
+                className="flex items-center justify-center w-11 h-11 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all hover:scale-105"
               >
                 <div className="text-lg">📖</div>
               </button>
 
               {/* Voice Selector */}
-              <button className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105">
+              <button className="flex items-center justify-center w-11 h-11 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all hover:scale-105">
                 <div className="text-lg">🎙️</div>
               </button>
 
