@@ -1575,7 +1575,7 @@ export default function FeaturedBooksPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       {/* Book Selection Screen */}
       {showBookSelection && (
         <div className="min-h-screen bg-gray-900 text-white">
@@ -1729,7 +1729,7 @@ export default function FeaturedBooksPage() {
         {/* Header - Matched Width with Content Container */}
 
         {/* Unified Header: Same width as content container below */}
-        <div className="bg-white border-b border-gray-200 mx-4 md:mx-8 rounded-t-lg">
+        <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-light)] mx-4 md:mx-8 rounded-t-lg border-2 border-[var(--accent-secondary)]/20 border-b-[var(--border-light)]">
           <div className="flex justify-between items-center px-6 py-3 relative">
             <button
               onClick={() => {
@@ -1737,7 +1737,7 @@ export default function FeaturedBooksPage() {
                 setSelectedBook(null);
                 handleStop();
               }}
-              className="text-gray-600 text-xl"
+              className="text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] transition-colors"
             >
               ←
             </button>
@@ -1753,7 +1753,7 @@ export default function FeaturedBooksPage() {
 
             <button
               onClick={() => setShowSettingsModal(true)}
-              className="text-gray-600 text-lg font-medium hover:bg-gray-100 px-2 py-1 rounded flex-shrink-0"
+              className="text-[var(--text-secondary)] text-lg font-medium hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] px-2 py-1 rounded flex-shrink-0 transition-colors"
             >
               Aa
             </button>
@@ -1850,7 +1850,7 @@ export default function FeaturedBooksPage() {
         </div>
 
         {/* Real Moby Dick Content */}
-        <div className="pb-32 px-3 bg-white mx-4 md:mx-8 rounded-b-lg shadow-sm border-l border-r border-b border-gray-200">
+        <div className="pb-32 px-3 bg-[var(--bg-secondary)] mx-4 md:mx-8 rounded-b-lg shadow-sm border-2 border-[var(--accent-secondary)]/20 border-t-0">
 
           {loading && (
             <div className="text-center py-12">
@@ -1874,7 +1874,7 @@ export default function FeaturedBooksPage() {
             <>
               {/* Book Title */}
               <div className="text-center py-4">
-                <h1 className="text-2xl font-semibold text-gray-700 mb-4">
+                <h1 className="text-2xl font-semibold text-[var(--text-accent)] mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                   {((bundleData as any).book?.title || bundleData.title || 'Unknown Title')
                     .replace(/\s*\(Bundled\)$/i, '')
                     .replace(/\s*\([A-C][12]?\s*Level\)$/i, '')}
@@ -1896,7 +1896,7 @@ export default function FeaturedBooksPage() {
                       // Add chapter header
                       result.push(
                         <div key={`chapter-${chapter.chapterNumber}`} className="mb-6 mt-8 first:mt-0">
-                          <h2 className="text-xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4">
+                          <h2 className="text-2xl font-semibold text-[var(--text-accent)] border-b-2 border-[var(--accent-secondary)]/30 pb-2 mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                             Chapter {chapter.chapterNumber}: {chapter.title}
                           </h2>
                         </div>
