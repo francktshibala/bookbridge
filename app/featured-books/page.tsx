@@ -1862,7 +1862,7 @@ export default function FeaturedBooksPage() {
           {error && (
             <div className="text-center py-12">
               <div className="bg-white border border-blue-200 rounded-lg p-6 max-w-md mx-auto shadow-lg">
-                <p className="text-blue-600 font-medium">{error}</p>
+                <p className="text-[var(--accent-primary)] font-medium">{error}</p>
                 <p className="text-gray-400 text-sm mt-2">
                   Try switching to Original or available levels
                 </p>
@@ -1910,10 +1910,10 @@ export default function FeaturedBooksPage() {
                         data-sentence={sentence.sentenceIndex}
                         className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 mr-1 rounded mobile-reading-text ${
                           sentence.sentenceIndex === currentSentenceIndex && isPlaying
-                            ? 'bg-blue-200 text-blue-900 font-medium border border-blue-300'
+                            ? 'bg-blue-100 text-[var(--text-primary)] font-medium'
                             : sentence.sentenceIndex === currentSentenceIndex + 1 && isPlaying
-                            ? 'bg-slate-100 text-gray-600'
-                            : 'hover:bg-gray-100'
+                            ? 'bg-[var(--accent-primary)]/5 text-[var(--text-secondary)]'
+                            : 'hover:bg-[var(--accent-primary)]/3'
                         }`}
                         style={{
                           textAlign: 'left'
