@@ -6,6 +6,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { SubscriptionStatus } from '@/components/SubscriptionStatus';
 import { useAuth } from '@/components/SimpleAuthProvider';
+import { ThemeSwitcher } from '@/components/theme/ThemeSwitcher';
 
 interface MobileNavigationMenuProps {
   isOpen: boolean;
@@ -33,6 +34,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
     { href: '/enhanced-collection', label: '✨ Enhanced Books', icon: '✨' },
     { href: '/featured-books', label: '🎧 Simplified Books', icon: '🎧' },
     { href: '/library', label: 'Browse All Books', icon: '📚' },
+    { href: '/upgrade', label: 'Premium $5.99', icon: '👑', isPremium: true },
   ];
 
   // Hide on desktop screens even if isOpen is true
@@ -119,13 +121,20 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                       pathname === item.href
                         ? 'nav-link-active'
                         : 'nav-link-inactive'
-                    }`}
+                    } ${item.isPremium ? 'premium-nav-link' : ''}`}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
                       gap: '12px',
                       minHeight: '56px',
-                      margin: '0'
+                      margin: '0',
+                      ...(item.isPremium ? {
+                        background: 'var(--accent-primary)',
+                        color: 'var(--bg-primary)',
+                        borderRadius: '12px',
+                        fontWeight: '600',
+                        marginTop: '8px'
+                      } : {})
                     }}
                   >
                     <span style={{ fontSize: '18px' }}>{item.icon}</span>
@@ -133,7 +142,22 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                   </Link>
                 ))
               ) : null}
-              
+
+              {/* Theme Switcher - Mobile Only */}
+              <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid var(--border-light)' }}>
+                <div style={{ marginBottom: '12px' }}>
+                  <span style={{
+                    fontSize: '14px',
+                    color: 'var(--text-secondary)',
+                    fontWeight: '600',
+                    fontFamily: 'Playfair Display, serif'
+                  }}>
+                    Reading Theme
+                  </span>
+                </div>
+                <ThemeSwitcher showLabels={false} size="sm" className="mobile-theme-switcher" />
+              </div>
+
               {/* Show Sign In/Sign Up for guest users */}
               {!user && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '20px' }}>
@@ -197,13 +221,33 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
             </div>
           </nav>
 
-          {/* Bottom Section - Simple */}
+          {/* Bottom Section - User Info and Sign Out */}
           {user && (
-            <div style={{ 
-              marginTop: 'auto', 
-              paddingTop: '20px', 
-              borderTop: '1px solid var(--border-light)' 
+            <div style={{
+              marginTop: 'auto',
+              paddingTop: '20px',
+              borderTop: '1px solid var(--border-light)'
             }}>
+              {/* User Profile Section */}
+              <div style={{ marginBottom: '16px' }}>
+                <div style={{
+                  fontSize: '14px',
+                  color: 'var(--text-secondary)',
+                  fontFamily: 'Source Serif Pro, serif',
+                  marginBottom: '4px'
+                }}>
+                  Signed in as
+                </div>
+                <div style={{
+                  fontSize: '16px',
+                  color: 'var(--text-primary)',
+                  fontWeight: '600',
+                  fontFamily: 'Source Serif Pro, serif',
+                  wordBreak: 'break-all'
+                }}>
+                  {user.email}
+                </div>
+              </div>
               <button
                 onClick={handleSignOut}
                 style={{
