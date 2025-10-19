@@ -165,6 +165,625 @@
             transform: translateY(-2px);
         }
 
+        /* Perfect Balance Demo Styles */
+        .balanced-demo {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .reading-viewport {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reading-viewport::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, currentColor/8 0%, transparent 70%),
+                        radial-gradient(circle at 70% 80%, currentColor/5 0%, transparent 70%);
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        .chapter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progressive-text {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 2.5rem;
+        }
+
+        .text-window {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1.4rem;
+            line-height: 2.2;
+            position: relative;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        .sentence {
+            margin-bottom: 1.8rem;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            transition: all 0.8s ease;
+            transform-origin: center;
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sentence.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .sentence.current {
+            background: rgba(193, 147, 106, 0.15);
+            border: 2px solid rgba(193, 147, 106, 0.3);
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(193, 147, 106, 0.2);
+        }
+
+        .sentence.fading {
+            opacity: 0.6;
+            transform: translateY(-10px) scale(0.98);
+        }
+
+        .sentence.hidden {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .word.highlighted {
+            background: #C1936A;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            transform: scale(1.05);
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(193, 147, 106, 0.3);
+        }
+
+        .level-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(193, 147, 106, 0.9);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 25px;
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+        }
+
+        .level-badge.animating {
+            animation: levelPulse 2s ease-in-out infinite;
+        }
+
+        .level-hint {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        @keyframes levelPulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* Unified Control Bar - Like Reading Page */
+        .dual-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 1.25rem 2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(193, 147, 106, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .play-control {
+            background: linear-gradient(135deg, #C1936A, #D4A574);
+            border: none;
+            border-radius: 50px;
+            padding: 0.875rem 1.75rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(193, 147, 106, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            position: relative;
+            overflow: hidden;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .play-control::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .play-control:hover::before {
+            transform: translateX(100%);
+        }
+
+        .play-control:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(193, 147, 106, 0.4);
+        }
+
+        .play-icon {
+            font-size: 1.25rem;
+            color: white;
+            z-index: 1;
+            position: relative;
+        }
+
+        .play-label {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            z-index: 1;
+            position: relative;
+        }
+
+        .level-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .selector-label {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.75;
+            white-space: nowrap;
+            margin: 0;
+        }
+
+        .level-options {
+            display: flex;
+            gap: 0.375rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.375rem;
+            border-radius: 25px;
+            border: 1px solid rgba(193, 147, 106, 0.25);
+            backdrop-filter: blur(10px);
+        }
+
+        .level-option {
+            padding: 0.625rem 1rem;
+            border: none;
+            border-radius: 18px;
+            cursor: pointer;
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #666;
+            position: relative;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .level-option.active {
+            background: #C1936A;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(193, 147, 106, 0.3);
+        }
+
+        .level-option:hover:not(.active) {
+            background: rgba(193, 147, 106, 0.1);
+            color: #C1936A;
+        }
+
+        .progress-info {
+            text-align: center;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-text {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .elegant-cta {
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-message {
+            margin-bottom: 1.5rem;
+        }
+
+        .message-main {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .message-sub {
+            display: block;
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .btn.elegant {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #002147, #1A365D);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 33, 71, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn.elegant:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 33, 71, 0.4);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .reading-viewport {
+                padding: 2rem 1.5rem;
+                margin: 0 1rem;
+            }
+
+            .text-window {
+                font-size: 1.25rem;
+                min-height: 280px;
+                line-height: 2.1;
+            }
+
+            .sentence {
+                padding: 1rem 1.25rem;
+                margin-bottom: 1.5rem;
+                font-size: 1.25rem;
+            }
+
+            .chapter-title {
+                font-size: 1.4rem;
+                margin-bottom: 2rem;
+            }
+
+            /* Sticky Controls on Mobile */
+            .dual-controls {
+                position: sticky;
+                bottom: 20px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                border: 2px solid rgba(193, 147, 106, 0.3);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+                margin: 2rem auto 0;
+                padding: 1rem 1.5rem;
+                gap: 1.25rem;
+                max-width: 350px;
+                border-radius: 40px;
+            }
+
+            .play-control {
+                padding: 0.875rem 1.5rem;
+                min-width: 100px;
+                flex-shrink: 0;
+            }
+
+            .level-selector {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .selector-label {
+                font-size: 0.8rem;
+                text-align: center;
+            }
+
+            .level-options {
+                justify-content: center;
+                min-width: 180px;
+            }
+
+            .level-option {
+                padding: 0.625rem 0.875rem;
+                flex: 1;
+                text-align: center;
+                min-width: 50px;
+            }
+
+            .progress-info {
+                margin-top: 1rem;
+            }
+
+            .progress-text {
+                font-size: 0.85rem;
+            }
+        }
+
+        .demo-content-area {
+            position: relative;
+            z-index: 1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-text-display {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .sentence {
+            display: block;
+            margin-bottom: 0.5rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .sentence.current-sentence {
+            border: 2px solid;
+            padding: 10px 14px;
+        }
+
+        .word {
+            display: inline;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .word.highlighted {
+            font-weight: 600;
+            padding: 3px 6px;
+            transform: scale(1.05);
+        }
+
+        .audio-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-time {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        .demo-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid;
+            margin-bottom: 1.5rem;
+        }
+
+        .audio-controls, .level-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .speed-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-label {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        .play-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .speed-btn, .level-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .speed-btn:hover, .level-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .speed-btn.active, .level-btn.active {
+            font-weight: 700;
+            transform: scale(1.1);
+        }
+
+        .controls-divider {
+            width: 1px;
+            height: 40px;
+            opacity: 0.3;
+        }
+
+        .level-preview {
+            margin-bottom: 1.5rem;
+        }
+
+        .level-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .comparison-item {
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid;
+        }
+
+        .comparison-label {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .comparison-text {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .demo-cta {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn.large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn.secondary {
+            margin-left: 1rem;
+        }
+
+        .cta-subtext {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .interactive-demo {
+                padding: 1rem;
+                margin: 0 1rem;
+            }
+
+            .demo-controls {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .controls-divider {
+                width: 80%;
+                height: 1px;
+            }
+
+            .level-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .btn.secondary {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+
         .demo-section {
             border-radius: var(--radius);
             padding: 40px;
@@ -414,6 +1033,69 @@
             color: #002147;
         }
 
+        /* Interactive Demo - Light Theme */
+        .theme-light .interactive-demo {
+            background: #FEFEFE;
+            border-color: #C1936A/30;
+            color: #1A1A1A;
+        }
+
+        .theme-light .demo-content-area {
+            background: #F8F6F3;
+            border-color: #C1936A/20;
+        }
+
+        .theme-light .sentence.current-sentence {
+            background: #C1936A/20;
+            border-color: #C1936A;
+        }
+
+        .theme-light .word.highlighted {
+            background: #C1936A;
+            color: #FEFEFE;
+        }
+
+        .theme-light .progress-bar {
+            background: #E8E2DB;
+        }
+
+        .theme-light .progress-fill {
+            background: #C1936A;
+        }
+
+        .theme-light .demo-controls {
+            background: #FEFEFE;
+            border-color: #C1936A/10;
+        }
+
+        .theme-light .controls-divider {
+            background: #C1936A/20;
+        }
+
+        .theme-light .play-btn {
+            background: #C1936A;
+            color: #FEFEFE;
+        }
+
+        .theme-light .speed-btn,
+        .theme-light .level-btn {
+            border-color: #C1936A/30;
+            color: #1A1A1A;
+            background: transparent;
+        }
+
+        .theme-light .speed-btn.active,
+        .theme-light .level-btn.active {
+            background: #C1936A;
+            color: #FEFEFE;
+            border-color: #C1936A;
+        }
+
+        .theme-light .comparison-item {
+            background: #F8F6F3;
+            border-color: #C1936A/20;
+        }
+
         .theme-light .nav-item {
             color: #1A1A1A;
         }
@@ -574,6 +1256,69 @@
             color: #FFD700;
         }
 
+        /* Interactive Demo - Dark Theme */
+        .theme-dark .interactive-demo {
+            background: #1A1C23;
+            border-color: #D4A574/30;
+            color: #E8E3D3;
+        }
+
+        .theme-dark .demo-content-area {
+            background: #252833;
+            border-color: #D4A574/20;
+        }
+
+        .theme-dark .sentence.current-sentence {
+            background: #D4A574/20;
+            border-color: #D4A574;
+        }
+
+        .theme-dark .word.highlighted {
+            background: #D4A574;
+            color: #1A1C23;
+        }
+
+        .theme-dark .progress-bar {
+            background: #2A2D38;
+        }
+
+        .theme-dark .progress-fill {
+            background: #D4A574;
+        }
+
+        .theme-dark .demo-controls {
+            background: #1A1C23;
+            border-color: #D4A574/10;
+        }
+
+        .theme-dark .controls-divider {
+            background: #D4A574/20;
+        }
+
+        .theme-dark .play-btn {
+            background: #D4A574;
+            color: #1A1C23;
+        }
+
+        .theme-dark .speed-btn,
+        .theme-dark .level-btn {
+            border-color: #D4A574/30;
+            color: #E8E3D3;
+            background: transparent;
+        }
+
+        .theme-dark .speed-btn.active,
+        .theme-dark .level-btn.active {
+            background: #D4A574;
+            color: #1A1C23;
+            border-color: #D4A574;
+        }
+
+        .theme-dark .comparison-item {
+            background: #252833;
+            border-color: #D4A574/20;
+        }
+
         .theme-dark .nav-item {
             color: #E8E3D3;
         }
@@ -732,6 +1477,69 @@
         .theme-sepia .hero h1,
         .theme-sepia .chapter-title {
             color: #8B4513;
+        }
+
+        /* Interactive Demo - Sepia Theme */
+        .theme-sepia .interactive-demo {
+            background: #F4F1E8;
+            border-color: #B8860B/30;
+            color: #3C2415;
+        }
+
+        .theme-sepia .demo-content-area {
+            background: #F0EDE0;
+            border-color: #B8860B/20;
+        }
+
+        .theme-sepia .sentence.current-sentence {
+            background: #B8860B/20;
+            border-color: #B8860B;
+        }
+
+        .theme-sepia .word.highlighted {
+            background: #B8860B;
+            color: #F4F1E8;
+        }
+
+        .theme-sepia .progress-bar {
+            background: #E8E0D0;
+        }
+
+        .theme-sepia .progress-fill {
+            background: #B8860B;
+        }
+
+        .theme-sepia .demo-controls {
+            background: #F4F1E8;
+            border-color: #B8860B/10;
+        }
+
+        .theme-sepia .controls-divider {
+            background: #B8860B/20;
+        }
+
+        .theme-sepia .play-btn {
+            background: #B8860B;
+            color: #F4F1E8;
+        }
+
+        .theme-sepia .speed-btn,
+        .theme-sepia .level-btn {
+            border-color: #B8860B/30;
+            color: #3C2415;
+            background: transparent;
+        }
+
+        .theme-sepia .speed-btn.active,
+        .theme-sepia .level-btn.active {
+            background: #B8860B;
+            color: #F4F1E8;
+            border-color: #B8860B;
+        }
+
+        .theme-sepia .comparison-item {
+            background: #F0EDE0;
+            border-color: #B8860B/20;
         }
 
         .theme-sepia .nav-item {
@@ -940,29 +1748,105 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section - Interactive Reading Demo -->
         <section class="hero">
-            <h1>Read Classic Literature at Your English Level</h1>
-            <p>AI-powered text simplification • Word-by-word audio • Vocabulary learning</p>
-
-            <div class="cefr-badges">
-                <div class="cefr-badge">A1</div>
-                <div class="cefr-badge">A2</div>
-                <div class="cefr-badge">B1</div>
-                <div class="cefr-badge">B2</div>
-                <div class="cefr-badge">C1</div>
-                <div class="cefr-badge">C2</div>
+            <!-- Hero Header -->
+            <div class="hero-header">
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">
+                    📖 Hear and see how English becomes easier
+                </h1>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    Tap play — we'll simplify and read it to you
+                </p>
             </div>
 
-            <div class="demo-section">
-                <div class="demo-title">B1 Level Example</div>
-                <div class="demo-text">
-                    "Elizabeth Bennet is an intelligent young woman from a middle-class family. When she meets the wealthy Mr. Darcy, she finds him arrogant and dismissive."
+            <!-- Perfect Balance Reading Demo -->
+            <div class="balanced-demo">
+                <!-- Reading Viewport -->
+                <div class="reading-viewport">
+                    <!-- Chapter Title -->
+                    <h3 class="chapter-title">Pride and Prejudice - Chapter 1</h3>
+
+                    <!-- Progressive Text Display -->
+                    <div class="progressive-text">
+                        <div class="text-window">
+                            <div class="sentence visible current">
+                                <span class="word highlighted">People</span>
+                                <span class="word">think</span>
+                                <span class="word">that</span>
+                                <span class="word">rich</span>
+                                <span class="word">men</span>
+                                <span class="word">who</span>
+                                <span class="word">are</span>
+                                <span class="word">not</span>
+                                <span class="word">married</span>
+                                <span class="word">want</span>
+                                <span class="word">to</span>
+                                <span class="word">find</span>
+                                <span class="word">a</span>
+                                <span class="word">wife.</span>
+                            </div>
+                            <div class="sentence visible next">
+                                When a rich man comes to a new place, families want him to marry their daughters.
+                            </div>
+                            <div class="sentence visible fading">
+                                These families believe he should choose one of their daughters, even though they may not know his true feelings.
+                            </div>
+
+                            <!-- Hidden sentences for progressive reveal -->
+                            <div class="sentence hidden" data-sentence="4">
+                                Mr. and Mrs. Bennet had five daughters and no sons, which worried them greatly.
+                            </div>
+                            <div class="sentence hidden" data-sentence="5">
+                                Their house and money would go to a male relative when Mr. Bennet died.
+                            </div>
+                            <div class="sentence hidden" data-sentence="6">
+                                Mrs. Bennet spent all her time thinking about how to find good husbands for her daughters.
+                            </div>
+                            <div class="sentence hidden" data-sentence="7">
+                                One day, Mrs. Bennet heard exciting news about their new neighbor.
+                            </div>
+                            <div class="sentence hidden" data-sentence="8">
+                                A young man with lots of money had rented the big house nearby.
+                            </div>
+                            <div class="sentence hidden" data-sentence="9">
+                                She immediately thought he would be perfect for one of her daughters.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Two Perfect Controls -->
+                    <div class="dual-controls">
+                        <!-- Play Button -->
+                        <button class="play-control">
+                            <div class="play-icon">▶️</div>
+                            <div class="play-label">Play</div>
+                        </button>
+
+                        <!-- CEFR Level Selector -->
+                        <div class="level-selector">
+                            <div class="selector-label">Reading Level</div>
+                            <div class="level-options">
+                                <button class="level-option active" data-level="A1">A1</button>
+                                <button class="level-option" data-level="B1">B1</button>
+                                <button class="level-option" data-level="Original">Original</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Info -->
+                    <div class="progress-info">
+                        <span class="progress-text">9 sentences • Perfect voice synchronization</span>
+                    </div>
                 </div>
-                <div class="demo-text" style="font-size: 0.9rem; opacity: 0.7;">From Pride and Prejudice</div>
-                <div class="demo-controls">
-                    <button class="btn primary">▶ Try It Now - No Signup</button>
-                    <button class="btn">Browse All Books</button>
+
+                <!-- Elegant CTA -->
+                <div class="elegant-cta">
+                    <div class="cta-message">
+                        <span class="message-main">Experience literature at your perfect level</span>
+                        <span class="message-sub">Choose your level • Press play • Feel the magic</span>
+                    </div>
+                    <button class="btn primary elegant">📚 Continue this story</button>
                 </div>
             </div>
         </section>

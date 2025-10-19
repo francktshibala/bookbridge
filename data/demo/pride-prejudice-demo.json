@@ -17,7 +17,590 @@
           "text": "However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.",
           "wordCount": 44
         }
-      ]
+      ],
+      "audio": {
+        "url": "/audio/demo/pride-prejudice-original.mp3",
+        "filename": "pride-prejudice-original.mp3",
+        "duration": 21.315875,
+        "size": 341099,
+        "generatedAt": "2025-10-19T08:16:39.208Z",
+        "voice": "EXAVITQu4vr4xnSDxMaL",
+        "settings": {
+          "voice_id": "EXAVITQu4vr4xnSDxMaL",
+          "model_id": "eleven_monolingual_v1",
+          "voice_settings": {
+            "stability": 0.5,
+            "similarity_boost": 0.75,
+            "style": 0,
+            "use_speaker_boost": true
+          },
+          "speed": 0.9,
+          "output_format": "mp3_44100_128",
+          "apply_text_normalization": "auto"
+        }
+      },
+      "wordTimings": {
+        "sentence_0_word_0": {
+          "word": "It",
+          "start": 0,
+          "end": 0.11368466666666667,
+          "duration": 0.11368466666666667,
+          "sentence": 0,
+          "wordIndex": 0
+        },
+        "sentence_0_word_1": {
+          "word": "is",
+          "start": 0.11368466666666667,
+          "end": 0.22736933333333334,
+          "duration": 0.11368466666666667,
+          "sentence": 0,
+          "wordIndex": 1
+        },
+        "sentence_0_word_2": {
+          "word": "a",
+          "start": 0.22736933333333334,
+          "end": 0.2842116666666667,
+          "duration": 0.056842333333333335,
+          "sentence": 0,
+          "wordIndex": 2
+        },
+        "sentence_0_word_3": {
+          "word": "truth",
+          "start": 0.2842116666666667,
+          "end": 0.5684233333333333,
+          "duration": 0.28421166666666664,
+          "sentence": 0,
+          "wordIndex": 3
+        },
+        "sentence_0_word_4": {
+          "word": "universally",
+          "start": 0.5684233333333333,
+          "end": 1.193689,
+          "duration": 0.6252656666666666,
+          "sentence": 0,
+          "wordIndex": 4
+        },
+        "sentence_0_word_5": {
+          "word": "acknowledged",
+          "start": 1.193689,
+          "end": 1.9326393333333334,
+          "duration": 0.7389503333333333,
+          "sentence": 0,
+          "wordIndex": 5
+        },
+        "sentence_0_word_6": {
+          "word": "that",
+          "start": 1.9326393333333334,
+          "end": 2.1600086666666667,
+          "duration": 0.22736933333333334,
+          "sentence": 0,
+          "wordIndex": 6
+        },
+        "sentence_0_word_7": {
+          "word": "a",
+          "start": 2.1600086666666667,
+          "end": 2.216851,
+          "duration": 0.056842333333333335,
+          "sentence": 0,
+          "wordIndex": 7
+        },
+        "sentence_0_word_8": {
+          "word": "single",
+          "start": 2.216851,
+          "end": 2.557905,
+          "duration": 0.34105399999999997,
+          "sentence": 0,
+          "wordIndex": 8
+        },
+        "sentence_0_word_9": {
+          "word": "man",
+          "start": 2.557905,
+          "end": 2.7284319999999997,
+          "duration": 0.17052699999999998,
+          "sentence": 0,
+          "wordIndex": 9
+        },
+        "sentence_0_word_10": {
+          "word": "in",
+          "start": 2.7284319999999997,
+          "end": 2.8421166666666666,
+          "duration": 0.11368466666666667,
+          "sentence": 0,
+          "wordIndex": 10
+        },
+        "sentence_0_word_11": {
+          "word": "possession",
+          "start": 2.8421166666666666,
+          "end": 3.41054,
+          "duration": 0.5684233333333333,
+          "sentence": 0,
+          "wordIndex": 11
+        },
+        "sentence_0_word_12": {
+          "word": "of",
+          "start": 3.41054,
+          "end": 3.524224666666667,
+          "duration": 0.11368466666666667,
+          "sentence": 0,
+          "wordIndex": 12
+        },
+        "sentence_0_word_13": {
+          "word": "a",
+          "start": 3.524224666666667,
+          "end": 3.5810670000000004,
+          "duration": 0.056842333333333335,
+          "sentence": 0,
+          "wordIndex": 13
+        },
+        "sentence_0_word_14": {
+          "word": "good",
+          "start": 3.5810670000000004,
+          "end": 3.8084363333333338,
+          "duration": 0.22736933333333334,
+          "sentence": 0,
+          "wordIndex": 14
+        },
+        "sentence_0_word_15": {
+          "word": "fortune",
+          "start": 3.8084363333333338,
+          "end": 4.263175,
+          "duration": 0.4547386666666667,
+          "sentence": 0,
+          "wordIndex": 15
+        },
+        "sentence_0_word_16": {
+          "word": "must",
+          "start": 4.263175,
+          "end": 4.490544333333334,
+          "duration": 0.22736933333333334,
+          "sentence": 0,
+          "wordIndex": 16
+        },
+        "sentence_0_word_17": {
+          "word": "be",
+          "start": 4.490544333333334,
+          "end": 4.604229000000001,
+          "duration": 0.11368466666666667,
+          "sentence": 0,
+          "wordIndex": 17
+        },
+        "sentence_0_word_18": {
+          "word": "in",
+          "start": 4.604229000000001,
+          "end": 4.717913666666668,
+          "duration": 0.11368466666666667,
+          "sentence": 0,
+          "wordIndex": 18
+        },
+        "sentence_0_word_19": {
+          "word": "want",
+          "start": 4.717913666666668,
+          "end": 4.945283000000002,
+          "duration": 0.22736933333333334,
+          "sentence": 0,
+          "wordIndex": 19
+        },
+        "sentence_0_word_20": {
+          "word": "of",
+          "start": 4.945283000000002,
+          "end": 5.0589676666666685,
+          "duration": 0.11368466666666667,
+          "sentence": 0,
+          "wordIndex": 20
+        },
+        "sentence_0_word_21": {
+          "word": "a",
+          "start": 5.0589676666666685,
+          "end": 5.1158100000000015,
+          "duration": 0.056842333333333335,
+          "sentence": 0,
+          "wordIndex": 21
+        },
+        "sentence_0_word_22": {
+          "word": "wife",
+          "start": 5.1158100000000015,
+          "end": 5.400021666666668,
+          "duration": 0.28421166666666664,
+          "sentence": 0,
+          "wordIndex": 22
+        },
+        "sentence_1_word_0": {
+          "word": "However",
+          "start": 5.400021666666668,
+          "end": 5.797918000000002,
+          "duration": 0.3978963333333333,
+          "sentence": 1,
+          "wordIndex": 0
+        },
+        "sentence_1_word_1": {
+          "word": "little",
+          "start": 5.797918000000002,
+          "end": 6.138972000000002,
+          "duration": 0.34105399999999997,
+          "sentence": 1,
+          "wordIndex": 1
+        },
+        "sentence_1_word_2": {
+          "word": "known",
+          "start": 6.138972000000002,
+          "end": 6.423183666666668,
+          "duration": 0.28421166666666664,
+          "sentence": 1,
+          "wordIndex": 2
+        },
+        "sentence_1_word_3": {
+          "word": "the",
+          "start": 6.423183666666668,
+          "end": 6.593710666666668,
+          "duration": 0.17052699999999998,
+          "sentence": 1,
+          "wordIndex": 3
+        },
+        "sentence_1_word_4": {
+          "word": "feelings",
+          "start": 6.593710666666668,
+          "end": 7.048449333333335,
+          "duration": 0.4547386666666666,
+          "sentence": 1,
+          "wordIndex": 4
+        },
+        "sentence_1_word_5": {
+          "word": "or",
+          "start": 7.048449333333335,
+          "end": 7.162134000000002,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 5
+        },
+        "sentence_1_word_6": {
+          "word": "views",
+          "start": 7.162134000000002,
+          "end": 7.4463456666666685,
+          "duration": 0.28421166666666664,
+          "sentence": 1,
+          "wordIndex": 6
+        },
+        "sentence_1_word_7": {
+          "word": "of",
+          "start": 7.4463456666666685,
+          "end": 7.560030333333335,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 7
+        },
+        "sentence_1_word_8": {
+          "word": "such",
+          "start": 7.560030333333335,
+          "end": 7.787399666666669,
+          "duration": 0.2273693333333333,
+          "sentence": 1,
+          "wordIndex": 8
+        },
+        "sentence_1_word_9": {
+          "word": "a",
+          "start": 7.787399666666669,
+          "end": 7.844242000000002,
+          "duration": 0.05684233333333333,
+          "sentence": 1,
+          "wordIndex": 9
+        },
+        "sentence_1_word_10": {
+          "word": "man",
+          "start": 7.844242000000002,
+          "end": 8.014769000000003,
+          "duration": 0.17052699999999998,
+          "sentence": 1,
+          "wordIndex": 10
+        },
+        "sentence_1_word_11": {
+          "word": "may",
+          "start": 8.014769000000003,
+          "end": 8.185296000000003,
+          "duration": 0.17052699999999998,
+          "sentence": 1,
+          "wordIndex": 11
+        },
+        "sentence_1_word_12": {
+          "word": "be",
+          "start": 8.185296000000003,
+          "end": 8.298980666666669,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 12
+        },
+        "sentence_1_word_13": {
+          "word": "on",
+          "start": 8.298980666666669,
+          "end": 8.412665333333335,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 13
+        },
+        "sentence_1_word_14": {
+          "word": "his",
+          "start": 8.412665333333335,
+          "end": 8.583192333333335,
+          "duration": 0.17052699999999998,
+          "sentence": 1,
+          "wordIndex": 14
+        },
+        "sentence_1_word_15": {
+          "word": "first",
+          "start": 8.583192333333335,
+          "end": 8.867404,
+          "duration": 0.28421166666666664,
+          "sentence": 1,
+          "wordIndex": 15
+        },
+        "sentence_1_word_16": {
+          "word": "entering",
+          "start": 8.867404,
+          "end": 9.322142666666668,
+          "duration": 0.4547386666666666,
+          "sentence": 1,
+          "wordIndex": 16
+        },
+        "sentence_1_word_17": {
+          "word": "a",
+          "start": 9.322142666666668,
+          "end": 9.378985000000002,
+          "duration": 0.05684233333333333,
+          "sentence": 1,
+          "wordIndex": 17
+        },
+        "sentence_1_word_18": {
+          "word": "neighbourhood",
+          "start": 9.378985000000002,
+          "end": 10.17477766666667,
+          "duration": 0.7957926666666666,
+          "sentence": 1,
+          "wordIndex": 18
+        },
+        "sentence_1_word_19": {
+          "word": "this",
+          "start": 10.17477766666667,
+          "end": 10.402147000000003,
+          "duration": 0.2273693333333333,
+          "sentence": 1,
+          "wordIndex": 19
+        },
+        "sentence_1_word_20": {
+          "word": "truth",
+          "start": 10.402147000000003,
+          "end": 10.686358666666669,
+          "duration": 0.28421166666666664,
+          "sentence": 1,
+          "wordIndex": 20
+        },
+        "sentence_1_word_21": {
+          "word": "is",
+          "start": 10.686358666666669,
+          "end": 10.800043333333335,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 21
+        },
+        "sentence_1_word_22": {
+          "word": "so",
+          "start": 10.800043333333335,
+          "end": 10.913728,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 22
+        },
+        "sentence_1_word_23": {
+          "word": "well",
+          "start": 10.913728,
+          "end": 11.141097333333335,
+          "duration": 0.2273693333333333,
+          "sentence": 1,
+          "wordIndex": 23
+        },
+        "sentence_1_word_24": {
+          "word": "fixed",
+          "start": 11.141097333333335,
+          "end": 11.425309,
+          "duration": 0.28421166666666664,
+          "sentence": 1,
+          "wordIndex": 24
+        },
+        "sentence_1_word_25": {
+          "word": "in",
+          "start": 11.425309,
+          "end": 11.538993666666666,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 25
+        },
+        "sentence_1_word_26": {
+          "word": "the",
+          "start": 11.538993666666666,
+          "end": 11.709520666666666,
+          "duration": 0.17052699999999998,
+          "sentence": 1,
+          "wordIndex": 26
+        },
+        "sentence_1_word_27": {
+          "word": "minds",
+          "start": 11.709520666666666,
+          "end": 11.993732333333332,
+          "duration": 0.28421166666666664,
+          "sentence": 1,
+          "wordIndex": 27
+        },
+        "sentence_1_word_28": {
+          "word": "of",
+          "start": 11.993732333333332,
+          "end": 12.107416999999998,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 28
+        },
+        "sentence_1_word_29": {
+          "word": "the",
+          "start": 12.107416999999998,
+          "end": 12.277943999999998,
+          "duration": 0.17052699999999998,
+          "sentence": 1,
+          "wordIndex": 29
+        },
+        "sentence_1_word_30": {
+          "word": "surrounding",
+          "start": 12.277943999999998,
+          "end": 12.903209666666665,
+          "duration": 0.6252656666666666,
+          "sentence": 1,
+          "wordIndex": 30
+        },
+        "sentence_1_word_31": {
+          "word": "families",
+          "start": 12.903209666666665,
+          "end": 13.414790666666665,
+          "duration": 0.511581,
+          "sentence": 1,
+          "wordIndex": 31
+        },
+        "sentence_1_word_32": {
+          "word": "that",
+          "start": 13.414790666666665,
+          "end": 13.642159999999999,
+          "duration": 0.2273693333333333,
+          "sentence": 1,
+          "wordIndex": 32
+        },
+        "sentence_1_word_33": {
+          "word": "he",
+          "start": 13.642159999999999,
+          "end": 13.755844666666665,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 33
+        },
+        "sentence_1_word_34": {
+          "word": "is",
+          "start": 13.755844666666665,
+          "end": 13.86952933333333,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 34
+        },
+        "sentence_1_word_35": {
+          "word": "considered",
+          "start": 13.86952933333333,
+          "end": 14.437952666666664,
+          "duration": 0.5684233333333333,
+          "sentence": 1,
+          "wordIndex": 35
+        },
+        "sentence_1_word_36": {
+          "word": "the",
+          "start": 14.437952666666664,
+          "end": 14.608479666666664,
+          "duration": 0.17052699999999998,
+          "sentence": 1,
+          "wordIndex": 36
+        },
+        "sentence_1_word_37": {
+          "word": "rightful",
+          "start": 14.608479666666664,
+          "end": 15.063218333333332,
+          "duration": 0.4547386666666666,
+          "sentence": 1,
+          "wordIndex": 37
+        },
+        "sentence_1_word_38": {
+          "word": "property",
+          "start": 15.063218333333332,
+          "end": 15.517957,
+          "duration": 0.4547386666666666,
+          "sentence": 1,
+          "wordIndex": 38
+        },
+        "sentence_1_word_39": {
+          "word": "of",
+          "start": 15.517957,
+          "end": 15.631641666666665,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 39
+        },
+        "sentence_1_word_40": {
+          "word": "some",
+          "start": 15.631641666666665,
+          "end": 15.859010999999999,
+          "duration": 0.2273693333333333,
+          "sentence": 1,
+          "wordIndex": 40
+        },
+        "sentence_1_word_41": {
+          "word": "one",
+          "start": 15.859010999999999,
+          "end": 16.029538,
+          "duration": 0.17052699999999998,
+          "sentence": 1,
+          "wordIndex": 41
+        },
+        "sentence_1_word_42": {
+          "word": "or",
+          "start": 16.029538,
+          "end": 16.143222666666666,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 42
+        },
+        "sentence_1_word_43": {
+          "word": "other",
+          "start": 16.143222666666666,
+          "end": 16.427434333333334,
+          "duration": 0.28421166666666664,
+          "sentence": 1,
+          "wordIndex": 43
+        },
+        "sentence_1_word_44": {
+          "word": "of",
+          "start": 16.427434333333334,
+          "end": 16.541119000000002,
+          "duration": 0.11368466666666666,
+          "sentence": 1,
+          "wordIndex": 44
+        },
+        "sentence_1_word_45": {
+          "word": "their",
+          "start": 16.541119000000002,
+          "end": 16.82533066666667,
+          "duration": 0.28421166666666664,
+          "sentence": 1,
+          "wordIndex": 45
+        },
+        "sentence_1_word_46": {
+          "word": "daughters",
+          "start": 16.82533066666667,
+          "end": 17.393754,
+          "duration": 0.5684233333333333,
+          "sentence": 1,
+          "wordIndex": 46
+        }
+      }
     },
     "B1": {
       "text": "Everyone knows that a rich single man must want to find a wife. When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
@@ -32,7 +615,398 @@
           "text": "When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
           "wordCount": 32
         }
-      ]
+      ],
+      "audio": {
+        "url": "/audio/demo/pride-prejudice-b1.mp3",
+        "filename": "pride-prejudice-b1.mp3",
+        "duration": 13.5575,
+        "size": 216965,
+        "generatedAt": "2025-10-19T08:16:39.208Z",
+        "voice": "EXAVITQu4vr4xnSDxMaL",
+        "settings": {
+          "voice_id": "EXAVITQu4vr4xnSDxMaL",
+          "model_id": "eleven_monolingual_v1",
+          "voice_settings": {
+            "stability": 0.5,
+            "similarity_boost": 0.75,
+            "style": 0,
+            "use_speaker_boost": true
+          },
+          "speed": 0.9,
+          "output_format": "mp3_44100_128",
+          "apply_text_normalization": "auto"
+        }
+      },
+      "wordTimings": {
+        "sentence_0_word_0": {
+          "word": "Everyone",
+          "start": 0,
+          "end": 0.44633744855967067,
+          "duration": 0.44633744855967067,
+          "sentence": 0,
+          "wordIndex": 0
+        },
+        "sentence_0_word_1": {
+          "word": "knows",
+          "start": 0.44633744855967067,
+          "end": 0.7252983539094648,
+          "duration": 0.2789609053497942,
+          "sentence": 0,
+          "wordIndex": 1
+        },
+        "sentence_0_word_2": {
+          "word": "that",
+          "start": 0.7252983539094648,
+          "end": 0.9484670781893002,
+          "duration": 0.22316872427983533,
+          "sentence": 0,
+          "wordIndex": 2
+        },
+        "sentence_0_word_3": {
+          "word": "a",
+          "start": 0.9484670781893002,
+          "end": 1.004259259259259,
+          "duration": 0.055792181069958834,
+          "sentence": 0,
+          "wordIndex": 3
+        },
+        "sentence_0_word_4": {
+          "word": "rich",
+          "start": 1.004259259259259,
+          "end": 1.2274279835390942,
+          "duration": 0.22316872427983533,
+          "sentence": 0,
+          "wordIndex": 4
+        },
+        "sentence_0_word_5": {
+          "word": "single",
+          "start": 1.2274279835390942,
+          "end": 1.5621810699588472,
+          "duration": 0.33475308641975304,
+          "sentence": 0,
+          "wordIndex": 5
+        },
+        "sentence_0_word_6": {
+          "word": "man",
+          "start": 1.5621810699588472,
+          "end": 1.7295576131687238,
+          "duration": 0.16737654320987652,
+          "sentence": 0,
+          "wordIndex": 6
+        },
+        "sentence_0_word_7": {
+          "word": "must",
+          "start": 1.7295576131687238,
+          "end": 1.952726337448559,
+          "duration": 0.22316872427983533,
+          "sentence": 0,
+          "wordIndex": 7
+        },
+        "sentence_0_word_8": {
+          "word": "want",
+          "start": 1.952726337448559,
+          "end": 2.1758950617283945,
+          "duration": 0.22316872427983533,
+          "sentence": 0,
+          "wordIndex": 8
+        },
+        "sentence_0_word_9": {
+          "word": "to",
+          "start": 2.1758950617283945,
+          "end": 2.2874794238683123,
+          "duration": 0.11158436213991767,
+          "sentence": 0,
+          "wordIndex": 9
+        },
+        "sentence_0_word_10": {
+          "word": "find",
+          "start": 2.2874794238683123,
+          "end": 2.5106481481481477,
+          "duration": 0.22316872427983533,
+          "sentence": 0,
+          "wordIndex": 10
+        },
+        "sentence_0_word_11": {
+          "word": "a",
+          "start": 2.5106481481481477,
+          "end": 2.5664403292181066,
+          "duration": 0.055792181069958834,
+          "sentence": 0,
+          "wordIndex": 11
+        },
+        "sentence_0_word_12": {
+          "word": "wife",
+          "start": 2.5664403292181066,
+          "end": 2.845401234567901,
+          "duration": 0.2789609053497942,
+          "sentence": 0,
+          "wordIndex": 12
+        },
+        "sentence_1_word_0": {
+          "word": "When",
+          "start": 2.845401234567901,
+          "end": 3.0685699588477364,
+          "duration": 0.2231687242798354,
+          "sentence": 1,
+          "wordIndex": 0
+        },
+        "sentence_1_word_1": {
+          "word": "such",
+          "start": 3.0685699588477364,
+          "end": 3.291738683127572,
+          "duration": 0.2231687242798354,
+          "sentence": 1,
+          "wordIndex": 1
+        },
+        "sentence_1_word_2": {
+          "word": "a",
+          "start": 3.291738683127572,
+          "end": 3.3475308641975308,
+          "duration": 0.05579218106995885,
+          "sentence": 1,
+          "wordIndex": 2
+        },
+        "sentence_1_word_3": {
+          "word": "man",
+          "start": 3.3475308641975308,
+          "end": 3.5149074074074074,
+          "duration": 0.16737654320987652,
+          "sentence": 1,
+          "wordIndex": 3
+        },
+        "sentence_1_word_4": {
+          "word": "moves",
+          "start": 3.5149074074074074,
+          "end": 3.7938683127572017,
+          "duration": 0.27896090534979423,
+          "sentence": 1,
+          "wordIndex": 4
+        },
+        "sentence_1_word_5": {
+          "word": "to",
+          "start": 3.7938683127572017,
+          "end": 3.9054526748971194,
+          "duration": 0.1115843621399177,
+          "sentence": 1,
+          "wordIndex": 5
+        },
+        "sentence_1_word_6": {
+          "word": "a",
+          "start": 3.9054526748971194,
+          "end": 3.9612448559670783,
+          "duration": 0.05579218106995885,
+          "sentence": 1,
+          "wordIndex": 6
+        },
+        "sentence_1_word_7": {
+          "word": "new",
+          "start": 3.9612448559670783,
+          "end": 4.1286213991769545,
+          "duration": 0.16737654320987652,
+          "sentence": 1,
+          "wordIndex": 7
+        },
+        "sentence_1_word_8": {
+          "word": "place",
+          "start": 4.1286213991769545,
+          "end": 4.463374485596708,
+          "duration": 0.33475308641975304,
+          "sentence": 1,
+          "wordIndex": 8
+        },
+        "sentence_1_word_9": {
+          "word": "the",
+          "start": 4.463374485596708,
+          "end": 4.630751028806584,
+          "duration": 0.16737654320987652,
+          "sentence": 1,
+          "wordIndex": 9
+        },
+        "sentence_1_word_10": {
+          "word": "families",
+          "start": 4.630751028806584,
+          "end": 5.077088477366255,
+          "duration": 0.4463374485596708,
+          "sentence": 1,
+          "wordIndex": 10
+        },
+        "sentence_1_word_11": {
+          "word": "around",
+          "start": 5.077088477366255,
+          "end": 5.411841563786008,
+          "duration": 0.33475308641975304,
+          "sentence": 1,
+          "wordIndex": 11
+        },
+        "sentence_1_word_12": {
+          "word": "him",
+          "start": 5.411841563786008,
+          "end": 5.579218106995884,
+          "duration": 0.16737654320987652,
+          "sentence": 1,
+          "wordIndex": 12
+        },
+        "sentence_1_word_13": {
+          "word": "believe",
+          "start": 5.579218106995884,
+          "end": 5.969763374485596,
+          "duration": 0.3905452674897119,
+          "sentence": 1,
+          "wordIndex": 13
+        },
+        "sentence_1_word_14": {
+          "word": "that",
+          "start": 5.969763374485596,
+          "end": 6.192932098765431,
+          "duration": 0.2231687242798354,
+          "sentence": 1,
+          "wordIndex": 14
+        },
+        "sentence_1_word_15": {
+          "word": "he",
+          "start": 6.192932098765431,
+          "end": 6.304516460905349,
+          "duration": 0.1115843621399177,
+          "sentence": 1,
+          "wordIndex": 15
+        },
+        "sentence_1_word_16": {
+          "word": "should",
+          "start": 6.304516460905349,
+          "end": 6.639269547325102,
+          "duration": 0.33475308641975304,
+          "sentence": 1,
+          "wordIndex": 16
+        },
+        "sentence_1_word_17": {
+          "word": "marry",
+          "start": 6.639269547325102,
+          "end": 6.918230452674896,
+          "duration": 0.27896090534979423,
+          "sentence": 1,
+          "wordIndex": 17
+        },
+        "sentence_1_word_18": {
+          "word": "one",
+          "start": 6.918230452674896,
+          "end": 7.085606995884772,
+          "duration": 0.16737654320987652,
+          "sentence": 1,
+          "wordIndex": 18
+        },
+        "sentence_1_word_19": {
+          "word": "of",
+          "start": 7.085606995884772,
+          "end": 7.19719135802469,
+          "duration": 0.1115843621399177,
+          "sentence": 1,
+          "wordIndex": 19
+        },
+        "sentence_1_word_20": {
+          "word": "their",
+          "start": 7.19719135802469,
+          "end": 7.476152263374484,
+          "duration": 0.27896090534979423,
+          "sentence": 1,
+          "wordIndex": 20
+        },
+        "sentence_1_word_21": {
+          "word": "daughters",
+          "start": 7.476152263374484,
+          "end": 8.034074074074072,
+          "duration": 0.5579218106995885,
+          "sentence": 1,
+          "wordIndex": 21
+        },
+        "sentence_1_word_22": {
+          "word": "even",
+          "start": 8.034074074074072,
+          "end": 8.257242798353907,
+          "duration": 0.2231687242798354,
+          "sentence": 1,
+          "wordIndex": 22
+        },
+        "sentence_1_word_23": {
+          "word": "if",
+          "start": 8.257242798353907,
+          "end": 8.368827160493824,
+          "duration": 0.1115843621399177,
+          "sentence": 1,
+          "wordIndex": 23
+        },
+        "sentence_1_word_24": {
+          "word": "they",
+          "start": 8.368827160493824,
+          "end": 8.59199588477366,
+          "duration": 0.2231687242798354,
+          "sentence": 1,
+          "wordIndex": 24
+        },
+        "sentence_1_word_25": {
+          "word": "dont",
+          "start": 8.59199588477366,
+          "end": 8.870956790123454,
+          "duration": 0.27896090534979423,
+          "sentence": 1,
+          "wordIndex": 25
+        },
+        "sentence_1_word_26": {
+          "word": "know",
+          "start": 8.870956790123454,
+          "end": 9.09412551440329,
+          "duration": 0.2231687242798354,
+          "sentence": 1,
+          "wordIndex": 26
+        },
+        "sentence_1_word_27": {
+          "word": "anything",
+          "start": 9.09412551440329,
+          "end": 9.54046296296296,
+          "duration": 0.4463374485596708,
+          "sentence": 1,
+          "wordIndex": 27
+        },
+        "sentence_1_word_28": {
+          "word": "about",
+          "start": 9.54046296296296,
+          "end": 9.819423868312755,
+          "duration": 0.27896090534979423,
+          "sentence": 1,
+          "wordIndex": 28
+        },
+        "sentence_1_word_29": {
+          "word": "his",
+          "start": 9.819423868312755,
+          "end": 9.986800411522632,
+          "duration": 0.16737654320987652,
+          "sentence": 1,
+          "wordIndex": 29
+        },
+        "sentence_1_word_30": {
+          "word": "feelings",
+          "start": 9.986800411522632,
+          "end": 10.433137860082303,
+          "duration": 0.4463374485596708,
+          "sentence": 1,
+          "wordIndex": 30
+        },
+        "sentence_1_word_31": {
+          "word": "or",
+          "start": 10.433137860082303,
+          "end": 10.54472222222222,
+          "duration": 0.1115843621399177,
+          "sentence": 1,
+          "wordIndex": 31
+        },
+        "sentence_1_word_32": {
+          "word": "opinions",
+          "start": 10.54472222222222,
+          "end": 11.04685185185185,
+          "duration": 0.5021296296296296,
+          "sentence": 1,
+          "wordIndex": 32
+        }
+      }
     },
     "A1": {
       "text": "People think that rich men who are not married want to find a wife. When a rich man comes to a new place, families want him to marry their daughters.",
@@ -47,7 +1021,270 @@
           "text": "When a rich man comes to a new place, families want him to marry their daughters.",
           "wordCount": 16
         }
-      ]
+      ],
+      "audio": {
+        "url": "/audio/demo/pride-prejudice-a1.mp3",
+        "filename": "pride-prejudice-a1.mp3",
+        "duration": 8.019563,
+        "size": 128358,
+        "generatedAt": "2025-10-19T08:16:39.206Z",
+        "voice": "EXAVITQu4vr4xnSDxMaL",
+        "settings": {
+          "voice_id": "EXAVITQu4vr4xnSDxMaL",
+          "model_id": "eleven_monolingual_v1",
+          "voice_settings": {
+            "stability": 0.5,
+            "similarity_boost": 0.75,
+            "style": 0,
+            "use_speaker_boost": true
+          },
+          "speed": 0.9,
+          "output_format": "mp3_44100_128",
+          "apply_text_normalization": "auto"
+        }
+      },
+      "wordTimings": {
+        "sentence_0_word_0": {
+          "word": "People",
+          "start": 0,
+          "end": 0.3229354228187919,
+          "duration": 0.3229354228187919,
+          "sentence": 0,
+          "wordIndex": 0
+        },
+        "sentence_0_word_1": {
+          "word": "think",
+          "start": 0.3229354228187919,
+          "end": 0.5920482751677851,
+          "duration": 0.26911285234899324,
+          "sentence": 0,
+          "wordIndex": 1
+        },
+        "sentence_0_word_2": {
+          "word": "that",
+          "start": 0.5920482751677851,
+          "end": 0.8073385570469798,
+          "duration": 0.21529028187919463,
+          "sentence": 0,
+          "wordIndex": 2
+        },
+        "sentence_0_word_3": {
+          "word": "rich",
+          "start": 0.8073385570469798,
+          "end": 1.0226288389261744,
+          "duration": 0.21529028187919463,
+          "sentence": 0,
+          "wordIndex": 3
+        },
+        "sentence_0_word_4": {
+          "word": "men",
+          "start": 1.0226288389261744,
+          "end": 1.1840965503355703,
+          "duration": 0.16146771140939595,
+          "sentence": 0,
+          "wordIndex": 4
+        },
+        "sentence_0_word_5": {
+          "word": "who",
+          "start": 1.1840965503355703,
+          "end": 1.3455642617449661,
+          "duration": 0.16146771140939595,
+          "sentence": 0,
+          "wordIndex": 5
+        },
+        "sentence_0_word_6": {
+          "word": "are",
+          "start": 1.3455642617449661,
+          "end": 1.507031973154362,
+          "duration": 0.16146771140939595,
+          "sentence": 0,
+          "wordIndex": 6
+        },
+        "sentence_0_word_7": {
+          "word": "not",
+          "start": 1.507031973154362,
+          "end": 1.6684996845637579,
+          "duration": 0.16146771140939595,
+          "sentence": 0,
+          "wordIndex": 7
+        },
+        "sentence_0_word_8": {
+          "word": "married",
+          "start": 1.6684996845637579,
+          "end": 2.0452576778523484,
+          "duration": 0.3767579932885906,
+          "sentence": 0,
+          "wordIndex": 8
+        },
+        "sentence_0_word_9": {
+          "word": "want",
+          "start": 2.0452576778523484,
+          "end": 2.260547959731543,
+          "duration": 0.21529028187919463,
+          "sentence": 0,
+          "wordIndex": 9
+        },
+        "sentence_0_word_10": {
+          "word": "to",
+          "start": 2.260547959731543,
+          "end": 2.3681931006711405,
+          "duration": 0.10764514093959732,
+          "sentence": 0,
+          "wordIndex": 10
+        },
+        "sentence_0_word_11": {
+          "word": "find",
+          "start": 2.3681931006711405,
+          "end": 2.583483382550335,
+          "duration": 0.21529028187919463,
+          "sentence": 0,
+          "wordIndex": 11
+        },
+        "sentence_0_word_12": {
+          "word": "a",
+          "start": 2.583483382550335,
+          "end": 2.637305953020134,
+          "duration": 0.05382257046979866,
+          "sentence": 0,
+          "wordIndex": 12
+        },
+        "sentence_0_word_13": {
+          "word": "wife",
+          "start": 2.637305953020134,
+          "end": 2.9064188053691273,
+          "duration": 0.26911285234899324,
+          "sentence": 0,
+          "wordIndex": 13
+        },
+        "sentence_1_word_0": {
+          "word": "When",
+          "start": 2.9064188053691273,
+          "end": 3.121709087248322,
+          "duration": 0.21529028187919463,
+          "sentence": 1,
+          "wordIndex": 0
+        },
+        "sentence_1_word_1": {
+          "word": "a",
+          "start": 3.121709087248322,
+          "end": 3.1755316577181207,
+          "duration": 0.05382257046979866,
+          "sentence": 1,
+          "wordIndex": 1
+        },
+        "sentence_1_word_2": {
+          "word": "rich",
+          "start": 3.1755316577181207,
+          "end": 3.3908219395973154,
+          "duration": 0.21529028187919463,
+          "sentence": 1,
+          "wordIndex": 2
+        },
+        "sentence_1_word_3": {
+          "word": "man",
+          "start": 3.3908219395973154,
+          "end": 3.5522896510067112,
+          "duration": 0.16146771140939598,
+          "sentence": 1,
+          "wordIndex": 3
+        },
+        "sentence_1_word_4": {
+          "word": "comes",
+          "start": 3.5522896510067112,
+          "end": 3.8214025033557046,
+          "duration": 0.2691128523489933,
+          "sentence": 1,
+          "wordIndex": 4
+        },
+        "sentence_1_word_5": {
+          "word": "to",
+          "start": 3.8214025033557046,
+          "end": 3.929047644295302,
+          "duration": 0.10764514093959732,
+          "sentence": 1,
+          "wordIndex": 5
+        },
+        "sentence_1_word_6": {
+          "word": "a",
+          "start": 3.929047644295302,
+          "end": 3.982870214765101,
+          "duration": 0.05382257046979866,
+          "sentence": 1,
+          "wordIndex": 6
+        },
+        "sentence_1_word_7": {
+          "word": "new",
+          "start": 3.982870214765101,
+          "end": 4.144337926174497,
+          "duration": 0.16146771140939598,
+          "sentence": 1,
+          "wordIndex": 7
+        },
+        "sentence_1_word_8": {
+          "word": "place",
+          "start": 4.144337926174497,
+          "end": 4.467273348993289,
+          "duration": 0.32293542281879195,
+          "sentence": 1,
+          "wordIndex": 8
+        },
+        "sentence_1_word_9": {
+          "word": "families",
+          "start": 4.467273348993289,
+          "end": 4.897853912751678,
+          "duration": 0.43058056375838927,
+          "sentence": 1,
+          "wordIndex": 9
+        },
+        "sentence_1_word_10": {
+          "word": "want",
+          "start": 4.897853912751678,
+          "end": 5.113144194630873,
+          "duration": 0.21529028187919463,
+          "sentence": 1,
+          "wordIndex": 10
+        },
+        "sentence_1_word_11": {
+          "word": "him",
+          "start": 5.113144194630873,
+          "end": 5.27461190604027,
+          "duration": 0.16146771140939598,
+          "sentence": 1,
+          "wordIndex": 11
+        },
+        "sentence_1_word_12": {
+          "word": "to",
+          "start": 5.27461190604027,
+          "end": 5.382257046979867,
+          "duration": 0.10764514093959732,
+          "sentence": 1,
+          "wordIndex": 12
+        },
+        "sentence_1_word_13": {
+          "word": "marry",
+          "start": 5.382257046979867,
+          "end": 5.65136989932886,
+          "duration": 0.2691128523489933,
+          "sentence": 1,
+          "wordIndex": 13
+        },
+        "sentence_1_word_14": {
+          "word": "their",
+          "start": 5.65136989932886,
+          "end": 5.920482751677853,
+          "duration": 0.2691128523489933,
+          "sentence": 1,
+          "wordIndex": 14
+        },
+        "sentence_1_word_15": {
+          "word": "daughters",
+          "start": 5.920482751677853,
+          "end": 6.45870845637584,
+          "duration": 0.5382257046979866,
+          "sentence": 1,
+          "wordIndex": 15
+        }
+      }
     }
   },
   "metadata": {
@@ -58,8 +1295,25 @@
       "original": 40
     },
     "voice": "Sarah",
-    "speed": 0.90,
-    "contentHash": "demo-pride-prejudice-v1"
+    "speed": 0.9,
+    "contentHash": "demo-pride-prejudice-v1",
+    "audioGenerated": true,
+    "generatedAt": "2025-10-19T08:16:39.208Z",
+    "baseline": {
+      "voice_id": "EXAVITQu4vr4xnSDxMaL",
+      "model_id": "eleven_monolingual_v1",
+      "voice_settings": {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0,
+        "use_speaker_boost": true
+      },
+      "speed": 0.9,
+      "output_format": "mp3_44100_128",
+      "apply_text_normalization": "auto"
+    },
+    "method": "ffprobe-proportional",
+    "version": 1
   },
   "wordTimings": {
     "note": "Will be populated after audio generation with Solution 1 measured timings"
