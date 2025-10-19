@@ -43,10 +43,10 @@ export function CleanBookCard({ book, onAskAI, onReadBook, index = 0 }: CleanBoo
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -4 }}
-      className="bg-[var(--bg-secondary)] border border-[var(--accent-secondary)] rounded-xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-200"
+      className="bg-[var(--bg-secondary)] border border-[var(--accent-secondary)] rounded-xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-200 w-full max-w-sm mx-auto"
       style={{
         height: '240px',
-        width: '320px',
+        minWidth: '280px',
         boxShadow: '0 2px 8px var(--shadow-soft)',
         cursor: 'pointer',
         marginBottom: '16px'
@@ -88,14 +88,14 @@ export function CleanBookCard({ book, onAskAI, onReadBook, index = 0 }: CleanBoo
       <div className="flex gap-2 mt-4">
           <button
             onClick={() => onAskAI(book)}
-            className="flex-1 h-9 rounded-lg bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)]/60 transition-all duration-200 text-sm font-medium"
+            className="flex-1 h-11 rounded-lg bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)]/60 transition-all duration-200 text-sm font-medium min-h-[44px]"
             style={{ fontFamily: 'Source Serif Pro, serif' }}
           >
             Ask AI
           </button>
           <button
             onClick={() => onReadBook(book.id)}
-            className="flex-1 h-9 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center"
+            className="flex-1 h-11 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center min-h-[44px]"
             style={{ fontFamily: 'Source Serif Pro, serif' }}
           >
             Read Book

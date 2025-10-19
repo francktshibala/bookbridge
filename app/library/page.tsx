@@ -302,8 +302,8 @@ export default function LibraryPage() {
               width: '48px',
               height: '48px',
               borderRadius: '50%',
-              border: '3px solid #e2e8f0',
-              borderTop: '3px solid #667eea',
+              border: '3px solid var(--border-light)',
+              borderTop: '3px solid var(--accent-primary)',
               margin: '0 auto 16px auto'
             }}
           />
@@ -350,7 +350,7 @@ export default function LibraryPage() {
                   width: '6px',
                   height: '6px',
                   borderRadius: '50%',
-                  backgroundColor: '#667eea'
+                  backgroundColor: 'var(--accent-primary)'
                 }}
               />
             ))}
@@ -601,28 +601,28 @@ export default function LibraryPage() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
-                  background: 'white',
-                  border: '2px solid #e2e8f0',
+                  background: 'var(--bg-secondary)',
+                  border: '2px solid var(--border-light)',
                   borderRadius: '12px',
                   padding: '12px 20px',
                   fontSize: '14px',
                   fontWeight: '600',
-                  color: '#4a5568',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  color: 'var(--text-primary)',
+                  fontFamily: 'Source Serif Pro, Georgia, serif',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
                   marginBottom: '32px',
-                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
+                  boxShadow: '0 2px 4px var(--shadow-soft)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#667eea';
-                  e.currentTarget.style.backgroundColor = '#f8faff';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.15)';
+                  e.currentTarget.style.borderColor = 'var(--accent-primary)';
+                  e.currentTarget.style.backgroundColor = 'var(--accent-primary)/10';
+                  e.currentTarget.style.boxShadow = '0 4px 12px var(--shadow-medium)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#e2e8f0';
-                  e.currentTarget.style.backgroundColor = 'white';
-                  e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.05)';
+                  e.currentTarget.style.borderColor = 'var(--border-light)';
+                  e.currentTarget.style.backgroundColor = 'var(--bg-secondary)';
+                  e.currentTarget.style.boxShadow = '0 2px 4px var(--shadow-soft)';
                 }}
               >
                 ← Back to Library
@@ -633,11 +633,11 @@ export default function LibraryPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
                 style={{
-                  background: 'white',
+                  background: 'var(--bg-secondary)',
                   borderRadius: '24px',
-                  padding: '40px',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  padding: 'clamp(20px, 5vw, 40px)',
+                  boxShadow: '0 8px 32px var(--shadow-soft)',
+                  border: '2px solid var(--accent-primary)/20',
                   marginBottom: '32px'
                 }}
               >
@@ -646,14 +646,11 @@ export default function LibraryPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.4 }}
                   style={{
-                    fontSize: '42px',
-                    fontWeight: '800',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
+                    fontSize: 'clamp(28px, 8vw, 42px)',
+                    fontWeight: '700',
+                    color: 'var(--text-accent)',
                     marginBottom: '12px',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                    fontFamily: 'Playfair Display, serif',
                     lineHeight: '1.2'
                   }}
                 >
@@ -666,10 +663,10 @@ export default function LibraryPage() {
                   transition={{ delay: 0.5, duration: 0.4 }}
                   style={{
                     fontSize: '22px',
-                    color: '#4a5568',
-                    fontWeight: '600',
+                    color: 'var(--text-secondary)',
+                    fontWeight: '500',
                     marginBottom: '24px',
-                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                    fontFamily: 'Source Serif Pro, Georgia, serif'
                   }}
                 >
                   by {selectedBook.author}
@@ -682,11 +679,11 @@ export default function LibraryPage() {
                     transition={{ delay: 0.6, duration: 0.4 }}
                     style={{
                       fontSize: '18px',
-                      color: '#2d3748',
+                      color: 'var(--text-primary)',
                       lineHeight: '1.7',
                       marginBottom: '32px',
-                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                      fontWeight: '500'
+                      fontFamily: 'Source Serif Pro, Georgia, serif',
+                      fontWeight: '400'
                     }}
                   >
                     {selectedBook.description}
@@ -709,13 +706,13 @@ export default function LibraryPage() {
                       whileHover={{ scale: 1.05 }}
                       style={{
                         fontSize: '14px',
-                        color: '#667eea',
+                        color: 'var(--accent-primary)',
                         fontWeight: '600',
-                        backgroundColor: '#f0f4ff',
-                        border: '2px solid #e0e7ff',
+                        backgroundColor: 'var(--accent-primary)/10',
+                        border: '2px solid var(--accent-primary)/30',
                         padding: '8px 16px',
                         borderRadius: '20px',
-                        fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                        fontFamily: 'Source Serif Pro, Georgia, serif'
                       }}
                     >
                       Genre: {selectedBook.genre}
@@ -726,13 +723,13 @@ export default function LibraryPage() {
                       whileHover={{ scale: 1.05 }}
                       style={{
                         fontSize: '14px',
-                        color: '#667eea',
+                        color: 'var(--accent-primary)',
                         fontWeight: '600',
-                        backgroundColor: '#f0f4ff',
-                        border: '2px solid #e0e7ff',
+                        backgroundColor: 'var(--accent-primary)/10',
+                        border: '2px solid var(--accent-primary)/30',
                         padding: '8px 16px',
                         borderRadius: '20px',
-                        fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                        fontFamily: 'Source Serif Pro, Georgia, serif'
                       }}
                     >
                       Published: {selectedBook.publishYear}
@@ -773,16 +770,16 @@ export default function LibraryPage() {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '12px',
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                      color: 'white',
+                      background: 'var(--accent-primary)',
+                      color: 'var(--bg-primary)',
                       textDecoration: 'none',
                       padding: '18px 36px',
                       borderRadius: '16px',
                       fontSize: '18px',
                       fontWeight: '700',
-                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                      fontFamily: 'Source Serif Pro, Georgia, serif',
                       transition: 'all 0.2s ease',
-                      boxShadow: '0 4px 12px rgba(102, 126, 234, 0.25)'
+                      boxShadow: '0 4px 12px var(--shadow-medium)'
                     }}
                   >
                     📖 Start Reading
@@ -799,12 +796,9 @@ export default function LibraryPage() {
               <h2 id="ai-chat-section" style={{
                 fontSize: '32px',
                 fontWeight: '700',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                color: 'var(--text-accent)',
                 marginBottom: '24px',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                fontFamily: 'Playfair Display, serif',
                 textAlign: 'center'
               }}>
                 🤖 Ask AI About This Book
@@ -929,7 +923,7 @@ export default function LibraryPage() {
             <motion.h2
               id="catalog-heading"
               style={{
-                fontSize: '2.5rem',
+                fontSize: 'clamp(2rem, 5vw, 2.5rem)',
                 fontWeight: '700',
                 color: 'var(--text-accent)',
                 fontFamily: 'Playfair Display, Georgia, serif',
@@ -961,8 +955,8 @@ export default function LibraryPage() {
             transition={{ delay: 0.2 }}
             style={{ marginBottom: '32px' }}
           >
-            <div style={{ 
-              display: 'flex', 
+            <div className="search-controls" style={{
+              display: 'flex',
               gap: '12px',
               alignItems: 'stretch',
               justifyContent: 'center',
@@ -985,11 +979,11 @@ export default function LibraryPage() {
                   minWidth: '250px',
                   minHeight: '44px',
                   padding: '14px 16px',
-                  border: '1px solid #334155',
+                  border: '1px solid var(--border-light)',
                   borderRadius: '12px',
                   fontSize: '16px',
                   fontFamily: 'Source Serif Pro, Georgia, serif',
-                  color: '#e2e8f0',
+                  color: 'var(--text-primary)',
                   backgroundColor: 'var(--bg-secondary)',
                   outline: 'none',
                   transition: 'all 0.2s ease'
@@ -999,7 +993,7 @@ export default function LibraryPage() {
                   e.target.style.boxShadow = '0 0 0 3px var(--accent-light)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = '#334155';
+                  e.target.style.borderColor = 'var(--border-light)';
                   e.target.style.boxShadow = 'none';
                 }}
               />
@@ -1015,11 +1009,11 @@ export default function LibraryPage() {
                   minWidth: '140px',
                   minHeight: '44px',
                   padding: '14px 16px',
-                  border: '1px solid #334155',
+                  border: '1px solid var(--border-light)',
                   borderRadius: '12px',
                   fontSize: '16px',
                   fontFamily: 'Source Serif Pro, Georgia, serif',
-                  color: '#e2e8f0',
+                  color: 'var(--text-primary)',
                   backgroundColor: 'var(--bg-secondary)',
                   outline: 'none',
                   cursor: 'pointer'
@@ -1061,8 +1055,8 @@ export default function LibraryPage() {
                 animate={{ opacity: 1 }}
                 style={{
                   fontSize: '14px',
-                  color: '#64748b',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  color: 'var(--text-secondary)',
+                  fontFamily: 'Source Serif Pro, Georgia, serif',
                   textAlign: 'center',
                   marginTop: '16px'
                 }}
@@ -1246,11 +1240,59 @@ export default function LibraryPage() {
               
               {/* Responsive Styles */}
               <style jsx>{`
+                .search-controls {
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 12px !important;
+                }
+
+                .search-controls input,
+                .search-controls select,
+                .search-controls button {
+                  width: 100%;
+                  max-width: 300px;
+                  min-height: 44px;
+                }
+
+                @media (min-width: 640px) {
+                  .search-controls {
+                    flex-direction: row;
+                    align-items: stretch;
+                  }
+
+                  .search-controls input,
+                  .search-controls select,
+                  .search-controls button {
+                    width: auto;
+                    max-width: none;
+                  }
+                }
+
                 @media (min-width: 769px) {
                   .browse-library-grid {
                     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
                     max-width: 1200px !important;
                     gap: 24px !important;
+                  }
+                }
+
+                @media (max-width: 768px) {
+                  .browse-library-grid {
+                    grid-template-columns: 1fr !important;
+                    gap: 16px !important;
+                    padding: 0 16px;
+                  }
+
+                  .pagination-buttons button {
+                    min-height: 44px !important;
+                    padding: 12px 16px !important;
+                    font-size: 14px !important;
+                  }
+
+                  .pagination-buttons span {
+                    min-height: 44px !important;
+                    padding: 12px 16px !important;
+                    font-size: 14px !important;
                   }
                 }
               `}</style>
@@ -1268,7 +1310,7 @@ export default function LibraryPage() {
                     marginTop: '48px'
                   }}
                 >
-                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                  <div className="pagination-buttons" style={{ display: 'flex', gap: 'clamp(8px, 2vw, 12px)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
                     <button
                       onClick={() => fetchCatalogBooks(catalogPage - 1, catalogSearch, selectedSource, {
                         author: authorFilter,
@@ -1281,12 +1323,12 @@ export default function LibraryPage() {
                       style={{
                         padding: '12px 20px',
                         borderRadius: '12px',
-                        border: '2px solid #334155',
+                        border: '2px solid var(--border-light)',
                         backgroundColor: !catalogPagination.hasPrevious ? 'var(--bg-secondary)' : 'var(--bg-tertiary)',
-                        color: !catalogPagination.hasPrevious ? '#64748b' : '#e2e8f0',
+                        color: !catalogPagination.hasPrevious ? 'var(--text-muted)' : 'var(--text-primary)',
                         fontSize: '14px',
                         fontWeight: '600',
-                        fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                        fontFamily: 'Source Serif Pro, Georgia, serif',
                         cursor: !catalogPagination.hasPrevious ? 'not-allowed' : 'pointer',
                         transition: 'all 0.2s ease'
                       }}
@@ -1298,11 +1340,11 @@ export default function LibraryPage() {
                       padding: '12px 20px',
                       fontSize: '14px',
                       fontWeight: '500',
-                      color: '#e2e8f0',
-                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                      color: 'var(--text-primary)',
+                      fontFamily: 'Source Serif Pro, Georgia, serif',
                       backgroundColor: 'var(--bg-secondary)',
                       borderRadius: '12px',
-                      border: '2px solid #334155'
+                      border: '2px solid var(--border-light)'
                     }}>
                       Page {catalogPage}
                     </span>
@@ -1319,12 +1361,12 @@ export default function LibraryPage() {
                       style={{
                         padding: '12px 20px',
                         borderRadius: '12px',
-                        border: '2px solid #334155',
+                        border: '2px solid var(--border-light)',
                         backgroundColor: !catalogPagination.hasNext ? 'var(--bg-secondary)' : 'var(--bg-tertiary)',
-                        color: !catalogPagination.hasNext ? '#64748b' : '#e2e8f0',
+                        color: !catalogPagination.hasNext ? 'var(--text-muted)' : 'var(--text-primary)',
                         fontSize: '14px',
                         fontWeight: '600',
-                        fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                        fontFamily: 'Source Serif Pro, Georgia, serif',
                         cursor: !catalogPagination.hasNext ? 'not-allowed' : 'pointer',
                         transition: 'all 0.2s ease'
                       }}
