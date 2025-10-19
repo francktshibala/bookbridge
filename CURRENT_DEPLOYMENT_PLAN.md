@@ -266,6 +266,213 @@ npx prisma migrate rollback
 
 ---
 
+## NEW: Neo-Classic UI Transformation Deployment Plan
+
+### Current Status (October 2025)
+- **Date**: October 19, 2025
+- **Current Branch**: `main` (includes merged `feature/neo-classic-transformation`)
+- **Production Status**: Continuous reading features deployed and stable
+- **Next**: Neo-Classic UI transformation ready for incremental deployment
+
+### What Was Completed
+✅ **Complete Neo-Classic UI Transformation**:
+- Typography system: Playfair Display + Source Serif Pro
+- CSS variables theme system (Light/Dark/Sepia variants)
+- Authentication pages redesign
+- Collection pages redesign (Enhanced, Browse All, Featured Books)
+- Reading experience transformation
+- AI Chat modal integration fixes
+- 20 files modified, -720 net lines (optimized)
+
+---
+
+## Neo-Classic Incremental Deployment Strategy
+
+### Phase 1: Authentication Foundation (Day 1 - Low Risk)
+**Target**: Deploy authentication page transformations first
+**Reasoning**: Isolated components, minimal user impact, easy rollback
+
+```bash
+# Step 1.1: Create authentication-only branch
+git checkout main
+git checkout -b deploy/auth-neo-classic
+git push origin deploy/auth-neo-classic
+
+# Step 1.2: Cherry-pick auth changes only
+git cherry-pick <auth-commit-hash>
+
+# Step 1.3: Deploy to staging
+# Test login/signup flows thoroughly
+
+# Step 1.4: Deploy to production
+# Monitor authentication success rates
+```
+
+**Files in Phase 1**:
+- `app/auth/login/page.tsx`
+- `app/auth/signup/page.tsx`
+- `app/globals.css` (theme variables only)
+
+**Success Criteria**:
+- [ ] Login/signup flows work identically
+- [ ] No authentication errors
+- [ ] Theme switching works on auth pages
+- [ ] Mobile responsiveness maintained
+
+---
+
+### Phase 2: Collection Pages (Day 2-3 - Medium Risk)
+**Target**: Deploy collection page transformations
+**Reasoning**: High visibility but non-critical to core functionality
+
+```bash
+# Step 2.1: Create collection branch
+git checkout main
+git checkout -b deploy/collections-neo-classic
+
+# Step 2.2: Deploy collection pages
+# Featured Books, Enhanced Collection, Browse All Books
+```
+
+**Files in Phase 2**:
+- `app/enhanced-collection/page.tsx`
+- `app/featured-books/page.tsx`
+- `app/library/page.tsx`
+- `components/ui/EnhancedBookCard.tsx`
+- `components/library/CleanBookCard.tsx`
+
+**Success Criteria**:
+- [ ] All book collection pages load correctly
+- [ ] AI Chat functionality works (fixed in this phase)
+- [ ] Book navigation and filtering work
+- [ ] Cards display properly across all themes
+
+---
+
+### Phase 3: Reading Experience (Day 4-5 - Higher Risk)
+**Target**: Deploy core reading interface transformation
+**Reasoning**: Critical user functionality, requires thorough testing
+
+```bash
+# Step 3.1: Create reading experience branch
+git checkout main
+git checkout -b deploy/reading-neo-classic
+
+# Step 3.2: Test reading functionality extensively
+# Audio playback, text highlighting, theme switching
+```
+
+**Files in Phase 3**:
+- `app/library/[id]/read/page.tsx`
+- `components/ai/AIBookChatModal.tsx`
+- `contexts/ThemeContext.tsx`
+
+**Success Criteria**:
+- [ ] Book reading interface works flawlessly
+- [ ] Audio playback and highlighting preserved
+- [ ] Theme switching works during reading
+- [ ] AI chat integration maintained
+
+---
+
+### Phase 4: Navigation & Layout (Day 6-7 - Final Polish)
+**Target**: Deploy navigation and global layout changes
+**Reasoning**: Final touches, affects entire app experience
+
+```bash
+# Step 4.1: Create navigation branch
+git checkout main
+git checkout -b deploy/navigation-neo-classic
+
+# Step 4.2: Deploy final layout components
+```
+
+**Files in Phase 4**:
+- `app/layout.tsx`
+- `app/page.tsx` (homepage)
+- `components/Navigation.tsx`
+- `components/Footer.tsx`
+- `components/MobileNavigationMenu.tsx`
+- `components/theme/ThemeSwitcher.tsx`
+
+**Success Criteria**:
+- [ ] Navigation works across all pages
+- [ ] Homepage reflects new design
+- [ ] Mobile navigation functions properly
+- [ ] Theme switcher works globally
+
+---
+
+## Emergency Rollback Procedures for Neo-Classic
+
+### Quick Rollback Options
+```bash
+# Option 1: Branch-specific rollback
+git checkout main
+git revert <neo-classic-commit-hash>
+git push origin main
+
+# Option 2: Deploy previous stable version
+git checkout <previous-stable-tag>
+# Trigger production deployment
+
+# Option 3: Feature flag disable (if implemented)
+# Set NEO_CLASSIC_UI=false in production env
+```
+
+### Monitoring for Neo-Classic Deployment
+- [ ] Page load times (target: <3s)
+- [ ] Authentication success rates (target: >99%)
+- [ ] Theme switching functionality
+- [ ] Mobile responsiveness
+- [ ] AI chat modal functionality
+- [ ] Audio playback in reading mode
+- [ ] Console errors (target: 0 critical errors)
+
+---
+
+## Neo-Classic Testing Checklist
+
+### Pre-Deployment (Each Phase)
+- [ ] `npm run build` succeeds
+- [ ] `npm run lint` passes
+- [ ] No TypeScript errors
+- [ ] All themes render correctly (Light/Dark/Sepia)
+- [ ] Mobile responsiveness verified
+- [ ] AI functionality preserved
+
+### Post-Deployment (Each Phase)
+- [ ] All pages load without errors
+- [ ] Theme switching works smoothly
+- [ ] Typography renders correctly
+- [ ] No layout breaks on mobile
+- [ ] Performance metrics stable
+
+---
+
+## Commands for Neo-Classic Deployment
+
+```bash
+# Check current Neo-Classic status
+git log --oneline -10 | grep -E "(neo|classic|auth|transform)"
+
+# Test theme switching locally
+npm run dev
+# Navigate to different pages and test theme toggle
+
+# Build verification
+npm run build
+npm run start
+
+# Check for TypeScript issues
+npm run typecheck
+
+# Lint verification
+npm run lint
+```
+
+---
+
 ## Important Commands Reference
 
 ```bash
