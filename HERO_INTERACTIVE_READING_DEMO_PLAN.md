@@ -136,42 +136,170 @@ touch lib/audio/AudioCache.ts
 
 ### Day 8-10: Premium Audio Implementation
 
-#### Step 2.1: Voice Optimization (MASTER PREVENTION INSIGHTS)
-**Script**: `scripts/optimize-demo-voice.js`
-- **MANDATORY**: Use proven M1 settings from Master Prevention Guide
-- **NEVER** use experimental voice settings - only validated configurations
-- **Solution 1**: Implement actual duration measurement with ffprobe
-- Generate optimized audio files with cache management
+#### Step 2.1: Voice Enhancement Strategy (GPT-5 DUAL-TRACK SOLUTION)
+**Scripts**:
+- `scripts/test-voice-candidates.js` - Voice drift validation
+- `scripts/enhance-demo-voice.js` - Dual-track enhancement pipeline
+- `scripts/validate-voice-sync.js` - Automated drift testing
 
-**PROVEN Voice Settings (M1 Test Results)**:
+**🎯 BREAKTHROUGH APPROACH**: Dual-track with time-warping preserves perfect sync while enhancing quality
+
+**BASELINE Voice Settings (Sync Master - NEVER CHANGE)**:
 ```javascript
-// 🏆 WINNING FORMULA - Perfect Synchronization Validated
-const DEMO_VOICE_SETTINGS = {
-  voice: 'Sarah' // EXAVITQu4vr4xnSDxMaL for demo (proven A1-friendly)
-  model: 'eleven_monolingual_v1',  // CRITICAL: NOT eleven_flash_v2_5
-  speed: 0.90,                     // M1 validated speed for perfect sync
-  stability: 0.5,                  // ElevenLabs defaults (proven)
-  similarity_boost: 0.75,          // ElevenLabs defaults (proven)
-  style: 0.0,                      // ElevenLabs defaults (proven)
+// 🔒 TIMING MASTER - Perfect Synchronization Locked
+const BASELINE_SETTINGS = {
+  voice: 'Sarah', // EXAVITQu4vr4xnSDxMaL (sync validated)
+  model: 'eleven_monolingual_v1',  // CRITICAL: timing-stable model
+  speed: 0.90,                     // M1 validated speed
+  stability: 0.5,                  // Proven sync settings
+  similarity_boost: 0.75,          // Proven sync settings
+  style: 0.0,                      // Proven sync settings
   use_speaker_boost: true
 };
 ```
 
-**CRITICAL Prevention Rules**:
-- ✅ ALWAYS measure actual audio duration with ffprobe during generation
-- ✅ NEVER estimate timing - use measured duration + proportional sentence timing
-- ✅ Cache audioDurationMetadata for instant demo loading (2-3 seconds vs 45+ seconds)
-- ✅ Use book-specific CDN paths: `pride-prejudice-demo/A1/sarah/chunk_0.mp3`
-- ❌ NEVER use generic paths that cause audio collisions
+**ENHANCED Voice Settings (Quality Track)**:
+```javascript
+// 🎨 QUALITY ENHANCEMENT - Warped to baseline timing
+const ENHANCEMENT_CANDIDATES = {
+  daniel_premium: {
+    voice: 'Daniel',               // 🏆 PROVEN M1 WINNER (onwK4e9ZLuTAKqWW03F9)
+    stability: 0.5,                // M1 validated settings
+    similarity_boost: 0.75,        // M1 validated settings
+    style: 0.0,                    // M1 validated settings
+    priority: 'HIGH',              // Test first - proven sync
+    notes: 'Perfect sync validated in Maya story M1 test'
+  },
+  daniel_enhanced: {
+    voice: 'Daniel',               // Enhanced version for comparison
+    stability: 0.45,               // GPT-5 range: 0.45-0.55
+    similarity_boost: 0.8,         // GPT-5 range: 0.8-0.9
+    style: 0.1,                    // GPT-5 max: ≤0.15
+    priority: 'HIGH',              // Test second
+    acceptance_criteria: '<5% median duration drift'
+  },
+  bella: {
+    voice: 'Bella',                // Test candidate
+    stability: 0.5,                // GPT-5 range: 0.45-0.55
+    similarity_boost: 0.85,        // GPT-5 range: 0.8-0.9
+    style: 0.1,                    // GPT-5 max: ≤0.15
+    priority: 'MEDIUM',
+    acceptance_criteria: '<5% median duration drift'
+  },
+  adam: {
+    voice: 'Adam',                 // Test candidate
+    stability: 0.55,
+    similarity_boost: 0.9,
+    style: 0.05,
+    priority: 'MEDIUM',
+    acceptance_criteria: '<5% median duration drift'
+  }
+};
+```
 
-#### Step 2.2: SSML Enhancement
+**DUAL-TRACK PIPELINE (4-Step Process)**:
+```javascript
+// Step 1: Generate baseline (timing master)
+const baselineAudio = await generateAudio(text, BASELINE_SETTINGS);
+const masterTimings = await extractWordTimings(baselineAudio);
+
+// Step 2: Generate enhanced version
+const enhancedAudio = await generateAudio(text, ENHANCED_SETTINGS);
+
+// Step 3: Time-warp enhanced to baseline timings (PSOLA/WSOLA)
+const syncedAudio = await timeWarpToTimings(enhancedAudio, masterTimings);
+
+// Step 4: Post-processing (duration-preserving)
+const finalAudio = await postProcess(syncedAudio, POST_PROCESSING_SETTINGS);
+```
+
+**POST-PROCESSING ENHANCEMENT (Zero Timing Risk)**:
+```javascript
+const POST_PROCESSING_SETTINGS = {
+  eq: {
+    lowShelf: { freq: 120, gain: 1.5 },      // Warmth
+    presence: { freq: 3500, gain: 1.5 },     // Clarity
+    air: { freq: 11000, gain: 1.0 }          // Brightness
+  },
+  dynamics: {
+    deEsser: { freq: 6500, threshold: -20 }, // Sibilance control
+    compressor: { ratio: 2.1, attack: 'slow', release: 'medium' },
+    limiter: { ceiling: -1.0, target: -16 }  // LUFS targeting
+  },
+  enhancement: {
+    harmonicExciter: 1.5,                    // Subtle (≤2%)
+    tapeEmulation: 1.0                       // Warmth
+  }
+};
+```
+
+**MICRO-NATURALNESS FEATURES**:
+```javascript
+const NATURALNESS_RULES = {
+  paragraphInitial: { gain: +0.5, presenceBoost: +0.5 },
+  dialogue: { pitch: +1 },           // +1 semitone
+  narration: { pitch: 0 },           // Baseline
+  longSentences: {
+    clauseDip: -0.5,                 // Dynamic dip before clauses
+    breathImplication: true          // No actual breaks
+  }
+};
+```
+
+**AUTOMATED DRIFT TESTING (Quality Gate)**:
+```javascript
+// MANDATORY: 60+ sentence validation
+const ACCEPTANCE_CRITERIA = {
+  medianDriftThreshold: 5,           // <5% per-word duration deviation
+  p95DriftThreshold: 10,             // <10% 95th percentile
+  sentenceEndDrift: 50,              // <50ms sentence boundary drift
+  qualityScore: 4.0                  // MOS-style listening test
+};
+```
+
+**CRITICAL Prevention Rules (Enhanced)**:
+- ✅ ALWAYS generate baseline first (sync master)
+- ✅ NEVER change baseline settings (timing locked)
+- ✅ TEST drift on 60+ sentences before acceptance
+- ✅ Time-warp enhanced audio to baseline timings
+- ✅ Post-process without duration changes
+- ❌ NEVER skip drift validation testing
+- ❌ NEVER apply time-based effects (chorus, delay)
+
+#### Step 2.2: SSML Enhancement (TIMING-SAFE PATTERNS)
+**Timing-Preserving SSML Rules**:
 ```xml
+<!-- ✅ SAFE: Subtle emphasis without rate changes -->
 <speak>
-  <prosody rate="medium" pitch="medium">
+  <prosody rate="1.0" pitch="+1st">
     She was one of those <emphasis level="moderate">pretty</emphasis>
     and charming girls...
   </prosody>
 </speak>
+
+<!-- ✅ SAFE: Micro pitch adjustments only -->
+<prosody pitch="+1st">Character dialogue here</prosody>
+<prosody pitch="0st">Narrative text here</prosody>
+
+<!-- ❌ FORBIDDEN: Any rate changes -->
+<prosody rate="slow">...</prosody>  <!-- BREAKS TIMING -->
+<break time="500ms"/>               <!-- BREAKS TIMING -->
+```
+
+**SSML Enhancement Strategy**:
+```javascript
+const SAFE_SSML_PATTERNS = {
+  characterNames: '<emphasis level="moderate">{name}</emphasis>',
+  dialogue: '<prosody pitch="+1st">{text}</prosody>',
+  narration: '<prosody pitch="0st">{text}</prosody>',
+  keyWords: '<emphasis level="reduced">{word}</emphasis>'
+};
+
+// CRITICAL: Validate no timing changes
+const FORBIDDEN_SSML = [
+  'rate=', 'speed=', '<break', '<pause',
+  'prosody rate', 'speaking-rate'
+];
 ```
 
 #### Step 2.3: Word Timing Generation
@@ -312,31 +440,98 @@ scripts/
 
 ---
 
-## 🎯 Implementation Checklist
+## 🎯 Implementation Checklist (QUICK FEEDBACK LOOPS)
 
-### Week 1: Foundation
-- [ ] Create component architecture
-- [ ] Implement basic demo content
-- [ ] Generate demo audio files
-- [ ] Basic text highlighting
-- [ ] Neo-Classic theme integration
-- [ ] Mobile responsiveness
+### **Day 1** (2-3 hours): Demo Architecture
+- [ ] **1.1a**: Create component folders + basic files (30 mins)
+- [ ] **1.1b**: Define Pride & Prejudice demo content JSON (45 mins)
+- [ ] **1.1c**: Build basic InteractiveReadingDemo shell component (90 mins)
+- [ ] **Test**: Component renders with static text
+- [ ] **Feedback**: User sees basic demo structure
 
-### Week 2: Enhancement
-- [ ] Premium voice optimization
-- [ ] SSML implementation
-- [ ] Word timing generation
-- [ ] Magical level switching
-- [ ] Text crossfade animations
-- [ ] Performance optimization
+### **Day 2** (2-4 hours): Audio Foundation
+- [ ] **1.2a**: Create Sarah baseline audio generation script (60 mins)
+- [ ] **1.2b**: Generate 3 demo audio files (A1, B1, Original) (45 mins)
+- [ ] **1.2c**: Implement Solution 1 timing measurement (90 mins)
+- [ ] **1.2d**: Basic audio playback integration (60 mins)
+- [ ] **Test**: Audio plays and stops correctly
+- [ ] **Feedback**: User can hear demo audio
 
-### Week 3: Conversion
-- [ ] Lazy loading implementation
-- [ ] Analytics integration
-- [ ] CTA optimization
-- [ ] A/B testing setup
-- [ ] Social proof elements
-- [ ] Final performance tuning
+### **Day 3** (2-3 hours): Text Highlighting
+- [ ] **1.3a**: Build TextDisplay component with highlighting (90 mins)
+- [ ] **1.3b**: Integrate word-level timing from audio metadata (60 mins)
+- [ ] **1.3c**: Test highlighting sync with audio (45 mins)
+- [ ] **Test**: Words highlight as audio plays
+- [ ] **Feedback**: User sees synchronized highlighting
+
+### **Day 4** (2-3 hours): Level Switching
+- [ ] **1.4a**: Build LevelSwitcher component (A1/B1/Original) (60 mins)
+- [ ] **1.4b**: Implement text crossfade animation (45 mins)
+- [ ] **1.4c**: Connect level switching to audio switching (75 mins)
+- [ ] **Test**: Level switching works smoothly
+- [ ] **Feedback**: User experiences magical level switching
+
+### **Day 5** (2-3 hours): Neo-Classic Integration
+- [ ] **1.5a**: Apply Neo-Classic theme variables to demo (60 mins)
+- [ ] **1.5b**: Implement Playfair Display + Source Serif Pro (45 mins)
+- [ ] **1.5c**: Replace hero section in app/page.tsx (90 mins)
+- [ ] **Test**: Demo appears on homepage with Neo-Classic styling
+- [ ] **Feedback**: User sees polished demo on live site
+
+### **Day 6** (2-3 hours): Daniel Voice Testing
+- [ ] **2.1a**: Test Daniel Premium (M1 settings) vs Sarah (60 mins)
+- [ ] **2.1b**: Run drift validation test (45 mins)
+- [ ] **2.1c**: If <5% drift, implement Daniel Enhanced settings (90 mins)
+- [ ] **Test**: Daniel voice maintains perfect sync
+- [ ] **Feedback**: User hears enhanced voice quality
+
+### **Day 7** (2-4 hours): Dual-Track Pipeline
+- [ ] **2.2a**: Build baseline + enhanced audio generation (90 mins)
+- [ ] **2.2b**: Implement basic time-warping (placeholder) (60 mins)
+- [ ] **2.2c**: Test dual-track audio generation (90 mins)
+- [ ] **Test**: Enhanced audio aligns to baseline timing
+- [ ] **Feedback**: User hears improved quality with perfect sync
+
+### **Day 8** (2-3 hours): Post-Processing
+- [ ] **2.3a**: Add EQ enhancement (warmth, presence, air) (90 mins)
+- [ ] **2.3b**: Implement compression and de-esser (60 mins)
+- [ ] **2.3c**: Test final audio quality (45 mins)
+- [ ] **Test**: Audio sounds professional and polished
+- [ ] **Feedback**: User experiences "wow" audio quality
+
+### **Day 9** (2-3 hours): Controls & UX
+- [ ] **3.1a**: Build minimal controls (Play, Level, Speed) (75 mins)
+- [ ] **3.1b**: Implement progressive CTA (appears at 8s) (60 mins)
+- [ ] **3.1c**: Add analytics tracking (demo events) (60 mins)
+- [ ] **Test**: Full user experience works end-to-end
+- [ ] **Feedback**: User can complete demo and proceed to CTA
+
+### **Day 10** (2-3 hours): Mobile & Performance
+- [ ] **3.2a**: Mobile responsive design (44px touch targets) (90 mins)
+- [ ] **3.2b**: Performance optimization (lazy loading) (60 mins)
+- [ ] **3.2c**: Cross-browser testing (45 mins)
+- [ ] **Test**: Works perfectly on mobile devices
+- [ ] **Feedback**: User has seamless mobile experience
+
+### **Day 11** (1-2 hours): A/B Testing & Launch
+- [ ] **3.3a**: Set up A/B testing (baseline vs enhanced voice) (60 mins)
+- [ ] **3.3b**: Final quality assurance testing (45 mins)
+- [ ] **3.3c**: Launch and monitor initial metrics (15 mins)
+- [ ] **Test**: Live demo converts users effectively
+- [ ] **Feedback**: Measurable improvement in conversions
+
+---
+
+## 📊 Daily Success Criteria
+
+**Each day should result in:**
+- ✅ **Visible progress**: User can see/hear/interact with new functionality
+- ✅ **Working feature**: Previous day's work integrates smoothly
+- ✅ **Quick feedback**: 2-4 hours max before testing with user
+- ✅ **Incremental value**: Each step adds clear user value
+- ✅ **Risk mitigation**: Problems caught immediately, not after multiple days
+
+**Emergency Brake**: If any day takes >4 hours, STOP and reassess scope.
 
 ---
 

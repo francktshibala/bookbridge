@@ -1,0 +1,67 @@
+{
+  "title": "Pride and Prejudice",
+  "author": "Jane Austen",
+  "chapter": "Chapter 1: The Invitation",
+  "demoLength": "30-40 seconds",
+  "levels": {
+    "original": {
+      "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.",
+      "sentences": [
+        {
+          "index": 0,
+          "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+          "wordCount": 22
+        },
+        {
+          "index": 1,
+          "text": "However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.",
+          "wordCount": 44
+        }
+      ]
+    },
+    "B1": {
+      "text": "Everyone knows that a rich single man must want to find a wife. When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
+      "sentences": [
+        {
+          "index": 0,
+          "text": "Everyone knows that a rich single man must want to find a wife.",
+          "wordCount": 13
+        },
+        {
+          "index": 1,
+          "text": "When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
+          "wordCount": 32
+        }
+      ]
+    },
+    "A1": {
+      "text": "People think that rich men who are not married want to find a wife. When a rich man comes to a new place, families want him to marry their daughters.",
+      "sentences": [
+        {
+          "index": 0,
+          "text": "People think that rich men who are not married want to find a wife.",
+          "wordCount": 14
+        },
+        {
+          "index": 1,
+          "text": "When a rich man comes to a new place, families want him to marry their daughters.",
+          "wordCount": 16
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "totalSentences": 3,
+    "estimatedDuration": {
+      "A1": 25,
+      "B1": 35,
+      "original": 40
+    },
+    "voice": "Sarah",
+    "speed": 0.90,
+    "contentHash": "demo-pride-prejudice-v1"
+  },
+  "wordTimings": {
+    "note": "Will be populated after audio generation with Solution 1 measured timings"
+  }
+}
