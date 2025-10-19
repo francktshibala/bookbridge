@@ -4,24 +4,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { EnhancedBooksGrid } from '@/components/ui/EnhancedBooksGrid';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
+import { InteractiveReadingDemo } from '@/components/hero/InteractiveReadingDemo';
 import type { ExternalBook } from '@/types/book-sources';
 
 export default function HomePage() {
-  const [selectedLevel, setSelectedLevel] = useState('B1');
-  const cefrLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-  
   // AI Chat Modal State
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
   const [selectedAIBook, setSelectedAIBook] = useState<ExternalBook | null>(null);
-  
-  const sampleTexts = {
-    A1: "Elizabeth is a young woman. She meets Mr. Darcy. He is rich but proud.",
-    A2: "Elizabeth Bennet is a smart young woman. She meets Mr. Darcy at a party. He seems proud and unfriendly.",
-    B1: "Elizabeth Bennet is an intelligent young woman from a middle-class family. When she meets the wealthy Mr. Darcy, she finds him arrogant and dismissive.",
-    B2: "Elizabeth Bennet, a spirited and perceptive young woman, encounters the aristocratic Mr. Darcy at a social gathering, where his apparent pride and disdain immediately prejudice her against him.",
-    C1: "Elizabeth Bennet, whose lively intelligence and independent spirit distinguish her from her contemporaries, finds herself profoundly antipathetic toward the enigmatic Mr. Darcy following their initial encounter.",
-    C2: "Elizabeth Bennet, possessed of a penetrating wit and an unwavering moral compass that renders her peculiarly resistant to the superficial allurements of society, experiences an immediate and visceral aversion to the ostensibly supercilious Mr. Darcy."
-  };
   
   // AI Chat Handlers
   const handleAskAI = (book: ExternalBook) => {
@@ -121,210 +110,16 @@ export default function HomePage() {
         alignItems: 'center',
         gap: '2.5rem'
       }}>
-        {/* Neo-Classic Hero Section */}
+        {/* Interactive Reading Demo - Main Hero */}
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          aria-labelledby="welcome-heading"
-          className="homepage-hero neo-classic-surface-elevated theme-transition"
-          style={{
-            marginBottom: '2rem',
-            background: 'var(--bg-primary)',
-            borderRadius: '16px',
-            padding: '4rem 2rem',
-            border: '1px solid var(--border-light)',
-            boxShadow: 'var(--shadow-soft)'
-          }}
+          aria-labelledby="interactive-demo"
+          className="w-full"
         >
-          <div className="elegant-container max-w-4xl mx-auto">
-            <motion.h1
-              id="welcome-heading"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="neo-classic-title text-center"
-              style={{
-                fontSize: '3.5rem',
-                marginBottom: '1.5rem',
-                color: 'var(--text-accent)'
-              }}
-            >
-              Read Classic Literature at Your English Level
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="neo-classic-subtitle text-center"
-              style={{
-                color: 'var(--text-secondary)',
-                marginBottom: '3rem',
-                fontSize: '1.25rem',
-                maxWidth: '700px',
-                margin: '0 auto 3rem auto',
-                lineHeight: '1.6'
-              }}
-            >
-              Experience timeless works through AI-powered adaptation
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="neo-classic-caption text-center"
-              style={{
-                color: 'var(--text-tertiary)',
-                marginBottom: '2rem'
-              }}
-            >
-              AI-Powered Text Simplification • Synchronized Audio • Vocabulary Learning
-            </motion.div>
-
-            {/* CEFR Level Selector */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-wrap justify-center gap-3 mb-8"
-            >
-              {cefrLevels.map((level, index) => (
-                <motion.button
-                  key={level}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedLevel(level)}
-                  className="cefr-level-button"
-                  style={{
-                  width: '60px',
-                  height: '60px',
-                  borderRadius: '50%',
-                  background: selectedLevel === level ? 'var(--accent-primary)' : 'var(--accent-secondary)',
-                  border: '1px solid var(--border-light)',
-                  color: 'var(--bg-secondary)',
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  boxShadow: selectedLevel === level
-                    ? '0 4px 12px rgba(var(--accent-primary-rgb), 0.35)'
-                    : '0 4px 12px rgba(var(--accent-secondary-rgb), 0.35)'
-                }}
-              >
-                {level}
-              </motion.button>
-              ))}
-            </motion.div>
-
-            {/* Sample Text Demo */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-              style={{
-              backgroundColor: 'var(--bg-secondary)',
-              borderRadius: '16px',
-              padding: '1.5rem 2rem',
-              marginBottom: '1.5rem',
-              border: '1px solid var(--border-light)',
-              background: 'var(--bg-secondary)',
-              maxWidth: '900px',
-              width: '100%',
-              boxShadow: '0 8px 32px var(--shadow-soft)',
-              margin: '0 auto 1.5rem auto',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <div style={{
-              textAlign: 'center',
-              marginBottom: '1rem'
-            }}>
-              <span style={{
-                fontSize: '0.875rem',
-                fontWeight: '600',
-                color: 'var(--accent-secondary)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em'
-              }}>
-                {selectedLevel} Level Example
-              </span>
-            </div>
-            <motion.p
-              key={selectedLevel}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                fontSize: '1.125rem',
-                lineHeight: '1.7',
-                color: 'var(--text-primary)',
-                textAlign: 'center',
-                fontStyle: 'italic',
-                margin: '0 auto',
-                maxWidth: '800px'
-              }}
-            >
-              "{sampleTexts[selectedLevel as keyof typeof sampleTexts]}"
-            </motion.p>
-            <div style={{
-              textAlign: 'center',
-              marginTop: '1rem',
-              fontSize: '0.875rem',
-              color: 'var(--text-tertiary)'
-            }}>
-              From Pride and Prejudice
-            </div>
-            </motion.div>
-
-            {/* Action Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.6 }}
-              className="flex gap-6 justify-center flex-wrap hero-buttons"
-          >
-            <motion.a 
-              href="/library/gutenberg-1342/read"
-              whileHover={{ y: -3 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn btn-brand inline-flex items-center gap-3 px-8 py-4 font-semibold"
-              style={{ 
-                fontSize: '1.125rem', 
-                textDecoration: 'none',
-                borderRadius: '12px'
-              }}
-            >
-              Start Reading Pride & Prejudice
-            </motion.a>
-            
-            <motion.a 
-              href="#level-assessment"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="btn btn-secondary inline-flex items-center gap-3 px-8 py-4 font-semibold"
-              style={{ 
-                fontSize: '1.125rem', 
-                textDecoration: 'none',
-                borderRadius: '12px',
-                background: 'transparent',
-                border: '2px solid var(--accent-primary)',
-                color: 'var(--accent-primary)'
-              }}
-            >
-              Take Level Assessment
-            </motion.a>
-            </motion.div>
-          </div>
+          <InteractiveReadingDemo />
         </motion.section>
-
 
         {/* Enhanced Books Grid */}
         <motion.section
