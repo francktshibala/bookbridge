@@ -70,6 +70,39 @@ git checkout research/future-and-current-books-architecture
 
 ---
 
+## 🎨 **Neo-Classic UI Transformation Documentation**
+
+### **NEO_CLASSIC_TRANSFORMATION_PLAN.md**
+**Location**: `/Users/user/bookbridge/bookbridge/NEO_CLASSIC_TRANSFORMATION_PLAN.md`
+**Description**: Complete transformation plan for modernizing BookBridge's UI with Neo-Classic theme system. Documents the typography evolution from Inter to Playfair Display + Source Serif Pro, CSS variable system implementation (`var(--bg-primary)`, `var(--text-primary)`, etc.), and comprehensive component redesign across authentication, collection, reading, and navigation pages. Contains detailed before/after comparisons, implementation phases, and technical specifications for theme-aware components with Light/Dark/Sepia variants. Essential reference for understanding the complete UI modernization strategy and maintaining design consistency across the platform.
+
+### **neo-classic-theme-variations.html**
+**Location**: `/Users/user/bookbridge/bookbridge/neo-classic-theme-variations.html`
+**Description**: Interactive demo showcasing all Neo-Classic theme variations and typography examples. Contains live CSS implementations of the theme system with visual examples of Playfair Display headings, Source Serif Pro body text, and color palette variations across Light, Dark, and Sepia themes. Provides visual reference for designers and developers to understand the aesthetic goals and ensure consistent implementation across components.
+
+### **How to Find These Files**
+```bash
+# Quick access to Neo-Classic documentation
+find . -name "*neo*classic*" -type f
+
+# Or use these direct paths:
+open /Users/user/bookbridge/bookbridge/NEO_CLASSIC_TRANSFORMATION_PLAN.md
+open /Users/user/bookbridge/bookbridge/neo-classic-theme-variations.html
+
+# View in terminal
+cat NEO_CLASSIC_TRANSFORMATION_PLAN.md
+```
+
+### **Neo-Classic Implementation Status**
+✅ **COMPLETED (October 2025)**: Complete Neo-Classic UI transformation successfully deployed to production
+- **Typography System**: Playfair Display + Source Serif Pro implemented across all components
+- **Theme Variables**: CSS custom properties system (`var(--bg-primary)`, etc.) with Light/Dark/Sepia support
+- **Component Coverage**: Authentication pages, collection pages, reading experience, navigation, and AI chat modal
+- **Deployment Strategy**: 4-phase incremental rollout (Auth → Collections → Reading → Navigation)
+- **Files Modified**: 20+ components transformed, -720 net lines (optimized codebase)
+
+---
+
 ## 📚 **Project Overview & Mission**
 
 ### **README.md**
