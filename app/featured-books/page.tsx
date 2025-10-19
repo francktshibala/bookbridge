@@ -7,6 +7,8 @@ import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
 import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
+import { AIBookChatModal } from '@/lib/dynamic-imports';
+import type { ExternalBook } from '@/types/book-sources';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -634,6 +636,10 @@ export default function FeaturedBooksPage() {
   const [showChapterModal, setShowChapterModal] = useState(false);
   const [showContinueReading, setShowContinueReading] = useState(false);
   const [savedPosition, setSavedPosition] = useState<{sentenceIndex: number, timestamp: number} | null>(null);
+
+  // AI Chat Modal state
+  const [isAIChatOpen, setIsAIChatOpen] = useState(false);
+  const [selectedAIBook, setSelectedAIBook] = useState<ExternalBook | null>(null);
 
   // Data state
   const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
@@ -1320,6 +1326,85 @@ export default function FeaturedBooksPage() {
     }
   };
 
+  // AI Chat Modal handlers
+  const handleAskAI = (book: FeaturedBook) => {
+    console.log('Featured Books - Original book data:', book);
+
+    // Convert FeaturedBook to ExternalBook format for AI modal
+    const externalBook: ExternalBook = {
+      id: book.id,
+      title: book.title,
+      author: book.author,
+      description: book.description || 'Classic literature with multiple CEFR difficulty levels',
+      subjects: ['Literature', 'Classic'],
+      language: 'en',
+      source: 'gutenberg',
+      publicationYear: undefined,
+      popularity: 1
+    };
+
+    console.log('Featured Books - Converted ExternalBook:', externalBook);
+
+    setSelectedAIBook(externalBook);
+    setIsAIChatOpen(true);
+  };
+
+  const handleCloseAIChat = () => {
+    setIsAIChatOpen(false);
+    setSelectedAIBook(null);
+  };
+
+  const handleSendAIMessage = async (message: string): Promise<string> => {
+    if (!selectedAIBook) {
+      return 'No book selected for AI chat.';
+    }
+
+    const bookContext = `Title: ${selectedAIBook.title}, Author: ${selectedAIBook.author}${
+      selectedAIBook.description ? `, Description: ${selectedAIBook.description}` : ''
+    }${
+      selectedAIBook.subjects?.length ? `, Subjects: ${selectedAIBook.subjects.join(', ')}` : ''
+    }`;
+
+    try {
+      const response = await fetch('/api/ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message,
+          bookContext,
+          bookId: selectedAIBook.id,
+          conversationId: null
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get AI response');
+      }
+
+      const data = await response.json();
+
+      // Also save to conversation if needed
+      await fetch('/api/conversations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          bookId: selectedAIBook.id,
+          message,
+          response: data.response,
+        }),
+      });
+
+      return data.response;
+    } catch (error) {
+      console.error('Error sending AI message:', error);
+      return 'Sorry, I encountered an error processing your request.';
+    }
+  };
+
   const handleStop = () => {
     audioManagerRef.current?.stop();
     setIsPlaying(false);
@@ -1575,24 +1660,24 @@ export default function FeaturedBooksPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       {/* Book Selection Screen */}
       {showBookSelection && (
-        <div className="min-h-screen bg-gray-900 text-white">
+        <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
           <div className="max-w-6xl mx-auto px-4 py-8">
 
             {/* Header */}
             <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                🎧 Simplified Books
+              <h1 className="text-4xl font-bold mb-4 text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
+                📚 Simplified Books
               </h1>
-              <p className="text-gray-300 text-lg">
+              <p className="text-[var(--text-secondary)] text-lg" style={{ fontFamily: 'Source Serif Pro, serif' }}>
                 Experience continuous reading with perfect text-audio harmony
               </p>
             </div>
 
-            {/* Simplified Books Grid */}
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+            {/* Simplified Books Grid - Wireframe Layout */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12 px-4">
               {FEATURED_BOOKS.map((book, index) => (
                 <motion.div
                   key={book.id}
@@ -1606,89 +1691,40 @@ export default function FeaturedBooksPage() {
                   }}
                 >
                   <div
-                    style={{
-                      background: 'rgba(51, 65, 85, 0.5)',
-                      border: '1px solid #334155',
-                      borderRadius: '12px',
-                      padding: '16px',
-                      width: '100%'
-                    }}
+                    className="bg-[var(--bg-secondary)] border-2 border-[var(--accent-primary)]/30 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:border-[var(--accent-primary)]/60 hover:-translate-y-1 p-5 h-48 flex flex-col justify-between"
                   >
 
                     {/* Card Content */}
                     <div>
                       {/* Book Title */}
-                      <div style={{
-                        fontSize: '16px',
-                        fontWeight: '600',
-                        color: '#e2e8f0',
-                        marginBottom: '4px'
-                      }}>
+                      <div className="text-lg font-bold text-[var(--text-accent)] mb-1 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
                         {book.title}
                       </div>
 
                       {/* Author */}
-                      <div style={{
-                        fontSize: '14px',
-                        color: '#94a3b8',
-                        marginBottom: '12px'
-                      }}>
+                      <div className="text-sm text-[var(--text-secondary)] mb-3" style={{ fontFamily: 'Source Serif Pro, serif' }}>
                         by {book.author}
                       </div>
 
-                      {/* Meta Tags */}
-                      <div style={{
-                        display: 'flex',
-                        gap: '8px',
-                        marginBottom: '12px',
-                        flexWrap: 'wrap'
-                      }}>
-                        <span style={{
-                          padding: '4px 8px',
-                          background: 'rgba(59, 130, 246, 0.2)',
-                          color: '#60a5fa',
-                          borderRadius: '4px',
-                          fontSize: '11px'
-                        }}>
+                      {/* Meta Tags - Compact Style */}
+                      <div className="flex gap-2 mb-3 flex-wrap">
+                        <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
                           {book.id === 'great-gatsby-a2' ? 'A2' : 'A1-C2'}
                         </span>
-                        <span style={{
-                          padding: '4px 8px',
-                          background: 'rgba(59, 130, 246, 0.2)',
-                          color: '#60a5fa',
-                          borderRadius: '4px',
-                          fontSize: '11px'
-                        }}>
+                        <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
                           Classic
                         </span>
-                        <span style={{
-                          padding: '4px 8px',
-                          background: 'rgba(59, 130, 246, 0.2)',
-                          color: '#60a5fa',
-                          borderRadius: '4px',
-                          fontSize: '11px'
-                        }}>
+                        <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
                           {book.id === 'great-gatsby-a2' ? '~7.5h' : '~2h'}
                         </span>
                       </div>
 
-                      {/* Action Buttons */}
-                      <div style={{
-                        display: 'flex',
-                        gap: '8px'
-                      }}>
+                      {/* Action Buttons - Compact Style */}
+                      <div className="flex gap-2 mt-auto">
                         <button
-                          style={{
-                            flex: 1,
-                            height: '36px',
-                            borderRadius: '8px',
-                            background: 'rgba(139, 92, 246, 0.2)',
-                            color: '#a78bfa',
-                            border: '1px solid rgba(139, 92, 246, 0.3)',
-                            fontSize: '14px',
-                            fontWeight: '500',
-                            cursor: 'pointer'
-                          }}
+                          onClick={() => handleAskAI(book)}
+                          className="flex-1 h-9 rounded-lg bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)]/60 transition-all duration-200 text-sm font-medium"
+                          style={{ fontFamily: 'Source Serif Pro, serif' }}
                         >
                           Ask AI
                         </button>
@@ -1697,19 +1733,10 @@ export default function FeaturedBooksPage() {
                             setSelectedBook(book);
                             setShowBookSelection(false);
                           }}
-                          style={{
-                            flex: 1,
-                            height: '36px',
-                            background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '8px',
-                            fontSize: '14px',
-                            fontWeight: '500',
-                            cursor: 'pointer'
-                          }}
+                          className="flex-1 h-9 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
+                          style={{ fontFamily: 'Source Serif Pro, serif' }}
                         >
-                          🎧 Start Reading
+                          Start Reading
                         </button>
                       </div>
                     </div>
@@ -1729,7 +1756,7 @@ export default function FeaturedBooksPage() {
         {/* Header - Matched Width with Content Container */}
 
         {/* Unified Header: Same width as content container below */}
-        <div className="bg-white border-b border-gray-200 mx-4 md:mx-8 rounded-t-lg">
+        <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-light)] mx-4 md:mx-8 rounded-t-lg border-2 border-[var(--accent-secondary)]/20 border-b-[var(--border-light)]">
           <div className="flex justify-between items-center px-6 py-3 relative">
             <button
               onClick={() => {
@@ -1737,7 +1764,7 @@ export default function FeaturedBooksPage() {
                 setSelectedBook(null);
                 handleStop();
               }}
-              className="text-gray-600 text-xl"
+              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
             >
               ←
             </button>
@@ -1745,7 +1772,7 @@ export default function FeaturedBooksPage() {
             {/* Auto-scroll Status */}
             <div className="flex-1 flex justify-center items-center gap-2 px-2">
               {autoScrollPaused && (
-                <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded animate-pulse">
+                <div className="text-xs text-[var(--text-secondary)] bg-[var(--accent-primary)]/10 px-2 py-1 rounded animate-pulse border border-[var(--accent-primary)]/20">
                   📍 Auto-scroll paused
                 </div>
               )}
@@ -1753,7 +1780,7 @@ export default function FeaturedBooksPage() {
 
             <button
               onClick={() => setShowSettingsModal(true)}
-              className="text-gray-600 text-lg font-medium hover:bg-gray-100 px-2 py-1 rounded flex-shrink-0"
+              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-base font-medium hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
             >
               Aa
             </button>
@@ -1850,7 +1877,7 @@ export default function FeaturedBooksPage() {
         </div>
 
         {/* Real Moby Dick Content */}
-        <div className="pb-32 px-3 bg-white mx-4 md:mx-8 rounded-b-lg shadow-sm border-l border-r border-b border-gray-200">
+        <div className="pb-32 px-3 bg-[var(--bg-secondary)] mx-4 md:mx-8 rounded-b-lg shadow-sm border-2 border-[var(--accent-secondary)]/20 border-t-0">
 
           {loading && (
             <div className="text-center py-12">
@@ -1862,7 +1889,7 @@ export default function FeaturedBooksPage() {
           {error && (
             <div className="text-center py-12">
               <div className="bg-white border border-blue-200 rounded-lg p-6 max-w-md mx-auto shadow-lg">
-                <p className="text-blue-600 font-medium">{error}</p>
+                <p className="text-[var(--accent-primary)] font-medium">{error}</p>
                 <p className="text-gray-400 text-sm mt-2">
                   Try switching to Original or available levels
                 </p>
@@ -1874,7 +1901,7 @@ export default function FeaturedBooksPage() {
             <>
               {/* Book Title */}
               <div className="text-center py-4">
-                <h1 className="text-2xl font-semibold text-gray-700 mb-4">
+                <h1 className="text-2xl font-semibold text-[var(--text-accent)] mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                   {((bundleData as any).book?.title || bundleData.title || 'Unknown Title')
                     .replace(/\s*\(Bundled\)$/i, '')
                     .replace(/\s*\([A-C][12]?\s*Level\)$/i, '')}
@@ -1896,7 +1923,7 @@ export default function FeaturedBooksPage() {
                       // Add chapter header
                       result.push(
                         <div key={`chapter-${chapter.chapterNumber}`} className="mb-6 mt-8 first:mt-0">
-                          <h2 className="text-xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4">
+                          <h2 className="text-2xl font-semibold text-[var(--text-accent)] border-b-2 border-[var(--accent-secondary)]/30 pb-2 mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                             Chapter {chapter.chapterNumber}: {chapter.title}
                           </h2>
                         </div>
@@ -1910,10 +1937,10 @@ export default function FeaturedBooksPage() {
                         data-sentence={sentence.sentenceIndex}
                         className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 mr-1 rounded mobile-reading-text ${
                           sentence.sentenceIndex === currentSentenceIndex && isPlaying
-                            ? 'bg-blue-200 text-blue-900 font-medium border border-blue-300'
+                            ? 'bg-blue-100 text-[var(--text-primary)] font-medium'
                             : sentence.sentenceIndex === currentSentenceIndex + 1 && isPlaying
-                            ? 'bg-slate-100 text-gray-600'
-                            : 'hover:bg-gray-100'
+                            ? 'bg-[var(--accent-primary)]/5 text-[var(--text-secondary)]'
+                            : 'hover:bg-[var(--accent-primary)]/3'
                         }`}
                         style={{
                           textAlign: 'left'
@@ -1977,14 +2004,14 @@ export default function FeaturedBooksPage() {
         {/* Settings Modal */}
         {showSettingsModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
+            <div className="bg-[var(--bg-secondary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20">
 
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900">Reading Settings</h2>
+              <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Reading Settings</h2>
                 <button
                   onClick={() => setShowSettingsModal(false)}
-                  className="text-gray-400 hover:text-gray-600 text-xl"
+                  className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
                 >
                   ×
                 </button>
@@ -1995,14 +2022,14 @@ export default function FeaturedBooksPage() {
 
                 {/* Content Mode Toggle */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">Text Version</label>
-                  <div className="flex bg-gray-100 rounded-lg p-1">
+                  <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Text Version</label>
+                  <div className="flex bg-[var(--bg-primary)] rounded-lg p-1 border border-[var(--border-light)]">
                     <button
                       onClick={() => setContentMode('simplified')}
                       className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
                         contentMode === 'simplified'
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
-                          : 'text-gray-600 hover:text-gray-900'
+                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                       }`}
                     >
                       Simplified
@@ -2011,8 +2038,8 @@ export default function FeaturedBooksPage() {
                       onClick={() => setContentMode('original')}
                       className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
                         contentMode === 'original'
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
-                          : 'text-gray-600 hover:text-gray-900'
+                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                       }`}
                     >
                       Original
@@ -2022,7 +2049,7 @@ export default function FeaturedBooksPage() {
 
                 {/* CEFR Level Selection */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">CEFR Level</label>
+                  <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">CEFR Level</label>
                   <div className="grid grid-cols-3 gap-2">
                     {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => {
                       const isOriginalMode = contentMode === 'original';
@@ -2042,10 +2069,10 @@ export default function FeaturedBooksPage() {
                           disabled={isDisabled}
                           className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
                             cefrLevel === level && contentMode === 'simplified'
-                              ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-sm'
+                              ? 'bg-[var(--accent-primary)] text-white shadow-sm'
                               : isDisabled
-                              ? 'bg-gray-200 text-gray-400 cursor-not-allowed opacity-50'
-                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                              ? 'bg-[var(--bg-primary)] text-[var(--text-secondary)]/50 cursor-not-allowed opacity-50'
+                              : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--border-light)]'
                           }`}
                           title={
                             isOriginalMode
@@ -2065,7 +2092,7 @@ export default function FeaturedBooksPage() {
               </div>
 
               {/* Modal Footer */}
-              <div className="px-6 py-4 border-t border-gray-200">
+              <div className="px-6 py-4 border-t border-[var(--border-light)]">
                 <button
                   onClick={async () => {
                     setShowSettingsModal(false);
@@ -2074,7 +2101,7 @@ export default function FeaturedBooksPage() {
                     setCefrLevel(cefrLevel);
                     setContentMode(contentMode);
                   }}
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-md font-medium hover:from-blue-600 hover:to-purple-700 transition-all shadow-md"
+                  className="w-full bg-[var(--accent-primary)] text-white py-2 px-4 rounded-md font-medium hover:bg-[var(--accent-secondary)] transition-all shadow-md"
                 >
                   Apply Settings
                 </button>
@@ -2087,14 +2114,14 @@ export default function FeaturedBooksPage() {
         {/* Chapter Navigation Modal */}
         {showChapterModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
+            <div className="bg-[var(--bg-secondary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20">
 
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900">Jump to Chapter</h2>
+              <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Jump to Chapter</h2>
                 <button
                   onClick={() => setShowChapterModal(false)}
-                  className="text-gray-400 hover:text-gray-600 text-xl"
+                  className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
                 >
                   ×
                 </button>
@@ -2143,15 +2170,19 @@ export default function FeaturedBooksPage() {
                       }}
                       className={`w-full text-left p-4 rounded-lg border transition-all ${
                         getCurrentChapter().current === chapter.chapterNumber
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white border-blue-500'
-                          : 'bg-gray-50 hover:bg-gray-100 border-gray-200'
+                          ? 'bg-[var(--accent-primary)] text-white border-[var(--accent-primary)] shadow-sm'
+                          : 'bg-[var(--bg-primary)] hover:bg-[var(--accent-primary)]/10 border-[var(--border-light)]'
                       }`}
                     >
-                      <div className="font-medium">Chapter {chapter.chapterNumber}</div>
+                      <div className={`font-medium ${
+                        getCurrentChapter().current === chapter.chapterNumber
+                          ? 'text-[var(--bg-primary)]'
+                          : 'text-[var(--text-primary)]'
+                      }`}>Chapter {chapter.chapterNumber}</div>
                       <div className={`text-sm ${
                         getCurrentChapter().current === chapter.chapterNumber
-                          ? 'text-blue-100'
-                          : 'text-gray-600'
+                          ? 'text-[var(--bg-primary)]/80'
+                          : 'text-[var(--text-secondary)]'
                       }`}>
                         {chapter.title}
                       </div>
@@ -2208,11 +2239,11 @@ export default function FeaturedBooksPage() {
         )}
 
         {/* Mobile Control Bar - Full Width */}
-        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[var(--bg-secondary)] border-t border-[var(--border-light)] shadow-lg z-50">
           <div className="px-4 py-3">
 
             {/* Progress Info Row */}
-            <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
+            <div className="flex justify-between items-center text-xs text-[var(--text-secondary)] mb-2">
               <span>{formatTime(playbackTime)}</span>
               <span>
                 Sentence {currentSentenceIndex + 1}/{getCurrentChapter().totalSentences} • Chapter {getCurrentChapter().current} of {getCurrentChapter().total}
@@ -2221,9 +2252,9 @@ export default function FeaturedBooksPage() {
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full h-0.5 bg-gray-200 rounded-full mb-4">
+            <div className="w-full h-0.5 bg-[var(--border-light)] rounded-full mb-4">
               <div
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-300"
+                className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-300"
                 style={{ width: `${totalTime > 0 ? (playbackTime / totalTime) * 100 : 0}%` }}
               />
             </div>
@@ -2234,7 +2265,7 @@ export default function FeaturedBooksPage() {
               {/* Speed Control */}
               <button
                 onClick={cycleSpeed}
-                className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
+                className="flex items-center justify-center w-9 h-9 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all"
               >
                 <div className="text-sm font-semibold">{formatSpeed(playbackSpeed)}</div>
               </button>
@@ -2261,8 +2292,8 @@ export default function FeaturedBooksPage() {
                 }}
                 className={`flex items-center justify-center w-14 h-14 text-white rounded-full transition-all shadow-md ${
                   contentMode === 'original'
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700'
+                    ? 'bg-[var(--text-secondary)]/50 cursor-not-allowed'
+                    : 'bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)]'
                 }`}
                 disabled={contentMode === 'original'}
               >
@@ -2272,13 +2303,13 @@ export default function FeaturedBooksPage() {
               {/* Chapter Navigation */}
               <button
                 onClick={() => setShowChapterModal(true)}
-                className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
+                className="flex items-center justify-center w-9 h-9 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all"
               >
                 <div className="text-lg">📖</div>
               </button>
 
               {/* Voice Selector */}
-              <button className="flex items-center justify-center w-9 h-9 text-gray-600 hover:bg-gray-100 rounded-full transition-all">
+              <button className="flex items-center justify-center w-9 h-9 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all">
                 <div className="text-lg">🎙️</div>
               </button>
 
@@ -2289,7 +2320,7 @@ export default function FeaturedBooksPage() {
 
         {/* Desktop Control Bar - Floating */}
         <div className="hidden md:block fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="bg-white/95 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 shadow-2xl">
+          <div className="bg-[var(--bg-secondary)]/95 backdrop-blur-xl border-2 border-[var(--accent-secondary)]/20 rounded-full px-8 py-4 shadow-2xl">
 
             {/* Control Buttons Row */}
             <div className="flex items-center justify-center gap-5">
@@ -2297,7 +2328,7 @@ export default function FeaturedBooksPage() {
               {/* Speed Control */}
               <button
                 onClick={cycleSpeed}
-                className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105"
+                className="flex items-center justify-center w-11 h-11 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all hover:scale-105"
               >
                 <div className="text-sm font-semibold">{formatSpeed(playbackSpeed)}</div>
               </button>
@@ -2324,8 +2355,8 @@ export default function FeaturedBooksPage() {
                 }}
                 className={`flex items-center justify-center w-14 h-14 text-white rounded-full transition-all shadow-lg hover:shadow-xl ${
                   contentMode === 'original'
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700'
+                    ? 'bg-[var(--text-secondary)]/50 cursor-not-allowed'
+                    : 'bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)]'
                 }`}
                 disabled={contentMode === 'original'}
               >
@@ -2335,13 +2366,13 @@ export default function FeaturedBooksPage() {
               {/* Chapter Navigation */}
               <button
                 onClick={() => setShowChapterModal(true)}
-                className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105"
+                className="flex items-center justify-center w-11 h-11 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all hover:scale-105"
               >
                 <div className="text-lg">📖</div>
               </button>
 
               {/* Voice Selector */}
-              <button className="flex items-center justify-center w-11 h-11 text-gray-600 hover:bg-gray-100/80 rounded-full transition-all hover:scale-105">
+              <button className="flex items-center justify-center w-11 h-11 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all hover:scale-105">
                 <div className="text-lg">🎙️</div>
               </button>
 
@@ -2352,6 +2383,14 @@ export default function FeaturedBooksPage() {
 
         </div>
       )}
+
+      {/* AI Chat Modal */}
+      <AIBookChatModal
+        isOpen={isAIChatOpen}
+        book={selectedAIBook}
+        onClose={handleCloseAIChat}
+        onSendMessage={handleSendAIMessage}
+      />
     </div>
   );
 }

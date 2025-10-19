@@ -64,6 +64,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     try {
       localStorage.setItem('bookbridge-theme', newTheme);
       setThemeState(newTheme);
+      // Ensure document class updates immediately even if other providers re-render later
+      document.documentElement.classList.remove('theme-light', 'theme-dark', 'theme-sepia');
+      document.documentElement.classList.add(`theme-${newTheme}`);
     } catch (error) {
       console.warn('Error saving theme to localStorage:', error);
       setThemeState(newTheme);

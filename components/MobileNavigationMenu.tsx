@@ -6,6 +6,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { SubscriptionStatus } from '@/components/SubscriptionStatus';
 import { useAuth } from '@/components/SimpleAuthProvider';
+import { ThemeSwitcher } from '@/components/theme/ThemeSwitcher';
 
 interface MobileNavigationMenuProps {
   isOpen: boolean;
@@ -33,6 +34,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
     { href: '/enhanced-collection', label: '✨ Enhanced Books', icon: '✨' },
     { href: '/featured-books', label: '🎧 Simplified Books', icon: '🎧' },
     { href: '/library', label: 'Browse All Books', icon: '📚' },
+    { href: '/upgrade', label: 'Premium $5.99', icon: '👑', isPremium: true },
   ];
 
   // Hide on desktop screens even if isOpen is true
@@ -65,8 +67,8 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
       />
       
       {/* Slide-out Menu */}
-      <div 
-        className="mobile-nav-menu"
+      <div
+        className="mobile-nav-menu bg-[var(--bg-primary)] text-[var(--text-primary)]"
         style={{
           position: 'fixed',
           top: '0',
@@ -74,25 +76,24 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
           height: '100vh',
           width: '320px',
           zIndex: '9999',
-          backgroundColor: 'rgba(26, 26, 46, 0.98)',
           backdropFilter: 'blur(20px)',
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           boxShadow: '-4px 0 20px rgba(0, 0, 0, 0.3)',
-          border: '1px solid rgba(102, 126, 234, 0.2)',
+          border: '1px solid var(--border-light)',
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '24px' }}>
           {/* Header with Close Button */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', paddingTop: '16px' }}>
-            <h2 className="text-white text-lg font-semibold">Menu</h2>
+            <h2 className="text-[var(--text-primary)] text-lg font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>Menu</h2>
             <button
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-gray-700 hover:bg-opacity-30 transition-colors"
+              className="p-2 rounded-lg hover:bg-[var(--bg-secondary)] transition-colors"
               style={{
                 backgroundColor: 'transparent',
                 border: 'none',
-                color: '#e2e8f0',
+                color: 'var(--text-primary)',
                 fontSize: '24px',
                 minWidth: '44px',
                 minHeight: '44px',
@@ -120,13 +121,20 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                       pathname === item.href
                         ? 'nav-link-active'
                         : 'nav-link-inactive'
-                    }`}
+                    } ${item.isPremium ? 'premium-nav-link' : ''}`}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
                       gap: '12px',
                       minHeight: '56px',
-                      margin: '0'
+                      margin: '0',
+                      ...(item.isPremium ? {
+                        background: 'var(--accent-primary)',
+                        color: 'var(--bg-primary)',
+                        borderRadius: '12px',
+                        fontWeight: '600',
+                        marginTop: '8px'
+                      } : {})
                     }}
                   >
                     <span style={{ fontSize: '18px' }}>{item.icon}</span>
@@ -134,7 +142,22 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                   </Link>
                 ))
               ) : null}
-              
+
+              {/* Theme Switcher - Mobile Only */}
+              <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid var(--border-light)' }}>
+                <div style={{ marginBottom: '12px' }}>
+                  <span style={{
+                    fontSize: '14px',
+                    color: 'var(--text-secondary)',
+                    fontWeight: '600',
+                    fontFamily: 'Playfair Display, serif'
+                  }}>
+                    Reading Theme
+                  </span>
+                </div>
+                <ThemeSwitcher showLabels={false} size="sm" className="mobile-theme-switcher" />
+              </div>
+
               {/* Show Sign In/Sign Up for guest users */}
               {!user && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '20px' }}>
@@ -151,15 +174,15 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                       fontSize: '16px',
                       fontWeight: '500',
                       minHeight: '56px',
-                      backgroundColor: 'rgba(102, 126, 234, 0.8)',
-                      color: '#ffffff',
+                      backgroundColor: 'var(--accent-primary)',
+                      color: 'var(--bg-primary)',
                       transition: 'all 0.2s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 1)';
+                      e.currentTarget.style.backgroundColor = 'var(--accent-secondary)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.8)';
+                      e.currentTarget.style.backgroundColor = 'var(--accent-primary)';
                     }}
                   >
                     Sign In
@@ -178,17 +201,17 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                       fontWeight: '500',
                       minHeight: '56px',
                       backgroundColor: 'transparent',
-                      color: '#60a5fa',
-                      border: '1px solid rgba(102, 126, 234, 0.4)',
+                      color: 'var(--accent-primary)',
+                      border: '1px solid var(--border-light)',
                       transition: 'all 0.2s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
-                      e.currentTarget.style.color = '#ffffff';
+                      e.currentTarget.style.backgroundColor = 'var(--bg-secondary)';
+                      e.currentTarget.style.color = 'var(--text-primary)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#60a5fa';
+                      e.currentTarget.style.color = 'var(--accent-primary)';
                     }}
                   >
                     Sign Up
@@ -198,13 +221,33 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
             </div>
           </nav>
 
-          {/* Bottom Section - Simple */}
+          {/* Bottom Section - User Info and Sign Out */}
           {user && (
-            <div style={{ 
-              marginTop: 'auto', 
-              paddingTop: '20px', 
-              borderTop: '1px solid rgba(102, 126, 234, 0.2)' 
+            <div style={{
+              marginTop: 'auto',
+              paddingTop: '20px',
+              borderTop: '1px solid var(--border-light)'
             }}>
+              {/* User Profile Section */}
+              <div style={{ marginBottom: '16px' }}>
+                <div style={{
+                  fontSize: '14px',
+                  color: 'var(--text-secondary)',
+                  fontFamily: 'Source Serif Pro, serif',
+                  marginBottom: '4px'
+                }}>
+                  Signed in as
+                </div>
+                <div style={{
+                  fontSize: '16px',
+                  color: 'var(--text-primary)',
+                  fontWeight: '600',
+                  fontFamily: 'Source Serif Pro, serif',
+                  wordBreak: 'break-all'
+                }}>
+                  {user.email}
+                </div>
+              </div>
               <button
                 onClick={handleSignOut}
                 style={{
@@ -224,7 +267,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.color = 'var(--text-primary)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent';

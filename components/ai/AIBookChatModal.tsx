@@ -109,13 +109,14 @@ const AIMessageWithDisclosure: React.FC<{ message: ChatMessage }> = ({ message }
       {/* Main AI Response */}
       <div
         style={{
-          background: 'rgba(139, 92, 246, 0.1)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          background: 'var(--accent-primary)/10',
+          border: '2px solid var(--accent-primary)/30',
           borderRadius: '12px',
           padding: '16px',
-          color: '#e2e8f0',
+          color: 'var(--text-primary)',
           lineHeight: '1.5',
-          marginBottom: hasRichData ? '12px' : '0'
+          marginBottom: hasRichData ? '12px' : '0',
+          fontFamily: 'Source Serif Pro, Georgia, serif'
         }}
         dangerouslySetInnerHTML={{
           __html: formatAIResponse(message.content)
@@ -128,30 +129,31 @@ const AIMessageWithDisclosure: React.FC<{ message: ChatMessage }> = ({ message }
           <button
             onClick={() => setShowDetails(!showDetails)}
             style={{
-              background: showDetails ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.2)',
-              border: `1px solid ${showDetails ? '#8b5cf6' : 'rgba(139, 92, 246, 0.3)'}`,
+              background: showDetails ? 'var(--accent-primary)/20' : 'var(--accent-primary)/10',
+              border: `2px solid ${showDetails ? 'var(--accent-primary)' : 'var(--accent-primary)/30'}`,
               borderRadius: '20px',
               padding: '8px 16px',
-              color: showDetails ? '#c4b5fd' : '#a78bfa',
+              color: showDetails ? 'var(--accent-secondary)' : 'var(--accent-primary)',
               fontSize: '14px',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
               display: 'flex',
               alignItems: 'center',
-              gap: '6px'
+              gap: '6px',
+              fontFamily: 'Source Serif Pro, Georgia, serif'
             }}
             onMouseEnter={(e) => {
               if (!showDetails) {
-                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.3)';
-                e.currentTarget.style.borderColor = '#8b5cf6';
-                e.currentTarget.style.color = '#c4b5fd';
+                e.currentTarget.style.background = 'var(--accent-primary)/20';
+                e.currentTarget.style.borderColor = 'var(--accent-primary)';
+                e.currentTarget.style.color = 'var(--accent-secondary)';
               }
             }}
             onMouseLeave={(e) => {
               if (!showDetails) {
-                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-                e.currentTarget.style.color = '#a78bfa';
+                e.currentTarget.style.background = 'var(--accent-primary)/10';
+                e.currentTarget.style.borderColor = 'var(--accent-primary)/30';
+                e.currentTarget.style.color = 'var(--accent-primary)';
               }
             }}
           >
@@ -163,8 +165,8 @@ const AIMessageWithDisclosure: React.FC<{ message: ChatMessage }> = ({ message }
       {/* Expanded Details */}
       {showDetails && hasRichData && (
         <div style={{
-          background: 'rgba(15, 23, 42, 0.8)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          background: 'var(--bg-primary)',
+          border: '2px solid var(--accent-primary)/20',
           borderRadius: '12px',
           padding: '20px',
           display: 'flex',
@@ -176,27 +178,28 @@ const AIMessageWithDisclosure: React.FC<{ message: ChatMessage }> = ({ message }
           {aiData.questions && (
             <div>
               <h4 style={{
-                color: '#8b5cf6',
+                color: 'var(--accent-primary)',
                 fontSize: '18px',
                 fontWeight: '700',
                 marginBottom: '14px',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
-                textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                fontFamily: 'Playfair Display, serif'
               }}>
                 🎯 Think About This
               </h4>
               <div
                 style={{
-                  background: 'rgba(139, 92, 246, 0.08)',
-                  borderLeft: '4px solid #8b5cf6',
+                  background: 'var(--accent-primary)/8',
+                  borderLeft: '4px solid var(--accent-primary)',
                   padding: '16px 20px',
                   borderRadius: '0 12px 12px 0',
-                  color: '#e2e8f0',
+                  color: 'var(--text-primary)',
                   lineHeight: '1.7',
                   fontSize: '15px',
-                  boxShadow: '0 2px 8px rgba(139, 92, 246, 0.1)'
+                  boxShadow: '0 2px 8px var(--shadow-soft)',
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}
                 dangerouslySetInnerHTML={{
                   __html: formatAIResponse(aiData.questions.content)
@@ -209,27 +212,28 @@ const AIMessageWithDisclosure: React.FC<{ message: ChatMessage }> = ({ message }
           {aiData.insights && (
             <div>
               <h4 style={{
-                color: '#10b981',
+                color: 'var(--accent-secondary)',
                 fontSize: '18px',
                 fontWeight: '700',
                 marginBottom: '14px',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
-                textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                fontFamily: 'Playfair Display, serif'
               }}>
                 🧠 Deep Insights
               </h4>
               <div
                 style={{
-                  background: 'rgba(16, 185, 129, 0.08)',
-                  borderLeft: '4px solid #10b981',
+                  background: 'var(--accent-secondary)/8',
+                  borderLeft: '4px solid var(--accent-secondary)',
                   padding: '16px 20px',
                   borderRadius: '0 12px 12px 0',
-                  color: '#e2e8f0',
+                  color: 'var(--text-primary)',
                   lineHeight: '1.7',
                   fontSize: '15px',
-                  boxShadow: '0 2px 8px rgba(16, 185, 129, 0.1)'
+                  boxShadow: '0 2px 8px var(--shadow-soft)',
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}
                 dangerouslySetInnerHTML={{
                   __html: formatAIResponse(aiData.insights.content)
@@ -249,7 +253,7 @@ const AIMessageWithDisclosure: React.FC<{ message: ChatMessage }> = ({ message }
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
-                textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                fontFamily: 'Playfair Display, serif'
               }}>
                 📚 Learning Context
               </h4>
@@ -259,10 +263,11 @@ const AIMessageWithDisclosure: React.FC<{ message: ChatMessage }> = ({ message }
                   borderLeft: '4px solid #f59e0b',
                   padding: '16px 20px',
                   borderRadius: '0 12px 12px 0',
-                  color: '#e2e8f0',
+                  color: 'var(--text-primary)',
                   lineHeight: '1.7',
                   fontSize: '15px',
-                  boxShadow: '0 2px 8px rgba(245, 158, 11, 0.1)'
+                  boxShadow: '0 2px 8px var(--shadow-soft)',
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}
                 dangerouslySetInnerHTML={{
                   __html: formatAIResponse(aiData.context.content)
@@ -435,8 +440,8 @@ export function AIBookChatModal({
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="ai-chat-modal"
             style={{
-              background: '#0f172a',
-              border: '1px solid #334155',
+              background: 'var(--bg-primary)',
+              border: '2px solid var(--border-light)',
               borderRadius: isMobile ? '16px' : '20px',
               width: '100%',
               maxWidth: isMobile ? '100%' : '900px', // FULL WIDTH on mobile
@@ -445,15 +450,15 @@ export function AIBookChatModal({
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
+              boxShadow: '0 20px 60px var(--shadow-heavy)'
             }}
           >
             {/* Chat Header */}
             <div 
               className="ai-chat-header"
               style={{
-                background: '#1e293b',
-                borderBottom: '1px solid #334155',
+                background: 'var(--bg-secondary)',
+                borderBottom: '2px solid var(--border-light)',
                 padding: '20px 24px',
                 display: 'flex',
                 alignItems: 'center',
@@ -466,34 +471,37 @@ export function AIBookChatModal({
                   style={{
                     width: '48px',
                     height: '72px',
-                    background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
+                    background: 'var(--accent-primary)',
                     borderRadius: '8px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'white',
+                    color: 'var(--bg-primary)',
                     fontWeight: 'bold',
                     fontSize: '12px',
                     textAlign: 'center',
-                    flexShrink: 0
+                    flexShrink: 0,
+                    fontFamily: 'Source Serif Pro, Georgia, serif'
                   }}
                 >
                   {book.title.substring(0, 2).toUpperCase()}
                 </div>
                 <div>
                   <h3 style={{
-                    color: '#e2e8f0',
+                    color: 'var(--text-accent)',
                     fontSize: '18px',
                     fontWeight: 700,
                     marginBottom: '4px',
-                    lineHeight: '1.3'
+                    lineHeight: '1.3',
+                    fontFamily: 'Playfair Display, serif'
                   }}>
                     {book.title.length > 50 ? book.title.substring(0, 47) + '...' : book.title}
                   </h3>
                   <p style={{
-                    color: '#94a3b8',
+                    color: 'var(--text-secondary)',
                     fontSize: '14px',
-                    margin: 0
+                    margin: 0,
+                    fontFamily: 'Source Serif Pro, Georgia, serif'
                   }}>
                     by {book.author}
                   </p>
@@ -506,7 +514,7 @@ export function AIBookChatModal({
                   height: '32px',
                   background: 'transparent',
                   border: 'none',
-                  color: '#94a3b8',
+                  color: 'var(--text-secondary)',
                   fontSize: '20px',
                   cursor: 'pointer',
                   borderRadius: '6px',
@@ -516,12 +524,12 @@ export function AIBookChatModal({
                   justifyContent: 'center'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(148, 163, 184, 0.1)';
-                  e.currentTarget.style.color = '#e2e8f0';
+                  e.currentTarget.style.background = 'var(--accent-primary)/10';
+                  e.currentTarget.style.color = 'var(--text-primary)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.color = '#94a3b8';
+                  e.currentTarget.style.color = 'var(--text-secondary)';
                 }}
               >
                 ×
@@ -537,27 +545,29 @@ export function AIBookChatModal({
                   style={{
                     padding: '32px 24px',
                     textAlign: 'center',
-                    background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)',
-                    borderBottom: '1px solid #334155'
+                    background: 'var(--accent-secondary)/10',
+                    borderBottom: '2px solid var(--border-light)'
                   }}
                 >
                   <h4 style={{
-                    color: '#8b5cf6',
+                    color: 'var(--accent-primary)',
                     fontSize: '20px',
                     fontWeight: 700,
                     marginBottom: '12px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '8px'
+                    gap: '8px',
+                    fontFamily: 'Playfair Display, serif'
                   }}>
                     🤖 Ready to explore this book together?
                   </h4>
                   <p style={{
-                    color: '#94a3b8',
+                    color: 'var(--text-secondary)',
                     fontSize: '16px',
                     lineHeight: '1.5',
-                    marginBottom: '20px'
+                    marginBottom: '20px',
+                    fontFamily: 'Source Serif Pro, Georgia, serif'
                   }}>
                     Ask about themes, characters, plot details, writing style, or anything that sparks your curiosity!
                   </p>
@@ -572,23 +582,23 @@ export function AIBookChatModal({
                       onClick={() => askQuestion('What are the main themes?')}
                       style={{
                         padding: '8px 16px',
-                        background: 'rgba(139, 92, 246, 0.2)',
-                        border: '1px solid rgba(139, 92, 246, 0.3)',
+                        background: 'var(--accent-primary)/10',
+                        border: '2px solid var(--accent-primary)/30',
                         borderRadius: '20px',
-                        color: '#a78bfa',
+                        color: 'var(--accent-primary)',
                         fontSize: '14px',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.3)';
-                        e.currentTarget.style.borderColor = '#8b5cf6';
-                        e.currentTarget.style.color = '#c4b5fd';
+                        e.currentTarget.style.background = 'var(--accent-primary)/20';
+                        e.currentTarget.style.borderColor = 'var(--accent-primary)';
+                        e.currentTarget.style.color = 'var(--accent-secondary)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)';
-                        e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-                        e.currentTarget.style.color = '#a78bfa';
+                        e.currentTarget.style.background = 'var(--accent-primary)/10';
+                        e.currentTarget.style.borderColor = 'var(--accent-primary)/30';
+                        e.currentTarget.style.color = 'var(--accent-primary)';
                       }}
                     >
                       What are the main themes?
@@ -597,23 +607,23 @@ export function AIBookChatModal({
                       onClick={() => askQuestion('Tell me about the characters')}
                       style={{
                         padding: '8px 16px',
-                        background: 'rgba(139, 92, 246, 0.2)',
-                        border: '1px solid rgba(139, 92, 246, 0.3)',
+                        background: 'var(--accent-primary)/10',
+                        border: '2px solid var(--accent-primary)/30',
                         borderRadius: '20px',
-                        color: '#a78bfa',
+                        color: 'var(--accent-primary)',
                         fontSize: '14px',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.3)';
-                        e.currentTarget.style.borderColor = '#8b5cf6';
-                        e.currentTarget.style.color = '#c4b5fd';
+                        e.currentTarget.style.background = 'var(--accent-primary)/20';
+                        e.currentTarget.style.borderColor = 'var(--accent-primary)';
+                        e.currentTarget.style.color = 'var(--accent-secondary)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)';
-                        e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-                        e.currentTarget.style.color = '#a78bfa';
+                        e.currentTarget.style.background = 'var(--accent-primary)/10';
+                        e.currentTarget.style.borderColor = 'var(--accent-primary)/30';
+                        e.currentTarget.style.color = 'var(--accent-primary)';
                       }}
                     >
                       Tell me about the characters
@@ -622,23 +632,23 @@ export function AIBookChatModal({
                       onClick={() => askQuestion('What is the writing style?')}
                       style={{
                         padding: '8px 16px',
-                        background: 'rgba(139, 92, 246, 0.2)',
-                        border: '1px solid rgba(139, 92, 246, 0.3)',
+                        background: 'var(--accent-primary)/10',
+                        border: '2px solid var(--accent-primary)/30',
                         borderRadius: '20px',
-                        color: '#a78bfa',
+                        color: 'var(--accent-primary)',
                         fontSize: '14px',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.3)';
-                        e.currentTarget.style.borderColor = '#8b5cf6';
-                        e.currentTarget.style.color = '#c4b5fd';
+                        e.currentTarget.style.background = 'var(--accent-primary)/20';
+                        e.currentTarget.style.borderColor = 'var(--accent-primary)';
+                        e.currentTarget.style.color = 'var(--accent-secondary)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)';
-                        e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-                        e.currentTarget.style.color = '#a78bfa';
+                        e.currentTarget.style.background = 'var(--accent-primary)/10';
+                        e.currentTarget.style.borderColor = 'var(--accent-primary)/30';
+                        e.currentTarget.style.color = 'var(--accent-primary)';
                       }}
                     >
                       What is the writing style?
@@ -647,23 +657,23 @@ export function AIBookChatModal({
                       onClick={() => askQuestion('Why is this book important?')}
                       style={{
                         padding: '8px 16px',
-                        background: 'rgba(139, 92, 246, 0.2)',
-                        border: '1px solid rgba(139, 92, 246, 0.3)',
+                        background: 'var(--accent-primary)/10',
+                        border: '2px solid var(--accent-primary)/30',
                         borderRadius: '20px',
-                        color: '#a78bfa',
+                        color: 'var(--accent-primary)',
                         fontSize: '14px',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.3)';
-                        e.currentTarget.style.borderColor = '#8b5cf6';
-                        e.currentTarget.style.color = '#c4b5fd';
+                        e.currentTarget.style.background = 'var(--accent-primary)/20';
+                        e.currentTarget.style.borderColor = 'var(--accent-primary)';
+                        e.currentTarget.style.color = 'var(--accent-secondary)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)';
-                        e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-                        e.currentTarget.style.color = '#a78bfa';
+                        e.currentTarget.style.background = 'var(--accent-primary)/10';
+                        e.currentTarget.style.borderColor = 'var(--accent-primary)/30';
+                        e.currentTarget.style.color = 'var(--accent-primary)';
                       }}
                     >
                       Why is this book important?
@@ -699,9 +709,9 @@ export function AIBookChatModal({
                       style={{
                         width: '32px',
                         height: '32px',
-                        background: message.role === 'user' 
-                          ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                          : 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
+                        background: message.role === 'user'
+                          ? 'var(--accent-secondary)'
+                          : 'var(--accent-primary)',
                         borderRadius: '50%',
                         display: 'flex',
                         alignItems: 'center',
@@ -720,14 +730,15 @@ export function AIBookChatModal({
                     ) : (
                       <div
                         style={{
-                          background: 'rgba(102, 126, 234, 0.1)',
-                          border: '1px solid rgba(102, 126, 234, 0.2)',
+                          background: 'var(--accent-secondary)/10',
+                          border: '2px solid var(--accent-secondary)/30',
                           borderRadius: '12px',
                           padding: '16px',
-                          color: '#e2e8f0',
+                          color: 'var(--text-primary)',
                           lineHeight: '1.5',
                           flex: 1,
-                          textAlign: 'right'
+                          textAlign: 'right',
+                          fontFamily: 'Source Serif Pro, Georgia, serif'
                         }}
                         dangerouslySetInnerHTML={{
                           __html: formatAIResponse(message.content)
@@ -741,25 +752,26 @@ export function AIBookChatModal({
                     <div style={{
                       width: '32px',
                       height: '32px',
-                      background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
+                      background: 'var(--accent-primary)',
                       borderRadius: '50%',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'white',
+                      color: 'var(--bg-primary)',
                       fontSize: '16px',
                       flexShrink: 0
                     }}>
                       🤖
                     </div>
                     <div style={{
-                      background: 'rgba(139, 92, 246, 0.1)',
-                      border: '1px solid rgba(139, 92, 246, 0.2)',
+                      background: 'var(--accent-primary)/10',
+                      border: '2px solid var(--accent-primary)/30',
                       borderRadius: '12px',
                       padding: '16px',
-                      color: '#94a3b8',
+                      color: 'var(--text-secondary)',
                       lineHeight: '1.5',
-                      flex: 1
+                      flex: 1,
+                      fontFamily: 'Source Serif Pro, Georgia, serif'
                     }}>
                       Thinking...
                     </div>
@@ -771,8 +783,8 @@ export function AIBookChatModal({
               <div 
                 className="ai-chat-input-area"
                 style={{
-                  background: '#1e293b',
-                  borderTop: '1px solid #334155',
+                  background: 'var(--bg-secondary)',
+                  borderTop: '2px solid var(--border-light)',
                   padding: '20px 24px',
                   marginBottom: isMobile ? '20px' : '0'
                 }}
@@ -787,25 +799,25 @@ export function AIBookChatModal({
                     disabled={isLoading}
                     style={{
                       flex: 1,
-                      background: '#0f172a',
-                      border: '1px solid #334155',
+                      background: 'var(--bg-primary)',
+                      border: '2px solid var(--border-light)',
                       borderRadius: '12px',
                       padding: '12px 16px',
-                      color: '#e2e8f0',
+                      color: 'var(--text-primary)',
                       fontSize: '16px',
                       resize: 'none',
                       minHeight: '44px',
                       maxHeight: '120px',
-                      fontFamily: 'inherit',
+                      fontFamily: 'Source Serif Pro, Georgia, serif',
                       outline: 'none',
                       transition: 'border-color 0.2s ease'
                     }}
                     onFocus={(e) => {
-                      e.currentTarget.style.borderColor = '#8b5cf6';
-                      e.currentTarget.style.boxShadow = '0 0 0 2px rgba(139, 92, 246, 0.2)';
+                      e.currentTarget.style.borderColor = 'var(--accent-primary)';
+                      e.currentTarget.style.boxShadow = '0 0 0 3px var(--accent-light)';
                     }}
                     onBlur={(e) => {
-                      e.currentTarget.style.borderColor = '#334155';
+                      e.currentTarget.style.borderColor = 'var(--border-light)';
                       e.currentTarget.style.boxShadow = 'none';
                     }}
                   />
@@ -815,10 +827,10 @@ export function AIBookChatModal({
                     style={{
                       width: '44px',
                       height: '44px',
-                      background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
+                      background: 'var(--accent-primary)',
                       border: 'none',
                       borderRadius: '12px',
-                      color: 'white',
+                      color: 'var(--bg-primary)',
                       fontSize: '18px',
                       cursor: !inputValue.trim() || isLoading ? 'not-allowed' : 'pointer',
                       transition: 'all 0.2s ease',
@@ -830,7 +842,7 @@ export function AIBookChatModal({
                     onMouseEnter={(e) => {
                       if (!isLoading && inputValue.trim()) {
                         e.currentTarget.style.transform = 'translateY(-1px)';
-                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.4)';
+                        e.currentTarget.style.boxShadow = '0 4px 12px var(--shadow-medium)';
                       }
                     }}
                     onMouseLeave={(e) => {
@@ -848,12 +860,13 @@ export function AIBookChatModal({
                 className="ai-chat-disclaimer"
                 style={{
                   padding: '12px 24px',
-                  background: 'rgba(59, 130, 246, 0.1)',
-                  borderTop: '1px solid #334155',
+                  background: 'var(--accent-primary)/10',
+                  borderTop: '2px solid var(--border-light)',
                   textAlign: 'center',
                   fontSize: '12px',
-                  color: '#94a3b8',
-                  lineHeight: '1.4'
+                  color: 'var(--text-secondary)',
+                  lineHeight: '1.4',
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}
               >
                 ⚠️ AI responses are based on training knowledge and educational commentary, not text reproduction. All analyses represent fair use discussion of literary works for educational purposes.

@@ -10,37 +10,54 @@ interface ThemeSwitcherProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export function ThemeSwitcher({
-  className = '',
-  showLabels = true,
-  size = 'md'
-}: ThemeSwitcherProps) {
-  const { theme, setTheme } = useTheme();
+// SSR-safe wrapper component
+export function ThemeSwitcher(props: ThemeSwitcherProps) {
   const [mounted, setMounted] = useState(false);
 
-  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    return (
-      <div className={`theme-switcher ${className}`}>
-        <div className="neo-classic-control-group">
-          {showLabels && (
-            <label className="neo-classic-label text-xs uppercase tracking-wide mb-2 block">
-              Reading Theme
-            </label>
-          )}
-          <div className="theme-selector-buttons flex rounded-lg overflow-hidden border border-[var(--border-light)]">
-            <div className="theme-btn flex-1 bg-[var(--accent-primary)] text-[var(--bg-primary)] font-semibold px-3 py-2 text-sm">
-              ☀️ {showLabels && 'Light'}
-            </div>
+    return <ThemeSwitcherPlaceholder {...props} />;
+  }
+
+  return <ThemeSwitcherClient {...props} />;
+}
+
+// Static placeholder for SSR
+function ThemeSwitcherPlaceholder({
+  className = '',
+  showLabels = true,
+  size = 'md'
+}: ThemeSwitcherProps) {
+  const sizeClasses = {
+    sm: 'text-xs px-2 py-1',
+    md: 'text-sm px-3 py-1.5',
+    lg: 'text-base px-4 py-2'
+  };
+
+  return (
+    <div className={`theme-switcher ${className}`}>
+      <div className="neo-classic-control-group">
+        {/* Hidden header label for nav placement */}
+        <div className="theme-selector-buttons flex rounded-lg overflow-hidden border border-[var(--border-light)]">
+          <div className={`theme-btn flex-1 bg-[var(--accent-primary)] text-[var(--bg-primary)] font-semibold ${sizeClasses[size]}`}>
+            ☀️ {showLabels && 'Light'}
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+// Client-side component that uses theme context
+function ThemeSwitcherClient({
+  className = '',
+  showLabels = true,
+  size = 'md'
+}: ThemeSwitcherProps) {
+  const { theme, setTheme } = useTheme();
 
   const themes: { value: ThemeVariant; label: string; icon: string; description: string }[] = [
     {
@@ -78,41 +95,42 @@ export function ThemeSwitcher({
           </label>
         )}
 
-        <div className="theme-selector-buttons flex rounded-lg overflow-hidden border border-[var(--border-light)]">
-          {themes.map((themeOption, index) => (
-            <motion.button
-              key={themeOption.value}
-              onClick={() => setTheme(themeOption.value)}
-              className={`
-                theme-btn flex-1 relative transition-all duration-300 font-medium
-                ${sizeClasses[size]}
-                ${theme === themeOption.value
-                  ? 'bg-[var(--accent-primary)] text-[var(--bg-primary)] font-semibold'
-                  : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)] hover:bg-opacity-10'
-                }
-                ${index === 0 ? '' : 'border-l border-[var(--border-light)]'}
-              `}
-              whileHover={{ y: -1 }}
-              whileTap={{ scale: 0.98 }}
-              title={themeOption.description}
-            >
-              <span className="flex items-center justify-center gap-1.5">
-                <span className="theme-icon">{themeOption.icon}</span>
-                {showLabels && (
-                  <span className="theme-label">{themeOption.label}</span>
+        <div className="theme-selector-buttons flex items-center gap-3">
+          {themes.map((themeOption) => {
+            const isActive = theme === themeOption.value;
+            const isCompact = !showLabels; // nav usage → compact round buttons
+            return (
+              <motion.button
+                key={themeOption.value}
+                onClick={() => setTheme(themeOption.value)}
+                className={`
+                  ${isCompact ? 'theme-dot' : 'theme-chip'}
+                  relative transition-all duration-300 font-semibold
+                  ${isActive
+                    ? isCompact
+                      ? 'bg-[var(--accent-primary)] text-[var(--bg-secondary)] border border-[var(--accent-primary)]'
+                      : 'bg-[rgba(var(--accent-primary-rgb),0.10)] text-[var(--accent-primary)] ring-1 ring-[var(--accent-primary)]'
+                    : isCompact
+                      ? 'bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)] hover:bg-[rgba(var(--accent-primary-rgb),0.10)]'
+                      : 'bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-light)] hover:bg-[rgba(var(--accent-primary-rgb),0.08)] hover:text-[var(--accent-primary)]'
+                  }
+                `}
+                style={isCompact ? { width: '28px', height: '28px', borderRadius: '9999px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' } : undefined}
+                whileHover={{ y: isCompact ? 0 : -1 }}
+                whileTap={{ scale: 0.98 }}
+                aria-label={`${themeOption.label} theme`}
+                title={themeOption.description}
+              >
+                {isCompact ? (
+                  <span className="text-xs font-bold" style={{ lineHeight: 1 }}>{themeOption.label[0]}</span>
+                ) : (
+                  <span className="flex items-center justify-center gap-1.5">
+                    <span className="theme-label">{themeOption.label}</span>
+                  </span>
                 )}
-              </span>
-
-              {/* Active indicator */}
-              {theme === themeOption.value && (
-                <motion.div
-                  className="absolute inset-0 bg-[var(--accent-primary)] opacity-10 rounded"
-                  layoutId="activeTheme"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-            </motion.button>
-          ))}
+              </motion.button>
+            );
+          })}
         </div>
       </div>
 
@@ -131,20 +149,28 @@ export function ThemeSwitcher({
           font-weight: 600;
         }
 
-        .theme-btn {
+        .theme-chip {
           position: relative;
-          border: none;
+          border: 1px solid var(--border-light);
           cursor: pointer;
           font-family: 'Source Serif Pro', Georgia, serif;
           letter-spacing: 0.02em;
+          border-radius: 20px;
+          padding: 6px 12px;
         }
 
-        .theme-btn:focus {
+        .theme-dot {
+          position: relative;
+          cursor: pointer;
+          border-radius: 9999px;
+        }
+
+        .theme-chip:focus {
           outline: none;
           box-shadow: 0 0 0 2px var(--accent-primary), 0 0 0 4px rgba(var(--accent-primary-rgb), 0.2);
         }
 
-        .theme-btn:disabled {
+        .theme-chip:disabled {
           opacity: 0.5;
           cursor: not-allowed;
         }
@@ -161,7 +187,6 @@ export function ThemeSwitcher({
 
 // Compact floating theme switcher for corner placement
 export function FloatingThemeSwitcher({ className = '' }: { className?: string }) {
-  const { theme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -169,12 +194,24 @@ export function FloatingThemeSwitcher({ className = '' }: { className?: string }
   }, []);
 
   if (!mounted) {
-    return (
-      <div className={`floating-theme-switcher fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-light)] ${className}`}>
-        <span className="text-lg">☀️</span>
-      </div>
-    );
+    return <FloatingThemeSwitcherPlaceholder className={className} />;
   }
+
+  return <FloatingThemeSwitcherClient className={className} />;
+}
+
+// Static placeholder for SSR
+function FloatingThemeSwitcherPlaceholder({ className = '' }: { className?: string }) {
+  return (
+    <div className={`floating-theme-switcher fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-light)] ${className}`}>
+      <span className="text-lg">☀️</span>
+    </div>
+  );
+}
+
+// Client-side component that uses theme context
+function FloatingThemeSwitcherClient({ className = '' }: { className?: string }) {
+  const { theme, toggleTheme } = useTheme();
 
   const themeIcons = {
     light: '☀️',

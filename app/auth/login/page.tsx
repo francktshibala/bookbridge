@@ -49,13 +49,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="page-container magical-bg min-h-screen" style={{ backgroundColor: '#0f172a', color: '#ffffff' }}>
-      {/* Magical Portfolio Background */}
+    <div className="page-container min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      {/* Neo-Classic Theme Background */}
       <div className="fixed inset-0 pointer-events-none" style={{
         background: `
-          radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.12) 0%, transparent 50%),
-          radial-gradient(circle at 40% 20%, rgba(240, 147, 251, 0.08) 0%, transparent 50%)
+          radial-gradient(circle at 20% 50%, var(--accent-primary)/15 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, var(--accent-secondary)/12 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, var(--accent-light)/8 0%, transparent 50%)
         `
       }} />
       
@@ -72,11 +72,11 @@ export default function LoginPage() {
         >
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors font-medium"
             style={{
               textDecoration: 'none',
               fontSize: isVerySmall ? '14px' : '16px',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+              fontFamily: 'Source Serif Pro, Georgia, serif'
             }}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -92,25 +92,22 @@ export default function LoginPage() {
           className={isVerySmall ? "text-center mb-4" : "text-center mb-8"}
         >
           <AccessibleWrapper as="header">
-            <h1 className="text-gradient" style={{
-              fontSize: isVerySmall ? '22px' : (isMobile ? '28px' : 'var(--text-4xl)'),
-              fontWeight: '800',
+            <h1 style={{
+              fontSize: isVerySmall ? '22px' : (isMobile ? '28px' : '2.5rem'),
+              fontWeight: '700',
               marginBottom: isVerySmall ? '0.5rem' : '1rem',
               lineHeight: isVerySmall ? '1.15' : '1.2',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+              color: 'var(--text-accent)',
+              fontFamily: 'Playfair Display, serif',
               wordBreak: 'break-word',
               hyphens: 'auto'
             }}>
               Sign in to BookBridge
             </h1>
             <p style={{
-              fontSize: isVerySmall ? '14px' : (isMobile ? '16px' : 'var(--text-lg)'),
+              fontSize: isVerySmall ? '14px' : (isMobile ? '16px' : '1.125rem'),
               color: 'var(--text-secondary)',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+              fontFamily: 'Source Serif Pro, Georgia, serif',
               lineHeight: '1.6'
             }}>
               Access your AI-powered book companion
@@ -124,10 +121,10 @@ export default function LoginPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           style={{
-            background: 'var(--surface-elevated)',
+            background: 'var(--bg-secondary)',
             borderRadius: '24px',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.1)',
-            border: '1px solid var(--border-light)',
+            boxShadow: '0 4px 6px var(--shadow-soft), 0 10px 25px var(--shadow-medium), 0 2px 4px var(--shadow-light)',
+            border: '2px solid var(--border-light)',
             padding: isVerySmall ? '16px 8px' : (isMobile ? '24px 16px' : '40px'),
             backdropFilter: 'blur(10px)'
           }}
@@ -150,7 +147,7 @@ export default function LoginPage() {
                   fontWeight: '700',
                   color: 'var(--text-primary)',
                   marginBottom: '8px',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}>
                   Email address
                 </label>
@@ -175,11 +172,11 @@ export default function LoginPage() {
                       width: '100%',
                       padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
                       color: 'var(--text-primary)',
-                      background: 'var(--surface-elevated)',
+                      background: 'var(--bg-tertiary)',
                       border: '2px solid var(--border-light)',
                       borderRadius: '12px',
                       fontSize: '16px',
-                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                      fontFamily: 'Source Serif Pro, Georgia, serif',
                       outline: 'none',
                       transition: 'all 0.3s ease',
                       opacity: isLoading ? 0.5 : 1
@@ -197,7 +194,7 @@ export default function LoginPage() {
                   fontWeight: '700',
                   color: 'var(--text-primary)',
                   marginBottom: '8px',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}>
                   Password
                 </label>
@@ -222,11 +219,11 @@ export default function LoginPage() {
                       width: '100%',
                       padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
                       color: 'var(--text-primary)',
-                      background: 'var(--surface-elevated)',
+                      background: 'var(--bg-tertiary)',
                       border: '2px solid var(--border-light)',
                       borderRadius: '12px',
                       fontSize: '16px',
-                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                      fontFamily: 'Source Serif Pro, Georgia, serif',
                       outline: 'none',
                       transition: 'all 0.3s ease',
                       opacity: isLoading ? 0.5 : 1
@@ -257,9 +254,9 @@ export default function LoginPage() {
                   >
                     <div style={{
                       fontSize: '14px',
-                      color: '#ef4444',
+                      color: 'var(--error-text)',
                       fontWeight: '600',
-                      fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                      fontFamily: 'Source Serif Pro, Georgia, serif'
                     }}>{error}</div>
                   </AccessibleWrapper>
                 </motion.div>
@@ -271,20 +268,20 @@ export default function LoginPage() {
                 disabled={isLoading}
                 whileHover={{ 
                   scale: isLoading ? 1 : 1.02,
-                  boxShadow: isLoading ? undefined : '0 12px 40px rgba(102, 126, 234, 0.6), 0 0 0 1px rgba(255,255,255,0.1)',
+                  boxShadow: isLoading ? undefined : '0 4px 6px var(--shadow-soft), 0 10px 25px var(--shadow-medium)',
                   y: isLoading ? 0 : -3
                 }}
                 whileTap={{ scale: isLoading ? 1 : 0.98 }}
                 style={{
                   width: '100%',
                   padding: '16px 32px',
-                  background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 50%, #8b5cf6 100%)',
-                  color: '#ffffff',
+                  background: 'var(--accent-primary)',
+                  color: 'var(--bg-primary)',
                   border: 'none',
                   borderRadius: '16px',
                   fontSize: '1.1rem',
                   fontWeight: '800',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  fontFamily: 'Source Serif Pro, Georgia, serif',
                   cursor: isLoading ? 'not-allowed' : 'pointer',
                   display: 'flex',
                   alignItems: 'center',
@@ -293,7 +290,7 @@ export default function LoginPage() {
                   position: 'relative',
                   overflow: 'hidden',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  boxShadow: '0 8px 25px rgba(102, 126, 234, 0.4), inset 0 1px 0 rgba(255,255,255,0.2)',
+                  boxShadow: '0 4px 6px var(--shadow-soft), 0 10px 25px var(--shadow-medium)',
                   letterSpacing: '0.02em',
                   textShadow: '0 1px 2px rgba(0,0,0,0.2)',
                   opacity: isLoading ? 0.7 : 1
@@ -321,7 +318,7 @@ export default function LoginPage() {
                       style={{
                         width: '20px',
                         height: '20px',
-                        border: '2px solid #ffffff',
+                        border: '2px solid var(--bg-primary)',
                         borderTop: '2px solid transparent',
                         borderRadius: '50%'
                       }}
@@ -329,12 +326,9 @@ export default function LoginPage() {
                     <span style={{ zIndex: 2 }}>Signing in...</span>
                   </>
                 ) : (
-                  <span style={{ 
+                  <span style={{
                     zIndex: 2,
-                    background: 'linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text'
+                    color: 'var(--bg-primary)'
                   }}>Sign in</span>
                 )}
               </motion.button>
@@ -344,17 +338,14 @@ export default function LoginPage() {
                 <p style={{
                   fontSize: '14px',
                   color: 'var(--text-secondary)',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}>
                   Don't have an account?{' '}
                   <Link
                     href="/auth/signup"
                     style={{
                       fontWeight: '600',
-                      background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
+                      color: 'var(--accent-primary)',
                       textDecoration: 'none',
                       transition: 'all 0.3s ease'
                     }}

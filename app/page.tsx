@@ -106,13 +106,13 @@ export default function HomePage() {
   };
 
   return (
-    <div className="page-container magical-bg min-h-screen" style={{
-      background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
-      color: '#ffffff',
+    <div className="page-container magical-bg min-h-screen theme-transition" style={{
+      background: 'var(--bg-primary)',
+      color: 'var(--text-primary)',
       position: 'relative'
     }}>
 
-      <div className="page-content" style={{
+      <div className="page-content theme-transition" style={{
         padding: '4rem 2rem',
         maxWidth: '1200px',
         margin: '0 auto',
@@ -121,98 +121,121 @@ export default function HomePage() {
         alignItems: 'center',
         gap: '2.5rem'
       }}>
-        {/* Hero Section */}
-        <motion.section 
+        {/* Neo-Classic Hero Section */}
+        <motion.section
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          aria-labelledby="welcome-heading" 
-          className="page-header text-center hero-section"
-          style={{ marginBottom: '2rem' }}
+          aria-labelledby="welcome-heading"
+          className="homepage-hero neo-classic-surface-elevated theme-transition"
+          style={{
+            marginBottom: '2rem',
+            background: 'var(--bg-primary)',
+            borderRadius: '16px',
+            padding: '4rem 2rem',
+            border: '1px solid var(--border-light)',
+            boxShadow: 'var(--shadow-soft)'
+          }}
         >
-          <motion.h1 
-            id="welcome-heading"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-gradient hero-title"
-            style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}
-          >
-            Read Classic Literature at Your English Level
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="hero-subtitle"
-            style={{ 
-              color: '#94a3b8', 
-              marginBottom: '3rem', 
-              fontSize: '1.125rem', 
-              maxWidth: '800px', 
-              margin: '0 auto 3rem auto',
-              lineHeight: '1.6'
-            }}
-          >
-            AI-powered text simplification • Word-by-word audio • Vocabulary learning
-          </motion.p>
+          <div className="elegant-container max-w-4xl mx-auto">
+            <motion.h1
+              id="welcome-heading"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="neo-classic-title text-center"
+              style={{
+                fontSize: '3.5rem',
+                marginBottom: '1.5rem',
+                color: 'var(--text-accent)'
+              }}
+            >
+              Read Classic Literature at Your English Level
+            </motion.h1>
 
-          {/* CEFR Level Selector */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-3 mb-8"
-          >
-            {cefrLevels.map((level, index) => (
-              <motion.button
-                key={level}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedLevel(level)}
-                className="cefr-level-button"
-                style={{
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="neo-classic-subtitle text-center"
+              style={{
+                color: 'var(--text-secondary)',
+                marginBottom: '3rem',
+                fontSize: '1.25rem',
+                maxWidth: '700px',
+                margin: '0 auto 3rem auto',
+                lineHeight: '1.6'
+              }}
+            >
+              Experience timeless works through AI-powered adaptation
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="neo-classic-caption text-center"
+              style={{
+                color: 'var(--text-tertiary)',
+                marginBottom: '2rem'
+              }}
+            >
+              AI-Powered Text Simplification • Synchronized Audio • Vocabulary Learning
+            </motion.div>
+
+            {/* CEFR Level Selector */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex flex-wrap justify-center gap-3 mb-8"
+            >
+              {cefrLevels.map((level, index) => (
+                <motion.button
+                  key={level}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setSelectedLevel(level)}
+                  className="cefr-level-button"
+                  style={{
                   width: '60px',
                   height: '60px',
                   borderRadius: '50%',
-                  background: selectedLevel === level 
-                    ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-                    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  border: 'none',
-                  color: 'white',
+                  background: selectedLevel === level ? 'var(--accent-primary)' : 'var(--accent-secondary)',
+                  border: '1px solid var(--border-light)',
+                  color: 'var(--bg-secondary)',
                   fontSize: '16px',
                   fontWeight: '600',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   boxShadow: selectedLevel === level
-                    ? '0 4px 12px rgba(16, 185, 129, 0.4)'
-                    : '0 4px 12px rgba(102, 126, 234, 0.4)'
+                    ? '0 4px 12px rgba(var(--accent-primary-rgb), 0.35)'
+                    : '0 4px 12px rgba(var(--accent-secondary-rgb), 0.35)'
                 }}
               >
                 {level}
               </motion.button>
-            ))}
-          </motion.div>
+              ))}
+            </motion.div>
 
-          {/* Sample Text Demo */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            style={{
-              backgroundColor: '#1e293b',
+            {/* Sample Text Demo */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+              style={{
+              backgroundColor: 'var(--bg-secondary)',
               borderRadius: '16px',
               padding: '1.5rem 2rem',
               marginBottom: '1.5rem',
-              border: '1px solid #334155',
-              background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+              border: '1px solid var(--border-light)',
+              background: 'var(--bg-secondary)',
               maxWidth: '900px',
               width: '100%',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+              boxShadow: '0 8px 32px var(--shadow-soft)',
               margin: '0 auto 1.5rem auto',
               display: 'flex',
               flexDirection: 'column',
@@ -227,7 +250,7 @@ export default function HomePage() {
               <span style={{
                 fontSize: '0.875rem',
                 fontWeight: '600',
-                color: '#10b981',
+                color: 'var(--accent-secondary)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em'
               }}>
@@ -242,7 +265,7 @@ export default function HomePage() {
               style={{
                 fontSize: '1.125rem',
                 lineHeight: '1.7',
-                color: '#f1f5f9',
+                color: 'var(--text-primary)',
                 textAlign: 'center',
                 fontStyle: 'italic',
                 margin: '0 auto',
@@ -255,18 +278,18 @@ export default function HomePage() {
               textAlign: 'center',
               marginTop: '1rem',
               fontSize: '0.875rem',
-              color: '#64748b'
+              color: 'var(--text-tertiary)'
             }}>
               From Pride and Prejudice
             </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Action Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.6 }}
-            className="flex gap-6 justify-center flex-wrap hero-buttons"
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.6 }}
+              className="flex gap-6 justify-center flex-wrap hero-buttons"
           >
             <motion.a 
               href="/library/gutenberg-1342/read"
@@ -292,13 +315,14 @@ export default function HomePage() {
                 textDecoration: 'none',
                 borderRadius: '12px',
                 background: 'transparent',
-                border: '2px solid #667eea',
-                color: '#667eea'
+                border: '2px solid var(--accent-primary)',
+                color: 'var(--accent-primary)'
               }}
             >
               Take Level Assessment
             </motion.a>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.section>
 
 
@@ -330,18 +354,18 @@ export default function HomePage() {
           }}
         >
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <h2 style={{
+            <h2 className="neo-classic-title" style={{
               fontSize: '2rem',
               fontWeight: 'bold',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
+              color: 'var(--text-accent)',
               marginBottom: '0.5rem'
             }}>
               How It Works
             </h2>
-            <p style={{ color: '#94a3b8', fontSize: '1.125rem' }}>
+            <p className="neo-classic-subtitle" style={{
+              color: 'var(--text-secondary)',
+              fontSize: '1.125rem'
+            }}>
               Three simple steps to start reading at your level
             </p>
           </div>
@@ -362,11 +386,12 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.2, duration: 0.5 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                style={{ 
+                className="neo-classic-surface theme-transition"
+                style={{
                   textAlign: 'center',
                   position: 'relative',
-                  background: 'rgba(30, 41, 59, 0.8)',
-                  border: '1px solid #334155',
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-light)',
                   borderRadius: '12px',
                   padding: '1.5rem 1rem',
                   cursor: 'pointer',
@@ -376,11 +401,11 @@ export default function HomePage() {
                   maxWidth: '280px'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#10b981';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(16, 185, 129, 0.3)';
+                  e.currentTarget.style.borderColor = 'var(--accent-secondary)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(205, 127, 50, 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#334155';
+                  e.currentTarget.style.borderColor = 'var(--border-light)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
@@ -392,14 +417,14 @@ export default function HomePage() {
                   transform: 'translateX(-50%)',
                   width: '24px',
                   height: '24px',
-                  background: '#10b981',
+                  background: 'var(--accent-secondary)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '12px',
                   fontWeight: 'bold',
-                  color: 'white'
+                  color: 'var(--bg-secondary)'
                 }}>
                   1
                 </div>
@@ -408,26 +433,26 @@ export default function HomePage() {
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  background: 'var(--accent-secondary)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 0.75rem auto',
                   fontSize: '1.5rem',
-                  boxShadow: '0 4px 16px rgba(16, 185, 129, 0.3)'
+                  boxShadow: '0 4px 16px rgba(var(--accent-secondary-rgb), 0.3)'
                 }}>
                   📚
                 </div>
-                <h3 style={{
+                <h3 className="neo-classic-subtitle" style={{
                   fontSize: '1.25rem',
                   fontWeight: 'bold',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   marginBottom: '0.5rem'
                 }}>
                   Choose Your Level
                 </h3>
-                <p style={{
-                  color: '#94a3b8',
+                <p className="neo-classic-body" style={{
+                  color: 'var(--text-secondary)',
                   lineHeight: '1.5',
                   marginBottom: '0.75rem',
                   fontSize: '0.9rem'
@@ -441,8 +466,8 @@ export default function HomePage() {
                       padding: '2px 8px',
                       borderRadius: '4px',
                       fontSize: '12px',
-                      background: 'rgba(16, 185, 129, 0.2)',
-                      color: '#10b981'
+                      background: 'rgba(var(--accent-secondary-rgb), 0.15)',
+                      color: 'var(--accent-secondary)'
                     }}>
                       {level}
                     </span>
@@ -456,11 +481,12 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.4, duration: 0.5 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                style={{ 
+                className="neo-classic-surface theme-transition"
+                style={{
                   textAlign: 'center',
                   position: 'relative',
-                  background: 'rgba(30, 41, 59, 0.8)',
-                  border: '1px solid #334155',
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-light)',
                   borderRadius: '12px',
                   padding: '1.5rem 1rem',
                   cursor: 'pointer',
@@ -470,11 +496,11 @@ export default function HomePage() {
                   maxWidth: '280px'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#3b82f6';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(59, 130, 246, 0.3)';
+                  e.currentTarget.style.borderColor = 'var(--accent-primary)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(var(--accent-primary-rgb), 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#334155';
+                  e.currentTarget.style.borderColor = 'var(--border-light)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
@@ -486,14 +512,14 @@ export default function HomePage() {
                   transform: 'translateX(-50%)',
                   width: '24px',
                   height: '24px',
-                  background: '#3b82f6',
+                  background: 'var(--accent-primary)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '12px',
                   fontWeight: 'bold',
-                  color: 'white'
+                  color: 'var(--bg-secondary)'
                 }}>
                   2
                 </div>
@@ -502,26 +528,26 @@ export default function HomePage() {
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                  background: 'var(--accent-primary)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 0.75rem auto',
                   fontSize: '1.5rem',
-                  boxShadow: '0 4px 16px rgba(59, 130, 246, 0.3)'
+                  boxShadow: '0 4px 16px rgba(var(--accent-primary-rgb), 0.3)'
                 }}>
                   🎧
                 </div>
-                <h3 style={{
+                <h3 className="neo-classic-subtitle" style={{
                   fontSize: '1.25rem',
                   fontWeight: 'bold',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   marginBottom: '0.5rem'
                 }}>
                   Listen & Read
                 </h3>
-                <p style={{
-                  color: '#94a3b8',
+                <p className="neo-classic-body" style={{
+                  color: 'var(--text-secondary)',
                   lineHeight: '1.5',
                   marginBottom: '0.75rem',
                   fontSize: '0.9rem'
@@ -530,13 +556,13 @@ export default function HomePage() {
                 </p>
                 {/* Mini demo */}
                 <div style={{
-                  background: 'rgba(59, 130, 246, 0.1)',
+                  background: 'rgba(var(--accent-primary-rgb), 0.1)',
                   padding: '8px 12px',
                   borderRadius: '8px',
                   fontSize: '12px',
-                  color: '#3b82f6'
+                  color: 'var(--accent-primary)'
                 }}>
-                  <span style={{ background: 'rgba(59, 130, 246, 0.3)', padding: '2px 4px', borderRadius: '2px' }}>Word</span> highlighting demo
+                  <span style={{ background: 'rgba(var(--accent-primary-rgb), 0.3)', padding: '2px 4px', borderRadius: '2px' }}>Word</span> highlighting demo
                 </div>
               </motion.div>
 
@@ -546,11 +572,12 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.6, duration: 0.5 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                style={{ 
+                className="neo-classic-surface theme-transition"
+                style={{
                   textAlign: 'center',
                   position: 'relative',
-                  background: 'rgba(30, 41, 59, 0.8)',
-                  border: '1px solid #334155',
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-light)',
                   borderRadius: '12px',
                   padding: '1.5rem 1rem',
                   cursor: 'pointer',
@@ -560,11 +587,11 @@ export default function HomePage() {
                   maxWidth: '280px'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#8b5cf6';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(139, 92, 246, 0.3)';
+                  e.currentTarget.style.borderColor = 'var(--accent-tertiary)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(var(--accent-tertiary-rgb), 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#334155';
+                  e.currentTarget.style.borderColor = 'var(--border-light)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
@@ -576,14 +603,14 @@ export default function HomePage() {
                   transform: 'translateX(-50%)',
                   width: '24px',
                   height: '24px',
-                  background: '#8b5cf6',
+                  background: 'var(--accent-tertiary)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '12px',
                   fontWeight: 'bold',
-                  color: 'white'
+                  color: 'var(--bg-secondary)'
                 }}>
                   3
                 </div>
@@ -592,26 +619,26 @@ export default function HomePage() {
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+                  background: 'var(--accent-tertiary)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 0.75rem auto',
                   fontSize: '1.5rem',
-                  boxShadow: '0 4px 16px rgba(139, 92, 246, 0.3)'
+                  boxShadow: '0 4px 16px rgba(var(--accent-tertiary-rgb), 0.3)'
                 }}>
                   🤖
                 </div>
-                <h3 style={{
+                <h3 className="neo-classic-subtitle" style={{
                   fontSize: '1.25rem',
                   fontWeight: 'bold',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   marginBottom: '0.5rem'
                 }}>
                   Ask AI Tutor
                 </h3>
-                <p style={{
-                  color: '#94a3b8',
+                <p className="neo-classic-body" style={{
+                  color: 'var(--text-secondary)',
                   lineHeight: '1.5',
                   marginBottom: '0.75rem',
                   fontSize: '0.9rem'
@@ -621,10 +648,10 @@ export default function HomePage() {
                 {/* Mini demo */}
                 <div style={{
                   fontSize: '12px',
-                  color: '#8b5cf6'
+                  color: 'var(--accent-tertiary)'
                 }}>
                   <a href="#ai-demo" style={{
-                    color: '#8b5cf6',
+                    color: 'var(--accent-tertiary)',
                     textDecoration: 'none',
                     display: 'inline-flex',
                     alignItems: 'center',

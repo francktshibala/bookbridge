@@ -59,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={`${inter.className} theme-light`} suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,6 +69,24 @@ export default function RootLayout({
         className="antialiased min-h-screen flex flex-col overflow-x-hidden theme-transition"
         suppressHydrationWarning
       >
+        {/* Theme initialization script to prevent FOUC */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var root = document.documentElement;
+                  var saved = localStorage.getItem('bookbridge-theme');
+                  var theme = (saved && ['light','dark','sepia'].indexOf(saved) !== -1) ? saved : 'light';
+                  root.classList.remove('theme-light','theme-dark','theme-sepia');
+                  root.classList.add('theme-' + theme);
+                } catch (e) {
+                  document.documentElement.classList.add('theme-light');
+                }
+              })();
+            `
+          }}
+        />
         <SkipLinks />
         
         {/* Live region for screen reader announcements */}

@@ -5,22 +5,8 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ESLControls } from '@/components/esl/ESLControls';
-import { VocabularyHighlighter } from '@/components/VocabularyHighlighter';
-import { PrecomputeAudioPlayer } from '@/components/PrecomputeAudioPlayer';
-import { AudioPlayerWithHighlighting } from '@/components/AudioPlayerWithHighlighting';
-import { IntegratedAudioControls } from '@/components/IntegratedAudioControls';
-import { WireframeAudioControls } from '@/components/audio/WireframeAudioControls';
-import { ProgressiveAudioPlayer, InstantAudioPlayer } from '@/lib/dynamic-imports';
-import { WordHighlighter, useWordHighlighting } from '@/components/audio/WordHighlighter';
-import { AutoScrollHandler, AutoScrollHandlerRef } from '@/components/audio/AutoScrollHandler';
-import { useGentleAutoScroll } from '@/hooks/useGentleAutoScroll';
-import { SpeedControl } from '@/components/SpeedControl';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
-import { useAutoAdvance } from '@/hooks/useAutoAdvance';
 import { motion } from 'framer-motion';
-import { SmartPlayButton } from '@/components/audio/SmartPlayButton';
-import { ContinuousReadingContainer } from '@/components/reading/ContinuousReadingContainer';
-import { isContinuousReadingEnabledForBook } from '@/lib/feature-flags';
 // PWA COMPLETELY DISABLED FOR TESTING
 // import { useReadingEngagement } from '@/components/InstallPrompt';
 // import { ReadingProgressTracker } from '@/components/sync/ReadingProgressTracker';
@@ -54,14 +40,11 @@ export default function BookReaderPage() {
   const [user, setUser] = useState<any>(null);
   const [eslLevel, setEslLevel] = useState<string>('B2');
   const [showLevelDropdown, setShowLevelDropdown] = useState(false);
-  const [showVoiceDropdown, setShowVoiceDropdown] = useState(false);
-  const [voiceProvider, setVoiceProvider] = useState<'standard' | 'openai' | 'elevenlabs'>('openai');
-  const [selectedVoice, setSelectedVoice] = useState('alloy');
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [currentContent, setCurrentContent] = useState<string>('');
 
   // Track previous chunk for page transition detection
   const prevChunkRef = useRef(currentChunk);
-  const autoScrollRef = useRef<AutoScrollHandlerRef>(null);
 
   // Debug tracking for currentContent changes
   useEffect(() => {
@@ -74,42 +57,10 @@ export default function BookReaderPage() {
       timestamp: new Date().toISOString()
     });
 
-    // On page transitions, force auto-scroll reset and clear word indices
+    // On page transitions, reset highlighting
     if (currentContent.length > 0 && currentChunk !== prevChunkRef.current) {
-      console.log('🚀 PAGE TRANSITION: Resetting scroll and word indices');
-
-      // Reset word indices for clean start
-      setImmediateWordIndex(-1);
+      console.log('🚀 PAGE TRANSITION: Resetting highlighting');
       resetHighlighting();
-
-      // Disable auto-scroll reset for continuous reading mode
-      if (!(isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id))) {
-        // Force scroll to top with multiple methods for reliability
-        autoScrollRef.current?.resetToTop();
-      }
-
-      // Disable backup scroll for continuous reading mode
-      if (!(isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id))) {
-        // Backup: Direct scroll to top after a brief delay
-        setTimeout(() => {
-          const contentEl = document.querySelector('[data-content="true"]');
-          if (contentEl) {
-            const rect = contentEl.getBoundingClientRect();
-            const topMargin = 50;
-            const target = Math.max(0, rect.top + window.scrollY - topMargin);
-
-            console.log('🚀 PAGE TRANSITION: Backup scroll to top', {
-              target,
-              currentScroll: window.scrollY
-            });
-
-            window.scrollTo({
-              top: target,
-              behavior: 'instant'
-            });
-          }
-        }, 100);
-      }
     }
 
     // Update previous chunk reference
@@ -117,21 +68,6 @@ export default function BookReaderPage() {
   }, [currentContent, currentChunk]);
   const [currentMode, setCurrentMode] = useState<'original' | 'simplified'>('original');
   const [simplifiedContent, setSimplifiedContent] = useState<string>('');
-  const [isPlaying, setIsPlayingState] = useState(false);
-  
-  const setIsPlaying = (playing: boolean) => {
-    console.log('🔄 PLAYING STATE CHANGE:', {
-      from: isPlaying,
-      to: playing,
-      currentChunk,
-      autoAdvanceEnabled,
-      stackTrace: new Error().stack?.split('\n')[1] // Show where this was called from
-    });
-    setIsPlayingState(playing);
-  };
-  const [isAudioLoading, setIsAudioLoading] = useState(false);
-  const [continuousPlayback, setContinuousPlayback] = useState(false);
-  const [speechSpeed, setSpeechSpeed] = useState(1.0);
   const [simplificationLoading, setSimplificationLoading] = useState(false);
   const [displayConfig, setDisplayConfig] = useState<any>(null);
   const [sessionTimeLeft, setSessionTimeLeft] = useState<number | null>(null);
@@ -143,59 +79,41 @@ export default function BookReaderPage() {
   const [sections, setSections] = useState<Array<{title: string; content: string; startIndex: number}>>([]);
   const [simplifiedTotalChunks, setSimplifiedTotalChunks] = useState<number>(0);
   const [userScrolledUp, setUserScrolledUp] = useState(false);
-  const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
   const [isAutoAdvancing, setIsAutoAdvancing] = useState(false);
-  const suppressPauseOnNextChunkRef = useRef(false);
 
-  // Word highlighting integration
-  const { currentWordIndex, handleWordHighlight, resetHighlighting } = useWordHighlighting();
+  // Theme-aware text highlighting system
+  const [selectedText, setSelectedText] = useState<string>('');
+  const [highlightedSelection, setHighlightedSelection] = useState<{ text: string; range: Range } | null>(null);
 
-  // Track immediate word index for auto-scroll (without delay)
-  const [immediateWordIndex, setImmediateWordIndex] = useState(-1);
+  const resetHighlighting = () => {
+    setSelectedText('');
+    setHighlightedSelection(null);
+    // Clear any existing text selections
+    if (window.getSelection) {
+      window.getSelection()?.removeAllRanges();
+    }
+  };
 
-  // Track current sentence for sentence-based auto-scroll
-  const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+  // Handle text selection highlighting
+  const handleTextSelection = () => {
+    const selection = window.getSelection();
+    if (selection && selection.toString().trim()) {
+      const selectedText = selection.toString().trim();
+      const range = selection.getRangeAt(0);
+      setSelectedText(selectedText);
+      setHighlightedSelection({ text: selectedText, range });
+    } else {
+      setSelectedText('');
+      setHighlightedSelection(null);
+    }
+  };
 
   const bookId = params.id as string;
 
-  // Enhanced word highlight handler for both immediate auto-scroll and delayed highlighting
-  const handleWordHighlightWithAutoScroll = (wordIndex: number) => {
-    console.log('🎯 handleWordHighlightWithAutoScroll called with index:', wordIndex);
-
-    // Update immediate word index for auto-scroll (no delay)
-    setImmediateWordIndex(wordIndex);
-
-    // Call the original handler for delayed highlighting
-    handleWordHighlight(wordIndex);
-  };
-
-  // Use gentle auto-scroll - only 2 scrolls per page to prevent dizziness
-  console.log('🎯 CALLING useGentleAutoScroll with:', {
-    textLength: currentContent?.length || 0,
-    currentWordIndex: immediateWordIndex,
-    isPlaying,
-    enabled: autoScrollEnabled && !simplificationLoading,
-    autoScrollEnabled,
-    simplificationLoading
-  });
-
   // Two-tier experience detection
   const entrySource = searchParams.get('source'); // 'enhanced' | 'browse' | null
-  const isEnhancedExperience = entrySource === 'enhanced' || bookContent?.stored === true;
   const isBrowseExperience = entrySource === 'browse';
 
-
-  // Enhanced book detection - calculated here to avoid hooks order issues
-  const isEnhancedBook = bookContent?.stored === true &&
-    (bookContent?.source === 'database' || bookContent?.source === 'enhanced_database' || bookContent?.enhanced === true);
-
-  useGentleAutoScroll({
-    currentWordIndex: immediateWordIndex,
-    currentSentenceIndex, // Pass the REAL sentence data from audio
-    text: currentContent,
-    isPlaying,
-    enabled: autoScrollEnabled && !simplificationLoading && !(isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id))
-  });
 
   // Handle chunk navigation - defined with useCallback for stable reference
   const handleChunkNavigation = useCallback(async (direction: 'prev' | 'next', autoAdvance = false) => {
@@ -204,7 +122,6 @@ export default function BookReaderPage() {
       autoAdvance,
       currentChunk,
       currentMode,
-      isPlaying,
       bookContentExists: !!bookContent,
       simplifiedTotalChunks,
       totalChunks: bookContent?.totalChunks
@@ -235,15 +152,12 @@ export default function BookReaderPage() {
         willUpdateContent: true
       });
 
-      // Set auto-advancing flag if this is an auto-advance to prevent scroll detection pause
+      // Set auto-advancing flag if this is an auto-advance
       if (autoAdvance) {
-        console.log('🔄 NAVIGATION: Setting auto-advancing flag to prevent scroll pause');
-        // One-shot guard to prevent pause during the immediate chunk-change effect
-        suppressPauseOnNextChunkRef.current = true;
+        console.log('🔄 NAVIGATION: Setting auto-advancing flag');
         setIsAutoAdvancing(true);
         setUserScrolledUp(false);      // Reset scroll flag for clean auto-advance
-        setAutoScrollEnabled(true);     // Re-enable auto-scroll for continuous playback
-        
+
         // Clear flag after scroll has settled (2 seconds)
         setTimeout(() => {
           setIsAutoAdvancing(false);
@@ -256,10 +170,8 @@ export default function BookReaderPage() {
       // Save reading position to localStorage
       localStorage.setItem(`reading-position-${bookId}`, newChunk.toString());
 
-      // Reset word and sentence indices for clean page transition
-      console.log('🔄 NAVIGATION: Resetting indices for page transition');
-      setImmediateWordIndex(-1);
-      setCurrentSentenceIndex(0);  // Reset to first sentence
+      // Reset highlighting for clean page transition
+      console.log('🔄 NAVIGATION: Resetting highlighting for page transition');
       resetHighlighting();
 
 
@@ -280,30 +192,12 @@ export default function BookReaderPage() {
         setCurrentContent(newOriginalContent);
       }
       
-      // For auto-advance, continue playing on the new page
-      if (!autoAdvance && isPlaying) {
-        console.log('🔄 NAVIGATION: Manual navigation while playing, stopping audio');
-        setIsPlaying(false);
-      } else if (autoAdvance) {
-        console.log('🔄 NAVIGATION: Auto-advance navigation, keeping play state as is');
-      }
+      // Navigation completed
     } else {
       console.log('🔄 NAVIGATION: No chunk change needed');
     }
-  }, [bookContent, currentMode, simplifiedTotalChunks, currentChunk, bookId, isPlaying]);
+  }, [bookContent, currentMode, simplifiedTotalChunks, currentChunk, bookId]);
 
-  // Auto-advance functionality - must be at top level for hooks rules
-  const {
-    autoAdvanceEnabled,
-    toggleAutoAdvance,
-    handleChunkComplete: autoAdvanceChunkComplete
-  } = useAutoAdvance({
-    isEnhanced: isEnhancedBook,
-    currentChunk,
-    totalChunks: bookContent?.totalChunks || 0,
-    onNavigate: handleChunkNavigation,
-    onPlayStateChange: setIsPlaying
-  });
 
 
   useEffect(() => {
@@ -328,18 +222,10 @@ export default function BookReaderPage() {
     setMicroHint('');
     resetHighlighting(); // Reset word highlighting
     
-    // Use one-shot suppression ref to avoid race with state updates
-    if (suppressPauseOnNextChunkRef.current) {
-      console.log('🔄 CHUNK CHANGE: Suppression ref active - keeping audio playing during auto-advance');
-      suppressPauseOnNextChunkRef.current = false; // consume the one-shot guard
-    } else {
-      console.log('🔄 CHUNK CHANGE: Stopping audio - manual navigation or no suppression', {
-        suppressRef: suppressPauseOnNextChunkRef.current,
-        isAutoAdvancing,
-        autoAdvanceEnabled
-      });
-      setIsPlaying(false); // Stop audio when changing chunks manually
-    }
+    // Chunk change handling for text-only experience
+    console.log('🔄 CHUNK CHANGE: Processing chunk change', {
+      isAutoAdvancing
+    });
     
     // Reset to original content for new chunk
     if (bookContent?.chunks[currentChunk]) {
@@ -399,33 +285,13 @@ export default function BookReaderPage() {
     }
   }, [currentChunk, currentMode, eslLevel, bookContent]);
 
-  // Load saved voice selection from localStorage
-  useEffect(() => {
-    if (bookId) {
-      const savedVoice = localStorage.getItem(`voice-selection-${bookId}`);
-      if (savedVoice) {
-        setSelectedVoice(savedVoice);
-      }
-    }
-  }, [bookId]);
-
-  // Load saved continuousPlayback state from localStorage
-  useEffect(() => {
-    if (bookId) {
-      const savedContinuous = localStorage.getItem(`continuous-playback-${bookId}`);
-      if (savedContinuous !== null) {
-        setContinuousPlayback(savedContinuous === 'true');
-      }
-    }
-  }, [bookId]);
 
   // Load reading position from localStorage
   const loadReadingPosition = () => {
     const savedPosition = localStorage.getItem(`reading-position-${bookId}`);
     const savedEslLevel = localStorage.getItem(`esl-level-${bookId}`);
     const savedMode = localStorage.getItem(`reading-mode-${bookId}`);
-    const savedVoiceProvider = localStorage.getItem(`voice-provider-${bookId}`);
-    
+
     if (savedPosition) {
       const position = parseInt(savedPosition, 10);
       if (position >= 0) {
@@ -439,17 +305,13 @@ export default function BookReaderPage() {
         }
       }
     }
-    
+
     if (savedEslLevel) {
       setEslLevel(savedEslLevel);
     }
-    
+
     if (savedMode === 'simplified' || savedMode === 'original') {
       setCurrentMode(savedMode);
-    }
-    
-    if (savedVoiceProvider === 'standard' || savedVoiceProvider === 'openai' || savedVoiceProvider === 'elevenlabs') {
-      setVoiceProvider(savedVoiceProvider);
     }
   };
 
@@ -457,19 +319,15 @@ export default function BookReaderPage() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      
+
       if (showLevelDropdown && !target.closest('[data-level-dropdown]')) {
         setShowLevelDropdown(false);
-      }
-      
-      if (showVoiceDropdown && !target.closest('[data-voice-dropdown]')) {
-        setShowVoiceDropdown(false);
       }
     };
 
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [showLevelDropdown, showVoiceDropdown]);
+  }, [showLevelDropdown]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -480,11 +338,6 @@ export default function BookReaderPage() {
       }
 
       switch (event.key) {
-        case ' ':
-        case 'Spacebar':
-          event.preventDefault();
-          setIsPlaying(!isPlaying);
-          break;
         case 'ArrowLeft':
         case 'ArrowUp':
           event.preventDefault();
@@ -499,17 +352,12 @@ export default function BookReaderPage() {
             handleChunkNavigation('next');
           }
           break;
-        case 'Escape':
-          if (isPlaying) {
-            setIsPlaying(false);
-          }
-          break;
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isPlaying, currentChunk, bookContent]);
+  }, [currentChunk, bookContent]);
 
   const checkAuth = async () => {
     const supabase = createClient();
@@ -650,52 +498,6 @@ export default function BookReaderPage() {
     return () => clearInterval(timer);
   }, [sessionTimerActive, sessionTimeLeft]);
 
-  // Scroll-to-pause behavior removed per user request
-
-  // Smooth auto-scroll handler that follows voice reading naturally
-  const handleAutoScroll = (scrollProgress: number) => {
-    if (!autoScrollEnabled || userScrolledUp || !currentContent) return;
-
-    // Disable auto-scroll for continuous reading mode
-    if (isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id)) return;
-    
-    // Get the main content container
-    const contentContainer = document.querySelector('[data-content="true"]');
-    if (!contentContainer) return;
-    
-    const containerRect = contentContainer.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    
-    // Calculate ideal reading position (center of screen)
-    const idealReadingPosition = windowHeight * 0.4; // 40% from top for comfortable reading
-    const currentContentTop = containerRect.top;
-    
-    // Only scroll if content is getting too high or too low from ideal position
-    const offsetFromIdeal = currentContentTop - idealReadingPosition;
-    
-    // Smooth scrolling threshold - gentle and user-friendly
-    const scrollThreshold = 120; // pixels - increased for less frequent scrolling
-    
-    if (Math.abs(offsetFromIdeal) > scrollThreshold) {
-      // Calculate smooth scroll distance - gentle movement for comfortable reading
-      const scrollDistance = offsetFromIdeal * 0.25; // Move 25% of the way - slower, more natural
-      const currentScroll = window.scrollY;
-      const targetScroll = currentScroll + scrollDistance;
-      
-      // Limit maximum scroll per adjustment for smoothness
-      const maxScrollStep = 40; // Maximum 40px per scroll - reduced for gentler movement
-      const clampedScrollDistance = Math.max(-maxScrollStep, Math.min(maxScrollStep, scrollDistance));
-      const clampedTargetScroll = currentScroll + clampedScrollDistance;
-      
-      // Use smooth scrolling with longer duration for natural movement
-      window.scrollTo({
-        top: clampedTargetScroll,
-        behavior: 'smooth'
-      });
-      
-      console.log(`📜 SMOOTH AUTO-SCROLL: ${(scrollProgress * 100).toFixed(1)}% → ${clampedScrollDistance > 0 ? '+' : ''}${clampedScrollDistance.toFixed(0)}px`);
-    }
-  };
 
   const fetchBook = async () => {
     try {
@@ -804,50 +606,12 @@ export default function BookReaderPage() {
 
   // handleChunkNavigation is now defined above as useCallback
   
-  const handleAutoAdvance = () => {
-    const canGoNext = bookContent ? currentChunk < bookContent.totalChunks - 1 : false;
-    if (canGoNext && continuousPlayback) {
-      console.log(`🎵 Auto-advancing to chunk ${currentChunk + 1} for continuous playback`);
-      handleChunkNavigation('next', true);
-      // Small delay then resume playing on new page
-      setTimeout(() => {
-        setIsPlaying(true);
-      }, 200);
-    } else {
-      // Reached end of book or continuous playback disabled
-      setIsPlaying(false);
-      if (!canGoNext) {
-        console.log('🏁 Reached end of book');
-      }
-    }
-  };
-
-  // handleWordHighlight now comes from useWordHighlighting hook
-
-  const handleChunkComplete = () => {
-    console.log(`🎵 Chunk ${currentChunk} audio completed`);
-    if (continuousPlayback) {
-      handleAutoAdvance();
-    } else {
-      setIsPlaying(false);
-    }
-  };
 
   const goToSection = (index: number) => {
     setCurrentSection(index);
     announceToScreenReader(`Now reading: ${sections[index].title}`);
   };
 
-  const handleVoiceChange = (voiceId: string) => {
-    setSelectedVoice(voiceId);
-    localStorage.setItem(`voice-selection-${bookId}`, voiceId);
-  };
-
-  const handlePreviewVoice = async (voiceId: string) => {
-    // Implement voice preview functionality here
-    console.log('Previewing voice:', voiceId);
-    // Could play a short sample text with the selected voice
-  };
 
   const handleModeChange = async (newMode: 'original' | 'simplified') => {
     setCurrentMode(newMode);
@@ -903,22 +667,17 @@ export default function BookReaderPage() {
     );
   }
 
-  const currentChunkData = bookContent?.chunks?.[currentChunk];
   const effectiveTotal = currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : (bookContent?.totalChunks || 0);
   const canGoPrev = currentChunk > 0;
   const canGoNext = effectiveTotal ? currentChunk < effectiveTotal - 1 : false;
 
   // Enhanced book detection - already defined at the top
   
-  // Feature flag for progressive audio vs wireframe controls
-  const useProgressiveAudio = true; // Enable Progressive Voice for enhanced books
-  const useWireframeControls = false; // Always hide legacy wireframe bar in unified layout
-
-  const getEffectiveTotal = () => (currentMode === 'simplified' ? (simplifiedTotalChunks || 0) : (bookContent?.totalChunks || 0));
+  // Text-only experience: audio controls removed
 
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       {/* Background Reading Progress Tracker - Temporarily disabled */}
       {/* {user && bookContent && (
         <ReadingProgressTracker
@@ -941,1247 +700,149 @@ export default function BookReaderPage() {
           to { transform: rotate(360deg); }
         }
       `}</style>
-      {/* Mobile Reading Header */}
-      <div 
-        className="mobile-reading-header"
-        style={{
-          display: 'none',
-          height: '56px',
-          background: 'rgba(30, 41, 59, 0.95)',
-          backdropFilter: 'blur(8px)',
-          borderBottom: '1px solid #334155',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 16px',
-          position: 'sticky',
-          top: 0,
-          zIndex: 100
-        }}
-      >
-        <button 
-          onClick={() => router.push(isEnhancedBook ? '/enhanced-collection' : '/library')}
-          style={{
-            padding: '8px 12px',
-            background: 'rgba(59, 130, 246, 0.1)',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            borderRadius: '8px',
-            color: '#60a5fa',
-            textDecoration: 'none',
-            fontSize: '14px',
-            cursor: 'pointer'
-          }}
-        >
-          ← Back
-        </button>
-        <span style={{ fontSize: '14px', color: '#94a3b8' }}>
-          Chapter {currentChunk + 1} of {bookContent?.totalChunks || 0}
-        </span>
-      </div>
+      {/* Mobile Reading Header removed for natural text flow */}
 
-      {/* Main Content */}
-      <div style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: isMobile ? '16px 8px' : '64px 48px' 
-      }} className="main-content-container">
-        {/* Old ESL Control Bar - removed in unified layout */}
-        {false && (
-        <div 
-          style={{
-            backgroundColor: '#1e293b',
-            border: '2px solid #475569',
-            borderRadius: '24px',
-            padding: '32px',
-            marginBottom: '48px',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '48px'
-          }}
-        >
-          {/* CEFR Level Selector */}
-          <div style={{ position: 'relative' }} data-level-dropdown>
+      {/* Main Content - Match Simplified Books Structure */}
+      <div className="max-w-4xl mx-auto pb-24">
+
+        {/* Header moved to bottom - keeping content clean */}
+        {/* <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-light)] mx-2 sm:mx-4 md:mx-8 rounded-t-lg border-2 border-[var(--accent-secondary)]/20 border-b-[var(--border-light)]">
+          <div className="flex justify-between items-center px-6 py-3 relative">
             <button
-              style={{
-                width: '64px',
-                height: '64px',
-                borderRadius: '50%',
-                backgroundColor: '#6366f1',
-                color: 'white',
-                fontSize: '18px',
-                fontWeight: 'bold',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                transition: 'transform 0.2s'
-              }}
-              onClick={() => setShowLevelDropdown(!showLevelDropdown)}
-              onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
+              onClick={() => router.push('/enhanced-collection')}
+              style={{ transition: 'all 0.2s' }}
+              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
             >
-              {eslLevel}
+              ←
             </button>
-            
-            {/* Dropdown Menu */}
-            {showLevelDropdown && (
-              <div style={{
-                position: 'absolute',
-                top: '72px',
-                left: '0',
-                backgroundColor: '#1e293b',
-                border: '2px solid #475569',
-                borderRadius: '12px',
-                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)',
-                zIndex: 50,
-                minWidth: '80px'
-              }}>
-                {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
-                  <button
-                    key={level}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      backgroundColor: level === eslLevel ? '#6366f1' : 'transparent',
-                      color: 'white',
-                      fontSize: '16px',
-                      fontWeight: '600',
-                      border: 'none',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      transition: 'background-color 0.2s',
-                      borderRadius: level === 'A1' ? '10px 10px 0 0' : level === 'C2' ? '0 0 10px 10px' : '0'
-                    }}
-                    onClick={async () => {
-                      setEslLevel(level);
-                      setShowLevelDropdown(false);
-                      localStorage.setItem(`esl-level-${bookId}`, level);
-                      
-                      // If we're in simplified mode, refetch content for new level
-                      if (currentMode === 'simplified') {
-                        const simplifiedText = await fetchSimplifiedContent(level, currentChunk);
-                        setCurrentContent(simplifiedText);
-                      }
-                    }}
-                    onMouseEnter={(e) => {
-                      if (level !== eslLevel) {
-                        (e.target as HTMLElement).style.backgroundColor = '#475569';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (level !== eslLevel) {
-                        (e.target as HTMLElement).style.backgroundColor = 'transparent';
-                      }
-                    }}
-                  >
-                    {level}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-          
-          {/* Simplified Mode Toggle */}
-          <button
-            onClick={handleModeToggle}
-            style={{
-              padding: '16px 40px',
-              borderRadius: '32px',
-              backgroundColor: currentMode === 'simplified' ? '#6366f1' : '#475569',
-              color: 'white',
-              fontSize: '16px',
-              fontWeight: '600',
-              border: currentMode === 'simplified' ? 'none' : '2px solid #64748b',
-              cursor: 'pointer',
-              minHeight: '64px',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-              transition: 'all 0.2s'
-            }}
-            onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
-          >
-            {currentMode === 'simplified' ? 'Simplified' : 'Original'}
-          </button>
-
-          
-          
-          {/* TTS Voice Selector */}
-          <div style={{ position: 'relative' }} data-voice-dropdown>
-            <button
-              onClick={() => setShowVoiceDropdown(!showVoiceDropdown)}
-              style={{
-                width: '64px',
-                height: '64px',
-                borderRadius: '50%',
-                backgroundColor: '#6366f1',
-                color: 'white',
-                fontSize: '20px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                transition: 'transform 0.2s',
-                position: 'relative'
-              }}
-              onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
-            >
-              🎤
-              {/* Voice indicator */}
-              <span style={{
-                position: 'absolute',
-                top: '-8px',
-                right: '-8px',
-                width: '20px',
-                height: '20px',
-                backgroundColor: '#10b981',
-                borderRadius: '50%',
-                fontSize: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 'bold'
-              }}>
-                {voiceProvider === 'openai' ? 'AI' : voiceProvider === 'elevenlabs' ? '11' : 'S'}
-              </span>
-            </button>
-            
-            {/* Voice Dropdown Menu */}
-            {showVoiceDropdown && (
-              <div style={{
-                position: 'absolute',
-                top: '72px',
-                left: '0',
-                backgroundColor: '#1e293b',
-                border: '2px solid #475569',
-                borderRadius: '12px',
-                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)',
-                zIndex: 50,
-                minWidth: '160px'
-              }}>
-                {[
-                  { id: 'standard', name: '🔊 Standard', desc: 'Web Speech' },
-                  { id: 'openai', name: '🤖 OpenAI', desc: 'Premium AI' },
-                  { id: 'elevenlabs', name: '🎵 ElevenLabs', desc: 'Ultra Realistic' }
-                ].map((voice, index) => (
-                  <button
-                    key={voice.id}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      backgroundColor: voice.id === voiceProvider ? '#6366f1' : 'transparent',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: '600',
-                      border: 'none',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      transition: 'background-color 0.2s',
-                      borderRadius: index === 0 ? '10px 10px 0 0' : index === 2 ? '0 0 10px 10px' : '0',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'flex-start'
-                    }}
-                    onClick={() => {
-                      setVoiceProvider(voice.id as 'standard' | 'openai' | 'elevenlabs');
-                      setShowVoiceDropdown(false);
-                      localStorage.setItem(`voice-provider-${bookId}`, voice.id);
-                      
-                      // Stop any playing audio when switching voice
-                      if (isPlaying) {
-                        setIsPlaying(false);
-                      }
-                    }}
-                    onMouseEnter={(e) => {
-                      if (voice.id !== voiceProvider) {
-                        (e.target as HTMLElement).style.backgroundColor = '#475569';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (voice.id !== voiceProvider) {
-                        (e.target as HTMLElement).style.backgroundColor = 'transparent';
-                      }
-                    }}
-                  >
-                    <span style={{ fontSize: '14px', fontWeight: 'bold' }}>{voice.name}</span>
-                    <span style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>{voice.desc}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-          
-          {/* Play/Pause Button */}
-          <button
-            onClick={() => setIsPlaying(!isPlaying)}
-            style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '50%',
-              backgroundColor: '#6366f1',
-              color: 'white',
-              fontSize: '24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: 'none',
-              cursor: 'pointer',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-              transition: 'transform 0.2s'
-            }}
-            onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
-          >
-            {isPlaying ? '⏸' : '▶'}
-          </button>
-
-          {/* Continuous Playback Toggle */}
-          <button
-            onClick={() => setContinuousPlayback(!continuousPlayback)}
-            title={continuousPlayback ? 'Continuous playback enabled' : 'Enable continuous playback'}
-            style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '50%',
-              backgroundColor: continuousPlayback ? '#10b981' : '#475569',
-              color: 'white',
-              fontSize: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: 'none',
-              cursor: 'pointer',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-              transition: 'all 0.2s',
-              position: 'relative'
-            }}
-            onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}
-          >
-            🔁
-            {continuousPlayback && (
-              <span style={{
-                position: 'absolute',
-                top: '-2px',
-                right: '-2px',
-                width: '12px',
-                height: '12px',
-                backgroundColor: '#10b981',
-                borderRadius: '50%',
-                border: '2px solid white'
-              }} />
-            )}
-          </button>
-          
-          {/* Speed Control */}
-          <button
-            onClick={() => {
-              const speeds = [0.5, 0.75, 1.0, 1.25, 1.5];
-              const currentIndex = speeds.indexOf(speechSpeed);
-              const nextSpeed = speeds[(currentIndex + 1) % speeds.length];
-              setSpeechSpeed(nextSpeed);
-            }}
-            style={{
-              color: '#cbd5e1',
-              fontSize: '18px',
-              fontWeight: '600',
-              padding: '12px 16px',
-              backgroundColor: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              borderRadius: '8px',
-              transition: 'all 0.2s'
-            }}
-            onMouseEnter={(e) => {
-              (e.target as HTMLElement).style.color = 'white';
-              (e.target as HTMLElement).style.backgroundColor = '#475569';
-            }}
-            onMouseLeave={(e) => {
-              (e.target as HTMLElement).style.color = '#cbd5e1';
-              (e.target as HTMLElement).style.backgroundColor = 'transparent';
-            }}
-          >
-            {speechSpeed}x
-          </button>
-          
-          {/* AI Quality Indicator */}
-          {currentMode === 'simplified' && aiMetadata && (
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              color: aiMetadata.quality === 'excellent' ? '#10b981' : 
-                     aiMetadata.quality === 'good' ? '#3b82f6' :
-                     aiMetadata.quality === 'acceptable' ? '#f59e0b' : '#ef4444',
-              fontSize: '12px',
-              fontWeight: '600'
-            }}>
-              <div style={{ marginBottom: '2px' }}>AI Quality</div>
-              <div style={{ 
-                fontSize: '10px',
-                textTransform: 'uppercase',
-                padding: '2px 6px',
-                borderRadius: '4px',
-                backgroundColor: 'rgba(255,255,255,0.1)'
-              }}>
-                {aiMetadata.quality}
-              </div>
-              <div style={{ 
-                fontSize: '9px', 
-                marginTop: '2px',
-                opacity: 0.7
-              }}>
-                {Math.round(aiMetadata.similarity * 100)}%
+            <div className="flex-1 flex justify-center items-center gap-2 px-2">
+              <div className="text-sm text-[var(--text-secondary)] bg-[var(--accent-primary)]/10 px-3 py-1 rounded border border-[var(--accent-primary)]/20">
+                {currentChunk + 1} / {effectiveTotal || (bookContent?.totalChunks || 0)}
               </div>
             </div>
-          )}
-
-          {/* Session Timer Display */}
-          {sessionTimerActive && sessionTimeLeft !== null && (
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              color: (sessionTimeLeft ?? 0) < 300 ? '#ef4444' : '#94a3b8',
-              fontSize: '14px',
-              fontWeight: '600'
-            }}>
-              <div style={{ fontSize: '12px', marginBottom: '4px' }}>Session</div>
-              <div style={{ 
-                fontSize: '16px',
-                fontFamily: 'monospace',
-                color: (sessionTimeLeft ?? 0) < 300 ? '#ef4444' : '#10b981'
-              }}>
-                {Math.floor((sessionTimeLeft ?? 0) / 60)}:{(((sessionTimeLeft ?? 0) % 60).toString()).padStart(2, '0')}
-              </div>
-            </div>
-          )}
-
-          {/* Navigation */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button
-              onClick={() => handleChunkNavigation('prev')}
-              disabled={!canGoPrev}
-              style={{
-                width: '48px',
-                height: '48px',
-                color: canGoPrev ? '#94a3b8' : '#475569',
-                fontSize: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: 'transparent',
-                border: 'none',
-                cursor: canGoPrev ? 'pointer' : 'not-allowed',
-                borderRadius: '8px',
-                transition: 'all 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                if (canGoPrev) {
-                  (e.target as HTMLElement).style.color = 'white';
-                  (e.target as HTMLElement).style.backgroundColor = '#475569';
-                }
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLElement).style.color = canGoPrev ? '#94a3b8' : '#475569';
-                (e.target as HTMLElement).style.backgroundColor = 'transparent';
-              }}
+              onClick={() => setShowSettingsModal(true)}
+              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-base font-medium hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
             >
-              ‹
-            </button>
-            <span style={{
-              color: '#cbd5e1',
-              fontSize: '16px',
-              fontWeight: '500',
-              padding: '0 16px',
-              minWidth: '60px',
-              textAlign: 'center'
-            }}>
-              {currentChunk + 1}/{bookContent?.totalChunks || 0}
-            </span>
-            <button
-              onClick={() => handleChunkNavigation('next')}
-              disabled={!canGoNext}
-              style={{
-                width: '48px',
-                height: '48px',
-                color: canGoNext ? '#94a3b8' : '#475569',
-                fontSize: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: 'transparent',
-                border: 'none',
-                cursor: canGoNext ? 'pointer' : 'not-allowed',
-                borderRadius: '8px',
-                transition: 'all 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                if (canGoNext) {
-                  (e.target as HTMLElement).style.color = 'white';
-                  (e.target as HTMLElement).style.backgroundColor = '#475569';
-                }
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLElement).style.color = canGoNext ? '#94a3b8' : '#475569';
-                (e.target as HTMLElement).style.backgroundColor = 'transparent';
-              }}
-            >
-              ›
+              Aa
             </button>
           </div>
         </div>
-        )}
 
-        {/* Mobile-Responsive Reading Controls */}
-        {isEnhancedBook && useProgressiveAudio && !isBrowseExperience ? (
-          <>
-            {/* Mobile Reading Controls - Visible on mobile */}
-            <div 
-              className="mobile-reading-controls"
-              style={{
-                display: 'block',
-                padding: '16px',
-                background: 'rgba(51, 65, 85, 0.3)',
-                borderBottom: '1px solid #334155'
-              }}
-            >
-              {/* Original/Simplified Toggle */}
-              <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '16px',
-                flexWrap: 'wrap',
-                marginBottom: '16px'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  background: 'rgba(30, 41, 59, 0.8)',
-                  borderRadius: '8px',
-                  padding: '4px',
-                  border: '1px solid #334155'
-                }}>
-                  <button
-                    onClick={() => handleModeChange && handleModeChange('original')}
-                    style={{
-                      flex: 1,
-                      height: '36px',
-                      border: 'none',
-                      background: currentMode === 'original' ? '#3b82f6' : 'none',
-                      color: currentMode === 'original' ? 'white' : '#94a3b8',
-                      fontSize: '14px',
-                      fontWeight: '500',
-                      cursor: 'pointer',
-                      borderRadius: '6px',
-                      padding: '0 16px',
-                      minWidth: '44px',
-                      transition: 'all 0.2s'
-                    }}
-                  >
-                    Original
-                  </button>
-                  <button
-                    onClick={() => handleModeChange && handleModeChange('simplified')}
-                    style={{
-                      flex: 1,
-                      height: '36px',
-                      border: 'none',
-                      background: currentMode === 'simplified' ? '#3b82f6' : 'none',
-                      color: currentMode === 'simplified' ? 'white' : '#94a3b8',
-                      fontSize: '14px',
-                      fontWeight: '500',
-                      cursor: 'pointer',
-                      borderRadius: '6px',
-                      padding: '0 16px',
-                      minWidth: '44px',
-                      transition: 'all 0.2s'
-                    }}
-                  >
-                    Simplified
-                  </button>
-                </div>
-              </div>
-              
-              {/* CEFR Level Selector */}
-              <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '6px',
-                flexWrap: 'wrap'
-              }}>
-                {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
-                  <button
-                    key={level}
-                    onClick={async () => {
-                      await handleCefrLevelChange(level);
-                    }}
-                    style={{
-                      width: '44px',
-                      height: '32px',
-                      border: '1px solid #334155',
-                      background: level === eslLevel ? '#3b82f6' : '#1e293b',
-                      color: level === eslLevel ? 'white' : '#94a3b8',
-                      borderRadius: '6px',
-                      fontSize: '12px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s'
-                    }}
-                  >
-                    {level}
-                  </button>
-                ))}
-              </div>
-            </div>
+        <div className="flex items-center justify-center gap-4 sm:gap-6 mb-6 mx-2 sm:mx-4 md:mx-0">
+          <button
+            onClick={() => handleChunkNavigation('prev')}
+            disabled={!canGoPrev}
+            className={`w-12 h-12 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] flex items-center justify-center transition-all duration-200 shadow-sm ${
+              canGoPrev
+                ? 'text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 cursor-pointer'
+                : 'text-[var(--text-secondary)]/30 cursor-not-allowed opacity-50'
+            }`}
+            title="Previous page"
+          >
+            <span className="text-xl">‹</span>
+          </button>
+          <span className="text-[var(--text-primary)] font-medium px-4 text-lg" style={{ fontFamily: 'Playfair Display, serif' }}>
+            {bookContent?.title || 'Loading...'}
+          </span>
+          <button
+            onClick={() => handleChunkNavigation('next')}
+            disabled={!canGoNext}
+            className={`w-12 h-12 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] flex items-center justify-center transition-all duration-200 shadow-sm ${
+              canGoNext
+                ? 'text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 cursor-pointer'
+                : 'text-[var(--text-secondary)]/30 cursor-not-allowed opacity-50'
+            }`}
+            title="Next page"
+          >
+            <span className="text-xl">›</span>
+          </button>
+        </div> */}
 
-            {/* Desktop Control Bar - removed in unified layout */}
-            <div className="mb-8 desktop-control-bar" style={{ display: 'none' }}>
-              <div 
-                className="control-bar-grouped"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  background: 'rgba(30, 41, 59, 0.8)',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(71, 85, 105, 0.3)',
-                  maxWidth: '900px',
-                  margin: '0 auto',
-                  padding: '16px 24px',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
-                }}
-              >
-              {/* Content Controls Group */}
-              <div className="control-group" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                {/* CEFR Level Selector */}
-                <div className="relative">
-                  <button 
-                    className="level-badge"
-                    style={{
-                      background: '#667eea',
-                      color: 'white',
-                      padding: '8px 12px',
-                      borderRadius: '50px',
-                      fontWeight: '600',
-                      fontSize: '14px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      minWidth: '44px',
-                      height: '44px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      transition: 'all 0.2s'
-                    }}
-                    onClick={() => setShowLevelDropdown(!showLevelDropdown)}
-                  >
-                    {eslLevel}
-                  </button>
-                  
-                  {/* CEFR Level Dropdown */}
-                  {showLevelDropdown && (
-                    <div 
-                      className="absolute top-12 left-0 z-50"
-                      style={{
-                        background: 'rgba(30, 41, 59, 0.95)',
-                        backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(71, 85, 105, 0.3)',
-                        borderRadius: '8px',
-                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                        minWidth: '80px',
-                        overflow: 'hidden',
-                        padding: '4px'
-                      }}
-                    >
-                      {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => (
-                        <button
-                          key={level}
-                          className="w-full px-4 py-2 text-center text-white font-semibold transition-all duration-200 hover:bg-blue-600"
-                          style={{
-                            backgroundColor: level === eslLevel ? '#667eea' : 'transparent',
-                            fontSize: '14px'
-                          }}
-                          onClick={async () => {
-                            await handleCefrLevelChange(level);
-                            setShowLevelDropdown(false);
-                          }}
-                        >
-                          {level}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Mode Toggle */}
-                <button
-                  onClick={handleModeChange ? () => handleModeChange(currentMode === 'original' ? 'simplified' : 'original') : undefined}
-                  className="mode-toggle"
-                  style={{
-                    background: currentMode === 'simplified' ? '#667eea' : 'transparent',
-                    border: '1px solid #334155',
-                    color: '#e2e8f0',
-                    padding: '8px 16px',
-                    borderRadius: '50px',
-                    fontSize: '14px',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    minHeight: '44px',
-                    borderColor: currentMode === 'simplified' ? '#667eea' : '#334155'
-                  }}
-                >
-                  {currentMode === 'simplified' ? 'Simplified' : 'Original'}
-                </button>
-              </div>
-
-              {/* Control Divider */}
-              <div style={{ width: '1px', height: '30px', background: '#334155' }}></div>
-
-              {/* Audio Controls Group */}
-              <div className="control-group" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                {/* Voice Selector - Simplified to just current voice name */}
-                <div className="relative">
-                  <button
-                    onClick={() => setShowVoiceDropdown(!showVoiceDropdown)}
-                    style={{
-                      background: 'transparent',
-                      border: '1px solid #334155',
-                      color: '#e2e8f0',
-                      padding: '8px 12px',
-                      borderRadius: '8px',
-                      fontSize: '13px',
-                      cursor: 'pointer',
-                      textTransform: 'capitalize',
-                      minHeight: '44px'
-                    }}
-                  >
-                    {selectedVoice}
-                  </button>
-                  
-                  {/* Voice Dropdown - Only show Alloy/Nova for enhanced books */}
-                  {showVoiceDropdown && (
-                    <div 
-                      className="absolute top-12 left-0 z-50"
-                      style={{
-                        background: 'rgba(30, 41, 59, 0.95)',
-                        backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(71, 85, 105, 0.3)',
-                        borderRadius: '8px',
-                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                        minWidth: '120px',
-                        overflow: 'hidden',
-                        padding: '4px'
-                      }}
-                    >
-                      {/* Only show available voices for enhanced books */}
-                      {(isEnhancedBook ? ['alloy', 'nova'] : ['alloy', 'echo', 'fable', 'onyx', 'nova', 'shimmer']).map((voice) => (
-                        <button
-                          key={voice}
-                          className="w-full px-4 py-2 text-center text-white font-medium transition-all duration-200 hover:bg-green-600 capitalize"
-                          style={{
-                            backgroundColor: voice === selectedVoice ? '#10b981' : 'transparent',
-                            fontSize: '13px'
-                          }}
-                          onClick={() => {
-                            handleVoiceChange(voice);
-                            setShowVoiceDropdown(false);
-                          }}
-                        >
-                          {voice} {isEnhancedBook && ['alloy', 'nova'].includes(voice) && '⚡'}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Smart Play/Auto Button - Combined play and auto-advance */}
-                <SmartPlayButton
-                  isPlaying={isPlaying}
-                  isLoading={isAudioLoading}
-                  autoAdvanceEnabled={autoAdvanceEnabled}
-                  onPlayPause={() => {
-                    const newPlayingState = !isPlaying;
-                    console.log('📱 Reading page onPlayPause:', { 
-                      currentState: isPlaying, 
-                      newState: newPlayingState,
-                      currentChunk,
-                      currentMode,
-                      autoAdvanceEnabled,
-                      currentContent: currentContent.substring(0, 50) + '...',
-                      isEnhanced: isEnhancedBook
-                    });
-                    setIsPlaying(newPlayingState);
-                  }}
-                  onToggleAutoAdvance={() => {
-                    console.log('🔄 Toggle auto-advance clicked, current state:', autoAdvanceEnabled);
-                    toggleAutoAdvance();
-                  }}
-                />
-                
-                {/* Hidden InstantAudioPlayer for audio functionality */}
-                <div style={{ display: 'none' }}>
-                  <InstantAudioPlayer
-                    bookId={bookId}
-                    chunkIndex={currentChunk}
-                    text={currentContent}
-                    cefrLevel={eslLevel}
-                    voiceId={selectedVoice}
-                    isEnhanced={isEnhancedBook}
-                    onWordHighlight={(wordIndex: number) => {
-                      console.log('🎯 InstantAudioPlayer calling onWordHighlight with index:', wordIndex);
-                      handleWordHighlightWithAutoScroll(wordIndex);
-                    }}
-                    onChunkComplete={() => {
-                      console.log('🏁 InstantAudioPlayer onChunkComplete called');
-                      autoAdvanceChunkComplete();
-                    }}
-                    onProgressUpdate={(progress: any) => {
-                      console.log('📊 Instant audio progress:', {
-                        status: progress.status,
-                        currentSentence: progress.currentSentence,
-                        totalSentences: progress.totalSentences,
-                        currentTime: progress.currentTime,
-                        isPreGenerated: progress.isPreGenerated
-                      });
-
-                      // Update current sentence for auto-scroll
-                      if (progress.currentSentence !== undefined) {
-                        console.log('🎯 SENTENCE INDEX UPDATE:', {
-                          currentSentence: progress.currentSentence,
-                          previousIndex: currentSentenceIndex,
-                          wordIndex: progress.wordIndex,
-                          isPlaying
-                        });
-                        setCurrentSentenceIndex(progress.currentSentence);
-                      }
-                      // Update loading state based on audio status
-                      setIsAudioLoading(progress.status === 'loading');
-                    }}
-                    // onAutoScroll handled by separate AutoScrollHandler component
-                    className="hidden"
-                    isPlaying={isPlaying}
-                    onPlayingChange={(playing: boolean) => {
-                      console.log('🔄 InstantAudioPlayer onPlayingChange called with:', playing);
-                      setIsPlaying(playing);
-                      
-                      // Re-enable auto-scroll when user manually starts playing
-                      if (playing) {
-                        console.log('🔄 Re-enabling auto-scroll - user started playback');
-                        setAutoScrollEnabled(true);
-                        if (userScrolledUp) {
-                          setUserScrolledUp(false);
-                        }
-                      }
-                    }}
-                  />
-                </div>
-
-                {/* Speed Control */}
-                <button
-                  onClick={() => {
-                    const speeds = [0.5, 0.75, 1.0, 1.25, 1.5];
-                    const currentIndex = speeds.indexOf(speechSpeed);
-                    const nextSpeed = speeds[(currentIndex + 1) % speeds.length];
-                    setSpeechSpeed(nextSpeed);
-                  }}
-                  className="speed-control"
-                  style={{
-                    color: '#94a3b8',
-                    fontSize: '14px',
-                    cursor: 'pointer',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    border: '1px solid transparent',
-                    transition: 'all 0.2s',
-                    background: 'transparent',
-                    minHeight: '44px'
-                  }}
-                >
-                  {speechSpeed}x
-                </button>
-
-                {/* Scroll-to-pause notification */}
-                {userScrolledUp && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    style={{
-                      fontSize: '11px',
-                      color: '#f59e0b',
-                      background: 'rgba(245, 158, 11, 0.15)',
-                      padding: '4px 8px',
-                      borderRadius: '6px',
-                      border: '1px solid rgba(245, 158, 11, 0.3)',
-                      whiteSpace: 'nowrap'
-                    }}
-                  >
-                    📜 Paused by scroll
-                  </motion.div>
-                )}
-              </div>
-
-              {/* Control Divider */}
-              <div style={{ width: '1px', height: '30px', background: '#334155' }}></div>
-
-              {/* Navigation Group */}
-              <div className="nav-arrows" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <button
-                  onClick={() => handleChunkNavigation('prev')}
-                  disabled={!canGoPrev}
-                  className="nav-arrow"
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    border: '1px solid #334155',
-                    background: 'transparent',
-                    color: canGoPrev ? '#94a3b8' : '#475569',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: canGoPrev ? 'pointer' : 'not-allowed',
-                    transition: 'all 0.2s',
-                    fontSize: '16px'
-                  }}
-                >
-                  ‹
-                </button>
-                <span 
-                  className="page-indicator"
-                  style={{
-                    color: '#94a3b8',
-                    fontSize: '14px',
-                    minWidth: '60px',
-                    textAlign: 'center'
-                  }}
-                >
-                  {currentChunk + 1}/{bookContent?.totalChunks || 0}
-                </span>
-                <button
-                  onClick={() => handleChunkNavigation('next')}
-                  disabled={!canGoNext}
-                  className="nav-arrow"
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    border: '1px solid #334155',
-                    background: 'transparent',
-                    color: canGoNext ? '#94a3b8' : '#475569',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: canGoNext ? 'pointer' : 'not-allowed',
-                    transition: 'all 0.2s',
-                    fontSize: '16px'
-                  }}
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-            </div>
-          </>
-        ) : isBrowseExperience ? (
-          <div className="mb-8" style={{ display: 'none' }}>
-            <div 
-              className="browse-controls"
-              style={{
-                display: 'none',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '16px',
-                background: 'rgba(30, 41, 59, 0.8)',
-                borderRadius: '16px',
-                border: '1px solid rgba(71, 85, 105, 0.3)',
-                maxWidth: '400px',
-                margin: '0 auto',
-                padding: '16px 24px',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
-              }}
-            >
-              <span style={{ color: '#94a3b8', fontSize: '14px' }}>
-                Page {currentChunk + 1} of {bookContent?.totalChunks || 0}
-              </span>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <button
-                  onClick={() => handleChunkNavigation('prev')}
-                  disabled={currentChunk <= 0}
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    border: '1px solid #334155',
-                    background: 'transparent',
-                    color: currentChunk > 0 ? '#94a3b8' : '#475569',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: currentChunk > 0 ? 'pointer' : 'not-allowed',
-                    transition: 'all 0.2s',
-                    fontSize: '16px'
-                  }}
-                >
-                  ‹
-                </button>
-                <button
-                  onClick={() => handleChunkNavigation('next')}
-                  disabled={currentChunk >= (bookContent?.totalChunks || 0) - 1}
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    border: '1px solid #334155',
-                    background: 'transparent',
-                    color: currentChunk < (bookContent?.totalChunks || 0) - 1 ? '#94a3b8' : '#475569',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: currentChunk < (bookContent?.totalChunks || 0) - 1 ? 'pointer' : 'not-allowed',
-                    transition: 'all 0.2s',
-                    fontSize: '16px'
-                  }}
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-          </div>
-        ) : useWireframeControls ? (
-          <WireframeAudioControls
-            enableWordHighlighting={isEnhancedBook}
-            text={currentContent}
-            voiceProvider={voiceProvider}
-            isPlaying={isPlaying}
-            onPlayStateChange={setIsPlaying}
-            onEnd={autoAdvanceChunkComplete}
-            bookId={bookId}
-            chunkIndex={currentChunk}
-            cefrLevel={eslLevel}
-            onCefrLevelChange={handleCefrLevelChange}
-            currentChunk={currentChunk}
-            totalChunks={bookContent?.totalChunks || 0}
-            onNavigate={handleChunkNavigation}
-            selectedVoice={selectedVoice}
-            onVoiceChange={handleVoiceChange}
-            onPreviewVoice={handlePreviewVoice}
-            currentMode={currentMode}
-            onModeChange={handleModeChange}
-            onWordHighlight={handleWordHighlightWithAutoScroll}
-            autoAdvanceEnabled={autoAdvanceEnabled}
-            onToggleAutoAdvance={toggleAutoAdvance}
-          />
-        ) : (
-          <IntegratedAudioControls
-            text={currentContent}
-            voiceProvider={voiceProvider}
-            isPlaying={isPlaying}
-            onPlayStateChange={setIsPlaying}
-            onEnd={handleChunkComplete}
-            bookId={bookId}
-            chunkIndex={currentChunk}
-          />
-        )}
-
-        {/* Reading Content - Mobile Responsive */}
-        <motion.div 
+        {/* Content - Match Simplified Books Natural Flow */}
+        <motion.div
           key={currentChunk}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.1 }}
-          className="reading-content-container"
-          style={{
-            background: 'rgba(26, 32, 44, 0.5)',
-            backdropFilter: 'blur(20px)',
-            borderRadius: isMobile ? '16px' : '24px',
-            padding: isMobile ? '8px' : '48px 40px', // MINIMAL PADDING ON MOBILE
-            boxShadow: '0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(102, 126, 234, 0.15)',
-            border: '1px solid rgba(102, 126, 234, 0.15)',
-            minHeight: isMobile ? '400px' : '600px',
-            marginTop: '16px',
-            marginBottom: '100px', // Space for mobile audio controls
-            margin: isMobile ? '8px' : undefined
-          }}
+          transition={{ duration: 0.3 }}
+          className="px-3 sm:px-4 py-4 text-left"
         >
           {/* Book Title */}
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <h1 className="book-title-wireframe" style={{ marginBottom: '12px' }}>
-              {bookContent.title}
+          <div className="text-center py-4">
+            <h1 className="text-xl sm:text-2xl font-semibold text-[var(--text-accent)] mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+              {bookContent?.title || 'Loading...'}
             </h1>
-            <p style={{ 
-              color: '#94a3b8', 
-              fontSize: '17px', 
-              textAlign: 'center', 
-              marginBottom: '0',
-              fontStyle: 'italic',
-              letterSpacing: '0.5px'
+          </div>
+
+          {simplificationLoading ? (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '12px',
+              color: '#94a3b8',
+              fontSize: '16px'
             }}>
-              by {bookContent.author}
-            </p>
-          </div>
-          
-          {/* Book Text */}
-          <div 
-            className="book-content-wireframe"
-            style={{
-              maxWidth: isMobile ? '100%' : undefined,
-              margin: isMobile ? '0' : undefined,
-              padding: isMobile ? '0' : undefined
-            }}
-          >
-            {simplificationLoading ? (
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                gap: '12px',
-                color: '#94a3b8',
-                fontSize: '16px'
-              }}>
+              <div style={{
+                width: '20px',
+                height: '20px',
+                border: '2px solid #475569',
+                borderTop: '2px solid #6366f1',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite'
+              }}></div>
+              Loading {currentMode} content for level {eslLevel}...
+            </div>
+          ) : (
+            <>
+              {/* Micro-hint for simplification issues */}
+              {microHint && currentMode === 'simplified' && (
                 <div style={{
-                  width: '20px',
-                  height: '20px',
-                  border: '2px solid #475569',
-                  borderTop: '2px solid #6366f1',
-                  borderRadius: '50%',
-                  animation: 'spin 1s linear infinite'
-                }}></div>
-                Loading {currentMode} content for level {eslLevel}...
-              </div>
-            ) : (
-              <>
-                {/* Micro-hint for simplification issues */}
-                {microHint && currentMode === 'simplified' && (
-                  <div style={{
-                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                    border: '1px solid rgba(245, 158, 11, 0.3)',
-                    borderRadius: '8px',
-                    padding: '8px 12px',
-                    marginBottom: '16px',
-                    fontSize: '13px',
-                    color: '#f59e0b',
-                    textAlign: 'center'
-                  }}>
-                    💡 {microHint}
-                  </div>
-                )}
-                
-                <div 
-                  id="book-reading-text"
-                  className={`book-text-wireframe ${currentMode === 'simplified' ? 'simplified' : ''} whitespace-pre-wrap ${
-                    preferences.contrast === 'high' ? 'text-black bg-white' :
-                    preferences.contrast === 'ultra-high' ? 'text-white bg-black' : ''
-                  }`}
-                  style={{
-                    fontSize: preferences.dyslexiaFont ? `${Math.max(preferences.fontSize, 18)}px` : undefined,
-                    lineHeight: preferences.dyslexiaFont ? '1.9' : undefined,
-                    fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : undefined,
-                    letterSpacing: preferences.dyslexiaFont ? '0.3px' : undefined,
-                    wordSpacing: preferences.dyslexiaFont ? '2px' : undefined,
-                  }}
-                  role="main"
-                  aria-label="Book content"
-                  tabIndex={0}
-                >
-                  {/* Enhanced books: Use ContinuousReadingContainer for Yellow Wallpaper, WordHighlighter for others */}
-                  {(() => {
-                    const isContinuous = isEnhancedBook && isContinuousReadingEnabledForBook(bookId, user?.id);
-                    console.log('🔍 CONTINUOUS READING DEBUG:', {
-                      bookId,
-                      isEnhancedBook,
-                      isContinuous,
-                      userId: user?.id
-                    });
-                    return null;
-                  })()}
-                  {isEnhancedBook ? (
-                    isContinuousReadingEnabledForBook(bookId, user?.id) ? (
-                      /* Yellow Wallpaper: Continuous reading mode */
-                      <ContinuousReadingContainer
-                        bookContent={bookContent}
-                        currentChunk={currentChunk}
-                        eslLevel={eslLevel}
-                        voiceProvider={voiceProvider}
-                        selectedVoice={selectedVoice}
-                        isPlaying={isPlaying}
-                        onPlayStateChange={(playing) => setIsPlaying(playing)}
-                        onChunkChange={(chunkIndex) => setCurrentChunk(chunkIndex)}
-                        onWordHighlight={(wordIndex) => setImmediateWordIndex(wordIndex)}
-                      />
-                    ) : (
-                      /* Other enhanced books: Standard chunk-based mode */
-                      <div style={{ position: 'relative' }} data-content="true">
-                        {/* Auto-scroll handler - Creates word elements for scrolling */}
-                        <AutoScrollHandler
-                          ref={autoScrollRef}
-                          text={currentContent}
-                          currentWordIndex={-1}  // Disable its scrolling, just use for word elements
-                          isPlaying={false}  // Disable its scrolling
-                          enabled={false}  // Disable its scrolling
-                        />
-
-                        {/* Word highlighting - DISABLED but still displays text */}
-                        <WordHighlighter
-                          text={currentContent}
-                          currentWordIndex={-1} // DISABLED: Causes dizziness, doesn't match voice speed
-                          isPlaying={isPlaying}
-                          animationType="speechify"
-                          highlightColor="#10b981"
-                          showProgress={true}
-                          className="word-highlight-overlay"
-                        />
-                      </div>
-                    )
-                  ) : (
-                    /* Browse experience: Direct text display without highlighting */
-                    <div data-content="true" style={{ 
-                      color: '#e2e8f0', 
-                      fontSize: '16px', 
-                      lineHeight: '1.6',
-                      whiteSpace: 'pre-wrap'
-                    }}>
-                      {currentContent || 'Loading content...'}
-                    </div>
-                  )}
+                  backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                  border: '1px solid rgba(245, 158, 11, 0.3)',
+                  borderRadius: '8px',
+                  padding: '8px 12px',
+                  marginBottom: '16px',
+                  fontSize: '13px',
+                  color: '#f59e0b',
+                  textAlign: 'center'
+                }}>
+                  💡 {microHint}
                 </div>
+              )}
 
-                  
-                {/* Continuous Playback Status */}
-                {continuousPlayback && (
-                  <div style={{
-                    textAlign: 'center',
-                    marginTop: '16px',
-                    padding: '8px 16px',
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    border: '1px solid rgba(16, 185, 129, 0.3)',
-                    borderRadius: '8px',
-                    fontSize: '14px',
-                    color: '#10b981'
-                  }}>
-                    📚 Continuous playback enabled - will auto-advance to next chunk
-                  </div>
-                )}
-
-                {/* Current word highlight debug info */}
-                {process.env.NODE_ENV === 'development' && currentWordIndex >= 0 && (
-                  <div style={{
-                    textAlign: 'center',
-                    marginTop: '8px',
-                    fontSize: '12px',
-                    color: '#6b7280'
-                  }}>
-                    Highlighting word {currentWordIndex + 1}
-                  </div>
-                )}
-              </>
-            )}
-          </div>
+              {/* Enhanced Book Text Content - Natural Flow Like Simplified Books */}
+              <div
+                id="book-reading-text"
+                className="reading-text text-[var(--text-primary)]"
+                style={{
+                  fontSize: preferences.dyslexiaFont ? `${Math.max(preferences.fontSize, 18)}px` : undefined,
+                  lineHeight: preferences.dyslexiaFont ? '1.9' : undefined,
+                  fontFamily: preferences.dyslexiaFont ? 'OpenDyslexic, Arial, sans-serif' : undefined,
+                  letterSpacing: preferences.dyslexiaFont ? '0.3px' : undefined,
+                  wordSpacing: preferences.dyslexiaFont ? '2px' : undefined
+                }}
+                role="main"
+                aria-label="Book content"
+                tabIndex={0}
+                onMouseUp={handleTextSelection}
+                onTouchEnd={handleTextSelection}
+              >
+                <div
+                  data-content="true"
+                  className="whitespace-pre-wrap text-[var(--text-primary)]"
+                  style={{
+                    textAlign: 'justify',
+                    color: 'var(--text-primary)',
+                    fontSize: '24px',
+                    lineHeight: '1.9'
+                  }}
+                >
+                  {currentContent || 'Loading content...'}
+                </div>
+              </div>
+            </>
+          )}
         </motion.div>
         
         {/* Upgrade Banner for Browse Experience Users */}
@@ -2303,165 +964,145 @@ export default function BookReaderPage() {
         )}
       </div>
 
-      {/* Mobile Audio Controls - Fixed Bottom (Unified layout for desktop & mobile) */}
-      {isEnhancedBook && (
-        <div 
-          className="mobile-audio-controls"
-          style={{
-            display: 'flex',
-            position: 'fixed',
-            bottom: '0',
-            left: '0',
-            right: '0',
-            maxWidth: 'none',
-            margin: '0',
-            height: '72px',
-            background: 'rgba(30, 41, 59, 0.95)',
-            backdropFilter: 'blur(16px)',
-            border: '1px solid #334155',
-            borderRadius: '0',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            padding: '0 16px',
-            zIndex: 1100
-          }}
-        >
-          {/* All Controls in One Group */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            {/* Voice Selector Button */}
-            <button
-              onClick={() => {
-                const voices = isEnhancedBook ? ['alloy', 'nova'] : ['alloy', 'echo', 'fable', 'onyx', 'nova', 'shimmer'];
-                const currentIndex = voices.indexOf(selectedVoice || 'alloy');
-                const nextVoice = voices[(currentIndex + 1) % voices.length];
-                setSelectedVoice(nextVoice);
-                localStorage.setItem(`voice-selection-${bookId}`, nextVoice);
-              }}
-              style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: '22px',
-                background: 'rgba(59, 130, 246, 0.1)',
-                border: '1px solid rgba(59, 130, 246, 0.2)',
-                color: '#60a5fa',
-                fontSize: '14px',
-                fontWeight: '500',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                lineHeight: '1.2',
-                padding: '4px',
-                textTransform: 'capitalize'
-              }}
-              aria-label={`Voice: ${selectedVoice}`}
-            >
-              {selectedVoice.substring(0, 4)}
-            </button>
+      {/* Settings Modal */}
+      {showSettingsModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 sm:p-4">
+          <div className="bg-[var(--bg-secondary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20 max-h-[90vh] overflow-y-auto">
 
-            {/* Playback Controls */}
-            <button 
-              onClick={() => handleChunkNavigation('prev')}
-              disabled={!canGoPrev}
-              style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: '22px',
-                background: 'rgba(59, 130, 246, 0.1)',
-                border: '1px solid rgba(59, 130, 246, 0.2)',
-                color: canGoPrev ? '#60a5fa' : '#475569',
-                fontSize: '16px',
-                cursor: canGoPrev ? 'pointer' : 'not-allowed',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              ⏮
-            </button>
-            
-            <button 
-              onClick={() => setIsPlaying(!isPlaying)}
-              style={{
-                width: '56px',
-                height: '56px',
-                borderRadius: '28px',
-                background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-                border: 'none',
-                color: 'white',
-                fontSize: '20px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.2s'
-              }}
-            >
-              {isPlaying ? '⏸' : '▶'}
-            </button>
-            
-            <button 
-              onClick={() => handleChunkNavigation('next')}
-              disabled={!canGoNext}
-              style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: '22px',
-                background: 'rgba(59, 130, 246, 0.1)',
-                border: '1px solid rgba(59, 130, 246, 0.2)',
-                color: canGoNext ? '#60a5fa' : '#475569',
-                fontSize: '16px',
-                cursor: canGoNext ? 'pointer' : 'not-allowed',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              ⏭
-            </button>
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Reading Settings</h2>
+              <button
+                onClick={() => setShowSettingsModal(false)}
+                className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
+              >
+                ×
+              </button>
+            </div>
 
-            {/* Auto-advance Toggle (wired to useAutoAdvance) */}
-            <button
-              onClick={() => {
-                toggleAutoAdvance();
-              }}
-              style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: '22px',
-                background: autoAdvanceEnabled ? 'rgba(16, 185, 129, 0.2)' : 'rgba(59, 130, 246, 0.1)',
-                border: `1px solid ${autoAdvanceEnabled ? 'rgba(16, 185, 129, 0.4)' : 'rgba(59, 130, 246, 0.2)'}`,
-                color: autoAdvanceEnabled ? '#10b981' : '#60a5fa',
-                fontSize: '16px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative'
-              }}
-              aria-label={`Auto-advance: ${autoAdvanceEnabled ? 'On' : 'Off'}`}
-              title="Toggle auto-advance"
-            >
-              {autoAdvanceEnabled ? '✓' : '→'}
-              {autoAdvanceEnabled && (
-                <div style={{
-                  position: 'absolute',
-                  top: '-2px',
-                  right: '-2px',
-                  width: '8px',
-                  height: '8px',
-                  backgroundColor: '#10b981',
-                  borderRadius: '50%',
-                  border: '2px solid rgba(30, 41, 59, 0.95)'
-                }} />
-              )}
-            </button>
+            {/* Modal Content */}
+            <div className="p-6 space-y-6">
+
+              {/* Navigation Controls */}
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Page Navigation</label>
+                <div className="flex items-center justify-center gap-4">
+                  <button
+                    onClick={() => handleChunkNavigation('prev')}
+                    disabled={!canGoPrev}
+                    className={`w-10 h-10 rounded-full border border-[var(--border-light)] flex items-center justify-center transition-all ${
+                      canGoPrev
+                        ? 'text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 cursor-pointer'
+                        : 'text-[var(--text-secondary)]/30 cursor-not-allowed opacity-50'
+                    }`}
+                  >
+                    ‹
+                  </button>
+                  <span className="text-[var(--text-primary)] font-medium px-4">
+                    {currentChunk + 1} / {effectiveTotal || (bookContent?.totalChunks || 0)}
+                  </span>
+                  <button
+                    onClick={() => handleChunkNavigation('next')}
+                    disabled={!canGoNext}
+                    className={`w-10 h-10 rounded-full border border-[var(--border-light)] flex items-center justify-center transition-all ${
+                      canGoNext
+                        ? 'text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 cursor-pointer'
+                        : 'text-[var(--text-secondary)]/30 cursor-not-allowed opacity-50'
+                    }`}
+                  >
+                    ›
+                  </button>
+                </div>
+              </div>
+
+              {/* Content Mode Toggle */}
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Text Version</label>
+                <div className="flex bg-[var(--bg-primary)] rounded-lg p-1 border border-[var(--border-light)]">
+                  <button
+                    onClick={() => handleModeChange('simplified')}
+                    className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                      currentMode === 'simplified'
+                        ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    }`}
+                  >
+                    Simplified
+                  </button>
+                  <button
+                    onClick={() => handleModeChange('original')}
+                    className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                      currentMode === 'original'
+                        ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    }`}
+                  >
+                    Original
+                  </button>
+                </div>
+              </div>
+
+              {/* CEFR Level Selection */}
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">CEFR Level</label>
+                <div className="grid grid-cols-3 gap-2">
+                  {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level) => {
+                    const isOriginalMode = currentMode === 'original';
+                    const isDisabled = isOriginalMode;
+
+                    return (
+                      <button
+                        key={level}
+                        onClick={() => {
+                          if (!isDisabled) {
+                            handleCefrLevelChange(level);
+                            // Ensure we're in simplified mode when selecting CEFR level
+                            handleModeChange('simplified');
+                          }
+                        }}
+                        disabled={isDisabled}
+                        className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                          eslLevel === level && currentMode === 'simplified'
+                            ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                            : isDisabled
+                            ? 'bg-[var(--bg-primary)] text-[var(--text-secondary)]/50 cursor-not-allowed opacity-50'
+                            : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--border-light)]'
+                        }`}
+                        title={
+                          isOriginalMode
+                            ? 'Switch to Simplified mode to use CEFR levels'
+                            : `Switch to ${level} level`
+                        }
+                      >
+                        {level}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Apply Settings Footer */}
+              <div className="px-6 py-4 border-t border-[var(--border-light)]">
+                <button
+                  onClick={async () => {
+                    setShowSettingsModal(false);
+                    // Trigger re-fetch if mode or level changed
+                    if (currentMode === 'simplified') {
+                      const simplifiedText = await fetchSimplifiedContent(eslLevel, currentChunk);
+                      setCurrentContent(simplifiedText);
+                    }
+                  }}
+                  className="w-full bg-[var(--accent-primary)] text-white py-2 px-4 rounded-md font-medium hover:bg-[var(--accent-secondary)] transition-all shadow-md"
+                >
+                  Apply Settings
+                </button>
+              </div>
+
+            </div>
           </div>
         </div>
       )}
-      
+
       {/* Mobile/Desktop Responsive Styles */}
       <style jsx>{`
         @media (max-width: 768px) {
@@ -2477,27 +1118,7 @@ export default function BookReaderPage() {
             display: none !important;
           }
           
-          .mobile-audio-controls {
-            display: flex !important;
-            position: fixed !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            max-width: none !important;
-            margin: 0 !important;
-            border-radius: 0 !important;
-            height: 72px !important;
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-            padding-bottom: env(safe-area-inset-bottom) !important;
-            background: #0f172a !important; /* opaque to avoid seeing text under */
-            border-top: 1px solid #334155 !important;
-            border-left: none !important;
-            border-right: none !important;
-            border-bottom: none !important;
-            box-shadow: none !important;
-            z-index: 999 !important;
-          }
+          /* Audio controls removed */
           
           .main-content-container {
             padding: 0 !important;
@@ -2518,6 +1139,31 @@ export default function BookReaderPage() {
             font-size: 22px !important;
           }
           
+          /* Enhanced mobile reading experience optimizations */
+          .max-w-4xl {
+            margin: 0 auto;
+            padding: 0 8px;
+          }
+
+          /* Better touch targets for mobile navigation */
+          button {
+            min-height: 44px;
+            min-width: 44px;
+          }
+
+          /* Extra large text for enhanced reading experience */
+          .reading-text {
+            font-size: 22px !important;
+            line-height: 1.8 !important;
+            text-align: left;
+          }
+
+          /* Content text should be extra large */
+          [data-content="true"] {
+            font-size: 22px !important;
+            line-height: 1.8 !important;
+          }
+
           /* Make book text span full mobile width with comfortable gutters */
           .book-text-wireframe {
             width: 100% !important;
@@ -2546,37 +1192,121 @@ export default function BookReaderPage() {
             background: transparent !important;
           }
           
+          /* Theme-aware text highlighting */
+          ::selection {
+            background: var(--accent-primary, #667eea) !important;
+            color: var(--bg-primary, #ffffff) !important;
+          }
+
+          ::-moz-selection {
+            background: var(--accent-primary, #667eea) !important;
+            color: var(--bg-primary, #ffffff) !important;
+          }
+
           .word-highlight-current {
-            background: linear-gradient(120deg, 
-              rgba(16, 185, 129, 0.3) 0%, 
-              rgba(16, 185, 129, 0.4) 100%) !important;
+            background: var(--accent-primary, #667eea) !important;
+            opacity: 0.3;
             border-radius: 3px;
             padding: 1px 2px;
             font-weight: 600;
+            color: var(--text-primary) !important;
           }
-          
+
           .word-highlight-upcoming {
-            background: rgba(59, 130, 246, 0.15) !important;
+            background: var(--accent-secondary, #6366f1) !important;
+            opacity: 0.15;
             border-radius: 2px;
             padding: 0 1px;
+            color: var(--text-primary) !important;
+          }
+
+          .reading-text {
+            user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
           }
         }
         
         @media (min-width: 769px) {
-          ${'' /* Unified bottom controls on desktop when flag is on */}
+          /* Extra large text for desktop reading */
+          .reading-text {
+            font-size: 26px !important;
+            line-height: 2.0 !important;
+          }
+
+          [data-content="true"] {
+            font-size: 26px !important;
+            line-height: 2.0 !important;
+          }
         }
         
         .mobile-reading-controls button:active {
           transform: scale(0.95);
         }
         
-        .mobile-audio-controls button:active {
-          transform: scale(0.95);
-        }
+        /* Audio controls removed */
       `}</style>
 
+      {/* Sticky Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg-secondary)] border-t border-[var(--border-light)] shadow-lg">
+        <div className="max-w-4xl mx-auto px-4 py-3">
+          <div className="flex justify-between items-center">
+            {/* Back Button */}
+            <button
+              onClick={() => router.push('/enhanced-collection')}
+              className="w-12 h-12 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
+            >
+              ←
+            </button>
+
+            {/* Navigation Controls */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => handleChunkNavigation('prev')}
+                disabled={!canGoPrev}
+                className={`w-12 h-12 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] flex items-center justify-center transition-all duration-200 shadow-sm ${
+                  canGoPrev
+                    ? 'text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 cursor-pointer'
+                    : 'text-[var(--text-secondary)]/30 cursor-not-allowed opacity-50'
+                }`}
+                title="Previous page"
+              >
+                <span className="text-xl">‹</span>
+              </button>
+
+              {/* Page Counter */}
+              <div className="text-sm text-[var(--text-secondary)] bg-[var(--accent-primary)]/10 px-3 py-2 rounded border border-[var(--accent-primary)]/20 min-w-[80px] text-center">
+                {currentChunk + 1} / {effectiveTotal || (bookContent?.totalChunks || 0)}
+              </div>
+
+              <button
+                onClick={() => handleChunkNavigation('next')}
+                disabled={!canGoNext}
+                className={`w-12 h-12 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] flex items-center justify-center transition-all duration-200 shadow-sm ${
+                  canGoNext
+                    ? 'text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 cursor-pointer'
+                    : 'text-[var(--text-secondary)]/30 cursor-not-allowed opacity-50'
+                }`}
+                title="Next page"
+              >
+                <span className="text-xl">›</span>
+              </button>
+            </div>
+
+            {/* Settings Button */}
+            <button
+              onClick={() => setShowSettingsModal(true)}
+              className="w-12 h-12 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-base font-medium hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
+            >
+              Aa
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Network Performance Monitor - Temporarily disabled */}
-      {/* <NetworkPerformanceMonitor 
+      {/* <NetworkPerformanceMonitor
         bookId={bookId}
         isVisible={false}
       /> */}
