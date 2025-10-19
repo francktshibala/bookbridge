@@ -7,6 +7,8 @@ import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
 import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
+import { AIBookChatModal } from '@/lib/dynamic-imports';
+import type { ExternalBook } from '@/types/book-sources';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -634,6 +636,10 @@ export default function FeaturedBooksPage() {
   const [showChapterModal, setShowChapterModal] = useState(false);
   const [showContinueReading, setShowContinueReading] = useState(false);
   const [savedPosition, setSavedPosition] = useState<{sentenceIndex: number, timestamp: number} | null>(null);
+
+  // AI Chat Modal state
+  const [isAIChatOpen, setIsAIChatOpen] = useState(false);
+  const [selectedAIBook, setSelectedAIBook] = useState<ExternalBook | null>(null);
 
   // Data state
   const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
@@ -1320,6 +1326,85 @@ export default function FeaturedBooksPage() {
     }
   };
 
+  // AI Chat Modal handlers
+  const handleAskAI = (book: FeaturedBook) => {
+    console.log('Featured Books - Original book data:', book);
+
+    // Convert FeaturedBook to ExternalBook format for AI modal
+    const externalBook: ExternalBook = {
+      id: book.id,
+      title: book.title,
+      author: book.author,
+      description: book.description || 'Classic literature with multiple CEFR difficulty levels',
+      subjects: ['Literature', 'Classic'],
+      language: 'en',
+      source: 'gutenberg',
+      publicationYear: undefined,
+      popularity: 1
+    };
+
+    console.log('Featured Books - Converted ExternalBook:', externalBook);
+
+    setSelectedAIBook(externalBook);
+    setIsAIChatOpen(true);
+  };
+
+  const handleCloseAIChat = () => {
+    setIsAIChatOpen(false);
+    setSelectedAIBook(null);
+  };
+
+  const handleSendAIMessage = async (message: string): Promise<string> => {
+    if (!selectedAIBook) {
+      return 'No book selected for AI chat.';
+    }
+
+    const bookContext = `Title: ${selectedAIBook.title}, Author: ${selectedAIBook.author}${
+      selectedAIBook.description ? `, Description: ${selectedAIBook.description}` : ''
+    }${
+      selectedAIBook.subjects?.length ? `, Subjects: ${selectedAIBook.subjects.join(', ')}` : ''
+    }`;
+
+    try {
+      const response = await fetch('/api/ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message,
+          bookContext,
+          bookId: selectedAIBook.id,
+          conversationId: null
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get AI response');
+      }
+
+      const data = await response.json();
+
+      // Also save to conversation if needed
+      await fetch('/api/conversations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          bookId: selectedAIBook.id,
+          message,
+          response: data.response,
+        }),
+      });
+
+      return data.response;
+    } catch (error) {
+      console.error('Error sending AI message:', error);
+      return 'Sorry, I encountered an error processing your request.';
+    }
+  };
+
   const handleStop = () => {
     audioManagerRef.current?.stop();
     setIsPlaying(false);
@@ -1637,6 +1722,7 @@ export default function FeaturedBooksPage() {
                       {/* Action Buttons - Compact Style */}
                       <div className="flex gap-2 mt-auto">
                         <button
+                          onClick={() => handleAskAI(book)}
                           className="flex-1 h-9 rounded-lg bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)]/60 transition-all duration-200 text-sm font-medium"
                           style={{ fontFamily: 'Source Serif Pro, serif' }}
                         >
@@ -2297,6 +2383,14 @@ export default function FeaturedBooksPage() {
 
         </div>
       )}
+
+      {/* AI Chat Modal */}
+      <AIBookChatModal
+        isOpen={isAIChatOpen}
+        book={selectedAIBook}
+        onClose={handleCloseAIChat}
+        onSendMessage={handleSendAIMessage}
+      />
     </div>
   );
 }
