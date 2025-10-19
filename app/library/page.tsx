@@ -312,10 +312,10 @@ export default function LibraryPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.4 }}
             style={{
-              color: '#4a5568',
+              color: 'var(--text-secondary)',
               fontSize: '16px',
               fontWeight: '500',
-              fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+              fontFamily: 'Source Serif Pro, Georgia, serif'
             }}
           >
             Loading your books...
@@ -581,7 +581,7 @@ export default function LibraryPage() {
 
   if (selectedBook) {
     return (
-      <div className="page-container magical-bg" style={{ backgroundColor: '#0f172a', color: '#ffffff' }}>
+      <div className="page-container bg-[var(--bg-primary)] text-[var(--text-primary)]">
         <div className="page-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -912,7 +912,7 @@ export default function LibraryPage() {
   }
 
   return (
-    <div className="page-container magical-bg" style={{ minHeight: '100vh', backgroundColor: '#0f172a', color: '#ffffff' }}>
+    <div className="page-container bg-[var(--bg-primary)] text-[var(--text-primary)]" style={{ minHeight: '100vh' }}>
       <div className="page-content" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
         {/* Browse Catalog Content */}
         <AccessibleWrapper as="main" ariaLabelledBy="catalog-heading">
@@ -926,27 +926,28 @@ export default function LibraryPage() {
               marginBottom: '48px'
             }}
           >
-            <motion.h2 
+            <motion.h2
               id="catalog-heading"
               style={{
                 fontSize: '2.5rem',
                 fontWeight: '700',
-                color: '#8b5cf6',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                color: 'var(--text-accent)',
+                fontFamily: 'Playfair Display, Georgia, serif',
                 margin: '0 0 16px 0'
               }}
             >
               📚 Browse All Books
             </motion.h2>
-            
+
             <motion.p
               style={{
                 fontSize: '1rem',
-                color: '#94a3b8',
+                color: 'var(--text-secondary)',
                 fontWeight: '400',
                 maxWidth: '600px',
                 margin: '0 auto',
-                lineHeight: '1.6'
+                lineHeight: '1.6',
+                fontFamily: 'Source Serif Pro, Georgia, serif'
               }}
             >
               Explore thousands of classic books from renowned sources. Discover your next favorite read with AI-powered insights.
@@ -987,15 +988,15 @@ export default function LibraryPage() {
                   border: '1px solid #334155',
                   borderRadius: '12px',
                   fontSize: '16px',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  fontFamily: 'Source Serif Pro, Georgia, serif',
                   color: '#e2e8f0',
-                  backgroundColor: '#1e293b',
+                  backgroundColor: 'var(--bg-secondary)',
                   outline: 'none',
                   transition: 'all 0.2s ease'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#8b5cf6';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(139, 92, 246, 0.1)';
+                  e.target.style.borderColor = 'var(--accent-primary)';
+                  e.target.style.boxShadow = '0 0 0 3px var(--accent-light)';
                 }}
                 onBlur={(e) => {
                   e.target.style.borderColor = '#334155';
@@ -1017,9 +1018,9 @@ export default function LibraryPage() {
                   border: '1px solid #334155',
                   borderRadius: '12px',
                   fontSize: '16px',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  fontFamily: 'Source Serif Pro, Georgia, serif',
                   color: '#e2e8f0',
-                  backgroundColor: '#1e293b',
+                  backgroundColor: 'var(--bg-secondary)',
                   outline: 'none',
                   cursor: 'pointer'
                 }}
@@ -1036,7 +1037,7 @@ export default function LibraryPage() {
                 onClick={handleCatalogSearch}
                 disabled={catalogLoading}
                 style={{
-                  background: '#8b5cf6',
+                  background: 'var(--accent-primary)',
                   color: 'white',
                   border: 'none',
                   borderRadius: '12px',
@@ -1077,8 +1078,8 @@ export default function LibraryPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             style={{
-              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%)',
-              border: '1px solid rgba(16, 185, 129, 0.3)',
+              background: 'var(--accent-secondary)/10',
+              border: '2px solid var(--accent-secondary)/30',
               borderRadius: '16px',
               padding: '20px',
               marginBottom: '32px',
@@ -1094,7 +1095,7 @@ export default function LibraryPage() {
               right: '-10%',
               width: '200px',
               height: '200px',
-              background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, var(--accent-secondary)/20 0%, transparent 70%)',
               borderRadius: '50%'
             }} />
             
@@ -1108,18 +1109,18 @@ export default function LibraryPage() {
               <div style={{ fontSize: '32px' }}>⚡</div>
               <div>
                 <div style={{
-                  color: '#10b981',
+                  color: 'var(--accent-primary)',
                   fontSize: '18px',
                   fontWeight: '700',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                  fontFamily: 'Playfair Display, serif',
                   marginBottom: '4px'
                 }}>
                   Unlock Enhanced Reading Experience
                 </div>
                 <div style={{
-                  color: '#94a3b8',
+                  color: 'var(--text-secondary)',
                   fontSize: '14px',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}>
                   Get AI simplification, premium audio, and vocabulary tools
                 </div>
@@ -1129,15 +1130,15 @@ export default function LibraryPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 style={{
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                  color: 'white',
+                  background: 'var(--accent-primary)',
+                  color: 'var(--bg-primary)',
                   textDecoration: 'none',
                   padding: '12px 24px',
                   borderRadius: '12px',
                   fontSize: '14px',
                   fontWeight: '600',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
+                  fontFamily: 'Source Serif Pro, Georgia, serif',
+                  boxShadow: '0 4px 12px var(--shadow-medium)',
                   minHeight: '44px',
                   display: 'flex',
                   alignItems: 'center',
@@ -1157,8 +1158,8 @@ export default function LibraryPage() {
               role="alert"
               aria-live="assertive"
               style={{
-                background: 'linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%)',
-                border: '1px solid #fc8181',
+                background: 'var(--bg-secondary)',
+                border: '2px solid #dc2626',
                 borderRadius: '12px',
                 padding: '20px',
                 marginBottom: '24px',
@@ -1166,22 +1167,23 @@ export default function LibraryPage() {
               }}
             >
               <div style={{
-                color: '#c53030',
+                color: '#dc2626',
                 fontSize: '16px',
                 fontWeight: '600',
-                fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                fontFamily: 'Source Serif Pro, Georgia, serif',
                 marginBottom: '12px'
-              }}>{catalogError}</div>
+              }}>❌ {catalogError}</div>
               <button
                 onClick={() => fetchCatalogBooks(catalogPage)}
                 style={{
-                  color: '#c53030',
+                  color: 'var(--bg-primary)',
                   fontSize: '14px',
                   fontWeight: '600',
-                  fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                  background: 'none',
+                  fontFamily: 'Source Serif Pro, Georgia, serif',
+                  background: 'var(--accent-primary)',
                   border: 'none',
-                  textDecoration: 'underline',
+                  borderRadius: '8px',
+                  padding: '8px 16px',
                   cursor: 'pointer'
                 }}
               >
@@ -1280,7 +1282,7 @@ export default function LibraryPage() {
                         padding: '12px 20px',
                         borderRadius: '12px',
                         border: '2px solid #334155',
-                        backgroundColor: !catalogPagination.hasPrevious ? '#1e293b' : '#334155',
+                        backgroundColor: !catalogPagination.hasPrevious ? 'var(--bg-secondary)' : 'var(--bg-tertiary)',
                         color: !catalogPagination.hasPrevious ? '#64748b' : '#e2e8f0',
                         fontSize: '14px',
                         fontWeight: '600',
@@ -1298,7 +1300,7 @@ export default function LibraryPage() {
                       fontWeight: '500',
                       color: '#e2e8f0',
                       fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-                      backgroundColor: '#1e293b',
+                      backgroundColor: 'var(--bg-secondary)',
                       borderRadius: '12px',
                       border: '2px solid #334155'
                     }}>
@@ -1318,7 +1320,7 @@ export default function LibraryPage() {
                         padding: '12px 20px',
                         borderRadius: '12px',
                         border: '2px solid #334155',
-                        backgroundColor: !catalogPagination.hasNext ? '#1e293b' : '#334155',
+                        backgroundColor: !catalogPagination.hasNext ? 'var(--bg-secondary)' : 'var(--bg-tertiary)',
                         color: !catalogPagination.hasNext ? '#64748b' : '#e2e8f0',
                         fontSize: '14px',
                         fontWeight: '600',

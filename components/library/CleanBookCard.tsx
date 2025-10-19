@@ -42,121 +42,65 @@ export function CleanBookCard({ book, onAskAI, onReadBook, index = 0 }: CleanBoo
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.01 }}
+      whileHover={{ y: -4 }}
+      className="bg-[var(--bg-secondary)] border border-[var(--accent-secondary)] rounded-xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-200"
       style={{
-        background: 'rgba(51, 65, 85, 0.5)',
-        border: '1px solid #334155',
-        borderRadius: '12px',
-        padding: '16px',
+        height: '240px',
+        width: '320px',
+        boxShadow: '0 2px 8px var(--shadow-soft)',
+        cursor: 'pointer',
         marginBottom: '16px'
       }}
     >
-      {/* Book Title */}
-      <div style={{
-        fontSize: '16px',
-        fontWeight: '600',
-        color: '#e2e8f0',
-        marginBottom: '4px'
-      }}>
-        {displayTitle}
-      </div>
-
-      {/* Author */}
-      <div style={{
-        fontSize: '14px',
-        color: '#94a3b8',
-        marginBottom: '12px'
-      }}>
-        by {displayAuthor}
-      </div>
-
-      {/* Meta Tags */}
-      <div style={{
-        display: 'flex',
-        gap: '8px',
-        marginBottom: '12px',
-        flexWrap: 'wrap'
-      }}>
-        <span style={{
-          padding: '4px 8px',
-          background: 'rgba(59, 130, 246, 0.2)',
-          color: '#60a5fa',
-          borderRadius: '4px',
-          fontSize: '11px'
-        }}>
-          {primarySubject}
-        </span>
-        {book.source && (
-          <span style={{
-            padding: '4px 8px',
-            background: 'rgba(59, 130, 246, 0.2)',
-            color: '#60a5fa',
-            borderRadius: '4px',
-            fontSize: '11px'
-          }}>
-            {book.source}
+      {/* Card Content */}
+      <div className="flex-1 overflow-hidden">
+        {/* Book Title */}
+        <div className="text-lg font-bold text-[var(--text-accent)] mb-1 leading-tight line-clamp-2" style={{ fontFamily: 'Playfair Display, serif', maxHeight: '3.5rem' }}>
+          {displayTitle}
+        </div>
+        {/* Author */}
+        <div className="text-sm text-[var(--text-secondary)] mb-3" style={{ fontFamily: 'Source Serif Pro, serif' }}>
+          by {displayAuthor}
+        </div>
+        {/* Meta Tags - Compact Style */}
+        <div className="flex gap-2 mb-3 flex-wrap">
+          <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+            {primarySubject}
           </span>
-        )}
-        {book.publicationYear && (
-          <span style={{
-            padding: '4px 8px',
-            background: 'rgba(59, 130, 246, 0.2)',
-            color: '#60a5fa',
-            borderRadius: '4px',
-            fontSize: '11px'
-          }}>
-            {book.publicationYear}
+          {book.source && (
+            <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+              {book.source}
+            </span>
+          )}
+          {book.publicationYear && (
+            <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+              {book.publicationYear}
+            </span>
+          )}
+          <span className="px-2 py-1 bg-green-500/10 text-green-600 border border-green-500/30 rounded-full text-xs font-medium">
+            Browse Library
           </span>
-        )}
-        <span style={{
-          padding: '4px 8px',
-          background: 'rgba(16, 185, 129, 0.2)',
-          color: '#10b981',
-          borderRadius: '4px',
-          fontSize: '11px'
-        }}>
-          Browse Library
-        </span>
+        </div>
+
       </div>
 
-      {/* Action Buttons */}
-      <div style={{
-        display: 'flex',
-        gap: '8px'
-      }}>
-        <button
-          onClick={() => onAskAI(book)}
-          style={{
-            flex: 1,
-            height: '36px',
-            borderRadius: '8px',
-            background: 'rgba(139, 92, 246, 0.2)',
-            color: '#a78bfa',
-            border: '1px solid rgba(139, 92, 246, 0.3)',
-            fontSize: '14px',
-            fontWeight: '500',
-            cursor: 'pointer'
-          }}
-        >
-          Ask AI
-        </button>
-        <button
-          onClick={() => onReadBook(book.id)}
-          style={{
-            flex: 1,
-            height: '36px',
-            background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '14px',
-            fontWeight: '500',
-            cursor: 'pointer'
-          }}
-        >
-          Read Book
-        </button>
-      </div>
+      {/* Action Buttons - Always at bottom */}
+      <div className="flex gap-2 mt-4">
+          <button
+            onClick={() => onAskAI(book)}
+            className="flex-1 h-9 rounded-lg bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)]/60 transition-all duration-200 text-sm font-medium"
+            style={{ fontFamily: 'Source Serif Pro, serif' }}
+          >
+            Ask AI
+          </button>
+          <button
+            onClick={() => onReadBook(book.id)}
+            className="flex-1 h-9 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center"
+            style={{ fontFamily: 'Source Serif Pro, serif' }}
+          >
+            Read Book
+          </button>
+        </div>
     </motion.div>
   );
 }

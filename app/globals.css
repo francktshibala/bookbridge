@@ -1169,7 +1169,7 @@ div span.mobile-reading-text[data-sentence] {
   /* Enhanced Page Layout Styles with smooth transitions */
   .page-container {
     min-height: 100vh;
-    background: var(--surface-subtle);
+    background: var(--bg-primary);
     transition: all 0.3s ease;
   }
   
