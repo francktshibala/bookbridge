@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 // Feature flags for gradual deployment
-const isDemoEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_DEMO !== 'false';
+const isDemoEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_DEMO === 'true';
 const isAudioEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_AUDIO === 'true';
 const isHighlightingEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_HIGHLIGHTING === 'true';
 const isMobileControlsEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_MOBILE_CONTROLS === 'true';
