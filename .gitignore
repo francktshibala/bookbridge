@@ -42,3 +42,6 @@ Thumbs.db
 .next/cache
 # Audio files (using CDN)
 /public/audio/
+# Exception for demo audio files
+!/public/audio/demo/
+!/public/audio/demo/**
