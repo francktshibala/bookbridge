@@ -70,30 +70,54 @@ interface InteractiveReadingDemoProps {
 }
 
 export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDemoProps) {
-  const [currentLevel, setCurrentLevel] = useState<'A1' | 'B1' | 'original'>('A1');
+  const [currentLevel, setCurrentLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2' | 'Original'>('A1');
+  const [currentVoice, setCurrentVoice] = useState<'daniel' | 'sarah'>('sarah');
   const [isPlaying, setIsPlaying] = useState(false);
   const [demoContent, setDemoContent] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [visibleSentenceStart, setVisibleSentenceStart] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(-1);
-  // Enhanced voices always enabled for premium experience
   const [showProgressiveCTA, setShowProgressiveCTA] = useState(false);
   const [audioPreloaded, setAudioPreloaded] = useState<Set<string>>(new Set());
   const [abTestVariant, setAbTestVariant] = useState<ABTestVariant>('baseline');
+  const [showLevelDropdown, setShowLevelDropdown] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [dropdownTab, setDropdownTab] = useState<'level' | 'voice'>('level');
+  const [isMobile, setIsMobile] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const timeUpdateRef = useRef<number | undefined>(undefined);
   const preloadCache = useRef<Map<string, HTMLAudioElement>>(new Map());
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const textContainerRef = useRef<HTMLDivElement>(null);
 
-  // Progressive display settings
-  const VISIBLE_SENTENCE_COUNT = 3;
+  // All CEFR levels including Original
+  const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'Original'] as const;
 
-  // Initialize A/B test variant
+  // Initialize A/B test variant and mobile detection
   useEffect(() => {
     const variant = getABTestVariant();
     setAbTestVariant(variant);
 
-    // Enhanced voices enabled by default for all variants
+    // Mobile detection
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowLevelDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Load demo content with audio metadata
@@ -112,296 +136,318 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         });
       } catch (error) {
         console.error('Failed to load demo content:', error);
-        // Fallback to static content
-        setDemoContent(staticDemoContent);
-
-        trackDemoEvent('demo_impression', {
-          demo_type: 'hero_interactive_reading',
-          content_loaded: false,
-          fallback_used: true
-        });
       } finally {
         setIsLoading(false);
       }
     };
 
     loadDemoContent();
-  }, []);
+  }, [abTestVariant]);
 
-  // Performance optimization: Preload audio files lazily
-  const preloadAudio = useCallback((audioUrl: string) => {
-    if (audioPreloaded.has(audioUrl) || preloadCache.current.has(audioUrl)) {
-      return Promise.resolve();
-    }
-
-    return new Promise<void>((resolve, reject) => {
-      const audio = new Audio();
-      audio.preload = 'metadata';
-
-      const onCanPlay = () => {
-        preloadCache.current.set(audioUrl, audio);
-        setAudioPreloaded(prev => new Set(prev).add(audioUrl));
-        audio.removeEventListener('canplaythrough', onCanPlay);
-        audio.removeEventListener('error', onError);
-        resolve();
-      };
-
-      const onError = () => {
-        audio.removeEventListener('canplaythrough', onCanPlay);
-        audio.removeEventListener('error', onError);
-        reject(new Error(`Failed to preload audio: ${audioUrl}`));
-      };
-
-      audio.addEventListener('canplaythrough', onCanPlay);
-      audio.addEventListener('error', onError);
-      audio.src = audioUrl;
-    });
-  }, [audioPreloaded]);
-
-  // Preload current and adjacent audio files on demo impression
-  useEffect(() => {
-    if (!demoContent) return;
-
-    const preloadCurrentAndAdjacent = async () => {
-      const levels = ['A1', 'B1', 'original'] as const;
-      const voiceMap = { 'A1': 'daniel', 'B1': 'sarah', 'original': 'daniel' };
-
-      // Preload current level first (priority) - always enhanced
-      const currentVoice = voiceMap[currentLevel];
-      const currentUrls = [
-        `/audio/demo/pride-prejudice-${currentLevel.toLowerCase()}-${currentVoice}-enhanced.mp3`
-      ];
-
-      for (const url of currentUrls) {
-        try {
-          await preloadAudio(url);
-        } catch (error) {
-          console.warn('Failed to preload current audio:', error);
-        }
-      }
-
-      // Preload other levels in background (lower priority)
-      setTimeout(async () => {
-        for (const level of levels) {
-          if (level === currentLevel) continue;
-
-          const voice = voiceMap[level];
-          const urls = [
-            `/audio/demo/pride-prejudice-${level.toLowerCase()}-${voice}-enhanced.mp3`
-          ];
-
-          for (const url of urls) {
-            try {
-              await preloadAudio(url);
-            } catch (error) {
-              console.warn('Failed to preload background audio:', error);
-            }
-          }
-        }
-      }, 2000); // Delay background preloading
-    };
-
-    preloadCurrentAndAdjacent();
-  }, [demoContent, currentLevel, preloadAudio]);
-
-  // Static fallback demo content
-  const staticDemoContent = {
-    title: "Pride and Prejudice",
-    author: "Jane Austen",
-    chapter: "Chapter 1: The Invitation",
-    levels: {
-      A1: {
-        sentences: [
-          { index: 0, text: "People think that rich men who are not married want to find a wife.", wordCount: 14 },
-          { index: 1, text: "When a rich man comes to a new place, families want him to marry their daughters.", wordCount: 16 }
-        ]
-      },
-      B1: {
-        sentences: [
-          { index: 0, text: "Everyone knows that a rich single man must want to find a wife.", wordCount: 13 },
-          { index: 1, text: "When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.", wordCount: 32 }
-        ]
-      },
-      original: {
-        sentences: [
-          { index: 0, text: "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.", wordCount: 22 },
-          { index: 1, text: "However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.", wordCount: 44 }
-        ]
-      }
-    }
-  };
-
-  // Audio playback handlers
-  const handlePlayPause = () => {
-    if (!audioRef.current || !demoContent) return;
-
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      // Load correct audio for current level (dual-track: baseline/enhanced)
-      const voiceMap = {
-        'A1': 'daniel',     // Daniel for A1 (male voice for beginners)
-        'B1': 'sarah',      // Sarah for B1 (female voice for intermediate)
-        'original': 'daniel' // Daniel for Original (male voice for advanced)
-      };
-      const voice = voiceMap[currentLevel] || 'daniel';
-
-      // Always use enhanced voices for premium experience (GPT-5 + post-processing)
-      const audioUrl = `/audio/demo/pride-prejudice-${currentLevel.toLowerCase()}-${voice}-enhanced.mp3`;
-
-      if (audioUrl && audioRef.current.src !== audioUrl) {
-        audioRef.current.src = audioUrl;
-      }
-
-      audioRef.current.play().catch(error => {
-        console.error('Audio playback failed:', error);
-      });
-      setIsPlaying(true);
-
-      // Track play clicked (always enhanced)
-      trackDemoEvent('play_clicked', {
-        level: currentLevel,
-        voice: voiceMap[currentLevel] || 'daniel',
-        enhanced_mode: true
-      });
-    }
-  };
-
-  const handleLevelChange = (level: 'A1' | 'B1' | 'original') => {
-    // Pause current audio
-    if (audioRef.current && isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
-
-    setCurrentLevel(level);
-    setVisibleSentenceStart(0); // Reset to first sentences when switching levels
-
-    // Track level switch (always enhanced)
-    trackDemoEvent('level_switch', {
-      from_level: currentLevel,
-      to_level: level,
-      enhanced_mode: true
-    });
-  };
-
-  // Progressive sentence scrolling
-  const handleNextSentences = () => {
-    if (!demoContent) return;
-    const totalSentences = demoContent.levels[currentLevel]?.sentences?.length || 0;
-    const maxStart = Math.max(0, totalSentences - VISIBLE_SENTENCE_COUNT);
-
-    setVisibleSentenceStart(prev => Math.min(prev + 1, maxStart));
-  };
-
-  const handlePrevSentences = () => {
-    setVisibleSentenceStart(prev => Math.max(prev - 1, 0));
-  };
-
-  // Calculate sentence-level timing using Solution 1 approach
+  // Calculate sentence timings based on audio duration and character count
   const calculateSentenceTimings = useCallback(() => {
-    if (!demoContent?.levels?.[currentLevel]?.sentences) return [];
+    const levelKey = currentLevel === 'Original' ? 'original' : currentLevel;
+    if (!demoContent?.levels?.[levelKey]?.sentences) return [];
 
-    const sentences = demoContent.levels[currentLevel].sentences;
-
-    // Use enhanced file duration if in enhanced mode for Daniel voice
-    const voiceMap = { 'A1': 'daniel', 'B1': 'sarah', 'original': 'daniel' };
-    const voice = voiceMap[currentLevel] || 'daniel';
-
-    let measuredDuration = demoContent.levels[currentLevel]?.audio?.duration || 29.152625;
-
-    // Always use enhanced audio durations (validated with ffprobe)
-    const enhancedDurations = {
-      // Daniel enhanced files
-      'A1': 29.388,        // A1 Daniel enhanced: 0.00% drift
-      'original': 54.047,  // Original Daniel enhanced: 0.98% drift
-      // Sarah enhanced files
-      'B1': 47.778         // B1 Sarah enhanced: 4.28% drift
+    // Enhanced durations for all levels and voices
+    const enhancedDurations: Record<string, Record<string, number>> = {
+      'A1': { daniel: 29.388, sarah: 29.388 },
+      'A2': { daniel: 40.620, sarah: 38.269 },
+      'B1': { daniel: 47.229, sarah: 47.778 },
+      'B2': { daniel: 60.865, sarah: 63.138 },
+      'C1': { daniel: 71.419, sarah: 70.452 },
+      'C2': { daniel: 61.048, sarah: 60.500 },
+      'Original': { daniel: 54.047, sarah: 54.047 }
     };
-    measuredDuration = enhancedDurations[currentLevel] || measuredDuration;
 
-    // Calculate total characters for proportional distribution
-    const totalChars = sentences.reduce((sum: number, sentence: any) => sum + sentence.text.length, 0);
+    const levelDurations = enhancedDurations[currentLevel];
+    let measuredDuration = levelDurations?.[currentVoice] || 40;
 
-    let currentStart = 0;
+    const sentences = demoContent.levels[levelKey].sentences;
+    const totalCharacters = sentences.reduce((sum: number, sentence: any) => sum + sentence.text.length, 0);
+
+    let currentTime = 0;
     return sentences.map((sentence: any, index: number) => {
-      const sentenceChars = sentence.text.length;
-      const duration = (sentenceChars / totalChars) * measuredDuration;
+      const sentenceLength = sentence.text.length;
+      const proportionalDuration = (sentenceLength / totalCharacters) * measuredDuration;
 
       const timing = {
-        index,
-        start: currentStart,
-        end: currentStart + duration,
-        duration
+        start: currentTime,
+        end: currentTime + proportionalDuration,
+        duration: proportionalDuration,
+        sentence: sentence.text,
+        index
       };
 
-      currentStart += duration;
+      currentTime += proportionalDuration;
       return timing;
     });
-  }, [demoContent, currentLevel]);
+  }, [demoContent, currentLevel, currentVoice]);
 
   // Find current sentence based on audio time
   const findCurrentSentence = useCallback((time: number) => {
     const timings = calculateSentenceTimings();
-
-    for (const timing of timings) {
-      if (time >= timing.start && time <= timing.end) {
-        return timing.index;
+    for (let i = 0; i < timings.length; i++) {
+      if (time >= timings[i].start && time <= timings[i].end) {
+        return i;
       }
     }
     return -1;
   }, [calculateSentenceTimings]);
 
-  // Audio time tracking with sentence-level highlighting
-  const updateTimeAndHighlight = useCallback(() => {
-    const audio = audioRef.current;
-    if (!audio || !isPlaying) return;
+  // Handle level change
+  const handleLevelChange = useCallback((newLevel: typeof currentLevel) => {
+    if (newLevel === currentLevel) return;
 
-    const time = audio.currentTime;
+    // Stop current playback
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setIsPlaying(false);
+    setCurrentSentenceIndex(-1);
+    setCurrentTime(0);
+
+    // Update level
+    setCurrentLevel(newLevel);
+
+    // Track level switch
+    trackDemoEvent('level_switch', {
+      from_level: currentLevel,
+      to_level: newLevel,
+      voice: currentVoice,
+      enhanced_mode: true
+    });
+
+    console.log(`🔄 Level switched from ${currentLevel} to ${newLevel} with ${currentVoice} voice`);
+  }, [currentLevel, currentVoice]);
+
+  // Handle voice change
+  const handleVoiceChange = useCallback((newVoice: typeof currentVoice) => {
+    if (newVoice === currentVoice) return;
+
+    // Stop current playback
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setIsPlaying(false);
+    setCurrentSentenceIndex(-1);
+    setCurrentTime(0);
+
+    // Update voice
+    setCurrentVoice(newVoice);
+
+    // Track voice switch
+    trackDemoEvent('voice_switch', {
+      from_voice: currentVoice,
+      to_voice: newVoice,
+      level: currentLevel,
+      enhanced_mode: true
+    });
+
+    console.log(`🎤 Voice switched from ${currentVoice} to ${newVoice} for ${currentLevel} level`);
+  }, [currentVoice, currentLevel]);
+
+  // Preload audio files
+  const preloadAudio = useCallback((audioUrl: string) => {
+    if (audioPreloaded.has(audioUrl)) return;
+
+    const audio = new Audio();
+    audio.preload = 'metadata';
+    audio.src = audioUrl;
+
+    // Store in cache for instant switching
+    preloadCache.current.set(audioUrl, audio);
+    setAudioPreloaded(prev => new Set([...prev, audioUrl]));
+
+    console.log(`🔄 Preloaded: ${audioUrl}`);
+  }, [audioPreloaded]);
+
+  // Load and switch audio when level or voice changes
+  useEffect(() => {
+    if (!demoContent || !currentLevel) {
+      console.log('❌ No demo content or current level');
+      return;
+    }
+
+    // Enhanced audio URL with voice selection
+    const levelName = currentLevel === 'Original' ? 'original' : currentLevel.toLowerCase();
+    const audioUrl = `/audio/demo/pride-prejudice-${levelName}-${currentVoice}-enhanced.mp3`;
+
+    if (audioRef.current) {
+      // Only reload if the src is different to avoid interrupting playback
+      const currentSrc = audioRef.current.src;
+      const fullUrl = window.location.origin + audioUrl;
+
+      console.log(`📋 Current src: ${currentSrc}`);
+      console.log(`📋 Target URL: ${fullUrl}`);
+
+      if (currentSrc !== fullUrl) {
+        console.log(`🔄 Loading audio: ${audioUrl}`);
+        audioRef.current.src = audioUrl;
+        audioRef.current.load();
+      } else {
+        console.log(`✅ Audio already loaded: ${audioUrl}`);
+      }
+
+      // Add event listeners for debugging
+      const handleCanPlay = () => console.log('✅ Audio can play');
+      const handleCanPlayThrough = () => console.log('✅ Audio can play through');
+      const handleError = (e: any) => console.error('❌ Audio error:', e);
+      const handleLoadStart = () => console.log('🔄 Audio load started');
+      const handleLoadedData = () => console.log('✅ Audio data loaded');
+
+      audioRef.current.addEventListener('canplay', handleCanPlay);
+      audioRef.current.addEventListener('canplaythrough', handleCanPlayThrough);
+      audioRef.current.addEventListener('error', handleError);
+      audioRef.current.addEventListener('loadstart', handleLoadStart);
+      audioRef.current.addEventListener('loadeddata', handleLoadedData);
+
+      // Cleanup
+      const audioElement = audioRef.current;
+      return () => {
+        audioElement.removeEventListener('canplay', handleCanPlay);
+        audioElement.removeEventListener('canplaythrough', handleCanPlayThrough);
+        audioElement.removeEventListener('error', handleError);
+        audioElement.removeEventListener('loadstart', handleLoadStart);
+        audioElement.removeEventListener('loadeddata', handleLoadedData);
+      };
+    }
+
+    // Background preload other combinations after 2s delay
+    setTimeout(() => {
+      const voices = ['daniel', 'sarah'];
+      const levels = CEFR_LEVELS;
+
+      for (const level of levels) {
+        for (const voice of voices) {
+          if (level !== currentLevel || voice !== currentVoice) {
+            const otherLevelName = level === 'Original' ? 'original' : level.toLowerCase();
+            const otherUrl = `/audio/demo/pride-prejudice-${otherLevelName}-${voice}-enhanced.mp3`;
+            preloadAudio(otherUrl);
+          }
+        }
+      }
+    }, 2000);
+
+    console.log(`🎵 Audio loaded: ${audioUrl}`);
+  }, [currentLevel, currentVoice, demoContent, preloadAudio, CEFR_LEVELS]);
+
+  // Handle play/pause
+  const handlePlayPause = useCallback(() => {
+    if (!audioRef.current) {
+      console.log('❌ No audio ref available');
+      return;
+    }
+
+    console.log(`🎵 Current audio src: ${audioRef.current.src}`);
+    console.log(`🎵 Audio ready state: ${audioRef.current.readyState}`);
+    console.log(`🎵 Audio network state: ${audioRef.current.networkState}`);
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+
+      trackDemoEvent('pause_clicked', {
+        level: currentLevel,
+        voice: currentVoice,
+        enhanced_mode: true,
+        current_time: currentTime.toFixed(1)
+      });
+    } else {
+      console.log(`🎵 Attempting to play: ${currentLevel} ${currentVoice}`);
+      // Ensure volume is set
+      audioRef.current.volume = 1.0;
+      audioRef.current.muted = false;
+
+      console.log(`🔊 Audio volume: ${audioRef.current.volume}`);
+      console.log(`🔇 Audio muted: ${audioRef.current.muted}`);
+      console.log(`⏰ Audio duration: ${audioRef.current.duration}`);
+
+      audioRef.current.play().then(() => {
+        console.log('✅ Audio playback started successfully');
+        console.log(`🎵 Current time: ${audioRef.current?.currentTime}`);
+        console.log(`🎵 Paused: ${audioRef.current?.paused}`);
+        setIsPlaying(true);
+      }).catch((error) => {
+        console.error('❌ Audio playback failed:', error);
+        console.log('📝 Error details:', {
+          name: error.name,
+          message: error.message,
+          code: error.code
+        });
+      });
+
+      trackDemoEvent('play_clicked', {
+        level: currentLevel,
+        voice: currentVoice,
+        enhanced_mode: true,
+        current_time: currentTime.toFixed(1)
+      });
+    }
+  }, [isPlaying, currentLevel, currentVoice, currentTime]);
+
+  // Time update and highlighting logic
+  const updateTimeAndHighlight = useCallback(() => {
+    if (!audioRef.current || !isPlaying) return;
+
+    const time = audioRef.current.currentTime;
     setCurrentTime(time);
 
-    const sentenceIndex = findCurrentSentence(time);
-    setCurrentSentenceIndex(sentenceIndex);
+    // Update sentence highlighting
+    const newSentenceIndex = findCurrentSentence(time);
+    if (newSentenceIndex !== currentSentenceIndex) {
+      setCurrentSentenceIndex(newSentenceIndex);
 
-    // Progressive CTA appears at 8 seconds (engagement sweet spot)
+      // Auto-scroll to current sentence
+      if (newSentenceIndex >= 0 && textContainerRef.current) {
+        const sentenceElements = textContainerRef.current.querySelectorAll('span[data-sentence-index]');
+        const currentElement = sentenceElements[newSentenceIndex] as HTMLElement;
+        if (currentElement) {
+          // Calculate if element is in viewport
+          const elementRect = currentElement.getBoundingClientRect();
+          const containerRect = textContainerRef.current.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+
+          // Check if element is below the fold or near bottom where controls are
+          const isNearBottom = elementRect.bottom > viewportHeight - (isMobile ? 150 : 120);
+          const isAboveView = elementRect.top < containerRect.top;
+
+          if (isNearBottom || isAboveView) {
+            currentElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+              inline: 'nearest'
+            });
+          }
+        }
+      }
+    }
+
+    // Progressive CTA trigger at 8 seconds
     if (time >= 8 && !showProgressiveCTA) {
       setShowProgressiveCTA(true);
-
-      // Track 8-second retention milestone (always enhanced)
       trackDemoEvent('retention_8s', {
         level: currentLevel,
+        voice: currentVoice,
         enhanced_mode: true,
-        sentence_index: sentenceIndex,
         engagement_time: time.toFixed(1)
       });
     }
 
-    // Track 15-second deep engagement (always enhanced)
+    // Deep engagement milestone at 15 seconds
     if (time >= 15) {
       trackDemoEvent('retention_15s', {
         level: currentLevel,
+        voice: currentVoice,
         enhanced_mode: true,
-        deep_engagement: true
+        engagement_time: time.toFixed(1)
       });
     }
 
-    // Auto-scroll every 8-10 seconds (progressive display)
-    if (sentenceIndex >= 0) {
-      const totalSentences = demoContent?.levels?.[currentLevel]?.sentences?.length || 0;
-
-      // Calculate which group of 3 sentences should be visible based on current sentence
-      const targetGroup = Math.floor(sentenceIndex / VISIBLE_SENTENCE_COUNT);
-      const maxStart = Math.max(0, totalSentences - VISIBLE_SENTENCE_COUNT);
-      const newStart = Math.min(targetGroup * VISIBLE_SENTENCE_COUNT, maxStart);
-
-      if (newStart !== visibleSentenceStart && newStart >= 0) {
-        setVisibleSentenceStart(newStart);
-      }
-    }
-
     timeUpdateRef.current = requestAnimationFrame(updateTimeAndHighlight);
-  }, [isPlaying, findCurrentSentence, demoContent, currentLevel, visibleSentenceStart]);
+  }, [isPlaying, findCurrentSentence, currentSentenceIndex, showProgressiveCTA, currentLevel, currentVoice, isMobile]);
 
   // Handle audio events
   useEffect(() => {
@@ -519,50 +565,97 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     );
   }
 
-  const currentLevelData = demoContent.levels[currentLevel];
-  const visibleSentences = currentLevelData?.sentences?.slice(
-    visibleSentenceStart,
-    visibleSentenceStart + VISIBLE_SENTENCE_COUNT
-  ) || [];
+  // Handle Original level case mapping
+  const levelKey = currentLevel === 'Original' ? 'original' : currentLevel;
+  const currentLevelData = demoContent.levels[levelKey];
+  const allSentences = currentLevelData?.sentences || [];
+  const fullText = currentLevelData?.text || '';
 
-  const totalSentences = currentLevelData?.sentences?.length || 0;
-  const canGoNext = visibleSentenceStart + VISIBLE_SENTENCE_COUNT < totalSentences;
-  const canGoPrev = visibleSentenceStart > 0;
-
-  // Render sentence with sentence-level highlighting
-  const renderSentence = (sentence: any, sentenceIndex: number) => {
-    const globalSentenceIndex = visibleSentenceStart + sentenceIndex;
-    const isCurrentSentence = currentSentenceIndex === globalSentenceIndex;
-
+  // Render continuous text with sentence highlighting and paragraph breaks
+  const renderContinuousText = () => {
     return (
-      <span
-        style={{
-          background: isCurrentSentence ? 'var(--accent-primary)' : 'transparent',
-          color: isCurrentSentence ? 'var(--bg-primary)' : 'inherit',
-          padding: isCurrentSentence ? '4px 8px' : '0',
-          borderRadius: isCurrentSentence ? '6px' : '0',
-          transition: 'all 0.3s ease',
-          fontWeight: isCurrentSentence ? '600' : 'inherit',
-          boxShadow: isCurrentSentence ? '0 4px 12px rgba(var(--accent-primary-rgb), 0.4)' : 'none',
-          display: 'inline-block'
-        }}
+      <div
+        id="book-reading-text"
+        className="reading-text text-[var(--text-primary)]"
+        role="main"
+        aria-label="Book content"
+        tabIndex={0}
       >
-        {sentence.text}
-      </span>
+        <div
+          data-content="true"
+          className="whitespace-pre-wrap text-[var(--text-primary)]"
+          style={{
+            textAlign: 'left',
+            color: 'var(--text-primary)',
+            fontSize: isMobile ? '22px' : '28px',
+            lineHeight: '1.5',
+            fontWeight: '400',
+            wordSpacing: 'normal'
+          }}
+        >
+          {allSentences.map((sentence: any, index: number) => {
+            const isCurrentSentence = currentSentenceIndex === index;
+            const isParagraphStart = index > 0 && index % 4 === 0;
+
+            return (
+              <React.Fragment key={index}>
+                {isParagraphStart && (
+                  <>
+                    <br />
+                    <br />
+                  </>
+                )}
+                <span
+                  data-sentence-index={index}
+                  style={{
+                    background: isCurrentSentence ? 'var(--accent-primary)' : 'transparent',
+                    color: isCurrentSentence ? 'var(--bg-primary)' : 'inherit',
+                    padding: isCurrentSentence ? '2px 6px' : '0',
+                    borderRadius: isCurrentSentence ? '4px' : '0',
+                    transition: 'all 0.3s ease',
+                    fontWeight: isCurrentSentence ? '500' : '400'
+                  }}
+                >
+                  {sentence.text}
+                </span>
+                {index < allSentences.length - 1 ? ' ' : ''}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
     );
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+    <>
+      <style>{`
+        #book-reading-text [data-content="true"] {
+          font-size: ${isMobile ? '22px' : '28px'} !important;
+          line-height: 1.5 !important;
+          font-weight: 400 !important;
+          word-spacing: normal !important;
+        }
+        #book-reading-text [data-content="true"] span {
+          font-size: ${isMobile ? '22px' : '28px'} !important;
+          line-height: 1.5 !important;
+          font-weight: 400 !important;
+          word-spacing: normal !important;
+          display: inline !important;
+        }
+      `}</style>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
       className={`interactive-reading-demo ${className}`}
       style={{
         background: 'linear-gradient(135deg, var(--bg-primary), var(--bg-secondary))',
         border: '2px solid var(--accent-secondary)',
         borderRadius: '16px',
         padding: 'clamp(16px, 4vw, 32px)',
+        paddingBottom: '20px',
         margin: 'clamp(16px, 4vw, 32px) auto',
         maxWidth: '800px',
         boxShadow: '0 8px 32px rgba(205, 127, 50, 0.15)',
@@ -597,62 +690,73 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         </p>
       </div>
 
-      {/* Text Display */}
-      <div style={{
-        background: 'var(--bg-primary)',
-        border: '1px solid var(--accent-secondary)',
-        borderRadius: '12px',
-        padding: '32px',
-        marginBottom: '24px',
-        minHeight: '200px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <div style={{
-          fontSize: 'clamp(16px, 3.5vw, 19px)',
-          lineHeight: '1.75',
-          color: 'var(--text-primary)',
-          textAlign: 'left',
-          maxWidth: '650px',
+      {/* Text Display - Natural Flow Container */}
+      <div
+        ref={textContainerRef}
+        style={{
+          marginBottom: '32px',
           width: '100%',
-          fontFamily: 'Source Serif Pro, serif'
-        }}>
-          {visibleSentences.map((sentence: any, index: number) => (
-            <motion.p
-              key={`${visibleSentenceStart}-${index}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.3 }}
-              style={{
-                marginBottom: index < visibleSentences.length - 1 ? '18px' : '0',
-                padding: '12px 20px',
-                background: 'rgba(var(--accent-primary-rgb), 0.03)',
-                border: '1px solid rgba(var(--accent-secondary-rgb), 0.15)',
-                borderRadius: '8px',
-                textAlign: 'left',
-                fontSize: 'inherit',
-                lineHeight: 'inherit',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              {renderSentence(sentence, index)}
-            </motion.p>
-          ))}
-        </div>
-
+          minHeight: isMobile ? '200px' : '250px',
+          paddingBottom: isMobile ? '120px' : '100px'
+        }}
+      >
+        {renderContinuousText()}
       </div>
 
-      {/* Controls */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '16px',
-        flexWrap: 'wrap',
-        marginBottom: '24px'
-      }}>
-        {/* Play Button - Mobile Optimized */}
+      {/* Unified Control Bar - Play + Aa Selector */}
+      <div
+        className="control-bar"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '12px',
+          marginBottom: '32px',
+          background: isMobile ? 'var(--bg-primary)' : 'rgba(var(--bg-primary-rgb), 0.95)',
+          backdropFilter: isMobile ? 'none' : 'blur(10px)',
+          border: '1px solid var(--accent-secondary)',
+          borderRadius: isMobile ? '0' : '16px',
+          padding: isMobile ? '16px 20px calc(16px + env(safe-area-inset-bottom))' : '12px 20px',
+          position: 'fixed',
+          bottom: isMobile ? '0' : '20px',
+          left: isMobile ? '0' : '50%',
+          right: isMobile ? '0' : 'auto',
+          transform: isMobile ? 'none' : 'translateX(-50%)',
+          margin: isMobile ? '0' : undefined,
+          zIndex: 1000,
+          boxShadow: isMobile ? '0 8px 24px rgba(0, 0, 0, 0.2)' : '0 4px 16px rgba(0, 0, 0, 0.15)'
+        }}
+      >
+        {/* Browse Library Button */}
+        <button
+          onClick={() => {
+            // Navigate to simplified books page using Next.js router
+            window.location.href = '/library/simplified';
+          }}
+          style={{
+            background: 'var(--bg-primary)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--accent-secondary)',
+            borderRadius: '12px',
+            padding: '14px 24px',
+            fontSize: '16px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            transition: 'all 0.2s ease',
+            minHeight: '44px',
+            minWidth: '100px',
+            touchAction: 'manipulation',
+            WebkitTapHighlightColor: 'transparent'
+          }}
+        >
+          <span style={{ fontSize: '18px' }}>📖</span>
+          Library
+        </button>
+
+        {/* Play Button */}
         <button
           onClick={handlePlayPause}
           style={{
@@ -660,18 +764,17 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
             color: 'var(--bg-primary)',
             border: 'none',
             borderRadius: '12px',
-            padding: 'clamp(14px, 3vw, 18px) clamp(28px, 6vw, 36px)',
-            fontSize: 'clamp(16px, 4vw, 18px)',
+            padding: '14px 24px',
+            fontSize: '16px',
             fontWeight: '600',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
-            gap: 'clamp(6px, 2vw, 10px)',
+            gap: '8px',
             transition: 'all 0.2s ease',
             minHeight: '44px',
-            minWidth: '120px',
+            minWidth: '100px',
             boxShadow: '0 4px 12px rgba(205, 127, 50, 0.3)',
-            // Mobile touch optimization
             touchAction: 'manipulation',
             WebkitTapHighlightColor: 'transparent'
           }}
@@ -680,46 +783,177 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
           {isPlaying ? 'Pause' : 'Play'}
         </button>
 
-        {/* Level Switcher */}
-        <div style={{
-          display: 'flex',
-          background: 'var(--bg-secondary)',
-          border: '1px solid var(--accent-secondary)',
-          borderRadius: '12px',
-          padding: '4px',
-          gap: '4px'
-        }}>
-          {(['A1', 'B1', 'original'] as const).map((level) => (
-            <button
-              key={level}
-              onClick={() => handleLevelChange(level)}
+        {/* Aa Level Selector Dropdown */}
+        <div
+          ref={dropdownRef}
+          style={{ position: 'relative' }}
+        >
+          <button
+            onClick={() => isMobile ? setShowSettingsModal(true) : setShowLevelDropdown(!showLevelDropdown)}
+            style={{
+              background: 'var(--bg-primary)',
+              color: 'var(--text-primary)',
+              border: '1px solid var(--accent-secondary)',
+              borderRadius: '12px',
+              padding: '14px 20px',
+              fontSize: '16px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              transition: 'all 0.2s ease',
+              minHeight: '44px',
+              minWidth: '80px',
+              touchAction: 'manipulation',
+              WebkitTapHighlightColor: 'transparent'
+            }}
+          >
+            <span style={{ fontSize: '18px' }}>Aa</span>
+            <span style={{ fontSize: '14px', opacity: 0.7 }}>{currentLevel}</span>
+            <span style={{
+              fontSize: '12px',
+              transform: showLevelDropdown ? 'rotate(0deg)' : 'rotate(180deg)',
+              transition: 'transform 0.2s ease'
+            }}>▲</span>
+          </button>
+
+          {/* Desktop Dropdown Menu */}
+          {!isMobile && showLevelDropdown && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.2 }}
               style={{
-                background: currentLevel === level ? 'var(--accent-primary)' : 'transparent',
-                color: currentLevel === level ? 'var(--bg-primary)' : 'var(--text-secondary)',
-                border: 'none',
-                borderRadius: '8px',
-                padding: 'clamp(10px, 2.5vw, 14px) clamp(16px, 4vw, 20px)',
-                fontSize: 'clamp(13px, 3.5vw, 15px)',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                minHeight: '44px',
-                minWidth: '44px',
-                // Mobile touch optimization
-                touchAction: 'manipulation',
-                WebkitTapHighlightColor: 'transparent'
+                position: 'absolute',
+                bottom: '100%',
+                left: '0',
+                right: '0',
+                background: 'var(--bg-primary)',
+                border: '1px solid var(--accent-secondary)',
+                borderRadius: '12px',
+                padding: '16px 16px 16px 16px',
+                marginBottom: '8px',
+                boxShadow: '0 -8px 24px rgba(0, 0, 0, 0.15)',
+                zIndex: 1000,
+                minWidth: '300px',
+                maxHeight: '320px'
               }}
             >
-              {level === 'original' ? 'Original' : level.toUpperCase()}
-            </button>
-          ))}
-        </div>
+              {/* Reading Levels Section */}
+              <div style={{ marginBottom: '16px' }}>
+                <div style={{
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  color: 'var(--text-secondary)',
+                  marginBottom: '8px'
+                }}>
+                  Reading Level
+                </div>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '8px'
+                }}>
+                  {CEFR_LEVELS.map((level) => (
+                    <button
+                      key={level}
+                      onClick={() => {
+                        handleLevelChange(level);
+                      }}
+                      style={{
+                        background: currentLevel === level ? 'var(--accent-primary)' : 'transparent',
+                        color: currentLevel === level ? 'var(--bg-primary)' : 'var(--text-primary)',
+                        border: '1px solid var(--accent-secondary)',
+                        borderRadius: '4px',
+                        padding: '6px 3px',
+                        fontSize: '11px',
+                        fontWeight: '500',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        textAlign: 'center',
+                        touchAction: 'manipulation'
+                      }}
+                    >
+                      {level}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-        {/* Enhanced voices always enabled - no toggle needed */}
+              {/* Voice Selection Section */}
+              <div>
+                <div style={{
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  color: 'var(--text-secondary)',
+                  marginBottom: '8px'
+                }}>
+                  Voice
+                </div>
+                <div style={{
+                  display: 'flex',
+                  gap: '8px'
+                }}>
+                  {(['sarah', 'daniel'] as const).map((voice) => (
+                    <button
+                      key={voice}
+                      onClick={() => {
+                        handleVoiceChange(voice);
+                      }}
+                      style={{
+                        flex: 1,
+                        background: currentVoice === voice ? 'var(--accent-primary)' : 'transparent',
+                        color: currentVoice === voice ? 'var(--bg-primary)' : 'var(--text-primary)',
+                        border: '1px solid var(--accent-secondary)',
+                        borderRadius: '4px',
+                        padding: '8px 6px',
+                        fontSize: '12px',
+                        fontWeight: '500',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        textAlign: 'center',
+                        touchAction: 'manipulation'
+                      }}
+                    >
+                      {voice === 'sarah' ? '👩 Sarah' : '👨 Daniel'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Apply Button */}
+              <div style={{
+                borderTop: '1px solid var(--accent-secondary)',
+                paddingTop: '12px',
+                marginTop: '12px'
+              }}>
+                <button
+                  onClick={() => setShowLevelDropdown(false)}
+                  style={{
+                    width: '100%',
+                    background: 'var(--accent-primary)',
+                    color: 'var(--bg-primary)',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '10px 16px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    touchAction: 'manipulation'
+                  }}
+                >
+                  Apply Settings
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </div>
       </div>
 
       {/* Progressive CTA - appears at 8s */}
-      {showProgressiveCTA && (
+      {false && showProgressiveCTA && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -753,10 +987,11 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
           </div>
           <button
             onClick={() => {
-              // Track progressive CTA click (primary conversion event, always enhanced)
+              // Track progressive CTA click (primary conversion event)
               trackDemoEvent('cta_clicked', {
                 cta_type: 'progressive',
                 level: currentLevel,
+                voice: currentVoice,
                 enhanced_mode: true,
                 engagement_time: currentTime.toFixed(1),
                 destination: 'start_reading'
@@ -779,7 +1014,6 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
               transform: 'translateY(0)',
               minHeight: '48px',
               minWidth: '200px',
-              // Mobile touch optimization
               touchAction: 'manipulation',
               WebkitTapHighlightColor: 'transparent'
             }}
@@ -797,44 +1031,86 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         </motion.div>
       )}
 
-      {/* Static CTA - always visible */}
-      <div style={{
-        textAlign: 'center'
-      }}>
-        <button
-          onClick={() => {
-            // Track static CTA click (always enhanced)
-            trackDemoEvent('cta_clicked', {
-              cta_type: 'static',
-              level: currentLevel,
-              enhanced_mode: true,
-              engagement_time: currentTime.toFixed(1),
-              destination: 'browse_library'
-            });
 
-            // TODO: Navigate to library page
-            console.log('📖 Browse Library clicked');
-          }}
-          style={{
-            background: 'transparent',
-            color: 'var(--text-accent)',
-            border: '2px solid var(--accent-secondary)',
-            borderRadius: '12px',
-            padding: 'clamp(12px, 3vw, 16px) clamp(20px, 5vw, 28px)',
-            fontSize: 'clamp(14px, 3.5vw, 17px)',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-            minHeight: '44px',
-            minWidth: '140px',
-            // Mobile touch optimization
-            touchAction: 'manipulation',
-            WebkitTapHighlightColor: 'transparent'
-          }}
-        >
-          📖 Browse Library
-        </button>
-      </div>
+      {/* Mobile Settings Modal */}
+      {showSettingsModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 sm:p-4">
+          <div className="bg-[var(--bg-primary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20 max-h-[90vh] overflow-y-auto">
+
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-[var(--accent-secondary)]">
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Reading Settings</h2>
+              <button
+                onClick={() => setShowSettingsModal(false)}
+                className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 space-y-6">
+
+              {/* Reading Level Selection */}
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Reading Level</label>
+                <div className="grid grid-cols-3 gap-2">
+                  {CEFR_LEVELS.map((level) => (
+                    <button
+                      key={level}
+                      onClick={() => {
+                        handleLevelChange(level);
+                      }}
+                      className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                        currentLevel === level
+                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                          : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--accent-secondary)]'
+                      }`}
+                    >
+                      {level}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Voice Selection */}
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Voice</label>
+                <div className="flex gap-2">
+                  {(['sarah', 'daniel'] as const).map((voice) => (
+                    <button
+                      key={voice}
+                      onClick={() => {
+                        handleVoiceChange(voice);
+                      }}
+                      className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all capitalize ${
+                        currentVoice === voice
+                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                          : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--accent-secondary)]'
+                      }`}
+                    >
+                      {voice === 'sarah' ? '👩 Sarah' : '👨 Daniel'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Apply Settings Footer */}
+              <div className="pt-4 border-t border-[var(--accent-secondary)]">
+                <button
+                  onClick={() => {
+                    setShowSettingsModal(false);
+                  }}
+                  className="w-full bg-[var(--accent-primary)] text-white py-3 px-4 rounded-md font-medium hover:bg-[var(--accent-secondary)] transition-all shadow-md"
+                >
+                  Apply Settings
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hidden Audio Element */}
       <audio
@@ -843,5 +1119,6 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         style={{ display: 'none' }}
       />
     </motion.div>
+    </>
   );
 }

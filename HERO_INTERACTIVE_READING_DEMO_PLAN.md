@@ -687,6 +687,207 @@ const variants = {
 
 ---
 
+## 🎯 Day 12-14: Full CEFR Coverage & Reading Page UX
+
+### **Day 12: Content Expansion & Simplification**
+- [ ] **12.1**: Generate A2 level simplification (15 mins)
+  - Target: ~500 Headwords, present/past tense, basic conjunctions
+  - Length: Similar to B1 but simpler vocabulary
+- [ ] **12.2**: Generate B2 level simplification (15 mins)
+  - Target: ~2200 Headwords, complex sentences, varied tenses
+  - Length: Between B1 and Original
+- [ ] **12.3**: Generate C1 level simplification (15 mins)
+  - Target: ~3800 Headwords, advanced structures, idioms
+  - Length: Close to Original with some simplification
+- [ ] **12.4**: Generate C2 level content (15 mins)
+  - Use Original text (no simplification needed)
+  - C2 = Original for authentic experience
+- [ ] **Test**: All 6 levels have appropriate content
+- [ ] **Verify**: Smooth progression from A1 to C2
+
+### **Day 13: Audio Generation Pipeline**
+- [ ] **13.1**: Generate Daniel enhanced audio for new levels (60 mins)
+  - A2: ~35-40 seconds (between A1 and B1)
+  - B2: ~50 seconds (between B1 and Original)
+  - C1: ~52 seconds (close to Original)
+  - C2: Use Original audio (54.047s)
+  - **Technical**: Use GPT-5 settings (stability: 0.45, similarity_boost: 0.8, style: 0.1)
+  - **Post-processing**: Male-optimized EQ (120Hz warmth, 3500Hz presence, 11kHz air)
+- [ ] **13.2**: Generate Sarah enhanced audio for new levels (60 mins)
+  - A2: Target female voice for variety
+  - B2: Alternate voice option
+  - C1: Premium female voice experience
+  - **Technical**: Same GPT-5 settings as Daniel
+  - **Post-processing**: Female-optimized EQ (150Hz warmth, 2800Hz presence, 10kHz air)
+- [ ] **13.3**: Validate drift <5% for all files (30 mins)
+  - Use ffprobe to measure actual duration
+  - Compare against baseline timings
+  - Ensure sentence sync remains accurate
+- [ ] **Test**: All audio files play correctly
+- [ ] **Verify**: Smooth voice quality across levels
+
+#### Technical Implementation Details:
+```javascript
+// Enhanced Audio Generation Settings (CRITICAL - DO NOT SKIP)
+const ENHANCED_SETTINGS = {
+  // ElevenLabs Voice IDs
+  daniel_voice_id: 'onwK4e9ZLuTAKqWW03F9',  // Daniel Premium
+  sarah_voice_id: 'EXAVITQu4vr4xnSDxMaL',   // Sarah Premium
+
+  // GPT-5 Validated Settings (proven <5% drift)
+  voice_settings: {
+    stability: 0.45,         // Enhanced clarity
+    similarity_boost: 0.8,   // Enhanced presence
+    style: 0.1,             // Subtle style
+    use_speaker_boost: true
+  },
+
+  // Post-Processing Pipeline (ffmpeg)
+  post_processing: {
+    daniel: [
+      'equalizer=f=120:width_type=h:width=2:g=1.5',    // Warmth
+      'equalizer=f=3500:width_type=h:width=2:g=1.5',   // Presence
+      'equalizer=f=11000:width_type=h:width=2:g=1.0',  // Air
+      'compand=attacks=0.1:decays=0.3:points=-90/-90|-20/-15|-10/-5|0/-2',
+      'highpass=f=80',
+      'lowpass=f=15000'
+    ],
+    sarah: [
+      'equalizer=f=150:width_type=h:width=2:g=1.2',    // Female warmth
+      'equalizer=f=2800:width_type=h:width=2:g=1.8',   // Female presence
+      'equalizer=f=10000:width_type=h:width=2:g=1.2',  // Female air
+      'compand=attacks=0.08:decays=0.25:points=-90/-90|-18/-12|-8/-4|0/-1.5',
+      'highpass=f=85',
+      'lowpass=f=14000'
+    ]
+  }
+};
+
+// Generation Script Structure
+// 1. Load text content for each level
+// 2. Call ElevenLabs API with enhanced settings
+// 3. Save raw audio temporarily
+// 4. Apply gender-specific post-processing
+// 5. Measure duration with ffprobe
+// 6. Validate <5% drift from target
+// 7. Save final enhanced audio file
+```
+
+### **Day 14: Reading Page UX Integration**
+- [ ] **14.1**: Redesign text display as single container (45 mins)
+  - Remove sentence separation/gaps
+  - Create continuous paragraph flow
+  - Enable native scrolling
+  - Show all 9 sentences immediately
+- [ ] **14.2**: Implement Aa level selector dropdown (45 mins)
+  - Match reading page design exactly
+  - Include all 6 CEFR levels (A1-C2)
+  - Add voice selector (Daniel/Sarah)
+  - Smooth dropdown animation
+- [ ] **14.3**: Create unified control bar (30 mins)
+  - Group Play button + Aa selector
+  - Match reading page control design
+  - Add glassmorphism effect
+  - Ensure 44px touch targets
+- [ ] **14.4**: Mobile sticky controls (30 mins)
+  - Fixed position at bottom (20px margin)
+  - Persist during scroll
+  - Z-index management
+  - Safe area insets for iOS
+- [ ] **Test**: Complete flow works on mobile/desktop
+- [ ] **Verify**: Matches reading page UX perfectly
+
+### Implementation Steps Breakdown:
+
+#### Step 12.1-12.4: Content Generation
+```json
+// Update pride-prejudice-demo.json with new levels
+{
+  "levels": {
+    "A1": { /* existing */ },
+    "A2": {
+      "text": "Full A2 simplified text",
+      "sentences": [/* 9 sentences */]
+    },
+    "B1": { /* existing */ },
+    "B2": {
+      "text": "Full B2 simplified text",
+      "sentences": [/* 9 sentences */]
+    },
+    "C1": {
+      "text": "Full C1 simplified text",
+      "sentences": [/* 9 sentences */]
+    },
+    "C2": {
+      "text": "Original text",
+      "sentences": [/* 9 original sentences */]
+    }
+  }
+}
+```
+
+#### Step 13.1-13.2: Audio File Structure
+```
+/public/audio/demo/
+├── pride-prejudice-a1-daniel-enhanced.mp3 ✓
+├── pride-prejudice-a1-sarah-enhanced.mp3 (new)
+├── pride-prejudice-a2-daniel-enhanced.mp3 (new)
+├── pride-prejudice-a2-sarah-enhanced.mp3 (new)
+├── pride-prejudice-b1-sarah-enhanced.mp3 ✓
+├── pride-prejudice-b1-daniel-enhanced.mp3 (new)
+├── pride-prejudice-b2-daniel-enhanced.mp3 (new)
+├── pride-prejudice-b2-sarah-enhanced.mp3 (new)
+├── pride-prejudice-c1-daniel-enhanced.mp3 (new)
+├── pride-prejudice-c1-sarah-enhanced.mp3 (new)
+├── pride-prejudice-c2-daniel-enhanced.mp3 (= original)
+└── pride-prejudice-c2-sarah-enhanced.mp3 (new)
+```
+
+#### Step 14.1: Single Container Text Display
+```typescript
+// Before: Separated sentences
+<div className="sentence-container">
+  <div className="sentence">...</div>
+  <div className="sentence">...</div>
+  <div className="sentence">...</div>
+</div>
+
+// After: Continuous flow (like reading page)
+<div className="text-container">
+  <p className="reading-text">
+    {sentences.map(s => s.text).join(' ')}
+  </p>
+</div>
+```
+
+#### Step 14.2-14.3: Unified Control Bar Design
+```typescript
+// Match reading page control bar
+<div className="control-bar">
+  <button className="play-button">
+    ▶️ Play
+  </button>
+  <button className="level-selector" onClick={openDropdown}>
+    Aa
+  </button>
+  {dropdownOpen && (
+    <div className="level-dropdown">
+      <div className="level-options">
+        {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(level => (
+          <button key={level}>{level}</button>
+        ))}
+      </div>
+      <div className="voice-options">
+        <button>Daniel</button>
+        <button>Sarah</button>
+      </div>
+    </div>
+  )}
+</div>
+```
+
+---
+
 ## 🎯 FINAL OPTIMIZATION: Enhanced Voices Only (Post-Launch)
 
 ### **Premium Experience Streamlining ✅**
