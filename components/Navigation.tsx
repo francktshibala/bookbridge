@@ -84,7 +84,17 @@ export default function Navigation() {
                       key={link.href}
                       href={link.href}
                       className={`nav-link-styled ${pathname === link.href ? 'nav-link-active' : 'nav-link-inactive'} ${link.isPremium ? 'nav-link-premium' : ''}`}
-                      style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        ...(link.label === 'Home' ? { padding: '8px 16px', fontSize: '15px', whiteSpace: 'nowrap', overflow: 'visible', lineHeight: 1.2 } : {}),
+                        ...(link.label === 'Home' && pathname === '/' ? {
+                          background: 'transparent',
+                          boxShadow: 'none',
+                          color: 'var(--accent-primary)'
+                        } : {})
+                      }}
                     >
                       {(link as any).icon && React.createElement((link as any).icon, { size: 16 })}
                       {link.label}
@@ -152,7 +162,7 @@ export default function Navigation() {
             </div>
 
             {/* Right side - Theme switcher, User menu and Auth buttons */}
-            <div className="desktop-user-menu items-center gap-4" style={{ minWidth: 'fit-content', paddingRight: '24px', marginRight: '16px', display: 'flex' }}>
+            <div className="desktop-user-menu items-center gap-4" style={{ minWidth: 'fit-content', paddingRight: '8px', marginRight: '8px', display: 'flex' }}>
               {/* Theme Switcher */}
               <div className="theme-switcher-nav" style={{ display: 'flex', alignItems: 'center' }}>
                 <ThemeSwitcher showLabels={false} size="sm" />
@@ -287,17 +297,17 @@ export default function Navigation() {
                     className="px-4 py-2 text-sm font-medium hover:text-purple-400 transition-all duration-300 whitespace-nowrap hover-lift-sm"
                     style={{ 
                       textDecoration: 'none',
-                      color: '#e2e8f0',
+                      color: 'var(--text-secondary)',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                       borderRadius: '8px'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(102, 126, 234, 0.1)';
-                      e.currentTarget.style.color = '#7c8ef8';
+                      e.currentTarget.style.background = 'var(--bg-hover)';
+                      e.currentTarget.style.color = 'var(--accent-primary)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = 'transparent';
-                      e.currentTarget.style.color = '#e2e8f0';
+                      e.currentTarget.style.color = 'var(--text-secondary)';
                     }}
                   >
                     Sign in

@@ -102,13 +102,13 @@ export default function HomePage() {
     }}>
 
       <div className="page-content theme-transition" style={{
-        padding: '4rem 2rem',
+        padding: '0 1rem 4rem 1rem',
         maxWidth: '1200px',
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '2.5rem'
+        gap: '0'
       }}>
         {/* Interactive Reading Demo - Main Hero */}
         <motion.section
@@ -117,12 +117,14 @@ export default function HomePage() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           aria-labelledby="interactive-demo"
           className="w-full"
+          style={{ marginTop: '0', paddingTop: '0' }}
         >
           <InteractiveReadingDemo />
         </motion.section>
 
         {/* Enhanced Books Grid */}
         <motion.section
+          style={{ marginTop: '2.5rem' }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.6 }}

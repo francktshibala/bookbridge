@@ -571,8 +571,49 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
   const allSentences = currentLevelData?.sentences || [];
   const fullText = currentLevelData?.text || '';
 
-  // Render continuous text with sentence highlighting and paragraph breaks
+  // Render continuous text with sentence highlighting and paragraph rhythm
   const renderContinuousText = () => {
+    const sentencesPerParagraph = 4;
+
+    const paragraphs: React.ReactElement[] = [];
+    for (let start = 0; start < allSentences.length; start += sentencesPerParagraph) {
+      const end = Math.min(start + sentencesPerParagraph, allSentences.length);
+      const paraSentences = [] as React.ReactElement[];
+      for (let i = start; i < end; i++) {
+        const sentence = allSentences[i];
+        const isCurrentSentence = currentSentenceIndex === i;
+        paraSentences.push(
+          <React.Fragment key={i}>
+            <span
+              data-sentence-index={i}
+              style={{
+                background: isCurrentSentence ? 'var(--accent-primary)' : 'transparent',
+                color: isCurrentSentence ? 'var(--bg-primary)' : 'inherit',
+                padding: isCurrentSentence ? '2px 6px' : '0',
+                borderRadius: isCurrentSentence ? '4px' : '0',
+                transition: 'all 0.3s ease',
+                fontWeight: isCurrentSentence ? '500' : '400'
+              }}
+            >
+              {sentence.text}
+            </span>
+            {i < end - 1 ? ' ' : ''}
+          </React.Fragment>
+        );
+      }
+
+      paragraphs.push(
+        <p
+          key={`p-${start}`}
+          style={{
+            margin: start === 0 ? '0 0 20px 0' : isMobile ? '20px 0' : '24px 0'
+          }}
+        >
+          {paraSentences}
+        </p>
+      );
+    }
+
     return (
       <div
         id="book-reading-text"
@@ -585,43 +626,17 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
           data-content="true"
           className="whitespace-pre-wrap text-[var(--text-primary)]"
           style={{
-            textAlign: 'left',
+            textAlign: 'justify',
             color: 'var(--text-primary)',
             fontSize: isMobile ? '22px' : '28px',
-            lineHeight: '1.5',
+            lineHeight: '1.7',
             fontWeight: '400',
-            wordSpacing: 'normal'
+            wordSpacing: 'normal',
+            hyphens: 'auto',
+            overflowWrap: 'anywhere'
           }}
         >
-          {allSentences.map((sentence: any, index: number) => {
-            const isCurrentSentence = currentSentenceIndex === index;
-            const isParagraphStart = index > 0 && index % 4 === 0;
-
-            return (
-              <React.Fragment key={index}>
-                {isParagraphStart && (
-                  <>
-                    <br />
-                    <br />
-                  </>
-                )}
-                <span
-                  data-sentence-index={index}
-                  style={{
-                    background: isCurrentSentence ? 'var(--accent-primary)' : 'transparent',
-                    color: isCurrentSentence ? 'var(--bg-primary)' : 'inherit',
-                    padding: isCurrentSentence ? '2px 6px' : '0',
-                    borderRadius: isCurrentSentence ? '4px' : '0',
-                    transition: 'all 0.3s ease',
-                    fontWeight: isCurrentSentence ? '500' : '400'
-                  }}
-                >
-                  {sentence.text}
-                </span>
-                {index < allSentences.length - 1 ? ' ' : ''}
-              </React.Fragment>
-            );
-          })}
+          {paragraphs}
         </div>
       </div>
     );
@@ -632,13 +647,16 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
       <style>{`
         #book-reading-text [data-content="true"] {
           font-size: ${isMobile ? '22px' : '28px'} !important;
-          line-height: 1.5 !important;
+          line-height: 1.7 !important;
           font-weight: 400 !important;
           word-spacing: normal !important;
+          text-align: justify !important;
+          hyphens: auto !important;
+          overflow-wrap: anywhere !important;
         }
         #book-reading-text [data-content="true"] span {
           font-size: ${isMobile ? '22px' : '28px'} !important;
-          line-height: 1.5 !important;
+          line-height: 1.7 !important;
           font-weight: 400 !important;
           word-spacing: normal !important;
           display: inline !important;
@@ -651,43 +669,66 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         transition={{ duration: 0.6 }}
       className={`interactive-reading-demo ${className}`}
       style={{
-        background: 'linear-gradient(135deg, var(--bg-primary), var(--bg-secondary))',
-        border: '2px solid var(--accent-secondary)',
-        borderRadius: '16px',
-        padding: 'clamp(16px, 4vw, 32px)',
-        paddingBottom: '20px',
-        margin: 'clamp(16px, 4vw, 32px) auto',
+        background: 'transparent',
+        border: 'none',
+        borderRadius: '0',
+        padding: '0',
+        paddingBottom: '0',
+        margin: '0 auto 0 auto',
         maxWidth: '800px',
-        boxShadow: '0 8px 32px rgba(205, 127, 50, 0.15)',
+        boxShadow: 'none',
         position: 'relative'
       }}
     >
-      {/* Header - A/B Test Variants */}
-      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-        <h2 style={{
-          fontSize: 'clamp(20px, 5vw, 28px)',
-          fontWeight: '700',
+      {/* Header - single concise heading */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '24px',
+        padding: isMobile ? '0 16px' : '0 24px'
+      }}>
+        <h1 className="neo-classic-title" style={{
+          fontSize: 'clamp(24px, 6vw, 40px)',
+          fontWeight: 800,
           color: 'var(--text-accent)',
-          marginBottom: '8px',
+          margin: '0',
+          lineHeight: '1.2',
+          letterSpacing: '-0.02em'
+        }}>
+          Try Our Smart Reading Demo — Find Your Perfect Reading Level
+        </h1>
+      </div>
+
+      {/* Book Title */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '16px',
+        padding: '0 16px'
+      }}>
+        <h3 style={{
+          fontSize: 'clamp(18px, 4vw, 24px)',
+          fontWeight: '600',
+          color: 'var(--text-accent)',
+          margin: '0 0 4px 0',
           fontFamily: 'Playfair Display, serif'
         }}>
-          {abTestVariant === 'emotional_hook'
-            ? "❤️ Fall in love with English through timeless stories"
-            : abTestVariant === 'enhanced_default'
-            ? "🎨 Experience premium AI-enhanced storytelling"
-            : "📖 Hear and see how English becomes easier"
-          }
-        </h2>
+          {demoContent?.title}
+        </h3>
         <p style={{
-          fontSize: '16px',
+          fontSize: 'clamp(14px, 3vw, 16px)',
           color: 'var(--text-secondary)',
-          margin: '0'
+          margin: '0',
+          fontStyle: 'italic'
         }}>
-          {abTestVariant === 'emotional_hook'
-            ? "Start your journey with Jane Austen's masterpiece"
-            : `${demoContent.title} by ${demoContent.author}`
-          }
+          by {demoContent?.author}
         </p>
+        {/* Subtle divider */}
+        <div style={{
+          height: '1px',
+          background: 'var(--border-light)',
+          opacity: 0.6,
+          margin: '12px auto 0 auto',
+          maxWidth: '720px'
+        }} />
       </div>
 
       {/* Text Display - Natural Flow Container */}
@@ -697,7 +738,10 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
           marginBottom: '32px',
           width: '100%',
           minHeight: isMobile ? '200px' : '250px',
-          paddingBottom: isMobile ? '120px' : '100px'
+          paddingBottom: isMobile ? '120px' : '100px',
+          padding: isMobile ? '0 12px' : '0 16px',
+          maxWidth: '720px',
+          margin: '0 auto'
         }}
       >
         {renderContinuousText()}
@@ -730,8 +774,8 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         {/* Browse Library Button */}
         <button
           onClick={() => {
-            // Navigate to simplified books page using Next.js router
-            window.location.href = '/library/simplified';
+            // Navigate to featured books (simplified books) page
+            window.location.href = '/featured-books';
           }}
           style={{
             background: 'var(--bg-primary)',
