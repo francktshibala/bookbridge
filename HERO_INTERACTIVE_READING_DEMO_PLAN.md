@@ -1038,4 +1038,135 @@ const audioUrl = `/audio/demo/pride-prejudice-${level}-${voice}-enhanced.mp3`;
 
 ---
 
-**Next Steps**: Begin Phase 1 implementation with component architecture and demo content creation, following Master Prevention guidelines religiously.
+## 🚨 PRODUCTION DEPLOYMENT LESSONS (October 2025 Implementation)
+
+### Critical Discovery: Git .gitignore Blocking Audio Deployment
+
+**Problem Encountered**: Audio files generated successfully but failed in production with "NotSupportedError: The element has no supported sources"
+
+**Root Cause**: `.gitignore` contained `/public/audio/` rule that prevented ALL audio files from being deployed, even when force-added to Git
+
+**Solution**: Add exceptions to `.gitignore` for demo audio:
+```gitignore
+# Audio files (using CDN)
+/public/audio/
+# Exception for demo audio files
+!/public/audio/demo/
+!/public/audio/demo/**
+```
+
+### Audio File Deployment Process
+
+**MANDATORY Steps for Demo Audio Deployment**:
+
+1. **Generate Audio with Environment Variables**:
+```bash
+# Load from .env.local (note the quotes handling)
+export ELEVENLABS_API_KEY="your_key_here" && node scripts/generate-demo-audio.js
+```
+
+2. **Force Add Audio Files to Git** (required due to .gitignore):
+```bash
+git add -f public/audio/demo/*.mp3
+```
+
+3. **Build Locally Before Push** (CRITICAL):
+```bash
+npm run build  # Must succeed before pushing
+```
+
+4. **Commit with Comprehensive Message**:
+```bash
+git commit -m "feat: Add audio files with descriptions"
+git push origin main
+```
+
+### Enhanced Audio Generation Requirements
+
+**Full Sophistication Pipeline** (for premium quality):
+
+1. **GPT-5 Enhanced Settings**:
+```javascript
+const ENHANCED_SETTINGS = {
+  stability: 0.45,         // Enhanced clarity (not 0.5 default)
+  similarity_boost: 0.8,   // Enhanced presence (not 0.75 default)
+  style: 0.1,             // Subtle style (not 0.0 default)
+  use_speaker_boost: true
+};
+```
+
+2. **Gender-Specific Post-Processing**:
+```javascript
+// Female voices (Sarah)
+const FEMALE_EQ = {
+  warmth: 150Hz,    // Higher than male (120Hz)
+  presence: 2800Hz, // Female presence frequency
+  air: 10000Hz     // Female air frequency
+};
+
+// Male voices (Daniel)
+const MALE_EQ = {
+  warmth: 120Hz,    // Lower frequency warmth
+  presence: 3500Hz, // Male presence frequency
+  air: 11000Hz     // Male air frequency
+};
+```
+
+3. **SSML Enhancements** (timing-safe only):
+```xml
+<speak>
+  <prosody rate="1.0" pitch="+0.5st">
+    <!-- Never change rate, only pitch -->
+  </prosody>
+</speak>
+```
+
+### Troubleshooting Production Issues
+
+**Common Failures and Fixes**:
+
+1. **0-byte files**: File corrupted during generation
+   - Solution: Regenerate with proper error handling
+
+2. **Duplicate files**: Same audio for different voices
+   - Solution: Check voice_id is correctly set per voice
+
+3. **GitHub shows 0/34 commits**: Large files blocking push
+   - Solution: Files may still deploy despite UI (check production)
+
+4. **"NotSupportedError" in browser**: Audio files not deployed
+   - Solution: Check .gitignore exceptions and force-add files
+
+### Validation Checklist
+
+**Before Deployment**:
+- [ ] Audio files exist locally and play correctly
+- [ ] .gitignore has exceptions for demo audio
+- [ ] Build succeeds locally (npm run build)
+- [ ] Audio URLs match component expectations (enhanced suffix)
+- [ ] Drift validation <5% for all files
+
+**After Deployment**:
+- [ ] Check browser Network tab for 200 status on audio files
+- [ ] Verify Content-Type: audio/mpeg in response headers
+- [ ] Test all CEFR levels with both voices
+- [ ] Confirm word highlighting syncs with audio
+
+### Scripts Created for Future Use
+
+1. **`scripts/generate-demo-audio.js`**: Basic audio generation with Solution 1
+2. **`scripts/fix-missing-sarah-audio.js`**: Targeted regeneration for specific files
+3. **`scripts/generate-sophisticated-sarah-audio.js`**: Full enhancement pipeline
+
+**Usage Pattern**:
+```bash
+# For missing files with full sophistication
+export ELEVENLABS_API_KEY="..." && node scripts/generate-sophisticated-sarah-audio.js
+
+# For basic generation
+export ELEVENLABS_API_KEY="..." && node scripts/generate-demo-audio.js
+```
+
+---
+
+**Next Steps**: Begin Phase 1 implementation with component architecture and demo content creation, following Master Prevention guidelines and Production Deployment Lessons religiously.
