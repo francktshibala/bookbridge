@@ -9,6 +9,7 @@ import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
+import { useGlobalAudio } from '@/contexts/GlobalAudioContext';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -625,6 +626,9 @@ const GREAT_GATSBY_CHAPTERS = [
 ];
 
 export default function FeaturedBooksPage() {
+  // Global audio context
+  const globalAudio = useGlobalAudio();
+
   // Book selection state
   const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
   const [showBookSelection, setShowBookSelection] = useState(true);
@@ -1171,6 +1175,43 @@ export default function FeaturedBooksPage() {
       audioManagerRef.current?.destroy();
     };
   }, [contentMode, cefrLevel, selectedBook]);
+
+  // Sync audio manager with global context
+  useEffect(() => {
+    if (audioManagerRef.current) {
+      globalAudio.setAudioManager(audioManagerRef.current);
+    }
+  }, [audioManagerRef.current]);
+
+  // Sync book metadata with global context
+  useEffect(() => {
+    if (selectedBook) {
+      globalAudio.setCurrentBook({
+        id: selectedBook.id,
+        title: selectedBook.title,
+        author: selectedBook.author,
+        coverUrl: undefined, // Add cover URL if available
+      });
+    }
+  }, [selectedBook]);
+
+  // Sync playback state with global context
+  useEffect(() => {
+    globalAudio.updatePlaybackState(isPlaying, !isPlaying && playbackTime > 0);
+  }, [isPlaying, playbackTime]);
+
+  // Sync sentence and chapter info with global context
+  useEffect(() => {
+    globalAudio.updateCurrentSentence(currentSentenceIndex, 0);
+  }, [currentSentenceIndex]);
+
+  useEffect(() => {
+    if (typeof currentChapter === 'string') {
+      globalAudio.setCurrentChapter(currentChapter);
+    } else if (typeof currentChapter === 'number') {
+      globalAudio.setCurrentChapter(`Chapter ${currentChapter}`);
+    }
+  }, [currentChapter]);
 
   // Audio playback functions
   const findBundleForSentence = (sentenceIndex: number): BundleData | null => {

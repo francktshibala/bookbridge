@@ -19,6 +19,8 @@ import { PerformanceProvider } from '@/components/PerformanceProvider';
 import DeploymentInitializer from '@/components/DeploymentInitializer';
 import { PWAAnalyticsProvider } from '@/components/PWAAnalyticsProvider';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { GlobalAudioProvider } from '@/contexts/GlobalAudioContext';
+import MiniPlayer from '@/components/audio/MiniPlayer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -106,13 +108,14 @@ export default function RootLayout({
         />
         
         <ThemeProvider>
-          <SimpleAuthProvider>
-            <AccessibilityProvider>
-              <KeyboardNavigationProvider>
-                <VoiceNavigationWrapper>
-                  <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
-                    <PWAAnalyticsProvider enableTracking={true}>
-                      <OnboardingManager enableAutoOnboarding={true}>
+          <GlobalAudioProvider>
+            <SimpleAuthProvider>
+              <AccessibilityProvider>
+                <KeyboardNavigationProvider>
+                  <VoiceNavigationWrapper>
+                    <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
+                      <PWAAnalyticsProvider enableTracking={true}>
+                        <OnboardingManager enableAutoOnboarding={true}>
                 {/* Service Worker Registration */}
                 <ServiceWorkerRegistration />
                 
@@ -142,19 +145,23 @@ export default function RootLayout({
                 </main>
                 
                 <ConditionalFooter />
-                
+
+                {/* Global Mini Player */}
+                <MiniPlayer />
+
                 {/* PWA Install Prompt */}
                 <InstallPrompt />
                 
                 {/* Deployment Initialization */}
                 <DeploymentInitializer />
-                      </OnboardingManager>
-                    </PWAAnalyticsProvider>
-                  </PerformanceProvider>
-                </VoiceNavigationWrapper>
-              </KeyboardNavigationProvider>
-            </AccessibilityProvider>
-          </SimpleAuthProvider>
+                        </OnboardingManager>
+                      </PWAAnalyticsProvider>
+                    </PerformanceProvider>
+                  </VoiceNavigationWrapper>
+                </KeyboardNavigationProvider>
+              </AccessibilityProvider>
+            </SimpleAuthProvider>
+          </GlobalAudioProvider>
         </ThemeProvider>
       </body>
     </html>
