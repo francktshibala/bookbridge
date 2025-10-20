@@ -3,6 +3,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
+// Feature flags for gradual deployment
+const isDemoEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_DEMO !== 'false';
+const isAudioEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_AUDIO === 'true';
+const isHighlightingEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_HIGHLIGHTING === 'true';
+const isMobileControlsEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_MOBILE_CONTROLS === 'true';
+const isAnalyticsEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_ANALYTICS === 'true';
+
 // A/B Testing variants
 type ABTestVariant = 'baseline' | 'enhanced_default' | 'emotional_hook';
 
@@ -33,6 +40,8 @@ const getABTestVariant = (): ABTestVariant => {
 
 // Analytics tracking for demo events
 const trackDemoEvent = (eventName: string, properties: Record<string, any> = {}) => {
+  if (!isAnalyticsEnabled) return;
+
   const variant = typeof window !== 'undefined' ? getABTestVariant() : 'baseline';
 
   const eventData = {
@@ -70,6 +79,10 @@ interface InteractiveReadingDemoProps {
 }
 
 export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDemoProps) {
+  // Early return if demo is disabled
+  if (!isDemoEnabled) {
+    return null;
+  }
   const [currentLevel, setCurrentLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2' | 'Original'>('A1');
   const [currentVoice, setCurrentVoice] = useState<'daniel' | 'sarah'>('sarah');
   const [isPlaying, setIsPlaying] = useState(false);
@@ -251,7 +264,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
 
   // Preload audio files
   const preloadAudio = useCallback((audioUrl: string) => {
-    if (audioPreloaded.has(audioUrl)) return;
+    if (!isAudioEnabled || audioPreloaded.has(audioUrl)) return;
 
     const audio = new Audio();
     audio.preload = 'metadata';
@@ -336,6 +349,11 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
 
   // Handle play/pause
   const handlePlayPause = useCallback(() => {
+    if (!isAudioEnabled) {
+      console.log('🔇 Audio disabled by feature flag');
+      return;
+    }
+
     if (!audioRef.current) {
       console.log('❌ No audio ref available');
       return;
@@ -395,13 +413,14 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     const time = audioRef.current.currentTime;
     setCurrentTime(time);
 
-    // Update sentence highlighting
-    const newSentenceIndex = findCurrentSentence(time);
-    if (newSentenceIndex !== currentSentenceIndex) {
-      setCurrentSentenceIndex(newSentenceIndex);
+    // Update sentence highlighting (only if highlighting is enabled)
+    if (isHighlightingEnabled) {
+      const newSentenceIndex = findCurrentSentence(time);
+      if (newSentenceIndex !== currentSentenceIndex) {
+        setCurrentSentenceIndex(newSentenceIndex);
 
-      // Auto-scroll to current sentence
-      if (newSentenceIndex >= 0 && textContainerRef.current) {
+        // Auto-scroll to current sentence
+        if (newSentenceIndex >= 0 && textContainerRef.current) {
         const sentenceElements = textContainerRef.current.querySelectorAll('span[data-sentence-index]');
         const currentElement = sentenceElements[newSentenceIndex] as HTMLElement;
         if (currentElement) {
@@ -421,6 +440,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
               inline: 'nearest'
             });
           }
+        }
         }
       }
     }

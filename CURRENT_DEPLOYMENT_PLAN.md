@@ -266,7 +266,214 @@ npx prisma migrate rollback
 
 ---
 
-## NEW: Neo-Classic UI Transformation Deployment Plan
+## LATEST: Hero Interactive Demo Deployment Plan
+
+### Current Status (October 2025)
+- **Date**: October 20, 2025
+- **Current Branch**: `main` (includes merged `feature/hero-interactive-demo`)
+- **Production Status**: Continuous reading features + Neo-Classic UI deployed and stable
+- **Next**: Hero Interactive Reading Demo ready for incremental deployment
+
+### What Was Completed
+✅ **Complete Hero Interactive Reading Demo**:
+- Full-featured demo component with all 6 CEFR levels (A1-C2) + Original
+- Dual voice support (Daniel & Sarah) with ElevenLabs integration
+- Real-time sentence highlighting with audio synchronization
+- Mobile-first responsive design with sticky controls
+- Navigation improvements and spacing fixes
+- Audio generation system with <5% drift validation
+- Enhanced UI/UX with theme-aware design
+
+---
+
+## Hero Demo Incremental Deployment Strategy
+
+### Phase 1: Core Infrastructure (Day 1 - Low Risk)
+**Target**: Foundation files and data without interactive features
+**Reasoning**: Scripts and data files have minimal impact, easy rollback
+
+```bash
+# Step 1.1: Verify build passes
+npm run build
+# Expected: ✅ Build succeeds (confirmed)
+
+# Step 1.2: Create infrastructure-only branch
+git checkout main
+git checkout -b deploy/hero-infrastructure
+git push origin deploy/hero-infrastructure
+
+# Step 1.3: Cherry-pick infrastructure changes
+# Scripts and data only, no UI components yet
+```
+
+**Files in Phase 1**:
+- `scripts/generate-all-levels.js` - Content generation
+- `scripts/generate-complete-audio.js` - Audio generation
+- `public/data/demo/pride-prejudice-demo.json` - Demo content
+- Audio files (if generated)
+
+**Success Criteria**:
+- [ ] Scripts run without errors
+- [ ] Demo data loads correctly
+- [ ] No impact on existing functionality
+- [ ] Build continues to pass
+
+---
+
+### Phase 2: Basic Demo Component (Day 2 - Medium Risk)
+**Target**: Hero component structure without advanced features
+**Reasoning**: Component shell with basic functionality, audio disabled
+
+```bash
+# Step 2.1: Create demo component branch
+git checkout main
+git checkout -b deploy/hero-basic-component
+
+# Step 2.2: Deploy with audio features disabled
+# Use feature flags to control audio integration
+```
+
+**Files in Phase 2**:
+- `components/hero/InteractiveReadingDemo.tsx` (basic version)
+- `components/hero/LevelSwitcher.tsx`
+- `components/hero/TextDisplay.tsx`
+- `app/page.tsx` (homepage integration)
+
+**Success Criteria**:
+- [ ] Hero demo appears on homepage
+- [ ] Level switching works
+- [ ] Text displays correctly
+- [ ] No audio features active yet
+- [ ] Mobile responsiveness maintained
+
+---
+
+### Phase 3: Audio Integration (Day 3-4 - Higher Risk)
+**Target**: Full audio playback and highlighting system
+**Reasoning**: Most complex features with potential performance impact
+
+```bash
+# Step 3.1: Create audio features branch
+git checkout main
+git checkout -b deploy/hero-audio-complete
+
+# Step 3.2: Enable audio features gradually
+# Monitor performance and error rates closely
+```
+
+**Files in Phase 3**:
+- `components/hero/AudioControls.tsx`
+- Complete `InteractiveReadingDemo.tsx` with audio
+- Audio enhancement and synchronization features
+
+**Success Criteria**:
+- [ ] Audio preloading works across devices
+- [ ] Sentence highlighting synchronizes with audio
+- [ ] Mobile audio controls function properly
+- [ ] Performance remains acceptable (<3s load)
+- [ ] Error handling for audio failures works
+- [ ] Cross-browser compatibility maintained
+
+---
+
+### Phase 4: Navigation & Polish (Day 5-6 - Final Integration)
+**Target**: Navigation improvements and final UI polish
+**Reasoning**: Final touches affecting overall user experience
+
+```bash
+# Step 4.1: Create navigation polish branch
+git checkout main
+git checkout -b deploy/hero-navigation-final
+
+# Step 4.2: Deploy final navigation improvements
+```
+
+**Files in Phase 4**:
+- `components/Navigation.tsx` - Enhanced navigation
+- `app/layout.tsx` - Spacing improvements
+- Final UI polish and theme integration
+
+**Success Criteria**:
+- [ ] Navigation improvements function correctly
+- [ ] Home tab text cutoff fixed
+- [ ] Library button navigates properly
+- [ ] Overall user experience enhanced
+- [ ] No regressions in existing functionality
+
+---
+
+## Feature Flag Strategy for Hero Demo
+
+### Environment Variables:
+```bash
+# Hero demo control
+NEXT_PUBLIC_ENABLE_HERO_DEMO=true|false
+NEXT_PUBLIC_ENABLE_HERO_AUDIO=true|false
+NEXT_PUBLIC_ENABLE_HERO_HIGHLIGHTING=true|false
+NEXT_PUBLIC_ENABLE_HERO_MOBILE_CONTROLS=true|false
+
+# Performance monitoring
+NEXT_PUBLIC_ENABLE_HERO_ANALYTICS=true|false
+```
+
+### Implementation:
+```typescript
+// In components/hero/InteractiveReadingDemo.tsx
+const isDemoEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_DEMO === 'true'
+const isAudioEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_AUDIO === 'true'
+const isHighlightingEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_HIGHLIGHTING === 'true'
+```
+
+---
+
+## Emergency Rollback for Hero Demo
+
+### Quick Rollback Options:
+```bash
+# Option 1: Feature flag disable (fastest)
+export NEXT_PUBLIC_ENABLE_HERO_DEMO=false
+export NEXT_PUBLIC_ENABLE_HERO_AUDIO=false
+
+# Option 2: Component-level disable
+# Edit app/page.tsx to comment out InteractiveReadingDemo
+
+# Option 3: Branch revert
+git checkout main
+git revert [hero-demo-commit-hash]
+git push origin main
+```
+
+### Rollback Triggers:
+- Homepage load time > 5 seconds
+- Audio loading failures > 10%
+- Mobile functionality broken
+- Error rate > 2%
+- Memory usage spike > 50%
+
+---
+
+## Monitoring for Hero Demo
+
+### Key Metrics:
+- [ ] Homepage load time (target: <3s)
+- [ ] Audio file load time (target: <5s)
+- [ ] Demo engagement rate
+- [ ] Mobile vs desktop performance
+- [ ] Error rates and crash reports
+- [ ] Memory usage during audio playback
+
+### Testing Checklist (Each Phase):
+- [ ] `npm run build` passes ✅
+- [ ] `npm run lint` clean
+- [ ] TypeScript compilation successful
+- [ ] Mobile responsiveness verified
+- [ ] Cross-browser testing (Chrome, Safari, Firefox)
+- [ ] Audio functionality on different devices
+- [ ] Theme switching with demo active
+
+---
+
+## PREVIOUS: Neo-Classic UI Transformation Deployment Plan
 
 ### Current Status (October 2025)
 - **Date**: October 19, 2025
