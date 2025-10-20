@@ -12,6 +12,18 @@
 - **Purpose**: Stable production code
 - **Usage**: Never commit directly, only merge tested features
 - **Status**: Latest stable release
+- **Latest Addition**: Hero Interactive Reading Demo (October 2025)
+
+#### **`feature/hero-interactive-demo` - Marketing Demo (Completed)**
+- **Purpose**: Interactive reading demo for homepage marketing
+- **Status**: ✅ Merged to main (October 2025)
+- **Implementation Plan**: `HERO_INTERACTIVE_READING_DEMO_PLAN.md` - Complete step-by-step execution record
+- **Key Components**:
+  - `components/hero/InteractiveReadingDemo.tsx` - Main demo component with feature flags
+  - `components/hero/InteractiveReadingDemoComplete.tsx` - Full-featured version
+  - `public/audio/demo/` - Demo audio files for all CEFR levels (A1-C2, Original)
+  - `public/data/demo/pride-prejudice-demo.json` - Demo content data
+- **Features**: 7 CEFR levels, dual voice (Daniel/Sarah), real-time highlighting, mobile-responsive
 
 #### **`fix/audio-flow-interruptions` - Current Books Tactical Improvements**
 - **Purpose**: Implementing current books bridge solution (4-week plan, $12.7K)
@@ -100,6 +112,10 @@ cat NEO_CLASSIC_TRANSFORMATION_PLAN.md
 - **Component Coverage**: Authentication pages, collection pages, reading experience, navigation, and AI chat modal
 - **Deployment Strategy**: 4-phase incremental rollout (Auth → Collections → Reading → Navigation)
 - **Files Modified**: 20+ components transformed, -720 net lines (optimized codebase)
+
+### **UI_UX_TRANSFORMATION_PLAN.md**
+**Location**: `/Users/user/bookbridge/bookbridge/UI_UX_TRANSFORMATION_PLAN.md`
+**Description**: Strategic UI/UX roadmap focusing on three critical features for reading experience enhancement. **PRIORITY FEATURES**: Reading Position Memory (Netflix-style resume functionality across sessions), Global Mini Player (Spotify-style persistent audio while browsing), and Offline Mode (Netflix Downloads for 40% of ESL learners with poor connectivity). Documents comprehensive feature wishlist with 31 total features but strategically prioritizes only the 3 most critical for user retention. Contains detailed implementation specs, expected outcomes (3-second engagement, 60% longer sessions), and clear postponement markers for non-essential features. Essential guide for maintaining focus on core reading experience improvements rather than peripheral features.
 
 ---
 

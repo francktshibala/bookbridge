@@ -60,39 +60,61 @@ This UI/UX plan focuses on **functionality and user experience features**. For v
 
 **Next**: Enable theme switcher in navigation and begin progressive page transformations per implementation plan.
 
-#### 1.2 Global Mini Player
+---
+
+## 🚨 **CRITICAL FEATURES TO ADD FOR READING PAGE UX/UI**
+
+**PRIORITY**: Implement ONLY these 3 features. All other features marked as POSTPONED below.
+
+**Key Feature Names**:
+1. **Reading Position Memory** (Session Persistence)
+2. **Global Mini Player**
+3. **Offline Mode**
+
+### 1.1 Reading Position Memory (Session Persistence)
+**Component**: `hooks/useReadingSession.tsx` + localStorage/database integration
+**Description**: When users leave a book page and return (even after page refresh), the app automatically:
+- Restores exact sentence position where they left off
+- Resumes audio from that exact point with proper highlighting
+- Maintains reading settings (speed, voice, chapter)
+- Shows subtle "Resuming from..." notification with option to start from beginning
+
+**End Result**: Like Netflix - open any book and instantly continue exactly where you stopped, creating seamless reading sessions across days/weeks.
+
+### 1.2 Global Mini Player
 **Component**: `components/audio/MiniPlayer.tsx`
-```typescript
-// Features:
-- Persistent across navigation (reuse existing AudioBookPlayer state)
-- Current book title & progress
-- Play/pause, skip controls (leverage BundleAudioManager)
-- Minimizable to corner
-// Performance: Single HTMLAudioElement, existing requestAnimationFrame monitor
-```
-**Value**: Users can browse while listening, 3x more exploration
-**Implementation**:
-1. Lift existing `AudioBookPlayer` state to global context
-2. Preserve bundle preloading and scaled timings
-3. Maintain position saving in localStorage/local DB
-4. Reuse hysteresis patterns from BundleAudioManager
-5. **Feature Flag**: `ENABLE_MINI_PLAYER` for safe rollout
+**Description**: Persistent floating audio player that appears when reading any book and stays visible while browsing:
+- Shows current book title, chapter, and progress ring
+- Play/pause, skip forward/back 15 seconds, speed controls
+- Minimizes to small corner widget when not in use
+- Click to return to full reading page at exact position
+- Works across all navigation (library, search, settings)
 
-#### 1.3 Text Virtualization
-**Component**: Update existing reader
-```typescript
-// Enable @tanstack/react-virtual for long texts
-- Renders only visible sentences
-- Smooth scrolling maintained
-- Reduces memory by 80%
-```
-**Value**: Enables books with 10,000+ sentences without lag
-**Implementation**:
-1. Import existing @tanstack/react-virtual
-2. Wrap sentence list in virtualizer
-3. Maintain scroll position on navigation
+**End Result**: Like Spotify - audio continues seamlessly while exploring the app, enabling discovery without losing reading progress.
 
-#### 1.4 Health Monitoring & Telemetry
+### 1.3 Offline Mode
+**Component**: `components/offline/DownloadManager.tsx`
+**Description**: Download complete books for offline reading with smart storage management:
+- "Download for Offline" button on each book with progress indicator
+- Manages device storage with size estimates and cleanup options
+- Works completely offline with full audio, text, and highlighting
+- Auto-syncs reading progress when connection returns
+- Shows "Downloaded" badge and offline indicator in app
+
+**End Result**: Like Netflix Downloads - perfect for commutes, flights, or areas with poor connectivity where ESL learners often study.
+
+---
+
+## 📋 **OTHER FEATURES - NOT TO BE IMPLEMENTED YET**
+
+### ⏸️ POSTPONED FEATURES
+
+**Note**: These features should NOT be implemented yet. Focus only on the 3 critical features above.
+
+#### Text Virtualization
+**Status**: ⏸️ POSTPONED - Not critical for current reading experience
+
+#### Health Monitoring & Telemetry
 **Endpoints**: `/api/version`, `/api/books/{id}/status`, `/api/analytics/*`
 ```typescript
 // Health Endpoints:
@@ -117,9 +139,8 @@ This UI/UX plan focuses on **functionality and user experience features**. For v
 
 ---
 
-### Phase 2: Discovery & Search (Week 3-4)
-
-#### 2.1 Smart Search Bar
+#### Smart Search Bar
+**Status**: ⏸️ POSTPONED - Discovery feature, not core reading
 **Component**: `components/search/GlobalSearch.tsx`
 ```typescript
 // Features:
@@ -135,7 +156,8 @@ This UI/UX plan focuses on **functionality and user experience features**. For v
 3. Cache popular searches
 4. Add to header navigation
 
-#### 2.2 Netflix-Style Homepage
+#### Netflix-Style Homepage
+**Status**: ⏸️ POSTPONED - Discovery feature, not core reading
 **Component**: `components/home/PersonalizedRails.tsx`
 ```typescript
 // Rails:
