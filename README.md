@@ -51,6 +51,8 @@ Our first and current focus serves English as Second Language learners across al
 ## Overview
 BookBridge is an intelligent reading companion that transforms how people engage with literature through personalized AI tutoring, conversation memory, and adaptive learning. Starting with ESL learners, we're building the foundation to serve all educational needs globally.
 
+**Production URL**: https://bookbridge.app (custom domain via Namecheap + Render)
+
 ## 🚀 Current AI Capabilities
 
 ### ✅ Personalized Tutoring System
