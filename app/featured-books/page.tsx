@@ -12,6 +12,7 @@ import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomS
 import { getMockDefinition } from '@/data/mockDictionary';
 import { fetchDefinitionFromAPI } from '@/lib/dictionary/FreeDictionaryAPI';
 import { fetchSimpleWiktionaryDefinition } from '@/lib/dictionary/SimpleWiktionaryAPI';
+import { getLemmaCandidates } from '@/lib/dictionary/lemmatizer';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 
@@ -1293,50 +1294,66 @@ export default function FeaturedBooksPage() {
       setIsDictionaryOpen(true);
       setDefinitionLoading(true);
 
-      // Three-tier ESL approach: Mock → Simple Wiktionary → Free Dictionary API
+      // Three-tier ESL approach with lemmatization: Mock → Simple Wiktionary → Free Dictionary API
       const fetchDefinition = async () => {
         try {
-          // Tier 1: Try mock dictionary (instant, curated ESL definitions)
-          const mockDef = getMockDefinition(selectedWord);
+          // Get lemma candidates (original + base forms)
+          const candidates = getLemmaCandidates(selectedWord);
+          console.log('🔤 Dictionary: Trying candidates for', selectedWord, ':', candidates);
 
-          if (mockDef) {
-            setCurrentDefinition(mockDef);
-            setDefinitionLoading(false);
-            console.log('📖 Dictionary: Using mock definition for:', selectedWord);
-            return;
+          // Tier 1: Try mock dictionary with all candidates
+          for (const candidate of candidates) {
+            const mockDef = getMockDefinition(candidate);
+            if (mockDef) {
+              // Use original word in the returned definition
+              const adjustedDef = { ...mockDef, word: selectedWord };
+              setCurrentDefinition(adjustedDef);
+              setDefinitionLoading(false);
+              console.log('📖 Dictionary: Using mock definition for:', selectedWord, '(via', candidate, ')');
+              return;
+            }
           }
 
-          // Tier 2: Try Simple Wiktionary (ESL-friendly, simplified English)
-          console.log('📖 Dictionary: Word not in mock, trying Simple Wiktionary:', selectedWord);
-          const simpleWiktionaryDef = await fetchSimpleWiktionaryDefinition(selectedWord);
+          // Tier 2: Try Simple Wiktionary with candidates
+          for (const candidate of candidates) {
+            console.log('📖 Dictionary: Trying Simple Wiktionary for candidate:', candidate);
+            const simpleWiktionaryDef = await fetchSimpleWiktionaryDefinition(candidate);
 
-          if (simpleWiktionaryDef) {
-            setCurrentDefinition(simpleWiktionaryDef);
-            setDefinitionLoading(false);
-            console.log('📖 Dictionary: Using Simple Wiktionary definition for:', selectedWord);
-            return;
+            if (simpleWiktionaryDef) {
+              // Use original word in the returned definition
+              const adjustedDef = { ...simpleWiktionaryDef, word: selectedWord };
+              setCurrentDefinition(adjustedDef);
+              setDefinitionLoading(false);
+              console.log('📖 Dictionary: Using Simple Wiktionary definition for:', selectedWord, '(via', candidate, ')');
+              return;
+            }
           }
 
-          // Tier 3: Try Free Dictionary API (comprehensive but complex)
-          console.log('📖 Dictionary: Word not in Simple Wiktionary, trying Free Dictionary API:', selectedWord);
-          const apiDef = await fetchDefinitionFromAPI(selectedWord);
+          // Tier 3: Try Free Dictionary API with candidates
+          for (const candidate of candidates) {
+            console.log('📖 Dictionary: Trying Free Dictionary API for candidate:', candidate);
+            const apiDef = await fetchDefinitionFromAPI(candidate);
 
-          if (apiDef) {
-            setCurrentDefinition(apiDef);
-            console.log('📖 Dictionary: Using Free Dictionary API definition for:', selectedWord);
-          } else {
-            // Final fallback - word not found anywhere
-            setCurrentDefinition({
-              word: selectedWord,
-              phonetic: 'unknown',
-              definition: `Sorry, we couldn't find a definition for "${selectedWord}". This might be a very rare word, a proper name, or a typo.`,
-              example: `Try words like "pretty", "beautiful", "house", or "amazing".`,
-              partOfSpeech: 'unknown',
-              cefrLevel: 'Unknown',
-              source: 'Not Found'
-            });
-            console.log('📖 Dictionary: No definition found for:', selectedWord);
+            if (apiDef) {
+              // Use original word in the returned definition
+              const adjustedDef = { ...apiDef, word: selectedWord };
+              setCurrentDefinition(adjustedDef);
+              console.log('📖 Dictionary: Using Free Dictionary API definition for:', selectedWord, '(via', candidate, ')');
+              return;
+            }
           }
+
+          // If no candidates worked - final fallback
+          setCurrentDefinition({
+            word: selectedWord,
+            phonetic: 'unknown',
+            definition: `Sorry, we couldn't find a definition for "${selectedWord}". This might be a very rare word, a proper name, or a typo.`,
+            example: `Try words like "pretty", "beautiful", "house", or "amazing".`,
+            partOfSpeech: 'unknown',
+            cefrLevel: 'Unknown',
+            source: 'Not Found'
+          });
+          console.log('📖 Dictionary: No definition found for:', selectedWord);
 
         } catch (error) {
           console.error('📖 Dictionary: Error fetching definition:', error);

@@ -115,8 +115,10 @@ function transformAPIResponse(apiData: FreeDictionaryResponse): StandardDefiniti
     apiData.phonetics.find(p => p.text)?.text ||
     '';
 
-  // Get the best audio pronunciation
-  const audioUrl = apiData.phonetics.find(p => p.audio)?.audio;
+  // Get the best audio pronunciation (prefer US/UK, fallback to any)
+  const audioCandidates = apiData.phonetics?.map(p => p.audio).filter(Boolean) as string[] || [];
+  const preferredAudio = audioCandidates.find(u => /\/(us|uk)\//i.test(u)) || audioCandidates[0];
+  const audioUrl = preferredAudio;
 
   // Get the first (most common) meaning and definition
   const firstMeaning = apiData.meanings[0];

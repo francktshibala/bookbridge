@@ -402,6 +402,28 @@ export const MOCK_DICTIONARY: Record<string, MockDefinition> = {
     partOfSpeech: 'noun',
     cefrLevel: 'B1',
     source: 'Mock ESL Dictionary'
+  },
+
+  charming: {
+    word: 'charming',
+    phonetic: 'ˈtʃɑːr.mɪŋ',
+    pronunciation: 'CHAR-ming',
+    definition: 'Pleasant and nice to be with. Making people like you.',
+    example: 'She has a charming smile.',
+    partOfSpeech: 'adjective',
+    cefrLevel: 'B1',
+    source: 'Mock ESL Dictionary'
+  },
+
+  charm: {
+    word: 'charm',
+    phonetic: 'tʃɑːrm',
+    pronunciation: 'charm',
+    definition: 'To be pleasant and make people like you.',
+    example: 'He can charm anyone with his stories.',
+    partOfSpeech: 'verb',
+    cefrLevel: 'B1',
+    source: 'Mock ESL Dictionary'
   }
 };
 
