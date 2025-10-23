@@ -152,6 +152,36 @@ function cleanSimpleWiktionaryDefinition(definition: string): string {
   definition = definition.replace(/\s*\[[^\]]*\]\s*/g, ' '); // Remove bracketed references
   definition = definition.replace(/\s*\{[^}]*\}\s*/g, ' '); // Remove template references
 
+  // Replace complex words with simpler ESL-friendly alternatives
+  const simplifications: Record<string, string> = {
+    'amazement': 'surprise',
+    'awe': 'great surprise',
+    'marvel': 'something wonderful',
+    'astonishment': 'great surprise',
+    'bewilderment': 'confusion',
+    'perplexity': 'confusion',
+    'elegance': 'beauty',
+    'refinement': 'good taste',
+    'sophistication': 'being smart and stylish',
+    'magnificence': 'great beauty',
+    'splendor': 'great beauty',
+    'grandeur': 'greatness',
+    'contemplation': 'thinking',
+    'consideration': 'thinking about',
+    'pondering': 'thinking about',
+    'phenomenon': 'something that happens',
+    'occurrence': 'something that happens',
+    'manifestation': 'something you can see',
+    'demonstration': 'showing',
+    'exhibition': 'showing'
+  };
+
+  // Apply simplifications
+  Object.entries(simplifications).forEach(([complex, simple]) => {
+    const regex = new RegExp(`\\b${complex}\\b`, 'gi');
+    definition = definition.replace(regex, simple);
+  });
+
   // Remove multiple spaces
   definition = definition.replace(/\s+/g, ' ').trim();
 
@@ -163,10 +193,27 @@ function cleanSimpleWiktionaryDefinition(definition: string): string {
     }
   }
 
-  // Limit length for ESL learners (max 150 characters)
-  if (definition.length > 150) {
+  // Limit length for ESL learners (max 120 characters for better readability)
+  if (definition.length > 120) {
     const sentences = definition.split('. ');
     definition = sentences[0] + '.';
+
+    // If still too long, take first part up to a comma or suitable break
+    if (definition.length > 120) {
+      const commaIndex = definition.indexOf(',');
+      if (commaIndex > 20 && commaIndex < 100) {
+        definition = definition.substring(0, commaIndex) + '.';
+      } else {
+        // Last resort: cut at word boundary near 100 chars
+        const words = definition.split(' ');
+        let shortened = '';
+        for (const word of words) {
+          if ((shortened + ' ' + word).length > 100) break;
+          shortened += (shortened ? ' ' : '') + word;
+        }
+        definition = shortened + '.';
+      }
+    }
   }
 
   return definition;

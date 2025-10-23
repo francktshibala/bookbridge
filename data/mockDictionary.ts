@@ -380,6 +380,28 @@ export const MOCK_DICTIONARY: Record<string, MockDefinition> = {
     partOfSpeech: 'verb',
     cefrLevel: 'A2',
     source: 'Mock ESL Dictionary'
+  },
+
+  wonder: {
+    word: 'wonder',
+    phonetic: 'ˈwʌn.dər',
+    pronunciation: 'WUN-der',
+    definition: 'To think about something. To want to know about something.',
+    example: 'I wonder what time it is.',
+    partOfSpeech: 'verb',
+    cefrLevel: 'A2',
+    source: 'Mock ESL Dictionary'
+  },
+
+  wonders: {
+    word: 'wonders',
+    phonetic: 'ˈwʌn.dərz',
+    pronunciation: 'WUN-derz',
+    definition: 'Things that are very surprising or beautiful. Things that make you think "Wow!"',
+    example: 'She wonders what to do next.',
+    partOfSpeech: 'noun',
+    cefrLevel: 'B1',
+    source: 'Mock ESL Dictionary'
   }
 };
 

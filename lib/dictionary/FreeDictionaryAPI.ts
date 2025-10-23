@@ -126,18 +126,49 @@ function transformAPIResponse(apiData: FreeDictionaryResponse): StandardDefiniti
     throw new Error('No definition found in API response');
   }
 
-  // Simplify definition for ESL learners (basic cleanup)
+  // Simplify definition for ESL learners (enhanced cleanup)
   let definition = firstDefinition.definition;
 
   // Remove technical linguistic notation
   definition = definition.replace(/\(([^)]*linguistics?[^)]*)\)/gi, '');
   definition = definition.replace(/\(([^)]*grammar[^)]*)\)/gi, '');
 
+  // Replace complex words with simpler ESL-friendly alternatives
+  const simplifications: Record<string, string> = {
+    'amazement': 'surprise',
+    'awe': 'great surprise',
+    'marvel': 'something wonderful',
+    'astonishment': 'great surprise',
+    'bewilderment': 'confusion',
+    'perplexity': 'confusion',
+    'elegance': 'beauty',
+    'refinement': 'good taste',
+    'sophistication': 'being smart and stylish',
+    'magnificence': 'great beauty',
+    'splendor': 'great beauty',
+    'grandeur': 'greatness',
+    'contemplation': 'thinking',
+    'consideration': 'thinking about',
+    'pondering': 'thinking about'
+  };
+
+  // Apply simplifications
+  Object.entries(simplifications).forEach(([complex, simple]) => {
+    const regex = new RegExp(`\\b${complex}\\b`, 'gi');
+    definition = definition.replace(regex, simple);
+  });
+
   // Clean up extra spaces
   definition = definition.replace(/\s+/g, ' ').trim();
 
   // Ensure it starts with capital letter
   definition = definition.charAt(0).toUpperCase() + definition.slice(1);
+
+  // Limit length for ESL learners (max 150 characters)
+  if (definition.length > 150) {
+    const sentences = definition.split('. ');
+    definition = sentences[0] + '.';
+  }
 
   return {
     word: apiData.word,
