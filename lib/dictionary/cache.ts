@@ -186,3 +186,11 @@ export function preloadCommonWords(words: string[]): void {
     console.log('📝 Cache: Prepared key for preload:', normalizedKey);
   });
 }
+
+// Clear all cached definitions (admin function)
+export function clearDefinitionCache(): void {
+  const previousSize = definitionCache.size;
+  definitionCache.clear();
+  pendingRequests.clear();
+  console.log(`🧹 Cache: Cleared ${previousSize} definitions and pending requests`);
+}

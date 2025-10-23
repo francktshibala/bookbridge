@@ -12,6 +12,7 @@ import { fetchDefinitionFromAPI } from '@/lib/dictionary/FreeDictionaryAPI';
 import { fetchSimpleWiktionaryDefinition } from '@/lib/dictionary/SimpleWiktionaryAPI';
 import { getMockDefinition } from '@/data/mockDictionary';
 import { getLemmaCandidates } from '@/lib/dictionary/lemmatizer';
+import { aiUniversalLookup } from '@/lib/dictionary/AIUniversalLookup';
 
 interface DictionaryRequest {
   word: string;
@@ -69,7 +70,7 @@ export async function GET(request: NextRequest) {
 
     // 2. Use request deduplication to prevent concurrent requests
     const result = await deduplicateRequest(word, async () => {
-      return await lookupWordWithExistingSystem({ word, context });
+      return await lookupWordWithHybridSystem({ word, context }, request);
     });
 
     if (!result) {
@@ -112,11 +113,11 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// Use existing system as the lookup mechanism (for Phase 1)
-async function lookupWordWithExistingSystem({
+// Hybrid lookup: Existing system + AI fallback (Phase 2)
+async function lookupWordWithHybridSystem({
   word,
   context
-}: DictionaryRequest): Promise<Omit<DictionaryResponse, 'cached' | 'responseTime'> | null> {
+}: DictionaryRequest, request: NextRequest): Promise<Omit<DictionaryResponse, 'cached' | 'responseTime'> | null> {
 
   console.log('🔎 Dictionary: Starting existing system lookup for:', word);
 
@@ -176,7 +177,41 @@ async function lookupWordWithExistingSystem({
     }
   }
 
-  console.log('❌ Dictionary: No definition found for:', word);
+  console.log('❌ Dictionary: No definition found in existing system for:', word);
+
+  // 4. AI Universal Fallback - Handle ANY word
+  console.log('🤖 Dictionary: Trying AI universal fallback for:', word);
+
+  try {
+    // Get client IP for rate limiting
+    const clientIP = request.headers.get('x-forwarded-for') ||
+                     request.headers.get('x-real-ip') ||
+                     'unknown';
+
+    const aiResult = await aiUniversalLookup({
+      word,
+      context,
+      sentence: context // Pass context as sentence for better prompting
+    }, clientIP);
+
+    if (aiResult) {
+      console.log('✅ Dictionary: AI universal fallback succeeded for:', word);
+      return {
+        word: aiResult.word,
+        definition: aiResult.definition,
+        example: aiResult.example,
+        partOfSpeech: aiResult.partOfSpeech,
+        phonetic: aiResult.phonetic,
+        cefrLevel: aiResult.cefrLevel,
+        source: aiResult.source
+      };
+    }
+
+  } catch (error) {
+    console.error('❌ Dictionary: AI universal fallback failed for:', word, error);
+  }
+
+  console.log('❌ Dictionary: ALL systems failed for:', word);
   return null;
 }
 
