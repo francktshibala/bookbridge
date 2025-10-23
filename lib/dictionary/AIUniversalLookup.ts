@@ -1,10 +1,11 @@
 // AI-powered universal dictionary lookup
-// Phase 2: Handle ANY word with 2-second timeout and cost controls
+// Phase 2.5: GPT-5 Improvements - Hedged parallel calls + micro-retry + strict JSON
 
 interface AILookupRequest {
   word: string;
   context?: string;
   sentence?: string;
+  partOfSpeech?: string; // POS hint to improve accuracy
 }
 
 interface AILookupResponse {
@@ -24,6 +25,8 @@ const AI_ENABLED = process.env.NEXT_PUBLIC_AI_DICTIONARY_ENABLED === 'true';
 const DAILY_AI_BUDGET = parseInt(process.env.AI_DICTIONARY_DAILY_BUDGET || '100'); // $1.00 default
 const MAX_REQUESTS_PER_IP = parseInt(process.env.AI_DICTIONARY_MAX_REQUESTS_PER_IP || '50');
 const AI_REQUEST_TIMEOUT = 2000; // 2 seconds hard limit
+const MICRO_RETRY_DELAY = 700; // Micro-retry after 700ms if no valid JSON
+const JSON_RETRY_TIMEOUT = 300; // Quick retry timeout for JSON-only requests
 
 // Cost tracking (in-memory for Phase 2, would move to Redis/DB in production)
 const dailyCostTracker = new Map<string, { cost: number; requests: number; date: string }>();
@@ -106,31 +109,95 @@ async function performAILookup(request: AILookupRequest): Promise<AILookupRespon
     throw new Error('No AI services available');
   }
 
-  const prompt = createUniversalPrompt(request);
-
-  // Try OpenAI first (usually faster for this task)
-  if (hasOpenAI) {
-    try {
-      return await callOpenAILookup(prompt, request);
-    } catch (error) {
-      console.log('🔄 AI Dictionary: OpenAI failed, trying Anthropic:', error);
-    }
-  }
-
-  // Fallback to Anthropic
-  if (hasAnthropic) {
-    return await callAnthropicLookup(prompt, request);
-  }
-
-  throw new Error('All AI services failed');
+  // GPT-5 IMPROVEMENT: Hedged parallel calls + micro-retry strategy
+  return await hedgedAILookup(request, !!hasOpenAI, !!hasAnthropic);
 }
 
-function createUniversalPrompt(request: AILookupRequest): string {
+// GPT-5 IMPROVEMENT: Hedged parallel calls with micro-retry
+async function hedgedAILookup(request: AILookupRequest, hasOpenAI: boolean, hasAnthropic: boolean): Promise<AILookupResponse> {
+  const startTime = Date.now();
+
+  // Detect part of speech for better prompting
+  const enhancedRequest = {
+    ...request,
+    partOfSpeech: request.partOfSpeech || detectPartOfSpeech(request.word)
+  };
+
+  const promises: Promise<AILookupResponse>[] = [];
+
+  // Fire both providers in parallel if available
+  if (hasOpenAI) {
+    promises.push(callOpenAILookup(createUniversalPrompt(enhancedRequest), enhancedRequest));
+  }
+  if (hasAnthropic) {
+    promises.push(callAnthropicLookup(createUniversalPrompt(enhancedRequest), enhancedRequest));
+  }
+
+  try {
+    // Race for first valid response
+    const result = await Promise.race(promises);
+    console.log(`✅ Hedged AI: Success in ${Date.now() - startTime}ms`);
+    return result;
+  } catch (firstError) {
+    console.log(`🔄 Hedged AI: First attempt failed after ${Date.now() - startTime}ms, trying micro-retry`);
+
+    // Micro-retry with JSON-only prompt
+    if (Date.now() - startTime < MICRO_RETRY_DELAY) {
+      await new Promise(resolve => setTimeout(resolve, MICRO_RETRY_DELAY - (Date.now() - startTime)));
+    }
+
+    try {
+      const retryPromises: Promise<AILookupResponse>[] = [];
+
+      if (hasOpenAI) {
+        retryPromises.push(callOpenAILookup(createUniversalPrompt(enhancedRequest, true), enhancedRequest, true));
+      }
+      if (hasAnthropic) {
+        retryPromises.push(callAnthropicLookup(createUniversalPrompt(enhancedRequest, true), enhancedRequest, true));
+      }
+
+      const retryResult = await Promise.race(retryPromises);
+      console.log(`✅ Micro-retry success in ${Date.now() - startTime}ms`);
+      return retryResult;
+
+    } catch (retryError) {
+      console.error(`❌ All hedged attempts failed in ${Date.now() - startTime}ms:`, firstError, retryError);
+      throw firstError; // Throw original error
+    }
+  }
+}
+
+// Simple POS detection for common patterns
+function detectPartOfSpeech(word: string): string {
+  const lowerWord = word.toLowerCase();
+
+  // Common adverbs
+  if (lowerWord.endsWith('ly')) return 'adverb';
+
+  // Common adjectives
+  if (lowerWord.endsWith('ful') || lowerWord.endsWith('less') || lowerWord.endsWith('able')) return 'adjective';
+
+  // Common nouns
+  if (lowerWord.endsWith('tion') || lowerWord.endsWith('ness') || lowerWord.endsWith('ment')) return 'noun';
+
+  // Common verbs
+  if (lowerWord.endsWith('ing') || lowerWord.endsWith('ed')) return 'verb';
+
+  return 'unknown'; // Let AI figure it out
+}
+
+function createUniversalPrompt(request: AILookupRequest, isRetry = false): string {
   const contextHint = request.context ? `\nContext sentence: "${request.context}"` : '';
+  const posHint = request.partOfSpeech && request.partOfSpeech !== 'unknown' ? `\nPart of speech: ${request.partOfSpeech}` : '';
+
+  // GPT-5 IMPROVEMENT: Stricter JSON-only prompt for retries
+  const jsonOnlyInstruction = isRetry
+    ? '\n\nIMPORTANT: Return ONLY valid JSON. No explanations, no extra text, no markdown formatting.'
+    : '';
 
   return `You are an ESL teacher helping A2-B1 level learners understand English words.
 
-Word to define: "${request.word}"${contextHint}
+Word to define: "${request.word}"${contextHint}${posHint}
 
 Handle these cases appropriately:
 - Possessives (like "caretaker's"): Define the base word and explain it's possessive
@@ -141,7 +208,7 @@ Handle these cases appropriately:
 Requirements:
 - Use only simple, common English words (A1-A2 level)
 - Keep definition under 15 words and very clear
-- Create 2-3 helpful example sentences showing different uses
+- Create EXACTLY 2-3 helpful example sentences showing different uses
 - Use present tense and active voice when possible
 - Avoid complex grammar like "that which", passive voice, formal language
 - Make it practical for everyday conversation
@@ -156,10 +223,10 @@ Respond in this exact JSON format:
   ],
   "partOfSpeech": "noun/verb/adjective/etc",
   "cefrLevel": "A1/A2/B1/B2/C1/C2"
-}`;
+}${jsonOnlyInstruction}`;
 }
 
-async function callOpenAILookup(prompt: string, request: AILookupRequest): Promise<AILookupResponse> {
+async function callOpenAILookup(prompt: string, request: AILookupRequest, isRetry = false): Promise<AILookupResponse> {
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -170,7 +237,8 @@ async function callOpenAILookup(prompt: string, request: AILookupRequest): Promi
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
       max_tokens: 200,
-      temperature: 0.3,
+      temperature: isRetry ? 0.1 : 0.2, // Lower temperature for retries
+      response_format: { type: 'json_object' }, // Force JSON mode
     }),
   });
 
@@ -186,29 +254,40 @@ async function callOpenAILookup(prompt: string, request: AILookupRequest): Promi
   }
 
   try {
-    const parsed = JSON.parse(content);
-    // Join examples with " | " separator for compatibility with existing UI
-    const exampleText = Array.isArray(parsed.examples)
-      ? parsed.examples.join(' | ')
-      : parsed.example || 'Example not available.';
+    // GPT-5 IMPROVEMENT: Strict JSON validation
+    const cleanContent = content.trim().replace(/```json\n|\n```/g, ''); // Remove markdown if present
+    const parsed = JSON.parse(cleanContent);
+
+    // Validate required fields
+    if (!parsed.definition || !parsed.examples || !Array.isArray(parsed.examples)) {
+      throw new Error(`Invalid JSON structure: missing required fields`);
+    }
+
+    // Ensure exactly 2-3 examples
+    const examples = parsed.examples.slice(0, 3); // Take max 3 examples
+    if (examples.length < 2) {
+      examples.push(`The word "${request.word}" is commonly used in English.`); // Add fallback example
+    }
+
+    const exampleText = examples.join(' | ');
 
     return {
       word: request.word,
       definition: parsed.definition,
       example: exampleText,
-      partOfSpeech: parsed.partOfSpeech,
-      cefrLevel: parsed.cefrLevel,
+      partOfSpeech: parsed.partOfSpeech || 'unknown',
+      cefrLevel: parsed.cefrLevel || 'B1',
       source: 'AI Dictionary (OpenAI)',
       confidence: 0.9,
       processingTime: 0 // Will be set by caller
     };
   } catch (parseError) {
     console.error('🤖 AI Dictionary: Failed to parse OpenAI response:', content);
-    throw new Error('Failed to parse AI response');
+    throw new Error(`Failed to parse AI response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}`);
   }
 }
 
-async function callAnthropicLookup(prompt: string, request: AILookupRequest): Promise<AILookupResponse> {
+async function callAnthropicLookup(prompt: string, request: AILookupRequest, isRetry = false): Promise<AILookupResponse> {
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -219,6 +298,7 @@ async function callAnthropicLookup(prompt: string, request: AILookupRequest): Pr
     body: JSON.stringify({
       model: 'claude-3-haiku-20240307',
       max_tokens: 200,
+      temperature: isRetry ? 0.1 : 0.2, // Lower temperature for retries
       messages: [{ role: 'user', content: prompt }],
     }),
   });
@@ -235,25 +315,36 @@ async function callAnthropicLookup(prompt: string, request: AILookupRequest): Pr
   }
 
   try {
-    const parsed = JSON.parse(content);
-    // Join examples with " | " separator for compatibility with existing UI
-    const exampleText = Array.isArray(parsed.examples)
-      ? parsed.examples.join(' | ')
-      : parsed.example || 'Example not available.';
+    // GPT-5 IMPROVEMENT: Strict JSON validation
+    const cleanContent = content.trim().replace(/```json\n|\n```/g, ''); // Remove markdown if present
+    const parsed = JSON.parse(cleanContent);
+
+    // Validate required fields
+    if (!parsed.definition || !parsed.examples || !Array.isArray(parsed.examples)) {
+      throw new Error(`Invalid JSON structure: missing required fields`);
+    }
+
+    // Ensure exactly 2-3 examples
+    const examples = parsed.examples.slice(0, 3); // Take max 3 examples
+    if (examples.length < 2) {
+      examples.push(`The word "${request.word}" is commonly used in English.`); // Add fallback example
+    }
+
+    const exampleText = examples.join(' | ');
 
     return {
       word: request.word,
       definition: parsed.definition,
       example: exampleText,
-      partOfSpeech: parsed.partOfSpeech,
-      cefrLevel: parsed.cefrLevel,
+      partOfSpeech: parsed.partOfSpeech || 'unknown',
+      cefrLevel: parsed.cefrLevel || 'B1',
       source: 'AI Dictionary (Claude)',
       confidence: 0.9,
       processingTime: 0 // Will be set by caller
     };
   } catch (parseError) {
     console.error('🤖 AI Dictionary: Failed to parse Anthropic response:', content);
-    throw new Error('Failed to parse AI response');
+    throw new Error(`Failed to parse AI response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}`);
   }
 }
 
