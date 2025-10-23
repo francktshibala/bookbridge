@@ -140,15 +140,20 @@ Handle these cases appropriately:
 
 Requirements:
 - Use only simple, common English words (A1-A2 level)
-- Keep definition under 20 words
-- Create a helpful example sentence
-- Determine appropriate part of speech
-- Estimate CEFR difficulty level
+- Keep definition under 15 words and very clear
+- Create 2-3 helpful example sentences showing different uses
+- Use present tense and active voice when possible
+- Avoid complex grammar like "that which", passive voice, formal language
+- Make it practical for everyday conversation
 
 Respond in this exact JSON format:
 {
   "definition": "simple definition here",
-  "example": "example sentence using the word",
+  "examples": [
+    "First example sentence using the word",
+    "Second example sentence showing another use",
+    "Third example if helpful (optional)"
+  ],
   "partOfSpeech": "noun/verb/adjective/etc",
   "cefrLevel": "A1/A2/B1/B2/C1/C2"
 }`;
@@ -182,10 +187,15 @@ async function callOpenAILookup(prompt: string, request: AILookupRequest): Promi
 
   try {
     const parsed = JSON.parse(content);
+    // Join examples with " | " separator for compatibility with existing UI
+    const exampleText = Array.isArray(parsed.examples)
+      ? parsed.examples.join(' | ')
+      : parsed.example || 'Example not available.';
+
     return {
       word: request.word,
       definition: parsed.definition,
-      example: parsed.example,
+      example: exampleText,
       partOfSpeech: parsed.partOfSpeech,
       cefrLevel: parsed.cefrLevel,
       source: 'AI Dictionary (OpenAI)',
@@ -226,10 +236,15 @@ async function callAnthropicLookup(prompt: string, request: AILookupRequest): Pr
 
   try {
     const parsed = JSON.parse(content);
+    // Join examples with " | " separator for compatibility with existing UI
+    const exampleText = Array.isArray(parsed.examples)
+      ? parsed.examples.join(' | ')
+      : parsed.example || 'Example not available.';
+
     return {
       word: request.word,
       definition: parsed.definition,
-      example: parsed.example,
+      example: exampleText,
       partOfSpeech: parsed.partOfSpeech,
       cefrLevel: parsed.cefrLevel,
       source: 'AI Dictionary (Claude)',

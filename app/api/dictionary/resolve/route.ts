@@ -113,81 +113,22 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// Hybrid lookup: Existing system + AI fallback (Phase 2)
+// TRUE AI-FIRST lookup: AI primary, existing systems as fallback
 async function lookupWordWithHybridSystem({
   word,
   context
 }: DictionaryRequest, request: NextRequest): Promise<Omit<DictionaryResponse, 'cached' | 'responseTime'> | null> {
 
-  console.log('🔎 Dictionary: Starting existing system lookup for:', word);
+  console.log('🤖 Dictionary: Starting AI-FIRST lookup for:', word);
 
-  // Get lemma candidates for better matching
-  const candidates = getLemmaCandidates(word);
-  console.log('📝 Dictionary: Checking candidates:', candidates);
-
-  // 1. Try Mock Dictionary first
-  for (const candidate of candidates) {
-    const mockDef = getMockDefinition(candidate);
-    if (mockDef) {
-      console.log('✅ Dictionary: Found in mock dictionary:', candidate);
-      return {
-        word: word, // Return original word, not candidate
-        definition: mockDef.definition,
-        example: mockDef.example,
-        partOfSpeech: mockDef.partOfSpeech,
-        phonetic: mockDef.phonetic,
-        cefrLevel: mockDef.cefrLevel,
-        source: 'Mock Dictionary'
-      };
-    }
-  }
-
-  // 2. Try Simple Wiktionary
-  for (const candidate of candidates) {
-    const wiktionaryDef = await fetchSimpleWiktionaryDefinition(candidate);
-    if (wiktionaryDef) {
-      console.log('✅ Dictionary: Found in Simple Wiktionary:', candidate);
-      return {
-        word: word,
-        definition: wiktionaryDef.definition,
-        example: wiktionaryDef.example,
-        partOfSpeech: wiktionaryDef.partOfSpeech,
-        phonetic: wiktionaryDef.phonetic,
-        cefrLevel: wiktionaryDef.cefrLevel,
-        source: 'Simple Wiktionary'
-      };
-    }
-  }
-
-  // 3. Try Free Dictionary API
-  for (const candidate of candidates) {
-    const apiDef = await fetchDefinitionFromAPI(candidate);
-    if (apiDef) {
-      console.log('✅ Dictionary: Found in Free Dictionary API:', candidate);
-      return {
-        word: word,
-        definition: apiDef.definition,
-        example: apiDef.example,
-        partOfSpeech: apiDef.partOfSpeech,
-        phonetic: apiDef.phonetic,
-        audioUrl: apiDef.audioUrl,
-        cefrLevel: apiDef.cefrLevel,
-        source: apiDef.source
-      };
-    }
-  }
-
-  console.log('❌ Dictionary: No definition found in existing system for:', word);
-
-  // 4. AI Universal Fallback - Handle ANY word
-  console.log('🤖 Dictionary: Trying AI universal fallback for:', word);
-
+  // 1. AI-FIRST: Try AI for consistent ESL-friendly definitions
   try {
     // Get client IP for rate limiting
     const clientIP = request.headers.get('x-forwarded-for') ||
                      request.headers.get('x-real-ip') ||
                      'unknown';
 
+    console.log('🤖 Dictionary: Using AI as primary source for:', word);
     const aiResult = await aiUniversalLookup({
       word,
       context,
@@ -195,7 +136,7 @@ async function lookupWordWithHybridSystem({
     }, clientIP);
 
     if (aiResult) {
-      console.log('✅ Dictionary: AI universal fallback succeeded for:', word);
+      console.log('✅ Dictionary: AI-FIRST succeeded for:', word);
       return {
         word: aiResult.word,
         definition: aiResult.definition,
@@ -208,7 +149,66 @@ async function lookupWordWithHybridSystem({
     }
 
   } catch (error) {
-    console.error('❌ Dictionary: AI universal fallback failed for:', word, error);
+    console.error('❌ Dictionary: AI-FIRST failed for:', word, 'falling back to existing systems');
+  }
+
+  // 2. FALLBACK: Use existing systems if AI fails
+  console.log('🔄 Dictionary: AI failed, trying existing systems for:', word);
+
+  // Get lemma candidates for better matching
+  const candidates = getLemmaCandidates(word);
+  console.log('📝 Dictionary: Checking candidates:', candidates);
+
+  // 2a. Try Mock Dictionary
+  for (const candidate of candidates) {
+    const mockDef = getMockDefinition(candidate);
+    if (mockDef) {
+      console.log('✅ Dictionary: Found in mock dictionary (fallback):', candidate);
+      return {
+        word: word, // Return original word, not candidate
+        definition: mockDef.definition,
+        example: mockDef.example,
+        partOfSpeech: mockDef.partOfSpeech,
+        phonetic: mockDef.phonetic,
+        cefrLevel: mockDef.cefrLevel,
+        source: 'Mock Dictionary (fallback)'
+      };
+    }
+  }
+
+  // 2b. Try Simple Wiktionary
+  for (const candidate of candidates) {
+    const wiktionaryDef = await fetchSimpleWiktionaryDefinition(candidate);
+    if (wiktionaryDef) {
+      console.log('✅ Dictionary: Found in Simple Wiktionary (fallback):', candidate);
+      return {
+        word: word,
+        definition: wiktionaryDef.definition,
+        example: wiktionaryDef.example,
+        partOfSpeech: wiktionaryDef.partOfSpeech,
+        phonetic: wiktionaryDef.phonetic,
+        cefrLevel: wiktionaryDef.cefrLevel,
+        source: 'Simple Wiktionary (fallback)'
+      };
+    }
+  }
+
+  // 2c. Try Free Dictionary API
+  for (const candidate of candidates) {
+    const apiDef = await fetchDefinitionFromAPI(candidate);
+    if (apiDef) {
+      console.log('✅ Dictionary: Found in Free Dictionary API (fallback):', candidate);
+      return {
+        word: word,
+        definition: apiDef.definition,
+        example: apiDef.example,
+        partOfSpeech: apiDef.partOfSpeech,
+        phonetic: apiDef.phonetic,
+        audioUrl: apiDef.audioUrl,
+        cefrLevel: apiDef.cefrLevel,
+        source: apiDef.source + ' (fallback)'
+      };
+    }
   }
 
   console.log('❌ Dictionary: ALL systems failed for:', word);

@@ -242,24 +242,55 @@ function isDefinitionTooComplex(definition: string): boolean {
     new RegExp(`\\b${word}\\b`, 'i').test(definition)
   );
 
+  // Check for formal/archaic grammar patterns that confuse ESL learners
+  const formalPatterns = [
+    /\bthat which\b/i,           // "that which annoys"
+    /\bthose who\b/i,            // "those who believe"
+    /\bone who\b/i,              // "one who teaches"
+    /\bhe who\b/i,               // "he who dares"
+    /\bshe who\b/i,              // "she who waits"
+    /\bit which\b/i,             // "it which contains"
+    /\bby which\b/i,             // "by which means"
+    /\bto which\b/i,             // "to which extent"
+    /\bwhom\b/i,                 // formal "whom" usage
+    /\bwhilst\b/i,               // archaic "whilst"
+    /\bthus\b/i,                 // formal "thus"
+    /\bhence\b/i,                // formal "hence"
+    /\btherefore\b/i,            // formal "therefore"
+    /\bmoreover\b/i,             // formal "moreover"
+    /\bfurthermore\b/i,          // formal "furthermore"
+    /\bnotwithstanding\b/i,      // legal/formal language
+    /\bvis-à-vis\b/i,            // foreign formal phrase
+    /\bper se\b/i,               // Latin phrase
+    /\bi\.e\.\b/i,               // abbreviation "i.e."
+    /\be\.g\.\b/i                // abbreviation "e.g."
+  ];
+
+  const hasFormalPatterns = formalPatterns.some(pattern => pattern.test(definition));
+
+  // Check for passive voice (often complex for ESL)
+  const hasPassiveVoice = /\b(is|are|was|were|been|being)\s+\w+ed\b/i.test(definition);
+
   // Check for long sentences (likely complex grammar)
   const averageWordLength = definition.split(' ').reduce((acc, word) => acc + word.length, 0) / definition.split(' ').length;
   const isLongWords = averageWordLength > 6;
 
-  // Check for very long definitions (lowered threshold for testing)
-  const isTooLong = definition.length > 80;
+  // Check for very long definitions (lowered threshold)
+  const isTooLong = definition.length > 60;
 
-  // Check for academic/formal language patterns
-  const hasFormalPatterns = /\b(wherein|whereby|thereof|heretofore|notwithstanding|vis-à-vis)\b/i.test(definition);
+  // Check if definition is too short and vague
+  const isTooVague = definition.length < 15 && definition.split(' ').length < 4;
 
-  const isComplex = hasComplexWords || isLongWords || isTooLong || hasFormalPatterns;
+  const isComplex = hasComplexWords || hasFormalPatterns || hasPassiveVoice || isLongWords || isTooLong || isTooVague;
 
-  console.log('🔍 Complexity analysis:', {
-    word: definition.split(' ')[0] + '...',
+  console.log('🔍 Enhanced complexity analysis:', {
+    definition: definition,
     hasComplexWords,
+    hasFormalPatterns,
+    hasPassiveVoice,
     isLongWords: isLongWords && averageWordLength.toFixed(1),
     isTooLong: isTooLong && definition.length,
-    hasFormalPatterns,
+    isTooVague: isTooVague && definition.length,
     isComplex
   });
 
