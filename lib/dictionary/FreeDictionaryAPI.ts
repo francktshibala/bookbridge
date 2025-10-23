@@ -1,6 +1,8 @@
 // Free Dictionary API integration for real-time word definitions
 // API: https://dictionaryapi.dev/
 
+import { simplifyDefinitionWithAI } from './AIDefinitionSimplifier';
+
 interface FreeDictionaryResponse {
   word: string;
   phonetic?: string;
@@ -172,7 +174,7 @@ function transformAPIResponse(apiData: FreeDictionaryResponse): StandardDefiniti
     definition = sentences[0] + '.';
   }
 
-  return {
+  const baseDefinition = {
     word: apiData.word,
     phonetic: phonetic,
     pronunciation: phoneticToSimple(phonetic),
@@ -183,6 +185,70 @@ function transformAPIResponse(apiData: FreeDictionaryResponse): StandardDefiniti
     source: 'Free Dictionary API',
     audioUrl: audioUrl // Include audio URL for pronunciation
   };
+
+  // Check if definition is still too complex for ESL learners
+  console.log('🔍 Dictionary: Checking complexity for:', apiData.word, 'Definition:', definition);
+  if (isDefinitionTooComplex(definition)) {
+    console.log('🤖 Dictionary: Definition seems complex, queuing for AI simplification:', apiData.word);
+
+    // Try AI simplification in the background (don't block the response)
+    simplifyDefinitionWithAI({
+      word: apiData.word,
+      originalDefinition: definition,
+      partOfSpeech: firstMeaning.partOfSpeech,
+      cefrLevel: baseDefinition.cefrLevel
+    }).then(simplified => {
+      console.log('🤖 Dictionary: AI simplified definition for:', apiData.word, simplified);
+      // Note: This is fire-and-forget for now. In a production system,
+      // we might store this in a database for future lookups
+    }).catch(error => {
+      console.log('🤖 Dictionary: AI simplification failed for:', apiData.word, error.message);
+    });
+  }
+
+  return baseDefinition;
+}
+
+// Detect if a definition is too complex for ESL learners
+function isDefinitionTooComplex(definition: string): boolean {
+  // Complex words that indicate advanced definitions
+  const complexWords = [
+    'sophistication', 'manifestation', 'contemplation', 'phenomenon', 'intricate',
+    'elaborate', 'comprehensive', 'meticulous', 'profound', 'substantial',
+    'endeavor', 'facilitate', 'exemplify', 'demonstrate', 'illustrate',
+    'constitute', 'encompass', 'epitomize', 'embody', 'characterize',
+    'predominant', 'prevalent', 'inherent', 'fundamental', 'paramount',
+    'discernible', 'perceptible', 'conspicuous', 'pronounced', 'tangible',
+    'multitude', 'plethora', 'abundance', 'profusion', 'myriad'
+  ];
+
+  // Check for complex words
+  const hasComplexWords = complexWords.some(word =>
+    new RegExp(`\\b${word}\\b`, 'i').test(definition)
+  );
+
+  // Check for long sentences (likely complex grammar)
+  const averageWordLength = definition.split(' ').reduce((acc, word) => acc + word.length, 0) / definition.split(' ').length;
+  const isLongWords = averageWordLength > 6;
+
+  // Check for very long definitions (lowered threshold for testing)
+  const isTooLong = definition.length > 80;
+
+  // Check for academic/formal language patterns
+  const hasFormalPatterns = /\b(wherein|whereby|thereof|heretofore|notwithstanding|vis-à-vis)\b/i.test(definition);
+
+  const isComplex = hasComplexWords || isLongWords || isTooLong || hasFormalPatterns;
+
+  console.log('🔍 Complexity analysis:', {
+    word: definition.split(' ')[0] + '...',
+    hasComplexWords,
+    isLongWords: isLongWords && averageWordLength.toFixed(1),
+    isTooLong: isTooLong && definition.length,
+    hasFormalPatterns,
+    isComplex
+  });
+
+  return isComplex;
 }
 
 // Convert IPA phonetic to simpler pronunciation guide
