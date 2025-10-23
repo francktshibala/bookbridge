@@ -233,6 +233,18 @@ This document establishes the universal accessibility vision while defining the 
 
 ---
 
+## 📚 **Research & Planning Documents**
+
+### **LEARNER_DICTIONARY_IMPLEMENTATION_PLAN.md**
+**Location**: `/Users/user/bookbridge/bookbridge/LEARNER_DICTIONARY_IMPLEMENTATION_PLAN.md`
+**Description**: Comprehensive 8-week implementation plan for ESL learner dictionary feature based on 3-agent research. **KEY FEATURES**: Tap-to-define with bottom sheet UI (long-press activation), Simple English Wiktionary integration (51,765 ESL definitions), 2,500-word offline pack (<3MB), hybrid caching architecture (IndexedDB + Memory + Redis). **TECHNICAL SPECS**: <150ms cached lookups, Edge Functions for global distribution, client-side lemmatization with compromise.js. **INVESTMENT**: $14K development cost, $0-800/month operational. Expected to increase user retention by 15% and session duration by 20%. Essential blueprint for implementing professional ESL dictionary without disrupting audio playback.
+
+### **RESEARCH_PROCESS_TEMPLATE.md**
+**Location**: `/Users/user/bookbridge/bookbridge/docs/RESEARCH_PROCESS_TEMPLATE.md`
+**Description**: Proven research methodology template for conducting comprehensive feature investigations using 3-agent specialization. **FRAMEWORK**: 5-day research cycle (Planning → Research → Synthesis) with structured deliverables. **KEY COMPONENTS**: Agent instruction templates for different domains (UX, Technical, Data, Business), standardized findings format, quality guidelines and evidence requirements, implementation plan synthesis process. **RESEARCH PATTERNS**: Technical features, User features, Data features, Business features. Use for complex features >$5K budget or unknown implementation complexity. Based on successful ESL Dictionary research that delivered actionable $14K plan in 5 days. Essential for thorough pre-development investigation and accurate timeline/budget estimation.
+
+---
+
 ## 🔧 **Backend & Data Processing**
 
 ### **Book Processor**
