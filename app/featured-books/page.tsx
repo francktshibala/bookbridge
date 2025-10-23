@@ -10,6 +10,7 @@ import { useMediaSession } from '@/lib/hooks/useMediaSession';
 import { useDictionaryInteraction } from '@/hooks/useDictionaryInteraction';
 import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomSheet';
 import { getMockDefinition } from '@/data/mockDictionary';
+import { fetchDefinitionFromAPI } from '@/lib/dictionary/FreeDictionaryAPI';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 
@@ -1291,28 +1292,59 @@ export default function FeaturedBooksPage() {
       setIsDictionaryOpen(true);
       setDefinitionLoading(true);
 
-      // Use mock dictionary with real definitions
-      setTimeout(() => {
-        const mockDef = getMockDefinition(selectedWord);
+      // Hybrid approach: Check mock dictionary first, then API
+      const fetchDefinition = async () => {
+        try {
+          // First, try mock dictionary (instant)
+          const mockDef = getMockDefinition(selectedWord);
 
-        if (mockDef) {
-          setCurrentDefinition(mockDef);
-        } else {
-          // Fallback for words not in mock dictionary
+          if (mockDef) {
+            setCurrentDefinition(mockDef);
+            setDefinitionLoading(false);
+            console.log('📖 Dictionary: Using mock definition for:', selectedWord);
+            return;
+          }
+
+          // If not in mock dictionary, try Free Dictionary API
+          console.log('📖 Dictionary: Word not in mock, trying API:', selectedWord);
+          const apiDef = await fetchDefinitionFromAPI(selectedWord);
+
+          if (apiDef) {
+            setCurrentDefinition(apiDef);
+            console.log('📖 Dictionary: Loaded API definition for:', selectedWord);
+          } else {
+            // Final fallback - word not found anywhere
+            setCurrentDefinition({
+              word: selectedWord,
+              phonetic: 'unknown',
+              definition: `Sorry, we couldn't find a definition for "${selectedWord}". This might be a very rare word, a proper name, or a typo.`,
+              example: `Try words like "pretty", "beautiful", "house", or "amazing".`,
+              partOfSpeech: 'unknown',
+              cefrLevel: 'Unknown',
+              source: 'Not Found'
+            });
+            console.log('📖 Dictionary: No definition found for:', selectedWord);
+          }
+
+        } catch (error) {
+          console.error('📖 Dictionary: Error fetching definition:', error);
+
+          // Error fallback
           setCurrentDefinition({
             word: selectedWord,
-            phonetic: 'unknown',
-            definition: `Definition not found in mock dictionary. This word "${selectedWord}" needs to be looked up from a real dictionary API.`,
-            example: `Try selecting common words like "she", "beautiful", "house", or "amazing".`,
-            partOfSpeech: 'unknown',
-            cefrLevel: 'Unknown',
-            source: 'Mock Dictionary (Not Found)'
+            phonetic: 'error',
+            definition: `There was an error looking up "${selectedWord}". Please check your internet connection and try again.`,
+            example: `Network issues can prevent dictionary lookups.`,
+            partOfSpeech: 'error',
+            cefrLevel: 'Error',
+            source: 'Error'
           });
+        } finally {
+          setDefinitionLoading(false);
         }
+      };
 
-        setDefinitionLoading(false);
-        console.log('📖 Dictionary: Loaded definition for:', selectedWord);
-      }, 600); // Reduced delay for better UX
+      fetchDefinition();
     }
   }, [selectedWord]);
 
