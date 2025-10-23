@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 
 // Configuration
 const LONG_PRESS_DURATION = 500; // 0.5 seconds
+const CLICK_TIMEOUT = 200; // 200ms for distinguishing click vs drag
 const HIGHLIGHT_CLASS = 'dictionary-word-selected';
 
 interface DictionaryInteractionResult {
@@ -20,7 +21,9 @@ export function useDictionaryInteraction(): DictionaryInteractionResult {
   const longPressTimerRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartPos = useRef<{ x: number; y: number } | null>(null);
   const mouseDownPos = useRef<{ x: number; y: number } | null>(null);
+  const mouseDownTimeRef = useRef<number>(0);
   const isLongPressRef = useRef(false);
+  const isDraggingRef = useRef(false);
 
   // Clean up selection when component unmounts
   useEffect(() => {
@@ -87,60 +90,98 @@ export function useDictionaryInteraction(): DictionaryInteractionResult {
     return null;
   };
 
-  // Helper: Find character at click position using binary search
+  // Helper: Find character at click position using improved algorithm
   const findCharacterAtPosition = (textNode: Text, clientX: number, clientY: number): number => {
     const text = textNode.textContent || '';
-    let left = 0;
-    let right = text.length;
-    let closestIndex = -1;
-    let closestDistance = Infinity;
-
     const range = document.createRange();
+    let bestIndex = -1;
+    let bestDistance = Infinity;
 
-    while (left <= right) {
-      const mid = Math.floor((left + right) / 2);
-      range.setStart(textNode, mid);
-      range.setEnd(textNode, Math.min(mid + 1, text.length));
+    // Strategy: Check each character position to find the closest one
+    for (let i = 0; i <= text.length; i++) {
+      try {
+        range.setStart(textNode, i);
+        range.setEnd(textNode, Math.min(i + 1, text.length));
 
-      const rect = range.getBoundingClientRect();
-      const distance = Math.abs(clientX - rect.left) + Math.abs(clientY - rect.top);
+        const rect = range.getBoundingClientRect();
 
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = mid;
-      }
+        // Skip empty rects (whitespace characters)
+        if (rect.width === 0 && rect.height === 0) continue;
 
-      if (rect.left < clientX) {
-        left = mid + 1;
-      } else {
-        right = mid - 1;
+        // Calculate distance from click point to character center
+        const charCenterX = rect.left + rect.width / 2;
+        const charCenterY = rect.top + rect.height / 2;
+        const distance = Math.sqrt(
+          Math.pow(clientX - charCenterX, 2) +
+          Math.pow(clientY - charCenterY, 2)
+        );
+
+        // Prefer characters on the same line (prioritize Y distance)
+        const lineDistance = Math.abs(clientY - charCenterY);
+        const horizontalDistance = Math.abs(clientX - charCenterX);
+
+        // If on different lines, heavily penalize
+        const adjustedDistance = lineDistance > 10 ? distance + 1000 : distance;
+
+        if (adjustedDistance < bestDistance) {
+          bestDistance = adjustedDistance;
+          bestIndex = i;
+        }
+      } catch (error) {
+        // Skip invalid ranges
+        continue;
       }
     }
 
-    return closestIndex;
+    console.log('📍 Dictionary: Found character at index', bestIndex, 'with distance', bestDistance);
+    return bestIndex;
   };
 
   // Helper: Find word boundaries around character index
   const findWordBoundaries = (text: string, charIndex: number): { start: number; end: number } | null => {
     if (charIndex < 0 || charIndex >= text.length) return null;
 
-    // Word boundary regex - letters, numbers, apostrophes, hyphens
+    // Enhanced word boundary regex - includes letters, numbers, apostrophes, hyphens
     const wordChar = /[a-zA-Z0-9'''-]/;
 
-    // If we're not on a word character, return null
-    if (!wordChar.test(text[charIndex])) return null;
+    // If we're not on a word character, look for nearby word characters
+    let targetIndex = charIndex;
+    if (!wordChar.test(text[charIndex])) {
+      // Look left and right for nearest word character (within 3 characters)
+      let foundNearby = false;
+      for (let offset = 1; offset <= 3 && !foundNearby; offset++) {
+        // Check right
+        if (charIndex + offset < text.length && wordChar.test(text[charIndex + offset])) {
+          targetIndex = charIndex + offset;
+          foundNearby = true;
+        }
+        // Check left
+        if (!foundNearby && charIndex - offset >= 0 && wordChar.test(text[charIndex - offset])) {
+          targetIndex = charIndex - offset;
+          foundNearby = true;
+        }
+      }
+
+      if (!foundNearby) {
+        console.log('📍 Dictionary: No word character found near index', charIndex);
+        return null;
+      }
+    }
 
     // Find start of word
-    let start = charIndex;
+    let start = targetIndex;
     while (start > 0 && wordChar.test(text[start - 1])) {
       start--;
     }
 
     // Find end of word
-    let end = charIndex;
+    let end = targetIndex;
     while (end < text.length - 1 && wordChar.test(text[end + 1])) {
       end++;
     }
+
+    const word = text.substring(start, end + 1);
+    console.log('📍 Dictionary: Found word boundaries:', { word, start, end: end + 1, charIndex, targetIndex });
 
     return { start, end: end + 1 };
   };
@@ -210,6 +251,8 @@ export function useDictionaryInteraction(): DictionaryInteractionResult {
     e.preventDefault();
     const target = e.currentTarget;
     mouseDownPos.current = { x: e.clientX, y: e.clientY };
+    mouseDownTimeRef.current = Date.now();
+    isDraggingRef.current = false;
     startLongPress(target, e.clientX, e.clientY);
   }, []);
 
@@ -217,15 +260,38 @@ export function useDictionaryInteraction(): DictionaryInteractionResult {
     e.preventDefault();
     cancelLongPress();
 
-    // If it wasn't a long press, don't prevent the default click behavior
-    // This allows normal sentence clicking to still work
-    if (!isLongPressRef.current) {
-      // Let the original onClick handler work
-      return;
+    const mouseUpTime = Date.now();
+    const clickDuration = mouseUpTime - mouseDownTimeRef.current;
+    const mouseDown = mouseDownPos.current;
+
+    // Check if mouse moved (dragging)
+    if (mouseDown) {
+      const dragDistance = Math.sqrt(
+        Math.pow(e.clientX - mouseDown.x, 2) +
+        Math.pow(e.clientY - mouseDown.y, 2)
+      );
+      isDraggingRef.current = dragDistance > 5; // 5px threshold
     }
 
-    // Stop propagation only if we handled it as a dictionary lookup
-    e.stopPropagation();
+    // Handle as dictionary lookup if:
+    // 1. It was a long press, OR
+    // 2. It was a quick click (not drag) under 200ms
+    const isQuickClick = clickDuration < CLICK_TIMEOUT && !isDraggingRef.current;
+    const shouldTriggerDictionary = isLongPressRef.current || isQuickClick;
+
+    if (shouldTriggerDictionary && !isLongPressRef.current) {
+      // Handle quick click - trigger word lookup
+      const target = e.currentTarget;
+      highlightWord(target, e.clientX, e.clientY);
+      e.stopPropagation();
+    } else if (isLongPressRef.current) {
+      // Long press already handled, just stop propagation
+      e.stopPropagation();
+    }
+
+    // Reset states
+    mouseDownPos.current = null;
+    mouseDownTimeRef.current = 0;
   }, []);
 
   // Touch event handlers (mobile)
