@@ -48,6 +48,44 @@ div span.mobile-reading-text[data-sentence] {
   }
 }
 
+/* Dictionary Word Selection Styles */
+.dictionary-word-selected {
+  background: rgba(139, 69, 19, 0.2) !important; /* Brown highlight for dictionary selection */
+  border-radius: 6px !important;
+  padding: 2px 4px !important;
+  border: 2px solid var(--accent-primary) !important;
+  animation: dictionary-word-pulse 0.3s ease-in-out !important;
+  cursor: help !important;
+  position: relative !important;
+}
+
+/* Pulse animation for dictionary selection */
+@keyframes dictionary-word-pulse {
+  0% {
+    transform: scale(1);
+    background: rgba(139, 69, 19, 0.1);
+  }
+  50% {
+    transform: scale(1.05);
+    background: rgba(139, 69, 19, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    background: rgba(139, 69, 19, 0.2);
+  }
+}
+
+/* Theme-aware dictionary highlighting */
+.theme-dark .dictionary-word-selected {
+  background: rgba(255, 215, 0, 0.2) !important; /* Gold for dark theme */
+  border-color: var(--accent-primary) !important;
+}
+
+.theme-sepia .dictionary-word-selected {
+  background: rgba(141, 64, 4, 0.2) !important; /* Sepia accent */
+  border-color: var(--accent-primary) !important;
+}
+
 .theme-dark div span.mobile-reading-text[data-sentence].bg-blue-100 {
   background: rgba(120, 140, 160, 0.55) !important;  /* Stronger blue-gray at higher opacity */
   color: var(--text-primary) !important;

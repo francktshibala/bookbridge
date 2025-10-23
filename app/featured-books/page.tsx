@@ -7,6 +7,7 @@ import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
 import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
+import { useDictionaryInteraction } from '@/hooks/useDictionaryInteraction';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 
@@ -640,6 +641,17 @@ export default function FeaturedBooksPage() {
   // AI Chat Modal state
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
   const [selectedAIBook, setSelectedAIBook] = useState<ExternalBook | null>(null);
+
+  // Dictionary interaction state
+  const {
+    selectedWord,
+    selectedElement,
+    handleMouseDown,
+    handleMouseUp,
+    handleTouchStart,
+    handleTouchEnd,
+    clearSelection
+  } = useDictionaryInteraction();
 
   // Data state
   const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
@@ -1945,8 +1957,16 @@ export default function FeaturedBooksPage() {
                         style={{
                           textAlign: 'left'
                         }}
-                        title={`Sentence ${sentence.sentenceIndex + 1} (${sentence.startTime.toFixed(1)}s - ${sentence.endTime.toFixed(1)}s) - Click to jump`}
-                        onClick={async () => {
+                        title={`Sentence ${sentence.sentenceIndex + 1} (${sentence.startTime.toFixed(1)}s - ${sentence.endTime.toFixed(1)}s) - Click to jump | Long-press words for dictionary`}
+                        onMouseDown={handleMouseDown}
+                        onMouseUp={handleMouseUp}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
+                        onClick={async (e) => {
+                          // If this was a dictionary long-press, don't handle click
+                          if ((e.target as HTMLElement).classList.contains('dictionary-word-selected')) {
+                            return;
+                          }
                           console.log(`🖱️ Clicked sentence ${sentence.sentenceIndex}`);
 
                           // FIRST: Stop any current playback completely
@@ -2381,6 +2401,13 @@ export default function FeaturedBooksPage() {
           </div>
         </div>
 
+        </div>
+      )}
+
+      {/* Dictionary Debug Indicator */}
+      {selectedWord && (
+        <div className="fixed top-4 right-4 bg-[var(--accent-primary)] text-white px-4 py-2 rounded-lg shadow-lg z-50">
+          📖 Dictionary: "{selectedWord}"
         </div>
       )}
 
