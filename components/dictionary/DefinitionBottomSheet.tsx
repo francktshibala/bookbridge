@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
+import { playWordPronunciation } from '@/lib/audio/PronunciationPlayer';
 
 interface Definition {
   word: string;
@@ -12,6 +13,7 @@ interface Definition {
   partOfSpeech?: string;
   cefrLevel?: string;
   source?: string;
+  audioUrl?: string; // Add audio URL support
 }
 
 interface DefinitionBottomSheetProps {
@@ -144,11 +146,45 @@ function LoadingSkeleton() {
 }
 
 function DefinitionContent({ definition, onClose }: { definition: Definition; onClose: () => void }) {
-  const playPronunciation = () => {
-    // TODO: Implement audio pronunciation in later increment
-    console.log('🔊 Playing pronunciation for:', definition.word);
-    if ('vibrate' in navigator) {
-      navigator.vibrate(10);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+
+  const playPronunciation = async () => {
+    if (isPlayingAudio) return; // Prevent multiple clicks
+
+    setIsPlayingAudio(true);
+
+    try {
+      // Haptic feedback
+      if ('vibrate' in navigator) {
+        navigator.vibrate(10);
+      }
+
+      console.log('🔊 Playing pronunciation for:', definition.word);
+
+      // Try to play pronunciation with audio URL or fallback to TTS
+      const success = await playWordPronunciation(
+        definition.word,
+        definition.audioUrl,
+        definition.pronunciation || definition.phonetic
+      );
+
+      if (success) {
+        console.log('🔊 Pronunciation played successfully');
+      } else {
+        console.log('🔊 Pronunciation failed, no audio available');
+        // Additional haptic feedback for failure
+        if ('vibrate' in navigator) {
+          navigator.vibrate([50, 50, 50]); // Triple vibration for error
+        }
+      }
+
+    } catch (error) {
+      console.error('🔊 Error playing pronunciation:', error);
+    } finally {
+      // Reset button state after a delay
+      setTimeout(() => {
+        setIsPlayingAudio(false);
+      }, 2000);
     }
   };
 
@@ -172,13 +208,22 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
           <h2 className="text-2xl font-semibold text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
             {definition.word}
           </h2>
-          {definition.pronunciation && (
+          {(definition.pronunciation || definition.phonetic || definition.audioUrl) && (
             <button
               onClick={playPronunciation}
-              className="flex items-center justify-center w-8 h-8 text-[var(--accent-primary)] hover:bg-[var(--accent-primary)]/10 rounded-full transition-colors"
-              title="Play pronunciation"
+              disabled={isPlayingAudio}
+              className={`flex items-center justify-center w-10 h-10 rounded-full transition-all ${
+                isPlayingAudio
+                  ? 'bg-[var(--accent-primary)] text-white animate-pulse cursor-not-allowed'
+                  : 'text-[var(--accent-primary)] hover:bg-[var(--accent-primary)]/10 hover:scale-110 active:scale-95'
+              }`}
+              title={isPlayingAudio ? 'Playing pronunciation...' : 'Play pronunciation'}
             >
-              🔊
+              {isPlayingAudio ? (
+                <span className="text-lg animate-pulse">🎵</span>
+              ) : (
+                <span className="text-lg">🔊</span>
+              )}
             </button>
           )}
         </div>

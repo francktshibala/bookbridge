@@ -29,6 +29,7 @@ interface StandardDefinition {
   partOfSpeech?: string;
   cefrLevel?: string;
   source: string;
+  audioUrl?: string; // Add audio URL support
 }
 
 // In-memory cache to avoid repeated API calls
@@ -146,7 +147,8 @@ function transformAPIResponse(apiData: FreeDictionaryResponse): StandardDefiniti
     example: firstDefinition.example || generateSimpleExample(apiData.word, firstMeaning.partOfSpeech),
     partOfSpeech: firstMeaning.partOfSpeech,
     cefrLevel: estimateCEFRLevel(apiData.word), // Simple heuristic
-    source: 'Free Dictionary API'
+    source: 'Free Dictionary API',
+    audioUrl: audioUrl // Include audio URL for pronunciation
   };
 }
 
