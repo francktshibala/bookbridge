@@ -9,6 +9,7 @@ import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
+import { ResumeToast } from '@/components/reading/ResumeToast';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -636,6 +637,7 @@ export default function FeaturedBooksPage() {
   const [showChapterModal, setShowChapterModal] = useState(false);
   const [showContinueReading, setShowContinueReading] = useState(false);
   const [savedPosition, setSavedPosition] = useState<{sentenceIndex: number, timestamp: number} | null>(null);
+  const [showResumeToast, setShowResumeToast] = useState(false);
 
   // AI Chat Modal state
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
@@ -1098,6 +1100,7 @@ export default function FeaturedBooksPage() {
                         timestamp: new Date(savedPosition.lastAccessed || Date.now()).getTime()
                       });
                       setShowContinueReading(true);
+                      setShowResumeToast(true); // Show resume toast
                     }
 
                     // Update current settings from saved position
@@ -1661,6 +1664,19 @@ export default function FeaturedBooksPage() {
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      {/* Resume Reading Toast */}
+      <ResumeToast
+        show={showResumeToast}
+        chapter={currentChapter}
+        chunkIndex={currentSentenceIndex}
+        totalChunks={bundleData?.totalSentences || 0}
+        onStartFromBeginning={() => {
+          setCurrentSentenceIndex(0);
+          setShowResumeToast(false);
+        }}
+        onDismiss={() => setShowResumeToast(false)}
+      />
+
       {/* Book Selection Screen */}
       {showBookSelection && (
         <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">

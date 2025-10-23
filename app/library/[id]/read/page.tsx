@@ -7,6 +7,8 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { ESLControls } from '@/components/esl/ESLControls';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { motion } from 'framer-motion';
+import { useReadingPosition } from '@/hooks/useReadingPosition';
+import { ResumeToast } from '@/components/reading/ResumeToast';
 // PWA COMPLETELY DISABLED FOR TESTING
 // import { useReadingEngagement } from '@/components/InstallPrompt';
 // import { ReadingProgressTracker } from '@/components/sync/ReadingProgressTracker';
@@ -81,6 +83,10 @@ export default function BookReaderPage() {
   const [userScrolledUp, setUserScrolledUp] = useState(false);
   const [isAutoAdvancing, setIsAutoAdvancing] = useState(false);
 
+  // Reading position state
+  const [showResumeToast, setShowResumeToast] = useState(false);
+  const [hasLoadedPosition, setHasLoadedPosition] = useState(false);
+
   // Theme-aware text highlighting system
   const [selectedText, setSelectedText] = useState<string>('');
   const [highlightedSelection, setHighlightedSelection] = useState<{ text: string; range: Range } | null>(null);
@@ -113,6 +119,45 @@ export default function BookReaderPage() {
   // Two-tier experience detection
   const entrySource = searchParams.get('source'); // 'enhanced' | 'browse' | null
   const isBrowseExperience = entrySource === 'browse';
+
+  // Reading position hook
+  const { savedPosition, savePosition, resetPosition } = useReadingPosition({
+    bookId,
+    userId: user?.id,
+    onPositionLoaded: (position) => {
+      // Store position to apply later when bookContent loads
+      if (position && !hasLoadedPosition) {
+        console.log('📖 Position loaded from storage:', position);
+        // Position will be applied in useEffect when bookContent is ready
+      }
+    }
+  });
+
+  // Apply saved position when book content is ready
+  useEffect(() => {
+    if (savedPosition && bookContent && !hasLoadedPosition) {
+      // Validate position against book content
+      const validChunk = Math.min(savedPosition.currentBundleIndex, bookContent.totalChunks - 1);
+
+      if (validChunk > 0) {
+        // Apply saved position
+        setCurrentChunk(validChunk);
+        setEslLevel(savedPosition.cefrLevel);
+        setCurrentMode(savedPosition.contentMode as 'simplified' | 'original');
+
+        // Show resume toast
+        setShowResumeToast(true);
+        setHasLoadedPosition(true);
+
+        console.log('📖 Applied saved reading position:', {
+          chunk: validChunk,
+          chapter: savedPosition.currentChapter,
+          cefrLevel: savedPosition.cefrLevel,
+          mode: savedPosition.contentMode
+        });
+      }
+    }
+  }, [savedPosition, bookContent, hasLoadedPosition]);
 
 
   // Handle chunk navigation - defined with useCallback for stable reference
@@ -167,8 +212,17 @@ export default function BookReaderPage() {
       
       setCurrentChunk(newChunk);
 
-      // Save reading position to localStorage
-      localStorage.setItem(`reading-position-${bookId}`, newChunk.toString());
+      // Save reading position using hook
+      savePosition({
+        sentenceIndex: 0,
+        audioTimestamp: 0,
+        scrollPosition: 0,
+        playbackSpeed: 1.0,
+        chapter: 1,
+        chunkIndex: newChunk,
+        cefrLevel: eslLevel,
+        contentMode: currentMode
+      });
 
       // Reset highlighting for clean page transition
       console.log('🔄 NAVIGATION: Resetting highlighting for page transition');
@@ -204,16 +258,11 @@ export default function BookReaderPage() {
     if (bookId) {
       fetchBook();
       checkAuth();
-      loadReadingPosition();
+      // Position loading now handled by useReadingPosition hook
     }
   }, [bookId]);
 
-  // Re-validate reading position after book content is loaded
-  useEffect(() => {
-    if (bookContent?.chunks) {
-      loadReadingPosition(); // Re-validate position against actual book content
-    }
-  }, [bookContent]);
+  // Position validation now handled by useReadingPosition hook's onPositionLoaded callback
 
   // Clear simplified content when chunk changes
   useEffect(() => {
@@ -286,34 +335,8 @@ export default function BookReaderPage() {
   }, [currentChunk, currentMode, eslLevel, bookContent]);
 
 
-  // Load reading position from localStorage
-  const loadReadingPosition = () => {
-    const savedPosition = localStorage.getItem(`reading-position-${bookId}`);
-    const savedEslLevel = localStorage.getItem(`esl-level-${bookId}`);
-    const savedMode = localStorage.getItem(`reading-mode-${bookId}`);
-
-    if (savedPosition) {
-      const position = parseInt(savedPosition, 10);
-      if (position >= 0) {
-        // Validate chunk position against actual book content when available
-        if (bookContent?.chunks && position >= bookContent.chunks.length) {
-          console.warn(`Saved position ${position} exceeds book length (${bookContent.chunks.length} chunks). Resetting to 0.`);
-          localStorage.setItem(`reading-position-${bookId}`, '0');
-          setCurrentChunk(0);
-        } else {
-          setCurrentChunk(position);
-        }
-      }
-    }
-
-    if (savedEslLevel) {
-      setEslLevel(savedEslLevel);
-    }
-
-    if (savedMode === 'simplified' || savedMode === 'original') {
-      setCurrentMode(savedMode);
-    }
-  };
+  // OLD loadReadingPosition function removed - now using useReadingPosition hook
+  // Position loading, saving, and validation handled by hook
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -388,9 +411,9 @@ export default function BookReaderPage() {
           // Check if it's a chunk index out of range error
           if (errorData.error && errorData.error.includes('out of range')) {
             console.warn(`Chunk index ${chunkIndex} is invalid. Resetting to chunk 0 and clearing stale localStorage.`);
-            
-            // Clear potentially stale reading positions
-            localStorage.removeItem(`reading-position-${bookId}`);
+
+            // Clear potentially stale reading positions (use correct key format matching service/hook)
+            localStorage.removeItem(`reading_position_${bookId}`);
             localStorage.removeItem(`reading-mode-${bookId}`);
             
             // Reset to chunk 0 and try again
@@ -550,18 +573,14 @@ export default function BookReaderPage() {
         } catch {}
 
         setBookContent(bookData);
-        
-        // Set initial content based on saved position
-        const savedPosition = localStorage.getItem(`reading-position-${bookId}`);
-        const initialChunk = savedPosition ? parseInt(savedPosition, 10) : 0;
-        const validChunk = Math.max(0, Math.min(initialChunk, chunks.length - 1));
-        
-        setCurrentChunk(validChunk);
-        console.log('🔄 PAGE TRANSITION: Setting new content for chunk', validChunk, 'Content length:', chunks[validChunk].content.length);
-        setCurrentContent(chunks[validChunk].content);
-        console.log(`Book split into ${chunks.length} chunks, starting at chunk ${validChunk}`);
-        console.log('DEBUG: First chunk content length:', chunks[validChunk]?.content?.length || 0);
-        console.log('DEBUG: First chunk preview:', chunks[validChunk]?.content?.substring(0, 100) || 'No content');
+
+        // Set initial content to chunk 0 (position restoration handled by useReadingPosition hook)
+        setCurrentChunk(0);
+        console.log('🔄 INITIAL LOAD: Setting content for chunk 0, length:', chunks[0].content.length);
+        setCurrentContent(chunks[0].content);
+        console.log(`Book split into ${chunks.length} chunks, starting at chunk 0 (will resume saved position if available)`);
+        console.log('DEBUG: Initial chunk content length:', chunks[0]?.content?.length || 0);
+        console.log('DEBUG: Initial chunk preview:', chunks[0]?.content?.substring(0, 100) || 'No content');
       } else {
         console.log('No content found in book data');
         setError('Book content not available');
@@ -678,6 +697,20 @@ export default function BookReaderPage() {
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      {/* Resume Reading Toast */}
+      <ResumeToast
+        show={showResumeToast}
+        chapter={savedPosition?.currentChapter || 1}
+        chunkIndex={currentChunk}
+        totalChunks={bookContent?.totalChunks || 0}
+        onStartFromBeginning={async () => {
+          setCurrentChunk(0);
+          await resetPosition();
+          setShowResumeToast(false);
+        }}
+        onDismiss={() => setShowResumeToast(false)}
+      />
+
       {/* Background Reading Progress Tracker - Temporarily disabled */}
       {/* {user && bookContent && (
         <ReadingProgressTracker
