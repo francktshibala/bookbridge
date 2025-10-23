@@ -94,7 +94,7 @@ export async function fetchDefinitionFromAPI(word: string): Promise<StandardDefi
     }
 
     // Transform API response to our standard format
-    const standardDef = transformAPIResponse(data[0]);
+    const standardDef = await transformAPIResponse(data[0]);
 
     // Cache the result
     definitionCache.set(cleanWord, standardDef);
@@ -111,7 +111,7 @@ export async function fetchDefinitionFromAPI(word: string): Promise<StandardDefi
   }
 }
 
-function transformAPIResponse(apiData: FreeDictionaryResponse): StandardDefinition {
+async function transformAPIResponse(apiData: FreeDictionaryResponse): Promise<StandardDefinition> {
   // Get the best phonetic pronunciation
   const phonetic = apiData.phonetic ||
     apiData.phonetics.find(p => p.text)?.text ||
@@ -189,21 +189,36 @@ function transformAPIResponse(apiData: FreeDictionaryResponse): StandardDefiniti
   // Check if definition is still too complex for ESL learners
   console.log('🔍 Dictionary: Checking complexity for:', apiData.word, 'Definition:', definition);
   if (isDefinitionTooComplex(definition)) {
-    console.log('🤖 Dictionary: Definition seems complex, queuing for AI simplification:', apiData.word);
+    console.log('🤖 Dictionary: Definition seems complex, applying AI simplification:', apiData.word);
 
-    // Try AI simplification in the background (don't block the response)
-    simplifyDefinitionWithAI({
-      word: apiData.word,
-      originalDefinition: definition,
-      partOfSpeech: firstMeaning.partOfSpeech,
-      cefrLevel: baseDefinition.cefrLevel
-    }).then(simplified => {
-      console.log('🤖 Dictionary: AI simplified definition for:', apiData.word, simplified);
-      // Note: This is fire-and-forget for now. In a production system,
-      // we might store this in a database for future lookups
-    }).catch(error => {
-      console.log('🤖 Dictionary: AI simplification failed for:', apiData.word, error.message);
-    });
+    try {
+      // Apply AI simplification immediately (with timeout)
+      const simplified = await Promise.race([
+        simplifyDefinitionWithAI({
+          word: apiData.word,
+          originalDefinition: definition,
+          partOfSpeech: firstMeaning.partOfSpeech,
+          cefrLevel: baseDefinition.cefrLevel
+        }),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('AI timeout')), 2000) // 2 second timeout
+        )
+      ]) as any;
+
+      if (simplified && simplified.simplified) {
+        console.log('🤖 Dictionary: Applied instant AI simplification:', apiData.word);
+        return {
+          ...baseDefinition,
+          definition: simplified.definition,
+          example: simplified.example || baseDefinition.example,
+          source: 'Free Dictionary API (AI Simplified)',
+          cefrLevel: 'A2' // AI simplified definitions are A2 level
+        };
+      }
+    } catch (error) {
+      console.log('🤖 Dictionary: AI simplification failed/timeout for:', apiData.word, 'using manual fallback');
+      // Continue with manual simplification below
+    }
   }
 
   return baseDefinition;

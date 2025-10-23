@@ -20,9 +20,9 @@ const simplificationCache = new Map<string, SimplifiedDefinition>();
 const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours for AI results
 const cacheTimestamps = new Map<string, number>();
 
-// Rate limiting for AI calls
+// Rate limiting for AI calls (reduced for instant responses)
 let lastAIRequest = 0;
-const MIN_AI_INTERVAL = 1000; // 1 second between AI requests
+const MIN_AI_INTERVAL = 500; // 500ms between AI requests for faster responses
 
 export async function simplifyDefinitionWithAI(request: SimplificationRequest): Promise<SimplifiedDefinition> {
   const cacheKey = `${request.word}:${request.originalDefinition}`;
@@ -213,8 +213,9 @@ async function callAnthropicSimplification(prompt: string, request: Simplificati
 function manualSimplification(request: SimplificationRequest): SimplifiedDefinition {
   let definition = request.originalDefinition;
 
-  // Apply the same manual simplifications we have in other files
+  // Enhanced manual simplifications for instant responses
   const simplifications: Record<string, string> = {
+    // Emotional/aesthetic words
     'amazement': 'surprise',
     'awe': 'great surprise',
     'marvel': 'something wonderful',
@@ -227,14 +228,15 @@ function manualSimplification(request: SimplificationRequest): SimplifiedDefinit
     'magnificence': 'great beauty',
     'splendor': 'great beauty',
     'grandeur': 'greatness',
+
+    // Cognitive/mental words
     'contemplation': 'thinking',
     'consideration': 'thinking about',
     'pondering': 'thinking about',
-    'phenomenon': 'something that happens',
-    'occurrence': 'something that happens',
-    'manifestation': 'something you can see',
-    'demonstration': 'showing',
-    'exhibition': 'showing',
+    'deliberation': 'thinking carefully',
+    'reflection': 'thinking about',
+
+    // Action/behavior words
     'fascinate': 'interest very much',
     'persuade': 'make someone agree',
     'seduce': 'attract strongly',
@@ -242,7 +244,47 @@ function manualSimplification(request: SimplificationRequest): SimplifiedDefinit
     'enchant': 'make very happy',
     'allure': 'attract',
     'entice': 'encourage to do',
-    'mesmerize': 'hold attention completely'
+    'mesmerize': 'hold attention completely',
+    'demonstrate': 'show',
+    'illustrate': 'show',
+    'exemplify': 'show as example',
+
+    // Physical/visual words
+    'manifestation': 'something you can see',
+    'exhibition': 'showing',
+    'phenomenon': 'something that happens',
+    'occurrence': 'something that happens',
+    'spectacle': 'something amazing to see',
+
+    // Complex adjectives
+    'intricate': 'very detailed',
+    'elaborate': 'very detailed',
+    'comprehensive': 'complete',
+    'meticulous': 'very careful',
+    'profound': 'very deep',
+    'substantial': 'large and important',
+    'paramount': 'most important',
+    'fundamental': 'basic and important',
+    'inherent': 'natural part of',
+    'prevalent': 'common',
+    'predominant': 'most common',
+
+    // Complex nouns
+    'multitude': 'many',
+    'plethora': 'many',
+    'abundance': 'many',
+    'profusion': 'many',
+    'myriad': 'many',
+    'endeavor': 'try to do',
+    'facilitate': 'make easier',
+
+    // Textile/decoration specific (for tapestry example)
+    'decorative': 'made to look nice',
+    'ornamental': 'made to look nice',
+    'pictorial': 'with pictures',
+    'artistic': 'made by an artist',
+    'woven': 'made by putting threads together',
+    'textile': 'cloth or fabric'
   };
 
   // Apply simplifications
