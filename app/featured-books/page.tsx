@@ -9,6 +9,7 @@ import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
 import { useDictionaryInteraction } from '@/hooks/useDictionaryInteraction';
 import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomSheet';
+import { getMockDefinition } from '@/data/mockDictionary';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 
@@ -1290,19 +1291,28 @@ export default function FeaturedBooksPage() {
       setIsDictionaryOpen(true);
       setDefinitionLoading(true);
 
-      // Mock definition for now (Increment 3 will add real data)
+      // Use mock dictionary with real definitions
       setTimeout(() => {
-        setCurrentDefinition({
-          word: selectedWord,
-          phonetic: 'ˈɛksəm.pəl',
-          definition: `A simple definition for "${selectedWord}" - this is a mock definition for testing the bottom sheet interface.`,
-          example: `Here is an example sentence using "${selectedWord}" in context.`,
-          partOfSpeech: 'noun',
-          cefrLevel: 'A2',
-          source: 'Mock Dictionary'
-        });
+        const mockDef = getMockDefinition(selectedWord);
+
+        if (mockDef) {
+          setCurrentDefinition(mockDef);
+        } else {
+          // Fallback for words not in mock dictionary
+          setCurrentDefinition({
+            word: selectedWord,
+            phonetic: 'unknown',
+            definition: `Definition not found in mock dictionary. This word "${selectedWord}" needs to be looked up from a real dictionary API.`,
+            example: `Try selecting common words like "she", "beautiful", "house", or "amazing".`,
+            partOfSpeech: 'unknown',
+            cefrLevel: 'Unknown',
+            source: 'Mock Dictionary (Not Found)'
+          });
+        }
+
         setDefinitionLoading(false);
-      }, 800); // Simulate API delay
+        console.log('📖 Dictionary: Loaded definition for:', selectedWord);
+      }, 600); // Reduced delay for better UX
     }
   }, [selectedWord]);
 
