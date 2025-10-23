@@ -190,13 +190,25 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
 
   const getCefrColor = (level?: string) => {
     switch (level) {
-      case 'A1': return 'bg-green-100 text-green-800 border-green-200';
-      case 'A2': return 'bg-blue-100 text-blue-800 border-blue-200';
-      case 'B1': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'B2': return 'bg-orange-100 text-orange-800 border-orange-200';
-      case 'C1': return 'bg-red-100 text-red-800 border-red-200';
-      case 'C2': return 'bg-purple-100 text-purple-800 border-purple-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+      case 'A1': return 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-700';
+      case 'A2': return 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-700';
+      case 'B1': return 'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-700';
+      case 'B2': return 'bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900 dark:text-orange-200 dark:border-orange-700';
+      case 'C1': return 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-200 dark:border-red-700';
+      case 'C2': return 'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:border-purple-700';
+      default: return 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600';
+    }
+  };
+
+  const getCefrDescription = (level?: string) => {
+    switch (level) {
+      case 'A1': return 'Basic - Essential words for beginners';
+      case 'A2': return 'Elementary - Common everyday words';
+      case 'B1': return 'Intermediate - Useful for conversations';
+      case 'B2': return 'Upper Intermediate - Advanced vocabulary';
+      case 'C1': return 'Advanced - Complex language skills';
+      case 'C2': return 'Proficient - Near-native level words';
+      default: return 'Level unknown';
     }
   };
 
@@ -229,8 +241,13 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
         </div>
 
         {definition.cefrLevel && (
-          <div className={`px-2 py-1 rounded-full text-xs font-semibold border ${getCefrColor(definition.cefrLevel)}`}>
-            {definition.cefrLevel}
+          <div className="flex flex-col items-end gap-1">
+            <div className={`px-3 py-1 rounded-full text-xs font-semibold border ${getCefrColor(definition.cefrLevel)}`}>
+              {definition.cefrLevel}
+            </div>
+            <div className="text-xs text-[var(--text-secondary)] text-right max-w-[120px] leading-tight">
+              {getCefrDescription(definition.cefrLevel)}
+            </div>
           </div>
         )}
       </div>
@@ -293,8 +310,19 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
 
       {/* Source */}
       {definition.source && (
-        <div className="text-xs text-[var(--text-secondary)]/70 text-center pt-2">
-          Source: {definition.source}
+        <div className="flex items-center justify-center gap-2 text-xs text-[var(--text-secondary)]/70 pt-2">
+          <span className="flex items-center gap-1">
+            {definition.source === 'Mock Dictionary' && '🎓'}
+            {definition.source === 'Simple Wiktionary' && '📚'}
+            {definition.source === 'Free Dictionary API' && '🌐'}
+            Source: {definition.source}
+          </span>
+          {definition.source === 'Simple Wiktionary' && (
+            <span className="text-green-600 text-xs font-medium">ESL-friendly</span>
+          )}
+          {definition.source === 'Mock Dictionary' && (
+            <span className="text-blue-600 text-xs font-medium">Curated</span>
+          )}
         </div>
       )}
     </div>

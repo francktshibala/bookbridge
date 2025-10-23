@@ -11,6 +11,7 @@ import { useDictionaryInteraction } from '@/hooks/useDictionaryInteraction';
 import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomSheet';
 import { getMockDefinition } from '@/data/mockDictionary';
 import { fetchDefinitionFromAPI } from '@/lib/dictionary/FreeDictionaryAPI';
+import { fetchSimpleWiktionaryDefinition } from '@/lib/dictionary/SimpleWiktionaryAPI';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 
@@ -1292,10 +1293,10 @@ export default function FeaturedBooksPage() {
       setIsDictionaryOpen(true);
       setDefinitionLoading(true);
 
-      // Hybrid approach: Check mock dictionary first, then API
+      // Three-tier ESL approach: Mock → Simple Wiktionary → Free Dictionary API
       const fetchDefinition = async () => {
         try {
-          // First, try mock dictionary (instant)
+          // Tier 1: Try mock dictionary (instant, curated ESL definitions)
           const mockDef = getMockDefinition(selectedWord);
 
           if (mockDef) {
@@ -1305,13 +1306,24 @@ export default function FeaturedBooksPage() {
             return;
           }
 
-          // If not in mock dictionary, try Free Dictionary API
-          console.log('📖 Dictionary: Word not in mock, trying API:', selectedWord);
+          // Tier 2: Try Simple Wiktionary (ESL-friendly, simplified English)
+          console.log('📖 Dictionary: Word not in mock, trying Simple Wiktionary:', selectedWord);
+          const simpleWiktionaryDef = await fetchSimpleWiktionaryDefinition(selectedWord);
+
+          if (simpleWiktionaryDef) {
+            setCurrentDefinition(simpleWiktionaryDef);
+            setDefinitionLoading(false);
+            console.log('📖 Dictionary: Using Simple Wiktionary definition for:', selectedWord);
+            return;
+          }
+
+          // Tier 3: Try Free Dictionary API (comprehensive but complex)
+          console.log('📖 Dictionary: Word not in Simple Wiktionary, trying Free Dictionary API:', selectedWord);
           const apiDef = await fetchDefinitionFromAPI(selectedWord);
 
           if (apiDef) {
             setCurrentDefinition(apiDef);
-            console.log('📖 Dictionary: Loaded API definition for:', selectedWord);
+            console.log('📖 Dictionary: Using Free Dictionary API definition for:', selectedWord);
           } else {
             // Final fallback - word not found anywhere
             setCurrentDefinition({
