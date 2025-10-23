@@ -334,3 +334,234 @@ class DictionaryAPI:
 4. **Long-term (Months 6+):** Negotiate commercial API agreements for premium features
 
 This research provides a comprehensive foundation for building a competitive ESL dictionary service that can start with zero licensing costs while maintaining a clear path to premium features and commercial API integration as the business scales.
+
+---
+
+## 7. UPDATED IMPLEMENTATION PLAN - GPT-5 HYBRID AI-FIRST APPROACH
+
+*Updated after implementation testing and GPT-5 consultation (October 2024)*
+
+### 7.1 Current System Analysis
+
+**What We Built (Increments 1-8):**
+- ✅ Multi-tier lookup: Mock Dictionary → Simple Wiktionary → Free Dictionary API → AI simplification
+- ✅ Lemmatization system for word forms (running→run, charming→charm)
+- ✅ AI definition simplification for complex definitions
+- ✅ CEFR level indicators and pronunciation support
+
+**Critical Issues Identified:**
+- ❌ **Coverage gaps**: Possessives ("caretaker's"), contractions ("won't"), proper names fail
+- ❌ **Inconsistent quality**: Different sources provide varying definition complexity
+- ❌ **Architecture complexity**: 4 different data sources, multiple fallback chains
+- ❌ **User frustration**: "Word not found" errors for edge cases
+
+### 7.2 GPT-5 Recommended Solution: Hybrid AI-First Architecture
+
+**New Flow:**
+1. **Cache check** (instant - 24hr cached definitions)
+2. **AI definition** (2-second timeout with ESL-optimized prompt)
+3. **Existing system fallback** (only if AI fails)
+
+**Key Advantages:**
+- ✅ **100% word coverage**: AI can define ANY word combination
+- ✅ **Consistent ESL quality**: Same prompt, same simplification level
+- ✅ **Safety net**: Existing system as reliable backup
+- ✅ **Performance**: Aggressive caching makes most lookups instant
+
+### 7.3 4-Phase Implementation Plan
+
+#### Phase 1: Edge Cache + Request Deduplication (2-3 days)
+**Goal:** Improve current system performance immediately
+- Add `/api/dictionary/resolve` endpoint with normalization
+- Implement edge cache with 24h TTL
+- Add request deduplication for concurrent lookups
+- **Metrics:** Cache hit rate, latency reduction
+
+**Files to modify:**
+- `app/api/dictionary/route.ts` (new unified endpoint)
+- `lib/dictionary/cache.ts` (new caching layer)
+- `app/featured-books/page.tsx` (update to use new endpoint)
+
+#### Phase 2: AI Layer with 2s Budget + Feature Flag (2-3 days)
+**Goal:** Insert AI as primary lookup with safety controls
+- Add AI layer: Cache → AI (2s timeout) → Existing tiers
+- Implement feature flag for gradual rollout
+- Add cost controls: daily caps, per-IP rate limits
+- **Metrics:** AI success rate, response time, cost per lookup
+
+**Files to modify:**
+- `lib/dictionary/AIUniversalLookup.ts` (new AI-first service)
+- `app/api/dictionary/resolve.ts` (integrate AI layer)
+- `.env` (add feature flags and cost limits)
+
+#### Phase 3: Prewarm + Client Optimizations (2-3 days)
+**Goal:** Make UI feel instant through predictive loading
+- Idle prefetch for visible words in viewport
+- Client IndexedDB + LRU cache implementation
+- Progressive UI updates (skeleton → definition → example)
+- Enhanced lemmatization for possessives and contractions
+
+**Files to modify:**
+- `lib/dictionary/clientCache.ts` (new IndexedDB cache)
+- `lib/dictionary/lemmatizer.ts` (add possessive handling)
+- `components/Dictionary/DictionaryModal.tsx` (progressive UI)
+- `hooks/useVisibleWords.ts` (new prefetch hook)
+
+#### Phase 4: Quality + Cost Tuning (2-3 days)
+**Goal:** Optimize for production quality and cost efficiency
+- Prompt tuning for consistent ESL style
+- Precompute frequent words per book on load
+- Add monitoring: latency, cache hit rate, cost tracking
+- Quality feedback system for definition improvements
+
+**Files to modify:**
+- `lib/dictionary/prompts.ts` (optimized ESL prompts)
+- `lib/analytics/dictionaryMetrics.ts` (new monitoring)
+- `app/admin/dictionary-stats/page.tsx` (new admin dashboard)
+
+### 7.4 Technical Architecture
+
+#### Unified Dictionary Endpoint
+```typescript
+// app/api/dictionary/resolve/route.ts
+export async function GET(request: Request) {
+  const { word, context } = parseQuery(request.url);
+  const normalizedKey = normalizeWord(word);
+
+  // 1. Check cache first
+  const cached = await getFromCache(normalizedKey);
+  if (cached) return Response.json(cached);
+
+  // 2. AI lookup with 2s timeout
+  const aiResult = await Promise.race([
+    aiUniversalLookup({ word, context }),
+    timeout(2000)
+  ]);
+
+  if (aiResult.success) {
+    await cacheResult(normalizedKey, aiResult.definition);
+    return Response.json(aiResult.definition);
+  }
+
+  // 3. Fallback to existing system
+  const fallback = await existingSystemLookup(word);
+  return Response.json(fallback);
+}
+```
+
+#### AI Universal Lookup Service
+```typescript
+// lib/dictionary/AIUniversalLookup.ts
+export async function aiUniversalLookup(request: {
+  word: string;
+  context?: string;
+}): Promise<UniversalDefinition> {
+
+  const prompt = `You are an ESL teacher. Define "${request.word}" for A2-B1 level learners.
+  Context: "${request.context}"
+
+  Requirements:
+  - Use only simple, common English words
+  - Keep definition under 20 words
+  - Include a simple example sentence
+  - Handle possessives, contractions, proper names appropriately
+
+  Respond in JSON: {"definition": "...", "example": "...", "partOfSpeech": "..."}`;
+
+  // Try OpenAI first, fallback to Anthropic
+  return await callAIService(prompt);
+}
+```
+
+#### Progressive UI Loading
+```typescript
+// components/Dictionary/DictionaryModal.tsx
+export function DictionaryModal({ word }: { word: string }) {
+  const [state, setState] = useState<'loading' | 'partial' | 'complete'>('loading');
+  const [definition, setDefinition] = useState<Partial<Definition>>({});
+
+  useEffect(() => {
+    // Show skeleton immediately
+    setState('loading');
+
+    // Check client cache first
+    const cached = getFromClientCache(word);
+    if (cached) {
+      setDefinition(cached);
+      setState('complete');
+      return;
+    }
+
+    // Progressive loading from API
+    fetchDefinition(word).then(result => {
+      setDefinition(result);
+      setState('complete');
+      cacheInClient(word, result);
+    });
+  }, [word]);
+
+  return (
+    <Modal>
+      <h2>{word}</h2>
+      {state === 'loading' && <SkeletonLoader />}
+      {definition.definition && <Definition text={definition.definition} />}
+      {definition.example && <Example text={definition.example} />}
+    </Modal>
+  );
+}
+```
+
+### 7.5 Success Metrics
+
+#### Performance Targets
+- **Cache hit rate**: >80% after 1 week
+- **AI response time**: <2s for 95th percentile
+- **Fallback rate**: <5% of total lookups
+- **Client cache hit**: >90% for session revisits
+
+#### Quality Targets
+- **Definition length**: <25 words average
+- **ESL appropriateness**: User feedback >4.0/5.0
+- **Coverage rate**: >99% successful definition lookup
+- **No "not found" errors**: Zero tolerance for edge cases
+
+#### Cost Targets
+- **AI cost per lookup**: <$0.001 after caching
+- **Daily API budget**: <$10 for 10K daily active users
+- **Cost efficiency**: 90% reduction via caching
+
+### 7.6 Risk Mitigation
+
+#### Technical Risks
+- **AI timeouts**: Robust fallback to existing system
+- **Cost overruns**: Daily caps and rate limiting
+- **Cache failures**: Multiple cache layers (client + edge)
+
+#### Quality Risks
+- **Inconsistent definitions**: Prompt engineering and feedback loops
+- **Inappropriate content**: Content filtering and manual review queues
+- **User complaints**: Quality feedback system and rapid iteration
+
+### 7.7 Rollout Strategy
+
+#### Week 1: Phase 1 Implementation
+- Build edge cache and unified endpoint
+- Test with existing system performance
+- Measure baseline cache hit rates
+
+#### Week 2: Phase 2 Implementation
+- Add AI layer behind 10% feature flag
+- Monitor AI success rates and costs
+- Gradually increase flag percentage
+
+#### Week 3: Phase 3 Implementation
+- Add client optimizations and prefetching
+- Implement progressive UI loading
+- Test on mobile devices for performance
+
+#### Week 4: Phase 4 Implementation
+- Optimize prompts and cost efficiency
+- Add monitoring dashboards
+- Prepare for 100% rollout
+
+**End Result:** Universal dictionary that can define ANY word with consistent ESL-friendly quality, instant performance through aggressive caching, and bulletproof reliability through hybrid AI-first + fallback architecture.
