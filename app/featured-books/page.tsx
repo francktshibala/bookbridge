@@ -8,6 +8,7 @@ import { readingPositionService, type ReadingPosition } from '@/lib/services/rea
 import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
 import { useDictionaryInteraction } from '@/hooks/useDictionaryInteraction';
+import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomSheet';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 
@@ -653,6 +654,11 @@ export default function FeaturedBooksPage() {
     clearSelection
   } = useDictionaryInteraction();
 
+  // Dictionary bottom sheet state
+  const [isDictionaryOpen, setIsDictionaryOpen] = useState(false);
+  const [currentDefinition, setCurrentDefinition] = useState<any>(null);
+  const [definitionLoading, setDefinitionLoading] = useState(false);
+
   // Data state
   const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -1277,6 +1283,28 @@ export default function FeaturedBooksPage() {
   useEffect(() => {
     handleNextBundleRef.current = handleNextBundle;
   });
+
+  // Dictionary effect - watch for word selection and fetch definition
+  useEffect(() => {
+    if (selectedWord) {
+      setIsDictionaryOpen(true);
+      setDefinitionLoading(true);
+
+      // Mock definition for now (Increment 3 will add real data)
+      setTimeout(() => {
+        setCurrentDefinition({
+          word: selectedWord,
+          phonetic: 'ˈɛksəm.pəl',
+          definition: `A simple definition for "${selectedWord}" - this is a mock definition for testing the bottom sheet interface.`,
+          example: `Here is an example sentence using "${selectedWord}" in context.`,
+          partOfSpeech: 'noun',
+          cefrLevel: 'A2',
+          source: 'Mock Dictionary'
+        });
+        setDefinitionLoading(false);
+      }, 800); // Simulate API delay
+    }
+  }, [selectedWord]);
 
   const handlePause = async () => {
     audioManagerRef.current?.pause();
@@ -2410,6 +2438,19 @@ export default function FeaturedBooksPage() {
           📖 Dictionary: "{selectedWord}"
         </div>
       )}
+
+      {/* Dictionary Bottom Sheet */}
+      <DefinitionBottomSheet
+        word={selectedWord}
+        definition={currentDefinition}
+        isOpen={isDictionaryOpen}
+        loading={definitionLoading}
+        onClose={() => {
+          setIsDictionaryOpen(false);
+          setCurrentDefinition(null);
+          clearSelection();
+        }}
+      />
 
       {/* AI Chat Modal */}
       <AIBookChatModal
