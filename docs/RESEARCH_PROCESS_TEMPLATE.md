@@ -44,7 +44,8 @@ This document provides a proven template for conducting comprehensive feature re
 1. Review all findings
 2. Identify conflicts and gaps
 3. Create comprehensive implementation plan
-4. Document lessons learned
+4. **Break implementation into incremental steps**
+5. Document lessons learned
 
 ---
 
@@ -90,6 +91,22 @@ This document provides a proven template for conducting comprehensive feature re
 ## 📊 Expected Outcomes
 [What each research area should deliver]
 
+## 🚨 Guardrails & Constraints
+### Performance Budgets
+- p95 latency: [target ms]
+- Mobile memory cap: [target MB]
+- Bundle size limit: [target MB]
+
+### Kill/Scope-Cut Criteria
+- **Kill if**: [conditions that stop the project]
+- **Scope cut if**: [conditions that reduce scope]
+- **Proceed if**: [minimum viable criteria]
+
+## 🎯 Research Hypotheses
+1. **Hypothesis 1**: [Testable statement about user behavior/technical feasibility]
+2. **Hypothesis 2**: [Testable statement about market/competitive advantage]
+3. **Hypothesis 3**: [Testable statement about implementation approach]
+
 ## 🚀 Quick Wins to Implement During Research
 [Items that can be built while researching]
 
@@ -102,8 +119,11 @@ This document provides a proven template for conducting comprehensive feature re
 ## 🎯 Final Deliverables
 1. Individual Research Files: 3 agent findings
 2. Implementation Plan: `[FEATURE_NAME]_IMPLEMENTATION_PLAN.md`
-3. Technical Specification
-4. Timeline & Budget
+3. **Incremental Plan: `[FEATURE_NAME]_INCREMENTAL_PLAN.md`**
+4. **Risk Register**: Top 5 risks with owners and mitigation
+5. **Decision Log**: Key decisions with rationale
+6. Technical Specification
+7. Timeline & Budget
 
 ## 📝 Research Questions by Agent
 [Specific questions for each agent]
@@ -138,6 +158,16 @@ This document provides a proven template for conducting comprehensive feature re
 - **Agent 1**: Mobile UX & Interaction Design
 - **Agent 2**: Performance & Optimization
 - **Agent 3**: Cross-Platform Compatibility
+
+### **Option E: Security/Compliance Feature**
+- **Agent 1**: UX & Checkout Flow
+- **Agent 2**: Compliance & Security
+- **Agent 3**: Billing & Infrastructure
+
+### **Option F: Pedagogical Feature**
+- **Agent 1**: UX & Learning Science
+- **Agent 2**: Curriculum & Pedagogy
+- **Agent 3**: Tech & Content Tools
 
 ### **Step 3: Write Agent Instructions**
 
@@ -280,7 +310,79 @@ Include:
 [Business and user impact projections]
 ```
 
-### **Step 3: Validate Against Constraints**
+### **Step 3: Break Into Incremental Implementation**
+
+**CRITICAL**: After completing the implementation plan, immediately create an incremental breakdown.
+
+**Template**: `[FEATURE_NAME]_INCREMENTAL_PLAN.md`
+
+#### **Why Break Into Increments?**
+
+**Risk Reduction**:
+- Detect problems early (design, technical, user acceptance)
+- Avoid 8-week investment in wrong direction
+- Enable course correction based on real feedback
+
+**Faster Value Delivery**:
+- Users get benefits throughout development, not just at the end
+- Each increment provides immediate value
+- Build momentum and stakeholder confidence
+
+**Better Resource Management**:
+- Predictable 2-3 day delivery cycles
+- Easier to estimate and track progress
+- Allows parallel work on different aspects
+
+**Quality Improvement**:
+- Continuous testing and feedback integration
+- Polish each feature before adding complexity
+- Reduce technical debt accumulation
+
+#### **Incremental Planning Guidelines**
+
+**Increment Size**: 2-3 days maximum
+- Small enough for quick feedback
+- Large enough to be independently valuable
+- Complete enough to test with real users
+
+**Increment Structure**:
+```markdown
+### Increment X: [Feature Name] (Days Y-Z)
+- [ ] Specific deliverable 1
+- [ ] Specific deliverable 2
+- **Ship**: What users will experience
+- **Test**: What feedback to gather
+- **Definition of Done**:
+  - [ ] Demoable working feature
+  - [ ] Metrics/telemetry logged
+  - [ ] Behind feature flag
+  - [ ] Does not regress p95 latency/memory
+  - [ ] Documentation updated
+```
+
+**Success Pattern**: Ship → Measure → Learn → Adjust
+
+**Decision Points**: Plan go/no-go reviews every 2 weeks to validate direction
+
+#### **Breaking Down Complex Features**
+
+**Week 1-2**: Foundation and Core Functionality
+- Basic feature working end-to-end
+- Essential user value delivered
+
+**Week 3-4**: Enhancement and Edge Cases
+- Additional functionality
+- Error handling and polish
+
+**Week 5-6**: Performance and Integration
+- Optimization for scale
+- Integration with existing features
+
+**Week 7-8**: Polish and Production Readiness
+- Accessibility and UX refinement
+- Monitoring and analytics
+
+### **Step 4: Validate Against Constraints**
 
 **Check implementation plan against:**
 - [ ] Existing technical architecture
@@ -351,7 +453,8 @@ Include:
 ├── Agent1_[Domain]_Findings.md
 ├── Agent2_[Domain]_Findings.md
 ├── Agent3_[Domain]_Findings.md
-└── [FEATURE_NAME]_IMPLEMENTATION_PLAN.md
+├── [FEATURE_NAME]_IMPLEMENTATION_PLAN.md
+└── [FEATURE_NAME]_INCREMENTAL_PLAN.md
 ```
 
 ### **Archive Completed Research**
@@ -362,6 +465,7 @@ After implementation completion:
 │   ├── research_plan.md
 │   ├── agent_findings/
 │   ├── implementation_plan.md
+│   ├── incremental_plan.md
 │   └── lessons_learned.md
 ```
 

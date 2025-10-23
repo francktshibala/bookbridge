@@ -62,20 +62,24 @@ CREATE INDEX idx_dict_lemma ON dictionary_entries(lemma);
 CREATE INDEX idx_dict_cefr ON dictionary_entries(cefr_level);
 ```
 
-#### 1.2 Core API Endpoints
+#### 1.2 Unified API Endpoint (GPT-5 Architecture)
 ```typescript
-// app/api/dictionary/[word]/route.ts
+// app/api/dictionary/route.ts - Single edge route
 export async function GET(request: NextRequest) {
-  const { word } = params;
+  const { searchParams } = new URL(request.url);
+  const lemma = searchParams.get('lemma');
+  const pos = searchParams.get('pos');
+  const context = searchParams.get('context');
 
-  // 1. Try cache (Redis/Memory)
-  // 2. Query database
-  // 3. Fallback to Free Dictionary API
-  // 4. Return structured response
+  // 1. Normalize to unified cache key (lemma|pos)
+  // 2. Try cache (Redis/Memory with TTL)
+  // 3. Query offline pack first
+  // 4. Fallback to Free Dictionary API with rate limiting
+  // 5. Store result with unified schema and TTL
+  // 6. Return DictionaryResponse with source annotation
 }
 
-// app/api/dictionary/batch/route.ts - For prefetching
-// app/api/dictionary/common/[level]/route.ts - Offline pack
+// Response format: lemma, pos, cefr, definition_simple, example, pronunciations, source, ttl
 ```
 
 #### 1.3 Client-Side Caching
@@ -124,11 +128,15 @@ export function useDictionaryInteraction() {
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [definition, setDefinition] = useState<Definition | null>(null);
 
-  const handleLongPress = useCallback(async (word: string) => {
+  const handleLongPress = useCallback(async (word: string, context: string) => {
     // 1. Haptic feedback
     // 2. Highlight word
-    // 3. Fetch definition (non-blocking)
-    // 4. Open bottom sheet
+    // 3. Lemmatize word + detect POS
+    // 4. Fetch definition with context for sense ranking
+    // 5. Open bottom sheet
+    const lemma = lemmatizer.lemmatize(word);
+    const pos = posDetector.detect(word, context);
+    const definition = await fetchDefinition(lemma, pos, context);
   }, []);
 
   return { handleLongPress, selectedWord, definition };
@@ -218,12 +226,27 @@ CREATE TABLE user_vocabulary_progress (
 );
 ```
 
-#### 4.3 Analytics & Monitoring
+#### 4.3 API & Performance Architecture
 ```typescript
-// Track dictionary usage patterns
-// Monitor performance metrics
-// A/B test definition sources
-// User satisfaction feedback
+// Single unified API endpoint
+// /api/dictionary?lemma=word&pos=noun&context=sentence
+interface DictionaryResponse {
+  lemma: string;
+  pos: string;
+  cefr: string;
+  definition_simple: string;
+  example: string;
+  pronunciations: string[];
+  source: string;
+  ttl: number;
+}
+
+// Performance targets:
+// - p50 < 150ms cached lookups
+// - p95 < 400ms for all requests
+// - Memory LRU cache: 200-500 entries
+// - Rate limiting with exponential backoff
+// - 30-day cache TTL for API results
 ```
 
 ---
@@ -271,17 +294,20 @@ CREATE TABLE user_vocabulary_progress (
 
 ## 📊 Performance Specifications
 
-### **Response Time Targets**
-- **Cached lookups**: <50ms average (target), <150ms maximum
-- **Uncached lookups**: <250ms average (target), <400ms maximum
-- **Offline lookups**: <10ms for 2500 common words
+### **Response Time Targets** (Updated with GPT-5 recommendations)
+- **Cached lookups**: p50 <150ms, p95 <400ms (GPT-5 targets)
+- **Uncached lookups**: <250ms average, <500ms maximum
+- **Offline lookups**: <10ms for 2,500 common words
 - **Cache hit ratio**: >95% after 1 minute of reading
+- **Never block audio thread**: Dictionary operations run async
 
-### **Resource Usage**
-- **Memory overhead**: <50MB additional (target), <100MB maximum
+### **Resource Usage** (Updated for production readiness)
+- **Memory LRU cache**: 200-500 entries per session (GPT-5 spec)
+- **Offline pack**: 1.5-3MB gzip compressed, lazy-loaded on first use
 - **Storage usage**: <3MB for offline pack, <50MB for user cache
 - **Network usage**: <1KB per lookup (compressed JSON)
 - **Audio impact**: Zero interruption or latency increase
+- **Preload on idle**: Top N words visible on screen
 
 ### **Scalability Targets**
 - **Concurrent users**: 1000+ simultaneous without degradation
@@ -354,31 +380,195 @@ CREATE TABLE user_vocabulary_progress (
 
 ---
 
-## 🚀 Implementation Sequence
+## 🚀 Incremental Implementation Plan
 
-### **Week 1-2: Data & API Foundation**
-1. Set up Simple English Wiktionary processing pipeline
-2. Create database schema and import initial dataset
-3. Build core API endpoints with caching
-4. Generate and test 2,500-word offline pack
+Breaking down the 8-week implementation into **20 shippable increments** (2-3 days each) for quick feedback loops and continuous value delivery.
 
-### **Week 3-4: UI & Mobile Integration**
-1. Implement bottom sheet component with animations
-2. Add long-press detection to existing text renderer
-3. Integrate with current audio playback system
-4. Test mobile responsiveness and accessibility
+**Principle**: Ship working features every 2-3 days, gather feedback, iterate.
 
-### **Week 5-6: Performance & Scaling**
-1. Deploy Edge Functions for global distribution
-2. Implement intelligent prefetching and caching
-3. Add lemmatization and phrase detection
-4. Optimize for concurrent user load
+### **Phase 1: Foundation (Week 1-2)**
+*Goal: Basic dictionary lookup working end-to-end*
 
-### **Week 7-8: Polish & Launch**
-1. Complete offline support with service workers
-2. Add user vocabulary tracking and analytics
-3. Conduct comprehensive testing and optimization
-4. Deploy to production with feature flags
+#### **Increment 1: Word Detection (Days 1-2)**
+- [ ] Implement long-press gesture detection on reader text
+- [ ] Add visual feedback (word highlighting)
+- [ ] Basic haptic feedback on selection
+- **Ship**: Users can long-press words and see selection feedback
+- **Test**: Does gesture feel natural? Timing correct?
+
+#### **Increment 2: Bottom Sheet UI (Days 3-4)**
+- [ ] Create bottom sheet component with handle
+- [ ] Add swipe-to-dismiss gesture
+- [ ] Show selected word in sheet header
+- **Ship**: Empty bottom sheet appears on word selection
+- **Test**: Is sheet height comfortable? Dismiss intuitive?
+
+#### **Increment 3: Mock Dictionary Data (Days 5-6)**
+- [ ] Create 100-word mock dictionary JSON
+- [ ] Display basic definition in bottom sheet
+- [ ] Add loading skeleton animation
+- **Ship**: Real definitions for 100 common words
+- **Test**: Definition clarity, loading perception
+
+#### **Increment 4: Free Dictionary API (Days 7-9)**
+- [ ] Integrate Free Dictionary API
+- [ ] Add error handling and fallbacks
+- [ ] Cache API responses in memory
+- **Ship**: Live definitions for any English word
+- **Test**: API reliability, response speed
+
+### **Phase 2: Core Features (Week 3-4)**
+*Goal: Essential ESL features with offline support*
+
+#### **Increment 5: Pronunciation Display (Days 10-11)**
+- [ ] Parse and display IPA pronunciation
+- [ ] Add phonetic spelling fallback
+- [ ] Visual pronunciation guide
+- **Ship**: Users see how to pronounce words
+- **Test**: IPA readability for ESL learners
+
+#### **Increment 6: CEFR Level Indicators (Days 12-13)**
+- [ ] Add CEFR level badges (A1-C2)
+- [ ] Color-code difficulty levels
+- [ ] Source levels from ECDICT data
+- **Ship**: Users see word difficulty at a glance
+- **Test**: Level accuracy, visual clarity
+
+#### **Increment 7: Simple English Definitions (Days 14-16)**
+- [ ] Parse Simple Wiktionary data dump
+- [ ] Create SQLite database (top 2,500 words)
+- [ ] Prioritize simple definitions over complex
+- [ ] Add unified CEFR tagging system
+- **Ship**: ESL-friendly definitions for common words
+- **Test**: Definition simplicity and usefulness
+
+#### **Increment 8: Offline Detection (Days 17-18)**
+- [ ] Implement offline/online detection
+- [ ] Show offline indicator in UI
+- [ ] Use cached definitions when offline
+- **Ship**: Dictionary works without internet
+- **Test**: Offline experience quality
+
+### **Phase 3: Enhanced UX (Week 5-6)**
+*Goal: Polish interaction and add learning features*
+
+#### **Increment 9: Audio Pronunciation (Days 19-20)**
+- [ ] Add speaker icon to play pronunciation
+- [ ] Integrate audio from Free Dictionary API
+- [ ] Cache audio files locally
+- **Ship**: Users can hear word pronunciation
+- **Test**: Audio quality and loading speed
+
+#### **Increment 10: Example Sentences (Days 21-22)**
+- [ ] Display contextual example sentences
+- [ ] Highlight target word in examples
+- [ ] Pull from API or generate simple examples
+- **Ship**: Words shown in context
+- **Test**: Example relevance and clarity
+
+#### **Increment 11: My Words Collection (Days 23-25)**
+- [ ] Add "Save Word" button
+- [ ] Create My Words screen
+- [ ] Store saved words in IndexedDB
+- **Ship**: Users can save words for later review
+- **Test**: Save flow intuitiveness
+
+#### **Increment 12: Word History (Days 26-27)**
+- [ ] Track recently looked up words
+- [ ] Add history view with timestamps
+- [ ] Quick access from bottom sheet
+- **Ship**: Users can revisit previous lookups
+- **Test**: History usefulness for learning
+
+#### **Increment 13: Smart Caching (Days 28-29)**
+- [ ] Implement IndexedDB caching layer
+- [ ] Pre-cache frequently looked up words
+- [ ] Background sync when online
+- **Ship**: Instant lookups for common words
+- **Test**: Cache hit rate, storage usage
+
+### **Phase 4: Performance & Polish (Week 7-8)**
+*Goal: Production-ready with advanced features*
+
+#### **Increment 14: Lemmatization & POS Detection (Days 30-31)**
+- [ ] Add client-side lemmatizer with small irregulars list
+- [ ] Implement POS hinting for better sense selection
+- [ ] Create unified cache keys (lemma|pos format)
+- [ ] Boost cache hit rate with normalized lookups
+- **Ship**: "running" shows definition for "run" with POS context
+- **Test**: Lemmatization accuracy and cache hit improvement
+
+#### **Increment 15: Sense Ranking & Multi-word Expressions (Days 32-33)**
+- [ ] Use sentence context for sense ranking (TF-IDF heuristic)
+- [ ] Detect phrasal verbs and MWEs (top 500 expressions)
+- [ ] Check token ±1 for phrase detection
+- [ ] Rank definitions by contextual relevance
+- **Ship**: Context-aware definitions and phrasal verb detection
+- **Test**: Sense accuracy improvement, phrasal verb recognition
+
+#### **Increment 16: Dark Mode (Days 34-35)**
+- [ ] Implement dark theme for bottom sheet
+- [ ] Respect system dark mode setting
+- [ ] Ensure proper contrast ratios
+- **Ship**: Dictionary matches app theme
+- **Test**: Readability in both modes
+
+#### **Increment 17: Accessibility (Days 36-38)**
+- [ ] Add screen reader announcements
+- [ ] Implement keyboard navigation
+- [ ] Test with VoiceOver/TalkBack
+- **Ship**: Fully accessible dictionary
+- **Test**: Screen reader experience
+
+#### **Increment 18: Tutorial & Onboarding (Days 39-40)**
+- [ ] Create first-use tutorial overlay
+- [ ] Add gesture hint animation
+- [ ] Settings to adjust long-press timing
+- **Ship**: Users learn feature naturally
+- **Test**: Discovery rate improvement
+
+#### **Increment 19: API Reliability & Telemetry (Days 41-42)**
+- [ ] Add rate limits and exponential backoff
+- [ ] Implement 30-day cache TTL
+- [ ] Track latency, cache hit rate, helpful/not helpful
+- [ ] Graceful "offline result" fallback
+- **Ship**: Production-ready API handling with telemetry
+- **Test**: Fallback reliability, metrics accuracy
+
+#### **Increment 20: Performance & Unified API (Days 43-45)**
+- [ ] Create single edge route `/api/dictionary?lemma=...&pos=...&context=...`
+- [ ] Implement p50 <150ms, p95 <400ms targets
+- [ ] Add preload on idle for visible words
+- [ ] Memory LRU cache (200-500 entries)
+- **Ship**: Production-ready performance with unified interface
+- **Test**: Latency targets met, memory usage optimized
+
+### **Success Metrics Per Increment**
+
+#### Quick Validation Points
+Each increment should answer specific questions:
+1. **User Engagement**: Are users discovering and using the feature?
+2. **Performance**: Does it meet speed requirements?
+3. **Learning Impact**: Does it help comprehension?
+4. **Technical Stability**: Are there crashes or errors?
+
+#### MVP Milestones
+- **Soft Launch (After Increment 8)**: Basic dictionary with offline support
+- **Feature Complete (After Increment 13)**: All core learning features
+- **Production Ready (After Increment 20)**: Fully optimized performance
+
+#### Definition of Done per Increment
+- [ ] Feature works on iOS and Android
+- [ ] No regression in existing features
+- [ ] Basic error handling implemented
+- [ ] Deployed to preview environment
+- [ ] Demoable working feature
+- [ ] Metrics/telemetry logged
+- [ ] Behind feature flag
+- [ ] Does not regress p95 latency/memory budgets
+- [ ] Documentation updated
+- [ ] Feedback collected from at least 3 users
+- [ ] Next increment adjusted based on learnings
 
 ---
 
