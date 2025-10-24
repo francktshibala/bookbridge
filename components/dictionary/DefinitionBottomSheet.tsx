@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, PanInfo } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { playWordPronunciation } from '@/lib/audio/PronunciationPlayer';
 
 interface Definition {
@@ -31,78 +31,54 @@ export function DefinitionBottomSheet({
   onClose,
   loading = false
 }: DefinitionBottomSheetProps) {
-  const [dragConstraints, setDragConstraints] = useState({ top: 0, bottom: 0 });
   const sheetRef = useRef<HTMLDivElement>(null);
-
-  // Update drag constraints when sheet opens
-  useEffect(() => {
-    if (isOpen && sheetRef.current) {
-      const sheetHeight = sheetRef.current.offsetHeight;
-      setDragConstraints({
-        top: -50, // Allow slight upward drag
-        bottom: sheetHeight * 0.7 // Allow dragging down 70% to dismiss
-      });
-    }
-  }, [isOpen]);
-
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    // If dragged down more than 100px or with significant velocity, close
-    if (info.offset.y > 100 || info.velocity.y > 300) {
-      onClose();
-    }
-  };
-
-  const triggerHaptic = () => {
-    if ('vibrate' in navigator) {
-      navigator.vibrate(5); // Short vibration
-    }
-  };
 
   if (!isOpen) return null;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50">
-        {/* Backdrop */}
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        {/* Backdrop - clicking anywhere closes */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute inset-0 bg-black/30"
+          className="absolute inset-0"
           onClick={onClose}
         />
 
-        {/* Bottom Sheet */}
+        {/* Centered Compact Dictionary Modal */}
         <motion.div
           ref={sheetRef}
-          initial={{ y: '100%' }}
-          animate={{ y: '0%' }}
-          exit={{ y: '100%' }}
-          drag="y"
-          dragConstraints={dragConstraints}
-          dragElastic={0.1}
-          onDragEnd={handleDragEnd}
-          className="absolute bottom-0 left-0 right-0 bg-[var(--bg-secondary)] rounded-t-2xl shadow-2xl border-2 border-[var(--accent-primary)]/20 border-b-0"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          className="relative bg-[var(--bg-secondary)] rounded-lg shadow-xl border-2 border-[var(--accent-primary)]/20 max-w-sm w-full"
           style={{
-            maxHeight: '70vh',
-            minHeight: loading ? '200px' : '250px'
+            maxHeight: '80vh',
+            minHeight: loading ? '240px' : '280px'
           }}
           transition={{
             type: 'spring',
-            damping: 30,
-            stiffness: 300
+            damping: 25,
+            stiffness: 400
           }}
         >
-          {/* Drag Handle */}
-          <div className="flex justify-center pt-3 pb-2">
-            <div
-              className="w-12 h-1.5 bg-[var(--text-secondary)]/30 rounded-full cursor-grab active:cursor-grabbing"
-              onTouchStart={triggerHaptic}
-            />
+          {/* Modal Header */}
+          <div className="flex items-center justify-between p-4 border-b border-[var(--border-light)]">
+            <h2 className="text-lg font-semibold text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
+              📖 Dictionary
+            </h2>
+            <button
+              onClick={onClose}
+              className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--accent-primary)]/10"
+            >
+              ×
+            </button>
           </div>
 
-          {/* Content */}
-          <div className="px-6 pb-6 overflow-y-auto" style={{ maxHeight: 'calc(70vh - 40px)' }}>
+          {/* Modal Content */}
+          <div className="p-4 overflow-y-auto" style={{ maxHeight: 'calc(80vh - 80px)' }}>
             {loading ? (
               <LoadingSkeleton />
             ) : definition ? (
@@ -188,105 +164,77 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
     }
   };
 
-  const getCefrColor = (level?: string) => {
-    switch (level) {
-      case 'A1': return 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-700';
-      case 'A2': return 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-700';
-      case 'B1': return 'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:border-yellow-700';
-      case 'B2': return 'bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900 dark:text-orange-200 dark:border-orange-700';
-      case 'C1': return 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-200 dark:border-red-700';
-      case 'C2': return 'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:border-purple-700';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600';
-    }
-  };
-
-  const getCefrDescription = (level?: string) => {
-    switch (level) {
-      case 'A1': return 'Basic - Essential words for beginners';
-      case 'A2': return 'Elementary - Common everyday words';
-      case 'B1': return 'Intermediate - Useful for conversations';
-      case 'B2': return 'Upper Intermediate - Advanced vocabulary';
-      case 'C1': return 'Advanced - Complex language skills';
-      case 'C2': return 'Proficient - Near-native level words';
-      default: return 'Level unknown';
-    }
-  };
 
   return (
-    <div className="space-y-4">
-      {/* Word Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <h2 className="text-2xl font-semibold text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
-            {definition.word}
-          </h2>
-          {(definition.pronunciation || definition.phonetic || definition.audioUrl) && (
-            <button
-              onClick={playPronunciation}
-              disabled={isPlayingAudio}
-              className={`flex items-center justify-center w-10 h-10 rounded-full transition-all ${
-                isPlayingAudio
-                  ? 'bg-[var(--accent-primary)] text-white animate-pulse cursor-not-allowed'
-                  : 'text-[var(--accent-primary)] hover:bg-[var(--accent-primary)]/10 hover:scale-110 active:scale-95'
-              }`}
-              title={isPlayingAudio ? 'Playing pronunciation...' : 'Play pronunciation'}
-            >
-              {isPlayingAudio ? (
-                <span className="text-lg animate-pulse">🎵</span>
-              ) : (
-                <span className="text-lg">🔊</span>
-              )}
-            </button>
-          )}
-        </div>
+    <div className="space-y-2">
+      {/* Clean Word Header */}
+      <div className="flex items-center gap-2 mb-3">
+        <h2 className="text-xl font-bold text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
+          {definition.word}
+        </h2>
+        {(definition.pronunciation || definition.phonetic || definition.audioUrl) && (
+          <button
+            onClick={playPronunciation}
+            disabled={isPlayingAudio}
+            className={`flex items-center justify-center w-8 h-8 rounded-full transition-all ${
+              isPlayingAudio
+                ? 'bg-[var(--accent-primary)] text-white animate-pulse cursor-not-allowed'
+                : 'text-[var(--accent-primary)] hover:bg-[var(--accent-primary)]/10 hover:scale-110 active:scale-95'
+            }`}
+            title={isPlayingAudio ? 'Playing pronunciation...' : 'Play pronunciation'}
+          >
+            {isPlayingAudio ? (
+              <span className="text-sm animate-pulse">🎵</span>
+            ) : (
+              <span className="text-sm">🔊</span>
+            )}
+          </button>
+        )}
+      </div>
 
-        {definition.cefrLevel && (
-          <div className="flex flex-col items-end gap-1">
-            <div className={`px-3 py-1 rounded-full text-xs font-semibold border ${getCefrColor(definition.cefrLevel)}`}>
-              {definition.cefrLevel}
-            </div>
-            <div className="text-xs text-[var(--text-secondary)] text-right max-w-[120px] leading-tight">
-              {getCefrDescription(definition.cefrLevel)}
-            </div>
+      {/* Pronunciation & Part of Speech */}
+      <div className="flex items-center gap-3 text-sm">
+        {(definition.phonetic || definition.pronunciation) && (
+          <div className="text-[var(--text-secondary)]" style={{ fontFamily: 'Source Serif Pro, serif' }}>
+            /{definition.phonetic || definition.pronunciation}/
+          </div>
+        )}
+        {definition.partOfSpeech && (
+          <div className="text-[var(--text-secondary)] italic font-medium">
+            {definition.partOfSpeech}
           </div>
         )}
       </div>
 
-      {/* Pronunciation */}
-      {(definition.phonetic || definition.pronunciation) && (
-        <div className="text-[var(--text-secondary)]" style={{ fontFamily: 'Source Serif Pro, serif' }}>
-          /{definition.phonetic || definition.pronunciation}/
-        </div>
-      )}
-
-      {/* Part of Speech */}
-      {definition.partOfSpeech && (
-        <div className="text-sm text-[var(--text-secondary)] italic">
-          {definition.partOfSpeech}
-        </div>
-      )}
-
       {/* Definition */}
-      <div className="border-l-4 border-[var(--accent-primary)]/30 pl-4 py-2">
-        <p className="text-[var(--text-primary)] leading-relaxed" style={{ fontFamily: 'Source Serif Pro, serif' }}>
-          {definition.definition}
-        </p>
+      <div className="border-l-4 border-[var(--accent-primary)]/30 pl-3 py-1">
+        <div className="flex items-start gap-2 mb-1">
+          <span className="text-[var(--accent-primary)] mt-0.5">📖</span>
+          <p className="text-[var(--text-primary)] leading-snug text-sm font-medium" style={{ fontFamily: 'Source Serif Pro, serif' }}>
+            {definition.definition}
+          </p>
+        </div>
       </div>
 
       {/* Example */}
       {definition.example && (
-        <div className="bg-[var(--bg-primary)]/50 rounded-lg p-4 border border-[var(--border-light)]">
-          <div className="text-sm font-medium text-[var(--text-secondary)] mb-2">💭 Example:</div>
-          <p className="text-[var(--text-primary)] italic" style={{ fontFamily: 'Source Serif Pro, serif' }}>
-            "{definition.example}"
-          </p>
+        <div className="bg-[var(--bg-primary)]/30 rounded-lg p-3 border border-[var(--border-light)]">
+          <div className="flex items-start gap-2">
+            <span className="text-[var(--accent-primary)] mt-0.5">💭</span>
+            <div>
+              <div className="text-xs font-semibold text-[var(--text-secondary)] mb-1">Example:</div>
+              <p className="text-[var(--text-primary)] italic text-sm leading-snug" style={{ fontFamily: 'Source Serif Pro, serif' }}>
+                "{definition.example}"
+              </p>
+            </div>
+          </div>
         </div>
       )}
 
-      {/* Actions */}
-      <div className="flex gap-3 pt-2">
+      {/* Action */}
+      <div className="pt-2">
         <button
-          className="flex-1 py-3 px-4 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-secondary)] transition-colors font-medium"
+          className="w-full py-2 px-3 bg-[var(--accent-primary)] text-white rounded-md hover:bg-[var(--accent-secondary)] transition-colors font-medium text-sm"
           style={{ fontFamily: 'Source Serif Pro, serif' }}
           onClick={() => {
             // TODO: Implement "Add to My Words" in later increment
@@ -296,42 +244,17 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
             }
           }}
         >
-          + Add to My Words
-        </button>
-
-        <button
-          onClick={onClose}
-          className="px-6 py-3 bg-[var(--bg-primary)] text-[var(--text-secondary)] rounded-lg hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] transition-colors font-medium border border-[var(--border-light)]"
-          style={{ fontFamily: 'Source Serif Pro, serif' }}
-        >
-          Close
+          📌 Add to My Words
         </button>
       </div>
 
-      {/* Source */}
-      {definition.source && (
-        <div className="flex items-center justify-center gap-2 text-xs text-[var(--text-secondary)]/70 pt-2">
-          <span className="flex items-center gap-1">
-            {definition.source === 'Mock Dictionary' && '🎓'}
-            {definition.source === 'Simple Wiktionary' && '📚'}
-            {definition.source === 'Free Dictionary API' && '🌐'}
-            Source: {definition.source}
-          </span>
-          {definition.source === 'Simple Wiktionary' && (
-            <span className="text-green-600 text-xs font-medium">ESL-friendly</span>
-          )}
-          {definition.source === 'Mock Dictionary' && (
-            <span className="text-blue-600 text-xs font-medium">Curated</span>
-          )}
-        </div>
-      )}
     </div>
   );
 }
 
 function ErrorState({ word, onClose }: { word: string | null; onClose: () => void }) {
   return (
-    <div className="text-center space-y-4 py-8">
+    <div className="text-center space-y-4 py-6">
       <div className="text-4xl mb-4">📖</div>
       <h3 className="text-lg font-semibold text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
         Definition not found
@@ -339,13 +262,6 @@ function ErrorState({ word, onClose }: { word: string | null; onClose: () => voi
       <p className="text-[var(--text-secondary)]" style={{ fontFamily: 'Source Serif Pro, serif' }}>
         {word ? `Sorry, we couldn't find a definition for "${word}".` : 'No word selected.'}
       </p>
-      <button
-        onClick={onClose}
-        className="px-6 py-3 bg-[var(--accent-primary)] text-white rounded-lg hover:bg-[var(--accent-secondary)] transition-colors font-medium"
-        style={{ fontFamily: 'Source Serif Pro, serif' }}
-      >
-        Close
-      </button>
     </div>
   );
 }
