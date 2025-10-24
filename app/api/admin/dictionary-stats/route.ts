@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
     const stats: DictionaryStats = {
       cache: cacheStats,
       ai: {
-        enabled: process.env.NEXT_PUBLIC_AI_DICTIONARY_ENABLED === 'true',
+        enabled: process.env.AI_DICTIONARY_ENABLED !== 'false',
         dailyCost: aiStats.dailyCost,
         dailyRequests: aiStats.dailyRequests,
         remainingBudget: aiStats.remainingBudget,

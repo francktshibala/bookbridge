@@ -21,7 +21,7 @@ interface AILookupResponse {
 }
 
 // Feature flags and cost controls
-const AI_ENABLED = process.env.NEXT_PUBLIC_AI_DICTIONARY_ENABLED === 'true';
+const AI_ENABLED = process.env.AI_DICTIONARY_ENABLED !== 'false'; // Default to true, disable with 'false'
 const DAILY_AI_BUDGET = parseInt(process.env.AI_DICTIONARY_DAILY_BUDGET || '100'); // $1.00 default
 const MAX_REQUESTS_PER_IP = parseInt(process.env.AI_DICTIONARY_MAX_REQUESTS_PER_IP || '50');
 const AI_REQUEST_TIMEOUT = 2000; // 2 seconds hard limit

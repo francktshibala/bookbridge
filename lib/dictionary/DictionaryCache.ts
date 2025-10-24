@@ -1,5 +1,8 @@
 // Client-side dictionary caching with IndexedDB + Memory LRU
 // Phase 3: Instant lookups through local storage
+// Version 3: Cache busting for AI-only mode
+
+const CACHE_VERSION = 'v3';
 
 interface CachedDefinition {
   word: string;
@@ -75,7 +78,7 @@ class LRUCache<K, V> {
 class IndexedDBCache {
   private dbName = 'DictionaryCache';
   private storeName = 'definitions';
-  private version = 1;
+  private version = 3; // Bumped for cache busting
   private db: IDBDatabase | null = null;
 
   async init(): Promise<void> {
@@ -90,10 +93,17 @@ class IndexedDBCache {
 
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
-        if (!db.objectStoreNames.contains(this.storeName)) {
-          const store = db.createObjectStore(this.storeName, { keyPath: 'word' });
-          store.createIndex('timestamp', 'timestamp', { unique: false });
-        }
+
+        // Clear all object stores on version upgrade (cache busting)
+        const existingStoreNames = Array.from(db.objectStoreNames);
+        existingStoreNames.forEach(storeName => {
+          db.deleteObjectStore(storeName);
+        });
+
+        // Recreate the store
+        const store = db.createObjectStore(this.storeName, { keyPath: 'word' });
+        store.createIndex('timestamp', 'timestamp', { unique: false });
+        console.log('🗑️ IndexedDB cache cleared due to version upgrade');
       };
     });
   }
@@ -217,7 +227,7 @@ class DictionaryCache {
   }
 
   private normalizeWord(word: string): string {
-    return word.toLowerCase().trim();
+    return `${CACHE_VERSION}:${word.toLowerCase().trim()}`;
   }
 
   async get(word: string): Promise<CachedDefinition | null> {
