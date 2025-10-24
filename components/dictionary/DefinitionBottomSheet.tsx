@@ -233,12 +233,6 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
         </div>
       )}
 
-      {/* Debug source attribution */}
-      {definition.source && (
-        <div className="text-xs text-[var(--text-secondary)] border-t border-[var(--border-light)] pt-2 mt-2">
-          Source: {definition.source}
-        </div>
-      )}
 
       {/* Action */}
       <div className="pt-2">

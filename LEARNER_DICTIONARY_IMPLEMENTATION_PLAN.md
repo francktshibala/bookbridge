@@ -1,5 +1,30 @@
 # ESL Learner Dictionary Implementation Plan
 
+## 🎓 Production Lessons Learned & Best Practices
+
+### **Critical Production Issues Resolved (October 2024)**
+
+**Problem**: Dictionary served complex traditional definitions despite AI-only implementation
+- **Root Cause**: Client-side cache retained old "Free Dictionary API" entries for 7 days
+- **Symptoms**: Local worked (fresh cache), production failed (stale cache)
+
+**Key Lessons:**
+1. **Cache Versioning is Critical**: Always version client-side caches when changing data sources
+2. **Environment Variables**: Use server-only vars for backend features (`AI_DICTIONARY_ENABLED` vs `NEXT_PUBLIC_*`)
+3. **Multi-layer Debugging**: Add debug headers (`X-Source`, `X-Cache`) and UI attribution during issues
+4. **Cache TTL Strategy**: Shorter TTL (1-4h) during rollouts, extend after stabilization
+5. **IndexedDB Versioning**: Bump DB version to auto-clear incompatible cached data
+
+**Production Fixes Applied:**
+- Client cache versioning with `v3_` prefix
+- Server-only AI flag (defaults true)
+- IndexedDB version bump for auto-clearing
+- Removed debug UI for competitive secrecy
+
+**Best Practice**: Always test production with fresh browser profile to avoid local cache bias.
+
+---
+
 ## 📚 Executive Summary
 
 Based on comprehensive research from UX, Data, and Backend teams, this plan outlines the implementation of a tap-to-define learner dictionary feature for BookBridge. The solution uses a **hybrid approach** combining Simple English Wiktionary (free), bottom sheet UI pattern, and advanced caching for optimal ESL learning experience.

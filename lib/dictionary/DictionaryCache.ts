@@ -227,7 +227,7 @@ class DictionaryCache {
   }
 
   private normalizeWord(word: string): string {
-    return `${CACHE_VERSION}:${word.toLowerCase().trim()}`;
+    return `${CACHE_VERSION}_${word.toLowerCase().trim()}`;
   }
 
   async get(word: string): Promise<CachedDefinition | null> {
