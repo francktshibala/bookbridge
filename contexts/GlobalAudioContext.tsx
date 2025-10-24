@@ -322,7 +322,7 @@ export function GlobalAudioProvider({ children }: GlobalAudioProviderProps) {
 
   const jumpToBundle = useCallback(async (
     bundleIndex: number,
-    sentenceIndex: number = 0
+    sentencePosition: number = 0  // Position within bundle (0 = first sentence)
   ) => {
     if (!audioManagerRef.current || bundleIndex < 0 || bundleIndex >= allBundles.length) {
       console.warn('⚠️ Invalid bundle index:', bundleIndex);
@@ -336,12 +336,24 @@ export function GlobalAudioProvider({ children }: GlobalAudioProviderProps) {
     setIsPlaying(false);
     isPlayingRef.current = false;
 
-    // Update state
+    // Get target bundle and find the sentence at the specified position
+    const targetBundle = allBundles[bundleIndex];
+    if (!targetBundle || !targetBundle.sentences || targetBundle.sentences.length === 0) {
+      console.warn('⚠️ Invalid bundle or no sentences:', bundleIndex);
+      return;
+    }
+
+    // Get the sentence at the specified position (default to first sentence)
+    const clampedPosition = Math.max(0, Math.min(sentencePosition, targetBundle.sentences.length - 1));
+    const targetSentence = targetBundle.sentences[clampedPosition];
+    const globalSentenceIndex = targetSentence.sentenceIndex;
+
+    // Update state with GLOBAL sentence index
     setCurrentBundleIndex(bundleIndex);
-    setCurrentSentenceIndex(sentenceIndex);
+    setCurrentSentenceIndex(globalSentenceIndex);
     setCurrentTime(0);
 
-    console.log(`🔄 Jumped to bundle ${bundleIndex}, sentence ${sentenceIndex}`);
+    console.log(`🔄 Jumped to bundle ${bundleIndex}, position ${clampedPosition}, global sentence index ${globalSentenceIndex}`);
 
     // Resume playback if was playing
     if (wasPlaying) {
