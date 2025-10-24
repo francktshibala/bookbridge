@@ -9,7 +9,7 @@ import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
 import { useDictionaryInteraction } from '@/hooks/useDictionaryInteraction';
 import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomSheet';
-import { dictionaryCache } from '@/lib/dictionary/DictionaryCache';
+import { dictionaryCache, dictionaryAnalytics } from '@/lib/dictionary/DictionaryCache';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 
@@ -1336,6 +1336,18 @@ export default function FeaturedBooksPage() {
       fetchDefinition();
     }
   }, [selectedWord]);
+
+  // Performance monitoring effect
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const interval = setInterval(() => {
+      // Check for performance alerts
+      dictionaryAnalytics.checkPerformanceAlerts();
+    }, 30000); // Check every 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handlePause = async () => {
     audioManagerRef.current?.pause();

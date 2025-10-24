@@ -277,7 +277,8 @@ class DictionaryCache {
     // Try cache first
     const cached = await this.get(word);
     if (cached) {
-      return {
+      const responseTime = Date.now() - startTime;
+      const response = {
         word: cached.word,
         definition: cached.definition,
         example: cached.example,
@@ -286,8 +287,21 @@ class DictionaryCache {
         cefrLevel: cached.cefrLevel,
         source: `${cached.source} (cached)`,
         cached: true,
-        responseTime: Date.now() - startTime
+        responseTime
       };
+
+      // Track cache hit analytics
+      dictionaryAnalytics.trackLookup({
+        word,
+        responseTime,
+        cacheHit: true,
+        sourceUsed: this.memoryCache.has(this.normalizeWord(word)) ? 'memory' : 'indexeddb',
+        hadRetry: false,
+        wasHedged: false,
+        cefrLevel: cached.cefrLevel
+      });
+
+      return response;
     }
 
     // Cache miss - fetch from API
@@ -311,11 +325,34 @@ class DictionaryCache {
         source: result.source
       });
 
-      return {
+      const responseTime = Date.now() - startTime;
+      const dictionaryResponse = {
         ...result,
         cached: false,
-        responseTime: Date.now() - startTime
+        responseTime
       };
+
+      // Track cache miss analytics
+      dictionaryAnalytics.trackLookup({
+        word,
+        responseTime,
+        cacheHit: false,
+        sourceUsed: result.source.includes('OpenAI') ? 'ai-openai' :
+                   result.source.includes('Claude') ? 'ai-claude' : 'fallback',
+        hadRetry: result.source.includes('retry') || false,
+        wasHedged: result.source.includes('hedged') || true, // Assume hedged for AI calls
+        cefrLevel: result.cefrLevel,
+        aiProvider: result.source.includes('OpenAI') ? 'openai' :
+                   result.source.includes('Claude') ? 'claude' : undefined
+      });
+
+      // Track AI cost if it was an AI lookup
+      if (result.source.includes('AI Dictionary')) {
+        const provider = result.source.includes('OpenAI') ? 'openai' : 'claude';
+        dictionaryAnalytics.trackAICost(provider, 0.001); // Estimate $0.001 per lookup
+      }
+
+      return dictionaryResponse;
 
     } catch (error) {
       console.error('Dictionary fetch error:', error);
@@ -341,8 +378,11 @@ class DictionaryCache {
   }
 }
 
+// Analytics integration
+import { dictionaryAnalytics } from './DictionaryAnalytics';
+
 // Singleton instance
 const dictionaryCache = new DictionaryCache();
 
-export { dictionaryCache, DictionaryCache };
+export { dictionaryCache, DictionaryCache, dictionaryAnalytics };
 export type { CachedDefinition, DictionaryResponse };
