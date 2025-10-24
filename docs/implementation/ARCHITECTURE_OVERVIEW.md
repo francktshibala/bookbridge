@@ -339,6 +339,12 @@ graph TB
         K[ReadingPosition Service<br/>Progress Tracking]
     end
 
+    subgraph "Global Audio System (NEW)"
+        O[GlobalAudioContext<br/>App-wide State]
+        P[MiniPlayer<br/>Persistent UI]
+        Q[Total Progress Tracker<br/>Story Duration]
+    end
+
     subgraph "AI Tutoring"
         L[AIBookChatModal<br/>Dynamic Import]
         M[Progressive Disclosure<br/>11x Educational Value]
@@ -356,6 +362,12 @@ graph TB
     I --> G
     I --> J
     I --> K
+    I --> O
+
+    O --> G
+    O --> P
+    O --> Q
+    P --> K
 
     L --> M
     L --> N
@@ -364,6 +376,8 @@ graph TB
     style I fill:#f3e5f5
     style G fill:#e8f5e8
     style L fill:#fff3e0
+    style O fill:#ffe0f0
+    style P fill:#ffe0f0
 ```
 
 **Component Responsibilities:**
@@ -371,6 +385,8 @@ graph TB
 - **FeaturedBooksPage**: Premium audiobook experience for enhanced books
 - **BundleAudioManager**: Seamless audio transitions with word-level sync
 - **AIBookChatModal**: Socratic tutoring with conversation memory
+- **GlobalAudioContext**: App-wide audio state with single BundleAudioManager instance
+- **MiniPlayer**: Spotify-like persistent player that follows user across routes
 
 ---
 
@@ -517,6 +533,13 @@ Theme Integration:
 - **Mobile Hooks**: `hooks/useIsMobile.ts` - Responsive design utilities
 - **Reading Position**: `lib/services/reading-position.ts` - Cross-session continuity
 - **Mobile Optimizations**: Enhanced text readability (40-50% larger fonts), theme-aware hamburger menu
+
+### Global Audio System (NEW - Feature 2 ✅)
+- **Global Audio Context**: `contexts/GlobalAudioContext.tsx` - App-wide audio state management with single BundleAudioManager instance
+- **Mini Player**: `components/audio/MiniPlayer.tsx` - Spotify-like persistent mini player with total story progress
+- **Total Progress Tracking**: Calculates position across all bundles for complete story progress visualization
+- **Auto-Save**: Saves reading position every 5 seconds while playing, syncs to database
+- **Documentation**: `docs/implementation/GLOBAL_MINI_PLAYER_IMPLEMENTATION.md` - Complete implementation guide
 
 ---
 
