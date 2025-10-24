@@ -35,6 +35,7 @@ graph TB
         H[AI Tutoring APIs]
         I[User Management APIs]
         J[Bundle Stream APIs]
+        K1[AI Dictionary API]
     end
 
     %% Core Services
@@ -43,6 +44,7 @@ graph TB
         L[Bundle Audio System]
         M[AI Tutoring System]
         N[Reading Position Tracker]
+        O1[AI Dictionary System]
     end
 
     %% Database
@@ -51,6 +53,7 @@ graph TB
         P[(Audio Assets)]
         Q[(User Data)]
         R[(AI Conversations)]
+        S1[(Dictionary Cache)]
     end
 
     %% External Services
@@ -59,6 +62,7 @@ graph TB
         T[ElevenLabs TTS<br/>Premium Audio]
         U[Pinecone Vector DB<br/>Semantic Search]
         V[Supabase CDN<br/>Audio Storage]
+        W[OpenAI + Claude<br/>Dictionary Definitions]
     end
 
     %% Connections
@@ -69,17 +73,20 @@ graph TB
     D --> F
     D --> F1
     D --> J
+    D --> K1
     E --> H
 
     F --> K
     J --> L
     H --> M
     F --> N
+    K1 --> O1
 
     K --> O
     L --> P
     M --> R
     N --> Q
+    O1 --> S1
 
     K --> S
     L --> T
@@ -87,6 +94,7 @@ graph TB
     M --> U
     L --> V
     P --> V
+    O1 --> W
 
     style A fill:#e1f5fe
     style C fill:#f3e5f5
@@ -172,7 +180,38 @@ sequenceDiagram
     Script->>DB: Update BookContent status
 ```
 
-### 3. AI Tutoring Flow (Educational Support)
+### 3. AI Dictionary Flow (Vocabulary Support)
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant FE as Reading Interface
+    participant API as Dictionary API
+    participant Cache as Client Cache
+    participant AI as OpenAI + Claude
+    participant DB as Server Cache
+
+    U->>FE: Clicks word "stuttered"
+    FE->>Cache: Check client cache (v3_stuttered)
+    Cache-->>FE: Cache miss
+
+    FE->>API: GET /api/dictionary/resolve?word=stuttered
+    API->>DB: Check server cache (v3:stuttered)
+    DB-->>API: Cache miss
+
+    API->>AI: Hedged parallel calls
+    Note over AI: OpenAI + Claude race<br/>ESL-optimized prompts
+    AI-->>API: Simple definition + 2-3 examples
+
+    API->>DB: Cache result (1h TTL)
+    API-->>FE: Return definition
+    FE->>Cache: Store in client (IndexedDB)
+    FE-->>U: Show bottom sheet modal
+
+    Note over FE: Clean UI - no source attribution<br/>Strategic competitive secrecy
+```
+
+### 4. AI Tutoring Flow (Educational Support)
 
 ```mermaid
 sequenceDiagram
@@ -325,6 +364,7 @@ graph TB
         C[WireframeAudioControls<br/>Playback Interface]
         D[Content Display<br/>Text Rendering]
         E[AI Chat Button<br/>Tutoring Access]
+        F1[Dictionary Modal<br/>Word Definitions]
     end
 
     subgraph "Audio System"
@@ -345,10 +385,17 @@ graph TB
         N[Conversation Memory<br/>Episodic Learning]
     end
 
+    subgraph "AI Dictionary"
+        P1[DefinitionBottomSheet<br/>Clean Modal UI]
+        Q1[DictionaryCache<br/>Client-side Storage]
+        R1[AIUniversalLookup<br/>Hedged AI Calls]
+    end
+
     A --> B
     A --> C
     A --> D
     A --> E
+    A --> F1
     C --> F
     C --> H
     E --> L
@@ -360,10 +407,15 @@ graph TB
     L --> M
     L --> N
 
+    F1 --> P1
+    P1 --> Q1
+    P1 --> R1
+
     style A fill:#e3f2fd
     style I fill:#f3e5f5
     style G fill:#e8f5e8
     style L fill:#fff3e0
+    style P1 fill:#e8f5e8
 ```
 
 **Component Responsibilities:**
@@ -371,6 +423,9 @@ graph TB
 - **FeaturedBooksPage**: Premium audiobook experience for enhanced books
 - **BundleAudioManager**: Seamless audio transitions with word-level sync
 - **AIBookChatModal**: Socratic tutoring with conversation memory
+- **DefinitionBottomSheet**: Clean dictionary modal without source attribution
+- **DictionaryCache**: Client-side storage with v3 versioning for cache busting
+- **AIUniversalLookup**: Parallel OpenAI + Claude calls for ESL-optimized definitions
 
 ---
 
@@ -447,7 +502,38 @@ Mobile Enhancements:
 • Touch targets: 44px minimum for accessibility
 ```
 
-### 3. AI Tutoring Modal - Neo-Classic Academic Style
+### 3. AI Dictionary Modal - Strategic Clean Design
+
+```
+┌─────────────────────────────────────┐
+│                stuttered        [✕] │ ← [1] Word title with close button
+│                                     │     (no source attribution)
+├─────────────────────────────────────┤
+│ [🔊] verb                          │ ← [2] Pronunciation + part of speech
+│                                     │
+│ 📖 To speak with short, repeated    │ ← [3] Simple, ESL-friendly definition
+│    sounds at the start of words    │     optimized by AI (no mention)
+│                                     │
+│ 💭 Examples:                       │ ← [4] Clean examples section
+│ "The nervous student stuttered     │     2-3 examples from AI system
+│  when the teacher called on him."  │
+│                                     │
+│ "My little brother sometimes       │ ← [5] Additional examples
+│  stutters when he is excited."     │     formatted cleanly
+│                                     │
+│ [📌 Add to My Words]               │ ← [6] Future feature button
+│                                     │     (strategically placed)
+└─────────────────────────────────────┘
+
+Strategic Design Choices:
+• No "Source: AI Dictionary" attribution (competitive secrecy)
+• No cache version indicators (v3_ prefix hidden)
+• Clean, educational appearance without technical details
+• ESL-optimized content without revealing AI implementation
+• Consistent with theme system for professional appearance
+```
+
+### 4. AI Tutoring Modal - Neo-Classic Academic Style
 
 ```
 ┌─────────────────────────────────────┐
@@ -500,11 +586,20 @@ Theme Integration:
 - **Fast Content API**: `app/api/books/[id]/content-fast/route.ts` - Optimized book loading
 - **Bundle APIs**: Multiple per-book routes (`app/api/*/bundles/route.ts`) + Generic (`app/api/featured-books/bundles/route.ts`)
 - **AI Tutoring**: `app/api/ai/stream/route.ts` - Educational chat system
+- **AI Dictionary**: `app/api/dictionary/resolve/route.ts` - ESL-optimized word definitions
 
 ### Content Generation Scripts
 - **Master Prevention**: `docs/MASTER_MISTAKES_PREVENTION.md:1-100` - Audiobook generation guidelines
 - **Pipeline Guide**: `docs/audiobook-pipeline-complete.md:1-200` - Complete implementation process
 - **Book Processor**: `lib/precompute/book-processor.ts` - Background simplification
+
+### AI Dictionary System
+- **Dictionary API**: `app/api/dictionary/resolve/route.ts` - AI-only lookup with cache busting
+- **AI Lookup Engine**: `lib/dictionary/AIUniversalLookup.ts` - Hedged OpenAI + Claude calls
+- **Client Cache**: `lib/dictionary/DictionaryCache.ts` - Versioned IndexedDB + memory storage
+- **Server Cache**: `lib/dictionary/cache.ts` - Edge caching with TTL management
+- **UI Component**: `components/dictionary/DefinitionBottomSheet.tsx` - Clean modal interface
+- **Implementation Plan**: `LEARNER_DICTIONARY_IMPLEMENTATION_PLAN.md` - Complete architecture docs
 
 ### Neo-Classic Theme System
 - **Theme Context**: `contexts/ThemeContext.tsx` - Light/Dark/Sepia theme management with localStorage persistence
