@@ -9,7 +9,7 @@ import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
 import { useDictionaryInteraction } from '@/hooks/useDictionaryInteraction';
 import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomSheet';
-// Dictionary imports removed - now using unified API endpoint
+import { dictionaryCache } from '@/lib/dictionary/DictionaryCache';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 
@@ -1291,18 +1291,15 @@ export default function FeaturedBooksPage() {
       setIsDictionaryOpen(true);
       setDefinitionLoading(true);
 
-      // Use unified dictionary endpoint with caching and request deduplication
+      // Use client-side cache for instant lookups
       const fetchDefinition = async () => {
         try {
-          console.log('🔍 Dictionary: Using unified endpoint for:', selectedWord);
+          console.log('🔍 Dictionary: Using cached lookup for:', selectedWord);
 
-          const response = await fetch(`/api/dictionary/resolve?word=${encodeURIComponent(selectedWord)}`);
+          const result = await dictionaryCache.fetchWithCache(selectedWord);
+          console.log(`✅ Dictionary: Got ${result.cached ? 'cached' : 'fresh'} result in ${result.responseTime}ms:`, result);
 
-          if (response.ok) {
-            const result = await response.json();
-            console.log('✅ Dictionary: Got result from unified endpoint:', result);
-
-            setCurrentDefinition({
+          setCurrentDefinition({
               word: result.word,
               definition: result.definition,
               example: result.example,
@@ -1319,21 +1316,6 @@ export default function FeaturedBooksPage() {
             } else {
               console.log('🔄 Dictionary: Fresh lookup, response time:', result.responseTime + 'ms');
             }
-
-          } else if (response.status === 404) {
-            // Handle not found case
-            setCurrentDefinition({
-              word: selectedWord,
-              phonetic: 'unknown',
-              definition: `Sorry, we couldn't find a definition for "${selectedWord}". This might be a very rare word, a proper name, or a typo.`,
-              example: `Try words like "pretty", "beautiful", "house", or "amazing".`,
-              partOfSpeech: 'unknown',
-              cefrLevel: 'Unknown',
-              source: 'Not Found'
-            });
-          } else {
-            throw new Error(`API error: ${response.status}`);
-          }
 
         } catch (error) {
           console.error('❌ Dictionary lookup error:', error);
