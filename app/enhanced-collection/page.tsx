@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
+import { DownloadButton } from '@/components/offline/DownloadButton';
 import type { ExternalBook } from '@/types/book-sources';
 
 interface Book {
@@ -255,6 +256,15 @@ export default function EnhancedCollectionDynamic() {
                 Enhanced ⚡
               </span>
             )}
+          </div>
+
+          {/* Download Button - Compact */}
+          <div className="mb-2">
+            <DownloadButton
+              bookId={book.id}
+              level={book.availableLevels?.[0] || 'A1'}
+              compact={true}
+            />
           </div>
 
           {/* Action Buttons - Compact Style */}
