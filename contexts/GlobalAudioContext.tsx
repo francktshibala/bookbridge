@@ -86,6 +86,15 @@ export function GlobalAudioProvider({ children }: GlobalAudioProviderProps) {
   const [currentBundleIndex, setCurrentBundleIndex] = useState(0);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
 
+  // Keep refs in sync with state for closure safety
+  useEffect(() => {
+    currentBundleIndexRef.current = currentBundleIndex;
+  }, [currentBundleIndex]);
+
+  useEffect(() => {
+    allBundlesRef.current = allBundles;
+  }, [allBundles]);
+
   // Playback State
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -103,6 +112,8 @@ export function GlobalAudioProvider({ children }: GlobalAudioProviderProps) {
   // Refs
   const audioManagerRef = useRef<BundleAudioManager | null>(null);
   const isPlayingRef = useRef(false); // For closure safety
+  const currentBundleIndexRef = useRef(0); // For closure safety in callbacks
+  const allBundlesRef = useRef<BundleData[]>([]); // For closure safety in callbacks
 
   // ============================================================================
   // INITIALIZATION
@@ -339,9 +350,14 @@ export function GlobalAudioProvider({ children }: GlobalAudioProviderProps) {
   }, [allBundles, play]);
 
   const handleBundleComplete = useCallback(async () => {
-    const nextBundleIndex = currentBundleIndex + 1;
+    // Use refs to get latest values (avoids stale closure)
+    const currentIndex = currentBundleIndexRef.current;
+    const bundles = allBundlesRef.current;
+    const nextBundleIndex = currentIndex + 1;
 
-    if (nextBundleIndex < allBundles.length) {
+    console.log(`🏁 Bundle complete! Current: ${currentIndex}, Total: ${bundles.length}`);
+
+    if (nextBundleIndex < bundles.length) {
       console.log(`➡️ Auto-advancing to bundle ${nextBundleIndex}`);
       await jumpToBundle(nextBundleIndex, 0);
     } else {
@@ -352,20 +368,20 @@ export function GlobalAudioProvider({ children }: GlobalAudioProviderProps) {
       // Save completion to reading position
       if (currentBook) {
         await readingPositionService.savePosition(currentBook.id, {
-          currentBundleIndex: allBundles.length - 1,
-          currentSentenceIndex: allBundles[allBundles.length - 1]?.sentences.length - 1 || 0,
-          currentChapter: allBundles.length, // Use bundle as chapter (completion is last bundle)
+          currentBundleIndex: bundles.length - 1,
+          currentSentenceIndex: bundles[bundles.length - 1]?.sentences.length - 1 || 0,
+          currentChapter: bundles.length, // Use bundle as chapter (completion is last bundle)
           playbackTime: totalStoryProgress,
           totalTime: totalStoryDuration,
           cefrLevel: currentBook.level,
           playbackSpeed,
           contentMode: 'simplified',
           completionPercentage: 100,
-          sentencesRead: allBundles[allBundles.length - 1]?.sentences.length - 1 || 0,
+          sentencesRead: bundles[bundles.length - 1]?.sentences.length - 1 || 0,
         });
       }
     }
-  }, [currentBundleIndex, allBundles, jumpToBundle, currentBook, totalStoryProgress, totalStoryDuration, playbackSpeed]);
+  }, [jumpToBundle, currentBook, totalStoryProgress, totalStoryDuration, playbackSpeed]);
 
   // ============================================================================
   // OTHER CONTROLS
