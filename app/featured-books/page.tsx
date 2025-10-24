@@ -10,6 +10,7 @@ import { useMediaSession } from '@/lib/hooks/useMediaSession';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 import { ResumeToast } from '@/components/reading/ResumeToast';
+import { useGlobalAudio } from '@/contexts/GlobalAudioContext';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -626,6 +627,9 @@ const GREAT_GATSBY_CHAPTERS = [
 ];
 
 export default function FeaturedBooksPage() {
+  // Global audio context
+  const globalAudio = useGlobalAudio();
+
   // Book selection state
   const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
   const [showBookSelection, setShowBookSelection] = useState(true);
@@ -1006,6 +1010,20 @@ export default function FeaturedBooksPage() {
           // Guard: only update state if this is still the current request
           if (currentRequestIdRef.current === reqId) {
             setBundleData(data);
+
+            // Load into global audio context for mini player
+            if (data.bundles && data.bundles.length > 0) {
+              globalAudio.loadBook(
+                {
+                  id: data.bookId,
+                  title: data.title,
+                  author: data.author,
+                  level: data.level,
+                },
+                data.bundles,
+                0 // Start at first bundle
+              );
+            }
           }
 
           // Initialize unified player and audio manager (skip for original text without audio)
@@ -2260,18 +2278,22 @@ export default function FeaturedBooksPage() {
 
             {/* Progress Info Row */}
             <div className="flex justify-between items-center text-xs text-[var(--text-secondary)] mb-2">
-              <span>{formatTime(playbackTime)}</span>
+              <span>{formatTime(globalAudio.totalStoryProgress)}</span>
               <span>
                 Sentence {currentSentenceIndex + 1}/{getCurrentChapter().totalSentences} • Chapter {getCurrentChapter().current} of {getCurrentChapter().total}
               </span>
-              <span>{formatTime(totalTime)}</span>
+              <span>{formatTime(globalAudio.totalStoryDuration)}</span>
             </div>
 
-            {/* Progress Bar */}
+            {/* Progress Bar (Total Story Duration) */}
             <div className="w-full h-0.5 bg-[var(--border-light)] rounded-full mb-4">
               <div
                 className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-300"
-                style={{ width: `${totalTime > 0 ? (playbackTime / totalTime) * 100 : 0}%` }}
+                style={{
+                  width: `${globalAudio.totalStoryDuration > 0
+                    ? (globalAudio.totalStoryProgress / globalAudio.totalStoryDuration) * 100
+                    : 0}%`
+                }}
               />
             </div>
 

@@ -19,6 +19,8 @@ import { PerformanceProvider } from '@/components/PerformanceProvider';
 import DeploymentInitializer from '@/components/DeploymentInitializer';
 import { PWAAnalyticsProvider } from '@/components/PWAAnalyticsProvider';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { GlobalAudioProvider } from '@/contexts/GlobalAudioContext';
+import { MiniPlayer } from '@/components/audio/MiniPlayer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -112,6 +114,7 @@ export default function RootLayout({
                 <VoiceNavigationWrapper>
                   <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
                     <PWAAnalyticsProvider enableTracking={true}>
+                      <GlobalAudioProvider>
                       <OnboardingManager enableAutoOnboarding={true}>
                 {/* Service Worker Registration */}
                 <ServiceWorkerRegistration />
@@ -148,7 +151,11 @@ export default function RootLayout({
                 
                 {/* Deployment Initialization */}
                 <DeploymentInitializer />
+
+                {/* Global Mini Player */}
+                <MiniPlayer />
                       </OnboardingManager>
+                      </GlobalAudioProvider>
                     </PWAAnalyticsProvider>
                   </PerformanceProvider>
                 </VoiceNavigationWrapper>
