@@ -172,8 +172,7 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
         <h2 className="text-xl font-bold text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
           {definition.word}
         </h2>
-        {(definition.pronunciation || definition.phonetic || definition.audioUrl) && (
-          <button
+        <button
             onClick={playPronunciation}
             disabled={isPlayingAudio}
             className={`flex items-center justify-center w-8 h-8 rounded-full transition-all ${
@@ -189,7 +188,6 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
               <span className="text-sm">🔊</span>
             )}
           </button>
-        )}
       </div>
 
       {/* Pronunciation & Part of Speech */}
