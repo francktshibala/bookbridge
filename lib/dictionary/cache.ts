@@ -24,12 +24,12 @@ const definitionCache = new Map<string, CachedDefinition>();
 const pendingRequests = new Map<string, PendingRequest>();
 
 // Cache configuration
-const DEFAULT_TTL = 4 * 60 * 60 * 1000; // 4 hours (temporary for quality improvement)
+const DEFAULT_TTL = 1 * 60 * 60 * 1000; // 1 hour (temporary for debugging)
 const PENDING_REQUEST_TIMEOUT = 10 * 1000; // 10 seconds
 const MAX_CACHE_SIZE = 10000; // Prevent memory bloat
 
 export function normalizeWord(word: string): string {
-  return 'v2:' + word.toLowerCase().trim()
+  return 'v3:' + word.toLowerCase().trim()
     .replace(/['"'""`]/g, '') // Remove quotes
     .replace(/[^\w\s-]/g, '') // Remove punctuation except hyphens
     .replace(/\s+/g, '-'); // Replace spaces with hyphens

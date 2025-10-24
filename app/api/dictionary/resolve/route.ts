@@ -65,7 +65,15 @@ export async function GET(request: NextRequest) {
         responseTime: Date.now() - startTime
       };
 
-      return NextResponse.json(response);
+      const headers = new Headers({
+        'X-Source': cached.source,
+        'X-Cache': 'hit',
+        'X-Cache-Key': normalizeWord(word),
+        'X-Examples-Count': cached.example ? cached.example.split(' | ').length.toString() : '0',
+        'Cache-Control': 'no-store'
+      });
+
+      return NextResponse.json(response, { headers });
     }
 
     // 2. Use request deduplication to prevent concurrent requests
@@ -98,7 +106,15 @@ export async function GET(request: NextRequest) {
       responseTime: Date.now() - startTime
     };
 
-    return NextResponse.json(response);
+    const headers = new Headers({
+      'X-Source': result.source,
+      'X-Cache': 'miss',
+      'X-Cache-Key': normalizeWord(word),
+      'X-Examples-Count': result.example ? result.example.split(' | ').length.toString() : '0',
+      'Cache-Control': 'no-store'
+    });
+
+    return NextResponse.json(response, { headers });
 
   } catch (error) {
     console.error('❌ Dictionary API: Error:', error);
