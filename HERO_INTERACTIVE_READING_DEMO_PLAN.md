@@ -8,6 +8,20 @@
 
 **Timeline**: 3 weeks total implementation
 
+## 🎯 CRITICAL SUCCESS REQUIREMENT - PERFECT AUDIO-TEXT HARMONY
+
+**THE ONE SETTING THAT GUARANTEES PERFECT SYNCHRONIZATION:**
+
+### 🔒 SOLUTION 1: MEASURED TIMING (NEVER ESTIMATE)
+
+**MANDATORY IMPLEMENTATION**: Every audio file MUST be measured with ffprobe during generation
+- **Generate audio** → **Measure actual duration with ffprobe** → **Calculate proportional sentence timings** → **Cache metadata**
+- **RESULT**: Perfect sentence highlighting with zero lag/drift
+- **PREVENTS**: 2-second highlighting delays that break user experience
+- **FROM MASTER PREVENTION**: "NEVER estimate audio duration - always measure actual TTS output"
+
+**Why This Matters**: TTS generates variable duration. Estimates cause highlighting lag. Measurement ensures perfect sync.
+
 ---
 
 ## 🎨 Design Requirements
@@ -79,11 +93,15 @@ touch scripts/generate-demo-audio.js
 **Audio Requirements (PREVENTION-VALIDATED)**:
 - **Voice**: Sarah voice only (EXAVITQu4vr4xnSDxMaL) - proven A1-friendly
 - **Settings**: M1 proven formula (speed 0.90 + eleven_monolingual_v1)
-- **Solution 1**: MANDATORY ffprobe measurement during generation
+- **🎯 SOLUTION 1 - PERFECT HARMONY GUARANTEE**: MANDATORY ffprobe measurement during generation
+  - **NEVER estimate audio duration** - always measure actual TTS output with ffprobe
+  - **WHY CRITICAL**: Estimated timing causes 2-second highlighting lag/drift
+  - **RESULT**: Perfect sentence highlighting synchronization with zero lag
+  - **MANDATORY**: Generate → Measure → Calculate proportional timing → Cache
 - **Formats**: Generate A1, B1, Original versions with measured timing
 - **Length**: 20-40 seconds each with actual duration cached
-- **Timing**: Generate proportional sentence timing from measured audio
-- **Cache**: audioDurationMetadata JSONB for instant loading
+- **Timing**: Generate proportional sentence timing from measured audio (NOT estimated)
+- **Cache**: audioDurationMetadata JSONB for instant loading (2-3 seconds vs 45+ seconds)
 
 **CRITICAL Implementation Pattern**:
 ```javascript
