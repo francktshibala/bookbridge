@@ -236,7 +236,7 @@ async function callOpenAILookup(prompt: string, request: AILookupRequest, isRetr
     body: JSON.stringify({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
-      max_tokens: 200,
+      max_tokens: 250,
       temperature: isRetry ? 0.1 : 0.2, // Lower temperature for retries
       response_format: { type: 'json_object' }, // Force JSON mode
     }),
@@ -297,7 +297,7 @@ async function callAnthropicLookup(prompt: string, request: AILookupRequest, isR
     },
     body: JSON.stringify({
       model: 'claude-3-haiku-20240307',
-      max_tokens: 200,
+      max_tokens: 250,
       temperature: isRetry ? 0.1 : 0.2, // Lower temperature for retries
       messages: [{ role: 'user', content: prompt }],
     }),

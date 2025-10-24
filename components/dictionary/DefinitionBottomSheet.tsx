@@ -214,16 +214,20 @@ function DefinitionContent({ definition, onClose }: { definition: Definition; on
         </div>
       </div>
 
-      {/* Example */}
+      {/* Examples */}
       {definition.example && (
         <div className="bg-[var(--bg-primary)]/30 rounded-lg p-3 border border-[var(--border-light)]">
           <div className="flex items-start gap-2">
             <span className="text-[var(--accent-primary)] mt-0.5">💭</span>
             <div>
-              <div className="text-xs font-semibold text-[var(--text-secondary)] mb-1">Example:</div>
-              <p className="text-[var(--text-primary)] italic text-sm leading-snug" style={{ fontFamily: 'Source Serif Pro, serif' }}>
-                "{definition.example}"
-              </p>
+              <div className="text-xs font-semibold text-[var(--text-secondary)] mb-1">Examples:</div>
+              <div className="space-y-1">
+                {definition.example.split(' | ').map((example, index) => (
+                  <p key={index} className="text-[var(--text-primary)] italic text-sm leading-snug" style={{ fontFamily: 'Source Serif Pro, serif' }}>
+                    "{example.trim()}"
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
