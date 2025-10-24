@@ -452,9 +452,14 @@ export class BundleAudioManager {
         console.log(`📍 Current sentence ${currentSentenceInBundle.sentenceIndex}: "${currentSentenceInBundle.text.substring(0, 40)}..."`);
       }
 
-      const nextSentenceIndex = currentSentenceInBundle.sentenceIndex + 1;
-      const nextSentence = bundle.sentences.find(s => s.sentenceIndex === nextSentenceIndex);
-      // CRITICAL FIX: Don't default to 0 when nextSentence doesn't exist
+      // CRITICAL FIX: Find next sentence by array position, not by sentenceIndex
+      // Sentence indexes are global across all bundles, so we need to find by position in THIS bundle
+      const currentPositionInBundle = bundle.sentences.findIndex(s => s.sentenceIndex === currentSentenceInBundle.sentenceIndex);
+      const nextSentence = currentPositionInBundle >= 0 && currentPositionInBundle < bundle.sentences.length - 1
+        ? bundle.sentences[currentPositionInBundle + 1]
+        : null;
+
+      const nextSentenceIndex = nextSentence?.sentenceIndex || -1;
       const nextScaledStart = nextSentence ? (this.scaledSentences.get(nextSentenceIndex)?.startTime || 0) : Infinity;
       const currentScaledEnd = this.scaledSentences.get(currentSentenceInBundle.sentenceIndex)?.endTime || 0;
 
@@ -491,13 +496,20 @@ export class BundleAudioManager {
           console.log(`   📝 Completed: "${currentSentenceInBundle.text.substring(0, 50)}..."`);
 
           this.options.onSentenceEnd?.(currentSentenceInBundle);
-          if (nextSentence) {
-            console.log(`   ➡️ Advancing to sentence ${nextSentenceIndex}`);
-            currentSentenceInBundle = nextSentence;
-            this.currentSentenceIndex = nextSentenceIndex;
-            this.options.onSentenceStart?.(nextSentence);
+
+          // Re-check for next sentence using array position (same fix as above)
+          const currentPos = bundle.sentences.findIndex(s => s.sentenceIndex === currentSentenceInBundle.sentenceIndex);
+          const nextSent = currentPos >= 0 && currentPos < bundle.sentences.length - 1
+            ? bundle.sentences[currentPos + 1]
+            : null;
+
+          if (nextSent) {
+            console.log(`   ➡️ Advancing to sentence ${nextSent.sentenceIndex} (position ${currentPos + 1} in bundle)`);
+            currentSentenceInBundle = nextSent;
+            this.currentSentenceIndex = nextSent.sentenceIndex;
+            this.options.onSentenceStart?.(nextSent);
           } else {
-            console.log(`   🏁 Bundle ${bundle.bundleId} complete - no more sentences`);
+            console.log(`   🏁 Bundle ${bundle.bundleId} complete - no more sentences (was at position ${currentPos})`);
             this.handleBundleComplete(bundle);
             return;
           }
