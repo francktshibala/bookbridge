@@ -66,6 +66,16 @@ This UI/UX plan focuses on **functionality and user experience features**. For v
 
 **PRIORITY**: Implement ONLY these 3 features. All other features marked as POSTPONED below.
 
+### 🎯 **COMBINED END RESULT VISION**
+
+**Transform BookBridge into "Spotify for ESL Audiobooks"** - an addictive learning platform where users:
+
+- **Resume instantly**: Open any book → automatic "Resuming from Chapter 2, Sentence 15" toast → audio starts from exact word (Netflix-style)
+- **Browse while listening**: Mini player shows book cover/title → navigate anywhere → audio continues seamlessly → click to return to reading (Spotify-style)
+- **Learn anywhere**: Download books with progress indicator → full offline experience with audio highlighting → auto-sync when online (Netflix Downloads-style)
+
+**User Impact**: 60% longer sessions, 40% better retention, <3 second engagement time
+
 **Key Feature Names**:
 1. **Reading Position Memory** (Session Persistence)
 2. **Global Mini Player**
