@@ -580,22 +580,34 @@ npm run dev                                    # Start development server
 
 ## 🚨 CRITICAL PREVENTION RULES
 
+**Voice Settings (MANDATORY):**
+- **ALWAYS use PRODUCTION_SETTINGS** - Hero Demo enhanced settings (similarity_boost 0.8, style 0.05-0.1)
+- **NEVER use eleven_multilingual_v2** - worse clarity despite being "advanced"
+- **NEVER use eleven_flash_v2_5** - breaks synchronization
+- **ALWAYS use eleven_monolingual_v1** - English-focused model for ESL clarity
+- **NEVER change speed from 0.90** - locked for perfect sync
+- **Reference**: See CURRENT PRODUCTION STANDARD section for exact settings
+
+**System & Validation:**
 - **NEVER start without system validation** - run validate-system.js first
 - **NEVER proceed without cost confirmation** - expensive API calls add up fast
 - **NEVER run multiple scripts simultaneously** - causes database conflicts
 - **NEVER skip pilot testing** - always test with 5-10 bundles first
 - **NEVER skip chapter UI integration** - chapters without UI are invisible
 - **NEVER lose sentence punctuation** - use match() not split() for sentences
+
+**Audio & Timing:**
 - **NEVER estimate audio duration** - always measure actual TTS output
+- **ALWAYS implement Solution 1** - measured duration + proportional timing + cached metadata (mandatory)
+- **NEVER use API-time measurement** - APIs must read cached audioDurationMetadata only
+- **NEVER double-add sentence indices** - use original sentenceIndex from cached timings
+
+**Storage & Integration:**
 - **NEVER use generic CDN paths** - use book-specific paths to prevent collisions
+- **NEVER store full audio URLs in database** - use relative paths to prevent double-URL errors
 - **NEVER run script without level validation** - verify A1/A2/B1 support in script code first
 - **NEVER assume voice mapping exists** - check getVoiceForLevel() function for target level
 - **NEVER skip frontend API mapping validation** - verify BOOK_API_MAPPINGS before testing (Phase 4.5)
-- **NEVER store full audio URLs in database** - use relative paths to prevent double-URL errors
-- **ALWAYS implement Solution 1** - measured duration + proportional timing + cached metadata (mandatory)
-- **NEVER estimate audio duration** - always measure with ffprobe during generation
-- **NEVER use API-time measurement** - APIs must read cached audioDurationMetadata only
-- **NEVER double-add sentence indices** - use original sentenceIndex from cached timings
 
 ---
 
@@ -958,6 +970,14 @@ while (attempt < maxAttempts && !simplifiedSentenceTexts) {
 
 ## 🎵 Audio Generation Phase
 
+**⚠️ CRITICAL: Voice Settings Standard**
+
+**ALL new audiobook implementations MUST use:**
+- **Production Settings**: See [CURRENT PRODUCTION STANDARD (October 2025)](#-current-production-standard-october-2025---hero-demo-settings) below
+- **Model**: `eleven_monolingual_v1` (NOT multilingual/flash variants)
+- **Settings**: Sarah (stability 0.5, similarity_boost 0.8, style 0.05) / Daniel (stability 0.45, similarity_boost 0.8, style 0.1)
+- **Reference Script**: `scripts/generate-enhanced-demo-audio.js`
+
 ### Universal Timing Formula (CRITICAL - GPT-5 Enhanced)
 ```javascript
 // GPT-5 PROVEN FORMULA: Speed-aware + length penalty + safety tail
@@ -992,20 +1012,89 @@ const duration = calculateSentenceTiming(wordCount, voiceType, 0.90, 'B1');
 - **Result**: Perfect audio-text synchronization, prevents sentence skipping
 - **Validation**: Gift of the Magi A2 confirmed Sarah timing works perfectly
 
-### Maya Story Voice Testing Results (PROVEN SETTINGS)
+---
+
+## 🎯 **CURRENT PRODUCTION STANDARD (October 2025) - HERO DEMO SETTINGS**
+
+**⚠️ CRITICAL: ALL NEW BOOKS MUST USE THESE SETTINGS - NOT THE M1 DEFAULTS BELOW**
+
+These settings are proven in production through the Interactive Hero Demo and deliver superior audio quality while maintaining perfect synchronization. They supersede the conservative M1 defaults documented below.
+
+### **HERO DEMO ENHANCED SETTINGS (PRODUCTION STANDARD)**
+
+**Use these for ALL new audiobook generation:**
+
+```javascript
+// SARAH VOICE - Production Standard (Hero Demo Validated)
+const PRODUCTION_SARAH_SETTINGS = {
+  voice_id: 'EXAVITQu4vr4xnSDxMaL',
+  model: 'eleven_monolingual_v1',      // CRITICAL: English-focused model
+  speed: 0.90,                         // LOCKED - perfect sync
+  voice_settings: {
+    stability: 0.5,                    // Clarity for ESL learners
+    similarity_boost: 0.8,             // +0.05 from defaults = better presence
+    style: 0.05,                       // +0.05 from defaults = subtle sophistication
+    use_speaker_boost: true
+  }
+};
+
+// DANIEL VOICE - Production Standard (Hero Demo Validated)
+const PRODUCTION_DANIEL_SETTINGS = {
+  voice_id: 'onwK4e9ZLuTAKqWW03F9',
+  model: 'eleven_monolingual_v1',      // CRITICAL: English-focused model
+  speed: 0.90,                         // LOCKED - perfect sync
+  voice_settings: {
+    stability: 0.45,                   // Enhanced clarity (GPT-5 validated)
+    similarity_boost: 0.8,             // +0.05 from defaults = better presence
+    style: 0.1,                        // +0.1 from defaults = natural expressiveness
+    use_speaker_boost: true
+  }
+};
+```
+
+### **Why These Settings Are Superior**
+
+**Key Improvements over M1 defaults:**
+1. **similarity_boost: 0.8** (vs 0.75) - Maintains voice character, better presence
+2. **style: 0.05-0.1** (vs 0.0) - Adds natural expressiveness without over-processing
+3. **GPT-5 validated** - Tested and optimized for ESL learner clarity
+4. **Production proven** - Live in Hero Demo with positive user feedback
+
+**What was tested and rejected:**
+- ❌ `eleven_multilingual_v2` - Worse clarity despite "advanced" features
+- ❌ `eleven_flash_v2_5` - Breaks synchronization
+- ❌ Higher style values (>0.15) - Over-processing, unnatural
+- ❌ Lower similarity_boost (<0.75) - Loses voice character
+
+**Why eleven_monolingual_v1 beats "advanced" models:**
+- Specialized for English ONLY = superior clarity
+- Multilingual models sacrifice clarity for language breadth
+- ESL learners need **clarity > contextual awareness**
+- Proven perfect sync with speed 0.90
+
+**⚠️ MANDATORY for all new implementations:**
+- Use PRODUCTION settings above (NOT M1 defaults below)
+- Model: `eleven_monolingual_v1` (NOT multilingual/flash variants)
+- Speed: 0.90 (NEVER change)
+- Reference implementation: `scripts/generate-enhanced-demo-audio.js`
+
+---
+
+### Maya Story Voice Testing Results (HISTORICAL REFERENCE - M1 BASELINE)
 
 **Test Book**: "The Digital Library" (Maya story) - 3 systematic voice tests
 
-#### M1 Test (WINNER - 🏆 Perfect Synchronization)
+#### M1 Test (BASELINE - Conservative Defaults)
 ```javascript
-// PROVEN FORMULA: Daniel voice + speed 0.90 + defaults
-const WINNING_VOICE_SETTINGS = {
+// HISTORICAL BASELINE: Daniel voice + speed 0.90 + ElevenLabs defaults
+// NOTE: Superseded by PRODUCTION_SETTINGS above (similarity_boost: 0.8, style: 0.05-0.1)
+const M1_BASELINE_SETTINGS = {
   voice: 'Daniel' (onwK4e9ZLuTAKqWW03F9),
-  model: 'eleven_monolingual_v1',  // NOT eleven_flash_v2_5
-  speed: 0.90,  // CRITICAL: this speed achieved perfect sync
-  stability: 0.5,        // ElevenLabs default
-  similarity_boost: 0.75, // ElevenLabs default
-  style: 0.0,            // ElevenLabs default
+  model: 'eleven_monolingual_v1',  // ✅ Correct model
+  speed: 0.90,  // ✅ Perfect sync
+  stability: 0.5,        // ✅ Good clarity
+  similarity_boost: 0.75, // ⚠️ Now use 0.8 in production
+  style: 0.0,            // ⚠️ Now use 0.05-0.1 in production
   use_speaker_boost: true
 };
 ```
@@ -1020,15 +1109,18 @@ const WINNING_VOICE_SETTINGS = {
 - Settings: stability 0.55, style 0.0, speed 0.88, similarity_boost 0.75
 - **Result**: Less optimal than M1
 
-**Critical Finding**: **Speed 0.90 + eleven_monolingual_v1** is the proven baseline for perfect synchronization. Apply this formula to any voice:
+**Historical Finding**: M1 established the baseline (speed 0.90 + eleven_monolingual_v1) for perfect synchronization. This baseline was later enhanced with Hero Demo settings (similarity_boost 0.8, style 0.05-0.1) which are now the production standard.
+
+⚠️ **DEPRECATED - Use PRODUCTION_SETTINGS above instead:**
 ```javascript
-// Universal proven settings for any ElevenLabs voice
-const PROVEN_SETTINGS = {
-  speed: 0.90,                    // M1 validated speed
-  model: 'eleven_monolingual_v1', // NOT eleven_flash_v2_5
-  stability: 0.5,                 // ElevenLabs defaults
-  similarity_boost: 0.75,         // ElevenLabs defaults
-  style: 0.0,                     // ElevenLabs defaults
+// DO NOT USE - Historical reference only
+// Use PRODUCTION_SARAH_SETTINGS or PRODUCTION_DANIEL_SETTINGS instead
+const DEPRECATED_M1_SETTINGS = {
+  speed: 0.90,                    // ✅ Still correct
+  model: 'eleven_monolingual_v1', // ✅ Still correct
+  stability: 0.5,                 // ✅ Still correct
+  similarity_boost: 0.75,         // ❌ Use 0.8 now
+  style: 0.0,                     // ❌ Use 0.05-0.1 now
   use_speaker_boost: true
 };
 ```
