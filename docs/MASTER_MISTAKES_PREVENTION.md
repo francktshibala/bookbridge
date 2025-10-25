@@ -584,8 +584,9 @@ npm run dev                                    # Start development server
 - **ALWAYS use PRODUCTION_SETTINGS** - Hero Demo enhanced settings (similarity_boost 0.8, style 0.05-0.1)
 - **NEVER use eleven_multilingual_v2** - worse clarity despite being "advanced"
 - **NEVER use eleven_flash_v2_5** - breaks synchronization
-- **ALWAYS use eleven_monolingual_v1** - English-focused model for ESL clarity
-- **NEVER change speed from 0.90** - locked for perfect sync
+- **NEVER use eleven_turbo_v2_5** - tested Oct 2025, worse quality than v1 (see TURBO_V25_TESTING_RESULTS.md)
+- **ALWAYS use eleven_monolingual_v1** - English-focused model for ESL clarity (proven best)
+- **NEVER change speed from 0.90** - locked for perfect sync (tested 0.85, 0.80 - no improvement)
 - **Reference**: See CURRENT PRODUCTION STANDARD section for exact settings
 
 **System & Validation:**
@@ -1063,6 +1064,8 @@ const PRODUCTION_DANIEL_SETTINGS = {
 **What was tested and rejected:**
 - ❌ `eleven_multilingual_v2` - Worse clarity despite "advanced" features
 - ❌ `eleven_flash_v2_5` - Breaks synchronization
+- ❌ `eleven_turbo_v2_5` - Tested Oct 2025 with speeds 0.90/0.85/0.80, worse quality than v1
+- ❌ Speed adjustments (0.85, 0.80) - Tested Oct 2025, no improvement over 0.90
 - ❌ Higher style values (>0.15) - Over-processing, unnatural
 - ❌ Lower similarity_boost (<0.75) - Loses voice character
 
