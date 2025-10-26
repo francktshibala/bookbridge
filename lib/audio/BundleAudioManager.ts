@@ -636,6 +636,9 @@ export class BundleAudioManager {
     this.pausedAtTime = 0;
     this.pausedAtSentence = -1;
 
+    // ⭐ FIX 1b: Clear currentBundle so next play() will reload bundles
+    this.currentBundle = null;
+
     this.stopMonitoring();
   }
 
