@@ -148,6 +148,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   const audioManagerRef = useRef<BundleAudioManager | null>(null);
   const isPlayingRef = useRef(false);
+  const nextBundleRef = useRef<() => void>(() => {}); // Fix: Ref for bundle continuation
   const router = useRouter();
 
   // ========================================
@@ -174,8 +175,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       },
       onBundleComplete: (bundleId) => {
         console.log(`🎵 [AudioContext] Bundle complete: ${bundleId}`);
-        // Auto-advance to next bundle
-        nextBundle();
+        // Auto-advance to next bundle (using ref to avoid closure issues)
+        nextBundleRef.current();
       }
     });
 
@@ -428,6 +429,11 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       setCurrentBundle(null);
     }
   };
+
+  // Fix: Update ref whenever nextBundle changes to avoid stale closures
+  useEffect(() => {
+    nextBundleRef.current = nextBundle;
+  });
 
   const previousBundle = async () => {
     if (!bundleData || !currentBundle) return;
