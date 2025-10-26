@@ -12,6 +12,7 @@ import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomS
 import { dictionaryCache, dictionaryAnalytics } from '@/lib/dictionary/DictionaryCache';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
+import { useAudioContext } from '@/contexts/AudioContext';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -628,17 +629,38 @@ const GREAT_GATSBY_CHAPTERS = [
 ];
 
 export default function FeaturedBooksPage() {
-  // Book selection state
+  // ⭐⭐ CHECKPOINT 2: Use Global Audio Context for playback
+  const {
+    // Audio playback state (from global context)
+    isPlaying,
+    currentSentenceIndex,
+    currentBundle,
+    playbackTime,
+    totalTime,
+    playbackSpeed,
+    currentChapter,
+    // Audio playback methods (from global context)
+    play,
+    pause,
+    resume,
+    setSpeed,
+    nextBundle,
+    previousBundle,
+    loadBook,
+  } = useAudioContext();
+
+  // Book selection state (local - for UI only)
   const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
   const [showBookSelection, setShowBookSelection] = useState(true);
 
   // UI state
   const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
-  const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1'); // Initialize to A1, will be updated by book selection
+  const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1');
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showChapterModal, setShowChapterModal] = useState(false);
   const [showContinueReading, setShowContinueReading] = useState(false);
   const [savedPosition, setSavedPosition] = useState<{sentenceIndex: number, timestamp: number} | null>(null);
+  const [showChapterPicker, setShowChapterPicker] = useState(false);
 
   // AI Chat Modal state
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
@@ -660,28 +682,15 @@ export default function FeaturedBooksPage() {
   const [currentDefinition, setCurrentDefinition] = useState<any>(null);
   const [definitionLoading, setDefinitionLoading] = useState(false);
 
-  // Data state
+  // Data state (local - for display, will migrate to context later)
   const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [availableLevels, setAvailableLevels] = useState<{[key: string]: boolean}>({});
   const [currentBookAvailableLevels, setCurrentBookAvailableLevels] = useState<string[]>([]);
 
-  // Audio playback state
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
-  const [currentChapter, setCurrentChapter] = useState(1);
-  const [currentBundle, setCurrentBundle] = useState<string | null>(null);
-  const [playbackTime, setPlaybackTime] = useState(0);
-  const [totalTime, setTotalTime] = useState(0);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
-  const [showChapterPicker, setShowChapterPicker] = useState(false);
-
-  // Audio manager
-  const audioManagerRef = useRef<BundleAudioManager | null>(null);
+  // Local refs for page-specific functionality
   const playerRef = useRef<AudioBookPlayer | null>(null);
-  const handleNextBundleRef = useRef<() => void>(() => {});
-  const isPlayingRef = useRef<boolean>(false); // Critical fix for React closure issue
   const userScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoScrollEnabledRef = useRef(true);
   const [autoScrollPaused, setAutoScrollPaused] = useState(false);
@@ -1023,135 +1032,19 @@ export default function FeaturedBooksPage() {
           // Guard: only update state if this is still the current request
           if (currentRequestIdRef.current === reqId) {
             setBundleData(data);
-          }
 
-          // Initialize unified player and audio manager (skip for original text without audio)
-          if (!audioManagerRef.current && data.audioType !== 'none') {
-            // Use the snapshot book ID
-            const currentBookId = selectedId;
-
-            // Determine highlight lead based on audio provider
-            const firstSentence = data?.bundles?.[0]?.sentences?.[0];
-            const hasPreciseTimings = Array.isArray(firstSentence?.wordTimings) && firstSentence.wordTimings.length > 0;
-
-            // For TTS (ElevenLabs), use immediate highlighting since timings are estimated
-            const audioProvider = data?.audioType || 'elevenlabs';
-            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2';
-            // Use consistent TTS lead time for both books
-            const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400);
-
-            const audioManager = new BundleAudioManager({
-              highlightLeadMs: leadMs,
-              onSentenceStart: (sentence) => {
-                // Immediate highlight; predictive lead handled inside BundleAudioManager
-                setCurrentSentenceIndex(sentence.sentenceIndex);
-
-                // Smart auto-scroll: only scroll if user hasn't manually scrolled recently
-                if (autoScrollEnabledRef.current) {
-                  const sentenceElement = document.querySelector(`[data-sentence="${sentence.sentenceIndex}"]`);
-                  if (sentenceElement) {
-                    sentenceElement.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center',
-                      inline: 'nearest'
-                    });
-                  }
-                }
-              },
-              onSentenceEnd: (sentence) => {
-                console.log(`✅ Sentence ended: ${sentence.sentenceIndex}`);
-              },
-              onBundleComplete: (bundleId) => {
-                console.log(`📦 Bundle complete: ${bundleId}`);
-                console.log(`🔍 isPlayingRef.current before handleNextBundle: ${isPlayingRef.current}`);
-                handleNextBundleRef.current();
-                console.log(`🔍 isPlayingRef.current after handleNextBundle: ${isPlayingRef.current}`);
-              },
-              onProgress: (currentTime, duration) => {
-                setPlaybackTime(currentTime);
-                setTotalTime(duration);
-              }
-            });
-            audioManagerRef.current = audioManager;
-
-
-            // Create unified player with global sentence map and preloading
-            if (currentBookId) {
-              playerRef.current = new AudioBookPlayer(data.bundles, {
-                highlightLeadMs: leadMs,
-                preloadRadius: 1,
-                debug: false,
-                bookId: currentBookId,
-                onPositionUpdate: (position: ReadingPosition) => {
-                  // Update UI state when position changes
-                  setCurrentSentenceIndex(position.currentSentenceIndex);
-                  setCurrentChapter(position.currentChapter);
-                  // Update other UI elements as needed
-                  console.log('📍 Position updated:', {
-                    sentence: position.currentSentenceIndex,
-                    chapter: position.currentChapter,
-                    completion: position.completionPercentage.toFixed(1) + '%'
-                  });
-                }
+            // ⭐⭐ CHECKPOINT 2: Load book into global AudioContext
+            // This replaces the local BundleAudioManager instantiation
+            if (selectedBook && data.audioType !== 'none') {
+              console.log('🎵 Loading book into global AudioContext:', selectedBook.title);
+              loadBook(selectedBook, levelParam).catch(err => {
+                console.error('Error loading book into AudioContext:', err);
               });
-
-              // Load saved reading position from database after successful initialization
-              setTimeout(async () => {
-                try {
-                  const savedPosition = await readingPositionService.loadPosition(currentBookId);
-                  if (savedPosition && savedPosition.currentSentenceIndex > 0) {
-                    console.log('🔄 Loading saved position:', savedPosition.currentSentenceIndex);
-
-                    // Check how long ago the user last read
-                    const hoursSinceLastRead = savedPosition.lastAccessed
-                      ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
-                      : 999;
-
-                    // Always restore position to the UI
-                    setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
-                    setCurrentChapter(savedPosition.currentChapter);
-
-                    if (hoursSinceLastRead < 24) { // Within last 24 hours - show continue modal
-                      setSavedPosition({
-                        sentenceIndex: savedPosition.currentSentenceIndex,
-                        timestamp: new Date(savedPosition.lastAccessed || Date.now()).getTime()
-                      });
-                      setShowContinueReading(true);
-                    }
-
-                    // Update current settings from saved position
-                    if (savedPosition.cefrLevel) {
-                      setCefrLevel(savedPosition.cefrLevel as any);
-                    }
-                    if (savedPosition.playbackSpeed) {
-                      setPlaybackSpeed(savedPosition.playbackSpeed);
-                    }
-                    if (savedPosition.contentMode) {
-                      setContentMode(savedPosition.contentMode);
-                    }
-
-                    // Scroll to the saved position
-                    setTimeout(() => {
-                      const sentenceElement = document.querySelector(`[data-sentence-index="${savedPosition.currentSentenceIndex}"]`);
-                      if (sentenceElement) {
-                        sentenceElement.scrollIntoView({
-                          behavior: 'smooth',
-                          block: 'center'
-                        });
-                        console.log('📍 Scrolled to saved sentence:', savedPosition.currentSentenceIndex);
-                      } else {
-                        console.log('⚠️ Could not find sentence element for index:', savedPosition.currentSentenceIndex);
-                      }
-                    }, 1000); // Wait for DOM to be fully ready
-                  }
-                } catch (error) {
-                  console.error('Error loading saved reading position:', error);
-                }
-              }, 500); // Small delay to ensure DOM is ready
             }
           }
 
-          // Position loading is now handled inside AudioBookPlayer initialization
+          // ⭐⭐ CHECKPOINT 2: Position loading moved to AudioContext
+          // The global context will handle position restore
 
         } else {
           // Guard: only set error if this is still the current request
@@ -1183,11 +1076,11 @@ export default function FeaturedBooksPage() {
 
     // Cleanup on unmount
     return () => {
-      // Save position before cleanup
+      // ⭐⭐ CHECKPOINT 2: Save position before cleanup
       if (playerRef.current) {
         playerRef.current.forceSavePosition().catch(console.error);
       }
-      audioManagerRef.current?.destroy();
+      // Note: Global AudioContext handles cleanup automatically
     };
   }, [contentMode, cefrLevel, selectedBook]);
 
@@ -1207,83 +1100,20 @@ export default function FeaturedBooksPage() {
     ) || null;
   };
 
+  // ⭐⭐ CHECKPOINT 2: Wrapper for global context play method
   const handlePlaySequential = async (startSentenceIndex: number = 0) => {
-    if (!audioManagerRef.current || !bundleData) return;
+    if (!bundleData) return;
 
     try {
-      const bundle = findBundleForSentence(startSentenceIndex);
-      if (!bundle) {
-        console.error(`Bundle not found for sentence ${startSentenceIndex}`);
-        return;
-      }
-
-      setCurrentBundle(bundle.bundleId);
-      setCurrentSentenceIndex(startSentenceIndex);
-      setIsPlaying(true);
-      isPlayingRef.current = true;
-
-      // Apply current playback speed
-      audioManagerRef.current.setPlaybackRate(playbackSpeed);
-
-      await audioManagerRef.current.playSequentialSentences(bundle, startSentenceIndex);
-
-      // This line executes when playSequentialSentences completes (bundle finished)
-      console.log(`📌 playSequentialSentences completed for bundle ${bundle.bundleId}, isPlayingRef.current = ${isPlayingRef.current}`);
-
+      console.log(`🎵 [Page] Playing from sentence ${startSentenceIndex} via global context`);
+      await play(startSentenceIndex);
     } catch (error) {
       console.error('Sequential playback failed:', error);
-      setIsPlaying(false);
-      isPlayingRef.current = false;
     }
   };
 
-  const handleNextBundle = async () => {
-    console.log('🔄 handleNextBundle called', { bundleData: !!bundleData, currentBundle, isPlaying: isPlayingRef.current });
-
-    if (!bundleData || !currentBundle) {
-      console.log('❌ handleNextBundle early return - missing data');
-      return;
-    }
-
-    // Only continue if still playing
-    if (!isPlayingRef.current) {
-      console.log('❌ handleNextBundle early return - not playing');
-      return;
-    }
-
-    const currentBundleIndex = bundleData.bundles.findIndex(b => b.bundleId === currentBundle);
-    const nextBundle = bundleData.bundles[currentBundleIndex + 1];
-
-    console.log(`📊 Bundle progress: ${currentBundleIndex + 1}/${bundleData.bundles.length}`);
-
-    if (nextBundle && nextBundle.sentences.length > 0) {
-      console.log(`📦 Auto-advancing to next bundle: ${nextBundle.bundleId}`);
-      const nextSentenceIndex = nextBundle.sentences[0].sentenceIndex;
-      console.log(`🎯 Next bundle starts at sentence ${nextSentenceIndex}`);
-      console.log(`📝 Bundle ${nextBundle.bundleId} contains:`,
-        nextBundle.sentences.map(s => `s${s.sentenceIndex}: "${s.text?.substring(0, 25)}..."`).join(', ')
-      );
-
-      setTimeout(() => {
-        if (isPlayingRef.current) { // Check again before advancing
-          console.log(`✅ Still playing, advancing to sentence ${nextSentenceIndex}`);
-          handlePlaySequential(nextSentenceIndex);
-        } else {
-          console.log(`⛔ Playback was stopped, not advancing to next bundle`);
-        }
-      }, 100);
-    } else {
-      console.log('🎉 All bundles complete!');
-      setIsPlaying(false);
-      isPlayingRef.current = false;
-      setCurrentBundle(null);
-    }
-  };
-
-  // Update the ref whenever handleNextBundle changes
-  useEffect(() => {
-    handleNextBundleRef.current = handleNextBundle;
-  });
+  // ⭐⭐ CHECKPOINT 2: Bundle navigation now handled by global context
+  // Removed handleNextBundle - global context handles bundle transitions automatically
 
   // Dictionary effect - watch for word selection and fetch definition
   useEffect(() => {
@@ -1349,10 +1179,10 @@ export default function FeaturedBooksPage() {
     return () => clearInterval(interval);
   }, []);
 
+  // ⭐⭐ CHECKPOINT 2: Wrapper for global context pause method
   const handlePause = async () => {
-    audioManagerRef.current?.pause();
-    setIsPlaying(false);
-    isPlayingRef.current = false;
+    console.log(`🎵 [Page] Pausing playback via global context`);
+    pause();
 
     // Save position when user pauses
     if (playerRef.current) {
@@ -1360,52 +1190,15 @@ export default function FeaturedBooksPage() {
     }
   };
 
+  // ⭐⭐ CHECKPOINT 2: Wrapper for global context resume method
   const handleResume = async () => {
-    if (!audioManagerRef.current || !bundleData) return;
+    if (!bundleData) return;
 
     try {
-      // If we have a current position, resume from there
-      if (currentSentenceIndex >= 0 && currentBundle) {
-        const bundle = findBundleForSentence(currentSentenceIndex);
-        if (bundle) {
-          setIsPlaying(true);
-          isPlayingRef.current = true; // Make sure the play flag is set
-
-          // Force trigger highlighting state update by re-setting current sentence
-          const currentSentence = currentSentenceIndex;
-          setCurrentSentenceIndex(-1); // Clear briefly
-          setTimeout(() => {
-            setCurrentSentenceIndex(currentSentence); // Restore to trigger re-render
-          }, 10);
-
-          // Apply current playback speed
-          audioManagerRef.current.setPlaybackRate(playbackSpeed);
-
-          await audioManagerRef.current.playSequentialSentences(bundle, currentSentenceIndex);
-
-          // After playSequentialSentences completes, check if we should continue to next bundle
-          console.log(`📌 Resume playback completed for bundle ${bundle.bundleId}, checking for next bundle`);
-
-          // Only continue to next bundle if still playing
-          if (isPlayingRef.current) {
-            handleNextBundle();
-          }
-        } else {
-          // Fallback to resume if bundle not found
-          await audioManagerRef.current.resume();
-          setIsPlaying(true);
-          isPlayingRef.current = true;
-        }
-      } else {
-        // Standard resume
-        await audioManagerRef.current.resume();
-        setIsPlaying(true);
-        isPlayingRef.current = true;
-      }
+      console.log(`🎵 [Page] Resuming playback via global context`);
+      await resume();
     } catch (error) {
       console.error('Resume failed:', error);
-      setIsPlaying(false);
-      isPlayingRef.current = false;
     }
   };
 
@@ -1488,13 +1281,11 @@ export default function FeaturedBooksPage() {
     }
   };
 
+  // ⭐⭐ CHECKPOINT 2: Use global context pause (stop is pause in our architecture)
   const handleStop = () => {
-    audioManagerRef.current?.stop();
-    setIsPlaying(false);
-    setCurrentBundle(null);
-    setCurrentSentenceIndex(0);
-    setPlaybackTime(0);
-    setTotalTime(0);
+    console.log(`🎵 [Page] Stopping playback via global context`);
+    pause();
+    // Note: Global context handles state updates (isPlaying, currentBundle, etc.)
   };
 
   // Position tracking is now handled automatically by AudioBookPlayer
@@ -1506,18 +1297,18 @@ export default function FeaturedBooksPage() {
     }
   }, [cefrLevel, playbackSpeed, contentMode]);
 
+  // ⭐⭐ CHECKPOINT 2: Simplified - context handles sentence index
   const continueReading = async () => {
     if (savedPosition) {
-      setCurrentSentenceIndex(savedPosition.sentenceIndex);
       setShowContinueReading(false);
       await handlePlaySequential(savedPosition.sentenceIndex);
+      // Note: Global context updates currentSentenceIndex automatically
     }
   };
 
+  // ⭐⭐ CHECKPOINT 2: Simplified - context handles state
   const startFromBeginning = async () => {
     setShowContinueReading(false);
-    setCurrentSentenceIndex(0);
-    setCurrentChapter(1);
 
     // Reset position in database
     if (playerRef.current) {
@@ -1563,10 +1354,10 @@ export default function FeaturedBooksPage() {
             // Stop current playback first
             handleStop();
 
-            // Wait a moment then jump to chapter
+            // ⭐⭐ CHECKPOINT 2: Simplified - context handles state
             setTimeout(async () => {
-              setCurrentSentenceIndex(chapter.startSentence);
               await jumpToSentence(chapter.startSentence);
+              // Note: jumpToSentence updates currentSentenceIndex via context
             }, 100);
           }}
           value={getCurrentChapter().current}
@@ -1594,12 +1385,9 @@ export default function FeaturedBooksPage() {
     const currentIndex = SPEED_OPTIONS.indexOf(playbackSpeed);
     const nextIndex = (currentIndex + 1) % SPEED_OPTIONS.length;
     const newSpeed = SPEED_OPTIONS[nextIndex];
-    setPlaybackSpeed(newSpeed);
-
-    // Apply speed to current audio if playing
-    if (audioManagerRef.current && isPlaying) {
-      audioManagerRef.current.setPlaybackRate(newSpeed);
-    }
+    // ⭐⭐ CHECKPOINT 2: Use global context setSpeed
+    console.log(`🎵 [Page] Setting playback speed to ${newSpeed} via global context`);
+    setSpeed(newSpeed);
   };
 
   const formatSpeed = (speed: number) => {
@@ -1689,12 +1477,14 @@ export default function FeaturedBooksPage() {
     artist: selectedBook?.author || 'Unknown Author',
     album: `Level ${cefrLevel}`,
     onPlay: () => {
-      if (audioManagerRef.current && !isPlaying) {
+      // ⭐⭐ CHECKPOINT 2: Simplified with global context
+      if (!isPlaying) {
         handleResume();
       }
     },
     onPause: () => {
-      if (audioManagerRef.current && isPlaying) {
+      // ⭐⭐ CHECKPOINT 2: Simplified with global context
+      if (isPlaying) {
         handlePause();
       }
     },
@@ -1702,43 +1492,23 @@ export default function FeaturedBooksPage() {
       // Go to previous sentence
       const prevIndex = Math.max(0, currentSentenceIndex - 1);
       if (bundleData) {
-        const prevBundle = findBundleForSentence(prevIndex);
-        if (prevBundle && audioManagerRef.current) {
-          audioManagerRef.current.stop();
-          setCurrentBundle(prevBundle.bundleId);
-          handlePlaySequential(prevIndex);
-        }
+        handlePlaySequential(prevIndex);
       }
     },
     onSeekForward: () => {
       // Go to next sentence
       const nextIndex = currentSentenceIndex + 1;
       if (bundleData && nextIndex < bundleData.totalSentences) {
-        const nextBundle = findBundleForSentence(nextIndex);
-        if (nextBundle && audioManagerRef.current) {
-          audioManagerRef.current.stop();
-          setCurrentBundle(nextBundle.bundleId);
-          handlePlaySequential(nextIndex);
-        }
+        handlePlaySequential(nextIndex);
       }
     },
     onPreviousTrack: () => {
-      // Go to previous bundle
-      if (currentBundle && bundleData) {
-        const currentBundleObj = bundleData.bundles.find(b => b.bundleId === currentBundle);
-        if (currentBundleObj && currentBundleObj.bundleIndex > 0) {
-          const prevBundle = bundleData.bundles[currentBundleObj.bundleIndex - 1];
-          if (prevBundle && audioManagerRef.current) {
-            audioManagerRef.current.stop();
-            setCurrentBundle(prevBundle.bundleId);
-            handlePlaySequential(prevBundle.sentences[0].sentenceIndex);
-          }
-        }
-      }
+      // ⭐⭐ CHECKPOINT 2: Use global context previousBundle
+      previousBundle();
     },
     onNextTrack: () => {
-      // Go to next bundle
-      handleNextBundle();
+      // ⭐⭐ CHECKPOINT 2: Use global context nextBundle
+      nextBundle();
     }
   });
 
@@ -2040,37 +1810,18 @@ export default function FeaturedBooksPage() {
                           }
                           console.log(`🖱️ Clicked sentence ${sentence.sentenceIndex}`);
 
-                          // FIRST: Stop any current playback completely
-                          if (audioManagerRef.current) {
-                            audioManagerRef.current.stop();
-                          }
-
-                          // Update highlight immediately (optimistic UI)
-                          setCurrentSentenceIndex(sentence.sentenceIndex);
-
-                          // Ensure playback state is active for continuation
-                          setIsPlaying(true);
-                          isPlayingRef.current = true;
-
-                          // Jump to sentence using the UI-connected audio manager
-                          if (audioManagerRef.current) {
-                            const targetBundle = findBundleForSentence(sentence.sentenceIndex);
-                            if (targetBundle) {
-                              console.log(`🎯 Jumping to sentence ${sentence.sentenceIndex} in bundle ${targetBundle.bundleId}, audioUrl: ${targetBundle.audioUrl}`);
-
-                              // Ensure bundle has audio URL
-                              if (!targetBundle.audioUrl) {
-                                console.error(`Bundle ${targetBundle.bundleId} has no audioUrl`);
-                                return;
-                              }
-
-                              // Update current bundle state so handleNextBundle works correctly
-                              setCurrentBundle(targetBundle.bundleId);
-
-                              await audioManagerRef.current.playSequentialSentences(targetBundle, sentence.sentenceIndex);
-                            } else {
-                              console.error(`No bundle found for sentence ${sentence.sentenceIndex}`);
+                          // ⭐⭐ CHECKPOINT 2: Simplified - global context handles everything
+                          const targetBundle = findBundleForSentence(sentence.sentenceIndex);
+                          if (targetBundle) {
+                            if (!targetBundle.audioUrl) {
+                              console.error(`Bundle ${targetBundle.bundleId} has no audioUrl`);
+                              return;
                             }
+
+                            console.log(`🎯 Jumping to sentence ${sentence.sentenceIndex} via global context`);
+                            await handlePlaySequential(sentence.sentenceIndex);
+                          } else {
+                            console.error(`No bundle found for sentence ${sentence.sentenceIndex}`);
                           }
                         }}
                       >
@@ -2236,10 +1987,8 @@ export default function FeaturedBooksPage() {
                         // Stop current playback first
                         handleStop();
 
-                        // Wait a moment then jump to chapter and continue playing
+                        // ⭐⭐ CHECKPOINT 2: Simplified - context handles state
                         setTimeout(async () => {
-                          setCurrentSentenceIndex(chapter.startSentence);
-
                           // Force auto-scroll to chapter start immediately
                           autoScrollEnabledRef.current = true;
                           setAutoScrollPaused(false);
