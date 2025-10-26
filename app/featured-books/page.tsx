@@ -648,6 +648,9 @@ export default function FeaturedBooksPage() {
     nextBundle,
     previousBundle,
     loadBook,
+    unloadBook,
+    getLastBookId,
+    restorePosition,
   } = useAudioContext();
 
   // Book selection state (local - for UI only)
@@ -662,6 +665,42 @@ export default function FeaturedBooksPage() {
       setShowBookSelection(false);
     }
   }, [globalSelectedBook, selectedBook]);
+
+  // ⭐ Auto-restore last book on page refresh (with correct level)
+  useEffect(() => {
+    const restoreLastBook = async () => {
+      // Only restore if no book is currently loaded
+      if (globalSelectedBook) return;
+
+      const lastBookId = getLastBookId();
+      if (!lastBookId) return;
+
+      console.log(`🔄 [FeaturedBooks] Restoring last book: ${lastBookId}`);
+      const book = FEATURED_BOOKS.find(b => b.id === lastBookId);
+
+      if (book) {
+        // ⭐ Load saved position FIRST to get the correct CEFR level
+        const savedPosition = await readingPositionService.loadPosition(lastBookId);
+        const savedLevel = savedPosition?.cefrLevel || 'A1';
+
+        console.log(`🔄 [FeaturedBooks] Restoring book: ${book.title}, level: ${savedLevel}`);
+
+        setSelectedBook(book);
+        setShowBookSelection(false);
+
+        // Load book with saved level (without auto-restoring position)
+        await loadBook(book, savedLevel);
+
+        // Wait for bundleData to be set, then restore position
+        setTimeout(async () => {
+          console.log(`🔄 [FeaturedBooks] Now restoring position...`);
+          await restorePosition(lastBookId);
+        }, 500);
+      }
+    };
+
+    restoreLastBook();
+  }, []); // Run only once on mount
 
   // UI state
   const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
@@ -1641,9 +1680,9 @@ export default function FeaturedBooksPage() {
           <div className="flex justify-between items-center px-6 py-3 relative">
             <button
               onClick={() => {
+                unloadBook();
                 setShowBookSelection(true);
                 setSelectedBook(null);
-                handleStop();
               }}
               className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
             >
@@ -1676,9 +1715,9 @@ export default function FeaturedBooksPage() {
             <div className="flex items-center justify-between mb-4">
               <button
                 onClick={() => {
+                  unloadBook();
                   setShowBookSelection(true);
                   setSelectedBook(null);
-                  handleStop();
                 }}
                 className="flex items-center text-gray-300 hover:text-white"
               >

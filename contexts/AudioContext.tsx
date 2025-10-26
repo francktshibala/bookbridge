@@ -90,6 +90,7 @@ interface AudioContextActions {
   // Position Management
   savePosition: () => Promise<void>;
   restorePosition: (bookId: string) => Promise<void>;
+  getLastBookId: () => string | null;
 
   // UI Control
   setMiniPlayerVisible: (visible: boolean) => void;
@@ -245,8 +246,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
         // Save book ID to localStorage for persistence
         localStorage.setItem('bookbridge_last_book_id', book.id);
 
-        // Try to restore saved position
-        await restorePosition(book.id);
+        // NOTE: Position restoration removed from here to prevent double-restoration
+        // Position is restored by the calling code (e.g., page auto-restore effect)
       } else {
         throw new Error('Failed to load book data');
       }
@@ -540,6 +541,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
           completion: savedPosition.completionPercentage
         });
 
+        // Set all state first
         setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
         setCurrentChapter(savedPosition.currentChapter);
         setCefrLevel(savedPosition.cefrLevel as any);
@@ -551,10 +553,31 @@ export function AudioProvider({ children }: { children: ReactNode }) {
         if (bundle) {
           setCurrentBundle(bundle.bundleId);
         }
+
+        // ⭐ NEW: Seek audio to saved position (but don't auto-play)
+        if (audioManagerRef.current && bundleData && savedPosition.currentSentenceIndex > 0) {
+          console.log(`🎵 [AudioContext] Seeking audio to sentence ${savedPosition.currentSentenceIndex}`);
+
+          // Load the bundle for the saved sentence
+          await play(savedPosition.currentSentenceIndex);
+
+          // Immediately pause so it doesn't auto-play
+          setTimeout(() => {
+            audioManagerRef.current?.pause();
+            setIsPlaying(false);
+            isPlayingRef.current = false;
+            console.log(`🎵 [AudioContext] Audio cued at sentence ${savedPosition.currentSentenceIndex}, ready to play`);
+          }, 100);
+        }
       }
     } catch (error) {
       console.error('🎵 [AudioContext] Error restoring position:', error);
     }
+  };
+
+  const getLastBookId = (): string | null => {
+    if (typeof window === 'undefined') return null;
+    return localStorage.getItem('bookbridge_last_book_id');
   };
 
   // ========================================
@@ -661,6 +684,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     setError,
     savePosition,
     restorePosition,
+    getLastBookId,
     setMiniPlayerVisible,
     setFullPlayerVisible,
     navigateToReading,
