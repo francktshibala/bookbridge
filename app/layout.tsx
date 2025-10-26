@@ -19,8 +19,6 @@ import { PerformanceProvider } from '@/components/PerformanceProvider';
 import DeploymentInitializer from '@/components/DeploymentInitializer';
 import { PWAAnalyticsProvider } from '@/components/PWAAnalyticsProvider';
 import { ThemeProvider } from '@/contexts/ThemeContext';
-import { AudioProvider } from '@/contexts/AudioContext';
-import { GlobalMiniPlayer } from '@/components/audio/GlobalMiniPlayer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -108,14 +106,13 @@ export default function RootLayout({
         />
         
         <ThemeProvider>
-          <AudioProvider>
-            <SimpleAuthProvider>
-              <AccessibilityProvider>
-                <KeyboardNavigationProvider>
-                  <VoiceNavigationWrapper>
-                    <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
-                      <PWAAnalyticsProvider enableTracking={true}>
-                        <OnboardingManager enableAutoOnboarding={true}>
+          <SimpleAuthProvider>
+            <AccessibilityProvider>
+              <KeyboardNavigationProvider>
+                <VoiceNavigationWrapper>
+                  <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
+                    <PWAAnalyticsProvider enableTracking={true}>
+                      <OnboardingManager enableAutoOnboarding={true}>
                 {/* Service Worker Registration */}
                 <ServiceWorkerRegistration />
                 
@@ -145,13 +142,10 @@ export default function RootLayout({
                 </main>
                 
                 <ConditionalFooter />
-
-                {/* Global Mini Player - Always visible when audio loaded */}
-                <GlobalMiniPlayer />
-
+                
                 {/* PWA Install Prompt */}
                 <InstallPrompt />
-
+                
                 {/* Deployment Initialization */}
                 <DeploymentInitializer />
                       </OnboardingManager>
@@ -161,7 +155,6 @@ export default function RootLayout({
               </KeyboardNavigationProvider>
             </AccessibilityProvider>
           </SimpleAuthProvider>
-          </AudioProvider>
         </ThemeProvider>
       </body>
     </html>
