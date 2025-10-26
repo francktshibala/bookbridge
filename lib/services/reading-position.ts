@@ -3,6 +3,8 @@
  * Handles cross-device position tracking and synchronization
  */
 
+import { setLastBookId } from '../utils/auto-resume-storage';
+
 export interface ReadingPosition {
   currentSentenceIndex: number;
   currentBundleIndex: number;
@@ -74,6 +76,9 @@ class ReadingPositionService {
           completion: data.position.completionPercentage
         });
 
+        // Persist lastBookId for auto-resume (Phase 2, Task 2.2b)
+        setLastBookId(bookId);
+
         return data.position;
       }
 
@@ -92,6 +97,9 @@ class ReadingPositionService {
   async savePosition(bookId: string, position: ReadingPosition): Promise<void> {
     // Save to localStorage immediately for fast local updates
     this.saveLocalPosition(bookId, position);
+
+    // Persist lastBookId for auto-resume (Phase 2, Task 2.2b)
+    setLastBookId(bookId);
 
     // Throttle database saves to prevent excessive API calls
     const now = Date.now();
@@ -235,6 +243,10 @@ class ReadingPositionService {
           bookId,
           sentence: position.currentSentenceIndex
         });
+
+        // Persist lastBookId for auto-resume (Phase 2, Task 2.2b)
+        setLastBookId(bookId);
+
         return position;
       }
 

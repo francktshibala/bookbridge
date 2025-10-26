@@ -5,10 +5,13 @@ import { motion } from 'framer-motion';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
+import { setLastBookId } from '@/lib/utils/auto-resume-storage';
+import { useAutoResume } from '@/hooks/useAutoResume';
 import { useWakeLock } from '@/lib/hooks/useWakeLock';
 import { useMediaSession } from '@/lib/hooks/useMediaSession';
 import { useDictionaryInteraction } from '@/hooks/useDictionaryInteraction';
 import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomSheet';
+import { ResumeToast } from '@/components/reading/ResumeToast';
 import { dictionaryCache, dictionaryAnalytics } from '@/lib/dictionary/DictionaryCache';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
@@ -686,6 +689,24 @@ export default function FeaturedBooksPage() {
   const autoScrollEnabledRef = useRef(true);
   const [autoScrollPaused, setAutoScrollPaused] = useState(false);
 
+  // Auto-resume abort guards (Phase 1)
+  const [autoResumeAborted, setAutoResumeAborted] = useState(false);
+  const autoResumeInProgress = useRef(false);
+
+  // Auto-resume hook (Phase 2, Task 2.4)
+  const { shouldAutoResume, bookId: autoResumeBookId, isLoading: autoResumeLoading } = useAutoResume();
+
+  // Auto-resume toast state (Phase 2, Task 2.6)
+  const [showResumeToast, setShowResumeToast] = useState(false);
+  const resumeToastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Position restore tracking (GPT-5 Fix 2)
+  const hasPositionRestored = useRef(false);
+
+  // Auto-resume position reuse (GPT-5 Fix - single source of truth)
+  const savedAutoResumePositionRef = useRef<ReadingPosition | null>(null);
+  const wasAutoResumed = useRef(false);
+
   // Request cancellation and race condition prevention
   const currentRequestIdRef = useRef<string | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -699,9 +720,11 @@ export default function FeaturedBooksPage() {
       const params = new URLSearchParams(window.location.search);
       const urlBookId = params.get('bookId');
       if (urlBookId) {
-        // Auto-select book from URL
+        // Auto-select book from URL - cancel any auto-resume
+        setAutoResumeAborted(true);
         const book = FEATURED_BOOKS.find(b => b.id === urlBookId);
         if (book) {
+          setLastBookId(urlBookId); // Save for auto-resume (deep links)
           setSelectedBook(book);
           setShowBookSelection(false);
           return urlBookId;
@@ -710,6 +733,213 @@ export default function FeaturedBooksPage() {
     }
     return FEATURED_BOOKS[0].id; // Default to first book
   };
+
+  // Auto-resume lifecycle cleanup (Phase 1 + Phase 2)
+  useEffect(() => {
+    // Cleanup on unmount: reset auto-resume flags and clear any pending timers
+    return () => {
+      autoResumeInProgress.current = false;
+      setAutoResumeAborted(false);
+
+      // Clear toast timeout (Phase 2, Task 2.6)
+      if (resumeToastTimeoutRef.current) {
+        clearTimeout(resumeToastTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Auto-resume logic (Phase 2, Task 2.4) - Fixed to restore settings BEFORE selecting book
+  useEffect(() => {
+    // Wait for auto-resume hook to finish loading
+    if (autoResumeLoading) {
+      return;
+    }
+
+    // Check if we should auto-resume
+    if (shouldAutoResume && autoResumeBookId && !autoResumeAborted) {
+      console.log('🎯 [Auto-Resume] Attempting to resume book:', autoResumeBookId);
+
+      // Find the book in FEATURED_BOOKS
+      const book = FEATURED_BOOKS.find(b => b.id === autoResumeBookId);
+
+      if (book) {
+        console.log('✅ [Auto-Resume] Book found, loading saved settings first...');
+
+        // Load saved position to get settings BEFORE selecting book (prevents level mismatch)
+        // Store position for reuse in position restore effect (GPT-5 Fix)
+        readingPositionService.loadPosition(autoResumeBookId).then(savedPosition => {
+          if (savedPosition) {
+            console.log('🔧 [Auto-Resume] Restoring settings before book selection:', {
+              cefrLevel: savedPosition.cefrLevel,
+              playbackSpeed: savedPosition.playbackSpeed,
+              contentMode: savedPosition.contentMode,
+              sentenceIndex: savedPosition.currentSentenceIndex
+            });
+
+            // Store position for reuse (GPT-5 Fix - single source of truth)
+            savedAutoResumePositionRef.current = savedPosition;
+            wasAutoResumed.current = true;
+
+            // Set settings FIRST, before selecting book
+            if (savedPosition.cefrLevel) {
+              setCefrLevel(savedPosition.cefrLevel as any);
+            }
+            if (savedPosition.playbackSpeed) {
+              setPlaybackSpeed(savedPosition.playbackSpeed);
+            }
+            if (savedPosition.contentMode) {
+              setContentMode(savedPosition.contentMode);
+            }
+          }
+
+          // Now select the book with correct settings already set
+          console.log('✅ [Auto-Resume] Settings restored, auto-selecting book:', book.title);
+          autoResumeInProgress.current = true;
+          setSelectedBook(book);
+          setShowBookSelection(false);
+        }).catch(err => {
+          console.warn('⚠️ [Auto-Resume] Could not load settings, using defaults:', err);
+          // Select book anyway with default settings
+          autoResumeInProgress.current = true;
+          setSelectedBook(book);
+          setShowBookSelection(false);
+        });
+      } else {
+        console.warn('⚠️ [Auto-Resume] Book not found in FEATURED_BOOKS:', autoResumeBookId);
+      }
+    }
+  }, [shouldAutoResume, autoResumeBookId, autoResumeAborted, autoResumeLoading]);
+
+  // Position restore effect - waits for bundleData to be loaded (GPT-5 Fix 2)
+  useEffect(() => {
+    // Only run when both bundleData and selectedBook exist
+    if (!bundleData || !selectedBook) {
+      hasPositionRestored.current = false; // Reset when book/data changes
+      return;
+    }
+
+    // Restore position once per book/bundle load
+    const restorePosition = async () => {
+      if (hasPositionRestored.current) {
+        console.log('📦 [Position Restore] Already restored for this book, skipping');
+        return;
+      }
+
+      try {
+        console.log('📦 [Position Restore] bundleData loaded, restoring position...');
+        console.log('📦 [Position Restore] bundleData.bundles.length:', bundleData.bundles?.length);
+        console.log('📦 [Position Restore] selectedBook:', selectedBook.id);
+        console.log('📦 [Position Restore] wasAutoResumed:', wasAutoResumed.current);
+
+        // Reuse saved position from auto-resume or load fresh (GPT-5 Fix - single source)
+        const savedPosition = wasAutoResumed.current
+          ? savedAutoResumePositionRef.current
+          : await readingPositionService.loadPosition(selectedBook.id);
+
+        if (savedPosition && savedPosition.currentSentenceIndex > 0) {
+          console.log('🔄 [Position Restore] Found saved position:', savedPosition.currentSentenceIndex);
+
+          // Check how long ago the user last read
+          const hoursSinceLastRead = savedPosition.lastAccessed
+            ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
+            : 999;
+
+          // Restore position to UI
+          setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
+          setCurrentChapter(savedPosition.currentChapter);
+
+          // Find and set the correct bundle (critical for play button)
+          const restoredBundle = findBundleForSentence(savedPosition.currentSentenceIndex);
+          if (restoredBundle) {
+            setCurrentBundle(restoredBundle.bundleId);
+            console.log('✅ [Position Restore] Restored currentBundle:', restoredBundle.bundleId);
+          } else {
+            console.warn('⚠️ [Position Restore] Could not find bundle for sentence:', savedPosition.currentSentenceIndex);
+          }
+
+          // Show toast if auto-resumed
+          const isAutoResumed = autoResumeInProgress.current;
+          if (isAutoResumed) {
+            console.log('🎯 [Auto-Resume] Showing resume toast (no auto-play)');
+            setShowResumeToast(true);
+
+            // Auto-dismiss toast after 3 seconds
+            if (resumeToastTimeoutRef.current) {
+              clearTimeout(resumeToastTimeoutRef.current);
+            }
+            resumeToastTimeoutRef.current = setTimeout(() => {
+              setShowResumeToast(false);
+            }, 3000);
+
+            // Note: autoResumeInProgress flag cleared at end of restore (GPT-5 Fix)
+          }
+
+          // Only show continue modal if NOT auto-resumed
+          if (hoursSinceLastRead < 24 && !isAutoResumed) {
+            setSavedPosition({
+              sentenceIndex: savedPosition.currentSentenceIndex,
+              timestamp: new Date(savedPosition.lastAccessed || Date.now()).getTime()
+            });
+            setShowContinueReading(true);
+          }
+
+          // Update settings from saved position (skip if auto-resumed - already set before book selection)
+          if (!isAutoResumed) {
+            if (savedPosition.cefrLevel) {
+              setCefrLevel(savedPosition.cefrLevel as any);
+            }
+            if (savedPosition.playbackSpeed) {
+              setPlaybackSpeed(savedPosition.playbackSpeed);
+            }
+            if (savedPosition.contentMode) {
+              setContentMode(savedPosition.contentMode);
+            }
+          } else {
+            console.log('🔧 [Position Restore] Skipping settings update (already set during auto-resume)');
+          }
+
+          // Scroll to saved position with polling (wait for DOM)
+          let attempts = 0;
+          const maxAttempts = 10;
+          const pollInterval = 100;
+
+          const scrollToPollPosition = () => {
+            const sentenceElement = document.querySelector(`[data-sentence-index="${savedPosition.currentSentenceIndex}"]`);
+            if (sentenceElement) {
+              sentenceElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+              });
+              console.log('📍 [Position Restore] Scrolled to saved sentence:', savedPosition.currentSentenceIndex);
+            } else {
+              attempts++;
+              if (attempts < maxAttempts) {
+                setTimeout(scrollToPollPosition, pollInterval);
+              } else {
+                console.warn('⚠️ [Position Restore] Could not find sentence element after', maxAttempts, 'attempts');
+              }
+            }
+          };
+
+          scrollToPollPosition();
+
+          // Mark as restored and clear auto-resume flags (GPT-5 Fix)
+          hasPositionRestored.current = true;
+          autoResumeInProgress.current = false;
+          wasAutoResumed.current = false;
+          console.log('✅ [Position Restore] Complete - cleared auto-resume flags');
+        } else {
+          console.log('📖 [Position Restore] No saved position or starting from beginning');
+          hasPositionRestored.current = true;
+        }
+      } catch (error) {
+        console.error('❌ [Position Restore] Error loading position:', error);
+        hasPositionRestored.current = true;
+      }
+    };
+
+    restorePosition();
+  }, [bundleData, selectedBook]); // Only re-run when bundleData or selectedBook changes
 
   // Auto-set CEFR level when book is selected and clear stale data
   useEffect(() => {
@@ -1095,59 +1325,7 @@ export default function FeaturedBooksPage() {
                 }
               });
 
-              // Load saved reading position from database after successful initialization
-              setTimeout(async () => {
-                try {
-                  const savedPosition = await readingPositionService.loadPosition(currentBookId);
-                  if (savedPosition && savedPosition.currentSentenceIndex > 0) {
-                    console.log('🔄 Loading saved position:', savedPosition.currentSentenceIndex);
-
-                    // Check how long ago the user last read
-                    const hoursSinceLastRead = savedPosition.lastAccessed
-                      ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
-                      : 999;
-
-                    // Always restore position to the UI
-                    setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
-                    setCurrentChapter(savedPosition.currentChapter);
-
-                    if (hoursSinceLastRead < 24) { // Within last 24 hours - show continue modal
-                      setSavedPosition({
-                        sentenceIndex: savedPosition.currentSentenceIndex,
-                        timestamp: new Date(savedPosition.lastAccessed || Date.now()).getTime()
-                      });
-                      setShowContinueReading(true);
-                    }
-
-                    // Update current settings from saved position
-                    if (savedPosition.cefrLevel) {
-                      setCefrLevel(savedPosition.cefrLevel as any);
-                    }
-                    if (savedPosition.playbackSpeed) {
-                      setPlaybackSpeed(savedPosition.playbackSpeed);
-                    }
-                    if (savedPosition.contentMode) {
-                      setContentMode(savedPosition.contentMode);
-                    }
-
-                    // Scroll to the saved position
-                    setTimeout(() => {
-                      const sentenceElement = document.querySelector(`[data-sentence-index="${savedPosition.currentSentenceIndex}"]`);
-                      if (sentenceElement) {
-                        sentenceElement.scrollIntoView({
-                          behavior: 'smooth',
-                          block: 'center'
-                        });
-                        console.log('📍 Scrolled to saved sentence:', savedPosition.currentSentenceIndex);
-                      } else {
-                        console.log('⚠️ Could not find sentence element for index:', savedPosition.currentSentenceIndex);
-                      }
-                    }, 1000); // Wait for DOM to be fully ready
-                  }
-                } catch (error) {
-                  console.error('Error loading saved reading position:', error);
-                }
-              }, 500); // Small delay to ensure DOM is ready
+              // Position restore moved to separate useEffect (GPT-5 Fix 2)
             }
           }
 
@@ -1769,6 +1947,8 @@ export default function FeaturedBooksPage() {
                   transition={{ delay: index * 0.1 }}
                   className="group cursor-pointer"
                   onClick={() => {
+                    setAutoResumeAborted(true); // Cancel any in-progress auto-resume
+                    setLastBookId(book.id); // Save for auto-resume
                     setSelectedBook(book);
                     setShowBookSelection(false);
                   }}
@@ -1813,6 +1993,8 @@ export default function FeaturedBooksPage() {
                         </button>
                         <button
                           onClick={() => {
+                            setAutoResumeAborted(true); // Cancel any in-progress auto-resume
+                            setLastBookId(book.id); // Save for auto-resume
                             setSelectedBook(book);
                             setShowBookSelection(false);
                           }}
@@ -2372,9 +2554,12 @@ export default function FeaturedBooksPage() {
                     handlePause();
                   } else {
                     // Always try to resume first if we have a current position
+                    console.log('▶️ [Mobile Play] currentSentenceIndex:', currentSentenceIndex, 'currentBundle:', currentBundle);
                     if (currentSentenceIndex > 0 && currentBundle) {
+                      console.log('▶️ [Mobile Play] Resuming from saved position');
                       await handleResume();
                     } else {
+                      console.log('▶️ [Mobile Play] Starting from beginning');
                       // Start from first available sentence (not necessarily 0)
                       const firstSentence = bundleData?.bundles?.[0]?.sentences?.[0]?.sentenceIndex ?? 0;
                       await handlePlaySequential(firstSentence);
@@ -2435,9 +2620,12 @@ export default function FeaturedBooksPage() {
                     handlePause();
                   } else {
                     // Always try to resume first if we have a current position
+                    console.log('▶️ [Desktop Play] currentSentenceIndex:', currentSentenceIndex, 'currentBundle:', currentBundle);
                     if (currentSentenceIndex > 0 && currentBundle) {
+                      console.log('▶️ [Desktop Play] Resuming from saved position');
                       await handleResume();
                     } else {
+                      console.log('▶️ [Desktop Play] Starting from beginning');
                       // Start from first available sentence (not necessarily 0)
                       const firstSentence = bundleData?.bundles?.[0]?.sentences?.[0]?.sentenceIndex ?? 0;
                       await handlePlaySequential(firstSentence);
@@ -2501,6 +2689,25 @@ export default function FeaturedBooksPage() {
         book={selectedAIBook}
         onClose={handleCloseAIChat}
         onSendMessage={handleSendAIMessage}
+      />
+
+      {/* Auto-Resume Toast (Phase 2, Task 2.6) */}
+      <ResumeToast
+        isOpen={showResumeToast}
+        position={{
+          chapter: currentChapter,
+          sentence: currentSentenceIndex,
+          completion: bundleData?.totalSentences
+            ? ((currentSentenceIndex + 1) / bundleData.totalSentences) * 100
+            : 0
+        }}
+        bookTitle={selectedBook?.title}
+        onDismiss={() => {
+          setShowResumeToast(false);
+          if (resumeToastTimeoutRef.current) {
+            clearTimeout(resumeToastTimeoutRef.current);
+          }
+        }}
       />
     </div>
   );
