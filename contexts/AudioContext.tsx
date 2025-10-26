@@ -530,7 +530,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const navigateToReading = () => {
     if (!selectedBook) return;
     console.log(`🎵 [AudioContext] Navigating to reading page for ${selectedBook.title}`);
-    router.push(`/featured-books?bookId=${selectedBook.id}`);
+    router.push('/featured-books');
   };
 
   // ========================================

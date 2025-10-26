@@ -118,10 +118,7 @@ export function GlobalMiniPlayer() {
 
                 {/* Book Cover - Compact */}
                 <div
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex-shrink-0 flex items-center justify-center text-white font-bold text-xs shadow-sm"
-                  style={{
-                    background: selectedBook?.gradient || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                  }}
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-xs shadow-sm bg-[var(--bg-tertiary)] text-[var(--text-primary)] border border-[var(--border-light)]"
                 >
                   {selectedBook?.abbreviation || 'BK'}
                 </div>

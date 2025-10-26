@@ -639,6 +639,7 @@ export default function FeaturedBooksPage() {
     totalTime,
     playbackSpeed,
     currentChapter,
+    selectedBook: globalSelectedBook,
     // Audio playback methods (from global context)
     play,
     pause,
@@ -652,6 +653,15 @@ export default function FeaturedBooksPage() {
   // Book selection state (local - for UI only)
   const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
   const [showBookSelection, setShowBookSelection] = useState(true);
+
+  // ⭐ Sync with global context: when returning from another page with audio loaded
+  useEffect(() => {
+    if (globalSelectedBook && !selectedBook) {
+      console.log('🔄 [FeaturedBooks] Syncing with global context, auto-showing reading view');
+      setSelectedBook(globalSelectedBook);
+      setShowBookSelection(false);
+    }
+  }, [globalSelectedBook, selectedBook]);
 
   // UI state
   const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
