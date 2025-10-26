@@ -218,6 +218,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const loadBook = async (book: FeaturedBook, level?: string) => {
     console.log(`🎵 [AudioContext] Loading book: ${book.title}, level: ${level || 'A1'}`);
 
+    // ⭐ FIX 1: Stop any currently playing audio before loading new book
+    stop();
+
     setSelectedBook(book);
     setLoading(true);
     setError(null);
@@ -277,6 +280,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     }
 
     console.log(`🎵 [AudioContext] Switching level to: ${newLevel}`);
+
+    // ⭐ FIX 1: Stop current audio before switching level
+    stop();
 
     // Save current position before switching
     const currentPosition = currentSentenceIndex;
