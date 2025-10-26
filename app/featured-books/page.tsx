@@ -649,6 +649,8 @@ export default function FeaturedBooksPage() {
     previousBundle,
     loadBook,
     unloadBook,
+    getLastBookId,
+    restorePosition,
   } = useAudioContext();
 
   // Book selection state (local - for UI only)
@@ -663,6 +665,42 @@ export default function FeaturedBooksPage() {
       setShowBookSelection(false);
     }
   }, [globalSelectedBook, selectedBook]);
+
+  // ⭐ Auto-restore last book on page refresh (with correct level)
+  useEffect(() => {
+    const restoreLastBook = async () => {
+      // Only restore if no book is currently loaded
+      if (globalSelectedBook) return;
+
+      const lastBookId = getLastBookId();
+      if (!lastBookId) return;
+
+      console.log(`🔄 [FeaturedBooks] Restoring last book: ${lastBookId}`);
+      const book = FEATURED_BOOKS.find(b => b.id === lastBookId);
+
+      if (book) {
+        // ⭐ Load saved position FIRST to get the correct CEFR level
+        const savedPosition = await readingPositionService.loadPosition(lastBookId);
+        const savedLevel = savedPosition?.cefrLevel || 'A1';
+
+        console.log(`🔄 [FeaturedBooks] Restoring book: ${book.title}, level: ${savedLevel}`);
+
+        setSelectedBook(book);
+        setShowBookSelection(false);
+
+        // Load book with saved level (without auto-restoring position)
+        await loadBook(book, savedLevel);
+
+        // Wait for bundleData to be set, then restore position
+        setTimeout(async () => {
+          console.log(`🔄 [FeaturedBooks] Now restoring position...`);
+          await restorePosition(lastBookId);
+        }, 500);
+      }
+    };
+
+    restoreLastBook();
+  }, []); // Run only once on mount
 
   // UI state
   const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
