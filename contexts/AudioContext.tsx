@@ -435,6 +435,40 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     nextBundleRef.current = nextBundle;
   });
 
+  // ⭐ Auto-save position every 5 seconds during playback
+  useEffect(() => {
+    if (!isPlaying || !selectedBook) return;
+
+    console.log('🎵 [AudioContext] Starting auto-save interval (5s)');
+    const autoSaveInterval = setInterval(() => {
+      console.log('🎵 [AudioContext] Auto-saving position...');
+      savePosition();
+    }, 5000);
+
+    return () => {
+      console.log('🎵 [AudioContext] Clearing auto-save interval');
+      clearInterval(autoSaveInterval);
+    };
+  }, [isPlaying, selectedBook]);
+
+  // ⭐ Save position when bundle changes
+  useEffect(() => {
+    if (!currentBundle || !selectedBook) return;
+
+    console.log(`🎵 [AudioContext] Bundle changed to ${currentBundle}, saving position`);
+    savePosition();
+  }, [currentBundle]);
+
+  // ⭐ Save position on unmount
+  useEffect(() => {
+    return () => {
+      if (selectedBook) {
+        console.log('🎵 [AudioContext] Component unmounting, saving position');
+        savePosition();
+      }
+    };
+  }, [selectedBook, currentSentenceIndex, currentBundle]);
+
   const previousBundle = async () => {
     if (!bundleData || !currentBundle) return;
 
