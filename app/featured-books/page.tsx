@@ -772,6 +772,24 @@ export default function FeaturedBooksPage() {
     };
   }, []);
 
+  // ⭐⭐ FIX: Auto-scroll when sentence changes (from global context)
+  useEffect(() => {
+    if (!isPlaying || currentSentenceIndex < 0) return;
+
+    // Smart auto-scroll: only scroll if user hasn't manually scrolled recently
+    if (autoScrollEnabledRef.current) {
+      const sentenceElement = document.querySelector(`[data-sentence="${currentSentenceIndex}"]`);
+      if (sentenceElement) {
+        sentenceElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'nearest'
+        });
+        console.log(`🔄 Auto-scrolled to sentence ${currentSentenceIndex}`);
+      }
+    }
+  }, [currentSentenceIndex, isPlaying]);
+
   // Check available levels for a book with request guarding
   const checkAvailableLevels = async (bookId: string, signal: AbortSignal, reqId: string) => {
     const availability: {[key: string]: boolean} = {};
