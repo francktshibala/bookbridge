@@ -77,10 +77,15 @@ export function GlobalMiniPlayer() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="fixed top-0 left-0 right-0 z-[9999] shadow-lg bg-[var(--bg-secondary)]/95 backdrop-blur-md border-b border-[var(--border-light)]/50"
+          className="fixed top-0 left-0 right-0 z-[9999] neo-classic-surface-elevated"
+          style={{
+            backdropFilter: 'blur(8px)',
+            boxShadow: '0 2px 8px var(--shadow-soft)',
+            borderBottom: '1px solid var(--border-light)',
+          }}
         >
           {/* Progress Bar - Thin line at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--bg-tertiary)]">
+          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--border-light)]">
             <div
               className="h-full bg-[var(--accent-primary)] transition-all duration-300"
               style={{ width: `${progress}%` }}
@@ -89,7 +94,7 @@ export function GlobalMiniPlayer() {
 
           {/* Main Content - Slim horizontal layout */}
           <div className="max-w-7xl mx-auto px-3 sm:px-4">
-            <div className="flex items-center justify-between h-12 sm:h-14 gap-2 sm:gap-4">
+            <div className="flex items-center justify-between h-14 sm:h-16 gap-2 sm:gap-3">
 
               {/* Left: Book Info (clickable to navigate) */}
               <button
@@ -97,12 +102,23 @@ export function GlobalMiniPlayer() {
                   console.log('🎵 [MiniPlayer] Navigating to reading page');
                   navigateToReading();
                 }}
-                className="flex items-center gap-2 flex-1 min-w-0 hover:opacity-80 transition-opacity text-left"
+                className="flex items-center gap-2 flex-1 min-w-0 hover:opacity-90 transition-all text-left rounded-lg px-2 py-1 hover:bg-[var(--bg-tertiary)]"
                 aria-label={`Return to ${selectedBook?.title}`}
               >
+                {/* Return Arrow - Visible chevron */}
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 text-[var(--accent-primary)]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+
                 {/* Book Cover - Compact */}
                 <div
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded flex-shrink-0 flex items-center justify-center text-white font-bold text-xs shadow-md"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex-shrink-0 flex items-center justify-center text-white font-bold text-xs shadow-sm"
                   style={{
                     background: selectedBook?.gradient || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                   }}
@@ -112,18 +128,18 @@ export function GlobalMiniPlayer() {
 
                 {/* Book Title - Compact */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-[var(--text-primary)] truncate text-xs sm:text-sm leading-tight">
+                  <h3 className="font-semibold text-[var(--text-primary)] truncate text-sm sm:text-base leading-tight neo-classic-subtitle">
                     {selectedBook?.title}
                   </h3>
-                  <p className="text-[10px] sm:text-xs text-[var(--text-secondary)] truncate hidden sm:block leading-tight">
+                  <p className="text-xs text-[var(--text-secondary)] truncate leading-tight hidden sm:block">
                     {selectedBook?.author}
                   </p>
                 </div>
               </button>
 
               {/* Right: Playback Controls */}
-              <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-                {/* Play/Pause - Compact */}
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+                {/* Play/Pause - Touch-friendly */}
                 <button
                   onClick={() => {
                     if (isPlaying) {
@@ -132,34 +148,36 @@ export function GlobalMiniPlayer() {
                       resume();
                     }
                   }}
-                  className="p-1.5 sm:p-2 rounded-full bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)] transition-colors text-white shadow-md"
+                  className="min-w-[44px] min-h-[44px] w-11 h-11 rounded-full bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)] transition-all flex items-center justify-center shadow-sm hover:shadow-md"
+                  style={{ color: 'var(--bg-primary)' }}
                   aria-label={isPlaying ? 'Pause' : 'Play'}
                 >
                   {isPlaying ? (
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                     </svg>
                   ) : (
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                     </svg>
                   )}
                 </button>
 
-                {/* Speed Control - Compact */}
+                {/* Speed Control - Touch-friendly */}
                 <button
                   onClick={cycleSpeed}
-                  className="px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-full bg-[var(--bg-tertiary)] hover:bg-[var(--accent-secondary)] hover:text-white transition-colors text-[var(--text-primary)] text-[10px] sm:text-xs font-semibold min-w-[36px] sm:min-w-[44px]"
+                  className="min-w-[44px] min-h-[44px] px-3 rounded-lg bg-[var(--bg-tertiary)] hover:bg-[var(--accent-primary)] hover:text-[var(--bg-primary)] transition-all text-[var(--text-primary)] text-xs sm:text-sm font-semibold shadow-sm border border-[var(--border-light)]"
                   aria-label={`Playback speed: ${formatSpeed(playbackSpeed)}`}
                 >
                   {formatSpeed(playbackSpeed)}
                 </button>
 
-                {/* Time Display (tablet+ only) */}
-                <div className="hidden md:flex items-center gap-1 text-[10px] sm:text-xs text-[var(--text-secondary)] font-mono">
-                  <span>{formatTime(playbackTime)}</span>
-                  <span>/</span>
-                  <span>{formatTime(totalTime)}</span>
+                {/* Time Display - Always visible, compact on mobile */}
+                <div className="flex items-center gap-1 text-[10px] sm:text-xs text-[var(--text-secondary)] font-mono">
+                  <span className="hidden sm:inline">{formatTime(playbackTime)}</span>
+                  <span className="sm:hidden">{Math.floor(playbackTime / 60)}:{(Math.floor(playbackTime % 60)).toString().padStart(2, '0')}</span>
+                  <span className="hidden sm:inline">/</span>
+                  <span className="hidden sm:inline">{formatTime(totalTime)}</span>
                 </div>
               </div>
             </div>
