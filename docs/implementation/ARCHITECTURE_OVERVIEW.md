@@ -14,6 +14,306 @@ This document provides new developers with a comprehensive 10-minute overview of
 
 ---
 
+## ⚡ CRITICAL: Two Reading Systems (Read This First!)
+
+BookBridge has **TWO DISTINCT reading systems**. Understanding which is which prevents costly implementation mistakes:
+
+### 🎯 PRIMARY SYSTEM: Featured Books (Bundle-Based Audiobooks)
+**Location**: `/featured-books/page.tsx`
+**Purpose**: Premium audiobook experience with synchronized audio + text
+**Architecture**: Bundle-based (4 sentences per bundle)
+**Audio**: BundleAudioManager with word-level sync
+**Data**: Solution 1 (measured durations + cached metadata in `audioDurationMetadata`)
+**Technology**: ElevenLabs TTS + eleven_monolingual_v1 model
+**Performance**: 2-3 second loads (cached metadata)
+**User Experience**: Netflix/Speechify-level quality
+
+**Key Components:**
+- `BundleAudioManager.ts` - Seamless audio playback
+- `AudioBookPlayer` - Continuous reading
+- `ReadingPosition` service - Sentence-level position tracking
+- `/api/featured-books/bundles/route.ts` - Bundle API endpoints
+
+**When to Use This System:**
+- ✅ Implementing new audiobook features
+- ✅ Adding reading position memory
+- ✅ Working with audio synchronization
+- ✅ Building premium ESL learning experiences
+
+### 📚 LEGACY SYSTEM: Library Reader (Chunk-Based Text)
+**Location**: `/library/[id]/read/page.tsx`
+**Purpose**: Text-only reader for 76K+ classic books (no audio)
+**Architecture**: Chunk-based pagination (1500 characters per chunk)
+**Audio**: None
+**Data**: BookChunk records without audio metadata
+**Technology**: Text simplification only
+**Performance**: Instant (no audio to load)
+**User Experience**: Basic reading with CEFR level switching
+
+**Key Components:**
+- `ESLControls` - CEFR level selector
+- localStorage - Simple position tracking
+- Text simplification cache
+
+**When to Use This System:**
+- ⚠️ Rarely - this is maintained for backward compatibility only
+- ⚠️ Text-only features without audio requirements
+
+### 🚨 Common Mistake to Avoid
+**DON'T** implement audio features in `/library/[id]/read/page.tsx` (legacy chunk system)
+**DO** implement audio features in `/featured-books/page.tsx` (modern bundle system)
+
+The bundle-based system is the **PRIMARY** focus for all new feature development.
+
+---
+
+## 📱 Featured Books Page - Deep Dive (Most Critical Page)
+
+**Location**: `/app/featured-books/page.tsx`
+**Purpose**: Premium audiobook reading experience - the flagship feature of BookBridge
+**Complexity**: 35+ integrated features, 2,500+ lines of code
+**State Management**: 20+ useState hooks managing audio, UI, position, dictionary, AI chat
+
+### UI Layout & Controls
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ BookBridge    Home  Enhanced  Simplified  Browse   Premium  │ ← Navigation
+│                     Books     Books       All      $5.99    │
+│              [L] [D] [S] [F]  ← Theme switcher (4 themes)   │
+├─────────────────────────────────────────────────────────────┤
+│  [←]                                              [Aa]      │ ← Back + Settings
+│                                                              │
+│                    The Necklace                              │ ← Book title
+│                 by Guy de Maupassant                         │
+│                                                              │
+│              Chapter 1: The Invitation                       │ ← Chapter header
+│                                                              │
+│  She is a pretty girl from a family of clerks.              │ ← Text content
+│  It feels like fate's mistake. She has no money...          │   with real-time
+│                                                              │   highlighting
+│  [📖 Dictionary tooltip: "Press words for dictionary"]      │ ← Long-press words
+│                                                              │
+├─────────────────────────────────────────────────────────────┤
+│ Mobile Bottom Bar:                                          │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━ 45% ━━━━━━━━━━━━━━━━━━━━━        │ ← Progress bar
+│ 1:23        Sentence 8/20 • Chapter 1 of 5        3:45      │ ← Time + Position
+│                                                              │
+│   [1x]        [⏸]        [📖]      [🎙️]                    │ ← Audio controls
+│   Speed     Play/Pause   Chapter   Voice                    │
+│                                                              │
+│ Desktop Floating Bar (centered bottom):                     │
+│ ╔═══════════════════════════════════════════╗              │
+│ ║  [1x]  [⏮]  [⏸/▶]  [⏭]  [📖]  [🎙️]  ║              │
+│ ╚═══════════════════════════════════════════╝              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Feature Categories (35+ Features)
+
+#### **1. Core Reading System** (`lines 1050-1400`)
+- ✅ Bundle-based audiobook with 4-sentence bundles
+- ✅ Real-time word-level text highlighting during playback
+- ✅ Chapter headers displayed within text flow
+- ✅ Auto-scroll following audio (with pause capability)
+- ✅ Seamless bundle transitions (no gaps between audio)
+- ✅ Book selection grid with gradient covers
+- ✅ Back button to return to book selection
+
+**Code Anchors:**
+- Bundle loading: `featured-books/page.tsx:1050-1150`
+- Audio initialization: `featured-books/page.tsx:1070-1097`
+- Highlighting logic: Uses BundleAudioManager callbacks
+
+#### **2. Audio Playback Controls** (`lines 2330-2475`)
+- ✅ Play/Pause (large center button)
+- ✅ Speed control (0.8x, 0.9x, 1.0x, 1.1x, 1.2x, 1.5x)
+- ✅ Chapter navigation (📖 button → modal)
+- ✅ Voice selector UI (🎙️ button)
+- ✅ Progress bar with visual feedback
+- ✅ Time display (current / total)
+- ✅ Sentence counter ("Sentence X/Y • Chapter N of M")
+- ✅ Responsive layouts (mobile bottom bar, desktop floating)
+
+**Code Anchors:**
+- Mobile controls: `featured-books/page.tsx:2332-2410`
+- Desktop controls: `featured-books/page.tsx:2412-2475`
+- Speed cycling: `cycleSpeed()` function
+- Play/pause handlers: `handlePlaySequential()`, `handlePause()`, `handleResume()`
+
+#### **3. Settings Modal** (`lines 2095-2288`)
+- ✅ CEFR level selector (A1, A2, B1, B2, C1, C2)
+- ✅ Content mode toggle (Simplified ↔ Original)
+- ✅ Text size adjustment (Aa button)
+- ✅ Settings persist across sessions
+- ✅ Modal with Neo-Classic theme styling
+
+**Code Anchors:**
+- Settings modal UI: `featured-books/page.tsx:2095-2288`
+- State: `cefrLevel`, `contentMode`, `showSettingsModal`
+
+#### **4. Neo-Classic Theme System** (4 themes)
+- ✅ Light theme (L button) - Parchment bg, Oxford blue text
+- ✅ Dark theme (D button) - Dark navy, gold accents
+- ✅ Sepia theme (S button) - Warm sepia, brown accents
+- ✅ Focus theme (F button) - Fourth variation
+- ✅ CSS variables for all colors (--bg-primary, --text-accent, etc.)
+- ✅ Persistent theme selection (localStorage)
+- ✅ Theme switcher in top-right corner
+
+**Code Anchors:**
+- Theme context: `contexts/ThemeContext.tsx`
+- Theme switcher: `components/theme/ThemeSwitcher.tsx`
+- CSS variables: `app/globals.css`
+
+#### **5. AI Dictionary System** (`lines 1289-1330, 2478-2496`)
+- ✅ Long-press word lookup (mobile touch interaction)
+- ✅ Click word lookup (desktop)
+- ✅ Bottom sheet modal with clean ESL-optimized definitions
+- ✅ Client-side cache (IndexedDB + memory) for instant lookups
+- ✅ Hedged AI calls (OpenAI + Claude in parallel)
+- ✅ Strategic design (no source attribution for competitive secrecy)
+- ✅ Debug indicator showing selected word
+- ✅ Performance tracking (cache hit rate, response times)
+
+**Code Anchors:**
+- Dictionary interaction: `featured-books/page.tsx:1289-1330`
+- Bottom sheet: `components/dictionary/DefinitionBottomSheet.tsx`
+- Cache system: `lib/dictionary/DictionaryCache.ts`
+- AI lookup: `lib/dictionary/AIUniversalLookup.ts`
+- Hook: `useDictionaryInteraction()` from `hooks/useDictionaryInteraction.tsx`
+
+#### **6. AI Chat Tutor** (`lines 1412-1430, 2498-2505`)
+- ✅ Book-specific AI chat modal
+- ✅ Socratic tutoring conversations
+- ✅ Episodic memory system
+- ✅ Context-aware responses about book content
+- ✅ Progressive disclosure (11x educational value)
+- ✅ Claude 3.5 Sonnet integration
+
+**Code Anchors:**
+- Modal trigger: `featured-books/page.tsx:1412-1430`
+- Modal component: `lib/dynamic-imports.tsx` → `AIBookChatModal`
+- API: `app/api/ai/stream/route.ts`
+
+#### **7. Reading Position Memory** (`lines 1098-1140, 2290-2330`)
+- ✅ Auto-save position during playback (sentence, chapter, bundle, time)
+- ✅ Database + localStorage persistence
+- ✅ Continue reading modal (shown if last read < 24 hours)
+- ✅ Start over option
+- ✅ Auto-scroll to saved position
+- ✅ Restore all settings (CEFR, speed, mode)
+- ⚠️ **BROKEN**: Requires manual book selection after page refresh
+
+**Code Anchors:**
+- Position restore: `featured-books/page.tsx:1098-1140`
+- Continue modal: `featured-books/page.tsx:2290-2330`
+- Service: `lib/services/reading-position.ts`
+- Auto-save: Integrated in AudioBookPlayer callbacks
+
+#### **8. Chapter Navigation** (`lines 640, 2395-2400`)
+- ✅ Chapter picker modal
+- ✅ Jump to specific chapter
+- ✅ Current chapter highlighting
+- ✅ Chapter progress display
+- ✅ Chapter headers in text flow
+
+**Code Anchors:**
+- Chapter modal state: `showChapterModal` at line 639
+- Modal trigger: `featured-books/page.tsx:2395-2400`
+- Chapter logic: `getCurrentChapter()` function
+
+#### **9. System Integration Features**
+- ✅ Wake lock (prevents screen sleep during reading)
+- ✅ Media session (system media controls)
+- ✅ Mobile/desktop responsive layouts
+- ✅ Auto-scroll with pause capability
+- ✅ Keyboard shortcuts (potentially)
+- ✅ Bundle preloading for seamless playback
+
+**Code Anchors:**
+- Wake lock: `useWakeLock()` hook
+- Media session: `useMediaSession()` hook
+
+### State Management Overview
+
+**Critical State Variables** (20+ useState hooks):
+
+```typescript
+// Book & Content
+const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
+const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
+const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
+const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1');
+
+// Audio Playback
+const [isPlaying, setIsPlaying] = useState(false);
+const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+const [currentBundle, setCurrentBundle] = useState<string | null>(null);
+const [playbackTime, setPlaybackTime] = useState(0);
+const [totalTime, setTotalTime] = useState(0);
+const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
+
+// UI Modals
+const [showBookSelection, setShowBookSelection] = useState(true);
+const [showSettingsModal, setShowSettingsModal] = useState(false);
+const [showChapterModal, setShowChapterModal] = useState(false);
+const [showContinueReading, setShowContinueReading] = useState(false);
+
+// Dictionary
+const [isDictionaryOpen, setIsDictionaryOpen] = useState(false);
+const [currentDefinition, setCurrentDefinition] = useState<any>(null);
+const [definitionLoading, setDefinitionLoading] = useState(false);
+
+// AI Chat
+const [isAIChatOpen, setIsAIChatOpen] = useState(false);
+const [selectedAIBook, setSelectedAIBook] = useState<ExternalBook | null>(null);
+
+// Navigation
+const [currentChapter, setCurrentChapter] = useState(1);
+const [autoScrollPaused, setAutoScrollPaused] = useState(false);
+```
+
+### Data Flow
+
+```mermaid
+graph LR
+    A[User selects book] --> B[Load bundles from API]
+    B --> C[Initialize BundleAudioManager]
+    C --> D[Restore saved position]
+    D --> E[Show continue modal?]
+    E --> F[Start playback]
+    F --> G[Update highlighting]
+    G --> H[Save position]
+    H --> I[Auto-advance to next bundle]
+    I --> F
+
+    J[User clicks word] --> K[Dictionary lookup]
+    K --> L[Check cache]
+    L --> M[Show definition]
+
+    N[User clicks settings] --> O[Show modal]
+    O --> P[Update CEFR/mode]
+    P --> Q[Reload bundles]
+```
+
+### Performance Characteristics
+
+- **Initial Load**: 2-3 seconds (cached audioDurationMetadata)
+- **Bundle Transitions**: Seamless (0ms gap)
+- **Dictionary Lookups**: <50ms (cached), <500ms (fresh AI)
+- **Theme Switching**: Instant (CSS variables)
+- **Position Save**: Debounced (5-second intervals)
+
+### Known Issues & Limitations
+
+1. **Reading Position Memory**: Broken on page refresh (requires manual book selection)
+2. **Voice Selector**: UI present but functionality unclear
+3. **Original Mode**: Audio disabled (only simplified text has audio)
+4. **Mobile Auto-scroll**: Can be disruptive, has pause mechanism
+
+---
+
 ## 🏗️ System Overview
 
 ```mermaid
