@@ -4,8 +4,91 @@
 ✅ Checkpoint 1: Global Audio Context (AudioContext.tsx + app/layout.tsx)
 ✅ Checkpoint 2: Reading Page Integration (featured-books/page.tsx)
 ✅ Checkpoint 3: Mini Player UI (GlobalMiniPlayer.tsx)
-⏳ Checkpoint 4: Position Persistence (pending)
-⏳ Checkpoint 5: Edge Case Testing & Polish (pending)
+✅ Checkpoint 4: Position Persistence (auto-save + restore)
+✅ Checkpoint 5: Edge Case Testing & Polish
+✅ Fix 1: Stop audio when switching books/levels (commits cdc8730, cd0b909)
+❌ Fix 2: CEFR level persistence on navigation (REVERTED - caused bugs)
+
+## Current Issues (At commit cd0b909)
+🐛 **Bug 1**: Return arrow loads wrong CEFR level (A1 instead of saved A2)
+🐛 **Bug 2**: CEFR level selector not clickable
+🐛 **Bug 3**: Potential double loads on navigation
+🐛 **Bug 4**: Play may not resume from saved sentence after restore
+
+---
+
+## Recent Challenges & How They Were Addressed
+
+### Challenge 1: Audio Overlap Bug (✅ FIXED - Fix 1)
+**Problem**: When switching between books or CEFR levels, audio from the first book continued playing while new book's audio started, causing audio overlap.
+
+**Diagnosis**:
+- `loadBook()` and `switchLevel()` didn't call `stop()` before loading new content
+- BundleAudioManager cached `currentBundle` even after stop(), causing wrong audio to play
+
+**Solution (2 commits)**:
+1. Commit cdc8730: Added `stop()` calls at start of `loadBook()` and `switchLevel()`
+2. Commit cd0b909: Enhanced `BundleAudioManager.stop()` to clear `this.currentBundle = null`
+
+**Lesson**: Always stop audio before switching contexts, and ensure stop() fully resets state.
+
+### Challenge 2: Navigation Level Persistence (❌ FAILED - Fix 2)
+**Problem**: Mini player's return arrow navigates back to reading page but loads wrong CEFR level (A1 instead of saved A2) and stops audio.
+
+**First Fix Attempt (REVERTED)**:
+- Tried adding `globalCefrLevel` import to page.tsx
+- Added guard logic to prevent reload if already at correct book/level
+- Result: Made things WORSE - loaded previous book's audio, broke book selection
+
+**Why It Failed**:
+- Changed too much at once without understanding root cause
+- Didn't test incrementally
+- Guard logic was too aggressive, blocked legitimate book loads
+
+**Current Status**: At commit cd0b909 (Fix 1 complete), awaiting focused GPT-5 fix for navigation
+
+**Lesson**: When a fix makes things worse, REVERT IMMEDIATELY. Don't try to fix a broken fix.
+
+---
+
+## Mistakes Made & How to Avoid Them
+
+### Mistake 1: Implementing Complex Fix Without Root Cause Analysis
+**What happened**: Attempted Fix 2 by importing globalCefrLevel and adding guard logic without fully understanding why page reloaded with wrong level.
+
+**Impact**:
+- Fix broke book selection entirely
+- Loaded wrong book's audio
+- Wasted time debugging the fix instead of the original problem
+
+**How to avoid**:
+1. ✅ First understand ROOT CAUSE through investigation
+2. ✅ Create minimal reproduction case
+3. ✅ Design focused fix that changes ONE thing
+4. ✅ Test each change immediately
+5. ✅ If fix makes things worse, REVERT and investigate more
+
+### Mistake 2: Not Testing Intermediately During Implementation
+**What happened**: Made multiple changes (import, guard, dependency array) then built once at the end.
+
+**Impact**: Couldn't isolate which change caused the regression.
+
+**How to avoid**:
+1. ✅ Make one small change
+2. ✅ Build and test that specific change
+3. ✅ Commit if successful
+4. ✅ Repeat for next change
+
+### Mistake 3: Adding Features When Bugs Exist
+**What happened**: Tried to add level persistence feature while audio overlap bug still existed.
+
+**Impact**: Layered bugs on top of bugs, harder to debug.
+
+**How to avoid**:
+1. ✅ Fix critical bugs FIRST (audio overlap)
+2. ✅ Verify fix works completely
+3. ✅ Commit and test
+4. ✅ THEN add new features
 
 ---
 
@@ -146,20 +229,72 @@ Audio continues, highlighting synced, auto-scroll works ✅
 
 ---
 
-## Next Steps (Checkpoints 4-5)
+## Next Steps (Bug Fixes Required Before Production)
 
-### Checkpoint 4: Position Persistence
-**Value:** Users can close app and resume exactly where they left off
-**Implementation:**
-- Auto-save position to localStorage every 5 seconds
-- Save on pause/bundle change
-- Restore on book load
+### Fix 2: CEFR Level Persistence on Navigation
+**Problem**: Return arrow loads A1 instead of saved A2, audio stops
+**Strategy**: GPT-5 focused investigation required
+**Approach**:
+1. Understand exact flow: navigateToReading() → page reload → loadData() effect
+2. Identify where A1 default overrides saved A2
+3. Create minimal fix (single change)
+4. Test thoroughly before commit
 
-### Checkpoint 5: Edge Case Testing
-**Value:** Production-ready stability
-**Test scenarios:**
-- Rapid page navigation
-- Browser refresh mid-playback
-- Network errors during bundle load
-- Multiple tabs open simultaneously
-- Mobile app backgrounding
+### Fix 3: Make CEFR Level Selector Clickable
+**Problem**: Level selector UI not responding to clicks
+**Investigation needed**: Check event handlers, z-index, pointer-events
+
+### Fix 4: Prevent Double Loads
+**Problem**: Navigation may trigger multiple loadBook() calls
+**Investigation needed**: Check effect dependencies, add request cancellation
+
+### Fix 5: Play Resume from Saved Sentence
+**Problem**: After position restore, play() may start from beginning instead of saved sentence
+**Investigation needed**: Check seekToSentence() timing, ensure audio manager initialized
+
+---
+
+## Workflow Established
+
+### Incremental Fix Process (Learned from Fix 1 Success)
+1. ✅ Identify ONE specific bug
+2. ✅ Understand root cause through code reading and console logs
+3. ✅ Design focused fix (change ONE thing)
+4. ✅ Implement fix
+5. ✅ Build immediately
+6. ✅ Test manually
+7. ✅ If successful: commit with clear message
+8. ✅ If failed: REVERT immediately, re-investigate
+9. ✅ Wait for user confirmation before proceeding to next fix
+
+### Git Workflow
+- Always work on feature branch (`feature/global-mini-player`)
+- Reset to last known good commit when fixes fail
+- Never commit broken code
+- Clear commit messages documenting what was fixed and how
+
+---
+
+## Production Readiness Assessment
+
+### ✅ Working Features
+- Global audio context with singleton BundleAudioManager
+- Mini player UI with playback controls
+- Audio persistence across page navigation
+- Position auto-save every 5 seconds
+- Book switching with audio cleanup (Fix 1)
+- Mobile-responsive design
+- Neo-classic theme integration
+- Accessibility (ARIA labels, keyboard nav)
+
+### ❌ Known Bugs (Blocking Production)
+- Navigation level persistence (return arrow bug)
+- CEFR level selector clickability
+- Potential double loads
+- Play resume timing
+
+### 📊 Metrics
+- Build size: /featured-books 20.3 kB (down from 23.1 kB)
+- Commits: 2 (cdc8730, cd0b909) at this checkpoint
+- Reverts: 1 (Fix 2 failed attempt)
+- Success rate: Fix 1 (100%), Fix 2 (0%)
