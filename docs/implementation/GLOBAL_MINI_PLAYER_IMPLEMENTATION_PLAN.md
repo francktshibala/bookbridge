@@ -849,6 +849,421 @@ app/featured-books/
 
 ---
 
+## 🎯 IMPLEMENTATION CHECKPOINTS & BUILD STRATEGY
+
+### Critical Checkpoints (When to Build & Commit)
+
+**Branch Strategy**: Work on `feature/global-mini-player` (NEW branch, not the failed auto-resume branch)
+
+---
+
+### ⭐ CHECKPOINT 1: Create Global Audio Context
+**Time**: ~2 hours
+**Commit**: ❌ NO (not testable yet)
+
+**Files**:
+- Create: `contexts/AudioContext.tsx` (500 lines)
+- Modify: `app/layout.tsx` (wrap with AudioProvider)
+
+**Implementation**:
+```typescript
+// contexts/AudioContext.tsx
+- AudioContextState interface (20+ state variables)
+- AudioContextActions interface (15+ methods)
+- AudioProvider component
+- BundleAudioManager singleton initialization
+- useAudioContext() hook
+```
+
+**Test After This Step**:
+```typescript
+// Add to app/featured-books/page.tsx temporarily
+const audioContext = useAudioContext();
+console.log('🎵 Audio Context:', audioContext);
+```
+
+**What to Check**:
+- ✅ No build errors
+- ✅ Console shows context object
+- ✅ Page still loads
+
+**Decision**: Continue to Checkpoint 2 (no commit yet)
+
+---
+
+### ⭐⭐ CHECKPOINT 2: Integrate Reading Page with Context
+**Time**: ~3 hours
+**Commit**: ✅ YES - "refactor: migrate reading page to global AudioContext"
+
+**Files**:
+- Modify: `app/featured-books/page.tsx` (~200 lines deleted, ~50 added)
+
+**Changes**:
+```typescript
+// DELETE:
+const [isPlaying, setIsPlaying] = useState(false);
+const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+const [currentBundle, setCurrentBundle] = useState<string | null>(null);
+const audioManagerRef = useRef<BundleAudioManager | null>(null);
+
+// REPLACE WITH:
+const {
+  isPlaying,
+  currentSentenceIndex,
+  currentBundle,
+  play,
+  pause,
+  setSpeed
+} = useAudioContext();
+
+// Update all handlers:
+await handlePlaySequential(0) → await audioContext.play(0)
+handlePause() → audioContext.pause()
+setPlaybackSpeed(x) → audioContext.setSpeed(x)
+```
+
+**Test After This Step**:
+1. Navigate to `/featured-books`
+2. Select "The Necklace"
+3. Click play
+4. Verify:
+   - ✅ Audio plays
+   - ✅ Highlighting works
+   - ✅ Progress bar updates
+   - ✅ Can pause/resume
+   - ✅ Speed control works
+   - ✅ Auto-scroll works
+   - ❌ Refresh → Still broken (expected)
+
+**Decision**:
+```bash
+npm run build           # Should succeed
+git add -A
+git commit -m "refactor: migrate reading page to global AudioContext
+
+- Replace local useState hooks with useAudioContext()
+- Remove local audioManagerRef (now in global context)
+- Update all playback handlers to use context methods
+- Remove ~200 lines of local state management
+- Reading page functionality identical but uses global state
+- Foundation for mini player and persistence features"
+
+git push origin feature/global-mini-player
+```
+
+**Why Commit Here**: Reading page works identically, safe checkpoint before visible changes.
+
+---
+
+### ⭐⭐⭐ CHECKPOINT 3: Add Global Mini Player UI
+**Time**: ~2 hours
+**Commit**: ✅ YES - "feat: add global mini player with persistent playback"
+
+**Files**:
+- Create: `components/audio/GlobalMiniPlayer.tsx` (200 lines)
+- Modify: `app/layout.tsx` (add GlobalMiniPlayer component)
+
+**Implementation**:
+```typescript
+// components/audio/GlobalMiniPlayer.tsx
+- Fixed bottom bar layout
+- Book cover thumbnail + title
+- Progress bar (auto-updates)
+- Play/Pause button
+- Skip ±15s buttons
+- Speed control (0.8x-2.0x)
+- Click-to-navigate to reading page
+- Slide-up animation (Framer Motion)
+- Hide when on reading page
+```
+
+**Test After This Step**:
+1. Navigate to `/featured-books`
+2. Select book, click play
+3. **Navigate to `/library`** or home
+4. **Should see mini player**:
+   ```
+   ┌─────────────────────────────────────┐
+   │ [TN] The Necklace  [⏮][⏸][⏭][1x] │
+   │      Ch 1 • 45% • Sentence 8/20     │
+   └─────────────────────────────────────┘
+   ```
+5. Verify:
+   - ✅ Mini player appears when leaving reading page
+   - ✅ Shows correct book title
+   - ✅ Progress bar updates in real-time
+   - ✅ Play/pause works from mini player
+   - ✅ Audio continues playing
+   - ✅ Click mini player → returns to `/featured-books`
+   - ✅ Mini player hides when on reading page
+
+**Decision**:
+```bash
+npm run build           # Should succeed
+git add -A
+git commit -m "feat: add global mini player with persistent playback
+
+- Create GlobalMiniPlayer component with Spotify-style UI
+- Fixed bottom bar with book info and controls
+- Play/pause, skip ±15s, speed control buttons
+- Progress bar showing completion percentage
+- Click-to-navigate back to reading page
+- Auto-hide when on reading page
+- Audio continues seamlessly when browsing other pages
+- Framer Motion slide-up animation
+
+MAJOR MILESTONE: Users can now browse app while audio plays"
+
+git push origin feature/global-mini-player
+```
+
+**Why Commit Here**: Major user-visible feature working - huge milestone.
+
+---
+
+### ⭐⭐ CHECKPOINT 4: Add Position Persistence
+**Time**: ~1 hour
+**Commit**: ✅ YES - "feat: add position persistence across page refreshes"
+
+**Files**:
+- Modify: `contexts/AudioContext.tsx` (add auto-save effect)
+
+**Implementation**:
+```typescript
+// In AudioContext.tsx
+
+// Auto-save position every 5 seconds
+useEffect(() => {
+  if (!isPlaying || !selectedBook) return;
+
+  const interval = setInterval(async () => {
+    await readingPositionService.savePosition(selectedBook.id, {
+      currentSentenceIndex,
+      currentBundleIndex: getCurrentBundleIndex(),
+      currentChapter,
+      playbackTime,
+      totalTime,
+      cefrLevel,
+      playbackSpeed,
+      contentMode,
+      completionPercentage: calculateCompletion(),
+      sentencesRead: currentSentenceIndex
+    });
+  }, 5000);
+
+  return () => clearInterval(interval);
+}, [isPlaying, selectedBook, currentSentenceIndex, currentChapter]);
+
+// On mount: restore saved position
+useEffect(() => {
+  const restoreLastBook = async () => {
+    const lastBookId = localStorage.getItem('bookbridge_last_book_id');
+    if (lastBookId) {
+      const savedPosition = await readingPositionService.loadPosition(lastBookId);
+      if (savedPosition) {
+        // Restore state
+        setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
+        setCurrentBundle(savedPosition.currentBundle);
+        setCurrentChapter(savedPosition.currentChapter);
+        setCefrLevel(savedPosition.cefrLevel);
+        setPlaybackSpeed(savedPosition.playbackSpeed);
+      }
+    }
+  };
+
+  restoreLastBook();
+}, []);
+```
+
+**Test After This Step**:
+1. Navigate to `/featured-books`
+2. Select book, play to sentence 10
+3. **Press Ctrl+R (refresh page)**
+4. Verify:
+   - ✅ Book still loaded
+   - ✅ Position at sentence 10 (not 0)
+   - ✅ Highlighting on sentence 10
+   - ✅ Click play → continues from sentence 10
+   - ✅ CEFR level preserved
+   - ✅ Playback speed preserved
+
+**Decision**:
+```bash
+npm run build           # Should succeed
+git add -A
+git commit -m "feat: add position persistence across page refreshes
+
+- Add auto-save effect (saves every 5 seconds during playback)
+- Save to localStorage + database via readingPositionService
+- Restore saved position on app mount
+- Preserve: sentence index, bundle, chapter, CEFR level, speed
+- Position survives browser refresh
+- Foundation for Netflix-style resume functionality
+
+FIXES: Failed auto-resume attempts - position now persists correctly"
+
+git push origin feature/global-mini-player
+```
+
+**Why Commit Here**: Core persistence feature working - solves the original problem.
+
+---
+
+### ⭐ CHECKPOINT 5: Test Edge Cases & Polish
+**Time**: ~2 hours
+**Commit**: ✅ YES - "test: validate edge cases and polish UX"
+
+**Files**:
+- Various (bug fixes as needed)
+
+**Test Scenarios**:
+
+**Test 1: Multi-Book Switching**
+1. Start reading Book A, play to sentence 5
+2. Navigate to library, select Book B
+3. Verify: Book A stops, Book B starts, mini player shows Book B
+
+**Test 2: Settings Persistence**
+1. Select book, change A1 → A2
+2. Refresh page
+3. Verify: Still A2
+
+**Test 3: Browser Close/Reopen**
+1. Start reading, play to sentence 15
+2. Close browser completely
+3. Reopen, navigate to `/featured-books`
+4. Verify: Position restored from database
+
+**Test 4: Network Errors**
+1. Start reading
+2. Disconnect internet
+3. Verify: Graceful error handling
+4. Reconnect: Recovers automatically
+
+**Test 5: Multiple Tabs**
+1. Open two tabs
+2. Play in tab 1
+3. Verify: Tab 2 sees updated state (localStorage events)
+
+**Decision**:
+```bash
+npm run build           # Should succeed with 0 errors
+git add -A
+git commit -m "test: validate edge cases and polish UX
+
+- Test multi-book switching (works correctly)
+- Test settings persistence across refresh (verified)
+- Test browser close/reopen (position restored from DB)
+- Test network error handling (graceful fallback)
+- Test multiple tabs (state synced via localStorage events)
+- Fix any edge case bugs discovered
+- Add error boundaries where needed
+- Performance validation (memory, FPS)
+
+READY FOR PULL REQUEST"
+
+git push origin feature/global-mini-player
+```
+
+**Why Commit Here**: All edge cases tested, ready to merge.
+
+---
+
+### 🎉 FINAL STEP: Create Pull Request
+
+**After Checkpoint 5 Complete**:
+
+```bash
+# Create Pull Request on GitHub
+# Title: "feat: Global Mini Player with Position Persistence"
+# Description: See template below
+```
+
+**PR Description Template**:
+```markdown
+## 🎯 Summary
+
+Implements Global Mini Player (Spotify-style) with persistent audio context, solving the failed auto-resume attempts.
+
+## ✅ What Works
+
+- Persistent playback across page navigation
+- Mini player visible on all pages (except reading page)
+- Position persists across browser refresh
+- Settings (CEFR level, speed) persist
+- Click mini player to return to exact position
+- All existing reading page functionality preserved
+
+## 📊 Metrics
+
+- Position Restore Success: 0% → 100%
+- Code Removed: ~200 lines from reading page
+- Code Added: ~750 lines (AudioContext + MiniPlayer)
+- Build Size: +15KB
+- Performance: No degradation
+
+## 🧪 Testing
+
+- ✅ Reading page works identically
+- ✅ Mini player appears/hides correctly
+- ✅ Playback controls work from both locations
+- ✅ Position persists across refresh
+- ✅ Multi-book switching works
+- ✅ Network errors handled gracefully
+- ✅ Multiple tabs sync state
+
+## 🔗 Related
+
+- Closes failed auto-resume branch (feature/auto-resume-netflix-style)
+- Foundation for Reading Position Memory (#2)
+- Foundation for Offline Mode (#3)
+
+## 📝 Review Checklist
+
+- [ ] Code builds with no errors
+- [ ] All existing tests pass
+- [ ] New functionality tested manually
+- [ ] Documentation updated
+```
+
+**After PR Review**:
+```bash
+# Switch to main branch
+git checkout main
+
+# Pull latest changes
+git pull origin main
+
+# Merge feature branch (via GitHub PR merge button)
+# OR locally:
+git merge feature/global-mini-player
+
+# Push to main
+git push origin main
+
+# Delete feature branch
+git branch -d feature/global-mini-player
+git push origin --delete feature/global-mini-player
+```
+
+---
+
+## 📋 Build & Commit Summary
+
+| Checkpoint | Files | Commit | Build | Why |
+|------------|-------|--------|-------|-----|
+| 1: AudioContext | 2 files | ❌ NO | ❌ NO | Not testable yet |
+| 2: Reading Page | 1 file | ✅ YES | ✅ YES | Safe checkpoint, page works |
+| 3: Mini Player | 2 files | ✅ YES | ✅ YES | Major visible feature |
+| 4: Persistence | 1 file | ✅ YES | ✅ YES | Core feature complete |
+| 5: Testing | Various | ✅ YES | ✅ YES | Ready for PR |
+
+**Total Commits**: 4
+**Total Builds**: 4
+**Branch**: `feature/global-mini-player` (new, clean branch)
+
+---
+
 ## 📊 Expected Outcomes
 
 ### User Experience
