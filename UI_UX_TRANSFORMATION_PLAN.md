@@ -64,52 +64,169 @@ This UI/UX plan focuses on **functionality and user experience features**. For v
 
 ## 🚨 **CRITICAL FEATURES TO ADD FOR READING PAGE UX/UI**
 
-**PRIORITY**: Implement ONLY these 3 features. All other features marked as POSTPONED below.
+**PRIORITY**: Implement ONLY these 3 features in the correct order. All other features marked as POSTPONED below.
 
 ### 🎯 **COMBINED END RESULT VISION**
 
 **Transform BookBridge into "Spotify for ESL Audiobooks"** - an addictive learning platform where users:
 
-- **Resume instantly**: Open any book → automatic "Resuming from Chapter 2, Sentence 15" toast → audio starts from exact word (Netflix-style)
 - **Browse while listening**: Mini player shows book cover/title → navigate anywhere → audio continues seamlessly → click to return to reading (Spotify-style)
+- **Resume instantly**: Open any book → automatic "Resuming from Chapter 2, Sentence 15" toast → audio starts from exact word (Netflix-style)
 - **Learn anywhere**: Download books with progress indicator → full offline experience with audio highlighting → auto-sync when online (Netflix Downloads-style)
 
 **User Impact**: 60% longer sessions, 40% better retention, <3 second engagement time
 
-**Key Feature Names**:
-1. **Reading Position Memory** (Session Persistence)
-2. **Global Mini Player**
+**Key Feature Names** (in implementation order):
+1. **Global Mini Player** (Persistent Audio Context)
+2. **Reading Position Memory** (Session Persistence)
 3. **Offline Mode**
 
-### 1.1 Reading Position Memory (Session Persistence)
-**Component**: `hooks/useReadingSession.tsx` + localStorage/database integration
-**Description**: When users leave a book page and return (even after page refresh), the app automatically:
-- Restores exact sentence position where they left off
-- Resumes audio from that exact point with proper highlighting
-- Maintains reading settings (speed, voice, chapter)
-- Shows subtle "Resuming from..." notification with option to start from beginning
+---
+
+### ⚠️ **CRITICAL: Why Implementation Order Matters**
+
+**Lesson Learned from Failed Auto-Resume Attempt (Jan 2025)**:
+
+We initially tried to implement Reading Position Memory (#2) before Global Mini Player (#1). This failed after 3 implementation attempts because:
+
+**The Problem**:
+```typescript
+// Current Architecture (Page-Scoped):
+FeaturedBooksPage Component (destroyed on refresh)
+└── audioManagerRef (dies on unmount)
+    └── Control Bar (dies on unmount)
+        └── State (isPlaying, currentSentenceIndex, currentBundle) (dies on unmount)
+```
+
+**What We Tried**:
+1. ❌ setTimeout after bundle load → Race condition
+2. ❌ useEffect gated by bundleData → Flag juggling, state not available when play button executes
+3. ❌ Single-source position refs → 150+ lines of timing logic, still doesn't work
+
+**Root Cause**: Position restore can set state during useEffect, but when the page refreshes:
+- Component unmounts → All state destroyed
+- New component mounts → Tries to restore position
+- But `currentBundle` is `null` when play button reads it → Defaults to sentence 0
+
+**The Podcast App Difference**:
+```typescript
+// Podcast Architecture (App-Scoped):
+Global Audio Context (never dies)
+├── Audio Engine (persistent BundleAudioManager)
+├── Control Bar (always visible, always has state)
+└── Pages (can change freely)
+```
+
+**The Solution**: Implement Global Mini Player FIRST to create persistent audio context, then Reading Position Memory becomes trivial (no timing issues).
+
+**Documented in**: `docs/implementation/AUTO_RESUME_SESSION_REPORT.md`
+
+---
+
+### 1.1 Global Mini Player ⭐ **IMPLEMENT FIRST**
+**Component**: `contexts/AudioContext.tsx` + `components/audio/GlobalMiniPlayer.tsx`
+**Status**: **REQUIRED FOUNDATION** - Must be implemented before Reading Position Memory
+
+**Why First**: Creates persistent audio context that survives page navigation, solving the root cause of position restore failures.
+
+**Architecture**:
+```typescript
+// GlobalAudioContext wraps entire app at app/layout.tsx
+- Single BundleAudioManager instance (never destroyed)
+- Global playback state (isPlaying, currentSentenceIndex, currentBundle, etc.)
+- Survives page navigation and refreshes
+- Shared by both mini player and reading page
+```
+
+**Components to Create**:
+
+1. **`contexts/AudioContext.tsx`**
+   ```typescript
+   - createContext for global audio state
+   - BundleAudioManager singleton
+   - Playback state: isPlaying, currentSentenceIndex, currentBundle
+   - Book state: selectedBook, bundleData, cefrLevel
+   - Playback controls: play(), pause(), seek(), setSpeed()
+   - Position tracking: auto-save to localStorage + DB
+   ```
+
+2. **`components/audio/GlobalMiniPlayer.tsx`**
+   ```typescript
+   - Fixed position bottom bar (like Spotify)
+   - Shows: book cover thumbnail, title, chapter
+   - Controls: play/pause, skip ±15s, speed (1x/1.5x/2x)
+   - Progress ring showing completion %
+   - Click to navigate back to reading page
+   - Auto-hides when no book loaded
+   - Always visible across all pages when book active
+   ```
+
+3. **Integration with Reading Page**
+   ```typescript
+   // featured-books/page.tsx changes:
+   - Remove local audioManagerRef → use useAudioContext()
+   - Remove local state → use global context state
+   - Control bar becomes "full controls" version
+   - Mini player = "simplified controls" version
+   - Both share same BundleAudioManager instance
+   ```
+
+**End Result**:
+- Like Spotify - audio continues seamlessly while exploring the app
+- Persistent state survives page refreshes
+- Foundation for position memory to work correctly
+
+**Technical Benefits**:
+- ✅ State persists across navigation
+- ✅ No timing issues (state always available)
+- ✅ Single source of truth for audio
+- ✅ Prevents multiple HTMLAudioElement instances
+- ✅ Makes position restore trivial
+
+---
+
+### 1.2 Reading Position Memory (Session Persistence)
+**Component**: Uses `AudioContext` from Global Mini Player
+**Status**: **DEPENDS ON #1** - Can only be implemented after Global Mini Player
+
+**Why Second**: With persistent audio context from Global Mini Player, position restore becomes simple:
+```typescript
+// No timing issues - state is already there
+const { setCurrentSentenceIndex, setCurrentBundle } = useAudioContext();
+
+// On page load, restore position:
+const savedPosition = await readingPositionService.loadPosition(bookId);
+if (savedPosition) {
+  setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
+  setCurrentBundle(savedPosition.currentBundle);
+  // State immediately available - no race conditions
+}
+```
+
+**Implementation** (now trivial with persistent context):
+1. Load saved position from DB/localStorage
+2. Set global context state (survives across refreshes)
+3. Show "Resume from..." toast
+4. Play button reads global state (always available)
 
 **End Result**: Like Netflix - open any book and instantly continue exactly where you stopped, creating seamless reading sessions across days/weeks.
 
-### 1.2 Global Mini Player
-**Component**: `components/audio/MiniPlayer.tsx`
-**Description**: Persistent floating audio player that appears when reading any book and stays visible while browsing:
-- Shows current book title, chapter, and progress ring
-- Play/pause, skip forward/back 15 seconds, speed controls
-- Minimizes to small corner widget when not in use
-- Click to return to full reading page at exact position
-- Works across all navigation (library, search, settings)
+**What Changed**: Instead of fighting React's render cycle with complex useEffect timing, we use persistent global state that's always available.
 
-**End Result**: Like Spotify - audio continues seamlessly while exploring the app, enabling discovery without losing reading progress.
+---
 
 ### 1.3 Offline Mode
 **Component**: `components/offline/DownloadManager.tsx`
+**Status**: **DEPENDS ON #1 and #2** - Requires persistent audio + position tracking
+
 **Description**: Download complete books for offline reading with smart storage management:
 - "Download for Offline" button on each book with progress indicator
 - Manages device storage with size estimates and cleanup options
 - Works completely offline with full audio, text, and highlighting
 - Auto-syncs reading progress when connection returns
 - Shows "Downloaded" badge and offline indicator in app
+
+**Why Third**: Requires both persistent audio context (to play offline) and position memory (to sync when online).
 
 **End Result**: Like Netflix Downloads - perfect for commutes, flights, or areas with poor connectivity where ESL learners often study.
 
