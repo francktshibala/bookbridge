@@ -85,9 +85,9 @@ export function GlobalMiniPlayer() {
             className="fixed bottom-0 left-0 right-0 z-50 border-t-2 border-[var(--border-light)] bg-[var(--bg-secondary)] shadow-2xl"
             style={{ backgroundColor: 'var(--bg-secondary)' }}
           >
-            <div className="max-w-7xl mx-auto px-4 py-3">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-3">
               {/* Progress Bar */}
-              <div className="mb-2">
+              <div className="mb-1.5 sm:mb-2">
                 <div className="w-full h-1 bg-[var(--bg-tertiary)] rounded-full overflow-hidden">
                   <div
                     className="h-full bg-[var(--accent-primary)] transition-all duration-300"
@@ -97,19 +97,26 @@ export function GlobalMiniPlayer() {
               </div>
 
               {/* Main Content */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 sm:gap-4">
                 {/* Book Info (clickable to navigate) */}
                 <button
                   onClick={() => {
                     console.log('🎵 [MiniPlayer] Navigating to reading page');
                     navigateToReading();
                   }}
-                  className="flex items-center gap-3 flex-1 min-w-0 hover:opacity-80 transition-opacity text-left"
+                  className="flex items-center gap-2 flex-1 min-w-0 hover:opacity-80 transition-opacity text-left"
                   aria-label={`Return to ${selectedBook?.title}`}
                 >
+                  {/* Return Arrow */}
+                  <div className="flex-shrink-0 text-[var(--accent-primary)]">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </div>
+
                   {/* Book Cover Placeholder */}
                   <div
-                    className="w-12 h-12 rounded flex-shrink-0 flex items-center justify-center text-white font-bold text-sm shadow-md"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded flex-shrink-0 flex items-center justify-center text-white font-bold text-xs sm:text-sm shadow-md"
                     style={{
                       background: selectedBook?.gradient || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                     }}
@@ -119,21 +126,21 @@ export function GlobalMiniPlayer() {
 
                   {/* Book Title & Info */}
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-[var(--text-primary)] truncate text-sm">
+                    <h3 className="font-semibold text-[var(--text-primary)] truncate text-xs sm:text-sm">
                       {selectedBook?.title}
                     </h3>
-                    <p className="text-xs text-[var(--text-secondary)] truncate">
+                    <p className="text-xs text-[var(--text-secondary)] truncate hidden sm:block">
                       {selectedBook?.author} • Sentence {currentSentenceIndex + 1}
                     </p>
                   </div>
                 </button>
 
                 {/* Playback Controls */}
-                <div className="flex items-center gap-2">
-                  {/* Previous Bundle */}
+                <div className="flex items-center gap-1 sm:gap-2">
+                  {/* Previous Bundle - hide on very small screens */}
                   <button
                     onClick={previousBundle}
-                    className="p-2 rounded-full hover:bg-[var(--bg-tertiary)] transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    className="hidden sm:block p-2 rounded-full hover:bg-[var(--bg-tertiary)] transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                     aria-label="Previous bundle"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -150,24 +157,24 @@ export function GlobalMiniPlayer() {
                         resume();
                       }
                     }}
-                    className="p-3 rounded-full bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)] transition-colors text-white shadow-lg"
+                    className="p-2 sm:p-3 rounded-full bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)] transition-colors text-white shadow-lg"
                     aria-label={isPlaying ? 'Pause' : 'Play'}
                   >
                     {isPlaying ? (
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                       </svg>
                     ) : (
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                       </svg>
                     )}
                   </button>
 
-                  {/* Next Bundle */}
+                  {/* Next Bundle - hide on very small screens */}
                   <button
                     onClick={nextBundle}
-                    className="p-2 rounded-full hover:bg-[var(--bg-tertiary)] transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    className="hidden sm:block p-2 rounded-full hover:bg-[var(--bg-tertiary)] transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                     aria-label="Next bundle"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -178,7 +185,7 @@ export function GlobalMiniPlayer() {
                   {/* Speed Control */}
                   <button
                     onClick={cycleSpeed}
-                    className="px-3 py-1.5 rounded-full bg-[var(--bg-tertiary)] hover:bg-[var(--accent-secondary)] hover:text-white transition-colors text-[var(--text-primary)] text-xs font-semibold min-w-[48px]"
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[var(--bg-tertiary)] hover:bg-[var(--accent-secondary)] hover:text-white transition-colors text-[var(--text-primary)] text-xs font-semibold min-w-[40px] sm:min-w-[48px]"
                     aria-label={`Playback speed: ${formatSpeed(playbackSpeed)}`}
                   >
                     {formatSpeed(playbackSpeed)}
