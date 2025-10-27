@@ -847,19 +847,7 @@ export default function FeaturedBooksPage() {
             }
           });
 
-          // Commit 5: Scroll to saved position (context already restored currentSentenceIndex)
-          if (contextCurrentSentenceIndex > 0) {
-            setTimeout(() => {
-              const sentenceElement = document.querySelector(`[data-sentence-index="${contextCurrentSentenceIndex}"]`);
-              if (sentenceElement) {
-                sentenceElement.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                });
-                console.log('📍 Scrolled to context sentence:', contextCurrentSentenceIndex);
-              }
-            }, 1000);
-          }
+          // Phase 2 Task 2.4: Removed setTimeout hack - scroll will happen in dedicated useEffect below
         }
       } catch (error) {
         console.error('Error initializing page side effects:', error);
@@ -876,6 +864,36 @@ export default function FeaturedBooksPage() {
       audioManagerRef.current?.destroy();
     };
   }, [selectedBook, bundleData, loadState]);
+
+  // Phase 2 Task 2.4a: Scroll to saved position using state guards (no setTimeout)
+  // GPT-5 guidance: Replace "Wait X ms before scroll" with loadState gates
+  const didAutoScrollRef = useRef<string | null>(null); // Track last scrolled book+level
+  useEffect(() => {
+    const scrollKey = `${selectedBook?.id}-${cefrLevel}-${contextCurrentSentenceIndex}`;
+
+    // State gates: only scroll when context is fully loaded AND we haven't scrolled yet for this book/level/position
+    if (
+      loadState === 'ready' &&
+      bundleData &&
+      contextCurrentSentenceIndex > 0 &&
+      resumeInfo &&
+      didAutoScrollRef.current !== scrollKey
+    ) {
+      // Use requestAnimationFrame for DOM readiness (GPT-5: render-readiness without polling)
+      requestAnimationFrame(() => {
+        const sentenceElement = document.querySelector(`[data-sentence-index="${contextCurrentSentenceIndex}"]`);
+        if (sentenceElement) {
+          sentenceElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+          console.log('📍 [Phase 2] Scrolled to saved position (state-gated):', contextCurrentSentenceIndex);
+          didAutoScrollRef.current = scrollKey; // Mark as scrolled
+        }
+      });
+    }
+  }, [loadState, bundleData, contextCurrentSentenceIndex, resumeInfo, selectedBook?.id, cefrLevel]);
+
   // Audio playback functions
   const findBundleForSentence = (sentenceIndex: number): BundleData | null => {
     if (!bundleData) return null;
@@ -949,14 +967,13 @@ export default function FeaturedBooksPage() {
         nextBundle.sentences.map(s => `s${s.sentenceIndex}: "${s.text?.substring(0, 25)}..."`).join(', ')
       );
 
-      setTimeout(() => {
-        if (isPlayingRef.current) { // Check again before advancing
-          console.log(`✅ Still playing, advancing to sentence ${nextSentenceIndex}`);
-          handlePlaySequential(nextSentenceIndex);
-        } else {
-          console.log(`⛔ Playback was stopped, not advancing to next bundle`);
-        }
-      }, 100);
+      // Phase 2 Task 2.4d: Removed setTimeout delay - bundle already complete, can advance immediately
+      if (isPlayingRef.current) { // Check before advancing
+        console.log(`✅ Still playing, advancing to sentence ${nextSentenceIndex}`);
+        handlePlaySequential(nextSentenceIndex);
+      } else {
+        console.log(`⛔ Playback was stopped, not advancing to next bundle`);
+      }
     } else {
       console.log('🎉 All bundles complete!');
       setIsPlaying(false);
@@ -1056,12 +1073,8 @@ export default function FeaturedBooksPage() {
           setIsPlaying(true);
           isPlayingRef.current = true; // Make sure the play flag is set
 
-          // Force trigger highlighting state update by re-setting current sentence
-          const currentSentence = currentSentenceIndex;
-          setCurrentSentenceIndex(-1); // Clear briefly
-          setTimeout(() => {
-            setCurrentSentenceIndex(currentSentence); // Restore to trigger re-render
-          }, 10);
+          // Phase 2 Task 2.4b: Removed force-highlighting setTimeout hack
+          // Highlighting responds naturally to isPlaying + currentSentenceIndex state
 
           // Apply current playback speed
           audioManagerRef.current.setPlaybackRate(playbackSpeed);
@@ -1247,14 +1260,10 @@ export default function FeaturedBooksPage() {
             const chapter = chapters.find(c => c.chapterNumber === chapterNum);
             if (!chapter) return;
 
-            // Stop current playback first
+            // Phase 2 Task 2.4c: Removed setTimeout delay - handleStop() is synchronous
             handleStop();
-
-            // Wait a moment then jump to chapter
-            setTimeout(async () => {
-              setCurrentSentenceIndex(chapter.startSentence);
-              await jumpToSentence(chapter.startSentence);
-            }, 100);
+            setCurrentSentenceIndex(chapter.startSentence);
+            jumpToSentence(chapter.startSentence);
           }}
           value={getCurrentChapter().current}
         >
@@ -1916,22 +1925,19 @@ export default function FeaturedBooksPage() {
                       onClick={async () => {
                         setShowChapterModal(false);
 
-                        // Stop current playback first
+                        // Phase 2 Task 2.4c: Removed nested setTimeout delays
+                        // GPT-5: No timing hacks - operations are synchronous, scroll uses RAF
                         handleStop();
+                        setCurrentSentenceIndex(chapter.startSentence);
 
-                        // Wait a moment then jump to chapter and continue playing
-                        setTimeout(async () => {
-                          setCurrentSentenceIndex(chapter.startSentence);
+                        // Force auto-scroll to chapter start immediately
+                        autoScrollEnabledRef.current = true;
+                        setAutoScrollPaused(false);
 
-                          // Force auto-scroll to chapter start immediately
-                          autoScrollEnabledRef.current = true;
-                          setAutoScrollPaused(false);
-
-                          // Jump to chapter and continue playing
-                          await jumpToSentence(chapter.startSentence);
-
-                          // Ensure the sentence element scrolls into view
-                          setTimeout(() => {
+                        // Jump to chapter and continue playing
+                        jumpToSentence(chapter.startSentence).then(() => {
+                          // Use RAF for DOM-readiness (GPT-5 guidance)
+                          requestAnimationFrame(() => {
                             const sentenceElement = document.querySelector(`[data-sentence-index="${chapter.startSentence}"]`);
                             if (sentenceElement) {
                               sentenceElement.scrollIntoView({
@@ -1939,8 +1945,8 @@ export default function FeaturedBooksPage() {
                                 block: 'center'
                               });
                             }
-                          }, 200);
-                        }, 100);
+                          });
+                        });
                       }}
                       className={`w-full text-left p-4 rounded-lg border transition-all ${
                         getCurrentChapter().current === chapter.chapterNumber
