@@ -1,9 +1,11 @@
+export const runtime = 'nodejs';
+
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import fs from 'fs';
 import path from 'path';
 
-const prisma = new PrismaClient();
+// Using singleton prisma from @/lib/prisma;
 
 interface BundleMetadata {
   bundleId: string;
