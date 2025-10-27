@@ -13,6 +13,7 @@ import {
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
 import { loadBookBundles } from '@/lib/services/book-loader';
 import { checkLevelAvailability } from '@/lib/services/availability';
+import { saveLevelToStorage } from '@/lib/services/level-persistence';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -140,12 +141,8 @@ const logTelemetry = (event: TelemetryEvent) => {
 // Throttled level persistence (GPT-5 improvement #4)
 let levelPersistTimeout: NodeJS.Timeout | null = null;
 const persistLevelChange = (bookId: string, level: CEFRLevel) => {
-  // Immediate localStorage write
-  try {
-    localStorage.setItem(`bookbridge-book-${bookId}-level`, level);
-  } catch (error) {
-    console.warn('[AudioContext] Failed to persist level to localStorage:', error);
-  }
+  // Phase 4: Use pure localStorage service (extracted for testability)
+  saveLevelToStorage(bookId, level);
 
   // Throttled DB write (300ms debounce per GPT-5 guidance)
   if (levelPersistTimeout) {
