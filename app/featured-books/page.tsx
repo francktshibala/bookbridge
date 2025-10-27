@@ -701,12 +701,17 @@ export default function FeaturedBooksPage() {
   const [currentDefinition, setCurrentDefinition] = useState<any>(null);
   const [definitionLoading, setDefinitionLoading] = useState(false);
 
-  // Data state
-  const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // Data state (Phase 1, Task 1.5, Commit 2b: Removed bundleData/loading/error - now from context)
+  // const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null); // REMOVED: Use contextBundleData
+  // const [loading, setLoading] = useState(true); // REMOVED: Use contextLoading / contextLoadState
+  // const [error, setError] = useState<string | null>(null); // REMOVED: Use contextError
   const [availableLevels, setAvailableLevels] = useState<{[key: string]: boolean}>({});
   const [currentBookAvailableLevels, setCurrentBookAvailableLevels] = useState<string[]>([]);
+
+  // Aliases for compatibility (Phase 1, Task 1.5, Commit 2b)
+  const bundleData = contextBundleData;
+  const loading = contextLoading;
+  const error = contextError;
 
   // Audio playback state
   const [isPlaying, setIsPlaying] = useState(false);
@@ -759,10 +764,10 @@ export default function FeaturedBooksPage() {
       console.log(`📚 Book selected: ${selectedBook.title}, setting default level: ${bookDefaultLevel}`);
       setCefrLevel(bookDefaultLevel as any);
 
-      // Clear stale data and abort previous requests
-      setBundleData(null);
-      setLoading(true);
-      setError(null);
+      // Clear stale data and abort previous requests (Phase 1, Task 1.5, Commit 2b: Removed - AudioContext handles)
+      // setBundleData(null); // REMOVED: AudioContext handles via cleanupAudio()
+      // setLoading(true); // REMOVED: AudioContext sets loadState
+      // setError(null); // REMOVED: AudioContext clears errors
 
       // Abort any in-flight requests
       if (abortControllerRef.current) {
@@ -946,10 +951,10 @@ export default function FeaturedBooksPage() {
           return;
         }
 
-        // Set loading state only for current request
+        // Set loading state only for current request (Phase 1, Task 1.5, Commit 2b: Removed - AudioContext handles)
         if (currentRequestIdRef.current === reqId) {
-          setLoading(true);
-          setError(null);
+          // setLoading(true); // REMOVED: AudioContext sets loadState
+          // setError(null); // REMOVED: AudioContext clears errors
         }
 
         // Check available levels with abort signal
@@ -1061,9 +1066,9 @@ export default function FeaturedBooksPage() {
         }
 
         if (data && data.success && data.totalSentences > 0) {
-          // Guard: only update state if this is still the current request
+          // Guard: only update state if this is still the current request (Phase 1, Task 1.5, Commit 2b: Removed - AudioContext handles)
           if (currentRequestIdRef.current === reqId) {
-            setBundleData(data);
+            // setBundleData(data); // REMOVED: AudioContext sets bundleData via loadBookData
           }
 
           // Initialize unified player and audio manager (skip for original text without audio)
@@ -1195,9 +1200,9 @@ export default function FeaturedBooksPage() {
           // Position loading is now handled inside AudioBookPlayer initialization
 
         } else {
-          // Guard: only set error if this is still the current request
+          // Guard: only set error if this is still the current request (Phase 1, Task 1.5, Commit 2b: Removed - AudioContext handles)
           if (currentRequestIdRef.current === reqId) {
-            setError(`Level ${levelParam} not available for this book. Please try the available level or switch to Original.`);
+            // setError(`Level ${levelParam} not available for this book. Please try the available level or switch to Original.`); // REMOVED: AudioContext sets error
           }
         }
 
@@ -1208,14 +1213,14 @@ export default function FeaturedBooksPage() {
           return;
         }
 
-        // Guard: only set error if this is still the current request
+        // Guard: only set error if this is still the current request (Phase 1, Task 1.5, Commit 2b: Removed - AudioContext handles)
         if (currentRequestIdRef.current === reqId) {
-          setError(err instanceof Error ? err.message : 'Failed to load book data');
+          // setError(err instanceof Error ? err.message : 'Failed to load book data'); // REMOVED: AudioContext sets error
         }
       } finally {
-        // Guard: only clear loading if this is still the current request and not aborted
+        // Guard: only clear loading if this is still the current request and not aborted (Phase 1, Task 1.5, Commit 2b: Removed - AudioContext handles)
         if (currentRequestIdRef.current === reqId && !abortController.signal.aborted) {
-          setLoading(false);
+          // setLoading(false); // REMOVED: AudioContext transitions loadState to ready/error
         }
       }
     }
