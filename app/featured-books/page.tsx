@@ -763,53 +763,50 @@ export default function FeaturedBooksPage() {
     };
   }, []);
 
-  // Phase 2, Task 2.5: Restore last-read book on mount
-  // Fix for resume flow bug - automatically load last book if saved position exists
+  // Phase 2, Task 2.5: Restore last-read book on mount (GPT-5 fix)
+  // Root cause: Previous effect ran too early without checking loadState
+  // Solution: Only dispatch selectBook when context is idle
   const hasAttemptedRestoreRef = useRef(false);
   useEffect(() => {
-    // Only attempt restore once on mount
+    // One-time execution guard
     if (hasAttemptedRestoreRef.current) return;
-    if (selectedBook) return; // Already have a book selected
+    hasAttemptedRestoreRef.current = true;
 
-    const restoreLastBook = async () => {
-      try {
-        // Check localStorage for last-read book
-        const lastBookId = localStorage.getItem('lastReadBookId');
-        if (!lastBookId) {
-          console.log('📚 No last-read book found');
-          return;
-        }
+    // Early returns: wait for the right moment
+    const lastBookId = localStorage.getItem('lastReadBookId');
+    if (!lastBookId) {
+      console.log('📚 No last-read book found');
+      return;
+    }
+    if (selectedBook) {
+      console.log('📚 Book already selected, skipping restore');
+      return;
+    }
 
-        // Find the book in FEATURED_BOOKS
-        const book = FEATURED_BOOKS.find(b => b.id === lastBookId);
-        if (!book) {
-          console.log('📚 Last-read book not found in FEATURED_BOOKS:', lastBookId);
-          return;
-        }
+    // Find the book in FEATURED_BOOKS
+    const book = FEATURED_BOOKS.find(b => b.id === lastBookId);
+    if (!book) {
+      console.log('📚 Last-read book not found in FEATURED_BOOKS:', lastBookId);
+      return;
+    }
 
-        // Check if there's a saved position with progress
-        const savedPosition = await readingPositionService.loadPosition(lastBookId);
-        if (!savedPosition || savedPosition.currentSentenceIndex === 0) {
-          console.log('📚 No saved position for last-read book');
-          return;
-        }
+    // Only dispatch when context is idle (GPT-5: wait for AudioContext to be ready)
+    if (loadState === 'idle') {
+      console.log('📚 Restoring last-read book:', book.title);
+      void contextSelectBook(book);
+      // Note: showBookSelection will be hidden by the separate effect below
+    }
+  }, [loadState, selectedBook, contextSelectBook]);
 
-        // Restore the book automatically
-        console.log('📚 Restoring last-read book:', book.title);
-        await contextSelectBook(book);
-        setShowBookSelection(false);
-
-        // The Continue Reading modal will show automatically via resumeInfo
-        console.log('📚 Book restored - Continue Reading modal will appear');
-      } catch (error) {
-        console.error('Error restoring last-read book:', error);
-      } finally {
-        hasAttemptedRestoreRef.current = true;
-      }
-    };
-
-    restoreLastBook();
-  }, [selectedBook, contextSelectBook]);
+  // Phase 2, Task 2.5: Auto-hide book selection grid (GPT-5 fix)
+  // Root cause: Grid stayed visible during context loading
+  // Solution: Hide grid as soon as load begins or book is selected
+  useEffect(() => {
+    if (selectedBook || loadState === 'loading' || loadState === 'ready') {
+      setShowBookSelection(false);
+      console.log('📚 Hiding book selection grid - loadState:', loadState);
+    }
+  }, [selectedBook, loadState]);
 
   // Phase 1, Task 1.5, Commit 4: checkAvailableLevels REMOVED
   // AudioContext now handles availability checking via loadBookData()
