@@ -15,6 +15,7 @@ import type { ExternalBook } from '@/types/book-sources';
 import { useAudioContext } from '@/contexts/AudioContext';
 import { BookSelectionGrid, type FeaturedBook as BookSelectionGridBook } from './components/BookSelectionGrid';
 import { ReadingHeader } from './components/ReadingHeader';
+import { SettingsModal } from './components/SettingsModal';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -1723,111 +1724,16 @@ export default function FeaturedBooksPage() {
 
         </div>
 
-        {/* Settings Modal */}
-        {showSettingsModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-[var(--bg-secondary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20">
-
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Reading Settings</h2>
-                <button
-                  onClick={() => setShowSettingsModal(false)}
-                  className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
-                >
-                  ×
-                </button>
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-6 space-y-6">
-
-                {/* Content Mode Toggle */}
-                <div>
-                  <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Text Version</label>
-                  <div className="flex bg-[var(--bg-primary)] rounded-lg p-1 border border-[var(--border-light)]">
-                    <button
-                      onClick={async () => await contextSwitchContentMode('simplified')}
-                      className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
-                        contentMode === 'simplified'
-                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
-                          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                      }`}
-                    >
-                      Simplified
-                    </button>
-                    <button
-                      onClick={async () => await contextSwitchContentMode('original')}
-                      className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
-                        contentMode === 'original'
-                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
-                          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                      }`}
-                    >
-                      Original
-                    </button>
-                  </div>
-                </div>
-
-                {/* CEFR Level Selection */}
-                <div>
-                  <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">CEFR Level</label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => {
-                      const isOriginalMode = contentMode === 'original';
-                      const isLevelAvailable = contextAvailableLevels[level.toLowerCase()] === true;
-                      const isDisabled = isOriginalMode || !isLevelAvailable;
-
-                      return (
-                        <button
-                          key={level}
-                          onClick={async () => {
-                            if (!isDisabled) {
-                              await contextSwitchLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
-                            }
-                          }}
-                          disabled={isDisabled}
-                          className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
-                            cefrLevel === level && contentMode === 'simplified'
-                              ? 'bg-[var(--accent-primary)] text-white shadow-sm'
-                              : isDisabled
-                              ? 'bg-[var(--bg-primary)] text-[var(--text-secondary)]/50 cursor-not-allowed opacity-50'
-                              : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--border-light)]'
-                          }`}
-                          title={
-                            isOriginalMode
-                              ? 'Switch to Simplified mode to use CEFR levels'
-                              : !isLevelAvailable
-                              ? `${level} not available for this book`
-                              : `Switch to ${level} level`
-                          }
-                        >
-                          {level}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Modal Footer */}
-              <div className="px-6 py-4 border-t border-[var(--border-light)]">
-                <button
-                  onClick={async () => {
-                    setShowSettingsModal(false);
-                    // Phase 1, Task 1.5, Commit 3: No need to force re-trigger, context handles state
-                    // Settings are already applied via context dispatch methods
-                  }}
-                  className="w-full bg-[var(--accent-primary)] text-white py-2 px-4 rounded-md font-medium hover:bg-[var(--accent-secondary)] transition-all shadow-md"
-                >
-                  Apply Settings
-                </button>
-              </div>
-
-            </div>
-          </div>
-        )}
+        {/* Phase 3, Task 3.3: Settings Modal - Extracted to SettingsModal component */}
+        <SettingsModal
+          isOpen={showSettingsModal}
+          onClose={() => setShowSettingsModal(false)}
+          currentLevel={cefrLevel}
+          onLevelChange={contextSwitchLevel}
+          currentContentMode={contentMode}
+          onContentModeChange={contextSwitchContentMode}
+          availableLevels={contextAvailableLevels}
+        />
 
         {/* Chapter Navigation Modal */}
         {showChapterModal && (
