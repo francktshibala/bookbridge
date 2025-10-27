@@ -667,15 +667,24 @@ export default function FeaturedBooksPage() {
   } = audioContext;
 
   // =========================================================================
-  // LOCAL STATE (Will be removed in Commit 2 - keeping for compilation)
+  // LOCAL STATE (Phase 1, Task 1.5, Commit 2c: Book/level now from context)
   // =========================================================================
-  // Book selection state
-  const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
+  // Book selection state (Phase 1, Task 1.5, Commit 2c: Removed - now from context)
+  // const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null); // REMOVED
   const [showBookSelection, setShowBookSelection] = useState(true);
 
-  // UI state
-  const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
-  const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1'); // Initialize to A1, will be updated by book selection
+  // UI state (Phase 1, Task 1.5, Commit 2c: contentMode/cefrLevel removed - now from context)
+  // const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified'); // REMOVED
+  // const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1'); // REMOVED
+
+  // Aliases for compatibility (Phase 1, Task 1.5, Commit 2c: Read from context, setters kept for Commit 3)
+  const selectedBook = contextSelectedBook;
+  const cefrLevel = contextCefrLevel;
+  const contentMode = contextContentMode;
+  // Keep setters temporarily for click handlers (will remove in Commit 3)
+  const setSelectedBook = (book: FeaturedBook | null) => { console.warn('[Phase 1] setSelectedBook deprecated - use contextSelectBook'); };
+  const setCefrLevel = (level: any) => { console.warn('[Phase 1] setCefrLevel deprecated - use contextSwitchLevel'); };
+  const setContentMode = (mode: any) => { console.warn('[Phase 1] setContentMode deprecated - use contextSwitchContentMode'); };
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showChapterModal, setShowChapterModal] = useState(false);
   const [showContinueReading, setShowContinueReading] = useState(false);
@@ -758,23 +767,19 @@ export default function FeaturedBooksPage() {
   };
 
   // Auto-set CEFR level when book is selected and clear stale data
-  useEffect(() => {
-    if (selectedBook) {
-      const bookDefaultLevel = getBookDefaultLevel(selectedBook.id);
-      console.log(`📚 Book selected: ${selectedBook.title}, setting default level: ${bookDefaultLevel}`);
-      setCefrLevel(bookDefaultLevel as any);
-
-      // Clear stale data and abort previous requests (Phase 1, Task 1.5, Commit 2b: Removed - AudioContext handles)
-      // setBundleData(null); // REMOVED: AudioContext handles via cleanupAudio()
-      // setLoading(true); // REMOVED: AudioContext sets loadState
-      // setError(null); // REMOVED: AudioContext clears errors
-
-      // Abort any in-flight requests
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
-      }
-    }
-  }, [selectedBook]);
+  // (Phase 1, Task 1.5, Commit 2c: REMOVED - AudioContext handles via selectBook action)
+  // useEffect(() => {
+  //   if (selectedBook) {
+  //     const bookDefaultLevel = getBookDefaultLevel(selectedBook.id);
+  //     console.log(`📚 Book selected: ${selectedBook.title}, setting default level: ${bookDefaultLevel}`);
+  //     setCefrLevel(bookDefaultLevel as any); // REMOVED: AudioContext sets level
+  //
+  //     // Abort any in-flight requests
+  //     if (abortControllerRef.current) {
+  //       abortControllerRef.current.abort();
+  //     }
+  //   }
+  // }, [selectedBook]);
 
   // Detect user scrolling and pause auto-scroll temporarily
   useEffect(() => {
