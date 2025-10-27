@@ -16,6 +16,7 @@ import { useAudioContext } from '@/contexts/AudioContext';
 import { BookSelectionGrid, type FeaturedBook as BookSelectionGridBook } from './components/BookSelectionGrid';
 import { ReadingHeader } from './components/ReadingHeader';
 import { SettingsModal } from './components/SettingsModal';
+import { ChapterModal, type Chapter } from './components/ChapterModal';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -1195,6 +1196,57 @@ export default function FeaturedBooksPage() {
     handleStop();
   };
 
+  // Phase 3, Task 3.4: Get chapters for current book
+  const getCurrentBookChapters = (): Chapter[] => {
+    if (!selectedBook) return [];
+
+    switch (selectedBook.id) {
+      case 'sleepy-hollow-enhanced':
+        return SLEEPY_HOLLOW_CHAPTERS;
+      case 'great-gatsby-a2':
+        return GREAT_GATSBY_CHAPTERS;
+      case 'gutenberg-1952-A1':
+        return YELLOW_WALLPAPER_CHAPTERS;
+      case 'gutenberg-43':
+        return JEKYLL_HYDE_CHAPTERS;
+      case 'the-necklace':
+        return THE_NECKLACE_CHAPTERS;
+      case 'the-dead':
+        return THE_DEAD_CHAPTERS;
+      case 'lady-with-dog':
+        return THE_LADY_WITH_DOG_CHAPTERS;
+      default:
+        return GREAT_GATSBY_CHAPTERS;
+    }
+  };
+
+  // Phase 3, Task 3.4: Chapter selection handler for ChapterModal
+  const handleChapterSelect = async (chapter: Chapter) => {
+    // Stop current playback
+    handleStop();
+
+    // Update sentence index
+    setCurrentSentenceIndex(chapter.startSentence);
+
+    // Force auto-scroll to chapter start
+    autoScrollEnabledRef.current = true;
+    setAutoScrollPaused(false);
+
+    // Jump to chapter and continue playing
+    jumpToSentence(chapter.startSentence).then(() => {
+      // Use RAF for DOM-readiness (GPT-5 guidance)
+      requestAnimationFrame(() => {
+        const sentenceElement = document.querySelector(`[data-sentence-index="${chapter.startSentence}"]`);
+        if (sentenceElement) {
+          sentenceElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }
+      });
+    });
+  };
+
   const handleCloseAIChat = () => {
     setIsAIChatOpen(false);
     setSelectedAIBook(null);
@@ -1735,86 +1787,14 @@ export default function FeaturedBooksPage() {
           availableLevels={contextAvailableLevels}
         />
 
-        {/* Chapter Navigation Modal */}
-        {showChapterModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-[var(--bg-secondary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20">
-
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Jump to Chapter</h2>
-                <button
-                  onClick={() => setShowChapterModal(false)}
-                  className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
-                >
-                  ×
-                </button>
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-6">
-                <div className="space-y-2 max-h-64 overflow-y-auto">
-                  {(selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
-                    selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS :
-                    selectedBook?.id === 'the-necklace' ? THE_NECKLACE_CHAPTERS :
-                    selectedBook?.id === 'the-dead' ? THE_DEAD_CHAPTERS :
-                    selectedBook?.id === 'lady-with-dog' ? THE_LADY_WITH_DOG_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
-                    <button
-                      key={chapter.chapterNumber}
-                      onClick={async () => {
-                        setShowChapterModal(false);
-
-                        // Phase 2 Task 2.4c: Removed nested setTimeout delays
-                        // GPT-5: No timing hacks - operations are synchronous, scroll uses RAF
-                        handleStop();
-                        setCurrentSentenceIndex(chapter.startSentence);
-
-                        // Force auto-scroll to chapter start immediately
-                        autoScrollEnabledRef.current = true;
-                        setAutoScrollPaused(false);
-
-                        // Jump to chapter and continue playing
-                        jumpToSentence(chapter.startSentence).then(() => {
-                          // Use RAF for DOM-readiness (GPT-5 guidance)
-                          requestAnimationFrame(() => {
-                            const sentenceElement = document.querySelector(`[data-sentence-index="${chapter.startSentence}"]`);
-                            if (sentenceElement) {
-                              sentenceElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'center'
-                              });
-                            }
-                          });
-                        });
-                      }}
-                      className={`w-full text-left p-4 rounded-lg border transition-all ${
-                        getCurrentChapter().current === chapter.chapterNumber
-                          ? 'bg-[var(--accent-primary)] text-white border-[var(--accent-primary)] shadow-sm'
-                          : 'bg-[var(--bg-primary)] hover:bg-[var(--accent-primary)]/10 border-[var(--border-light)]'
-                      }`}
-                    >
-                      <div className={`font-medium ${
-                        getCurrentChapter().current === chapter.chapterNumber
-                          ? 'text-[var(--bg-primary)]'
-                          : 'text-[var(--text-primary)]'
-                      }`}>Chapter {chapter.chapterNumber}</div>
-                      <div className={`text-sm ${
-                        getCurrentChapter().current === chapter.chapterNumber
-                          ? 'text-[var(--bg-primary)]/80'
-                          : 'text-[var(--text-secondary)]'
-                      }`}>
-                        {chapter.title}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-          </div>
-        )}
+        {/* Phase 3, Task 3.4: Chapter Navigation Modal - Extracted to ChapterModal component */}
+        <ChapterModal
+          isOpen={showChapterModal}
+          onClose={() => setShowChapterModal(false)}
+          chapters={getCurrentBookChapters()}
+          currentChapter={getCurrentChapter().current}
+          onSelectChapter={handleChapterSelect}
+        />
 
         {/* Mobile Control Bar - Full Width */}
         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[var(--bg-secondary)] border-t border-[var(--border-light)] shadow-lg z-50">
