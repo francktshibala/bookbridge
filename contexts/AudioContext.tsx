@@ -12,6 +12,7 @@ import {
 } from '@/lib/config/books';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
 import { loadBookBundles } from '@/lib/services/book-loader';
+import { checkLevelAvailability } from '@/lib/services/availability';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -668,91 +669,46 @@ export function AudioProvider({ children }: AudioProviderProps) {
     signal: AbortSignal,
     reqId: string
   ): Promise<{ [key: string]: boolean } | undefined> => {
-    const availability: { [key: string]: boolean } = {};
-
-    // Handle multi-level books
-    if (MULTI_LEVEL_BOOKS[bookId]) {
-      for (const level of MULTI_LEVEL_BOOKS[bookId]) {
-        try {
-          const apiEndpoint = getBookApiEndpoint(bookId, level);
-          const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${level}&t=${Date.now()}`;
-
-          const response = await fetch(apiUrl, {
-            cache: 'no-store',
-            signal
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            availability[level.toLowerCase()] = data.success === true;
-          } else {
-            availability[level.toLowerCase()] = false;
-          }
-        } catch (error: any) {
-          if (error.name === 'AbortError') {
-            console.log(`🛑 [AudioContext] Availability fetch aborted for ${level}`);
-            return;
-          }
-          availability[level.toLowerCase()] = false;
-        }
-      }
-    }
-    // Handle single-level books
-    else if (SINGLE_LEVEL_BOOKS[bookId]) {
-      const bookLevel = SINGLE_LEVEL_BOOKS[bookId];
-      availability[bookLevel.toLowerCase()] = true;
-      console.log(`📋 [AudioContext] Single-level book ${bookId} set to ${bookLevel}`);
-    }
-
-    // Handle original content check for all books
     try {
-      const response = await fetch(`/api/books/${bookId}/content`, {
-        cache: 'no-store',
-        signal
-      });
-      availability['original'] = response.ok;
-    } catch (error: any) {
-      if (error.name === 'AbortError') {
-        console.log(`🛑 [AudioContext] Original content check aborted`);
+      // Phase 4: Use pure availability checking service (extracted business logic)
+      const result = await checkLevelAvailability(bookId, signal);
+
+      // GPT-5 improvement #2: Enforce requestId check before state update
+      if (currentRequestIdRef.current !== reqId) {
+        logTelemetry({
+          type: 'stale_apply_prevented',
+          bookId,
+          requestId: reqId,
+          reason: 'Request superseded during availability check'
+        });
         return;
       }
-      availability['original'] = false;
+
+      // Final check before mutating state
+      if (currentRequestIdRef.current === reqId) {
+        setAvailableLevels(result.availability);
+        setCurrentBookAvailableLevels(result.bookLevels);
+      } else {
+        logTelemetry({
+          type: 'stale_apply_prevented',
+          bookId,
+          requestId: reqId,
+          reason: 'Request superseded before setting availability'
+        });
+        return;
+      }
+
+      console.log(`📋 [AudioContext] Available levels for ${bookId}:`, result.availability);
+      console.log(`📋 [AudioContext] CEFR levels for ${bookId}:`, result.bookLevels);
+
+      return result.availability;
+    } catch (error: any) {
+      if (error.name === 'AbortError') {
+        console.log(`🛑 [AudioContext] Availability check aborted`);
+        return;
+      }
+      throw error;
     }
-
-    // GPT-5 improvement #2: Enforce requestId check before state update
-    if (currentRequestIdRef.current !== reqId) {
-      logTelemetry({
-        type: 'stale_apply_prevented',
-        bookId,
-        requestId: reqId,
-        reason: 'Request superseded during availability check'
-      });
-      return;
-    }
-
-    // Extract available levels for the current book (excluding 'original')
-    const bookLevels = Object.entries(availability)
-      .filter(([level, available]) => level !== 'original' && available)
-      .map(([level]) => level.toUpperCase());
-
-    // Final check before mutating state
-    if (currentRequestIdRef.current === reqId) {
-      setAvailableLevels(availability);
-      setCurrentBookAvailableLevels(bookLevels);
-    } else {
-      logTelemetry({
-        type: 'stale_apply_prevented',
-        bookId,
-        requestId: reqId,
-        reason: 'Request superseded before setting availability'
-      });
-      return;
-    }
-
-    console.log(`📋 [AudioContext] Available levels for ${bookId}:`, availability);
-    console.log(`📋 [AudioContext] CEFR levels for ${bookId}:`, bookLevels);
-
-    return availability;
   };
 
   // -------------------------------------------------------------------------
