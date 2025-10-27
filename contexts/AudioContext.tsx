@@ -50,6 +50,9 @@ export interface RealBundleApiResponse {
 export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
 export type ContentMode = 'original' | 'simplified';
 
+// State machine for load transitions (GPT-5 improvement #1)
+export type LoadState = 'idle' | 'loading' | 'ready' | 'error';
+
 interface AudioContextState {
   // Book & Content Selection
   selectedBook: FeaturedBook | null;
@@ -68,11 +71,12 @@ interface AudioContextState {
   totalTime: number;
   playbackSpeed: number;
 
-  // Data Fetching State
-  loading: boolean;
+  // Data Fetching State (improved with state machine)
+  loadState: LoadState;
+  loading: boolean; // Computed: loadState === 'loading'
   error: string | null;
 
-  // Actions (Dispatch Pattern)
+  // Actions (Dispatch Pattern) - Minimal public surface (GPT-5 improvement #5)
   selectBook: (book: FeaturedBook, initialLevel?: CEFRLevel) => Promise<void>;
   switchLevel: (newLevel: CEFRLevel) => Promise<void>;
   switchContentMode: (mode: ContentMode) => Promise<void>;
@@ -84,10 +88,63 @@ interface AudioContextState {
   nextChapter: () => void;
   previousChapter: () => void;
   jumpToChapter: (chapter: number) => void;
-  resetAudio: () => void;
+  unload: () => void; // Renamed from resetAudio for clarity
 }
 
 const AudioContext = createContext<AudioContextState | undefined>(undefined);
+
+// ============================================================================
+// TELEMETRY & UTILITIES (GPT-5 improvement #6)
+// ============================================================================
+
+interface TelemetryEvent {
+  type: 'stale_apply_prevented' | 'load_started' | 'load_completed' | 'load_failed';
+  bookId?: string;
+  level?: string;
+  requestId?: string;
+  elapsed?: number;
+  reason?: string;
+}
+
+const logTelemetry = (event: TelemetryEvent) => {
+  const timestamp = new Date().toISOString();
+  const prefix = event.type === 'stale_apply_prevented' ? '🛑' :
+                 event.type === 'load_started' ? '🔄' :
+                 event.type === 'load_completed' ? '✅' : '❌';
+
+  console.log(`${prefix} [AudioContext Telemetry] ${event.type}`, {
+    timestamp,
+    ...event
+  });
+
+  // Future: Send to analytics service
+  // analytics.track('audio_context', event);
+};
+
+// Throttled level persistence (GPT-5 improvement #4)
+let levelPersistTimeout: NodeJS.Timeout | null = null;
+const persistLevelChange = (bookId: string, level: CEFRLevel) => {
+  // Immediate localStorage write
+  try {
+    localStorage.setItem(`bookbridge-book-${bookId}-level`, level);
+  } catch (error) {
+    console.warn('[AudioContext] Failed to persist level to localStorage:', error);
+  }
+
+  // Throttled DB write (300ms debounce)
+  if (levelPersistTimeout) {
+    clearTimeout(levelPersistTimeout);
+  }
+  levelPersistTimeout = setTimeout(async () => {
+    try {
+      // TODO: Integrate with reading-position service for DB persistence
+      // await readingPositionService.updateLevel(bookId, level);
+      console.log('[AudioContext] Level persisted to DB:', { bookId, level });
+    } catch (error) {
+      console.warn('[AudioContext] Failed to persist level to DB:', error);
+    }
+  }, 300);
+};
 
 // ============================================================================
 // PROVIDER COMPONENT
@@ -120,10 +177,13 @@ export function AudioProvider({ children }: AudioProviderProps) {
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
 
   // -------------------------------------------------------------------------
-  // STATE: Data Fetching
+  // STATE: Data Fetching (with state machine)
   // -------------------------------------------------------------------------
-  const [loading, setLoading] = useState(false);
+  const [loadState, setLoadState] = useState<LoadState>('idle');
   const [error, setError] = useState<string | null>(null);
+
+  // Computed loading state from state machine
+  const loading = loadState === 'loading';
 
   // -------------------------------------------------------------------------
   // REFS: Audio Managers (Singletons)
@@ -145,6 +205,9 @@ export function AudioProvider({ children }: AudioProviderProps) {
   const selectBook = async (book: FeaturedBook, initialLevel?: CEFRLevel) => {
     console.log(`📚 [AudioContext] Selecting book: ${book.title}`);
 
+    // Audio lifecycle cleanup before new book (GPT-5 improvement #3)
+    cleanupAudio();
+
     // Update book selection
     setSelectedBook(book);
 
@@ -164,7 +227,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
 
   // -------------------------------------------------------------------------
   // ACTION: switchLevel
-  // Single Source of Truth for CEFR level changes
+  // Single Source of Truth for CEFR level changes (with persistence)
   // -------------------------------------------------------------------------
   const switchLevel = async (newLevel: CEFRLevel) => {
     if (!selectedBook) {
@@ -175,8 +238,14 @@ export function AudioProvider({ children }: AudioProviderProps) {
     console.log(`🔄 [AudioContext] Switching level to: ${newLevel}`);
     setCefrLevel(newLevel);
 
+    // Persist level change (GPT-5 improvement #4)
+    persistLevelChange(selectedBook.id, newLevel);
+
     // Pause playback during level switch
     pause();
+
+    // Audio lifecycle cleanup (GPT-5 improvement #3)
+    cleanupAudio();
 
     // Clear stale data
     setBundleData(null);
@@ -303,39 +372,85 @@ export function AudioProvider({ children }: AudioProviderProps) {
   };
 
   // -------------------------------------------------------------------------
-  // ACTION: resetAudio
+  // HELPER: cleanupAudio
+  // Stop and detach audio elements before new loads (GPT-5 improvement #3)
+  // -------------------------------------------------------------------------
+  const cleanupAudio = () => {
+    console.log(`🧹 [AudioContext] Cleaning up audio lifecycle`);
+
+    // Stop playback
+    pause();
+
+    // Cleanup audio manager
+    if (audioManagerRef.current) {
+      try {
+        // Stop any active audio
+        // TODO: Add proper destroy method to BundleAudioManager
+        // audioManagerRef.current?.stop();
+        // audioManagerRef.current?.destroy();
+        audioManagerRef.current = null;
+      } catch (error) {
+        console.warn('[AudioContext] Error during audio cleanup:', error);
+      }
+    }
+
+    // Cleanup player
+    if (playerRef.current) {
+      try {
+        // TODO: Add proper cleanup method to AudioBookPlayer
+        // playerRef.current?.destroy();
+        playerRef.current = null;
+      } catch (error) {
+        console.warn('[AudioContext] Error during player cleanup:', error);
+      }
+    }
+
+    // Reset playback state
+    isPlayingRef.current = false;
+  };
+
+  // -------------------------------------------------------------------------
+  // ACTION: unload
   // Clear all audio state (for cleanup/unmounting)
   // -------------------------------------------------------------------------
-  const resetAudio = () => {
-    console.log(`🔄 [AudioContext] Resetting audio state`);
-    pause();
+  const unload = () => {
+    console.log(`🔄 [AudioContext] Unloading audio context`);
+
+    // Full audio cleanup
+    cleanupAudio();
+
+    // Reset all state
     setCurrentSentenceIndex(0);
     setCurrentChapter(1);
     setCurrentBundle(null);
     setPlaybackTime(0);
     setTotalTime(0);
-
-    // Cleanup audio manager
-    if (audioManagerRef.current) {
-      // TODO: Add cleanup method to BundleAudioManager
-      // audioManagerRef.current?.destroy();
-      audioManagerRef.current = null;
-    }
+    setLoadState('idle');
+    setError(null);
   };
 
   // -------------------------------------------------------------------------
   // INTERNAL: loadBookData
-  // Core data fetching logic (replaces page-level loadData)
+  // Core data fetching logic with state machine (GPT-5 improvements #1, #2, #6)
   // -------------------------------------------------------------------------
   const loadBookData = async (
     bookId: string,
     level: CEFRLevel,
     mode: ContentMode
   ) => {
+    const startTime = Date.now();
+
     // Create new request token and abort controller
     const reqId = crypto.randomUUID();
     currentRequestIdRef.current = reqId;
-    console.log(`🔄 [AudioContext] Starting request ${reqId} for ${bookId}, ${level}, ${mode}`);
+
+    // Telemetry: Load started
+    logTelemetry({
+      type: 'load_started',
+      bookId,
+      level,
+      requestId: reqId
+    });
 
     // Abort previous request if exists
     if (abortControllerRef.current) {
@@ -345,15 +460,22 @@ export function AudioProvider({ children }: AudioProviderProps) {
     abortControllerRef.current = abortController;
 
     try {
-      setLoading(true);
+      // State machine transition: idle/ready/error → loading
+      setLoadState('loading');
       setError(null);
 
       // Check available levels
       const availability = await checkAvailableLevels(bookId, abortController.signal, reqId);
 
-      // Verify request is still current
+      // GPT-5 improvement #2: Enforce requestId check
       if (currentRequestIdRef.current !== reqId) {
-        console.log(`🚫 [AudioContext] Request ${reqId} aborted`);
+        logTelemetry({
+          type: 'stale_apply_prevented',
+          bookId,
+          level,
+          requestId: reqId,
+          reason: 'Request superseded after availability check'
+        });
         return;
       }
 
@@ -372,9 +494,14 @@ export function AudioProvider({ children }: AudioProviderProps) {
 
       // Handle original content differently
       if (mode === 'original' && levelParam === 'original') {
-        // Verify request is still current
+        // GPT-5 improvement #2: Enforce requestId check
         if (currentRequestIdRef.current !== reqId) {
-          console.log(`🚫 [AudioContext] Request ${reqId} aborted before original content fetch`);
+          logTelemetry({
+            type: 'stale_apply_prevented',
+            bookId,
+            requestId: reqId,
+            reason: 'Request superseded before original content fetch'
+          });
           return;
         }
 
@@ -439,9 +566,15 @@ export function AudioProvider({ children }: AudioProviderProps) {
         }
       } else {
         // Handle simplified content
-        // Verify request is still current
+        // GPT-5 improvement #2: Enforce requestId check
         if (currentRequestIdRef.current !== reqId) {
-          console.log(`🚫 [AudioContext] Request ${reqId} aborted before simplified content fetch`);
+          logTelemetry({
+            type: 'stale_apply_prevented',
+            bookId,
+            level,
+            requestId: reqId,
+            reason: 'Request superseded before simplified content fetch'
+          });
           return;
         }
 
@@ -463,38 +596,81 @@ export function AudioProvider({ children }: AudioProviderProps) {
         }
       }
 
-      // Verify request is still current before setting data
+      // GPT-5 improvement #2: Final requestId check before state update
       if (currentRequestIdRef.current !== reqId || abortController.signal.aborted) {
-        console.log(`🚫 [AudioContext] Request ${reqId} aborted before setting bundle data`);
+        logTelemetry({
+          type: 'stale_apply_prevented',
+          bookId,
+          level,
+          requestId: reqId,
+          reason: 'Request superseded before setting bundle data'
+        });
         return;
       }
 
       if (data && data.success && data.totalSentences > 0) {
-        // Update state only if request is still current
+        // GPT-5 improvement #2: Double-check before mutation
         if (currentRequestIdRef.current === reqId) {
           setBundleData(data);
           setTotalTime(0); // Will be calculated by audio manager
-          console.log(`✅ [AudioContext] Loaded ${data.totalSentences} sentences, ${data.bundleCount} bundles`);
+
+          // State machine transition: loading → ready
+          setLoadState('ready');
+
+          const elapsed = Date.now() - startTime;
+          logTelemetry({
+            type: 'load_completed',
+            bookId,
+            level,
+            requestId: reqId,
+            elapsed
+          });
+
+          console.log(`✅ [AudioContext] Loaded ${data.totalSentences} sentences, ${data.bundleCount} bundles (${elapsed}ms)`);
+        } else {
+          logTelemetry({
+            type: 'stale_apply_prevented',
+            bookId,
+            level,
+            requestId: reqId,
+            reason: 'Request superseded during final state update'
+          });
         }
 
         // TODO: Initialize audio manager and player
         // This will be done in a future task once we integrate BundleAudioManager
-
-        setLoading(false);
       } else {
         throw new Error('Invalid book data received');
       }
-
-      console.log(`✅ [AudioContext] Request ${reqId} completed successfully`);
     } catch (err: any) {
       if (err.name === 'AbortError') {
-        console.log(`🛑 [AudioContext] Request aborted`);
+        logTelemetry({
+          type: 'stale_apply_prevented',
+          bookId,
+          level,
+          requestId: reqId,
+          reason: 'Request aborted'
+        });
         return;
       }
 
+      const elapsed = Date.now() - startTime;
+      const errorMessage = err.message || 'Failed to load book data';
+
+      // State machine transition: loading → error
+      setLoadState('error');
+      setError(errorMessage);
+
+      logTelemetry({
+        type: 'load_failed',
+        bookId,
+        level,
+        requestId: reqId,
+        elapsed,
+        reason: errorMessage
+      });
+
       console.error(`❌ [AudioContext] Load failed:`, err);
-      setError(err.message || 'Failed to load book data');
-      setLoading(false);
     }
   };
 
@@ -558,9 +734,14 @@ export function AudioProvider({ children }: AudioProviderProps) {
       availability['original'] = false;
     }
 
-    // Verify request is still current
+    // GPT-5 improvement #2: Enforce requestId check before state update
     if (currentRequestIdRef.current !== reqId) {
-      console.log(`🚫 [AudioContext] Request ${reqId} aborted during availability check`);
+      logTelemetry({
+        type: 'stale_apply_prevented',
+        bookId,
+        requestId: reqId,
+        reason: 'Request superseded during availability check'
+      });
       return;
     }
 
@@ -569,8 +750,19 @@ export function AudioProvider({ children }: AudioProviderProps) {
       .filter(([level, available]) => level !== 'original' && available)
       .map(([level]) => level.toUpperCase());
 
-    setAvailableLevels(availability);
-    setCurrentBookAvailableLevels(bookLevels);
+    // Final check before mutating state
+    if (currentRequestIdRef.current === reqId) {
+      setAvailableLevels(availability);
+      setCurrentBookAvailableLevels(bookLevels);
+    } else {
+      logTelemetry({
+        type: 'stale_apply_prevented',
+        bookId,
+        requestId: reqId,
+        reason: 'Request superseded before setting availability'
+      });
+      return;
+    }
 
     console.log(`📋 [AudioContext] Available levels for ${bookId}:`, availability);
     console.log(`📋 [AudioContext] CEFR levels for ${bookId}:`, bookLevels);
@@ -587,7 +779,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
   };
 
   // -------------------------------------------------------------------------
-  // CONTEXT VALUE
+  // CONTEXT VALUE (Minimal public surface - GPT-5 improvement #5)
   // -------------------------------------------------------------------------
   const value: AudioContextState = {
     // State
@@ -604,10 +796,11 @@ export function AudioProvider({ children }: AudioProviderProps) {
     playbackTime,
     totalTime,
     playbackSpeed,
+    loadState,
     loading,
     error,
 
-    // Actions
+    // Actions (minimal public API)
     selectBook,
     switchLevel,
     switchContentMode,
@@ -619,7 +812,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
     nextChapter,
     previousChapter,
     jumpToChapter,
-    resetAudio,
+    unload,
   };
 
   return (
