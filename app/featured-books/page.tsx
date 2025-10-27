@@ -727,41 +727,8 @@ export default function FeaturedBooksPage() {
   // Phase 1, Task 1.5, Commit 4: Request refs removed - AudioContext handles request management
 
   // Get bookId from selected book or URL params
-  const getBookId = () => {
-    if (selectedBook) {
-      return selectedBook.id;
-    }
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const urlBookId = params.get('bookId');
-      if (urlBookId) {
-        // Auto-select book from URL
-        const book = FEATURED_BOOKS.find(b => b.id === urlBookId);
-        if (book) {
-          // TODO Commit 4: URL param handling should be in AudioContext or removed
-          // setSelectedBook(book); // REMOVED: AudioContext owns selectedBook
-          setShowBookSelection(false);
-          return urlBookId;
-        }
-      }
-    }
-    return FEATURED_BOOKS[0].id; // Default to first book
-  };
-
-  // Auto-set CEFR level when book is selected and clear stale data
-  // (Phase 1, Task 1.5, Commit 2c: REMOVED - AudioContext handles via selectBook action)
-  // useEffect(() => {
-  //   if (selectedBook) {
-  //     const bookDefaultLevel = getBookDefaultLevel(selectedBook.id);
-  //     console.log(`📚 Book selected: ${selectedBook.title}, setting default level: ${bookDefaultLevel}`);
-  //     setCefrLevel(bookDefaultLevel as any); // REMOVED: AudioContext sets level
-  //
-  //     // Abort any in-flight requests
-  //     if (abortControllerRef.current) {
-  //       abortControllerRef.current.abort();
-  //     }
-  //   }
-  // }, [selectedBook]);
+  // Commit 6: Removed dead getBookId() function and commented-out useEffect
+  // URL param handling and auto-level setting are now handled by AudioContext
 
   // Detect user scrolling and pause auto-scroll temporarily
   useEffect(() => {
