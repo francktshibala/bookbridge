@@ -12,6 +12,7 @@ import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomS
 import { dictionaryCache, dictionaryAnalytics } from '@/lib/dictionary/DictionaryCache';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
+import { useAudioContext } from '@/contexts/AudioContext';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -628,6 +629,46 @@ const GREAT_GATSBY_CHAPTERS = [
 ];
 
 export default function FeaturedBooksPage() {
+  // =========================================================================
+  // AUDIO CONTEXT (Phase 1, Task 1.5, Commit 1: Read-only wiring)
+  // =========================================================================
+  const audioContext = useAudioContext();
+  // Destructure for easier access (read-only for now, will replace local state)
+  const {
+    selectedBook: contextSelectedBook,
+    cefrLevel: contextCefrLevel,
+    contentMode: contextContentMode,
+    bundleData: contextBundleData,
+    availableLevels: contextAvailableLevels,
+    currentBookAvailableLevels: contextCurrentBookAvailableLevels,
+    isPlaying: contextIsPlaying,
+    currentSentenceIndex: contextCurrentSentenceIndex,
+    currentChapter: contextCurrentChapter,
+    currentBundle: contextCurrentBundle,
+    playbackTime: contextPlaybackTime,
+    totalTime: contextTotalTime,
+    playbackSpeed: contextPlaybackSpeed,
+    loadState: contextLoadState,
+    loading: contextLoading,
+    error: contextError,
+    // Actions
+    selectBook: contextSelectBook,
+    switchLevel: contextSwitchLevel,
+    switchContentMode: contextSwitchContentMode,
+    play: contextPlay,
+    pause: contextPause,
+    resume: contextResume,
+    seek: contextSeek,
+    setSpeed: contextSetSpeed,
+    nextChapter: contextNextChapter,
+    previousChapter: contextPreviousChapter,
+    jumpToChapter: contextJumpToChapter,
+    unload: contextUnload,
+  } = audioContext;
+
+  // =========================================================================
+  // LOCAL STATE (Will be removed in Commit 2 - keeping for compilation)
+  // =========================================================================
   // Book selection state
   const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
   const [showBookSelection, setShowBookSelection] = useState(true);
