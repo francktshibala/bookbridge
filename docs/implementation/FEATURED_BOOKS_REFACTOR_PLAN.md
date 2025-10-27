@@ -299,48 +299,61 @@ data/
 
 ---
 
-### Phase 2: Fix Navigation & Resume Bugs (Week 2)
+### Phase 2: Fix Navigation & Resume Bugs (Week 2) ✅ **COMPLETED**
 
 **Goal**: Ensure reading position restoration and navigation work correctly with new architecture.
 
-#### Task 2.1: Atomic Resume Implementation
-- [ ] Find `restorePosition()` in AudioContext
-- [ ] Ensure it calls: `audioManager.playBundleSentence(bundle, sentenceIndex)`
-- [ ] Make resume atomic (bundle + index set together, not separately)
-- [ ] Add guard: don't start audio until bundles loaded
-- [ ] Test: Refresh page → resumes at exact position
+#### Task 2.1: Atomic Resume Implementation ✅
+- [x] Find `restorePosition()` in AudioContext
+- [x] Ensure it calls: `audioManager.playBundleSentence(bundle, sentenceIndex)`
+- [x] Make resume atomic (bundle + index set together, not separately)
+- [x] Add guard: don't start audio until bundles loaded
+- [x] Test: Refresh page → resumes at exact position
 - **Deliverable**: Resume works atomically
+- **Status**: Already complete from Phase 1
 
-#### Task 2.2: Level Persistence on Navigation
-- [ ] Ensure `switchLevel()` saves level to ReadingPosition
-- [ ] On restore, use saved level not default A1
-- [ ] Test: Read A2, navigate away, return → still A2
-- [ ] Test: Refresh → level preserved
+#### Task 2.2: Level Persistence on Navigation ✅
+- [x] Ensure `switchLevel()` saves level to ReadingPosition
+- [x] On restore, use saved level not default A1
+- [x] Test: Read A2, navigate away, return → still A2
+- [x] Test: Refresh → level preserved
 - **Deliverable**: Level persists across navigation
+- **Commit**: d263750 - Completed DB persistence with 300ms debounce
 
-#### Task 2.3: Continue Reading Modal Integration
-- [ ] Check Continue Reading modal shows on return (if <24hrs)
-- [ ] Ensure it reads from AudioContext.savedPosition
-- [ ] "Continue" button calls: `audioContext.resume()`
-- [ ] "Start Over" button calls: `audioContext.play(0)`
-- [ ] Test: Modal appears with correct position
+#### Task 2.3: Continue Reading Modal Integration ✅
+- [x] Check Continue Reading modal shows on return (if <24hrs)
+- [x] Ensure it reads from AudioContext.resumeInfo
+- [x] "Continue" button uses context position
+- [x] "Start Over" button calls: `context.seek(0)`
+- [x] Test: Modal appears with correct position
 - **Deliverable**: Continue modal works with context
+- **Commit**: d9a0e1b - Changed to use context.seek(0) instead of page-level setState
 
-#### Task 2.4: Remove DOM Polling Hacks
-- [ ] Find setTimeout calls for DOM readiness (search "setTimeout")
-- [ ] Replace with explicit "bundles ready" checks
-- [ ] Add `bundlesReady` boolean to AudioContext
-- [ ] Page waits for `bundlesReady` before rendering text
-- [ ] Test: No race conditions on fast refreshes
+#### Task 2.4: Remove DOM Polling Hacks ✅
+- [x] Find setTimeout calls for DOM readiness (found 7 total)
+- [x] Replace with state guards (loadState === 'ready')
+- [x] Use requestAnimationFrame for DOM operations
+- [x] Add one-time guard refs to prevent duplicates
+- [x] Test: No race conditions on fast refreshes
 - **Deliverable**: No timing band-aids
+- **Commit**: a0f2e8e - Removed 6 setTimeout correctness hacks, kept 1 UX debounce
 
 **Success Criteria for Phase 2:**
 - ✅ Resume from saved position works 100%
 - ✅ Level preserved on navigation
-- ✅ No setTimeout hacks for correctness
+- ✅ No setTimeout hacks for correctness (6 removed → 0)
 - ✅ Continue reading modal integrated
 
-**Estimated Time**: 2-3 days
+**Completion Summary:**
+- **Merged to main**: PR #TBD (2ce12fa) on 2025-10-27
+- **Total Commits**: 4 commits (3 code + 1 docs)
+- **Files Modified**: 2 files (AudioContext, page.tsx)
+- **Lines Changed**: +67 added, -55 removed (net +12)
+- **setTimeout Removed**: 6 → 0 (only 1 UX debounce remains)
+- **Documentation**: 2 comprehensive docs created (886 lines)
+- **See**: `docs/architecture/PHASE_2_COMPLETION_REPORT.md` for full details
+
+**Estimated Time**: 2-3 days | **Actual Time**: 1 day
 
 ---
 
