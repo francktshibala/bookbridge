@@ -11,6 +11,7 @@ import {
   SINGLE_LEVEL_BOOKS,
 } from '@/lib/config/books';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
+import { loadBookBundles } from '@/lib/services/book-loader';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -527,111 +528,21 @@ export function AudioProvider({ children }: AudioProviderProps) {
         setCefrLevel(bookDefaultLevel as CEFRLevel);
       }
 
-      let data: RealBundleApiResponse | null = null;
-
-      // Handle original content differently
-      if (mode === 'original' && levelParam === 'original') {
-        // GPT-5 improvement #2: Enforce requestId check
-        if (currentRequestIdRef.current !== reqId) {
-          logTelemetry({
-            type: 'stale_apply_prevented',
-            bookId,
-            requestId: reqId,
-            reason: 'Request superseded before original content fetch'
-          });
-          return;
-        }
-
-        // Fetch original text from book content API
-        const contentResponse = await fetch(`/api/books/${bookId}/content`, {
-          cache: 'no-store',
-          signal: abortController.signal
+      // GPT-5 improvement #2: Enforce requestId check before fetch
+      if (currentRequestIdRef.current !== reqId) {
+        logTelemetry({
+          type: 'stale_apply_prevented',
+          bookId,
+          level,
+          requestId: reqId,
+          reason: 'Request superseded before book data fetch'
         });
-
-        if (contentResponse.ok) {
-          const contentData = await contentResponse.json();
-
-          // Find the book info
-          const bookInfo = FEATURED_BOOKS.find(b => b.id === bookId);
-
-          // Transform original content to bundle format
-          const sentences = contentData.content.split(/[.!?]+/).filter((s: string) => s.trim().length > 0);
-          console.log('🚨 [AudioContext] Using text-splitting fallback path! This breaks on Mr./Dr./etc.');
-          const sentencesPerBundle = 4;
-          const bundles: BundleData[] = [];
-
-          for (let i = 0; i < sentences.length; i += sentencesPerBundle) {
-            const bundleSentences: BundleSentence[] = [];
-            const bundleTexts = sentences.slice(i, Math.min(i + sentencesPerBundle, sentences.length));
-
-            bundleTexts.forEach((text: string, index: number) => {
-              const cleanText = text.trim();
-              if (cleanText) {
-                bundleSentences.push({
-                  sentenceId: `original-${i + index}`,
-                  sentenceIndex: i + index,
-                  text: cleanText + (cleanText.match(/[.!?]$/) ? '' : '.'),
-                  startTime: index * 2,
-                  endTime: (index + 1) * 2,
-                  wordTimings: []
-                });
-              }
-            });
-
-            if (bundleSentences.length > 0) {
-              bundles.push({
-                bundleId: `original-bundle-${bundles.length}`,
-                bundleIndex: bundles.length,
-                audioUrl: '', // No audio for original text
-                totalDuration: bundleSentences.length * 2,
-                sentences: bundleSentences
-              });
-            }
-          }
-
-          data = {
-            success: true,
-            bookId: bookId,
-            title: contentData.title || bookInfo?.title || 'Book',
-            author: contentData.author || bookInfo?.author || 'Author',
-            level: 'original',
-            bundleCount: bundles.length,
-            totalSentences: sentences.length,
-            bundles: bundles,
-            audioType: 'none'
-          };
-        }
-      } else {
-        // Handle simplified content
-        // GPT-5 improvement #2: Enforce requestId check
-        if (currentRequestIdRef.current !== reqId) {
-          logTelemetry({
-            type: 'stale_apply_prevented',
-            bookId,
-            level,
-            requestId: reqId,
-            reason: 'Request superseded before simplified content fetch'
-          });
-          return;
-        }
-
-        // Use dynamic API endpoint detection
-        const apiEndpoint = getBookApiEndpoint(bookId, levelParam);
-        const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${levelParam}&t=${Date.now()}`;
-
-        console.log(`🌐 [AudioContext] Fetching from: ${apiUrl}`);
-
-        const response = await fetch(apiUrl, {
-          cache: 'no-store',
-          signal: abortController.signal
-        });
-
-        if (response.ok) {
-          data = await response.json();
-        } else {
-          throw new Error(`Failed to fetch book data: ${response.status} ${response.statusText}`);
-        }
+        return;
       }
+
+      // Phase 4: Use pure data fetching service (extracted business logic)
+      console.log(`🌐 [AudioContext] Loading book via service: ${bookId}, level: ${levelParam}, mode: ${mode}`);
+      const data = await loadBookBundles(bookId, levelParam, mode, abortController.signal);
 
       // GPT-5 improvement #2: Final requestId check before state update
       if (currentRequestIdRef.current !== reqId || abortController.signal.aborted) {
