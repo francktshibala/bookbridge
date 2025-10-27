@@ -1191,20 +1191,22 @@ export default function FeaturedBooksPage() {
     }
   }, [cefrLevel, playbackSpeed, contentMode]);
 
-  // Commit 5: Continue reading - position already set by context
+  // Phase 2 Task 2.3: Continue reading - use context position
   const continueReading = async () => {
     contextClearResumeInfo(); // Dismiss modal
-    // Context already restored currentSentenceIndex, just start playing
+    // Context already restored currentSentenceIndex, just start playing from that position
     await handlePlaySequential(contextCurrentSentenceIndex);
   };
 
-  // Commit 5: Start over - reset position via context and player
+  // Phase 2 Task 2.3: Start over - use context.seek() instead of page state mutation
   const startFromBeginning = async () => {
     contextClearResumeInfo(); // Dismiss modal
-    setCurrentSentenceIndex(0);
-    setCurrentChapter(1);
 
-    // Reset position in database
+    // Reset position via context (GPT-5: seek/play from 0 via context)
+    contextSeek(0);
+    setCurrentChapter(1); // TODO Phase 2+: Move chapter management to AudioContext
+
+    // Reset position in database (GPT-5: resetPosition(bookId))
     if (playerRef.current) {
       await playerRef.current.resetPosition();
     }
