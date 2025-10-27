@@ -14,6 +14,7 @@ import { readingPositionService, type ReadingPosition } from '@/lib/services/rea
 import { loadBookBundles } from '@/lib/services/book-loader';
 import { checkLevelAvailability } from '@/lib/services/availability';
 import { saveLevelToStorage } from '@/lib/services/level-persistence';
+import { determineFinalLevel, calculateHoursSinceLastRead } from '@/lib/services/audio-transforms';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -515,15 +516,12 @@ export function AudioProvider({ children }: AudioProviderProps) {
         return;
       }
 
-      // Determine final level parameter
-      let levelParam = mode === 'original' ? 'original' : level;
+      // Phase 4: Use pure transform to determine final level with fallback logic
+      const levelParam = determineFinalLevel(mode, level, availability, bookId);
 
-      // Apply fallback logic based on availability
-      if (availability && levelParam !== 'original' && !availability[levelParam.toLowerCase()]) {
-        const bookDefaultLevel = getBookDefaultLevel(bookId);
-        console.log(`📋 [AudioContext] Level ${levelParam} not available, using: ${bookDefaultLevel}`);
-        levelParam = bookDefaultLevel as any;
-        setCefrLevel(bookDefaultLevel as CEFRLevel);
+      // Update state if fallback was applied
+      if (levelParam !== 'original' && levelParam !== level) {
+        setCefrLevel(levelParam);
       }
 
       // GPT-5 improvement #2: Enforce requestId check before fetch
@@ -576,10 +574,8 @@ export function AudioProvider({ children }: AudioProviderProps) {
                 setPlaybackSpeed(savedPosition.playbackSpeed);
               }
 
-              // Calculate hours since last read for UI
-              const hoursSinceLastRead = savedPosition.lastAccessed
-                ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
-                : 999;
+              // Phase 4: Use pure transform to calculate hours since last read
+              const hoursSinceLastRead = calculateHoursSinceLastRead(savedPosition.lastAccessed);
 
               // Set resume info for UI toast/modal
               setResumeInfo({
