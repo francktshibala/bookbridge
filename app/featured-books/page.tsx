@@ -1701,7 +1701,7 @@ export default function FeaturedBooksPage() {
                     // Add the sentence
                     result.push(
                       <span
-                        key={sentence.sentenceId}
+                        key={sentence.sentenceIndex}
                         data-sentence={sentence.sentenceIndex}
                         className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 mr-1 rounded mobile-reading-text ${
                           sentence.sentenceIndex === currentSentenceIndex && isPlaying
