@@ -251,7 +251,12 @@ class ReadingPositionService {
   private saveLocalPosition(bookId: string, position: ReadingPosition): void {
     try {
       const key = this.getLocalStorageKey(bookId);
-      localStorage.setItem(key, JSON.stringify(position));
+      // Add lastAccessed timestamp so modal can calculate hoursSinceLastRead
+      const positionWithTimestamp = {
+        ...position,
+        lastAccessed: new Date()
+      };
+      localStorage.setItem(key, JSON.stringify(positionWithTimestamp));
     } catch (error) {
       console.error('Error saving local reading position:', error);
     }
