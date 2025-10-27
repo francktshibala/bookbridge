@@ -672,11 +672,7 @@ export default function FeaturedBooksPage() {
   // =========================================================================
   // selectedBook, cefrLevel, contentMode now destructured directly from context above
   const [showBookSelection, setShowBookSelection] = useState(true);
-
-  // Temporary setters (Phase 1, Task 1.5, Commit 2d: Kept for Commit 3, will remove when handlers dispatch)
-  const setSelectedBook = (book: FeaturedBook | null) => { console.warn('[Phase 1] setSelectedBook deprecated - use contextSelectBook'); };
-  const setCefrLevel = (level: any) => { console.warn('[Phase 1] setCefrLevel deprecated - use contextSwitchLevel'); };
-  const setContentMode = (mode: any) => { console.warn('[Phase 1] setContentMode deprecated - use contextSwitchContentMode'); };
+  // Phase 1, Task 1.5, Commit 3: No-op setters removed, handlers now dispatch to context
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showChapterModal, setShowChapterModal] = useState(false);
   const [showContinueReading, setShowContinueReading] = useState(false);
@@ -742,7 +738,8 @@ export default function FeaturedBooksPage() {
         // Auto-select book from URL
         const book = FEATURED_BOOKS.find(b => b.id === urlBookId);
         if (book) {
-          setSelectedBook(book);
+          // TODO Commit 4: URL param handling should be in AudioContext or removed
+          // setSelectedBook(book); // REMOVED: AudioContext owns selectedBook
           setShowBookSelection(false);
           return urlBookId;
         }
@@ -922,14 +919,10 @@ export default function FeaturedBooksPage() {
         let levelParam = contentMode === 'original' ? 'original' : cefrLevel;
         if (urlLevel) {
           levelParam = urlLevel.toUpperCase();
-          // Update state to match URL
-          if (urlLevel.toLowerCase() === 'original') {
-            setContentMode('original');
-            levelParam = 'original';
-          } else {
-            setContentMode('simplified');
-            setCefrLevel(urlLevel.toUpperCase() as any);
-          }
+          // TODO Commit 4: URL param handling should be in AudioContext
+          // Previously tried to update state to match URL - now context owns this
+          // setContentMode('original'); // REMOVED
+          // setCefrLevel(urlLevel.toUpperCase() as any); // REMOVED
         }
 
         // Don't force fallback here - let availability detection happen first
@@ -955,10 +948,8 @@ export default function FeaturedBooksPage() {
           const bookDefaultLevel = getBookDefaultLevel(selectedId);
           console.log(`📋 Level ${levelParam} not available for ${selectedId}, using default level: ${bookDefaultLevel}`);
           levelParam = bookDefaultLevel;
-          // Update UI state to match
-          if (currentRequestIdRef.current === reqId) {
-            setCefrLevel(bookDefaultLevel as any);
-          }
+          // TODO Commit 4: Fallback logic should be in AudioContext
+          // setCefrLevel(bookDefaultLevel as any); // REMOVED: AudioContext owns cefrLevel
         }
 
 
@@ -1155,15 +1146,12 @@ export default function FeaturedBooksPage() {
                       setShowContinueReading(true);
                     }
 
-                    // Update current settings from saved position
-                    if (savedPosition.cefrLevel) {
-                      setCefrLevel(savedPosition.cefrLevel as any);
-                    }
+                    // TODO Commit 5: Move resume logic to AudioContext for atomic restore
+                    // Previously restored settings individually - now context should handle atomically
+                    // setCefrLevel(savedPosition.cefrLevel as any); // REMOVED
+                    // setContentMode(savedPosition.contentMode); // REMOVED
                     if (savedPosition.playbackSpeed) {
                       setPlaybackSpeed(savedPosition.playbackSpeed);
-                    }
-                    if (savedPosition.contentMode) {
-                      setContentMode(savedPosition.contentMode);
                     }
 
                     // Scroll to the saved position
@@ -1804,8 +1792,8 @@ export default function FeaturedBooksPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className="group cursor-pointer"
-                  onClick={() => {
-                    setSelectedBook(book);
+                  onClick={async () => {
+                    await contextSelectBook(book);
                     setShowBookSelection(false);
                   }}
                 >
@@ -1848,8 +1836,8 @@ export default function FeaturedBooksPage() {
                           Ask AI
                         </button>
                         <button
-                          onClick={() => {
-                            setSelectedBook(book);
+                          onClick={async () => {
+                            await contextSelectBook(book);
                             setShowBookSelection(false);
                           }}
                           className="flex-1 h-9 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
@@ -1880,7 +1868,7 @@ export default function FeaturedBooksPage() {
             <button
               onClick={() => {
                 setShowBookSelection(true);
-                setSelectedBook(null);
+                contextUnload();
                 handleStop();
               }}
               className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
@@ -1915,7 +1903,7 @@ export default function FeaturedBooksPage() {
               <button
                 onClick={() => {
                   setShowBookSelection(true);
-                  setSelectedBook(null);
+                  contextUnload();
                   handleStop();
                 }}
                 className="flex items-center text-gray-300 hover:text-white"
@@ -1926,7 +1914,7 @@ export default function FeaturedBooksPage() {
               {/* Original/Simplified Toggle (center) */}
               <div className="flex bg-gray-700 rounded-lg p-1">
                 <button
-                  onClick={() => setContentMode('original')}
+                  onClick={async () => await contextSwitchContentMode('original')}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
                     contentMode === 'original'
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
@@ -1936,7 +1924,7 @@ export default function FeaturedBooksPage() {
                   Original
                 </button>
                 <button
-                  onClick={() => setContentMode('simplified')}
+                  onClick={async () => await contextSwitchContentMode('simplified')}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
                     contentMode === 'simplified'
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
@@ -1962,11 +1950,9 @@ export default function FeaturedBooksPage() {
                   return (
                     <button
                       key={level}
-                      onClick={() => {
+                      onClick={async () => {
                         if (!isDisabled) {
-                          setCefrLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
-                          // Ensure we're in simplified mode when selecting CEFR level
-                          setContentMode('simplified');
+                          await contextSwitchLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
                         }
                       }}
                       disabled={isDisabled}
@@ -1999,7 +1985,7 @@ export default function FeaturedBooksPage() {
         <div className="pb-32 px-3 bg-[var(--bg-secondary)] mx-4 md:mx-8 rounded-b-lg shadow-sm border-2 border-[var(--accent-secondary)]/20 border-t-0">
 
           {/* Loading state (Phase 1, Task 1.5, Commit 2a: Use loadState) */}
-          {contextLoadState === 'loading' && (
+          {loadState === 'loading' && (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
               <p className="text-gray-600">Loading {selectedBook?.title} bundles...</p>
@@ -2007,10 +1993,10 @@ export default function FeaturedBooksPage() {
           )}
 
           {/* Error state (Phase 1, Task 1.5, Commit 2a: Use loadState) */}
-          {contextLoadState === 'error' && contextError && (
+          {loadState === 'error' && error && (
             <div className="text-center py-12">
               <div className="bg-white border border-blue-200 rounded-lg p-6 max-w-md mx-auto shadow-lg">
-                <p className="text-[var(--accent-primary)] font-medium">{contextError}</p>
+                <p className="text-[var(--accent-primary)] font-medium">{error}</p>
                 <p className="text-gray-400 text-sm mt-2">
                   Try switching to Original or available levels
                 </p>
@@ -2154,7 +2140,7 @@ export default function FeaturedBooksPage() {
                   <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Text Version</label>
                   <div className="flex bg-[var(--bg-primary)] rounded-lg p-1 border border-[var(--border-light)]">
                     <button
-                      onClick={() => setContentMode('simplified')}
+                      onClick={async () => await contextSwitchContentMode('simplified')}
                       className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
                         contentMode === 'simplified'
                           ? 'bg-[var(--accent-primary)] text-white shadow-sm'
@@ -2164,7 +2150,7 @@ export default function FeaturedBooksPage() {
                       Simplified
                     </button>
                     <button
-                      onClick={() => setContentMode('original')}
+                      onClick={async () => await contextSwitchContentMode('original')}
                       className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
                         contentMode === 'original'
                           ? 'bg-[var(--accent-primary)] text-white shadow-sm'
@@ -2188,11 +2174,9 @@ export default function FeaturedBooksPage() {
                       return (
                         <button
                           key={level}
-                          onClick={() => {
+                          onClick={async () => {
                             if (!isDisabled) {
-                              setCefrLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
-                              // Ensure we're in simplified mode when selecting CEFR level
-                              setContentMode('simplified');
+                              await contextSwitchLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
                             }
                           }}
                           disabled={isDisabled}
@@ -2225,10 +2209,8 @@ export default function FeaturedBooksPage() {
                 <button
                   onClick={async () => {
                     setShowSettingsModal(false);
-                    // Force useEffect to re-run by updating a dependency
-                    // The useEffect will handle loading state properly
-                    setCefrLevel(cefrLevel);
-                    setContentMode(contentMode);
+                    // Phase 1, Task 1.5, Commit 3: No need to force re-trigger, context handles state
+                    // Settings are already applied via context dispatch methods
                   }}
                   className="w-full bg-[var(--accent-primary)] text-white py-2 px-4 rounded-md font-medium hover:bg-[var(--accent-secondary)] transition-all shadow-md"
                 >
