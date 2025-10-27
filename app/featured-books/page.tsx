@@ -2003,17 +2003,19 @@ export default function FeaturedBooksPage() {
         {/* Real Moby Dick Content */}
         <div className="pb-32 px-3 bg-[var(--bg-secondary)] mx-4 md:mx-8 rounded-b-lg shadow-sm border-2 border-[var(--accent-secondary)]/20 border-t-0">
 
-          {loading && (
+          {/* Loading state (Phase 1, Task 1.5, Commit 2a: Use loadState) */}
+          {contextLoadState === 'loading' && (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
               <p className="text-gray-600">Loading {selectedBook?.title} bundles...</p>
             </div>
           )}
 
-          {error && (
+          {/* Error state (Phase 1, Task 1.5, Commit 2a: Use loadState) */}
+          {contextLoadState === 'error' && contextError && (
             <div className="text-center py-12">
               <div className="bg-white border border-blue-200 rounded-lg p-6 max-w-md mx-auto shadow-lg">
-                <p className="text-[var(--accent-primary)] font-medium">{error}</p>
+                <p className="text-[var(--accent-primary)] font-medium">{contextError}</p>
                 <p className="text-gray-400 text-sm mt-2">
                   Try switching to Original or available levels
                 </p>
