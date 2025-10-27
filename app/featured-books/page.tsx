@@ -1,7 +1,24 @@
+/**
+ * Featured Books Page - Main Reading Interface
+ *
+ * Phase 3 Refactor (Component Extraction):
+ * - BookSelectionGrid: Book selection screen with grid layout (131 lines)
+ * - ReadingHeader: Back button, settings, auto-scroll status (66 lines)
+ * - SettingsModal: Content mode & CEFR level settings (157 lines)
+ * - ChapterModal: Chapter navigation modal (106 lines)
+ *
+ * Total: 4 components extracted, ~270 lines reduced from main page
+ * Page reduced from ~2,506 → 1,972 lines
+ *
+ * Architecture: All components follow explicit prop pattern (GPT-5 guidance)
+ * - No direct context access in leaf components
+ * - Props passed from page (container) to components (presentational)
+ * - All state management and side effects remain in page/AudioContext
+ */
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
