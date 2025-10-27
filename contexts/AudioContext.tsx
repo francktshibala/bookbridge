@@ -145,15 +145,23 @@ const persistLevelChange = (bookId: string, level: CEFRLevel) => {
     console.warn('[AudioContext] Failed to persist level to localStorage:', error);
   }
 
-  // Throttled DB write (300ms debounce)
+  // Throttled DB write (300ms debounce per GPT-5 guidance)
   if (levelPersistTimeout) {
     clearTimeout(levelPersistTimeout);
   }
   levelPersistTimeout = setTimeout(async () => {
     try {
-      // TODO: Integrate with reading-position service for DB persistence
-      // await readingPositionService.updateLevel(bookId, level);
-      console.log('[AudioContext] Level persisted to DB:', { bookId, level });
+      // Phase 2 Task 2.2: Persist level to DB via reading-position service
+      const savedPosition = await readingPositionService.loadPosition(bookId);
+
+      if (savedPosition) {
+        // Update level in existing position and save
+        await readingPositionService.savePosition(bookId, {
+          ...savedPosition,
+          cefrLevel: level
+        });
+        console.log('[AudioContext] Level persisted to DB:', { bookId, level });
+      }
     } catch (error) {
       console.warn('[AudioContext] Failed to persist level to DB:', error);
     }

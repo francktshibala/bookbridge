@@ -678,8 +678,6 @@ export default function FeaturedBooksPage() {
   // Phase 1, Task 1.5, Commit 3: No-op setters removed, handlers now dispatch to context
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showChapterModal, setShowChapterModal] = useState(false);
-  // Commit 5: showContinueReading now derived from context.resumeInfo
-  const showContinueReading = resumeInfo !== null && resumeInfo.hoursSinceLastRead < 24;
 
   // AI Chat Modal state
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
@@ -762,6 +760,51 @@ export default function FeaturedBooksPage() {
       }
     };
   }, []);
+
+  // Phase 2, Task 2.5: Restore last-read book on mount (GPT-5 fix)
+  // Root cause: Previous effect ran too early without checking loadState
+  // Solution: Only dispatch selectBook when context is idle
+  const hasAttemptedRestoreRef = useRef(false);
+  useEffect(() => {
+    // One-time execution guard
+    if (hasAttemptedRestoreRef.current) return;
+    hasAttemptedRestoreRef.current = true;
+
+    // Early returns: wait for the right moment
+    const lastBookId = localStorage.getItem('lastReadBookId');
+    if (!lastBookId) {
+      console.log('📚 No last-read book found');
+      return;
+    }
+    if (selectedBook) {
+      console.log('📚 Book already selected, skipping restore');
+      return;
+    }
+
+    // Find the book in FEATURED_BOOKS
+    const book = FEATURED_BOOKS.find(b => b.id === lastBookId);
+    if (!book) {
+      console.log('📚 Last-read book not found in FEATURED_BOOKS:', lastBookId);
+      return;
+    }
+
+    // Only dispatch when context is idle (GPT-5: wait for AudioContext to be ready)
+    if (loadState === 'idle') {
+      console.log('📚 Restoring last-read book:', book.title);
+      void contextSelectBook(book);
+      // Note: showBookSelection will be hidden by the separate effect below
+    }
+  }, [loadState, selectedBook, contextSelectBook]);
+
+  // Phase 2, Task 2.5: Auto-hide book selection grid (GPT-5 fix)
+  // Root cause: Grid stayed visible during context loading
+  // Solution: Hide grid as soon as load begins or book is selected
+  useEffect(() => {
+    if (selectedBook || loadState === 'loading' || loadState === 'ready') {
+      setShowBookSelection(false);
+      console.log('📚 Hiding book selection grid - loadState:', loadState);
+    }
+  }, [selectedBook, loadState]);
 
   // Phase 1, Task 1.5, Commit 4: checkAvailableLevels REMOVED
   // AudioContext now handles availability checking via loadBookData()
@@ -847,19 +890,7 @@ export default function FeaturedBooksPage() {
             }
           });
 
-          // Commit 5: Scroll to saved position (context already restored currentSentenceIndex)
-          if (contextCurrentSentenceIndex > 0) {
-            setTimeout(() => {
-              const sentenceElement = document.querySelector(`[data-sentence-index="${contextCurrentSentenceIndex}"]`);
-              if (sentenceElement) {
-                sentenceElement.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                });
-                console.log('📍 Scrolled to context sentence:', contextCurrentSentenceIndex);
-              }
-            }, 1000);
-          }
+          // Phase 2 Task 2.4: Removed setTimeout hack - scroll will happen in dedicated useEffect below
         }
       } catch (error) {
         console.error('Error initializing page side effects:', error);
@@ -876,6 +907,36 @@ export default function FeaturedBooksPage() {
       audioManagerRef.current?.destroy();
     };
   }, [selectedBook, bundleData, loadState]);
+
+  // Phase 2 Task 2.4a: Scroll to saved position using state guards (no setTimeout)
+  // GPT-5 guidance: Replace "Wait X ms before scroll" with loadState gates
+  const didAutoScrollRef = useRef<string | null>(null); // Track last scrolled book+level
+  useEffect(() => {
+    const scrollKey = `${selectedBook?.id}-${cefrLevel}-${contextCurrentSentenceIndex}`;
+
+    // State gates: only scroll when context is fully loaded AND we haven't scrolled yet for this book/level/position
+    if (
+      loadState === 'ready' &&
+      bundleData &&
+      contextCurrentSentenceIndex > 0 &&
+      resumeInfo &&
+      didAutoScrollRef.current !== scrollKey
+    ) {
+      // Use requestAnimationFrame for DOM readiness (GPT-5: render-readiness without polling)
+      requestAnimationFrame(() => {
+        const sentenceElement = document.querySelector(`[data-sentence-index="${contextCurrentSentenceIndex}"]`);
+        if (sentenceElement) {
+          sentenceElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+          console.log('📍 [Phase 2] Scrolled to saved position (state-gated):', contextCurrentSentenceIndex);
+          didAutoScrollRef.current = scrollKey; // Mark as scrolled
+        }
+      });
+    }
+  }, [loadState, bundleData, contextCurrentSentenceIndex, resumeInfo, selectedBook?.id, cefrLevel]);
+
   // Audio playback functions
   const findBundleForSentence = (sentenceIndex: number): BundleData | null => {
     if (!bundleData) return null;
@@ -949,14 +1010,13 @@ export default function FeaturedBooksPage() {
         nextBundle.sentences.map(s => `s${s.sentenceIndex}: "${s.text?.substring(0, 25)}..."`).join(', ')
       );
 
-      setTimeout(() => {
-        if (isPlayingRef.current) { // Check again before advancing
-          console.log(`✅ Still playing, advancing to sentence ${nextSentenceIndex}`);
-          handlePlaySequential(nextSentenceIndex);
-        } else {
-          console.log(`⛔ Playback was stopped, not advancing to next bundle`);
-        }
-      }, 100);
+      // Phase 2 Task 2.4d: Removed setTimeout delay - bundle already complete, can advance immediately
+      if (isPlayingRef.current) { // Check before advancing
+        console.log(`✅ Still playing, advancing to sentence ${nextSentenceIndex}`);
+        handlePlaySequential(nextSentenceIndex);
+      } else {
+        console.log(`⛔ Playback was stopped, not advancing to next bundle`);
+      }
     } else {
       console.log('🎉 All bundles complete!');
       setIsPlaying(false);
@@ -1056,12 +1116,8 @@ export default function FeaturedBooksPage() {
           setIsPlaying(true);
           isPlayingRef.current = true; // Make sure the play flag is set
 
-          // Force trigger highlighting state update by re-setting current sentence
-          const currentSentence = currentSentenceIndex;
-          setCurrentSentenceIndex(-1); // Clear briefly
-          setTimeout(() => {
-            setCurrentSentenceIndex(currentSentence); // Restore to trigger re-render
-          }, 10);
+          // Phase 2 Task 2.4b: Removed force-highlighting setTimeout hack
+          // Highlighting responds naturally to isPlaying + currentSentenceIndex state
 
           // Apply current playback speed
           audioManagerRef.current.setPlaybackRate(playbackSpeed);
@@ -1191,27 +1247,6 @@ export default function FeaturedBooksPage() {
     }
   }, [cefrLevel, playbackSpeed, contentMode]);
 
-  // Commit 5: Continue reading - position already set by context
-  const continueReading = async () => {
-    contextClearResumeInfo(); // Dismiss modal
-    // Context already restored currentSentenceIndex, just start playing
-    await handlePlaySequential(contextCurrentSentenceIndex);
-  };
-
-  // Commit 5: Start over - reset position via context and player
-  const startFromBeginning = async () => {
-    contextClearResumeInfo(); // Dismiss modal
-    setCurrentSentenceIndex(0);
-    setCurrentChapter(1);
-
-    // Reset position in database
-    if (playerRef.current) {
-      await playerRef.current.resetPosition();
-    }
-
-    await handlePlaySequential(0);
-  };
-
   // Jump to any sentence (by absolute sentence index)
   const jumpToSentence = async (targetIndex: number) => {
     // Bounds checking to prevent out-of-range access
@@ -1245,14 +1280,10 @@ export default function FeaturedBooksPage() {
             const chapter = chapters.find(c => c.chapterNumber === chapterNum);
             if (!chapter) return;
 
-            // Stop current playback first
+            // Phase 2 Task 2.4c: Removed setTimeout delay - handleStop() is synchronous
             handleStop();
-
-            // Wait a moment then jump to chapter
-            setTimeout(async () => {
-              setCurrentSentenceIndex(chapter.startSentence);
-              await jumpToSentence(chapter.startSentence);
-            }, 100);
+            setCurrentSentenceIndex(chapter.startSentence);
+            jumpToSentence(chapter.startSentence);
           }}
           value={getCurrentChapter().current}
         >
@@ -1454,6 +1485,8 @@ export default function FeaturedBooksPage() {
                   transition={{ delay: index * 0.1 }}
                   className="group cursor-pointer"
                   onClick={async () => {
+                    // Phase 2, Task 2.5: Save last-read book to localStorage
+                    localStorage.setItem('lastReadBookId', book.id);
                     await contextSelectBook(book);
                     setShowBookSelection(false);
                   }}
@@ -1498,6 +1531,8 @@ export default function FeaturedBooksPage() {
                         </button>
                         <button
                           onClick={async () => {
+                            // Phase 2, Task 2.5: Save last-read book to localStorage
+                            localStorage.setItem('lastReadBookId', book.id);
                             await contextSelectBook(book);
                             setShowBookSelection(false);
                           }}
@@ -1914,22 +1949,19 @@ export default function FeaturedBooksPage() {
                       onClick={async () => {
                         setShowChapterModal(false);
 
-                        // Stop current playback first
+                        // Phase 2 Task 2.4c: Removed nested setTimeout delays
+                        // GPT-5: No timing hacks - operations are synchronous, scroll uses RAF
                         handleStop();
+                        setCurrentSentenceIndex(chapter.startSentence);
 
-                        // Wait a moment then jump to chapter and continue playing
-                        setTimeout(async () => {
-                          setCurrentSentenceIndex(chapter.startSentence);
+                        // Force auto-scroll to chapter start immediately
+                        autoScrollEnabledRef.current = true;
+                        setAutoScrollPaused(false);
 
-                          // Force auto-scroll to chapter start immediately
-                          autoScrollEnabledRef.current = true;
-                          setAutoScrollPaused(false);
-
-                          // Jump to chapter and continue playing
-                          await jumpToSentence(chapter.startSentence);
-
-                          // Ensure the sentence element scrolls into view
-                          setTimeout(() => {
+                        // Jump to chapter and continue playing
+                        jumpToSentence(chapter.startSentence).then(() => {
+                          // Use RAF for DOM-readiness (GPT-5 guidance)
+                          requestAnimationFrame(() => {
                             const sentenceElement = document.querySelector(`[data-sentence-index="${chapter.startSentence}"]`);
                             if (sentenceElement) {
                               sentenceElement.scrollIntoView({
@@ -1937,8 +1969,8 @@ export default function FeaturedBooksPage() {
                                 block: 'center'
                               });
                             }
-                          }, 200);
-                        }, 100);
+                          });
+                        });
                       }}
                       className={`w-full text-left p-4 rounded-lg border transition-all ${
                         getCurrentChapter().current === chapter.chapterNumber
@@ -1960,49 +1992,6 @@ export default function FeaturedBooksPage() {
                       </div>
                     </button>
                   ))}
-                </div>
-              </div>
-
-            </div>
-          </div>
-        )}
-
-        {/* Continue Reading Modal - Commit 5: Use context.resumeInfo */}
-        {showContinueReading && resumeInfo && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
-
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900">Continue Reading?</h2>
-                <button
-                  onClick={() => contextClearResumeInfo()}
-                  className="text-gray-400 hover:text-gray-600 text-xl"
-                >
-                  ×
-                </button>
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-6">
-                <p className="text-gray-600 mb-6">
-                  You were reading sentence {resumeInfo.sentenceIndex + 1} of {resumeInfo.totalSentences}.
-                  Would you like to continue where you left off?
-                </p>
-
-                <div className="flex gap-3">
-                  <button
-                    onClick={startFromBeginning}
-                    className="flex-1 py-3 px-4 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-all"
-                  >
-                    Start Over
-                  </button>
-                  <button
-                    onClick={continueReading}
-                    className="flex-1 py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all font-medium"
-                  >
-                    Continue Reading
-                  </button>
                 </div>
               </div>
 

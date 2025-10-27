@@ -667,6 +667,339 @@ export default function FeaturedBooksPage() {
 
 ---
 
+## 🔧 Phase 2: Navigation & Resume Patterns (Phase 2 Refactor - Jan 2025)
+
+### Overview: Eliminating Timing Hacks
+
+**Goal:** Fix navigation and resume bugs by replacing all `setTimeout`-based correctness hacks with proper state guards and DOM readiness patterns.
+
+**Phase 2 Built On:**
+- Phase 1's AudioContext SSoT foundation
+- Added: Level persistence, Continue modal SSoT alignment, state guard patterns
+
+**Key Achievement:** Removed **6 setTimeout correctness hacks** → **0** (only 1 UX debounce remains)
+
+### Pattern 1: State Guard Pattern
+
+Replace timing delays with explicit state readiness checks.
+
+**Problem (Before Phase 2):**
+```typescript
+// ❌ Hope DOM is ready after 1000ms
+setTimeout(() => {
+  const element = document.querySelector('[data-sentence]');
+  element?.scrollIntoView();
+}, 1000);
+```
+
+**Solution (After Phase 2):**
+```typescript
+// ✅ Wait for verified state readiness
+const didAutoScrollRef = useRef<string | null>(null);
+
+useEffect(() => {
+  const scrollKey = `${selectedBook?.id}-${cefrLevel}-${sentenceIndex}`;
+
+  // State gates: only execute when context is fully loaded
+  if (
+    loadState === 'ready' &&      // ← AudioContext finished loading
+    bundleData &&                   // ← Data present
+    resumeInfo &&                   // ← Resume info available
+    didAutoScrollRef.current !== scrollKey  // ← Haven't scrolled yet
+  ) {
+    requestAnimationFrame(() => {   // ← RAF for DOM readiness
+      const element = document.querySelector(`[data-sentence="${sentenceIndex}"]`);
+      element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      didAutoScrollRef.current = scrollKey; // Mark as complete
+    });
+  }
+}, [loadState, bundleData, resumeInfo, selectedBook?.id, cefrLevel, sentenceIndex]);
+```
+
+**Benefits:**
+- ✅ Deterministic execution (state-driven, not time-driven)
+- ✅ Works on slow and fast devices equally well
+- ✅ Clear dependency chain in useEffect
+- ✅ One-time guard prevents duplicate operations
+
+**When to Use:**
+- Any operation that depends on AudioContext data being loaded
+- DOM operations that need rendered elements
+- User-initiated actions that require stable state
+
+### Pattern 2: requestAnimationFrame for DOM Readiness
+
+Replace arbitrary delays with browser's render callback.
+
+**Problem:**
+```typescript
+// ❌ Arbitrary delay hoping DOM is ready
+setTimeout(() => {
+  const el = document.querySelector('[data-sentence]');
+  el?.scrollIntoView();
+}, 200);
+```
+
+**Solution:**
+```typescript
+// ✅ Execute after browser paints
+requestAnimationFrame(() => {
+  const el = document.querySelector('[data-sentence]');
+  el?.scrollIntoView();
+});
+```
+
+**Why RAF?**
+- Executes after React render + browser paint
+- Guarantees DOM availability
+- No arbitrary timeout guessing
+- Synchronizes with browser's refresh cycle
+
+**Common Use Cases:**
+- Scrolling to elements after render
+- Reading DOM measurements
+- Triggering CSS animations
+- Focus management
+
+### Pattern 3: One-Time Guard Pattern
+
+Prevent duplicate operations during rapid state changes.
+
+**Problem:**
+```typescript
+// ❌ useEffect runs multiple times, scrolls repeatedly
+useEffect(() => {
+  if (sentenceIndex > 0) {
+    scrollToSentence(sentenceIndex);
+  }
+}, [sentenceIndex, loadState, bundleData]); // Multiple triggers
+```
+
+**Solution:**
+```typescript
+// ✅ Track execution with ref
+const didScrollRef = useRef<string | null>(null);
+
+useEffect(() => {
+  const key = `${bookId}-${sentenceIndex}`;
+
+  if (sentenceIndex > 0 && didScrollRef.current !== key) {
+    scrollToSentence(sentenceIndex);
+    didScrollRef.current = key; // Mark as executed
+  }
+}, [bookId, sentenceIndex, loadState, bundleData]);
+```
+
+**Key Points:**
+- Use unique key (e.g., `bookId-sentenceIndex-level`)
+- Update ref AFTER successful execution
+- Reset ref when book/level changes if needed
+
+### Pattern 4: Debounced DB Persistence
+
+Immediate local writes, throttled remote saves.
+
+**Implementation (AudioContext):**
+```typescript
+const persistLevelChange = (bookId: string, level: CEFRLevel) => {
+  // ✅ Immediate localStorage write (fast, synchronous)
+  try {
+    localStorage.setItem(`bookbridge-book-${bookId}-level`, level);
+  } catch (error) {
+    console.warn('[AudioContext] Failed to persist level to localStorage:', error);
+  }
+
+  // ✅ Throttled DB write (300ms debounce) - prevents excessive API calls
+  if (levelPersistTimeout) {
+    clearTimeout(levelPersistTimeout);
+  }
+  levelPersistTimeout = setTimeout(async () => {
+    try {
+      const savedPosition = await readingPositionService.loadPosition(bookId);
+      if (savedPosition) {
+        await readingPositionService.savePosition(bookId, {
+          ...savedPosition,
+          cefrLevel: level
+        });
+      }
+    } catch (error) {
+      console.warn('[AudioContext] Failed to persist level to DB:', error);
+    }
+  }, 300);
+};
+```
+
+**Why This Pattern?**
+- localStorage: Instant feedback, works offline
+- DB write: Throttled to reduce server load
+- setTimeout here is **valid** (UX debounce, not correctness)
+
+**Valid setTimeout Use Cases:**
+- ✅ Debouncing expensive operations (DB writes, API calls)
+- ✅ Auto-dismiss toasts/notifications
+- ✅ User input throttling (search-as-you-type)
+- ❌ NOT for correctness/ordering ("wait for DOM", "delay after load")
+
+### Phase 2 Fixes Applied
+
+#### 1. Scroll to Saved Position
+**Before**: `setTimeout(() => scroll(), 1000)` - arbitrary 1s delay
+**After**: State guard + RAF pattern (executes when `loadState === 'ready'`)
+
+#### 2. Force Highlighting
+**Before**: `setState(-1); setTimeout(() => setState(val), 10)` - forced re-render hack
+**After**: Removed - React handles it naturally with proper state dependencies
+
+#### 3. Chapter Jump Delays
+**Before**: `setTimeout(() => jump(), 100)` - arbitrary delays (2 locations)
+**After**: Synchronous operations + RAF for scroll only
+
+#### 4. Next Bundle Advancement
+**Before**: `setTimeout(() => advance(), 100)` - arbitrary delay
+**After**: Immediate execution - bundle completion is deterministic
+
+#### 5. Nested Scroll Delays
+**Before**: `setTimeout(() => { ... setTimeout(() => scroll(), 200) }, 100)` - nested timing hacks
+**After**: Promise.then + RAF pattern
+
+### Level Persistence Flow
+
+```
+User switches level (A1 → A2)
+         ↓
+AudioContext.switchLevel(A2)
+         ↓
+persistLevelChange(bookId, A2)
+         ↓
+┌────────────────────┬────────────────────┐
+│ localStorage       │ Database           │
+│ (Immediate)        │ (300ms debounce)   │
+│                    │                    │
+│ setItem(key, A2)   │ setTimeout(() => { │
+│ ✅ Done in <1ms    │   savePosition()   │
+│                    │ }, 300)            │
+│                    │ ✅ Done after 300ms│
+└────────────────────┴────────────────────┘
+         ↓
+User refreshes page
+         ↓
+AudioContext.loadBookData()
+         ↓
+readingPositionService.loadPosition()
+         ↓
+         ├─→ Try DB first (cross-device sync)
+         └─→ Fallback to localStorage if DB unavailable
+         ↓
+Restores: cefrLevel = A2 ✅
+```
+
+### Continue Reading Modal Flow
+
+```
+User returns to page
+         ↓
+AudioContext loads saved position (Phase 1)
+         ↓
+Sets resumeInfo {
+  sentenceIndex, chapter,
+  hoursSinceLastRead
+}
+         ↓
+Page reads: resumeInfo !== null
+         ↓
+Shows "Continue Reading?" modal
+         ↓
+┌─────────────────┬─────────────────────┐
+│ Continue Button │ Start Over Button   │
+│                 │                     │
+│ Page calls:     │ Page calls:         │
+│ contextClearRe  │ contextClearRe      │
+│  sumeInfo()     │  sumeInfo()         │
+│                 │ contextSeek(0)      │
+│ handlePlaySeq   │ playerRef.reset     │
+│  (currentIdx)   │  Position()         │
+│                 │ handlePlaySeq(0)    │
+└─────────────────┴─────────────────────┘
+         ↓
+Audio plays from chosen position
+```
+
+**Key Improvement (Phase 2):**
+- `startFromBeginning()` now uses `context.seek(0)` instead of page-level `setState(0)`
+- Follows SSoT pattern - page dispatches, context owns state
+
+### Testing Checklist (Phase 2 Validation)
+
+#### Resume After Refresh
+1. Play audio to sentence 50
+2. Refresh page (Cmd+R / Ctrl+R)
+3. ✅ **Expected**: Continue Reading modal appears immediately (no delay)
+4. ✅ **Expected**: Click Continue → plays from sentence 50 instantly
+
+#### Navigate Away/Return
+1. Select book at A2 level, play to sentence 30
+2. Navigate to home page
+3. Return to Featured Books
+4. ✅ **Expected**: Still on A2 level (persisted)
+5. ✅ **Expected**: Position at sentence 30 (no reload flash)
+
+#### Rapid Level Switches
+1. Switch A1 → A2 → B1 rapidly (3 clicks in 1 second)
+2. ✅ **Expected**: Only B1 loads (latest request wins)
+3. ✅ **Expected**: No infinite spinner
+4. ✅ **Expected**: Console shows 2 "stale_apply_prevented" logs (A1, A2 cancelled)
+
+#### Continue Modal Correctness
+1. Read to sentence 100, wait 1 hour, return
+2. ✅ **Expected**: Modal shows "sentence 100" correctly
+3. Click "Continue"
+4. ✅ **Expected**: Plays from sentence 100 (not 0)
+5. Click "Start Over" instead
+6. ✅ **Expected**: Resets to sentence 0, plays from beginning
+
+### Metrics
+
+| Metric | Phase 1 | Phase 2 | Total |
+|--------|---------|---------|-------|
+| **setTimeout Hacks Removed** | 0 | 6 → 0 | 6 removed |
+| **Lines Removed** | -414 | -55 | -469 |
+| **Lines Added** | +209 | +67 | +276 |
+| **Net Reduction** | -205 | -12 (net +12 for guards) | -193 |
+| **Commits** | 15 | 3 | 18 |
+| **Build Errors** | 0 | 0 | 0 |
+
+### Key Learnings (Phase 2)
+
+1. **State Guards > Timing Delays**
+   - Timing: "Hope it's ready after 1000ms" (brittle, breaks on slow devices)
+   - Guards: "Execute when `loadState === 'ready'`" (deterministic, reliable)
+
+2. **requestAnimationFrame for DOM Ops**
+   - Executes after browser paint
+   - Guarantees DOM availability
+   - No arbitrary timeout guessing
+
+3. **One-Time Guards Prevent Duplicates**
+   - useEffect runs on every dependency change
+   - Track execution with ref to prevent repeats
+   - Use unique keys for state combinations
+
+4. **Trust React's State Management**
+   - Forced re-renders are code smells
+   - If highlighting doesn't update, fix dependencies - don't hack around React
+
+5. **Debounce DB, Not localStorage**
+   - localStorage: Fast, synchronous → write immediately
+   - Database: Expensive, async → throttle with debounce
+
+### References
+
+- **Completion Report:** `docs/architecture/PHASE_2_COMPLETION_REPORT.md` (553 lines)
+- **Implementation:** Branch `refactor/featured-books-phase-2` (3 commits, all pushed)
+- **Patterns Used:** State guards, RAF, one-time guards, debounced persistence
+
+---
+
 ### State Management Overview (DEPRECATED - See Phase 1 Refactor Above)
 
 > **⚠️ DEPRECATED:** This section describes the old page-scoped state management that has been replaced by AudioContext (see Phase 1 Refactor section above). Keeping for historical reference only.
