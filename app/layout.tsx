@@ -19,6 +19,7 @@ import { PerformanceProvider } from '@/components/PerformanceProvider';
 import DeploymentInitializer from '@/components/DeploymentInitializer';
 import { PWAAnalyticsProvider } from '@/components/PWAAnalyticsProvider';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { AudioProvider } from '@/contexts/AudioContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -106,8 +107,9 @@ export default function RootLayout({
         />
         
         <ThemeProvider>
-          <SimpleAuthProvider>
-            <AccessibilityProvider>
+          <AudioProvider>
+            <SimpleAuthProvider>
+              <AccessibilityProvider>
               <KeyboardNavigationProvider>
                 <VoiceNavigationWrapper>
                   <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
@@ -153,8 +155,9 @@ export default function RootLayout({
                   </PerformanceProvider>
                 </VoiceNavigationWrapper>
               </KeyboardNavigationProvider>
-            </AccessibilityProvider>
-          </SimpleAuthProvider>
+              </AccessibilityProvider>
+            </SimpleAuthProvider>
+          </AudioProvider>
         </ThemeProvider>
       </body>
     </html>
