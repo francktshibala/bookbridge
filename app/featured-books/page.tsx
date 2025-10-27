@@ -2026,7 +2026,7 @@ export default function FeaturedBooksPage() {
 
         {/* Continue Reading Modal - Commit 5: Use context.resumeInfo */}
         {showContinueReading && resumeInfo && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-4">
             <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
 
               {/* Modal Header */}
