@@ -11,6 +11,10 @@ import {
   SINGLE_LEVEL_BOOKS,
 } from '@/lib/config/books';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
+import { loadBookBundles } from '@/lib/services/book-loader';
+import { checkLevelAvailability } from '@/lib/services/availability';
+import { saveLevelToStorage } from '@/lib/services/level-persistence';
+import { determineFinalLevel, calculateHoursSinceLastRead } from '@/lib/services/audio-transforms';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -138,12 +142,8 @@ const logTelemetry = (event: TelemetryEvent) => {
 // Throttled level persistence (GPT-5 improvement #4)
 let levelPersistTimeout: NodeJS.Timeout | null = null;
 const persistLevelChange = (bookId: string, level: CEFRLevel) => {
-  // Immediate localStorage write
-  try {
-    localStorage.setItem(`bookbridge-book-${bookId}-level`, level);
-  } catch (error) {
-    console.warn('[AudioContext] Failed to persist level to localStorage:', error);
-  }
+  // Phase 4: Use pure localStorage service (extracted for testability)
+  saveLevelToStorage(bookId, level);
 
   // Throttled DB write (300ms debounce per GPT-5 guidance)
   if (levelPersistTimeout) {
@@ -516,122 +516,29 @@ export function AudioProvider({ children }: AudioProviderProps) {
         return;
       }
 
-      // Determine final level parameter
-      let levelParam = mode === 'original' ? 'original' : level;
+      // Phase 4: Use pure transform to determine final level with fallback logic
+      const levelParam = determineFinalLevel(mode, level, availability, bookId);
 
-      // Apply fallback logic based on availability
-      if (availability && levelParam !== 'original' && !availability[levelParam.toLowerCase()]) {
-        const bookDefaultLevel = getBookDefaultLevel(bookId);
-        console.log(`📋 [AudioContext] Level ${levelParam} not available, using: ${bookDefaultLevel}`);
-        levelParam = bookDefaultLevel as any;
-        setCefrLevel(bookDefaultLevel as CEFRLevel);
+      // Update state if fallback was applied
+      if (levelParam !== 'original' && levelParam !== level) {
+        setCefrLevel(levelParam);
       }
 
-      let data: RealBundleApiResponse | null = null;
-
-      // Handle original content differently
-      if (mode === 'original' && levelParam === 'original') {
-        // GPT-5 improvement #2: Enforce requestId check
-        if (currentRequestIdRef.current !== reqId) {
-          logTelemetry({
-            type: 'stale_apply_prevented',
-            bookId,
-            requestId: reqId,
-            reason: 'Request superseded before original content fetch'
-          });
-          return;
-        }
-
-        // Fetch original text from book content API
-        const contentResponse = await fetch(`/api/books/${bookId}/content`, {
-          cache: 'no-store',
-          signal: abortController.signal
+      // GPT-5 improvement #2: Enforce requestId check before fetch
+      if (currentRequestIdRef.current !== reqId) {
+        logTelemetry({
+          type: 'stale_apply_prevented',
+          bookId,
+          level,
+          requestId: reqId,
+          reason: 'Request superseded before book data fetch'
         });
-
-        if (contentResponse.ok) {
-          const contentData = await contentResponse.json();
-
-          // Find the book info
-          const bookInfo = FEATURED_BOOKS.find(b => b.id === bookId);
-
-          // Transform original content to bundle format
-          const sentences = contentData.content.split(/[.!?]+/).filter((s: string) => s.trim().length > 0);
-          console.log('🚨 [AudioContext] Using text-splitting fallback path! This breaks on Mr./Dr./etc.');
-          const sentencesPerBundle = 4;
-          const bundles: BundleData[] = [];
-
-          for (let i = 0; i < sentences.length; i += sentencesPerBundle) {
-            const bundleSentences: BundleSentence[] = [];
-            const bundleTexts = sentences.slice(i, Math.min(i + sentencesPerBundle, sentences.length));
-
-            bundleTexts.forEach((text: string, index: number) => {
-              const cleanText = text.trim();
-              if (cleanText) {
-                bundleSentences.push({
-                  sentenceId: `original-${i + index}`,
-                  sentenceIndex: i + index,
-                  text: cleanText + (cleanText.match(/[.!?]$/) ? '' : '.'),
-                  startTime: index * 2,
-                  endTime: (index + 1) * 2,
-                  wordTimings: []
-                });
-              }
-            });
-
-            if (bundleSentences.length > 0) {
-              bundles.push({
-                bundleId: `original-bundle-${bundles.length}`,
-                bundleIndex: bundles.length,
-                audioUrl: '', // No audio for original text
-                totalDuration: bundleSentences.length * 2,
-                sentences: bundleSentences
-              });
-            }
-          }
-
-          data = {
-            success: true,
-            bookId: bookId,
-            title: contentData.title || bookInfo?.title || 'Book',
-            author: contentData.author || bookInfo?.author || 'Author',
-            level: 'original',
-            bundleCount: bundles.length,
-            totalSentences: sentences.length,
-            bundles: bundles,
-            audioType: 'none'
-          };
-        }
-      } else {
-        // Handle simplified content
-        // GPT-5 improvement #2: Enforce requestId check
-        if (currentRequestIdRef.current !== reqId) {
-          logTelemetry({
-            type: 'stale_apply_prevented',
-            bookId,
-            level,
-            requestId: reqId,
-            reason: 'Request superseded before simplified content fetch'
-          });
-          return;
-        }
-
-        // Use dynamic API endpoint detection
-        const apiEndpoint = getBookApiEndpoint(bookId, levelParam);
-        const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${levelParam}&t=${Date.now()}`;
-
-        console.log(`🌐 [AudioContext] Fetching from: ${apiUrl}`);
-
-        const response = await fetch(apiUrl, {
-          cache: 'no-store',
-          signal: abortController.signal
-        });
-
-        if (response.ok) {
-          data = await response.json();
-        } else {
-          throw new Error(`Failed to fetch book data: ${response.status} ${response.statusText}`);
-        }
+        return;
       }
+
+      // Phase 4: Use pure data fetching service (extracted business logic)
+      console.log(`🌐 [AudioContext] Loading book via service: ${bookId}, level: ${levelParam}, mode: ${mode}`);
+      const data = await loadBookBundles(bookId, levelParam, mode, abortController.signal);
 
       // GPT-5 improvement #2: Final requestId check before state update
       if (currentRequestIdRef.current !== reqId || abortController.signal.aborted) {
@@ -667,10 +574,8 @@ export function AudioProvider({ children }: AudioProviderProps) {
                 setPlaybackSpeed(savedPosition.playbackSpeed);
               }
 
-              // Calculate hours since last read for UI
-              const hoursSinceLastRead = savedPosition.lastAccessed
-                ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
-                : 999;
+              // Phase 4: Use pure transform to calculate hours since last read
+              const hoursSinceLastRead = calculateHoursSinceLastRead(savedPosition.lastAccessed);
 
               // Set resume info for UI toast/modal
               setResumeInfo({
@@ -757,91 +662,46 @@ export function AudioProvider({ children }: AudioProviderProps) {
     signal: AbortSignal,
     reqId: string
   ): Promise<{ [key: string]: boolean } | undefined> => {
-    const availability: { [key: string]: boolean } = {};
-
-    // Handle multi-level books
-    if (MULTI_LEVEL_BOOKS[bookId]) {
-      for (const level of MULTI_LEVEL_BOOKS[bookId]) {
-        try {
-          const apiEndpoint = getBookApiEndpoint(bookId, level);
-          const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${level}&t=${Date.now()}`;
-
-          const response = await fetch(apiUrl, {
-            cache: 'no-store',
-            signal
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            availability[level.toLowerCase()] = data.success === true;
-          } else {
-            availability[level.toLowerCase()] = false;
-          }
-        } catch (error: any) {
-          if (error.name === 'AbortError') {
-            console.log(`🛑 [AudioContext] Availability fetch aborted for ${level}`);
-            return;
-          }
-          availability[level.toLowerCase()] = false;
-        }
-      }
-    }
-    // Handle single-level books
-    else if (SINGLE_LEVEL_BOOKS[bookId]) {
-      const bookLevel = SINGLE_LEVEL_BOOKS[bookId];
-      availability[bookLevel.toLowerCase()] = true;
-      console.log(`📋 [AudioContext] Single-level book ${bookId} set to ${bookLevel}`);
-    }
-
-    // Handle original content check for all books
     try {
-      const response = await fetch(`/api/books/${bookId}/content`, {
-        cache: 'no-store',
-        signal
-      });
-      availability['original'] = response.ok;
-    } catch (error: any) {
-      if (error.name === 'AbortError') {
-        console.log(`🛑 [AudioContext] Original content check aborted`);
+      // Phase 4: Use pure availability checking service (extracted business logic)
+      const result = await checkLevelAvailability(bookId, signal);
+
+      // GPT-5 improvement #2: Enforce requestId check before state update
+      if (currentRequestIdRef.current !== reqId) {
+        logTelemetry({
+          type: 'stale_apply_prevented',
+          bookId,
+          requestId: reqId,
+          reason: 'Request superseded during availability check'
+        });
         return;
       }
-      availability['original'] = false;
+
+      // Final check before mutating state
+      if (currentRequestIdRef.current === reqId) {
+        setAvailableLevels(result.availability);
+        setCurrentBookAvailableLevels(result.bookLevels);
+      } else {
+        logTelemetry({
+          type: 'stale_apply_prevented',
+          bookId,
+          requestId: reqId,
+          reason: 'Request superseded before setting availability'
+        });
+        return;
+      }
+
+      console.log(`📋 [AudioContext] Available levels for ${bookId}:`, result.availability);
+      console.log(`📋 [AudioContext] CEFR levels for ${bookId}:`, result.bookLevels);
+
+      return result.availability;
+    } catch (error: any) {
+      if (error.name === 'AbortError') {
+        console.log(`🛑 [AudioContext] Availability check aborted`);
+        return;
+      }
+      throw error;
     }
-
-    // GPT-5 improvement #2: Enforce requestId check before state update
-    if (currentRequestIdRef.current !== reqId) {
-      logTelemetry({
-        type: 'stale_apply_prevented',
-        bookId,
-        requestId: reqId,
-        reason: 'Request superseded during availability check'
-      });
-      return;
-    }
-
-    // Extract available levels for the current book (excluding 'original')
-    const bookLevels = Object.entries(availability)
-      .filter(([level, available]) => level !== 'original' && available)
-      .map(([level]) => level.toUpperCase());
-
-    // Final check before mutating state
-    if (currentRequestIdRef.current === reqId) {
-      setAvailableLevels(availability);
-      setCurrentBookAvailableLevels(bookLevels);
-    } else {
-      logTelemetry({
-        type: 'stale_apply_prevented',
-        bookId,
-        requestId: reqId,
-        reason: 'Request superseded before setting availability'
-      });
-      return;
-    }
-
-    console.log(`📋 [AudioContext] Available levels for ${bookId}:`, availability);
-    console.log(`📋 [AudioContext] CEFR levels for ${bookId}:`, bookLevels);
-
-    return availability;
   };
 
   // -------------------------------------------------------------------------
