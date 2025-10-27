@@ -630,15 +630,15 @@ const GREAT_GATSBY_CHAPTERS = [
 
 export default function FeaturedBooksPage() {
   // =========================================================================
-  // AUDIO CONTEXT (Phase 1, Task 1.5, Commit 1: Read-only wiring)
+  // AUDIO CONTEXT (Phase 1, Task 1.5, Commit 2d: Use directly without prefixes)
   // =========================================================================
-  const audioContext = useAudioContext();
-  // Destructure for easier access (read-only for now, will replace local state)
   const {
-    selectedBook: contextSelectedBook,
-    cefrLevel: contextCefrLevel,
-    contentMode: contextContentMode,
-    bundleData: contextBundleData,
+    // Book & Content (no prefix - used directly)
+    selectedBook,
+    cefrLevel,
+    contentMode,
+    bundleData,
+    // Still prefixed (will convert in later commits)
     availableLevels: contextAvailableLevels,
     currentBookAvailableLevels: contextCurrentBookAvailableLevels,
     isPlaying: contextIsPlaying,
@@ -648,10 +648,11 @@ export default function FeaturedBooksPage() {
     playbackTime: contextPlaybackTime,
     totalTime: contextTotalTime,
     playbackSpeed: contextPlaybackSpeed,
-    loadState: contextLoadState,
-    loading: contextLoading,
-    error: contextError,
-    // Actions
+    // Loading state (no prefix)
+    loadState,
+    loading,
+    error,
+    // Actions (keep context prefix)
     selectBook: contextSelectBook,
     switchLevel: contextSwitchLevel,
     switchContentMode: contextSwitchContentMode,
@@ -664,24 +665,15 @@ export default function FeaturedBooksPage() {
     previousChapter: contextPreviousChapter,
     jumpToChapter: contextJumpToChapter,
     unload: contextUnload,
-  } = audioContext;
+  } = useAudioContext();
 
   // =========================================================================
-  // LOCAL STATE (Phase 1, Task 1.5, Commit 2c: Book/level now from context)
+  // LOCAL STATE (Phase 1, Task 1.5, Commit 2d: No longer need aliases)
   // =========================================================================
-  // Book selection state (Phase 1, Task 1.5, Commit 2c: Removed - now from context)
-  // const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null); // REMOVED
+  // selectedBook, cefrLevel, contentMode now destructured directly from context above
   const [showBookSelection, setShowBookSelection] = useState(true);
 
-  // UI state (Phase 1, Task 1.5, Commit 2c: contentMode/cefrLevel removed - now from context)
-  // const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified'); // REMOVED
-  // const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1'); // REMOVED
-
-  // Aliases for compatibility (Phase 1, Task 1.5, Commit 2c: Read from context, setters kept for Commit 3)
-  const selectedBook = contextSelectedBook;
-  const cefrLevel = contextCefrLevel;
-  const contentMode = contextContentMode;
-  // Keep setters temporarily for click handlers (will remove in Commit 3)
+  // Temporary setters (Phase 1, Task 1.5, Commit 2d: Kept for Commit 3, will remove when handlers dispatch)
   const setSelectedBook = (book: FeaturedBook | null) => { console.warn('[Phase 1] setSelectedBook deprecated - use contextSelectBook'); };
   const setCefrLevel = (level: any) => { console.warn('[Phase 1] setCefrLevel deprecated - use contextSwitchLevel'); };
   const setContentMode = (mode: any) => { console.warn('[Phase 1] setContentMode deprecated - use contextSwitchContentMode'); };
@@ -710,17 +702,10 @@ export default function FeaturedBooksPage() {
   const [currentDefinition, setCurrentDefinition] = useState<any>(null);
   const [definitionLoading, setDefinitionLoading] = useState(false);
 
-  // Data state (Phase 1, Task 1.5, Commit 2b: Removed bundleData/loading/error - now from context)
-  // const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null); // REMOVED: Use contextBundleData
-  // const [loading, setLoading] = useState(true); // REMOVED: Use contextLoading / contextLoadState
-  // const [error, setError] = useState<string | null>(null); // REMOVED: Use contextError
+  // Data state (Phase 1, Task 1.5, Commit 2d: bundleData/loading/error now destructured from context)
+  // selectedBook, cefrLevel, contentMode, bundleData, loading, error all from context now
   const [availableLevels, setAvailableLevels] = useState<{[key: string]: boolean}>({});
   const [currentBookAvailableLevels, setCurrentBookAvailableLevels] = useState<string[]>([]);
-
-  // Aliases for compatibility (Phase 1, Task 1.5, Commit 2b)
-  const bundleData = contextBundleData;
-  const loading = contextLoading;
-  const error = contextError;
 
   // Audio playback state
   const [isPlaying, setIsPlaying] = useState(false);
