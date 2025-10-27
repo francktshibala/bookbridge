@@ -522,6 +522,11 @@ Per `FEATURED_BOOKS_REFACTOR_PLAN.md`:
 - **Task 3.2**: Extract ReadingHeader component
 - **Task 3.3**: Extract AudioControls component
 - **Task 3.4**: Extract SettingsModal component
+- **Task 3.5**: Implement Continue Reading modal (deferred from Phase 2)
+  - Debug why resumeInfo isn't being set on page load
+  - Ensure lastAccessed timestamp is properly saved/loaded
+  - Test modal appears with correct timing (<24h)
+  - Consider alternative: Toast notification instead of modal
 - **Goal**: Break 1,800-line page into <400 line components
 
 **Estimated Time**: 1 week
@@ -577,11 +582,28 @@ During manual testing, we discovered 3 critical bugs that blocked the Continue R
 **Time**: 15 minutes
 **Status**: ⏳ Pending testing - dev server needs restart to deploy fix
 
+### Challenge 4: Continue Reading Modal Not Visible
+**Symptom**: Modal doesn't render on page despite multiple fixes
+**Attempted Fixes**:
+1. Changed z-index from z-50 to z-[9999] - didn't work
+2. Used React portal to document.body - didn't work
+3. Added lastAccessed timestamp to localStorage - didn't work
+**Root Cause** (Suspected): resumeInfo not being set because:
+- `savedPosition.currentSentenceIndex` is 0, OR
+- Position loading timing issue
+**Console Evidence**: No `✅ [AudioContext] Resume info set:` log on page load
+**Solution**: **DEFERRED TO PHASE 3**
+- Core functionality works: Book restoration on refresh ✅
+- Modal is "nice-to-have" UI prompt, not essential
+- Time invested: ~90 minutes with uncertain outcome
+**Commits**: `c195f68`, `0adce28`, `aff2f7d` (modal z-index, portal, timestamp)
+**Decision**: Remove modal code, document for Phase 3 reimplementation
+
 ### Total Additional Work
-- **Commits**: 3 additional bug fixes
-- **Time**: ~65 minutes
-- **Files**: 26 files modified (25 API routes + 1 service)
-- **GPT-5 Consultations**: 3 (all critical for identifying root causes)
+- **Commits**: 6 additional bug fixes (3 successful, 3 modal attempts)
+- **Time**: ~155 minutes (65 min bug fixes + 90 min modal debugging)
+- **Files**: 27 files modified (25 API routes + 1 service + 1 page)
+- **GPT-5 Consultations**: 4 (3 successful, 1 modal)
 
 ---
 
@@ -603,9 +625,12 @@ d263750 feat(Phase 2): Task 2.2 - Complete level persistence to DB
 3bbcc3a fix(Phase 2): Task 2.5 - Resume flow fix v2 (GPT-5 solution)
 c9e493c fix: Prisma singleton pattern to prevent engine crashes (GPT-5 solution)
 70ac007 fix: forceSave() must save to localStorage for unauthenticated users (GPT-5 solution)
+c195f68 fix: increase modal z-index to z-[9999] (modal attempt 1)
+0adce28 fix: use React portal for Continue Reading modal (modal attempt 2)
+aff2f7d fix: add lastAccessed timestamp to localStorage saves (modal attempt 3)
 ```
 
-**Total**: 10 commits (6 core + 4 fixes)
+**Total**: 13 commits (6 core + 4 fixes + 3 modal attempts)
 
 ---
 

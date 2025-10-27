@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
@@ -679,8 +678,6 @@ export default function FeaturedBooksPage() {
   // Phase 1, Task 1.5, Commit 3: No-op setters removed, handlers now dispatch to context
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showChapterModal, setShowChapterModal] = useState(false);
-  // Commit 5: showContinueReading now derived from context.resumeInfo
-  const showContinueReading = resumeInfo !== null && resumeInfo.hoursSinceLastRead < 24;
 
   // AI Chat Modal state
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
@@ -1249,29 +1246,6 @@ export default function FeaturedBooksPage() {
       playerRef.current.updateSettings(cefrLevel, playbackSpeed, contentMode);
     }
   }, [cefrLevel, playbackSpeed, contentMode]);
-
-  // Phase 2 Task 2.3: Continue reading - use context position
-  const continueReading = async () => {
-    contextClearResumeInfo(); // Dismiss modal
-    // Context already restored currentSentenceIndex, just start playing from that position
-    await handlePlaySequential(contextCurrentSentenceIndex);
-  };
-
-  // Phase 2 Task 2.3: Start over - use context.seek() instead of page state mutation
-  const startFromBeginning = async () => {
-    contextClearResumeInfo(); // Dismiss modal
-
-    // Reset position via context (GPT-5: seek/play from 0 via context)
-    contextSeek(0);
-    setCurrentChapter(1); // TODO Phase 2+: Move chapter management to AudioContext
-
-    // Reset position in database (GPT-5: resetPosition(bookId))
-    if (playerRef.current) {
-      await playerRef.current.resetPosition();
-    }
-
-    await handlePlaySequential(0);
-  };
 
   // Jump to any sentence (by absolute sentence index)
   const jumpToSentence = async (targetIndex: number) => {
@@ -2023,55 +1997,6 @@ export default function FeaturedBooksPage() {
 
             </div>
           </div>
-        )}
-
-        {/* Continue Reading Modal - Commit 5: Use context.resumeInfo */}
-        {/* GPT-5 Fix: Use portal to bypass stacking context issues */}
-        {showContinueReading && resumeInfo && createPortal(
-          <div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-4 pointer-events-auto"
-            role="dialog"
-            aria-modal="true"
-          >
-            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
-
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900">Continue Reading?</h2>
-                <button
-                  onClick={() => contextClearResumeInfo()}
-                  className="text-gray-400 hover:text-gray-600 text-xl"
-                >
-                  ×
-                </button>
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-6">
-                <p className="text-gray-600 mb-6">
-                  You were reading sentence {resumeInfo.sentenceIndex + 1} of {resumeInfo.totalSentences}.
-                  Would you like to continue where you left off?
-                </p>
-
-                <div className="flex gap-3">
-                  <button
-                    onClick={startFromBeginning}
-                    className="flex-1 py-3 px-4 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-all"
-                  >
-                    Start Over
-                  </button>
-                  <button
-                    onClick={continueReading}
-                    className="flex-1 py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all font-medium"
-                  >
-                    Continue Reading
-                  </button>
-                </div>
-              </div>
-
-            </div>
-          </div>,
-          document.body
         )}
 
         {/* Mobile Control Bar - Full Width */}
