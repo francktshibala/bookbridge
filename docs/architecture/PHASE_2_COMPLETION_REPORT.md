@@ -537,17 +537,78 @@ Per `FEATURED_BOOKS_REFACTOR_PLAN.md`:
 
 ---
 
-## Appendix: Commit History
+## Post-Completion Challenges (Manual Testing Phase)
 
+During manual testing, we discovered 3 critical bugs that blocked the Continue Reading modal:
+
+### Challenge 1: Prisma Engine Crashes (500 Errors)
+**Symptom**: All API bundle routes returned 500 Internal Server Error
+**Error**: `PrismaClientUnknownRequestError: Response from the Engine was empty`
+**Root Cause** (GPT-5): 24 API routes creating `new PrismaClient()` instances, causing engine exhaustion
+**Solution**:
+- Converted all routes to use singleton `import { prisma } from '@/lib/prisma'`
+- Added `export const runtime = 'nodejs'` to all Prisma routes
+- Regenerated Prisma client
+- Created `/api/health/db` endpoint for monitoring
+**Commit**: `c9e493c` - Fixed 25 files
+**Time**: 30 minutes
+
+### Challenge 2: Resume Flow Not Triggering
+**Symptom**: Page showed book selection screen on refresh instead of reading interface
+**Root Cause** (GPT-5):
+- Restoration effect ran before AudioContext was ready
+- `showBookSelection` stayed true during loading
+- No logic to hide grid when context starts loading
+**Solution** (GPT-5 2-part fix):
+1. Check `loadState === 'idle'` before dispatching `selectBook()`
+2. Auto-hide grid when `selectedBook || loadState === 'loading' || loadState === 'ready'`
+**Commit**: `3bbcc3a`
+**Time**: 20 minutes
+
+### Challenge 3: Reading Positions Not Saving
+**Symptom**: `localStorage.getItem('reading_position_{bookId}')` returned `null` after pause
+**Root Cause** (GPT-5):
+- `forceSave()` only called `saveToDatabase()`, skipping `saveLocalPosition()`
+- Unauthenticated users got 401 from DB API
+- Without localStorage fallback, positions never persisted
+- `resumeInfo` stayed null → modal couldn't appear
+**Solution**: Add `saveLocalPosition()` call to `forceSave()` before DB save
+**Commit**: `70ac007`
+**Time**: 15 minutes
+**Status**: ⏳ Pending testing - dev server needs restart to deploy fix
+
+### Total Additional Work
+- **Commits**: 3 additional bug fixes
+- **Time**: ~65 minutes
+- **Files**: 26 files modified (25 API routes + 1 service)
+- **GPT-5 Consultations**: 3 (all critical for identifying root causes)
+
+---
+
+## Appendix: Complete Commit History
+
+### Phase 2 Core Work
 ```
 a0f2e8e feat(Phase 2): Task 2.4 - Remove setTimeout correctness hacks
 d9a0e1b feat(Phase 2): Task 2.3 - Fix Continue modal to use context actions
 d263750 feat(Phase 2): Task 2.2 - Complete level persistence to DB
+39f0a4d docs(Phase 2): Add completion report
+2ce12fa docs(Phase 2): Add architecture overview section
+52d6148 docs(Phase 2): Mark Phase 2 complete in refactor plan
 ```
 
-**Total**: 3 commits, all following conventional commit format
+### Post-Completion Bug Fixes
+```
+493b66b fix(Phase 2): Task 2.5 - Restore last-read book on page refresh (attempt 1)
+3bbcc3a fix(Phase 2): Task 2.5 - Resume flow fix v2 (GPT-5 solution)
+c9e493c fix: Prisma singleton pattern to prevent engine crashes (GPT-5 solution)
+70ac007 fix: forceSave() must save to localStorage for unauthenticated users (GPT-5 solution)
+```
+
+**Total**: 10 commits (6 core + 4 fixes)
 
 ---
 
-**Status**: ✅ **PHASE 2 COMPLETE**
-**Ready for**: Manual testing → Merge to main → Phase 3 planning
+**Status**: ⏳ **PHASE 2 TESTING IN PROGRESS**
+**Blockers**: Dev server restart needed to deploy localStorage fix
+**Next**: Complete manual testing → Evaluate if Phase 3 needed or merge to main
