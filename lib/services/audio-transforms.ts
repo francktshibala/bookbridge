@@ -76,6 +76,11 @@ export function calculateHoursSinceLastRead(lastAccessed: Date | string | null |
       ? new Date(lastAccessed).getTime()
       : lastAccessed.getTime();
 
+    // Check for invalid date (NaN)
+    if (isNaN(lastAccessTime)) {
+      return 999;
+    }
+
     const elapsed = Date.now() - lastAccessTime;
     const hours = elapsed / (1000 * 60 * 60);
 
