@@ -12,6 +12,7 @@ import { DefinitionBottomSheet } from '@/components/dictionary/DefinitionBottomS
 import { dictionaryCache, dictionaryAnalytics } from '@/lib/dictionary/DictionaryCache';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
+import { useAudioContext } from '@/contexts/AudioContext';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -628,17 +629,57 @@ const GREAT_GATSBY_CHAPTERS = [
 ];
 
 export default function FeaturedBooksPage() {
-  // Book selection state
-  const [selectedBook, setSelectedBook] = useState<FeaturedBook | null>(null);
-  const [showBookSelection, setShowBookSelection] = useState(true);
+  // =========================================================================
+  // AUDIO CONTEXT (Phase 1, Task 1.5, Commit 2d: Use directly without prefixes)
+  // =========================================================================
+  const {
+    // Book & Content (no prefix - used directly)
+    selectedBook,
+    cefrLevel,
+    contentMode,
+    bundleData,
+    // Still prefixed (will convert in later commits)
+    availableLevels: contextAvailableLevels,
+    currentBookAvailableLevels: contextCurrentBookAvailableLevels,
+    isPlaying: contextIsPlaying,
+    currentSentenceIndex: contextCurrentSentenceIndex,
+    currentChapter: contextCurrentChapter,
+    currentBundle: contextCurrentBundle,
+    playbackTime: contextPlaybackTime,
+    totalTime: contextTotalTime,
+    playbackSpeed: contextPlaybackSpeed,
+    // Loading state (no prefix)
+    loadState,
+    loading,
+    error,
+    // Resume state (Commit 5)
+    resumeInfo,
+    // Actions (keep context prefix)
+    selectBook: contextSelectBook,
+    switchLevel: contextSwitchLevel,
+    switchContentMode: contextSwitchContentMode,
+    play: contextPlay,
+    pause: contextPause,
+    resume: contextResume,
+    seek: contextSeek,
+    setSpeed: contextSetSpeed,
+    nextChapter: contextNextChapter,
+    previousChapter: contextPreviousChapter,
+    jumpToChapter: contextJumpToChapter,
+    unload: contextUnload,
+    clearResumeInfo: contextClearResumeInfo,
+  } = useAudioContext();
 
-  // UI state
-  const [contentMode, setContentMode] = useState<'original' | 'simplified'>('simplified');
-  const [cefrLevel, setCefrLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1'); // Initialize to A1, will be updated by book selection
+  // =========================================================================
+  // LOCAL STATE (Phase 1, Task 1.5, Commit 2d: No longer need aliases)
+  // =========================================================================
+  // selectedBook, cefrLevel, contentMode now destructured directly from context above
+  const [showBookSelection, setShowBookSelection] = useState(true);
+  // Phase 1, Task 1.5, Commit 3: No-op setters removed, handlers now dispatch to context
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showChapterModal, setShowChapterModal] = useState(false);
-  const [showContinueReading, setShowContinueReading] = useState(false);
-  const [savedPosition, setSavedPosition] = useState<{sentenceIndex: number, timestamp: number} | null>(null);
+  // Commit 5: showContinueReading now derived from context.resumeInfo
+  const showContinueReading = resumeInfo !== null && resumeInfo.hoursSinceLastRead < 24;
 
   // AI Chat Modal state
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
@@ -660,12 +701,9 @@ export default function FeaturedBooksPage() {
   const [currentDefinition, setCurrentDefinition] = useState<any>(null);
   const [definitionLoading, setDefinitionLoading] = useState(false);
 
-  // Data state
-  const [bundleData, setBundleData] = useState<RealBundleApiResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [availableLevels, setAvailableLevels] = useState<{[key: string]: boolean}>({});
-  const [currentBookAvailableLevels, setCurrentBookAvailableLevels] = useState<string[]>([]);
+  // Data state (Phase 1, Task 1.5, Commit 4: availableLevels now from context)
+  // selectedBook, cefrLevel, contentMode, bundleData, loading, error, availableLevels all from context now
+  // REMOVED: Local availableLevels state - now using contextAvailableLevels from AudioContext
 
   // Audio playback state
   const [isPlaying, setIsPlaying] = useState(false);
@@ -686,49 +724,11 @@ export default function FeaturedBooksPage() {
   const autoScrollEnabledRef = useRef(true);
   const [autoScrollPaused, setAutoScrollPaused] = useState(false);
 
-  // Request cancellation and race condition prevention
-  const currentRequestIdRef = useRef<string | null>(null);
-  const abortControllerRef = useRef<AbortController | null>(null);
+  // Phase 1, Task 1.5, Commit 4: Request refs removed - AudioContext handles request management
 
   // Get bookId from selected book or URL params
-  const getBookId = () => {
-    if (selectedBook) {
-      return selectedBook.id;
-    }
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const urlBookId = params.get('bookId');
-      if (urlBookId) {
-        // Auto-select book from URL
-        const book = FEATURED_BOOKS.find(b => b.id === urlBookId);
-        if (book) {
-          setSelectedBook(book);
-          setShowBookSelection(false);
-          return urlBookId;
-        }
-      }
-    }
-    return FEATURED_BOOKS[0].id; // Default to first book
-  };
-
-  // Auto-set CEFR level when book is selected and clear stale data
-  useEffect(() => {
-    if (selectedBook) {
-      const bookDefaultLevel = getBookDefaultLevel(selectedBook.id);
-      console.log(`📚 Book selected: ${selectedBook.title}, setting default level: ${bookDefaultLevel}`);
-      setCefrLevel(bookDefaultLevel as any);
-
-      // Clear stale data and abort previous requests
-      setBundleData(null);
-      setLoading(true);
-      setError(null);
-
-      // Abort any in-flight requests
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
-      }
-    }
-  }, [selectedBook]);
+  // Commit 6: Removed dead getBookId() function and commented-out useEffect
+  // URL param handling and auto-level setting are now handled by AudioContext
 
   // Detect user scrolling and pause auto-scroll temporarily
   useEffect(() => {
@@ -763,434 +763,119 @@ export default function FeaturedBooksPage() {
     };
   }, []);
 
-  // Check available levels for a book with request guarding
-  const checkAvailableLevels = async (bookId: string, signal: AbortSignal, reqId: string) => {
-    const availability: {[key: string]: boolean} = {};
+  // Phase 1, Task 1.5, Commit 4: checkAvailableLevels REMOVED
+  // AudioContext now handles availability checking via loadBookData()
 
-    // Define which books have multi-level support vs single-level
-    const multiLevelBooks: { [key: string]: string[] } = {
-      'gutenberg-43': ['A1', 'A2'], // Jekyll & Hyde has both A1 and A2
-      'the-necklace': ['A1', 'A2', 'B1'], // The Necklace has A1, A2, and B1
-      'gift-of-the-magi': ['A1', 'A2', 'B1'], // Gift of the Magi has A1, A2, and B1
-      'the-devoted-friend': ['A1', 'A2', 'B1'], // The Devoted Friend has A1, A2, and B1
-      'lady-with-dog': ['A1', 'A2'], // The Lady with the Dog has A1 and A2
-      'the-dead': ['A1', 'A2'], // The Dead has A1 and A2 levels
-      'the-metamorphosis': ['A1'], // The Metamorphosis has A1 level
-    };
-
-    const singleLevelBooks: { [key: string]: string } = {
-      'great-gatsby-a2': 'A2',
-      'gutenberg-1952-A1': 'A1',
-      'sleepy-hollow-enhanced': 'A1',
-    };
-
-    // Handle multi-level books
-    if (multiLevelBooks[bookId]) {
-      for (const level of multiLevelBooks[bookId]) {
-        // For Jekyll & Hyde, test both A1 and A2 APIs
-        try {
-          const apiEndpoint = getBookApiEndpoint(bookId, level);
-          const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${level}&t=${Date.now()}`;
-
-          const response = await fetch(apiUrl, {
-            cache: 'no-store',
-            signal
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            availability[level.toLowerCase()] = data.success === true;
-          } else {
-            availability[level.toLowerCase()] = false;
-          }
-        } catch (error: any) {
-          if (error.name === 'AbortError') {
-            console.log(`🛑 Availability fetch aborted for ${level}`);
-            return;
-          }
-          availability[level.toLowerCase()] = false;
-        }
-      }
-    }
-
-    // Handle single-level books
-    else if (singleLevelBooks[bookId]) {
-      const bookLevel = singleLevelBooks[bookId];
-      availability[bookLevel.toLowerCase()] = true;
-      console.log(`📋 Single-level book ${bookId} set to ${bookLevel}`);
-    }
-
-    // Handle original content check for all books
-    try {
-      const response = await fetch(`/api/books/${bookId}/content`, {
-        cache: 'no-store',
-        signal
-      });
-      availability['original'] = response.ok;
-    } catch (error: any) {
-      if (error.name === 'AbortError') {
-        console.log(`🛑 Original content check aborted`);
-        return;
-      }
-      availability['original'] = false;
-    }
-
-    // Fallback: ensure at least one level is marked as available
-    const hasAnyLevel = Object.values(availability).some(v => v === true);
-    if (!hasAnyLevel) {
-      const defaultLevel = getBookDefaultLevel(bookId);
-      availability[defaultLevel.toLowerCase()] = true;
-      console.log(`📋 Fallback: No levels detected, defaulting to ${defaultLevel} for ${bookId}`);
-    }
-
-    // Guard: only update state if this is still the current request
-    if (currentRequestIdRef.current === reqId && !signal.aborted) {
-      setAvailableLevels(availability);
-
-      // Extract available levels for the current book (excluding 'original')
-      const bookLevels = Object.entries(availability)
-        .filter(([level, available]) => level !== 'original' && available)
-        .map(([level]) => level.toUpperCase());
-
-      setCurrentBookAvailableLevels(bookLevels);
-      console.log(`📋 Available levels for ${bookId}:`, availability);
-      console.log(`📋 CEFR levels for ${bookId}:`, bookLevels);
-    }
-
-    // Return availability results for immediate use
-    return availability;
-  };
-
-  // Load bundle data
+  // Phase 1, Task 1.5, Commit 4: Minimal read-only effect - context handles all fetching
   useEffect(() => {
-    async function loadData() {
-      // Create new request token and abort controller
-      const reqId = crypto.randomUUID();
-      currentRequestIdRef.current = reqId;
-      console.log(`🔄 Starting request ${reqId}`);
+    // Early returns: wait for context to load data
+    if (!selectedBook) {
+      console.log('⏭️ No selectedBook yet');
+      return;
+    }
+    if (loadState !== 'ready') {
+      console.log('⏭️ loadState not ready:', loadState);
+      return;
+    }
+    if (!bundleData) {
+      console.log('⏭️ No bundleData yet');
+      return;
+    }
 
-      // Abort previous request if exists
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
-      }
-      const abortController = new AbortController();
-      abortControllerRef.current = abortController;
-
+    // Page-local side effects only (no fetching, no context state mutations)
+    async function initializePageSideEffects() {
       try {
-        // Snapshot book ID and level at start
-        const selectedId = selectedBook?.id || FEATURED_BOOKS[0].id;
-        const params = new URLSearchParams(window.location.search);
-        const urlLevel = params.get('level');
+        const currentBookId = selectedBook!.id; // Non-null: guarded above
+        console.log(`🎵 Initializing page side effects for ${currentBookId}`);
 
-        // Determine final level parameter once
-        let levelParam = contentMode === 'original' ? 'original' : cefrLevel;
-        if (urlLevel) {
-          levelParam = urlLevel.toUpperCase();
-          // Update state to match URL
-          if (urlLevel.toLowerCase() === 'original') {
-            setContentMode('original');
-            levelParam = 'original';
-          } else {
-            setContentMode('simplified');
-            setCefrLevel(urlLevel.toUpperCase() as any);
-          }
-        }
+        // Initialize audio manager if needed (uses bundleData from context)
+        if (!audioManagerRef.current && bundleData!.audioType !== 'none') { // Non-null: guarded above
+          // Determine highlight lead based on audio provider
+          const firstSentence = bundleData!.bundles?.[0]?.sentences?.[0];
+          const hasPreciseTimings = Array.isArray(firstSentence?.wordTimings) && firstSentence.wordTimings.length > 0;
 
-        // Don't force fallback here - let availability detection happen first
-        // We'll check availability after checkAvailableLevels is called
+          // For TTS, use immediate highlighting since timings are estimated
+          const audioProvider = bundleData!.audioType || 'elevenlabs';
+          const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2';
+          const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400);
 
-        // Guard: only proceed if this is still the current request
-        if (currentRequestIdRef.current !== reqId) {
-          console.log(`🚫 Request ${reqId} aborted before main fetch`);
-          return;
-        }
+          const audioManager = new BundleAudioManager({
+            highlightLeadMs: leadMs,
+            onSentenceStart: (sentence) => {
+              setCurrentSentenceIndex(sentence.sentenceIndex);
 
-        // Set loading state only for current request
-        if (currentRequestIdRef.current === reqId) {
-          setLoading(true);
-          setError(null);
-        }
-
-        // Check available levels with abort signal
-        const availabilityResults = await checkAvailableLevels(selectedId, abortController.signal, reqId);
-
-        // Apply proper fallback logic based on actual availability
-        if (availabilityResults && levelParam !== 'original' && !availabilityResults[levelParam.toLowerCase()]) {
-          const bookDefaultLevel = getBookDefaultLevel(selectedId);
-          console.log(`📋 Level ${levelParam} not available for ${selectedId}, using default level: ${bookDefaultLevel}`);
-          levelParam = bookDefaultLevel;
-          // Update UI state to match
-          if (currentRequestIdRef.current === reqId) {
-            setCefrLevel(bookDefaultLevel as any);
-          }
-        }
-
-
-        let data: RealBundleApiResponse | null = null;
-
-        // Handle original content differently
-        if (contentMode === 'original' && levelParam === 'original') {
-          // Guard: check if request is still current
-          if (currentRequestIdRef.current !== reqId) {
-            console.log(`🚫 Request ${reqId} aborted before original content fetch`);
-            return;
-          }
-
-          // Fetch original text from book content API
-          const contentResponse = await fetch(`/api/books/${selectedId}/content`, {
-            cache: 'no-store',
-            signal: abortController.signal
-          });
-
-          if (contentResponse.ok) {
-            const contentData = await contentResponse.json();
-
-            // Transform original content to bundle format
-            const sentences = contentData.content.split(/[.!?]+/).filter((s: string) => s.trim().length > 0);
-            console.log('🚨 GPT-5 DIAGNOSTIC: Using text-splitting fallback path! This breaks on Mr./Dr./etc.');
-            const sentencesPerBundle = 4;
-            const bundles: BundleData[] = [];
-
-            for (let i = 0; i < sentences.length; i += sentencesPerBundle) {
-              const bundleSentences: BundleSentence[] = [];
-              const bundleTexts = sentences.slice(i, Math.min(i + sentencesPerBundle, sentences.length));
-
-              bundleTexts.forEach((text: string, index: number) => {
-                const cleanText = text.trim();
-                if (cleanText) {
-                  bundleSentences.push({
-                    sentenceId: `original-${i + index}`,
-                    sentenceIndex: i + index,
-                    text: cleanText + (cleanText.match(/[.!?]$/) ? '' : '.'),
-                    startTime: index * 2,
-                    endTime: (index + 1) * 2,
-                    wordTimings: []
+              // Smart auto-scroll
+              if (autoScrollEnabledRef.current) {
+                const sentenceElement = document.querySelector(`[data-sentence="${sentence.sentenceIndex}"]`);
+                if (sentenceElement) {
+                  sentenceElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'nearest'
                   });
                 }
-              });
+              }
+            },
+            onSentenceEnd: (sentence) => {
+              console.log(`✅ Sentence ended: ${sentence.sentenceIndex}`);
+            },
+            onBundleComplete: (bundleId) => {
+              console.log(`📦 Bundle complete: ${bundleId}`);
+              handleNextBundleRef.current();
+            },
+            onProgress: (currentTime, duration) => {
+              setPlaybackTime(currentTime);
+              setTotalTime(duration);
+            }
+          });
+          audioManagerRef.current = audioManager;
 
-              if (bundleSentences.length > 0) {
-                bundles.push({
-                  bundleId: `original-bundle-${bundles.length}`,
-                  bundleIndex: bundles.length,
-                  audioUrl: '', // No audio for original text
-                  totalDuration: bundleSentences.length * 2,
-                  sentences: bundleSentences
+          // Create unified player with global sentence map
+          playerRef.current = new AudioBookPlayer(bundleData!.bundles, {
+            highlightLeadMs: leadMs,
+            preloadRadius: 1,
+            debug: false,
+            bookId: currentBookId,
+            onPositionUpdate: (position: ReadingPosition) => {
+              setCurrentSentenceIndex(position.currentSentenceIndex);
+              setCurrentChapter(position.currentChapter);
+              console.log('📍 Position updated:', {
+                sentence: position.currentSentenceIndex,
+                chapter: position.currentChapter,
+                completion: position.completionPercentage.toFixed(1) + '%'
+              });
+            }
+          });
+
+          // Commit 5: Scroll to saved position (context already restored currentSentenceIndex)
+          if (contextCurrentSentenceIndex > 0) {
+            setTimeout(() => {
+              const sentenceElement = document.querySelector(`[data-sentence-index="${contextCurrentSentenceIndex}"]`);
+              if (sentenceElement) {
+                sentenceElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
                 });
+                console.log('📍 Scrolled to context sentence:', contextCurrentSentenceIndex);
               }
-            }
-
-            data = {
-              success: true,
-              bookId: selectedId,
-              title: contentData.title || selectedBook?.title || 'Book',
-              author: contentData.author || selectedBook?.author || 'Author',
-              level: 'original',
-              bundleCount: bundles.length,
-              totalSentences: sentences.length,
-              bundles: bundles,
-              audioType: 'none'
-            };
-          }
-        } else {
-          // Guard: check if request is still current
-          if (currentRequestIdRef.current !== reqId) {
-            console.log(`🚫 Request ${reqId} aborted before simplified content fetch`);
-            return;
-          }
-
-          // Use dynamic API endpoint detection
-          const apiEndpoint = getBookApiEndpoint(selectedId, levelParam);
-          const apiUrl = `${apiEndpoint}?bookId=${selectedId}&level=${levelParam}&t=${Date.now()}`;
-
-          const response = await fetch(apiUrl, {
-            cache: 'no-store',
-            signal: abortController.signal
-          });
-
-          if (response.ok) {
-            data = await response.json();
+            }, 1000);
           }
         }
-
-        // Guard: only proceed if this is still the current request
-        if (currentRequestIdRef.current !== reqId || abortController.signal.aborted) {
-          console.log(`🚫 Request ${reqId} aborted before setting bundle data`);
-          return;
-        }
-
-        if (data && data.success && data.totalSentences > 0) {
-          // Guard: only update state if this is still the current request
-          if (currentRequestIdRef.current === reqId) {
-            setBundleData(data);
-          }
-
-          // Initialize unified player and audio manager (skip for original text without audio)
-          if (!audioManagerRef.current && data.audioType !== 'none') {
-            // Use the snapshot book ID
-            const currentBookId = selectedId;
-
-            // Determine highlight lead based on audio provider
-            const firstSentence = data?.bundles?.[0]?.sentences?.[0];
-            const hasPreciseTimings = Array.isArray(firstSentence?.wordTimings) && firstSentence.wordTimings.length > 0;
-
-            // For TTS (ElevenLabs), use immediate highlighting since timings are estimated
-            const audioProvider = data?.audioType || 'elevenlabs';
-            const isTTS = audioProvider === 'elevenlabs' || audioProvider === 'openai' || currentBookId === 'great-gatsby-a2';
-            // Use consistent TTS lead time for both books
-            const leadMs = isTTS ? -500 : (hasPreciseTimings ? 500 : 1400);
-
-            const audioManager = new BundleAudioManager({
-              highlightLeadMs: leadMs,
-              onSentenceStart: (sentence) => {
-                // Immediate highlight; predictive lead handled inside BundleAudioManager
-                setCurrentSentenceIndex(sentence.sentenceIndex);
-
-                // Smart auto-scroll: only scroll if user hasn't manually scrolled recently
-                if (autoScrollEnabledRef.current) {
-                  const sentenceElement = document.querySelector(`[data-sentence="${sentence.sentenceIndex}"]`);
-                  if (sentenceElement) {
-                    sentenceElement.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center',
-                      inline: 'nearest'
-                    });
-                  }
-                }
-              },
-              onSentenceEnd: (sentence) => {
-                console.log(`✅ Sentence ended: ${sentence.sentenceIndex}`);
-              },
-              onBundleComplete: (bundleId) => {
-                console.log(`📦 Bundle complete: ${bundleId}`);
-                console.log(`🔍 isPlayingRef.current before handleNextBundle: ${isPlayingRef.current}`);
-                handleNextBundleRef.current();
-                console.log(`🔍 isPlayingRef.current after handleNextBundle: ${isPlayingRef.current}`);
-              },
-              onProgress: (currentTime, duration) => {
-                setPlaybackTime(currentTime);
-                setTotalTime(duration);
-              }
-            });
-            audioManagerRef.current = audioManager;
-
-
-            // Create unified player with global sentence map and preloading
-            if (currentBookId) {
-              playerRef.current = new AudioBookPlayer(data.bundles, {
-                highlightLeadMs: leadMs,
-                preloadRadius: 1,
-                debug: false,
-                bookId: currentBookId,
-                onPositionUpdate: (position: ReadingPosition) => {
-                  // Update UI state when position changes
-                  setCurrentSentenceIndex(position.currentSentenceIndex);
-                  setCurrentChapter(position.currentChapter);
-                  // Update other UI elements as needed
-                  console.log('📍 Position updated:', {
-                    sentence: position.currentSentenceIndex,
-                    chapter: position.currentChapter,
-                    completion: position.completionPercentage.toFixed(1) + '%'
-                  });
-                }
-              });
-
-              // Load saved reading position from database after successful initialization
-              setTimeout(async () => {
-                try {
-                  const savedPosition = await readingPositionService.loadPosition(currentBookId);
-                  if (savedPosition && savedPosition.currentSentenceIndex > 0) {
-                    console.log('🔄 Loading saved position:', savedPosition.currentSentenceIndex);
-
-                    // Check how long ago the user last read
-                    const hoursSinceLastRead = savedPosition.lastAccessed
-                      ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
-                      : 999;
-
-                    // Always restore position to the UI
-                    setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
-                    setCurrentChapter(savedPosition.currentChapter);
-
-                    if (hoursSinceLastRead < 24) { // Within last 24 hours - show continue modal
-                      setSavedPosition({
-                        sentenceIndex: savedPosition.currentSentenceIndex,
-                        timestamp: new Date(savedPosition.lastAccessed || Date.now()).getTime()
-                      });
-                      setShowContinueReading(true);
-                    }
-
-                    // Update current settings from saved position
-                    if (savedPosition.cefrLevel) {
-                      setCefrLevel(savedPosition.cefrLevel as any);
-                    }
-                    if (savedPosition.playbackSpeed) {
-                      setPlaybackSpeed(savedPosition.playbackSpeed);
-                    }
-                    if (savedPosition.contentMode) {
-                      setContentMode(savedPosition.contentMode);
-                    }
-
-                    // Scroll to the saved position
-                    setTimeout(() => {
-                      const sentenceElement = document.querySelector(`[data-sentence-index="${savedPosition.currentSentenceIndex}"]`);
-                      if (sentenceElement) {
-                        sentenceElement.scrollIntoView({
-                          behavior: 'smooth',
-                          block: 'center'
-                        });
-                        console.log('📍 Scrolled to saved sentence:', savedPosition.currentSentenceIndex);
-                      } else {
-                        console.log('⚠️ Could not find sentence element for index:', savedPosition.currentSentenceIndex);
-                      }
-                    }, 1000); // Wait for DOM to be fully ready
-                  }
-                } catch (error) {
-                  console.error('Error loading saved reading position:', error);
-                }
-              }, 500); // Small delay to ensure DOM is ready
-            }
-          }
-
-          // Position loading is now handled inside AudioBookPlayer initialization
-
-        } else {
-          // Guard: only set error if this is still the current request
-          if (currentRequestIdRef.current === reqId) {
-            setError(`Level ${levelParam} not available for this book. Please try the available level or switch to Original.`);
-          }
-        }
-
-      } catch (err: any) {
-        // Handle AbortError gracefully
-        if (err.name === 'AbortError') {
-          console.log(`🛑 Request ${reqId} was aborted`);
-          return;
-        }
-
-        // Guard: only set error if this is still the current request
-        if (currentRequestIdRef.current === reqId) {
-          setError(err instanceof Error ? err.message : 'Failed to load book data');
-        }
-      } finally {
-        // Guard: only clear loading if this is still the current request and not aborted
-        if (currentRequestIdRef.current === reqId && !abortController.signal.aborted) {
-          setLoading(false);
-        }
+      } catch (error) {
+        console.error('Error initializing page side effects:', error);
       }
     }
 
-    loadData();
+    initializePageSideEffects();
 
     // Cleanup on unmount
     return () => {
-      // Save position before cleanup
       if (playerRef.current) {
         playerRef.current.forceSavePosition().catch(console.error);
       }
       audioManagerRef.current?.destroy();
     };
-  }, [contentMode, cefrLevel, selectedBook]);
-
+  }, [selectedBook, bundleData, loadState]);
   // Audio playback functions
   const findBundleForSentence = (sentenceIndex: number): BundleData | null => {
     if (!bundleData) return null;
@@ -1506,16 +1191,16 @@ export default function FeaturedBooksPage() {
     }
   }, [cefrLevel, playbackSpeed, contentMode]);
 
+  // Commit 5: Continue reading - position already set by context
   const continueReading = async () => {
-    if (savedPosition) {
-      setCurrentSentenceIndex(savedPosition.sentenceIndex);
-      setShowContinueReading(false);
-      await handlePlaySequential(savedPosition.sentenceIndex);
-    }
+    contextClearResumeInfo(); // Dismiss modal
+    // Context already restored currentSentenceIndex, just start playing
+    await handlePlaySequential(contextCurrentSentenceIndex);
   };
 
+  // Commit 5: Start over - reset position via context and player
   const startFromBeginning = async () => {
-    setShowContinueReading(false);
+    contextClearResumeInfo(); // Dismiss modal
     setCurrentSentenceIndex(0);
     setCurrentChapter(1);
 
@@ -1768,8 +1453,8 @@ export default function FeaturedBooksPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className="group cursor-pointer"
-                  onClick={() => {
-                    setSelectedBook(book);
+                  onClick={async () => {
+                    await contextSelectBook(book);
                     setShowBookSelection(false);
                   }}
                 >
@@ -1812,8 +1497,8 @@ export default function FeaturedBooksPage() {
                           Ask AI
                         </button>
                         <button
-                          onClick={() => {
-                            setSelectedBook(book);
+                          onClick={async () => {
+                            await contextSelectBook(book);
                             setShowBookSelection(false);
                           }}
                           className="flex-1 h-9 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
@@ -1844,7 +1529,7 @@ export default function FeaturedBooksPage() {
             <button
               onClick={() => {
                 setShowBookSelection(true);
-                setSelectedBook(null);
+                contextUnload();
                 handleStop();
               }}
               className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
@@ -1879,7 +1564,7 @@ export default function FeaturedBooksPage() {
               <button
                 onClick={() => {
                   setShowBookSelection(true);
-                  setSelectedBook(null);
+                  contextUnload();
                   handleStop();
                 }}
                 className="flex items-center text-gray-300 hover:text-white"
@@ -1890,7 +1575,7 @@ export default function FeaturedBooksPage() {
               {/* Original/Simplified Toggle (center) */}
               <div className="flex bg-gray-700 rounded-lg p-1">
                 <button
-                  onClick={() => setContentMode('original')}
+                  onClick={async () => await contextSwitchContentMode('original')}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
                     contentMode === 'original'
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
@@ -1900,7 +1585,7 @@ export default function FeaturedBooksPage() {
                   Original
                 </button>
                 <button
-                  onClick={() => setContentMode('simplified')}
+                  onClick={async () => await contextSwitchContentMode('simplified')}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
                     contentMode === 'simplified'
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
@@ -1920,17 +1605,15 @@ export default function FeaturedBooksPage() {
               <div className="flex bg-gray-700 rounded-lg p-1 gap-1">
                 {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => {
                   const isOriginalMode = contentMode === 'original';
-                  const isLevelAvailable = availableLevels[level.toLowerCase()] === true;
+                  const isLevelAvailable = contextAvailableLevels[level.toLowerCase()] === true;
                   const isDisabled = isOriginalMode || !isLevelAvailable;
 
                   return (
                     <button
                       key={level}
-                      onClick={() => {
+                      onClick={async () => {
                         if (!isDisabled) {
-                          setCefrLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
-                          // Ensure we're in simplified mode when selecting CEFR level
-                          setContentMode('simplified');
+                          await contextSwitchLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
                         }
                       }}
                       disabled={isDisabled}
@@ -1962,14 +1645,16 @@ export default function FeaturedBooksPage() {
         {/* Real Moby Dick Content */}
         <div className="pb-32 px-3 bg-[var(--bg-secondary)] mx-4 md:mx-8 rounded-b-lg shadow-sm border-2 border-[var(--accent-secondary)]/20 border-t-0">
 
-          {loading && (
+          {/* Loading state (Phase 1, Task 1.5, Commit 2a: Use loadState) */}
+          {loadState === 'loading' && (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
               <p className="text-gray-600">Loading {selectedBook?.title} bundles...</p>
             </div>
           )}
 
-          {error && (
+          {/* Error state (Phase 1, Task 1.5, Commit 2a: Use loadState) */}
+          {loadState === 'error' && error && (
             <div className="text-center py-12">
               <div className="bg-white border border-blue-200 rounded-lg p-6 max-w-md mx-auto shadow-lg">
                 <p className="text-[var(--accent-primary)] font-medium">{error}</p>
@@ -2016,7 +1701,7 @@ export default function FeaturedBooksPage() {
                     // Add the sentence
                     result.push(
                       <span
-                        key={sentence.sentenceId}
+                        key={sentence.sentenceIndex}
                         data-sentence={sentence.sentenceIndex}
                         className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 mr-1 rounded mobile-reading-text ${
                           sentence.sentenceIndex === currentSentenceIndex && isPlaying
@@ -2116,7 +1801,7 @@ export default function FeaturedBooksPage() {
                   <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Text Version</label>
                   <div className="flex bg-[var(--bg-primary)] rounded-lg p-1 border border-[var(--border-light)]">
                     <button
-                      onClick={() => setContentMode('simplified')}
+                      onClick={async () => await contextSwitchContentMode('simplified')}
                       className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
                         contentMode === 'simplified'
                           ? 'bg-[var(--accent-primary)] text-white shadow-sm'
@@ -2126,7 +1811,7 @@ export default function FeaturedBooksPage() {
                       Simplified
                     </button>
                     <button
-                      onClick={() => setContentMode('original')}
+                      onClick={async () => await contextSwitchContentMode('original')}
                       className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
                         contentMode === 'original'
                           ? 'bg-[var(--accent-primary)] text-white shadow-sm'
@@ -2144,17 +1829,15 @@ export default function FeaturedBooksPage() {
                   <div className="grid grid-cols-3 gap-2">
                     {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => {
                       const isOriginalMode = contentMode === 'original';
-                      const isLevelAvailable = availableLevels[level.toLowerCase()] === true;
+                      const isLevelAvailable = contextAvailableLevels[level.toLowerCase()] === true;
                       const isDisabled = isOriginalMode || !isLevelAvailable;
 
                       return (
                         <button
                           key={level}
-                          onClick={() => {
+                          onClick={async () => {
                             if (!isDisabled) {
-                              setCefrLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
-                              // Ensure we're in simplified mode when selecting CEFR level
-                              setContentMode('simplified');
+                              await contextSwitchLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
                             }
                           }}
                           disabled={isDisabled}
@@ -2187,10 +1870,8 @@ export default function FeaturedBooksPage() {
                 <button
                   onClick={async () => {
                     setShowSettingsModal(false);
-                    // Force useEffect to re-run by updating a dependency
-                    // The useEffect will handle loading state properly
-                    setCefrLevel(cefrLevel);
-                    setContentMode(contentMode);
+                    // Phase 1, Task 1.5, Commit 3: No need to force re-trigger, context handles state
+                    // Settings are already applied via context dispatch methods
                   }}
                   className="w-full bg-[var(--accent-primary)] text-white py-2 px-4 rounded-md font-medium hover:bg-[var(--accent-secondary)] transition-all shadow-md"
                 >
@@ -2286,8 +1967,8 @@ export default function FeaturedBooksPage() {
           </div>
         )}
 
-        {/* Continue Reading Modal */}
-        {showContinueReading && savedPosition && (
+        {/* Continue Reading Modal - Commit 5: Use context.resumeInfo */}
+        {showContinueReading && resumeInfo && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
 
@@ -2295,7 +1976,7 @@ export default function FeaturedBooksPage() {
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
                 <h2 className="text-lg font-semibold text-gray-900">Continue Reading?</h2>
                 <button
-                  onClick={() => setShowContinueReading(false)}
+                  onClick={() => contextClearResumeInfo()}
                   className="text-gray-400 hover:text-gray-600 text-xl"
                 >
                   ×
@@ -2305,7 +1986,7 @@ export default function FeaturedBooksPage() {
               {/* Modal Content */}
               <div className="p-6">
                 <p className="text-gray-600 mb-6">
-                  You were reading sentence {savedPosition.sentenceIndex + 1} of {bundleData?.totalSentences || 0}.
+                  You were reading sentence {resumeInfo.sentenceIndex + 1} of {resumeInfo.totalSentences}.
                   Would you like to continue where you left off?
                 </p>
 

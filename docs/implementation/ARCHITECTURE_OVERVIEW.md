@@ -235,9 +235,443 @@ The bundle-based system is the **PRIMARY** focus for all new feature development
 - Wake lock: `useWakeLock()` hook
 - Media session: `useMediaSession()` hook
 
-### State Management Overview
+---
 
-**Critical State Variables** (20+ useState hooks):
+## 🎯 State Management Architecture (Phase 1 Refactor - Jan 2025)
+
+### Overview: AudioContext as Single Source of Truth
+
+**Problem Solved (The "Dueling Loaders" Anti-Pattern):**
+- Featured Books page and AudioContext both fetched book data independently
+- Race conditions when both tried to load simultaneously
+- State became inconsistent between page and context
+- Global Mini Player feature failed because audio state was page-scoped (died on navigation)
+
+**Solution: Single Source of Truth Pattern**
+- AudioContext is now the SOLE owner of all book/audio state
+- Page only reads state and dispatches actions (no fetching, no state mutations)
+- Audio state is app-scoped (survives navigation between pages)
+- Foundation laid for Global Mini Player feature
+
+**Refactor Metrics:**
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| Lines of Code | 2,228 | 1,814 | **-414 lines (-18.6%)** |
+| State Variables | 12 local | 0 local | All moved to context |
+| Data Fetch Locations | 2 (page + context) | 1 (context only) | -50% |
+| Race Conditions | Multiple | 0 | ✅ Fixed |
+| Bundle Size | 23 kB | 21.7 kB | -1.3 kB (-5.6%) |
+
+**Implementation:** Branch `refactor/featured-books-phase-1` (13 commits)
+**Documentation:** `docs/architecture/AUDIO_CONTEXT_PATTERN.md`
+
+---
+
+### AudioContext State Machine
+
+AudioContext uses a state machine to prevent invalid states (e.g., `loading=true` + `error!=null`):
+
+```
+State Transitions:
+┌──────┐
+│ idle │ Initial state, no book selected
+└──┬───┘
+   │ User selects book
+   ↓
+┌─────────┐
+│ loading │ Fetching bundles, checking levels
+└───┬─┬───┘
+    │ │
+    │ └──→ ❌ error   (fetch failed)
+    │
+    └────→ ✅ ready   (bundles loaded)
+           └──┬───┘
+              │ User switches level
+              ↓
+           loading (reload bundles)
+```
+
+**Valid Transitions:**
+- `idle` → `loading` (user selects book)
+- `loading` → `ready` (data loaded successfully)
+- `loading` → `error` (fetch failed)
+- `ready` → `loading` (user changes level/mode)
+- `error` → `loading` (user retries)
+
+**Benefits:**
+- ✅ Invalid states impossible (cannot be loading + error simultaneously)
+- ✅ Clear transition tracking in telemetry
+- ✅ Easier debugging (state history is explicit)
+
+---
+
+### Data Flow: Book Selection & Audio Playback
+
+```
+User Actions → AudioContext (SSoT) → Page Rendering
+────────────────────────────────────────────────────
+
+┌─────────────────────────────────────────────────────────┐
+│ 1. USER SELECTS BOOK                                    │
+└─────────────────────────────────────────────────────────┘
+   │
+   ├─→ Page calls: audioContext.selectBook(book, level)
+   │
+   └─→ AudioContext:
+       ├─ Cleans up previous audio (pause, destroy)
+       ├─ Sets selectedBook, cefrLevel
+       ├─ Transitions: idle → loading
+       ├─ Generates requestId (race condition guard)
+       ├─ Fetches /api/featured-books/bundles
+       ├─ Checks available levels (parallel)
+       ├─ Loads saved reading position (atomic restore)
+       │  └─ Sets: currentSentenceIndex, currentChapter, playbackSpeed
+       ├─ Sets bundleData
+       ├─ Transitions: loading → ready
+       └─ Sets resumeInfo (for Continue Reading modal)
+
+┌─────────────────────────────────────────────────────────┐
+│ 2. PAGE RENDERS (Read-Only)                            │
+└─────────────────────────────────────────────────────────┘
+   │
+   ├─→ const { selectedBook, bundleData, loadState } = useAudioContext()
+   │
+   ├─→ Early returns:
+   │   ├─ if (!selectedBook) → show book grid
+   │   ├─ if (loadState === 'loading') → show spinner
+   │   ├─ if (loadState === 'error') → show error
+   │   └─ if (loadState === 'ready' && bundleData) → render reader
+   │
+   └─→ useEffect: Initialize audio manager (page-local side effect only)
+       ├─ BundleAudioManager.init(bundleData)
+       ├─ Scroll to saved position (if resumeInfo exists)
+       └─ FORBIDDEN: No fetching, no setBundleData(), no clearing state
+
+┌─────────────────────────────────────────────────────────┐
+│ 3. USER PLAYS AUDIO                                     │
+└─────────────────────────────────────────────────────────┘
+   │
+   ├─→ Page calls: audioContext.play(sentenceIndex?)
+   │
+   └─→ AudioContext:
+       ├─ Sets isPlaying = true
+       ├─ Updates currentSentenceIndex
+       └─ (Future: Triggers BundleAudioManager.play())
+
+┌─────────────────────────────────────────────────────────┐
+│ 4. USER SWITCHES LEVEL                                  │
+└─────────────────────────────────────────────────────────┘
+   │
+   ├─→ Page calls: audioContext.switchLevel('B1')
+   │
+   └─→ AudioContext:
+       ├─ Validates level availability
+       ├─ Pauses audio
+       ├─ Cleans up audio lifecycle
+       ├─ Persists level (localStorage + future DB)
+       ├─ Transitions: ready → loading
+       ├─ Fetches new bundles for B1 level
+       ├─ Resets currentSentenceIndex to 0
+       ├─ Transitions: loading → ready
+       └─ Auto-switches contentMode to 'simplified'
+```
+
+**Key Pattern: Dispatch, Don't Mutate**
+```typescript
+// ❌ BAD (Old pattern - page mutates state)
+const handleBookClick = (book) => {
+  setSelectedBook(book);
+  setLoading(true);
+  fetchData(book);
+};
+
+// ✅ GOOD (New pattern - page dispatches to context)
+const handleBookClick = async (book) => {
+  await audioContext.selectBook(book);
+  // Context handles all state updates
+};
+```
+
+---
+
+### Race Condition Prevention: RequestId Pattern
+
+**Problem:** User rapidly clicks between books/levels → stale responses overwrite newer data
+
+**Solution:** Generate unique requestId for each operation, guard all state updates
+
+```typescript
+// Inside AudioContext.loadBookData()
+
+const loadBookData = async (bookId: string, level: CEFRLevel, mode: ContentMode) => {
+  // 1. Generate unique request token
+  const reqId = crypto.randomUUID();
+  currentRequestIdRef.current = reqId;
+
+  logTelemetry({ type: 'load_started', bookId, level, requestId: reqId });
+
+  try {
+    // 2. Check availability (async operation)
+    const availability = await checkAvailableLevels(bookId, signal, reqId);
+
+    // 3. GUARD: Only proceed if request is still current
+    if (currentRequestIdRef.current !== reqId) {
+      logTelemetry({
+        type: 'stale_apply_prevented',
+        requestId: reqId,
+        reason: 'Request superseded after availability check'
+      });
+      return; // Abort silently - stale request
+    }
+
+    // 4. Fetch bundles (async operation)
+    const response = await fetch(apiUrl, { signal: abortController.signal });
+    const data = await response.json();
+
+    // 5. GUARD: Only apply state if request is STILL current
+    if (currentRequestIdRef.current !== reqId) {
+      logTelemetry({
+        type: 'stale_apply_prevented',
+        requestId: reqId,
+        reason: 'Request superseded before setting bundle data'
+      });
+      return; // Abort - newer request already started
+    }
+
+    // 6. Safe to apply state (request is current)
+    if (currentRequestIdRef.current === reqId) {
+      setBundleData(data);
+      setLoadState('ready');
+      logTelemetry({ type: 'load_completed', requestId: reqId });
+    }
+
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      // Previous request was aborted - this is expected
+      return;
+    }
+    setLoadState('error');
+    setError(err.message);
+  }
+};
+```
+
+**Benefits:**
+- ✅ Stale responses cannot overwrite newer data
+- ✅ No spinner loops from race conditions
+- ✅ Telemetry logs all prevented updates for debugging
+- ✅ Multiple guards throughout async pipeline (defense in depth)
+
+**Telemetry Output Example:**
+```
+🔄 [AudioContext] load_started { bookId: 'pride-prejudice', level: 'A1', requestId: 'abc123' }
+🛑 [AudioContext] stale_apply_prevented { requestId: 'abc123', reason: 'Request superseded after availability check' }
+🔄 [AudioContext] load_started { bookId: 'pride-prejudice', level: 'B1', requestId: 'xyz789' }
+✅ [AudioContext] load_completed { requestId: 'xyz789', elapsed: 342 }
+```
+
+---
+
+### Resume Logic: Atomic Position Restore
+
+**Problem:** Page-scoped resume logic caused flashing (wrong content briefly shown during restore)
+
+**Solution:** AudioContext atomically restores position during bundle load (Commit 5)
+
+```typescript
+// Inside AudioContext.loadBookData() - after bundles fetched
+
+// Load saved reading position (atomically with requestId guard)
+try {
+  const savedPosition = await readingPositionService.loadPosition(bookId);
+
+  // Guard: Only apply if request is still current
+  if (currentRequestIdRef.current === reqId && savedPosition) {
+    console.log(`🔄 Loading saved position: sentence ${savedPosition.currentSentenceIndex}`);
+
+    // Atomically restore position (all at once - no flashing)
+    setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
+    setCurrentChapter(savedPosition.currentChapter);
+
+    if (savedPosition.playbackSpeed) {
+      setPlaybackSpeed(savedPosition.playbackSpeed);
+    }
+
+    // Calculate hours since last read for UI
+    const hoursSinceLastRead = savedPosition.lastAccessed
+      ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
+      : 999;
+
+    // Set resume info for UI modal/toast
+    setResumeInfo({
+      sentenceIndex: savedPosition.currentSentenceIndex,
+      chapter: savedPosition.currentChapter,
+      totalSentences: data.totalSentences,
+      playbackSpeed: savedPosition.playbackSpeed,
+      hoursSinceLastRead
+    });
+  }
+} catch (error) {
+  console.warn('Failed to load saved position:', error);
+  // Non-fatal - continue without resume
+}
+```
+
+**Benefits:**
+- ✅ Book + level + position + speed restored atomically (one operation)
+- ✅ No flash of wrong content during navigation
+- ✅ Resume state survives navigation (app-scoped, not page-scoped)
+- ✅ RequestId guards prevent stale position restores
+- ✅ Resume modal shows correct info immediately
+
+**Page Changes (Commit 5):**
+- ❌ Removed: 43 lines of page-level resume logic
+- ✅ Added: Computed `showContinueReading = resumeInfo !== null && hoursSinceLastRead < 24`
+- ✅ Added: `continueReading()` calls `contextClearResumeInfo()`
+- ✅ Simplified: Scroll logic uses `context.currentSentenceIndex` directly
+
+---
+
+### AudioContext API Reference
+
+**State (Read-Only for Pages):**
+```typescript
+interface AudioContextState {
+  // Book Selection
+  selectedBook: FeaturedBook | null;
+  cefrLevel: CEFRLevel;
+  contentMode: ContentMode;
+  bundleData: RealBundleApiResponse | null;
+  availableLevels: { [key: string]: boolean };
+  currentBookAvailableLevels: string[];
+
+  // Load State Machine
+  loadState: 'idle' | 'loading' | 'ready' | 'error';
+  loading: boolean; // Computed: loadState === 'loading'
+  error: string | null;
+
+  // Resume State
+  resumeInfo: ResumeInfo | null; // For Continue Reading modal
+
+  // Audio Playback (read-only)
+  isPlaying: boolean;
+  currentSentenceIndex: number;
+  currentChapter: number;
+  currentBundle: string | null;
+  playbackTime: number;
+  totalTime: number;
+  playbackSpeed: number;
+}
+```
+
+**Actions (Dispatch Pattern):**
+```typescript
+// Book/Level Selection
+await audioContext.selectBook(book: FeaturedBook, initialLevel?: CEFRLevel)
+await audioContext.switchLevel(newLevel: CEFRLevel)
+await audioContext.switchContentMode(mode: ContentMode)
+
+// Audio Playback
+await audioContext.play(sentenceIndex?: number)
+audioContext.pause()
+audioContext.resume()
+audioContext.seek(sentenceIndex: number)
+audioContext.setSpeed(speed: number)
+
+// Chapter Navigation
+audioContext.nextChapter()
+audioContext.previousChapter()
+audioContext.jumpToChapter(chapter: number)
+
+// Resume State
+audioContext.clearResumeInfo() // Dismiss Continue Reading modal
+
+// Cleanup
+audioContext.unload() // Stop audio, clear state
+```
+
+**Usage Example:**
+```typescript
+export default function FeaturedBooksPage() {
+  const {
+    // Read state (never mutate directly!)
+    selectedBook,
+    bundleData,
+    loadState,
+    error,
+    resumeInfo,
+
+    // Dispatch actions
+    selectBook,
+    switchLevel,
+    play,
+    pause,
+  } = useAudioContext();
+
+  // Early return if not ready
+  if (!selectedBook || loadState !== 'ready' || !bundleData) {
+    return <LoadingSpinner />;
+  }
+
+  // Page-local side effects only
+  useEffect(() => {
+    // ✅ OK: Initialize audio manager (uses bundleData from context)
+    initializeAudioManager(bundleData);
+
+    // ✅ OK: Scroll to saved position
+    scrollToSentence(currentSentenceIndex);
+
+    // ❌ FORBIDDEN: No fetching, no setBundleData(), no clearing state
+  }, [selectedBook, bundleData, loadState]);
+
+  return (
+    <div>
+      <button onClick={() => selectBook(book)}>Select Book</button>
+      <button onClick={() => switchLevel('A2')}>Switch to A2</button>
+      <button onClick={() => play()}>Play</button>
+    </div>
+  );
+}
+```
+
+---
+
+### Key Learnings & Best Practices
+
+**1. Single Source of Truth is Critical**
+- Having two owners for the same state causes impossible-to-debug race conditions
+- Global Mini Player failed for 2 days because page-scoped state died on navigation
+
+**2. State Machines Prevent Invalid States**
+- Before: Could have `loading=true` + `error!=null` (invalid)
+- After: LoadState machine enforces valid transitions only
+
+**3. RequestId Pattern Solves Race Conditions**
+- Generate unique ID for each operation
+- Guard all async state updates
+- Log prevented updates for debugging
+
+**4. Incremental Refactoring Works**
+- 13 small commits beat 1 large rewrite
+- Each commit buildable and testable
+- Easy to review and revert if needed
+
+**5. Atomic Operations Matter**
+- Resume state must be restored atomically to prevent flashing
+- Book + level + position + speed applied together
+
+**References:**
+- **Pattern Guide:** `docs/architecture/AUDIO_CONTEXT_PATTERN.md` (337 lines)
+- **Completion Report:** `docs/architecture/PHASE_1_COMPLETION_REPORT.md` (493 lines)
+- **Implementation:** Branch `refactor/featured-books-phase-1` (13 commits, all pushed)
+
+---
+
+### State Management Overview (DEPRECATED - See Phase 1 Refactor Above)
+
+> **⚠️ DEPRECATED:** This section describes the old page-scoped state management that has been replaced by AudioContext (see Phase 1 Refactor section above). Keeping for historical reference only.
+
+**Old State Variables** (20+ useState hooks - now moved to AudioContext):
 
 ```typescript
 // Book & Content
