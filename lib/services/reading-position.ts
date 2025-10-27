@@ -116,6 +116,9 @@ class ReadingPositionService {
    * Force immediate save (for page unload, pause, etc.)
    */
   async forceSave(bookId: string, position: ReadingPosition): Promise<void> {
+    // Save to localStorage immediately so unauthenticated users (401) still persist
+    this.saveLocalPosition(bookId, position);
+
     // Clear any pending saves
     if (this.saveTimeoutId) {
       clearTimeout(this.saveTimeoutId);
