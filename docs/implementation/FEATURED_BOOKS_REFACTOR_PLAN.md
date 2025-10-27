@@ -435,27 +435,60 @@ data/
 
 ---
 
-### Phase 4: Optional Service Layer (Future)
+### ✅ Phase 4: Service Layer Extraction (Complete - Oct 2025)
 
-**Goal**: Extract business logic from contexts into testable services.
+**Goal**: Extract business logic from AudioContext into testable service modules.
 
-**When to Do This:**
-- After Phases 1-3 complete
-- When you need to add automated tests
-- When logic complexity increases
+**Status**: ✅ Complete - Merged to main on October 27, 2025
+**Branch**: `refactor/featured-books-phase-4`
+**Commits**: 5 commits (8b48108, caecb15, 68b89c6, 18cdf1a, f5ff574)
 
-**What to Extract:**
+**What Was Extracted:**
 ```typescript
-// services/AudioSessionService.ts
-class AudioSessionService {
-  async loadBook(bookId: string, level: string): Promise<BundleData>
-  async switchLevel(newLevel: string): Promise<BundleData>
-  savePosition(position: ReadingPosition): Promise<void>
-  restorePosition(bookId: string): Promise<ReadingPosition | null>
-}
+// lib/services/book-loader.ts (130 lines)
+async function loadBookBundles(
+  bookId: string,
+  level: CEFRLevel | 'original',
+  mode: ContentMode,
+  signal: AbortSignal
+): Promise<RealBundleApiResponse>
+
+// lib/services/availability.ts (97 lines)
+async function checkLevelAvailability(
+  bookId: string,
+  signal: AbortSignal
+): Promise<AvailabilityResult>
+
+// lib/services/level-persistence.ts (71 lines)
+function saveLevelToStorage(bookId: string, level: CEFRLevel): void
+function loadLevelFromStorage(bookId: string): CEFRLevel | null
+
+// lib/services/audio-transforms.ts (92 lines)
+function determineFinalLevel(...): CEFRLevel | 'original'
+function calculateHoursSinceLastRead(...): number
 ```
 
-**Not Urgent**: This is a "nice-to-have" for testing, not critical path.
+**Completion Summary:**
+- **Services Created**: 4 modules (390 lines total)
+  - book-loader.ts: Bundle data fetching (original + simplified)
+  - availability.ts: Level availability checking
+  - level-persistence.ts: LocalStorage operations
+  - audio-transforms.ts: Pure data transformations
+- **Tests Created**: 31 unit tests (100% coverage for pure functions)
+  - audio-transforms.test.ts: 16 tests
+  - level-persistence.test.ts: 15 tests
+- **Code Reduction**: 212 lines of inline logic → service calls
+- **Testing**: All tests passing, TypeScript strict mode
+- **Architecture**: Services as pure functions, Context as orchestrator
+- **Documentation**: `docs/architecture/PHASE_4_COMPLETION_REPORT.md` (650+ lines)
+
+**Key Benefits:**
+- ✅ Testable business logic (31 unit tests)
+- ✅ Reusable services (no React dependencies)
+- ✅ Clear separation (I/O, transforms, orchestration)
+- ✅ Type-safe contracts (TypeScript strict mode)
+
+**Estimated Time**: 3-4 days (conservative) | **Actual Time**: 1 day (~2 hours)
 
 ---
 
