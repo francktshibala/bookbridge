@@ -14,6 +14,7 @@ import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 import { useAudioContext } from '@/contexts/AudioContext';
 import { BookSelectionGrid, type FeaturedBook as BookSelectionGridBook } from './components/BookSelectionGrid';
+import { ReadingHeader } from './components/ReadingHeader';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -1186,6 +1187,13 @@ export default function FeaturedBooksPage() {
     setShowBookSelection(false);
   };
 
+  // Phase 3, Task 3.2: Back button handler for ReadingHeader
+  const handleBackToBookSelection = () => {
+    setShowBookSelection(true);
+    contextUnload();
+    handleStop();
+  };
+
   const handleCloseAIChat = () => {
     setIsAIChatOpen(false);
     setSelectedAIBook(null);
@@ -1486,39 +1494,12 @@ export default function FeaturedBooksPage() {
       {!showBookSelection && selectedBook && (
         <div className="max-w-4xl mx-auto">
 
-        {/* Header - Matched Width with Content Container */}
-
-        {/* Unified Header: Same width as content container below */}
-        <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-light)] mx-4 md:mx-8 rounded-t-lg border-2 border-[var(--accent-secondary)]/20 border-b-[var(--border-light)]">
-          <div className="flex justify-between items-center px-6 py-3 relative">
-            <button
-              onClick={() => {
-                setShowBookSelection(true);
-                contextUnload();
-                handleStop();
-              }}
-              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
-            >
-              ←
-            </button>
-
-            {/* Auto-scroll Status */}
-            <div className="flex-1 flex justify-center items-center gap-2 px-2">
-              {autoScrollPaused && (
-                <div className="text-xs text-[var(--text-secondary)] bg-[var(--accent-primary)]/10 px-2 py-1 rounded animate-pulse border border-[var(--accent-primary)]/20">
-                  📍 Auto-scroll paused
-                </div>
-              )}
-            </div>
-
-            <button
-              onClick={() => setShowSettingsModal(true)}
-              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-base font-medium hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
-            >
-              Aa
-            </button>
-          </div>
-        </div>
+        {/* Phase 3, Task 3.2: Reading Header - Extracted to ReadingHeader component */}
+        <ReadingHeader
+          onBack={handleBackToBookSelection}
+          onSettings={() => setShowSettingsModal(true)}
+          autoScrollPaused={autoScrollPaused}
+        />
 
         {/* Desktop: Dark Controls Section - Removed for consistency */}
         <div className="hidden">{/* Desktop dark controls removed for consistency */}
