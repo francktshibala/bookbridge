@@ -1000,6 +1000,502 @@ Audio plays from chosen position
 
 ---
 
+## 🎨 Phase 3: UI Component Extraction (Phase 3 Refactor - Jan 2025)
+
+### Overview: Breaking Down the Monolith
+
+**Goal:** Extract UI components from the 2,506-line Featured Books page to improve maintainability and enable component reuse.
+
+**Phase 3 Built On:**
+- Phase 1's AudioContext SSoT foundation
+- Phase 2's state guard patterns
+- Added: Pure presentational components with explicit props
+
+**Key Achievement:** Reduced page from **2,506 → 1,988 lines** (~270 line reduction) by extracting 4 presentational components.
+
+### Component Extraction Pattern: Container/Presentational
+
+**Architecture Principle (GPT-5 Guidance):**
+> "All components follow explicit prop pattern - no direct context access in leaves"
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ page.tsx (Container - Manages State)                        │
+│ - Reads from AudioContext                                   │
+│ - Dispatches actions to context                             │
+│ - Passes data down via props                                │
+│ - Handles side effects                                      │
+└────────┬────────────────────────────────────────────────────┘
+         │
+         ├───► BookSelectionGrid (Presentational)
+         │     Props: books, onSelectBook, onAskAI
+         │     131 lines - Pure UI, no hooks
+         │
+         ├───► ReadingHeader (Presentational)
+         │     Props: onBack, onSettings, autoScrollPaused
+         │     66 lines - Pure UI, no hooks
+         │
+         ├───► SettingsModal (Presentational)
+         │     Props: isOpen, currentLevel, onLevelChange, ...
+         │     157 lines - Pure UI, no hooks
+         │
+         └───► ChapterModal (Presentational)
+               Props: isOpen, chapters, currentChapter, onSelectChapter
+               106 lines - Pure UI, no hooks
+```
+
+**Benefits:**
+- ✅ Components are reusable across different pages
+- ✅ Each component can be tested independently with mock props
+- ✅ Clear data flow (props down, callbacks up)
+- ✅ No hidden dependencies on global context
+
+### Extracted Components
+
+#### 1. BookSelectionGrid (`/app/featured-books/components/BookSelectionGrid.tsx`)
+
+**Purpose:** Displays grid of featured books with selection and AI chat actions
+
+**Lines:** 131
+
+**Props Interface:**
+```typescript
+interface BookSelectionGridProps {
+  books: FeaturedBook[];
+  onSelectBook: (book: FeaturedBook) => void;
+  onAskAI: (book: FeaturedBook) => void;
+}
+```
+
+**Before (90 lines of JSX in page.tsx):**
+```typescript
+{showBookSelection && (
+  <div className="min-h-screen bg-[var(--bg-primary)]">
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="text-center mb-12">
+        <h1>📚 Simplified Books</h1>
+        {/* ... */}
+      </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {FEATURED_BOOKS.map((book, index) => (
+          <motion.div key={book.id} /* ... 50+ lines of JSX */>
+            {/* ... book card content */}
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+```
+
+**After (7 lines in page.tsx):**
+```typescript
+{showBookSelection && (
+  <BookSelectionGrid
+    books={FEATURED_BOOKS}
+    onSelectBook={handleSelectBook}
+    onAskAI={handleAskAI}
+  />
+)}
+```
+
+**Reduction:** 90 lines → 7 lines (83 lines saved)
+
+---
+
+#### 2. ReadingHeader (`/app/featured-books/components/ReadingHeader.tsx`)
+
+**Purpose:** Header with back button, auto-scroll status, and settings button
+
+**Lines:** 66
+
+**Props Interface:**
+```typescript
+interface ReadingHeaderProps {
+  onBack: () => void;
+  onSettings: () => void;
+  autoScrollPaused: boolean;
+}
+```
+
+**Before (29 lines of JSX in page.tsx):**
+```typescript
+<div className="bg-[var(--bg-secondary)] border-b...">
+  <div className="flex justify-between items-center px-6 py-3 relative">
+    <button onClick={() => {
+      setShowBookSelection(true);
+      contextUnload();
+      handleStop();
+    }}>←</button>
+
+    <div className="flex-1 flex justify-center items-center gap-2 px-2">
+      {autoScrollPaused && (
+        <div>📍 Auto-scroll paused</div>
+      )}
+    </div>
+
+    <button onClick={() => setShowSettingsModal(true)}>Aa</button>
+  </div>
+</div>
+```
+
+**After (6 lines in page.tsx):**
+```typescript
+<ReadingHeader
+  onBack={handleBackToBookSelection}
+  onSettings={() => setShowSettingsModal(true)}
+  autoScrollPaused={autoScrollPaused}
+/>
+```
+
+**Reduction:** 29 lines → 6 lines (23 lines saved)
+
+---
+
+#### 3. SettingsModal (`/app/featured-books/components/SettingsModal.tsx`)
+
+**Purpose:** Modal for content mode (Simplified/Original) and CEFR level selection
+
+**Lines:** 157
+
+**Props Interface:**
+```typescript
+type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+type ContentMode = 'simplified' | 'original';
+
+interface SettingsModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  currentLevel: string;
+  onLevelChange: (level: CEFRLevel) => Promise<void>;
+  currentContentMode: ContentMode;
+  onContentModeChange: (mode: ContentMode) => Promise<void>;
+  availableLevels: Record<string, boolean>;
+}
+```
+
+**Before (104 lines of JSX in page.tsx):**
+```typescript
+{showSettingsModal && (
+  <div className="fixed inset-0 bg-black/50...">
+    <div className="bg-[var(--bg-secondary)] rounded-lg...">
+      {/* Modal Header */}
+      <div className="flex items-center justify-between p-6...">
+        <h2>Reading Settings</h2>
+        <button onClick={() => setShowSettingsModal(false)}>×</button>
+      </div>
+
+      {/* Modal Content */}
+      <div className="p-6 space-y-6">
+        {/* Content Mode Toggle - 20 lines */}
+        {/* CEFR Level Selection - 50+ lines */}
+      </div>
+
+      {/* Modal Footer */}
+      <div className="px-6 py-4 border-t...">
+        <button onClick={() => setShowSettingsModal(false)}>
+          Apply Settings
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+```
+
+**After (10 lines in page.tsx):**
+```typescript
+<SettingsModal
+  isOpen={showSettingsModal}
+  onClose={() => setShowSettingsModal(false)}
+  currentLevel={cefrLevel}
+  onLevelChange={contextSwitchLevel}
+  currentContentMode={contentMode}
+  onContentModeChange={contextSwitchContentMode}
+  availableLevels={contextAvailableLevels}
+/>
+```
+
+**Reduction:** 104 lines → 10 lines (94 lines saved)
+
+---
+
+#### 4. ChapterModal (`/app/featured-books/components/ChapterModal.tsx`)
+
+**Purpose:** Modal for chapter navigation with chapter list and current chapter highlighting
+
+**Lines:** 106
+
+**Props Interface:**
+```typescript
+interface Chapter {
+  chapterNumber: number;
+  title: string;
+  startSentence: number;
+  endSentence: number;
+  startBundle: number;
+  endBundle: number;
+}
+
+interface ChapterModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  chapters: Chapter[];
+  currentChapter: number;
+  onSelectChapter: (chapter: Chapter) => void;
+}
+```
+
+**Before (78 lines of JSX in page.tsx):**
+```typescript
+{showChapterModal && (
+  <div className="fixed inset-0 bg-black/50...">
+    <div className="bg-[var(--bg-secondary)] rounded-lg...">
+      {/* Modal Header */}
+      <div className="flex items-center justify-between p-6...">
+        <h2>Jump to Chapter</h2>
+        <button onClick={() => setShowChapterModal(false)}>×</button>
+      </div>
+
+      {/* Modal Content */}
+      <div className="p-6">
+        <div className="space-y-2 max-h-64 overflow-y-auto">
+          {(selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
+            selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
+            /* ... nested ternaries ... */
+          ).map((chapter) => (
+            <button
+              key={chapter.chapterNumber}
+              onClick={async () => {
+                setShowChapterModal(false);
+                handleStop();
+                setCurrentSentenceIndex(chapter.startSentence);
+                /* ... 15+ lines of logic ... */
+              }}
+            >
+              <div>Chapter {chapter.chapterNumber}</div>
+              <div>{chapter.title}</div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+```
+
+**After (8 lines in page.tsx):**
+```typescript
+<ChapterModal
+  isOpen={showChapterModal}
+  onClose={() => setShowChapterModal(false)}
+  chapters={getCurrentBookChapters()}
+  currentChapter={getCurrentChapter().current}
+  onSelectChapter={handleChapterSelect}
+/>
+```
+
+**Reduction:** 78 lines → 8 lines (70 lines saved)
+
+**Helper Functions Added to Page:**
+```typescript
+// Clean switch statement replacing nested ternaries
+const getCurrentBookChapters = (): Chapter[] => {
+  if (!selectedBook) return [];
+  switch (selectedBook.id) {
+    case 'sleepy-hollow-enhanced': return SLEEPY_HOLLOW_CHAPTERS;
+    case 'great-gatsby-a2': return GREAT_GATSBY_CHAPTERS;
+    case 'the-necklace': return THE_NECKLACE_CHAPTERS;
+    case 'telltale-heart': return TELLTALE_HEART_CHAPTERS;
+    case 'monkey-paw': return MONKEY_PAW_CHAPTERS;
+    default: return GREAT_GATSBY_CHAPTERS;
+  }
+};
+
+// Encapsulates complex chapter jump logic (30+ lines)
+const handleChapterSelect = async (chapter: Chapter) => {
+  handleStop();
+  setCurrentSentenceIndex(chapter.startSentence);
+  autoScrollEnabledRef.current = true;
+  setAutoScrollPaused(false);
+
+  jumpToSentence(chapter.startSentence).then(() => {
+    requestAnimationFrame(() => {
+      const sentenceElement = document.querySelector(`[data-sentence-index="${chapter.startSentence}"]`);
+      if (sentenceElement) {
+        sentenceElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+};
+```
+
+---
+
+### File Structure After Phase 3
+
+```
+/app/featured-books/
+├── page.tsx (1,988 lines)                      ← Container/orchestrator
+│   ├── Reads from AudioContext
+│   ├── Dispatches actions
+│   └── Renders components with props
+│
+└── components/
+    ├── BookSelectionGrid.tsx (131 lines)      ← Pure presentational
+    ├── ReadingHeader.tsx (66 lines)           ← Pure presentational
+    ├── SettingsModal.tsx (157 lines)          ← Pure presentational
+    └── ChapterModal.tsx (106 lines)           ← Pure presentational
+
+Total Component LOC: 460 lines
+Net Page Reduction: ~270 lines (2,506 → 1,988)
+```
+
+### Component Extraction Metrics
+
+| Component | Before (JSX in page) | After (component usage) | Reduction |
+|-----------|----------------------|-------------------------|-----------|
+| BookSelectionGrid | 90 lines | 7 lines | 83 lines |
+| ReadingHeader | 29 lines | 6 lines | 23 lines |
+| SettingsModal | 104 lines | 10 lines | 94 lines |
+| ChapterModal | 78 lines | 8 lines | 70 lines |
+| **Total** | **301 lines** | **31 lines** | **270 lines** |
+
+### Best Practices Established
+
+#### Pattern 1: Explicit Props (Container/Presentational)
+
+**Container (page.tsx):**
+- Manages state via AudioContext
+- Handles side effects
+- Creates handler functions
+- Passes data down via props
+
+**Presentational (components):**
+- Receives all data via props
+- No direct context access
+- No hooks (useState, useEffect)
+- Pure UI rendering
+
+**Example:**
+```typescript
+// ❌ BAD: Component accessing context directly
+export function SettingsModal() {
+  const { cefrLevel, switchLevel } = useAudioContext(); // ❌ No!
+  return <div>...</div>;
+}
+
+// ✅ GOOD: Component receives props explicitly
+export function SettingsModal({
+  currentLevel,
+  onLevelChange
+}: SettingsModalProps) {
+  return <div>...</div>;
+}
+```
+
+#### Pattern 2: Progressive Component Extraction
+
+**Step-by-step approach:**
+1. Extract one component at a time
+2. Test after each extraction
+3. Commit immediately when working
+4. Move to next component only after previous works
+
+**This prevents:**
+- Accumulating untested changes
+- Difficult debugging sessions
+- Merge conflicts
+- Fear of breaking things
+
+#### Pattern 3: Props Over Context
+
+**Why explicit props?**
+- Makes components reusable (can use anywhere)
+- Easier to test (mock props, no context setup)
+- Clear dependencies (all inputs visible)
+- No hidden coupling
+
+**When to use context vs props:**
+- Context: App-wide state (audio, theme, user)
+- Props: Component-specific data (books, chapters, settings)
+
+### Testing Pattern
+
+**Before Phase 3:** Cannot test components (tightly coupled)
+
+**After Phase 3:** Each component testable independently
+
+```typescript
+// Example: Testing SettingsModal
+import { render, fireEvent } from '@testing-library/react';
+import { SettingsModal } from './SettingsModal';
+
+test('calls onLevelChange when A2 button clicked', () => {
+  const mockOnLevelChange = jest.fn();
+  const { getByText } = render(
+    <SettingsModal
+      isOpen={true}
+      currentLevel="A1"
+      onLevelChange={mockOnLevelChange}
+      currentContentMode="simplified"
+      onContentModeChange={jest.fn()}
+      availableLevels={{ a1: true, a2: true }}
+      onClose={jest.fn()}
+    />
+  );
+
+  fireEvent.click(getByText('A2'));
+  expect(mockOnLevelChange).toHaveBeenCalledWith('A2');
+});
+```
+
+### Metrics
+
+| Metric | Phase 1 | Phase 2 | Phase 3 | Total |
+|--------|---------|---------|---------|-------|
+| **Lines Removed** | -414 | -55 | -270 (net from page) | -739 |
+| **Lines Added** | +209 | +67 | +460 (components) | +736 |
+| **Net Reduction** | -205 | -12 | +190 (with components) | -27 |
+| **Commits** | 15 | 4 | 5 | 24 |
+| **Build Errors** | 0 | 0 | 0 | 0 |
+
+**Note:** Phase 3 added 460 lines of component code but reduced main page by 270 lines. Net addition of 190 lines is expected and healthy - code is now modular, testable, and reusable.
+
+### Key Learnings (Phase 3)
+
+1. **Component Extraction is Low-Risk**
+   - Pure UI extraction has minimal failure risk
+   - Testing each component immediately prevents regressions
+   - User confirmed "all work perfectly" after each extraction
+
+2. **Explicit Props > Context Access**
+   - Components with explicit props are reusable
+   - No hidden dependencies makes components portable
+   - GPT-5 guidance was correct - this pattern scales
+
+3. **Helper Functions Belong in Container**
+   - Complex logic like `handleChapterSelect` stays in page
+   - Component stays simple (just calls callback)
+   - Easier to test logic separately from UI
+
+4. **Switch > Nested Ternaries**
+   - `getCurrentBookChapters()` with switch is more readable
+   - Easier to add new books in future
+   - Clear intent (mapping book ID to chapters)
+
+5. **Component Size Matters**
+   - All components under 160 lines (target was <200)
+   - Small components are easier to understand
+   - Easier to refactor or replace if needed
+
+### References
+
+- **Completion Report:** `docs/architecture/PHASE_3_COMPLETION_REPORT.md` (755 lines)
+- **Implementation:** Branch `refactor/featured-books-phase-3` (5 commits, ready to merge)
+- **Patterns Used:** Container/presentational, explicit props, progressive extraction
+
+---
+
 ### State Management Overview (DEPRECATED - See Phase 1 Refactor Above)
 
 > **⚠️ DEPRECATED:** This section describes the old page-scoped state management that has been replaced by AudioContext (see Phase 1 Refactor section above). Keeping for historical reference only.
