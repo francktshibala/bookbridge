@@ -763,6 +763,54 @@ export default function FeaturedBooksPage() {
     };
   }, []);
 
+  // Phase 2, Task 2.5: Restore last-read book on mount
+  // Fix for resume flow bug - automatically load last book if saved position exists
+  const hasAttemptedRestoreRef = useRef(false);
+  useEffect(() => {
+    // Only attempt restore once on mount
+    if (hasAttemptedRestoreRef.current) return;
+    if (selectedBook) return; // Already have a book selected
+
+    const restoreLastBook = async () => {
+      try {
+        // Check localStorage for last-read book
+        const lastBookId = localStorage.getItem('lastReadBookId');
+        if (!lastBookId) {
+          console.log('📚 No last-read book found');
+          return;
+        }
+
+        // Find the book in FEATURED_BOOKS
+        const book = FEATURED_BOOKS.find(b => b.id === lastBookId);
+        if (!book) {
+          console.log('📚 Last-read book not found in FEATURED_BOOKS:', lastBookId);
+          return;
+        }
+
+        // Check if there's a saved position with progress
+        const savedPosition = await readingPositionService.loadPosition(lastBookId);
+        if (!savedPosition || savedPosition.currentSentenceIndex === 0) {
+          console.log('📚 No saved position for last-read book');
+          return;
+        }
+
+        // Restore the book automatically
+        console.log('📚 Restoring last-read book:', book.title);
+        await contextSelectBook(book);
+        setShowBookSelection(false);
+
+        // The Continue Reading modal will show automatically via resumeInfo
+        console.log('📚 Book restored - Continue Reading modal will appear');
+      } catch (error) {
+        console.error('Error restoring last-read book:', error);
+      } finally {
+        hasAttemptedRestoreRef.current = true;
+      }
+    };
+
+    restoreLastBook();
+  }, [selectedBook, contextSelectBook]);
+
   // Phase 1, Task 1.5, Commit 4: checkAvailableLevels REMOVED
   // AudioContext now handles availability checking via loadBookData()
 
@@ -1465,6 +1513,8 @@ export default function FeaturedBooksPage() {
                   transition={{ delay: index * 0.1 }}
                   className="group cursor-pointer"
                   onClick={async () => {
+                    // Phase 2, Task 2.5: Save last-read book to localStorage
+                    localStorage.setItem('lastReadBookId', book.id);
                     await contextSelectBook(book);
                     setShowBookSelection(false);
                   }}
@@ -1509,6 +1559,8 @@ export default function FeaturedBooksPage() {
                         </button>
                         <button
                           onClick={async () => {
+                            // Phase 2, Task 2.5: Save last-read book to localStorage
+                            localStorage.setItem('lastReadBookId', book.id);
                             await contextSelectBook(book);
                             setShowBookSelection(false);
                           }}
