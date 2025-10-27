@@ -1,7 +1,24 @@
+/**
+ * Featured Books Page - Main Reading Interface
+ *
+ * Phase 3 Refactor (Component Extraction):
+ * - BookSelectionGrid: Book selection screen with grid layout (131 lines)
+ * - ReadingHeader: Back button, settings, auto-scroll status (66 lines)
+ * - SettingsModal: Content mode & CEFR level settings (157 lines)
+ * - ChapterModal: Chapter navigation modal (106 lines)
+ *
+ * Total: 4 components extracted, ~270 lines reduced from main page
+ * Page reduced from ~2,506 → 1,972 lines
+ *
+ * Architecture: All components follow explicit prop pattern (GPT-5 guidance)
+ * - No direct context access in leaf components
+ * - Props passed from page (container) to components (presentational)
+ * - All state management and side effects remain in page/AudioContext
+ */
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
@@ -13,6 +30,10 @@ import { dictionaryCache, dictionaryAnalytics } from '@/lib/dictionary/Dictionar
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 import { useAudioContext } from '@/contexts/AudioContext';
+import { BookSelectionGrid, type FeaturedBook as BookSelectionGridBook } from './components/BookSelectionGrid';
+import { ReadingHeader } from './components/ReadingHeader';
+import { SettingsModal } from './components/SettingsModal';
+import { ChapterModal, type Chapter } from './components/ChapterModal';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -1173,6 +1194,76 @@ export default function FeaturedBooksPage() {
     setIsAIChatOpen(true);
   };
 
+  // Phase 3, Task 3.1: Book selection handler for BookSelectionGrid
+  const handleSelectBook = async (book: FeaturedBook) => {
+    // Save last-read book to localStorage
+    localStorage.setItem('lastReadBookId', book.id);
+
+    // Select book via AudioContext
+    await contextSelectBook(book);
+
+    // Hide book selection grid
+    setShowBookSelection(false);
+  };
+
+  // Phase 3, Task 3.2: Back button handler for ReadingHeader
+  const handleBackToBookSelection = () => {
+    setShowBookSelection(true);
+    contextUnload();
+    handleStop();
+  };
+
+  // Phase 3, Task 3.4: Get chapters for current book
+  const getCurrentBookChapters = (): Chapter[] => {
+    if (!selectedBook) return [];
+
+    switch (selectedBook.id) {
+      case 'sleepy-hollow-enhanced':
+        return SLEEPY_HOLLOW_CHAPTERS;
+      case 'great-gatsby-a2':
+        return GREAT_GATSBY_CHAPTERS;
+      case 'gutenberg-1952-A1':
+        return YELLOW_WALLPAPER_CHAPTERS;
+      case 'gutenberg-43':
+        return JEKYLL_HYDE_CHAPTERS;
+      case 'the-necklace':
+        return THE_NECKLACE_CHAPTERS;
+      case 'the-dead':
+        return THE_DEAD_CHAPTERS;
+      case 'lady-with-dog':
+        return THE_LADY_WITH_DOG_CHAPTERS;
+      default:
+        return GREAT_GATSBY_CHAPTERS;
+    }
+  };
+
+  // Phase 3, Task 3.4: Chapter selection handler for ChapterModal
+  const handleChapterSelect = async (chapter: Chapter) => {
+    // Stop current playback
+    handleStop();
+
+    // Update sentence index
+    setCurrentSentenceIndex(chapter.startSentence);
+
+    // Force auto-scroll to chapter start
+    autoScrollEnabledRef.current = true;
+    setAutoScrollPaused(false);
+
+    // Jump to chapter and continue playing
+    jumpToSentence(chapter.startSentence).then(() => {
+      // Use RAF for DOM-readiness (GPT-5 guidance)
+      requestAnimationFrame(() => {
+        const sentenceElement = document.querySelector(`[data-sentence-index="${chapter.startSentence}"]`);
+        if (sentenceElement) {
+          sentenceElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }
+      });
+    });
+  };
+
   const handleCloseAIChat = () => {
     setIsAIChatOpen(false);
     setSelectedAIBook(null);
@@ -1460,135 +1551,25 @@ export default function FeaturedBooksPage() {
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      {/* Book Selection Screen */}
+      {/* Phase 3, Task 3.1: Book Selection Screen - Extracted to BookSelectionGrid component */}
       {showBookSelection && (
-        <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-          <div className="max-w-6xl mx-auto px-4 py-8">
-
-            {/* Header */}
-            <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold mb-4 text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
-                📚 Simplified Books
-              </h1>
-              <p className="text-[var(--text-secondary)] text-lg" style={{ fontFamily: 'Source Serif Pro, serif' }}>
-                Experience continuous reading with perfect text-audio harmony
-              </p>
-            </div>
-
-            {/* Simplified Books Grid - Wireframe Layout */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12 px-4">
-              {FEATURED_BOOKS.map((book, index) => (
-                <motion.div
-                  key={book.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group cursor-pointer"
-                  onClick={async () => {
-                    // Phase 2, Task 2.5: Save last-read book to localStorage
-                    localStorage.setItem('lastReadBookId', book.id);
-                    await contextSelectBook(book);
-                    setShowBookSelection(false);
-                  }}
-                >
-                  <div
-                    className="bg-[var(--bg-secondary)] border-2 border-[var(--accent-primary)]/30 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:border-[var(--accent-primary)]/60 hover:-translate-y-1 p-5 h-48 flex flex-col justify-between"
-                  >
-
-                    {/* Card Content */}
-                    <div>
-                      {/* Book Title */}
-                      <div className="text-lg font-bold text-[var(--text-accent)] mb-1 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        {book.title}
-                      </div>
-
-                      {/* Author */}
-                      <div className="text-sm text-[var(--text-secondary)] mb-3" style={{ fontFamily: 'Source Serif Pro, serif' }}>
-                        by {book.author}
-                      </div>
-
-                      {/* Meta Tags - Compact Style */}
-                      <div className="flex gap-2 mb-3 flex-wrap">
-                        <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-                          {book.id === 'great-gatsby-a2' ? 'A2' : 'A1-C2'}
-                        </span>
-                        <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-                          Classic
-                        </span>
-                        <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-                          {book.id === 'great-gatsby-a2' ? '~7.5h' : '~2h'}
-                        </span>
-                      </div>
-
-                      {/* Action Buttons - Compact Style */}
-                      <div className="flex gap-2 mt-auto">
-                        <button
-                          onClick={() => handleAskAI(book)}
-                          className="flex-1 h-9 rounded-lg bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)]/60 transition-all duration-200 text-sm font-medium"
-                          style={{ fontFamily: 'Source Serif Pro, serif' }}
-                        >
-                          Ask AI
-                        </button>
-                        <button
-                          onClick={async () => {
-                            // Phase 2, Task 2.5: Save last-read book to localStorage
-                            localStorage.setItem('lastReadBookId', book.id);
-                            await contextSelectBook(book);
-                            setShowBookSelection(false);
-                          }}
-                          className="flex-1 h-9 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
-                          style={{ fontFamily: 'Source Serif Pro, serif' }}
-                        >
-                          Start Reading
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-          </div>
-        </div>
+        <BookSelectionGrid
+          books={FEATURED_BOOKS}
+          onSelectBook={handleSelectBook}
+          onAskAI={handleAskAI}
+        />
       )}
 
       {/* Reading Interface */}
       {!showBookSelection && selectedBook && (
         <div className="max-w-4xl mx-auto">
 
-        {/* Header - Matched Width with Content Container */}
-
-        {/* Unified Header: Same width as content container below */}
-        <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-light)] mx-4 md:mx-8 rounded-t-lg border-2 border-[var(--accent-secondary)]/20 border-b-[var(--border-light)]">
-          <div className="flex justify-between items-center px-6 py-3 relative">
-            <button
-              onClick={() => {
-                setShowBookSelection(true);
-                contextUnload();
-                handleStop();
-              }}
-              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
-            >
-              ←
-            </button>
-
-            {/* Auto-scroll Status */}
-            <div className="flex-1 flex justify-center items-center gap-2 px-2">
-              {autoScrollPaused && (
-                <div className="text-xs text-[var(--text-secondary)] bg-[var(--accent-primary)]/10 px-2 py-1 rounded animate-pulse border border-[var(--accent-primary)]/20">
-                  📍 Auto-scroll paused
-                </div>
-              )}
-            </div>
-
-            <button
-              onClick={() => setShowSettingsModal(true)}
-              className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-base font-medium hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
-            >
-              Aa
-            </button>
-          </div>
-        </div>
+        {/* Phase 3, Task 3.2: Reading Header - Extracted to ReadingHeader component */}
+        <ReadingHeader
+          onBack={handleBackToBookSelection}
+          onSettings={() => setShowSettingsModal(true)}
+          autoScrollPaused={autoScrollPaused}
+        />
 
         {/* Desktop: Dark Controls Section - Removed for consistency */}
         <div className="hidden">{/* Desktop dark controls removed for consistency */}
@@ -1812,192 +1793,25 @@ export default function FeaturedBooksPage() {
 
         </div>
 
-        {/* Settings Modal */}
-        {showSettingsModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-[var(--bg-secondary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20">
+        {/* Phase 3, Task 3.3: Settings Modal - Extracted to SettingsModal component */}
+        <SettingsModal
+          isOpen={showSettingsModal}
+          onClose={() => setShowSettingsModal(false)}
+          currentLevel={cefrLevel}
+          onLevelChange={contextSwitchLevel}
+          currentContentMode={contentMode}
+          onContentModeChange={contextSwitchContentMode}
+          availableLevels={contextAvailableLevels}
+        />
 
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Reading Settings</h2>
-                <button
-                  onClick={() => setShowSettingsModal(false)}
-                  className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
-                >
-                  ×
-                </button>
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-6 space-y-6">
-
-                {/* Content Mode Toggle */}
-                <div>
-                  <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Text Version</label>
-                  <div className="flex bg-[var(--bg-primary)] rounded-lg p-1 border border-[var(--border-light)]">
-                    <button
-                      onClick={async () => await contextSwitchContentMode('simplified')}
-                      className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
-                        contentMode === 'simplified'
-                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
-                          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                      }`}
-                    >
-                      Simplified
-                    </button>
-                    <button
-                      onClick={async () => await contextSwitchContentMode('original')}
-                      className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all ${
-                        contentMode === 'original'
-                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
-                          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                      }`}
-                    >
-                      Original
-                    </button>
-                  </div>
-                </div>
-
-                {/* CEFR Level Selection */}
-                <div>
-                  <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">CEFR Level</label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => {
-                      const isOriginalMode = contentMode === 'original';
-                      const isLevelAvailable = contextAvailableLevels[level.toLowerCase()] === true;
-                      const isDisabled = isOriginalMode || !isLevelAvailable;
-
-                      return (
-                        <button
-                          key={level}
-                          onClick={async () => {
-                            if (!isDisabled) {
-                              await contextSwitchLevel(level as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2');
-                            }
-                          }}
-                          disabled={isDisabled}
-                          className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
-                            cefrLevel === level && contentMode === 'simplified'
-                              ? 'bg-[var(--accent-primary)] text-white shadow-sm'
-                              : isDisabled
-                              ? 'bg-[var(--bg-primary)] text-[var(--text-secondary)]/50 cursor-not-allowed opacity-50'
-                              : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--border-light)]'
-                          }`}
-                          title={
-                            isOriginalMode
-                              ? 'Switch to Simplified mode to use CEFR levels'
-                              : !isLevelAvailable
-                              ? `${level} not available for this book`
-                              : `Switch to ${level} level`
-                          }
-                        >
-                          {level}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Modal Footer */}
-              <div className="px-6 py-4 border-t border-[var(--border-light)]">
-                <button
-                  onClick={async () => {
-                    setShowSettingsModal(false);
-                    // Phase 1, Task 1.5, Commit 3: No need to force re-trigger, context handles state
-                    // Settings are already applied via context dispatch methods
-                  }}
-                  className="w-full bg-[var(--accent-primary)] text-white py-2 px-4 rounded-md font-medium hover:bg-[var(--accent-secondary)] transition-all shadow-md"
-                >
-                  Apply Settings
-                </button>
-              </div>
-
-            </div>
-          </div>
-        )}
-
-        {/* Chapter Navigation Modal */}
-        {showChapterModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-[var(--bg-secondary)] rounded-lg shadow-xl max-w-sm w-full border-2 border-[var(--accent-secondary)]/20">
-
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]" style={{ fontFamily: 'Playfair Display, serif' }}>Jump to Chapter</h2>
-                <button
-                  onClick={() => setShowChapterModal(false)}
-                  className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
-                >
-                  ×
-                </button>
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-6">
-                <div className="space-y-2 max-h-64 overflow-y-auto">
-                  {(selectedBook?.id === 'sleepy-hollow-enhanced' ? SLEEPY_HOLLOW_CHAPTERS :
-                    selectedBook?.id === 'great-gatsby-a2' ? GREAT_GATSBY_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-1952-A1' ? YELLOW_WALLPAPER_CHAPTERS :
-                    selectedBook?.id === 'gutenberg-43' ? JEKYLL_HYDE_CHAPTERS :
-                    selectedBook?.id === 'the-necklace' ? THE_NECKLACE_CHAPTERS :
-                    selectedBook?.id === 'the-dead' ? THE_DEAD_CHAPTERS :
-                    selectedBook?.id === 'lady-with-dog' ? THE_LADY_WITH_DOG_CHAPTERS : GREAT_GATSBY_CHAPTERS).map((chapter) => (
-                    <button
-                      key={chapter.chapterNumber}
-                      onClick={async () => {
-                        setShowChapterModal(false);
-
-                        // Phase 2 Task 2.4c: Removed nested setTimeout delays
-                        // GPT-5: No timing hacks - operations are synchronous, scroll uses RAF
-                        handleStop();
-                        setCurrentSentenceIndex(chapter.startSentence);
-
-                        // Force auto-scroll to chapter start immediately
-                        autoScrollEnabledRef.current = true;
-                        setAutoScrollPaused(false);
-
-                        // Jump to chapter and continue playing
-                        jumpToSentence(chapter.startSentence).then(() => {
-                          // Use RAF for DOM-readiness (GPT-5 guidance)
-                          requestAnimationFrame(() => {
-                            const sentenceElement = document.querySelector(`[data-sentence-index="${chapter.startSentence}"]`);
-                            if (sentenceElement) {
-                              sentenceElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'center'
-                              });
-                            }
-                          });
-                        });
-                      }}
-                      className={`w-full text-left p-4 rounded-lg border transition-all ${
-                        getCurrentChapter().current === chapter.chapterNumber
-                          ? 'bg-[var(--accent-primary)] text-white border-[var(--accent-primary)] shadow-sm'
-                          : 'bg-[var(--bg-primary)] hover:bg-[var(--accent-primary)]/10 border-[var(--border-light)]'
-                      }`}
-                    >
-                      <div className={`font-medium ${
-                        getCurrentChapter().current === chapter.chapterNumber
-                          ? 'text-[var(--bg-primary)]'
-                          : 'text-[var(--text-primary)]'
-                      }`}>Chapter {chapter.chapterNumber}</div>
-                      <div className={`text-sm ${
-                        getCurrentChapter().current === chapter.chapterNumber
-                          ? 'text-[var(--bg-primary)]/80'
-                          : 'text-[var(--text-secondary)]'
-                      }`}>
-                        {chapter.title}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-          </div>
-        )}
+        {/* Phase 3, Task 3.4: Chapter Navigation Modal - Extracted to ChapterModal component */}
+        <ChapterModal
+          isOpen={showChapterModal}
+          onClose={() => setShowChapterModal(false)}
+          chapters={getCurrentBookChapters()}
+          currentChapter={getCurrentChapter().current}
+          onSelectChapter={handleChapterSelect}
+        />
 
         {/* Mobile Control Bar - Full Width */}
         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[var(--bg-secondary)] border-t border-[var(--border-light)] shadow-lg z-50">
