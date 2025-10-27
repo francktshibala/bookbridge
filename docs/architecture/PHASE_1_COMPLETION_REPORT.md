@@ -7,15 +7,16 @@
 
 ## Executive Summary
 
-Successfully refactored `featured-books/page.tsx` to use AudioContext as Single Source of Truth for all book/audio state. Eliminated the "Dueling Loaders" anti-pattern that caused Global Mini Player to fail.
+Successfully refactored `featured-books/page.tsx` to use AudioContext as Single Source of Truth for all book/audio state. Eliminated the "Dueling Loaders" anti-pattern that caused Global Mini Player to fail. Extended with resume logic centralization and dead code cleanup.
 
 **Key Metrics:**
-- **Lines Removed:** 547 lines of duplicated state management
-- **Lines Added:** 167 lines (clean SSoT integration)
-- **Net Reduction:** -380 lines (-15% of file)
+- **Lines Removed:** 623 lines of duplicated state management and dead code
+- **Lines Added:** 209 lines (clean SSoT integration + resume logic)
+- **Net Reduction:** -414 lines (-18.5% of file)
 - **Bundle Size:** 23 kB → 21.7 kB (-1.3 kB, -5.6%)
 - **Build Status:** ✅ 0 type errors, all tests pass
-- **Commits:** 9 incremental commits (all pushed to GitHub)
+- **Commits:** 13 incremental commits (all pushed to GitHub)
+- **Final File Size:** 2,228 lines → 1,814 lines
 
 ---
 
@@ -322,29 +323,58 @@ contextUnload()
 
 ---
 
-## Remaining Work (Out of Scope for Phase 1)
+## Additional Commits Completed
 
-### Task 1.5 Commit 5: Move Resume Logic to Context
-**Currently:** Page loads saved position and shows continue modal
-**Future:** Context should handle atomic position restore
-
-**Benefits:**
-- Restore book + level + position atomically
-- Eliminate flash of wrong content
-- Simpler page code
-
-**Estimated:** 30 minutes
-
-### Task 1.5 Commit 6: Remove Clearing Effects
-**Currently:** Page has stale effects that clear context state
-**Future:** Remove these anti-patterns
+### Commit 5: Move Resume Logic to Context (224ada5)
+**Status:** ✅ COMPLETE
 
 **Changes:**
-- Remove `useEffect` that clears bundleData on unmount
-- Remove URL param syncing effects
-- Clean up any remaining mutations
+- Added `ReadingPositionService` import to AudioContext
+- Added `ResumeInfo` interface (sentenceIndex, chapter, totalSentences, playbackSpeed, hoursSinceLastRead)
+- Added `resumeInfo` state and `clearResumeInfo()` action
+- Inside `loadBookData()`, after successful bundle fetch:
+  - Loads saved position via `readingPositionService.loadPosition()`
+  - Atomically restores `currentSentenceIndex`, `currentChapter`, `playbackSpeed` (with requestId guard)
+  - Sets `resumeInfo` for UI modal/toast
+  - Non-fatal error handling (continues without resume if load fails)
+- Page changes:
+  - Removed 43 lines of page-level resume logic
+  - `showContinueReading` now computed from `resumeInfo !== null && hoursSinceLastRead < 24`
+  - Continue modal uses `resumeInfo` instead of `savedPosition`
+  - `continueReading()` and `startFromBeginning()` call `contextClearResumeInfo()`
+  - Simplified scroll logic uses context's `currentSentenceIndex`
 
-**Estimated:** 20 minutes
+**Benefits:**
+- ✅ Atomic position restore (book + level + position + speed in one operation)
+- ✅ No flash of wrong content
+- ✅ Resume state survives navigation
+- ✅ Simpler page code (-43 lines)
+- ✅ RequestId guards prevent stale position restores
+
+**Actual Time:** 30 minutes
+
+### Commit 6: Remove Dead Code and Cleanup (f835038)
+**Status:** ✅ COMPLETE
+
+**Changes:**
+- Removed dead `getBookId()` function (20 lines)
+  - Was reading URL params but never called
+  - Had commented-out `setSelectedBook()` anti-pattern
+- Removed commented-out useEffect for auto-level setting (13 lines)
+  - Already handled by `AudioContext.selectBook()`
+- Replaced with clean explanatory comment
+- No TODOs, FIXMEs, or HACKs remaining
+
+**Lines Removed:** 33
+**Lines Added:** 2
+
+**Verification:**
+- ✅ Build passes (0 type errors)
+- ✅ No context state mutations from page
+- ✅ No URL param syncing effects
+- ✅ All cleanup functions are page-local only
+
+**Actual Time:** 15 minutes
 
 ### Phase 2: Navigation & Resume Fixes
 - Level persistence across navigation
@@ -370,10 +400,11 @@ contextUnload()
 **Evidence:** Global Mini Player failed for 2 days because page-scoped state died on navigation when it needed to be app-scoped.
 
 ### 2. Incremental Refactoring Works
-**Approach:** 9 small commits instead of 1 large rewrite
+**Approach:** 13 small commits instead of 1 large rewrite
 - Each commit buildable and testable
 - Easy to review and verify
 - Easy to revert if issues found
+- Extended work (Commits 5-6) seamlessly built on foundation
 
 ### 3. State Machines Prevent Invalid States
 **Before:** Could have `loading=true` + `error!=null` (invalid)
@@ -403,12 +434,14 @@ if (currentRequestIdRef.current === reqId) {
 
 | Metric | Before | After | Change |
 |--------|--------|-------|--------|
-| Lines of Code | 2,228 | 1,850 | -380 (-15%) |
+| Lines of Code | 2,228 | 1,814 | -414 (-18.6%) |
 | Bundle Size | 23 kB | 21.7 kB | -1.3 kB (-5.6%) |
 | State Variables | 12 local | 0 local | -12 (all in context) |
 | Fetch Locations | 2 (page + context) | 1 (context only) | -50% |
+| Resume Logic | Page-scoped | Context-scoped | ✅ Atomic |
 | Type Errors | 0 | 0 | ✅ |
 | Race Conditions | Multiple | 0 | ✅ Fixed |
+| Total Commits | - | 13 | All pushed |
 
 ---
 
