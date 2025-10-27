@@ -10,6 +10,7 @@ import {
   MULTI_LEVEL_BOOKS,
   SINGLE_LEVEL_BOOKS,
 } from '@/lib/config/books';
+import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -53,6 +54,15 @@ export type ContentMode = 'original' | 'simplified';
 // State machine for load transitions (GPT-5 improvement #1)
 export type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 
+// Resume info for UI toast/modal (Commit 5)
+export interface ResumeInfo {
+  sentenceIndex: number;
+  chapter: number;
+  totalSentences: number;
+  playbackSpeed?: number;
+  hoursSinceLastRead: number;
+}
+
 interface AudioContextState {
   // Book & Content Selection
   selectedBook: FeaturedBook | null;
@@ -76,6 +86,9 @@ interface AudioContextState {
   loading: boolean; // Computed: loadState === 'loading'
   error: string | null;
 
+  // Resume State (Commit 5)
+  resumeInfo: ResumeInfo | null;
+
   // Actions (Dispatch Pattern) - Minimal public surface (GPT-5 improvement #5)
   selectBook: (book: FeaturedBook, initialLevel?: CEFRLevel) => Promise<void>;
   switchLevel: (newLevel: CEFRLevel) => Promise<void>;
@@ -89,6 +102,7 @@ interface AudioContextState {
   previousChapter: () => void;
   jumpToChapter: (chapter: number) => void;
   unload: () => void; // Renamed from resetAudio for clarity
+  clearResumeInfo: () => void; // Clear resume toast/modal (Commit 5)
 }
 
 const AudioContext = createContext<AudioContextState | undefined>(undefined);
@@ -184,6 +198,11 @@ export function AudioProvider({ children }: AudioProviderProps) {
 
   // Computed loading state from state machine
   const loading = loadState === 'loading';
+
+  // -------------------------------------------------------------------------
+  // STATE: Resume (Commit 5)
+  // -------------------------------------------------------------------------
+  const [resumeInfo, setResumeInfo] = useState<ResumeInfo | null>(null);
 
   // -------------------------------------------------------------------------
   // REFS: Audio Managers (Singletons)
@@ -427,6 +446,16 @@ export function AudioProvider({ children }: AudioProviderProps) {
     setTotalTime(0);
     setLoadState('idle');
     setError(null);
+    setResumeInfo(null);
+  };
+
+  // -------------------------------------------------------------------------
+  // ACTION: clearResumeInfo (Commit 5)
+  // Clear resume modal/toast state (user dismissed or acted on it)
+  // -------------------------------------------------------------------------
+  const clearResumeInfo = () => {
+    console.log(`🔄 [AudioContext] Clearing resume info`);
+    setResumeInfo(null);
   };
 
   // -------------------------------------------------------------------------
@@ -614,6 +643,43 @@ export function AudioProvider({ children }: AudioProviderProps) {
           setBundleData(data);
           setTotalTime(0); // Will be calculated by audio manager
 
+          // Commit 5: Load saved reading position (atomically with requestId guard)
+          try {
+            const savedPosition = await readingPositionService.loadPosition(bookId);
+
+            // Guard: Only apply if request is still current
+            if (currentRequestIdRef.current === reqId && savedPosition && savedPosition.currentSentenceIndex > 0) {
+              console.log(`🔄 [AudioContext] Loading saved position: sentence ${savedPosition.currentSentenceIndex}, chapter ${savedPosition.currentChapter}`);
+
+              // Atomically restore position (requestId-guarded)
+              setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
+              setCurrentChapter(savedPosition.currentChapter);
+
+              if (savedPosition.playbackSpeed) {
+                setPlaybackSpeed(savedPosition.playbackSpeed);
+              }
+
+              // Calculate hours since last read for UI
+              const hoursSinceLastRead = savedPosition.lastAccessed
+                ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
+                : 999;
+
+              // Set resume info for UI toast/modal
+              setResumeInfo({
+                sentenceIndex: savedPosition.currentSentenceIndex,
+                chapter: savedPosition.currentChapter,
+                totalSentences: data.totalSentences,
+                playbackSpeed: savedPosition.playbackSpeed,
+                hoursSinceLastRead
+              });
+
+              console.log(`✅ [AudioContext] Resume info set: ${hoursSinceLastRead.toFixed(1)}h ago`);
+            }
+          } catch (error) {
+            console.warn('[AudioContext] Failed to load saved position:', error);
+            // Non-fatal - continue without resume
+          }
+
           // State machine transition: loading → ready
           setLoadState('ready');
 
@@ -799,6 +865,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
     loadState,
     loading,
     error,
+    resumeInfo,
 
     // Actions (minimal public API)
     selectBook,
@@ -813,6 +880,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
     previousChapter,
     jumpToChapter,
     unload,
+    clearResumeInfo,
   };
 
   return (

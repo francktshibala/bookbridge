@@ -652,6 +652,8 @@ export default function FeaturedBooksPage() {
     loadState,
     loading,
     error,
+    // Resume state (Commit 5)
+    resumeInfo,
     // Actions (keep context prefix)
     selectBook: contextSelectBook,
     switchLevel: contextSwitchLevel,
@@ -665,6 +667,7 @@ export default function FeaturedBooksPage() {
     previousChapter: contextPreviousChapter,
     jumpToChapter: contextJumpToChapter,
     unload: contextUnload,
+    clearResumeInfo: contextClearResumeInfo,
   } = useAudioContext();
 
   // =========================================================================
@@ -675,8 +678,8 @@ export default function FeaturedBooksPage() {
   // Phase 1, Task 1.5, Commit 3: No-op setters removed, handlers now dispatch to context
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showChapterModal, setShowChapterModal] = useState(false);
-  const [showContinueReading, setShowContinueReading] = useState(false);
-  const [savedPosition, setSavedPosition] = useState<{sentenceIndex: number, timestamp: number} | null>(null);
+  // Commit 5: showContinueReading now derived from context.resumeInfo
+  const showContinueReading = resumeInfo !== null && resumeInfo.hoursSinceLastRead < 24;
 
   // AI Chat Modal state
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
@@ -877,50 +880,19 @@ export default function FeaturedBooksPage() {
             }
           });
 
-          // Load saved reading position (page-local side effect)
-          setTimeout(async () => {
-            try {
-              const savedPosition = await readingPositionService.loadPosition(currentBookId);
-              if (savedPosition && savedPosition.currentSentenceIndex > 0) {
-                console.log('🔄 Loading saved position:', savedPosition.currentSentenceIndex);
-
-                const hoursSinceLastRead = savedPosition.lastAccessed
-                  ? (Date.now() - new Date(savedPosition.lastAccessed).getTime()) / (1000 * 60 * 60)
-                  : 999;
-
-                // Restore position to UI
-                setCurrentSentenceIndex(savedPosition.currentSentenceIndex);
-                setCurrentChapter(savedPosition.currentChapter);
-
-                if (hoursSinceLastRead < 24) {
-                  setSavedPosition({
-                    sentenceIndex: savedPosition.currentSentenceIndex,
-                    timestamp: new Date(savedPosition.lastAccessed || Date.now()).getTime()
-                  });
-                  setShowContinueReading(true);
-                }
-
-                // TODO Commit 5: Move resume logic to AudioContext
-                if (savedPosition.playbackSpeed) {
-                  setPlaybackSpeed(savedPosition.playbackSpeed);
-                }
-
-                // Scroll to saved position
-                setTimeout(() => {
-                  const sentenceElement = document.querySelector(`[data-sentence-index="${savedPosition.currentSentenceIndex}"]`);
-                  if (sentenceElement) {
-                    sentenceElement.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center'
-                    });
-                    console.log('📍 Scrolled to saved sentence:', savedPosition.currentSentenceIndex);
-                  }
-                }, 1000);
+          // Commit 5: Scroll to saved position (context already restored currentSentenceIndex)
+          if (contextCurrentSentenceIndex > 0) {
+            setTimeout(() => {
+              const sentenceElement = document.querySelector(`[data-sentence-index="${contextCurrentSentenceIndex}"]`);
+              if (sentenceElement) {
+                sentenceElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                });
+                console.log('📍 Scrolled to context sentence:', contextCurrentSentenceIndex);
               }
-            } catch (error) {
-              console.error('Error loading saved reading position:', error);
-            }
-          }, 500);
+            }, 1000);
+          }
         }
       } catch (error) {
         console.error('Error initializing page side effects:', error);
@@ -1252,16 +1224,16 @@ export default function FeaturedBooksPage() {
     }
   }, [cefrLevel, playbackSpeed, contentMode]);
 
+  // Commit 5: Continue reading - position already set by context
   const continueReading = async () => {
-    if (savedPosition) {
-      setCurrentSentenceIndex(savedPosition.sentenceIndex);
-      setShowContinueReading(false);
-      await handlePlaySequential(savedPosition.sentenceIndex);
-    }
+    contextClearResumeInfo(); // Dismiss modal
+    // Context already restored currentSentenceIndex, just start playing
+    await handlePlaySequential(contextCurrentSentenceIndex);
   };
 
+  // Commit 5: Start over - reset position via context and player
   const startFromBeginning = async () => {
-    setShowContinueReading(false);
+    contextClearResumeInfo(); // Dismiss modal
     setCurrentSentenceIndex(0);
     setCurrentChapter(1);
 
@@ -2028,8 +2000,8 @@ export default function FeaturedBooksPage() {
           </div>
         )}
 
-        {/* Continue Reading Modal */}
-        {showContinueReading && savedPosition && (
+        {/* Continue Reading Modal - Commit 5: Use context.resumeInfo */}
+        {showContinueReading && resumeInfo && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
 
@@ -2037,7 +2009,7 @@ export default function FeaturedBooksPage() {
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
                 <h2 className="text-lg font-semibold text-gray-900">Continue Reading?</h2>
                 <button
-                  onClick={() => setShowContinueReading(false)}
+                  onClick={() => contextClearResumeInfo()}
                   className="text-gray-400 hover:text-gray-600 text-xl"
                 >
                   ×
@@ -2047,7 +2019,7 @@ export default function FeaturedBooksPage() {
               {/* Modal Content */}
               <div className="p-6">
                 <p className="text-gray-600 mb-6">
-                  You were reading sentence {savedPosition.sentenceIndex + 1} of {bundleData?.totalSentences || 0}.
+                  You were reading sentence {resumeInfo.sentenceIndex + 1} of {resumeInfo.totalSentences}.
                   Would you like to continue where you left off?
                 </p>
 
