@@ -13,6 +13,7 @@ import { dictionaryCache, dictionaryAnalytics } from '@/lib/dictionary/Dictionar
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import type { ExternalBook } from '@/types/book-sources';
 import { useAudioContext } from '@/contexts/AudioContext';
+import { BookSelectionGrid, type FeaturedBook as BookSelectionGridBook } from './components/BookSelectionGrid';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -1173,6 +1174,18 @@ export default function FeaturedBooksPage() {
     setIsAIChatOpen(true);
   };
 
+  // Phase 3, Task 3.1: Book selection handler for BookSelectionGrid
+  const handleSelectBook = async (book: FeaturedBook) => {
+    // Save last-read book to localStorage
+    localStorage.setItem('lastReadBookId', book.id);
+
+    // Select book via AudioContext
+    await contextSelectBook(book);
+
+    // Hide book selection grid
+    setShowBookSelection(false);
+  };
+
   const handleCloseAIChat = () => {
     setIsAIChatOpen(false);
     setSelectedAIBook(null);
@@ -1460,96 +1473,13 @@ export default function FeaturedBooksPage() {
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      {/* Book Selection Screen */}
+      {/* Phase 3, Task 3.1: Book Selection Screen - Extracted to BookSelectionGrid component */}
       {showBookSelection && (
-        <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-          <div className="max-w-6xl mx-auto px-4 py-8">
-
-            {/* Header */}
-            <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold mb-4 text-[var(--text-accent)]" style={{ fontFamily: 'Playfair Display, serif' }}>
-                📚 Simplified Books
-              </h1>
-              <p className="text-[var(--text-secondary)] text-lg" style={{ fontFamily: 'Source Serif Pro, serif' }}>
-                Experience continuous reading with perfect text-audio harmony
-              </p>
-            </div>
-
-            {/* Simplified Books Grid - Wireframe Layout */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12 px-4">
-              {FEATURED_BOOKS.map((book, index) => (
-                <motion.div
-                  key={book.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group cursor-pointer"
-                  onClick={async () => {
-                    // Phase 2, Task 2.5: Save last-read book to localStorage
-                    localStorage.setItem('lastReadBookId', book.id);
-                    await contextSelectBook(book);
-                    setShowBookSelection(false);
-                  }}
-                >
-                  <div
-                    className="bg-[var(--bg-secondary)] border-2 border-[var(--accent-primary)]/30 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:border-[var(--accent-primary)]/60 hover:-translate-y-1 p-5 h-48 flex flex-col justify-between"
-                  >
-
-                    {/* Card Content */}
-                    <div>
-                      {/* Book Title */}
-                      <div className="text-lg font-bold text-[var(--text-accent)] mb-1 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        {book.title}
-                      </div>
-
-                      {/* Author */}
-                      <div className="text-sm text-[var(--text-secondary)] mb-3" style={{ fontFamily: 'Source Serif Pro, serif' }}>
-                        by {book.author}
-                      </div>
-
-                      {/* Meta Tags - Compact Style */}
-                      <div className="flex gap-2 mb-3 flex-wrap">
-                        <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-                          {book.id === 'great-gatsby-a2' ? 'A2' : 'A1-C2'}
-                        </span>
-                        <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-                          Classic
-                        </span>
-                        <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-                          {book.id === 'great-gatsby-a2' ? '~7.5h' : '~2h'}
-                        </span>
-                      </div>
-
-                      {/* Action Buttons - Compact Style */}
-                      <div className="flex gap-2 mt-auto">
-                        <button
-                          onClick={() => handleAskAI(book)}
-                          className="flex-1 h-9 rounded-lg bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)]/60 transition-all duration-200 text-sm font-medium"
-                          style={{ fontFamily: 'Source Serif Pro, serif' }}
-                        >
-                          Ask AI
-                        </button>
-                        <button
-                          onClick={async () => {
-                            // Phase 2, Task 2.5: Save last-read book to localStorage
-                            localStorage.setItem('lastReadBookId', book.id);
-                            await contextSelectBook(book);
-                            setShowBookSelection(false);
-                          }}
-                          className="flex-1 h-9 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
-                          style={{ fontFamily: 'Source Serif Pro, serif' }}
-                        >
-                          Start Reading
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-          </div>
-        </div>
+        <BookSelectionGrid
+          books={FEATURED_BOOKS}
+          onSelectBook={handleSelectBook}
+          onAskAI={handleAskAI}
+        />
       )}
 
       {/* Reading Interface */}
