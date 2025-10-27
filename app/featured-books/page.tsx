@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
@@ -2025,8 +2026,13 @@ export default function FeaturedBooksPage() {
         )}
 
         {/* Continue Reading Modal - Commit 5: Use context.resumeInfo */}
-        {showContinueReading && resumeInfo && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-4">
+        {/* GPT-5 Fix: Use portal to bypass stacking context issues */}
+        {showContinueReading && resumeInfo && createPortal(
+          <div
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-4 pointer-events-auto"
+            role="dialog"
+            aria-modal="true"
+          >
             <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
 
               {/* Modal Header */}
@@ -2064,7 +2070,8 @@ export default function FeaturedBooksPage() {
               </div>
 
             </div>
-          </div>
+          </div>,
+          document.body
         )}
 
         {/* Mobile Control Bar - Full Width */}
