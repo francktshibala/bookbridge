@@ -8,7 +8,8 @@ import {
   DEMO_VOICES,
   LEVEL_TO_VOICES,
   getVoiceFor,
-  getVoicesForLevel
+  getVoicesForLevel,
+  getVoicesByGender
 } from '@/lib/config/demo-voices';
 
 // Feature flags for gradual deployment
@@ -104,6 +105,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
   const [showLevelDropdown, setShowLevelDropdown] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [dropdownTab, setDropdownTab] = useState<'level' | 'voice'>('level');
+  const [voiceGenderTab, setVoiceGenderTab] = useState<'female' | 'male'>('female');
   const [isMobile, setIsMobile] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const timeUpdateRef = useRef<number | undefined>(undefined);
@@ -140,6 +142,12 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Auto-select gender tab based on current voice
+  useEffect(() => {
+    const currentVoiceGender = DEMO_VOICES[currentVoice].gender;
+    setVoiceGenderTab(currentVoiceGender);
+  }, [currentVoice]);
 
   // Load demo content with audio metadata
   useEffect(() => {
@@ -971,44 +979,103 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                 }}>
                   Voice
                 </div>
+
+                {/* Gender Tabs */}
                 <div style={{
                   display: 'flex',
-                  gap: '8px'
+                  gap: '8px',
+                  marginBottom: '12px'
                 }}>
-                  {/* Show level-specific voices */}
-                  {(() => {
-                    const levelVoices = getVoicesForLevel(currentLevel);
-                    const femaleVoiceId = LEVEL_TO_VOICES[currentLevel].female;
-                    const maleVoiceId = LEVEL_TO_VOICES[currentLevel].male;
+                  <button
+                    onClick={() => setVoiceGenderTab('female')}
+                    style={{
+                      flex: 1,
+                      background: voiceGenderTab === 'female' ? 'var(--accent-primary)' : 'transparent',
+                      color: voiceGenderTab === 'female' ? 'var(--bg-primary)' : 'var(--text-primary)',
+                      border: '1px solid var(--accent-secondary)',
+                      borderRadius: '4px',
+                      padding: '8px',
+                      fontSize: '13px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      touchAction: 'manipulation'
+                    }}
+                  >
+                    👩 Female
+                  </button>
+                  <button
+                    onClick={() => setVoiceGenderTab('male')}
+                    style={{
+                      flex: 1,
+                      background: voiceGenderTab === 'male' ? 'var(--accent-primary)' : 'transparent',
+                      color: voiceGenderTab === 'male' ? 'var(--bg-primary)' : 'var(--text-primary)',
+                      border: '1px solid var(--accent-secondary)',
+                      borderRadius: '4px',
+                      padding: '8px',
+                      fontSize: '13px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      touchAction: 'manipulation'
+                    }}
+                  >
+                    👨 Male
+                  </button>
+                </div>
 
-                    return [
-                      { id: femaleVoiceId, voice: levelVoices.female, icon: '👩' },
-                      { id: maleVoiceId, voice: levelVoices.male, icon: '👨' }
-                    ].map(({ id, voice, icon }) => (
+                {/* Voice Grid - Scrollable */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gap: '8px',
+                  maxHeight: '200px',
+                  overflowY: 'auto',
+                  padding: '4px'
+                }}>
+                  {getVoicesByGender(voiceGenderTab).map((voice) => {
+                    const voiceId = Object.keys(DEMO_VOICES).find(
+                      key => DEMO_VOICES[key as DemoVoiceId].elevenLabsId === voice.elevenLabsId
+                    ) as DemoVoiceId;
+
+                    return (
                       <button
-                        key={id}
+                        key={voiceId}
                         onClick={() => {
-                          handleVoiceChange(id);
+                          handleVoiceChange(voiceId);
                         }}
                         style={{
-                          flex: 1,
-                          background: currentVoice === id ? 'var(--accent-primary)' : 'transparent',
-                          color: currentVoice === id ? 'var(--bg-primary)' : 'var(--text-primary)',
+                          background: currentVoice === voiceId ? 'var(--accent-primary)' : 'transparent',
+                          color: currentVoice === voiceId ? 'var(--bg-primary)' : 'var(--text-primary)',
                           border: '1px solid var(--accent-secondary)',
                           borderRadius: '4px',
-                          padding: '8px 6px',
+                          padding: '10px 8px',
                           fontSize: '12px',
                           fontWeight: '500',
                           cursor: 'pointer',
                           transition: 'all 0.2s ease',
                           textAlign: 'center',
-                          touchAction: 'manipulation'
+                          touchAction: 'manipulation',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          gap: '4px'
                         }}
                       >
-                        {icon} {voice.name}
+                        <div style={{ fontSize: '14px', fontWeight: '600' }}>{voice.name}</div>
+                        <div style={{
+                          fontSize: '10px',
+                          opacity: 0.7,
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          width: '100%'
+                        }}>
+                          {voice.description}
+                        </div>
                       </button>
-                    ));
-                  })()}
+                    );
+                  })}
                 </div>
               </div>
 
