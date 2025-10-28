@@ -247,12 +247,19 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     setCurrentLevel(newLevel);
     setCurrentVoice(newVoiceId);
 
-    // Track level switch
+    // Track level switch with voice details
+    const newVoiceData = DEMO_VOICES[newVoiceId];
+    const oldVoiceData = DEMO_VOICES[currentVoice];
     trackDemoEvent('level_switch', {
       from_level: currentLevel,
       to_level: newLevel,
-      voice: newVoiceId,
-      enhanced_mode: true
+      from_voice_id: currentVoice,
+      from_voice_name: oldVoiceData.name,
+      to_voice_id: newVoiceId,
+      to_voice_name: newVoiceData.name,
+      voice_gender: currentVoiceGender,
+      enhanced_mode: true,
+      test_phase: 'multi_voice_demo'
     });
 
     console.log(`🔄 Level switched from ${currentLevel} to ${newLevel}, voice updated to ${DEMO_VOICES[newVoiceId].name} (${currentVoiceGender})`);
@@ -274,12 +281,20 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     // Update voice
     setCurrentVoice(newVoice);
 
-    // Track voice switch
+    // Track voice switch with detailed metadata
+    const fromVoiceData = DEMO_VOICES[currentVoice];
+    const toVoiceData = DEMO_VOICES[newVoice];
+
     trackDemoEvent('voice_switch', {
-      from_voice: currentVoice,
-      to_voice: newVoice,
+      from_voice_id: currentVoice,
+      from_voice_name: fromVoiceData.name,
+      from_voice_gender: fromVoiceData.gender,
+      to_voice_id: newVoice,
+      to_voice_name: toVoiceData.name,
+      to_voice_gender: toVoiceData.gender,
       level: currentLevel,
-      enhanced_mode: true
+      enhanced_mode: true,
+      test_phase: 'multi_voice_demo'
     });
 
     console.log(`🎤 Voice switched from ${currentVoice} to ${newVoice} for ${currentLevel} level`);
@@ -391,11 +406,15 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
       audioRef.current.pause();
       setIsPlaying(false);
 
+      const voiceData = DEMO_VOICES[currentVoice];
       trackDemoEvent('pause_clicked', {
         level: currentLevel,
-        voice: currentVoice,
+        voice_id: currentVoice,
+        voice_name: voiceData.name,
+        voice_gender: voiceData.gender,
         enhanced_mode: true,
-        current_time: currentTime.toFixed(1)
+        current_time: currentTime.toFixed(1),
+        test_phase: 'multi_voice_demo'
       });
     } else {
       console.log(`🎵 Attempting to play: ${currentLevel} ${currentVoice}`);
@@ -421,11 +440,15 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         });
       });
 
+      const voiceData = DEMO_VOICES[currentVoice];
       trackDemoEvent('play_clicked', {
         level: currentLevel,
-        voice: currentVoice,
+        voice_id: currentVoice,
+        voice_name: voiceData.name,
+        voice_gender: voiceData.gender,
         enhanced_mode: true,
-        current_time: currentTime.toFixed(1)
+        current_time: currentTime.toFixed(1),
+        test_phase: 'multi_voice_demo'
       });
     }
   }, [isPlaying, currentLevel, currentVoice, currentTime]);
@@ -472,21 +495,29 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     // Progressive CTA trigger at 8 seconds
     if (time >= 8 && !showProgressiveCTA) {
       setShowProgressiveCTA(true);
+      const voiceData = DEMO_VOICES[currentVoice];
       trackDemoEvent('retention_8s', {
         level: currentLevel,
-        voice: currentVoice,
+        voice_id: currentVoice,
+        voice_name: voiceData.name,
+        voice_gender: voiceData.gender,
         enhanced_mode: true,
-        engagement_time: time.toFixed(1)
+        engagement_time: time.toFixed(1),
+        test_phase: 'multi_voice_demo'
       });
     }
 
     // Deep engagement milestone at 15 seconds
     if (time >= 15) {
+      const voiceData = DEMO_VOICES[currentVoice];
       trackDemoEvent('retention_15s', {
         level: currentLevel,
-        voice: currentVoice,
+        voice_id: currentVoice,
+        voice_name: voiceData.name,
+        voice_gender: voiceData.gender,
         enhanced_mode: true,
-        engagement_time: time.toFixed(1)
+        engagement_time: time.toFixed(1),
+        test_phase: 'multi_voice_demo'
       });
     }
 
@@ -502,6 +533,19 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
       setIsPlaying(false);
       setCurrentSentenceIndex(-1);
       setCurrentTime(0);
+
+      // Track audio completion with voice details
+      const voiceData = DEMO_VOICES[currentVoice];
+      trackDemoEvent('audio_completed', {
+        level: currentLevel,
+        voice_id: currentVoice,
+        voice_name: voiceData.name,
+        voice_gender: voiceData.gender,
+        enhanced_mode: true,
+        total_duration: audio?.duration?.toFixed(1) || '0',
+        test_phase: 'multi_voice_demo'
+      });
+
       // Keep CTA visible after audio ends for conversion opportunity
     };
 
@@ -1219,22 +1263,54 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
               {/* Voice Selection */}
               <div>
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3">Voice</label>
-                <div className="flex gap-2">
-                  {(['sarah', 'daniel'] as const).map((voice) => (
-                    <button
-                      key={voice}
-                      onClick={() => {
-                        handleVoiceChange(voice);
-                      }}
-                      className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all capitalize ${
-                        currentVoice === voice
-                          ? 'bg-[var(--accent-primary)] text-white shadow-sm'
-                          : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--accent-secondary)]'
-                      }`}
-                    >
-                      {voice === 'sarah' ? '👩 Sarah' : '👨 Daniel'}
-                    </button>
-                  ))}
+
+                {/* Gender Tabs */}
+                <div className="flex gap-2 mb-3">
+                  <button
+                    onClick={() => setVoiceGenderTab('female')}
+                    className={`flex-1 py-2 px-3 rounded-md text-sm font-semibold transition-all ${
+                      voiceGenderTab === 'female'
+                        ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                        : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--accent-secondary)]'
+                    }`}
+                  >
+                    👩 Female
+                  </button>
+                  <button
+                    onClick={() => setVoiceGenderTab('male')}
+                    className={`flex-1 py-2 px-3 rounded-md text-sm font-semibold transition-all ${
+                      voiceGenderTab === 'male'
+                        ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                        : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--accent-secondary)]'
+                    }`}
+                  >
+                    👨 Male
+                  </button>
+                </div>
+
+                {/* Voice Grid */}
+                <div className="grid grid-cols-2 gap-2">
+                  {getVoicesByGender(voiceGenderTab).map((voice) => {
+                    const voiceId = Object.keys(DEMO_VOICES).find(
+                      key => DEMO_VOICES[key as DemoVoiceId].elevenLabsId === voice.elevenLabsId
+                    ) as DemoVoiceId;
+
+                    return (
+                      <button
+                        key={voiceId}
+                        onClick={() => {
+                          handleVoiceChange(voiceId);
+                        }}
+                        className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                          currentVoice === voiceId
+                            ? 'bg-[var(--accent-primary)] text-white shadow-sm'
+                            : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 border border-[var(--accent-secondary)]'
+                        }`}
+                      >
+                        {voice.name}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
