@@ -924,8 +924,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                 marginBottom: '8px',
                 boxShadow: '0 -8px 24px rgba(0, 0, 0, 0.15)',
                 zIndex: 1000,
-                minWidth: '300px',
-                maxHeight: '320px'
+                minWidth: '300px'
               }}
             >
               {/* Reading Levels Section */}
@@ -1024,14 +1023,11 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                   </button>
                 </div>
 
-                {/* Voice Grid - Scrollable */}
+                {/* Voice Grid */}
                 <div style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(2, 1fr)',
                   gap: '6px',
-                  maxHeight: '140px',
-                  overflowY: 'auto',
-                  overflowX: 'hidden',
                   padding: '2px'
                 }}>
                   {getVoicesByGender(voiceGenderTab).map((voice) => {
