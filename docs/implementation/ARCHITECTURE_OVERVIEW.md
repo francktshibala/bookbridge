@@ -1899,6 +1899,8 @@ const [autoScrollPaused, setAutoScrollPaused] = useState(false);
 
 ### Data Flow
 
+**Note**: Loader normalization ensures consistent handling of `bundleCount`/`totalBundles` field variations across API responses.
+
 ```mermaid
 graph LR
     A[User selects book] --> B[Load bundles from API]
@@ -1923,6 +1925,7 @@ graph LR
 ### Performance Characteristics
 
 - **Initial Load**: 2-3 seconds (cached audioDurationMetadata)
+- **Subsequent Loads**: Server cache for bundle metadata; perceived latency drops significantly on repeat loads
 - **Bundle Transitions**: Seamless (0ms gap)
 - **Dictionary Lookups**: <50ms (cached), <500ms (fresh AI)
 - **Theme Switching**: Instant (CSS variables)
@@ -1934,6 +1937,7 @@ graph LR
 2. **Voice Selector**: UI present but functionality unclear
 3. **Original Mode**: Audio disabled (only simplified text has audio)
 4. **Mobile Auto-scroll**: Can be disruptive, has pause mechanism
+5. **Phase 5 Partial**: Availability fast-path enabled via config for single-level titles (e.g., The Necklace); remaining bundle routes pending cache headers
 
 ---
 
@@ -2508,6 +2512,8 @@ Theme Integration:
 - **Book Content API**: `app/api/books/[id]/content/route.ts` - Legacy book data
 - **Fast Content API**: `app/api/books/[id]/content-fast/route.ts` - Optimized book loading
 - **Bundle APIs**: Multiple per-book routes (`app/api/*/bundles/route.ts`) + Generic (`app/api/featured-books/bundles/route.ts`)
+  - Server-side caching: `revalidate: 3600` (1-hour cache) with `Cache-Control` headers
+  - Response includes both `totalBundles` and `bundleCount` for client/UI consistency
 - **AI Tutoring**: `app/api/ai/stream/route.ts` - Educational chat system
 - **AI Dictionary**: `app/api/dictionary/resolve/route.ts` - ESL-optimized word definitions
 
