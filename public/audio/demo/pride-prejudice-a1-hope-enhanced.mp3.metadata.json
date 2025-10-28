@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "voice": "Hope",
+  "voiceId": "iCrDUkL56s3C8sCRl7wb",
+  "voiceFileId": "hope",
+  "gender": "female",
+  "level": "A1",
+  "measuredDuration": 29.28325,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "text": "People think that rich men who are not married want to find a wife.",
+      "startTime": 0,
+      "endTime": 4.1,
+      "duration": 4.1,
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "When a rich man comes to a new place, families want him to marry their daughters.",
+      "startTime": 4.1,
+      "endTime": 8.785,
+      "duration": 4.685,
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "The mothers in these families have one main goal.",
+      "startTime": 8.785,
+      "endTime": 11.42,
+      "duration": 2.635,
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "They want to find good husbands for their daughters.",
+      "startTime": 11.42,
+      "endTime": 14.056,
+      "duration": 2.635,
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 4,
+      "text": "When they hear about a new rich man, they get very excited.",
+      "startTime": 14.056,
+      "endTime": 17.57,
+      "duration": 3.514,
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "They start planning how to meet him.",
+      "startTime": 17.57,
+      "endTime": 19.62,
+      "duration": 2.05,
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "The mothers talk to each other about this man.",
+      "startTime": 19.62,
+      "endTime": 22.255,
+      "duration": 2.635,
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "They wonder if he is nice and if he wants to get married.",
+      "startTime": 22.255,
+      "endTime": 26.062,
+      "duration": 3.807,
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 8,
+      "text": "All the families hope their daughter will be the lucky one.",
+      "startTime": 26.062,
+      "endTime": 29.283,
+      "duration": 3.221,
+      "wordCount": 11
+    }
+  ],
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "style": 0.05,
+    "use_speaker_boost": true
+  },
+  "measuredAt": "2025-10-28T21:36:05.773Z",
+  "method": "ffprobe-proportional",
+  "phase": "multi_voice_demo_testing",
+  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+}

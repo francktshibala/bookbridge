@@ -1,0 +1,23 @@
+C1 Level - Pride and Prejudice Demo (9 sentences, ~50-55 seconds)
+
+Target: 20-40 words per sentence, sophisticated literary style approaching original
+Grammar: Complex sentences, literary devices, formal 19th-century tone
+Vocabulary: Advanced academic vocabulary, period-appropriate expressions, nuanced language
+
+TEXT:
+It is a truth universally acknowledged that a single man in possession of a considerable fortune must be in want of a wife. However little known the feelings or views of such a man may be upon his first entering a neighbourhood, this truth becomes so firmly fixed in the minds of the surrounding families that he is immediately considered as the rightful property of one or another of their daughters. The distinct advantage of this persuasion is that it effectively fixes the attention of the young gentleman upon the most eligible potential matches in the vicinity. The mothers of these families, consumed by this singular ambition, devote themselves entirely to the pursuit of advantageous marriages for their daughters. When intelligence of a wealthy, unmarried gentleman's arrival reaches the community, it creates an immediate sensation of excitement mixed with calculated determination among the matrimonially ambitious families. Each mother meticulously assesses her daughter's prospects while simultaneously formulating elaborate strategies designed to secure an introduction to this promising newcomer. Their conversations, dominated almost entirely by speculation about this mysterious gentleman, range from discussions of his probable character and temperament to conjecture about his matrimonial inclinations. They deliberate extensively upon what personal qualities and accomplishments he might value most highly in selecting a wife from among the available young ladies. The resulting competition, though conducted with outward civility and restraint, nevertheless creates an undercurrent of intense rivalry that permeates all social interactions within the neighborhood.
+
+SENTENCE BREAKDOWN:
+1. "It is a truth universally acknowledged that a single man in possession of a considerable fortune must be in want of a wife." (23 words)
+2. "However little known the feelings or views of such a man may be upon his first entering a neighbourhood, this truth becomes so firmly fixed in the minds of the surrounding families that he is immediately considered as the rightful property of one or another of their daughters." (50 words)
+3. "The distinct advantage of this persuasion is that it effectively fixes the attention of the young gentleman upon the most eligible potential matches in the vicinity." (28 words)
+4. "The mothers of these families, consumed by this singular ambition, devote themselves entirely to the pursuit of advantageous marriages for their daughters." (23 words)
+5. "When intelligence of a wealthy, unmarried gentleman's arrival reaches the community, it creates an immediate sensation of excitement mixed with calculated determination among the matrimonially ambitious families." (29 words)
+6. "Each mother meticulously assesses her daughter's prospects while simultaneously formulating elaborate strategies designed to secure an introduction to this promising newcomer." (22 words)
+7. "Their conversations, dominated almost entirely by speculation about this mysterious gentleman, range from discussions of his probable character and temperament to conjecture about his matrimonial inclinations." (28 words)
+8. "They deliberate extensively upon what personal qualities and accomplishments he might value most highly in selecting a wife from among the available young ladies." (25 words)
+9. "The resulting competition, though conducted with outward civility and restraint, nevertheless creates an undercurrent of intense rivalry that permeates all social interactions within the neighborhood." (27 words)
+
+TOTAL WORD COUNT: 255 words
+AVERAGE SENTENCE LENGTH: 28.3 words
+TARGET DURATION: ~56-60 seconds at 0.90 speed

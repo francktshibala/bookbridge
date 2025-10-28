@@ -1,0 +1,23 @@
+B2 Level - Pride and Prejudice Demo (9 sentences, ~45-50 seconds)
+
+Target: 15-35 words per sentence, more sophisticated than B1
+Grammar: Perfect tenses, passive voice, conditionals, complex subordinate clauses
+Vocabulary: Advanced vocabulary, idiomatic expressions, formal register
+
+TEXT:
+It is widely acknowledged as a universal truth that wealthy unmarried men are actively seeking wives. When such a prosperous gentleman arrives in a new community, the surrounding families immediately assume he must be interested in marrying one of their daughters, regardless of what his actual feelings or intentions might be. This assumption becomes deeply embedded in the collective mindset of all the neighboring mothers, who view it as an undeniable fact. These women regard the newly arrived bachelor as the ideal solution to securing their daughters' financial futures and social standing. News of a rich, unattached gentleman's arrival creates an atmosphere of intense excitement and anticipation throughout the entire neighborhood. Every ambitious mother begins carefully evaluating her daughter's chances while simultaneously devising strategic plans to facilitate an introduction. Conversations among the mothers revolve almost exclusively around this intriguing newcomer and the opportunities he represents. They engage in extensive speculation regarding his character, his matrimonial intentions, and what qualities he might be seeking in a potential wife. The subtle yet fierce competition that develops among these families adds considerable tension to their social interactions.
+
+SENTENCE BREAKDOWN:
+1. "It is widely acknowledged as a universal truth that wealthy unmarried men are actively seeking wives." (16 words)
+2. "When such a prosperous gentleman arrives in a new community, the surrounding families immediately assume he must be interested in marrying one of their daughters, regardless of what his actual feelings or intentions might be." (35 words)
+3. "This assumption becomes deeply embedded in the collective mindset of all the neighboring mothers, who view it as an undeniable fact." (21 words)
+4. "These women regard the newly arrived bachelor as the ideal solution to securing their daughters' financial futures and social standing." (20 words)
+5. "News of a rich, unattached gentleman's arrival creates an atmosphere of intense excitement and anticipation throughout the entire neighborhood." (19 words)
+6. "Every ambitious mother begins carefully evaluating her daughter's chances while simultaneously devising strategic plans to facilitate an introduction." (18 words)
+7. "Conversations among the mothers revolve almost exclusively around this intriguing newcomer and the opportunities he represents." (16 words)
+8. "They engage in extensive speculation regarding his character, his matrimonial intentions, and what qualities he might be seeking in a potential wife." (23 words)
+9. "The subtle yet fierce competition that develops among these families adds considerable tension to their social interactions." (17 words)
+
+TOTAL WORD COUNT: 185 words
+AVERAGE SENTENCE LENGTH: 20.6 words
+TARGET DURATION: ~48-52 seconds at 0.90 speed

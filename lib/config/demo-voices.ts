@@ -223,6 +223,18 @@ export function getVoicesByGender(gender: 'male' | 'female'): DemoVoice[] {
 }
 
 /**
+ * Get voices for a specific level and gender (filtered by current level)
+ *
+ * @param level - CEFR level
+ * @param gender - 'male' or 'female'
+ * @returns Array with single voice for the level and gender (returns array for consistency with getVoicesByGender)
+ */
+export function getVoicesForLevelAndGender(level: CEFRLevel, gender: 'male' | 'female'): DemoVoice[] {
+  const voiceId = LEVEL_TO_VOICES[level][gender];
+  return [DEMO_VOICES[voiceId]];
+}
+
+/**
  * Check if a voice ID is valid
  *
  * @param voiceId - Voice ID to validate

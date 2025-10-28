@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "voice": "James",
+  "voiceId": "EkK5I93UQWFDigLMpZcX",
+  "voiceFileId": "james",
+  "gender": "male",
+  "level": "B1",
+  "measuredDuration": 46.393438,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "text": "Everyone knows that a rich single man must want to find a wife.",
+      "startTime": 0,
+      "endTime": 4.787,
+      "duration": 4.787,
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
+      "startTime": 4.787,
+      "endTime": 16.569,
+      "duration": 11.782,
+      "wordCount": 32
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "This idea becomes the main concern of the neighboring mothers.",
+      "startTime": 16.569,
+      "endTime": 20.251,
+      "duration": 3.682,
+      "wordCount": 10
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "They see this wealthy newcomer as the perfect solution to their daughters' futures.",
+      "startTime": 20.251,
+      "endTime": 25.406,
+      "duration": 5.155,
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 4,
+      "text": "The news of a rich, unmarried gentleman creates immediate excitement in the community.",
+      "startTime": 25.406,
+      "endTime": 30.193,
+      "duration": 4.787,
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "Every mother begins to calculate her chances and plan her approach.",
+      "startTime": 30.193,
+      "endTime": 34.243,
+      "duration": 4.05,
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "Conversations between neighbors focus entirely on this mysterious new resident.",
+      "startTime": 34.243,
+      "endTime": 38.293,
+      "duration": 4.05,
+      "wordCount": 11
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "They speculate about his character, his intentions, and his preferences in women.",
+      "startTime": 38.293,
+      "endTime": 43.08,
+      "duration": 4.787,
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 8,
+      "text": "The competition among families becomes both subtle and intense.",
+      "startTime": 43.08,
+      "endTime": 46.393,
+      "duration": 3.314,
+      "wordCount": 9
+    }
+  ],
+  "voiceSettings": {
+    "stability": 0.45,
+    "similarity_boost": 0.8,
+    "style": 0.1,
+    "use_speaker_boost": true
+  },
+  "measuredAt": "2025-10-28T21:37:02.355Z",
+  "method": "ffprobe-proportional",
+  "phase": "multi_voice_demo_testing",
+  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+}

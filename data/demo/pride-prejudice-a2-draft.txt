@@ -1,0 +1,23 @@
+A2 Level - Pride and Prejudice Demo (9 sentences, ~35-40 seconds)
+
+Target: 8-20 words per sentence, slightly more complex than A1, but simpler than B1
+Grammar: Present simple + past simple, some connecting words, basic conjunctions
+Vocabulary: Common words with a few intermediate terms
+
+TEXT:
+It is a well-known truth that rich single men want to find a wife. When a wealthy man arrives in a new neighborhood, local families immediately think he should marry one of their daughters. The mothers of these families have a very clear goal in mind. They want to find the best possible husbands for their young daughters. As soon as they hear about a new rich gentleman, they become extremely excited about the possibilities. They quickly start making plans about how they can meet him and introduce their daughters. The mothers spend hours talking with each other about this mysterious new man. They discuss his background, his personality, and whether he really wants to get married soon. Every family in the area hopes that their own daughter will be the fortunate one he chooses.
+
+SENTENCE BREAKDOWN:
+1. "It is a well-known truth that rich single men want to find a wife." (14 words)
+2. "When a wealthy man arrives in a new neighborhood, local families immediately think he should marry one of their daughters." (19 words)
+3. "The mothers of these families have a very clear goal in mind." (12 words)
+4. "They want to find the best possible husbands for their young daughters." (12 words)
+5. "As soon as they hear about a new rich gentleman, they become extremely excited about the possibilities." (17 words)
+6. "They quickly start making plans about how they can meet him and introduce their daughters." (16 words)
+7. "The mothers spend hours talking with each other about this mysterious new man." (14 words)
+8. "They discuss his background, his personality, and whether he really wants to get married soon." (15 words)
+9. "Every family in the area hopes that their own daughter will be the fortunate one he chooses." (17 words)
+
+TOTAL WORD COUNT: 136 words
+AVERAGE SENTENCE LENGTH: 15.1 words
+TARGET DURATION: ~36-40 seconds at 0.90 speed

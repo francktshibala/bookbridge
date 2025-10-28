@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "voice": "Grandpa Spuds",
+  "voiceId": "NOpBlnGInO9m6vDvFkFC",
+  "voiceFileId": "grandpa-spuds",
+  "gender": "male",
+  "level": "A2",
+  "measuredDuration": 48.613875,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "text": "It is a well-known truth that rich single men want to find a wife.",
+      "startTime": 0,
+      "endTime": 5.004,
+      "duration": 5.004,
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "When a wealthy man arrives in a new neighborhood, local families immediately think he should marry one of their daughters.",
+      "startTime": 5.004,
+      "endTime": 11.796,
+      "duration": 6.792,
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "The mothers of these families have a very clear goal in mind.",
+      "startTime": 11.796,
+      "endTime": 16.085,
+      "duration": 4.289,
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "They want to find the best possible husbands for their young daughters.",
+      "startTime": 16.085,
+      "endTime": 20.375,
+      "duration": 4.289,
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 4,
+      "text": "As soon as they hear about a new rich gentleman, they become extremely excited about the possibilities.",
+      "startTime": 20.375,
+      "endTime": 26.452,
+      "duration": 6.077,
+      "wordCount": 17
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "They quickly start making plans about how they can meet him and introduce their daughters.",
+      "startTime": 26.452,
+      "endTime": 32.171,
+      "duration": 5.719,
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "The mothers spend hours talking with each other about this mysterious new man.",
+      "startTime": 32.171,
+      "endTime": 37.175,
+      "duration": 5.004,
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "They discuss his background, his personality, and whether he really wants to get married soon.",
+      "startTime": 37.175,
+      "endTime": 42.537,
+      "duration": 5.362,
+      "wordCount": 15
+    },
+    {
+      "sentenceIndex": 8,
+      "text": "Every family in the area hopes that their own daughter will be the fortunate one he chooses.",
+      "startTime": 42.537,
+      "endTime": 48.614,
+      "duration": 6.077,
+      "wordCount": 17
+    }
+  ],
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "style": 0.05,
+    "use_speaker_boost": true
+  },
+  "measuredAt": "2025-10-28T21:36:39.221Z",
+  "method": "ffprobe-proportional",
+  "phase": "multi_voice_demo_testing",
+  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+}

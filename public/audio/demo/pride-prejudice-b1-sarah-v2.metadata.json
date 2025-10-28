@@ -1,0 +1,23 @@
+{
+  "version": "v2",
+  "implementation": "gpt5_refined_minimal_processing",
+  "source": "pride-prejudice-b1-sarah-enhanced.mp3",
+  "processing": {
+    "stage1": "highpass=f=75 (gentle cleanup)",
+    "stage2": "deesser=i=0.05:m=0.01:f=0.3:s=o (surgical de-essing)",
+    "stage3": "loudnorm=I=-16:TP=-1:LRA=8 (hero loudness)"
+  },
+  "quality_metrics": {
+    "duration": "47.777958s",
+    "drift_from_original": "0.000002%",
+    "sample_rate": "48000Hz",
+    "bitrate": "128kbps",
+    "channels": 1,
+    "target_lufs": "-16"
+  },
+  "approach": "v2_moderate_settings_minimal_processing",
+  "focus": "first_5_seconds_of_delight",
+  "sync_preservation": "perfect",
+  "processed_at": "2025-10-25T10:28:00Z",
+  "notes": "GPT-5 refined approach - less is more, preserve micro-expressiveness"
+}

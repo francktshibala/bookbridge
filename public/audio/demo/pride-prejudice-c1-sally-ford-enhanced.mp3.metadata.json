@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "voice": "Sally Ford",
+  "voiceId": "kBag1HOZlaVBH7ICPE8x",
+  "voiceFileId": "sally-ford",
+  "gender": "female",
+  "level": "C1",
+  "measuredDuration": 106.292188,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "text": "It is a truth universally acknowledged that a single man in possession of a considerable fortune must be in want of a wife.",
+      "startTime": 0,
+      "endTime": 9.587,
+      "duration": 9.587,
+      "wordCount": 23
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "However little known the feelings or views of such a man may be upon his first entering a neighbourhood, this truth becomes so firmly fixed in the minds of the surrounding families that he is immediately considered as the rightful property of one or another of their daughters.",
+      "startTime": 9.587,
+      "endTime": 30.429,
+      "duration": 20.842,
+      "wordCount": 50
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "The distinct advantage of this persuasion is that it effectively fixes the attention of the young gentleman upon the most eligible potential matches in the vicinity.",
+      "startTime": 30.429,
+      "endTime": 42.1,
+      "duration": 11.671,
+      "wordCount": 28
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "The mothers of these families, consumed by this singular ambition, devote themselves entirely to the pursuit of advantageous marriages for their daughters.",
+      "startTime": 42.1,
+      "endTime": 51.687,
+      "duration": 9.587,
+      "wordCount": 23
+    },
+    {
+      "sentenceIndex": 4,
+      "text": "When intelligence of a wealthy, unmarried gentleman's arrival reaches the community, it creates an immediate sensation of excitement mixed with calculated determination among the matrimonially ambitious families.",
+      "startTime": 51.687,
+      "endTime": 63.775,
+      "duration": 12.088,
+      "wordCount": 29
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "Each mother meticulously assesses her daughter's prospects while simultaneously formulating elaborate strategies designed to secure an introduction to this promising newcomer.",
+      "startTime": 63.775,
+      "endTime": 72.946,
+      "duration": 9.17,
+      "wordCount": 22
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "Their conversations, dominated almost entirely by speculation about this mysterious gentleman, range from discussions of his probable character and temperament to conjecture about his matrimonial inclinations.",
+      "startTime": 72.946,
+      "endTime": 84.617,
+      "duration": 11.671,
+      "wordCount": 28
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "They deliberate extensively upon what personal qualities and accomplishments he might value most highly in selecting a wife from among the available young ladies.",
+      "startTime": 84.617,
+      "endTime": 95.038,
+      "duration": 10.421,
+      "wordCount": 25
+    },
+    {
+      "sentenceIndex": 8,
+      "text": "The resulting competition, though conducted with outward civility and restraint, nevertheless creates an undercurrent of intense rivalry that permeates all social interactions within the neighborhood.",
+      "startTime": 95.038,
+      "endTime": 106.292,
+      "duration": 11.254,
+      "wordCount": 27
+    }
+  ],
+  "voiceSettings": {
+    "stability": 0.45,
+    "similarity_boost": 0.8,
+    "style": 0.15,
+    "use_speaker_boost": true
+  },
+  "measuredAt": "2025-10-28T21:38:00.400Z",
+  "method": "ffprobe-proportional",
+  "phase": "multi_voice_demo_testing",
+  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+}

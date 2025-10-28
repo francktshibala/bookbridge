@@ -9,7 +9,8 @@ import {
   LEVEL_TO_VOICES,
   getVoiceFor,
   getVoicesForLevel,
-  getVoicesByGender
+  getVoicesByGender,
+  getVoicesForLevelAndGender
 } from '@/lib/config/demo-voices';
 
 // Feature flags for gradual deployment
@@ -97,6 +98,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
   const [isPlaying, setIsPlaying] = useState(false);
   const [demoContent, setDemoContent] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [audioMetadata, setAudioMetadata] = useState<any>(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(-1);
   const [showProgressiveCTA, setShowProgressiveCTA] = useState(false);
@@ -149,11 +151,11 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     setVoiceGenderTab(currentVoiceGender);
   }, [currentVoice]);
 
-  // Load demo content with audio metadata
+  // Load demo content
   useEffect(() => {
     const loadDemoContent = async () => {
       try {
-        const response = await fetch('/data/demo/pride-prejudice-demo.json');
+        const response = await fetch('/data/demo/pride-prejudice-demo-9sentences.json');
         const content = await response.json();
         setDemoContent(content);
 
@@ -173,24 +175,62 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     loadDemoContent();
   }, [abTestVariant]);
 
-  // Calculate sentence timings based on audio duration and character count
+  // Load audio metadata with measured timings (Solution 1)
+  useEffect(() => {
+    const loadAudioMetadata = async () => {
+      try {
+        const levelName = currentLevel === 'Original' ? 'original' : currentLevel.toLowerCase();
+        const voiceFileId = DEMO_VOICES[currentVoice].fileId;
+        const metadataUrl = `/audio/demo/pride-prejudice-${levelName}-${voiceFileId}-enhanced.mp3.metadata.json`;
+
+        const response = await fetch(metadataUrl);
+        if (!response.ok) {
+          console.warn(`Metadata not found for ${currentLevel}-${currentVoice}, using fallback`);
+          setAudioMetadata(null);
+          return;
+        }
+
+        const metadata = await response.json();
+        setAudioMetadata(metadata);
+        console.log(`✅ Loaded measured timings for ${currentLevel}-${currentVoice}:`, metadata.measuredDuration + 's');
+      } catch (error) {
+        console.error('Failed to load audio metadata:', error);
+        setAudioMetadata(null);
+      }
+    };
+
+    loadAudioMetadata();
+  }, [currentLevel, currentVoice]);
+
+  // Get sentence timings from loaded metadata (Solution 1: measured timings)
   const calculateSentenceTimings = useCallback(() => {
+    // If we have loaded metadata with measured timings, use it directly
+    if (audioMetadata?.sentenceTimings) {
+      return audioMetadata.sentenceTimings.map((timing: any) => ({
+        start: timing.startTime,
+        end: timing.endTime,
+        duration: timing.duration,
+        sentence: timing.text,
+        index: timing.sentenceIndex
+      }));
+    }
+
+    // Fallback: calculate from character count (only if metadata not available)
     const levelKey = currentLevel === 'Original' ? 'original' : currentLevel;
     if (!demoContent?.levels?.[levelKey]?.sentences) return [];
 
-    // Enhanced durations for all levels and voices
+    console.warn(`⚠️ Using fallback timing calculation for ${currentLevel}-${currentVoice} (metadata not loaded)`);
+
+    // Fallback durations (old baseline)
     const enhancedDurations: Record<string, Record<string, number>> = {
-      'A1': { daniel: 29.388, sarah: 29.388 },
-      'A2': { daniel: 40.620, sarah: 38.269 },
-      'B1': { daniel: 47.229, sarah: 47.778 },
-      'B2': { daniel: 60.865, sarah: 63.138 },
-      'C1': { daniel: 71.419, sarah: 70.452 },
-      'C2': { daniel: 61.048, sarah: 60.500 },
-      'Original': { daniel: 54.047, sarah: 54.047 }
+      'A1': { daniel: 29.388, sarah: 29.388, hope: 28.369 },
+      'B1': { daniel: 47.229, sarah: 47.778, jane: 45.688, james: 45.923 },
+      'original': { daniel: 54.047, sarah: 51.644, david_castlemore: 51.357 }
     };
 
-    const levelDurations = enhancedDurations[currentLevel];
-    let measuredDuration = levelDurations?.[currentVoice] || 40;
+    const levelDurations = enhancedDurations[levelKey];
+    const voiceKey = currentVoice.replace(/-/g, '_');
+    let measuredDuration = levelDurations?.[voiceKey] || 40;
 
     const sentences = demoContent.levels[levelKey].sentences;
     const totalCharacters = sentences.reduce((sum: number, sentence: any) => sum + sentence.text.length, 0);
@@ -211,16 +251,51 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
       currentTime += proportionalDuration;
       return timing;
     });
-  }, [demoContent, currentLevel, currentVoice]);
+  }, [demoContent, currentLevel, currentVoice, audioMetadata]);
 
-  // Find current sentence based on audio time
+  // Find current sentence based on audio time (GPT-5 optimized with look-ahead)
+  const lastKnownIndexRef = useRef<number>(0);
+
   const findCurrentSentence = useCallback((time: number) => {
     const timings = calculateSentenceTimings();
+    if (timings.length === 0) return -1;
+
+    // GPT-5 recommendation: Add 120ms look-ahead for better perceived sync
+    const LOOKAHEAD_MS = 0.12; // 120ms
+    const t = time + LOOKAHEAD_MS;
+
+    // GPT-5 optimization: Check last known index and neighbors first
+    const lastIdx = lastKnownIndexRef.current;
+
+    // Check last known position first
+    if (lastIdx < timings.length && t >= timings[lastIdx].start && t < timings[lastIdx].end) {
+      return lastIdx;
+    }
+
+    // Check neighbors (±1)
+    if (lastIdx + 1 < timings.length && t >= timings[lastIdx + 1].start && t < timings[lastIdx + 1].end) {
+      lastKnownIndexRef.current = lastIdx + 1;
+      return lastIdx + 1;
+    }
+    if (lastIdx - 1 >= 0 && t >= timings[lastIdx - 1].start && t < timings[lastIdx - 1].end) {
+      lastKnownIndexRef.current = lastIdx - 1;
+      return lastIdx - 1;
+    }
+
+    // Full scan with strict boundaries (GPT-5: use < instead of <=)
     for (let i = 0; i < timings.length; i++) {
-      if (time >= timings[i].start && time <= timings[i].end) {
+      if (t >= timings[i].start && t < timings[i].end) {
+        lastKnownIndexRef.current = i;
         return i;
       }
     }
+
+    // If past all sentences, return last sentence
+    if (t >= timings[timings.length - 1].end) {
+      lastKnownIndexRef.current = timings.length - 1;
+      return timings.length - 1;
+    }
+
     return -1;
   }, [calculateSentenceTimings]);
 
@@ -236,6 +311,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     setIsPlaying(false);
     setCurrentSentenceIndex(-1);
     setCurrentTime(0);
+    lastKnownIndexRef.current = 0; // Reset for new level
 
     // Get current voice gender to preserve preference when switching levels
     const currentVoiceGender = DEMO_VOICES[currentVoice].gender;
@@ -277,6 +353,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     setIsPlaying(false);
     setCurrentSentenceIndex(-1);
     setCurrentTime(0);
+    lastKnownIndexRef.current = 0; // Reset for new voice
 
     // Update voice
     setCurrentVoice(newVoice);
@@ -1070,11 +1147,11 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                 {/* Voice Grid */}
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gridTemplateColumns: '1fr',
                   gap: '6px',
                   padding: '2px'
                 }}>
-                  {getVoicesByGender(voiceGenderTab).map((voice) => {
+                  {getVoicesForLevelAndGender(currentLevel, voiceGenderTab).map((voice) => {
                     const voiceId = Object.keys(DEMO_VOICES).find(
                       key => DEMO_VOICES[key as DemoVoiceId].elevenLabsId === voice.elevenLabsId
                     ) as DemoVoiceId;
@@ -1289,8 +1366,8 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                 </div>
 
                 {/* Voice Grid */}
-                <div className="grid grid-cols-2 gap-2">
-                  {getVoicesByGender(voiceGenderTab).map((voice) => {
+                <div className="grid grid-cols-1 gap-2">
+                  {getVoicesForLevelAndGender(currentLevel, voiceGenderTab).map((voice) => {
                     const voiceId = Object.keys(DEMO_VOICES).find(
                       key => DEMO_VOICES[key as DemoVoiceId].elevenLabsId === voice.elevenLabsId
                     ) as DemoVoiceId;

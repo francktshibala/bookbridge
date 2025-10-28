@@ -1187,4 +1187,396 @@ export ELEVENLABS_API_KEY="..." && node scripts/generate-demo-audio.js
 
 ---
 
-**Next Steps**: Begin Phase 1 implementation with component architecture and demo content creation, following Master Prevention guidelines and Production Deployment Lessons religiously.
+## 🎤 Phase 4: Multi-Voice Demo Testing (User Research Phase)
+
+### 📊 Why This Change?
+
+**Problem**: We have 22 documented voices in Voice Casting Guide, but don't know which ones users actually prefer for ESL audiobooks.
+
+**Current State**: Only Daniel + Sarah across all 7 levels (14 audio files).
+
+**Risk**: Generating full books ($500+ per book) with voices users may not like = wasted investment.
+
+**Solution**: Generate short demos (6-8 sentences, ~$5-10 total) with 14 different voices → users tell us which they love through real usage → data-driven voice selection for production books.
+
+**User Research Value**:
+- Low-cost experimentation ($10 vs $500+)
+- Real usage data (plays, retention, switches)
+- Voice preference analytics per CEFR level
+- Strategic casting validation from Voice Casting Guide
+
+---
+
+### 🎯 Strategic Voice Assignment (Based on Voice Casting Guide)
+
+**Locked Voices (Keep as Control Group)**:
+- **A1 Male**: Daniel (onwK4e9ZLuTAKqWW03F9) - Proven M1 winner, British authority
+- **Original Female**: Sarah (EXAVITQu4vr4xnSDxMaL) - Production baseline
+
+**New Voice Assignments (Testing Phase)**:
+
+| Level | Female Voice | Male Voice | Strategic Reasoning |
+|-------|--------------|------------|---------------------|
+| **A1** | Hope (iCrDUkL56s3C8sCRl7wb) | **Daniel (locked)** | Soothing + proven authority for beginners |
+| **A2** | Arabella (aEO01A4wXwd1O8GPgGlF) | Grandpa Spuds (NOpBlnGInO9m6vDvFkFC) | Young enchanting + warm storyteller |
+| **B1** | Jane (RILOU7YmBhvwJGDGjNmP) | James (EkK5I93UQWFDigLMpZcX) | Professional + engaging American |
+| **B2** | Zara (jqcCZkN6Knx8BJ5TBdYR) | David C (XjLkpWUlnhS8i7gGz3lZ) | Modern authentic + educator specialist |
+| **C1** | Sally Ford (kBag1HOZlaVBH7ICPE8x) | Frederick (j9jfwdrw7BRfcR43Qohk) | Elegant British + documentary narrator |
+| **C2** | Vivie (z7U1SjrEq4fDDDriOQEN) | John Doe (EiNlNiXeDU1pqqOPrYMO) | Cultured educational + deep authority |
+| **Original** | **Sarah (locked)** | David C (XjLkpWUlnhS8i7gGz3lZ) | Baseline + educator for authenticity |
+
+**Total Audio Files**: 14 new files (6 levels × 2 new voices + 1 Original male) = ~$8-12 generation cost
+
+---
+
+### 🛡️ Backup Strategy (Risk Mitigation)
+
+**Current Daniel/Sarah Files (A2-C2)**:
+- **DO NOT DELETE** during Phase 4 implementation
+- Keep in `/public/audio/demo/` with `-backup` suffix
+- Serve as fallback if new voices fail quality checks (<5% drift requirement)
+- Archive after 2 weeks of successful new voice usage
+
+**Backup Files to Preserve**:
+```
+pride-prejudice-a2-daniel-enhanced.mp3 → pride-prejudice-a2-daniel-enhanced-backup.mp3
+pride-prejudice-a2-sarah-enhanced.mp3 → pride-prejudice-a2-sarah-enhanced-backup.mp3
+pride-prejudice-b1-daniel-enhanced.mp3 → pride-prejudice-b1-daniel-enhanced-backup.mp3
+pride-prejudice-b2-daniel-enhanced.mp3 → pride-prejudice-b2-daniel-enhanced-backup.mp3
+pride-prejudice-b2-sarah-enhanced.mp3 → pride-prejudice-b2-sarah-enhanced-backup.mp3
+pride-prejudice-c1-daniel-enhanced.mp3 → pride-prejudice-c1-daniel-enhanced-backup.mp3
+pride-prejudice-c1-sarah-enhanced.mp3 → pride-prejudice-c1-sarah-enhanced-backup.mp3
+pride-prejudice-c2-daniel-enhanced.mp3 → pride-prejudice-c2-daniel-enhanced-backup.mp3
+pride-prejudice-c2-sarah-enhanced.mp3 → pride-prejudice-c2-sarah-enhanced-backup.mp3
+```
+
+**Rollback Plan**: If drift >5% or quality issues detected → restore backup files instantly.
+
+---
+
+### 📅 Implementation Plan (Incremental Steps)
+
+#### **Step 1: Voice Configuration Setup** (30 mins)
+**File**: `components/hero/InteractiveReadingDemo.tsx`
+
+**Changes**:
+- Create `VOICE_CONFIG` constant with all 14 voice IDs + metadata
+- Update `currentVoice` state from `'daniel' | 'sarah'` to accept voice IDs
+- Add voice lookup function to get metadata (name, gender, description)
+
+**Test Locally**:
+- Component still renders
+- No TypeScript errors
+- Can switch between Daniel/Sarah (existing functionality intact)
+
+**Git Checkpoint**: Commit "feat(hero): Add voice configuration structure"
+
+---
+
+#### **Step 2: Modal UI Enhancement** (1 hour)
+**File**: `components/hero/InteractiveReadingDemo.tsx`
+
+**Changes**:
+- Add gender tabs to voice selector (👩 Female | 👨 Male)
+- Create voice button grid (2 columns × 4 rows per gender)
+- Display voice metadata (icon + name + descriptor)
+- Implement level-based voice filtering (show only 2 voices per level)
+
+**Test Locally**:
+- Modal opens and shows gender tabs
+- Voice buttons render correctly for current level
+- Can switch between female/male tabs
+- Clicking voice updates state (audio not yet changed)
+
+**Git Checkpoint**: Commit "feat(hero): Enhance voice selector UI with multi-voice support"
+
+---
+
+#### **Step 3: Dynamic Audio URL Generation** (45 mins)
+**File**: `components/hero/InteractiveReadingDemo.tsx`
+
+**Changes**:
+- Update audio URL pattern: `pride-prejudice-${level}-${voiceId}-enhanced.mp3`
+- Update `enhancedDurations` with new voice measurements (initially estimated)
+- Update preloading logic to handle 2 voices per level (not all 112 files)
+- Add fallback to backup files if new voice file fails to load
+
+**Test Locally**:
+- A1 Daniel + A1 Hope switch correctly (Hope will 404 until audio generated)
+- Original Sarah + Original David C URLs generate correctly
+- Fallback to backup files works if new files missing
+- Console shows correct audio URLs being requested
+
+**Git Checkpoint**: Commit "feat(hero): Implement dynamic voice-based audio URLs"
+
+---
+
+#### **Step 4: Analytics & Tracking** (30 mins)
+**File**: `components/hero/InteractiveReadingDemo.tsx`
+
+**Changes**:
+- Add voice metadata to all analytics events (voice_id, voice_name, gender)
+- Track `voice_preference_test` event on voice switch
+- Track `voice_engagement_${voiceId}` for retention metrics
+- Log voice performance data (plays, completion rate per voice)
+
+**Test Locally**:
+- Console shows analytics events with voice metadata
+- Voice switches trigger tracking
+- Engagement milestones (8s, 15s) include voice info
+
+**Git Checkpoint**: Commit "feat(hero): Add voice preference analytics tracking"
+
+---
+
+#### **Step 5: Audio Generation Script** (2-3 hours)
+**File**: `scripts/generate-multi-voice-demo-audio.js` (new file)
+
+**Requirements**:
+- Load Voice Casting Guide voice IDs + settings
+- Generate 14 new audio files using GPT-5 settings
+- Apply gender-specific post-processing (male/female EQ curves)
+- Measure duration with ffprobe (Solution 1)
+- Validate <5% drift from baseline timings
+- Output duration metadata for component integration
+
+**Test Locally**:
+- Generate one test file (A2 Arabella) first
+- Validate quality and drift
+- If successful, generate remaining 13 files
+- Update `enhancedDurations` in component with actual measurements
+
+**Git Checkpoint**: Commit "feat(hero): Generate multi-voice demo audio with quality validation"
+
+---
+
+#### **Step 6: Production Deployment** (30 mins)
+
+**Pre-Deployment Checklist**:
+- [ ] All 14 new audio files generated and validated
+- [ ] Backup files renamed with `-backup` suffix
+- [ ] Component tested with all level/voice combinations
+- [ ] Analytics tracking verified in console
+- [ ] Mobile UI tested on real device
+- [ ] Cross-browser tested (Chrome, Safari, Firefox)
+
+**Deployment Steps**:
+1. Rename existing Daniel/Sarah A2-C2 files to `-backup` suffix
+2. Add new 14 audio files with `git add -f public/audio/demo/*.mp3`
+3. Run `npm run build` locally (must succeed)
+4. Commit: "feat(hero): Deploy multi-voice demo for user research"
+5. Push to production
+6. Monitor analytics for first 48 hours
+
+**Success Metrics**:
+- All voices load without 404 errors
+- <5% drift maintained across all voices
+- User engagement data flowing to analytics
+- No console errors in production
+
+---
+
+### 📊 Data Collection & Analysis
+
+**Metrics to Track (2-week observation period)**:
+
+1. **Voice Popularity**:
+   - Play count per voice per level
+   - Completion rate (% who finish demo with each voice)
+   - Average engagement time per voice
+
+2. **User Preferences**:
+   - Voice switching patterns (which voices do users try?)
+   - Voice retention (which voices keep users listening?)
+   - Level-specific preferences (does A1 Hope outperform A1 Daniel?)
+
+3. **Quality Indicators**:
+   - Audio loading failures per voice
+   - User reports of sync issues
+   - Drift validation results
+
+**Analysis Framework**:
+- After 2 weeks, rank voices by engagement score
+- Identify top 3 male + top 3 female voices
+- Use winning voices for full book production
+- Archive unused voices (save for future testing)
+
+---
+
+### 🚨 Risk Mitigation
+
+**Technical Risks**:
+- **Audio file size**: 14 files × ~800KB average = ~11MB (acceptable for demo)
+- **Loading time**: On-demand loading prevents initial delay
+- **Drift validation**: MANDATORY <5% check before deployment
+- **Backup files**: Instant rollback if new voices fail
+
+**User Experience Risks**:
+- **Choice paralysis**: Mitigated by level-based filtering (2 voices per level)
+- **Modal complexity**: Gender tabs + clean 2×4 grid keeps it uncluttered
+- **Confusion**: Clear voice descriptors (e.g., "Soothing Narrator")
+
+**Business Risks**:
+- **Generation cost**: $8-12 for demos vs $500+ for full books = 98% cost reduction
+- **Wasted effort**: Backup files ensure no loss if experiment fails
+- **Timeline**: 4-6 hours implementation vs weeks of full book generation
+
+---
+
+### ✅ Phase 4 Success Criteria
+
+**Implementation Complete When**:
+- [ ] All 14 new audio files generated with <5% drift
+- [ ] Voice selector modal shows 2 voices per level with gender tabs
+- [ ] Audio switches seamlessly between voices
+- [ ] Analytics tracks voice preference data
+- [ ] Backup files preserved for rollback safety
+- [ ] Production deployment successful with no errors
+
+**Research Success When** (2 weeks post-launch):
+- [ ] >500 total voice switches recorded
+- [ ] Clear preference patterns emerge (top 3 male + top 3 female identified)
+- [ ] Engagement data validates Voice Casting Guide recommendations
+- [ ] Strategic voice assignment confirmed or adjusted based on data
+
+---
+
+## ✅ PHASE 4 COMPLETION SUMMARY (December 2024)
+
+### Implementation Status: **COMPLETE** ✅
+
+All 12 voices across 6 CEFR levels successfully generated and deployed with perfect audio-text synchronization.
+
+### What Was Completed
+
+#### 1. **Voice Generation** (12/12 voices)
+- **A1**: Hope (female, 29.3s), Daniel (male, 29.5s)
+- **A2**: Arabella (female, 42.5s), Grandpa Spuds (male, 48.6s)
+- **B1**: Jane (female, 47.1s), James (male, 46.4s)
+- **B2**: Zara (female, 75.2s), David Castlemore (male, 77.0s)
+- **C1**: Sally Ford (female, 106.3s), Frederick Surrey (male, 96.5s)
+- **C2**: Vivie (female, 96.9s), John Doe (male, 93.8s)
+
+**Quality**: All voices passed drift validation (<5% requirement)
+
+#### 2. **Demo Text Creation** (7/7 levels)
+- Created graduated complexity texts for A2, B2, C1, C2 levels
+- 9 sentences per level, matching original Pride & Prejudice structure
+- Average sentence lengths: A2 (11.3w), B2 (20.6w), C1 (28.3w), C2 (30.2w)
+- All texts added to `/public/data/demo/pride-prejudice-demo-9sentences.json`
+
+#### 3. **UI Enhancement: Level-Filtered Voice Selection**
+- **NEW**: Voice selector now filters by current level
+- Shows only 2 voices per level (1 male + 1 female) instead of all 14
+- Cleaner, less overwhelming user experience
+- Implementation: `getVoicesForLevelAndGender(level, gender)` helper function
+- Grid changed from 2 columns to 1 column (single voice per gender tab)
+
+#### 4. **Perfect Sync Achievement**
+- Implemented GPT-5 sync optimizations:
+  - 120ms look-ahead offset for perceived sync
+  - Strict boundary logic (time < end, not <=)
+  - Neighbor-first search optimization
+  - RequestAnimationFrame at 60fps
+- **Result**: "it works perfect" - user validation
+
+#### 5. **Documentation**
+- Created `PERFECT_AUDIO_SYNC_SOLUTION.md` with complete methodology
+- Documented root causes, fixes, and best practices
+- Mistakes made and lessons learned captured
+
+### Technical Architecture
+
+**Voice Configuration**:
+```typescript
+// lib/config/demo-voices.ts
+export const LEVEL_TO_VOICES: Record<CEFRLevel, { female: DemoVoiceId; male: DemoVoiceId }> = {
+  'A1': { female: 'hope', male: 'daniel' },
+  'A2': { female: 'arabella', male: 'grandpa_spuds' },
+  'B1': { female: 'jane', male: 'james' },
+  'B2': { female: 'zara', male: 'david_castlemore' },
+  'C1': { female: 'sally_ford', male: 'frederick_surrey' },
+  'C2': { female: 'vivie', male: 'john_doe' },
+  'Original': { female: 'sarah', male: 'david_castlemore' }
+};
+```
+
+**Audio Generation**:
+- Script: `scripts/generate-multi-voice-demo-audio.js`
+- Method: Solution 1 (ffprobe measurement + proportional timing)
+- Metadata: Cached alongside each MP3 file (`.mp3.metadata.json`)
+- Total cost: ~$10 for 12 voices (vs $500+ for full books)
+
+**File Organization**:
+- Audio: `/public/audio/demo/pride-prejudice-{level}-{voice}-enhanced.mp3`
+- Metadata: `/public/audio/demo/pride-prejudice-{level}-{voice}-enhanced.mp3.metadata.json`
+- Text: `/public/data/demo/pride-prejudice-demo-9sentences.json`
+
+### User Experience Improvements
+
+**Before Phase 4**:
+- 2 voices total (Daniel + Sarah)
+- All 14 voices shown in modal (overwhelming)
+- 2×7 grid layout
+
+**After Phase 4**:
+- 12 voices across 6 levels + 2 baseline voices (Original)
+- **Level-filtered display**: Shows only 2 voices for selected level
+- Single column layout (1 voice per gender tab)
+- Cleaner, more focused user experience
+
+**Example User Flow**:
+1. User selects "A2" level
+2. Opens voice selector
+3. Sees only 2 options:
+   - Female tab: "Arabella" (optimized for A2)
+   - Male tab: "Grandpa Spuds" (optimized for A2)
+4. Switches to "C1" level
+5. Voice selector updates to show:
+   - Female tab: "Sally Ford" (optimized for C1)
+   - Male tab: "Frederick Surrey" (optimized for C1)
+
+### Deployment Status
+
+**Files Added**:
+- 12 new MP3 files (A1-C2 voices)
+- 12 new metadata.json files
+- Updated `/public/data/demo/pride-prejudice-demo-9sentences.json` with B2/C1/C2 texts
+
+**Code Changes**:
+- `lib/config/demo-voices.ts`: Added `getVoicesForLevelAndGender()` helper
+- `components/hero/InteractiveReadingDemo.tsx`: Updated to use level-filtered voices
+- `docs/PERFECT_AUDIO_SYNC_SOLUTION.md`: New documentation file
+
+**Build Status**: ✅ Production build validated successfully
+
+### Next Steps
+
+1. **Deploy to production** (this deployment)
+2. **Monitor analytics** for 2 weeks:
+   - Track voice switching patterns
+   - Measure engagement per voice
+   - Identify top-performing voices
+3. **Data-driven decisions**:
+   - Use winning voices for full book production
+   - Adjust voice assignments if data contradicts assumptions
+   - Archive unused voices for future testing
+
+### Success Metrics (Post-Deployment)
+
+**Technical Success** ✅:
+- [x] All 12 voices generated with <5% drift
+- [x] Voice selector shows level-filtered voices
+- [x] Audio switches seamlessly between levels/voices
+- [x] Perfect audio-text synchronization
+- [x] Production build successful
+
+**Business Success** (To be measured):
+- [ ] >500 voice switches recorded (2-week target)
+- [ ] Clear voice preference patterns identified
+- [ ] Engagement data validates Voice Casting Guide
+- [ ] ROI confirmed: $10 demo testing vs $500+ blind full-book production
+
+---
+
+**Next Steps**: Await user approval before beginning Step 1 implementation. All steps designed for incremental local testing before production deployment.

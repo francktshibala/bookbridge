@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "model": "eleven_turbo_v2_5",
+  "voice": "Sarah",
+  "voice_id": "EXAVITQu4vr4xnSDxMaL",
+  "speed": 0.9,
+  "measuredDuration": 13.400813,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "text": "Everyone knows that a rich single man must want to find a wife.",
+      "startTime": 0,
+      "endTime": 3.871,
+      "duration": 3.871,
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
+      "startTime": 3.871,
+      "endTime": 13.401,
+      "duration": 9.529,
+      "wordCount": 32
+    }
+  ],
+  "measuredAt": "2025-10-25T22:35:17.896Z",
+  "method": "ffprobe-proportional",
+  "settings": {
+    "voice_id": "EXAVITQu4vr4xnSDxMaL",
+    "model_id": "eleven_turbo_v2_5",
+    "voice_settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.8,
+      "style": 0.05,
+      "use_speaker_boost": true
+    },
+    "speed": 0.9
+  },
+  "test": "speed-comparison",
+  "purpose": "turbo-v2.5-speed-testing"
+}

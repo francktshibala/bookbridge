@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "voice": "Vivie",
+  "voiceId": "z7U1SjrEq4fDDDriOQEN",
+  "voiceFileId": "vivie",
+  "gender": "female",
+  "level": "C2",
+  "measuredDuration": 96.862,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+      "startTime": 0,
+      "endTime": 8.547,
+      "duration": 8.547,
+      "wordCount": 24
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.",
+      "startTime": 8.547,
+      "endTime": 26.352,
+      "duration": 17.806,
+      "wordCount": 50
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "The advantage of this persuasion is, that it fixes the attention of the young man on the most eligible matches, thereby facilitating the natural course of courtship and matrimonial alliance.",
+      "startTime": 26.352,
+      "endTime": 37.748,
+      "duration": 11.396,
+      "wordCount": 32
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "My dear Mr. Bennet, said his lady to him one day, have you heard that Netherfield Park is let at last?",
+      "startTime": 37.748,
+      "endTime": 45.226,
+      "duration": 7.478,
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 4,
+      "text": "Mr. Bennet replied that he had not, maintaining his characteristic air of detached amusement at his wife's perpetual preoccupation with neighborhood affairs.",
+      "startTime": 45.226,
+      "endTime": 53.773,
+      "duration": 8.547,
+      "wordCount": 24
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "But it is, returned she; for Mrs. Long has just been here, and she told me all about it, relating every particular with the most minute attention to detail.",
+      "startTime": 53.773,
+      "endTime": 64.812,
+      "duration": 11.039,
+      "wordCount": 31
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "Mr. Bennet made no answer, but continued perusing his book with studied indifference to the matrimonial intelligence his wife deemed so consequential.",
+      "startTime": 64.812,
+      "endTime": 73.359,
+      "duration": 8.547,
+      "wordCount": 24
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "Do you not want to know who has taken it? cried his wife impatiently, her exasperation mounting at his apparent lack of interest in such momentous news.",
+      "startTime": 73.359,
+      "endTime": 83.33,
+      "duration": 9.971,
+      "wordCount": 28
+    },
+    {
+      "sentenceIndex": 8,
+      "text": "You want to tell me, and I have no objection to hearing it, he replied with the mildly ironic tone that had long characterized their domestic exchanges on matters of matrimonial speculation and neighborhood gossip.",
+      "startTime": 83.33,
+      "endTime": 96.862,
+      "duration": 13.532,
+      "wordCount": 38
+    }
+  ],
+  "voiceSettings": {
+    "stability": 0.45,
+    "similarity_boost": 0.8,
+    "style": 0.2,
+    "use_speaker_boost": true
+  },
+  "measuredAt": "2025-10-28T21:38:43.426Z",
+  "method": "ffprobe-proportional",
+  "phase": "multi_voice_demo_testing",
+  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+}

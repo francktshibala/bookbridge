@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "voice": "Zara",
+  "voiceId": "jqcCZkN6Knx8BJ5TBdYR",
+  "voiceFileId": "zara",
+  "gender": "female",
+  "level": "B2",
+  "measuredDuration": 75.180375,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "text": "It is widely acknowledged as a universal truth that wealthy unmarried men are actively seeking wives.",
+      "startTime": 0,
+      "endTime": 6.502,
+      "duration": 6.502,
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "When such a prosperous gentleman arrives in a new community, the surrounding families immediately assume he must be interested in marrying one of their daughters, regardless of what his actual feelings or intentions might be.",
+      "startTime": 6.502,
+      "endTime": 20.725,
+      "duration": 14.223,
+      "wordCount": 35
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "This assumption becomes deeply embedded in the collective mindset of all the neighboring mothers, who view it as an undeniable fact.",
+      "startTime": 20.725,
+      "endTime": 29.259,
+      "duration": 8.534,
+      "wordCount": 21
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "These women regard the newly arrived bachelor as the ideal solution to securing their daughters' financial futures and social standing.",
+      "startTime": 29.259,
+      "endTime": 37.387,
+      "duration": 8.128,
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 4,
+      "text": "News of a rich, unattached gentleman's arrival creates an atmosphere of intense excitement and anticipation throughout the entire neighborhood.",
+      "startTime": 37.387,
+      "endTime": 45.108,
+      "duration": 7.721,
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "Every ambitious mother begins carefully evaluating her daughter's chances while simultaneously devising strategic plans to facilitate an introduction.",
+      "startTime": 45.108,
+      "endTime": 52.423,
+      "duration": 7.315,
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "Conversations among the mothers revolve almost exclusively around this intriguing newcomer and the opportunities he represents.",
+      "startTime": 52.423,
+      "endTime": 58.925,
+      "duration": 6.502,
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "They engage in extensive speculation regarding his character, his matrimonial intentions, and what qualities he might be seeking in a potential wife.",
+      "startTime": 58.925,
+      "endTime": 68.272,
+      "duration": 9.347,
+      "wordCount": 23
+    },
+    {
+      "sentenceIndex": 8,
+      "text": "The subtle yet fierce competition that develops among these families adds considerable tension to their social interactions.",
+      "startTime": 68.272,
+      "endTime": 75.18,
+      "duration": 6.908,
+      "wordCount": 17
+    }
+  ],
+  "voiceSettings": {
+    "stability": 0.45,
+    "similarity_boost": 0.8,
+    "style": 0.15,
+    "use_speaker_boost": true
+  },
+  "measuredAt": "2025-10-28T21:37:19.694Z",
+  "method": "ffprobe-proportional",
+  "phase": "multi_voice_demo_testing",
+  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+}

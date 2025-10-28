@@ -1,0 +1,23 @@
+C2 Level - Pride and Prejudice Demo (9 sentences, ~55-60 seconds)
+
+Target: 25-45 words per sentence, near-original literary complexity
+Grammar: Full range of complex structures, literary devices, authentic 19th-century prose
+Vocabulary: Sophisticated literary vocabulary, period idioms, nuanced expressions
+
+TEXT:
+It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters. The advantage of this persuasion is, that it fixes the attention of the young man on the most eligible matches, thereby facilitating the natural course of courtship and matrimonial alliance. My dear Mr. Bennet, said his lady to him one day, have you heard that Netherfield Park is let at last? Mr. Bennet replied that he had not, maintaining his characteristic air of detached amusement at his wife's perpetual preoccupation with neighborhood affairs. But it is, returned she; for Mrs. Long has just been here, and she told me all about it, relating every particular with the most minute attention to detail. Mr. Bennet made no answer, but continued perusing his book with studied indifference to the matrimonial intelligence his wife deemed so consequential. Do you not want to know who has taken it? cried his wife impatiently, her exasperation mounting at his apparent lack of interest in such momentous news. You want to tell me, and I have no objection to hearing it, he replied with the mildly ironic tone that had long characterized their domestic exchanges on matters of matrimonial speculation and neighborhood gossip.
+
+SENTENCE BREAKDOWN:
+1. "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife." (24 words)
+2. "However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters." (50 words)
+3. "The advantage of this persuasion is, that it fixes the attention of the young man on the most eligible matches, thereby facilitating the natural course of courtship and matrimonial alliance." (32 words)
+4. "My dear Mr. Bennet, said his lady to him one day, have you heard that Netherfield Park is let at last?" (21 words)
+5. "Mr. Bennet replied that he had not, maintaining his characteristic air of detached amusement at his wife's perpetual preoccupation with neighborhood affairs." (24 words)
+6. "But it is, returned she; for Mrs. Long has just been here, and she told me all about it, relating every particular with the most minute attention to detail." (31 words)
+7. "Mr. Bennet made no answer, but continued perusing his book with studied indifference to the matrimonial intelligence his wife deemed so consequential." (24 words)
+8. "Do you not want to know who has taken it? cried his wife impatiently, her exasperation mounting at his apparent lack of interest in such momentous news." (28 words)
+9. "You want to tell me, and I have no objection to hearing it, he replied with the mildly ironic tone that had long characterized their domestic exchanges on matters of matrimonial speculation and neighborhood gossip." (38 words)
+
+TOTAL WORD COUNT: 272 words
+AVERAGE SENTENCE LENGTH: 30.2 words
+TARGET DURATION: ~60-65 seconds at 0.90 speed

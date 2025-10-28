@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "voice": "Daniel",
+  "voiceId": "onwK4e9ZLuTAKqWW03F9",
+  "voiceFileId": "daniel",
+  "gender": "male",
+  "level": "A1",
+  "measuredDuration": 29.518313,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "text": "People think that rich men who are not married want to find a wife.",
+      "startTime": 0,
+      "endTime": 4.133,
+      "duration": 4.133,
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "When a rich man comes to a new place, families want him to marry their daughters.",
+      "startTime": 4.133,
+      "endTime": 8.855,
+      "duration": 4.723,
+      "wordCount": 16
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "The mothers in these families have one main goal.",
+      "startTime": 8.855,
+      "endTime": 11.512,
+      "duration": 2.657,
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "They want to find good husbands for their daughters.",
+      "startTime": 11.512,
+      "endTime": 14.169,
+      "duration": 2.657,
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 4,
+      "text": "When they hear about a new rich man, they get very excited.",
+      "startTime": 14.169,
+      "endTime": 17.711,
+      "duration": 3.542,
+      "wordCount": 12
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "They start planning how to meet him.",
+      "startTime": 17.711,
+      "endTime": 19.777,
+      "duration": 2.066,
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "The mothers talk to each other about this man.",
+      "startTime": 19.777,
+      "endTime": 22.434,
+      "duration": 2.657,
+      "wordCount": 9
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "They wonder if he is nice and if he wants to get married.",
+      "startTime": 22.434,
+      "endTime": 26.271,
+      "duration": 3.837,
+      "wordCount": 13
+    },
+    {
+      "sentenceIndex": 8,
+      "text": "All the families hope their daughter will be the lucky one.",
+      "startTime": 26.271,
+      "endTime": 29.518,
+      "duration": 3.247,
+      "wordCount": 11
+    }
+  ],
+  "voiceSettings": {
+    "stability": 0.45,
+    "similarity_boost": 0.8,
+    "style": 0.1,
+    "use_speaker_boost": true
+  },
+  "measuredAt": "2025-10-28T21:36:14.378Z",
+  "method": "ffprobe-proportional",
+  "phase": "multi_voice_demo_testing",
+  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+}

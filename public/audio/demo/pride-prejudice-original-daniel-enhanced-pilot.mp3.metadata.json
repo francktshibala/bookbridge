@@ -1,0 +1,91 @@
+{
+  "version": 2,
+  "voice": "Daniel",
+  "voiceId": "onwK4e9ZLuTAKqWW03F9",
+  "level": "original",
+  "enhancement": "enhanced_pilot",
+  "measuredDuration": 51.853063,
+  "sentenceTimings": [
+    {
+      "sentenceIndex": 0,
+      "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+      "startTime": 0,
+      "endTime": 7.042,
+      "duration": 7.042,
+      "wordCount": 22
+    },
+    {
+      "sentenceIndex": 1,
+      "text": "However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.",
+      "startTime": 7.042,
+      "endTime": 21.125,
+      "duration": 14.084,
+      "wordCount": 44
+    },
+    {
+      "sentenceIndex": 2,
+      "text": "The advantage of this persuasion is, that it fixes the attention of the young man on the most eligible matches.",
+      "startTime": 21.125,
+      "endTime": 27.207,
+      "duration": 6.082,
+      "wordCount": 19
+    },
+    {
+      "sentenceIndex": 3,
+      "text": "My dear Mr. Bennet, said his lady to him one day, have you heard that Netherfield Park is let at last?",
+      "startTime": 27.207,
+      "endTime": 33.608,
+      "duration": 6.402,
+      "wordCount": 20
+    },
+    {
+      "sentenceIndex": 4,
+      "text": "Mr. Bennet replied that he had not.",
+      "startTime": 33.608,
+      "endTime": 35.849,
+      "duration": 2.241,
+      "wordCount": 7
+    },
+    {
+      "sentenceIndex": 5,
+      "text": "But it is, returned she; for Mrs. Long has just been here, and she told me all about it.",
+      "startTime": 35.849,
+      "endTime": 41.61,
+      "duration": 5.761,
+      "wordCount": 18
+    },
+    {
+      "sentenceIndex": 6,
+      "text": "Mr. Bennet made no answer.",
+      "startTime": 41.61,
+      "endTime": 43.211,
+      "duration": 1.6,
+      "wordCount": 5
+    },
+    {
+      "sentenceIndex": 7,
+      "text": "Do you not want to know who has taken it? cried his wife impatiently.",
+      "startTime": 43.211,
+      "endTime": 47.692,
+      "duration": 4.481,
+      "wordCount": 14
+    },
+    {
+      "sentenceIndex": 8,
+      "text": "You want to tell me, and I have no objection to hearing it.",
+      "startTime": 47.692,
+      "endTime": 51.853,
+      "duration": 4.161,
+      "wordCount": 13
+    }
+  ],
+  "enhancementSettings": {
+    "stability": 0.45,
+    "similarity_boost": 0.8,
+    "style": 0.1,
+    "use_speaker_boost": true
+  },
+  "measuredAt": "2025-10-25T09:56:26.584Z",
+  "method": "ffprobe-proportional",
+  "notes": "Agent 2 research findings - enhanced for mind-blowing quality"
+}
