@@ -492,6 +492,526 @@ function calculateHoursSinceLastRead(...): number
 
 ---
 
+### Phase 5: Performance Optimization (Nov 2025) 🚀
+
+**Goal**: Reduce book loading time from 4-5 seconds to <500ms for instant UX.
+
+**Timeline**: November 2025 (estimated 2-3 days)
+**Branch**: `performance/phase-5-instant-loading`
+**Status**: 🔬 Investigation Complete - Ready to Implement
+
+**Target Metrics:**
+- Book loading time: 4-5 sec → **<500ms** (10x improvement)
+- Time to interactive: 5 sec → **<300ms**
+- Availability check: 2-3 sec → **<50ms** (cached) or **instant** (skipped)
+- Perceived performance: Instant UI with progressive data loading
+
+---
+
+#### 🔬 Investigation Results: Bottlenecks Identified
+
+**Current Loading Flow (4-5 seconds):**
+```
+User clicks book
+  ↓
+checkAvailableLevels() - 2-3 sec (BOTTLENECK #1)
+  ├─ For multi-level books: Sequential API calls in for loop
+  ├─ Each level: fetch(apiUrl) with cache: 'no-store'
+  └─ Original content check: Another fetch call
+  ↓
+loadBookBundles() - 2 sec (BOTTLENECK #2)
+  ├─ Fetch bundle data with cache: 'no-store'
+  ├─ For large books (Great Gatsby): 3,605 sentences
+  └─ Multiple Supabase round trips (1000 row limit)
+  ↓
+readingPositionService.loadPosition() - 200ms
+  ↓
+UI renders - Total: 4-5 seconds
+```
+
+**Identified Bottlenecks:**
+
+1. **Sequential Availability Checks (2-3 sec)** 🔴 CRITICAL
+   - Location: `lib/services/availability.ts` lines 43-66
+   - Problem: `for (const level of MULTI_LEVEL_BOOKS[bookId])` with `await` inside loop
+   - Impact: For a book with 3 levels (A1, A2, B1), makes 3 sequential API calls
+   - Solution: Use `Promise.all()` for parallel requests
+
+2. **No Caching (adds 100% overhead)** 🔴 CRITICAL
+   - Location: All fetch calls use `cache: 'no-store'`
+   - Problem: Every book selection repeats all API calls
+   - Impact: User switching levels = full reload every time
+   - Solution: Next.js fetch caching with revalidation
+
+3. **Wasteful Availability Checks (1-2 sec)** 🟡 MEDIUM
+   - Location: `checkLevelAvailability()` for single-level books
+   - Problem: Makes API call to check availability we already know from config
+   - Impact: Unnecessary API roundtrip for ~60% of books
+   - Solution: Use `SINGLE_LEVEL_BOOKS` config, skip API call
+
+4. **Large Database Queries (1-2 sec)** 🟡 MEDIUM
+   - Location: `/api/featured-books/bundles/route.ts` lines 67-92
+   - Problem: Fetches ALL audio assets in batches
+   - Impact: For Great Gatsby: 902 bundles = multiple Supabase roundtrips
+   - Solution: Pagination + lazy loading of bundles
+
+5. **No Optimistic UI (perceived slowness)** 🟢 LOW
+   - Problem: User waits with loading spinner, no immediate feedback
+   - Solution: Show UI skeleton immediately, load data progressively
+
+---
+
+#### 📋 Task Breakdown
+
+#### ✅ Task 5.0: Investigation & Planning
+- [x] Profile current loading time (4-5 seconds measured)
+- [x] Identify bottlenecks using Chrome DevTools Network tab
+- [x] Analyze code flow in availability.ts and book-loader.ts
+- [x] Document findings and create optimization plan
+- **Status**: Complete (see above)
+
+---
+
+#### Task 5.1: Parallelize Availability Checks ⚡ HIGH IMPACT
+
+**Goal**: Reduce availability check from 2-3 sec → <300ms
+
+**Problem**: Sequential for loop makes API calls one at a time
+```typescript
+// Current (SLOW - Sequential)
+for (const level of MULTI_LEVEL_BOOKS[bookId]) {
+  const response = await fetch(apiUrl, { signal }); // Waits for each
+  // ...
+}
+```
+
+**Solution**: Use `Promise.all()` for parallel requests
+```typescript
+// New (FAST - Parallel)
+const levelChecks = MULTI_LEVEL_BOOKS[bookId].map(async (level) => {
+  const response = await fetch(apiUrl, { signal });
+  return { level, available: response.ok };
+});
+const results = await Promise.all(levelChecks);
+```
+
+**Files to Modify:**
+- `lib/services/availability.ts` (lines 43-66)
+
+**Expected Impact**:
+- 3 levels: 3 sec → 1 sec (66% faster)
+- 5 levels: 5 sec → 1 sec (80% faster)
+
+**Testing**:
+- Unit test: Mock fetch, verify parallel execution
+- Integration test: Time availability check for "the-necklace" (3 levels)
+
+**Programming Principles:**
+- ✅ **Separation of Concerns**: Keep parallel logic in service, not context
+- ✅ **Single Responsibility**: Service only fetches data, doesn't decide caching strategy
+- ✅ **Open/Closed**: Easy to add new optimization (e.g., batching) without breaking contract
+
+---
+
+#### Task 5.2: Implement Intelligent Caching Layer ⚡ HIGH IMPACT
+
+**Goal**: Reduce repeated loads from 4-5 sec → <50ms (cached)
+
+**Problem**: Every fetch uses `cache: 'no-store'`, forces fresh API calls
+
+**Solution**: Multi-level caching strategy
+
+**Level 1: Next.js Fetch Cache (Server-side)**
+```typescript
+// Current
+const response = await fetch(apiUrl, {
+  cache: 'no-store',  // ❌ No caching
+  signal
+});
+
+// New (Phase 5.2.1)
+const response = await fetch(apiUrl, {
+  next: {
+    revalidate: 3600,  // ✅ Cache for 1 hour
+    tags: [`book-${bookId}`, `level-${level}`]
+  },
+  signal
+});
+```
+
+**Level 2: Client-side React Query / SWR (Optional Phase 5.2.2)**
+```typescript
+// Use React Query for client-side caching + background revalidation
+const { data, isLoading } = useQuery({
+  queryKey: ['book', bookId, level],
+  queryFn: () => loadBookBundles(bookId, level, mode, signal),
+  staleTime: 5 * 60 * 1000,  // 5 minutes
+  cacheTime: 30 * 60 * 1000   // 30 minutes
+});
+```
+
+**Level 3: IndexedDB for Offline Support (Future - Phase 6)**
+- Store book bundles locally for offline reading
+- Use Service Worker for background sync
+
+**Files to Modify:**
+- `lib/services/book-loader.ts` (add caching to fetch calls)
+- `lib/services/availability.ts` (add caching to fetch calls)
+- Optional: Add `lib/hooks/useBookData.ts` with React Query
+
+**Cache Invalidation Strategy:**
+```typescript
+// Invalidate cache when:
+// 1. User explicitly requests refresh
+// 2. Book metadata updated (detected via version tag)
+// 3. 1 hour elapsed (automatic revalidation)
+
+export async function invalidateBookCache(bookId: string) {
+  revalidateTag(`book-${bookId}`);
+}
+```
+
+**Expected Impact**:
+- First load: 4-5 sec (no change)
+- Subsequent loads: 4-5 sec → **<50ms** (98% faster)
+- Level switching: 4-5 sec → **<50ms** (same book, different level)
+
+**Testing**:
+- Test cache hit/miss with Network tab (should see "(disk cache)" in Chrome)
+- Test cache invalidation after 1 hour
+- Test concurrent requests (should deduplicate)
+
+**Programming Principles:**
+- ✅ **DRY**: Centralize caching logic in service layer
+- ✅ **Scalability**: Cache reduces server load, handles more users
+- ✅ **Reliability**: Fallback to fresh fetch if cache fails
+
+---
+
+#### Task 5.3: Skip Unnecessary Availability Checks ⚡ MEDIUM IMPACT
+
+**Goal**: Eliminate wasteful API calls for single-level books
+
+**Problem**: Even for single-level books (60% of catalog), we make API calls we don't need
+
+**Current Flow:**
+```typescript
+// For "the-dead" (single-level A1 book)
+checkLevelAvailability("the-dead", signal)
+  ↓
+Makes API call to check A1 availability (1-2 sec)
+  ↓
+Returns { availability: { a1: true }, bookLevels: ['A1'] }
+// We already knew this from SINGLE_LEVEL_BOOKS config!
+```
+
+**Solution**: Use config first, API as fallback
+```typescript
+export async function checkLevelAvailability(
+  bookId: string,
+  signal: AbortSignal
+): Promise<AvailabilityResult> {
+  const availability: Record<string, boolean> = {};
+
+  // NEW: Fast path for single-level books (no API call)
+  if (SINGLE_LEVEL_BOOKS[bookId]) {
+    const bookLevel = SINGLE_LEVEL_BOOKS[bookId];
+    return {
+      availability: { [bookLevel.toLowerCase()]: true },
+      bookLevels: [bookLevel]
+    };
+    // ✅ 0ms instead of 1-2 sec!
+  }
+
+  // Existing: Multi-level books need API check
+  if (MULTI_LEVEL_BOOKS[bookId]) {
+    // ... parallel checks from Task 5.1
+  }
+
+  // ... rest of function
+}
+```
+
+**Files to Modify:**
+- `lib/services/availability.ts` (add fast path)
+
+**Expected Impact**:
+- Single-level books: 1-2 sec → **0ms** (100% faster)
+- Applies to: ~60% of book selections
+
+**Testing**:
+- Unit test: Verify no fetch called for single-level books
+- Integration test: Time "the-dead" selection (should skip availability check)
+
+**Programming Principles:**
+- ✅ **Performance**: Don't fetch data we already have
+- ✅ **Maintainability**: Config is source of truth, API is backup
+- ✅ **Single Source of Truth**: Config defines book structure
+
+---
+
+#### Task 5.4: Add Optimistic UI Patterns 🎨 USER EXPERIENCE
+
+**Goal**: Make app feel instant even while loading
+
+**Problem**: User sees loading spinner for 4-5 seconds with no feedback
+
+**Solution 1: Skeleton UI (Immediate Feedback)**
+```typescript
+// Show UI immediately while data loads
+{loadState === 'loading' ? (
+  <BookReaderSkeleton
+    bookTitle={selectedBook.title}
+    showProgress={true}
+  />
+) : (
+  <BookReaderContent data={bundleData} />
+)}
+```
+
+**Solution 2: Progressive Loading**
+```typescript
+// Load and display data in chunks
+const [visibleBundles, setVisibleBundles] = useState<BundleData[]>([]);
+
+// Load first 10 bundles immediately (200ms)
+const initialBundles = await loadBookBundles(bookId, level, mode, { limit: 10 });
+setVisibleBundles(initialBundles);
+setLoadState('ready'); // ✅ User can start reading!
+
+// Load remaining bundles in background (non-blocking)
+const remainingBundles = await loadBookBundles(bookId, level, mode, { offset: 10 });
+setVisibleBundles([...initialBundles, ...remainingBundles]);
+```
+
+**Solution 3: Optimistic Navigation**
+```typescript
+// Navigate immediately, load in background
+const selectBook = (book: FeaturedBook) => {
+  setSelectedBook(book);  // ✅ UI updates instantly
+  setLoadState('ready');   // ✅ Show reader immediately
+
+  // Load data in background
+  loadBookData(book.id, cefrLevel, contentMode)
+    .then(data => {
+      // Update with real data when ready
+      setBundleData(data);
+    });
+};
+```
+
+**Files to Modify:**
+- `app/featured-books/page.tsx` (add skeleton UI)
+- Create: `components/BookReaderSkeleton.tsx`
+- `contexts/AudioContext.tsx` (add progressive loading)
+
+**Expected Impact**:
+- Time to interactive: 5 sec → **<300ms** (perceived)
+- User engagement: Can start reading while rest loads
+
+**Programming Principles:**
+- ✅ **User Experience**: Prioritize perceived performance
+- ✅ **Progressive Enhancement**: Basic experience immediate, full experience loads progressively
+- ✅ **Reliability**: Always have fallback if background load fails
+
+---
+
+#### Task 5.5: Implement Prefetching Strategy 🚀 PROACTIVE
+
+**Goal**: Predict and preload likely next actions
+
+**Strategy 1: Prefetch on Hover**
+```typescript
+// In BookSelectionGrid component
+<BookCard
+  book={book}
+  onMouseEnter={() => prefetchBook(book.id)}  // ✅ Start loading on hover
+  onClick={() => selectBook(book)}
+/>
+
+// Prefetch function (Next.js Link-style)
+const prefetchBook = (bookId: string) => {
+  // Prefetch availability (instant when clicked)
+  checkLevelAvailability(bookId, new AbortController().signal);
+
+  // Prefetch first bundle (reader shows immediately)
+  loadBookBundles(bookId, defaultLevel, 'simplified', signal, { limit: 10 });
+};
+```
+
+**Strategy 2: Prefetch Popular Books**
+```typescript
+// On page load, prefetch top 3 most popular books
+useEffect(() => {
+  const popularBooks = ['the-necklace', 'the-dead', 'gift-of-the-magi'];
+  popularBooks.forEach(bookId => {
+    setTimeout(() => prefetchBook(bookId), 1000);  // After 1 sec idle
+  });
+}, []);
+```
+
+**Strategy 3: Prefetch Next Chapter**
+```typescript
+// While reading, prefetch next chapter bundles
+useEffect(() => {
+  if (currentChapter < totalChapters) {
+    const nextChapterBundles = getChapterBundles(currentChapter + 1);
+    preloadBundles(nextChapterBundles);  // Background load
+  }
+}, [currentChapter]);
+```
+
+**Files to Modify:**
+- `app/featured-books/components/BookSelectionGrid.tsx` (add hover prefetch)
+- `contexts/AudioContext.tsx` (add prefetch functions)
+- `lib/services/prefetch.ts` (create new service)
+
+**Expected Impact**:
+- Hover → Click: 4-5 sec → **<100ms** (data already loaded)
+- Chapter navigation: 1 sec → **instant** (next chapter preloaded)
+
+**Programming Principles:**
+- ✅ **Performance**: Utilize idle time for preloading
+- ✅ **Scalability**: Only prefetch likely selections, not everything
+- ✅ **User Experience**: Instant response to user actions
+
+---
+
+#### Success Criteria for Phase 5
+
+**Performance Metrics:**
+- [ ] Book loading time: 4-5 sec → **<500ms** (10x improvement)
+- [ ] Availability check: 2-3 sec → **<50ms** (cached) or **instant** (skipped)
+- [ ] Time to interactive: 5 sec → **<300ms**
+- [ ] Subsequent loads (cached): **<50ms**
+- [ ] Level switching: 4-5 sec → **<100ms**
+
+**User Experience:**
+- [ ] UI shows skeleton within **100ms** of book selection
+- [ ] First content visible within **300ms**
+- [ ] Full reading experience ready within **500ms**
+- [ ] Level switching feels instant (<100ms perceived delay)
+- [ ] Chapter navigation is instant (preloaded)
+
+**Technical Quality:**
+- [ ] All caching uses Next.js native features (no external dependencies)
+- [ ] Cache invalidation strategy documented and tested
+- [ ] Parallel requests properly handle errors and race conditions
+- [ ] Progressive loading gracefully handles slow connections
+- [ ] Prefetching doesn't impact initial page load performance
+
+**Programming Principles Maintained:**
+- [ ] **Separation of Concerns**: Caching in services, not in components
+- [ ] **Single Responsibility**: Each optimization in dedicated task
+- [ ] **Scalability**: Caching reduces server load, supports 10x more users
+- [ ] **Reliability**: Fallbacks for cache misses, network errors
+- [ ] **Maintainability**: Clear cache invalidation rules, easy to debug
+- [ ] **DRY**: Centralized caching logic, no duplication
+- [ ] **Testability**: Each optimization has unit + integration tests
+
+---
+
+#### Architecture Impact
+
+**Before Phase 5 (Phases 1-4):**
+```typescript
+// Clean architecture, but slow data fetching
+AudioContext (orchestrator)
+  ↓
+Services (pure functions)
+  ├─ book-loader.ts (no cache, sequential)
+  ├─ availability.ts (no cache, sequential)
+  └─ level-persistence.ts (localStorage only)
+  ↓
+API Routes
+  ↓
+Database (Prisma + Supabase)
+```
+
+**After Phase 5:**
+```typescript
+// Clean architecture + performance optimizations
+AudioContext (orchestrator + prefetch)
+  ↓
+Services (pure functions + caching)
+  ├─ book-loader.ts (Next.js cache, progressive loading)
+  ├─ availability.ts (parallel + skip unnecessary checks)
+  ├─ level-persistence.ts (localStorage only)
+  └─ prefetch.ts (NEW - proactive loading)
+  ↓
+Cache Layer (Next.js)
+  ├─ Revalidate: 1 hour
+  ├─ Tags: book-{id}, level-{level}
+  └─ Deduplication: automatic
+  ↓
+API Routes (unchanged)
+  ↓
+Database (unchanged)
+```
+
+**Key Improvements:**
+- ✅ Services stay pure (caching is fetch configuration, not state)
+- ✅ AudioContext stays clean (orchestration only, prefetch is separate concern)
+- ✅ No new dependencies (Next.js native caching)
+- ✅ Backward compatible (fallback to fresh fetch if cache fails)
+- ✅ Testable (cache can be disabled in tests)
+
+---
+
+#### Risk Assessment & Mitigation
+
+**Risk 1: Cache Staleness** 🟡 MEDIUM
+- **Problem**: User sees old data if cache not invalidated
+- **Mitigation**:
+  - 1-hour revalidation (reasonable for book content)
+  - Manual refresh button in settings
+  - Version tags on book metadata
+
+**Risk 2: Memory Pressure** 🟢 LOW
+- **Problem**: Caching too much data in client memory
+- **Mitigation**:
+  - Server-side cache (Next.js) not client-side
+  - React Query cache limits (if used)
+  - Progressive loading keeps memory usage low
+
+**Risk 3: Race Conditions** 🟡 MEDIUM
+- **Problem**: Parallel requests may complete out of order
+- **Mitigation**:
+  - Existing requestId pattern prevents stale state
+  - AbortController cancels outdated requests
+  - Tests verify race condition handling
+
+**Risk 4: Breaking Changes** 🟢 LOW
+- **Problem**: Caching changes API contract
+- **Mitigation**:
+  - Caching is transparent (same function signature)
+  - Phase 4 tests verify behavior unchanged
+  - Incremental rollout (one task at a time)
+
+---
+
+#### Estimated Timeline
+
+| Task | Estimated Time | Priority |
+|------|----------------|----------|
+| 5.1 Parallelize availability | 2 hours | HIGH |
+| 5.2.1 Next.js fetch cache | 3 hours | HIGH |
+| 5.3 Skip unnecessary checks | 1 hour | MEDIUM |
+| 5.4 Optimistic UI | 4 hours | MEDIUM |
+| 5.5 Prefetching | 3 hours | LOW |
+| 5.2.2 React Query (optional) | 4 hours | LOW |
+| Testing + Documentation | 4 hours | - |
+| **Total** | **~1-2 days** | - |
+
+**Recommended Order:**
+1. Task 5.3 (1 hour) - Quick win, immediate 100% improvement for 60% of books
+2. Task 5.1 (2 hours) - High impact, reduces sequential bottleneck
+3. Task 5.2.1 (3 hours) - Caching layer, enables all future optimizations
+4. Task 5.4 (4 hours) - UX improvement, makes app feel instant
+5. Task 5.5 (3 hours) - Polish, makes transitions seamless
+
+---
+
 ## 🚦 Rules & Guardrails (Feature Development During Refactoring)
 
 ### ✅ SAFE to Add (These Won't Conflict)
@@ -575,12 +1095,15 @@ Before starting any new feature, ask:
 **Phase 4: Service Layer** (Optional/Future)
 - [ ] Not started (low priority)
 
-**Phase 5: Performance Optimization** (After Phases 1-3)
-- [ ] Investigation: Profile current loading time (4-5 seconds)
-- [ ] Investigation: Identify bottlenecks (API, network, parsing)
-- [ ] Investigation: Research caching strategies
-- [ ] Create performance optimization plan
-- [ ] Note: This is a separate project after architecture fixes
+**Phase 5: Performance Optimization** (Nov 2025)
+- [x] Investigation: Identified bottlenecks (sequential API calls, no caching, wasteful availability checks)
+- [x] Created comprehensive performance optimization plan (see Phase 5 section below)
+- [ ] Task 5.1: Parallelize availability checks
+- [ ] Task 5.2: Implement intelligent caching layer
+- [ ] Task 5.3: Skip unnecessary availability checks
+- [ ] Task 5.4: Add optimistic UI patterns
+- [ ] Task 5.5: Implement prefetching strategy
+- [ ] Target: <500ms load time (from 4-5 seconds)
 
 ### Metrics to Track
 
