@@ -165,25 +165,45 @@ export async function GET(request: NextRequest) {
       };
     });
 
-    return NextResponse.json({
-      success: true,
-      book: {
-        id: bookId,
-        title: bookContent.title,
-        author: bookContent.author
-      },
-      level,
-      totalBundles: bundles.length,
-      totalSentences: sentences.length,
-      bundles
-    });
+    return new NextResponse(
+      JSON.stringify({
+        success: true,
+        book: {
+          id: bookId,
+          title: bookContent.title,
+          author: bookContent.author
+        },
+        level,
+        totalBundles: bundles.length,
+        bundleCount: bundles.length, // Back-compat for clients expecting bundleCount
+        totalSentences: sentences.length,
+        bundles
+      }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          // Cache for 1 hour on CDN; allow serving stale while revalidating
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+        }
+      }
+    );
 
   } catch (error) {
     console.error('Bundle API error:', error);
-    return NextResponse.json({
-      success: false,
-      error: 'Internal server error'
-    }, { status: 500 });
+    return new NextResponse(
+      JSON.stringify({
+        success: false,
+        error: 'Internal server error'
+      }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      }
+    );
   } finally {
     await prisma.$disconnect();
   }

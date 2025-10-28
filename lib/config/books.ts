@@ -190,7 +190,6 @@ export const getBookApiEndpoint = (bookId: string, level: string): string => {
 // Multi-level books configuration
 export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'gutenberg-43': ['A1', 'A2'],
-  'the-necklace': ['A1', 'A2', 'B1'],
   'gift-of-the-magi': ['A1', 'A2', 'B1'],
   'the-devoted-friend': ['A1', 'A2', 'B1'],
   'lady-with-dog': ['A1', 'A2'],
@@ -203,4 +202,5 @@ export const SINGLE_LEVEL_BOOKS: { [key: string]: string } = {
   'great-gatsby-a2': 'A2',
   'gutenberg-1952-A1': 'A1',
   'sleepy-hollow-enhanced': 'A1',
+  'the-necklace': 'A1',
 };

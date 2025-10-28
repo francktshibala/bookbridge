@@ -13,7 +13,7 @@
  * @module lib/services/availability
  */
 
-import { MULTI_LEVEL_BOOKS, SINGLE_LEVEL_BOOKS, getBookApiEndpoint } from '@/lib/config/books';
+import { MULTI_LEVEL_BOOKS, SINGLE_LEVEL_BOOKS } from '@/lib/config/books';
 
 export interface AvailabilityResult {
   availability: Record<string, boolean>;
@@ -53,24 +53,20 @@ export async function checkLevelAvailability(
   const availability: Record<string, boolean> = {};
 
   // OPTIMIZATION: Parallelize multi-level book checks with Promise.all()
-  // Checks all levels concurrently instead of sequentially (2-3 sec → 200-300ms)
+  // Uses lightweight availability API (fast metadata), not heavy bundle endpoints
   if (MULTI_LEVEL_BOOKS[bookId]) {
     const levelChecks = MULTI_LEVEL_BOOKS[bookId].map(async (level) => {
       try {
-        const apiEndpoint = getBookApiEndpoint(bookId, level);
-        const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${level}`;
+        const apiUrl = `/api/availability?bookId=${encodeURIComponent(bookId)}&level=${encodeURIComponent(level)}`;
 
         const response = await fetch(apiUrl, {
-          next: {
-            revalidate: 3600, // Cache for 1 hour
-            tags: [`book-${bookId}`, `level-${level}`, 'availability-check']
-          },
+          // Client-side fetch; server route is cached with headers
           signal
         });
 
         if (response.ok) {
           const data = await response.json();
-          return { level: level.toLowerCase(), available: data.success === true };
+          return { level: level.toLowerCase(), available: data.available === true };
         } else {
           return { level: level.toLowerCase(), available: false };
         }
@@ -88,22 +84,8 @@ export async function checkLevelAvailability(
     });
   }
 
-  // Handle original content check (multi-level books only)
-  try {
-    const response = await fetch(`/api/books/${bookId}/content`, {
-      next: {
-        revalidate: 3600, // Cache for 1 hour
-        tags: [`book-${bookId}`, 'original-content']
-      },
-      signal
-    });
-    availability['original'] = response.ok;
-  } catch (error: any) {
-    if (error.name === 'AbortError') {
-      throw error; // Re-throw abort errors
-    }
-    availability['original'] = false;
-  }
+  // Original content assumed available or checked lazily when user selects it
+  availability['original'] = true;
 
   // Extract available CEFR levels (excluding 'original')
   const bookLevels = Object.entries(availability)

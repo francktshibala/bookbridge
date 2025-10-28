@@ -1,4 +1,5 @@
 export const runtime = 'nodejs';
+export const revalidate = 3600;
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
@@ -204,28 +205,45 @@ export async function GET(request: NextRequest) {
 
     const totalSentences = bundles.reduce((sum, bundle) => sum + bundle.sentences.length, 0);
 
-    return NextResponse.json({
-      success: true,
-      book: {
-        id: bookId,
-        title: bookContent?.title || 'The Necklace',
-        author: bookContent?.author || 'Guy de Maupassant'
-      },
-      level: 'A1',
-      totalBundles: bundles.length,
-      totalSentences,
-      bundles,
-      chapters, // Add chapter structure for UI
-      source: 'dedicated-api' // Indicates this came from dedicated API for debugging
-    });
+    return new NextResponse(
+      JSON.stringify({
+        success: true,
+        book: {
+          id: bookId,
+          title: bookContent?.title || 'The Necklace',
+          author: bookContent?.author || 'Guy de Maupassant'
+        },
+        level: 'A1',
+        totalBundles: bundles.length,
+        bundleCount: bundles.length, // Back-compat for clients expecting bundleCount
+        totalSentences,
+        bundles,
+        chapters, // Add chapter structure for UI
+        source: 'dedicated-api' // Indicates this came from dedicated API for debugging
+      }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+        }
+      }
+    );
 
   } catch (error) {
     console.error('The Necklace A1 API error:', error);
-    return NextResponse.json({
-      success: false,
-      error: 'Internal server error'
-    }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
+    return new NextResponse(
+      JSON.stringify({
+        success: false,
+        error: 'Internal server error'
+      }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      }
+    );
   }
 }

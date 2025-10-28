@@ -125,10 +125,14 @@ export async function loadBookBundles(
     throw new Error(`Failed to fetch book data: ${response.status} ${response.statusText}`);
   }
 
-  const data: RealBundleApiResponse = await response.json();
+  const raw = await response.json();
+  const data: RealBundleApiResponse = {
+    ...raw,
+    bundleCount: typeof raw.bundleCount === 'number' ? raw.bundleCount : (typeof raw.totalBundles === 'number' ? raw.totalBundles : (Array.isArray(raw.bundles) ? raw.bundles.length : 0))
+  };
 
   // Validate response
-  if (!data || !data.success || data.totalSentences === 0) {
+  if (!data || !data.success || data.totalSentences === 0 || typeof data.bundleCount !== 'number') {
     throw new Error('Invalid book data received from API');
   }
 
