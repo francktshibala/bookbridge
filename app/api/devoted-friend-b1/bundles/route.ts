@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+export const runtime = 'nodejs';
+export const revalidate = 3600; // Cache for 1 hour
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -12,7 +15,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: 'This API only supports The Devoted Friend B1'
-      }, { status: 400 });
+      }, {
+        status: 400,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     // Load B1 bundles from cache
@@ -22,7 +31,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: 'B1 bundles not found. Please generate them first.'
-      }, { status: 404 });
+      }, {
+        status: 404,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     const bundleData = JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
@@ -89,8 +104,14 @@ export async function GET(request: NextRequest) {
         },
         level: 'B1',
         totalBundles: bundleData.length,
+        bundleCount: bundleData.length,
         totalSentences,
         bundles: convertedBundles
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+        }
       });
     } else {
       // New format
@@ -103,8 +124,14 @@ export async function GET(request: NextRequest) {
         },
         level: bundleData.cefrLevel,
         totalBundles: bundleData.totalBundles,
+        bundleCount: bundleData.totalBundles,
         totalSentences: bundleData.totalSentences,
         bundles: bundleData.bundles
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+        }
       });
     }
 
@@ -113,6 +140,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Failed to load B1 bundles'
-    }, { status: 500 });
+    }, {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store'
+      }
+    });
   }
 }

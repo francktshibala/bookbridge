@@ -32,6 +32,10 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const bookId = searchParams.get('bookId');
     const level = searchParams.get('level') || 'original';
+    const limitParam = parseInt(searchParams.get('limit') || '10', 10);
+    const offsetParam = parseInt(searchParams.get('offset') || '0', 10);
+    const pageLimit = Number.isFinite(limitParam) && limitParam > 0 ? Math.min(limitParam, 100) : 10;
+    const pageOffset = Number.isFinite(offsetParam) && offsetParam >= 0 ? offsetParam : 0;
 
     if (!bookId) {
       return NextResponse.json({
@@ -59,42 +63,39 @@ export async function GET(request: NextRequest) {
       }, { status: 404 });
     }
 
-    // Get ALL audio bundles - handle the 1000 row limit
-    let allAudioAssets: any[] = [];
-    let offset = 0;
-    const limit = 1000;
-    let hasMore = true;
+    // First, get total count of bundles (chunk_index = 0 marks first sentence of each bundle)
+    const { count: totalBundlesCount, error: countError } = await supabase
+      .from('audio_assets')
+      .select('*', { count: 'exact', head: true })
+      .eq('book_id', bookId)
+      .eq('cefr_level', level)
+      .eq('chunk_index', 0);
 
-    while (hasMore) {
-      const { data: batch, error } = await supabase
-        .from('audio_assets')
-        .select('*')
-        .eq('book_id', bookId)
-        .eq('cefr_level', level)
-        .eq('chunk_index', 0)
-        .order('sentence_index', { ascending: true })
-        .range(offset, offset + limit - 1);
-
-      if (error) {
-        console.error('Supabase error:', error);
-        return NextResponse.json({
-          success: false,
-          error: 'Failed to load audio data'
-        }, { status: 500 });
-      }
-
-      if (batch && batch.length > 0) {
-        allAudioAssets = [...allAudioAssets, ...batch];
-        offset += limit;
-        hasMore = batch.length === limit;
-      } else {
-        hasMore = false;
-      }
+    if (countError) {
+      console.error('Supabase count error:', countError);
+      return NextResponse.json({ success: false, error: 'Failed to count audio data' }, { status: 500 });
     }
 
-    console.log(`✅ Loaded ${allAudioAssets.length} audio assets`);
+    // Then, fetch only the current page of bundles
+    const rangeFrom = pageOffset;
+    const rangeTo = pageOffset + pageLimit - 1;
+    const { data: pageAssets, error: pageError } = await supabase
+      .from('audio_assets')
+      .select('*')
+      .eq('book_id', bookId)
+      .eq('cefr_level', level)
+      .eq('chunk_index', 0)
+      .order('sentence_index', { ascending: true })
+      .range(rangeFrom, rangeTo);
 
-    if (allAudioAssets.length === 0) {
+    if (pageError) {
+      console.error('Supabase page error:', pageError);
+      return NextResponse.json({ success: false, error: 'Failed to load audio data' }, { status: 500 });
+    }
+
+    console.log(`✅ Page loaded: ${pageAssets?.length || 0} assets (offset=${pageOffset}, limit=${pageLimit}, total=${totalBundlesCount || 0})`);
+
+    if (!pageAssets || pageAssets.length === 0) {
       return NextResponse.json({
         success: false,
         error: `No audio found for ${bookId} at ${level} level`
@@ -128,7 +129,7 @@ export async function GET(request: NextRequest) {
       .map(s => s + (s.endsWith('.') || s.endsWith('!') || s.endsWith('?') ? '' : '.'));
 
     // Create proper bundles with Jekyll's dynamic timing method (CRITICAL FIX)
-    const bundles: BundleMetadata[] = allAudioAssets.map(asset => {
+    const bundles: BundleMetadata[] = pageAssets.map(asset => {
       const bundleSentences = sentences.slice(
         asset.sentence_index * SENTENCES_PER_BUNDLE,
         (asset.sentence_index + 1) * SENTENCES_PER_BUNDLE
@@ -174,10 +175,11 @@ export async function GET(request: NextRequest) {
           author: bookContent.author
         },
         level,
-        totalBundles: bundles.length,
-        bundleCount: bundles.length, // Back-compat for clients expecting bundleCount
+        totalBundles: totalBundlesCount || bundles.length,
+        bundleCount: totalBundlesCount || bundles.length, // Back-compat for clients expecting bundleCount
         totalSentences: sentences.length,
-        bundles
+        bundles,
+        page: { offset: pageOffset, limit: pageLimit, returned: bundles.length }
       }),
       {
         status: 200,

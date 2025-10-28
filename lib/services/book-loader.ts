@@ -111,7 +111,9 @@ export async function loadBookBundles(
   // Handle simplified content mode
   // Use dynamic API endpoint detection
   const apiEndpoint = getBookApiEndpoint(bookId, level);
-  const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${level}`;
+  // Progressive loading: request only the first page initially
+  const initialLimit = 10;
+  const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${level}&limit=${initialLimit}&offset=0`;
 
   const response = await fetch(apiUrl, {
     next: {

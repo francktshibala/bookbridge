@@ -1,4 +1,5 @@
 export const runtime = 'nodejs';
+export const revalidate = 3600; // Cache for 1 hour
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
@@ -16,7 +17,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: 'This API only supports The Gift of the Magi A2'
-      }, { status: 400 });
+      }, {
+        status: 400,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     console.log(`🎁 Loading The Gift of the Magi A2 bundles with Solution 1...`);
@@ -36,7 +43,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: 'No A2 bundles found in database'
-      }, { status: 404 });
+      }, {
+        status: 404,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     console.log(`✅ Loaded ${bundles.length} A2 bundles from database with Solution 1`);
@@ -95,6 +108,7 @@ export async function GET(request: NextRequest) {
       title: 'The Gift of the Magi',
       author: 'O. Henry',
       level: 'A2',
+      totalBundles: formattedBundles.length,
       bundleCount: formattedBundles.length,
       totalSentences,
       bundles: formattedBundles,
@@ -106,6 +120,11 @@ export async function GET(request: NextRequest) {
         speed: 0.90,
         implementation: 'Solution 1 with ffprobe measurement'
       }
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+      }
     });
 
   } catch (error) {
@@ -113,9 +132,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Internal server error'
-    }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
+    }, {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store'
+      }
+    });
   }
 }
 

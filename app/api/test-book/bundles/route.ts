@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { prisma } from '@/lib/prisma';
 
+export const runtime = 'nodejs';
+export const revalidate = 3600; // Cache for 1 hour
 export const dynamic = 'force-dynamic';
 
 const supabase = createClient(
@@ -53,7 +55,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: 'Book ID is required'
-      }, { status: 400 });
+      }, {
+        status: 400,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     console.log(`📦 Loading sentence bundles for book: ${bookId}, level: ${level}`);
@@ -72,7 +80,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: `Book not found: ${bookId}`
-      }, { status: 404 });
+      }, {
+        status: 404,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     // Get sentence-level audio from Supabase
@@ -89,14 +103,26 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: 'Failed to load audio data'
-      }, { status: 500 });
+      }, {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     if (!audioAssets || audioAssets.length === 0) {
       return NextResponse.json({
         success: false,
         error: `No audio found for ${bookId} at ${level} level. Has the test book been generated?`
-      }, { status: 404 });
+      }, {
+        status: 404,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     // Get display text
@@ -169,9 +195,15 @@ export async function GET(request: NextRequest) {
       author: bookContent.author,
       level,
       bundleCount: bundles.length,
+      totalBundles: bundles.length,
       totalSentences: audioAssets.length,
       sentencesPerBundle: SENTENCES_PER_BUNDLE,
       bundles
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+      }
     });
 
   } catch (error) {
@@ -179,6 +211,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Internal server error'
-    }, { status: 500 });
+    }, {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store'
+      }
+    });
   }
 }

@@ -1,4 +1,5 @@
 export const runtime = 'nodejs';
+export const revalidate = 3600; // Cache for 1 hour
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
@@ -32,7 +33,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: 'This API only supports The Necklace B1'
-      }, { status: 400 });
+      }, {
+        status: 400,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     console.log(`💎 Loading The Necklace bundles for level: ${level}`);
@@ -68,7 +75,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: 'No bundles found for The Necklace B1'
-      }, { status: 404 });
+      }, {
+        status: 404,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        }
+      });
     }
 
     console.log(`✅ Loaded ${bookChunks.length} bundles from BookChunk table`);
@@ -154,10 +167,16 @@ export async function GET(request: NextRequest) {
       },
       level: 'B1',
       totalBundles: bundles.length,
+      bundleCount: bundles.length,
       totalSentences,
       bundles,
       sections, // Add thematic sections for UI
       source: 'dedicated-api' // Indicates this came from dedicated API for debugging
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+      }
     });
 
   } catch (error) {
@@ -165,8 +184,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Internal server error'
-    }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
+    }, {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store'
+      }
+    });
   }
 }
