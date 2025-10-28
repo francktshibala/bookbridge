@@ -2,6 +2,14 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import {
+  type DemoVoiceId,
+  type CEFRLevel,
+  DEMO_VOICES,
+  LEVEL_TO_VOICES,
+  getVoiceFor,
+  getVoicesForLevel
+} from '@/lib/config/demo-voices';
 
 // Feature flags for gradual deployment
 const isDemoEnabled = process.env.NEXT_PUBLIC_ENABLE_HERO_DEMO === 'true';
@@ -83,8 +91,8 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
   if (!isDemoEnabled) {
     return null;
   }
-  const [currentLevel, setCurrentLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2' | 'Original'>('A1');
-  const [currentVoice, setCurrentVoice] = useState<'daniel' | 'sarah'>('sarah');
+  const [currentLevel, setCurrentLevel] = useState<CEFRLevel>('A1');
+  const [currentVoice, setCurrentVoice] = useState<DemoVoiceId>('sarah');
   const [isPlaying, setIsPlaying] = useState(false);
   const [demoContent, setDemoContent] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -104,7 +112,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
   const textContainerRef = useRef<HTMLDivElement>(null);
 
   // All CEFR levels including Original
-  const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'Original'] as const;
+  const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'Original'];
 
   // Initialize A/B test variant and mobile detection
   useEffect(() => {
@@ -221,18 +229,25 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
     setCurrentSentenceIndex(-1);
     setCurrentTime(0);
 
-    // Update level
+    // Get current voice gender to preserve preference when switching levels
+    const currentVoiceGender = DEMO_VOICES[currentVoice].gender;
+
+    // Get the appropriate voice for the new level with same gender
+    const newVoiceId = LEVEL_TO_VOICES[newLevel][currentVoiceGender];
+
+    // Update level and voice
     setCurrentLevel(newLevel);
+    setCurrentVoice(newVoiceId);
 
     // Track level switch
     trackDemoEvent('level_switch', {
       from_level: currentLevel,
       to_level: newLevel,
-      voice: currentVoice,
+      voice: newVoiceId,
       enhanced_mode: true
     });
 
-    console.log(`🔄 Level switched from ${currentLevel} to ${newLevel} with ${currentVoice} voice`);
+    console.log(`🔄 Level switched from ${currentLevel} to ${newLevel}, voice updated to ${DEMO_VOICES[newVoiceId].name} (${currentVoiceGender})`);
   }, [currentLevel, currentVoice]);
 
   // Handle voice change
@@ -286,7 +301,8 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
 
     // Enhanced audio URL with voice selection
     const levelName = currentLevel === 'Original' ? 'original' : currentLevel.toLowerCase();
-    const audioUrl = `/audio/demo/pride-prejudice-${levelName}-${currentVoice}-enhanced.mp3`;
+    const voiceFileId = DEMO_VOICES[currentVoice].fileId;
+    const audioUrl = `/audio/demo/pride-prejudice-${levelName}-${voiceFileId}-enhanced.mp3`;
 
     if (audioRef.current) {
       // Only reload if the src is different to avoid interrupting playback
@@ -959,30 +975,40 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                   display: 'flex',
                   gap: '8px'
                 }}>
-                  {(['sarah', 'daniel'] as const).map((voice) => (
-                    <button
-                      key={voice}
-                      onClick={() => {
-                        handleVoiceChange(voice);
-                      }}
-                      style={{
-                        flex: 1,
-                        background: currentVoice === voice ? 'var(--accent-primary)' : 'transparent',
-                        color: currentVoice === voice ? 'var(--bg-primary)' : 'var(--text-primary)',
-                        border: '1px solid var(--accent-secondary)',
-                        borderRadius: '4px',
-                        padding: '8px 6px',
-                        fontSize: '12px',
-                        fontWeight: '500',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        textAlign: 'center',
-                        touchAction: 'manipulation'
-                      }}
-                    >
-                      {voice === 'sarah' ? '👩 Sarah' : '👨 Daniel'}
-                    </button>
-                  ))}
+                  {/* Show level-specific voices */}
+                  {(() => {
+                    const levelVoices = getVoicesForLevel(currentLevel);
+                    const femaleVoiceId = LEVEL_TO_VOICES[currentLevel].female;
+                    const maleVoiceId = LEVEL_TO_VOICES[currentLevel].male;
+
+                    return [
+                      { id: femaleVoiceId, voice: levelVoices.female, icon: '👩' },
+                      { id: maleVoiceId, voice: levelVoices.male, icon: '👨' }
+                    ].map(({ id, voice, icon }) => (
+                      <button
+                        key={id}
+                        onClick={() => {
+                          handleVoiceChange(id);
+                        }}
+                        style={{
+                          flex: 1,
+                          background: currentVoice === id ? 'var(--accent-primary)' : 'transparent',
+                          color: currentVoice === id ? 'var(--bg-primary)' : 'var(--text-primary)',
+                          border: '1px solid var(--accent-secondary)',
+                          borderRadius: '4px',
+                          padding: '8px 6px',
+                          fontSize: '12px',
+                          fontWeight: '500',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease',
+                          textAlign: 'center',
+                          touchAction: 'manipulation'
+                        }}
+                      >
+                        {icon} {voice.name}
+                      </button>
+                    ));
+                  })()}
                 </div>
               </div>
 
