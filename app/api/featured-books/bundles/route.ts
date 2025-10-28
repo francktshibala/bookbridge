@@ -1,4 +1,5 @@
 export const runtime = 'nodejs';
+export const revalidate = 3600; // Cache API responses for 1 hour (server-side)
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';

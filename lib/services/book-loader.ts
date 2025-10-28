@@ -41,7 +41,10 @@ export async function loadBookBundles(
   if (mode === 'original') {
     // Fetch original text from book content API
     const contentResponse = await fetch(`/api/books/${bookId}/content`, {
-      cache: 'no-store',
+      next: {
+        revalidate: 3600, // Cache for 1 hour
+        tags: [`book-${bookId}`, 'original-content']
+      },
       signal
     });
 
@@ -108,10 +111,13 @@ export async function loadBookBundles(
   // Handle simplified content mode
   // Use dynamic API endpoint detection
   const apiEndpoint = getBookApiEndpoint(bookId, level);
-  const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${level}&t=${Date.now()}`;
+  const apiUrl = `${apiEndpoint}?bookId=${bookId}&level=${level}`;
 
   const response = await fetch(apiUrl, {
-    cache: 'no-store',
+    next: {
+      revalidate: 3600, // Cache for 1 hour
+      tags: [`book-${bookId}`, `level-${level}`, 'bundle-data']
+    },
     signal
   });
 
