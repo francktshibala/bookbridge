@@ -984,7 +984,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                 <div style={{
                   display: 'flex',
                   gap: '8px',
-                  marginBottom: '12px'
+                  marginBottom: '8px'
                 }}>
                   <button
                     onClick={() => setVoiceGenderTab('female')}
@@ -994,7 +994,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                       color: voiceGenderTab === 'female' ? 'var(--bg-primary)' : 'var(--text-primary)',
                       border: '1px solid var(--accent-secondary)',
                       borderRadius: '4px',
-                      padding: '8px',
+                      padding: '7px 8px',
                       fontSize: '13px',
                       fontWeight: '600',
                       cursor: 'pointer',
@@ -1012,7 +1012,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                       color: voiceGenderTab === 'male' ? 'var(--bg-primary)' : 'var(--text-primary)',
                       border: '1px solid var(--accent-secondary)',
                       borderRadius: '4px',
-                      padding: '8px',
+                      padding: '7px 8px',
                       fontSize: '13px',
                       fontWeight: '600',
                       cursor: 'pointer',
@@ -1028,10 +1028,11 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                 <div style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(2, 1fr)',
-                  gap: '8px',
-                  maxHeight: '200px',
+                  gap: '6px',
+                  maxHeight: '140px',
                   overflowY: 'auto',
-                  padding: '4px'
+                  overflowX: 'hidden',
+                  padding: '2px'
                 }}>
                   {getVoicesByGender(voiceGenderTab).map((voice) => {
                     const voiceId = Object.keys(DEMO_VOICES).find(
@@ -1049,30 +1050,19 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
                           color: currentVoice === voiceId ? 'var(--bg-primary)' : 'var(--text-primary)',
                           border: '1px solid var(--accent-secondary)',
                           borderRadius: '4px',
-                          padding: '10px 8px',
-                          fontSize: '12px',
+                          padding: '8px 6px',
+                          fontSize: '13px',
                           fontWeight: '500',
                           cursor: 'pointer',
                           transition: 'all 0.2s ease',
                           textAlign: 'center',
                           touchAction: 'manipulation',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          gap: '4px'
-                        }}
-                      >
-                        <div style={{ fontSize: '14px', fontWeight: '600' }}>{voice.name}</div>
-                        <div style={{
-                          fontSize: '10px',
-                          opacity: 0.7,
                           whiteSpace: 'nowrap',
                           overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          width: '100%'
-                        }}>
-                          {voice.description}
-                        </div>
+                          textOverflow: 'ellipsis'
+                        }}
+                      >
+                        {voice.name}
                       </button>
                     );
                   })}
