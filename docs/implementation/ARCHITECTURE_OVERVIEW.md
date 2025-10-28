@@ -1937,7 +1937,6 @@ graph LR
 2. **Voice Selector**: UI present but functionality unclear
 3. **Original Mode**: Audio disabled (only simplified text has audio)
 4. **Mobile Auto-scroll**: Can be disruptive, has pause mechanism
-5. **Phase 5 Partial**: Availability fast-path enabled via config for single-level titles (e.g., The Necklace); remaining bundle routes pending cache headers
 
 ---
 
@@ -2512,8 +2511,10 @@ Theme Integration:
 - **Book Content API**: `app/api/books/[id]/content/route.ts` - Legacy book data
 - **Fast Content API**: `app/api/books/[id]/content-fast/route.ts` - Optimized book loading
 - **Bundle APIs**: Multiple per-book routes (`app/api/*/bundles/route.ts`) + Generic (`app/api/featured-books/bundles/route.ts`)
-  - Server-side caching: `revalidate: 3600` (1-hour cache) with `Cache-Control` headers
+  - **Phase 5 Complete**: All 27 bundle routes optimized with server-side caching
+  - Server-side caching: `revalidate: 3600` (1-hour ISR cache) with CDN headers (`s-maxage=3600, stale-while-revalidate=86400`)
   - Response includes both `totalBundles` and `bundleCount` for client/UI consistency
+  - Error responses include `Cache-Control: no-store` to prevent error propagation
 - **AI Tutoring**: `app/api/ai/stream/route.ts` - Educational chat system
 - **AI Dictionary**: `app/api/dictionary/resolve/route.ts` - ESL-optimized word definitions
 
