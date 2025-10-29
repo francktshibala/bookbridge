@@ -1,83 +1,173 @@
 {
-  "version": 2,
+  "version": 3,
   "voice": "James",
   "voiceId": "EkK5I93UQWFDigLMpZcX",
   "voiceFileId": "james",
   "gender": "male",
   "level": "B1",
-  "measuredDuration": 46.393438,
+  "measuredDuration": 47.542813,
   "sentenceTimings": [
     {
       "sentenceIndex": 0,
       "text": "Everyone knows that a rich single man must want to find a wife.",
       "startTime": 0,
-      "endTime": 4.787,
-      "duration": 4.787,
-      "wordCount": 13
+      "endTime": 3.864,
+      "duration": 3.864,
+      "wordCount": 13,
+      "complexity": {
+        "characterCount": 63,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 1,
       "text": "When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
-      "startTime": 4.787,
-      "endTime": 16.569,
-      "duration": 11.782,
-      "wordCount": 32
+      "startTime": 3.864,
+      "endTime": 15.141,
+      "duration": 11.278,
+      "wordCount": 32,
+      "complexity": {
+        "characterCount": 179,
+        "pausePenalty": 0.3,
+        "punctuationCount": 2,
+        "commaCount": 2,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 2,
       "text": "This idea becomes the main concern of the neighboring mothers.",
-      "startTime": 16.569,
-      "endTime": 20.251,
-      "duration": 3.682,
-      "wordCount": 10
+      "startTime": 15.141,
+      "endTime": 18.944,
+      "duration": 3.802,
+      "wordCount": 10,
+      "complexity": {
+        "characterCount": 62,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 3,
       "text": "They see this wealthy newcomer as the perfect solution to their daughters' futures.",
-      "startTime": 20.251,
-      "endTime": 25.406,
-      "duration": 5.155,
-      "wordCount": 14
+      "startTime": 18.944,
+      "endTime": 24.034,
+      "duration": 5.09,
+      "wordCount": 14,
+      "complexity": {
+        "characterCount": 83,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 4,
       "text": "The news of a rich, unmarried gentleman creates immediate excitement in the community.",
-      "startTime": 25.406,
-      "endTime": 30.193,
-      "duration": 4.787,
-      "wordCount": 13
+      "startTime": 24.034,
+      "endTime": 29.458,
+      "duration": 5.424,
+      "wordCount": 13,
+      "complexity": {
+        "characterCount": 86,
+        "pausePenalty": 0.15,
+        "punctuationCount": 1,
+        "commaCount": 1,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 5,
       "text": "Every mother begins to calculate her chances and plan her approach.",
-      "startTime": 30.193,
-      "endTime": 34.243,
-      "duration": 4.05,
-      "wordCount": 11
+      "startTime": 29.458,
+      "endTime": 33.567,
+      "duration": 4.109,
+      "wordCount": 11,
+      "complexity": {
+        "characterCount": 67,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 6,
       "text": "Conversations between neighbors focus entirely on this mysterious new resident.",
-      "startTime": 34.243,
-      "endTime": 38.293,
-      "duration": 4.05,
-      "wordCount": 11
+      "startTime": 33.567,
+      "endTime": 38.412,
+      "duration": 4.845,
+      "wordCount": 11,
+      "complexity": {
+        "characterCount": 79,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 7,
       "text": "They speculate about his character, his intentions, and his preferences in women.",
-      "startTime": 38.293,
-      "endTime": 43.08,
-      "duration": 4.787,
-      "wordCount": 13
+      "startTime": 38.412,
+      "endTime": 43.679,
+      "duration": 5.268,
+      "wordCount": 13,
+      "complexity": {
+        "characterCount": 81,
+        "pausePenalty": 0.3,
+        "punctuationCount": 2,
+        "commaCount": 2,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 8,
       "text": "The competition among families becomes both subtle and intense.",
-      "startTime": 43.08,
-      "endTime": 46.393,
-      "duration": 3.314,
-      "wordCount": 9
+      "startTime": 43.679,
+      "endTime": 47.543,
+      "duration": 3.864,
+      "wordCount": 9,
+      "complexity": {
+        "characterCount": 63,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     }
   ],
   "voiceSettings": {
@@ -86,8 +176,9 @@
     "style": 0.1,
     "use_speaker_boost": true
   },
-  "measuredAt": "2025-10-28T21:37:02.355Z",
-  "method": "ffprobe-proportional",
+  "measuredAt": "2025-10-29T10:48:23.468Z",
+  "method": "ffprobe-enhanced-timing",
+  "timingStrategy": "character-proportion-with-punctuation-penalties",
   "phase": "multi_voice_demo_testing",
-  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+  "notes": "Phase 4: Multi-voice demo testing - Enhanced timing fix for complex sentences"
 }

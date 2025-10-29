@@ -349,28 +349,133 @@ async function measureAudioDuration(audioBuffer) {
 }
 
 /**
- * Calculate proportional sentence timings (Solution 1)
+ * Calculate proportional sentence timings (Solution 1 + Enhanced Timing Fix v2)
+ *
+ * ENHANCED FIX v2 (Oct 29, 2025): GPT-5 validated approach
+ * - Character-count proportion + punctuation penalties
+ * - CRITICAL: Subtracts pause budget FIRST to avoid overshooting totalDuration
+ * - Reference: AUDIO_SYNC_IMPLEMENTATION_GUIDE.md
  */
 function calculateProportionalTimings(sentences, totalDuration) {
-  const totalWords = sentences.reduce((sum, sentence) => sum + sentence.wordCount, 0);
-  let currentTime = 0;
+  const totalCharacters = sentences.reduce((sum, sentence) => sum + sentence.text.length, 0);
 
-  return sentences.map((sentence, index) => {
-    const wordRatio = sentence.wordCount / totalWords;
-    const duration = totalDuration * wordRatio;
+  // STEP 1: Calculate pause penalties for ALL sentences first
+  const sentencePenalties = sentences.map(sentence => {
+    // Count all punctuation marks
+    const commaCount = (sentence.text.match(/,/g) || []).length;
+    const semicolonCount = (sentence.text.match(/;/g) || []).length;
+    const colonCount = (sentence.text.match(/:/g) || []).length;
+    const emdashCount = (sentence.text.match(/—/g) || []).length;
+    const ellipsisCount = (sentence.text.match(/\.\.\./g) || []).length;
+
+    // Natural speech pause durations (empirically validated with ElevenLabs TTS)
+    let pausePenalty = (commaCount * 0.15) +        // 150ms per comma
+                       (semicolonCount * 0.25) +     // 250ms per semicolon
+                       (colonCount * 0.20) +         // 200ms per colon
+                       (emdashCount * 0.18) +        // 180ms per em-dash
+                       (ellipsisCount * 0.12);       // 120ms per ellipsis
+
+    // GPT-5: Cap penalties per sentence to prevent overcorrection
+    pausePenalty = Math.min(pausePenalty, 0.6); // Max 600ms pause per sentence
+
+    return {
+      sentence,
+      pausePenalty,
+      punctuationCounts: {
+        commaCount,
+        semicolonCount,
+        colonCount,
+        emdashCount,
+        ellipsisCount
+      }
+    };
+  });
+
+  // STEP 2: Calculate total pause budget
+  const totalPauseBudget = sentencePenalties.reduce((sum, item) => sum + item.pausePenalty, 0);
+
+  // STEP 3: GPT-5 Critical Fix - Subtract pause budget from total duration FIRST
+  let remainingDuration = totalDuration - totalPauseBudget;
+
+  // Safeguard: If pause budget exceeds total duration, scale penalties down proportionally
+  if (remainingDuration < 0) {
+    const scaleFactor = totalDuration * 0.8 / totalPauseBudget; // Use 80% of duration for pauses max
+    sentencePenalties.forEach(item => {
+      item.pausePenalty *= scaleFactor;
+    });
+    remainingDuration = totalDuration * 0.2; // Leave 20% for actual content
+    console.warn(`⚠️ Pause budget (${totalPauseBudget.toFixed(2)}s) exceeded duration, scaled down by ${scaleFactor.toFixed(2)}`);
+  }
+
+  // STEP 4: Distribute REMAINING time by character proportion
+  const timings = sentencePenalties.map((item, index) => {
+    const characterRatio = item.sentence.text.length / totalCharacters;
+    const baseDuration = remainingDuration * characterRatio;
+
+    // Add pause penalty back to get final duration
+    let adjustedDuration = baseDuration + item.pausePenalty;
+
+    // GPT-5: Enforce minimum duration per sentence
+    adjustedDuration = Math.max(adjustedDuration, 0.25); // Min 250ms per sentence
+
+    return {
+      index,
+      sentence: item.sentence,
+      characterRatio,
+      baseDuration,
+      pausePenalty: item.pausePenalty,
+      adjustedDuration,
+      punctuationCounts: item.punctuationCounts
+    };
+  });
+
+  // STEP 5: Renormalize to ensure sum(durations) === totalDuration exactly
+  const currentTotal = timings.reduce((sum, t) => sum + t.adjustedDuration, 0);
+  const renormalizeFactor = totalDuration / currentTotal;
+
+  if (Math.abs(renormalizeFactor - 1.0) > 0.001) {
+    console.log(`📊 Renormalizing timings: ${currentTotal.toFixed(3)}s → ${totalDuration.toFixed(3)}s (factor: ${renormalizeFactor.toFixed(4)})`);
+
+    // Only scale the base durations, not the penalties (GPT-5 recommendation)
+    timings.forEach(t => {
+      t.baseDuration *= renormalizeFactor;
+      t.adjustedDuration = t.baseDuration + t.pausePenalty;
+    });
+  }
+
+  // STEP 6: Calculate start/end times
+  let currentTime = 0;
+  const finalTimings = timings.map(t => {
     const startTime = currentTime;
-    const endTime = currentTime + duration;
+    const endTime = currentTime + t.adjustedDuration;
     currentTime = endTime;
 
     return {
-      sentenceIndex: index,
-      text: sentence.text,
+      sentenceIndex: t.index,
+      text: t.sentence.text,
       startTime: parseFloat(startTime.toFixed(3)),
       endTime: parseFloat(endTime.toFixed(3)),
-      duration: parseFloat(duration.toFixed(3)),
-      wordCount: sentence.wordCount
+      duration: parseFloat(t.adjustedDuration.toFixed(3)),
+      wordCount: t.sentence.wordCount,
+      // Store complexity metrics for adaptive look-ahead (runtime optimization)
+      complexity: {
+        characterCount: t.sentence.text.length,
+        pausePenalty: parseFloat(t.pausePenalty.toFixed(3)),
+        punctuationCount: Object.values(t.punctuationCounts).reduce((a, b) => a + b, 0),
+        ...t.punctuationCounts
+      }
     };
   });
+
+  // Validation: Ensure final timing matches totalDuration
+  const finalTotal = finalTimings[finalTimings.length - 1].endTime;
+  if (Math.abs(finalTotal - totalDuration) > 0.01) {
+    console.warn(`⚠️ Timing mismatch: calculated ${finalTotal.toFixed(3)}s vs actual ${totalDuration.toFixed(3)}s`);
+  } else {
+    console.log(`✅ Timing validation: ${finalTotal.toFixed(3)}s === ${totalDuration.toFixed(3)}s`);
+  }
+
+  return finalTimings;
 }
 
 /**
@@ -413,7 +518,7 @@ async function generateVoiceAudio(voiceId, level) {
 
   // Create metadata
   const metadata = {
-    version: 2,
+    version: 3,  // v3: Enhanced Timing (character-count + punctuation penalties)
     voice: voice.name,
     voiceId: voice.elevenLabsId,
     voiceFileId: voice.fileId,
@@ -423,9 +528,10 @@ async function generateVoiceAudio(voiceId, level) {
     sentenceTimings: sentenceTimings,
     voiceSettings: voiceSettings.voice_settings,
     measuredAt: new Date().toISOString(),
-    method: 'ffprobe-proportional',
+    method: 'ffprobe-enhanced-timing',  // Updated method name
+    timingStrategy: 'character-proportion-with-punctuation-penalties',
     phase: 'multi_voice_demo_testing',
-    notes: 'Phase 4: Multi-voice demo testing - Strategic voice assignment'
+    notes: 'Phase 4: Multi-voice demo testing - Enhanced timing fix for complex sentences'
   };
 
   // Save metadata
@@ -488,8 +594,26 @@ async function validateDrift(newFile, baselineFile) {
  */
 async function main() {
   console.log('🎵 Multi-Voice Demo Audio Generation - Phase 4 Implementation');
-  console.log('📋 Generating 14 voice variations for user preference testing\n');
-  console.log('💰 Estimated cost: ~$10 (vs $500+ for full book generation)\n');
+  console.log('✨ NOW WITH ENHANCED TIMING FIX (character-count + punctuation penalties)\n');
+
+  // Check for command-line arguments: node script.js [level] [voiceId]
+  const args = process.argv.slice(2);
+  const targetLevel = args[0]?.toUpperCase(); // e.g., "B1"
+  const targetVoiceId = args[1]?.toLowerCase(); // e.g., "jane"
+
+  if (targetLevel && targetVoiceId) {
+    console.log(`🎯 TARGETED GENERATION MODE`);
+    console.log(`   Level: ${targetLevel}`);
+    console.log(`   Voice: ${targetVoiceId}\n`);
+  } else if (targetLevel || targetVoiceId) {
+    console.error('❌ Error: Both level and voiceId required for targeted generation');
+    console.error('   Usage: node script.js B1 jane');
+    console.error('   Or run without arguments to generate all voices');
+    process.exit(1);
+  } else {
+    console.log('📋 Generating all voice variations for user preference testing\n');
+    console.log('💰 Estimated cost: ~$10 (vs $500+ for full book generation)\n');
+  }
 
   // Ensure output directory exists
   await fs.mkdir(AUDIO_OUTPUT_DIR, { recursive: true });
@@ -500,22 +624,41 @@ async function main() {
 
   console.log(`📝 Available levels in demo content: ${availableLevels.join(', ')}`);
 
-  // Build generation tasks only for levels that exist in demo content
+  // Build generation tasks
   const tasks = [];
 
-  for (const [level, voices] of Object.entries(LEVEL_TO_VOICES)) {
-    // Check if this level exists in the demo content
-    if (availableLevels.includes(level)) {
-      tasks.push({ voiceId: voices.female, level });
-      tasks.push({ voiceId: voices.male, level });
-    } else {
-      console.log(`⏭️  Skipping ${level} - not in demo content`);
+  if (targetLevel && targetVoiceId) {
+    // TARGETED MODE: Generate single voice
+    if (!availableLevels.includes(targetLevel)) {
+      console.error(`❌ Error: Level ${targetLevel} not found in demo content`);
+      process.exit(1);
     }
-  }
 
-  console.log(`📝 Total voices to generate: ${tasks.length}`);
-  console.log(`📝 Levels: A1, A2, B1, B2, C1, C2, Original`);
-  console.log(`📝 Voices per level: 2 (1 female + 1 male)\n`);
+    if (!DEMO_VOICES[targetVoiceId]) {
+      console.error(`❌ Error: Voice ${targetVoiceId} not found`);
+      console.error(`   Available voices: ${Object.keys(DEMO_VOICES).join(', ')}`);
+      process.exit(1);
+    }
+
+    tasks.push({ voiceId: targetVoiceId, level: targetLevel });
+    console.log(`\n✅ Targeting single voice: ${DEMO_VOICES[targetVoiceId].name} at ${targetLevel} level\n`);
+
+  } else {
+    // FULL MODE: Generate all voices
+    for (const [level, voices] of Object.entries(LEVEL_TO_VOICES)) {
+      // Check if this level exists in the demo content
+      if (availableLevels.includes(level)) {
+        tasks.push({ voiceId: voices.female, level });
+        tasks.push({ voiceId: voices.male, level });
+      } else {
+        console.log(`⏭️  Skipping ${level} - not in demo content`);
+      }
+    }
+
+    console.log(`📝 Total voices to generate: ${tasks.length}`);
+    console.log(`📝 Levels: A1, A2, B1, B2, C1, C2, Original`);
+    console.log(`📝 Voices per level: 2 (1 female + 1 male)\n`);
+  }
 
   const results = [];
   let generatedCount = 0;
