@@ -141,6 +141,26 @@ The bundle-based system is the **PRIMARY** focus for all new feature development
 - Speed cycling: `cycleSpeed()` function
 - Play/pause handlers: `handlePlaySequential()`, `handlePause()`, `handleResume()`
 
+#### **2.5. Audio-Text Synchronization System** (Enhanced Timing v3)
+- ✅ Perfect audio-text sync across all sentence complexities (validated user: "unbelievable, it works perfect")
+- ✅ Character-count proportion + punctuation penalties (commas 150ms, semicolons 250ms, colons 200ms, em-dashes 180ms, ellipses 120ms)
+- ✅ Pause-budget-first approach (subtracts pause budget before distributing time - GPT-5 validated)
+- ✅ Renormalization ensures sum equals measured duration exactly
+- ✅ Safeguards: max 600ms penalty/sentence, min 250ms duration, overflow handling
+- ✅ Metadata version v3 with enhanced timing data
+- ✅ Demo voices regenerated: B1 Jane/James, B2 Zara/David, C1 Sally/Frederick, C2 Vivie (7/8 complete)
+- ✅ Fixes critical sync failures on complex Victorian prose (30-50 word sentences, 4+ commas)
+
+**Problem Solved:**
+Word-count proportional timing failed for complex sentences with punctuation, causing 1/2 sentence lag on B1/C1 levels. Enhanced Timing v3 accounts for natural speech pauses, achieving Speechify-quality sync.
+
+**Code Anchors:**
+- Generation script: `scripts/generate-multi-voice-demo-audio.js:351-479`
+- Metadata format: `.mp3.metadata.json` files with `version: 3`, `timingStrategy: 'character-proportion-with-punctuation-penalties-pause-budget-first'`
+- Demo audio files: `public/audio/demo/pride-prejudice-{level}-{voice}-enhanced.mp3`
+- Technical documentation: `docs/AUDIO_SYNC_IMPLEMENTATION_GUIDE.md`
+- Regeneration tracking: `docs/AUDIO_REGENERATION_PLAN.md`
+
 #### **3. Settings Modal** (`lines 2095-2288`)
 - ✅ CEFR level selector (A1, A2, B1, B2, C1, C2)
 - ✅ Content mode toggle (Simplified ↔ Original)
