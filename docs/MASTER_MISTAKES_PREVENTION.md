@@ -22,7 +22,18 @@
    - ✅ Original sentence indices (no double-offset)
    - ✅ Result: No "Level not available" errors + working audio
 
-3. **Zero-Estimation Policy** - FORBIDDEN:
+3. **Enhanced Timing v3 MANDATORY** - All audio generation MUST use:
+   - ✅ Character-count proportion (not word-count)
+   - ✅ Punctuation penalties: commas (150ms), semicolons (250ms), colons (200ms), em-dashes (180ms), ellipses (120ms)
+   - ✅ Pause-budget-first approach (subtract pauses before distributing remaining time)
+   - ✅ Renormalization to ensure sum equals measured duration exactly
+   - ✅ Safeguards: max 600ms penalty/sentence, min 250ms duration, overflow handling
+   - ✅ Result: Perfect sync for complex Victorian sentences (30-50 words, 4+ commas)
+   - ❌ NEVER use simple word-count proportion (breaks on B1+ complexity with 15-20 word sentences)
+   - 📚 See: `docs/AUDIO_SYNC_IMPLEMENTATION_GUIDE.md` lines 194-238 for technical implementation
+   - 📊 Proven: A1/A2 perfect with word-count, B1/C1/C2 require Enhanced Timing v3
+
+4. **Zero-Estimation Policy** - FORBIDDEN:
    - ❌ Estimated audio durations
    - ❌ API-time ffprobe measurement
    - ❌ Fallback to timing formulas

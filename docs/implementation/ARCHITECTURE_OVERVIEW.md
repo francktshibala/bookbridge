@@ -257,6 +257,106 @@ Word-count proportional timing failed for complex sentences with punctuation, ca
 
 ---
 
+## 🎬 Hero Interactive Demo (Homepage)
+
+**Location**: Homepage hero section (`app/page.tsx` + `components/hero/InteractiveReadingDemo.tsx`)
+**Purpose**: Voice preference testing + instant value demonstration before sign-up
+**Strategic Goal**: Test user preferences on $10 demos before committing $500+ to full book generation
+
+### Overview
+
+Interactive reading demo showcasing Pride & Prejudice with:
+- **12 voices** across 6 CEFR levels (A1-C2) + Original
+- **Real-time audio-text synchronization** with Enhanced Timing v3
+- **Voice analytics tracking** (9 events: voice_switch, retention, engagement, CTA clicks)
+- **Level-filtered voice selection** (shows only 2 voices per level)
+
+### Architecture
+
+**Components:**
+- Main: `components/hero/InteractiveReadingDemo.tsx` (1400+ lines)
+- Config: `lib/config/demo-voices.ts` - Voice configuration and level mappings
+- Audio: `/public/audio/demo/pride-prejudice-{level}-{voice}-enhanced.mp3`
+- Metadata: `.mp3.metadata.json` files with Enhanced Timing v3 sentence timings
+
+**Voice Configuration:**
+```typescript
+// lib/config/demo-voices.ts
+export const LEVEL_TO_VOICES: Record<CEFRLevel, { female: DemoVoiceId; male: DemoVoiceId }> = {
+  'A1': { female: 'hope', male: 'daniel' },      // Soothing + British authority
+  'A2': { female: 'arabella', male: 'grandpa_spuds' },  // Young + warm storyteller
+  'B1': { female: 'jane', male: 'james' },       // Professional + engaging
+  'B2': { female: 'zara', male: 'david_castlemore' },   // Modern + educator
+  'C1': { female: 'sally_ford', male: 'frederick_surrey' }, // Elegant + documentary
+  'C2': { female: 'vivie', male: 'john_doe' },   // Cultured + deep authority
+  'Original': { female: 'sarah', male: 'david_castlemore' } // Baseline + educator
+};
+```
+
+### Analytics Tracking
+
+**9 Events Tracked** (enabled via `NEXT_PUBLIC_ENABLE_HERO_ANALYTICS=true`):
+
+1. **demo_impression** - Demo loads
+2. **play_clicked** - User starts playback (tracks voice_id, name, gender)
+3. **pause_clicked** - User pauses
+4. **level_switch** - User changes CEFR level (tracks from/to voice details)
+5. **voice_switch** - User manually changes voice (tracks from/to voice + gender)
+6. **retention_8s** - 8-second engagement milestone (progressive CTA trigger)
+7. **retention_15s** - 15-second deep engagement
+8. **audio_completed** - User finishes full demo
+9. **cta_clicked** - Conversion event (sign-up/start learning)
+
+**Data Collection:**
+- Console logs for development
+- Google Analytics (gtag) for production
+- All events include: voice_id, voice_name, gender, level, enhanced_mode, ab_test_variant
+
+### Audio Sync Technology
+
+**Enhanced Timing v3** - Fixes sync issues with complex sentences:
+- Character-count proportion (not word-count)
+- Punctuation penalties: commas (150ms), semicolons (250ms), colons (200ms)
+- Pause-budget-first approach (subtracts pauses before time distribution)
+- Renormalization ensures sum equals measured duration
+- **Result**: Perfect sync for Victorian prose with 30-50 word sentences, 4+ commas
+
+**See**: `docs/AUDIO_SYNC_IMPLEMENTATION_GUIDE.md` for deep technical details
+
+### Code Anchors
+
+**Voice Tracking Analytics:**
+- Track function: `InteractiveReadingDemo.tsx:52-74` (trackDemoEvent)
+- Level switch: `InteractiveReadingDemo.tsx:329-339`
+- Voice switch: `InteractiveReadingDemo.tsx:365-375`
+- Retention milestones: `InteractiveReadingDemo.tsx:576-599`
+- Audio completion: `InteractiveReadingDemo.tsx:616-624`
+
+**Voice Configuration:**
+- All voices: `lib/config/demo-voices.ts:26-131` (DEMO_VOICES)
+- Level mappings: `lib/config/demo-voices.ts:155-184` (LEVEL_TO_VOICES)
+- Helper functions: `getVoiceFor`, `getVoicesForLevel`, `getVoicesByGender`
+
+**Audio Generation:**
+- Script: `scripts/generate-multi-voice-demo-audio.js:351-479`
+- Enhanced Timing: Lines 351-401 (punctuation penalties + renormalization)
+- Demo content: `/public/data/demo/pride-prejudice-demo-9sentences.json`
+
+### Success Metrics
+
+**Phase 4 Completion (Dec 2024):**
+- ✅ 12 voices generated with <5% drift validation
+- ✅ Perfect audio-text sync across all levels (user: "it works perfect")
+- ✅ Level-filtered voice selection (2 voices per level)
+- ✅ Production analytics tracking live
+
+**Business Goal:**
+- Identify top 3 male + top 3 female voices through real usage data
+- Use winning voices for $500+ full book production
+- ROI: $10 demo testing vs $500+ blind production = 98% cost reduction
+
+---
+
 ## 🎯 State Management Architecture (Phase 1 Refactor - Jan 2025)
 
 ### Overview: AudioContext as Single Source of Truth
