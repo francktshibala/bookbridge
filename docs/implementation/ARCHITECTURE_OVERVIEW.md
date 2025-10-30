@@ -2698,20 +2698,181 @@ Theme Integration:
 
 ---
 
+## 📚 Related Documentation
+
+This architecture overview is part of a comprehensive documentation system. Reference these files for specific topics:
+
+### Architecture & Refactoring Patterns
+
+**FEATURED_BOOKS_REFACTOR_PLAN.md** - *Complete refactoring roadmap (Phases 1-5)*
+- **When to use**: Before adding features to featured-books page, understanding service layer patterns
+- **What it contains**:
+  - Phase 1: AudioContext SSoT pattern (✅ Complete)
+  - Phase 2: Navigation & Resume fixes (✅ Complete)
+  - Phase 3: Component extraction (✅ Complete)
+  - Phase 4: Service layer extraction (✅ Complete)
+  - Phase 5: Performance optimization (✅ Complete - 15x faster)
+  - Rules & Guardrails for safe feature development
+  - Best practices: Pure functions, Context as orchestrator, Single Responsibility
+- **Critical sections**:
+  - Service Layer Pattern (lines 1632-1650) - Pure functions + orchestrator pattern
+  - Rules & Guardrails (lines 1110-1160) - What's safe to add during refactoring
+
+### Critical Rules & Prevention
+
+**MASTER_MISTAKES_PREVENTION.md** - *Prevent costly mistakes in audio generation*
+- **When to use**: Before generating ANY audio (demo or full book)
+- **What it contains**:
+  - Zero-Estimation Policy (always measure, never guess audio duration)
+  - Enhanced Timing v3 mandatory (character-count + punctuation penalties)
+  - File path conventions (prevent overwrite disasters)
+  - Metadata version requirements
+- **Critical sections**:
+  - Enhanced Timing v3 requirement (lines 25-34) - Mandatory for all audio generation
+  - Zero-Estimation Policy - Never use fallback formulas for audio duration
+
+**AUDIO_SYNC_IMPLEMENTATION_GUIDE.md** - *Deep technical guide for audio sync*
+- **When to use**: Troubleshooting sync issues, understanding why Enhanced Timing v3 works
+- **What it contains**:
+  - Root cause analysis: Why A1/A2 perfect but B1/C1/C2 lag
+  - Enhanced Timing v3 technical implementation (lines 194-238)
+  - Pause-budget-first calculation approach
+  - GPT-5 validation of approach
+- **Critical sections**:
+  - Enhanced Timing v3 implementation (lines 194-238) - Character-count + punctuation penalties
+  - Root cause analysis - Why word-count fails on complex sentences
+
+**PERFECT_AUDIO_SYNC_SOLUTION.md** - *Quick troubleshooting reference*
+- **When to use**: Audio sync issues in production, quick diagnosis
+- **What it contains**:
+  - 5 root causes of sync issues
+  - Quick fixes for each issue
+  - Validation checklist
+- **Use case**: Quick reference when sync breaks, don't need deep technical details
+
+### Feature Implementation Plans
+
+**USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md** - *Comprehensive analytics tracking plan*
+- **When to use**: Before implementing analytics features, understanding usage metrics
+- **What it contains**:
+  - 6 analytics features (book popularity, CEFR progression, audio usage, session length, resume behavior, speed/theme)
+  - Implementation following Phase 4 refactor patterns (analytics-service.ts as pure functions)
+  - Business value for each feature (content strategy, TTS ROI validation, investor metrics)
+  - Complete implementation with code examples
+- **Estimated effort**: 1-2 days for all 6 features
+- **Critical sections**:
+  - Phase 1: Analytics Service Foundation (analytics-service.ts pattern)
+  - Business Context - Why each metric matters for product decisions
+
+**AUDIO_REGENERATION_PLAN.md** - *Track audio regeneration with Enhanced Timing v3*
+- **When to use**: Regenerating demo or full book audio, tracking sync quality
+- **What it contains**:
+  - Phase 1: Demo regeneration status (B1/B2/C1/C2 voices)
+  - Phase 2: Full book regeneration strategy
+  - Testing log with before/after sync quality
+  - Cost estimates and validation checklist
+- **Status**: Phase 1 mostly complete (B1/C1 perfect, C2 pending credits)
+
+**GLOBAL_MINI_PLAYER_IMPLEMENTATION_PLAN.md** - *Global mini player feature*
+- **When to use**: Understanding global audio state, app-scoped features
+- **What it contains**:
+  - Why it failed before Phase 1 refactor (page-scoped state)
+  - Implementation plan post-SSoT refactor
+  - Portal architecture for global UI components
+
+**READING_POSITION_AUTO_RESUME_IMPLEMENTATION_PLAN.md** - *Auto-resume feature*
+- **When to use**: Understanding resume position logic, continue reading modal
+- **What it contains**:
+  - Resume position persistence (localStorage + DB)
+  - Continue Reading modal integration
+  - Atomic resume implementation (Phase 2 refactor)
+
+**AUTO_RESUME_TASK_BREAKDOWN.md** - *Detailed auto-resume tasks*
+- **When to use**: Step-by-step implementation guide for resume feature
+- **What it contains**:
+  - Task breakdown with dependencies
+  - Database schema for reading positions
+  - Testing strategy
+
+### Strategic Planning
+
+**BILLION_DOLLAR_ROADMAP.md** - *Strategic roadmap to $1B company*
+- **When to use**: Understanding product strategy, prioritizing features for revenue
+- **What it contains**:
+  - 13 features prioritized for scaling (Teacher Plans #1, SDK/API #2, Creator Marketplace #3)
+  - GPT-5 strategic validation
+  - Revenue projections ($1.1M Year 1 → $100M Year 5)
+  - 90-day execution plan
+  - B2B vs B2C strategy
+- **Critical insight**: Pure B2C caps at $200-300M ARR; need B2B + platform effects for $1B
+- **Critical sections**:
+  - Tier 1: Must-Haves (Teacher Plans, SDK/API, Creator Marketplace)
+  - GPT-5 Strategic Validation - Why B2B is mandatory
+
+### Additional Implementation Guides
+
+**LEARNER_DICTIONARY_IMPLEMENTATION_PLAN.md** - *AI dictionary system architecture*
+- **When to use**: Understanding dictionary lookup, cache strategy, AI hedging
+- **What it contains**: Complete dictionary system architecture (already referenced in main doc)
+
+**CODEBASE_OVERVIEW.md** - *Detailed file-by-file descriptions*
+- **When to use**: Understanding specific file purposes, navigating codebase
+- **What it contains**: Comprehensive file tree with descriptions
+
+**audiobook-pipeline-complete.md** - *Content generation pipeline*
+- **When to use**: Adding new books, understanding CEFR simplification process
+- **What it contains**: End-to-end book processing workflow
+
+### Quick Reference Guide
+
+| Need to... | Read this file |
+|-----------|---------------|
+| Add feature to featured-books | FEATURED_BOOKS_REFACTOR_PLAN.md (Rules & Guardrails) |
+| Generate audio | MASTER_MISTAKES_PREVENTION.md (Enhanced Timing v3) |
+| Fix sync issues | PERFECT_AUDIO_SYNC_SOLUTION.md (Quick troubleshooting) |
+| Understand sync deeply | AUDIO_SYNC_IMPLEMENTATION_GUIDE.md (Technical details) |
+| Implement analytics | USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md (6 features) |
+| Plan product features | BILLION_DOLLAR_ROADMAP.md (Strategic priorities) |
+| Understand architecture | ARCHITECTURE_OVERVIEW.md (This file) |
+| Navigate codebase | CODEBASE_OVERVIEW.md (File descriptions) |
+| Add new books | audiobook-pipeline-complete.md (Content pipeline) |
+
+### Documentation Update Policy
+
+**When adding new features:**
+1. Create implementation plan (follow USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md template)
+2. Update ARCHITECTURE_OVERVIEW.md if new system/component added
+3. Update MASTER_MISTAKES_PREVENTION.md if critical rule discovered
+4. Reference implementation plan in Related Documentation section
+
+**When refactoring:**
+1. Create refactor plan (follow FEATURED_BOOKS_REFACTOR_PLAN.md template)
+2. Document architectural patterns discovered
+3. Update ARCHITECTURE_OVERVIEW.md after completion
+4. Add lessons learned to refactor plan
+
+---
+
 ## 📈 Next Steps for New Developers
 
 1. **Start Here**: Read this overview (✅ Complete)
 2. **Explore Codebase**: Use code anchors to navigate to key files
-3. **Run Locally**: Follow README.md setup instructions
-4. **Understand Data**: Query database using Prisma Studio
-5. **Try Features**: Test reading experience with enhanced books
-6. **Read Documentation**: Deep-dive into implementation guides
+3. **Reference Related Docs**: See "Related Documentation" section above for specific topics
+4. **Run Locally**: Follow README.md setup instructions
+5. **Understand Data**: Query database using Prisma Studio
+6. **Try Features**: Test reading experience with enhanced books
 
-**Key Files to Read Next:**
-- `/docs/implementation/CODEBASE_OVERVIEW.md` - Detailed file descriptions
-- `/docs/audiobook-pipeline-complete.md` - Content generation process
-- `/docs/MASTER_MISTAKES_PREVENTION.md` - Critical implementation guidelines
+**Recommended Reading Path:**
+1. This file (ARCHITECTURE_OVERVIEW.md) - System overview
+2. FEATURED_BOOKS_REFACTOR_PLAN.md - Service layer patterns & best practices
+3. MASTER_MISTAKES_PREVENTION.md - Critical rules to avoid costly mistakes
+4. CODEBASE_OVERVIEW.md - File-by-file navigation guide
+
+**Before Adding Features:**
+- Check "Related Documentation" Quick Reference Guide table
+- Read FEATURED_BOOKS_REFACTOR_PLAN.md Rules & Guardrails section
+- Follow established patterns (Pure functions, Context as orchestrator)
 
 ---
 
-*Last Updated: January 2025 | Next Review: April 2025*
+*Last Updated: October 2025 | Next Review: January 2026*
