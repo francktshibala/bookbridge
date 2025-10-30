@@ -1,83 +1,173 @@
 {
-  "version": 2,
+  "version": 3,
   "voice": "Zara",
   "voiceId": "jqcCZkN6Knx8BJ5TBdYR",
   "voiceFileId": "zara",
   "gender": "female",
   "level": "B2",
-  "measuredDuration": 75.180375,
+  "measuredDuration": 74.527313,
   "sentenceTimings": [
     {
       "sentenceIndex": 0,
       "text": "It is widely acknowledged as a universal truth that wealthy unmarried men are actively seeking wives.",
       "startTime": 0,
-      "endTime": 6.502,
-      "duration": 6.502,
-      "wordCount": 16
+      "endTime": 5.783,
+      "duration": 5.783,
+      "wordCount": 16,
+      "complexity": {
+        "characterCount": 101,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 1,
       "text": "When such a prosperous gentleman arrives in a new community, the surrounding families immediately assume he must be interested in marrying one of their daughters, regardless of what his actual feelings or intentions might be.",
-      "startTime": 6.502,
-      "endTime": 20.725,
-      "duration": 14.223,
-      "wordCount": 35
+      "startTime": 5.783,
+      "endTime": 18.964,
+      "duration": 13.182,
+      "wordCount": 35,
+      "complexity": {
+        "characterCount": 225,
+        "pausePenalty": 0.3,
+        "punctuationCount": 2,
+        "commaCount": 2,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 2,
       "text": "This assumption becomes deeply embedded in the collective mindset of all the neighboring mothers, who view it as an undeniable fact.",
-      "startTime": 20.725,
-      "endTime": 29.259,
-      "duration": 8.534,
-      "wordCount": 21
+      "startTime": 18.964,
+      "endTime": 26.672,
+      "duration": 7.707,
+      "wordCount": 21,
+      "complexity": {
+        "characterCount": 132,
+        "pausePenalty": 0.15,
+        "punctuationCount": 1,
+        "commaCount": 1,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 3,
       "text": "These women regard the newly arrived bachelor as the ideal solution to securing their daughters' financial futures and social standing.",
-      "startTime": 29.259,
-      "endTime": 37.387,
-      "duration": 8.128,
-      "wordCount": 20
+      "startTime": 26.672,
+      "endTime": 34.401,
+      "duration": 7.729,
+      "wordCount": 20,
+      "complexity": {
+        "characterCount": 135,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 4,
       "text": "News of a rich, unattached gentleman's arrival creates an atmosphere of intense excitement and anticipation throughout the entire neighborhood.",
-      "startTime": 37.387,
-      "endTime": 45.108,
-      "duration": 7.721,
-      "wordCount": 19
+      "startTime": 34.401,
+      "endTime": 42.738,
+      "duration": 8.337,
+      "wordCount": 19,
+      "complexity": {
+        "characterCount": 143,
+        "pausePenalty": 0.15,
+        "punctuationCount": 1,
+        "commaCount": 1,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 5,
       "text": "Every ambitious mother begins carefully evaluating her daughter's chances while simultaneously devising strategic plans to facilitate an introduction.",
-      "startTime": 45.108,
-      "endTime": 52.423,
-      "duration": 7.315,
-      "wordCount": 18
+      "startTime": 42.738,
+      "endTime": 51.326,
+      "duration": 8.588,
+      "wordCount": 18,
+      "complexity": {
+        "characterCount": 150,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 6,
       "text": "Conversations among the mothers revolve almost exclusively around this intriguing newcomer and the opportunities he represents.",
-      "startTime": 52.423,
-      "endTime": 58.925,
-      "duration": 6.502,
-      "wordCount": 16
+      "startTime": 51.326,
+      "endTime": 58.597,
+      "duration": 7.271,
+      "wordCount": 16,
+      "complexity": {
+        "characterCount": 127,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 7,
       "text": "They engage in extensive speculation regarding his character, his matrimonial intentions, and what qualities he might be seeking in a potential wife.",
-      "startTime": 58.925,
-      "endTime": 68.272,
-      "duration": 9.347,
-      "wordCount": 23
+      "startTime": 58.597,
+      "endTime": 67.428,
+      "duration": 8.831,
+      "wordCount": 23,
+      "complexity": {
+        "characterCount": 149,
+        "pausePenalty": 0.3,
+        "punctuationCount": 2,
+        "commaCount": 2,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     },
     {
       "sentenceIndex": 8,
       "text": "The subtle yet fierce competition that develops among these families adds considerable tension to their social interactions.",
-      "startTime": 68.272,
-      "endTime": 75.18,
-      "duration": 6.908,
-      "wordCount": 17
+      "startTime": 67.428,
+      "endTime": 74.527,
+      "duration": 7.099,
+      "wordCount": 17,
+      "complexity": {
+        "characterCount": 124,
+        "pausePenalty": 0,
+        "punctuationCount": 0,
+        "commaCount": 0,
+        "semicolonCount": 0,
+        "colonCount": 0,
+        "emdashCount": 0,
+        "ellipsisCount": 0
+      }
     }
   ],
   "voiceSettings": {
@@ -86,8 +176,9 @@
     "style": 0.15,
     "use_speaker_boost": true
   },
-  "measuredAt": "2025-10-28T21:37:19.694Z",
-  "method": "ffprobe-proportional",
+  "measuredAt": "2025-10-29T11:09:51.440Z",
+  "method": "ffprobe-enhanced-timing",
+  "timingStrategy": "character-proportion-with-punctuation-penalties",
   "phase": "multi_voice_demo_testing",
-  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+  "notes": "Phase 4: Multi-voice demo testing - Enhanced timing fix for complex sentences"
 }
