@@ -9,10 +9,11 @@
 **What This File Is:**
 A step-by-step implementation roadmap for **11 high-impact analytics features** (6 business metrics + 5 performance/quality metrics) that fit seamlessly with BookBridge's existing AudioContext + Service Layer architecture (post-Phase 4 refactor). Each feature is designed as pure functions with minimal state changes, following established patterns.
 
-**GPT-5 Validation Status:** ⚠️ **APPROVED WITH CHANGES**
+**GPT-5 Validation Status:** ✅ **APPROVED WITH MINOR CHANGES** (Final Review Complete)
 - Original plan (6 features) approved for business/content strategy
 - Added 5 critical performance/quality features recommended by GPT-5
 - Reordered by priority: Performance validation → Business metrics → UX optimization
+- **Final review (Oct 30, 2025)**: Implementation approach validated, specific tracking points confirmed
 
 **When to Use This File:**
 - Before implementing any analytics feature
@@ -1639,6 +1640,95 @@ NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX  # Google Analytics 4 tracking ID
 
 ---
 
+## 🎯 GPT-5 Final Implementation Review (Oct 30, 2025)
+
+**Verdict**: ✅ **APPROVED WITH MINOR CHANGES**
+
+GPT-5 reviewed the complete implementation plan and confirmed the architecture approach is correct. They provided specific implementation guidance for the 5 critical features:
+
+### Feature 0: Load Funnel + TTFA
+**Implementation Location**: `AudioContext.loadBookData()` around requestId guards
+
+**Required Events**:
+- `load_started` - When book load begins
+- `load_completed` - When bundles successfully loaded
+- `load_failed` - When load fails (with error details)
+- `first_audio_ready` - When first audio bundle playable
+
+**Required Fields**:
+- `request_id` - For funnel analysis
+- `cache_hit` - Boolean, from response headers/timing
+- `page_size` - Number of bundles loaded
+- `ms_load` - Load duration
+
+### Feature 7: Dictionary Coverage/Speed
+**Implementation Location**: Both client AND API
+
+**Client tracking** (`components/DictionaryPanel.tsx` or similar):
+- `dict_lookup_started` - When user clicks word
+- `dict_success` - When definition received
+- `dict_fallback` - When AI falls back to Wiktionary/Free
+- `dict_error` - When lookup fails
+
+**API tracking** (`app/api/dictionary/resolve/route.ts`):
+- Same events from server perspective
+- Track `ms_total`, `source` (ai/wiktionary/free), `examples_count`, `cached`
+
+### Feature 8: Playback Stability
+**Implementation Location**: Audio element listeners in `AudioContext`
+
+**Add event listeners**:
+```typescript
+audioElement.addEventListener('stalled', () => trackEvent('audio_stall', ...));
+audioElement.addEventListener('waiting', () => trackEvent('audio_stall', ...));
+audioElement.addEventListener('error', () => trackEvent('audio_error', ...));
+```
+
+**Required Fields**:
+- `network_type` - From `navigator.connection.effectiveType`
+- `device` - User agent or device category
+- `error_message` - For error events
+- `audio_time` - Playback position when stalled
+
+### Feature 10: Level-Switch Latency
+**Implementation Location**: `AudioContext.switchLevel()` method
+
+**Required Events**:
+- `level_switch_started` - When user clicks level
+- `level_switch_ready` - When new level bundles loaded and playable
+- `level_switch_aborted` - If user cancels or requestId changes
+
+**Required Fields**:
+- `from_level` - Previous level
+- `to_level` - New level
+- `ms_switch` - Time from started to ready
+- `cache_hit` - Boolean, was data cached?
+- `fast_path` - Boolean, used availability fast-path?
+
+### Feature 11: AI Tutor Engagement
+**Implementation Location**: AI Tutor modal component
+
+**Required Events**:
+- `tutor_opened` - When modal opens
+- `tutor_message_sent` - When user sends message
+- `tutor_stream_completed` - When AI response finishes
+
+**Required Fields**:
+- `chars_in` - User message length
+- `chars_out` - AI response length
+- `ms_stream` - Streaming duration
+- `turns` - Conversation turn count
+
+### Confirmed Patterns
+✅ **Phase 4 architecture**: Pure functions in `analytics-service.ts`
+✅ **withCommon() helper**: DRY session_id, book_id, level context
+✅ **Post-guard logging**: Only log after requestId validation
+✅ **Priority order**: Performance (TTFA) → Business (Audio, Books, Resume) → Quality (Stalls) → Engagement (Tutor) → UX (Speed/Theme)
+
+**Status**: Ready to implement with these specific tracking points.
+
+---
+
 ## 🔗 Related Documentation
 
 ### Read Before Implementation
@@ -1672,15 +1762,16 @@ NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX  # Google Analytics 4 tracking ID
 
 ---
 
-**Document Version**: 2.0 (GPT-5 Validated)
+**Document Version**: 2.1 (GPT-5 Final Review Complete)
 **Created**: October 2025
-**Last Updated**: October 2025 (GPT-5 validation integrated)
-**Status**: Ready to implement
+**Last Updated**: October 30, 2025 (GPT-5 final implementation review)
+**Status**: ✅ Ready to implement (GPT-5 approved)
 **Estimated Effort**: 2 days for 11 features (GPT-5 validated)
 **Prerequisites**: Phase 4 refactor complete (AudioContext + Service Layer)
 
 **Next Action**: Create `lib/services/analytics-service.ts` (Task 1.1 - 30 min)
 
 **Changelog:**
+- v2.1: GPT-5 final review complete, added specific implementation locations and required fields for 5 critical features
 - v2.0: Integrated GPT-5 validation, added 5 performance/quality features, reordered by priority
 - v1.0: Initial plan with 6 business/engagement features
