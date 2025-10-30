@@ -2752,17 +2752,23 @@ This architecture overview is part of a comprehensive documentation system. Refe
 
 ### Feature Implementation Plans
 
-**USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md** - *Comprehensive analytics tracking plan*
-- **When to use**: Before implementing analytics features, understanding usage metrics
+**USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md** - *Comprehensive analytics tracking plan (GPT-5 Validated)*
+- **When to use**: Before implementing analytics features, understanding usage metrics, validating Phase 5 performance
 - **What it contains**:
-  - 6 analytics features (book popularity, CEFR progression, audio usage, session length, resume behavior, speed/theme)
+  - **11 analytics features** (6 business + 5 performance/quality metrics - GPT-5 validated)
+  - Business: Book popularity, CEFR progression, audio usage, session length, resume behavior, speed/theme
+  - Performance: Load funnel + TTFA, level-switch latency, playback stability, dictionary coverage, AI tutor
   - Implementation following Phase 4 refactor patterns (analytics-service.ts as pure functions)
-  - Business value for each feature (content strategy, TTS ROI validation, investor metrics)
+  - `withCommon()` helper for DRY tracking (GPT-5 recommendation)
+  - Business value for each feature (content strategy, TTS ROI validation, investor metrics, Phase 5 validation)
   - Complete implementation with code examples
-- **Estimated effort**: 1-2 days for all 6 features
+- **Estimated effort**: 2 days for all 11 features (GPT-5 validated)
+- **GPT-5 Status**: ⚠️ APPROVED WITH CHANGES
 - **Critical sections**:
-  - Phase 1: Analytics Service Foundation (analytics-service.ts pattern)
+  - Feature 0: Load Funnel + TTFA (proves Phase 5 15x speed improvement)
+  - Phase 1: Analytics Service Foundation with withCommon() helper
   - Business Context - Why each metric matters for product decisions
+  - GPT-5 Validation Summary - 5 new features added for performance/quality
 
 **AUDIO_REGENERATION_PLAN.md** - *Track audio regeneration with Enhanced Timing v3*
 - **When to use**: Regenerating demo or full book audio, tracking sync quality
@@ -2831,7 +2837,7 @@ This architecture overview is part of a comprehensive documentation system. Refe
 | Generate audio | MASTER_MISTAKES_PREVENTION.md (Enhanced Timing v3) |
 | Fix sync issues | PERFECT_AUDIO_SYNC_SOLUTION.md (Quick troubleshooting) |
 | Understand sync deeply | AUDIO_SYNC_IMPLEMENTATION_GUIDE.md (Technical details) |
-| Implement analytics | USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md (6 features) |
+| Implement analytics | USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md (11 features - GPT-5 validated) |
 | Plan product features | BILLION_DOLLAR_ROADMAP.md (Strategic priorities) |
 | Understand architecture | ARCHITECTURE_OVERVIEW.md (This file) |
 | Navigate codebase | CODEBASE_OVERVIEW.md (File descriptions) |

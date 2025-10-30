@@ -1,60 +1,80 @@
-# Usage Analytics Implementation Plan
+# Usage Analytics Implementation Plan - GPT-5 Validated
 
-> **Purpose**: This document provides a complete strategy for implementing usage analytics to measure how BookBridge is being used. Created to answer critical business questions: Are users using audio? Which books are popular? Do users progress through CEFR levels? What engagement patterns exist?
+> **Purpose**: This document provides a complete strategy for implementing usage analytics to measure how BookBridge is being used. Created to answer critical business questions: Are users using audio? Which books are popular? Do users progress through CEFR levels? What engagement patterns exist? Are performance optimizations working?
 
 ---
 
 ## 📋 Executive Summary
 
 **What This File Is:**
-A step-by-step implementation roadmap for 6 high-impact analytics features that fit seamlessly with BookBridge's existing AudioContext + Service Layer architecture (post-Phase 4 refactor). Each feature is designed as pure functions with minimal state changes, following established patterns.
+A step-by-step implementation roadmap for **11 high-impact analytics features** (6 business metrics + 5 performance/quality metrics) that fit seamlessly with BookBridge's existing AudioContext + Service Layer architecture (post-Phase 4 refactor). Each feature is designed as pure functions with minimal state changes, following established patterns.
+
+**GPT-5 Validation Status:** ⚠️ **APPROVED WITH CHANGES**
+- Original plan (6 features) approved for business/content strategy
+- Added 5 critical performance/quality features recommended by GPT-5
+- Reordered by priority: Performance validation → Business metrics → UX optimization
 
 **When to Use This File:**
 - Before implementing any analytics feature
 - When answering business/product questions about user behavior
 - When preparing investor metrics or growth reports
 - When deciding which books to add more CEFR levels for
+- **When validating Phase 5 performance optimizations** (TTFA, caching, level-switch latency)
 
 **Quick Status Check:**
 - **Current Analytics**: Hero demo only (9 events for voice preference testing)
-- **Target State**: Full-app usage tracking (book popularity, level progression, audio usage, engagement)
+- **Target State**: Full-app usage tracking (performance, business, quality, engagement)
 - **Implementation Status**: Not started (as of October 2025)
-- **Estimated Effort**: 1-2 days for all 6 features
+- **Estimated Effort**: 2 days for all 11 features (GPT-5 validated)
 
 ---
 
-## 🎯 Business Context
+## 🎯 End Result: What We'll Achieve
 
-### Why These Analytics Matter
+### Business Impact
 
-**Current Problem:**
-- We don't know which books users actually read (vs just click)
-- We don't know if users use audio playback or just read silently
-- We don't know if CEFR progression works (do A1 users move to A2?)
-- We don't know engagement patterns (session length, drop-off points)
-- We can't prove value to investors ("users engage for X minutes, progress Y levels in Z weeks")
+**Content Strategy Decisions** ($50K+ saved annually):
+- Know which books to add CEFR levels for (focus on popular titles with high engagement)
+- Identify drop-off chapters to improve content quality
+- Deprioritize low-engagement books (save TTS generation costs)
 
-**Strategic Value:**
+**Technical ROI Validation** ($200-320 TTS investment):
+- Prove audio usage justifies TTS costs (target: 60%+ users play audio)
+- Validate Enhanced Timing v3 investment (perfect sync = longer sessions)
+- **Validate Phase 5 performance wins** (prove 15x speed improvement with data)
 
-1. **Product Decisions** ($50K+ saved on content creation)
-   - Which books to add more CEFR levels for (focus on popular titles)
-   - Which books to deprioritize (low engagement = don't waste TTS costs)
-   - Example: If Pride & Prejudice has 10x more engagement than Sleepy Hollow, prioritize P&P for all 6 levels
+**Investor Metrics** (Fundraising ready):
+- "70% of users resume within 24 hours" = sticky product
+- "Users progress from A1 to B2 in 90 days" = proven learning outcomes
+- "Average session: 15 minutes" = high engagement
+- "Book loads in <500ms, 15x faster than before" = world-class UX
 
-2. **Technical ROI** (Validate $200-320 TTS investment)
-   - If 80% of users never play audio → rethink TTS-first strategy
-   - If audio users have 5x longer sessions → double down on audio quality
-   - Proves Enhanced Timing v3 investment was worth it
+**Quality Assurance** (Prevent churn):
+- Catch playback stalls/errors before users churn
+- Monitor dictionary AI coverage and fallback rates
+- Track offline usage for international expansion
 
-3. **Investor Pitch** (Metrics for fundraising)
-   - "70% of users resume reading within 24 hours" = sticky product
-   - "Users progress from A1 to B2 in 90 days" = proven learning outcomes
-   - "Average session length: 15 minutes" = high engagement
+### Technical Outcomes
 
-4. **Teacher Plans Feature** (Enables Tier 1 Priority from Billion Dollar Roadmap)
-   - Track which levels teachers assign most
-   - Measure completion rates for classroom use
-   - Proves value before building $49/month teacher product
+**11 Analytics Features Implemented:**
+1. ✅ Load funnel + TTFA (proves Phase 5 performance)
+2. ✅ CEFR Level Progression (learning outcomes)
+3. ✅ Audio vs Text Usage (TTS ROI)
+4. ✅ Book Popularity & Drop-off (content strategy)
+5. ✅ Resume Behavior (retention proof)
+6. ✅ Session Length & Engagement (usage depth)
+7. ✅ Dictionary Coverage/Speed (AI quality)
+8. ✅ Playback Stability (catch errors)
+9. ✅ Level-Switch Latency (Phase 5 validation)
+10. ✅ Speed/Theme Preferences (UX defaults)
+11. ✅ AI Tutor Engagement (differentiator proof)
+
+**Architecture Quality:**
+- Pure functions in `analytics-service.ts` (no side effects)
+- Single tracking point (AudioContext lifecycle methods)
+- Feature-flagged (can disable for development)
+- Type-safe (TypeScript enums for all events)
+- Non-blocking (zero performance impact)
 
 ---
 
@@ -112,14 +132,6 @@ const trackDemoEvent = (
     });
   }
 };
-
-// Usage in component
-trackDemoEvent('play_clicked', {
-  voice_id: selectedVoice.id,
-  voice_name: selectedVoice.name,
-  gender: selectedVoice.gender,
-  level: currentLevel
-});
 ```
 
 **Key Principles:**
@@ -130,26 +142,81 @@ trackDemoEvent('play_clicked', {
 
 ---
 
-## 📊 6 Analytics Features (Prioritized)
+## 📊 11 Analytics Features (GPT-5 Prioritized)
 
 ### Overview
 
-| Feature | Business Value | Implementation Effort | ROI |
-|---------|---------------|----------------------|-----|
-| 1. Book Popularity & Drop-off | High (content strategy) | Low (1 line per event) | ⭐⭐⭐⭐⭐ |
-| 2. CEFR Level Progression | High (learning outcomes) | Low (1 line per event) | ⭐⭐⭐⭐⭐ |
-| 3. Audio vs Text Usage | High (TTS ROI validation) | Low (1 line per event) | ⭐⭐⭐⭐⭐ |
-| 4. Session Length & Bundle Completion | Medium (engagement) | Medium (timer logic) | ⭐⭐⭐⭐ |
-| 5. Resume Behavior & Retention | High (retention metrics) | Low (existing resume logic) | ⭐⭐⭐⭐⭐ |
-| 6. Speed & Theme Preferences | Low (UX optimization) | Low (1 line per event) | ⭐⭐⭐ |
+| # | Feature | Business Value | Effort | ROI | Priority |
+|---|---------|---------------|--------|-----|----------|
+| 0 | **Load Funnel + TTFA** | **CRITICAL** (Phase 5 validation) | Medium | ⭐⭐⭐⭐⭐ | **1** |
+| 2 | CEFR Level Progression | High (learning outcomes) | Low | ⭐⭐⭐⭐⭐ | **2** |
+| 3 | Audio vs Text Usage | High (TTS ROI) | Low | ⭐⭐⭐⭐⭐ | **3** |
+| 1 | Book Popularity & Drop-off | High (content strategy) | Low | ⭐⭐⭐⭐⭐ | **4** |
+| 5 | Resume Behavior | High (retention) | Low | ⭐⭐⭐⭐⭐ | **5** |
+| 4 | Session Length & Engagement | Medium (usage depth) | Medium | ⭐⭐⭐⭐ | **6** |
+| 7 | Dictionary Coverage/Speed | High (AI quality) | Medium | ⭐⭐⭐⭐ | **7** |
+| 8 | Playback Stability | **CRITICAL** (churn prevention) | Medium | ⭐⭐⭐⭐⭐ | **8** |
+| 10 | Level-Switch Latency | High (Phase 5 validation) | Low | ⭐⭐⭐⭐ | **9** |
+| 6 | Speed/Theme Preferences | Low (UX defaults) | Low | ⭐⭐⭐ | **10** |
+| 11 | AI Tutor Engagement | Medium (differentiator) | Medium | ⭐⭐⭐ | **11** |
 
-**Recommended Order** (by ROI + ease):
-1. Feature 2 (CEFR Level Progression) - Highest value, easiest to implement
-2. Feature 3 (Audio vs Text Usage) - Validates TTS investment
-3. Feature 1 (Book Popularity) - Content strategy decisions
-4. Feature 5 (Resume Behavior) - Retention proof
-5. Feature 4 (Session Length) - Requires timer logic
-6. Feature 6 (Speed/Theme) - Nice-to-have
+**Implementation Order** (GPT-5 Recommended):
+- **Day 1 AM**: Foundation + Level-switch latency + Audio usage
+- **Day 1 PM**: Load funnel + TTFA + Book popularity
+- **Day 2 AM**: Resume + Playback stalls + CEFR progression
+- **Day 2 PM**: Session/bundles + Speed/Theme + Dictionary + Cache-hit tagging
+
+**Phase 2** (future): AI Tutor + Offline usage (when PWA re-enabled)
+
+---
+
+## 🎯 Business Context
+
+### Why These Analytics Matter
+
+**Current Problem:**
+- We don't know which books users actually read (vs just click)
+- We don't know if users use audio playback or just read silently
+- We don't know if CEFR progression works (do A1 users move to A2?)
+- We don't know engagement patterns (session length, drop-off points)
+- We can't prove value to investors ("users engage for X minutes, progress Y levels in Z weeks")
+- **We can't validate Phase 5 performance wins** (is book loading actually 15x faster?)
+- **We're blind to playback errors** (CDN/device issues causing churn)
+- **We don't know dictionary AI quality** (coverage, fallback rates, cost)
+
+**Strategic Value:**
+
+1. **Product Decisions** ($50K+ saved on content creation)
+   - Which books to add more CEFR levels for (focus on popular titles)
+   - Which books to deprioritize (low engagement = don't waste TTS costs)
+   - Example: If Pride & Prejudice has 10x more engagement than Sleepy Hollow, prioritize P&P for all 6 levels
+
+2. **Technical ROI** (Validate $200-320 TTS investment)
+   - If 80% of users never play audio → rethink TTS-first strategy
+   - If audio users have 5x longer sessions → double down on audio quality
+   - Proves Enhanced Timing v3 investment was worth it
+
+3. **Investor Pitch** (Metrics for fundraising)
+   - "70% of users resume reading within 24 hours" = sticky product
+   - "Users progress from A1 to B2 in 90 days" = proven learning outcomes
+   - "Average session length: 15 minutes" = high engagement
+   - **"Book loads in <500ms, 15x faster"** = world-class UX
+
+4. **Teacher Plans Feature** (Enables Tier 1 Priority from Billion Dollar Roadmap)
+   - Track which levels teachers assign most
+   - Measure completion rates for classroom use
+   - Proves value before building $49/month teacher product
+
+5. **Phase 5 Performance Validation** (GPT-5 Critical Addition)
+   - Prove server-side caching works (cache-hit rates)
+   - Validate availability fast-path (zero-network for single-level books)
+   - Measure time-to-first-audio (TTFA) improvements
+   - Track level-switch latency (should be <100ms with caching)
+
+6. **Quality Assurance** (Prevent churn)
+   - Catch playback stalls before users complain
+   - Monitor dictionary AI fallback rates (cost control)
+   - Track error rates by device/network (international UX)
 
 ---
 
@@ -159,58 +226,147 @@ trackDemoEvent('play_clicked', {
 
 **Goal**: Create reusable analytics service following Phase 4 service layer pattern.
 
-#### Task 1.1: Create Analytics Service (Pure Functions) ✅
+**End Result**: Centralized, type-safe tracking that works across all contexts (Audio, Theme, Dictionary)
 
-**What**: Create `lib/services/analytics-service.ts` as pure tracking functions
+#### Task 1.1: Create Analytics Service (Pure Functions)
 
-**Why**: Centralize all tracking logic, follow service layer pattern from Phase 4
+**What**: Create `lib/services/analytics-service.ts` with pure tracking functions + helper
+
+**Why**: Centralize all tracking logic, follow service layer pattern from Phase 4, DRY common fields
 
 **Files to Create:**
 ```typescript
 // lib/services/analytics-service.ts (NEW)
 export type AnalyticsEvent =
+  // Performance & Load Funnel
+  | 'load_started'
+  | 'load_completed'
+  | 'load_failed'
+  | 'first_audio_ready'
+  // Book & Content
   | 'book_selected'
-  | 'book_load_completed'
   | 'chapter_started'
   | 'chapter_completed'
+  // CEFR & Level
   | 'level_switched'
+  | 'level_switch_started'
+  | 'level_switch_ready'
+  | 'level_switch_aborted'
+  // Audio Playback
   | 'audio_played'
   | 'audio_paused'
   | 'audio_completed'
+  | 'audio_stall'
+  | 'audio_error'
+  | 'audio_retry'
+  // Dictionary
+  | 'dict_lookup_started'
+  | 'dict_success'
+  | 'dict_fallback'
+  | 'dict_error'
+  // Session & Engagement
   | 'bundle_completed'
   | 'session_start'
   | 'session_end'
+  | 'resume_available'
   | 'resume_clicked'
+  // UX Preferences
   | 'speed_changed'
-  | 'theme_changed';
+  | 'theme_changed'
+  // AI Tutor
+  | 'tutor_opened'
+  | 'tutor_message_sent'
+  | 'tutor_stream_completed';
 
 export interface AnalyticsEventData {
-  // Common fields (always included)
-  timestamp: number;
-  session_id: string;
-
-  // Book context (when applicable)
+  // Common fields (always included by withCommon helper)
+  timestamp?: number;
+  session_id?: string;
   book_id?: string;
   book_title?: string;
   level?: CEFRLevel | 'original';
   content_mode?: 'simplified' | 'original';
 
-  // Position context (when applicable)
+  // Performance context
+  request_id?: string;
+  ms_load?: number;
+  ms_first_audio?: number;
+  ms_switch?: number;
+  cache_hit?: boolean;
+  fast_path?: boolean;
+  page_size?: number;
+
+  // Position context
   chapter?: number;
   bundle_index?: number;
   sentence_index?: number;
 
-  // Audio context (when applicable)
+  // Audio context
   is_playing?: boolean;
   playback_speed?: number;
   audio_time?: number;
+  network_type?: string;
+  device?: string;
 
-  // Engagement metrics (when applicable)
+  // Dictionary context
+  word?: string;
+  pos_hint?: string;
+  source?: 'ai' | 'wiktionary' | 'free';
+  examples_count?: number;
+  cached?: boolean;
+
+  // Engagement metrics
   session_duration_seconds?: number;
   bundles_completed?: number;
+  hours_since_last_read?: number;
+  within_24_hours?: boolean;
 
-  // Custom fields (event-specific)
+  // Level switching
+  from_level?: CEFRLevel | 'original';
+  to_level?: CEFRLevel | 'original';
+  from_speed?: number;
+  to_speed?: number;
+  from_theme?: string;
+  to_theme?: string;
+  from_chapter?: number;
+
+  // AI Tutor
+  chars_in?: number;
+  chars_out?: number;
+  ms_stream?: number;
+  turns?: number;
+
+  // Error context
+  error_message?: string;
+  error_code?: string;
+
+  // Custom fields
   [key: string]: any;
+}
+
+/**
+ * Helper to enrich event data with common fields
+ * GPT-5 Recommendation: DRY timestamp/session/book/level context
+ */
+export function withCommon(
+  eventData: AnalyticsEventData,
+  context?: {
+    sessionId?: string;
+    bookId?: string;
+    bookTitle?: string;
+    level?: CEFRLevel | 'original';
+    contentMode?: 'simplified' | 'original';
+  }
+): AnalyticsEventData {
+  return {
+    timestamp: Date.now(),
+    session_id: context?.sessionId || getOrCreateSessionId(),
+    book_id: context?.bookId,
+    book_title: context?.bookTitle,
+    level: context?.level,
+    content_mode: context?.contentMode,
+    ...eventData
+  };
 }
 
 /**
@@ -223,13 +379,13 @@ export interface AnalyticsEventData {
  * - Pure function (no state, no side effects beyond console/gtag)
  * - Non-blocking (never throws, never awaits)
  * - Feature-flagged (NEXT_PUBLIC_ENABLE_ANALYTICS)
+ * - GPT-5 validated pattern
  *
  * @example
- * trackEvent('book_selected', {
+ * trackEvent('book_selected', withCommon({
  *   book_id: 'pride-prejudice',
- *   level: 'A1',
- *   session_id: sessionId
- * });
+ *   level: 'A1'
+ * }, { sessionId }));
  */
 export function trackEvent(
   eventName: AnalyticsEvent,
@@ -241,7 +397,7 @@ export function trackEvent(
 
   if (!ENABLE_ANALYTICS) return;
 
-  // Add timestamp if not provided
+  // Ensure timestamp
   const enrichedData = {
     timestamp: Date.now(),
     ...eventData
@@ -267,7 +423,6 @@ export function getOrCreateSessionId(): string {
   if (typeof window === 'undefined') return 'server-side';
 
   const STORAGE_KEY = 'bookbridge_session_id';
-
   let sessionId = sessionStorage.getItem(STORAGE_KEY);
 
   if (!sessionId) {
@@ -281,9 +436,7 @@ export function getOrCreateSessionId(): string {
 /**
  * Calculate session duration (for session_end event)
  */
-export function calculateSessionDuration(
-  sessionStartTime: number
-): number {
+export function calculateSessionDuration(sessionStartTime: number): number {
   return Math.floor((Date.now() - sessionStartTime) / 1000);
 }
 ```
@@ -294,106 +447,25 @@ export function calculateSessionDuration(
 - ✅ **Type Safety**: TypeScript types for all events and data
 - ✅ **Feature Flagged**: Respects NEXT_PUBLIC_ENABLE_ANALYTICS
 - ✅ **Non-Blocking**: Never throws, never awaits
-
-**Testing:**
-```typescript
-// Manual test in browser console
-import { trackEvent, getOrCreateSessionId } from '@/lib/services/analytics-service';
-
-const sessionId = getOrCreateSessionId();
-trackEvent('book_selected', {
-  book_id: 'test',
-  level: 'A1',
-  session_id: sessionId
-});
-
-// Check console output
-// Check Google Analytics Real-Time events
-```
+- ✅ **DRY**: `withCommon()` helper reduces duplication (GPT-5 recommendation)
 
 ---
 
-### Phase 2: Feature 2 - CEFR Level Progression (15 minutes) ⚡ HIGHEST VALUE
+### Feature 0: Load Funnel + TTFA (30 minutes) ⚡ **CRITICAL - GPT-5 #1 PRIORITY**
 
-**Goal**: Track when users switch CEFR levels to measure learning progression.
+**Goal**: Track load performance to validate Phase 5 optimizations (15x speed improvement)
 
-**Business Value:**
-- Proves users progress from A1 → A2 → B1 (learning outcomes)
-- Shows if users experiment with levels (validates CEFR UX)
-- Investor metric: "Users progress 2 levels in 90 days on average"
-
-#### Task 2.1: Add Level Switch Tracking to AudioContext
-
-**What**: Add `trackEvent('level_switched', ...)` to `AudioContext.switchLevel()` method
-
-**Files to Modify:**
-- `contexts/AudioContext.tsx` (existing file)
-
-**Implementation:**
-```typescript
-// contexts/AudioContext.tsx
-
-import { trackEvent, getOrCreateSessionId } from '@/lib/services/analytics-service';
-
-// Inside AudioContext component
-const sessionIdRef = useRef<string>(getOrCreateSessionId());
-
-// Inside switchLevel method (around line 450)
-const switchLevel = async (newLevel: CEFRLevel) => {
-  const oldLevel = cefrLevel;
-
-  // Track level switch BEFORE state change
-  trackEvent('level_switched', {
-    session_id: sessionIdRef.current,
-    book_id: selectedBook?.id,
-    book_title: selectedBook?.title,
-    from_level: oldLevel,
-    to_level: newLevel,
-    content_mode: contentMode,
-    is_playing: isPlaying
-  });
-
-  // Existing logic continues...
-  setCefrLevel(newLevel);
-  // ... rest of method
-};
-```
-
-**Expected Output (Console):**
-```
-[Analytics] level_switched {
-  session_id: "session_1234567890_abc123",
-  book_id: "pride-prejudice",
-  book_title: "Pride and Prejudice",
-  from_level: "A1",
-  to_level: "A2",
-  content_mode: "simplified",
-  is_playing: false,
-  timestamp: 1698765432100
-}
-```
-
-**Business Questions Answered:**
-- Which levels do users prefer? (A1 most common, or C2?)
-- Do users progress sequentially (A1 → A2 → B1) or jump around?
-- How long before users switch levels? (track timestamp deltas)
-
-**Testing:**
-- Manual: Load book at A1, switch to A2 → check console + Google Analytics
-- Verify: Event fires BEFORE state change (captures correct from_level)
-
----
-
-### Phase 3: Feature 3 - Audio vs Text Usage (15 minutes) ⚡ HIGH VALUE
-
-**Goal**: Track audio playback to validate $200-320 TTS investment.
+**End Result**: Prove book loads in <500ms (vs 4-5 sec before), validate caching works, measure TTFA
 
 **Business Value:**
-- If 80%+ users play audio → TTS investment justified
-- If <20% play audio → rethink TTS-first strategy
-- Identify "audio-first" vs "text-only" user segments
+- **Investor metric**: "Book loads 15x faster than competitors"
+- **Validates Phase 5**: $200K+ time investment in caching/optimization
+- **Identifies regressions**: Catch performance degradation immediately
+- **Funnel analysis**: See where users drop (load → first audio → engagement)
 
-#### Task 3.1: Add Audio Playback Tracking
+#### Task 0.1: Add Load Funnel Tracking to AudioContext
+
+**What**: Track load start/complete/fail events with performance metrics
 
 **Files to Modify:**
 - `contexts/AudioContext.tsx`
@@ -402,114 +474,233 @@ const switchLevel = async (newLevel: CEFRLevel) => {
 ```typescript
 // Inside AudioContext.tsx
 
-// Inside play() method
-const play = async (sentenceIndex?: number) => {
-  trackEvent('audio_played', {
-    session_id: sessionIdRef.current,
-    book_id: selectedBook?.id,
-    book_title: selectedBook?.title,
-    level: cefrLevel,
-    content_mode: contentMode,
-    chapter: currentChapter,
-    bundle_index: currentBundle,
-    sentence_index: sentenceIndex ?? currentSentenceIndex,
-    playback_speed: playbackSpeed
-  });
+import { trackEvent, withCommon, getOrCreateSessionId } from '@/lib/services/analytics-service';
 
-  // Existing logic...
-  setIsPlaying(true);
-  // ... rest of method
+const sessionIdRef = useRef<string>(getOrCreateSessionId());
+const loadStartTimeRef = useRef<number | null>(null);
+
+// Inside loadBookData() method - START
+const loadBookData = async (bookId: string, level: CEFRLevel) => {
+  const requestId = generateRequestId();
+  const startTime = Date.now();
+  loadStartTimeRef.current = startTime;
+
+  trackEvent('load_started', withCommon({
+    request_id: requestId,
+    book_id: bookId,
+    level: level
+  }, { sessionId: sessionIdRef.current }));
+
+  try {
+    // Existing load logic...
+    const bundleData = await loadBookBundles(bookId, level, contentMode, signal);
+
+    // After successful load
+    trackEvent('load_completed', withCommon({
+      request_id: requestId,
+      book_id: bookId,
+      level: level,
+      ms_load: Date.now() - startTime,
+      page_size: bundleData.totalBundles,
+      cache_hit: /* detect from response headers or timing */
+    }, { sessionId: sessionIdRef.current }));
+
+  } catch (error) {
+    trackEvent('load_failed', withCommon({
+      request_id: requestId,
+      book_id: bookId,
+      level: level,
+      ms_load: Date.now() - startTime,
+      error_message: error.message
+    }, { sessionId: sessionIdRef.current }));
+  }
 };
 
-// Inside pause() method
-const pause = () => {
-  trackEvent('audio_paused', {
-    session_id: sessionIdRef.current,
-    book_id: selectedBook?.id,
-    book_title: selectedBook?.title,
-    level: cefrLevel,
-    chapter: currentChapter,
-    audio_time: audioManager?.getCurrentTime() || 0
-  });
+// Inside play() method or audioManager ready callback
+const onFirstAudioReady = () => {
+  if (loadStartTimeRef.current) {
+    trackEvent('first_audio_ready', withCommon({
+      book_id: selectedBook?.id,
+      level: cefrLevel,
+      ms_first_audio: Date.now() - loadStartTimeRef.current
+    }, { sessionId: sessionIdRef.current }));
 
-  // Existing logic...
-  setIsPlaying(false);
-  // ... rest
-};
-
-// Inside audioManager.onAudioEnded callback (around line 820)
-audioManager.onAudioEnded = () => {
-  trackEvent('audio_completed', {
-    session_id: sessionIdRef.current,
-    book_id: selectedBook?.id,
-    level: cefrLevel,
-    chapter: currentChapter,
-    bundle_index: currentBundle
-  });
-
-  // Existing logic...
+    loadStartTimeRef.current = null; // Only track once per load
+  }
 };
 ```
 
 **Business Questions Answered:**
-- What % of users play audio? (audio_played events / book_selected events)
-- How long do users listen? (audio_paused.audio_time)
-- Do users complete audio? (audio_completed events)
-- Which speeds are most popular? (playback_speed distribution)
+- What's average load time? (ms_load mean)
+- What % of loads use cache? (cache_hit true/false distribution)
+- What's TTFA (Time-To-First-Audio)? (ms_first_audio mean)
+- Where do users drop? (load_started vs load_completed vs first_audio_ready funnel)
 
 **Testing:**
-- Manual: Select book, click play → check audio_played event
-- Manual: Pause → check audio_paused event with audio_time
-- Manual: Let audio finish → check audio_completed event
+- Select book → Check load_started, load_completed, first_audio_ready
+- Verify ms_load <500ms on repeat loads (cached)
+- Verify ms_first_audio <1000ms
 
 ---
 
-### Phase 4: Feature 1 - Book Popularity & Drop-off (20 minutes) 📚 CONTENT STRATEGY
+### Feature 2: CEFR Level Progression (15 minutes) ⚡ GPT-5 #2 PRIORITY
 
-**Goal**: Track which books users select and which chapters they read.
+**Goal**: Track when users switch CEFR levels to measure learning progression.
+
+**End Result**: Prove "users progress from A1 to B2 in 90 days" (investor metric)
 
 **Business Value:**
-- Prioritize popular books for more CEFR levels
-- Identify drop-off chapters (content quality issues?)
-- Deprioritize low-engagement books (save TTS costs)
+- Proves users progress from A1 → A2 → B1 (learning outcomes)
+- Shows if users experiment with levels (validates CEFR UX)
+- Investor metric: "Users progress 2 levels in 90 days on average"
+- Teacher Plans validation: Track which levels are assigned most
 
-#### Task 4.1: Add Book Selection Tracking
+#### Task 2.1: Add Level Switch Tracking
 
 **Files to Modify:**
 - `contexts/AudioContext.tsx`
 
 **Implementation:**
 ```typescript
-// Inside selectBook() method (around line 380)
-const selectBook = async (book: FeaturedBook, initialLevel?: CEFRLevel) => {
-  trackEvent('book_selected', {
-    session_id: sessionIdRef.current,
-    book_id: book.id,
-    book_title: book.title,
-    level: initialLevel || cefrLevel,
-    content_mode: contentMode
-  });
+// Inside switchLevel method
+const switchLevel = async (newLevel: CEFRLevel) => {
+  const oldLevel = cefrLevel;
+
+  trackEvent('level_switched', withCommon({
+    from_level: oldLevel,
+    to_level: newLevel,
+    is_playing: isPlaying
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    bookTitle: selectedBook?.title,
+    level: newLevel
+  }));
 
   // Existing logic...
-  setSelectedBook(book);
-  // ... loadBookData() call
-
-  // After successful load (inside loadBookData success)
-  trackEvent('book_load_completed', {
-    session_id: sessionIdRef.current,
-    book_id: book.id,
-    book_title: book.title,
-    level: finalLevel,
-    total_bundles: bundleData.totalBundles,
-    load_duration_ms: Date.now() - startTime
-  });
+  setCefrLevel(newLevel);
 };
 ```
 
-#### Task 4.2: Add Chapter Navigation Tracking
+**Business Questions Answered:**
+- Which levels do users prefer? (to_level distribution)
+- Do users progress sequentially? (from_level → to_level paths)
+- How long before switching? (timestamp deltas)
+
+**Testing:**
+- Load book at A1, switch to A2 → check level_switched event
+- Verify from_level="A1", to_level="A2"
+
+---
+
+### Feature 3: Audio vs Text Usage (15 minutes) ⚡ GPT-5 #3 PRIORITY
+
+**Goal**: Track audio playback to validate $200-320 TTS investment.
+
+**End Result**: Prove "60%+ users play audio" → TTS investment justified
+
+**Business Value:**
+- If 80%+ users play audio → TTS investment justified, double down on audio quality
+- If <20% play audio → rethink TTS-first strategy
+- Identify "audio-first" vs "text-only" user segments
+- Correlate audio usage with session length (does audio increase engagement?)
+
+#### Task 3.1: Add Audio Playback Tracking
 
 **Files to Modify:**
 - `contexts/AudioContext.tsx`
+
+**Implementation:**
+```typescript
+// Inside play() method
+const play = async (sentenceIndex?: number) => {
+  trackEvent('audio_played', withCommon({
+    chapter: currentChapter,
+    bundle_index: currentBundle,
+    sentence_index: sentenceIndex ?? currentSentenceIndex,
+    playback_speed: playbackSpeed
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    bookTitle: selectedBook?.title,
+    level: cefrLevel
+  }));
+
+  // Existing logic...
+};
+
+// Inside pause() method
+const pause = () => {
+  trackEvent('audio_paused', withCommon({
+    chapter: currentChapter,
+    audio_time: audioManager?.getCurrentTime() || 0
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel
+  }));
+
+  // Existing logic...
+};
+
+// Inside audioManager.onAudioEnded callback
+audioManager.onAudioEnded = () => {
+  trackEvent('audio_completed', withCommon({
+    chapter: currentChapter,
+    bundle_index: currentBundle
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel
+  }));
+};
+```
+
+**Business Questions Answered:**
+- What % of users play audio? (audio_played / book_selected)
+- How long do users listen? (audio_paused.audio_time mean)
+- Do users complete audio? (audio_completed / audio_played)
+- Which speeds are popular? (playback_speed distribution)
+
+**Testing:**
+- Select book, click play → check audio_played
+- Pause → check audio_paused with audio_time
+- Let finish → check audio_completed
+
+---
+
+### Feature 1: Book Popularity & Drop-off (20 minutes) 📚 GPT-5 #4 PRIORITY
+
+**Goal**: Track which books users select and which chapters they read.
+
+**End Result**: Know "Pride & Prejudice is 10x more popular than Sleepy Hollow" → prioritize P&P for all levels
+
+**Business Value:**
+- Prioritize popular books for more CEFR levels (save $50K+ on low-engagement books)
+- Identify drop-off chapters (content quality issues?)
+- Deprioritize low-engagement books (save TTS costs)
+- Content strategy: Add more books like top performers
+
+#### Task 1.1: Add Book Selection Tracking
+
+**Files to Modify:**
+- `contexts/AudioContext.tsx`
+
+**Implementation:**
+```typescript
+// Inside selectBook() method
+const selectBook = async (book: FeaturedBook, initialLevel?: CEFRLevel) => {
+  trackEvent('book_selected', withCommon({
+    book_id: book.id,
+    book_title: book.title,
+    level: initialLevel || cefrLevel
+  }, { sessionId: sessionIdRef.current }));
+
+  // Existing logic...
+};
+```
+
+#### Task 1.2: Add Chapter Navigation Tracking
 
 **Implementation:**
 ```typescript
@@ -517,28 +708,29 @@ const selectBook = async (book: FeaturedBook, initialLevel?: CEFRLevel) => {
 const nextChapter = () => {
   const newChapter = currentChapter + 1;
 
-  trackEvent('chapter_started', {
-    session_id: sessionIdRef.current,
-    book_id: selectedBook?.id,
-    book_title: selectedBook?.title,
-    level: cefrLevel,
+  trackEvent('chapter_started', withCommon({
     chapter: newChapter
-  });
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    bookTitle: selectedBook?.title,
+    level: cefrLevel
+  }));
 
   // Existing logic...
-  setCurrentChapter(newChapter);
 };
 
 // Inside jumpToChapter() method
 const jumpToChapter = (chapter: number) => {
-  trackEvent('chapter_started', {
-    session_id: sessionIdRef.current,
-    book_id: selectedBook?.id,
-    book_title: selectedBook?.title,
-    level: cefrLevel,
+  trackEvent('chapter_started', withCommon({
     chapter: chapter,
     from_chapter: currentChapter
-  });
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    bookTitle: selectedBook?.title,
+    level: cefrLevel
+  }));
 
   // Existing logic...
 };
@@ -546,44 +738,27 @@ const jumpToChapter = (chapter: number) => {
 
 **Business Questions Answered:**
 - Which books get clicked most? (book_selected count by book_id)
-- Which books get abandoned at Chapter 1? (book_selected but no chapter_started for Ch 2)
+- Which books get abandoned at Chapter 1? (book_selected but no chapter_started[2])
 - Which chapters have drop-off? (chapter_started[N] >> chapter_started[N+1])
-- How long do books take to load? (load_duration_ms average)
-
-**Example Analysis:**
-```sql
--- Top 5 most popular books
-SELECT book_title, COUNT(*) as selections
-FROM analytics_events
-WHERE event_name = 'book_selected'
-GROUP BY book_title
-ORDER BY selections DESC
-LIMIT 5;
-
--- Drop-off rate by chapter (Pride & Prejudice)
-SELECT chapter, COUNT(*) as starts
-FROM analytics_events
-WHERE event_name = 'chapter_started'
-  AND book_id = 'pride-prejudice'
-GROUP BY chapter
-ORDER BY chapter;
-```
 
 **Testing:**
-- Manual: Select book → check book_selected + book_load_completed
-- Manual: Navigate to Chapter 2 → check chapter_started
-- Manual: Jump to Chapter 5 → check from_chapter in event
+- Select 3 books → check 3 book_selected events
+- Navigate to Chapter 2 → check chapter_started
+- Jump to Chapter 5 → check from_chapter in event
 
 ---
 
-### Phase 5: Feature 5 - Resume Behavior & Retention (15 minutes) 🔁 RETENTION PROOF
+### Feature 5: Resume Behavior & Retention (15 minutes) 🔁 GPT-5 #5 PRIORITY
 
 **Goal**: Track when users resume reading to prove sticky product.
 
+**End Result**: Prove "70% of users resume within 24 hours" (investor pitch)
+
 **Business Value:**
-- Key metric: "70% of users resume within 24 hours"
+- Key investor metric: "70% resume within 24 hours" = sticky product
 - Proves habit formation (users come back)
 - Validates reading position persistence feature
+- Correlate resume rate with long-term retention
 
 #### Task 5.1: Add Resume Tracking
 
@@ -599,61 +774,64 @@ const loadResumeInfo = async (bookId: string) => {
   if (resumeInfo) {
     const hoursSinceLastRead = calculateHoursSinceLastRead(resumeInfo.lastReadAt);
 
-    trackEvent('resume_available', {
-      session_id: sessionIdRef.current,
+    trackEvent('resume_available', withCommon({
       book_id: bookId,
       level: resumeInfo.level,
       chapter: resumeInfo.chapter,
       hours_since_last_read: hoursSinceLastRead,
       within_24_hours: hoursSinceLastRead < 24
-    });
+    }, { sessionId: sessionIdRef.current }));
   }
 
   return resumeInfo;
 };
 
-// Inside Continue Reading modal "Continue" button click
+// Inside Continue Reading modal "Continue" button
 const handleResumeClick = () => {
-  trackEvent('resume_clicked', {
-    session_id: sessionIdRef.current,
-    book_id: selectedBook?.id,
-    book_title: selectedBook?.title,
-    level: cefrLevel,
+  trackEvent('resume_clicked', withCommon({
     chapter: resumeInfo?.chapter,
     bundle_index: resumeInfo?.bundleIndex,
     sentence_index: resumeInfo?.sentenceIndex
-  });
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    bookTitle: selectedBook?.title,
+    level: cefrLevel
+  }));
 
   // Existing resume logic...
 };
 ```
 
 **Business Questions Answered:**
-- What % of users resume? (resume_clicked / book_selected)
+- What % resume? (resume_clicked / book_selected)
 - How quickly do users return? (hours_since_last_read distribution)
-- Do resumed sessions last longer? (compare session_duration for resumed vs new)
+- Do resumed sessions last longer? (compare session_duration)
 
 **Investor Pitch:**
-- "70% of users resume reading within 24 hours (sticky product)"
-- "Average time to return: 8 hours (habit formation)"
+- "70% of users resume within 24 hours"
+- "Average time to return: 8 hours"
 
 **Testing:**
-- Manual: Read book, close tab, return → check resume_available event
-- Manual: Click Continue Reading → check resume_clicked event
-- Verify: hours_since_last_read is accurate
+- Read book, close tab, return after 1 hour
+- Check resume_available event
+- Click Continue Reading → check resume_clicked
 
 ---
 
-### Phase 6: Feature 4 - Session Length & Bundle Completion (30 minutes) ⏱️ ENGAGEMENT
+### Feature 4: Session Length & Bundle Completion (30 minutes) ⏱️ GPT-5 #6 PRIORITY
 
 **Goal**: Measure how long users engage and how much content they consume.
 
+**End Result**: Prove "Average session: 15 minutes" + "Users complete 10 bundles per session"
+
 **Business Value:**
-- Engagement metric: "Average session: 15 minutes"
+- Engagement metric: "Average session: 15 minutes" (investor pitch)
 - Content consumption: "Users complete 10 bundles per session"
 - Identify engaged vs casual users
+- Correlate with learning outcomes
 
-#### Task 6.1: Add Session Start/End Tracking
+#### Task 4.1: Add Session Start/End Tracking
 
 **Files to Modify:**
 - `contexts/AudioContext.tsx`
@@ -662,6 +840,7 @@ const handleResumeClick = () => {
 ```typescript
 // Inside AudioContext component
 const sessionStartTimeRef = useRef<number | null>(null);
+const bundlesCompletedRef = useRef<number>(0);
 
 // On mount (session start)
 useEffect(() => {
@@ -669,6 +848,7 @@ useEffect(() => {
 
   trackEvent('session_start', {
     session_id: sessionIdRef.current,
+    timestamp: Date.now(),
     referrer: document.referrer
   });
 
@@ -677,65 +857,309 @@ useEffect(() => {
     if (sessionStartTimeRef.current) {
       const durationSeconds = calculateSessionDuration(sessionStartTimeRef.current);
 
-      trackEvent('session_end', {
-        session_id: sessionIdRef.current,
+      trackEvent('session_end', withCommon({
         session_duration_seconds: durationSeconds,
-        book_id: selectedBook?.id,
-        level: cefrLevel,
-        chapter: currentChapter,
         bundles_completed: bundlesCompletedRef.current
-      });
+      }, {
+        sessionId: sessionIdRef.current,
+        bookId: selectedBook?.id,
+        level: cefrLevel
+      }));
     }
   };
 }, []);
 ```
 
-#### Task 6.2: Add Bundle Completion Tracking
+#### Task 4.2: Add Bundle Completion Tracking
+
+**Implementation:**
+```typescript
+// Inside bundle transition logic
+const onBundleComplete = (bundleIndex: number) => {
+  bundlesCompletedRef.current += 1;
+
+  trackEvent('bundle_completed', withCommon({
+    bundle_index: bundleIndex,
+    bundles_completed_total: bundlesCompletedRef.current
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel,
+    contentMode
+  }));
+};
+```
+
+**Business Questions Answered:**
+- Average session duration? (session_duration_seconds mean)
+- Content consumption rate? (bundles_completed mean)
+- Correlation with learning? (session length vs level progression)
+
+**Testing:**
+- Open app, wait 5 minutes, close
+- Check session_end with duration ~300s
+- Complete 3 bundles → check 3 bundle_completed events
+
+---
+
+### Feature 7: Dictionary Coverage/Speed (20 minutes) 📖 **GPT-5 NEW - CRITICAL**
+
+**Goal**: Track dictionary AI quality, coverage, fallback rates, and speed
+
+**End Result**: Prove "AI dictionary covers 95% of words" + "Average lookup: <500ms"
+
+**Business Value:**
+- **ESL value proof**: "95% AI coverage, 3% Wiktionary fallback, 2% fail"
+- **Cost control**: Monitor AI API usage vs fallback usage
+- **Quality assurance**: Catch AI degradation (sudden spike in fallbacks)
+- **Speed validation**: Ensure lookups feel instant (<500ms)
+- **Investor metric**: "Dictionary is 10x better than competitors"
+
+#### Task 7.1: Add Dictionary Tracking
+
+**Files to Modify:**
+- `app/api/dictionary/resolve/route.ts` (server-side)
+- Dictionary component (client-side)
+
+**Implementation (API):**
+```typescript
+// Inside /api/dictionary/resolve/route.ts
+
+import { trackEvent } from '@/lib/services/analytics-service';
+
+export async function POST(req: Request) {
+  const { word, posHint } = await req.json();
+  const startTime = Date.now();
+
+  trackEvent('dict_lookup_started', {
+    word,
+    pos_hint: posHint,
+    timestamp: Date.now()
+  });
+
+  try {
+    // Existing AI lookup logic...
+    const result = await AIUniversalLookup(word, posHint);
+
+    trackEvent('dict_success', {
+      word,
+      pos_hint: posHint,
+      ms_total: Date.now() - startTime,
+      source: result.source, // 'ai' | 'wiktionary' | 'free'
+      examples_count: result.examples?.length || 0,
+      cached: result.fromCache || false
+    });
+
+    return Response.json(result);
+
+  } catch (error) {
+    if (error.message.includes('fallback')) {
+      trackEvent('dict_fallback', {
+        word,
+        pos_hint: posHint,
+        ms_total: Date.now() - startTime,
+        source: 'wiktionary',
+        error_message: error.message
+      });
+    } else {
+      trackEvent('dict_error', {
+        word,
+        pos_hint: posHint,
+        ms_total: Date.now() - startTime,
+        error_message: error.message,
+        error_code: error.code
+      });
+    }
+
+    throw error;
+  }
+}
+```
+
+**Business Questions Answered:**
+- What's AI coverage? (dict_success where source='ai' / total lookups)
+- What's fallback rate? (dict_fallback / total lookups)
+- What's average speed? (ms_total mean)
+- Which words fail? (dict_error.word list)
+- What's cache hit rate? (dict_success where cached=true / total)
+
+**Testing:**
+- Look up "happy" → check dict_success with source='ai', ms_total <500ms
+- Look up obscure word → might check dict_fallback or dict_error
+- Repeat lookup → check cached=true
+
+---
+
+### Feature 8: Playback Stability (25 minutes) 🎵 **GPT-5 NEW - CRITICAL**
+
+**Goal**: Track audio stalls, errors, and retries to prevent churn
+
+**End Result**: Catch playback issues before users churn (early warning system)
+
+**Business Value:**
+- **Churn prevention**: "Catch 90% of playback errors before user complaints"
+- **Device/network insights**: Identify problematic devices or networks
+- **CDN monitoring**: Detect CDN issues immediately
+- **International UX**: Track errors by geography (slow networks)
+- **Quality assurance**: Alert if error rate spikes
+
+#### Task 8.1: Add Playback Error Tracking
+
+**Files to Modify:**
+- `lib/audio/BundleAudioManager.ts` or `contexts/AudioContext.tsx`
+
+**Implementation:**
+```typescript
+// Inside BundleAudioManager or AudioContext
+
+// Add audio element event listeners
+const audioElement = audioManager.getAudioElement();
+
+audioElement.addEventListener('stalled', () => {
+  trackEvent('audio_stall', withCommon({
+    chapter: currentChapter,
+    bundle_index: currentBundle,
+    audio_time: audioElement.currentTime,
+    network_type: navigator.connection?.effectiveType || 'unknown',
+    device: navigator.userAgent
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel
+  }));
+});
+
+audioElement.addEventListener('error', (e) => {
+  trackEvent('audio_error', withCommon({
+    chapter: currentChapter,
+    bundle_index: currentBundle,
+    error_message: e.message || 'Unknown audio error',
+    error_code: audioElement.error?.code?.toString() || 'unknown',
+    network_type: navigator.connection?.effectiveType || 'unknown',
+    device: navigator.userAgent
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel
+  }));
+});
+
+// If you implement retry logic
+const retryPlayback = () => {
+  trackEvent('audio_retry', withCommon({
+    chapter: currentChapter,
+    bundle_index: currentBundle
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel
+  }));
+
+  // Existing retry logic...
+};
+```
+
+**Business Questions Answered:**
+- What's error rate? (audio_error / audio_played)
+- What's stall rate? (audio_stall / audio_played)
+- Which devices have issues? (error by device)
+- Which networks are slow? (stall by network_type)
+- Do retries work? (audio_retry → audio_played success rate)
+
+**Testing:**
+- Simulate slow network (Chrome DevTools) → should see audio_stall
+- Simulate CDN failure → should see audio_error
+- Verify device and network_type captured
+
+---
+
+### Feature 10: Level-Switch Latency (15 minutes) ⚡ **GPT-5 NEW - Phase 5 Validation**
+
+**Goal**: Measure level-switch speed to validate Phase 5 caching
+
+**End Result**: Prove "Level switches in <100ms (cached)" vs "2-3 sec (uncached before Phase 5)"
+
+**Business Value:**
+- **Phase 5 validation**: Prove availability fast-path works (zero-network for single-level)
+- **UX metric**: "Level switches feel instant (<100ms)"
+- **Cache validation**: Confirm caching reduces switch time by 20x
+- **Regression detection**: Alert if switch latency spikes
+
+#### Task 10.1: Add Level-Switch Latency Tracking
 
 **Files to Modify:**
 - `contexts/AudioContext.tsx`
 
 **Implementation:**
 ```typescript
-// Track bundles completed in ref
-const bundlesCompletedRef = useRef<number>(0);
+// Inside switchLevel method
+const switchLevel = async (newLevel: CEFRLevel) => {
+  const startTime = Date.now();
 
-// Inside bundle transition logic (when moving to next bundle)
-const onBundleComplete = (bundleIndex: number) => {
-  bundlesCompletedRef.current += 1;
+  trackEvent('level_switch_started', withCommon({
+    from_level: cefrLevel,
+    to_level: newLevel
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id
+  }));
 
-  trackEvent('bundle_completed', {
-    session_id: sessionIdRef.current,
-    book_id: selectedBook?.id,
-    level: cefrLevel,
-    chapter: currentChapter,
-    bundle_index: bundleIndex,
-    bundles_completed_total: bundlesCompletedRef.current
-  });
+  try {
+    // Existing level switch logic...
+    await loadBookData(selectedBook.id, newLevel);
+
+    trackEvent('level_switch_ready', withCommon({
+      from_level: cefrLevel,
+      to_level: newLevel,
+      ms_switch: Date.now() - startTime,
+      cache_hit: /* detect from load metrics */,
+      fast_path: /* true if single-level book, no API call needed */
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      level: newLevel
+    }));
+
+  } catch (error) {
+    trackEvent('level_switch_aborted', withCommon({
+      from_level: cefrLevel,
+      to_level: newLevel,
+      ms_switch: Date.now() - startTime,
+      error_message: error.message
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id
+    }));
+  }
 };
 ```
 
 **Business Questions Answered:**
-- Average session duration? (session_duration_seconds mean)
-- Content consumption rate? (bundles_completed per session)
-- Do longer sessions = more learning? (correlate with level progression)
+- What's average switch time? (ms_switch mean)
+- What % use fast-path? (fast_path=true distribution)
+- What % are cached? (cache_hit=true distribution)
+- How much faster is cached? (ms_switch cached vs uncached)
 
 **Testing:**
-- Manual: Open app, wait 5 minutes, close → check session_end with duration ~300s
-- Manual: Complete 3 bundles → check bundle_completed events
+- Switch from A1 to A2 (first time) → check ms_switch ~2-3 sec
+- Switch from A2 to A1 (cached) → check ms_switch <100ms, cache_hit=true
+- Single-level book → check fast_path=true, ms_switch ~0ms
 
 ---
 
-### Phase 7: Feature 6 - Speed & Theme Preferences (10 minutes) 🎨 UX OPTIMIZATION
+### Feature 6: Speed & Theme Preferences (10 minutes) 🎨 GPT-5 #10 PRIORITY
 
 **Goal**: Track playback speed and theme preferences.
 
-**Business Value:**
-- If 80% use Dark mode → make it default
-- If users speed up audio → optimize for faster playback
-- Validate default settings
+**End Result**: Know "80% use Dark mode" → make it default
 
-#### Task 7.1: Add Speed Change Tracking
+**Business Value:**
+- If 80% use Dark mode → make it default (better first impression)
+- If users speed up audio → optimize for faster playback
+- Validate default settings (1x speed, Light theme)
+- UX personalization insights
+
+#### Task 6.1: Add Speed Change Tracking
 
 **Files to Modify:**
 - `contexts/AudioContext.tsx`
@@ -744,23 +1168,24 @@ const onBundleComplete = (bundleIndex: number) => {
 ```typescript
 // Inside setSpeed() method
 const setSpeed = (speed: number) => {
-  trackEvent('speed_changed', {
-    session_id: sessionIdRef.current,
-    book_id: selectedBook?.id,
-    level: cefrLevel,
+  trackEvent('speed_changed', withCommon({
     from_speed: playbackSpeed,
     to_speed: speed
-  });
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel
+  }));
 
   // Existing logic...
   setPlaybackSpeed(speed);
 };
 ```
 
-#### Task 7.2: Add Theme Change Tracking
+#### Task 6.2: Add Theme Change Tracking
 
 **Files to Modify:**
-- `contexts/ThemeContext.tsx` (existing file)
+- `contexts/ThemeContext.tsx`
 
 **Implementation:**
 ```typescript
@@ -768,14 +1193,14 @@ const setSpeed = (speed: number) => {
 
 import { trackEvent, getOrCreateSessionId } from '@/lib/services/analytics-service';
 
-// Inside setTheme() method
 const setTheme = (newTheme: 'light' | 'dark' | 'sepia') => {
   const sessionId = getOrCreateSessionId();
 
   trackEvent('theme_changed', {
     session_id: sessionId,
     from_theme: theme,
-    to_theme: newTheme
+    to_theme: newTheme,
+    timestamp: Date.now()
   });
 
   // Existing logic...
@@ -784,13 +1209,90 @@ const setTheme = (newTheme: 'light' | 'dark' | 'sepia') => {
 ```
 
 **Business Questions Answered:**
-- Most popular theme? (theme_changed.to_theme distribution)
-- Most popular speed? (speed_changed.to_speed distribution)
-- Should we change defaults? (if 80% use 1.5x, make that default)
+- Most popular theme? (to_theme distribution)
+- Most popular speed? (to_speed distribution)
+- Should we change defaults? (if 80% use 1.5x → make default)
 
 **Testing:**
-- Manual: Change speed from 1x to 1.5x → check speed_changed event
-- Manual: Change theme from Light to Dark → check theme_changed event
+- Change speed 1x → 1.5x → check speed_changed
+- Change theme Light → Dark → check theme_changed
+
+---
+
+### Feature 11: AI Tutor Engagement (25 minutes) 🤖 **GPT-5 NEW - Phase 2**
+
+**Goal**: Track AI tutor usage to prove differentiator value
+
+**End Result**: Prove "40% of users use AI tutor" + "Average 5 messages per session"
+
+**Business Value:**
+- **Differentiator proof**: "AI tutor increases session length by 2x"
+- **Feature validation**: Justify AI tutor development cost
+- **Usage patterns**: Understand how users interact with tutor
+- **Cost monitoring**: Track AI API usage for budgeting
+- **Growth metric**: Tutor users have higher retention
+
+#### Task 11.1: Add AI Tutor Tracking
+
+**Files to Modify:**
+- AI tutor modal component
+- `/app/api/ai/stream/route.ts`
+
+**Implementation (Component):**
+```typescript
+// Inside AI Tutor modal
+
+const handleOpenTutor = () => {
+  trackEvent('tutor_opened', withCommon({
+    chapter: currentChapter
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel
+  }));
+
+  // Existing open logic...
+};
+
+const handleSendMessage = async (message: string) => {
+  trackEvent('tutor_message_sent', withCommon({
+    chars_in: message.length,
+    turns: conversationTurns
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel
+  }));
+
+  // Existing send logic...
+};
+
+// On stream complete
+const onStreamComplete = (response: string, streamTimeMs: number) => {
+  trackEvent('tutor_stream_completed', withCommon({
+    chars_out: response.length,
+    ms_stream: streamTimeMs,
+    turns: conversationTurns
+  }, {
+    sessionId: sessionIdRef.current,
+    bookId: selectedBook?.id,
+    level: cefrLevel
+  }));
+};
+```
+
+**Business Questions Answered:**
+- What % use tutor? (tutor_opened / session_start)
+- How many messages per session? (tutor_message_sent / tutor_opened)
+- Does tutor increase engagement? (session_duration for tutor users vs non-users)
+- What's streaming speed? (ms_stream mean)
+
+**Testing:**
+- Open AI tutor → check tutor_opened
+- Send message → check tutor_message_sent
+- Receive response → check tutor_stream_completed
+
+**Note**: Implement in Phase 2 (not Day 1-2) due to lower priority
 
 ---
 
@@ -798,18 +1300,25 @@ const setTheme = (newTheme: 'light' | 'dark' | 'sepia') => {
 
 ### Technical Quality
 - [ ] All tracking uses `analytics-service.ts` (no duplicate logic)
-- [ ] Feature flag works (NEXT_PUBLIC_ENABLE_ANALYTICS=false disables all tracking)
+- [ ] Feature flag works (NEXT_PUBLIC_ENABLE_ANALYTICS=false disables all)
 - [ ] No console errors from analytics code
 - [ ] Analytics never blocks UI (non-blocking, no awaits)
 - [ ] TypeScript types for all events and data
+- [ ] `withCommon()` helper used consistently (DRY)
+- [ ] Post-guard logs (only emit after requestId check passes)
 
-### Business Value
-- [ ] Can answer: "Which books are most popular?"
-- [ ] Can answer: "Do users play audio or just read?"
-- [ ] Can answer: "Do users progress through CEFR levels?"
-- [ ] Can answer: "What % of users resume reading?"
-- [ ] Can answer: "Average session duration?"
-- [ ] Can answer: "Most popular theme/speed settings?"
+### Business Value (Can Answer These Questions)
+- [ ] "Which books are most popular?" → book_selected count by book_id
+- [ ] "Do users play audio or just read?" → (audio_played / book_selected) %
+- [ ] "Do users progress through CEFR levels?" → level_switched paths
+- [ ] "What % of users resume?" → (resume_clicked / book_selected) %
+- [ ] "Average session duration?" → session_duration_seconds mean
+- [ ] "Most popular theme/speed?" → theme/speed distributions
+- [ ] **"Did Phase 5 improve load time?"** → ms_load before/after (GPT-5)
+- [ ] **"What's TTFA?"** → ms_first_audio mean (GPT-5)
+- [ ] **"What's dictionary AI coverage?"** → (dict_success where source='ai') / total (GPT-5)
+- [ ] **"Are there playback errors?"** → audio_error rate by device/network (GPT-5)
+- [ ] **"Is level-switch fast?"** → ms_switch mean, cache_hit % (GPT-5)
 
 ### User Experience
 - [ ] Zero performance impact (analytics is async, non-blocking)
@@ -843,14 +1352,18 @@ AudioContext (orchestrator + analytics)
   ├─ Lifecycle Events (selectBook, switchLevel, play, pause)
   │   └─ Each event calls: trackEvent() ✨ NEW
   └─ Guards (requestId, AbortController)
+      └─ Post-guard analytics (only log after requestId validated) ✨ GPT-5
   ↓
 Service Layer (pure functions)
   ├─ book-loader.ts
   ├─ availability.ts
   ├─ level-persistence.ts
   ├─ audio-transforms.ts
-  └─ analytics-service.ts ✨ NEW (pure tracking functions)
-      └─ trackEvent(), getOrCreateSessionId(), calculateSessionDuration()
+  └─ analytics-service.ts ✨ NEW
+      ├─ trackEvent() - Pure tracking function
+      ├─ withCommon() - DRY helper (GPT-5 recommendation)
+      ├─ getOrCreateSessionId() - Session management
+      └─ calculateSessionDuration() - Time utilities
 ```
 
 **Key Improvements:**
@@ -859,33 +1372,89 @@ Service Layer (pure functions)
 - ✅ No new state (sessionId in ref, not state)
 - ✅ Feature-flagged (can disable entirely)
 - ✅ Follows hero demo pattern (proven approach)
+- ✅ DRY with `withCommon()` helper (GPT-5 recommendation)
+- ✅ Post-guard logging (prevents stale data, GPT-5 recommendation)
 
 ---
 
-## 📋 Task Breakdown (Ordered by Priority)
+## 📋 Task Breakdown (GPT-5 Prioritized)
 
-### Week 1: Foundation + Highest Value Features (4-5 hours)
+### Day 1 AM: Foundation + Performance (2.5 hours)
 
-**Day 1 Morning (1.5 hours):**
-- [ ] Task 1.1: Create analytics-service.ts (30 min)
-- [ ] Task 2.1: Add level switch tracking (15 min)
-- [ ] Task 3.1: Add audio playback tracking (30 min)
-- [ ] Testing: Verify all events fire correctly (15 min)
+**9:00-9:30** (30 min):
+- [ ] Task 1.1: Create analytics-service.ts with `withCommon()` helper
 
-**Day 1 Afternoon (2 hours):**
-- [ ] Task 4.1: Add book selection tracking (30 min)
-- [ ] Task 4.2: Add chapter navigation tracking (30 min)
-- [ ] Task 5.1: Add resume behavior tracking (30 min)
-- [ ] Testing: End-to-end user journey (30 min)
+**9:30-9:45** (15 min):
+- [ ] Feature 10: Level-switch latency tracking
 
-**Day 2 (Optional - Polish):**
-- [ ] Task 6.1: Add session tracking (30 min)
-- [ ] Task 6.2: Add bundle completion tracking (15 min)
-- [ ] Task 7.1: Add speed tracking (10 min)
-- [ ] Task 7.2: Add theme tracking (10 min)
-- [ ] Documentation: Update ARCHITECTURE_OVERVIEW.md (30 min)
+**9:45-10:00** (15 min):
+- [ ] Feature 3: Audio playback tracking (play/pause/complete)
 
-**Total Estimated Time**: 4-5 hours for all 6 features
+**10:00-10:30** (30 min):
+- [ ] Feature 0: Load funnel + TTFA tracking
+
+**10:30-11:30** (1 hour):
+- [ ] Testing: Verify foundation + performance events work
+
+---
+
+### Day 1 PM: Business Metrics (2.5 hours)
+
+**1:00-1:20** (20 min):
+- [ ] Feature 1: Book popularity & chapter drop-off
+
+**1:20-1:35** (15 min):
+- [ ] Feature 2: CEFR level progression
+
+**1:35-1:50** (15 min):
+- [ ] Feature 5: Resume behavior tracking
+
+**1:50-2:20** (30 min):
+- [ ] Feature 4: Session length & bundle completion
+
+**2:20-3:00** (40 min):
+- [ ] Testing: End-to-end user journey validation
+
+---
+
+### Day 2 AM: Quality Metrics (2.5 hours)
+
+**9:00-9:25** (25 min):
+- [ ] Feature 8: Playback stability (stalls/errors)
+
+**9:25-9:45** (20 min):
+- [ ] Feature 7: Dictionary coverage/speed
+
+**9:45-10:15** (30 min):
+- [ ] Cache-hit tagging (add to load events)
+
+**10:15-11:30** (1 hour 15 min):
+- [ ] Testing: Simulate errors, slow networks, dictionary lookups
+
+---
+
+### Day 2 PM: UX + Documentation (2 hours)
+
+**1:00-1:10** (10 min):
+- [ ] Feature 6: Speed/theme preferences
+
+**1:10-1:40** (30 min):
+- [ ] Update ARCHITECTURE_OVERVIEW.md with analytics section
+
+**1:40-2:30** (50 min):
+- [ ] Production validation: Deploy, check Google Analytics Real-Time
+
+**2:30-3:00** (30 min):
+- [ ] Documentation: Analytics dashboard guide
+
+---
+
+### Phase 2 (Future): AI Tutor + Offline
+
+- [ ] Feature 11: AI Tutor engagement (25 min)
+- [ ] Offline usage/cache hits (when PWA re-enabled)
+
+**Total Estimated Time**: 2 days (9.5 hours) for 11 features
 
 ---
 
@@ -893,37 +1462,59 @@ Service Layer (pure functions)
 
 ### Manual Testing Checklist
 
-**Feature 2 (Level Progression):**
-- [ ] Load Pride & Prejudice at A1
-- [ ] Switch to A2 → Check console for level_switched event
-- [ ] Verify: from_level="A1", to_level="A2"
-- [ ] Check Google Analytics Real-Time → See event appear
+**Foundation:**
+- [ ] Feature flag works (disable NEXT_PUBLIC_ENABLE_ANALYTICS → no events)
+- [ ] `withCommon()` adds timestamp, session_id, book context automatically
+- [ ] Console shows all events during development
+- [ ] Google Analytics receives events in production
+
+**Feature 0 (Load Funnel + TTFA):**
+- [ ] Select book → Check load_started, load_completed
+- [ ] Verify ms_load <500ms on cached loads
+- [ ] Verify first_audio_ready fires when audio ready
+- [ ] Check cache_hit=true on repeat loads
+
+**Feature 2 (CEFR Progression):**
+- [ ] Switch A1 → A2 → Check level_switched with from_level/to_level
+- [ ] Verify timestamp captured for progression analysis
 
 **Feature 3 (Audio Usage):**
-- [ ] Select book
-- [ ] Click play → Check audio_played event
-- [ ] Pause → Check audio_paused event with audio_time
-- [ ] Let audio finish → Check audio_completed event
+- [ ] Play → Check audio_played with playback_speed
+- [ ] Pause → Check audio_paused with audio_time
+- [ ] Complete → Check audio_completed
 
 **Feature 1 (Book Popularity):**
-- [ ] Select 3 different books → Check 3 book_selected events
-- [ ] For one book, navigate to Chapter 2 → Check chapter_started
-- [ ] For one book, abandon at Chapter 1 → Verify no chapter_started for Ch 2
+- [ ] Select 3 books → Check 3 book_selected events
+- [ ] Navigate Chapter 2 → Check chapter_started
+- [ ] Jump to Chapter 5 → Check from_chapter captured
 
 **Feature 5 (Resume):**
-- [ ] Read book, close tab
-- [ ] Return after 1 hour → Check resume_available event
-- [ ] Click Continue Reading → Check resume_clicked event
-- [ ] Verify: hours_since_last_read ~1
+- [ ] Close tab, return after 1 hour → Check resume_available
+- [ ] Click Continue Reading → Check resume_clicked
+- [ ] Verify hours_since_last_read ~1
 
 **Feature 4 (Session Length):**
-- [ ] Open app, read for 5 minutes
-- [ ] Complete 2 bundles → Check 2 bundle_completed events
-- [ ] Close tab → Check session_end with duration ~300s
+- [ ] Open app, wait 5 min, close → Check session_end with duration ~300s
+- [ ] Complete 3 bundles → Check 3 bundle_completed events
+
+**Feature 7 (Dictionary):**
+- [ ] Look up "happy" → Check dict_success with source='ai', ms_total <500ms
+- [ ] Repeat lookup → Check cached=true
+- [ ] Look up obscure word → Check dict_fallback or dict_error
+
+**Feature 8 (Playback Stability):**
+- [ ] Simulate slow network → Check audio_stall fires
+- [ ] Simulate CDN failure → Check audio_error with error_code
+- [ ] Verify device and network_type captured
+
+**Feature 10 (Level-Switch Latency):**
+- [ ] Switch A1 → A2 (first time) → Check ms_switch ~2-3 sec
+- [ ] Switch A2 → A1 (cached) → Check ms_switch <100ms, cache_hit=true
+- [ ] Single-level book → Check fast_path=true
 
 **Feature 6 (Speed/Theme):**
-- [ ] Change speed to 1.5x → Check speed_changed event
-- [ ] Change theme to Dark → Check theme_changed event
+- [ ] Change speed 1x → 1.5x → Check speed_changed
+- [ ] Change theme Light → Dark → Check theme_changed
 
 ### Integration Testing
 
@@ -934,186 +1525,31 @@ export NEXT_PUBLIC_ENABLE_ANALYTICS=true
 # Start dev server
 npm run dev
 
-# Run through user journey:
-# 1. Select book (Pride & Prejudice A1)
-# 2. Play audio
-# 3. Switch to A2
-# 4. Navigate to Chapter 2
-# 5. Pause
-# 6. Close tab and return (resume)
-# 7. Change speed to 1.5x
-# 8. Change theme to Dark
+# Run complete user journey:
+# 1. Select Pride & Prejudice A1 (book_selected, load_started, load_completed, first_audio_ready)
+# 2. Play audio (audio_played)
+# 3. Switch to A2 (level_switch_started, level_switch_ready)
+# 4. Navigate Chapter 2 (chapter_started)
+# 5. Pause (audio_paused)
+# 6. Close tab, return (session_end, session_start, resume_available)
+# 7. Continue reading (resume_clicked)
+# 8. Change speed to 1.5x (speed_changed)
+# 9. Change theme to Dark (theme_changed)
+# 10. Look up word "happy" (dict_lookup_started, dict_success)
+# 11. Complete bundle (bundle_completed)
 
-# Check console for all events
+# Check console for all 20+ events
 # Check Google Analytics Real-Time dashboard
 ```
 
 ### Production Validation
 
 **After Deployment:**
-1. Check Google Analytics Real-Time events (first 24 hours)
-2. Verify event counts match expected usage
-3. Check for any tracking errors in Sentry/logs
+1. Check Google Analytics Real-Time → Events (first 24 hours)
+2. Verify event counts match expected usage patterns
+3. Check for any tracking errors in logs/Sentry
 4. Validate session IDs are unique and persistent
-
----
-
-## 📊 Analytics Dashboard (Future Enhancement)
-
-### Google Analytics Custom Reports
-
-**Report 1: Book Popularity**
-- Dimensions: book_title, level
-- Metrics: book_selected (count), book_load_completed (count)
-- Filters: event_name = "book_selected"
-
-**Report 2: Audio Usage**
-- Dimensions: book_title, level
-- Metrics: audio_played (count), audio_completed (count)
-- Calculated: completion_rate = audio_completed / audio_played
-
-**Report 3: CEFR Progression**
-- Dimensions: from_level, to_level
-- Metrics: level_switched (count)
-- Filters: event_name = "level_switched"
-
-**Report 4: Retention**
-- Dimensions: within_24_hours (true/false)
-- Metrics: resume_clicked (count)
-- Calculated: retention_rate = resume_clicked / book_selected
-
-### Potential Future Integrations
-
-**PostHog** (Open-source analytics):
-- Session replays (see how users navigate)
-- Funnel analysis (book selection → audio play → completion)
-- Retention cohorts (Week 1 vs Week 4 engagement)
-
-**Mixpanel** (Advanced analytics):
-- User profiles (track individual learning progress)
-- A/B testing (test different default speeds)
-- Predictive analytics (which users will churn?)
-
-**Custom Dashboard** (Phase 7 - Future):
-- Real-time usage metrics
-- Teacher dashboard (classroom analytics)
-- Content strategy dashboard (book prioritization)
-
----
-
-## 🔗 Related Documentation
-
-### Read Before Implementation
-
-1. **FEATURED_BOOKS_REFACTOR_PLAN.md** (this file's foundation)
-   - Service layer pattern (Phase 4)
-   - AudioContext architecture (Phase 1)
-   - Pure functions principle
-
-2. **ARCHITECTURE_OVERVIEW.md**
-   - Hero demo analytics pattern (lines 296-357)
-   - AudioContext state machine (lines 390-431)
-   - Service layer overview (lines 1619-1881)
-
-3. **components/hero/InteractiveReadingDemo.tsx**
-   - Existing analytics implementation (lines 52-74)
-   - trackDemoEvent pattern to replicate
-
-### Update After Implementation
-
-**When Phase 1 Complete:**
-- [ ] Add analytics-service to ARCHITECTURE_OVERVIEW.md Service Layer section
-- [ ] Document trackEvent() API
-- [ ] Add code anchors for analytics calls in AudioContext
-
-**When All Features Complete:**
-- [ ] Update ARCHITECTURE_OVERVIEW.md with analytics architecture diagram
-- [ ] Document all 14 tracked events
-- [ ] Create analytics dashboard guide (how to read Google Analytics)
-
----
-
-## 🚀 Quick Start Guide
-
-### For Developers
-
-**To implement analytics:**
-
-1. **Read this document** (you're doing this now ✓)
-2. **Create analytics-service.ts** (Task 1.1 - 30 min)
-3. **Add tracking to AudioContext** (Tasks 2-5 - 2 hours)
-4. **Test manually** (30 min)
-5. **Deploy and validate** (check Google Analytics)
-
-**Commands:**
-```bash
-# Enable analytics in development
-echo "NEXT_PUBLIC_ENABLE_ANALYTICS=true" >> .env.local
-
-# Start dev server
-npm run dev
-
-# Run through test scenarios (see Testing Strategy)
-
-# Push to production
-git add .
-git commit -m "feat(analytics): Add 6 usage analytics features"
-git push origin main
-```
-
-### For Product/Business
-
-**To view analytics:**
-
-1. **Google Analytics Dashboard** → Real-Time → Events
-2. **Filter by**: event_category = "book_reading"
-3. **View metrics**:
-   - book_selected → Most popular books
-   - level_switched → CEFR progression patterns
-   - audio_played → Audio usage %
-   - resume_clicked → Retention rate
-   - session_end → Average session duration
-
-**Example Queries:**
-- "Which books are most popular?" → Sort book_selected by book_title
-- "What % use audio?" → (audio_played / book_selected) × 100
-- "Do users progress levels?" → level_switched where to_level > from_level
-
----
-
-## 💡 Programming Principles Applied
-
-### From Phase 4 Refactor
-
-1. **Services as Pure Functions** ✅
-   - `analytics-service.ts` has no state, just tracking functions
-   - Input: event name + data → Output: console log + gtag call
-   - No React dependencies, can be used anywhere
-
-2. **Context as Orchestrator** ✅
-   - AudioContext calls trackEvent() at lifecycle points
-   - Context owns session_id (in ref, not state)
-   - No analytics logic in components
-
-3. **Single Responsibility** ✅
-   - analytics-service.ts: Only handles event tracking
-   - AudioContext: Only adds trackEvent() calls (one per action)
-   - Components: Zero analytics code (all in context)
-
-4. **Feature Flagged** ✅
-   - NEXT_PUBLIC_ENABLE_ANALYTICS controls all tracking
-   - Can disable entirely for development
-   - No performance impact when disabled
-
-5. **Type Safe** ✅
-   - TypeScript types for all events
-   - AnalyticsEvent enum prevents typos
-   - AnalyticsEventData interface ensures consistency
-
-6. **Non-Blocking** ✅
-   - Never throws errors (wrapped in try/catch if needed)
-   - Never awaits (synchronous logging)
-   - Never blocks UI rendering
+5. **Phase 5 validation**: Confirm ms_load <500ms, cache_hit rates, TTFA <1000ms
 
 ---
 
@@ -1136,6 +1572,7 @@ NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX  # Google Analytics 4 tracking ID
 2. Get tracking ID (format: `G-XXXXXXXXXX`)
 3. Add to `app/layout.tsx` (already done in hero demo)
 4. Verify events appear in Real-Time dashboard
+5. Create custom reports for business questions (see Analytics Dashboard section)
 
 ---
 
@@ -1143,16 +1580,22 @@ NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX  # Google Analytics 4 tracking ID
 
 ### Analytics Implementation Complete When:
 
-- [ ] analytics-service.ts created with all utility functions
-- [ ] All 6 features implemented (14 total events tracked)
+**Technical:**
+- [ ] analytics-service.ts created with all utility functions + `withCommon()` helper
+- [ ] All 11 features implemented (30+ events tracked)
 - [ ] Feature flag works (NEXT_PUBLIC_ENABLE_ANALYTICS)
 - [ ] All events appear in console (development mode)
 - [ ] All events appear in Google Analytics (production mode)
 - [ ] Zero TypeScript errors
 - [ ] Zero console errors from analytics code
+- [ ] Post-guard logging implemented (prevents stale data)
 - [ ] Manual testing completed for all features
+
+**Business:**
+- [ ] Can answer all 11 business questions listed in Success Criteria
+- [ ] **Phase 5 validation complete** (load times, cache hits, TTFA measured)
+- [ ] Google Analytics custom reports created for key metrics
 - [ ] ARCHITECTURE_OVERVIEW.md updated with analytics section
-- [ ] Can answer all 6 business questions listed above
 
 ### Production Validation Complete When:
 
@@ -1161,13 +1604,83 @@ NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX  # Google Analytics 4 tracking ID
 - [ ] Event counts match expected usage patterns
 - [ ] No tracking errors in logs/Sentry
 - [ ] Performance: Zero impact on page load time
+- [ ] **Phase 5 metrics confirmed**: ms_load <500ms, cache_hit >70%, TTFA <1000ms
 
 ---
 
-**Document Version**: 1.0
+## 📚 GPT-5 Validation Summary
+
+**Verdict**: ⚠️ **APPROVED WITH CHANGES**
+
+**What GPT-5 Validated:**
+- ✅ Architecture approach (analytics-service.ts as pure functions)
+- ✅ AudioContext lifecycle hooks (correct placement)
+- ✅ Business metrics (book popularity, CEFR progression, audio usage, resume)
+- ✅ Type safety and feature flagging
+
+**What GPT-5 Added:**
+1. **Feature 0: Load Funnel + TTFA** (CRITICAL for Phase 5 validation)
+2. **Feature 7: Dictionary coverage/speed** (AI quality & cost monitoring)
+3. **Feature 8: Playback stability** (churn prevention)
+4. **Feature 10: Level-switch latency** (Phase 5 fast-path validation)
+5. **Feature 11: AI Tutor engagement** (differentiator proof)
+
+**GPT-5 Implementation Improvements:**
+- `withCommon()` helper to DRY timestamp/session/book/level context
+- Post-guard logs (only emit after requestId check passes)
+- Cache-hit tagging on load events
+- Error tracking for playback, dictionary, load failures
+- Performance metrics (TTFA, latency, cache hits)
+
+**Priority Reordering:**
+- Original: Business → Engagement → UX
+- GPT-5: **Performance → Business → Quality → Engagement → UX**
+- Rationale: Validate Phase 5 wins first, then business metrics, then quality assurance
+
+---
+
+## 🔗 Related Documentation
+
+### Read Before Implementation
+
+1. **FEATURED_BOOKS_REFACTOR_PLAN.md** (Phase 4 patterns)
+   - Service layer pattern (pure functions)
+   - AudioContext architecture (SSoT)
+   - Rules & Guardrails for safe features
+
+2. **ARCHITECTURE_OVERVIEW.md**
+   - Hero demo analytics (lines 296-357)
+   - AudioContext state machine (lines 390-431)
+   - Service layer overview (lines 1619-1881)
+
+3. **components/hero/InteractiveReadingDemo.tsx**
+   - Existing analytics (lines 52-74)
+   - trackDemoEvent pattern to replicate
+
+### Update After Implementation
+
+**When Foundation Complete:**
+- [ ] Add analytics-service to ARCHITECTURE_OVERVIEW.md Service Layer section
+- [ ] Document trackEvent() and withCommon() APIs
+- [ ] Add code anchors for analytics calls in AudioContext
+
+**When All Features Complete:**
+- [ ] Update ARCHITECTURE_OVERVIEW.md with analytics architecture diagram
+- [ ] Document all 30+ tracked events
+- [ ] Create analytics dashboard guide (how to read Google Analytics)
+- [ ] Add Phase 5 performance metrics to validation reports
+
+---
+
+**Document Version**: 2.0 (GPT-5 Validated)
 **Created**: October 2025
+**Last Updated**: October 2025 (GPT-5 validation integrated)
 **Status**: Ready to implement
-**Estimated Effort**: 1-2 days for all 6 features
+**Estimated Effort**: 2 days for 11 features (GPT-5 validated)
 **Prerequisites**: Phase 4 refactor complete (AudioContext + Service Layer)
 
-**Next Action**: Create `lib/services/analytics-service.ts` (Task 1.1)
+**Next Action**: Create `lib/services/analytics-service.ts` (Task 1.1 - 30 min)
+
+**Changelog:**
+- v2.0: Integrated GPT-5 validation, added 5 performance/quality features, reordered by priority
+- v1.0: Initial plan with 6 business/engagement features
