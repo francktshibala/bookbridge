@@ -284,6 +284,12 @@ class DictionaryCache {
   async fetchWithCache(word: string, context?: string): Promise<DictionaryResponse> {
     const startTime = Date.now();
 
+    // Feature 7: Track dictionary lookup started
+    trackEvent('dict_lookup_started', withCommon({
+      word: word,
+      pos_hint: context
+    }));
+
     // Try cache first
     const cached = await this.get(word);
     if (cached) {
@@ -310,6 +316,13 @@ class DictionaryCache {
         wasHedged: false,
         cefrLevel: cached.cefrLevel
       });
+
+      // Feature 7: Track successful lookup (cached)
+      trackEvent('dict_success', withCommon({
+        word: word,
+        cached: true,
+        ms_load: responseTime
+      }));
 
       return response;
     }
@@ -362,10 +375,39 @@ class DictionaryCache {
         dictionaryAnalytics.trackAICost(provider, 0.001); // Estimate $0.001 per lookup
       }
 
+      // Feature 7: Track successful lookup (fresh from API)
+      const sourceType = result.source.includes('AI') ? 'ai' :
+                        result.source.includes('Wiktionary') ? 'wiktionary' : 'free';
+
+      // Track fallback if not using AI
+      if (sourceType !== 'ai') {
+        trackEvent('dict_fallback', withCommon({
+          word: word,
+          source: sourceType,
+          ms_load: responseTime
+        }));
+      }
+
+      trackEvent('dict_success', withCommon({
+        word: word,
+        source: sourceType,
+        cached: false,
+        ms_load: responseTime
+      }));
+
       return dictionaryResponse;
 
     } catch (error) {
       console.error('Dictionary fetch error:', error);
+
+      // Feature 7: Track dictionary error
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      trackEvent('dict_error', withCommon({
+        word: word,
+        error_message: errorMessage,
+        ms_load: Date.now() - startTime
+      }));
+
       throw error;
     }
   }
@@ -390,6 +432,7 @@ class DictionaryCache {
 
 // Analytics integration
 import { dictionaryAnalytics } from './DictionaryAnalytics';
+import { trackEvent, withCommon, getOrCreateSessionId } from '@/lib/services/analytics-service';
 
 // Singleton instance
 const dictionaryCache = new DictionaryCache();
