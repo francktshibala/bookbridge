@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { trackEvent, withCommon } from '@/lib/services/analytics-service';
 
 export type ThemeVariant = 'light' | 'dark' | 'sepia';
 
@@ -61,12 +62,19 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   }, [theme, mounted]);
 
   const setTheme = (newTheme: ThemeVariant) => {
+    const oldTheme = theme;
     try {
       localStorage.setItem('bookbridge-theme', newTheme);
       setThemeState(newTheme);
       // Ensure document class updates immediately even if other providers re-render later
       document.documentElement.classList.remove('theme-light', 'theme-dark', 'theme-sepia');
       document.documentElement.classList.add(`theme-${newTheme}`);
+
+      // Feature 6: Track theme change
+      trackEvent('theme_changed', withCommon({
+        from_theme: oldTheme,
+        to_theme: newTheme
+      }));
     } catch (error) {
       console.warn('Error saving theme to localStorage:', error);
       setThemeState(newTheme);
