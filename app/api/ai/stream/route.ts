@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { aiService } from '@/lib/ai';
+import { aiService, hedgedAIQueryStream } from '@/lib/ai';
 import { createClient } from '@/lib/supabase/server';
 import { UsageTrackingMiddleware } from '@/lib/middleware/usage-tracking';
 
@@ -57,16 +57,20 @@ export async function POST(request: NextRequest) {
           // Send initial message
           controller.enqueue(encoder.encode('data: {"type": "start"}\n\n'));
 
-          // Stream AI response
-          const aiStream = aiService.queryStream(query, {
+          // Stream AI response with hedging
+          const aiStream = hedgedAIQueryStream(query, {
             userId: user.id,
             bookId,
             bookContext,
-            maxTokens: 1500
+            maxTokens: 1500,
+            signal: request.signal, // Pass abort signal for cancellation
+            telemetry: (data) => {
+              console.log('🎯 AI Stream Telemetry:', data);
+            }
           });
 
           let fullContent = '';
-          
+
           for await (const chunk of aiStream) {
             fullContent += chunk;
             

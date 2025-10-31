@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { aiService } from '@/lib/ai';
+import { aiService, hedgedAIQuery } from '@/lib/ai';
 import { multiAgentService, TutoringResponse } from '@/lib/ai/multi-agent-service';
 import { createClient } from '@/lib/supabase/server';
 import { learningProfileService } from '@/lib/learning-profile';
@@ -355,17 +355,32 @@ export async function POST(request: NextRequest) {
       }) as TutoringResponse;
       console.log('Enhanced tutoring response received:', response);
     } else {
-      console.log('Calling standard AI service with intelligent prompt...');
+      console.log('Calling hedged AI query with intelligent prompt...');
       const enhancedQuery = adaptivePrompt ? `${adaptivePrompt}${intelligentPrompt}${dynamicInstructions}` : `${intelligentPrompt}${dynamicInstructions}`;
-      response = await aiService.query(enhancedQuery, {
+
+      // Use hedged query for automatic failover
+      const hedgedResponse = await hedgedAIQuery(enhancedQuery, {
         userId: user.id,
         bookId,
         bookContext: enrichedBookContext + crossBookContext + (conversationContext ? `\n\n${conversationContext}` : ''),
         maxTokens,
         responseMode,
-        temperature: dynamicParams?.temperature
+        temperature: dynamicParams?.temperature,
+        signal: request.signal, // Pass abort signal for cancellation
+        telemetry: (data) => {
+          console.log('🎯 AI Query Telemetry:', data);
+        }
       });
-      console.log('Standard AI response received:', response);
+
+      // Transform to expected response format
+      response = {
+        content: hedgedResponse.text,
+        usage: hedgedResponse.tokens,
+        model: hedgedResponse.model,
+        cost: 0 // Cost calculation handled separately
+      };
+
+      console.log(`Hedged AI response received from ${hedgedResponse.provider} (${hedgedResponse.latency}ms)`);
     }
 
     // Store AI response in conversation
