@@ -15,6 +15,7 @@ import { loadBookBundles } from '@/lib/services/book-loader';
 import { checkLevelAvailability } from '@/lib/services/availability';
 import { saveLevelToStorage } from '@/lib/services/level-persistence';
 import { determineFinalLevel, calculateHoursSinceLastRead } from '@/lib/services/audio-transforms';
+import { trackEvent, withCommon, getOrCreateSessionId } from '@/lib/services/analytics-service';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -226,6 +227,12 @@ export function AudioProvider({ children }: AudioProviderProps) {
   const abortControllerRef = useRef<AbortController | null>(null);
 
   // -------------------------------------------------------------------------
+  // REFS: Analytics Tracking
+  // -------------------------------------------------------------------------
+  const sessionIdRef = useRef<string>(getOrCreateSessionId());
+  const loadStartTimeRef = useRef<number | null>(null);
+
+  // -------------------------------------------------------------------------
   // ACTION: selectBook
   // Single Source of Truth for book selection and initial data load
   // -------------------------------------------------------------------------
@@ -322,6 +329,17 @@ export function AudioProvider({ children }: AudioProviderProps) {
 
     // TODO: Integrate with BundleAudioManager
     // audioManagerRef.current?.play(sentenceIndex ?? currentSentenceIndex);
+
+    // TODO: Analytics - Track first_audio_ready when audio manager is integrated
+    // Track Time-To-First-Audio (TTFA) when first audio buffer is ready
+    // if (loadStartTimeRef.current && /* audio ready condition */) {
+    //   trackEvent('first_audio_ready', withCommon({
+    //     book_id: selectedBook?.id,
+    //     level: cefrLevel,
+    //     ms_first_audio: Date.now() - loadStartTimeRef.current
+    //   }, { sessionId: sessionIdRef.current }));
+    //   loadStartTimeRef.current = null; // Only track once per load
+    // }
   };
 
   // -------------------------------------------------------------------------
@@ -476,6 +494,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
     mode: ContentMode
   ) => {
     const startTime = Date.now();
+    loadStartTimeRef.current = startTime;
 
     // Create new request token and abort controller
     const reqId = crypto.randomUUID();
@@ -488,6 +507,18 @@ export function AudioProvider({ children }: AudioProviderProps) {
       level,
       requestId: reqId
     });
+
+    // Analytics: Track load start
+    trackEvent('load_started', withCommon({
+      request_id: reqId,
+      book_id: bookId,
+      level: level,
+      content_mode: mode
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId,
+      level
+    }));
 
     // Abort previous request if exists
     if (abortControllerRef.current) {
@@ -605,6 +636,20 @@ export function AudioProvider({ children }: AudioProviderProps) {
             elapsed
           });
 
+          // Analytics: Track load completed (post-guard - only after requestId validation)
+          trackEvent('load_completed', withCommon({
+            request_id: reqId,
+            book_id: bookId,
+            level: levelParam,
+            ms_load: elapsed,
+            page_size: data.bundleCount,
+            cache_hit: elapsed < 1000 // Heuristic: <1s suggests cache hit
+          }, {
+            sessionId: sessionIdRef.current,
+            bookId,
+            level: levelParam
+          }));
+
           console.log(`✅ [AudioContext] Loaded ${data.totalSentences} sentences, ${data.bundleCount} bundles (${elapsed}ms)`);
         } else {
           logTelemetry({
@@ -648,6 +693,19 @@ export function AudioProvider({ children }: AudioProviderProps) {
         elapsed,
         reason: errorMessage
       });
+
+      // Analytics: Track load failure
+      trackEvent('load_failed', withCommon({
+        request_id: reqId,
+        book_id: bookId,
+        level: level,
+        ms_load: elapsed,
+        error_message: errorMessage
+      }, {
+        sessionId: sessionIdRef.current,
+        bookId,
+        level
+      }));
 
       console.error(`❌ [AudioContext] Load failed:`, err);
     }
