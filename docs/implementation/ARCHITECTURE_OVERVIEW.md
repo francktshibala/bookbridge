@@ -2154,15 +2154,23 @@ trackEvent('audio_played', withCommon({
 
 ### Google Analytics Setup
 
-**Current State:** Events log to console (development)
+**Status:** ✅ Complete - GA4 integrated and ready for production
 
-**Production Setup Required:**
-1. Create GA4 account at analytics.google.com
-2. Get measurement ID (G-XXXXXXXXXX)
-3. Add gtag script to `app/layout.tsx`:
+**Setup Complete:**
+- GA4 Account: BookBridge
+- Property: BookBridge Production (https://bookbridge.app)
+- Measurement ID: `G-R209NKPNVN`
+- Installed: `app/layout.tsx:74-86` (Next.js Script components)
+
+**How it works:**
+- Development: Events log to console only (NEXT_PUBLIC_ENABLE_ANALYTICS=true)
+- Production: Events send to both console + GA4 dashboard via gtag
+- Data appears in GA4 within 24-48 hours of first deployment
+
+**Implementation:**
 ```typescript
 <Script
-  src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+  src="https://www.googletagmanager.com/gtag/js?id=G-R209NKPNVN"
   strategy="afterInteractive"
 />
 <Script id="google-analytics" strategy="afterInteractive">
@@ -2170,7 +2178,7 @@ trackEvent('audio_played', withCommon({
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '${GA_MEASUREMENT_ID}');
+    gtag('config', 'G-R209NKPNVN');
   `}
 </Script>
 ```
