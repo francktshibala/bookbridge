@@ -125,6 +125,9 @@ Unlike generic AI assistants, BookBridge:
 
 **Implementation Strategy**: Apply visual styling first (Neo-Classic plan), then add functional features (UI/UX plan) using the established theme system.
 
+### **Market & Competitive Analysis**
+- **`docs/BOOKBRIDGE_COMPETITIVE_ADVANTAGE.md`** - **Comprehensive competitive analysis** comparing BookBridge to 8 major competitors (Magibook, Speechify, Beelinguapp, Audible, ReadingIQ, Talkpal AI, CEFR Graded Readers, Knowt AI). Proves BookBridge is the ONLY platform combining CEFR-graded classics + audio-text sync + AI tutor. Use for investor pitches, partnership discussions, and market positioning.
+
 ## 🚀 Getting Started
 1. Browse the catalog of millions of books
 2. Start a conversation about any book you're reading
