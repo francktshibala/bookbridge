@@ -35,13 +35,30 @@ function extractConcepts(query: string, response: string): string[] {
 export async function POST(request: NextRequest) {
   try {
     console.log('AI API called');
-    const { query, bookId, bookContext, conversationId } = await request.json();
+    const body = await request.json();
+
+    // GPT-5 recommendation: Log raw body for diagnostics
+    console.log('AI API body keys:', Object.keys(body));
+    console.log('AI API raw body:', JSON.stringify(body).substring(0, 300));
+
+    // GPT-5 recommendation: Accept aliases (message/prompt/query) for robustness
+    const query = typeof body.query === 'string'
+      ? body.query
+      : typeof body.message === 'string'
+      ? body.message
+      : typeof body.prompt === 'string'
+      ? body.prompt
+      : undefined;
+
+    const { bookId, bookContext, conversationId } = body;
+
     console.log('Query:', query);
     console.log('BookId:', bookId);
     console.log('BookContext:', bookContext);
     console.log('ConversationId:', conversationId);
 
     if (!query || typeof query !== 'string') {
+      console.error('❌ Invalid query received:', { query, bodyKeys: Object.keys(body) });
       return NextResponse.json(
         { error: 'Query is required and must be a string' },
         { status: 400 }

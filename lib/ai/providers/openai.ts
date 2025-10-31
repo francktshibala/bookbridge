@@ -136,8 +136,10 @@ export async function callOpenAI(
       throw new Error(`OpenAI: Timeout after ${latency}ms`);
     }
 
-    // Generic error
-    console.error(`❌ OpenAI: Error (${latency}ms):`, error.message);
+    // Generic error - log full error for debugging
+    console.error(`❌ OpenAI: Error (${latency}ms):`, error);
+    console.error(`❌ OpenAI: Error message:`, error.message);
+    console.error(`❌ OpenAI: Error stack:`, error.stack);
     throw new Error(`OpenAI: ${error.message || 'Unknown error'}`);
   }
 }
