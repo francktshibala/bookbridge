@@ -3,6 +3,9 @@
  * Handles playback of sentence bundles with precise timing control
  */
 
+import { trackEvent, withCommon, getOrCreateSessionId } from '@/lib/services/analytics-service';
+import { type CEFRLevel } from '@/contexts/AudioContext';
+
 interface BundleSentence {
   sentenceId: string;
   sentenceIndex: number;
@@ -55,11 +58,23 @@ export class BundleAudioManager {
   private pausedAtTime: number = 0; // Store exact audio position when paused
   private pausedAtSentence: number = -1; // Store sentence index when paused
 
+  // Analytics tracking context (Feature 8: Playback Stability)
+  private sessionId: string = getOrCreateSessionId();
+  private analyticsContext: { bookId?: string; level?: CEFRLevel | 'original' } = { bookId: undefined, level: undefined }; // Will be set via setAnalyticsContext()
+
   constructor(options: BundleAudioOptions = {}) {
     this.options = options;
     if (typeof options.highlightLeadMs === 'number' && !Number.isNaN(options.highlightLeadMs)) {
       this.highlightLeadSeconds = options.highlightLeadMs / 1000;
     }
+  }
+
+  /**
+   * Set analytics context for tracking (bookId, level)
+   * Call this from AudioContext when book loads
+   */
+  setAnalyticsContext(context: { bookId?: string; level?: CEFRLevel | 'original' }) {
+    this.analyticsContext = context;
   }
 
   /**
@@ -281,6 +296,9 @@ export class BundleAudioManager {
       if (!this.currentAudio) {
         this.currentAudio = new Audio();
         this.currentAudio.crossOrigin = 'anonymous';
+
+        // Feature 8: Playback Stability - Add error tracking listeners
+        this.setupPlaybackStabilityListeners(this.currentAudio);
       }
 
       // Stop current audio and update source
@@ -717,6 +735,83 @@ export class BundleAudioManager {
 
   set onTimeUpdate(callback: ((currentTime: number, totalTime: number) => void) | undefined) {
     this.options.onTimeUpdate = callback;
+  }
+
+  /**
+   * Setup playback stability listeners (Feature 8: Playback Stability)
+   * Tracks audio_stall and audio_error events
+   */
+  private setupPlaybackStabilityListeners(audio: HTMLAudioElement) {
+    // Track audio stalls (buffering issues)
+    const onStalled = () => {
+      const networkInfo = typeof navigator !== 'undefined' && (navigator as any).connection
+        ? (navigator as any).connection.effectiveType
+        : 'unknown';
+
+      trackEvent('audio_stall', withCommon({
+        bundle_index: this.currentBundle?.bundleIndex,
+        audio_time: audio.currentTime,
+        network_info: networkInfo,
+        device_type: /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'mobile' : 'desktop'
+      }, {
+        sessionId: this.sessionId,
+        bookId: this.analyticsContext.bookId,
+        level: this.analyticsContext.level
+      }));
+    };
+
+    const onWaiting = () => {
+      const networkInfo = typeof navigator !== 'undefined' && (navigator as any).connection
+        ? (navigator as any).connection.effectiveType
+        : 'unknown';
+
+      trackEvent('audio_stall', withCommon({
+        bundle_index: this.currentBundle?.bundleIndex,
+        audio_time: audio.currentTime,
+        network_info: networkInfo,
+        device_type: /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'mobile' : 'desktop'
+      }, {
+        sessionId: this.sessionId,
+        bookId: this.analyticsContext.bookId,
+        level: this.analyticsContext.level
+      }));
+    };
+
+    // Track audio errors
+    const onError = () => {
+      const networkInfo = typeof navigator !== 'undefined' && (navigator as any).connection
+        ? (navigator as any).connection.effectiveType
+        : 'unknown';
+
+      const errorCode = audio.error?.code?.toString() || 'unknown';
+      const errorMessages: Record<number, string> = {
+        1: 'MEDIA_ERR_ABORTED',
+        2: 'MEDIA_ERR_NETWORK',
+        3: 'MEDIA_ERR_DECODE',
+        4: 'MEDIA_ERR_SRC_NOT_SUPPORTED'
+      };
+      const errorMessage = audio.error ? errorMessages[audio.error.code] || 'Unknown error' : 'Unknown error';
+
+      trackEvent('audio_error', withCommon({
+        bundle_index: this.currentBundle?.bundleIndex,
+        audio_time: audio.currentTime,
+        error_code: errorCode,
+        error_message: errorMessage,
+        network_info: networkInfo,
+        device_type: /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'mobile' : 'desktop'
+      }, {
+        sessionId: this.sessionId,
+        bookId: this.analyticsContext.bookId,
+        level: this.analyticsContext.level
+      }));
+    };
+
+    // Attach listeners
+    audio.addEventListener('stalled', onStalled);
+    audio.addEventListener('waiting', onWaiting);
+    audio.addEventListener('error', onError);
+
+    console.log('🔔 [Analytics] Playback stability listeners attached');
   }
 
   /**

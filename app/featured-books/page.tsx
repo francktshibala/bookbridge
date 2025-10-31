@@ -894,6 +894,12 @@ export default function FeaturedBooksPage() {
           });
           audioManagerRef.current = audioManager;
 
+          // Set analytics context for playback stability tracking (Feature 8)
+          audioManager.setAnalyticsContext({
+            bookId: currentBookId,
+            level: cefrLevel
+          });
+
           // Create unified player with global sentence map
           playerRef.current = new AudioBookPlayer(bundleData!.bundles, {
             highlightLeadMs: leadMs,
