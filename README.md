@@ -125,6 +125,9 @@ Unlike generic AI assistants, BookBridge:
 
 **Implementation Strategy**: Apply visual styling first (Neo-Classic plan), then add functional features (UI/UX plan) using the established theme system.
 
+### **AI & Backend Implementation**
+- **`docs/ai-hedging-implementation-status.md`** - **AI Chat Hedging Status** (OpenAI + Anthropic dual-provider racing) - Implementation complete with 8/8 tests passing, but 2 issues found: response quality concerns and 1 of 3 pages failing. Located on `feature/ai-chat-hedging` branch. Review before merging to main.
+
 ## 🚀 Getting Started
 1. Browse the catalog of millions of books
 2. Start a conversation about any book you're reading
