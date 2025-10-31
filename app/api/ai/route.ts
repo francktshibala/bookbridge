@@ -252,29 +252,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Determine whether to use enhanced tutoring multi-agent system
-    // Enable for most educational queries to provide better tutoring experience
-    const useMultiAgent = process.env.ENABLE_MULTI_AGENT === 'true' || 
-                          query.toLowerCase().includes('analyze') ||
-                          query.toLowerCase().includes('compare') ||
-                          query.toLowerCase().includes('explain') ||
-                          query.toLowerCase().includes('significance') ||
-                          query.toLowerCase().includes('meaning') ||
-                          query.toLowerCase().includes('mean') ||
-                          query.toLowerCase().includes('interpret') ||
-                          query.toLowerCase().includes('discuss') ||
-                          query.toLowerCase().includes('theme') ||
-                          query.toLowerCase().includes('what does') ||
-                          query.toLowerCase().includes('why does') ||
-                          query.toLowerCase().includes('how does') ||
-                          query.toLowerCase().includes('think') ||
-                          query.toLowerCase().includes('feel') ||
-                          query.toLowerCase().includes('important') ||
-                          query.toLowerCase().includes('character') ||
-                          query.toLowerCase().includes('understand') ||
-                          query.toLowerCase().includes('symbol') ||
-                          query.length > 10; // Most educational questions are longer than 10 characters
+    // TEMPORARILY DISABLED: Multi-agent has Claude model availability issues
+    // Route all traffic through hedgedAIQuery for now (GPT-5 recommendation)
+    // TODO: Fix multi-agent with model resolver + Haiku fallback, then re-enable
+    const useMultiAgent = process.env.ENABLE_MULTI_AGENT === 'true';
 
-    console.log('Using multi-agent system:', useMultiAgent);
+    console.log('Using multi-agent system:', useMultiAgent, '(disabled by default - use hedgedAIQuery)');
     
     // 🧠 DYNAMIC RESPONSE ADAPTATION - Get user's preferred response style
     let dynamicParams;
