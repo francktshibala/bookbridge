@@ -128,6 +128,9 @@ Unlike generic AI assistants, BookBridge:
 ### **AI & Backend Implementation**
 - **`docs/ai-hedging-implementation-status.md`** - **AI Chat Hedging Status** (OpenAI + Anthropic dual-provider racing) - Implementation complete with 8/8 tests passing, but 2 issues found: response quality concerns and 1 of 3 pages failing. Located on `feature/ai-chat-hedging` branch. Review before merging to main.
 
+### **Market & Competitive Analysis**
+- **`docs/BOOKBRIDGE_COMPETITIVE_ADVANTAGE.md`** - **Comprehensive competitive analysis** comparing BookBridge to 8 major competitors (Magibook, Speechify, Beelinguapp, Audible, ReadingIQ, Talkpal AI, CEFR Graded Readers, Knowt AI). Proves BookBridge is the ONLY platform combining CEFR-graded classics + audio-text sync + AI tutor. Use for investor pitches, partnership discussions, and market positioning.
+
 ## 🚀 Getting Started
 1. Browse the catalog of millions of books
 2. Start a conversation about any book you're reading
