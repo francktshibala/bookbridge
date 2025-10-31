@@ -33,8 +33,8 @@ export class ClaudeAIService {
   
   // Cost per 1K tokens (in USD) - Claude pricing
   private readonly costs = {
-    'claude-3-5-haiku-20241022': { input: 0.001, output: 0.005 },
-    'claude-3-5-sonnet-20241022': { input: 0.003, output: 0.015 },
+    'claude-3-haiku-20240307': { input: 0.001, output: 0.005 },
+    'claude-3-5-sonnet-20240620': { input: 0.003, output: 0.015 },
     'claude-3-opus-20240229': { input: 0.015, output: 0.075 }
   };
 
@@ -104,10 +104,10 @@ export class ClaudeAIService {
     // - Detailed mode: Always use Sonnet for rich, elaborate responses
     // - Brief mode: Use Haiku for efficiency, Sonnet only for very complex queries
     if (responseMode === 'detailed') {
-      return 'claude-3-5-sonnet-20241022'; // Always use best model for detailed analysis
+      return 'claude-3-5-sonnet-20240620'; // Always use best model for detailed analysis
     } else {
       // Brief mode: Haiku for simple, Sonnet for complex
-      return isComplex ? 'claude-3-5-sonnet-20241022' : 'claude-3-5-haiku-20241022';
+      return isComplex ? 'claude-3-5-sonnet-20240620' : 'claude-3-haiku-20240307';
     }
   }
 
