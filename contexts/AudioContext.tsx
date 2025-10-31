@@ -546,6 +546,19 @@ export function AudioProvider({ children }: AudioProviderProps) {
   // -------------------------------------------------------------------------
   const clearResumeInfo = () => {
     console.log(`🔄 [AudioContext] Clearing resume info`);
+
+    // TODO: Analytics - Add resume_clicked tracking in UI component when user clicks "Continue Reading"
+    // The UI component should call trackEvent('resume_clicked', ...) BEFORE calling clearResumeInfo()
+    // Example in ResumeModal.tsx:
+    // const handleContinue = () => {
+    //   trackEvent('resume_clicked', withCommon({
+    //     chapter: resumeInfo.chapter,
+    //     sentence_index: resumeInfo.sentenceIndex,
+    //     hours_since_last_read: resumeInfo.hoursSinceLastRead
+    //   }, { sessionId, bookId, level }));
+    //   clearResumeInfo();
+    // };
+
     setResumeInfo(null);
   };
 
@@ -683,6 +696,20 @@ export function AudioProvider({ children }: AudioProviderProps) {
               });
 
               console.log(`✅ [AudioContext] Resume info set: ${hoursSinceLastRead.toFixed(1)}h ago`);
+
+              // Analytics: Track resume availability (proves "70% resume within 24h")
+              trackEvent('resume_available', withCommon({
+                book_id: bookId,
+                level: levelParam,
+                chapter: savedPosition.currentChapter,
+                sentence_index: savedPosition.currentSentenceIndex,
+                hours_since_last_read: hoursSinceLastRead,
+                within_24_hours: hoursSinceLastRead < 24
+              }, {
+                sessionId: sessionIdRef.current,
+                bookId,
+                level: levelParam
+              }));
             }
           } catch (error) {
             console.warn('[AudioContext] Failed to load saved position:', error);
