@@ -348,12 +348,14 @@ export function AudioProvider({ children }: AudioProviderProps) {
       chapter: currentChapter,
       bundle_index: currentBundle ? parseInt(currentBundle) : undefined,
       sentence_index: sentenceIndex ?? currentSentenceIndex,
-      playback_speed: playbackSpeed
+      playback_speed: playbackSpeed,
+      content_mode: contentMode
     }, {
       sessionId: sessionIdRef.current,
       bookId: selectedBook?.id,
       bookTitle: selectedBook?.title,
-      level: cefrLevel
+      level: cefrLevel,
+      contentMode: contentMode
     }));
 
     // TODO: Integrate with BundleAudioManager
@@ -384,12 +386,14 @@ export function AudioProvider({ children }: AudioProviderProps) {
     trackEvent('audio_paused', withCommon({
       chapter: currentChapter,
       sentence_index: currentSentenceIndex,
-      audio_time: playbackTime // Current playback position
+      audio_time: playbackTime, // Current playback position
+      content_mode: contentMode
     }, {
       sessionId: sessionIdRef.current,
       bookId: selectedBook?.id,
       bookTitle: selectedBook?.title,
-      level: cefrLevel
+      level: cefrLevel,
+      contentMode: contentMode
     }));
 
     // TODO: Integrate with BundleAudioManager
@@ -926,9 +930,20 @@ export function AudioProvider({ children }: AudioProviderProps) {
     // Session start
     sessionStartTimeRef.current = Date.now();
 
+    // Gather device/network info
+    const deviceType = typeof window !== 'undefined'
+      ? /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'mobile' : 'desktop'
+      : 'unknown';
+
+    const networkInfo = typeof window !== 'undefined' && (navigator as any).connection
+      ? (navigator as any).connection.effectiveType
+      : undefined;
+
     trackEvent('session_start', withCommon({
       session_id: sessionIdRef.current,
-      referrer: typeof window !== 'undefined' ? document.referrer : undefined
+      referrer: typeof window !== 'undefined' ? document.referrer : undefined,
+      device_type: deviceType,
+      network_info: networkInfo
     }, {
       sessionId: sessionIdRef.current
     }));

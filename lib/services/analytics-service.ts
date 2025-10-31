@@ -118,6 +118,10 @@ export interface AnalyticsEventData {
   error_message?: string;
   error_code?: string;
 
+  // Device/Network context (session_start)
+  device_type?: string;
+  network_info?: string;
+
   // Custom fields
   [key: string]: any;
 }
