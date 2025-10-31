@@ -327,6 +327,19 @@ export function AudioProvider({ children }: AudioProviderProps) {
     setIsPlaying(true);
     isPlayingRef.current = true;
 
+    // Analytics: Track audio playback (validates TTS ROI)
+    trackEvent('audio_played', withCommon({
+      chapter: currentChapter,
+      bundle_index: currentBundle ? parseInt(currentBundle) : undefined,
+      sentence_index: sentenceIndex ?? currentSentenceIndex,
+      playback_speed: playbackSpeed
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: cefrLevel
+    }));
+
     // TODO: Integrate with BundleAudioManager
     // audioManagerRef.current?.play(sentenceIndex ?? currentSentenceIndex);
 
@@ -351,8 +364,21 @@ export function AudioProvider({ children }: AudioProviderProps) {
     setIsPlaying(false);
     isPlayingRef.current = false;
 
+    // Analytics: Track audio pause
+    trackEvent('audio_paused', withCommon({
+      chapter: currentChapter,
+      sentence_index: currentSentenceIndex,
+      audio_time: playbackTime // Current playback position
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: cefrLevel
+    }));
+
     // TODO: Integrate with BundleAudioManager
     // audioManagerRef.current?.pause();
+    // TODO: When integrated, use audioManager.getCurrentTime() instead of playbackTime
   };
 
   // -------------------------------------------------------------------------
@@ -663,6 +689,13 @@ export function AudioProvider({ children }: AudioProviderProps) {
 
         // TODO: Initialize audio manager and player
         // This will be done in a future task once we integrate BundleAudioManager
+        // TODO: Analytics - When audio manager is integrated, add audio_completed tracking:
+        // audioManager.onAudioEnded = () => {
+        //   trackEvent('audio_completed', withCommon({
+        //     chapter: currentChapter,
+        //     bundle_index: currentBundle
+        //   }, { sessionId: sessionIdRef.current, bookId: selectedBook?.id, level: cefrLevel }));
+        // };
       } else {
         throw new Error('Invalid book data received');
       }
