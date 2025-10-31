@@ -231,6 +231,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
   // -------------------------------------------------------------------------
   const sessionIdRef = useRef<string>(getOrCreateSessionId());
   const loadStartTimeRef = useRef<number | null>(null);
+  const levelSwitchStartTimeRef = useRef<number | null>(null); // For level-switch latency tracking
   const sessionStartTimeRef = useRef<number | null>(null);
   const bundlesCompletedRef = useRef<number>(0); // TODO: Increment when bundle completes
 
@@ -280,12 +281,39 @@ export function AudioProvider({ children }: AudioProviderProps) {
   // Single Source of Truth for CEFR level changes (with persistence)
   // -------------------------------------------------------------------------
   const switchLevel = async (newLevel: CEFRLevel) => {
+    // Capture oldLevel IMMEDIATELY before any state changes
+    const oldLevel = cefrLevel;
+    const switchStartTime = Date.now();
+
     if (!selectedBook) {
       console.warn('[AudioContext] No book selected, cannot switch level');
       return;
     }
 
-    console.log(`🔄 [AudioContext] Switching level to: ${newLevel}`);
+    console.log(`🔄 [AudioContext] Switching level: ${oldLevel} → ${newLevel}`);
+
+    // Analytics: Track level progression (Feature 1)
+    trackEvent('level_switched', withCommon({
+      from_level: oldLevel,
+      to_level: newLevel,
+      is_playing: isPlaying
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: newLevel
+    }));
+
+    // Analytics: Track level-switch latency start (Feature 10)
+    trackEvent('level_switch_started', withCommon({
+      from_level: oldLevel,
+      to_level: newLevel
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      level: newLevel
+    }));
+
     setCefrLevel(newLevel);
 
     // Persist level change (GPT-5 improvement #4)
@@ -301,7 +329,9 @@ export function AudioProvider({ children }: AudioProviderProps) {
     setBundleData(null);
     setCurrentSentenceIndex(0);
 
-    // Reload data with new level
+    // Reload data with new level (will emit level_switch_ready on success)
+    // Store start time for latency measurement
+    levelSwitchStartTimeRef.current = switchStartTime;
     await loadBookData(selectedBook.id, newLevel, contentMode);
   };
 
@@ -735,18 +765,36 @@ export function AudioProvider({ children }: AudioProviderProps) {
           });
 
           // Analytics: Track load completed (post-guard - only after requestId validation)
+          const cacheHit = elapsed < 1000; // Heuristic: <1s suggests cache hit
           trackEvent('load_completed', withCommon({
             request_id: reqId,
             book_id: bookId,
             level: levelParam,
             ms_load: elapsed,
             page_size: data.bundleCount,
-            cache_hit: elapsed < 1000 // Heuristic: <1s suggests cache hit
+            cache_hit: cacheHit
           }, {
             sessionId: sessionIdRef.current,
             bookId,
             level: levelParam
           }));
+
+          // Analytics: Track level-switch ready (Feature 10 - Phase 5 validation)
+          if (levelSwitchStartTimeRef.current) {
+            const switchLatency = Date.now() - levelSwitchStartTimeRef.current;
+            trackEvent('level_switch_ready', withCommon({
+              from_level: cefrLevel, // Previous level (now updated)
+              to_level: levelParam,
+              ms_switch: switchLatency,
+              cache_hit: cacheHit,
+              fast_path: false // TODO: Detect single-level books (no API call needed)
+            }, {
+              sessionId: sessionIdRef.current,
+              bookId,
+              level: levelParam
+            }));
+            levelSwitchStartTimeRef.current = null; // Reset after tracking
+          }
 
           console.log(`✅ [AudioContext] Loaded ${data.totalSentences} sentences, ${data.bundleCount} bundles (${elapsed}ms)`);
         } else {
