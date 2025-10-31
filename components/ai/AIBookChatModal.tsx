@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ExternalBook } from '@/types/book-sources';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { trackEvent, withCommon } from '@/lib/services/analytics-service';
 
 // Helper function to format AI responses with better paragraph structure
 const formatAIResponse = (content: string): string => {
@@ -303,6 +304,12 @@ export function AIBookChatModal({
   // Initialize welcome message when book changes
   useEffect(() => {
     if (book && isOpen) {
+      // Feature 11: Track AI tutor opened
+      trackEvent('tutor_opened', withCommon({
+        book_id: book.id,
+        book_title: book.title
+      }));
+
       const welcomeMessage: ChatMessage = {
         role: 'assistant',
         content: `Hello! I'm here to help you explore **${book.title}**. This ${book.subjects?.[0]?.toLowerCase() || 'classic'} work explores themes of ${book.subjects?.slice(0, 2).join(', ').toLowerCase() || 'literature and human nature'}. What would you like to know about this masterpiece?`,
@@ -332,6 +339,14 @@ export function AIBookChatModal({
     const message = inputValue.trim();
     if (!message || isLoading) return;
 
+    // Feature 11: Track message sent
+    const streamStartTime = Date.now();
+    trackEvent('tutor_message_sent', withCommon({
+      chars_in: message.length,
+      book_id: book?.id,
+      book_title: book?.title
+    }));
+
     // Add user message
     const userMessage: ChatMessage = {
       role: 'user',
@@ -345,12 +360,12 @@ export function AIBookChatModal({
 
     try {
       let aiResponse: string;
-      
+
       let aiData: AIResponseData = { content: '' };
-      
+
       if (onSendMessage) {
         aiResponse = await onSendMessage(message);
-        
+
         // Try to parse rich AI data
         try {
           aiData = JSON.parse(aiResponse);
@@ -367,6 +382,16 @@ export function AIBookChatModal({
         aiResponse = `I'm processing your question about "${book?.title}". In a real implementation, this would connect to an AI service to provide detailed analysis and answers about the literary work.`;
         aiData = { content: aiResponse };
       }
+
+      // Feature 11: Track stream completed
+      const streamDuration = Date.now() - streamStartTime;
+      trackEvent('tutor_stream_completed', withCommon({
+        chars_out: aiResponse.length,
+        ms_stream: streamDuration,
+        turns: messages.filter(m => m.role === 'user').length + 1,
+        book_id: book?.id,
+        book_title: book?.title
+      }));
 
       const assistantMessage: ChatMessage = {
         role: 'assistant',
