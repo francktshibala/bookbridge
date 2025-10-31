@@ -233,9 +233,14 @@ async function executeHedgedQuery(
 
     try {
       // Wait for the other promise with a timeout
+      // Determine which promise won and get the other one
+      const winnerIndex = firstResponse._providerKey === 'openai' ?
+        (hasOpenAI && hasAnthropic ? 0 : 0) :
+        (hasOpenAI && hasAnthropic ? 1 : 0);
+      const otherPromise = promises[winnerIndex === 0 ? 1 : 0];
+
       const secondResponse = await Promise.race([
-        // Get the other provider's promise (the one that didn't win the first race)
-        promises.find(p => p !== (promises[0] === firstResponse as any ? promises[0] : promises[1]))!,
+        otherPromise,
         new Promise<never>((_, reject) =>
           setTimeout(() => reject(new Error('Validation window expired')), VALIDATION_WINDOW)
         )
