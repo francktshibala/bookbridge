@@ -48,13 +48,28 @@ export async function hedgedAIQuery(
   const errors: string[] = [];
   let retries = 0;
 
-  // Check available providers
-  const hasOpenAI = !!process.env.OPENAI_API_KEY?.startsWith('sk-');
-  const hasAnthropic = !!process.env.ANTHROPIC_API_KEY?.startsWith('sk-ant-');
+  // Check available providers (with cost guard toggles)
+  const hasOpenAIKey = !!process.env.OPENAI_API_KEY?.startsWith('sk-');
+  const hasAnthropicKey = !!process.env.ANTHROPIC_API_KEY?.startsWith('sk-ant-');
+
+  // Cost guard: Allow disabling specific providers via env vars (GPT-5 recommendation)
+  const isOpenAIDisabled = process.env.DISABLE_OPENAI_HEDGING === 'true';
+  const isAnthropicDisabled = process.env.DISABLE_ANTHROPIC_HEDGING === 'true';
+
+  const hasOpenAI = hasOpenAIKey && !isOpenAIDisabled;
+  const hasAnthropic = hasAnthropicKey && !isAnthropicDisabled;
 
   if (!hasOpenAI && !hasAnthropic) {
-    throw new Error('No AI providers available (missing API keys)');
+    const reasons = [];
+    if (!hasOpenAIKey) reasons.push('OpenAI: missing API key');
+    if (!hasAnthropicKey) reasons.push('Anthropic: missing API key');
+    if (isOpenAIDisabled) reasons.push('OpenAI: disabled via DISABLE_OPENAI_HEDGING');
+    if (isAnthropicDisabled) reasons.push('Anthropic: disabled via DISABLE_ANTHROPIC_HEDGING');
+    throw new Error(`No AI providers available: ${reasons.join(', ')}`);
   }
+
+  if (isOpenAIDisabled) console.log('💰 Cost Guard: OpenAI disabled for hedging');
+  if (isAnthropicDisabled) console.log('💰 Cost Guard: Anthropic disabled for hedging');
 
   console.log('🔀 Hedged AI Query: Starting parallel calls', {
     hasOpenAI,
@@ -400,13 +415,28 @@ export async function* hedgedAIQueryStream(
   const startTime = Date.now();
   const errors: string[] = [];
 
-  // Check available providers
-  const hasOpenAI = !!process.env.OPENAI_API_KEY?.startsWith('sk-');
-  const hasAnthropic = !!process.env.ANTHROPIC_API_KEY?.startsWith('sk-ant-');
+  // Check available providers (with cost guard toggles)
+  const hasOpenAIKey = !!process.env.OPENAI_API_KEY?.startsWith('sk-');
+  const hasAnthropicKey = !!process.env.ANTHROPIC_API_KEY?.startsWith('sk-ant-');
+
+  // Cost guard: Allow disabling specific providers via env vars (GPT-5 recommendation)
+  const isOpenAIDisabled = process.env.DISABLE_OPENAI_HEDGING === 'true';
+  const isAnthropicDisabled = process.env.DISABLE_ANTHROPIC_HEDGING === 'true';
+
+  const hasOpenAI = hasOpenAIKey && !isOpenAIDisabled;
+  const hasAnthropic = hasAnthropicKey && !isAnthropicDisabled;
 
   if (!hasOpenAI && !hasAnthropic) {
-    throw new Error('No AI providers available (missing API keys)');
+    const reasons = [];
+    if (!hasOpenAIKey) reasons.push('OpenAI: missing API key');
+    if (!hasAnthropicKey) reasons.push('Anthropic: missing API key');
+    if (isOpenAIDisabled) reasons.push('OpenAI: disabled via DISABLE_OPENAI_HEDGING');
+    if (isAnthropicDisabled) reasons.push('Anthropic: disabled via DISABLE_ANTHROPIC_HEDGING');
+    throw new Error(`No AI providers available: ${reasons.join(', ')}`);
   }
+
+  if (isOpenAIDisabled) console.log('💰 Cost Guard: OpenAI disabled for hedging (stream)');
+  if (isAnthropicDisabled) console.log('💰 Cost Guard: Anthropic disabled for hedging (stream)');
 
   console.log('🔀 Hedged AI Stream: Starting parallel streams', {
     hasOpenAI,
