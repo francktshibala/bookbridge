@@ -239,14 +239,28 @@ export function AudioProvider({ children }: AudioProviderProps) {
   const selectBook = async (book: FeaturedBook, initialLevel?: CEFRLevel) => {
     console.log(`📚 [AudioContext] Selecting book: ${book.title}`);
 
+    // Set initial level (use provided or book's default)
+    const defaultLevel = initialLevel || getDefaultLevel(book.id);
+
+    // Analytics: Track book selection (book popularity metric)
+    trackEvent('book_selected', withCommon({
+      book_id: book.id,
+      book_title: book.title,
+      level: defaultLevel
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: book.id,
+      bookTitle: book.title,
+      level: defaultLevel
+    }));
+
     // Audio lifecycle cleanup before new book (GPT-5 improvement #3)
     cleanupAudio();
 
     // Update book selection
     setSelectedBook(book);
 
-    // Set initial level (use provided or book's default)
-    const defaultLevel = initialLevel || getDefaultLevel(book.id);
+    // Set level
     setCefrLevel(defaultLevel);
 
     // Clear stale data
@@ -423,6 +437,19 @@ export function AudioProvider({ children }: AudioProviderProps) {
   // -------------------------------------------------------------------------
   const nextChapter = () => {
     console.log(`⏭️ [AudioContext] Next chapter`);
+    const newChapter = currentChapter + 1;
+
+    // Analytics: Track chapter navigation
+    trackEvent('chapter_started', withCommon({
+      chapter: newChapter,
+      from_chapter: currentChapter
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: cefrLevel
+    }));
+
     setCurrentChapter(prev => prev + 1);
     setCurrentSentenceIndex(0);
     pause();
@@ -437,6 +464,18 @@ export function AudioProvider({ children }: AudioProviderProps) {
 
   const jumpToChapter = (chapter: number) => {
     console.log(`📖 [AudioContext] Jumping to chapter: ${chapter}`);
+
+    // Analytics: Track chapter jump
+    trackEvent('chapter_started', withCommon({
+      chapter: chapter,
+      from_chapter: currentChapter
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: cefrLevel
+    }));
+
     setCurrentChapter(chapter);
     setCurrentSentenceIndex(0);
     pause();
