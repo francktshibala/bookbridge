@@ -34,12 +34,15 @@ export async function callOpenAI(
 ): Promise<UnifiedAIResponse> {
   const startTime = Date.now();
 
+  // Use budget-aware timeout if provided, otherwise default to 30s
+  const timeout = options.timeout || PROVIDER_TIMEOUT;
+
   // Create timeout abort controller
   const timeoutController = new AbortController();
   const timeoutId = setTimeout(() => {
-    console.log('⏰ OpenAI: Timeout after 30s');
+    console.log(`⏰ OpenAI: Timeout after ${timeout}ms`);
     timeoutController.abort();
-  }, PROVIDER_TIMEOUT);
+  }, timeout);
 
   // Merge parent signal with timeout signal
   let aborted = false;

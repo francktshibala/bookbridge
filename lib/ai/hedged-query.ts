@@ -13,26 +13,32 @@ import { callOpenAI, callOpenAIStream } from './providers/openai';
 import { callAnthropic, callAnthropicStream } from './providers/anthropic';
 import { UnifiedAIResponse, ProviderOptions, TelemetryData, TelemetryCallback } from './providers/types';
 
+// Timeout configuration (GPT-5 recommendations)
+const GLOBAL_TIMEOUT_CHAT = 25000; // 25s max total for non-streaming chat
+const GLOBAL_TIMEOUT_STREAM_TTFT = 6000; // 6s time-to-first-token for streaming
 const VALIDATION_WINDOW = 150; // ms to wait for second provider if first invalid
 const MICRO_RETRY_DELAY = 250; // ms delay before micro-retry
+const SAFETY_BUFFER = 300; // ms safety margin for budget calculations
+const MIN_PROVIDER_TIMEOUT = 3000; // 3s minimum per provider
+const MIN_RETRY_BUDGET = 5000; // 5s minimum to allow retry (includes validation + delay + attempt)
 
 /**
  * Hedged AI query - fires both providers in parallel, returns first valid response
  *
  * Strategy:
  * 1. Check which providers are available (API keys)
- * 2. Fire both providers in parallel with individual timeouts
- * 3. Promise.race for first response
+ * 2. Fire both providers in parallel with budget-aware timeouts
+ * 3. Promise.race for first response (with global 25s timeout)
  * 4. Validate response (non-empty, has tokens)
  * 5. If first invalid, wait VALIDATION_WINDOW for second provider
- * 6. If both fail, micro-retry once with lower temperature
+ * 6. If both fail AND sufficient budget, micro-retry once with lower temperature
  * 7. Abort losing provider when winner settles
  * 8. Track telemetry (winner, latency, retries)
  *
  * @param prompt - The prompt to send to AI providers
  * @param options - Provider options including telemetry callback
  * @returns Unified AI response from winning provider
- * @throws Error if both providers fail
+ * @throws Error if both providers fail or global timeout exceeded
  */
 export async function hedgedAIQuery(
   prompt: string,
@@ -53,8 +59,87 @@ export async function hedgedAIQuery(
   console.log('🔀 Hedged AI Query: Starting parallel calls', {
     hasOpenAI,
     hasAnthropic,
-    promptLength: prompt.length
+    promptLength: prompt.length,
+    globalBudget: `${GLOBAL_TIMEOUT_CHAT}ms`
   });
+
+  // Global timeout wrapper (GPT-5 recommendation)
+  const globalTimeoutController = new AbortController();
+  const globalTimeoutId = setTimeout(() => {
+    console.warn(`⏰ Hedged AI Query: Global timeout at ${GLOBAL_TIMEOUT_CHAT}ms`);
+    globalTimeoutController.abort();
+  }, GLOBAL_TIMEOUT_CHAT);
+
+  try {
+    // Wrap entire hedge in Promise.race with global timeout
+    const result = await Promise.race([
+      executeHedgedQueryWithRetry(
+        prompt,
+        options,
+        hasOpenAI,
+        hasAnthropic,
+        errors,
+        startTime,
+        globalTimeoutController.signal
+      ),
+      new Promise<never>((_, reject) => {
+        globalTimeoutController.signal.addEventListener('abort', () => {
+          reject(new Error(`Global timeout: No response after ${GLOBAL_TIMEOUT_CHAT}ms`));
+        });
+      })
+    ]);
+
+    clearTimeout(globalTimeoutId);
+
+    // Track success telemetry
+    if (options.telemetry) {
+      options.telemetry({
+        winner: result.provider,
+        latency: Date.now() - startTime,
+        retries: result.retries || 0,
+        errors
+      });
+    }
+
+    console.log(`✅ Hedged AI Query: Success (${Date.now() - startTime}ms, ${result.retries || 0} retries)`);
+    return result;
+
+  } catch (error: any) {
+    clearTimeout(globalTimeoutId);
+
+    // Track failure telemetry
+    if (options.telemetry) {
+      options.telemetry({
+        winner: 'none',
+        latency: Date.now() - startTime,
+        retries,
+        errors: [...errors, error.message]
+      });
+    }
+
+    console.error('❌ Hedged AI Query: Failed', error.message);
+    throw error;
+  }
+}
+
+/**
+ * Execute hedged query with retry logic and budget awareness
+ * Internal helper that handles attempt 1 + optional retry
+ */
+async function executeHedgedQueryWithRetry(
+  prompt: string,
+  options: ProviderOptions,
+  hasOpenAI: boolean,
+  hasAnthropic: boolean,
+  errors: string[],
+  startTime: number,
+  globalSignal: AbortSignal
+): Promise<UnifiedAIResponse & { retries?: number }> {
+  // Calculate remaining budget for first attempt
+  const elapsed = Date.now() - startTime;
+  const remaining = GLOBAL_TIMEOUT_CHAT - elapsed - SAFETY_BUFFER;
+
+  console.log(`🕐 Budget: ${remaining}ms remaining for first attempt`);
 
   // Attempt 1: Parallel calls with race
   try {
@@ -63,29 +148,29 @@ export async function hedgedAIQuery(
       options,
       hasOpenAI,
       hasAnthropic,
-      errors
+      errors,
+      remaining,
+      globalSignal
     );
 
-    // Track success telemetry
-    if (options.telemetry) {
-      options.telemetry({
-        winner: result.provider,
-        latency: Date.now() - startTime,
-        retries: 0,
-        errors
-      });
-    }
-
-    console.log(`✅ Hedged AI Query: Success on first attempt (${Date.now() - startTime}ms)`);
-    return result;
+    return { ...result, retries: 0 };
 
   } catch (firstAttemptError: any) {
     errors.push(`First attempt: ${firstAttemptError.message}`);
-    console.warn('⚠️ Hedged AI Query: First attempt failed, micro-retrying...', errors);
+    console.warn('⚠️ Hedged AI Query: First attempt failed, checking retry budget...', errors);
+
+    // Check if we have enough budget for retry
+    const elapsedAfterFirst = Date.now() - startTime;
+    const remainingAfterFirst = GLOBAL_TIMEOUT_CHAT - elapsedAfterFirst - SAFETY_BUFFER;
+
+    if (remainingAfterFirst < MIN_RETRY_BUDGET) {
+      console.warn(`⏰ Insufficient budget for retry (${remainingAfterFirst}ms < ${MIN_RETRY_BUDGET}ms)`);
+      throw new Error(`All AI providers failed:\n${errors.join('\n')}`);
+    }
 
     // Micro-retry with lower temperature
+    console.log(`🔄 Retrying with ${remainingAfterFirst}ms budget remaining`);
     await new Promise(resolve => setTimeout(resolve, MICRO_RETRY_DELAY));
-    retries = 1;
 
     try {
       const result = await executeHedgedQuery(
@@ -93,36 +178,17 @@ export async function hedgedAIQuery(
         { ...options, temperature: 0.1 }, // Lower temperature for retry
         hasOpenAI,
         hasAnthropic,
-        errors
+        errors,
+        remainingAfterFirst - MICRO_RETRY_DELAY,
+        globalSignal
       );
 
-      // Track retry success telemetry
-      if (options.telemetry) {
-        options.telemetry({
-          winner: result.provider,
-          latency: Date.now() - startTime,
-          retries: 1,
-          errors
-        });
-      }
-
       console.log(`✅ Hedged AI Query: Micro-retry succeeded (${Date.now() - startTime}ms)`);
-      return result;
+      return { ...result, retries: 1 };
 
     } catch (retryError: any) {
       errors.push(`Retry attempt: ${retryError.message}`);
       console.error('❌ Hedged AI Query: All attempts failed', errors);
-
-      // Track failure telemetry
-      if (options.telemetry) {
-        options.telemetry({
-          winner: 'none',
-          latency: Date.now() - startTime,
-          retries: 1,
-          errors
-        });
-      }
-
       throw new Error(`All AI providers failed:\n${errors.join('\n')}`);
     }
   }
@@ -133,7 +199,7 @@ export async function hedgedAIQuery(
  *
  * Internal function that handles the parallel execution logic:
  * - Creates abort controllers for each provider
- * - Fires both providers in parallel
+ * - Fires both providers in parallel with budget-derived timeouts
  * - Races for first valid response
  * - Implements validation window for second chance
  * - Aborts losing provider
@@ -143,6 +209,8 @@ export async function hedgedAIQuery(
  * @param hasOpenAI - Whether OpenAI is available
  * @param hasAnthropic - Whether Anthropic is available
  * @param errors - Array to collect error messages
+ * @param remainingBudget - Remaining time budget in ms
+ * @param globalSignal - Global timeout signal
  * @returns Unified AI response from winner
  * @throws Error if no valid response
  */
@@ -151,8 +219,14 @@ async function executeHedgedQuery(
   options: ProviderOptions,
   hasOpenAI: boolean,
   hasAnthropic: boolean,
-  errors: string[]
+  errors: string[],
+  remainingBudget: number,
+  globalSignal: AbortSignal
 ): Promise<UnifiedAIResponse> {
+
+  // Calculate provider timeout from remaining budget (GPT-5 recommendation)
+  const providerTimeout = Math.max(MIN_PROVIDER_TIMEOUT, remainingBudget);
+  console.log(`⏱️ Provider timeout: ${providerTimeout}ms (from ${remainingBudget}ms budget)`);
 
   // Create abort controllers for each provider
   const controllers = {
@@ -160,17 +234,24 @@ async function executeHedgedQuery(
     anthropic: new AbortController()
   };
 
-  // Merge parent signal with provider signals
+  // Merge parent signal + global signal with provider signals
+  const mergeSignalAbort = () => {
+    console.log('🚫 Hedged Query: Signal aborted, cancelling both providers');
+    controllers.openai.abort();
+    controllers.anthropic.abort();
+  };
+
   if (options.signal) {
     if (options.signal.aborted) {
       throw new Error('Request aborted by parent signal before starting');
     }
-    options.signal.addEventListener('abort', () => {
-      console.log('🚫 Hedged Query: Parent signal aborted, cancelling both providers');
-      controllers.openai.abort();
-      controllers.anthropic.abort();
-    });
+    options.signal.addEventListener('abort', mergeSignalAbort);
   }
+
+  if (globalSignal.aborted) {
+    throw new Error('Request aborted by global timeout before starting');
+  }
+  globalSignal.addEventListener('abort', mergeSignalAbort);
 
   // Build provider promises
   const promises: Array<Promise<UnifiedAIResponse & { _providerKey: 'openai' | 'anthropic' }>> = [];
@@ -179,7 +260,8 @@ async function executeHedgedQuery(
     promises.push(
       callOpenAI(prompt, {
         ...options,
-        signal: controllers.openai.signal
+        signal: controllers.openai.signal,
+        timeout: providerTimeout // Pass budget-derived timeout
       })
         .then(response => ({ ...response, _providerKey: 'openai' as const }))
         .catch(error => {
@@ -194,7 +276,8 @@ async function executeHedgedQuery(
     promises.push(
       callAnthropic(prompt, {
         ...options,
-        signal: controllers.anthropic.signal
+        signal: controllers.anthropic.signal,
+        timeout: providerTimeout // Pass budget-derived timeout
       })
         .then(response => ({ ...response, _providerKey: 'anthropic' as const }))
         .catch(error => {
@@ -298,17 +381,17 @@ function validateResponse(response: UnifiedAIResponse): boolean {
 /**
  * Hedged AI query with streaming - fires both providers, first chunk wins
  *
- * Strategy:
+ * Strategy (GPT-5 TTFT optimization):
  * 1. Start both provider streams in parallel
- * 2. Race for first chunk (whoever yields first wins)
+ * 2. Race for first chunk with 6s TTFT (time-to-first-token) timeout
  * 3. Abort the losing stream immediately
- * 4. Forward remaining chunks from winner
+ * 4. Forward remaining chunks from winner (no timeout once streaming)
  * 5. Handle errors and disconnects
  *
  * @param prompt - The prompt to send to AI providers
  * @param options - Provider options including telemetry callback
  * @yields String chunks from winning provider
- * @throws Error if both streams fail
+ * @throws Error if both streams fail or TTFT timeout exceeded
  */
 export async function* hedgedAIQueryStream(
   prompt: string,
@@ -327,7 +410,8 @@ export async function* hedgedAIQueryStream(
 
   console.log('🔀 Hedged AI Stream: Starting parallel streams', {
     hasOpenAI,
-    hasAnthropic
+    hasAnthropic,
+    ttftBudget: `${GLOBAL_TIMEOUT_STREAM_TTFT}ms`
   });
 
   // Create abort controllers
@@ -374,14 +458,14 @@ export async function* hedgedAIQueryStream(
     });
   }
 
-  // Race for first chunk
+  // Race for first chunk with TTFT timeout (GPT-5 recommendation)
   let winner: 'openai' | 'anthropic' | null = null;
   let winnerGenerator: AsyncGenerator<any> | null = null;
   let firstChunkValue: any = null;
 
   try {
-    const firstChunkResult = await Promise.race(
-      streams.map(async ({ generator, provider }) => {
+    const firstChunkResult = await Promise.race([
+      ...streams.map(async ({ generator, provider }) => {
         try {
           const { value, done } = await generator.next();
           return { chunk: value, provider, generator, done };
@@ -389,8 +473,14 @@ export async function* hedgedAIQueryStream(
           errors.push(`${provider}: ${error.message}`);
           throw error;
         }
+      }),
+      // TTFT timeout (6s)
+      new Promise<never>((_, reject) => {
+        setTimeout(() => {
+          reject(new Error(`TTFT timeout: No first chunk after ${GLOBAL_TIMEOUT_STREAM_TTFT}ms`));
+        }, GLOBAL_TIMEOUT_STREAM_TTFT);
       })
-    );
+    ]);
 
     winner = firstChunkResult.provider;
     winnerGenerator = firstChunkResult.generator;

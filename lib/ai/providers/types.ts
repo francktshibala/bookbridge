@@ -71,6 +71,9 @@ export interface ProviderOptions {
 
   /** Response mode (brief vs detailed) */
   responseMode?: 'brief' | 'detailed';
+
+  /** Provider timeout in ms (overrides default 30s, for budget-aware hedging) */
+  timeout?: number;
 }
 
 /**
