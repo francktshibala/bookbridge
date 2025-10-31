@@ -1976,6 +1976,228 @@ const checkAvailableLevels = async (bookId, signal, reqId) => {
 
 ---
 
+## 📊 Phase 5: Usage Analytics Implementation (Jan 2025)
+
+### Overview: Data-Driven Product Insights
+
+**Goal:** Track user behavior, performance, and engagement across 11 feature categories to validate investor metrics and guide product decisions.
+
+**Timeline:** January 2025 (1 day)
+**Branch:** `analytics-implementation`
+**Commits:** 12 commits (foundation + 11 features)
+**Status:** ✅ Complete - Ready for merge
+
+**Key Achievement:** Implemented **13 analytics events** tracking load performance, CEFR progression, dictionary usage, AI tutor engagement, and user preferences with pure function service pattern.
+
+### Analytics Service Pattern: Pure Functions + Feature Flags
+
+**Architecture Principle:**
+> "Pure functions for all tracking - no state, no side effects beyond console/gtag. Feature-flagged with NEXT_PUBLIC_ENABLE_ANALYTICS."
+
+**Core Service:** `lib/services/analytics-service.ts` (224 lines)
+
+```typescript
+// Pure function tracking with DRY helper
+export function trackEvent(
+  eventName: AnalyticsEvent,
+  eventData: AnalyticsEventData
+): void {
+  if (process.env.NEXT_PUBLIC_ENABLE_ANALYTICS !== 'true') return;
+
+  console.log(`[Analytics] ${eventName}`, enrichedData);
+
+  if (typeof window !== 'undefined' && (window as any).gtag) {
+    (window as any).gtag('event', eventName, {
+      event_category: 'book_reading',
+      ...enrichedData
+    });
+  }
+}
+
+// DRY helper for common fields
+export function withCommon(
+  eventData: AnalyticsEventData,
+  context?: { sessionId?, bookId?, level? }
+): AnalyticsEventData {
+  return {
+    timestamp: Date.now(),
+    session_id: context?.sessionId || getOrCreateSessionId(),
+    book_id: context?.bookId,
+    level: context?.level,
+    ...eventData
+  };
+}
+```
+
+### 11 Feature Categories Tracked
+
+#### Business Metrics (6 Features)
+
+**Feature 0: Load Funnel + TTFA**
+- Events: `load_started`, `load_completed`, `load_failed`, `first_audio_ready`
+- Tracks: request_id, ms_load, cache_hit, page_size
+- Location: `AudioContext.tsx:598-720`
+
+**Feature 1+10: CEFR Level Progression + Switch Latency**
+- Events: `level_switched`, `level_switch_started`, `level_switch_ready`
+- Tracks: from_level, to_level, ms_switch, fast_path
+- Validates: "Users progress A1→B2 in 90 days" investor metric
+- Location: `AudioContext.tsx:283-333`
+
+**Feature 3: Book Popularity**
+- Events: `book_selected`, `chapter_started`
+- Tracks: book_id, book_title, chapter number
+- Location: `AudioContext.tsx:246-477`
+
+**Feature 4: Resume Behavior**
+- Events: `resume_available`
+- Tracks: hours_since_last_read, within_24_hours
+- Validates: "70% resume within 24h" investor metric
+- Location: `AudioContext.tsx:687-699`
+
+**Feature 5: Session Length & Engagement**
+- Events: `session_start`, `session_end`
+- Tracks: session_duration_seconds, bundles_completed
+- Validates: "Average session: 15 minutes" investor metric
+- Location: `AudioContext.tsx:916-942`
+
+**Feature 7: Dictionary Coverage/Speed**
+- Events: `dict_lookup_started`, `dict_success`, `dict_fallback`, `dict_error`
+- Tracks: word, source (ai/wiktionary/free), cached, ms_load
+- Location: `DictionaryCache.ts:284-404`
+
+#### Performance/Quality Metrics (5 Features)
+
+**Feature 2: Audio vs Text Usage**
+- Events: `audio_played`, `audio_paused`
+- Tracks: playback_speed, content_mode, sentence_index
+- Measures: TTS ROI (are users actually using audio?)
+- Location: `AudioContext.tsx:325-432`
+
+**Feature 6: Speed/Theme Preferences**
+- Events: `speed_changed`, `theme_changed`
+- Tracks: from_speed, to_speed, from_theme, to_theme
+- Location: `AudioContext.tsx:463-476`, `ThemeContext.tsx:64-82`
+
+**Feature 8: Playback Stability**
+- Events: `audio_stall`, `audio_error`
+- Tracks: network_info, device_type, error_code
+- Location: `BundleAudioManager.ts:743-814`
+
+**Feature 11: AI Tutor Engagement**
+- Events: `tutor_opened`, `tutor_message_sent`, `tutor_stream_completed`
+- Tracks: chars_in, chars_out, ms_stream, turns
+- Location: `AIBookChatModal.tsx:305-415`
+
+### Event Flow Example
+
+```typescript
+// User selects book (Feature 3)
+trackEvent('book_selected', withCommon({
+  book_id: 'pride-prejudice',
+  book_title: 'Pride and Prejudice',
+  level: 'A1'
+}, { sessionId }));
+
+// Load starts (Feature 0)
+trackEvent('load_started', withCommon({
+  request_id: 'abc-123',
+  book_id: 'pride-prejudice',
+  level: 'A1'
+}));
+
+// Load completes (Feature 0)
+trackEvent('load_completed', withCommon({
+  request_id: 'abc-123',
+  ms_load: 1523,
+  page_size: 45,
+  cache_hit: false
+}));
+
+// User plays audio (Feature 2)
+trackEvent('audio_played', withCommon({
+  chapter: 1,
+  sentence_index: 0,
+  playback_speed: 1.0,
+  content_mode: 'simplified'
+}));
+```
+
+### Investor Metrics Validation
+
+**3 Key Metrics Tracked:**
+
+1. **"70% resume within 24h"**
+   - Event: `resume_available` with `within_24_hours: true/false`
+   - Calculation: `COUNT(within_24_hours=true) / COUNT(resume_available)`
+
+2. **"Users progress A1→B2 in 90 days"**
+   - Events: `level_switched` sequence over time
+   - Calculation: Track progression path per user over 90-day window
+
+3. **"Average session: 15 minutes"**
+   - Event: `session_end` with `session_duration_seconds`
+   - Calculation: `AVG(session_duration_seconds) / 60`
+
+### Integration Points
+
+**Where Events Fire:**
+- `AudioContext.tsx`: 10 events (load, level, book, chapter, audio, resume, session)
+- `DictionaryCache.ts`: 4 events (lookup lifecycle)
+- `ThemeContext.tsx`: 1 event (theme changes)
+- `BundleAudioManager.ts`: 2 events (playback stability)
+- `AIBookChatModal.tsx`: 3 events (tutor engagement)
+
+**Feature Flag:**
+- Environment: `NEXT_PUBLIC_ENABLE_ANALYTICS=true` in `.env.local`
+- Deployment: Set to `true` in production for Google Analytics tracking
+
+### Google Analytics Setup
+
+**Current State:** Events log to console (development)
+
+**Production Setup Required:**
+1. Create GA4 account at analytics.google.com
+2. Get measurement ID (G-XXXXXXXXXX)
+3. Add gtag script to `app/layout.tsx`:
+```typescript
+<Script
+  src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+  strategy="afterInteractive"
+/>
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_MEASUREMENT_ID}');
+  `}
+</Script>
+```
+
+### Key Learnings
+
+1. **Pure Functions Enable Non-Blocking Tracking**
+   - No state → no race conditions
+   - Never throws → won't break UI
+   - Feature-flagged → safe to deploy disabled
+
+2. **DRY Helper Pattern Reduces Boilerplate**
+   - `withCommon()` automatically adds session_id, timestamp, book context
+   - Consistent data structure across all 13 events
+
+3. **Post-Guard Pattern for Accuracy**
+   - Only emit `load_completed` after requestId validation
+   - Prevents stale/duplicate events from race conditions
+
+### References
+
+- **Implementation Plan:** `docs/implementation/USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md` (GPT-5 validated, v2.1)
+- **Implementation:** Branch `analytics-implementation` (12 commits, ready to merge)
+- **Patterns Used:** Pure functions, feature flags, DRY helpers, post-guard pattern
+
+---
+
 ### State Management Overview (DEPRECATED - See Phase 1 Refactor Above)
 
 > **⚠️ DEPRECATED:** This section describes the old page-scoped state management that has been replaced by AudioContext (see Phase 1 Refactor section above). Keeping for historical reference only.
