@@ -462,7 +462,14 @@ export function AudioProvider({ children }: AudioProviderProps) {
   // -------------------------------------------------------------------------
   const setSpeed = (speed: number) => {
     console.log(`🎚️ [AudioContext] Setting playback speed: ${speed}x`);
+    const oldSpeed = playbackSpeed;
     setPlaybackSpeed(speed);
+
+    // Feature 6: Track speed change
+    trackEvent('speed_changed', withCommon({
+      from_speed: oldSpeed,
+      to_speed: speed
+    }, { sessionId: sessionIdRef.current, bookId: selectedBook?.id, level: cefrLevel }));
 
     // TODO: Integrate with BundleAudioManager
     // audioManagerRef.current?.setSpeed(speed);
