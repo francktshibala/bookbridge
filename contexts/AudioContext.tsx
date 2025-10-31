@@ -15,6 +15,7 @@ import { loadBookBundles } from '@/lib/services/book-loader';
 import { checkLevelAvailability } from '@/lib/services/availability';
 import { saveLevelToStorage } from '@/lib/services/level-persistence';
 import { determineFinalLevel, calculateHoursSinceLastRead } from '@/lib/services/audio-transforms';
+import { trackEvent, withCommon, getOrCreateSessionId } from '@/lib/services/analytics-service';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -226,11 +227,35 @@ export function AudioProvider({ children }: AudioProviderProps) {
   const abortControllerRef = useRef<AbortController | null>(null);
 
   // -------------------------------------------------------------------------
+  // REFS: Analytics Tracking
+  // -------------------------------------------------------------------------
+  const sessionIdRef = useRef<string>(getOrCreateSessionId());
+  const loadStartTimeRef = useRef<number | null>(null);
+  const levelSwitchStartTimeRef = useRef<number | null>(null); // For level-switch latency tracking
+  const sessionStartTimeRef = useRef<number | null>(null);
+  const bundlesCompletedRef = useRef<number>(0); // TODO: Increment when bundle completes
+
+  // -------------------------------------------------------------------------
   // ACTION: selectBook
   // Single Source of Truth for book selection and initial data load
   // -------------------------------------------------------------------------
   const selectBook = async (book: FeaturedBook, initialLevel?: CEFRLevel) => {
     console.log(`📚 [AudioContext] Selecting book: ${book.title}`);
+
+    // Set initial level (use provided or book's default)
+    const defaultLevel = initialLevel || getDefaultLevel(book.id);
+
+    // Analytics: Track book selection (book popularity metric)
+    trackEvent('book_selected', withCommon({
+      book_id: book.id,
+      book_title: book.title,
+      level: defaultLevel
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: book.id,
+      bookTitle: book.title,
+      level: defaultLevel
+    }));
 
     // Audio lifecycle cleanup before new book (GPT-5 improvement #3)
     cleanupAudio();
@@ -238,8 +263,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
     // Update book selection
     setSelectedBook(book);
 
-    // Set initial level (use provided or book's default)
-    const defaultLevel = initialLevel || getDefaultLevel(book.id);
+    // Set level
     setCefrLevel(defaultLevel);
 
     // Clear stale data
@@ -257,12 +281,39 @@ export function AudioProvider({ children }: AudioProviderProps) {
   // Single Source of Truth for CEFR level changes (with persistence)
   // -------------------------------------------------------------------------
   const switchLevel = async (newLevel: CEFRLevel) => {
+    // Capture oldLevel IMMEDIATELY before any state changes
+    const oldLevel = cefrLevel;
+    const switchStartTime = Date.now();
+
     if (!selectedBook) {
       console.warn('[AudioContext] No book selected, cannot switch level');
       return;
     }
 
-    console.log(`🔄 [AudioContext] Switching level to: ${newLevel}`);
+    console.log(`🔄 [AudioContext] Switching level: ${oldLevel} → ${newLevel}`);
+
+    // Analytics: Track level progression (Feature 1)
+    trackEvent('level_switched', withCommon({
+      from_level: oldLevel,
+      to_level: newLevel,
+      is_playing: isPlaying
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: newLevel
+    }));
+
+    // Analytics: Track level-switch latency start (Feature 10)
+    trackEvent('level_switch_started', withCommon({
+      from_level: oldLevel,
+      to_level: newLevel
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      level: newLevel
+    }));
+
     setCefrLevel(newLevel);
 
     // Persist level change (GPT-5 improvement #4)
@@ -278,7 +329,9 @@ export function AudioProvider({ children }: AudioProviderProps) {
     setBundleData(null);
     setCurrentSentenceIndex(0);
 
-    // Reload data with new level
+    // Reload data with new level (will emit level_switch_ready on success)
+    // Store start time for latency measurement
+    levelSwitchStartTimeRef.current = switchStartTime;
     await loadBookData(selectedBook.id, newLevel, contentMode);
   };
 
@@ -320,8 +373,34 @@ export function AudioProvider({ children }: AudioProviderProps) {
     setIsPlaying(true);
     isPlayingRef.current = true;
 
+    // Analytics: Track audio playback (validates TTS ROI)
+    trackEvent('audio_played', withCommon({
+      chapter: currentChapter,
+      bundle_index: currentBundle ? parseInt(currentBundle) : undefined,
+      sentence_index: sentenceIndex ?? currentSentenceIndex,
+      playback_speed: playbackSpeed,
+      content_mode: contentMode
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: cefrLevel,
+      contentMode: contentMode
+    }));
+
     // TODO: Integrate with BundleAudioManager
     // audioManagerRef.current?.play(sentenceIndex ?? currentSentenceIndex);
+
+    // TODO: Analytics - Track first_audio_ready when audio manager is integrated
+    // Track Time-To-First-Audio (TTFA) when first audio buffer is ready
+    // if (loadStartTimeRef.current && /* audio ready condition */) {
+    //   trackEvent('first_audio_ready', withCommon({
+    //     book_id: selectedBook?.id,
+    //     level: cefrLevel,
+    //     ms_first_audio: Date.now() - loadStartTimeRef.current
+    //   }, { sessionId: sessionIdRef.current }));
+    //   loadStartTimeRef.current = null; // Only track once per load
+    // }
   };
 
   // -------------------------------------------------------------------------
@@ -333,8 +412,23 @@ export function AudioProvider({ children }: AudioProviderProps) {
     setIsPlaying(false);
     isPlayingRef.current = false;
 
+    // Analytics: Track audio pause
+    trackEvent('audio_paused', withCommon({
+      chapter: currentChapter,
+      sentence_index: currentSentenceIndex,
+      audio_time: playbackTime, // Current playback position
+      content_mode: contentMode
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: cefrLevel,
+      contentMode: contentMode
+    }));
+
     // TODO: Integrate with BundleAudioManager
     // audioManagerRef.current?.pause();
+    // TODO: When integrated, use audioManager.getCurrentTime() instead of playbackTime
   };
 
   // -------------------------------------------------------------------------
@@ -379,6 +473,19 @@ export function AudioProvider({ children }: AudioProviderProps) {
   // -------------------------------------------------------------------------
   const nextChapter = () => {
     console.log(`⏭️ [AudioContext] Next chapter`);
+    const newChapter = currentChapter + 1;
+
+    // Analytics: Track chapter navigation
+    trackEvent('chapter_started', withCommon({
+      chapter: newChapter,
+      from_chapter: currentChapter
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: cefrLevel
+    }));
+
     setCurrentChapter(prev => prev + 1);
     setCurrentSentenceIndex(0);
     pause();
@@ -393,6 +500,18 @@ export function AudioProvider({ children }: AudioProviderProps) {
 
   const jumpToChapter = (chapter: number) => {
     console.log(`📖 [AudioContext] Jumping to chapter: ${chapter}`);
+
+    // Analytics: Track chapter jump
+    trackEvent('chapter_started', withCommon({
+      chapter: chapter,
+      from_chapter: currentChapter
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId: selectedBook?.id,
+      bookTitle: selectedBook?.title,
+      level: cefrLevel
+    }));
+
     setCurrentChapter(chapter);
     setCurrentSentenceIndex(0);
     pause();
@@ -463,6 +582,19 @@ export function AudioProvider({ children }: AudioProviderProps) {
   // -------------------------------------------------------------------------
   const clearResumeInfo = () => {
     console.log(`🔄 [AudioContext] Clearing resume info`);
+
+    // TODO: Analytics - Add resume_clicked tracking in UI component when user clicks "Continue Reading"
+    // The UI component should call trackEvent('resume_clicked', ...) BEFORE calling clearResumeInfo()
+    // Example in ResumeModal.tsx:
+    // const handleContinue = () => {
+    //   trackEvent('resume_clicked', withCommon({
+    //     chapter: resumeInfo.chapter,
+    //     sentence_index: resumeInfo.sentenceIndex,
+    //     hours_since_last_read: resumeInfo.hoursSinceLastRead
+    //   }, { sessionId, bookId, level }));
+    //   clearResumeInfo();
+    // };
+
     setResumeInfo(null);
   };
 
@@ -476,6 +608,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
     mode: ContentMode
   ) => {
     const startTime = Date.now();
+    loadStartTimeRef.current = startTime;
 
     // Create new request token and abort controller
     const reqId = crypto.randomUUID();
@@ -488,6 +621,18 @@ export function AudioProvider({ children }: AudioProviderProps) {
       level,
       requestId: reqId
     });
+
+    // Analytics: Track load start
+    trackEvent('load_started', withCommon({
+      request_id: reqId,
+      book_id: bookId,
+      level: level,
+      content_mode: mode
+    }, {
+      sessionId: sessionIdRef.current,
+      bookId,
+      level
+    }));
 
     // Abort previous request if exists
     if (abortControllerRef.current) {
@@ -587,6 +732,20 @@ export function AudioProvider({ children }: AudioProviderProps) {
               });
 
               console.log(`✅ [AudioContext] Resume info set: ${hoursSinceLastRead.toFixed(1)}h ago`);
+
+              // Analytics: Track resume availability (proves "70% resume within 24h")
+              trackEvent('resume_available', withCommon({
+                book_id: bookId,
+                level: levelParam,
+                chapter: savedPosition.currentChapter,
+                sentence_index: savedPosition.currentSentenceIndex,
+                hours_since_last_read: hoursSinceLastRead,
+                within_24_hours: hoursSinceLastRead < 24
+              }, {
+                sessionId: sessionIdRef.current,
+                bookId,
+                level: levelParam
+              }));
             }
           } catch (error) {
             console.warn('[AudioContext] Failed to load saved position:', error);
@@ -605,6 +764,38 @@ export function AudioProvider({ children }: AudioProviderProps) {
             elapsed
           });
 
+          // Analytics: Track load completed (post-guard - only after requestId validation)
+          const cacheHit = elapsed < 1000; // Heuristic: <1s suggests cache hit
+          trackEvent('load_completed', withCommon({
+            request_id: reqId,
+            book_id: bookId,
+            level: levelParam,
+            ms_load: elapsed,
+            page_size: data.bundleCount,
+            cache_hit: cacheHit
+          }, {
+            sessionId: sessionIdRef.current,
+            bookId,
+            level: levelParam
+          }));
+
+          // Analytics: Track level-switch ready (Feature 10 - Phase 5 validation)
+          if (levelSwitchStartTimeRef.current) {
+            const switchLatency = Date.now() - levelSwitchStartTimeRef.current;
+            trackEvent('level_switch_ready', withCommon({
+              from_level: cefrLevel, // Previous level (now updated)
+              to_level: levelParam,
+              ms_switch: switchLatency,
+              cache_hit: cacheHit,
+              fast_path: false // TODO: Detect single-level books (no API call needed)
+            }, {
+              sessionId: sessionIdRef.current,
+              bookId,
+              level: levelParam
+            }));
+            levelSwitchStartTimeRef.current = null; // Reset after tracking
+          }
+
           console.log(`✅ [AudioContext] Loaded ${data.totalSentences} sentences, ${data.bundleCount} bundles (${elapsed}ms)`);
         } else {
           logTelemetry({
@@ -618,6 +809,22 @@ export function AudioProvider({ children }: AudioProviderProps) {
 
         // TODO: Initialize audio manager and player
         // This will be done in a future task once we integrate BundleAudioManager
+        // TODO: Analytics - When audio manager is integrated, add tracking:
+        // 1. audio_completed when bundle audio ends
+        // 2. bundle_completed when moving to next bundle
+        // audioManager.onAudioEnded = () => {
+        //   trackEvent('audio_completed', withCommon({
+        //     chapter: currentChapter,
+        //     bundle_index: currentBundle
+        //   }, { sessionId: sessionIdRef.current, bookId: selectedBook?.id, level: cefrLevel }));
+        // };
+        // audioManager.onBundleComplete = (bundleIndex) => {
+        //   bundlesCompletedRef.current += 1;
+        //   trackEvent('bundle_completed', withCommon({
+        //     bundle_index: bundleIndex,
+        //     bundles_completed_total: bundlesCompletedRef.current
+        //   }, { sessionId: sessionIdRef.current, bookId: selectedBook?.id, level: cefrLevel }));
+        // };
       } else {
         throw new Error('Invalid book data received');
       }
@@ -648,6 +855,19 @@ export function AudioProvider({ children }: AudioProviderProps) {
         elapsed,
         reason: errorMessage
       });
+
+      // Analytics: Track load failure
+      trackEvent('load_failed', withCommon({
+        request_id: reqId,
+        book_id: bookId,
+        level: level,
+        ms_load: elapsed,
+        error_message: errorMessage
+      }, {
+        sessionId: sessionIdRef.current,
+        bookId,
+        level
+      }));
 
       console.error(`❌ [AudioContext] Load failed:`, err);
     }
@@ -750,6 +970,49 @@ export function AudioProvider({ children }: AudioProviderProps) {
     unload,
     clearResumeInfo,
   };
+
+  // -------------------------------------------------------------------------
+  // EFFECT: Session Tracking (mount/unmount)
+  // -------------------------------------------------------------------------
+  useEffect(() => {
+    // Session start
+    sessionStartTimeRef.current = Date.now();
+
+    // Gather device/network info
+    const deviceType = typeof window !== 'undefined'
+      ? /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'mobile' : 'desktop'
+      : 'unknown';
+
+    const networkInfo = typeof window !== 'undefined' && (navigator as any).connection
+      ? (navigator as any).connection.effectiveType
+      : undefined;
+
+    trackEvent('session_start', withCommon({
+      session_id: sessionIdRef.current,
+      referrer: typeof window !== 'undefined' ? document.referrer : undefined,
+      device_type: deviceType,
+      network_info: networkInfo
+    }, {
+      sessionId: sessionIdRef.current
+    }));
+
+    // Session end on unmount
+    return () => {
+      if (sessionStartTimeRef.current) {
+        const durationSeconds = Math.floor((Date.now() - sessionStartTimeRef.current) / 1000);
+
+        trackEvent('session_end', withCommon({
+          session_duration_seconds: durationSeconds,
+          bundles_completed: bundlesCompletedRef.current
+        }, {
+          sessionId: sessionIdRef.current,
+          bookId: selectedBook?.id,
+          bookTitle: selectedBook?.title,
+          level: cefrLevel
+        }));
+      }
+    };
+  }, []); // Empty deps = run once on mount/unmount
 
   return (
     <AudioContext.Provider value={value}>
