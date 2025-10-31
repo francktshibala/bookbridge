@@ -231,6 +231,8 @@ export function AudioProvider({ children }: AudioProviderProps) {
   // -------------------------------------------------------------------------
   const sessionIdRef = useRef<string>(getOrCreateSessionId());
   const loadStartTimeRef = useRef<number | null>(null);
+  const sessionStartTimeRef = useRef<number | null>(null);
+  const bundlesCompletedRef = useRef<number>(0); // TODO: Increment when bundle completes
 
   // -------------------------------------------------------------------------
   // ACTION: selectBook
@@ -755,11 +757,20 @@ export function AudioProvider({ children }: AudioProviderProps) {
 
         // TODO: Initialize audio manager and player
         // This will be done in a future task once we integrate BundleAudioManager
-        // TODO: Analytics - When audio manager is integrated, add audio_completed tracking:
+        // TODO: Analytics - When audio manager is integrated, add tracking:
+        // 1. audio_completed when bundle audio ends
+        // 2. bundle_completed when moving to next bundle
         // audioManager.onAudioEnded = () => {
         //   trackEvent('audio_completed', withCommon({
         //     chapter: currentChapter,
         //     bundle_index: currentBundle
+        //   }, { sessionId: sessionIdRef.current, bookId: selectedBook?.id, level: cefrLevel }));
+        // };
+        // audioManager.onBundleComplete = (bundleIndex) => {
+        //   bundlesCompletedRef.current += 1;
+        //   trackEvent('bundle_completed', withCommon({
+        //     bundle_index: bundleIndex,
+        //     bundles_completed_total: bundlesCompletedRef.current
         //   }, { sessionId: sessionIdRef.current, bookId: selectedBook?.id, level: cefrLevel }));
         // };
       } else {
@@ -907,6 +918,38 @@ export function AudioProvider({ children }: AudioProviderProps) {
     unload,
     clearResumeInfo,
   };
+
+  // -------------------------------------------------------------------------
+  // EFFECT: Session Tracking (mount/unmount)
+  // -------------------------------------------------------------------------
+  useEffect(() => {
+    // Session start
+    sessionStartTimeRef.current = Date.now();
+
+    trackEvent('session_start', withCommon({
+      session_id: sessionIdRef.current,
+      referrer: typeof window !== 'undefined' ? document.referrer : undefined
+    }, {
+      sessionId: sessionIdRef.current
+    }));
+
+    // Session end on unmount
+    return () => {
+      if (sessionStartTimeRef.current) {
+        const durationSeconds = Math.floor((Date.now() - sessionStartTimeRef.current) / 1000);
+
+        trackEvent('session_end', withCommon({
+          session_duration_seconds: durationSeconds,
+          bundles_completed: bundlesCompletedRef.current
+        }, {
+          sessionId: sessionIdRef.current,
+          bookId: selectedBook?.id,
+          bookTitle: selectedBook?.title,
+          level: cefrLevel
+        }));
+      }
+    };
+  }, []); // Empty deps = run once on mount/unmount
 
   return (
     <AudioContext.Provider value={value}>
