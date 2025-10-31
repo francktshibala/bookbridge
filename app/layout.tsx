@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import '../styles/wireframe-typography.css';
 import { SkipLinks } from '@/components/SkipLinks';
@@ -70,6 +71,20 @@ export default function RootLayout({
         className="antialiased min-h-screen flex flex-col overflow-x-hidden theme-transition"
         suppressHydrationWarning
       >
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-R209NKPNVN"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-R209NKPNVN');
+          `}
+        </Script>
+
         {/* Theme initialization script to prevent FOUC */}
         <script
           dangerouslySetInnerHTML={{
