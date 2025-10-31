@@ -182,7 +182,7 @@ Concepts Involved: [Key concepts to teach]
     let response;
     try {
       response = await this.anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20240620',
+        model: 'claude-3-sonnet-20240229',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 600,
         temperature: 0.4
@@ -290,7 +290,7 @@ Respond as a professional tutor identifying key learning moments. Use clear acad
     let response;
     try {
       response = await this.anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20240620',
+        model: 'claude-3-sonnet-20240229',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 700,
         temperature: 0.6
@@ -383,7 +383,7 @@ Respond as a professional tutor crafting guiding questions. Do not use theatrica
     let response;
     try {
       response = await this.anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20240620',
+        model: 'claude-3-sonnet-20240229',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 800,
         temperature: 0.5
@@ -535,7 +535,7 @@ ${modeInstructions}`;
     let response;
     try {
       response = await this.anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20240620',
+        model: 'claude-3-sonnet-20240229',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: maxTokens,
         temperature: 0.7
