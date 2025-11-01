@@ -32,8 +32,10 @@ export default function Navigation() {
     { href: '/enhanced-collection', label: 'Enhanced Books' },
     { href: '/featured-books', label: 'Simplified Books' },
     { href: '/library', label: 'Browse All Books' },
-    // TOUCHPOINT 1: Premium navigation link
-    { href: '/upgrade', label: 'Premium $5.99', isPremium: true },
+    // PILOT PHASE: Support Us donation link (Donorbox)
+    // Mission-driven approach: Focus on feedback collection, voluntary support
+    // Future: Will implement paid subscription after product-market fit validation
+    { href: 'https://donorbox.org/bookbridge-make-books-accessible-to-everyone-regardless-of-their-their-situation', label: 'Support Us', isPremium: true, isExternal: true },
   ];
 
   return (
@@ -83,6 +85,7 @@ export default function Navigation() {
                     <Link
                       key={link.href}
                       href={link.href}
+                      {...((link as any).isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       className={`nav-link-styled ${pathname === link.href ? 'nav-link-active' : 'nav-link-inactive'} ${link.isPremium ? 'nav-link-premium' : ''}`}
                       style={{
                         display: 'flex',

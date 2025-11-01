@@ -67,6 +67,34 @@ The bundle-based system is the **PRIMARY** focus for all new feature development
 
 ---
 
+## 💰 Monetization Strategy (Pilot Phase)
+
+**Current Status**: PILOT/BETA - Focus on feedback collection, not revenue
+
+**Navigation Link**: "Support Us" (replaces "Premium $5.99")
+**URL**: `https://donorbox.org/bookbridge-make-books-accessible-to-everyone-regardless-of-their-their-situation`
+**Opens**: External link (new tab) to Donorbox donation page
+
+**Why Donation vs Payment (October 2025):**
+- Pilot phase prioritizes user feedback over monetization
+- Removes price barrier anxiety ($5.99 seen as "too cheap" by some, potentially "too expensive" for ESL learners in developing countries)
+- Mission-aligned: Donation model reinforces "accessible to everyone" messaging
+- Validates product-market fit before committing to pricing strategy
+- Allows passionate early adopters to support voluntarily
+
+**Future Payment Implementation:**
+When ready to transition from pilot to production (post product-market fit):
+1. **Keep Freemium Model**: Free core features (3 books/month, basic AI), paid unlimited ($14.99/month suggested)
+2. **Implement Stripe Checkout**: `/app/api/checkout/route.ts` (create new)
+3. **Subscription Management**: Use existing `/subscription` page, integrate with Stripe customer portal
+4. **Navigation Update**: Change "Support Us" → "Upgrade" or "Premium" with pricing
+5. **Feature Gating**: Add subscription checks in AudioContext, AI services
+6. **A/B Test Pricing**: $9.99 vs $14.99 vs $19.99 to find optimal price point
+
+**Code Location**: `/components/Navigation.tsx:35-38`
+
+---
+
 ## 📱 Featured Books Page - Deep Dive (Most Critical Page)
 
 **Location**: `/app/featured-books/page.tsx`
@@ -78,8 +106,8 @@ The bundle-based system is the **PRIMARY** focus for all new feature development
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ BookBridge    Home  Enhanced  Simplified  Browse   Premium  │ ← Navigation
-│                     Books     Books       All      $5.99    │
+│ BookBridge    Home  Enhanced  Simplified  Browse  Support   │ ← Navigation
+│                     Books     Books       All       Us      │
 │              [L] [D] [S] [F]  ← Theme switcher (4 themes)   │
 ├─────────────────────────────────────────────────────────────┤
 │  [←]                                              [Aa]      │ ← Back + Settings
