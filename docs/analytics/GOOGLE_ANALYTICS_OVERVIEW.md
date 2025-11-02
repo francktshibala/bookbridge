@@ -24,8 +24,10 @@
 
 **Code Location:**
 - **Analytics Script:** `/app/layout.tsx:75-86` (Google Analytics gtag.js)
+- **Analytics Service:** `/lib/services/analytics-service.ts` (Pure function tracking with feature flags)
 - **Tracking ID:** G-R209NKPNVN
 - **Configuration:** Automatic page view tracking, event tracking
+- **Feature Flag:** `NEXT_PUBLIC_ENABLE_ANALYTICS=true` (enabled in production)
 
 **Implementation:**
 ```typescript
@@ -43,6 +45,18 @@
   `}
 </Script>
 ```
+
+**Advanced Analytics (Phase 5 - January 2025):**
+- **13 custom events** tracking CEFR progression, dictionary usage, AI tutor engagement, performance metrics
+- **Pure function pattern:** No state, no side effects (follows Phase 4 service layer architecture)
+- **DRY helper:** `withCommon()` for timestamp, session ID, context enrichment
+- **Documentation:** See `/docs/implementation/ARCHITECTURE_OVERVIEW.md:2007-2234` for detailed implementation
+
+**Cross-Reference:**
+For technical implementation details and analytics service architecture, see:
+- **Architecture Overview:** `/docs/implementation/ARCHITECTURE_OVERVIEW.md` (Phase 5: Usage Analytics, lines 2007-2234)
+- **Analytics Implementation Plan:** `/docs/implementation/USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md` (GPT-5 validated, 11 feature categories)
+- **Analytics Service Code:** `/lib/services/analytics-service.ts` (Pure functions, 224 lines)
 
 ---
 
@@ -320,22 +334,306 @@
 
 ---
 
+## 📝 Feedback Collection Implementation Plan
+
+**Status:** PLANNED - Not yet implemented
+**Priority:** HIGH - Critical for pilot phase validation
+**Target:** Collect contact info from engaged users for feedback interviews
+
+---
+
+### Method 1: "Leave Feedback" Navigation Tab
+
+**What:** Add a new navigation link in the header alongside Home, Enhanced Books, etc.
+
+**Design:**
+- **Label:** "Leave Feedback" or "Share Feedback"
+- **Location:** Navigation bar (desktop + mobile hamburger menu)
+- **Styling:** Standard nav link (not premium-styled like "Support Us")
+- **Icon:** 💬 or ✍️ (optional, for visual distinction)
+
+**Destination Page:** `/feedback`
+
+**Page Contents:**
+```
+Title: "Help Shape BookBridge"
+Subtitle: "Your feedback helps us build the best ESL learning experience"
+
+Form Fields:
+1. Name (optional)
+2. Email (required) - "We'll follow up with you directly"
+3. How did you find BookBridge? (dropdown)
+   - Google Search
+   - Social Media (Facebook, Twitter, etc.)
+   - Friend/Colleague
+   - ESL Teacher
+   - Other
+4. What brought you to BookBridge? (multiple choice)
+   - Learning English
+   - Teaching ESL
+   - Preparing for TOEFL/IELTS
+   - Reading classic literature
+   - Other
+5. What features did you try? (checkboxes)
+   - Audio-text synchronization
+   - CEFR level switching
+   - AI dictionary
+   - AI chat tutor
+   - Reading position memory
+6. What would you improve? (text area)
+7. Would you recommend BookBridge to others? (1-10 scale)
+8. May we contact you for a 15-min feedback interview? (Yes/No)
+
+CTA Button: "Submit Feedback"
+Thank You Message: "Thanks! We'll reach out within 3 days if you opted in for an interview."
+```
+
+**Technical Implementation:**
+- **Component:** `/app/feedback/page.tsx` (create new)
+- **API Route:** `/app/api/feedback/route.ts` (save to database + send email notification)
+- **Database:** Create `Feedback` table (Prisma schema)
+- **Email:** Send to admin email when new feedback submitted
+- **Analytics:** Track `feedback_submitted` event with GA4
+
+**Database Schema:**
+```typescript
+model Feedback {
+  id            String   @id @default(cuid())
+  name          String?
+  email         String
+  source        String   // How they found us
+  purpose       String[] // Why they came
+  featuresUsed  String[] // Which features tried
+  improvement   String   // What to improve
+  npsScore      Int      // 1-10 recommendation score
+  wantsInterview Boolean @default(false)
+  createdAt     DateTime @default(now())
+  userId        String?  // If logged in
+}
+```
+
+**Benefits:**
+- Always available (not intrusive)
+- Captures users actively seeking to give feedback
+- Structured data for analysis
+- Email capture for follow-up
+
+**Drawbacks:**
+- Only captures highly motivated users
+- Most users won't click (low conversion)
+- Requires navigation away from main experience
+
+---
+
+### Method 2: In-App Feedback Banner (Engaged Users)
+
+**What:** Non-intrusive banner that appears after 1+ minute of engagement
+
+**Trigger Logic:**
+```typescript
+// Trigger conditions:
+- User has been active for 60+ seconds
+- User has NOT already submitted feedback (check localStorage)
+- User has NOT dismissed banner in this session
+- Only show once per 7 days (localStorage timestamp)
+```
+
+**Design:**
+- **Location:** Bottom-right corner (mobile) or top banner (desktop)
+- **Style:** Subtle, non-blocking (not a modal popup)
+- **Animation:** Slide in after 60 seconds
+- **Dismissible:** X button to close (stores in localStorage)
+
+**Banner Content:**
+```
+Icon: ⭐
+Title: "Enjoying BookBridge?"
+Message: "Help us improve! Share quick feedback (2 min)"
+CTA: [Share Feedback] button → Opens modal or redirects to /feedback
+Secondary: [Maybe Later] button → Dismisses for 7 days
+```
+
+**Modal Form (If Inline):**
+```
+Quick Feedback Form (embedded in modal):
+1. Email (required) - "For follow-up only"
+2. What do you like? (text area, 100 char limit)
+3. What would you improve? (text area, 100 char limit)
+4. May we contact you for a 15-min interview? (Yes/No)
+
+CTA: [Submit] → Saves to database
+Thank You: "Thanks! We'll reach out if you opted in."
+```
+
+**Technical Implementation:**
+- **Component:** `/components/FeedbackBanner.tsx` (create new)
+- **Hook:** `useFeedbackBanner()` - Tracks time, localStorage checks
+- **Placement:** Add to `/app/layout.tsx` or page-specific layouts
+- **Storage:** `localStorage.setItem('feedback-banner-dismissed', timestamp)`
+- **API:** Reuse `/app/api/feedback/route.ts`
+- **Analytics:** Track `feedback_banner_shown`, `feedback_banner_dismissed`, `feedback_banner_submitted`
+
+**Display Logic:**
+```typescript
+// useFeedbackBanner.tsx
+const [showBanner, setShowBanner] = useState(false);
+
+useEffect(() => {
+  const dismissed = localStorage.getItem('feedback-banner-dismissed');
+  const lastShown = dismissed ? parseInt(dismissed) : 0;
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+
+  if (Date.now() - lastShown < sevenDays) return; // Don't show if dismissed <7 days ago
+
+  const timer = setTimeout(() => {
+    setShowBanner(true);
+    // Track analytics
+    gtag('event', 'feedback_banner_shown');
+  }, 60000); // 60 seconds
+
+  return () => clearTimeout(timer);
+}, []);
+```
+
+**Benefits:**
+- Captures engaged users (high-quality feedback)
+- Minimal friction (appears when already invested)
+- Non-intrusive (bottom corner, dismissible)
+- Timing-based (only after engagement proof)
+
+**Drawbacks:**
+- May annoy some users if not well-timed
+- Easy to dismiss without reading
+- Requires careful UX to not feel spammy
+
+---
+
+### Combined Strategy: Feedback Tab + Banner
+
+**Recommended Approach:**
+1. **Implement "Leave Feedback" tab first** (Week 1)
+   - Low-hanging fruit
+   - Always available
+   - Captures motivated users
+   - No UX risk
+
+2. **Add in-app banner later** (Week 2-3)
+   - Test timing (30s vs 60s vs 2min)
+   - A/B test messaging
+   - Monitor dismissal rates
+   - Only show to engaged users (1+ min session)
+
+3. **Segment by Engagement:**
+   - **Quick visitors (<30s):** No banner (let them leave)
+   - **Explorers (30s-2min):** Show banner at end of session
+   - **Engaged users (>2min):** Show banner mid-session OR on return visit
+   - **Power users (>5min):** Prioritize for personal outreach (email directly)
+
+---
+
+### Success Metrics
+
+**Target Collection Goals:**
+- **Week 1:** 5+ feedback submissions from "Leave Feedback" tab
+- **Week 2:** 10+ total submissions (tab + banner combined)
+- **Week 4:** 20+ submissions, 5+ interview opt-ins
+
+**Quality Metrics:**
+- **Email collection rate:** >80% (required field)
+- **Interview opt-in rate:** Target 25% (5 out of 20)
+- **NPS score:** Track average recommendation score
+- **Response rate:** >50% respond when contacted
+
+**Analytics Events to Track:**
+```typescript
+// Page views
+'page_view' → '/feedback'
+
+// Banner interactions
+'feedback_banner_shown' → Triggered after 60s
+'feedback_banner_dismissed' → User clicked X
+'feedback_banner_cta_clicked' → User clicked "Share Feedback"
+
+// Form interactions
+'feedback_form_started' → User began typing
+'feedback_form_submitted' → Successful submission
+'feedback_interview_optIn' → User said yes to interview
+
+// Engagement context
+Context data: session_duration, pages_viewed, features_used
+```
+
+---
+
+### Implementation Timeline
+
+**Week 1 (Nov 1-7):**
+- [ ] Create `/app/feedback/page.tsx` (feedback form page)
+- [ ] Create `/app/api/feedback/route.ts` (API endpoint)
+- [ ] Add "Leave Feedback" link to navigation
+- [ ] Create Prisma `Feedback` model, run migration
+- [ ] Test form submission locally
+
+**Week 2 (Nov 8-14):**
+- [ ] Deploy feedback page to production
+- [ ] Add email notification on new feedback (Resend/SendGrid)
+- [ ] Monitor submissions (target: 5+)
+
+**Week 3 (Nov 15-21):**
+- [ ] Create `FeedbackBanner` component
+- [ ] Implement timing logic (60s trigger)
+- [ ] Test dismissal behavior
+- [ ] A/B test banner messaging
+
+**Week 4 (Nov 22-30):**
+- [ ] Deploy banner to production
+- [ ] Monitor banner analytics (show rate, dismiss rate, conversion)
+- [ ] Conduct first round of feedback interviews (5+ users)
+
+---
+
+### Future Enhancements
+
+1. **NPS Survey Integration:**
+   - Add Net Promoter Score tracking
+   - "How likely are you to recommend BookBridge?" (0-10)
+   - Segment detractors (0-6), passives (7-8), promoters (9-10)
+
+2. **Feature-Specific Feedback:**
+   - After using AI chat: "How was the AI tutor?"
+   - After finishing book: "Rate this reading experience"
+   - After switching levels: "Did this level work for you?"
+
+3. **Exit Intent Survey:**
+   - Detect when user closing tab
+   - Quick 1-question survey: "What brought you here today?"
+   - Email capture + dropdown
+
+4. **Beta Tester Program Page:**
+   - Dedicated `/beta` page
+   - Benefits: Early access, vote on features, direct feedback line
+   - Application form with deeper questions
+   - Exclusive Slack/Discord community
+
+---
+
 ## 🎯 Next Steps
 
 ### Week 1 (Nov 1-7, 2025)
 - [ ] Contact Sandy, UT super user for feedback interview
-- [ ] Implement exit survey for quick-leave users
+- [ ] **Implement "Leave Feedback" navigation tab** (see Feedback Collection Plan above)
 - [ ] Add feature usage event tracking (AI chat, dictionary, audio)
 - [ ] Share analytics report with Donna for Facebook audience
 
 ### Week 2 (Nov 8-14, 2025)
 - [ ] Analyze 7-day retention rate (how many of 25 users returned?)
-- [ ] A/B test hero section messaging
+- [ ] **Deploy feedback page to production** (see Feedback Collection Plan)
 - [ ] Add UTM tracking to all external links
 - [ ] Target Polish ESL communities (3 users = demand signal)
 
 ### Week 3 (Nov 15-21, 2025)
-- [ ] Conduct 5+ user interviews (engaged users)
+- [ ] **Implement in-app feedback banner** (see Feedback Collection Plan)
+- [ ] Conduct 5+ user interviews (engaged users from feedback submissions)
 - [ ] Compile feedback themes (feature requests, pain points)
 - [ ] Test Utah educator outreach (6 users = localized traction)
 
