@@ -423,7 +423,7 @@ model Feedback {
   createdAt       DateTime @default(now())
 
   // Optional user association
-  userId          String?
+  userId          String?  @db.Uuid
   user            User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([createdAt])
