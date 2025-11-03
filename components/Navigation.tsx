@@ -32,6 +32,8 @@ export default function Navigation() {
     { href: '/enhanced-collection', label: 'Enhanced Books' },
     { href: '/featured-books', label: 'Simplified Books' },
     { href: '/library', label: 'Browse All Books' },
+    // PILOT PHASE: Feedback collection (Week 1 implementation)
+    { href: '/feedback', label: 'Leave Feedback' },
     // PILOT PHASE: Support Us donation link (Donorbox)
     // Mission-driven approach: Focus on feedback collection, voluntary support
     // Future: Will implement paid subscription after product-market fit validation

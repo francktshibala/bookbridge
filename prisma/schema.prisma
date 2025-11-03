@@ -28,6 +28,7 @@ model User {
   eslVocabularyProgress ESLVocabularyProgress[]
   readingSessions ReadingSession[]
   readingPositions ReadingPosition[]
+  feedback Feedback[]
 
   @@map("users")
 }
@@ -394,4 +395,39 @@ model ReadingPosition {
   @@map("reading_positions")
 }
 
+model Feedback {
+  id              String   @id @default(cuid())
+
+  // Contact information
+  name            String?
+  email           String
+
+  // Discovery & context
+  source          String   // How they found BookBridge
+  purpose         String[] // Why they came (array)
+  featuresUsed    String[] // Which features tried (array)
+
+  // Feedback content
+  improvement     String   // What to improve (text area)
+  npsScore        Int      // 1-10 recommendation score
+  wantsInterview  Boolean  @default(false)
+
+  // Enhanced context (GPT-5 recommendations)
+  sessionDuration Int?     // Seconds of engagement before feedback
+  userAgent       String?  // Browser/device info
+  deviceType      String?  // mobile/desktop/tablet
+  pagesViewed     Int?     // Number of pages visited
+  path            String?  // Path where feedback was initiated
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+
+  // Optional user association
+  userId          String?
+  user            User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([email, createdAt])
+  @@map("feedback")
+}
 
