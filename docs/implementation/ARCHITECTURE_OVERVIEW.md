@@ -2893,6 +2893,7 @@ Theme Integration:
   - Server-side caching: `revalidate: 3600` (1-hour ISR cache) with CDN headers (`s-maxage=3600, stale-while-revalidate=86400`)
   - Response includes both `totalBundles` and `bundleCount` for client/UI consistency
   - Error responses include `Cache-Control: no-store` to prevent error propagation
+  - **CEFR Level Normalization**: All CEFR levels (A1-C2) are case-insensitive. `normalizeLevel()` helper in `/lib/config/books.ts` converts user input ('a1', 'A1', 'a1 ') to uppercase ('A1') before routing/database queries. **Critical**: Prevents 404 errors from case mismatches between UI and API mappings (fixed Nov 2025).
 - **AI Tutoring**: `app/api/ai/stream/route.ts` - Educational chat system
 - **AI Dictionary**: `app/api/dictionary/resolve/route.ts` - ESL-optimized word definitions
 

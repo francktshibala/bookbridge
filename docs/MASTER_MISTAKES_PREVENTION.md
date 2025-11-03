@@ -20,6 +20,7 @@
    - ✅ BOOK_API_MAPPINGS configuration in frontend
    - ✅ Relative audio paths (not full URLs)
    - ✅ Original sentence indices (no double-offset)
+   - ✅ **CEFR Level Normalization**: ALWAYS use `normalizeLevel()` helper before API routing/DB queries. **Don't**: rely on UI case consistency. **Do**: normalize at boundaries (`normalizeLevel('a1')` → `'A1'`). Prevents 404 errors from case mismatches (Nov 2025 bug).
    - ✅ Result: No "Level not available" errors + working audio
 
 3. **Enhanced Timing v3 MANDATORY** - All audio generation MUST use:

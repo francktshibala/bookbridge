@@ -3,6 +3,36 @@
  * Central configuration for all featured books, API mappings, and default levels
  */
 
+// Valid CEFR levels as a type
+export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+
+/**
+ * Normalizes and validates CEFR level input
+ *
+ * Ensures case-insensitive level matching across the application.
+ * All CEFR levels are stored as uppercase in mappings and databases.
+ *
+ * @param level - User input level (any case, may have whitespace)
+ * @returns Uppercase validated CEFRLevel
+ * @throws Error if level is invalid
+ *
+ * @example
+ * normalizeLevel('a1')    // Returns 'A1'
+ * normalizeLevel('A1 ')   // Returns 'A1' (trimmed)
+ * normalizeLevel('B2')    // Returns 'B2'
+ * normalizeLevel('invalid') // Throws error
+ */
+export function normalizeLevel(level: string): CEFRLevel {
+  const normalized = level.trim().toUpperCase();
+  const validLevels: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
+  if (!validLevels.includes(normalized as CEFRLevel)) {
+    throw new Error(`Invalid CEFR level: "${level}". Valid levels are: ${validLevels.join(', ')}`);
+  }
+
+  return normalized as CEFRLevel;
+}
+
 export interface FeaturedBook {
   id: string;
   title: string;
@@ -176,14 +206,41 @@ export const getBookDefaultLevel = (bookId: string): string => {
   return BOOK_DEFAULT_LEVELS[bookId] || 'A1';
 };
 
-// Get the API endpoint for a specific book and level
+/**
+ * Get the API endpoint for a specific book and CEFR level
+ *
+ * Returns the correct bundle API endpoint for featured books with custom routes.
+ * Uses case-insensitive level matching to prevent routing errors.
+ *
+ * **Architecture Context**:
+ * - Custom endpoints query PostgreSQL (Prisma) for featured books with ElevenLabs audio
+ * - Fallback endpoint queries Supabase for enhanced collection books
+ * - All mapping keys are uppercase; input is normalized at this boundary
+ *
+ * **Critical Fix (Nov 2025)**:
+ * Previously failed when level='a1' didn't match mapping key='A1',
+ * causing 404 errors and fallback to wrong database. Now uses normalizeLevel()
+ * for case-insensitive lookup.
+ *
+ * @param bookId - Book identifier (e.g., 'the-necklace', 'the-dead')
+ * @param level - CEFR level (any case: 'a1', 'A1', 'B2', etc.)
+ * @returns API endpoint path for bundle fetching
+ *
+ * @example
+ * getBookApiEndpoint('the-necklace', 'a1')  // '/api/the-necklace-a1/bundles'
+ * getBookApiEndpoint('the-necklace', 'A1')  // '/api/the-necklace-a1/bundles' (same)
+ * getBookApiEndpoint('unknown-book', 'A1')  // '/api/test-book/real-bundles' (fallback)
+ */
 export const getBookApiEndpoint = (bookId: string, level: string): string => {
+  // Normalize level to uppercase for mapping lookup (case-insensitive)
+  const normalizedLevel = normalizeLevel(level);
+
   // Check if book has custom API mappings
-  if (BOOK_API_MAPPINGS[bookId] && BOOK_API_MAPPINGS[bookId][level]) {
-    return BOOK_API_MAPPINGS[bookId][level];
+  if (BOOK_API_MAPPINGS[bookId] && BOOK_API_MAPPINGS[bookId][normalizedLevel]) {
+    return BOOK_API_MAPPINGS[bookId][normalizedLevel];
   }
 
-  // Default to test-book API
+  // Default to test-book API (fallback for books without custom endpoints)
   return '/api/test-book/real-bundles';
 };
 
