@@ -405,25 +405,25 @@ model Feedback {
   // Discovery & context
   source          String   // How they found BookBridge
   purpose         String[] // Why they came (array)
-  featuresUsed    String[] // Which features tried (array)
+  featuresUsed    String[] @map("features_used") // Which features tried (array)
 
   // Feedback content
   improvement     String   // What to improve (text area)
-  npsScore        Int      // 1-10 recommendation score
-  wantsInterview  Boolean  @default(false)
+  npsScore        Int      @map("nps_score") // 1-10 recommendation score
+  wantsInterview  Boolean  @default(false) @map("wants_interview")
 
   // Enhanced context (GPT-5 recommendations)
-  sessionDuration Int?     // Seconds of engagement before feedback
-  userAgent       String?  // Browser/device info
-  deviceType      String?  // mobile/desktop/tablet
-  pagesViewed     Int?     // Number of pages visited
+  sessionDuration Int?     @map("session_duration") // Seconds of engagement before feedback
+  userAgent       String?  @map("user_agent") // Browser/device info
+  deviceType      String?  @map("device_type") // mobile/desktop/tablet
+  pagesViewed     Int?     @map("pages_viewed") // Number of pages visited
   path            String?  // Path where feedback was initiated
 
   // Timestamps
-  createdAt       DateTime @default(now())
+  createdAt       DateTime @default(now()) @map("created_at")
 
   // Optional user association
-  userId          String?  @db.Uuid
+  userId          String?  @db.Uuid @map("user_id")
   user            User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([createdAt])
