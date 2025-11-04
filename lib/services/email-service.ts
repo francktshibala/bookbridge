@@ -9,10 +9,17 @@
 
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const ADMIN_EMAIL = 'franck1tshibala@gmail.com';
 const FROM_EMAIL = 'BookBridge <onboarding@resend.dev>'; // Use verified domain in production
+
+// Lazy initialization to avoid build-time errors when env var not available
+let resendInstance: Resend | null = null;
+function getResend(): Resend {
+  if (!resendInstance) {
+    resendInstance = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resendInstance;
+}
 
 /**
  * Send feedback notification email to admin
@@ -48,19 +55,19 @@ export async function sendFeedbackNotification(feedbackData: {
     <html>
       <head>
         <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background: #002147; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
-          .content { background: #f4f4f4; padding: 20px; border-radius: 0 0 8px 8px; }
+          body { font-family: 'Georgia', 'Times New Roman', serif; line-height: 1.6; color: #2C1810; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; background: #F4F1EB; }
+          .header { background: #002147; color: white; padding: 20px; border-radius: 8px 8px 0 0; border-left: 4px solid #CD7F32; }
+          .content { background: #FFFFFF; padding: 20px; border-radius: 0 0 8px 8px; border: 1px solid #E5DDD4; box-shadow: 0 2px 8px rgba(44, 24, 16, 0.1); }
           .field { margin-bottom: 15px; }
-          .label { font-weight: bold; color: #002147; }
-          .value { margin-top: 5px; }
-          .badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 14px; font-weight: bold; }
-          .promoter { background: #10b981; color: white; }
-          .passive { background: #f59e0b; color: white; }
-          .detractor { background: #ef4444; color: white; }
-          .interview { background: #8b5cf6; color: white; padding: 8px 16px; border-radius: 6px; margin-top: 10px; }
-          .footer { margin-top: 20px; padding-top: 20px; border-top: 2px solid #ddd; font-size: 12px; color: #666; }
+          .label { font-weight: bold; color: #002147; font-family: 'Georgia', serif; }
+          .value { margin-top: 5px; color: #5D4E37; }
+          .badge { display: inline-block; padding: 6px 14px; border-radius: 6px; font-size: 14px; font-weight: bold; border: 2px solid; }
+          .promoter { background: #002147; color: white; border-color: #CD7F32; }
+          .passive { background: #CD7F32; color: white; border-color: #002147; }
+          .detractor { background: #8D4004; color: white; border-color: #5D4E37; }
+          .interview { background: #002147; color: white; padding: 10px 18px; border-radius: 6px; margin-top: 10px; border-left: 4px solid #CD7F32; }
+          .footer { margin-top: 20px; padding-top: 20px; border-top: 2px solid #CD7F32; font-size: 12px; color: #5D4E37; }
         </style>
       </head>
       <body>
@@ -94,7 +101,7 @@ export async function sendFeedbackNotification(feedbackData: {
             ${feedbackData.improvement ? `
             <div class="field">
               <div class="label">💡 What Would You Improve?</div>
-              <div class="value" style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #002147;">
+              <div class="value" style="background: #F4F1EB; padding: 12px; border-radius: 6px; border-left: 4px solid #CD7F32; color: #2C1810;">
                 ${feedbackData.improvement}
               </div>
             </div>
@@ -122,18 +129,18 @@ export async function sendFeedbackNotification(feedbackData: {
             <div class="field">
               <div class="label">✨ Features Tried</div>
               <div class="value">
-                ${feedbackData.featuresUsed.map(f => `<span style="background: #e5e7eb; padding: 4px 8px; border-radius: 4px; margin-right: 6px; display: inline-block; margin-bottom: 4px;">${f}</span>`).join('')}
+                ${feedbackData.featuresUsed.map(f => `<span style="background: #F4F1EB; padding: 6px 10px; border-radius: 4px; margin-right: 6px; display: inline-block; margin-bottom: 4px; border: 1px solid #CD7F32; color: #002147;">${f}</span>`).join('')}
               </div>
             </div>
             ` : ''}
 
             <!-- Context Data -->
-            <div class="field" style="background: #fef3c7; padding: 12px; border-radius: 6px; font-size: 13px;">
+            <div class="field" style="background: #F4F1EB; padding: 14px; border-radius: 6px; font-size: 13px; border: 1px solid #E5DDD4;">
               <div class="label">📊 Context</div>
               <div class="value">
                 ${feedbackData.sessionDuration ? `⏱️ Session: ${Math.floor(feedbackData.sessionDuration / 60)}m ${feedbackData.sessionDuration % 60}s<br>` : ''}
                 ${feedbackData.deviceType ? `📱 Device: ${feedbackData.deviceType}<br>` : ''}
-                🆔 Feedback ID: <code>${feedbackData.id}</code>
+                🆔 Feedback ID: <code style="background: #FFFFFF; padding: 2px 6px; border-radius: 3px; border: 1px solid #CD7F32; color: #002147;">${feedbackData.id}</code>
               </div>
             </div>
 
@@ -180,6 +187,7 @@ View in Supabase: Table Editor → feedback → ID: ${feedbackData.id}
   });
 
   try {
+    const resend = getResend(); // Lazy initialization
     const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: ADMIN_EMAIL,
