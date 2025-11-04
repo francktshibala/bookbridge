@@ -5,6 +5,7 @@ import {
   type FeedbackFormData,
   type FeedbackContextData
 } from '@/lib/services/feedback-service';
+import { sendFeedbackNotification } from '@/lib/services/email-service';
 
 /**
  * POST /api/feedback
@@ -93,6 +94,28 @@ export async function POST(request: NextRequest) {
       formData,
       contextData,
     });
+
+    // === Send Email Notification ===
+
+    try {
+      await sendFeedbackNotification({
+        id: feedbackId,
+        email: formData.email,
+        name: formData.name,
+        npsScore: formData.npsScore,
+        source: formData.source,
+        purpose: formData.purpose,
+        featuresUsed: formData.featuresUsed,
+        improvement: formData.improvement,
+        wantsInterview: formData.wantsInterview,
+        sessionDuration: contextData.sessionDuration,
+        deviceType: contextData.deviceType,
+      });
+    } catch (emailError) {
+      // Log email error but don't fail the request
+      console.error('[API /feedback] Email notification failed:', emailError);
+      // Continue - feedback was saved successfully
+    }
 
     // === Success Response ===
 
