@@ -7,6 +7,9 @@ import {
 } from '@/lib/services/feedback-service';
 import { sendFeedbackNotification } from '@/lib/services/email-service';
 
+// Force Node runtime (Resend requires Node, not Edge)
+export const runtime = 'nodejs';
+
 /**
  * POST /api/feedback
  *

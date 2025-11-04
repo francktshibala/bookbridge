@@ -171,6 +171,14 @@ Context:
 View in Supabase: Table Editor → feedback → ID: ${feedbackData.id}
   `.trim();
 
+  // Debug logging before send
+  console.log('[EmailService] About to send email:', {
+    to: ADMIN_EMAIL,
+    from: FROM_EMAIL,
+    hasApiKey: !!process.env.RESEND_API_KEY,
+    apiKeyLength: process.env.RESEND_API_KEY?.length,
+  });
+
   try {
     const result = await resend.emails.send({
       from: FROM_EMAIL,
@@ -180,10 +188,10 @@ View in Supabase: Table Editor → feedback → ID: ${feedbackData.id}
       text: textBody,
     });
 
-    console.log('[EmailService] Feedback notification sent:', result);
+    console.log('[EmailService] ✅ Email sent successfully! Result:', result);
     return result;
   } catch (error) {
-    console.error('[EmailService] Failed to send feedback notification:', error);
+    console.error('[EmailService] ❌ Failed to send email:', error);
     throw error;
   }
 }
