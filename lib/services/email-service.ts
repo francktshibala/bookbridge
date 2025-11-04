@@ -11,7 +11,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const ADMIN_EMAIL = 'bookbridgegap@gmail.com';
+const ADMIN_EMAIL = 'franck1tshibala@gmail.com';
 const FROM_EMAIL = 'BookBridge <onboarding@resend.dev>'; // Use verified domain in production
 
 /**
