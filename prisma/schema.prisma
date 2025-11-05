@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -431,3 +432,137 @@ model Feedback {
   @@map("feedback")
 }
 
+// ============================================
+// BOOK CATALOG SYSTEM (Book Organization)
+// ============================================
+
+model BookCollection {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  icon        String?  // Emoji or icon identifier
+
+  type        String   // "genre", "mood", "reading-time", "theme", "movement"
+  sortOrder   Int      @default(0) // Display order
+  isPrimary   Boolean  @default(false) // Primary collections shown first
+
+  // Smart collection logic (optional)
+  isSmartCollection Boolean @default(false) @map("is_smart_collection")
+  smartRules        Json?   @map("smart_rules") // Dynamic filtering rules for smart collections
+
+  books       BookCollectionMembership[]
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([type, sortOrder])
+  @@index([isPrimary, sortOrder])
+  @@map("book_collections")
+}
+
+model BookCollectionMembership {
+  id           String   @id @default(cuid())
+  bookId       String   @map("book_id") // Links to FeaturedBook.id
+  collectionId String   @map("collection_id")
+  sortOrder    Int      @default(0) @map("sort_order")
+
+  collection   BookCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  featuredBook FeaturedBook   @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@unique([bookId, collectionId])
+  @@index([collectionId, sortOrder])
+  @@index([bookId])
+  @@map("book_collection_membership")
+}
+
+model FeaturedBook {
+  id              String   @id @default(cuid())
+
+  // Core book information
+  title           String
+  author          String
+  description     String
+  sentences       Int
+  bundles         Int
+  gradient        String
+  abbreviation    String
+
+  // Organizational metadata
+  genres          String[]  @default([]) // ["Gothic", "Horror"]
+  themes          String[]  @default([]) // ["Identity", "Transformation"]
+  moods           String[]  @default([]) // ["suspenseful", "unsettling"]
+
+  // Geographic/cultural metadata
+  region          String?   // "American Classics", "British Isles", "European Continental"
+  country         String?   // "United States", "Ireland", "Russia"
+
+  // Literary metadata
+  literaryMovement String? @map("literary_movement") // "Realism", "Modernism", "Gothic Literature"
+  publicationYear  Int?    @map("publication_year") // Original publication year
+  era             String?  // "Victorian", "Jazz Age", "19th Century"
+
+  // Reading metrics
+  readingTimeMinutes Int   @default(0) @map("reading_time_minutes") // Estimated reading time
+  difficultyScore    Float @default(0) @map("difficulty_score") // 0-10 difficulty rating
+  popularityScore    Float @default(0) @map("popularity_score") // Weighted by completion rate + ratings
+
+  // Content flags
+  isClassic       Boolean @default(true) @map("is_classic")
+  isFeatured      Boolean @default(false) @map("is_featured") // Show on homepage
+  isNew           Boolean @default(false) @map("is_new") // "New" badge (< 30 days)
+
+  // Collections relationship
+  collections     BookCollectionMembership[]
+  tags            BookTagMembership[]
+
+  // User engagement metrics (for smart collections)
+  totalReads      Int      @default(0) @map("total_reads")
+  completionRate  Float    @default(0) @map("completion_rate") // Percentage of users who finish
+  averageRating   Float?   @map("average_rating")
+
+  // Denormalized facets for fast filtering (GPT-5 recommendation)
+  facets          Json?    // Precomputed: { genres: [...], moods: [...], difficulty: 'A1' }
+
+  // Full-text search vector (PostgreSQL specific)
+  searchVector    Unsupported("tsvector")? @map("search_vector")
+
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([isClassic, isFeatured])
+  @@index([popularityScore])
+  @@index([readingTimeMinutes])
+  @@index([searchVector], type: Gin)
+  @@map("featured_books")
+}
+
+model BookTag {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  type        String   // "genre", "mood", "theme", "movement", "difficulty"
+
+  books       BookTagMembership[]
+
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([type, slug])
+  @@map("book_tags")
+}
+
+model BookTagMembership {
+  id      String  @id @default(cuid())
+  bookId  String  @map("book_id")
+  tagId   String  @map("tag_id")
+
+  book    FeaturedBook @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  tag     BookTag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([bookId, tagId])
+  @@index([tagId, bookId])
+  @@index([bookId, tagId])
+  @@map("book_tag_membership")
+}
