@@ -480,6 +480,7 @@ model BookCollectionMembership {
 
 model FeaturedBook {
   id              String   @id @default(cuid())
+  slug            String   @unique // URL-friendly identifier
 
   // Core book information
   title           String
@@ -532,10 +533,12 @@ model FeaturedBook {
   createdAt       DateTime @default(now()) @map("created_at")
   updatedAt       DateTime @updatedAt @map("updated_at")
 
+  // Indexes (GPT-5 recommendations: composite + covering indexes for hot paths)
   @@index([isClassic, isFeatured])
-  @@index([popularityScore])
-  @@index([readingTimeMinutes])
-  @@index([searchVector], type: Gin)
+  @@index([popularityScore(sort: Desc), id(sort: Asc)]) // Stable cursor pagination
+  @@index([readingTimeMinutes, id(sort: Asc)]) // Sort by reading time
+  @@index([createdAt(sort: Desc), id(sort: Asc)]) // Sort by recency
+  @@index([searchVector], type: Gin) // Full-text search
   @@map("featured_books")
 }
 

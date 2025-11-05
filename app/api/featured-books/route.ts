@@ -14,8 +14,9 @@ interface CatalogResponse {
   };
 }
 
-// Cache for 5 minutes (GPT-5 recommendation)
-export const revalidate = 300;
+// Cache configuration (GPT-5 recommendation: explicit tags for invalidation)
+export const revalidate = 300; // 5 minutes
+export const dynamic = 'force-dynamic'; // Always run fresh (can be 'auto' if caching works)
 
 export async function GET(request: NextRequest): Promise<NextResponse<CatalogResponse>> {
   const searchParams = request.nextUrl.searchParams;
@@ -115,17 +116,23 @@ export async function GET(request: NextRequest): Promise<NextResponse<CatalogRes
       ? Buffer.from(`${books[books.length - 1][sortBy as keyof FeaturedBook]}:${books[books.length - 1].id}`).toString('base64')
       : null;
 
-    // Compute facets for filters (GPT-5 recommendation)
-    const facets = await computeFacets(where);
+    // Compute facets for filters (GPT-5: only from visible result set)
+    const facets = computeFacetsFromBooks(books);
+
+    // Generate cache tag for invalidation (GPT-5 recommendation)
+    const cacheTag = collectionId
+      ? `catalog:collection:${collectionId}`
+      : 'catalog:search';
 
     return NextResponse.json({
       items: books,
-      nextCursor,
+      nextCursor: hasNext ? nextCursor : null, // Only include if more exists (GPT-5)
       totalApprox,
       facets
     }, {
       headers: {
-        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=86400'
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=86400',
+        'X-Cache-Tag': cacheTag
       }
     });
   } catch (error) {
@@ -147,58 +154,51 @@ export async function GET(request: NextRequest): Promise<NextResponse<CatalogRes
   }
 }
 
-// Helper: Compute filter facet counts
-async function computeFacets(baseWhere: any) {
-  try {
-    // Use denormalized facets field for fast aggregation
-    const books = await prisma.featuredBook.findMany({
-      where: baseWhere,
-      select: { facets: true, readingTimeMinutes: true }
-    });
-
-    // Aggregate facet counts
-    const genreCounts = new Map<string, number>();
-    const moodCounts = new Map<string, number>();
-    const timeCounts = { quick: 0, short: 0, deep: 0 };
-
-    books.forEach(book => {
-      if (book.facets && typeof book.facets === 'object') {
-        const facets = book.facets as any;
-
-        facets.genres?.forEach((g: string) => {
-          genreCounts.set(g, (genreCounts.get(g) || 0) + 1);
-        });
-
-        facets.moods?.forEach((m: string) => {
-          moodCounts.set(m, (moodCounts.get(m) || 0) + 1);
-        });
-      }
-
-      // Count reading times
-      if (book.readingTimeMinutes < 15) timeCounts.quick++;
-      if (book.readingTimeMinutes < 45) timeCounts.short++;
-      if (book.readingTimeMinutes < 120) timeCounts.deep++;
-    });
-
-    return {
-      genres: Array.from(genreCounts.entries())
-        .map(([name, count]) => ({ name, count }))
-        .sort((a, b) => b.count - a.count),
-      moods: Array.from(moodCounts.entries())
-        .map(([name, count]) => ({ name, count }))
-        .sort((a, b) => b.count - a.count),
-      readingTimes: [
-        { range: '< 15 min', count: timeCounts.quick },
-        { range: '< 45 min', count: timeCounts.short },
-        { range: '< 2 hours', count: timeCounts.deep }
-      ]
-    };
-  } catch (error) {
-    console.error('Error computing facets:', error);
+// Helper: Compute filter facet counts from visible books (GPT-5: no extra query)
+function computeFacetsFromBooks(books: FeaturedBook[]) {
+  // Fast path for empty results (GPT-5 recommendation)
+  if (books.length === 0) {
     return {
       genres: [],
       moods: [],
       readingTimes: []
     };
   }
+
+  const genreCounts = new Map<string, number>();
+  const moodCounts = new Map<string, number>();
+  const timeCounts = { quick: 0, short: 0, deep: 0 };
+
+  books.forEach(book => {
+    // Count genres
+    book.genres.forEach(genre => {
+      genreCounts.set(genre, (genreCounts.get(genre) || 0) + 1);
+    });
+
+    // Count moods
+    book.moods.forEach(mood => {
+      moodCounts.set(mood, (moodCounts.get(mood) || 0) + 1);
+    });
+
+    // Count reading times
+    if (book.readingTimeMinutes < 15) timeCounts.quick++;
+    if (book.readingTimeMinutes < 45) timeCounts.short++;
+    if (book.readingTimeMinutes < 120) timeCounts.deep++;
+  });
+
+  return {
+    genres: Array.from(genreCounts.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 20), // Limit to top 20 (GPT-5: avoid huge facet lists)
+    moods: Array.from(moodCounts.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 20),
+    readingTimes: [
+      { range: '< 15 min', count: timeCounts.quick },
+      { range: '< 45 min', count: timeCounts.short },
+      { range: '< 2 hours', count: timeCounts.deep }
+    ]
+  };
 }
