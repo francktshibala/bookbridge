@@ -2372,6 +2372,51 @@ NEXT_PUBLIC_ENABLE_CURSOR_PAGINATION=true
 
 ## Scaling Considerations
 
+### Current Target: Hundreds of Books
+
+**This architecture is optimized for 100-999 books** (typical range: 200-500 books), which matches the stated goal of adding "hundreds and not thousands" of books to the platform.
+
+**Key Design Decisions for Hundreds:**
+- Cursor-based pagination (efficient for any size)
+- Database indexes on common query patterns
+- Denormalized facets for fast filtering
+- Standard HTTP caching (5-minute stale, 24-hour revalidate)
+
+### Future: Scaling to Thousands (1,000+ Books)
+
+**The core architecture supports thousands of books without redesign.** If scaling beyond 1,000 books becomes necessary, add these optimizations:
+
+**1. CDN for Static Assets** (bolt-on enhancement):
+```typescript
+// Store book covers on CDN instead of local storage
+const coverUrl = `${process.env.CDN_URL}/book-covers/${bookId}.jpg`;
+
+// Benefits:
+// - Faster image loading globally
+// - Reduced server bandwidth
+// - Edge caching for metadata
+```
+
+**2. More Aggressive Caching** (configuration change):
+```typescript
+// Increase cache durations for larger datasets
+headers: {
+  'Cache-Control': 's-maxage=7200, stale-while-revalidate=172800' // 2hr / 48hr
+}
+
+// Add Redis for facet counts (optional)
+const cachedFacets = await redis.get(`facets:${filterKey}`);
+```
+
+**3. Search Index Service** (if search becomes slow):
+- Consider Algolia or Meilisearch for instant search
+- Only needed if PostgreSQL full-text search becomes bottleneck
+- Current tsvector + GIN index handles thousands fine
+
+**Important**: These are **additive optimizations** that don't require architectural changes. The database schema, API design, component structure, and context patterns remain identical. You can deploy them gradually as needed without disrupting existing functionality.
+
+---
+
 ### Performance Optimization
 
 **Caching Strategy** (following Phase 5 pattern):
