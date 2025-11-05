@@ -14,19 +14,31 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const books = await prisma.featuredBook.findMany({
-      where: {
-        OR: [
-          { title: { contains: query, mode: 'insensitive' } },
-          { author: { contains: query, mode: 'insensitive' } },
-          { description: { contains: query, mode: 'insensitive' } },
-          { genres: { hasSome: [query] } },
-          { themes: { hasSome: [query] } }
-        ]
-      },
-      take: limit,
-      orderBy: { popularityScore: 'desc' }
-    });
+    // Cap query length (GPT-5: avoid slow plans)
+    const sanitizedQuery = query.slice(0, 100);
+
+    // Use PostgreSQL full-text search if available (GPT-5: with scoring)
+    const books = await prisma.$queryRaw<any[]>`
+      SELECT
+        id, slug, title, author, description,
+        sentences, bundles, gradient, abbreviation,
+        genres, themes, moods, region, country,
+        literary_movement, publication_year, era,
+        reading_time_minutes, difficulty_score, popularity_score,
+        is_classic, is_featured, is_new,
+        total_reads, completion_rate, average_rating,
+        facets, created_at, updated_at,
+        ts_rank(search_vector, plainto_tsquery('english', ${sanitizedQuery})) as rank
+      FROM "public"."featured_books"
+      WHERE search_vector @@ plainto_tsquery('english', ${sanitizedQuery})
+         OR title ILIKE ${'%' + sanitizedQuery + '%'}
+         OR author ILIKE ${'%' + sanitizedQuery + '%'}
+      ORDER BY
+        rank DESC,           -- Primary: relevance score
+        popularity_score DESC, -- Secondary: popularity
+        created_at DESC      -- Tertiary: recency (tie-breaker, GPT-5)
+      LIMIT ${limit}
+    `;
 
     return NextResponse.json({ books }, {
       headers: {

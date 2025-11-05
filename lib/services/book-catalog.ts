@@ -77,19 +77,37 @@ export async function fetchBooks(
  * URL State Helpers (GPT-5 recommendation)
  * Serialize/deserialize filters to/from URL query params
  */
+/**
+ * Serialize filters to URL with deterministic ordering (GPT-5 recommendation)
+ * Ensures consistent URLs for caching
+ */
 export function serializeFiltersToURL(filters: BookFilters): string {
-  const params = new URLSearchParams();
+  const params: [string, string][] = [];
 
-  if (filters.collectionId) params.set('collection', filters.collectionId);
-  if (filters.genres?.length) params.set('genres', filters.genres.join(','));
-  if (filters.moods?.length) params.set('moods', filters.moods.join(','));
-  if (filters.region) params.set('region', filters.region);
-  if (filters.readingTimeMax) params.set('time', filters.readingTimeMax.toString());
-  if (filters.search) params.set('q', filters.search);
-  if (filters.cursor) params.set('cursor', filters.cursor);
-  if (filters.sortBy && filters.sortBy !== 'popularityScore') params.set('sort', filters.sortBy);
+  // Add params in alphabetical order for deterministic URLs
+  if (filters.collectionId) params.push(['collection', filters.collectionId]);
+  if (filters.cursor) params.push(['cursor', filters.cursor]);
 
-  return params.toString();
+  // Sort arrays before joining for consistency
+  if (filters.genres?.length) {
+    const sorted = [...filters.genres].sort();
+    params.push(['genres', sorted.join(',')]);
+  }
+
+  if (filters.moods?.length) {
+    const sorted = [...filters.moods].sort();
+    params.push(['moods', sorted.join(',')]);
+  }
+
+  if (filters.search) params.push(['q', filters.search]);
+  if (filters.region) params.push(['region', filters.region]);
+  if (filters.sortBy && filters.sortBy !== 'popularityScore') params.push(['sort', filters.sortBy]);
+  if (filters.readingTimeMax) params.push(['time', filters.readingTimeMax.toString()]);
+
+  // Sort by key for deterministic order
+  params.sort((a, b) => a[0].localeCompare(b[0]));
+
+  return new URLSearchParams(params).toString();
 }
 
 export function parseFiltersFromURL(searchParams: URLSearchParams): BookFilters {
