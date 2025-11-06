@@ -18,7 +18,8 @@
 
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
 import { readingPositionService, type ReadingPosition } from '@/lib/services/reading-position';
@@ -649,7 +650,7 @@ const GREAT_GATSBY_CHAPTERS = [
   }
 ];
 
-export default function FeaturedBooksPage() {
+function FeaturedBooksContent() {
   // =========================================================================
   // AUDIO CONTEXT (Phase 1, Task 1.5, Commit 2d: Use directly without prefixes)
   // =========================================================================
@@ -690,6 +691,11 @@ export default function FeaturedBooksPage() {
     unload: contextUnload,
     clearResumeInfo: contextClearResumeInfo,
   } = useAudioContext();
+
+  // =========================================================================
+  // URL PARAMS - Auto-load book from URL
+  // =========================================================================
+  const searchParams = useSearchParams();
 
   // =========================================================================
   // LOCAL STATE (Phase 1, Task 1.5, Commit 2d: No longer need aliases)
@@ -781,6 +787,39 @@ export default function FeaturedBooksPage() {
       }
     };
   }, []);
+
+  // Auto-load book from URL parameter (e.g., /featured-books?book=the-necklace)
+  // This allows direct navigation from catalog or external links
+  const hasAttemptedUrlLoadRef = useRef(false);
+  useEffect(() => {
+    // One-time execution guard
+    if (hasAttemptedUrlLoadRef.current) return;
+
+    const bookSlug = searchParams.get('book');
+    if (!bookSlug) return; // No URL parameter, skip
+
+    hasAttemptedUrlLoadRef.current = true;
+
+    // Skip if book already selected
+    if (selectedBook) {
+      console.log('📖 Book already selected, skipping URL load');
+      return;
+    }
+
+    // Find the book by slug
+    const book = FEATURED_BOOKS.find(b => b.id === bookSlug);
+    if (!book) {
+      console.log('📖 Book not found from URL parameter:', bookSlug);
+      return;
+    }
+
+    // Only dispatch when context is idle
+    if (loadState === 'idle') {
+      console.log('📖 Auto-loading book from URL:', book.title);
+      void contextSelectBook(book);
+      // Note: showBookSelection will be hidden by the effect below
+    }
+  }, [loadState, selectedBook, searchParams, contextSelectBook]);
 
   // Phase 2, Task 2.5: Restore last-read book on mount (GPT-5 fix)
   // Root cause: Previous effect ran too early without checking loadState
@@ -1993,5 +2032,23 @@ export default function FeaturedBooksPage() {
         onSendMessage={handleSendAIMessage}
       />
     </div>
+  );
+}
+
+// Wrap in Suspense for useSearchParams (Next.js 15 requirement)
+export default function FeaturedBooksPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-[var(--bg-primary)]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--accent-primary)] mx-auto mb-4"></div>
+          <p className="text-[var(--text-secondary)]" style={{ fontFamily: '"Source Serif Pro", Georgia, serif' }}>
+            Loading reading experience...
+          </p>
+        </div>
+      </div>
+    }>
+      <FeaturedBooksContent />
+    </Suspense>
   );
 }
