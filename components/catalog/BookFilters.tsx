@@ -69,11 +69,11 @@ export function BookFilters({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header with Clear All */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pb-4 border-b" style={{ borderColor: 'var(--border-light)' }}>
         <h3
-          className="text-xl font-bold"
+          className="text-2xl font-bold"
           style={{
             fontFamily: '"Playfair Display", Georgia, serif',
             color: 'var(--text-accent)'
@@ -85,11 +85,11 @@ export function BookFilters({
         {hasActiveFilters && (
           <button
             onClick={onClearAll}
-            className="text-sm px-3 py-1 rounded transition-opacity hover:opacity-70"
+            className="text-sm px-4 py-2 rounded-lg font-semibold transition-all hover:opacity-80"
             style={{
               fontFamily: '"Source Serif Pro", Georgia, serif',
-              color: 'var(--accent-primary)',
-              border: '1px solid var(--accent-primary)'
+              background: 'var(--accent-primary)',
+              color: 'var(--bg-primary)'
             }}
           >
             Clear All
@@ -99,7 +99,7 @@ export function BookFilters({
 
       {/* Sort By */}
       <FilterSection title="Sort By">
-        <div className="flex flex-wrap gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {SORT_OPTIONS.map(option => (
             <FilterChip
               key={option.value}
@@ -114,7 +114,7 @@ export function BookFilters({
       {/* Genres */}
       {facets?.genres && facets.genres.length > 0 && (
         <FilterSection title="Genres">
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {facets.genres.map(({ name, count }) => (
               <FilterChip
                 key={name}
@@ -130,7 +130,7 @@ export function BookFilters({
       {/* Moods */}
       {facets?.moods && facets.moods.length > 0 && (
         <FilterSection title="Moods">
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {facets.moods.map(({ name, count }) => (
               <FilterChip
                 key={name}
@@ -145,7 +145,7 @@ export function BookFilters({
 
       {/* Reading Time */}
       <FilterSection title="Reading Time">
-        <div className="flex flex-wrap gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
           {READING_TIME_RANGES.map(range => (
             <FilterChip
               key={range.value}
@@ -196,13 +196,13 @@ function FilterSection({
   children: React.ReactNode;
 }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <h4
-        className="text-sm font-semibold uppercase tracking-wider"
+        className="text-sm font-bold uppercase tracking-wider"
         style={{
           fontFamily: '"Source Serif Pro", Georgia, serif',
-          color: 'var(--text-secondary)',
-          letterSpacing: '0.05em'
+          color: 'var(--text-accent)',
+          letterSpacing: '0.1em'
         }}
       >
         {title}
@@ -223,10 +223,10 @@ function FilterChip({
 }) {
   return (
     <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="px-3 py-1.5 rounded-full text-sm font-medium transition-all"
+      className="w-full px-4 py-2.5 rounded-lg text-sm font-medium transition-all text-center"
       style={{
         fontFamily: '"Source Serif Pro", Georgia, serif',
         background: isActive ? 'var(--accent-primary)' : 'var(--bg-secondary)',

@@ -27,7 +27,7 @@ export function CollectionSelector({
     <div className="space-y-6">
       {/* Header - Neo-Classic Typography */}
       <h2
-        className="text-3xl font-bold"
+        className="text-3xl font-bold text-center"
         style={{
           fontFamily: '"Playfair Display", Georgia, serif',
           color: 'var(--text-accent)',

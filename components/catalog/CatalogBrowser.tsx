@@ -91,7 +91,7 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
         )}
 
         {/* Filter Toggle & Active Filters */}
-        <div className="flex items-center justify-between flex-wrap gap-4">
+        <div className="flex items-center justify-center flex-wrap gap-4">
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all"
