@@ -103,12 +103,8 @@ export function CollectionSelector({
 
                 {/* Book count badge */}
                 <span
-                  className="inline-block text-xs px-2 py-1 rounded-full"
+                  className="inline-block text-xs px-2 py-1 rounded-full bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]"
                   style={{
-                    background: 'var(--accent-primary)',
-                    opacity: 0.1,
-                    border: '1px solid var(--accent-primary)',
-                    color: 'var(--accent-primary)',
                     fontFamily: '"Source Serif Pro", Georgia, serif',
                     fontWeight: 600
                   }}

@@ -41,7 +41,7 @@ export function BookGrid({
   return (
     <div className="space-y-8">
       {/* Book Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto px-4">
         {books.map((book, index) => (
           <BookCard
             key={book.id}
