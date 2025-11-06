@@ -16,6 +16,8 @@ interface BookGridProps {
   loading?: boolean;
   hasMore?: boolean;
   onLoadMore?: () => void;
+  onSelectBook: (book: FeaturedBook) => void;
+  onAskAI?: (book: FeaturedBook) => void;
   emptyMessage?: string;
 }
 
@@ -24,6 +26,8 @@ export function BookGrid({
   loading = false,
   hasMore = false,
   onLoadMore,
+  onSelectBook,
+  onAskAI,
   emptyMessage = 'No books found'
 }: BookGridProps) {
   if (loading && books.length === 0) {
@@ -37,9 +41,15 @@ export function BookGrid({
   return (
     <div className="space-y-8">
       {/* Book Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {books.map((book, index) => (
-          <BookCard key={book.id} book={book} index={index} />
+          <BookCard
+            key={book.id}
+            book={book}
+            index={index}
+            onSelectBook={onSelectBook}
+            onAskAI={onAskAI}
+          />
         ))}
       </div>
 
@@ -70,191 +80,99 @@ export function BookGrid({
 
 // Book Card Component
 
-function BookCard({ book, index }: { book: FeaturedBook; index: number }) {
+function BookCard({
+  book,
+  index,
+  onSelectBook,
+  onAskAI
+}: {
+  book: FeaturedBook;
+  index: number;
+  onSelectBook: (book: FeaturedBook) => void;
+  onAskAI?: (book: FeaturedBook) => void;
+}) {
+  // Format reading time
+  const formatReadingTime = (minutes: number) => {
+    if (minutes >= 60) {
+      const hours = (minutes / 60).toFixed(1);
+      return `~${hours}h`;
+    }
+    return `~${minutes}m`;
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05, duration: 0.3 }}
+      transition={{ delay: index * 0.1 }}
+      className="group cursor-pointer"
+      onClick={() => onSelectBook(book)}
     >
-      <Link
-        href={`/books/${book.slug}`}
-        className="group block h-full"
+      <div
+        className="bg-[var(--bg-secondary)] border-2 border-[var(--accent-primary)]/30 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:border-[var(--accent-primary)]/60 hover:-translate-y-1 p-5 h-48 flex flex-col justify-between"
       >
-        <div
-          className="h-full flex flex-col transition-all duration-300"
-          style={{
-            background: 'var(--bg-secondary)',
-            border: '1px solid var(--border-light)',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: '0 2px 8px var(--shadow-soft)'
-          }}
-        >
-          {/* Book Cover - Gradient */}
+        {/* Card Content */}
+        <div>
+          {/* Book Title */}
           <div
-            className="relative w-full aspect-[3/4] rounded-lg mb-4 overflow-hidden"
-            style={{
-              background: book.gradient || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              boxShadow: '0 4px 12px var(--shadow-soft)'
-            }}
+            className="text-lg font-bold text-[var(--text-accent)] mb-1 leading-tight"
+            style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            {/* Abbreviation */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span
-                className="text-6xl font-bold"
-                style={{
-                  fontFamily: '"Playfair Display", Georgia, serif',
-                  color: 'rgba(255, 255, 255, 0.9)',
-                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
-                }}
-              >
-                {book.abbreviation}
-              </span>
-            </div>
-
-            {/* Badges */}
-            <div className="absolute top-2 right-2 flex flex-col gap-1">
-              {book.isNew && (
-                <span
-                  className="px-2 py-1 text-xs font-semibold rounded"
-                  style={{
-                    background: 'var(--accent-primary)',
-                    color: 'var(--bg-primary)',
-                    fontFamily: '"Source Serif Pro", Georgia, serif'
-                  }}
-                >
-                  New
-                </span>
-              )}
-              {book.isClassic && (
-                <span
-                  className="px-2 py-1 text-xs font-semibold rounded"
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.2)',
-                    color: 'white',
-                    fontFamily: '"Source Serif Pro", Georgia, serif',
-                    backdropFilter: 'blur(8px)'
-                  }}
-                >
-                  Classic
-                </span>
-              )}
-            </div>
-
-            {/* Hover Overlay */}
-            <div
-              className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity"
-            />
+            {book.title}
           </div>
 
-          {/* Book Info */}
-          <div className="flex-1 flex flex-col">
-            <h3
-              className="font-bold text-lg mb-1 line-clamp-2 group-hover:underline"
-              style={{
-                fontFamily: '"Playfair Display", Georgia, serif',
-                color: 'var(--text-accent)',
-                lineHeight: '1.3'
-              }}
-            >
-              {book.title}
-            </h3>
+          {/* Author */}
+          <div
+            className="text-sm text-[var(--text-secondary)] mb-3"
+            style={{ fontFamily: 'Source Serif Pro, serif' }}
+          >
+            by {book.author}
+          </div>
 
-            <p
-              className="text-sm mb-3"
-              style={{
-                fontFamily: '"Source Serif Pro", Georgia, serif',
-                color: 'var(--text-secondary)'
-              }}
-            >
-              {book.author}
-            </p>
+          {/* Meta Tags - Compact Style */}
+          <div className="flex gap-2 mb-3 flex-wrap">
+            <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+              A1-C2
+            </span>
+            {book.isClassic && (
+              <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+                Classic
+              </span>
+            )}
+            {book.readingTimeMinutes > 0 && (
+              <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+                {formatReadingTime(book.readingTimeMinutes)}
+              </span>
+            )}
+          </div>
 
-            {/* Description */}
-            {book.description && (
-              <p
-                className="text-xs mb-3 line-clamp-2 flex-1"
-                style={{
-                  fontFamily: '"Source Serif Pro", Georgia, serif',
-                  color: 'var(--text-tertiary)',
-                  lineHeight: '1.5'
+          {/* Action Buttons - Compact Style */}
+          <div className="flex gap-2 mt-auto">
+            {onAskAI && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onAskAI(book);
                 }}
+                className="flex-1 h-9 rounded-lg bg-transparent text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)]/60 transition-all duration-200 text-sm font-medium"
+                style={{ fontFamily: 'Source Serif Pro, serif' }}
               >
-                {book.description}
-              </p>
+                Ask AI
+              </button>
             )}
-
-            {/* Metadata */}
-            <div className="flex items-center gap-3 text-xs mt-auto pt-3 border-t"
-              style={{ borderColor: 'var(--border-light)' }}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelectBook(book);
+              }}
+              className="flex-1 h-9 bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-secondary)] rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
+              style={{ fontFamily: 'Source Serif Pro, serif' }}
             >
-              {book.readingTimeMinutes > 0 && (
-                <span
-                  className="flex items-center gap-1"
-                  style={{
-                    color: 'var(--text-tertiary)',
-                    fontFamily: '"Source Serif Pro", Georgia, serif'
-                  }}
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {book.readingTimeMinutes} min
-                </span>
-              )}
-
-              {book.sentences > 0 && (
-                <span
-                  className="flex items-center gap-1"
-                  style={{
-                    color: 'var(--text-tertiary)',
-                    fontFamily: '"Source Serif Pro", Georgia, serif'
-                  }}
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                  {book.sentences} sentences
-                </span>
-              )}
-            </div>
-
-            {/* Genres */}
-            {book.genres && book.genres.length > 0 && (
-              <div className="flex flex-wrap gap-1 mt-2">
-                {book.genres.slice(0, 2).map(genre => (
-                  <span
-                    key={genre}
-                    className="px-2 py-0.5 text-xs rounded-full"
-                    style={{
-                      background: 'var(--accent-primary)',
-                      opacity: 0.1,
-                      color: 'var(--accent-primary)',
-                      fontFamily: '"Source Serif Pro", Georgia, serif',
-                      fontSize: '0.7rem'
-                    }}
-                  >
-                    {genre}
-                  </span>
-                ))}
-                {book.genres.length > 2 && (
-                  <span
-                    className="px-2 py-0.5 text-xs rounded-full"
-                    style={{
-                      color: 'var(--text-tertiary)',
-                      fontFamily: '"Source Serif Pro", Georgia, serif',
-                      fontSize: '0.7rem'
-                    }}
-                  >
-                    +{book.genres.length - 2}
-                  </span>
-                )}
-              </div>
-            )}
+              Start Reading
+            </button>
           </div>
         </div>
-      </Link>
+      </div>
     </motion.div>
   );
 }

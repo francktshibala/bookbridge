@@ -146,6 +146,8 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
           loading={loadState === 'loading'}
           hasMore={!!nextCursor}
           onLoadMore={loadNextPage}
+          onSelectBook={onSelectBook}
+          onAskAI={onAskAI}
           emptyMessage={
             filters.search
               ? `No books found for "${filters.search}"`
