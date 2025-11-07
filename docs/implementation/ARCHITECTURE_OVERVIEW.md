@@ -169,6 +169,42 @@ When ready to transition from pilot to production (post product-market fit):
 - Speed cycling: `cycleSpeed()` function
 - Play/pause handlers: `handlePlaySequential()`, `handlePause()`, `handleResume()`
 
+#### **2.3. Audio Speed Pilot Test (Jan 2025)**
+
+**Problem:** Multiple users reported audio is "too fast" for comfortable ESL learning.
+
+**Root Cause:**
+- Audio generated at ElevenLabs `speed: 0.90` (ESL-optimized pace with natural pauses)
+- Default playback: `1.0x` → plays 11% faster than intended (1.0 / 0.9 = 1.111x)
+- Result: Students can't follow word-level highlighting, reduces comprehension
+
+**Solution (GPT-5 Validated):**
+- Change default playback speed: `1.0x` → `0.9x`
+- Relabel UI: `0.9x` = "1× Normal", `1.0x` = "1.1× Faster"
+- Add 0.9x to speed options, remove extremes (0.5x, 2.0x)
+- Run 2-week A/B test before classroom pilots
+
+**Why Sync Stays Perfect:**
+- `playbackRate` scales `currentTime` uniformly (HTML5 Audio API)
+- Word timing metadata (in seconds) remains valid at any playback rate
+- No audio regeneration needed (generation speed 0.90 locked as M1 proven formula)
+
+**Implementation Plan:**
+- A/B test: Control (1.0x default) vs Treatment (0.9x default, relabeled UI)
+- Success metrics: +10-20% completion rate, 60%+ stay at 0.9x default
+- Timeline: 2 weeks → deploy winner before Jan 20, 2026 pilots
+
+**Status:** ✅ Plan approved by GPT-5 | ⏸️ Implementation pending
+
+**Full Documentation:** `docs/AUDIO_SPEED_PILOT_TEST.md` (1,250 lines: A/B test design, analytics, risk assessment, 7-phase rollout)
+
+**Code Impact:**
+- `app/featured-books/page.tsx:740` - Default speed
+- `app/featured-books/page.tsx:1443` - SPEED_OPTIONS array
+- `app/featured-books/page.tsx:1458` - formatSpeedLabel() for relabeling
+
+---
+
 #### **2.5. Audio-Text Synchronization System** (Enhanced Timing v3)
 - ✅ Perfect audio-text sync across all sentence complexities (validated user: "unbelievable, it works perfect")
 - ✅ Character-count proportion + punctuation penalties (commas 150ms, semicolons 250ms, colons 200ms, em-dashes 180ms, ellipses 120ms)
