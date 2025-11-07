@@ -2731,6 +2731,7 @@ graph LR
 **📋 Quick Links:**
 - **Deployment Guide:** `docs/CATALOG_MIGRATION_GUIDE.md` (complete 3-phase rollout plan)
 - **Implementation Guide:** `docs/BOOK_ORGANIZATION_SCHEMES.md` (Phases 1-7 technical details)
+- **Library Expansion Strategy:** `docs/LIBRARY_EXPANSION_STRATEGY.md` (28 → 75+ books by Dec 2025, CEFR strategy, GPT-5 validated)
 - **How to Add Books:** `CATALOG_MIGRATION_GUIDE.md:471-638` (step-by-step tutorial)
 - **Performance Comparison:** `CATALOG_MIGRATION_GUIDE.md:395-467` (Featured vs Catalog)
 
