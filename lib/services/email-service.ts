@@ -9,7 +9,7 @@
 
 import { Resend } from 'resend';
 
-const ADMIN_EMAIL = 'franck1tshibala@gmail.com';
+const ADMIN_EMAIL = 'bookbridgegap@gmail.com';
 const FROM_EMAIL = 'BookBridge <onboarding@resend.dev>'; // Use verified domain in production
 
 // Lazy initialization to avoid build-time errors when env var not available
