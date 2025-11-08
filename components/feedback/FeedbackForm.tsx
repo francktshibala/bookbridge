@@ -279,6 +279,7 @@ export default function FeedbackForm({ onSuccess, onCancel }: FeedbackFormProps)
               }}
             >
               <option value="">Select one...</option>
+              <option value="nolan">Nolan Schmalenberger</option>
               <option value="google">Google Search</option>
               <option value="social">Social Media</option>
               <option value="friend">Friend/Colleague</option>
