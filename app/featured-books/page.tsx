@@ -749,8 +749,8 @@ export default function FeaturedBooksPage() {
   const microFeedbackEnabled = process.env.NEXT_PUBLIC_ENABLE_MICRO_FEEDBACK === 'true';
   const microFeedback = usePauseMomentSurvey({
     enabled: microFeedbackEnabled,
-    minSessionDuration: 120, // 2 minutes
-    maxSessionDuration: 180, // 3 minutes
+    minSessionDuration: 10, // 10 seconds (testing mode)
+    maxSessionDuration: 60, // 60 seconds (testing mode)
     cooldownDays: 60,
   });
 

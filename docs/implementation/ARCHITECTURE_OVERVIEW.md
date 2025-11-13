@@ -2406,6 +2406,151 @@ RESEND_API_KEY=re_bzRbzBNo_KGe9n3kfA8jaVwTP6PbfBWyx
 
 ---
 
+## ⚡ Micro-Feedback System (Pause-Moment Surveys) - Nov 2025
+
+### Overview: Capturing Silent User Feedback
+
+**Goal:** Collect lightweight feedback from users during natural pause moments (2-3 minutes into reading) to capture insights from silent users who don't visit the full feedback form.
+
+**Timeline:** November 2025 (3 days)
+**Branch:** `feature/micro-feedback`
+**Status:** ⚠️ Implemented but not triggering (debugging in progress)
+
+**Key Achievement:** Built complete pause-moment survey system with server-side IP geolocation, Neo-Classic UI, and 60-day cooldown enforcement. Ready for testing once trigger logic is fixed.
+
+### Architecture: Hook-Based Pattern (Phase 4)
+
+Following BookBridge's Phase 4 service → hook → component → API pattern to minimize complexity in featured-books page:
+
+```
+Service Layer → Custom Hook → UI Component → API Route
+feedback-micro.ts → usePauseMomentSurvey.ts → PauseMomentBanner.tsx → /api/feedback/micro
+```
+
+### Implementation Details
+
+**Database Model:** `MicroFeedback` (in `prisma/schema.prisma`)
+- Auto-captured metadata: city, region, country (server-side IP geolocation via ipapi.co)
+- NPS score (1-10) OR emoji sentiment (negative/neutral/positive)
+- Optional: feedback text (12-40 chars), email
+- Session context: duration, device type, last book/level
+- Dismissal tracking for analytics
+
+**Service Layer:** `lib/services/feedback-micro.ts`
+- Pure functions: `createMicroFeedback()`, `recordMicroFeedbackDismissal()`, `shouldShowMicroFeedback()`
+- Cooldown enforcement (60 days) with mutual exclusion from full feedback system
+- Analytics helper: `getMicroFeedbackAnalytics()`
+
+**Custom Hook:** `hooks/usePauseMomentSurvey.ts`
+- Pause-moment detection: Triggers when user pauses audio after 2-3 minutes of playback
+- LocalStorage cooldown tracking (prevents re-showing for 60 days)
+- Auto-dismiss after 30 seconds
+- Exposes: `shouldShow`, `handleSubmit`, `handleDismiss`, `checkTriggerConditions()`
+
+**UI Component:** `components/feedback/PauseMomentBanner.tsx`
+- Two-step flow: NPS/Emoji selection → Optional details (text + email)
+- Neo-Classic theme styling (Oxford blue, bronze, parchment)
+- Slide-up banner from bottom (mobile-optimized)
+- Presentational component (no business logic)
+
+**API Route:** `app/api/feedback/micro/route.ts`
+- Server-side IP geolocation (ipapi.co free tier: 1,000 req/day)
+- Email notifications via Resend with Neo-Classic HTML template
+- Handles both feedback submissions and dismissals
+- Force-dynamic rendering (required for IP address access)
+
+### Integration (Minimal Footprint)
+
+Added only **33 lines** to `/app/featured-books/page.tsx` (1.3% increase on 2,506-line file):
+- Hook initialization (lines 748-755)
+- useEffect trigger (lines 1358-1370)
+- Component render (lines 2021-2031)
+
+### Feature Flag
+
+**Environment Variable:** `NEXT_PUBLIC_ENABLE_MICRO_FEEDBACK`
+- Default: `false` (disabled for safety)
+- Location: `.env.local` (not committed to git)
+- Enables gradual rollout testing
+
+### Current Issue (Nov 13, 2025)
+
+**Problem:** Survey not appearing when expected trigger conditions are met.
+
+**Expected Behavior:**
+1. User goes to `/featured-books`
+2. Clicks play on a book
+3. Audio plays for 2-3 minutes (currently set to 10-60 seconds for testing)
+4. User clicks pause
+5. Survey banner should slide up from bottom
+
+**Actual Behavior:**
+- Survey does not appear
+- No errors in browser console
+- `localStorage.getItem('micro_feedback_last_shown')` returns `null` (cooldown not blocking)
+
+**Debugging Steps Attempted:**
+1. ✅ Confirmed feature flag enabled: `NEXT_PUBLIC_ENABLE_MICRO_FEEDBACK=true`
+2. ✅ Confirmed no cooldown blocking (localStorage empty)
+3. ✅ Lowered trigger time to 10 seconds minimum for testing
+4. ⚠️ Dev server restart status unclear
+
+**Potential Root Causes:**
+1. **Environment variable not loaded:** Dev server not restarted after flag enabled
+2. **Timing logic issue:** Session timer calculation may be incorrect
+3. **Pause detection issue:** `isPlaying` state transition not being captured
+4. **useEffect dependency issue:** Hook's `checkTriggerConditions` not being called
+5. **Hook initialization issue:** `microFeedbackEnabled` evaluating to false despite flag
+
+**Next Debugging Steps:**
+1. Add console.log to verify `microFeedbackEnabled` value in featured-books page
+2. Add console.log in `checkTriggerConditions()` to verify it's being called
+3. Add console.log for `isPlaying` state changes to verify pause detection
+4. Check browser Network tab to verify feature flag in client-side bundle
+5. Test with React DevTools to inspect hook state in real-time
+
+### Files Created
+
+**Database:**
+- `prisma/migrations/create_micro_feedback.sql` (manual SQL migration)
+- `scripts/run-micro-feedback-migration.ts` (migration runner)
+
+**Service/Logic:**
+- `lib/services/feedback-micro.ts` (service layer)
+- `hooks/usePauseMomentSurvey.ts` (custom hook)
+
+**UI:**
+- `components/feedback/PauseMomentBanner.tsx` (UI component)
+
+**API:**
+- `app/api/feedback/micro/route.ts` (API route)
+
+**Modified:**
+- `prisma/schema.prisma` (added MicroFeedback model)
+- `app/featured-books/page.tsx` (+33 lines integration)
+- `.env.local` (added feature flag)
+
+### Testing Checklist (When Fixed)
+
+- [ ] Survey appears after pause moment (2-3 min)
+- [ ] Auto-dismisses after 30 seconds
+- [ ] Cooldown enforced (60 days)
+- [ ] Email notification received with correct data
+- [ ] City auto-detected from IP
+- [ ] Neo-Classic styling matches app theme
+- [ ] Dismissal tracked in database
+- [ ] Mobile responsive
+
+### References
+
+- **Implementation Plan:** `docs/implementation/plans/MICRO_FEEDBACK_IMPLEMENTATION_PLAN.md`
+- **Branch:** `feature/micro-feedback` (6 commits pushed, not merged)
+- **Commits:** Steps 1-6 (database, service, hook, UI, API, integration)
+- **Email Provider:** Resend (same as full feedback system)
+- **Geolocation:** ipapi.co (free tier)
+
+---
+
 ## 📊 Phase 5: Usage Analytics Implementation (Jan 2025)
 
 ### Overview: Data-Driven Product Insights

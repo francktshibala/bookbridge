@@ -1272,4 +1272,171 @@ gtag('event', 'micro_feedback_autodismissed', { session_duration, trigger_type }
 
 **Timeline:** 3 days, 6 commits
 
+---
+
+## ⚠️ DEBUGGING: Survey Not Triggering (Nov 13, 2025)
+
+### Issue Status
+
+**Implementation:** ✅ Complete (all 6 steps committed and pushed)
+**Testing:** ❌ Not working - survey doesn't appear when expected
+
+### Problem Description
+
+Survey does not appear when user pauses audio after the specified duration (tested with both 2-3 min and 10-60 sec windows).
+
+**Expected Flow:**
+1. User navigates to `/featured-books`
+2. Selects and plays a book
+3. Audio plays for 10+ seconds (testing mode)
+4. User clicks pause button
+5. Survey banner should slide up from bottom
+
+**Actual Behavior:**
+- No survey appears
+- No errors in browser console
+- No network requests to `/api/feedback/micro`
+
+### Debugging Checklist
+
+**Confirmed Working:**
+- ✅ Feature flag enabled: `NEXT_PUBLIC_ENABLE_MICRO_FEEDBACK=true` in `.env.local`
+- ✅ No cooldown blocking: `localStorage.getItem('micro_feedback_last_shown')` returns `null`
+- ✅ Timing lowered to 10 seconds minimum for testing (line 752 in featured-books/page.tsx)
+- ✅ Build successful (npm run build passes)
+- ✅ All files created and integrated correctly
+
+**Unknown:**
+- ⚠️ Dev server restart status after enabling feature flag
+- ⚠️ Whether `microFeedbackEnabled` evaluates to `true` at runtime
+- ⚠️ Whether `checkTriggerConditions()` is being called from useEffect
+- ⚠️ Whether `isPlaying` state transitions are being detected
+- ⚠️ Whether hook's internal state is updating correctly
+
+### Root Cause Hypotheses
+
+**1. Environment Variable Not Loaded (Most Likely)**
+- Dev server not restarted after `.env.local` change
+- Next.js caches environment variables at server startup
+- Solution: Kill and restart `npm run dev`
+
+**2. Pause Detection Logic Issue**
+- Hook detects transition from `isPlaying: true → false`
+- If audio never truly started playing, transition won't trigger
+- Solution: Add console.logs to verify `isPlaying` state changes
+
+**3. Timing Calculation Issue**
+- Session timer starts when page loads, not when audio starts
+- If user loads page and immediately plays, session duration might not meet minimum
+- Solution: Verify timer logic in `usePauseMomentSurvey.ts:127`
+
+**4. useEffect Dependency Issue**
+- `checkTriggerConditions` function might not be in dependency array
+- React might not be calling the effect when `isPlaying` changes
+- Solution: Check useEffect dependencies at line 1358-1370 in featured-books/page.tsx
+
+**5. Hook Not Initializing**
+- `microFeedbackEnabled` might be evaluating to false despite flag being true
+- Process.env might not be exposing `NEXT_PUBLIC_*` variables correctly
+- Solution: Add console.log to verify flag value at runtime
+
+### Recommended Debugging Steps (In Order)
+
+**Step 1: Verify Environment Variable**
+```tsx
+// Add to featured-books/page.tsx line 749
+console.log('[MicroFeedback] Flag status:', {
+  env: process.env.NEXT_PUBLIC_ENABLE_MICRO_FEEDBACK,
+  enabled: microFeedbackEnabled,
+});
+```
+
+**Step 2: Verify Hook Initialization**
+```tsx
+// Add to usePauseMomentSurvey.ts after line 74
+console.log('[usePauseMomentSurvey] Hook initialized:', {
+  enabled,
+  shouldShow,
+  minDuration: minSessionDuration,
+  maxDuration: maxSessionDuration,
+});
+```
+
+**Step 3: Verify Trigger Function Called**
+```tsx
+// Add to checkTriggerConditions() at line 121 in usePauseMomentSurvey.ts
+console.log('[usePauseMomentSurvey] checkTriggerConditions called:', {
+  isPlaying,
+  duration,
+  wasPlaying: lastPlayStateRef.current,
+  shouldShow,
+  hasInteracted: hasInteractedRef.current,
+});
+```
+
+**Step 4: Verify Pause Detection**
+```tsx
+// Add to checkTriggerConditions() at line 134
+console.log('[usePauseMomentSurvey] Pause detected?', {
+  wasPlaying,
+  nowPaused,
+  transition: wasPlaying && nowPaused,
+});
+```
+
+**Step 5: Use React DevTools**
+- Open React DevTools in browser
+- Find `FeaturedBooksPage` component
+- Inspect `microFeedback` hook state
+- Watch `shouldShow` value as you play/pause
+
+### Quick Fix to Test
+
+If debugging shows hook isn't triggering, try **manual trigger** for testing:
+
+```tsx
+// Add button to featured-books page (temporary)
+<button onClick={() => {
+  microFeedback.checkTriggerConditions(false, selectedBook, cefrLevel);
+}}>
+  [DEBUG] Trigger Survey
+</button>
+```
+
+This bypasses timing logic to test if UI/API flow works.
+
+### Files to Check
+
+1. `/app/featured-books/page.tsx:749-755` - Hook initialization
+2. `/app/featured-books/page.tsx:1358-1370` - useEffect trigger
+3. `/hooks/usePauseMomentSurvey.ts:121-163` - checkTriggerConditions logic
+4. `.env.local:79` - Feature flag value
+5. Browser console - Runtime logs
+6. Browser DevTools → Application → Local Storage - Cooldown check
+
+### Success Criteria
+
+Survey will be working when:
+1. Console shows `[usePauseMomentSurvey] ✅ Trigger conditions met`
+2. Survey banner slides up from bottom after pause
+3. Browser localStorage sets `micro_feedback_last_shown` timestamp
+4. Submission creates row in `micro_feedback` table
+5. Email notification received at bookbridgegap@gmail.com
+
+### Next Steps After Fix
+
+Once trigger logic is fixed:
+1. Test full flow (submission + dismissal)
+2. Verify email notifications
+3. Check database records in Supabase
+4. Restore timing to 2-3 minutes (production values)
+5. Test on mobile devices
+6. Merge to main branch
+
+---
+
+**Status:** Implementation complete, debugging in progress
+**Last Updated:** November 13, 2025
+**Assigned To:** User (continuing after AI session)
+
 **Next Step:** Get approval, create branch `feature/micro-feedback`, start Step 1 (database + service layer)
