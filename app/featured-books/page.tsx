@@ -34,6 +34,8 @@ import { BookSelectionGrid, type FeaturedBook as BookSelectionGridBook } from '.
 import { ReadingHeader } from './components/ReadingHeader';
 import { SettingsModal } from './components/SettingsModal';
 import { ChapterModal, type Chapter } from './components/ChapterModal';
+import { usePauseMomentSurvey } from '@/hooks/usePauseMomentSurvey';
+import PauseMomentBanner from '@/components/feedback/PauseMomentBanner';
 
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
@@ -743,6 +745,15 @@ export default function FeaturedBooksPage() {
   const autoScrollEnabledRef = useRef(true);
   const [autoScrollPaused, setAutoScrollPaused] = useState(false);
 
+  // Micro-feedback survey (pause-moment detection)
+  const microFeedbackEnabled = process.env.NEXT_PUBLIC_ENABLE_MICRO_FEEDBACK === 'true';
+  const microFeedback = usePauseMomentSurvey({
+    enabled: microFeedbackEnabled,
+    minSessionDuration: 120, // 2 minutes
+    maxSessionDuration: 180, // 3 minutes
+    cooldownDays: 60,
+  });
+
   // Phase 1, Task 1.5, Commit 4: Request refs removed - AudioContext handles request management
 
   // Get bookId from selected book or URL params
@@ -1343,6 +1354,20 @@ export default function FeaturedBooksPage() {
       playerRef.current.updateSettings(cefrLevel, playbackSpeed, contentMode);
     }
   }, [cefrLevel, playbackSpeed, contentMode]);
+
+  // Micro-feedback: Trigger survey on pause moments
+  useEffect(() => {
+    if (microFeedbackEnabled && selectedBook) {
+      microFeedback.checkTriggerConditions(
+        isPlaying,
+        {
+          id: selectedBook.id,
+          title: selectedBook.title,
+        },
+        cefrLevel
+      );
+    }
+  }, [isPlaying, selectedBook, cefrLevel, microFeedbackEnabled, microFeedback]);
 
   // Jump to any sentence (by absolute sentence index)
   const jumpToSentence = async (targetIndex: number) => {
@@ -1992,6 +2017,18 @@ export default function FeaturedBooksPage() {
         onClose={handleCloseAIChat}
         onSendMessage={handleSendAIMessage}
       />
+
+      {/* Micro-feedback Survey Banner */}
+      {microFeedbackEnabled && (
+        <PauseMomentBanner
+          isVisible={microFeedback.shouldShow}
+          sessionDuration={microFeedback.sessionDuration}
+          bookTitle={microFeedback.currentBook?.title}
+          onSubmit={microFeedback.handleSubmit}
+          onDismiss={microFeedback.handleDismiss}
+          onClose={microFeedback.handleClose}
+        />
+      )}
     </div>
   );
 }
