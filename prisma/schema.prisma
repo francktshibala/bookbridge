@@ -431,3 +431,40 @@ model Feedback {
   @@map("feedback")
 }
 
+model MicroFeedback {
+  id              String   @id @default(cuid())
+
+  // Feedback type (for future expansion)
+  type            String   @default("pause_moment") // 'pause_moment', 'exit_intent', etc.
+
+  // Quick sentiment capture (mutually exclusive with npsScore)
+  npsScore        Int?     @map("nps_score") // 1-10 (null if emoji used)
+  sentiment       String?  // 'negative', 'neutral', 'positive' (null if NPS used)
+
+  // Optional expansion fields
+  feedbackText    String?  @map("feedback_text") // Optional 1-line feedback (12-40 chars)
+  email           String?  // Optional email for follow-up
+
+  // Server-side captured metadata (auto-populated from IP + session)
+  city            String?  // From IP geolocation (ipapi.co)
+  region          String?  // State/province
+  country         String?  // Country code
+  deviceType      String?  @map("device_type") // 'mobile', 'desktop', 'tablet'
+  sessionDuration Int?     @map("session_duration") // Seconds of engagement before survey
+
+  // Reading context
+  lastBookId      String?  @map("last_book_id") // Book they were reading
+  lastLevel       String?  @map("last_level") // CEFR level they were on
+
+  // Dismissal tracking
+  dismissed       Boolean  @default(false) // Did user dismiss without responding?
+
+  // Timestamps
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@index([city])
+  @@index([type, createdAt])
+  @@map("micro_feedback")
+}
+
