@@ -968,11 +968,57 @@ export const testKeyboardNavigation = async (component: React.ReactElement) => {
 };
 ```
 
+## Voice & Audio System
+
+### Text-to-Speech Architecture
+
+**Provider:** ElevenLabs (Multilingual v2)
+**Sync System:** Enhanced Timing v3 (<5% drift requirement)
+**Post-Processing:** Gender-specific FFmpeg mastering chains
+
+```typescript
+// Voice Generation Pipeline
+TTS Generation (ElevenLabs v2)
+  → Duration Measurement (ffprobe)
+  → Post-Processing (FFmpeg warmth/presence/air)
+  → Metadata Generation (Enhanced Timing v3)
+  → Audio-Text Synchronization
+```
+
+**Current Status:** Production (v1 - perfect sync, professional quality)
+**Research Status:** Comprehensive 5-agent research complete (Jan 2025)
+**Next Phase:** Experimental upgrade to v2 for "mind-blowing" quality
+
+### Voice Enhancement Research (Jan 2025)
+
+**Objective:** Achieve "Wait, is this a HUMAN?" quality while maintaining <5% drift
+
+**Research Scope:** 5 specialist agents, 80+ pages analysis
+- **Agent 1 (TTS Landscape):** Surveyed 12 commercial + 7 open-source providers → ElevenLabs v2 (MOS 4.14, highest score)
+- **Agent 2 (Audio Production):** Gender-specific FFmpeg mastering chains (warmth, presence, air, harmonic richness)
+- **Agent 3 (Perception Psychology):** Neuroscience-backed targets (pitch ±3-5 semitones, pauses 120-180ms, frequency curves)
+- **Agent 4 (ElevenLabs Optimization):** Voice-specific parameters for 14 narrators (stability 0.40-0.42, style 0.25-0.30)
+- **Agent 5 (Sync Preservation):** Testing framework ensuring <5% drift with 6-phase incremental validation
+
+**Key Findings:**
+- Gap is NOT provider—it's model + parameters + post-processing
+- ElevenLabs v2 upgrade: +0.4 MOS improvement potential
+- All neuroscience targets achievable with FFmpeg duration-preserving filters
+- Cost: $58-83 for full implementation (84 files)
+- Expected ROI: 10-20x via engagement lift (+10-20% session duration)
+
+**Documentation:** `docs/research/FINAL_VOICE_ENHANCEMENT_ROADMAP.md`
+
+**Implementation Status:** Research complete, awaiting pilot test approval
+
+---
+
 This architecture ensures:
 - **100% WCAG 2.1 AA compliance** from day 1
 - **AI costs under $1,200/month** with smart optimization
 - **Legal safety** with metadata-only storage
 - **Scalable performance** with caching and optimization
 - **Security best practices** built-in
+- **Perfect audio-text sync** (<5% drift with Enhanced Timing v3)
 
 Next files: SPRINT_PLANS.md with detailed 12-week breakdown.
