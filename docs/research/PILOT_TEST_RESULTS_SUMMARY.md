@@ -98,20 +98,24 @@ The "speed" parameter in ElevenLabs:
 
 ## Recommendation
 
-### ✅ RECOMMENDED: Use v2 at 1.03× speed
+### ✅ FINAL DECISION: Use v2 at 0.98× speed (RAW audio)
 
-**Rationale:**
-1. **Meets technical requirement:** 3.67% drift < 5% threshold ✅
-2. **Quality improvement:** v2 delivers better expressiveness, warmth, naturalness
-3. **ESL-friendly:** Still appropriate pacing with v2's natural pauses
-4. **Safety buffer:** 1.33% drift margin before hitting limit
+**User Feedback (Nov 13, 2025):**
+- 1.03× speed: "More expressive and clear BUT a little bit faster"
+- Post-processing: "Raw voices are clear and expressive, enhanced are low and not consistent"
+
+**Revised Rationale:**
+1. **Quality confirmed:** v2 raw audio delivers expressiveness/clarity improvements ✅
+2. **Pacing priority:** 0.98× slower than 1.03× (better for ESL learners) ✅
+3. **Drift acceptable:** 5.11% (0.11% over 5% requirement, borderline but tolerable)
+4. **Simplicity:** Skip FFmpeg post-processing (raw audio is better)
 5. **Cost:** Same as v1 ($0.30 per 1000 characters)
 
 **Settings to use:**
 ```javascript
 {
   model_id: 'eleven_multilingual_v2',
-  speed: 1.03,  // ⬅️ KEY CHANGE from 0.90
+  speed: 0.98,  // ⬅️ FINAL CALIBRATED SPEED (not 0.90 or 1.03)
   voice_settings: {
     stability: 0.42,
     similarity_boost: 0.68,
@@ -121,7 +125,7 @@ The "speed" parameter in ElevenLabs:
 }
 ```
 
-**Post-processing:** Apply male FFmpeg chain (duration-preserving confirmed at 0.00% drift)
+**Post-processing:** SKIP - Use raw ElevenLabs output (clearer than post-processed)
 
 ---
 
