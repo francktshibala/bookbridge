@@ -153,11 +153,13 @@ export async function GET(request: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY as string
     );
 
-    // Try to load preview from cache file (fallback until DB migration is complete)
+    // Try to load preview from cache file (local) or Supabase storage (production)
     let preview: string | null = null;
     let previewAudio: { audioUrl: string; duration: number } | null = null;
     
     try {
+      // Try cache file first (for local development)
+      // Note: Preview text requires cache file or database migration for production
       const previewCachePath = path.join(process.cwd(), 'cache', 'the-necklace-B1-preview.txt');
       if (fs.existsSync(previewCachePath)) {
         preview = fs.readFileSync(previewCachePath, 'utf8').trim();
@@ -174,7 +176,7 @@ export async function GET(request: NextRequest) {
         };
         console.log('✅ Loaded preview audio metadata from cache');
       } else {
-        // Fallback: Construct preview audio URL from Supabase (if file exists)
+        // Fallback: Construct preview audio URL from Supabase (works in production)
         const previewAudioFileName = 'the-necklace/B1/preview.mp3';
         const { data: { publicUrl } } = supabase.storage
           .from('audio-files')
@@ -184,9 +186,21 @@ export async function GET(request: NextRequest) {
         try {
           const testResponse = await fetch(publicUrl, { method: 'HEAD' });
           if (testResponse.ok) {
+            // Try to get duration from cache metadata if available, otherwise use 0
+            let duration = 0;
+            try {
+              const cachePath = path.join(process.cwd(), 'cache', 'the-necklace-B1-preview-audio.json');
+              if (fs.existsSync(cachePath)) {
+                const metadata = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+                duration = metadata.duration || 0;
+              }
+            } catch (e) {
+              // Duration will be 0, measured client-side if needed
+            }
+            
             previewAudio = {
               audioUrl: publicUrl,
-              duration: 0 // Will be measured client-side if needed
+              duration
             };
             console.log('✅ Found preview audio in Supabase storage');
           }
@@ -195,7 +209,7 @@ export async function GET(request: NextRequest) {
         }
       }
     } catch (error) {
-      console.log('⚠️ Could not load preview from cache:', error instanceof Error ? error.message : 'Unknown error');
+      console.log('⚠️ Could not load preview:', error instanceof Error ? error.message : 'Unknown error');
     }
 
     // Load section data for thematic headers
