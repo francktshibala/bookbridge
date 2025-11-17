@@ -968,11 +968,104 @@ export const testKeyboardNavigation = async (component: React.ReactElement) => {
 };
 ```
 
+## Voice & Audio System
+
+### Text-to-Speech Architecture
+
+**Provider:** ElevenLabs (Monolingual v1)
+**Sync System:** Enhanced Timing v3 (<5% drift requirement)
+**Post-Processing:** FFmpeg speed adjustment (atempo=0.85) for comfortable pace
+
+```typescript
+// Voice Generation Pipeline (Current Production - November 2025)
+TTS Generation (ElevenLabs v1 at default speed)
+  → Duration Measurement (ffprobe)
+  → Speed Adjustment (FFmpeg atempo=0.85)
+  → Re-measure Duration (ffprobe)
+  → Metadata Generation (Enhanced Timing v3)
+  → Audio-Text Synchronization
+```
+
+**Current Status:** Production (v1 + FFmpeg 0.85× - perfect sync, comfortable pace, excellent quality)
+**Production Formula:** See `docs/MASTER_MISTAKES_PREVENTION.md` - CURRENT PRODUCTION STANDARD (November 2025)
+**Complete Implementation Workflow:** See `docs/MASTER_MISTAKES_PREVENTION.md` - COMPLETE BOOK IMPLEMENTATION CHECKLIST (Phase 0-7)
+**Reference Scripts:** 
+- `scripts/regenerate-hero-b2-daniel-0.85.js`
+- `scripts/regenerate-hero-a1-hope-0.83.js`
+
+**Key Innovation (November 2025):**
+- Generate at default speed (0.90×), then use FFmpeg post-processing to slow to 0.85×
+- Provides 18% slower, more comfortable pace without quality degradation
+- ElevenLabs API speed parameter unreliable - FFmpeg provides reliable control
+- Validated on A1 Hope and B2 Daniel voices with perfect sync
+
+**Implementation Workflow:**
+For complete book implementation (fetching → processing → audio generation → deployment), follow the step-by-step workflow in `docs/MASTER_MISTAKES_PREVENTION.md`:
+- **Phase 0:** System Validation
+- **Phase 1:** Pre-Implementation Setup
+- **Phase 2:** Text Acquisition & Processing (fetching, modernization, simplification)
+- **Phase 3:** Audio & Bundle Generation (with FFmpeg 0.85× post-processing)
+- **Phase 4:** API & Database Integration
+- **Phase 4.5:** Frontend API Integration Validation
+- **Phase 5:** Display Headers
+- **Phase 6:** Featured Books Integration
+- **Phase 7:** Testing & Validation
+
+**Critical:** Always follow the phase-by-phase workflow - never attempt multiple phases simultaneously to prevent costly mistakes.
+
+**Research Status:** Comprehensive 5-agent research complete (Jan 2025)
+**Historical Research:** See Voice Enhancement Research section below (v2 upgrade path)
+
+### 📚 HISTORICAL: Voice Enhancement Research (Jan 2025)
+
+**⚠️ RESEARCH PHASE - Not Current Production**
+
+This section documents the comprehensive research conducted in January 2025 exploring v2 model upgrades. The current production uses v1 with FFmpeg post-processing (see above). This research remains valuable for future upgrade paths.
+
+**Objective:** Achieve "Wait, is this a HUMAN?" quality while maintaining <5% drift
+
+**Research Scope:** 5 specialist agents, 80+ pages analysis
+- **Agent 1 (TTS Landscape):** Surveyed 12 commercial + 7 open-source providers → ElevenLabs v2 (MOS 4.14, highest score)
+- **Agent 2 (Audio Production):** Gender-specific FFmpeg mastering chains (warmth, presence, air, harmonic richness)
+- **Agent 3 (Perception Psychology):** Neuroscience-backed targets (pitch ±3-5 semitones, pauses 120-180ms, frequency curves)
+- **Agent 4 (ElevenLabs Optimization):** Voice-specific parameters for 14 narrators (stability 0.40-0.42, style 0.25-0.30)
+- **Agent 5 (Sync Preservation):** Testing framework ensuring <5% drift with 6-phase incremental validation
+
+**Key Findings:**
+- Gap is NOT provider—it's model + parameters + post-processing
+- ElevenLabs v2 upgrade: +0.4 MOS improvement potential
+- All neuroscience targets achievable with FFmpeg duration-preserving filters
+- Cost: $58-83 for full implementation (84 files)
+- Expected ROI: 10-20x via engagement lift (+10-20% session duration)
+
+**Documentation:**
+- Research: `docs/research/FINAL_VOICE_ENHANCEMENT_ROADMAP.md`
+- Pilot Testing: `docs/research/PILOT_TEST_RESULTS_SUMMARY.md`
+- Implementation Decision: `docs/research/FINAL_IMPLEMENTATION_DECISION.md`
+
+**Implementation Status:** Pilot test complete (Nov 2025), ready for rollout
+
+**Pilot Test Results (Nov 13, 2025):**
+- Tested 9 speed configurations to find optimal v2 settings
+- **Final configuration:** v2 at 0.98× speed (raw audio, no post-processing)
+- User feedback: "More expressive and clear" vs v1
+- Drift: 5.11% (0.11% over requirement, acceptable trade-off)
+- Key finding: Raw v2 audio superior to FFmpeg post-processed versions
+- Applied improvements: Model upgrade (v1→v2) + optimized parameters (Agent 4 research)
+- Next: Validate 2-3 sample voices → full rollout (14 voices, ~$50-80)
+
+---
+
 This architecture ensures:
 - **100% WCAG 2.1 AA compliance** from day 1
 - **AI costs under $1,200/month** with smart optimization
 - **Legal safety** with metadata-only storage
 - **Scalable performance** with caching and optimization
 - **Security best practices** built-in
+- **Perfect audio-text sync** (<5% drift with Enhanced Timing v3)
+- **Comfortable audio pace** (0.85× speed via FFmpeg post-processing)
 
-Next files: SPRINT_PLANS.md with detailed 12-week breakdown.
+**Related Documentation:**
+- **Implementation Workflow:** `docs/MASTER_MISTAKES_PREVENTION.md` - Complete step-by-step guide (Phase 0-7)
+- **Production Settings:** `docs/MASTER_MISTAKES_PREVENTION.md` - CURRENT PRODUCTION STANDARD (November 2025)
+- **Sprint Planning:** `docs/SPRINT_PLANS.md` - Detailed 12-week breakdown
