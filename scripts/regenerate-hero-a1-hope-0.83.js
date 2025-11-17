@@ -3,11 +3,11 @@
 /**
  * Hero Section A1 Audio Regeneration Script
  *
- * Regenerates A1 level audio with Hope voice at 0.83× speed
+ * Regenerates A1 level audio with Hope voice at 0.85× speed
  * Implements Solution 1: ffprobe measurement + Enhanced Timing v3
  * Uses FFmpeg post-processing for reliable speed reduction
  *
- * PURPOSE: Generate A1 female voice at comfortable pace (0.83×)
+ * PURPOSE: Generate A1 female voice at comfortable pace (0.85×)
  * SCOPE: Only A1 level, only Hope voice (9 sentences)
  * COST: ~$0.10-0.15
  */
@@ -51,7 +51,7 @@ const HOPE_VOICE_SETTINGS = {
 };
 
 // Target speed after FFmpeg post-processing
-const TARGET_SPEED = 0.83;  // ⬅️ Will slow to 0.83× using FFmpeg (balance between pace and quality)
+const TARGET_SPEED = 0.85;  // ⬅️ Will slow to 0.85× using FFmpeg (balance between pace and quality)
 
 /**
  * Master Mistakes Prevention: Retry logic for ElevenLabs API reliability
@@ -134,7 +134,7 @@ async function slowAudioWithFFmpeg(inputFilePath, outputFilePath, speedRatio) {
   console.log(`\n🎚️ Slowing audio to ${speedRatio}× using FFmpeg...`);
   
   // FFmpeg atempo filter: 0.5 to 2.0 range
-  // To slow to 0.83×, we use atempo=0.83
+  // To slow to 0.85×, we use atempo=0.85
   const command = `ffmpeg -i "${inputFilePath}" -filter:a "atempo=${speedRatio}" -y "${outputFilePath}"`;
   
   try {
@@ -311,7 +311,7 @@ async function main() {
   console.log('🎯 Hero Section A1 Audio Regeneration');
   console.log('📋 Level: A1');
   console.log('🎤 Voice: Hope (Female)');
-  console.log('⚙️ Target Speed: 0.83× (using FFmpeg post-processing - balanced pace/quality)');
+  console.log('⚙️ Target Speed: 0.85× (using FFmpeg post-processing - balanced pace/quality)');
   console.log('🔧 Method: Generate at default → FFmpeg slow → Solution 1 (ffprobe + Enhanced Timing v3)');
   console.log('');
 
@@ -407,7 +407,7 @@ async function main() {
     console.log(`📊 Summary:`);
     console.log(`   Level: A1`);
     console.log(`   Voice: Hope`);
-    console.log(`   Speed: 0.83×`);
+    console.log(`   Speed: 0.85×`);
     console.log(`   Duration: ${measuredDuration.toFixed(3)}s`);
     console.log(`   Sentences: ${sentenceTimings.length}`);
     console.log(`   File: ${fileName}`);

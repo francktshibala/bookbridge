@@ -3,7 +3,7 @@
 /**
  * Hero Section Voice Audio Regeneration Script (Universal)
  *
- * Regenerates hero demo audio for any voice/level combination at 0.83× speed
+ * Regenerates hero demo audio for any voice/level combination at 0.85× speed
  * Implements Solution 1: ffprobe measurement + Enhanced Timing v3
  * Uses FFmpeg post-processing for reliable speed reduction
  *
@@ -249,7 +249,7 @@ function getVoiceSettings(voiceId) {
 }
 
 // Target speed after FFmpeg post-processing
-const TARGET_SPEED = 0.83;
+const TARGET_SPEED = 0.85;
 
 /**
  * Master Mistakes Prevention: Retry logic for ElevenLabs API reliability
@@ -516,7 +516,7 @@ async function main() {
   console.log('🎯 Hero Section Audio Regeneration');
   console.log(`📋 Level: ${levelArg}`);
   console.log(`🎤 Voice: ${voice.name} (${voice.gender})`);
-  console.log(`⚙️ Target Speed: 0.83× (using FFmpeg post-processing - balanced pace/quality)`);
+  console.log(`⚙️ Target Speed: 0.85× (using FFmpeg post-processing - balanced pace/quality)`);
   console.log(`🔧 Method: Generate at default → FFmpeg slow → Solution 1 (ffprobe + Enhanced Timing v3)`);
   console.log('');
 
@@ -614,7 +614,7 @@ async function main() {
     console.log(`📊 Summary:`);
     console.log(`   Level: ${levelKey}`);
     console.log(`   Voice: ${voice.name}`);
-    console.log(`   Speed: 0.83×`);
+    console.log(`   Speed: 0.85×`);
     console.log(`   Duration: ${measuredDuration.toFixed(3)}s`);
     console.log(`   Sentences: ${sentenceTimings.length}`);
     console.log(`   File: ${fileName}`);

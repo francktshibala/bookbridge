@@ -50,7 +50,7 @@ const DANIEL_VOICE_SETTINGS = {
 };
 
 // Target speed after FFmpeg post-processing
-const TARGET_SPEED = 0.83;  // ⬅️ Will slow to 0.83× using FFmpeg (balance between pace and quality)
+const TARGET_SPEED = 0.85;  // ⬅️ Will slow to 0.85× using FFmpeg (balance between pace and quality)
 
 /**
  * Master Mistakes Prevention: Retry logic for ElevenLabs API reliability
@@ -306,7 +306,7 @@ async function main() {
   console.log('🎯 Hero Section B2 Audio Regeneration');
   console.log('📋 Level: B2');
   console.log('🎤 Voice: Daniel');
-  console.log('⚙️ Target Speed: 0.83× (using FFmpeg post-processing - balanced pace/quality)');
+  console.log('⚙️ Target Speed: 0.85× (using FFmpeg post-processing - balanced pace/quality)');
   console.log('🔧 Method: Generate at default → FFmpeg slow → Solution 1 (ffprobe + Enhanced Timing v3)');
   console.log('');
 

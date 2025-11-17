@@ -44,7 +44,7 @@
 
 - **Load Time**: 2-3 seconds (not 45+ seconds)
 - **Sync Quality**: Perfect sentence highlighting with zero lag/drift
-- **Audio Quality**: ElevenLabs + proven voice settings (speed 0.83× via FFmpeg post-processing)
+- **Audio Quality**: ElevenLabs + proven voice settings (speed 0.85× via FFmpeg post-processing)
 - **User Experience**: Seamless playback, instant chapter navigation
 - **Mobile Performance**: <100MB memory usage
 
@@ -140,7 +140,7 @@ npx prisma db pull                                              # Verify databas
 # ✅ 3. Project Planning
 # - Choose book ID format: "book-name-level" (e.g., "gift-of-the-magi")
 # - Select CEFR level: A1, A2, B1 (start with A1 for classics)
-# - Choose voice: Use November 2025 production formula (FFmpeg 0.83× post-processing)
+# - Choose voice: Use November 2025 production formula (FFmpeg 0.85× post-processing)
 # - Estimate cost: sentences × $0.01 for audio generation
 # - Plan chapter structure: 4-8 chapters for optimal UX
 ```
@@ -216,7 +216,7 @@ node scripts/simplify-[book-name].js [LEVEL]
 ```bash
 # ✅ 8. Audio Generation with MANDATORY SOLUTION 1 + FFMPEG POST-PROCESSING (PILOT FIRST!)
 # CRITICAL: Solution 1 is now REQUIRED for all new implementations
-# CRITICAL: Use November 2025 production formula (FFmpeg 0.83× post-processing) - see CURRENT PRODUCTION STANDARD section
+# CRITICAL: Use November 2025 production formula (FFmpeg 0.85× post-processing) - see CURRENT PRODUCTION STANDARD section
 # End Result: Perfect audio-text sync + instant loading (2-3 seconds vs 45+ seconds) + comfortable pace
 
 # MANDATORY SETUP (required for all new books):
@@ -226,7 +226,7 @@ brew install ffmpeg                         # Install ffprobe for measurements +
 # ⚠️ NOVEMBER 2025 PRODUCTION FORMULA (MANDATORY):
 # 1. Generate audio at default speed (0.90×) via ElevenLabs API
 # 2. Save to temp file and measure original duration with ffprobe
-# 3. Apply FFmpeg atempo=0.83 filter to slow audio (20% slower, comfortable pace)
+# 3. Apply FFmpeg atempo=0.85 filter to slow audio (18% slower, comfortable pace)
 # 4. Re-measure slowed duration with ffprobe (CRITICAL for sync)
 # 5. Calculate sentence timings based on slowed duration
 # Reference: See CURRENT PRODUCTION STANDARD (November 2025) section for complete implementation
@@ -301,7 +301,7 @@ node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
 # ⚠️ MANDATORY: All generation scripts MUST include Solution 1 + FFmpeg post-processing:
 # 1. Generate audio via ElevenLabs TTS at default speed (0.90×)
 # 2. Save to temp file and measure original duration with ffprobe
-# 3. Apply FFmpeg atempo=0.83 filter to slow audio (November 2025 formula)
+# 3. Apply FFmpeg atempo=0.85 filter to slow audio (November 2025 formula)
 # 4. Re-measure slowed duration with ffprobe (CRITICAL - use this for timings)
 # 5. Calculate proportional sentence timings based on slowed duration (Enhanced Timing v3)
 # 6. Cache everything in audioDurationMetadata JSONB field
@@ -610,7 +610,7 @@ npm run dev                                    # Start development server
 - **NEVER use eleven_flash_v2_5** - breaks synchronization
 - **NEVER use eleven_turbo_v2_5** - tested Oct 2025, worse quality than v1 (see TURBO_V25_TESTING_RESULTS.md)
 - **ALWAYS use eleven_monolingual_v1** - English-focused model for ESL clarity (proven best)
-- **Speed adjustment**: Use FFmpeg post-processing to 0.83× (NOT API speed parameter - unreliable)
+- **Speed adjustment**: Use FFmpeg post-processing to 0.85× (NOT API speed parameter - unreliable)
 - **Reference**: See CURRENT PRODUCTION STANDARD (November 2025) section for exact settings
 
 **System & Validation:**
@@ -1047,11 +1047,11 @@ This is the **current working formula** validated in November 2025 for hero demo
 
 ### **NOVEMBER 2025 PRODUCTION FORMULA (CURRENT STANDARD)**
 
-**Key Innovation:** Generate at default speed (0.90×), then use FFmpeg post-processing to slow to 0.83× for comfortable pace without quality degradation.
+**Key Innovation:** Generate at default speed (0.90×), then use FFmpeg post-processing to slow to 0.85× for comfortable pace without quality degradation.
 
 **Why This Works:**
 - ✅ ElevenLabs API speed parameter unreliable (tested 0.75, 0.85 - no noticeable difference)
-- ✅ FFmpeg `atempo=0.83` provides reliable 20% slowdown
+- ✅ FFmpeg `atempo=0.85` provides reliable 18% slowdown (was 0.83, updated to 0.85)
 - ✅ Quality maintained (less aggressive than 0.75× which caused degradation)
 - ✅ Perfect sync maintained (Solution 1 + Enhanced Timing v3)
 
@@ -1081,7 +1081,7 @@ await fs.writeFile(tempOriginalFile, audioBuffer);
 const originalDuration = await measureAudioDuration(tempOriginalFile);
 
 // STEP 4: Slow down using FFmpeg atempo filter
-const TARGET_SPEED = 0.83;  // 20% slower, comfortable pace
+const TARGET_SPEED = 0.85;  // 18% slower, comfortable pace
 const command = `ffmpeg -i "${tempOriginalFile}" -filter:a "atempo=${TARGET_SPEED}" -y "${tempSlowedFile}"`;
 await execAsync(command);
 
@@ -1106,7 +1106,7 @@ const PRODUCTION_DANIEL_SETTINGS = {
     use_speaker_boost: true
   },
   speed: 0.90,                          // Generate at default
-  // Post-processing: FFmpeg atempo=0.83 (20% slower)
+  // Post-processing: FFmpeg atempo=0.85 (18% slower)
 };
 
 // HOPE VOICE - Production Standard (November 2025)
@@ -1120,13 +1120,13 @@ const PRODUCTION_HOPE_SETTINGS = {
     use_speaker_boost: true
   },
   speed: 0.90,                          // Generate at default
-  // Post-processing: FFmpeg atempo=0.83 (20% slower)
+  // Post-processing: FFmpeg atempo=0.85 (18% slower)
 };
 ```
 
 **Reference Implementations:**
-- `scripts/regenerate-hero-b2-daniel-0.85.js` - B2 Daniel at 0.83×
-- `scripts/regenerate-hero-a1-hope-0.83.js` - A1 Hope at 0.83×
+- `scripts/regenerate-hero-b2-daniel-0.85.js` - B2 Daniel at 0.85×
+- `scripts/regenerate-hero-a1-hope-0.83.js` - A1 Hope at 0.85×
 
 **Validation Results:**
 - ✅ B2 Daniel: 79.7s → 96.0s (20.5% slower, perfect sync, excellent quality)
@@ -1135,7 +1135,7 @@ const PRODUCTION_HOPE_SETTINGS = {
 
 **⚠️ MANDATORY for all new implementations:**
 - Use FFmpeg post-processing for speed adjustment (NOT API speed parameter)
-- Target speed: 0.83× (proven balance of pace and quality)
+- Target speed: 0.85× (proven balance of pace and quality)
 - Always re-measure duration after FFmpeg processing (Solution 1)
 - Use Enhanced Timing v3 for sentence timings based on slowed duration
 
@@ -1171,18 +1171,18 @@ This section documents speed adjustment attempts made in November 2025. These we
 **Duration Change:** 77.401s → 103.183s (33.3% slower)  
 **Finding:** Too aggressive - causes quality loss, sounds unnatural
 
-### **Attempt 4: FFmpeg Post-Processing at 0.83× (SUCCESS)**
+### **Attempt 4: FFmpeg Post-Processing at 0.85× (SUCCESS)**
 
 **Date:** November 2025  
-**Approach:** Generate at default speed, then FFmpeg `atempo=0.83`  
+**Approach:** Generate at default speed, then FFmpeg `atempo=0.85`  
 **Result:** ✅ Perfect balance - noticeable slowdown with maintained quality  
-**Duration Change:** 79.7s → 96.0s (20.5% slower)  
+**Duration Change:** ~18% slower (updated from 0.83× to 0.85×)  
 **Finding:** **This became the working formula** - see CURRENT PRODUCTION STANDARD above
 
 **Key Lessons:**
 - ElevenLabs API speed parameter unreliable for `eleven_monolingual_v1`
 - FFmpeg post-processing provides reliable speed control
-- 0.83× is the sweet spot (20% slower, quality maintained)
+- 0.85× is the sweet spot (18% slower, quality maintained)
 - Always re-measure duration after FFmpeg processing for accurate sync
 
 ---
@@ -1253,7 +1253,7 @@ const PRODUCTION_DANIEL_SETTINGS = {
 
 **⚠️ DEPRECATED - Use November 2025 formula instead:**
 - Model: `eleven_monolingual_v1` (✅ Still correct)
-- Speed: 0.90 (❌ Now use FFmpeg post-processing to 0.83×)
+- Speed: 0.90 (❌ Now use FFmpeg post-processing to 0.85×)
 - Reference implementation: See November 2025 section above
 
 ---

@@ -974,19 +974,19 @@ export const testKeyboardNavigation = async (component: React.ReactElement) => {
 
 **Provider:** ElevenLabs (Monolingual v1)
 **Sync System:** Enhanced Timing v3 (<5% drift requirement)
-**Post-Processing:** FFmpeg speed adjustment (atempo=0.83) for comfortable pace
+**Post-Processing:** FFmpeg speed adjustment (atempo=0.85) for comfortable pace
 
 ```typescript
 // Voice Generation Pipeline (Current Production - November 2025)
 TTS Generation (ElevenLabs v1 at default speed)
   → Duration Measurement (ffprobe)
-  → Speed Adjustment (FFmpeg atempo=0.83)
+  → Speed Adjustment (FFmpeg atempo=0.85)
   → Re-measure Duration (ffprobe)
   → Metadata Generation (Enhanced Timing v3)
   → Audio-Text Synchronization
 ```
 
-**Current Status:** Production (v1 + FFmpeg 0.83× - perfect sync, comfortable pace, excellent quality)
+**Current Status:** Production (v1 + FFmpeg 0.85× - perfect sync, comfortable pace, excellent quality)
 **Production Formula:** See `docs/MASTER_MISTAKES_PREVENTION.md` - CURRENT PRODUCTION STANDARD (November 2025)
 **Complete Implementation Workflow:** See `docs/MASTER_MISTAKES_PREVENTION.md` - COMPLETE BOOK IMPLEMENTATION CHECKLIST (Phase 0-7)
 **Reference Scripts:** 
@@ -994,8 +994,8 @@ TTS Generation (ElevenLabs v1 at default speed)
 - `scripts/regenerate-hero-a1-hope-0.83.js`
 
 **Key Innovation (November 2025):**
-- Generate at default speed (0.90×), then use FFmpeg post-processing to slow to 0.83×
-- Provides 20% slower, more comfortable pace without quality degradation
+- Generate at default speed (0.90×), then use FFmpeg post-processing to slow to 0.85×
+- Provides 18% slower, more comfortable pace without quality degradation
 - ElevenLabs API speed parameter unreliable - FFmpeg provides reliable control
 - Validated on A1 Hope and B2 Daniel voices with perfect sync
 
@@ -1004,7 +1004,7 @@ For complete book implementation (fetching → processing → audio generation �
 - **Phase 0:** System Validation
 - **Phase 1:** Pre-Implementation Setup
 - **Phase 2:** Text Acquisition & Processing (fetching, modernization, simplification)
-- **Phase 3:** Audio & Bundle Generation (with FFmpeg 0.83× post-processing)
+- **Phase 3:** Audio & Bundle Generation (with FFmpeg 0.85× post-processing)
 - **Phase 4:** API & Database Integration
 - **Phase 4.5:** Frontend API Integration Validation
 - **Phase 5:** Display Headers
@@ -1063,7 +1063,7 @@ This architecture ensures:
 - **Scalable performance** with caching and optimization
 - **Security best practices** built-in
 - **Perfect audio-text sync** (<5% drift with Enhanced Timing v3)
-- **Comfortable audio pace** (0.83× speed via FFmpeg post-processing)
+- **Comfortable audio pace** (0.85× speed via FFmpeg post-processing)
 
 **Related Documentation:**
 - **Implementation Workflow:** `docs/MASTER_MISTAKES_PREVENTION.md` - Complete step-by-step guide (Phase 0-7)
