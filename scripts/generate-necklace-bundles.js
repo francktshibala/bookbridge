@@ -73,12 +73,12 @@ const JANE_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR NECKLACE: A1 → Daniel, A2 → Jane, B1 → Daniel
+// VOICE MAPPING FOR NECKLACE: A1 → Daniel, A2 → Jane, B1 → Jane
 function getVoiceForLevel(level) {
   const voiceMapping = {
     'A1': DANIEL_VOICE_SETTINGS,  // A1 uses standard Daniel voice
     'A2': JANE_VOICE_SETTINGS,    // A2 uses Jane (Professional audiobook reader)
-    'B1': DANIEL_VOICE_SETTINGS   // B1 uses standard Daniel voice
+    'B1': JANE_VOICE_SETTINGS    // B1 uses Jane (Professional audiobook reader)
   };
   return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
 }
@@ -108,7 +108,7 @@ const CEFR_LEVEL = targetLevel;
 const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
 
 console.log(`🎵 Generating bundles for "${BOOK_ID}" at ${CEFR_LEVEL} level`);
-const voiceName = CEFR_LEVEL === 'A2' ? 'Sarah' : 'Daniel';
+const voiceName = CEFR_LEVEL === 'A2' || CEFR_LEVEL === 'B1' ? 'Jane' : (CEFR_LEVEL === 'A1' ? 'Daniel' : 'Daniel');
 console.log(`🗣️ Using voice: ${voiceSettings.voice_id} (${voiceName})`);
 
 if (isPilot) {
@@ -392,9 +392,9 @@ async function generateNecklaceBundles() {
     const bundlesToProcess = isPilot ? bundles.slice(0, 3) : bundles;
     console.log(`🔄 Will process ${bundlesToProcess.length} bundles`);
 
-    // For A1 and A2 regeneration: Delete existing bundles first (override mode)
-    // A2 needs regeneration to switch from Sarah to Jane voice
-    if (CEFR_LEVEL === 'A1' || CEFR_LEVEL === 'A2') {
+    // For A1, A2, and B1 regeneration: Delete existing bundles first (override mode)
+    // A2 and B1 need regeneration to switch to Jane voice
+    if (CEFR_LEVEL === 'A1' || CEFR_LEVEL === 'A2' || CEFR_LEVEL === 'B1') {
       console.log(`🔄 ${CEFR_LEVEL} regeneration mode: Deleting existing ${CEFR_LEVEL} bundles...`);
       const deletedCount = await prisma.bookChunk.deleteMany({
         where: {
@@ -415,19 +415,19 @@ async function generateNecklaceBundles() {
     });
 
     const existingIndices = new Set(existingBundles.map(b => b.chunkIndex));
-    // For A1 and A2: process all bundles (regeneration mode). For others: resume capability
-    const bundlesToGenerate = (CEFR_LEVEL === 'A1' || CEFR_LEVEL === 'A2')
+    // For A1, A2, and B1: process all bundles (regeneration mode). For others: resume capability
+    const bundlesToGenerate = (CEFR_LEVEL === 'A1' || CEFR_LEVEL === 'A2' || CEFR_LEVEL === 'B1')
       ? bundlesToProcess 
       : bundlesToProcess.filter(b => !existingIndices.has(b.index));
 
-    if (CEFR_LEVEL !== 'A1' && CEFR_LEVEL !== 'A2') {
+    if (CEFR_LEVEL !== 'A1' && CEFR_LEVEL !== 'A2' && CEFR_LEVEL !== 'B1') {
       console.log(`📊 Resume capability: ${existingIndices.size} existing, ${bundlesToGenerate.length} new bundles`);
     } else {
       console.log(`📊 Will regenerate all ${bundlesToGenerate.length} bundles`);
     }
 
     let processedCount = 0;
-    const voiceType = CEFR_LEVEL === 'A2' ? 'Jane' : 'Daniel';
+    const voiceType = (CEFR_LEVEL === 'A2' || CEFR_LEVEL === 'B1') ? 'Jane' : 'Daniel';
 
     for (const bundle of bundlesToGenerate) {
       try {

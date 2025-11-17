@@ -76,12 +76,12 @@ const JANE_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR NECKLACE: A1 → Daniel, A2 → Jane, B1 → Daniel
+// VOICE MAPPING FOR NECKLACE: A1 → Daniel, A2 → Jane, B1 → Jane
 function getVoiceForLevel(level) {
   const voiceMapping = {
     'A1': DANIEL_VOICE_SETTINGS,
     'A2': JANE_VOICE_SETTINGS,  // A2 uses Jane (Professional audiobook reader)
-    'B1': DANIEL_VOICE_SETTINGS
+    'B1': JANE_VOICE_SETTINGS   // B1 uses Jane (Professional audiobook reader)
   };
   return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
 }
@@ -99,7 +99,7 @@ async function generatePreviewAudio(previewText, bookId, level) {
   
   try {
     const voiceSettings = getVoiceForLevel(level);
-    const voiceName = level === 'A2' ? 'Jane' : (level === 'A1' ? 'Daniel' : 'Daniel');
+    const voiceName = level === 'A2' || level === 'B1' ? 'Jane' : (level === 'A1' ? 'Daniel' : 'Daniel');
     
     console.log(`   🗣️ Using voice: ${voiceSettings.voice_id} (${voiceName})`);
     
