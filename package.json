@@ -106,6 +106,9 @@
     "tesseract.js": "^6.0.1",
     "typescript": "^5.8.3"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "devDependencies": {
     "@next/bundle-analyzer": "^15.5.2",
     "@testing-library/jest-dom": "^6.6.3",

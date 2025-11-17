@@ -210,6 +210,38 @@ node scripts/simplify-[book-name].js [LEVEL]
 #   3. Add auto-repair: merge shortest adjacent sentences if too many, split longest at punctuation if too few
 #   4. Include in simplification scripts for production reliability
 #   5. This prevents costly regeneration and maintains perfect audio-text sync
+
+# ✅ 7.5. Generate Book Preview (AFTER simplification, BEFORE audio generation)
+node scripts/generate-[book-name]-preview.js [LEVEL]
+# Example: node scripts/generate-necklace-preview.js A1
+# CRITICAL: Generate preview AFTER simplification to use level-appropriate text
+# PURPOSE: Create 50-100 word preview for catalog/detail pages (based on research)
+#
+# ⚠️ PREVIEW REQUIREMENTS (from book preview research):
+# - Length: 50-100 words (A1: 50-75, A2: 75-100, B1: 100-125)
+# - Language: Match book's CEFR level (simple words for A1, etc.)
+# - Required elements:
+#   1. CEFR level indicator: "Perfect for A1 level" or "Great for beginners"
+#   2. Length/time: "15-minute read" or "Short story"
+#   3. Curiosity hook: 1-2 sentences creating interest WITHOUT spoilers
+#   4. Theme/genre: Brief mention (1 sentence) - "A story about..." or "Explores themes of..."
+# - Optional (if space): Achievement promise ("Perfect for building confidence")
+# - AVOID: Spoilers, complex words, overwhelming context, negative framing
+#
+# ⚠️ PREVIEW GENERATION PROCESS:
+# 1. Load simplified text from cache (same file used for audio generation)
+# 2. Calculate word count and reading time estimate
+# 3. Use OpenAI GPT-4o to generate preview matching CEFR level
+# 4. Validate preview length (50-100 words)
+# 5. Save to database (BookContent.preview field) and cache
+# 6. Preview will be used in catalog/detail pages (Phase 6 integration)
+#
+# ⚠️ DATABASE REQUIREMENT:
+# - Ensure BookContent.preview field exists (add via migration if needed)
+# - Preview stored per book (not per level - one preview covers all levels)
+# - Format: Plain text, 50-100 words, level-appropriate language
+#
+# REFERENCE: See docs/research/book-preview-research/AGENT_SYNTHESIS.md for complete template
 ```
 
 ### Phase 3: Audio & Bundle Generation
@@ -1122,6 +1154,21 @@ const PRODUCTION_HOPE_SETTINGS = {
   speed: 0.90,                          // Generate at default
   // Post-processing: FFmpeg atempo=0.85 (18% slower)
 };
+
+// JANE VOICE - Production Standard (November 2025)
+// Professional audiobook reader - Used for A2 level (The Necklace A2)
+const PRODUCTION_JANE_SETTINGS = {
+  voice_id: 'RILOU7YmBhvwJGDGjNmP',
+  model_id: 'eleven_monolingual_v1',
+  voice_settings: {
+    stability: 0.5,                    // Clarity for ESL learners
+    similarity_boost: 0.8,             // Better presence
+    style: 0.05,                       // Subtle sophistication
+    use_speaker_boost: true
+  },
+  speed: 0.90,                          // Generate at default
+  // Post-processing: FFmpeg atempo=0.85 (18% slower)
+};
 ```
 
 **Reference Implementations:**
@@ -1725,6 +1772,7 @@ async function cleanupAudioOnly(bookId, level) {
 - [ ] Fetch: Text extracted with proper markers
 - [ ] Modernize: Cache saved, language updated, meaning preserved
 - [ ] Simplify: Sentence count matches exactly, CEFR compliant
+- [ ] Preview: Generated (50-100 words), saved to database and cache
 - [ ] Generate: Pilot test successful, actual duration measured
 - [ ] Deploy: Featured Books integration, chapter navigation works
 
@@ -1743,14 +1791,15 @@ async function cleanupAudioOnly(bookId, level) {
 **A book implementation is COMPLETE only when:**
 
 1. **Database**: ✅ Book + BookContent + BookChunks all exist with correct data
-2. **Audio**: ✅ 95%+ bundles have audio files in Supabase storage
-3. **Solution 1**: ✅ All bundles have audioDurationMetadata with measuredDuration and sentenceTimings
-4. **Sync**: ✅ Audio text matches displayed text exactly (no mismatches)
-5. **Performance**: ✅ API loads in 2-3 seconds using cached data (not 45+ seconds)
-6. **UI**: ✅ Featured Books page displays and plays correctly
-7. **Chapters**: ✅ Chapter navigation jumps work without errors
-8. **Mobile**: ✅ No memory leaks, <100MB usage on mobile
-9. **Harmony**: ✅ Perfect sentence-level audio-text synchronization (no lag/drift)
+2. **Preview**: ✅ Book preview generated (50-100 words) and saved to BookContent.preview
+3. **Audio**: ✅ 95%+ bundles have audio files in Supabase storage
+4. **Solution 1**: ✅ All bundles have audioDurationMetadata with measuredDuration and sentenceTimings
+5. **Sync**: ✅ Audio text matches displayed text exactly (no mismatches)
+6. **Performance**: ✅ API loads in 2-3 seconds using cached data (not 45+ seconds)
+7. **UI**: ✅ Featured Books page displays and plays correctly
+8. **Chapters**: ✅ Chapter navigation jumps work without errors
+9. **Mobile**: ✅ No memory leaks, <100MB usage on mobile
+10. **Harmony**: ✅ Perfect sentence-level audio-text synchronization (no lag/drift)
 
 ---
 

@@ -178,10 +178,55 @@ export async function GET(request: NextRequest) {
       totalSentencesProcessed += sentencesWithTimings.length;
     });
 
-    // Get book metadata
+    // Get book metadata (including preview if available)
     const bookContent = await prisma.bookContent.findFirst({
       where: { bookId: 'the-necklace' }
     });
+
+    // Try to load preview from cache file (fallback until DB migration is complete)
+    let preview: string | null = null;
+    let previewAudio: { audioUrl: string; duration: number } | null = null;
+    
+    try {
+      const previewCachePath = path.join(process.cwd(), 'cache', 'the-necklace-A1-preview.txt');
+      if (fs.existsSync(previewCachePath)) {
+        preview = fs.readFileSync(previewCachePath, 'utf8').trim();
+        console.log('✅ Loaded preview from cache');
+      }
+      
+      // Try to load preview audio metadata
+      const previewAudioPath = path.join(process.cwd(), 'cache', 'the-necklace-A1-preview-audio.json');
+      if (fs.existsSync(previewAudioPath)) {
+        const audioMetadata = JSON.parse(fs.readFileSync(previewAudioPath, 'utf8'));
+        previewAudio = {
+          audioUrl: audioMetadata.audioUrl,
+          duration: audioMetadata.duration
+        };
+        console.log('✅ Loaded preview audio metadata from cache');
+      } else {
+        // Fallback: Construct preview audio URL from Supabase (if file exists)
+        const previewAudioFileName = 'the-necklace/A1/preview.mp3';
+        const { data: { publicUrl } } = supabase.storage
+          .from('audio-files')
+          .getPublicUrl(previewAudioFileName);
+        
+        // Check if file exists by trying to fetch it
+        try {
+          const testResponse = await fetch(publicUrl, { method: 'HEAD' });
+          if (testResponse.ok) {
+            previewAudio = {
+              audioUrl: publicUrl,
+              duration: 0 // Will be measured client-side if needed
+            };
+            console.log('✅ Found preview audio in Supabase storage');
+          }
+        } catch (error) {
+          // File doesn't exist, that's okay
+        }
+      }
+    } catch (error) {
+      console.log('⚠️ Could not load preview from cache:', error instanceof Error ? error.message : 'Unknown error');
+    }
 
     // Load chapter data (from our chapter detection)
     let chapters = null;
@@ -219,6 +264,8 @@ export async function GET(request: NextRequest) {
         totalSentences,
         bundles,
         chapters, // Add chapter structure for UI
+        preview: preview || null, // Book preview (50-100 words) for reading page
+        previewAudio: previewAudio || null, // Preview audio URL and duration
         source: 'dedicated-api' // Indicates this came from dedicated API for debugging
       }),
       {

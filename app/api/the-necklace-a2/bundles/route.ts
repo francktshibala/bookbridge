@@ -3,10 +3,15 @@ export const revalidate = 3600; // Cache for 1 hour
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
 
-// Using singleton prisma from @/lib/prisma;
+// Initialize Supabase client for preview audio lookup
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+  process.env.SUPABASE_SERVICE_ROLE_KEY as string
+);
 
 interface BundleMetadata {
   bundleId: string;
@@ -62,13 +67,23 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Get bundles from BookChunk table
+    // Get bundles from BookChunk table with audio duration metadata
     const bookChunks = await prisma.bookChunk.findMany({
       where: {
         bookId: 'the-necklace',
         cefrLevel: 'A2'
       },
-      orderBy: { chunkIndex: 'asc' }
+      orderBy: { chunkIndex: 'asc' },
+      select: {
+        id: true,
+        bookId: true,
+        cefrLevel: true,
+        chunkIndex: true,
+        chunkText: true,
+        wordCount: true,
+        audioFilePath: true,
+        audioDurationMetadata: true
+      }
     });
 
     if (!bookChunks || bookChunks.length === 0) {
@@ -90,44 +105,100 @@ export async function GET(request: NextRequest) {
     const bundles: BundleMetadata[] = [];
     let totalSentencesProcessed = 0;
 
-    bookChunks.forEach((chunk, index) => {
-      // Generate Supabase storage URL
-      const audioUrl = `https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/${chunk.audioFilePath}`;
+    bookChunks.forEach((chunk: any, index) => {
+      // Generate Supabase storage URL from relative path using API, not hardcoded domain
+      const audioUrl = supabase.storage
+        .from('audio-files')
+        .getPublicUrl(chunk.audioFilePath!)
+        .data.publicUrl;
 
-      // Split chunk text into sentences
-      const chunkSentences = chunk.chunkText
-        .split(/(?<=[.!?])\s+/)
-        .map(s => s.trim())
-        .filter(s => s.length > 5);
+      let sentencesWithTimings;
+      let totalDuration: number;
 
-      console.log(`Bundle ${index}: ${chunkSentences.length} sentences`);
+      // Check if we have cached duration metadata (Solution 1)
+      if (chunk.audioDurationMetadata && typeof chunk.audioDurationMetadata === 'object') {
+        // Use cached timings (FAST PATH - 2-3 seconds)
+        const metadata = chunk.audioDurationMetadata as any;
+        console.log(`Bundle ${index}: Using cached duration ${metadata.measuredDuration?.toFixed(3)}s`);
 
-      // Calculate dynamic timings using Sarah voice formula (0.35s per word)
-      let cumulativeTime = 0;
-      const sentencesWithTimings = chunkSentences.map((text, sentenceIdx) => {
-        const words = text.trim().split(/\s+/).length;
-        const secondsPerWord = 0.35; // Sarah voice timing (A2 level)
-        const minDuration = 2.0;     // Minimum duration for short sentences
-        const duration = Math.max(words * secondsPerWord, minDuration);
+        totalDuration = metadata.measuredDuration || 0;
 
-        const startTime = cumulativeTime;
-        const endTime = startTime + duration;
-        cumulativeTime = endTime; // Update for next sentence
+        // Use cached sentence timings if available
+        if (metadata.sentenceTimings && Array.isArray(metadata.sentenceTimings)) {
+          sentencesWithTimings = metadata.sentenceTimings.map((timing: any, idx: number) => ({
+            sentenceId: `s${totalSentencesProcessed + idx}`,
+            sentenceIndex: totalSentencesProcessed + idx,
+            text: timing.text,
+            startTime: timing.startTime,
+            endTime: timing.endTime
+          }));
+        } else {
+          // Fallback: split text and use proportional timing from cached duration
+          const chunkSentences = chunk.chunkText
+            .split(/(?<=[.!?])\s+/)
+            .map((s: string) => s.trim())
+            .filter((s: string) => s.length > 5);
 
-        return {
-          sentenceId: `s${totalSentencesProcessed + sentenceIdx}`,
-          sentenceIndex: totalSentencesProcessed + sentenceIdx,
-          text: text.trim(),
-          startTime: startTime,
-          endTime: endTime
-        };
-      });
+          const totalWords = chunkSentences.reduce((sum: number, sentence: string) =>
+            sum + sentence.split(/\s+/).length, 0
+          );
+
+          let currentTime = 0;
+          sentencesWithTimings = chunkSentences.map((text: string, sentenceIdx: number) => {
+            const words = text.trim().split(/\s+/).length;
+            const wordRatio = words / totalWords;
+            const estimatedDuration = totalDuration * wordRatio;
+
+            const startTime = currentTime;
+            const endTime = currentTime + estimatedDuration;
+            currentTime = endTime;
+
+            return {
+              sentenceId: `s${totalSentencesProcessed + sentenceIdx}`,
+              sentenceIndex: totalSentencesProcessed + sentenceIdx,
+              text: text.trim(),
+              startTime: parseFloat(startTime.toFixed(3)),
+              endTime: parseFloat(endTime.toFixed(3))
+            };
+          });
+        }
+      } else {
+        // NO CACHED DATA - Use estimation fallback
+        console.log(`Bundle ${index}: No cached data, using estimation`);
+
+        const chunkSentences = chunk.chunkText
+          .split(/(?<=[.!?])\s+/)
+          .map((s: string) => s.trim())
+          .filter((s: string) => s.length > 5);
+
+        let cumulativeTime = 0;
+        sentencesWithTimings = chunkSentences.map((text: string, sentenceIdx: number) => {
+          const words = text.trim().split(/\s+/).length;
+          const secondsPerWord = 0.35; // Jane voice timing (A2 level)
+          const lengthPenalty = words > 14 ? (words - 14) * 0.04 : 0;
+          const buffer = 0.20;
+          const duration = words * secondsPerWord + lengthPenalty + buffer;
+
+          const startTime = cumulativeTime;
+          const endTime = startTime + duration;
+          cumulativeTime = endTime;
+
+          return {
+            sentenceId: `s${totalSentencesProcessed + sentenceIdx}`,
+            sentenceIndex: totalSentencesProcessed + sentenceIdx,
+            text: text.trim(),
+            startTime: parseFloat(startTime.toFixed(3)),
+            endTime: parseFloat(endTime.toFixed(3))
+          };
+        });
+        totalDuration = cumulativeTime;
+      }
 
       const bundle = {
         bundleId: `bundle_${index}`,
         bundleIndex: index,
         audioUrl,
-        totalDuration: cumulativeTime, // Use final cumulative time
+        totalDuration: parseFloat(totalDuration.toFixed(3)),
         sentences: sentencesWithTimings
       };
 
@@ -135,19 +206,74 @@ export async function GET(request: NextRequest) {
       totalSentencesProcessed += sentencesWithTimings.length;
     });
 
-    // Get book metadata
+    // Get book metadata (including preview if available)
     const bookContent = await prisma.bookContent.findFirst({
-      where: { bookId: 'the-necklace-a2' }
+      where: { bookId: 'the-necklace' }
     });
 
-    // Load section data for thematic headers
-    let sections = null;
+    // Try to load preview from cache file (fallback until DB migration is complete)
+    let preview: string | null = null;
+    let previewAudio: { audioUrl: string; duration: number } | null = null;
+    
     try {
-      const sectionsPath = path.join(process.cwd(), 'cache', 'the-necklace-sections.json');
-      const sectionsData = fs.readFileSync(sectionsPath, 'utf-8');
-      sections = JSON.parse(sectionsData).sections;
+      const previewCachePath = path.join(process.cwd(), 'cache', 'the-necklace-A2-preview.txt');
+      if (fs.existsSync(previewCachePath)) {
+        preview = fs.readFileSync(previewCachePath, 'utf8').trim();
+        console.log('✅ Loaded preview from cache');
+      }
+      
+      // Try to load preview audio metadata
+      const previewAudioPath = path.join(process.cwd(), 'cache', 'the-necklace-A2-preview-audio.json');
+      if (fs.existsSync(previewAudioPath)) {
+        const audioMetadata = JSON.parse(fs.readFileSync(previewAudioPath, 'utf8'));
+        previewAudio = {
+          audioUrl: audioMetadata.audioUrl,
+          duration: audioMetadata.duration
+        };
+        console.log('✅ Loaded preview audio metadata from cache');
+      } else {
+        // Fallback: Construct preview audio URL from Supabase (if file exists)
+        const previewAudioFileName = 'the-necklace/A2/preview.mp3';
+        const { data: { publicUrl } } = supabase.storage
+          .from('audio-files')
+          .getPublicUrl(previewAudioFileName);
+        
+        // Check if file exists by trying to fetch it
+        try {
+          const testResponse = await fetch(publicUrl, { method: 'HEAD' });
+          if (testResponse.ok) {
+            previewAudio = {
+              audioUrl: publicUrl,
+              duration: 0 // Will be measured client-side if needed
+            };
+            console.log('✅ Found preview audio in Supabase storage');
+          }
+        } catch (error) {
+          // File doesn't exist, that's okay
+        }
+      }
     } catch (error) {
-      console.log('Could not load sections data:', error instanceof Error ? error.message : 'Unknown error');
+      console.log('⚠️ Could not load preview from cache:', error instanceof Error ? error.message : 'Unknown error');
+    }
+
+    // Load chapter data (from our chapter detection)
+    let chapters = null;
+    try {
+      const chaptersPath = path.join(process.cwd(), 'cache', 'the-necklace-chapters.json');
+      const chaptersData = fs.readFileSync(chaptersPath, 'utf-8');
+      const chapterStructure = JSON.parse(chaptersData);
+
+      // Convert to UI format with bundle mapping
+      chapters = chapterStructure.chapters.map((ch: any, index: number) => ({
+        chapterNumber: index + 1,
+        title: ch.title,
+        startSentence: ch.startSentence,
+        endSentence: ch.endSentence,
+        startBundle: Math.floor(ch.startSentence / 4), // 4 sentences per bundle
+        endBundle: Math.floor(ch.endSentence / 4)
+      }));
+    } catch (error) {
+      console.log('Could not load chapters data:', error instanceof Error ? error.message : 'Unknown error');
     }
 
     const totalSentences = bundles.reduce((sum, bundle) => sum + bundle.sentences.length, 0);
@@ -161,10 +287,12 @@ export async function GET(request: NextRequest) {
       },
       level: 'A2',
       totalBundles: bundles.length,
-      bundleCount: bundles.length,
+      bundleCount: bundles.length, // Back-compat for clients expecting bundleCount
       totalSentences,
       bundles,
-      sections, // Add thematic sections for UI
+      chapters, // Add chapter structure for UI
+      preview: preview || null, // Book preview (50-100 words) for reading page
+      previewAudio: previewAudio || null, // Preview audio URL and duration
       source: 'dedicated-api' // Indicates this came from dedicated API for debugging
     }, {
       headers: {
