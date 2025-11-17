@@ -34,7 +34,8 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
     { href: '/enhanced-collection', label: '✨ Enhanced Books', icon: '✨' },
     { href: '/featured-books', label: '🎧 Simplified Books', icon: '🎧' },
     { href: '/library', label: 'Browse All Books', icon: '📚' },
-    { href: '/upgrade', label: 'Premium $5.99', icon: '👑', isPremium: true },
+    { href: '/feedback', label: '💬 Leave Feedback', icon: '💬' },
+    { href: 'https://donorbox.org/bookbridge-make-books-accessible-to-everyone-regardless-of-their-their-situation', label: 'Support Us', icon: '❤️', isPremium: true, isExternal: true },
   ];
 
   // Hide on desktop screens even if isOpen is true
@@ -117,6 +118,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
                     key={item.href}
                     href={item.href}
                     onClick={handleNavClick}
+                    {...((item as any).isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     className={`nav-link-styled ${
                       pathname === item.href
                         ? 'nav-link-active'

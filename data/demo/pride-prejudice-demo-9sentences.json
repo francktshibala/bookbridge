@@ -77,6 +77,214 @@
           "speed": 0.9,
           "output_format": "mp3_44100_128",
           "apply_text_normalization": "auto"
+        },
+        "hope": {
+          "url": "/audio/demo/pride-prejudice-a1-hope-enhanced.mp3",
+          "filename": "pride-prejudice-a1-hope-enhanced.mp3",
+          "duration": 35.834331,
+          "originalDuration": 29.753438,
+          "size": 287154,
+          "generatedAt": "2025-11-17T07:19:22.807Z",
+          "voice": "iCrDUkL56s3C8sCRl7wb",
+          "settings": {
+            "voice_id": "iCrDUkL56s3C8sCRl7wb",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.5,
+              "similarity_boost": 0.8,
+              "style": 0.05,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.4%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "People think that rich men who are not married want to find a wife.",
+              "startTime": 0,
+              "endTime": 4.705,
+              "duration": 4.705,
+              "wordCount": 14
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "When a rich man comes to a new place, families want him to marry their daughters.",
+              "startTime": 4.705,
+              "endTime": 10.543,
+              "duration": 5.838,
+              "wordCount": 16
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "The mothers in these families have one main goal.",
+              "startTime": 10.543,
+              "endTime": 13.985,
+              "duration": 3.441,
+              "wordCount": 9
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "They want to find good husbands for their daughters.",
+              "startTime": 13.985,
+              "endTime": 17.636,
+              "duration": 3.652,
+              "wordCount": 9
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "When they hear about a new rich man, they get very excited.",
+              "startTime": 17.636,
+              "endTime": 21.93,
+              "duration": 4.293,
+              "wordCount": 12
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "They start planning how to meet him.",
+              "startTime": 21.93,
+              "endTime": 24.458,
+              "duration": 2.528,
+              "wordCount": 7
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "The mothers talk to each other about this man.",
+              "startTime": 24.458,
+              "endTime": 27.688,
+              "duration": 3.23,
+              "wordCount": 9
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They wonder if he is nice and if he wants to get married.",
+              "startTime": 27.688,
+              "endTime": 31.691,
+              "duration": 4.003,
+              "wordCount": 13
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "All the families hope their daughter will be the lucky one.",
+              "startTime": 31.691,
+              "endTime": 35.834,
+              "duration": 4.143,
+              "wordCount": 11
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
+        },
+        "daniel": {
+          "url": "/audio/demo/pride-prejudice-a1-daniel-enhanced.mp3",
+          "filename": "pride-prejudice-a1-daniel-enhanced.mp3",
+          "duration": 35.389048,
+          "originalDuration": 29.38775,
+          "size": 283602,
+          "generatedAt": "2025-11-17T07:37:50.167Z",
+          "voice": "onwK4e9ZLuTAKqWW03F9",
+          "settings": {
+            "voice_id": "onwK4e9ZLuTAKqWW03F9",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.45,
+              "similarity_boost": 0.8,
+              "style": 0.1,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.4%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "People think that rich men who are not married want to find a wife.",
+              "startTime": 0,
+              "endTime": 4.646,
+              "duration": 4.646,
+              "wordCount": 14
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "When a rich man comes to a new place, families want him to marry their daughters.",
+              "startTime": 4.646,
+              "endTime": 10.413,
+              "duration": 5.767,
+              "wordCount": 16
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "The mothers in these families have one main goal.",
+              "startTime": 10.413,
+              "endTime": 13.811,
+              "duration": 3.398,
+              "wordCount": 9
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "They want to find good husbands for their daughters.",
+              "startTime": 13.811,
+              "endTime": 17.417,
+              "duration": 3.606,
+              "wordCount": 9
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "When they hear about a new rich man, they get very excited.",
+              "startTime": 17.417,
+              "endTime": 21.659,
+              "duration": 4.241,
+              "wordCount": 12
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "They start planning how to meet him.",
+              "startTime": 21.659,
+              "endTime": 24.155,
+              "duration": 2.496,
+              "wordCount": 7
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "The mothers talk to each other about this man.",
+              "startTime": 24.155,
+              "endTime": 27.345,
+              "duration": 3.19,
+              "wordCount": 9
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They wonder if he is nice and if he wants to get married.",
+              "startTime": 27.345,
+              "endTime": 31.298,
+              "duration": 3.953,
+              "wordCount": 13
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "All the families hope their daughter will be the lucky one.",
+              "startTime": 31.298,
+              "endTime": 35.389,
+              "duration": 4.091,
+              "wordCount": 11
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
         }
       },
       "wordTimings": {
@@ -1755,7 +1963,217 @@
           "text": "Every family in the area hopes that their own daughter will be the fortunate one he chooses.",
           "wordCount": 17
         }
-      ]
+      ],
+      "audio": {
+        "arabella": {
+          "url": "/audio/demo/pride-prejudice-a2-arabella-enhanced.mp3",
+          "filename": "pride-prejudice-a2-arabella-enhanced.mp3",
+          "duration": 50.148458,
+          "originalDuration": 41.639125,
+          "size": 401675,
+          "generatedAt": "2025-11-17T07:38:06.169Z",
+          "voice": "aEO01A4wXwd1O8GPgGlF",
+          "settings": {
+            "voice_id": "aEO01A4wXwd1O8GPgGlF",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.45,
+              "similarity_boost": 0.8,
+              "style": 0.15,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.4%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "It is a well-known truth that rich single men want to find a wife.",
+              "startTime": 0,
+              "endTime": 4.209,
+              "duration": 4.209,
+              "wordCount": 14
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "When a wealthy man arrives in a new neighborhood, local families immediately think he should marry one of their daughters.",
+              "startTime": 4.209,
+              "endTime": 12.139,
+              "duration": 7.93,
+              "wordCount": 19
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "The mothers of these families have a very clear goal in mind.",
+              "startTime": 12.139,
+              "endTime": 16.028,
+              "duration": 3.89,
+              "wordCount": 12
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "They want to find the best possible husbands for their young daughters.",
+              "startTime": 16.028,
+              "endTime": 20.556,
+              "duration": 4.528,
+              "wordCount": 12
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "As soon as they hear about a new rich gentleman, they become extremely excited about the possibilities.",
+              "startTime": 20.556,
+              "endTime": 27.274,
+              "duration": 6.718,
+              "wordCount": 17
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "They quickly start making plans about how they can meet him and introduce their daughters.",
+              "startTime": 27.274,
+              "endTime": 33.013,
+              "duration": 5.739,
+              "wordCount": 16
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "The mothers spend hours talking with each other about this mysterious new man.",
+              "startTime": 33.013,
+              "endTime": 37.987,
+              "duration": 4.974,
+              "wordCount": 14
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They discuss his background, his personality, and whether he really wants to get married soon.",
+              "startTime": 37.987,
+              "endTime": 44.282,
+              "duration": 6.294,
+              "wordCount": 15
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "Every family in the area hopes that their own daughter will be the fortunate one he chooses.",
+              "startTime": 44.282,
+              "endTime": 50.148,
+              "duration": 5.867,
+              "wordCount": 17
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
+        },
+        "grandpa_spuds": {
+          "url": "/audio/demo/pride-prejudice-a2-grandpa-spuds-enhanced.mp3",
+          "filename": "pride-prejudice-a2-grandpa-spuds-enhanced.mp3",
+          "duration": 58.544853,
+          "originalDuration": 48.613875,
+          "size": 468967,
+          "generatedAt": "2025-11-17T07:38:21.050Z",
+          "voice": "NOpBlnGInO9m6vDvFkFC",
+          "settings": {
+            "voice_id": "NOpBlnGInO9m6vDvFkFC",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.5,
+              "similarity_boost": 0.8,
+              "style": 0.1,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.4%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "It is a well-known truth that rich single men want to find a wife.",
+              "startTime": 0,
+              "endTime": 4.922,
+              "duration": 4.922,
+              "wordCount": 14
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "When a wealthy man arrives in a new neighborhood, local families immediately think he should marry one of their daughters.",
+              "startTime": 4.922,
+              "endTime": 14.17,
+              "duration": 9.248,
+              "wordCount": 19
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "The mothers of these families have a very clear goal in mind.",
+              "startTime": 14.17,
+              "endTime": 18.719,
+              "duration": 4.549,
+              "wordCount": 12
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "They want to find the best possible husbands for their young daughters.",
+              "startTime": 18.719,
+              "endTime": 24.014,
+              "duration": 5.295,
+              "wordCount": 12
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "As soon as they hear about a new rich gentleman, they become extremely excited about the possibilities.",
+              "startTime": 24.014,
+              "endTime": 31.845,
+              "duration": 7.831,
+              "wordCount": 17
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "They quickly start making plans about how they can meet him and introduce their daughters.",
+              "startTime": 31.845,
+              "endTime": 38.557,
+              "duration": 6.712,
+              "wordCount": 16
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "The mothers spend hours talking with each other about this mysterious new man.",
+              "startTime": 38.557,
+              "endTime": 44.374,
+              "duration": 5.817,
+              "wordCount": 14
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They discuss his background, his personality, and whether he really wants to get married soon.",
+              "startTime": 44.374,
+              "endTime": 51.684,
+              "duration": 7.31,
+              "wordCount": 15
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "Every family in the area hopes that their own daughter will be the fortunate one he chooses.",
+              "startTime": 51.684,
+              "endTime": 58.545,
+              "duration": 6.861,
+              "wordCount": 17
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
+        }
+      }
     },
     "B1": {
       "text": "Everyone knows that a rich single man must want to find a wife. When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions. This idea becomes the main concern of the neighboring mothers. They see this wealthy newcomer as the perfect solution to their daughters' futures. The news of a rich, unmarried gentleman creates immediate excitement in the community. Every mother begins to calculate her chances and plan her approach. Conversations between neighbors focus entirely on this mysterious new resident. They speculate about his character, his intentions, and his preferences in women. The competition among families becomes both subtle and intense.",
@@ -1825,6 +2243,214 @@
           "speed": 0.9,
           "output_format": "mp3_44100_128",
           "apply_text_normalization": "auto"
+        },
+        "jane": {
+          "url": "/audio/demo/pride-prejudice-b1-jane-enhanced.mp3",
+          "filename": "pride-prejudice-b1-jane-enhanced.mp3",
+          "duration": 57.666644,
+          "originalDuration": 47.882438,
+          "size": 461861,
+          "generatedAt": "2025-11-17T07:38:49.230Z",
+          "voice": "RILOU7YmBhvwJGDGjNmP",
+          "settings": {
+            "voice_id": "RILOU7YmBhvwJGDGjNmP",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.45,
+              "similarity_boost": 0.8,
+              "style": 0.1,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.4%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "Everyone knows that a rich single man must want to find a wife.",
+              "startTime": 0,
+              "endTime": 4.7,
+              "duration": 4.7,
+              "wordCount": 13
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
+              "startTime": 4.7,
+              "endTime": 18.352,
+              "duration": 13.653,
+              "wordCount": 32
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "This idea becomes the main concern of the neighboring mothers.",
+              "startTime": 18.352,
+              "endTime": 22.977,
+              "duration": 4.625,
+              "wordCount": 10
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "They see this wealthy newcomer as the perfect solution to their daughters' futures.",
+              "startTime": 22.977,
+              "endTime": 29.169,
+              "duration": 6.191,
+              "wordCount": 14
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "The news of a rich, unmarried gentleman creates immediate excitement in the community.",
+              "startTime": 29.169,
+              "endTime": 35.734,
+              "duration": 6.565,
+              "wordCount": 13
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "Every mother begins to calculate her chances and plan her approach.",
+              "startTime": 35.734,
+              "endTime": 40.732,
+              "duration": 4.998,
+              "wordCount": 11
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "Conversations between neighbors focus entirely on this mysterious new resident.",
+              "startTime": 40.732,
+              "endTime": 46.625,
+              "duration": 5.893,
+              "wordCount": 11
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They speculate about his character, his intentions, and his preferences in women.",
+              "startTime": 46.625,
+              "endTime": 52.967,
+              "duration": 6.342,
+              "wordCount": 13
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "The competition among families becomes both subtle and intense.",
+              "startTime": 52.967,
+              "endTime": 57.667,
+              "duration": 4.7,
+              "wordCount": 9
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
+        },
+        "james": {
+          "url": "/audio/demo/pride-prejudice-b1-james-enhanced.mp3",
+          "filename": "pride-prejudice-b1-james-enhanced.mp3",
+          "duration": 56.537211,
+          "originalDuration": 46.942,
+          "size": 452875,
+          "generatedAt": "2025-11-17T07:39:05.471Z",
+          "voice": "EkK5I93UQWFDigLMpZcX",
+          "settings": {
+            "voice_id": "EkK5I93UQWFDigLMpZcX",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.45,
+              "similarity_boost": 0.8,
+              "style": 0.1,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.4%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "Everyone knows that a rich single man must want to find a wife.",
+              "startTime": 0,
+              "endTime": 4.606,
+              "duration": 4.606,
+              "wordCount": 13
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
+              "startTime": 4.606,
+              "endTime": 17.994,
+              "duration": 13.388,
+              "wordCount": 32
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "This idea becomes the main concern of the neighboring mothers.",
+              "startTime": 17.994,
+              "endTime": 22.527,
+              "duration": 4.533,
+              "wordCount": 10
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "They see this wealthy newcomer as the perfect solution to their daughters' futures.",
+              "startTime": 22.527,
+              "endTime": 28.596,
+              "duration": 6.069,
+              "wordCount": 14
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "The news of a rich, unmarried gentleman creates immediate excitement in the community.",
+              "startTime": 28.596,
+              "endTime": 35.034,
+              "duration": 6.438,
+              "wordCount": 13
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "Every mother begins to calculate her chances and plan her approach.",
+              "startTime": 35.034,
+              "endTime": 39.932,
+              "duration": 4.899,
+              "wordCount": 11
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "Conversations between neighbors focus entirely on this mysterious new resident.",
+              "startTime": 39.932,
+              "endTime": 45.709,
+              "duration": 5.776,
+              "wordCount": 11
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They speculate about his character, his intentions, and his preferences in women.",
+              "startTime": 45.709,
+              "endTime": 51.931,
+              "duration": 6.222,
+              "wordCount": 13
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "The competition among families becomes both subtle and intense.",
+              "startTime": 51.931,
+              "endTime": 56.537,
+              "duration": 4.606,
+              "wordCount": 9
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
         }
       },
       "wordTimings": {
@@ -2870,7 +3496,213 @@
           "text": "The subtle yet fierce competition that develops among these families adds considerable tension to their social interactions.",
           "wordCount": 17
         }
-      ]
+      ],
+      "audio": {
+        "daniel": {
+          "url": "/audio/demo/pride-prejudice-b2-daniel-enhanced.mp3",
+          "filename": "pride-prejudice-b2-daniel-enhanced.mp3",
+          "duration": 96.040431,
+          "size": 768852,
+          "generatedAt": "2025-11-17T07:14:00.089Z",
+          "voice": "onwK4e9ZLuTAKqWW03F9",
+          "settings": {
+            "voice_id": "onwK4e9ZLuTAKqWW03F9",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.45,
+              "similarity_boost": 0.8,
+              "style": 0.1,
+              "use_speaker_boost": true
+            },
+            "speed": 0.9,
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "It is widely acknowledged as a universal truth that wealthy unmarried men are actively seeking wives.",
+              "startTime": 0,
+              "endTime": 7.472,
+              "duration": 7.472,
+              "wordCount": 16
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "When such a prosperous gentleman arrives in a new community, the surrounding families immediately assume he must be interested in marrying one of their daughters, regardless of what his actual feelings or intentions might be.",
+              "startTime": 7.472,
+              "endTime": 24.418,
+              "duration": 16.946,
+              "wordCount": 35
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "This assumption becomes deeply embedded in the collective mindset of all the neighboring mothers, who view it as an undeniable fact.",
+              "startTime": 24.418,
+              "endTime": 34.334,
+              "duration": 9.916,
+              "wordCount": 21
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "These women regard the newly arrived bachelor as the ideal solution to securing their daughters' financial futures and social standing.",
+              "startTime": 34.334,
+              "endTime": 44.321,
+              "duration": 9.988,
+              "wordCount": 20
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "News of a rich, unattached gentleman's arrival creates an atmosphere of intense excitement and anticipation throughout the entire neighborhood.",
+              "startTime": 44.321,
+              "endTime": 55.051,
+              "duration": 10.729,
+              "wordCount": 19
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "Every ambitious mother begins carefully evaluating her daughter's chances while simultaneously devising strategic plans to facilitate an introduction.",
+              "startTime": 55.051,
+              "endTime": 66.148,
+              "duration": 11.097,
+              "wordCount": 18
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "Conversations among the mothers revolve almost exclusively around this intriguing newcomer and the opportunities he represents.",
+              "startTime": 66.148,
+              "endTime": 75.543,
+              "duration": 9.396,
+              "wordCount": 16
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They engage in extensive speculation regarding his character, his matrimonial intentions, and what qualities he might be seeking in a potential wife.",
+              "startTime": 75.543,
+              "endTime": 86.867,
+              "duration": 11.323,
+              "wordCount": 23
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "The subtle yet fierce competition that develops among these families adds considerable tension to their social interactions.",
+              "startTime": 86.867,
+              "endTime": 96.04,
+              "duration": 9.174,
+              "wordCount": 17
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
+        },
+        "zara": {
+          "url": "/audio/demo/pride-prejudice-b2-zara-enhanced.mp3",
+          "filename": "pride-prejudice-b2-zara-enhanced.mp3",
+          "duration": 89.772358,
+          "originalDuration": 74.527313,
+          "size": 718697,
+          "generatedAt": "2025-11-17T07:39:29.900Z",
+          "voice": "jqcCZkN6Knx8BJ5TBdYR",
+          "settings": {
+            "voice_id": "jqcCZkN6Knx8BJ5TBdYR",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.45,
+              "similarity_boost": 0.8,
+              "style": 0.15,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.5%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "It is widely acknowledged as a universal truth that wealthy unmarried men are actively seeking wives.",
+              "startTime": 0,
+              "endTime": 6.98,
+              "duration": 6.98,
+              "wordCount": 16
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "When such a prosperous gentleman arrives in a new community, the surrounding families immediately assume he must be interested in marrying one of their daughters, regardless of what his actual feelings or intentions might be.",
+              "startTime": 6.98,
+              "endTime": 22.829,
+              "duration": 15.849,
+              "wordCount": 35
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "This assumption becomes deeply embedded in the collective mindset of all the neighboring mothers, who view it as an undeniable fact.",
+              "startTime": 22.829,
+              "endTime": 32.101,
+              "duration": 9.272,
+              "wordCount": 21
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "These women regard the newly arrived bachelor as the ideal solution to securing their daughters' financial futures and social standing.",
+              "startTime": 32.101,
+              "endTime": 41.431,
+              "duration": 9.33,
+              "wordCount": 20
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "News of a rich, unattached gentleman's arrival creates an atmosphere of intense excitement and anticipation throughout the entire neighborhood.",
+              "startTime": 41.431,
+              "endTime": 51.463,
+              "duration": 10.032,
+              "wordCount": 19
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "Every ambitious mother begins carefully evaluating her daughter's chances while simultaneously devising strategic plans to facilitate an introduction.",
+              "startTime": 51.463,
+              "endTime": 61.829,
+              "duration": 10.366,
+              "wordCount": 18
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "Conversations among the mothers revolve almost exclusively around this intriguing newcomer and the opportunities he represents.",
+              "startTime": 61.829,
+              "endTime": 70.606,
+              "duration": 8.777,
+              "wordCount": 16
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They engage in extensive speculation regarding his character, his matrimonial intentions, and what qualities he might be seeking in a potential wife.",
+              "startTime": 70.606,
+              "endTime": 81.203,
+              "duration": 10.597,
+              "wordCount": 23
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "The subtle yet fierce competition that develops among these families adds considerable tension to their social interactions.",
+              "startTime": 81.203,
+              "endTime": 89.772,
+              "duration": 8.569,
+              "wordCount": 17
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
+        }
+      }
     },
     "C1": {
       "text": "It is a truth universally acknowledged that a single man in possession of a considerable fortune must be in want of a wife. However little known the feelings or views of such a man may be upon his first entering a neighbourhood, this truth becomes so firmly fixed in the minds of the surrounding families that he is immediately considered as the rightful property of one or another of their daughters. The distinct advantage of this persuasion is that it effectively fixes the attention of the young gentleman upon the most eligible potential matches in the vicinity. The mothers of these families, consumed by this singular ambition, devote themselves entirely to the pursuit of advantageous marriages for their daughters. When intelligence of a wealthy, unmarried gentleman's arrival reaches the community, it creates an immediate sensation of excitement mixed with calculated determination among the matrimonially ambitious families. Each mother meticulously assesses her daughter's prospects while simultaneously formulating elaborate strategies designed to secure an introduction to this promising newcomer. Their conversations, dominated almost entirely by speculation about this mysterious gentleman, range from discussions of his probable character and temperament to conjecture about his matrimonial inclinations. They deliberate extensively upon what personal qualities and accomplishments he might value most highly in selecting a wife from among the available young ladies. The resulting competition, though conducted with outward civility and restraint, nevertheless creates an undercurrent of intense rivalry that permeates all social interactions within the neighborhood.",
@@ -2920,7 +3752,217 @@
           "text": "The resulting competition, though conducted with outward civility and restraint, nevertheless creates an undercurrent of intense rivalry that permeates all social interactions within the neighborhood.",
           "wordCount": 27
         }
-      ]
+      ],
+      "audio": {
+        "sally_ford": {
+          "url": "/audio/demo/pride-prejudice-c1-sally-ford-enhanced.mp3",
+          "filename": "pride-prejudice-c1-sally-ford-enhanced.mp3",
+          "duration": 124.136961,
+          "originalDuration": 103.053063,
+          "size": 993714,
+          "generatedAt": "2025-11-17T07:40:00.656Z",
+          "voice": "kBag1HOZlaVBH7ICPE8x",
+          "settings": {
+            "voice_id": "kBag1HOZlaVBH7ICPE8x",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.45,
+              "similarity_boost": 0.8,
+              "style": 0.15,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.5%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "It is a truth universally acknowledged that a single man in possession of a considerable fortune must be in want of a wife.",
+              "startTime": 0,
+              "endTime": 9,
+              "duration": 9,
+              "wordCount": 23
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "However little known the feelings or views of such a man may be upon his first entering a neighbourhood, this truth becomes so firmly fixed in the minds of the surrounding families that he is immediately considered as the rightful property of one or another of their daughters.",
+              "startTime": 9,
+              "endTime": 29.42,
+              "duration": 20.419,
+              "wordCount": 50
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "The distinct advantage of this persuasion is that it effectively fixes the attention of the young gentleman upon the most eligible potential matches in the vicinity.",
+              "startTime": 29.42,
+              "endTime": 41.494,
+              "duration": 12.074,
+              "wordCount": 28
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "The mothers of these families, consumed by this singular ambition, devote themselves entirely to the pursuit of advantageous marriages for their daughters.",
+              "startTime": 41.494,
+              "endTime": 53.136,
+              "duration": 11.642,
+              "wordCount": 23
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "When intelligence of a wealthy, unmarried gentleman's arrival reaches the community, it creates an immediate sensation of excitement mixed with calculated determination among the matrimonially ambitious families.",
+              "startTime": 53.136,
+              "endTime": 68.949,
+              "duration": 15.813,
+              "wordCount": 29
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "Each mother meticulously assesses her daughter's prospects while simultaneously formulating elaborate strategies designed to secure an introduction to this promising newcomer.",
+              "startTime": 68.949,
+              "endTime": 81.754,
+              "duration": 12.806,
+              "wordCount": 22
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "Their conversations, dominated almost entirely by speculation about this mysterious gentleman, range from discussions of his probable character and temperament to conjecture about his matrimonial inclinations.",
+              "startTime": 81.754,
+              "endTime": 97.348,
+              "duration": 15.593,
+              "wordCount": 28
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They deliberate extensively upon what personal qualities and accomplishments he might value most highly in selecting a wife from among the available young ladies.",
+              "startTime": 97.348,
+              "endTime": 109.202,
+              "duration": 11.854,
+              "wordCount": 25
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "The resulting competition, though conducted with outward civility and restraint, nevertheless creates an undercurrent of intense rivalry that permeates all social interactions within the neighborhood.",
+              "startTime": 109.202,
+              "endTime": 124.137,
+              "duration": 14.935,
+              "wordCount": 27
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
+        },
+        "frederick_surrey": {
+          "url": "/audio/demo/pride-prejudice-c1-frederick-surrey-enhanced.mp3",
+          "filename": "pride-prejudice-c1-frederick-surrey-enhanced.mp3",
+          "duration": 119.99093,
+          "originalDuration": 99.604875,
+          "size": 960487,
+          "generatedAt": "2025-11-17T07:40:26.750Z",
+          "voice": "j9jfwdrw7BRfcR43Qohk",
+          "settings": {
+            "voice_id": "j9jfwdrw7BRfcR43Qohk",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.5,
+              "similarity_boost": 0.8,
+              "style": 0.15,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.5%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "It is a truth universally acknowledged that a single man in possession of a considerable fortune must be in want of a wife.",
+              "startTime": 0,
+              "endTime": 8.697,
+              "duration": 8.697,
+              "wordCount": 23
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "However little known the feelings or views of such a man may be upon his first entering a neighbourhood, this truth becomes so firmly fixed in the minds of the surrounding families that he is immediately considered as the rightful property of one or another of their daughters.",
+              "startTime": 8.697,
+              "endTime": 28.432,
+              "duration": 19.735,
+              "wordCount": 50
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "The distinct advantage of this persuasion is that it effectively fixes the attention of the young gentleman upon the most eligible potential matches in the vicinity.",
+              "startTime": 28.432,
+              "endTime": 40.098,
+              "duration": 11.666,
+              "wordCount": 28
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "The mothers of these families, consumed by this singular ambition, devote themselves entirely to the pursuit of advantageous marriages for their daughters.",
+              "startTime": 40.098,
+              "endTime": 51.357,
+              "duration": 11.259,
+              "wordCount": 23
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "When intelligence of a wealthy, unmarried gentleman's arrival reaches the community, it creates an immediate sensation of excitement mixed with calculated determination among the matrimonially ambitious families.",
+              "startTime": 51.357,
+              "endTime": 66.646,
+              "duration": 15.289,
+              "wordCount": 29
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "Each mother meticulously assesses her daughter's prospects while simultaneously formulating elaborate strategies designed to secure an introduction to this promising newcomer.",
+              "startTime": 66.646,
+              "endTime": 79.019,
+              "duration": 12.373,
+              "wordCount": 22
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "Their conversations, dominated almost entirely by speculation about this mysterious gentleman, range from discussions of his probable character and temperament to conjecture about his matrimonial inclinations.",
+              "startTime": 79.019,
+              "endTime": 94.096,
+              "duration": 15.077,
+              "wordCount": 28
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "They deliberate extensively upon what personal qualities and accomplishments he might value most highly in selecting a wife from among the available young ladies.",
+              "startTime": 94.096,
+              "endTime": 105.55,
+              "duration": 11.454,
+              "wordCount": 25
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "The resulting competition, though conducted with outward civility and restraint, nevertheless creates an undercurrent of intense rivalry that permeates all social interactions within the neighborhood.",
+              "startTime": 105.55,
+              "endTime": 119.991,
+              "duration": 14.441,
+              "wordCount": 27
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
+        }
+      }
     },
     "C2": {
       "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters. The advantage of this persuasion is, that it fixes the attention of the young man on the most eligible matches, thereby facilitating the natural course of courtship and matrimonial alliance. My dear Mr. Bennet, said his lady to him one day, have you heard that Netherfield Park is let at last? Mr. Bennet replied that he had not, maintaining his characteristic air of detached amusement at his wife's perpetual preoccupation with neighborhood affairs. But it is, returned she; for Mrs. Long has just been here, and she told me all about it, relating every particular with the most minute attention to detail. Mr. Bennet made no answer, but continued perusing his book with studied indifference to the matrimonial intelligence his wife deemed so consequential. Do you not want to know who has taken it? cried his wife impatiently, her exasperation mounting at his apparent lack of interest in such momentous news. You want to tell me, and I have no objection to hearing it, he replied with the mildly ironic tone that had long characterized their domestic exchanges on matters of matrimonial speculation and neighborhood gossip.",
@@ -2970,7 +4012,113 @@
           "text": "You want to tell me, and I have no objection to hearing it, he replied with the mildly ironic tone that had long characterized their domestic exchanges on matters of matrimonial speculation and neighborhood gossip.",
           "wordCount": 38
         }
-      ]
+      ],
+      "audio": {
+        "vivie": {
+          "url": "/audio/demo/pride-prejudice-c2-vivie-enhanced.mp3",
+          "filename": "pride-prejudice-c2-vivie-enhanced.mp3",
+          "duration": 113.063039,
+          "originalDuration": 93.857938,
+          "size": 905107,
+          "generatedAt": "2025-11-17T07:40:52.103Z",
+          "voice": "z7U1SjrEq4fDDDriOQEN",
+          "settings": {
+            "voice_id": "z7U1SjrEq4fDDDriOQEN",
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.45,
+              "similarity_boost": 0.8,
+              "style": 0.2,
+              "use_speaker_boost": true
+            },
+            "speed": 0.83,
+            "originalSpeed": 0.9,
+            "processingMethod": "ffmpeg-atempo",
+            "speedIncrease": "20.5%",
+            "output_format": "mp3_44100_128",
+            "apply_text_normalization": "auto"
+          },
+          "sentenceTimings": [
+            {
+              "sentenceIndex": 0,
+              "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+              "startTime": 0,
+              "endTime": 8.949,
+              "duration": 8.949,
+              "wordCount": 24
+            },
+            {
+              "sentenceIndex": 1,
+              "text": "However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.",
+              "startTime": 8.949,
+              "endTime": 28.247,
+              "duration": 19.298,
+              "wordCount": 50
+            },
+            {
+              "sentenceIndex": 2,
+              "text": "The advantage of this persuasion is, that it fixes the attention of the young man on the most eligible matches, thereby facilitating the natural course of courtship and matrimonial alliance.",
+              "startTime": 28.247,
+              "endTime": 42.592,
+              "duration": 14.345,
+              "wordCount": 32
+            },
+            {
+              "sentenceIndex": 3,
+              "text": "My dear Mr. Bennet, said his lady to him one day, have you heard that Netherfield Park is let at last?",
+              "startTime": 42.592,
+              "endTime": 50.432,
+              "duration": 7.84,
+              "wordCount": 21
+            },
+            {
+              "sentenceIndex": 4,
+              "text": "Mr. Bennet replied that he had not, maintaining his characteristic air of detached amusement at his wife's perpetual preoccupation with neighborhood affairs.",
+              "startTime": 50.432,
+              "endTime": 62.188,
+              "duration": 11.756,
+              "wordCount": 24
+            },
+            {
+              "sentenceIndex": 5,
+              "text": "But it is, returned she; for Mrs. Long has just been here, and she told me all about it, relating every particular with the most minute attention to detail.",
+              "startTime": 62.188,
+              "endTime": 74.319,
+              "duration": 12.132,
+              "wordCount": 31
+            },
+            {
+              "sentenceIndex": 6,
+              "text": "Mr. Bennet made no answer, but continued perusing his book with studied indifference to the matrimonial intelligence his wife deemed so consequential.",
+              "startTime": 74.319,
+              "endTime": 85.558,
+              "duration": 11.238,
+              "wordCount": 24
+            },
+            {
+              "sentenceIndex": 7,
+              "text": "Do you not want to know who has taken it? cried his wife impatiently, her exasperation mounting at his apparent lack of interest in such momentous news.",
+              "startTime": 85.558,
+              "endTime": 96.944,
+              "duration": 11.386,
+              "wordCount": 28
+            },
+            {
+              "sentenceIndex": 8,
+              "text": "You want to tell me, and I have no objection to hearing it, he replied with the mildly ironic tone that had long characterized their domestic exchanges on matters of matrimonial speculation and neighborhood gossip.",
+              "startTime": 96.944,
+              "endTime": 113.063,
+              "duration": 16.119,
+              "wordCount": 38
+            }
+          ],
+          "metadata": {
+            "version": 3,
+            "method": "ffprobe-enhanced-timing",
+            "timingStrategy": "character-proportion-with-punctuation-penalties"
+          }
+        }
+      }
     },
     "original": {
       "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters. The advantage of this persuasion is, that it fixes the attention of the young man on the most eligible matches. My dear Mr. Bennet, said his lady to him one day, have you heard that Netherfield Park is let at last? Mr. Bennet replied that he had not. But it is, returned she; for Mrs. Long has just been here, and she told me all about it. Mr. Bennet made no answer. Do you not want to know who has taken it? cried his wife impatiently. You want to tell me, and I have no objection to hearing it.",

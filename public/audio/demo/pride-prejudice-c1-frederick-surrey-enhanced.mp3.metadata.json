@@ -1,184 +1,96 @@
 {
-  "version": 3,
-  "voice": "Frederick Surrey",
   "voiceId": "j9jfwdrw7BRfcR43Qohk",
-  "voiceFileId": "frederick-surrey",
-  "gender": "male",
+  "voiceName": "Frederick Surrey",
   "level": "C1",
-  "measuredDuration": 101.328938,
+  "fileName": "pride-prejudice-c1-frederick-surrey-enhanced.mp3",
+  "measuredDuration": 119.99093,
+  "originalDuration": 99.604875,
   "sentenceTimings": [
     {
       "sentenceIndex": 0,
       "text": "It is a truth universally acknowledged that a single man in possession of a considerable fortune must be in want of a wife.",
       "startTime": 0,
-      "endTime": 7.329,
-      "duration": 7.329,
-      "wordCount": 23,
-      "complexity": {
-        "characterCount": 123,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "endTime": 8.697,
+      "duration": 8.697,
+      "wordCount": 23
     },
     {
       "sentenceIndex": 1,
       "text": "However little known the feelings or views of such a man may be upon his first entering a neighbourhood, this truth becomes so firmly fixed in the minds of the surrounding families that he is immediately considered as the rightful property of one or another of their daughters.",
-      "startTime": 7.329,
-      "endTime": 23.983,
-      "duration": 16.654,
-      "wordCount": 50,
-      "complexity": {
-        "characterCount": 277,
-        "pausePenalty": 0.15,
-        "punctuationCount": 1,
-        "commaCount": 1,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 8.697,
+      "endTime": 28.432,
+      "duration": 19.735,
+      "wordCount": 50
     },
     {
       "sentenceIndex": 2,
       "text": "The distinct advantage of this persuasion is that it effectively fixes the attention of the young gentleman upon the most eligible potential matches in the vicinity.",
-      "startTime": 23.983,
-      "endTime": 33.814,
-      "duration": 9.831,
-      "wordCount": 28,
-      "complexity": {
-        "characterCount": 165,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 28.432,
+      "endTime": 40.098,
+      "duration": 11.666,
+      "wordCount": 28
     },
     {
       "sentenceIndex": 3,
       "text": "The mothers of these families, consumed by this singular ambition, devote themselves entirely to the pursuit of advantageous marriages for their daughters.",
-      "startTime": 33.814,
-      "endTime": 43.349,
-      "duration": 9.535,
-      "wordCount": 23,
-      "complexity": {
-        "characterCount": 155,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 40.098,
+      "endTime": 51.357,
+      "duration": 11.259,
+      "wordCount": 23
     },
     {
       "sentenceIndex": 4,
       "text": "When intelligence of a wealthy, unmarried gentleman's arrival reaches the community, it creates an immediate sensation of excitement mixed with calculated determination among the matrimonially ambitious families.",
-      "startTime": 43.349,
-      "endTime": 56.281,
-      "duration": 12.931,
-      "wordCount": 29,
-      "complexity": {
-        "characterCount": 212,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 51.357,
+      "endTime": 66.646,
+      "duration": 15.289,
+      "wordCount": 29
     },
     {
       "sentenceIndex": 5,
       "text": "Each mother meticulously assesses her daughter's prospects while simultaneously formulating elaborate strategies designed to secure an introduction to this promising newcomer.",
-      "startTime": 56.281,
-      "endTime": 66.707,
-      "duration": 10.427,
-      "wordCount": 22,
-      "complexity": {
-        "characterCount": 175,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 66.646,
+      "endTime": 79.019,
+      "duration": 12.373,
+      "wordCount": 22
     },
     {
       "sentenceIndex": 6,
       "text": "Their conversations, dominated almost entirely by speculation about this mysterious gentleman, range from discussions of his probable character and temperament to conjecture about his matrimonial inclinations.",
-      "startTime": 66.707,
-      "endTime": 79.46,
-      "duration": 12.753,
-      "wordCount": 28,
-      "complexity": {
-        "characterCount": 209,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 79.019,
+      "endTime": 94.096,
+      "duration": 15.077,
+      "wordCount": 28
     },
     {
       "sentenceIndex": 7,
       "text": "They deliberate extensively upon what personal qualities and accomplishments he might value most highly in selecting a wife from among the available young ladies.",
-      "startTime": 79.46,
-      "endTime": 89.112,
-      "duration": 9.652,
-      "wordCount": 25,
-      "complexity": {
-        "characterCount": 162,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 94.096,
+      "endTime": 105.55,
+      "duration": 11.454,
+      "wordCount": 25
     },
     {
       "sentenceIndex": 8,
       "text": "The resulting competition, though conducted with outward civility and restraint, nevertheless creates an undercurrent of intense rivalry that permeates all social interactions within the neighborhood.",
-      "startTime": 89.112,
-      "endTime": 101.329,
-      "duration": 12.216,
-      "wordCount": 27,
-      "complexity": {
-        "characterCount": 200,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 105.55,
+      "endTime": 119.991,
+      "duration": 14.441,
+      "wordCount": 27
     }
   ],
+  "fileSize": 960487,
   "voiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.8,
     "style": 0.15,
     "use_speaker_boost": true
   },
-  "measuredAt": "2025-10-29T10:59:18.578Z",
+  "speed": 0.83,
+  "originalSpeed": 0.9,
+  "processingMethod": "ffmpeg-atempo",
+  "speedIncrease": "20.5%",
+  "measuredAt": "2025-11-17T07:40:26.747Z",
   "method": "ffprobe-enhanced-timing",
-  "timingStrategy": "character-proportion-with-punctuation-penalties",
-  "phase": "multi_voice_demo_testing",
-  "notes": "Phase 4: Multi-voice demo testing - Enhanced timing fix for complex sentences"
+  "timingStrategy": "character-proportion-with-punctuation-penalties"
 }

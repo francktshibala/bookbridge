@@ -167,7 +167,7 @@ export const LEVEL_TO_VOICES: Record<CEFRLevel, { female: DemoVoiceId; male: Dem
   },
   'B2': {
     female: 'zara',           // Modern authentic conversationalist
-    male: 'david_castlemore'  // ESL educator specialist
+    male: 'daniel'            // British authority (reliable, proven)
   },
   'C1': {
     female: 'sally_ford',     // Elegant sophisticated British

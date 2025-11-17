@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookBridge Instagram Logo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+Pro:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f0f0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo-container {
+            width: 1000px;
+            height: 1000px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            /* Safe area for Instagram circular crop */
+            padding: 100px;
+        }
+
+        /* Option 1: Full "BookBridge" Text Logo */
+        .logo-full {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 110px;
+            color: #002147; /* Oxford blue */
+            letter-spacing: -1px;
+            line-height: 1.1;
+            text-align: center;
+            /* Ensure readability at small sizes */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-accent {
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, #002147 0%, #CD7F32 100%);
+            border-radius: 2px;
+        }
+
+        /* Option 2: "BB" Monogram */
+        .logo-monogram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .monogram-circle {
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #002147 0%, #003d7a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(0, 33, 71, 0.3);
+            position: relative;
+        }
+
+        .monogram-circle::before {
+            content: '';
+            position: absolute;
+            width: 660px;
+            height: 660px;
+            border-radius: 50%;
+            border: 4px solid #CD7F32;
+            opacity: 0.5;
+        }
+
+        .monogram-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 240px;
+            color: #FFFFFF;
+            letter-spacing: -8px;
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+            /* Ensure readability */
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Option 3: Minimalist "BB" with Book Icon */
+        .logo-minimal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .book-icon {
+            width: 300px;
+            height: 240px;
+            position: relative;
+        }
+
+        .book-cover {
+            width: 200px;
+            height: 240px;
+            background: linear-gradient(135deg, #002147 0%, #003d7a 100%);
+            border-radius: 4px 8px 8px 4px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 33, 71, 0.3);
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            background: #CD7F32;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .book-pages {
+            position: absolute;
+            left: 200px;
+            top: 0;
+            width: 100px;
+            height: 240px;
+            background: #F4F1EB;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .minimal-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 130px;
+            color: #002147;
+            letter-spacing: -3px;
+            line-height: 1;
+            /* Ensure readability */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Toggle buttons for different logo options */
+        .controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #002147;
+            color: #002147;
+            font-family: 'Source Serif Pro', serif;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .control-btn:hover {
+            background: #002147;
+            color: white;
+        }
+
+        .control-btn.active {
+            background: #002147;
+            color: white;
+        }
+
+        /* Hide inactive logos */
+        .logo-option {
+            display: none;
+        }
+
+        .logo-option.active {
+            display: flex;
+        }
+
+        /* Background options */
+        .bg-white {
+            background: #FFFFFF;
+        }
+
+        .bg-parchment {
+            background: #F4F1EB;
+        }
+
+        .bg-transparent {
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="control-btn active" onclick="showLogo('full')">Full Text</button>
+        <button class="control-btn" onclick="showLogo('monogram')">BB Monogram</button>
+        <button class="control-btn" onclick="showLogo('minimal')">Minimal BB</button>
+        <button class="control-btn" onclick="changeBg('white')">White BG</button>
+        <button class="control-btn" onclick="changeBg('parchment')">Parchment BG</button>
+        <button class="control-btn" onclick="changeBg('transparent')">Transparent</button>
+    </div>
+
+    <div class="logo-container bg-white" id="logoContainer">
+        <!-- Option 1: Full "BookBridge" Text -->
+        <div class="logo-option active" id="logo-full">
+            <div class="logo-full">
+                <div class="logo-text">BookBridge</div>
+                <div class="logo-accent"></div>
+            </div>
+        </div>
+
+        <!-- Option 2: "BB" Monogram -->
+        <div class="logo-option" id="logo-monogram">
+            <div class="logo-monogram">
+                <div class="monogram-circle">
+                    <div class="monogram-text">BB</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Option 3: Minimalist "BB" with Book -->
+        <div class="logo-option" id="logo-minimal">
+            <div class="logo-minimal">
+                <div class="book-icon">
+                    <div class="book-cover"></div>
+                    <div class="book-pages"></div>
+                </div>
+                <div class="minimal-text">BB</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLogo(type) {
+            // Hide all logos
+            document.querySelectorAll('.logo-option').forEach(logo => {
+                logo.classList.remove('active');
+            });
+            
+            // Show selected logo
+            document.getElementById('logo-' + type).classList.add('active');
+            
+            // Update button states
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                if (btn.textContent.includes('Full') || btn.textContent.includes('Monogram') || btn.textContent.includes('Minimal')) {
+                    btn.classList.remove('active');
+                }
+            });
+            event.target.classList.add('active');
+        }
+
+        function changeBg(type) {
+            const container = document.getElementById('logoContainer');
+            container.className = 'logo-container bg-' + type;
+            
+            // Update button states
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                if (btn.textContent.includes('BG') || btn.textContent.includes('Transparent')) {
+                    btn.classList.remove('active');
+                }
+            });
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

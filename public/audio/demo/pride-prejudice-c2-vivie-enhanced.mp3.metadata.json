@@ -1,184 +1,96 @@
 {
-  "version": 3,
-  "voice": "Vivie",
   "voiceId": "z7U1SjrEq4fDDDriOQEN",
-  "voiceFileId": "vivie",
-  "gender": "female",
+  "voiceName": "Vivie",
   "level": "C2",
-  "measuredDuration": 93.022,
+  "fileName": "pride-prejudice-c2-vivie-enhanced.mp3",
+  "measuredDuration": 113.063039,
+  "originalDuration": 93.857938,
   "sentenceTimings": [
     {
       "sentenceIndex": 0,
       "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
       "startTime": 0,
-      "endTime": 7.38,
-      "duration": 7.38,
-      "wordCount": 24,
-      "complexity": {
-        "characterCount": 117,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "endTime": 8.949,
+      "duration": 8.949,
+      "wordCount": 24
     },
     {
       "sentenceIndex": 1,
       "text": "However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.",
-      "startTime": 7.38,
-      "endTime": 23.233,
-      "duration": 15.853,
-      "wordCount": 50,
-      "complexity": {
-        "characterCount": 257,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 8.949,
+      "endTime": 28.247,
+      "duration": 19.298,
+      "wordCount": 50
     },
     {
       "sentenceIndex": 2,
       "text": "The advantage of this persuasion is, that it fixes the attention of the young man on the most eligible matches, thereby facilitating the natural course of courtship and matrimonial alliance.",
-      "startTime": 23.233,
-      "endTime": 35.031,
-      "duration": 11.798,
-      "wordCount": 32,
-      "complexity": {
-        "characterCount": 190,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 28.247,
+      "endTime": 42.592,
+      "duration": 14.345,
+      "wordCount": 32
     },
     {
       "sentenceIndex": 3,
       "text": "My dear Mr. Bennet, said his lady to him one day, have you heard that Netherfield Park is let at last?",
-      "startTime": 35.031,
-      "endTime": 41.504,
-      "duration": 6.473,
-      "wordCount": 21,
-      "complexity": {
-        "characterCount": 102,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 42.592,
+      "endTime": 50.432,
+      "duration": 7.84,
+      "wordCount": 21
     },
     {
       "sentenceIndex": 4,
       "text": "Mr. Bennet replied that he had not, maintaining his characteristic air of detached amusement at his wife's perpetual preoccupation with neighborhood affairs.",
-      "startTime": 41.504,
-      "endTime": 51.155,
-      "duration": 9.651,
-      "wordCount": 24,
-      "complexity": {
-        "characterCount": 157,
-        "pausePenalty": 0.15,
-        "punctuationCount": 1,
-        "commaCount": 1,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 50.432,
+      "endTime": 62.188,
+      "duration": 11.756,
+      "wordCount": 24
     },
     {
       "sentenceIndex": 5,
       "text": "But it is, returned she; for Mrs. Long has just been here, and she told me all about it, relating every particular with the most minute attention to detail.",
-      "startTime": 51.155,
-      "endTime": 61.196,
-      "duration": 10.041,
-      "wordCount": 31,
-      "complexity": {
-        "characterCount": 156,
-        "pausePenalty": 0.6,
-        "punctuationCount": 4,
-        "commaCount": 3,
-        "semicolonCount": 1,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 62.188,
+      "endTime": 74.319,
+      "duration": 12.132,
+      "wordCount": 31
     },
     {
       "sentenceIndex": 6,
       "text": "Mr. Bennet made no answer, but continued perusing his book with studied indifference to the matrimonial intelligence his wife deemed so consequential.",
-      "startTime": 61.196,
-      "endTime": 70.423,
-      "duration": 9.227,
-      "wordCount": 24,
-      "complexity": {
-        "characterCount": 150,
-        "pausePenalty": 0.15,
-        "punctuationCount": 1,
-        "commaCount": 1,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 74.319,
+      "endTime": 85.558,
+      "duration": 11.238,
+      "wordCount": 24
     },
     {
       "sentenceIndex": 7,
       "text": "Do you not want to know who has taken it? cried his wife impatiently, her exasperation mounting at his apparent lack of interest in such momentous news.",
-      "startTime": 70.423,
-      "endTime": 79.771,
-      "duration": 9.348,
-      "wordCount": 28,
-      "complexity": {
-        "characterCount": 152,
-        "pausePenalty": 0.15,
-        "punctuationCount": 1,
-        "commaCount": 1,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 85.558,
+      "endTime": 96.944,
+      "duration": 11.386,
+      "wordCount": 28
     },
     {
       "sentenceIndex": 8,
       "text": "You want to tell me, and I have no objection to hearing it, he replied with the mildly ironic tone that had long characterized their domestic exchanges on matters of matrimonial speculation and neighborhood gossip.",
-      "startTime": 79.771,
-      "endTime": 93.022,
-      "duration": 13.251,
-      "wordCount": 38,
-      "complexity": {
-        "characterCount": 214,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 96.944,
+      "endTime": 113.063,
+      "duration": 16.119,
+      "wordCount": 38
     }
   ],
+  "fileSize": 905107,
   "voiceSettings": {
     "stability": 0.45,
     "similarity_boost": 0.8,
     "style": 0.2,
     "use_speaker_boost": true
   },
-  "measuredAt": "2025-10-29T11:17:01.100Z",
+  "speed": 0.83,
+  "originalSpeed": 0.9,
+  "processingMethod": "ffmpeg-atempo",
+  "speedIncrease": "20.5%",
+  "measuredAt": "2025-11-17T07:40:52.100Z",
   "method": "ffprobe-enhanced-timing",
-  "timingStrategy": "character-proportion-with-punctuation-penalties",
-  "phase": "multi_voice_demo_testing",
-  "notes": "Phase 4: Multi-voice demo testing - Enhanced timing fix for complex sentences"
+  "timingStrategy": "character-proportion-with-punctuation-penalties"
 }

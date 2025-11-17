@@ -3995,6 +3995,25 @@ This architecture overview is part of a comprehensive documentation system. Refe
   - Validation checklist
 - **Use case**: Quick reference when sync breaks, don't need deep technical details
 
+**VOICE_ENHANCEMENT_TO_MINDBLOWING_PLAN.md** - *Experimental upgrade path for human-like voices*
+- **Branch**: `experimental/mindblowing-voices` (NOT production)
+- **When to use**: Planning voice quality improvements beyond current baseline
+- **What it contains**:
+  - Current working formula (preservation baseline with Enhanced Timing v3)
+  - 4 "Mind-Blowing" criteria: Liveness, Emotional Range, Natural Pacing, Clarity
+  - Enhancement stack: Model upgrade (turbo_v2_5), parameter optimization, post-processing pipeline, SSML
+  - Testing methodology: Single voice pilot (Frederick Surrey C1) → 14-voice rollout
+  - Rollback plan: Current production files preserved, zero-risk experimentation
+- **Critical constraints**:
+  - MUST maintain <5% drift requirement (sync is non-negotiable)
+  - Speed LOCKED at 0.90 (never change)
+  - Enhanced Timing v3 mandatory with new model
+  - ffprobe measurement (never estimate)
+- **Cost**: ~$7 for experimental testing, ~$50-70 if successful for all books
+- **Success criteria**: User reaction "Wait, is this a HUMAN?" while preserving perfect sync
+- **Status**: 📋 Planning phase - awaiting approval before implementation
+- **Use case**: Safe experimentation to achieve professional studio quality (Speechify-level) without breaking sync
+
 ### Feature Implementation Plans
 
 **USAGE_ANALYTICS_IMPLEMENTATION_PLAN.md** - *Comprehensive analytics tracking plan (GPT-5 Validated)*
