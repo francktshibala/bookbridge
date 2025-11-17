@@ -972,24 +972,55 @@ export const testKeyboardNavigation = async (component: React.ReactElement) => {
 
 ### Text-to-Speech Architecture
 
-**Provider:** ElevenLabs (Multilingual v2)
+**Provider:** ElevenLabs (Monolingual v1)
 **Sync System:** Enhanced Timing v3 (<5% drift requirement)
-**Post-Processing:** Gender-specific FFmpeg mastering chains
+**Post-Processing:** FFmpeg speed adjustment (atempo=0.83) for comfortable pace
 
 ```typescript
-// Voice Generation Pipeline
-TTS Generation (ElevenLabs v2)
+// Voice Generation Pipeline (Current Production - November 2025)
+TTS Generation (ElevenLabs v1 at default speed)
   → Duration Measurement (ffprobe)
-  → Post-Processing (FFmpeg warmth/presence/air)
+  → Speed Adjustment (FFmpeg atempo=0.83)
+  → Re-measure Duration (ffprobe)
   → Metadata Generation (Enhanced Timing v3)
   → Audio-Text Synchronization
 ```
 
-**Current Status:** Production (v1 - perfect sync, professional quality)
-**Research Status:** Comprehensive 5-agent research complete (Jan 2025)
-**Next Phase:** Experimental upgrade to v2 for "mind-blowing" quality
+**Current Status:** Production (v1 + FFmpeg 0.83× - perfect sync, comfortable pace, excellent quality)
+**Production Formula:** See `docs/MASTER_MISTAKES_PREVENTION.md` - CURRENT PRODUCTION STANDARD (November 2025)
+**Complete Implementation Workflow:** See `docs/MASTER_MISTAKES_PREVENTION.md` - COMPLETE BOOK IMPLEMENTATION CHECKLIST (Phase 0-7)
+**Reference Scripts:** 
+- `scripts/regenerate-hero-b2-daniel-0.85.js`
+- `scripts/regenerate-hero-a1-hope-0.83.js`
 
-### Voice Enhancement Research (Jan 2025)
+**Key Innovation (November 2025):**
+- Generate at default speed (0.90×), then use FFmpeg post-processing to slow to 0.83×
+- Provides 20% slower, more comfortable pace without quality degradation
+- ElevenLabs API speed parameter unreliable - FFmpeg provides reliable control
+- Validated on A1 Hope and B2 Daniel voices with perfect sync
+
+**Implementation Workflow:**
+For complete book implementation (fetching → processing → audio generation → deployment), follow the step-by-step workflow in `docs/MASTER_MISTAKES_PREVENTION.md`:
+- **Phase 0:** System Validation
+- **Phase 1:** Pre-Implementation Setup
+- **Phase 2:** Text Acquisition & Processing (fetching, modernization, simplification)
+- **Phase 3:** Audio & Bundle Generation (with FFmpeg 0.83× post-processing)
+- **Phase 4:** API & Database Integration
+- **Phase 4.5:** Frontend API Integration Validation
+- **Phase 5:** Display Headers
+- **Phase 6:** Featured Books Integration
+- **Phase 7:** Testing & Validation
+
+**Critical:** Always follow the phase-by-phase workflow - never attempt multiple phases simultaneously to prevent costly mistakes.
+
+**Research Status:** Comprehensive 5-agent research complete (Jan 2025)
+**Historical Research:** See Voice Enhancement Research section below (v2 upgrade path)
+
+### 📚 HISTORICAL: Voice Enhancement Research (Jan 2025)
+
+**⚠️ RESEARCH PHASE - Not Current Production**
+
+This section documents the comprehensive research conducted in January 2025 exploring v2 model upgrades. The current production uses v1 with FFmpeg post-processing (see above). This research remains valuable for future upgrade paths.
 
 **Objective:** Achieve "Wait, is this a HUMAN?" quality while maintaining <5% drift
 
@@ -1032,5 +1063,9 @@ This architecture ensures:
 - **Scalable performance** with caching and optimization
 - **Security best practices** built-in
 - **Perfect audio-text sync** (<5% drift with Enhanced Timing v3)
+- **Comfortable audio pace** (0.83× speed via FFmpeg post-processing)
 
-Next files: SPRINT_PLANS.md with detailed 12-week breakdown.
+**Related Documentation:**
+- **Implementation Workflow:** `docs/MASTER_MISTAKES_PREVENTION.md` - Complete step-by-step guide (Phase 0-7)
+- **Production Settings:** `docs/MASTER_MISTAKES_PREVENTION.md` - CURRENT PRODUCTION STANDARD (November 2025)
+- **Sprint Planning:** `docs/SPRINT_PLANS.md` - Detailed 12-week breakdown

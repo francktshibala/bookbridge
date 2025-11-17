@@ -1,93 +1,96 @@
 {
-  "version": 2,
-  "voice": "Arabella",
   "voiceId": "aEO01A4wXwd1O8GPgGlF",
-  "voiceFileId": "arabella",
-  "gender": "female",
+  "voiceName": "Arabella",
   "level": "A2",
-  "measuredDuration": 42.527313,
+  "fileName": "pride-prejudice-a2-arabella-enhanced.mp3",
+  "measuredDuration": 50.148458,
+  "originalDuration": 41.639125,
   "sentenceTimings": [
     {
       "sentenceIndex": 0,
       "text": "It is a well-known truth that rich single men want to find a wife.",
       "startTime": 0,
-      "endTime": 4.378,
-      "duration": 4.378,
+      "endTime": 4.209,
+      "duration": 4.209,
       "wordCount": 14
     },
     {
       "sentenceIndex": 1,
       "text": "When a wealthy man arrives in a new neighborhood, local families immediately think he should marry one of their daughters.",
-      "startTime": 4.378,
-      "endTime": 10.319,
-      "duration": 5.941,
+      "startTime": 4.209,
+      "endTime": 12.139,
+      "duration": 7.93,
       "wordCount": 19
     },
     {
       "sentenceIndex": 2,
       "text": "The mothers of these families have a very clear goal in mind.",
-      "startTime": 10.319,
-      "endTime": 14.072,
-      "duration": 3.752,
+      "startTime": 12.139,
+      "endTime": 16.028,
+      "duration": 3.89,
       "wordCount": 12
     },
     {
       "sentenceIndex": 3,
       "text": "They want to find the best possible husbands for their young daughters.",
-      "startTime": 14.072,
-      "endTime": 17.824,
-      "duration": 3.752,
+      "startTime": 16.028,
+      "endTime": 20.556,
+      "duration": 4.528,
       "wordCount": 12
     },
     {
       "sentenceIndex": 4,
       "text": "As soon as they hear about a new rich gentleman, they become extremely excited about the possibilities.",
-      "startTime": 17.824,
-      "endTime": 23.14,
-      "duration": 5.316,
+      "startTime": 20.556,
+      "endTime": 27.274,
+      "duration": 6.718,
       "wordCount": 17
     },
     {
       "sentenceIndex": 5,
       "text": "They quickly start making plans about how they can meet him and introduce their daughters.",
-      "startTime": 23.14,
-      "endTime": 28.143,
-      "duration": 5.003,
+      "startTime": 27.274,
+      "endTime": 33.013,
+      "duration": 5.739,
       "wordCount": 16
     },
     {
       "sentenceIndex": 6,
       "text": "The mothers spend hours talking with each other about this mysterious new man.",
-      "startTime": 28.143,
-      "endTime": 32.521,
-      "duration": 4.378,
+      "startTime": 33.013,
+      "endTime": 37.987,
+      "duration": 4.974,
       "wordCount": 14
     },
     {
       "sentenceIndex": 7,
       "text": "They discuss his background, his personality, and whether he really wants to get married soon.",
-      "startTime": 32.521,
-      "endTime": 37.211,
-      "duration": 4.691,
+      "startTime": 37.987,
+      "endTime": 44.282,
+      "duration": 6.294,
       "wordCount": 15
     },
     {
       "sentenceIndex": 8,
       "text": "Every family in the area hopes that their own daughter will be the fortunate one he chooses.",
-      "startTime": 37.211,
-      "endTime": 42.527,
-      "duration": 5.316,
+      "startTime": 44.282,
+      "endTime": 50.148,
+      "duration": 5.867,
       "wordCount": 17
     }
   ],
+  "fileSize": 401675,
   "voiceSettings": {
     "stability": 0.45,
     "similarity_boost": 0.8,
-    "style": 0.1,
+    "style": 0.15,
     "use_speaker_boost": true
   },
-  "measuredAt": "2025-10-28T21:36:25.447Z",
-  "method": "ffprobe-proportional",
-  "phase": "multi_voice_demo_testing",
-  "notes": "Phase 4: Multi-voice demo testing - Strategic voice assignment"
+  "speed": 0.83,
+  "originalSpeed": 0.9,
+  "processingMethod": "ffmpeg-atempo",
+  "speedIncrease": "20.4%",
+  "measuredAt": "2025-11-17T07:38:06.167Z",
+  "method": "ffprobe-enhanced-timing",
+  "timingStrategy": "character-proportion-with-punctuation-penalties"
 }

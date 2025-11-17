@@ -1,184 +1,96 @@
 {
-  "version": 3,
-  "voice": "James",
   "voiceId": "EkK5I93UQWFDigLMpZcX",
-  "voiceFileId": "james",
-  "gender": "male",
+  "voiceName": "James",
   "level": "B1",
-  "measuredDuration": 47.542813,
+  "fileName": "pride-prejudice-b1-james-enhanced.mp3",
+  "measuredDuration": 56.537211,
+  "originalDuration": 46.942,
   "sentenceTimings": [
     {
       "sentenceIndex": 0,
       "text": "Everyone knows that a rich single man must want to find a wife.",
       "startTime": 0,
-      "endTime": 3.864,
-      "duration": 3.864,
-      "wordCount": 13,
-      "complexity": {
-        "characterCount": 63,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "endTime": 4.606,
+      "duration": 4.606,
+      "wordCount": 13
     },
     {
       "sentenceIndex": 1,
       "text": "When such a man moves to a new place, the families around him believe that he should marry one of their daughters, even if they don't know anything about his feelings or opinions.",
-      "startTime": 3.864,
-      "endTime": 15.141,
-      "duration": 11.278,
-      "wordCount": 32,
-      "complexity": {
-        "characterCount": 179,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 4.606,
+      "endTime": 17.994,
+      "duration": 13.388,
+      "wordCount": 32
     },
     {
       "sentenceIndex": 2,
       "text": "This idea becomes the main concern of the neighboring mothers.",
-      "startTime": 15.141,
-      "endTime": 18.944,
-      "duration": 3.802,
-      "wordCount": 10,
-      "complexity": {
-        "characterCount": 62,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 17.994,
+      "endTime": 22.527,
+      "duration": 4.533,
+      "wordCount": 10
     },
     {
       "sentenceIndex": 3,
       "text": "They see this wealthy newcomer as the perfect solution to their daughters' futures.",
-      "startTime": 18.944,
-      "endTime": 24.034,
-      "duration": 5.09,
-      "wordCount": 14,
-      "complexity": {
-        "characterCount": 83,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 22.527,
+      "endTime": 28.596,
+      "duration": 6.069,
+      "wordCount": 14
     },
     {
       "sentenceIndex": 4,
       "text": "The news of a rich, unmarried gentleman creates immediate excitement in the community.",
-      "startTime": 24.034,
-      "endTime": 29.458,
-      "duration": 5.424,
-      "wordCount": 13,
-      "complexity": {
-        "characterCount": 86,
-        "pausePenalty": 0.15,
-        "punctuationCount": 1,
-        "commaCount": 1,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 28.596,
+      "endTime": 35.034,
+      "duration": 6.438,
+      "wordCount": 13
     },
     {
       "sentenceIndex": 5,
       "text": "Every mother begins to calculate her chances and plan her approach.",
-      "startTime": 29.458,
-      "endTime": 33.567,
-      "duration": 4.109,
-      "wordCount": 11,
-      "complexity": {
-        "characterCount": 67,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 35.034,
+      "endTime": 39.932,
+      "duration": 4.899,
+      "wordCount": 11
     },
     {
       "sentenceIndex": 6,
       "text": "Conversations between neighbors focus entirely on this mysterious new resident.",
-      "startTime": 33.567,
-      "endTime": 38.412,
-      "duration": 4.845,
-      "wordCount": 11,
-      "complexity": {
-        "characterCount": 79,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 39.932,
+      "endTime": 45.709,
+      "duration": 5.776,
+      "wordCount": 11
     },
     {
       "sentenceIndex": 7,
       "text": "They speculate about his character, his intentions, and his preferences in women.",
-      "startTime": 38.412,
-      "endTime": 43.679,
-      "duration": 5.268,
-      "wordCount": 13,
-      "complexity": {
-        "characterCount": 81,
-        "pausePenalty": 0.3,
-        "punctuationCount": 2,
-        "commaCount": 2,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 45.709,
+      "endTime": 51.931,
+      "duration": 6.222,
+      "wordCount": 13
     },
     {
       "sentenceIndex": 8,
       "text": "The competition among families becomes both subtle and intense.",
-      "startTime": 43.679,
-      "endTime": 47.543,
-      "duration": 3.864,
-      "wordCount": 9,
-      "complexity": {
-        "characterCount": 63,
-        "pausePenalty": 0,
-        "punctuationCount": 0,
-        "commaCount": 0,
-        "semicolonCount": 0,
-        "colonCount": 0,
-        "emdashCount": 0,
-        "ellipsisCount": 0
-      }
+      "startTime": 51.931,
+      "endTime": 56.537,
+      "duration": 4.606,
+      "wordCount": 9
     }
   ],
+  "fileSize": 452875,
   "voiceSettings": {
     "stability": 0.45,
     "similarity_boost": 0.8,
     "style": 0.1,
     "use_speaker_boost": true
   },
-  "measuredAt": "2025-10-29T10:48:23.468Z",
+  "speed": 0.83,
+  "originalSpeed": 0.9,
+  "processingMethod": "ffmpeg-atempo",
+  "speedIncrease": "20.4%",
+  "measuredAt": "2025-11-17T07:39:05.469Z",
   "method": "ffprobe-enhanced-timing",
-  "timingStrategy": "character-proportion-with-punctuation-penalties",
-  "phase": "multi_voice_demo_testing",
-  "notes": "Phase 4: Multi-voice demo testing - Enhanced timing fix for complex sentences"
+  "timingStrategy": "character-proportion-with-punctuation-penalties"
 }
