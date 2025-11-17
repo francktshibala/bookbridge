@@ -27,7 +27,9 @@ export async function GET(request: NextRequest) {
           orderBy: { sortOrder: 'asc' }
         },
         _count: {
-          select: { books: true }
+          select: {
+            books: true
+          }
         }
       }
     });

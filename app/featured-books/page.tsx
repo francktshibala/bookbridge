@@ -36,6 +36,79 @@ import { ReadingHeader } from './components/ReadingHeader';
 import { SettingsModal } from './components/SettingsModal';
 import { ChapterModal, type Chapter } from './components/ChapterModal';
 
+// Preview Audio Player Component (scalable for any book/level)
+function PreviewAudioPlayer({ audioUrl, duration }: { audioUrl: string; duration: number }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = new Audio(audioUrl);
+    audioRef.current = audio;
+
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setCurrentTime(0);
+    };
+
+    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener('ended', handleEnded);
+
+    return () => {
+      audio.removeEventListener('timeupdate', updateTime);
+      audio.removeEventListener('ended', handleEnded);
+      audio.pause();
+      audio.src = '';
+    };
+  }, [audioUrl]);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const displayDuration = duration > 0 ? duration : audioRef.current?.duration || 0;
+
+  return (
+    <div className="flex items-center gap-3 p-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-light)] mb-4">
+      <button
+        onClick={togglePlay}
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-secondary)] transition-all shadow-md hover:shadow-lg"
+        aria-label={isPlaying ? 'Pause preview' : 'Play preview'}
+      >
+        {isPlaying ? '⏸️' : '▶️'}
+      </button>
+      
+      <div className="flex-1">
+        <div className="w-full h-1.5 bg-[var(--border-light)] rounded-full overflow-hidden">
+          <div
+            className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-100"
+            style={{ width: `${displayDuration > 0 ? (currentTime / displayDuration) * 100 : 0}%` }}
+          />
+        </div>
+        <div className="flex justify-between text-xs text-[var(--text-secondary)] mt-1">
+          <span>{formatTime(currentTime)}</span>
+          <span>{formatTime(displayDuration)}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Reuse the working types from test-real-bundles
 interface BundleSentence {
   sentenceId: string;
@@ -1736,6 +1809,42 @@ function FeaturedBooksContent() {
                     .replace(/\s*\([A-C][12]?\s*Level\)$/i, '')}
                 </h1>
               </div>
+
+              {/* Book Preview Section */}
+              {(bundleData as any).preview && (
+                <div className="px-4 py-6 mb-6 mx-4 md:mx-8 rounded-lg border-2 border-[var(--accent-primary)]/20 bg-[var(--bg-primary)]">
+                  <div className="max-w-2xl mx-auto">
+                    <h2 
+                      className="text-lg font-semibold text-[var(--text-accent)] mb-3"
+                      style={{ fontFamily: 'Playfair Display, serif' }}
+                    >
+                      About This Story
+                    </h2>
+                    <p 
+                      className="text-[var(--text-primary)] leading-relaxed mb-4"
+                      style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}
+                    >
+                      {(bundleData as any).preview}
+                    </p>
+                    
+                    {/* Preview Audio Player */}
+                    {(bundleData as any).previewAudio?.audioUrl && (
+                      <PreviewAudioPlayer 
+                        audioUrl={(bundleData as any).previewAudio.audioUrl}
+                        duration={(bundleData as any).previewAudio.duration}
+                      />
+                    )}
+                    
+                    <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)] mt-4">
+                      <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] rounded-full border border-[var(--accent-primary)]/30">
+                        Level {cefrLevel}
+                      </span>
+                      <span>•</span>
+                      <span>~{Math.ceil((bundleData.totalSentences * 15) / 60)} minute read</span>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Real Text with Chapter Headers - Speechify Style */}
               <div className="px-4 py-4 text-left">

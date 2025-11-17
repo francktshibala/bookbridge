@@ -252,6 +252,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'lady-with-dog': ['A1', 'A2'],
   'the-dead': ['A1', 'A2'],
   'the-metamorphosis': ['A1'],
+  'the-necklace': ['A1', 'A2', 'B1'],  // Multi-level book (A1, A2, B1 support)
 };
 
 // Single-level books configuration
@@ -259,5 +260,5 @@ export const SINGLE_LEVEL_BOOKS: { [key: string]: string } = {
   'great-gatsby-a2': 'A2',
   'gutenberg-1952-A1': 'A1',
   'sleepy-hollow-enhanced': 'A1',
-  'the-necklace': 'A1',
+  // 'the-necklace' removed - it's now in MULTI_LEVEL_BOOKS
 };

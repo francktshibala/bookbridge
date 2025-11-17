@@ -247,6 +247,7 @@ model BookContent {
   era         String?  // 'early-modern', 'victorian', 'american-19c', 'modern'
   wordCount   Int      @map("word_count")
   totalChunks Int      @map("total_chunks")
+  // preview     String?  // Book preview (50-100 words) for catalog/detail pages - TODO: Add via migration
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
