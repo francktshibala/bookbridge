@@ -217,6 +217,12 @@ node scripts/generate-[book-name]-preview.js [LEVEL]
 # CRITICAL: Generate preview AFTER simplification to use level-appropriate text
 # PURPOSE: Create 50-100 word preview for catalog/detail pages (based on research)
 #
+# ⚠️ EXECUTION METHOD:
+# - ALWAYS run preview and bundle generation scripts in TERMINAL (not in chat/IDE)
+# - Long-running processes (10-15 minutes for full generation) can timeout in chat
+# - Terminal provides real-time progress logs and can be interrupted/resumed
+# - Example: cd /path/to/project && node scripts/generate-[book-name]-preview.js [LEVEL]
+#
 # ⚠️ PREVIEW REQUIREMENTS (from book preview research):
 # - Length: 50-100 words (A1: 50-75, A2: 75-100, B1: 100-125)
 # - Language: Match book's CEFR level (simple words for A1, etc.)
@@ -267,6 +273,13 @@ brew install ffmpeg                         # Install ffprobe for measurements +
 # GENERATION WITH SOLUTION 1 (MANDATORY):
 node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
 # Example: node scripts/generate-necklace-bundles.js A1 --pilot
+#
+# ⚠️ EXECUTION METHOD:
+# - ALWAYS run bundle generation scripts in TERMINAL (not in chat/IDE)
+# - Full generation takes 10-15 minutes (60-88 bundles) - chat may timeout
+# - Terminal provides real-time progress logs, can be interrupted/resumed
+# - Use background mode for long runs: node scripts/generate-[book-name]-bundles.js [LEVEL] &
+# - Example: cd /path/to/project && node scripts/generate-[book-name]-bundles.js [LEVEL]
 
 # ⚠️ CRITICAL FFPROBE IMPLEMENTATION (learned from The Necklace A1):
 # For ES modules (import syntax), ffprobe measurement requires:

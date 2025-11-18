@@ -80,7 +80,7 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     id: 'lady-with-dog',
     title: 'The Lady with the Dog',
     author: 'Anton Chekhov',
-    description: 'Psychological masterpiece about unexpected love. A1 level with Sarah voice narration across 6 thematic chapters.',
+    description: 'Psychological masterpiece about unexpected love. A1, A2 & B1 levels with Sarah (A1), Daniel (A2), and Jane (B1) voice narration across 6 thematic chapters.',
     sentences: 349,
     bundles: 88,
     gradient: 'from-blue-500 to-purple-600',
@@ -170,7 +170,8 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   },
   'lady-with-dog': {
     'A1': '/api/lady-with-dog-a1/bundles',
-    'A2': '/api/lady-with-dog-a2/bundles'
+    'A2': '/api/lady-with-dog-a2/bundles',
+    'B1': '/api/lady-with-dog-b1/bundles'
   },
   'the-dead': {
     'A1': '/api/the-dead-a1/bundles',
@@ -249,7 +250,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'gutenberg-43': ['A1', 'A2'],
   'gift-of-the-magi': ['A1', 'A2', 'B1'],
   'the-devoted-friend': ['A1', 'A2', 'B1'],
-  'lady-with-dog': ['A1', 'A2'],
+  'lady-with-dog': ['A1', 'A2', 'B1'],
   'the-dead': ['A1', 'A2'],
   'the-metamorphosis': ['A1'],
   'the-necklace': ['A1', 'A2', 'B1'],  // Multi-level book (A1, A2, B1 support)

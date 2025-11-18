@@ -62,12 +62,26 @@ const DANIEL_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR LADY WITH THE DOG: A1 → Sarah, A2 → Daniel, B1 → Daniel
+const JANE_VOICE_SETTINGS = {
+  voice_id: 'RILOU7YmBhvwJGDGjNmP',  // Jane voice ID (Professional audiobook reader)
+  model_id: 'eleven_monolingual_v1',
+  voice_settings: {
+    stability: 0.5,
+    similarity_boost: 0.8,
+    style: 0.05,
+    use_speaker_boost: true
+  },
+  speed: 0.90,
+  output_format: 'mp3_44100_128',
+  apply_text_normalization: 'auto'
+};
+
+// VOICE MAPPING FOR LADY WITH THE DOG: A1 → Sarah, A2 → Daniel, B1 → Jane
 function getVoiceForLevel(level) {
   const voiceMapping = {
     'A1': SARAH_VOICE_SETTINGS,  // A1 uses Sarah (American soft news)
     'A2': DANIEL_VOICE_SETTINGS,
-    'B1': DANIEL_VOICE_SETTINGS
+    'B1': JANE_VOICE_SETTINGS   // B1 uses Jane (Professional audiobook reader)
   };
   return voiceMapping[level] || SARAH_VOICE_SETTINGS;
 }
@@ -85,7 +99,7 @@ async function generatePreviewAudio(previewText, bookId, level) {
   
   try {
     const voiceSettings = getVoiceForLevel(level);
-    const voiceName = level === 'A1' ? 'Sarah' : (level === 'A2' || level === 'B1' ? 'Daniel' : 'Sarah');
+    const voiceName = level === 'A1' ? 'Sarah' : (level === 'A2' ? 'Daniel' : (level === 'B1' ? 'Jane' : 'Sarah'));
     
     console.log(`   🗣️ Using voice: ${voiceSettings.voice_id} (${voiceName})`);
     

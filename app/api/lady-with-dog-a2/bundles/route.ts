@@ -195,6 +195,64 @@ export async function GET(request: NextRequest) {
       where: { bookId: 'lady-with-dog' }
     });
 
+    // Try to load preview from cache file (local) or Supabase storage (production)
+    let preview: string | null = null;
+    let previewAudio: { audioUrl: string; duration: number } | null = null;
+    
+    try {
+      // Try cache file first (for local development)
+      const previewCachePath = path.join(process.cwd(), 'cache', 'lady-with-dog-A2-preview.txt');
+      if (fs.existsSync(previewCachePath)) {
+        preview = fs.readFileSync(previewCachePath, 'utf8').trim();
+        console.log('✅ Loaded preview from cache');
+      }
+      
+      // Try to load preview audio metadata
+      const previewAudioPath = path.join(process.cwd(), 'cache', 'lady-with-dog-A2-preview-audio.json');
+      if (fs.existsSync(previewAudioPath)) {
+        const audioMetadata = JSON.parse(fs.readFileSync(previewAudioPath, 'utf8'));
+        previewAudio = {
+          audioUrl: audioMetadata.audioUrl,
+          duration: audioMetadata.duration
+        };
+        console.log('✅ Loaded preview audio metadata from cache');
+      } else {
+        // Fallback: Construct preview audio URL from Supabase (works in production)
+        const previewAudioFileName = 'lady-with-dog/A2/preview.mp3';
+        const { data: { publicUrl } } = supabase.storage
+          .from('audio-files')
+          .getPublicUrl(previewAudioFileName);
+        
+        // Check if file exists by trying to fetch it
+        try {
+          const testResponse = await fetch(publicUrl, { method: 'HEAD' });
+          if (testResponse.ok) {
+            // Try to get duration from cache metadata if available, otherwise use 0
+            let duration = 0;
+            try {
+              const cachePath = path.join(process.cwd(), 'cache', 'lady-with-dog-A2-preview-audio.json');
+              if (fs.existsSync(cachePath)) {
+                const metadata = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+                duration = metadata.duration || 0;
+              }
+            } catch (e) {
+              // Duration will be 0, measured client-side if needed
+            }
+            
+            previewAudio = {
+              audioUrl: publicUrl,
+              duration
+            };
+            console.log('✅ Found preview audio in Supabase storage');
+          }
+        } catch (error) {
+          // File doesn't exist, that's okay
+        }
+      }
+    } catch (error) {
+      console.log('⚠️ Could not load preview:', error instanceof Error ? error.message : 'Unknown error');
+    }
+
     // Load chapter data (from our chapter detection)
     let chapters = null;
     try {
@@ -230,6 +288,8 @@ export async function GET(request: NextRequest) {
       totalSentences,
       bundles,
       chapters, // Add chapter structure for UI
+      preview: preview || null, // Book preview (50-100 words) for reading page
+      previewAudio: previewAudio || null, // Preview audio URL and duration
       source: 'dedicated-api' // Indicates this came from dedicated API for debugging
     }, {
       headers: {

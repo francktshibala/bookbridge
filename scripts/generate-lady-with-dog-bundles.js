@@ -59,12 +59,26 @@ const DANIEL_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR LADY WITH THE DOG: A1 → Sarah, A2 → Daniel, B1 → Daniel
+const JANE_VOICE_SETTINGS = {
+  voice_id: 'RILOU7YmBhvwJGDGjNmP',  // Jane voice ID (Professional audiobook reader)
+  model_id: 'eleven_monolingual_v1',
+  voice_settings: {
+    stability: 0.5,
+    similarity_boost: 0.8,
+    style: 0.05,
+    use_speaker_boost: true
+  },
+  speed: 0.90,
+  output_format: 'mp3_44100_128',
+  apply_text_normalization: 'auto'
+};
+
+// VOICE MAPPING FOR LADY WITH THE DOG: A1 → Sarah, A2 → Daniel, B1 → Jane
 function getVoiceForLevel(level) {
   const voiceMapping = {
     'A1': SARAH_VOICE_SETTINGS,  // A1 uses Sarah (American soft news)
     'A2': DANIEL_VOICE_SETTINGS,  // A2 uses Daniel
-    'B1': DANIEL_VOICE_SETTINGS   // B1 uses Daniel
+    'B1': JANE_VOICE_SETTINGS   // B1 uses Jane (Professional audiobook reader)
   };
   return voiceMapping[level] || SARAH_VOICE_SETTINGS;
 }
@@ -94,7 +108,7 @@ const CEFR_LEVEL = targetLevel;
 const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
 
 console.log(`🎵 Generating bundles for "${BOOK_ID}" at ${CEFR_LEVEL} level`);
-const voiceName = CEFR_LEVEL === 'A1' ? 'Sarah' : 'Daniel';
+const voiceName = CEFR_LEVEL === 'A1' ? 'Sarah' : (CEFR_LEVEL === 'A2' ? 'Daniel' : 'Jane');
 console.log(`🗣️ Using voice: ${voiceSettings.voice_id} (${voiceName})`);
 
 if (isPilot) {
@@ -368,7 +382,7 @@ async function generateLadyWithDogBundles() {
     console.log(`📊 Resume mode: ${existingIndices.size} existing, ${bundlesToGenerate.length} new bundles to generate`);
 
     let processedCount = 0;
-    const voiceType = CEFR_LEVEL === 'A1' ? 'Sarah' : 'Daniel';
+    const voiceType = CEFR_LEVEL === 'A1' ? 'Sarah' : (CEFR_LEVEL === 'A2' ? 'Daniel' : 'Jane');
 
     for (const bundle of bundlesToGenerate) {
       try {
