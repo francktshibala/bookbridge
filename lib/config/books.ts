@@ -57,26 +57,6 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'TN'
   },
   {
-    id: 'the-dead',
-    title: 'The Dead',
-    author: 'James Joyce',
-    description: 'Modernist masterpiece about love, memory, and mortality. Joyce\'s most celebrated story simplified to A1 level. 451 sentences across 113 bundles with Sarah voice narration.',
-    sentences: 451,
-    bundles: 113,
-    gradient: 'from-blue-500 to-indigo-600',
-    abbreviation: 'TD'
-  },
-  {
-    id: 'the-metamorphosis',
-    title: 'The Metamorphosis',
-    author: 'Franz Kafka',
-    description: 'Kafka\'s absurdist masterpiece about transformation and alienation. A man wakes as a giant bug. Simplified to A1 level. 280 sentences across 70 bundles with Sarah voice narration.',
-    sentences: 280,
-    bundles: 70,
-    gradient: 'from-gray-500 to-slate-600',
-    abbreviation: 'TM'
-  },
-  {
     id: 'lady-with-dog',
     title: 'The Lady with the Dog',
     author: 'Anton Chekhov',
@@ -95,6 +75,26 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     bundles: 13,
     gradient: 'from-red-500 to-green-600',
     abbreviation: 'GM'
+  },
+  {
+    id: 'the-dead',
+    title: 'The Dead',
+    author: 'James Joyce',
+    description: 'Modernist masterpiece about love, memory, and mortality. Joyce\'s most celebrated story simplified to A1 level. 451 sentences across 113 bundles with Sarah voice narration.',
+    sentences: 451,
+    bundles: 113,
+    gradient: 'from-blue-500 to-indigo-600',
+    abbreviation: 'TD'
+  },
+  {
+    id: 'the-metamorphosis',
+    title: 'The Metamorphosis',
+    author: 'Franz Kafka',
+    description: 'Kafka\'s absurdist masterpiece about transformation and alienation. A man wakes as a giant bug. Simplified to A1 level. 280 sentences across 70 bundles with Sarah voice narration.',
+    sentences: 280,
+    bundles: 70,
+    gradient: 'from-gray-500 to-slate-600',
+    abbreviation: 'TM'
   },
 
   // 📚 OTHER BOOKS - Various Status
