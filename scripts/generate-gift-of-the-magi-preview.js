@@ -27,7 +27,8 @@ const supabase = createClient(
 const VALIDATED_VOICES = {
   'daniel': 'onwK4e9ZLuTAKqWW03F9',  // British deep news presenter
   'sarah': 'EXAVITQu4vr4xnSDxMaL',   // American soft news
-  'grandpa': 'NOpBlnGInO9m6vDvFkFC'  // Grandpa Spuds - Warm storyteller
+  'grandpa': 'NOpBlnGInO9m6vDvFkFC',  // Grandpa Spuds - Warm storyteller
+  'james': 'EkK5I93UQWFDigLMpZcX'     // James - Husky & engaging
 };
 
 // NOVEMBER 2025 PRODUCTION STANDARD - FFmpeg 0.85× Post-Processing
@@ -48,10 +49,26 @@ const GRANDPA_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR GIFT OF THE MAGI: A1 → Grandpa
+// PRODUCTION VOICE SETTINGS - James (A2)
+const JAMES_VOICE_SETTINGS = {
+  voice_id: 'EkK5I93UQWFDigLMpZcX',  // James voice ID (Husky & engaging)
+  model_id: 'eleven_monolingual_v1',
+  voice_settings: {
+    stability: 0.5,                    // Clarity for ESL learners
+    similarity_boost: 0.8,             // Better presence
+    style: 0.05,                       // Subtle sophistication
+    use_speaker_boost: true
+  },
+  speed: 0.90,                          // Generate at default
+  output_format: 'mp3_44100_128',
+  apply_text_normalization: 'auto'
+};
+
+// VOICE MAPPING FOR GIFT OF THE MAGI: A1 → Grandpa, A2 → James
 function getVoiceForLevel(level) {
   const voiceMapping = {
-    'A1': GRANDPA_VOICE_SETTINGS  // A1 uses Grandpa Spuds (Warm storyteller)
+    'A1': GRANDPA_VOICE_SETTINGS,  // A1 uses Grandpa Spuds (Warm storyteller)
+    'A2': JAMES_VOICE_SETTINGS     // A2 uses James (Husky & engaging)
   };
   return voiceMapping[level] || GRANDPA_VOICE_SETTINGS;
 }
@@ -69,7 +86,7 @@ async function generatePreviewAudio(previewText, bookId, level) {
   
   try {
     const voiceSettings = getVoiceForLevel(level);
-    const voiceName = level === 'A1' ? 'Grandpa' : 'Unknown';
+    const voiceName = level === 'A1' ? 'Grandpa' : (level === 'A2' ? 'James' : 'Unknown');
     
     console.log(`   🗣️ Voice: ${voiceSettings.voice_id} (${voiceName})`);
     console.log(`   📝 Text length: ${previewText.length} characters`);

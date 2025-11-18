@@ -17,7 +17,8 @@ config({ path: '.env.local' });
 const VALIDATED_VOICES = {
   'daniel': 'onwK4e9ZLuTAKqWW03F9',  // British deep news presenter
   'sarah': 'EXAVITQu4vr4xnSDxMaL',   // American soft news
-  'grandpa': 'NOpBlnGInO9m6vDvFkFC'  // Grandpa Spuds - Warm storyteller
+  'grandpa': 'NOpBlnGInO9m6vDvFkFC',  // Grandpa Spuds - Warm storyteller
+  'james': 'EkK5I93UQWFDigLMpZcX'     // James - Husky & engaging
 };
 
 const prisma = new PrismaClient();
@@ -73,11 +74,25 @@ const DANIEL_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR GIFT OF THE MAGI: A1 → Grandpa, A2 → Sarah, B1 → Daniel
+const JAMES_VOICE_SETTINGS = {
+  voice_id: 'EkK5I93UQWFDigLMpZcX',  // James voice ID (Husky & engaging)
+  model_id: 'eleven_monolingual_v1',  // English-focused model
+  voice_settings: {
+    stability: 0.5,                    // Clarity for ESL learners
+    similarity_boost: 0.8,             // Enhanced presence
+    style: 0.05,                       // Subtle sophistication
+    use_speaker_boost: true
+  },
+  speed: 0.90,                          // Generate at default (API may ignore)
+  output_format: 'mp3_44100_128',
+  apply_text_normalization: 'auto'
+};
+
+// VOICE MAPPING FOR GIFT OF THE MAGI: A1 → Grandpa, A2 → James, B1 → Daniel
 function getVoiceForLevel(level) {
   const voiceMapping = {
     'A1': GRANDPA_VOICE_SETTINGS,  // A1 uses Grandpa Spuds (Warm storyteller)
-    'A2': SARAH_VOICE_SETTINGS,    // A2 uses Sarah
+    'A2': JAMES_VOICE_SETTINGS,    // A2 uses James (Husky & engaging)
     'B1': DANIEL_VOICE_SETTINGS    // B1 uses Daniel
   };
   return voiceMapping[level] || GRANDPA_VOICE_SETTINGS;
@@ -108,7 +123,7 @@ const CEFR_LEVEL = targetLevel;
 const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
 
 console.log(`🎵 Generating bundles for "${BOOK_ID}" at ${CEFR_LEVEL} level`);
-const voiceName = CEFR_LEVEL === 'A1' ? 'Grandpa' : (CEFR_LEVEL === 'A2' ? 'Sarah' : 'Daniel');
+const voiceName = CEFR_LEVEL === 'A1' ? 'Grandpa' : (CEFR_LEVEL === 'A2' ? 'James' : 'Daniel');
 console.log(`🗣️ Using voice: ${voiceSettings.voice_id} (${voiceName})`);
 
 if (isPilot) {
@@ -366,16 +381,17 @@ async function generateGiftOfMagiBundles() {
       }
     });
 
-    // For A1, delete existing bundles to ensure clean override with Grandpa's voice
-    if (CEFR_LEVEL === 'A1') {
-      console.log('🗑️ Deleting existing A1 bundles for clean regeneration with Grandpa voice...');
+    // For A1 and A2, delete existing bundles to ensure clean override with correct voice
+    if (CEFR_LEVEL === 'A1' || CEFR_LEVEL === 'A2') {
+      const voiceName = CEFR_LEVEL === 'A1' ? 'Grandpa' : 'James';
+      console.log(`🗑️ Deleting existing ${CEFR_LEVEL} bundles for clean regeneration with ${voiceName} voice...`);
       await prisma.bookChunk.deleteMany({
         where: {
           bookId: BOOK_ID,
           cefrLevel: CEFR_LEVEL
         }
       });
-      console.log('✅ Existing A1 bundles deleted');
+      console.log(`✅ Existing ${CEFR_LEVEL} bundles deleted`);
     }
 
     // Limit to pilot if requested (3 bundles max for cost control)
