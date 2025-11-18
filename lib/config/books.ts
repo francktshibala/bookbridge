@@ -90,7 +90,7 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     id: 'gift-of-the-magi',
     title: 'The Gift of the Magi',
     author: 'O. Henry',
-    description: 'Heartwarming Christmas story with Sarah voice narration. A1 level with 6 thematic chapters. Complete 13 bundles available.',
+    description: 'Heartwarming Christmas story about love and sacrifice. A1, A2 & B1 levels with Grandpa (A1), James (A2), and Jane (B1) voice narration.',
     sentences: 51,
     bundles: 13,
     gradient: 'from-red-500 to-green-600',
