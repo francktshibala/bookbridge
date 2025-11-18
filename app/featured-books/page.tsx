@@ -191,6 +191,16 @@ const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'TH'
   },
   {
+    id: 'the-last-leaf',
+    title: 'The Last Leaf',
+    author: 'O. Henry',
+    description: 'Touching tale of hope and sacrifice. B1 level with Jane voice narration. Perfect emotional journey for intermediate learners.',
+    sentences: 188,
+    bundles: 42,
+    gradient: 'from-green-500 to-teal-600',
+    abbreviation: 'LL'
+  },
+  {
     id: 'the-dead',
     title: 'The Dead',
     author: 'James Joyce',

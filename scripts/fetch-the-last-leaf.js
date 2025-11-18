@@ -20,51 +20,38 @@ async function fetchTheLastLeaf() {
     console.log(`📄 Downloaded ${fullText.length} characters`);
 
     // Extract "The Last Leaf" story from the collection
-    const startMarker = 'THE LAST LEAF';
-    const endMarker = 'A SERVICE OF LOVE'; // Next story in the collection
+    // The story starts with "In a little district west of Washington Square"
+    const storyStartMarker = 'In a little district west of Washington Square';
+    const storyEndMarker = 'THE COUNT AND THE WEDDING GUEST'; // Next story in the collection
 
-    const startIndex = fullText.indexOf(startMarker);
-    let endIndex = fullText.indexOf(endMarker, startIndex + startMarker.length);
+    const startIndex = fullText.indexOf(storyStartMarker);
+    let endIndex = fullText.indexOf(storyEndMarker, startIndex + storyStartMarker.length);
 
     if (startIndex === -1) {
-      throw new Error('Story start marker "THE LAST LEAF" not found');
+      throw new Error('Story start marker not found');
     }
 
-    let extractedText;
     if (endIndex === -1) {
       console.log('⚠️ End marker not found, searching for alternative markers');
       // Try alternative end markers
-      const altEndMarkers = ['WHILE THE AUTO WAITS', 'A LICKPENNY LOVER'];
+      const altEndMarkers = ['A SERVICE OF LOVE', 'WHILE THE AUTO WAITS'];
       for (const marker of altEndMarkers) {
-        endIndex = fullText.indexOf(marker, startIndex + startMarker.length);
+        endIndex = fullText.indexOf(marker, startIndex + storyStartMarker.length);
         if (endIndex !== -1) break;
       }
 
       if (endIndex === -1) {
-        console.log('⚠️ No end marker found, using content until reasonable break');
-        // Find a natural break point (look for multiple line breaks indicating story end)
-        const searchStart = startIndex + 2000; // Start looking after beginning of story
-        const breakPattern = /\n\n\n+[A-Z]/; // Multiple line breaks followed by capital letter
-        const breakMatch = fullText.substring(searchStart).match(breakPattern);
-        if (breakMatch) {
-          endIndex = searchStart + breakMatch.index;
-        } else {
-          // Fallback: take a reasonable chunk
-          extractedText = fullText.substring(startIndex, startIndex + 5000);
-        }
+        throw new Error('Could not find story end marker');
       }
     }
 
-    if (!extractedText) {
-      extractedText = fullText.substring(startIndex, endIndex);
-    }
+    const extractedText = fullText.substring(startIndex, endIndex);
 
     // Clean up the text
     const cleanedText = extractedText
       .replace(/\r\n/g, '\n')  // Normalize line endings
       .replace(/\n{3,}/g, '\n\n')  // Remove excessive line breaks
-      .replace(/\s+/g, ' ')      // Normalize whitespace
-      .replace(/THE LAST LEAF\s*/i, '') // Remove title at beginning
+      .replace(/[ \t]+/g, ' ')      // Normalize spaces (but preserve line breaks)
       .trim();
 
     console.log(`✂️ Extracted story: ${cleanedText.length} characters`);

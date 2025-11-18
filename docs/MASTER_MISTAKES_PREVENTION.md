@@ -696,7 +696,11 @@ const storyText = fullText; // Includes headers, footers, metadata
 
 **Prevention Strategies:**
 - Always use book-specific start/end markers
-- Verify extracted text doesn't include Project Gutenberg metadata
+- **CRITICAL (Nov 2025):** When extracting from collections, use story-specific opening lines as markers, not just titles
+  - **Problem:** Story titles may appear multiple times (table of contents + actual story)
+  - **Solution:** Use unique opening sentence/phrase as start marker (e.g., "In a little district west of Washington Square" instead of "THE LAST LEAF")
+  - **Example:** `const startMarker = 'In a little district west of Washington Square';` (unique story opening)
+- Verify extracted text contains expected character names/themes before proceeding
 - Save extracted text to cache before processing
 - Count sentences in extracted text for validation
 
