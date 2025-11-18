@@ -284,12 +284,14 @@ Generate ONLY the preview text (no explanations, no markdown, just the preview t
       console.warn(`⚠️ Preview length (${previewWordCount} words) outside recommended range (50-100)`);
     }
 
-    // Save preview to database (skip if preview field doesn't exist yet)
+    // Save preview to database using raw SQL (works if preview column exists)
     try {
+      // First ensure BookContent record exists
       await prisma.bookContent.upsert({
         where: { bookId: BOOK_ID },
         update: {
-          // preview: previewText  // Commented out until DB migration adds preview field
+          wordCount: wordCount,
+          totalChunks: 0
         },
         create: {
           bookId: BOOK_ID,
@@ -299,16 +301,17 @@ Generate ONLY the preview text (no explanations, no markdown, just the preview t
           era: 'russian-realist',
           wordCount: wordCount,
           totalChunks: 0
-          // preview: previewText  // Commented out until DB migration adds preview field
         }
       });
-      console.log('✅ Preview metadata saved to database');
+      
+      // Note: Preview text is saved to cache file only (same pattern as The Necklace)
+      // Database preview column migration was rolled back, so we use cache files
     } catch (dbError) {
-      console.warn('⚠️ Could not save preview to database (preview field may not exist yet):', dbError.message);
+      console.warn('⚠️ Could not save preview to database:', dbError.message);
       console.log('   Preview text and audio are still saved to cache files');
     }
 
-    // Also save to cache for reference
+    // Also save to cache for reference (same pattern as The Necklace)
     const previewCacheFile = path.join(process.cwd(), 'cache', `${BOOK_ID}-${CEFR_LEVEL}-preview.txt`);
     fs.writeFileSync(previewCacheFile, previewText);
     console.log(`✅ Preview cached to: ${previewCacheFile}`);

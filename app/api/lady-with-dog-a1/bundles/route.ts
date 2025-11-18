@@ -200,8 +200,6 @@ export async function GET(request: NextRequest) {
     let previewAudio: { audioUrl: string; duration: number } | null = null;
     
     try {
-      // Try cache file first (for local development)
-      // Note: Preview text requires cache file or database migration for production
       const previewCachePath = path.join(process.cwd(), 'cache', 'lady-with-dog-A1-preview.txt');
       if (fs.existsSync(previewCachePath)) {
         preview = fs.readFileSync(previewCachePath, 'utf8').trim();
