@@ -16,7 +16,8 @@ config({ path: '.env.local' });
 const BOOK_INFO = {
   id: 'tell-tale-heart',
   inputFile: 'tell-tale-heart-original.txt',
-  outputFileA1: 'tell-tale-heart-A1-simplified.txt'
+  outputFileA1: 'tell-tale-heart-A1-simplified.txt',
+  outputFileA2: 'tell-tale-heart-A2-simplified.txt'
 };
 
 // A1 Simplification Guidelines
@@ -31,6 +32,24 @@ const A1_GUIDELINES = `
 - Generate natural flow sentences (NOT forced micro-sentences)
 - AVOID: "He is nervous. He is mad. He hears things." (robotic micro-sentences)
 - CORRECT A1: "He is nervous and feels mad because he hears strange things." (natural flow)
+- Each sentence should express one complete thought
+- Avoid semicolons - use periods instead
+- Preserve punctuation for proper formatting
+- Validate natural reading flow
+`;
+
+// A2 Simplification Guidelines
+const A2_GUIDELINES = `
+- Use 1200-1500 most common words
+- Present and simple past tense
+- Natural compound sentences (11-13 words average - COMPOUND FLOW)
+- MAXIMUM 15 WORDS PER SENTENCE (Master Prevention - prevents highlighting issues)
+- More connectors: "and", "but", "so", "then", "because"
+- Explain cultural references simply
+- Maintain exact 1:1 sentence count mapping (CRITICAL)
+- Generate compound sentences for natural flow (NOT micro-sentences)
+- AVOID: "He was nervous. He was mad. He heard things." (robotic micro-sentences)
+- CORRECT A2: "He was very nervous and felt mad because he heard strange things in the dark." (natural 11 words)
 - Each sentence should express one complete thought
 - Avoid semicolons - use periods instead
 - Preserve punctuation for proper formatting
@@ -57,7 +76,11 @@ function cleanSentenceForAPI(sentence) {
 async function callOpenAI(sentence, level) {
   return new Promise((resolve, reject) => {
     const cleanSentence = cleanSentenceForAPI(sentence);
-    const guidelines = A1_GUIDELINES;
+    const guidelines = level === 'A1' ? A1_GUIDELINES : A2_GUIDELINES;
+    const wordRange = level === 'A1' ? '500-1000' : '1200-1500';
+    const avgWords = level === 'A1' ? '8-12 words average' : '11-13 words average';
+    const maxWords = level === 'A1' ? '12' : '15';
+    const connectors = level === 'A1' ? '"and", "but", "when" only when natural' : '"and", "but", "so", "then", "because"';
 
     const data = JSON.stringify({
       model: 'gpt-4o-mini',
@@ -71,12 +94,12 @@ ${guidelines}
 Original sentence: "${cleanSentence}"
 
 Requirements:
-1. Use 500-1000 most common words only
-2. Create natural compound sentences (8-12 words average)
-3. CRITICAL: Maximum 12 words per sentence (prevents highlighting issues)
+1. Use ${wordRange} most common words only
+2. Create natural compound sentences (${avgWords})
+3. CRITICAL: Maximum ${maxWords} words per sentence (prevents highlighting issues)
 4. Each sentence should express one complete thought
 5. Avoid semicolons - use periods instead
-6. Use simple connectors: "and", "but", "when" only when natural
+6. Use connectors: ${connectors}
 7. Keep the complete meaning and emotion
 8. Return ONLY the simplified sentence, no explanation
 
@@ -214,7 +237,8 @@ async function simplifyTellTaleHeart(level = 'A1') {
     const simplifiedText = simplifiedSentences.join(' ');
 
     // Save to cache
-    const outputPath = path.join(cacheDir, BOOK_INFO.outputFileA1);
+    const outputFile = level === 'A1' ? BOOK_INFO.outputFileA1 : BOOK_INFO.outputFileA2;
+    const outputPath = path.join(cacheDir, outputFile);
     fs.writeFileSync(outputPath, simplifiedText, 'utf-8');
     console.log(`\n💾 Saved simplified text to: ${outputPath}`);
 

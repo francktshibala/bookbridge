@@ -196,7 +196,8 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'B1': '/api/the-necklace-b1/bundles'
   },
   'tell-tale-heart': {
-    'A1': '/api/tell-tale-heart-a1/bundles'
+    'A1': '/api/tell-tale-heart-a1/bundles',
+    'A2': '/api/tell-tale-heart-a2/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };
@@ -268,7 +269,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'the-dead': ['A1', 'A2'],
   'the-metamorphosis': ['A1'],
   'the-necklace': ['A1', 'A2', 'B1'],  // Multi-level book (A1, A2, B1 support)
-  'tell-tale-heart': ['A1'],  // Currently A1 only, can expand later
+  'tell-tale-heart': ['A1', 'A2'],  // A1 with Daniel, A2 with Jane
 };
 
 // Single-level books configuration
