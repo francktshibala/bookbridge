@@ -62,11 +62,12 @@ const JANE_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR TELL-TALE HEART: A1 → Daniel, A2 → Jane
+// VOICE MAPPING FOR TELL-TALE HEART: A1 → Daniel, A2 → Jane, B1 → Jane
 function getVoiceForLevel(level) {
   const voiceMapping = {
     'A1': DANIEL_VOICE_SETTINGS,  // A1 uses Daniel
-    'A2': JANE_VOICE_SETTINGS     // A2 uses Jane
+    'A2': JANE_VOICE_SETTINGS,    // A2 uses Jane
+    'B1': JANE_VOICE_SETTINGS     // B1 uses Jane
   };
   return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
 }
@@ -84,7 +85,7 @@ async function generatePreviewAudio(previewText, bookId, level) {
   
   try {
     const voiceSettings = getVoiceForLevel(level);
-    const voiceName = level === 'A2' ? 'Jane' : (level === 'A1' ? 'Daniel' : 'Daniel');
+    const voiceName = level === 'A2' || level === 'B1' ? 'Jane' : (level === 'A1' ? 'Daniel' : 'Daniel');
     
     console.log(`   🗣️ Voice: ${voiceSettings.voice_id} (${voiceName})`);
     console.log(`   📝 Text length: ${previewText.length} characters`);

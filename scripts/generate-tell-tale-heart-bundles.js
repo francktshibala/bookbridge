@@ -59,11 +59,12 @@ const JANE_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR TELL-TALE HEART: A1 → Daniel, A2 → Jane
+// VOICE MAPPING FOR TELL-TALE HEART: A1 → Daniel, A2 → Jane, B1 → Jane
 function getVoiceForLevel(level) {
   const voiceMapping = {
     'A1': DANIEL_VOICE_SETTINGS,  // A1 uses Daniel
-    'A2': JANE_VOICE_SETTINGS     // A2 uses Jane
+    'A2': JANE_VOICE_SETTINGS,    // A2 uses Jane
+    'B1': JANE_VOICE_SETTINGS     // B1 uses Jane
   };
   return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
 }
@@ -71,7 +72,7 @@ function getVoiceForLevel(level) {
 const BOOK_ID = 'tell-tale-heart';
 
 // SCRIPT LEVEL VALIDATION - MANDATORY FIRST (prevents runtime failures)
-const VALID_LEVELS = ['A1', 'A2'];
+const VALID_LEVELS = ['A1', 'A2', 'B1'];
 
 // Get target level from command line argument
 const targetLevel = process.argv[2];
@@ -79,8 +80,8 @@ const isPilot = process.argv.includes('--pilot');
 
 // Validate level before proceeding
 if (!targetLevel) {
-  console.error('❌ Error: Please specify a CEFR level (A1 or A2)');
-  console.log('Usage: node scripts/generate-tell-tale-heart-bundles.js [A1|A2] [--pilot]');
+  console.error('❌ Error: Please specify a CEFR level (A1, A2, or B1)');
+  console.log('Usage: node scripts/generate-tell-tale-heart-bundles.js [A1|A2|B1] [--pilot]');
   process.exit(1);
 }
 
@@ -93,7 +94,7 @@ const CEFR_LEVEL = targetLevel;
 const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
 
 console.log(`🎵 Generating bundles for "${BOOK_ID}" at ${CEFR_LEVEL} level`);
-const voiceName = CEFR_LEVEL === 'A2' ? 'Jane' : (CEFR_LEVEL === 'A1' ? 'Daniel' : 'Daniel');
+const voiceName = CEFR_LEVEL === 'A2' || CEFR_LEVEL === 'B1' ? 'Jane' : (CEFR_LEVEL === 'A1' ? 'Daniel' : 'Daniel');
 console.log(`🗣️ Using voice: ${voiceSettings.voice_id} (${voiceName})`);
 
 if (isPilot) {
@@ -343,9 +344,9 @@ async function generateTellTaleHeartBundles() {
       }
     });
 
-    // For A1 and A2, delete existing bundles to ensure clean override
-    if (CEFR_LEVEL === 'A1' || CEFR_LEVEL === 'A2') {
-      const voiceType = CEFR_LEVEL === 'A2' ? 'Jane' : 'Daniel';
+    // For A1, A2, and B1, delete existing bundles to ensure clean override
+    if (CEFR_LEVEL === 'A1' || CEFR_LEVEL === 'A2' || CEFR_LEVEL === 'B1') {
+      const voiceType = CEFR_LEVEL === 'A2' || CEFR_LEVEL === 'B1' ? 'Jane' : 'Daniel';
       console.log(`🗑️ Deleting existing ${CEFR_LEVEL} bundles for clean regeneration with ${voiceType} voice...`);
       await prisma.bookChunk.deleteMany({
         where: {

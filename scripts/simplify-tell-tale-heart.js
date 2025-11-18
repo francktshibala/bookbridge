@@ -17,7 +17,8 @@ const BOOK_INFO = {
   id: 'tell-tale-heart',
   inputFile: 'tell-tale-heart-original.txt',
   outputFileA1: 'tell-tale-heart-A1-simplified.txt',
-  outputFileA2: 'tell-tale-heart-A2-simplified.txt'
+  outputFileA2: 'tell-tale-heart-A2-simplified.txt',
+  outputFileB1: 'tell-tale-heart-B1-simplified.txt'
 };
 
 // A1 Simplification Guidelines
@@ -56,6 +57,24 @@ const A2_GUIDELINES = `
 - Validate natural reading flow
 `;
 
+// B1 Simplification Guidelines
+const B1_GUIDELINES = `
+- Use 2000-2500 most common words
+- All tenses allowed but keep clear
+- Complex sentences with cultural context (15-18 words average)
+- MAXIMUM 25 WORDS PER SENTENCE (Master Prevention - prevents highlighting issues)
+- More sophisticated connectors: "although", "however", "meanwhile", "therefore"
+- Keep some cultural references with brief explanations
+- Maintain exact 1:1 sentence count mapping (CRITICAL)
+- Generate flowing complex sentences (NOT choppy short ones)
+- AVOID: "He was nervous. He was mad. He heard things." (simplified too much)
+- CORRECT B1: "He was deeply disturbed and felt increasingly agitated because he heard strange sounds that no one else could perceive." (natural 16 words)
+- Each sentence should express one complete thought
+- Avoid semicolons - use periods instead
+- Preserve original style and nuance where possible
+- Maintain emotional depth and literary quality
+`;
+
 // Comprehensive sentence cleaning function
 function cleanSentenceForAPI(sentence) {
   return sentence
@@ -76,11 +95,11 @@ function cleanSentenceForAPI(sentence) {
 async function callOpenAI(sentence, level) {
   return new Promise((resolve, reject) => {
     const cleanSentence = cleanSentenceForAPI(sentence);
-    const guidelines = level === 'A1' ? A1_GUIDELINES : A2_GUIDELINES;
-    const wordRange = level === 'A1' ? '500-1000' : '1200-1500';
-    const avgWords = level === 'A1' ? '8-12 words average' : '11-13 words average';
-    const maxWords = level === 'A1' ? '12' : '15';
-    const connectors = level === 'A1' ? '"and", "but", "when" only when natural' : '"and", "but", "so", "then", "because"';
+    const guidelines = level === 'A1' ? A1_GUIDELINES : (level === 'A2' ? A2_GUIDELINES : B1_GUIDELINES);
+    const wordRange = level === 'A1' ? '500-1000' : (level === 'A2' ? '1200-1500' : '2000-2500');
+    const avgWords = level === 'A1' ? '8-12 words average' : (level === 'A2' ? '11-13 words average' : '15-18 words average');
+    const maxWords = level === 'A1' ? '12' : (level === 'A2' ? '15' : '25');
+    const connectors = level === 'A1' ? '"and", "but", "when" only when natural' : (level === 'A2' ? '"and", "but", "so", "then", "because"' : '"although", "however", "meanwhile", "therefore"');
 
     const data = JSON.stringify({
       model: 'gpt-4o-mini',
@@ -237,7 +256,7 @@ async function simplifyTellTaleHeart(level = 'A1') {
     const simplifiedText = simplifiedSentences.join(' ');
 
     // Save to cache
-    const outputFile = level === 'A1' ? BOOK_INFO.outputFileA1 : BOOK_INFO.outputFileA2;
+    const outputFile = level === 'A1' ? BOOK_INFO.outputFileA1 : (level === 'A2' ? BOOK_INFO.outputFileA2 : BOOK_INFO.outputFileB1);
     const outputPath = path.join(cacheDir, outputFile);
     fs.writeFileSync(outputPath, simplifiedText, 'utf-8');
     console.log(`\n💾 Saved simplified text to: ${outputPath}`);
