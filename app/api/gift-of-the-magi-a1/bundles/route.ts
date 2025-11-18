@@ -1,8 +1,9 @@
 export const runtime = 'nodejs';
-export const revalidate = 3600; // Cache for 1 hour
+export const revalidate = 3600;
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
 
@@ -33,52 +34,176 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: 'This API only supports The Gift of the Magi A1'
-      }, {
-        status: 400,
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-store'
-        }
-      });
+      }, { status: 400 });
     }
 
     console.log(`🎁 Loading The Gift of the Magi bundles for level: ${level}`);
 
-    // Load bundles from cache file (since we haven't created BookContent/BookChunk records yet)
-    let bundlesData;
-    try {
-      const bundlesPath = path.join(process.cwd(), 'cache', 'gift-of-the-magi-A1-bundles.json');
-      const bundlesFile = fs.readFileSync(bundlesPath, 'utf-8');
-      bundlesData = JSON.parse(bundlesFile);
-    } catch (error) {
+    // Initialize Supabase client
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+      process.env.SUPABASE_SERVICE_ROLE_KEY as string
+    );
+
+    // Get bundles from BookChunk table with audio duration metadata (Solution 1)
+    const bookChunks = await prisma.bookChunk.findMany({
+      where: {
+        bookId: 'gift-of-the-magi',
+        cefrLevel: 'A1'
+      },
+      orderBy: { chunkIndex: 'asc' },
+      select: {
+        id: true,
+        bookId: true,
+        cefrLevel: true,
+        chunkIndex: true,
+        chunkText: true,
+        wordCount: true,
+        audioFilePath: true,
+        audioDurationMetadata: true
+      }
+    });
+
+    if (!bookChunks || bookChunks.length === 0) {
       return NextResponse.json({
         success: false,
-        error: 'Could not load Gift of the Magi bundles'
-      }, {
-        status: 404,
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-store'
-        }
-      });
+        error: 'No bundles found for The Gift of the Magi A1'
+      }, { status: 404 });
     }
 
-    console.log(`✅ Loaded ${bundlesData.totalBundles} bundles from cache file`);
+    console.log(`✅ Loaded ${bookChunks.length} bundles from BookChunk table`);
 
-    // Convert bundle data to API format
-    const bundles: BundleMetadata[] = bundlesData.bundles.map((bundle: any) => ({
-      bundleId: bundle.bundleId,
-      bundleIndex: bundle.bundleIndex,
-      audioUrl: bundle.audioUrl,
-      totalDuration: bundle.totalDuration,
-      sentences: bundle.sentences.map((sentence: any) => ({
-        sentenceId: `s${sentence.sentenceIndex}`,
-        sentenceIndex: sentence.sentenceIndex,
-        text: sentence.text,
-        startTime: sentence.startTime,
-        endTime: sentence.endTime
-      }))
-    }));
+    // Convert BookChunk data to API format with proper timing (Solution 1)
+    const bundles: BundleMetadata[] = [];
+    let totalSentencesProcessed = 0;
+
+    bookChunks.forEach((chunk: any, index) => {
+      // Generate Supabase storage URL from relative path
+      const audioUrl = supabase.storage
+        .from('audio-files')
+        .getPublicUrl(chunk.audioFilePath!)
+        .data.publicUrl;
+
+      let sentencesWithTimings;
+      let totalDuration: number;
+
+      // Check if we have cached duration metadata (Solution 1)
+      if (chunk.audioDurationMetadata && typeof chunk.audioDurationMetadata === 'object') {
+        // Use cached timings (FAST PATH - 2-3 seconds)
+        const metadata = chunk.audioDurationMetadata as any;
+        console.log(`Bundle ${index}: Using cached duration ${metadata.measuredDuration?.toFixed(3)}s`);
+
+        totalDuration = metadata.measuredDuration || 0;
+
+        // Use cached sentence timings if available
+        if (metadata.sentenceTimings && Array.isArray(metadata.sentenceTimings)) {
+          sentencesWithTimings = metadata.sentenceTimings.map((timing: any, idx: number) => ({
+            sentenceId: `s${timing.sentenceIndex}`,
+            sentenceIndex: timing.sentenceIndex, // Use original index (no double-offset)
+            text: timing.text,
+            startTime: timing.startTime,
+            endTime: timing.endTime
+          }));
+        } else {
+          // Fallback: estimate from total duration
+          const sentences = chunk.chunkText.split(/[.!?]+/).filter((s: string) => s.trim().length > 5);
+          const avgDuration = totalDuration / sentences.length;
+          sentencesWithTimings = sentences.map((text: string, idx: number) => ({
+            sentenceId: `s${totalSentencesProcessed + idx}`,
+            sentenceIndex: totalSentencesProcessed + idx,
+            text: text.trim(),
+            startTime: idx * avgDuration,
+            endTime: (idx + 1) * avgDuration
+          }));
+        }
+      } else {
+        // Fallback: estimate timing (should not happen with Solution 1)
+        console.warn(`Bundle ${index}: No cached metadata, using estimation (not ideal)`);
+        const sentences = chunk.chunkText.split(/[.!?]+/).filter((s: string) => s.trim().length > 5);
+        const estimatedDuration = chunk.wordCount * 0.4; // Rough estimate
+        const avgDuration = estimatedDuration / sentences.length;
+        totalDuration = estimatedDuration;
+        sentencesWithTimings = sentences.map((text: string, idx: number) => ({
+          sentenceId: `s${totalSentencesProcessed + idx}`,
+          sentenceIndex: totalSentencesProcessed + idx,
+          text: text.trim(),
+          startTime: idx * avgDuration,
+          endTime: (idx + 1) * avgDuration
+        }));
+      }
+
+      bundles.push({
+        bundleId: `bundle_${chunk.chunkIndex}`,
+        bundleIndex: chunk.chunkIndex,
+        audioUrl,
+        totalDuration: parseFloat(totalDuration.toFixed(3)),
+        sentences: sentencesWithTimings
+      });
+
+      totalSentencesProcessed += sentencesWithTimings.length;
+    });
+
+    // Get book metadata
+    const bookContent = await prisma.bookContent.findFirst({
+      where: { bookId: 'gift-of-the-magi' }
+    });
+
+    // Try to load preview from cache file (same pattern as The Necklace)
+    let preview: string | null = null;
+    let previewAudio: { audioUrl: string; duration: number } | null = null;
+    
+    try {
+      const previewCachePath = path.join(process.cwd(), 'cache', 'gift-of-the-magi-A1-preview.txt');
+      if (fs.existsSync(previewCachePath)) {
+        preview = fs.readFileSync(previewCachePath, 'utf8').trim();
+        console.log('✅ Loaded preview from cache');
+      }
+      
+      // Try to load preview audio metadata
+      const previewAudioPath = path.join(process.cwd(), 'cache', 'gift-of-the-magi-A1-preview-audio.json');
+      if (fs.existsSync(previewAudioPath)) {
+        const audioMetadata = JSON.parse(fs.readFileSync(previewAudioPath, 'utf8'));
+        previewAudio = {
+          audioUrl: audioMetadata.audioUrl,
+          duration: audioMetadata.duration
+        };
+        console.log('✅ Loaded preview audio metadata from cache');
+      } else {
+        // Fallback: Construct preview audio URL from Supabase (works in production)
+        const previewAudioFileName = 'gift-of-the-magi/A1/preview.mp3';
+        const { data: { publicUrl } } = supabase.storage
+          .from('audio-files')
+          .getPublicUrl(previewAudioFileName);
+        
+        // Check if file exists by trying to fetch it
+        try {
+          const testResponse = await fetch(publicUrl, { method: 'HEAD' });
+          if (testResponse.ok) {
+            // Try to get duration from cache metadata if available, otherwise use 0
+            let duration = 0;
+            try {
+              const cachePath = path.join(process.cwd(), 'cache', 'gift-of-the-magi-A1-preview-audio.json');
+              if (fs.existsSync(cachePath)) {
+                const metadata = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+                duration = metadata.duration || 0;
+              }
+            } catch (e) {
+              // Duration will be 0, measured client-side if needed
+            }
+            
+            previewAudio = {
+              audioUrl: publicUrl,
+              duration
+            };
+            console.log('✅ Found preview audio in Supabase storage');
+          }
+        } catch (error) {
+          // File doesn't exist, that's okay
+        }
+      }
+    } catch (error) {
+      console.log('⚠️ Could not load preview:', error instanceof Error ? error.message : 'Unknown error');
+    }
 
     // Load chapter data for thematic headers
     let chapters = null;
@@ -96,16 +221,18 @@ export async function GET(request: NextRequest) {
       success: true,
       book: {
         id: 'gift-of-the-magi',
-        title: 'The Gift of the Magi',
-        author: 'O. Henry'
+        title: bookContent?.title || 'The Gift of the Magi',
+        author: bookContent?.author || 'O. Henry'
       },
       level: 'A1',
       totalBundles: bundles.length,
       bundleCount: bundles.length,
       totalSentences,
       bundles,
-      chapters, // Add chapter structure for UI
-      source: 'cache-file' // Indicates this came from cache file for debugging
+      chapters, // Add thematic sections for UI
+      preview: preview || null, // Book preview (50-100 words) for reading page
+      previewAudio: previewAudio || null, // Preview audio URL and duration
+      source: 'dedicated-api' // Indicates this came from dedicated API for debugging
     }, {
       headers: {
         'Content-Type': 'application/json',
