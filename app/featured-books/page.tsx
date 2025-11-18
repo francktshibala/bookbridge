@@ -181,6 +181,16 @@ const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'GM'
   },
   {
+    id: 'tell-tale-heart',
+    title: 'The Tell-Tale Heart',
+    author: 'Edgar Allan Poe',
+    description: 'Gothic psychological thriller about guilt and madness. A1 level with Daniel voice narration. Perfect for building reading confidence.',
+    sentences: 277,
+    bundles: 70,
+    gradient: 'from-red-500 to-gray-900',
+    abbreviation: 'TH'
+  },
+  {
     id: 'the-dead',
     title: 'The Dead',
     author: 'James Joyce',

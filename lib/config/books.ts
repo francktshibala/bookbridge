@@ -77,6 +77,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'GM'
   },
   {
+    id: 'tell-tale-heart',
+    title: 'The Tell-Tale Heart',
+    author: 'Edgar Allan Poe',
+    description: 'Gothic psychological thriller about guilt and madness. A1 level with Daniel voice narration. Perfect for building reading confidence.',
+    sentences: 277,
+    bundles: 70,
+    gradient: 'from-red-500 to-gray-900',
+    abbreviation: 'TH'
+  },
+  {
     id: 'the-dead',
     title: 'The Dead',
     author: 'James Joyce',
@@ -185,6 +195,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'A2': '/api/the-necklace-a2/bundles',
     'B1': '/api/the-necklace-b1/bundles'
   },
+  'tell-tale-heart': {
+    'A1': '/api/tell-tale-heart-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -200,6 +213,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'the-dead': 'A1',  // Default to A1 for The Dead
   'the-metamorphosis': 'A1',  // Default to A1 for The Metamorphosis
   'the-devoted-friend': 'A1',  // Default to A1 for The Devoted Friend
+  'tell-tale-heart': 'A1',  // Default to A1 for The Tell-Tale Heart
 };
 
 // Get the correct CEFR level for a book
@@ -254,6 +268,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'the-dead': ['A1', 'A2'],
   'the-metamorphosis': ['A1'],
   'the-necklace': ['A1', 'A2', 'B1'],  // Multi-level book (A1, A2, B1 support)
+  'tell-tale-heart': ['A1'],  // Currently A1 only, can expand later
 };
 
 // Single-level books configuration
