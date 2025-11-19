@@ -211,6 +211,16 @@ const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'ATY'
   },
   {
+    id: 'story-of-an-hour',
+    title: 'The Story of an Hour',
+    author: 'Kate Chopin',
+    description: 'Very short story about freedom and identity. A1 level with Jane voice narration. Controversial twist ending sparks discussion.',
+    sentences: 92,
+    bundles: 23,
+    gradient: 'from-pink-500 to-rose-600',
+    abbreviation: 'SOAH'
+  },
+  {
     id: 'the-dead',
     title: 'The Dead',
     author: 'James Joyce',
@@ -318,6 +328,9 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A2': '/api/the-necklace-a2/bundles',
     'B1': '/api/the-necklace-b1/bundles'
   },
+  'story-of-an-hour': {
+    'A1': '/api/story-of-an-hour-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -331,7 +344,8 @@ const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'gift-of-the-magi': 'A1',  // Default to A1 for Gift of the Magi (A1/A2 support)
   'lady-with-dog': 'A1',  // Default to A1 for The Lady with the Dog
   'the-dead': 'A1',  // Default to A1 for The Dead
-  'the-metamorphosis': 'A1'  // Default to A1 for The Metamorphosis
+  'the-metamorphosis': 'A1',  // Default to A1 for The Metamorphosis
+  'story-of-an-hour': 'A1'  // Default to A1 for The Story of an Hour
 };
 
 // Get the correct CEFR level for a book

@@ -1,0 +1,354 @@
+{
+  "level": "A1",
+  "totalSentences": 69,
+  "simplifiedSentences": 69,
+  "sentences": [
+    {
+      "original": "Knowing that Mrs.",
+      "simplified": "I know Mrs.",
+      "index": 0
+    },
+    {
+      "original": "Mallard was afflicted with a heart trouble, great care was taken to break to her as gently as possible the news of her husband's death.",
+      "simplified": "Mallard had heart trouble. People took great care to tell her about her husband’s death.",
+      "index": 1
+    },
+    {
+      "original": "It was her sister Josephine who told her, in broken sentences; veiled hints that revealed in half concealing.",
+      "simplified": "Her sister Josephine told her with broken sentences and hints.",
+      "index": 2
+    },
+    {
+      "original": "Her husband's friend Richards was there, too, near her.",
+      "simplified": "Her husband’s friend Richards was also there, close to her.",
+      "index": 3
+    },
+    {
+      "original": "It was he who had been in the newspaper office when intelligence of the railroad disaster was received, with Brently Mallard's name leading the list of \"killed.",
+      "simplified": "He was in the newspaper office when they got news of the train crash. Brently Mallard's name was at the top of the list of people who died.",
+      "index": 4
+    },
+    {
+      "original": "\" He had only taken the time to assure himself of its truth by a second telegram, and had hastened to forestall any less careful, less tender friend in bearing the sad message.",
+      "simplified": "He sent a second telegram to check if it was true. He wanted to tell his friend the sad news first.",
+      "index": 5
+    },
+    {
+      "original": "She did not hear the story as many women have heard the same, with a paralyzed inability to accept its significance.",
+      "simplified": "She did not hear the story like many women do. They cannot accept its meaning.",
+      "index": 6
+    },
+    {
+      "original": "She wept at once, with sudden, wild abandonment, in her sister's arms.",
+      "simplified": "She cried suddenly in her sister's arms.",
+      "index": 7
+    },
+    {
+      "original": "When the storm of grief had spent itself she went away to her room alone.",
+      "simplified": "When her sadness was gone, she went to her room alone.",
+      "index": 8
+    },
+    {
+      "original": "She would have no one follow her.",
+      "simplified": "She does not want anyone to follow her.",
+      "index": 9
+    },
+    {
+      "original": "There stood, facing the open window, a comfortable, roomy armchair.",
+      "simplified": "There was a big, soft armchair by the open window.",
+      "index": 10
+    },
+    {
+      "original": "Into this she sank, pressed down by a physical exhaustion that haunted her body and seemed to reach into her soul.",
+      "simplified": "She sank into this. She felt very tired. This tiredness was in her body and her mind.",
+      "index": 11
+    },
+    {
+      "original": "She could see in the open square before her house the tops of trees that were all aquiver with the new spring life.",
+      "simplified": "She sees the tops of trees in the square by her house. The trees move with new life in spring.",
+      "index": 12
+    },
+    {
+      "original": "The delicious breath of rain was in the air.",
+      "simplified": "The sweet smell of rain is in the air.",
+      "index": 13
+    },
+    {
+      "original": "In the street below a peddler was crying his wares.",
+      "simplified": "A man was shouting to sell his goods in the street.",
+      "index": 14
+    },
+    {
+      "original": "The notes of a distant song which some one was singing reached her faintly, and countless sparrows were twittering in the eaves.",
+      "simplified": "She hears a soft song from far away, and many sparrows sing nearby.",
+      "index": 15
+    },
+    {
+      "original": "There were patches of blue sky showing here and there through the clouds that had met and piled one above the other in the west facing her window.",
+      "simplified": "There are small parts of blue sky between the clouds. The clouds are high and thick in the west by her window.",
+      "index": 16
+    },
+    {
+      "original": "She sat with her head thrown back upon the cushion of the chair, quite motionless, except when a sob came up into her throat and shook her, as a child who has cried itself to sleep continues to sob in its dreams.",
+      "simplified": "She sat back on the chair and did not move. She felt sad and sometimes cried softly. It was like a child who cries in its sleep.",
+      "index": 17
+    },
+    {
+      "original": "She was young, with a fair, calm face, whose lines bespoke repression and even a certain strength.",
+      "simplified": "She is young and has a calm face. Her face shows control and some strength.",
+      "index": 18
+    },
+    {
+      "original": "But now there was a dull stare in her eyes, whose gaze was fixed away off yonder on one of those patches of blue sky.",
+      "simplified": "But now her eyes looked dull and stared at the blue sky.",
+      "index": 19
+    },
+    {
+      "original": "It was not a glance of reflection, but rather indicated a suspension of intelligent thought.",
+      "simplified": "It was not a look of thinking, but showed a stop of smart ideas.",
+      "index": 20
+    },
+    {
+      "original": "There was something coming to her and she was waiting for it, fearfully.",
+      "simplified": "Something is coming to her, and she waits for it with fear.",
+      "index": 21
+    },
+    {
+      "original": "What was it?",
+      "simplified": "What was that?",
+      "index": 22
+    },
+    {
+      "original": "She did not know; it was too subtle and elusive to name.",
+      "simplified": "She did not know what it was. It was too small and hard to see.",
+      "index": 23
+    },
+    {
+      "original": "But she felt it, creeping out of the sky, reaching toward her through the sounds, the scents, the color that filled the air.",
+      "simplified": "But she felt something coming from the sky. It reached for her with sounds, smells, and colors in the air.",
+      "index": 24
+    },
+    {
+      "original": "Now her bosom rose and fell tumultuously.",
+      "simplified": "Now her chest moved up and down quickly.",
+      "index": 25
+    },
+    {
+      "original": "She was beginning to recognize this thing that was approaching to possess her, and she was striving to beat it back with her will—as powerless as her two white slender hands would have been.",
+      "simplified": "She starts to see the thing coming for her. She tries to push it away with her mind. Her two white hands feel weak against it.",
+      "index": 26
+    },
+    {
+      "original": "When she abandoned herself a little whispered word escaped her slightly parted lips.",
+      "simplified": "When she let go, a soft word came from her lips.",
+      "index": 27
+    },
+    {
+      "original": "She said it over and over under her breath: \"free, free, free!",
+      "simplified": "She said it many times quietly: \"free, free, free!\"",
+      "index": 28
+    },
+    {
+      "original": "\" The vacant stare and the look of terror that had followed it went from her eyes.",
+      "simplified": "Her eyes had a blank look and showed fear.",
+      "index": 29
+    },
+    {
+      "original": "They stayed keen and bright.",
+      "simplified": "They stayed happy and full of energy.",
+      "index": 30
+    },
+    {
+      "original": "Her pulses beat fast, and the coursing blood warmed and relaxed every inch of her body.",
+      "simplified": "Her heart beats fast, and the warm blood relaxes her body.",
+      "index": 31
+    },
+    {
+      "original": "She did not stop to ask if it were or were not a monstrous joy that held her.",
+      "simplified": "She did not stop to ask if it was a big joy.",
+      "index": 32
+    },
+    {
+      "original": "A clear and exalted perception enabled her to dismiss the suggestion as trivial.",
+      "simplified": "She understood well and thought the idea was not important.",
+      "index": 33
+    },
+    {
+      "original": "She knew that she would weep again when she saw the kind, tender hands folded in death; the face that had never looked save with love upon her, fixed and gray and dead.",
+      "simplified": "She knew she would cry again. She saw the kind hands in death. The face looked at her with love. Now it was still, gray, and dead.",
+      "index": 34
+    },
+    {
+      "original": "But she saw beyond that bitter moment a long procession of years to come that would belong to her absolutely.",
+      "simplified": "But she saw a long time ahead that would be hers.",
+      "index": 35
+    },
+    {
+      "original": "And she opened and spread her arms out to them in welcome.",
+      "simplified": "She opened her arms and welcomed them.",
+      "index": 36
+    },
+    {
+      "original": "There would be no one to live for during those coming years; she would live for herself.",
+      "simplified": "She has no one to live for in the coming years. She will live for herself.",
+      "index": 37
+    },
+    {
+      "original": "There would be no powerful will bending hers in that blind persistence with which men and women believe they have a right to impose a private will upon a fellow-creature.",
+      "simplified": "No strong will can change hers when people think they can control others.",
+      "index": 38
+    },
+    {
+      "original": "A kind intention or a cruel intention made the act seem no less a crime as she looked upon it in that brief moment of illumination.",
+      "simplified": "A good or bad intention does not change the crime. She sees this in a short moment.",
+      "index": 39
+    },
+    {
+      "original": "And yet she had loved him—sometimes.",
+      "simplified": "But sometimes she loved him.",
+      "index": 40
+    },
+    {
+      "original": "Often she had not.",
+      "simplified": "She often did not have it.",
+      "index": 41
+    },
+    {
+      "original": "What did it matter!",
+      "simplified": "\"What does it matter?\"",
+      "index": 42
+    },
+    {
+      "original": "What could love, the unsolved mystery, count for in the face of this possession of self-assertion which she suddenly recognized as the strongest impulse of her being!",
+      "simplified": "What does love mean when she feels strong inside?",
+      "index": 43
+    },
+    {
+      "original": "\"Free!",
+      "simplified": "It is free!",
+      "index": 44
+    },
+    {
+      "original": "Body and soul free!",
+      "simplified": "My body and soul are free!",
+      "index": 45
+    },
+    {
+      "original": "\" she kept whispering.",
+      "simplified": "She kept talking softly.",
+      "index": 46
+    },
+    {
+      "original": "Josephine was kneeling before the closed door with her lips to the keyhole, imploring for admission.",
+      "simplified": "Josephine knelt by the closed door. She put her lips to the keyhole. She begged to be let in.",
+      "index": 47
+    },
+    {
+      "original": "\"Louise, open the door!",
+      "simplified": "\"Louise, please open the door.\"",
+      "index": 48
+    },
+    {
+      "original": "I beg; open the door—you will make yourself ill.",
+      "simplified": "Please open the door. You will get sick.",
+      "index": 49
+    },
+    {
+      "original": "What are you doing, Louise?",
+      "simplified": "\"What are you doing, Louise?\"",
+      "index": 50
+    },
+    {
+      "original": "For heaven's sake open the door.",
+      "simplified": "Please open the door now.",
+      "index": 51
+    },
+    {
+      "original": "\"\n\n\"Go away.",
+      "simplified": "\"Please go away.\"",
+      "index": 52
+    },
+    {
+      "original": "I am not making myself ill.",
+      "simplified": "I do not make myself sick.",
+      "index": 53
+    },
+    {
+      "original": "\" No; she was drinking in a very elixir of life through that open window.",
+      "simplified": "No, she drinks a special drink through that open window.",
+      "index": 54
+    },
+    {
+      "original": "Her fancy was running riot along those days ahead of her.",
+      "simplified": "Her imagination is very active about the days to come.",
+      "index": 55
+    },
+    {
+      "original": "Spring days, and summer days, and all sorts of days that would be her own.",
+      "simplified": "Spring days and summer days are special days for her.",
+      "index": 56
+    },
+    {
+      "original": "She breathed a quick prayer that life might be long.",
+      "simplified": "She said a quick prayer for a long life.",
+      "index": 57
+    },
+    {
+      "original": "It was only yesterday she had thought with a shudder that life might be long.",
+      "simplified": "She thought yesterday that life might be long.",
+      "index": 58
+    },
+    {
+      "original": "She arose at length and opened the door to her sister's importunities.",
+      "simplified": "She got up and opened the door for her sister.",
+      "index": 59
+    },
+    {
+      "original": "There was a feverish triumph in her eyes, and she carried herself unwittingly like a goddess of Victory.",
+      "simplified": "She had a strong joy in her eyes. She walked like a winner.",
+      "index": 60
+    },
+    {
+      "original": "She clasped her sister's waist, and together they descended the stairs.",
+      "simplified": "She held her sister's waist, and they went down the stairs.",
+      "index": 61
+    },
+    {
+      "original": "Richards stood waiting for them at the bottom.",
+      "simplified": "Richards waited for them at the bottom.",
+      "index": 62
+    },
+    {
+      "original": "Some one was opening the front door with a latchkey.",
+      "simplified": "Someone is opening the front door with a key.",
+      "index": 63
+    },
+    {
+      "original": "It was Brently Mallard who entered, a little travel-stained, composedly carrying his grip-sack and umbrella.",
+      "simplified": "Brently Mallard came in. He looked a little dirty. He carried his bag and umbrella.",
+      "index": 64
+    },
+    {
+      "original": "He had been far from the scene of the accident, and did not even know there had been one.",
+      "simplified": "He was far from the accident and did not know it happened.",
+      "index": 65
+    },
+    {
+      "original": "He stood amazed at Josephine's piercing cry; at Richards' quick motion to screen him from the view of his wife.",
+      "simplified": "He stood amazed at Josephine's loud cry. Richard moved quickly to hide him from his wife.",
+      "index": 66
+    },
+    {
+      "original": "But Richards was too late.",
+      "simplified": "Richards came too late.",
+      "index": 67
+    },
+    {
+      "original": "When the doctors came they said she had died of heart disease—of the joy that kills.",
+      "simplified": "When the doctors came, they said she died of heart disease. They said it was the joy that kills.",
+      "index": 68
+    }
+  ],
+  "wordCount": 793,
+  "savedAt": "2025-11-19T23:08:57.807Z"
+}
