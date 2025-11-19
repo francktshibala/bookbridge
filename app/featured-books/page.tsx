@@ -201,6 +201,16 @@ const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'LL'
   },
   {
+    id: 'after-twenty-years',
+    title: 'After Twenty Years',
+    author: 'O. Henry',
+    description: 'Perfect quick win about friendship and promises. A1 level with Daniel voice narration. Identity mystery with a twist ending.',
+    sentences: 105,
+    bundles: 38,
+    gradient: 'from-amber-500 to-orange-600',
+    abbreviation: 'ATY'
+  },
+  {
     id: 'the-dead',
     title: 'The Dead',
     author: 'James Joyce',

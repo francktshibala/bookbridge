@@ -1,0 +1,14 @@
+{
+  "bookId": "after-twenty-years",
+  "level": "A1",
+  "previewText": "\"After Twenty Years\" is a short story about friendship and promises. It is easy to read at A1 English level and has about 1,000 words. The story takes place in a city, where two friends promised to meet after twenty years. One friend waits at their old meeting place. What will happen when they see each other again? Will their friendship be the same? This story makes you think about time and changes. Join the adventure and discover the surprise!",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/after-twenty-years/A1/preview.mp3",
+    "duration": 31.118299,
+    "originalDuration": 26.462,
+    "targetSpeed": 0.85,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "generatedAt": "2025-11-19T18:55:49.744Z"
+  }
+}

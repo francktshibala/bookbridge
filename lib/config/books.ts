@@ -203,6 +203,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'the-last-leaf': {
     'B1': '/api/the-last-leaf-b1/bundles'
   },
+  'after-twenty-years': {
+    'A1': '/api/after-twenty-years-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -220,6 +223,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'the-devoted-friend': 'A1',  // Default to A1 for The Devoted Friend
   'tell-tale-heart': 'A1',  // Default to A1 for The Tell-Tale Heart
   'the-last-leaf': 'B1',  // Default to B1 for The Last Leaf
+  'after-twenty-years': 'A1',  // Default to A1 for After Twenty Years
 };
 
 // Get the correct CEFR level for a book
@@ -276,6 +280,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'the-necklace': ['A1', 'A2', 'B1'],  // Multi-level book (A1, A2, B1 support)
   'tell-tale-heart': ['A1', 'A2', 'B1'],  // A1 with Daniel, A2 & B1 with Jane
   'the-last-leaf': ['B1'],  // B1 with Jane
+  'after-twenty-years': ['A1'],  // A1 with Daniel
 };
 
 // Single-level books configuration

@@ -307,18 +307,25 @@ For books recommended by multiple agents, I calculated weighted averages:
 
 #### Tier 1: Must Generate First (Top 10)
 
-| Rank | Book Title | Author | Consensus | Avg Love Factor | CEFR Level | Word Count | Est. Cost (1 level) | Key Strengths |
-|------|------------|--------|-----------|----------------|-----------|------------|---------------------|---------------|
-| 1 | The Gift of the Magi | O. Henry | 4/4 | 10/10 | A2-B1 | 2,100 | $1.73 | Perfect length, emotional hook, twist ending, proven 92% completion |
-| 2 | The Tell-Tale Heart | Edgar Allan Poe | 4/4 | 9/10 | A2-B1 | 2,200 | $1.81 | Psychological suspense, perfect length, proven 85% completion |
-| 3 | The Last Leaf | O. Henry | 4/4 | 9/10 | A2-B1 | 2,500 | $2.06 | Emotional investment, suspense, twist, proven 87% completion |
-| 4 | The Necklace | Guy de Maupassant | 4/4 | 9/10 | A2-B1 | 2,500 | $2.06 | Relatable theme, twist ending, proven 88% completion |
-| 5 | After Twenty Years | O. Henry | 4/4 | 8.75/10 | A2-B1 | 1,100 | $0.91 | Perfect quick win, identity mystery, proven 90% completion |
+| Rank | Book Title | Author | Consensus | Avg Love Factor | CEFR Level | Word Count | Est. Cost (1 level) | Key Strengths | Status |
+|------|------------|--------|-----------|----------------|-----------|------------|---------------------|---------------|--------|
+| 1 | The Gift of the Magi | O. Henry | 4/4 | 10/10 | A2-B1 | 2,100 | $1.73 | Perfect length, emotional hook, twist ending, proven 92% completion | ✅ **COMPLETED** (A1/A2/B1) |
+| 2 | The Tell-Tale Heart | Edgar Allan Poe | 4/4 | 9/10 | A2-B1 | 2,200 | $1.81 | Psychological suspense, perfect length, proven 85% completion | ✅ **COMPLETED** (A1/A2/B1) |
+| 3 | The Last Leaf | O. Henry | 4/4 | 9/10 | A2-B1 | 2,500 | $2.06 | Emotional investment, suspense, twist, proven 87% completion | ✅ **COMPLETED** (B1) |
+| 4 | The Necklace | Guy de Maupassant | 4/4 | 9/10 | A2-B1 | 2,500 | $2.06 | Relatable theme, twist ending, proven 88% completion | ✅ **COMPLETED** (A1/A2/B1) |
+| 5 | After Twenty Years | O. Henry | 4/4 | 8.75/10 | A2-B1 | 1,100 | $0.91 | Perfect quick win, identity mystery, proven 90% completion | ⏳ **PENDING** |
 | 6 | The Open Window | Saki | 3/4 | 9/10 | B1-B2 | 1,200 | $0.99 | Perfect quick win, twist ending, predicted 88% completion |
 | 7 | The Celebrated Jumping Frog | Mark Twain | 3/4 | 9/10 | A2-B1 | 2,800 | $2.31 | Humor reduces anxiety, short length, predicted 84% completion |
 | 8 | A Retrieved Reformation | O. Henry | 3/4 | 9/10 | B1-B2 | 4,000 | $3.30 | Redemption theme, suspense, predicted 83% completion |
 | 9 | The Selfish Giant | Oscar Wilde | 2/4 | 9/10 | A2-B1 | 1,800 | $1.48 | Perfect quick win, fable structure, redemption, predicted 85% completion |
 | 10 | The Story of an Hour | Kate Chopin | 3/4 | 8/10 | B1-B2 | 1,000 | $0.83 | Very short, controversial, discussion-worthy, predicted 75% completion |
+
+**✅ COMPLETED BOOKS (5 total):**
+- The Gift of the Magi (A1/A2/B1) - ✅ Complete
+- The Tell-Tale Heart (A1/A2/B1) - ✅ Complete  
+- The Last Leaf (B1) - ✅ Complete
+- The Necklace (A1/A2/B1) - ✅ Complete
+- The Lady with the Dog (A1/A2/B1) - ✅ Complete
 
 **Tier 1 Total:** 10 books, ~22,100 words, **~$17.48** (for 1 CEFR level)
 

@@ -1,0 +1,534 @@
+{
+  "level": "A1",
+  "totalSentences": 105,
+  "sentences": [
+    {
+      "original": "The policeman on the beat moved up the avenue impressively.",
+      "simplified": "The policeman walked up the street. He looked impressive as he moved.",
+      "index": 0
+    },
+    {
+      "original": "The\nimpressiveness was habitual and not for show, for spectators were few.",
+      "simplified": "The impressiveness was real and not for show. Few people watched it.",
+      "index": 1
+    },
+    {
+      "original": "The time was barely 10 o’clock at night, but chilly gusts of wind with\na taste of rain in them had well nigh de-peopled the streets.",
+      "simplified": "The clock shows almost 10 o’clock at night. Cold winds blow through the empty streets. The streets feel quiet and a bit sad. Rain smells are in the air too.",
+      "index": 2
+    },
+    {
+      "original": "Trying doors as he went, twirling his club with many intricate and\nartful movements, turning now and then to cast his watchful eye adown\nthe pacific thoroughfare, the officer, with his stalwart form and\nslight swagger, made a fine picture of a guardian of the peace.",
+      "simplified": "The officer walks and tries the doors. He twirls his club carefully. He looks down the busy street. His strong form shows he protects the peace.",
+      "index": 3
+    },
+    {
+      "original": "The\nvicinity was one that kept early hours.",
+      "simplified": "The area wakes up early each day.",
+      "index": 4
+    },
+    {
+      "original": "Now and then you might see the\nlights of a cigar store or of an all-night lunch counter; but the\nmajority of the doors belonged to business places that had long since\nbeen closed.",
+      "simplified": "Now and then, you see the lights of a cigar store. You also see the lights of a lunch counter. Most doors belong to closed businesses.",
+      "index": 5
+    },
+    {
+      "original": "When about midway of a certain block the policeman suddenly slowed his\nwalk.",
+      "simplified": "When the policeman walked, he suddenly slowed down.",
+      "index": 6
+    },
+    {
+      "original": "In the doorway of a darkened hardware store a man leaned, with an\nunlighted cigar in his mouth.",
+      "simplified": "A man leans in the doorway of a dark store. He has a cigar in his mouth.",
+      "index": 7
+    },
+    {
+      "original": "As the policeman walked up to him the man\nspoke up quickly.",
+      "simplified": "The policeman walked up to him. The man spoke quickly.",
+      "index": 8
+    },
+    {
+      "original": "“It’s all right, officer,” he said, reassuringly.",
+      "simplified": "\"It is okay, officer,\" he said to make him feel better.",
+      "index": 9
+    },
+    {
+      "original": "“I’m just waiting for\na friend.",
+      "simplified": "I wait for my friend.",
+      "index": 10
+    },
+    {
+      "original": "It’s an appointment made twenty years ago.",
+      "simplified": "It is an appointment from twenty years ago.",
+      "index": 11
+    },
+    {
+      "original": "Sounds a little\nfunny to you, doesn’t it?",
+      "simplified": "Does it sound funny to you?",
+      "index": 12
+    },
+    {
+      "original": "Well, I’ll explain if you’d like to make\ncertain it’s all straight.",
+      "simplified": "I can explain this. You can ask if you want.",
+      "index": 13
+    },
+    {
+      "original": "About that long ago there used to be a\nrestaurant where this store stands—‘Big Joe’ Brady’s restaurant.",
+      "simplified": "A long time ago, there was a restaurant here. It was called 'Big Joe' Brady's restaurant.",
+      "index": 14
+    },
+    {
+      "original": "”\n\n“Until five years ago,” said the policeman.",
+      "simplified": "\"Five years ago, the policeman said something.\"",
+      "index": 15
+    },
+    {
+      "original": "“It was torn down then.",
+      "simplified": "\"It got taken down then.\"",
+      "index": 16
+    },
+    {
+      "original": "”\n\nThe man in the doorway struck a match and lit his cigar.",
+      "simplified": "The man stands in the doorway. He strikes a match and lights his cigar.",
+      "index": 17
+    },
+    {
+      "original": "The light\nshowed a pale, square-jawed face with keen eyes, and a little white\nscar near his right eyebrow.",
+      "simplified": "The light showed a pale face with a strong jaw. His eyes were keen, and he had a small white scar. The scar was near his right eyebrow.",
+      "index": 18
+    },
+    {
+      "original": "His scarfpin was a large diamond, oddly\nset.",
+      "simplified": "His scarf pin is a big diamond. It is set strangely.",
+      "index": 19
+    },
+    {
+      "original": "“Twenty years ago to-night,” said the man, “I dined here at ‘Big Joe’\nBrady’s with Jimmy Wells, my best chum, and the finest chap in the\nworld.",
+      "simplified": "\"Twenty years ago, I had dinner at Big Joe Brady’s. I was with my best friend, Jimmy Wells. He was the best guy in the world.\"",
+      "index": 20
+    },
+    {
+      "original": "He and I were raised here in New York, just like two brothers,\ntogether.",
+      "simplified": "He and I grew up here in New York. We are like brothers. We lived together and shared many moments.",
+      "index": 21
+    },
+    {
+      "original": "I was eighteen and Jimmy was twenty.",
+      "simplified": "I was eighteen. Jimmy was twenty.",
+      "index": 22
+    },
+    {
+      "original": "The next morning I was\nto start for the West to make my fortune.",
+      "simplified": "The next morning, I start my journey to the West. I want to find my fortune there.",
+      "index": 23
+    },
+    {
+      "original": "You couldn’t have dragged\nJimmy out of New York; he thought it was the only place on earth.",
+      "simplified": "You could not take Jimmy out of New York. He thought it was the best place.",
+      "index": 24
+    },
+    {
+      "original": "Well,\nwe agreed that night that we would meet here again exactly twenty years\nfrom that date and time, no matter what our conditions might be or from\nwhat distance we might have to come.",
+      "simplified": "We agreed that night to meet here again in twenty years. We said we would come, no matter our conditions. We would come from any distance to meet.",
+      "index": 25
+    },
+    {
+      "original": "We figured that in twenty years\neach of us ought to have our destiny worked out and our fortunes made,\nwhatever they were going to be.",
+      "simplified": "In twenty years, we want to know our future. We hope each of us has good luck then. We wish for our dreams to be real.",
+      "index": 26
+    },
+    {
+      "original": "”\n\n“It sounds pretty interesting,” said the policeman.",
+      "simplified": "\"It sounds interesting,\" the policeman said.",
+      "index": 27
+    },
+    {
+      "original": "“Rather a long time\nbetween meets, though, it seems to me.",
+      "simplified": "It seems there is a long time between meetings.",
+      "index": 28
+    },
+    {
+      "original": "Haven’t you heard from your\nfriend since you left?",
+      "simplified": "\"Did you not hear from your friend since you left?\"",
+      "index": 29
+    },
+    {
+      "original": "”\n\n“Well, yes, for a time we corresponded,” said the other.",
+      "simplified": "\"Yes, we wrote letters for some time,\" said the other.",
+      "index": 30
+    },
+    {
+      "original": "“But after a\nyear or two we lost track of each other.",
+      "simplified": "\"But after one or two years, we lost touch.\"",
+      "index": 31
+    },
+    {
+      "original": "You see, the West is a pretty\nbig proposition, and I kept hustling around over it pretty lively.",
+      "simplified": "The West is a big place. I kept moving around it.",
+      "index": 32
+    },
+    {
+      "original": "But\nI know Jimmy will meet me here if he’s alive, for he always was the\ntruest, stanchest old chap in the world.",
+      "simplified": "I know Jimmy will meet me here if he is alive. He always is the best friend in the world.",
+      "index": 33
+    },
+    {
+      "original": "He’ll never forget.",
+      "simplified": "He will always remember this moment.",
+      "index": 34
+    },
+    {
+      "original": "I came a\nthousand miles to stand in this door to-night, and it’s worth it if my\nold partner turns up.",
+      "simplified": "I came a long way to stand in this door. It is worth it if my old partner shows up.",
+      "index": 35
+    },
+    {
+      "original": "”\n\nThe waiting man pulled out a handsome watch, the lids of it set with\nsmall diamonds.",
+      "simplified": "The man waits and takes out a nice watch. The watch has small diamonds on it.",
+      "index": 36
+    },
+    {
+      "original": "“Three minutes to ten,” he announced.",
+      "simplified": "\"It is three minutes to ten,\" he said.",
+      "index": 37
+    },
+    {
+      "original": "“It was exactly ten o’clock when\nwe parted here at the restaurant door.",
+      "simplified": "It was ten o’clock when we left the restaurant door.",
+      "index": 38
+    },
+    {
+      "original": "”\n\n“Did pretty well out West, didn’t you?",
+      "simplified": "\"You did very well out West, did you not?\"",
+      "index": 39
+    },
+    {
+      "original": "” asked the policeman.",
+      "simplified": "\"the policeman asked.\"",
+      "index": 40
+    },
+    {
+      "original": "“You bet!",
+      "simplified": "Sure! Here's the simplified sentence:\n\n\"You are right!\"",
+      "index": 41
+    },
+    {
+      "original": "I hope Jimmy has done half as well.",
+      "simplified": "I hope Jimmy did half as well.",
+      "index": 42
+    },
+    {
+      "original": "He was a kind of plodder,\nthough, good fellow as he was.",
+      "simplified": "He was a slow worker. He was a nice guy too.",
+      "index": 43
+    },
+    {
+      "original": "I’ve had to compete with some of the\nsharpest wits going to get my pile.",
+      "simplified": "I must compete with very smart people to get my pile.",
+      "index": 44
+    },
+    {
+      "original": "A man gets in a groove in New York.",
+      "simplified": "A man finds his rhythm in New York.",
+      "index": 45
+    },
+    {
+      "original": "It takes the West to put a razor-edge on him.",
+      "simplified": "The West helps him become sharper and stronger.",
+      "index": 46
+    },
+    {
+      "original": "”\n\nThe policeman twirled his club and took a step or two.",
+      "simplified": "The policeman twirled his club. He took a step forward.",
+      "index": 47
+    },
+    {
+      "original": "“I’ll be on my way.",
+      "simplified": "\"I am going now.\"",
+      "index": 48
+    },
+    {
+      "original": "Hope your friend comes around all right.",
+      "simplified": "I hope your friend feels better soon.",
+      "index": 49
+    },
+    {
+      "original": "Going to\ncall time on him sharp?",
+      "simplified": "Are you going to call time on him now?",
+      "index": 50
+    },
+    {
+      "original": "”\n\n“I should say not!",
+      "simplified": "I will not say that.",
+      "index": 51
+    },
+    {
+      "original": "” said the other.",
+      "simplified": "\"She spoke to the others.\"",
+      "index": 52
+    },
+    {
+      "original": "“I’ll give him half an hour at\nleast.",
+      "simplified": "“I will give him thirty minutes or more.”",
+      "index": 53
+    },
+    {
+      "original": "If Jimmy is alive on earth he’ll be here by that time.",
+      "simplified": "Jimmy is alive on earth. He will be here by that time.",
+      "index": 54
+    },
+    {
+      "original": "So long,\nofficer.",
+      "simplified": "\"Goodbye, officer.\"",
+      "index": 55
+    },
+    {
+      "original": "”\n\n“Good-night, sir,” said the policeman, passing on along his beat,\ntrying doors as he went.",
+      "simplified": "\"Good night, sir,\" said the policeman. He walked along his area. He tried doors as he moved.",
+      "index": 56
+    },
+    {
+      "original": "There was now a fine, cold drizzle falling, and the wind had risen from\nits uncertain puffs into a steady blow.",
+      "simplified": "A cold drizzle falls now. The wind rises from gentle puffs to a strong blow.",
+      "index": 57
+    },
+    {
+      "original": "The few foot passengers astir\nin that quarter hurried dismally and silently along with coat collars\nturned high and pocketed hands.",
+      "simplified": "The few people walked quickly in that area. They felt sad and quiet. Their coat collars were up and their hands were in pockets.",
+      "index": 58
+    },
+    {
+      "original": "And in the door of the hardware store\nthe man who had come a thousand miles to fill an appointment, uncertain\nalmost to absurdity, with the friend of his youth, smoked his cigar and\nwaited.",
+      "simplified": "A man stands at the door of a store. He comes from far away to meet an old friend. He feels uncertain and waits while smoking a cigar.",
+      "index": 59
+    },
+    {
+      "original": "About twenty minutes he waited, and then a tall man in a long overcoat,\nwith collar turned up to his ears, hurried across from the opposite\nside of the street.",
+      "simplified": "He waited for about twenty minutes. A tall man hurried across the street. He wore a long coat with his collar up.",
+      "index": 60
+    },
+    {
+      "original": "He went directly to the waiting man.",
+      "simplified": "He goes straight to the man who waits.",
+      "index": 61
+    },
+    {
+      "original": "“Is that you, Bob?",
+      "simplified": "\"Is that you, Bob?\"",
+      "index": 62
+    },
+    {
+      "original": "” he asked, doubtfully.",
+      "simplified": "He asked with doubt.",
+      "index": 63
+    },
+    {
+      "original": "“Is that you, Jimmy Wells?",
+      "simplified": "\"Is that you, Jimmy?\"",
+      "index": 64
+    },
+    {
+      "original": "” cried the man in the door.",
+      "simplified": "The man cried at the door.",
+      "index": 65
+    },
+    {
+      "original": "“Bless my heart!",
+      "simplified": "\"Please help me!\"",
+      "index": 66
+    },
+    {
+      "original": "” exclaimed the new arrival, grasping both the other’s\nhands with his own.",
+      "simplified": "The new arrival held the other person's hands tightly.",
+      "index": 67
+    },
+    {
+      "original": "“It’s Bob, sure as fate.",
+      "simplified": "\"It is Bob, that is certain.\"",
+      "index": 68
+    },
+    {
+      "original": "I was certain I’d find you\nhere if you were still in existence.",
+      "simplified": "I was sure I would find you here. You were still alive.",
+      "index": 69
+    },
+    {
+      "original": "Well, well, well!",
+      "simplified": "\"Wow, this is surprising and interesting!\"",
+      "index": 70
+    },
+    {
+      "original": "—twenty years is\na long time.",
+      "simplified": "Twenty years is a very long time.",
+      "index": 71
+    },
+    {
+      "original": "The old restaurant’s gone, Bob; I wish it had lasted, so\nwe could have had another dinner there.",
+      "simplified": "The old restaurant is gone. I wish it had stayed. We could eat dinner there again.",
+      "index": 72
+    },
+    {
+      "original": "How has the West treated you,\nold man?",
+      "simplified": "How does the West treat you, old man?",
+      "index": 73
+    },
+    {
+      "original": "”\n\n“Bully; it has given me everything I asked it for.",
+      "simplified": "\"Bully has given me everything that I asked for.\"",
+      "index": 74
+    },
+    {
+      "original": "You’ve changed lots,\nJimmy.",
+      "simplified": "You have changed a lot, Jimmy.",
+      "index": 75
+    },
+    {
+      "original": "I never thought you were so tall by two or three inches.",
+      "simplified": "I never thought you were so tall. You are two or three inches taller.",
+      "index": 76
+    },
+    {
+      "original": "”\n\n“Oh, I grew a bit after I was twenty.",
+      "simplified": "\"Oh, I grew a little after I turned twenty.\"",
+      "index": 77
+    },
+    {
+      "original": "”\n\n“Doing well in New York, Jimmy?",
+      "simplified": "\"Are you doing well in New York, Jimmy?\"",
+      "index": 78
+    },
+    {
+      "original": "”\n\n“Moderately.",
+      "simplified": "It is okay. It is not too much.",
+      "index": 79
+    },
+    {
+      "original": "I have a position in one of the city departments.",
+      "simplified": "I work in a city department.",
+      "index": 80
+    },
+    {
+      "original": "Come on,\nBob; we’ll go around to a place I know of, and have a good long talk\nabout old times.",
+      "simplified": "Come on, Bob. We will go to a place I know. We can have a long talk about old times.",
+      "index": 81
+    },
+    {
+      "original": "”\n\nThe two men started up the street, arm in arm.",
+      "simplified": "The two men walk up the street, holding hands.",
+      "index": 82
+    },
+    {
+      "original": "The man from the West,\nhis egotism enlarged by success, was beginning to outline the history\nof his career.",
+      "simplified": "The man from the West was very proud of his success. He began to tell the story of his career.",
+      "index": 83
+    },
+    {
+      "original": "The other, submerged in his overcoat, listened with\ninterest.",
+      "simplified": "The other man wore an overcoat. He listened with great interest.",
+      "index": 84
+    },
+    {
+      "original": "At the corner stood a drug store, brilliant with electric lights.",
+      "simplified": "A drug store stood at the corner. It was bright with electric lights.",
+      "index": 85
+    },
+    {
+      "original": "When\nthey came into this glare each of them turned simultaneously to gaze\nupon the other’s face.",
+      "simplified": "When they entered the bright light, they looked at each other.",
+      "index": 86
+    },
+    {
+      "original": "The man from the West stopped suddenly and released his arm.",
+      "simplified": "The man from the West stops suddenly. He lets go of his arm.",
+      "index": 87
+    },
+    {
+      "original": "“You’re not Jimmy Wells,” he snapped.",
+      "simplified": "\"You are not Jimmy Wells,\" he said sharply.",
+      "index": 88
+    },
+    {
+      "original": "“Twenty years is a long time, but\nnot long enough to change a man’s nose from a Roman to a pug.",
+      "simplified": "Twenty years is a long time. It is not long enough to change a nose. A nose cannot change from Roman to pug.",
+      "index": 89
+    },
+    {
+      "original": "”\n\n“It sometimes changes a good man into a bad one,” said the tall man.",
+      "simplified": "\"It can change a good man into a bad one,\" said the tall man.",
+      "index": 90
+    },
+    {
+      "original": "“You’ve been under arrest for ten minutes, ‘Silky’ Bob.",
+      "simplified": "\"You are under arrest for ten minutes, 'Silky' Bob.\"",
+      "index": 91
+    },
+    {
+      "original": "Chicago thinks\nyou may have dropped over our way and wires us she wants to have a chat\nwith you.",
+      "simplified": "Chicago thinks you dropped by. She sends us a message. She wants to talk with you.",
+      "index": 92
+    },
+    {
+      "original": "Going quietly, are you?",
+      "simplified": "Are you going quietly?",
+      "index": 93
+    },
+    {
+      "original": "That’s sensible.",
+      "simplified": "That is a smart idea.",
+      "index": 94
+    },
+    {
+      "original": "Now, before we go on\nto the station here’s a note I was asked to hand you.",
+      "simplified": "We are going to the station now. Here is a note for you.",
+      "index": 95
+    },
+    {
+      "original": "You may read it\nhere at the window.",
+      "simplified": "You can read it here by the window.",
+      "index": 96
+    },
+    {
+      "original": "It’s from Patrolman Wells.",
+      "simplified": "It comes from Patrolman Wells.",
+      "index": 97
+    },
+    {
+      "original": "”\n\nThe man from the West unfolded the little piece of paper handed him.",
+      "simplified": "The man from the West opened the small piece of paper. He took it from someone.",
+      "index": 98
+    },
+    {
+      "original": "His hand was steady when he began to read, but it trembled a little by\nthe time he had finished.",
+      "simplified": "His hand is steady when he begins to read. It trembles a little when he finishes.",
+      "index": 99
+    },
+    {
+      "original": "The note was rather short.",
+      "simplified": "The note was short and to the point.",
+      "index": 100
+    },
+    {
+      "original": "_Bob: I was at the appointed place on time.",
+      "simplified": "Bob was at the right place. He was on time.",
+      "index": 101
+    },
+    {
+      "original": "When you struck the match\nto light your cigar I saw it was the face of the man wanted in Chicago.",
+      "simplified": "When you struck the match, I saw your cigar. It showed the man's face. He was wanted in Chicago.",
+      "index": 102
+    },
+    {
+      "original": "Somehow I couldn’t do it myself, so I went around and got a plain\nclothes man to do the job.",
+      "simplified": "I could not do it alone. I asked a plain clothes man to help.",
+      "index": 103
+    },
+    {
+      "original": "JIMMY.",
+      "simplified": "Jimmy.",
+      "index": 104
+    }
+  ],
+  "simplifiedText": "The policeman walked up the street. He looked impressive as he moved. The impressiveness was real and not for show. Few people watched it. The clock shows almost 10 o’clock at night. Cold winds blow through the empty streets. The streets feel quiet and a bit sad. Rain smells are in the air too. The officer walks and tries the doors. He twirls his club carefully. He looks down the busy street. His strong form shows he protects the peace. The area wakes up early each day. Now and then, you see the lights of a cigar store. You also see the lights of a lunch counter. Most doors belong to closed businesses. When the policeman walked, he suddenly slowed down. A man leans in the doorway of a dark store. He has a cigar in his mouth. The policeman walked up to him. The man spoke quickly. \"It is okay, officer,\" he said to make him feel better. I wait for my friend. It is an appointment from twenty years ago. Does it sound funny to you? I can explain this. You can ask if you want. A long time ago, there was a restaurant here. It was called 'Big Joe' Brady's restaurant. \"Five years ago, the policeman said something.\" \"It got taken down then.\" The man stands in the doorway. He strikes a match and lights his cigar. The light showed a pale face with a strong jaw. His eyes were keen, and he had a small white scar. The scar was near his right eyebrow. His scarf pin is a big diamond. It is set strangely. \"Twenty years ago, I had dinner at Big Joe Brady’s. I was with my best friend, Jimmy Wells. He was the best guy in the world.\" He and I grew up here in New York. We are like brothers. We lived together and shared many moments. I was eighteen. Jimmy was twenty. The next morning, I start my journey to the West. I want to find my fortune there. You could not take Jimmy out of New York. He thought it was the best place. We agreed that night to meet here again in twenty years. We said we would come, no matter our conditions. We would come from any distance to meet. In twenty years, we want to know our future. We hope each of us has good luck then. We wish for our dreams to be real. \"It sounds interesting,\" the policeman said. It seems there is a long time between meetings. \"Did you not hear from your friend since you left?\" \"Yes, we wrote letters for some time,\" said the other. \"But after one or two years, we lost touch.\" The West is a big place. I kept moving around it. I know Jimmy will meet me here if he is alive. He always is the best friend in the world. He will always remember this moment. I came a long way to stand in this door. It is worth it if my old partner shows up. The man waits and takes out a nice watch. The watch has small diamonds on it. \"It is three minutes to ten,\" he said. It was ten o’clock when we left the restaurant door. \"You did very well out West, did you not?\" \"the policeman asked.\" Sure! Here's the simplified sentence:\n\n\"You are right!\" I hope Jimmy did half as well. He was a slow worker. He was a nice guy too. I must compete with very smart people to get my pile. A man finds his rhythm in New York. The West helps him become sharper and stronger. The policeman twirled his club. He took a step forward. \"I am going now.\" I hope your friend feels better soon. Are you going to call time on him now? I will not say that. \"She spoke to the others.\" “I will give him thirty minutes or more.” Jimmy is alive on earth. He will be here by that time. \"Goodbye, officer.\" \"Good night, sir,\" said the policeman. He walked along his area. He tried doors as he moved. A cold drizzle falls now. The wind rises from gentle puffs to a strong blow. The few people walked quickly in that area. They felt sad and quiet. Their coat collars were up and their hands were in pockets. A man stands at the door of a store. He comes from far away to meet an old friend. He feels uncertain and waits while smoking a cigar. He waited for about twenty minutes. A tall man hurried across the street. He wore a long coat with his collar up. He goes straight to the man who waits. \"Is that you, Bob?\" He asked with doubt. \"Is that you, Jimmy?\" The man cried at the door. \"Please help me!\" The new arrival held the other person's hands tightly. \"It is Bob, that is certain.\" I was sure I would find you here. You were still alive. \"Wow, this is surprising and interesting!\" Twenty years is a very long time. The old restaurant is gone. I wish it had stayed. We could eat dinner there again. How does the West treat you, old man? \"Bully has given me everything that I asked for.\" You have changed a lot, Jimmy. I never thought you were so tall. You are two or three inches taller. \"Oh, I grew a little after I turned twenty.\" \"Are you doing well in New York, Jimmy?\" It is okay. It is not too much. I work in a city department. Come on, Bob. We will go to a place I know. We can have a long talk about old times. The two men walk up the street, holding hands. The man from the West was very proud of his success. He began to tell the story of his career. The other man wore an overcoat. He listened with great interest. A drug store stood at the corner. It was bright with electric lights. When they entered the bright light, they looked at each other. The man from the West stops suddenly. He lets go of his arm. \"You are not Jimmy Wells,\" he said sharply. Twenty years is a long time. It is not long enough to change a nose. A nose cannot change from Roman to pug. \"It can change a good man into a bad one,\" said the tall man. \"You are under arrest for ten minutes, 'Silky' Bob.\" Chicago thinks you dropped by. She sends us a message. She wants to talk with you. Are you going quietly? That is a smart idea. We are going to the station now. Here is a note for you. You can read it here by the window. It comes from Patrolman Wells. The man from the West opened the small piece of paper. He took it from someone. His hand is steady when he begins to read. It trembles a little when he finishes. The note was short and to the point. Bob was at the right place. He was on time. When you struck the match, I saw your cigar. It showed the man's face. He was wanted in Chicago. I could not do it alone. I asked a plain clothes man to help. Jimmy.",
+  "wordCount": 1215,
+  "generatedAt": "2025-11-19T18:54:45.883Z"
+}
