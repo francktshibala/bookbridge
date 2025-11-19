@@ -16,7 +16,8 @@ config({ path: '.env.local' });
 const BOOK_INFO = {
   id: 'after-twenty-years',
   inputFile: 'after-twenty-years-original.txt',
-  outputFileA1: 'after-twenty-years-A1-simplified.txt'
+  outputFileA1: 'after-twenty-years-A1-simplified.txt',
+  outputFileA2: 'after-twenty-years-A2-simplified.txt'
 };
 
 // A1 Simplification Guidelines
@@ -31,6 +32,24 @@ const A1_GUIDELINES = `
 - Generate natural flow sentences (NOT forced micro-sentences)
 - AVOID: "He is nervous. He is mad. He hears things." (robotic micro-sentences)
 - CORRECT A1: "He is nervous and feels mad because he hears strange things." (natural flow)
+- Each sentence should express one complete thought
+- Avoid semicolons - use periods instead
+- Preserve punctuation for proper formatting
+- Validate natural reading flow
+`;
+
+// A2 Simplification Guidelines
+const A2_GUIDELINES = `
+- Use 1200-1500 most common words
+- Present and simple past tense
+- Natural compound sentences (11-13 words average - COMPOUND FLOW)
+- MAXIMUM 15 WORDS PER SENTENCE (Master Prevention - prevents highlighting issues)
+- More connectors: "and", "but", "so", "then", "because"
+- Explain cultural references simply
+- Maintain exact 1:1 sentence count mapping (CRITICAL)
+- Generate compound sentences for natural flow (NOT micro-sentences)
+- AVOID: "He was nervous. He was mad. He heard things." (robotic micro-sentences)
+- CORRECT A2: "He was very nervous and felt mad because he heard strange things in the dark." (natural 11 words)
 - Each sentence should express one complete thought
 - Avoid semicolons - use periods instead
 - Preserve punctuation for proper formatting
@@ -57,11 +76,11 @@ function cleanSentenceForAPI(sentence) {
 async function callOpenAI(sentence, level) {
   return new Promise((resolve, reject) => {
     const cleanSentence = cleanSentenceForAPI(sentence);
-    const guidelines = A1_GUIDELINES;
-    const wordRange = '500-1000';
-    const avgWords = '8-12 words average';
-    const maxWords = '12';
-    const connectors = '"and", "but", "when" only when natural';
+    const guidelines = level === 'A1' ? A1_GUIDELINES : (level === 'A2' ? A2_GUIDELINES : A1_GUIDELINES);
+    const wordRange = level === 'A1' ? '500-1000' : (level === 'A2' ? '1200-1500' : '500-1000');
+    const avgWords = level === 'A1' ? '8-12 words average' : (level === 'A2' ? '11-13 words average' : '8-12 words average');
+    const maxWords = level === 'A1' ? '12' : (level === 'A2' ? '15' : '12');
+    const connectors = level === 'A1' ? '"and", "but", "when" only when natural' : (level === 'A2' ? '"and", "but", "so", "then", "because"' : '"and", "but", "when" only when natural');
 
     const data = JSON.stringify({
       model: 'gpt-4o-mini',
@@ -134,7 +153,8 @@ Simplified sentence:`
 async function simplifyAfterTwentyYears(level = 'A1') {
   const cacheDir = path.join(process.cwd(), 'cache');
   const inputPath = path.join(cacheDir, BOOK_INFO.inputFile);
-  const outputPath = path.join(cacheDir, BOOK_INFO.outputFileA1);
+  const outputFile = level === 'A1' ? BOOK_INFO.outputFileA1 : (level === 'A2' ? BOOK_INFO.outputFileA2 : BOOK_INFO.outputFileA1);
+  const outputPath = path.join(cacheDir, outputFile);
   const jsonPath = path.join(cacheDir, `after-twenty-years-${level}-simplified.json`);
 
   // Check if already simplified

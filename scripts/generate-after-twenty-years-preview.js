@@ -21,7 +21,8 @@ const supabase = createClient(
 
 // VALIDATED VOICE IDs (from MASTER_MISTAKES_PREVENTION.md)
 const VALIDATED_VOICES = {
-  'daniel': 'onwK4e9ZLuTAKqWW03F9'  // British deep news presenter
+  'daniel': 'onwK4e9ZLuTAKqWW03F9',  // British deep news presenter
+  'jane': 'RILOU7YmBhvwJGDGjNmP'     // Professional audiobook reader
 };
 
 // NOVEMBER 2025 PRODUCTION STANDARD - FFmpeg 0.85× Post-Processing
@@ -42,9 +43,28 @@ const DANIEL_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR AFTER TWENTY YEARS: A1 → Daniel
+// PRODUCTION VOICE SETTINGS - Jane (A2)
+const JANE_VOICE_SETTINGS = {
+  voice_id: 'RILOU7YmBhvwJGDGjNmP',  // Jane voice ID (Professional audiobook reader)
+  model_id: 'eleven_monolingual_v1',
+  voice_settings: {
+    stability: 0.5,                    // Clarity for ESL learners
+    similarity_boost: 0.8,             // Enhanced presence
+    style: 0.05,                       // Subtle sophistication
+    use_speaker_boost: true
+  },
+  speed: 0.90,                          // Generate at default
+  output_format: 'mp3_44100_128',
+  apply_text_normalization: 'auto'
+};
+
+// VOICE MAPPING FOR AFTER TWENTY YEARS: A1 → Daniel, A2 → Jane
 function getVoiceForLevel(level) {
-  return DANIEL_VOICE_SETTINGS;  // A1 uses Daniel
+  const voiceMapping = {
+    'A1': DANIEL_VOICE_SETTINGS,  // A1 uses Daniel
+    'A2': JANE_VOICE_SETTINGS      // A2 uses Jane
+  };
+  return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
 }
 
 // Get book ID and level from command line or use defaults
@@ -60,7 +80,7 @@ async function generatePreviewAudio(previewText, bookId, level) {
   
   try {
     const voiceSettings = getVoiceForLevel(level);
-    const voiceName = 'Daniel';
+    const voiceName = level === 'A2' ? 'Jane' : (level === 'A1' ? 'Daniel' : 'Daniel');
     
     console.log(`   🗣️ Voice: ${voiceSettings.voice_id} (${voiceName})`);
     console.log(`   📝 Text length: ${previewText.length} characters`);
@@ -226,6 +246,10 @@ Generate ONLY the preview text, no explanations or labels:`;
     fs.writeFileSync(previewTextPath, previewText, 'utf8');
     console.log(`   💾 Saved preview text: ${previewTextPath}`);
 
+    // Determine voice name and settings based on level
+    const voiceName = CEFR_LEVEL === 'A2' ? 'Jane' : (CEFR_LEVEL === 'A1' ? 'Daniel' : 'Daniel');
+    const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
+
     // Save preview audio metadata to cache
     const previewAudioMetadata = {
       bookId: BOOK_ID,
@@ -236,8 +260,8 @@ Generate ONLY the preview text, no explanations or labels:`;
         duration: audioMetadata.duration,
         originalDuration: audioMetadata.originalDuration,
         targetSpeed: audioMetadata.targetSpeed,
-        voice: 'Daniel',
-        voiceId: DANIEL_VOICE_SETTINGS.voice_id,
+        voice: voiceName,
+        voiceId: voiceSettings.voice_id,
         generatedAt: new Date().toISOString()
       }
     };
@@ -248,7 +272,7 @@ Generate ONLY the preview text, no explanations or labels:`;
     console.log(`\n✅ Preview generation complete!`);
     console.log(`   📝 Preview text: ${previewText.length} characters`);
     console.log(`   🎵 Preview audio: ${audioMetadata.duration.toFixed(2)}s (${audioMetadata.targetSpeed}× speed)`);
-    console.log(`   🗣️ Voice: Daniel`);
+    console.log(`   🗣️ Voice: ${voiceName}`);
 
     return previewAudioMetadata;
 

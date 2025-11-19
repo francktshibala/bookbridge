@@ -1,0 +1,14 @@
+{
+  "bookId": "after-twenty-years",
+  "level": "A2",
+  "previewText": "\"After Twenty Years\" is an exciting story about friendship and the passage of time. This A2 level book is about 1,500 words long, making it a perfect choice for new readers. The story follows two friends who promised to meet again after twenty years. One friend waits at their old meeting place, but will the other come? What will happen when they reunite after so many years? This tale will keep you curious and thinking about friendship, choices, and life. Enjoy reading and find out what happens!",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/after-twenty-years/A2/preview.mp3",
+    "duration": 40.084467,
+    "originalDuration": 34.08975,
+    "targetSpeed": 0.85,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "generatedAt": "2025-11-19T21:28:13.310Z"
+  }
+}

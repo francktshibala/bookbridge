@@ -173,6 +173,14 @@ node scripts/modernize-[book-name].js --fresh
 node scripts/simplify-[book-name].js [LEVEL]
 # Example commands: node scripts/simplify-the-necklace.js A1
 # BEFORE RUNNING: Verify script supports the target level
+#
+# ⚠️ EXECUTION METHOD - CRITICAL (MANDATORY FOR ALL AI AGENTS):
+# - ALWAYS run simplification scripts in TERMINAL (not in chat/IDE)
+# - Long-running processes (5-10 minutes for 100+ sentences) WILL timeout in chat
+# - Terminal provides real-time progress logs and can be interrupted/resumed
+# - Example: cd /path/to/project && node scripts/simplify-[book-name].js [LEVEL]
+# - Scripts save progress after every 10 sentences, so you can resume if interrupted
+# - IMPORTANT: Other AI agents/chat sessions MUST also run these scripts in terminal, not in chat
 # - Check script has A1/A2/B1 level validation arrays
 # - Verify voice selection logic includes target level
 # - Confirm AI guidelines exist for target level
@@ -274,12 +282,14 @@ brew install ffmpeg                         # Install ffprobe for measurements +
 node scripts/generate-[book-name]-bundles.js [LEVEL] --pilot
 # Example: node scripts/generate-necklace-bundles.js A1 --pilot
 #
-# ⚠️ EXECUTION METHOD:
+# ⚠️ EXECUTION METHOD - CRITICAL:
 # - ALWAYS run bundle generation scripts in TERMINAL (not in chat/IDE)
-# - Full generation takes 10-15 minutes (60-88 bundles) - chat may timeout
+# - Full generation takes 10-15 minutes (30-88 bundles) - chat WILL timeout
 # - Terminal provides real-time progress logs, can be interrupted/resumed
+# - Scripts save progress after each bundle, so you can resume if interrupted
 # - Use background mode for long runs: node scripts/generate-[book-name]-bundles.js [LEVEL] &
 # - Example: cd /path/to/project && node scripts/generate-[book-name]-bundles.js [LEVEL]
+# - IMPORTANT: Other AI agents should also run these scripts in terminal, not in chat
 
 # ⚠️ CRITICAL FFPROBE IMPLEMENTATION (learned from The Necklace A1):
 # For ES modules (import syntax), ffprobe measurement requires:

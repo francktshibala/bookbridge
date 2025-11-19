@@ -15,7 +15,8 @@ config({ path: '.env.local' });
 
 // VALIDATED VOICE IDs (from MASTER_MISTAKES_PREVENTION.md)
 const VALIDATED_VOICES = {
-  'daniel': 'onwK4e9ZLuTAKqWW03F9'  // British deep news presenter
+  'daniel': 'onwK4e9ZLuTAKqWW03F9',  // British deep news presenter
+  'jane': 'RILOU7YmBhvwJGDGjNmP'     // Professional audiobook reader
 };
 
 const prisma = new PrismaClient();
@@ -43,15 +44,34 @@ const DANIEL_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR AFTER TWENTY YEARS: A1 → Daniel
+// PRODUCTION VOICE SETTINGS - Jane (A2)
+const JANE_VOICE_SETTINGS = {
+  voice_id: 'RILOU7YmBhvwJGDGjNmP',  // Jane voice ID (Professional audiobook reader)
+  model_id: 'eleven_monolingual_v1',  // English-focused model
+  voice_settings: {
+    stability: 0.5,                    // Clarity for ESL learners
+    similarity_boost: 0.8,             // Enhanced presence
+    style: 0.05,                       // Subtle sophistication
+    use_speaker_boost: true
+  },
+  speed: 0.90,                          // Generate at default (API may ignore)
+  output_format: 'mp3_44100_128',
+  apply_text_normalization: 'auto'
+};
+
+// VOICE MAPPING FOR AFTER TWENTY YEARS: A1 → Daniel, A2 → Jane
 function getVoiceForLevel(level) {
-  return DANIEL_VOICE_SETTINGS;  // A1 uses Daniel
+  const voiceMapping = {
+    'A1': DANIEL_VOICE_SETTINGS,  // A1 uses Daniel
+    'A2': JANE_VOICE_SETTINGS     // A2 uses Jane
+  };
+  return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
 }
 
 const BOOK_ID = 'after-twenty-years';
 
 // SCRIPT LEVEL VALIDATION - MANDATORY FIRST (prevents runtime failures)
-const VALID_LEVELS = ['A1'];
+const VALID_LEVELS = ['A1', 'A2'];
 
 // Get target level from command line argument
 const targetLevel = process.argv[2];
@@ -59,8 +79,8 @@ const isPilot = process.argv.includes('--pilot');
 
 // Validate level before proceeding
 if (!targetLevel) {
-  console.error('❌ Error: Please specify a CEFR level (A1)');
-  console.log('Usage: node scripts/generate-after-twenty-years-bundles.js [A1] [--pilot]');
+  console.error('❌ Error: Please specify a CEFR level (A1 or A2)');
+  console.log('Usage: node scripts/generate-after-twenty-years-bundles.js [A1|A2] [--pilot]');
   process.exit(1);
 }
 
@@ -73,7 +93,7 @@ const CEFR_LEVEL = targetLevel;
 const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
 
 console.log(`🎵 Generating bundles for "${BOOK_ID}" at ${CEFR_LEVEL} level`);
-const voiceName = 'Daniel';
+const voiceName = CEFR_LEVEL === 'A2' ? 'Jane' : (CEFR_LEVEL === 'A1' ? 'Daniel' : 'Daniel');
 console.log(`🗣️ Using voice: ${voiceSettings.voice_id} (${voiceName})`);
 
 if (isPilot) {
@@ -323,9 +343,10 @@ async function generateAfterTwentyYearsBundles() {
       }
     });
 
-    // For A1, delete existing bundles to ensure clean override
-    if (CEFR_LEVEL === 'A1') {
-      console.log(`🗑️ Deleting existing ${CEFR_LEVEL} bundles for clean regeneration with Daniel voice...`);
+    // For A1 and A2, delete existing bundles to ensure clean override
+    if (CEFR_LEVEL === 'A1' || CEFR_LEVEL === 'A2') {
+      const voiceType = CEFR_LEVEL === 'A2' ? 'Jane' : 'Daniel';
+      console.log(`🗑️ Deleting existing ${CEFR_LEVEL} bundles for clean regeneration with ${voiceType} voice...`);
       await prisma.bookChunk.deleteMany({
         where: {
           bookId: BOOK_ID,
@@ -368,7 +389,7 @@ async function generateAfterTwentyYearsBundles() {
         
         // Check if audio file already exists BEFORE generating (saves API costs)
         const audioExists = await fileExists(audioFileName);
-        if (audioExists && CEFR_LEVEL !== 'A1') {
+        if (audioExists && CEFR_LEVEL !== 'A1' && CEFR_LEVEL !== 'A2') {
           console.log('   📁 Audio file already exists, skipping generation...');
           const existingChunk = await prisma.bookChunk.findFirst({
             where: {

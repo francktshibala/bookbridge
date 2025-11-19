@@ -204,7 +204,8 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'B1': '/api/the-last-leaf-b1/bundles'
   },
   'after-twenty-years': {
-    'A1': '/api/after-twenty-years-a1/bundles'
+    'A1': '/api/after-twenty-years-a1/bundles',
+    'A2': '/api/after-twenty-years-a2/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };
@@ -280,7 +281,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'the-necklace': ['A1', 'A2', 'B1'],  // Multi-level book (A1, A2, B1 support)
   'tell-tale-heart': ['A1', 'A2', 'B1'],  // A1 with Daniel, A2 & B1 with Jane
   'the-last-leaf': ['B1'],  // B1 with Jane
-  'after-twenty-years': ['A1'],  // A1 with Daniel
+  'after-twenty-years': ['A1', 'A2'],  // A1 with Daniel, A2 with Jane
 };
 
 // Single-level books configuration
