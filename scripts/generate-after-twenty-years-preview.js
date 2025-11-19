@@ -58,11 +58,12 @@ const JANE_VOICE_SETTINGS = {
   apply_text_normalization: 'auto'
 };
 
-// VOICE MAPPING FOR AFTER TWENTY YEARS: A1 → Daniel, A2 → Jane
+// VOICE MAPPING FOR AFTER TWENTY YEARS: A1 → Daniel, A2 → Jane, B1 → Jane
 function getVoiceForLevel(level) {
   const voiceMapping = {
     'A1': DANIEL_VOICE_SETTINGS,  // A1 uses Daniel
-    'A2': JANE_VOICE_SETTINGS      // A2 uses Jane
+    'A2': JANE_VOICE_SETTINGS,     // A2 uses Jane
+    'B1': JANE_VOICE_SETTINGS      // B1 uses Jane
   };
   return voiceMapping[level] || DANIEL_VOICE_SETTINGS;
 }
@@ -80,7 +81,7 @@ async function generatePreviewAudio(previewText, bookId, level) {
   
   try {
     const voiceSettings = getVoiceForLevel(level);
-    const voiceName = level === 'A2' ? 'Jane' : (level === 'A1' ? 'Daniel' : 'Daniel');
+    const voiceName = level === 'A2' || level === 'B1' ? 'Jane' : (level === 'A1' ? 'Daniel' : 'Daniel');
     
     console.log(`   🗣️ Voice: ${voiceSettings.voice_id} (${voiceName})`);
     console.log(`   📝 Text length: ${previewText.length} characters`);
@@ -213,7 +214,7 @@ async function generatePreview() {
 
 Requirements:
 - 50-100 words exactly
-- Level-appropriate vocabulary (${CEFR_LEVEL} = ${CEFR_LEVEL === 'A1' ? '500-1000 most common words' : CEFR_LEVEL === 'A2' ? '1200-1500 most common words' : '2000-2500 most common words'})
+- Level-appropriate vocabulary (${CEFR_LEVEL} = ${CEFR_LEVEL === 'A1' ? '500-1000 most common words' : CEFR_LEVEL === 'A2' ? '1200-1500 most common words' : CEFR_LEVEL === 'B1' ? '2000-2500 most common words' : '500-1000 most common words'})
 - Include: story theme, reading level, approximate length, curiosity hook
 - NO spoilers - don't reveal the twist ending
 - Engaging and encouraging for ESL learners
@@ -247,7 +248,7 @@ Generate ONLY the preview text, no explanations or labels:`;
     console.log(`   💾 Saved preview text: ${previewTextPath}`);
 
     // Determine voice name and settings based on level
-    const voiceName = CEFR_LEVEL === 'A2' ? 'Jane' : (CEFR_LEVEL === 'A1' ? 'Daniel' : 'Daniel');
+    const voiceName = CEFR_LEVEL === 'A2' || CEFR_LEVEL === 'B1' ? 'Jane' : (CEFR_LEVEL === 'A1' ? 'Daniel' : 'Daniel');
     const voiceSettings = getVoiceForLevel(CEFR_LEVEL);
 
     // Save preview audio metadata to cache

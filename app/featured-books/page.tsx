@@ -204,7 +204,7 @@ const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     id: 'after-twenty-years',
     title: 'After Twenty Years',
     author: 'O. Henry',
-    description: 'Perfect quick win about friendship and promises. A1 & A2 levels with Daniel (A1) and Jane (A2) voice narration. Identity mystery with a twist ending.',
+    description: 'Perfect quick win about friendship and promises. A1, A2 & B1 levels with Daniel (A1) and Jane (A2/B1) voice narration. Identity mystery with a twist ending.',
     sentences: 105,
     bundles: 38,
     gradient: 'from-amber-500 to-orange-600',

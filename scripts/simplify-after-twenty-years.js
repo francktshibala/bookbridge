@@ -17,7 +17,8 @@ const BOOK_INFO = {
   id: 'after-twenty-years',
   inputFile: 'after-twenty-years-original.txt',
   outputFileA1: 'after-twenty-years-A1-simplified.txt',
-  outputFileA2: 'after-twenty-years-A2-simplified.txt'
+  outputFileA2: 'after-twenty-years-A2-simplified.txt',
+  outputFileB1: 'after-twenty-years-B1-simplified.txt'
 };
 
 // A1 Simplification Guidelines
@@ -54,6 +55,24 @@ const A2_GUIDELINES = `
 - Avoid semicolons - use periods instead
 - Preserve punctuation for proper formatting
 - Validate natural reading flow
+`;
+
+// B1 Simplification Guidelines
+const B1_GUIDELINES = `
+- Use 2000-2500 most common words
+- All tenses allowed but keep clear
+- Complex sentences with cultural context (15-18 words average)
+- MAXIMUM 25 WORDS PER SENTENCE (Master Prevention - prevents highlighting issues)
+- More sophisticated connectors: "although", "however", "meanwhile", "therefore"
+- Keep some cultural references with brief explanations
+- Maintain exact 1:1 sentence count mapping (CRITICAL)
+- Generate flowing complex sentences (NOT choppy short ones)
+- AVOID: "He was nervous. He was mad. He heard things." (simplified too much)
+- CORRECT B1: "He was deeply disturbed and felt increasingly agitated because he heard strange sounds that no one else could perceive." (natural 16 words)
+- Each sentence should express one complete thought
+- Avoid semicolons - use periods instead
+- Preserve original style and nuance where possible
+- Maintain emotional depth and literary quality
 `;
 
 // Comprehensive sentence cleaning function
@@ -153,7 +172,7 @@ Simplified sentence:`
 async function simplifyAfterTwentyYears(level = 'A1') {
   const cacheDir = path.join(process.cwd(), 'cache');
   const inputPath = path.join(cacheDir, BOOK_INFO.inputFile);
-  const outputFile = level === 'A1' ? BOOK_INFO.outputFileA1 : (level === 'A2' ? BOOK_INFO.outputFileA2 : BOOK_INFO.outputFileA1);
+  const outputFile = level === 'A1' ? BOOK_INFO.outputFileA1 : (level === 'A2' ? BOOK_INFO.outputFileA2 : (level === 'B1' ? BOOK_INFO.outputFileB1 : BOOK_INFO.outputFileA1));
   const outputPath = path.join(cacheDir, outputFile);
   const jsonPath = path.join(cacheDir, `after-twenty-years-${level}-simplified.json`);
 
