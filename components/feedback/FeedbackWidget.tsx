@@ -20,9 +20,10 @@
  * - Reusable component (can add to other pages)
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FeedbackWidgetModal from './FeedbackWidgetModal';
 import { useFeedbackWidget } from '@/hooks/useFeedbackWidget';
+import { useAutoFeedbackPrompt } from '@/hooks/useAutoFeedbackPrompt';
 
 interface FeedbackWidgetProps {
   /** Whether Settings Modal is open */
@@ -62,6 +63,26 @@ export default function FeedbackWidget({
 
   // Prevent opening if any other modal is open (one modal at a time rule)
   const canOpen = !isSettingsModalOpen && !isChapterModalOpen && !isAIChatOpen && !isDictionaryOpen;
+  
+  // Auto-prompt after 3-5 minutes of activity
+  useAutoFeedbackPrompt({
+    minDurationSeconds: 180, // 3 minutes
+    maxDurationSeconds: 300, // 5 minutes
+    cooldownDays: 60, // Once per 60 days
+    onShouldShow: () => {
+      // Only auto-open if no other modals are open
+      if (canOpen && !isModalOpen) {
+        setIsModalOpen(true);
+        
+        // Analytics: Track auto-prompt opened
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'feedback_widget_opened', {
+            source: 'auto_prompt',
+          });
+        }
+      }
+    },
+  });
 
   const handleFABClick = () => {
     if (!canOpen) {
