@@ -35,6 +35,7 @@ import { BookSelectionGrid, type FeaturedBook as BookSelectionGridBook } from '.
 import { ReadingHeader } from './components/ReadingHeader';
 import { SettingsModal } from './components/SettingsModal';
 import { ChapterModal, type Chapter } from './components/ChapterModal';
+import FeedbackWidget from '@/components/feedback/FeedbackWidget';
 
 // Preview Audio Player Component (scalable for any book/level)
 function PreviewAudioPlayer({ audioUrl, duration }: { audioUrl: string; duration: number }) {
@@ -2184,6 +2185,16 @@ function FeaturedBooksContent() {
         onClose={handleCloseAIChat}
         onSendMessage={handleSendAIMessage}
       />
+
+      {/* Feedback Widget (Feature Flag - enabled by default for local dev) */}
+      {(process.env.NEXT_PUBLIC_ENABLE_FEEDBACK_WIDGET === 'true' || process.env.NODE_ENV === 'development') && (
+        <FeedbackWidget
+          isSettingsModalOpen={showSettingsModal}
+          isChapterModalOpen={showChapterModal}
+          isAIChatOpen={isAIChatOpen}
+          isDictionaryOpen={isDictionaryOpen}
+        />
+      )}
     </div>
   );
 }

@@ -167,7 +167,7 @@ export default function Navigation() {
             </div>
 
             {/* Right side - Theme switcher, User menu and Auth buttons */}
-            <div className="desktop-user-menu items-center gap-4" style={{ minWidth: 'fit-content', paddingRight: '8px', marginRight: '8px', display: 'flex' }}>
+            <div className="desktop-user-menu items-center gap-4" style={{ minWidth: 'fit-content', paddingRight: '16px', marginLeft: 'auto', display: 'flex', flexShrink: 0 }}>
               {/* Theme Switcher */}
               <div className="theme-switcher-nav" style={{ display: 'flex', alignItems: 'center' }}>
                 <ThemeSwitcher showLabels={false} size="sm" />

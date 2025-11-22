@@ -99,9 +99,16 @@ export async function POST(request: NextRequest) {
     });
 
     // === Send Email Notification ===
+    // Always send email notification (via Resend) after successful database save
 
     try {
-      await sendFeedbackNotification({
+      console.log('[API /feedback] Sending email notification via Resend...', {
+        source: formData.source || 'unknown',
+        email: formData.email,
+        npsScore: formData.npsScore,
+      });
+
+      const emailResult = await sendFeedbackNotification({
         id: feedbackId,
         email: formData.email,
         name: formData.name,
@@ -114,9 +121,18 @@ export async function POST(request: NextRequest) {
         sessionDuration: contextData.sessionDuration,
         deviceType: contextData.deviceType,
       });
+
+      console.log('[API /feedback] ✅ Email notification sent successfully:', {
+        skipped: (emailResult as any).skipped,
+        result: emailResult,
+      });
     } catch (emailError) {
       // Log email error but don't fail the request
-      console.error('[API /feedback] Email notification failed:', emailError);
+      console.error('[API /feedback] ❌ Email notification failed:', emailError);
+      console.error('[API /feedback] Error details:', {
+        message: emailError instanceof Error ? emailError.message : String(emailError),
+        stack: emailError instanceof Error ? emailError.stack : undefined,
+      });
       // Continue - feedback was saved successfully
     }
 
