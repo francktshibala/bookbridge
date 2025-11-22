@@ -125,11 +125,11 @@ export default function FeedbackWidget({
 
   return (
     <>
-      {/* FAB Button */}
+      {/* FAB Button - Responsive positioning: above control bar on mobile, bottom-right on desktop */}
       <button
         onClick={handleFABClick}
         disabled={!canOpen}
-        className="fixed bottom-6 right-6 z-[9999] w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="fixed bottom-[calc(88px+1.5rem)] right-6 md:bottom-6 z-[9999] w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         style={{
           backgroundColor: 'var(--accent-primary)',
           color: '#FFFFFF',

@@ -2186,8 +2186,8 @@ function FeaturedBooksContent() {
         onSendMessage={handleSendAIMessage}
       />
 
-      {/* Feedback Widget (Feature Flag - enabled by default for local dev) */}
-      {(process.env.NEXT_PUBLIC_ENABLE_FEEDBACK_WIDGET === 'true' || process.env.NODE_ENV === 'development') && (
+      {/* Feedback Widget - Always enabled (can be disabled via env var) */}
+      {process.env.NEXT_PUBLIC_ENABLE_FEEDBACK_WIDGET !== 'false' && (
         <FeedbackWidget
           isSettingsModalOpen={showSettingsModal}
           isChapterModalOpen={showChapterModal}
