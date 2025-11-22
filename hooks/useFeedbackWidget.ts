@@ -83,15 +83,26 @@ export function useFeedbackWidget(): UseFeedbackWidgetReturn {
       // Use placeholder email if not provided (API requires email)
       const submitEmail = email.trim() || `anonymous-${Date.now()}@bookbridge.app`;
 
-      // Prepare request body
+      // Calculate session duration
+      const sessionStart = performance.timing?.navigationStart || Date.now();
+      const sessionDuration = Math.floor((Date.now() - sessionStart) / 1000);
+
+      // Detect device type
+      const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : '';
+      const isMobile = /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(userAgent);
+      const isTablet = /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(userAgent);
+      const deviceType = isTablet ? 'tablet' : isMobile ? 'mobile' : 'desktop';
+
+      // Prepare request body (matches regular feedback form structure)
       const requestBody = {
         email: submitEmail,
         npsScore,
         source: 'widget', // Track source as widget
         improvement: feedbackText.trim() || undefined,
-        sessionDuration: Math.floor((Date.now() - (performance.timing?.navigationStart || Date.now())) / 1000),
+        sessionDuration,
         pagesViewed: window.history.length,
         path: window.location.pathname,
+        userAgent: userAgent || undefined, // Include user agent for device detection
       };
 
       // Submit via API route (handles email notifications)
