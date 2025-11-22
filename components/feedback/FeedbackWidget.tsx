@@ -41,6 +41,12 @@ export default function FeedbackWidget({
   isDictionaryOpen = false,
 }: FeedbackWidgetProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Form state
+  const [rating, setRating] = useState<number | null>(null);
+  const [sentiment, setSentiment] = useState<'negative' | 'neutral' | 'positive' | null>(null);
+  const [feedbackText, setFeedbackText] = useState('');
+  const [email, setEmail] = useState('');
 
   // Prevent opening if any other modal is open (one modal at a time rule)
   const canOpen = !isSettingsModalOpen && !isChapterModalOpen && !isAIChatOpen && !isDictionaryOpen;
@@ -62,6 +68,21 @@ export default function FeedbackWidget({
 
   const handleClose = () => {
     setIsModalOpen(false);
+    // Reset form when closing
+    setRating(null);
+    setSentiment(null);
+    setFeedbackText('');
+    setEmail('');
+  };
+
+  const handleRatingClick = (value: number) => {
+    setRating(value);
+    setSentiment(null); // Clear sentiment if rating selected
+  };
+
+  const handleSentimentClick = (value: 'negative' | 'neutral' | 'positive') => {
+    setSentiment(value);
+    setRating(null); // Clear rating if sentiment selected
   };
 
   return (
@@ -134,7 +155,7 @@ export default function FeedbackWidget({
         onClose={handleClose}
         onBackdropClick={handleClose}
       >
-        <div>
+        <div className="space-y-6">
           <h2
             id="feedback-widget-title"
             className="text-xl font-semibold mb-4 pr-8"
@@ -143,11 +164,165 @@ export default function FeedbackWidget({
               color: 'var(--text-accent)',
             }}
           >
-            Quick Feedback
+            How's BookBridge so far?
           </h2>
-          <p style={{ color: 'var(--text-secondary)' }}>
-            Form fields will be added in Phase 2
-          </p>
+
+          {/* Star Rating */}
+          <div>
+            <label className="block text-sm font-medium mb-3" style={{ color: 'var(--text-primary)' }}>
+              Rate your experience <span className="text-red-500">*</span>
+            </label>
+            <div className="flex gap-2 flex-wrap">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  type="button"
+                  onClick={() => handleRatingClick(star)}
+                  className="w-12 h-12 rounded-lg border-2 font-bold transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  style={{
+                    backgroundColor: rating === star ? 'var(--accent-primary)' : 'var(--bg-primary)',
+                    borderColor: rating === star ? 'var(--accent-primary)' : 'var(--border-light)',
+                    color: rating === star ? '#FFFFFF' : 'var(--text-primary)',
+                    minWidth: '48px',
+                    minHeight: '48px',
+                  }}
+                  aria-label={`Rate ${star} out of 5`}
+                >
+                  ⭐
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* OR Divider */}
+          <div className="flex items-center gap-3">
+            <div className="flex-1 h-px" style={{ backgroundColor: 'var(--border-light)' }} />
+            <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>or</span>
+            <div className="flex-1 h-px" style={{ backgroundColor: 'var(--border-light)' }} />
+          </div>
+
+          {/* Emoji Sentiment */}
+          <div>
+            <label className="block text-sm font-medium mb-3" style={{ color: 'var(--text-primary)' }}>
+              Quick reaction
+            </label>
+            <div className="flex gap-4 justify-center">
+              {[
+                { value: 'negative' as const, emoji: '😞', label: 'Not great' },
+                { value: 'neutral' as const, emoji: '😐', label: 'Okay' },
+                { value: 'positive' as const, emoji: '😊', label: 'Great!' },
+              ].map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => handleSentimentClick(option.value)}
+                  className="flex flex-col items-center p-3 rounded-lg transition-all border-2 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  style={{
+                    backgroundColor: sentiment === option.value ? 'var(--accent-primary)' : 'transparent',
+                    borderColor: sentiment === option.value ? 'var(--accent-primary)' : 'transparent',
+                    minWidth: '80px',
+                    minHeight: '80px',
+                  }}
+                  aria-label={option.label}
+                >
+                  <span className="text-3xl mb-1">{option.emoji}</span>
+                  <span className="text-xs" style={{ color: sentiment === option.value ? '#FFFFFF' : 'var(--text-secondary)' }}>
+                    {option.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Optional Text Field */}
+          <div>
+            <label htmlFor="feedback-text" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-primary)' }}>
+              One thing to improve? (Optional)
+            </label>
+            <input
+              type="text"
+              id="feedback-text"
+              value={feedbackText}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value.length <= 40) {
+                  setFeedbackText(value);
+                }
+              }}
+              placeholder="e.g., more modern books"
+              maxLength={40}
+              className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all"
+              style={{
+                backgroundColor: 'var(--bg-primary)',
+                borderColor: 'var(--border-light)',
+                color: 'var(--text-primary)',
+                minHeight: '44px',
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'var(--accent-primary)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'var(--border-light)';
+              }}
+            />
+            <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
+              {feedbackText.length}/40 characters
+            </p>
+          </div>
+
+          {/* Optional Email Field */}
+          <div>
+            <label htmlFor="feedback-email" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-primary)' }}>
+              Email (Optional)
+            </label>
+            <input
+              type="email"
+              id="feedback-email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all"
+              style={{
+                backgroundColor: 'var(--bg-primary)',
+                borderColor: 'var(--border-light)',
+                color: 'var(--text-primary)',
+                minHeight: '44px',
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'var(--accent-primary)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'var(--border-light)';
+              }}
+            />
+            <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
+              📧 Get 2 personalized book recommendations
+            </p>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="button"
+            onClick={() => {
+              // Validation: rating OR sentiment required
+              if (!rating && !sentiment) {
+                // Show error or prevent submission
+                return;
+              }
+              // Submit will be handled in Phase 3
+              console.log('Submit:', { rating, sentiment, feedbackText, email });
+              handleClose();
+            }}
+            disabled={!rating && !sentiment}
+            className="w-full py-3 rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{
+              backgroundColor: (rating || sentiment) ? 'var(--accent-primary)' : 'var(--border-light)',
+              color: '#FFFFFF',
+              minHeight: '44px',
+            }}
+          >
+            Submit Feedback
+          </button>
         </div>
       </FeedbackWidgetModal>
     </>

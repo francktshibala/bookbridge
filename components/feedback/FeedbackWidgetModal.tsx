@@ -156,11 +156,11 @@ export default function FeedbackWidgetModal({
           }
           @keyframes slideUp {
             from {
-              transform: translate(-50%, 100px);
+              transform: translateY(100px);
               opacity: 0;
             }
             to {
-              transform: translate(-50%, 0);
+              transform: translateY(0);
               opacity: 1;
             }
           }
