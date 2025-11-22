@@ -54,9 +54,9 @@ export default function Navigation() {
         paddingTop: safeAreaTop ? `${safeAreaTop}px` : undefined,
       }}>
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1200px' }}>
-          <div className="flex justify-between items-center h-16" style={{ width: '100%' }}>
+          <div className="flex justify-between items-center h-16" style={{ width: '100%', overflow: 'visible' }}>
             {/* Left side - Logo and Navigation */}
-            <div className="flex items-center justify-between w-full" style={{ alignItems: 'center', height: '100%' }}>
+            <div className="flex items-center justify-between flex-1" style={{ alignItems: 'center', height: '100%', minWidth: 0, overflow: 'visible' }}>
               <div className="flex items-center space-x-6">
                 {/* Logo */}
                 <Link href="/" style={{
@@ -82,7 +82,7 @@ export default function Navigation() {
                 </Link>
                 
                 {/* Desktop Navigation Links */}
-                <div className="desktop-nav-links items-center" style={{ gap: '30px', display: 'flex' }}>
+                <div className="desktop-nav-links items-center" style={{ gap: '30px', display: 'flex', flexShrink: 1, minWidth: 0 }}>
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
@@ -167,7 +167,7 @@ export default function Navigation() {
             </div>
 
             {/* Right side - Theme switcher, User menu and Auth buttons */}
-            <div className="desktop-user-menu items-center gap-4" style={{ minWidth: 'fit-content', paddingRight: '8px', marginRight: '8px', display: 'flex' }}>
+            <div className="desktop-user-menu items-center gap-4" style={{ minWidth: 'fit-content', paddingRight: '16px', marginRight: '0', display: 'flex', flexShrink: 0 }}>
               {/* Theme Switcher */}
               <div className="theme-switcher-nav" style={{ display: 'flex', alignItems: 'center' }}>
                 <ThemeSwitcher showLabels={false} size="sm" />
