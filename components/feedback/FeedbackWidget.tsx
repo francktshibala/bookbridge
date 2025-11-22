@@ -64,11 +64,10 @@ export default function FeedbackWidget({
   // Prevent opening if any other modal is open (one modal at a time rule)
   const canOpen = !isSettingsModalOpen && !isChapterModalOpen && !isAIChatOpen && !isDictionaryOpen;
   
-  // Auto-prompt after 2-3 minutes of activity
-  // TEMP: 10 seconds for testing
+  // Auto-prompt after 3-4 minutes of activity (optimal engagement window)
   useAutoFeedbackPrompt({
-    minDurationSeconds: 10, // TEMP: 10 seconds for testing (production: 120 = 2 minutes)
-    maxDurationSeconds: 30, // TEMP: 30 seconds for testing (production: 180 = 3 minutes)
+    minDurationSeconds: 180, // 3 minutes minimum
+    maxDurationSeconds: 240, // 4 minutes maximum
     cooldownDays: 60, // Once per 60 days
     onShouldShow: () => {
       // Only auto-open if no other modals are open

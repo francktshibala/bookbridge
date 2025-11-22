@@ -31,18 +31,31 @@ export default function SignupPage() {
     const name = formData.get('name') as string;
 
     try {
-      const { error } = await supabase.auth.signUp({
+      const { error, data } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
             name: name,
           },
+          emailRedirectTo: `${window.location.origin}/auth/callback?type=signup`,
         },
       });
 
       if (error) {
         throw error;
+      }
+
+      // Send confirmation email via Resend (better deliverability)
+      try {
+        await fetch('/api/auth/send-confirmation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name }),
+        });
+      } catch (emailError) {
+        // Log but don't fail signup - Supabase will still send its own email as fallback
+        console.error('[Signup] Failed to send Resend confirmation email:', emailError);
       }
 
       setSuccess(true);
