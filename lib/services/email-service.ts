@@ -9,8 +9,17 @@
 
 import { Resend } from 'resend';
 
-const ADMIN_EMAIL = 'bookbridgegap@gmail.com';
-const FROM_EMAIL = 'BookBridge <onboarding@resend.dev>'; // Use verified domain in production
+const DEFAULT_ADMIN_EMAILS = [
+  'bookbridgegap@gmail.com',
+  'franck1tshibala@gmail.com',
+];
+const ADMIN_EMAILS = (process.env.FEEDBACK_ADMIN_EMAIL
+  ? process.env.FEEDBACK_ADMIN_EMAIL.split(',')
+  : DEFAULT_ADMIN_EMAILS).map((email) => email.trim()).filter(Boolean);
+const SECONDARY_ADMIN_EMAIL = process.env.FEEDBACK_SECONDARY_EMAIL;
+const FROM_EMAIL =
+  process.env.FEEDBACK_FROM_EMAIL || 'BookBridge <onboarding@resend.dev>'; // Prefer verified domain in production
+const REPLY_TO_EMAIL = process.env.FEEDBACK_REPLY_TO_EMAIL || undefined;
 
 // Lazy initialization to avoid build-time errors when env var not available
 let resendInstance: Resend | null = null;
@@ -179,9 +188,12 @@ View in Supabase: Table Editor → feedback → ID: ${feedbackData.id}
   `.trim();
 
   // Debug logging before send
+  const recipientEmails = [...ADMIN_EMAILS, SECONDARY_ADMIN_EMAIL].filter(Boolean) as string[];
+
   console.log('[EmailService] About to send email:', {
-    to: ADMIN_EMAIL,
+    to: recipientEmails,
     from: FROM_EMAIL,
+    replyTo: REPLY_TO_EMAIL,
     hasApiKey: !!process.env.RESEND_API_KEY,
     apiKeyLength: process.env.RESEND_API_KEY?.length,
   });
@@ -190,10 +202,11 @@ View in Supabase: Table Editor → feedback → ID: ${feedbackData.id}
     const resend = getResend(); // Lazy initialization
     const result = await resend.emails.send({
       from: FROM_EMAIL,
-      to: ADMIN_EMAIL,
+      to: recipientEmails,
       subject: `${feedbackData.wantsInterview ? '🎙️ ' : ''}New Feedback: ${npsLabel} (${feedbackData.npsScore}/10)`,
       html: htmlBody,
       text: textBody,
+      replyTo: REPLY_TO_EMAIL || feedbackData.email,
     });
 
     console.log('[EmailService] ✅ Email sent successfully! Result:', result);
