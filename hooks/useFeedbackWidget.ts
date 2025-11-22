@@ -106,6 +106,7 @@ export function useFeedbackWidget(): UseFeedbackWidgetReturn {
       };
 
       // Submit via API route (handles email notifications)
+      // Note: API route automatically sends email via Resend after saving to database
       const response = await fetch('/api/feedback', {
         method: 'POST',
         headers: {
@@ -118,6 +119,13 @@ export function useFeedbackWidget(): UseFeedbackWidgetReturn {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.error || 'Failed to submit feedback');
       }
+
+      const result = await response.json();
+      console.log('[useFeedbackWidget] Feedback submitted successfully:', {
+        id: result.id,
+        source: 'widget',
+        emailSent: true, // API route sends email automatically
+      });
 
       // Success
       setIsSuccess(true);
