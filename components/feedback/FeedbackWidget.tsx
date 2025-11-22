@@ -22,6 +22,7 @@
 
 import { useState } from 'react';
 import FeedbackWidgetModal from './FeedbackWidgetModal';
+import { useFeedbackWidget } from '@/hooks/useFeedbackWidget';
 
 interface FeedbackWidgetProps {
   /** Whether Settings Modal is open */
@@ -42,11 +43,22 @@ export default function FeedbackWidget({
 }: FeedbackWidgetProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  // Form state
-  const [rating, setRating] = useState<number | null>(null);
-  const [sentiment, setSentiment] = useState<'negative' | 'neutral' | 'positive' | null>(null);
-  const [feedbackText, setFeedbackText] = useState('');
-  const [email, setEmail] = useState('');
+  // Use hook for form state and submission
+  const {
+    rating,
+    sentiment,
+    feedbackText,
+    email,
+    setRating,
+    setSentiment,
+    setFeedbackText,
+    setEmail,
+    isSubmitting,
+    error,
+    isSuccess,
+    handleSubmit,
+    resetForm,
+  } = useFeedbackWidget();
 
   // Prevent opening if any other modal is open (one modal at a time rule)
   const canOpen = !isSettingsModalOpen && !isChapterModalOpen && !isAIChatOpen && !isDictionaryOpen;
@@ -68,11 +80,10 @@ export default function FeedbackWidget({
 
   const handleClose = () => {
     setIsModalOpen(false);
-    // Reset form when closing
-    setRating(null);
-    setSentiment(null);
-    setFeedbackText('');
-    setEmail('');
+    // Reset form when closing (with delay to allow success message to show)
+    setTimeout(() => {
+      resetForm();
+    }, 300);
   };
 
   const handleRatingClick = (value: number) => {
@@ -83,6 +94,12 @@ export default function FeedbackWidget({
   const handleSentimentClick = (value: 'negative' | 'neutral' | 'positive') => {
     setSentiment(value);
     setRating(null); // Clear rating if sentiment selected
+  };
+
+  const handleFormSubmit = async () => {
+    await handleSubmit();
+    // Hook handles success state and auto-reset
+    // Modal will close via handleClose after user sees success message
   };
 
   return (
@@ -300,28 +317,33 @@ export default function FeedbackWidget({
             </p>
           </div>
 
+          {/* Error Message */}
+          {error && (
+            <div className="p-3 rounded-lg text-sm" style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)', color: '#dc2626' }}>
+              {error}
+            </div>
+          )}
+
+          {/* Success Message */}
+          {isSuccess && (
+            <div className="p-3 rounded-lg text-sm text-center" style={{ backgroundColor: 'rgba(34, 197, 94, 0.1)', color: '#16a34a' }}>
+              ✅ Thank you! Your feedback has been submitted.
+            </div>
+          )}
+
           {/* Submit Button */}
           <button
             type="button"
-            onClick={() => {
-              // Validation: rating OR sentiment required
-              if (!rating && !sentiment) {
-                // Show error or prevent submission
-                return;
-              }
-              // Submit will be handled in Phase 3
-              console.log('Submit:', { rating, sentiment, feedbackText, email });
-              handleClose();
-            }}
-            disabled={!rating && !sentiment}
+            onClick={handleFormSubmit}
+            disabled={(!rating && !sentiment) || isSubmitting || isSuccess}
             className="w-full py-3 rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2"
             style={{
-              backgroundColor: (rating || sentiment) ? 'var(--accent-primary)' : 'var(--border-light)',
+              backgroundColor: (rating || sentiment) && !isSuccess ? 'var(--accent-primary)' : 'var(--border-light)',
               color: '#FFFFFF',
               minHeight: '44px',
             }}
           >
-            Submit Feedback
+            {isSubmitting ? 'Submitting...' : isSuccess ? 'Submitted!' : 'Submit Feedback'}
           </button>
         </div>
       </FeedbackWidgetModal>
