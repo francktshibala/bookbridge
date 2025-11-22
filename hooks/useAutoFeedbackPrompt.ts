@@ -62,6 +62,12 @@ export function useAutoFeedbackPrompt({
         const lastShown = localStorage.getItem(STORAGE_KEY_LAST_SHOWN);
         if (lastShown) {
           const daysSinceShown = (Date.now() - parseInt(lastShown, 10)) / (1000 * 60 * 60 * 24);
+          console.log('[useAutoFeedbackPrompt] Cooldown check:', {
+            lastShown: new Date(parseInt(lastShown, 10)).toISOString(),
+            daysSinceShown: daysSinceShown.toFixed(2),
+            cooldownDays,
+            inCooldown: daysSinceShown < cooldownDays,
+          });
           if (daysSinceShown < cooldownDays) {
             // Still in cooldown period
             return;
@@ -72,8 +78,19 @@ export function useAutoFeedbackPrompt({
       // Calculate session duration
       const sessionDuration = (Date.now() - sessionStartRef.current) / 1000; // seconds
 
-      // Check if we're in the trigger window (3-5 minutes)
-      if (sessionDuration >= minDurationSeconds && sessionDuration <= maxDurationSeconds) {
+      // Debug logging
+      console.log('[useAutoFeedbackPrompt] Checking:', {
+        sessionDuration: Math.floor(sessionDuration),
+        minDuration: minDurationSeconds,
+        maxDuration: maxDurationSeconds,
+        hasTriggered,
+        inWindow: sessionDuration >= minDurationSeconds && sessionDuration <= maxDurationSeconds,
+      });
+
+      // Check if we're in the trigger window (3-4 minutes)
+      // Also trigger if we're past the window but haven't triggered yet (catch late users)
+      if ((sessionDuration >= minDurationSeconds && sessionDuration <= maxDurationSeconds) ||
+          (sessionDuration > maxDurationSeconds && sessionDuration <= maxDurationSeconds + 60)) {
         // Mark as triggered
         setHasTriggered(true);
 
