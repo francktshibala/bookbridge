@@ -122,6 +122,65 @@ export default function HomePage() {
           <InteractiveReadingDemo />
         </motion.section>
 
+        {/* Video Demo Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="w-full"
+          style={{ 
+            marginTop: '3rem',
+            maxWidth: '900px',
+            margin: '3rem auto 0 auto',
+            padding: '0 1rem'
+          }}
+        >
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <h2 className="neo-classic-title" style={{
+              fontSize: '1.75rem',
+              fontWeight: 'bold',
+              color: 'var(--text-accent)',
+              marginBottom: '0.5rem'
+            }}>
+              See BookBridge in Action
+            </h2>
+            <p className="neo-classic-subtitle" style={{
+              color: 'var(--text-secondary)',
+              fontSize: '1rem'
+            }}>
+              Watch a quick demo and learn how to use the app
+            </p>
+          </div>
+
+          {/* YouTube Video Embed */}
+          <div style={{
+            position: 'relative',
+            paddingBottom: '56.25%', // 16:9 aspect ratio
+            height: 0,
+            overflow: 'hidden',
+            borderRadius: '12px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)',
+            border: '2px solid var(--border-light)',
+            background: 'var(--bg-secondary)'
+          }}>
+            <iframe
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                borderRadius: '12px'
+              }}
+              src="https://www.youtube.com/embed/PqeGKlw40Rw"
+              title="BookBridge App Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </motion.section>
+
         {/* Enhanced Books Grid */}
         <motion.section
           style={{ marginTop: '2.5rem' }}

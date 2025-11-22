@@ -319,6 +319,41 @@ Word-count proportional timing failed for complex sentences with punctuation, ca
 - Wake lock: `useWakeLock()` hook
 - Media session: `useMediaSession()` hook
 
+#### **10. Feedback Widget** (`lines 2189-2197`)
+- ✅ Floating Action Button (FAB) for quick feedback collection
+- ✅ Auto-popup after 3-4 minutes of user engagement
+- ✅ Lightweight modal with star rating and emoji sentiment
+- ✅ Mobile-responsive positioning (above control bar on mobile, bottom-right on desktop)
+- ✅ Modal conflict prevention (checks other modals before opening)
+- ✅ Analytics tracking (widget opened, feedback submitted)
+- ✅ Neo-Classic theme integration
+- ✅ Accessibility (ARIA labels, keyboard navigation, focus trap)
+
+**Architecture:**
+- **Follows Phase 3 Pattern**: Presentational component with explicit props (no context access in leaf components)
+- **Component Structure**: 
+  - `FeedbackWidget.tsx` - Main FAB button and modal container (375 lines)
+  - `FeedbackWidgetModal.tsx` - Presentational modal content (212 lines)
+  - `useFeedbackWidget.ts` - Form state and submission logic (172 lines)
+  - `useAutoFeedbackPrompt.ts` - Auto-popup timing logic (134 lines)
+- **State Management**: Custom hooks handle form state, submission, and auto-prompt timing
+- **Props Pattern**: Receives modal states as props (`isSettingsModalOpen`, `isChapterModalOpen`, `isAIChatOpen`, `isDictionaryOpen`) to prevent conflicts
+- **Service Layer**: Uses `feedback-service.ts` for data persistence and `email-service.ts` for notifications
+
+**Code Anchors:**
+- Widget integration: `featured-books/page.tsx:2189-2197`
+- Main component: `components/feedback/FeedbackWidget.tsx`
+- Modal component: `components/feedback/FeedbackWidgetModal.tsx`
+- Form hook: `hooks/useFeedbackWidget.ts`
+- Auto-prompt hook: `hooks/useAutoFeedbackPrompt.ts`
+- API route: `app/api/feedback/route.ts`
+- Email service: `lib/services/email-service.ts`
+
+**Mobile Positioning:**
+- Mobile: `bottom-[calc(88px+1.5rem)]` - Positioned above mobile control bar (~88px height + padding)
+- Desktop: `bottom-6 right-6` - Standard bottom-right corner placement
+- Z-index: `z-[9999]` - Ensures visibility above all other UI elements
+
 ---
 
 ## 🎬 Hero Interactive Demo (Homepage)
