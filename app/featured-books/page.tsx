@@ -345,7 +345,9 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A1': '/api/story-of-an-hour-a1/bundles'
   },
   'power-of-vulnerability': {
-    'A1': '/api/power-of-vulnerability-a1/bundles'
+    'A1': '/api/power-of-vulnerability-a1/bundles',
+    'A2': '/api/power-of-vulnerability-a2/bundles',
+    'B1': '/api/power-of-vulnerability-b1/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };

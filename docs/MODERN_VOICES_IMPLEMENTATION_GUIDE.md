@@ -1,9 +1,15 @@
 # Modern Voices Implementation Guide (TED Talks, Podcasts, Essays)
 
-**Last Updated:** November 30, 2025
+**Last Updated:** November 30, 2025 (Updated after A2 implementation)
 **Purpose:** Document the workflow for adding modern content (TED Talks, podcasts, essays) to BookBridge, distinct from classical literature workflow.
 
-**Source of Truth:** Lessons learned from "The Power of Vulnerability" TED Talk implementation (Nov 30, 2025)
+**Source of Truth:** Lessons learned from "The Power of Vulnerability" TED Talk implementation (A1 + A2, Nov 30, 2025)
+
+**Latest Updates:**
+- ✅ Added Phase 5: Database Integration (MANDATORY - prevents 404 errors)
+- ✅ Added Step 12: MULTI_LEVEL_BOOKS config update (CRITICAL - makes levels clickable)
+- ✅ Documented Mistake #4: Forgetting database integration
+- ✅ Documented Mistake #5: Forgetting MULTI_LEVEL_BOOKS update
 
 ---
 
@@ -156,9 +162,36 @@ node scripts/generate-{content-id}-bundles.js [LEVEL] --pilot
 # - Essays: Jane (neutral, professional)
 ```
 
-### Phase 5: API Endpoint Creation
+### Phase 5: Database Integration
 ```bash
-# ✅ 8. Create Bundle API (Same as books, with preview support)
+# ✅ 8. Integrate Bundles into Database (CRITICAL - PREVENTS 404 ERRORS!)
+# ⚠️ THIS STEP IS MANDATORY - Without it, API returns 404!
+#
+# Create scripts/integrate-{content-id}-{level}-database.ts
+# This script:
+# - Loads bundle metadata from cache
+# - Creates/updates BookChunk records for each bundle
+# - Stores audioDurationMetadata (Solution 1) in database
+# - Validates integrity (checks audio paths, duration metadata)
+#
+# Run integration script:
+npx tsx scripts/integrate-{content-id}-{level}-database.ts
+# Example: npx tsx scripts/integrate-power-of-vulnerability-a2-database.ts
+#
+# Expected output:
+# - ✅ BookContent created/updated
+# - ✅ Created: 31 BookChunk records
+# - ✅ Integrity: PASS (audio files + duration metadata)
+#
+# ⚠️ VALIDATION: Verify database before creating API
+# If you skip this step:
+# - API endpoint will return 404 (no data found)
+# - Frontend will show "Failed to fetch book data"
+```
+
+### Phase 6: API Endpoint Creation
+```bash
+# ✅ 9. Create Bundle API (Same as books, with preview support)
 # Create app/api/{content-id}-{level}/bundles/route.ts
 #
 # MANDATORY API RESPONSE FIELDS:
@@ -254,15 +287,35 @@ curl http://localhost:3003/featured-books?book={content-id}
 # - BOOK_API_MAPPINGS: Correct endpoint path?
 # - BOOK_DEFAULT_LEVELS: Correct default level?
 
-# ✅ 12. Add to Global Books Config (Optional but Recommended)
+# ✅ 12. Update MULTI_LEVEL_BOOKS Config (CRITICAL - MAKES LEVEL CLICKABLE!)
 # Edit lib/config/books.ts
 #
-# Location 1: Add to ALL_FEATURED_BOOKS array (same as above)
-# Location 2: Add to BOOK_API_MAPPINGS
-# Location 3: Add to BOOK_DEFAULT_LEVELS
-# Location 4: Add to MULTI_LEVEL_BOOKS (if multiple levels)
+# ⚠️ THIS STEP IS MANDATORY for multi-level books - Without it, buttons are greyed out!
 #
-# This makes content available globally (not just featured-books page)
+# Location: MULTI_LEVEL_BOOKS object (around line 294)
+# Add your content with ALL supported levels:
+# '{content-id}': ['A1', 'A2'],  // List ALL levels you've generated
+#
+# Example for Power of Vulnerability:
+# 'power-of-vulnerability': ['A1', 'A2'],  // A1 with Jane, A2 with Daniel
+#
+# ⚠️ HOW IT WORKS:
+# - AudioContext calls checkLevelAvailability()
+# - Service reads MULTI_LEVEL_BOOKS[bookId] array
+# - For each level in array, checks /api/availability
+# - Returns { a1: true, a2: true } to enable buttons
+# - SettingsModal enables/disables buttons based on this
+#
+# ⚠️ IF YOU SKIP THIS STEP:
+# - Level buttons appear greyed out (not clickable)
+# - Users can't switch between A1/A2/B1 levels
+# - Error: "Failed to fetch book data: 404 Not Found"
+#
+# ✅ VALIDATION: After updating, test level switching
+# 1. Open reading page
+# 2. Click "Aa" (Reading Settings)
+# 3. Verify all generated levels are clickable (not greyed out)
+# 4. Click different level - should load successfully
 ```
 
 ### Phase 8: Catalog Integration (CRITICAL ROUTING DECISION!)
@@ -484,6 +537,65 @@ NEVER USE (deprecated):
 - ✅ ALWAYS follow Phase 7.5 completely: text AND audio
 - ✅ Preview generation is ONE step, not two separate steps
 - ✅ Validate preview audio exists before moving to next phase
+
+---
+
+### Mistake #4: Forgot Database Integration (A2 Implementation)
+**What Happened:**
+- Generated A2 bundles with Daniel voice successfully
+- Created API endpoint `/api/power-of-vulnerability-a2/bundles`
+- Updated frontend BOOK_API_MAPPINGS
+- A2 button was clickable but returned 404 error
+
+**Root Cause:**
+- Skipped Phase 5 (Database Integration)
+- API queries BookChunk table but no A2 records exist
+- Without database records, API has no data to return
+
+**Fix Applied:**
+- Created `scripts/integrate-power-of-vulnerability-a2-database.ts`
+- Ran integration script: `npx tsx scripts/integrate-power-of-vulnerability-a2-database.ts`
+- Successfully created 31 BookChunk records with audioDurationMetadata
+- API now returns data correctly
+
+**Prevention:**
+- ✅ Phase 5 (Database Integration) is now MANDATORY after audio generation
+- ✅ Must run integration script BEFORE creating API endpoint
+- ✅ Validation: Check database has records before testing API
+
+---
+
+### Mistake #5: Forgot to Update MULTI_LEVEL_BOOKS Config (A2 Implementation)
+**What Happened:**
+- Generated A2 level successfully
+- A2 button appeared greyed out (not clickable) in Reading Settings
+- Clicking A2 showed "Failed to fetch book data: 404 Not Found"
+
+**Root Cause:**
+- `/lib/config/books.ts` MULTI_LEVEL_BOOKS only listed `['A1']` for power-of-vulnerability
+- Level availability system checks this config to determine which buttons to enable
+- Without 'A2' in the array, availability service doesn't check for A2 existence
+
+**How It Works:**
+1. AudioContext calls `checkLevelAvailability(bookId)`
+2. Service reads `MULTI_LEVEL_BOOKS[bookId]` array
+3. For each level in array, makes API call to check availability
+4. Returns object like `{ a1: true, a2: true }`
+5. SettingsModal uses this to enable/disable level buttons
+
+**Fix Applied:**
+```typescript
+// Before (line 306):
+'power-of-vulnerability': ['A1'],  // Missing A2
+
+// After:
+'power-of-vulnerability': ['A1', 'A2'],  // Added A2
+```
+
+**Prevention:**
+- ✅ Phase 7 Step 12 now documents this as CRITICAL step
+- ✅ Must add ALL generated levels to MULTI_LEVEL_BOOKS array
+- ✅ Validation: Test level switching after updating config
 
 ---
 

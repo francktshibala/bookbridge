@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn English Fast - YouTube Thumbnail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .thumbnail-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #001a38 0%, #002147 50%, #003366 100%);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Decorative background elements */
+        .bg-book-icon {
+            position: absolute;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 600px;
+            height: 600px;
+            opacity: 0.08;
+        }
+
+        .book-pages {
+            width: 400px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0 20px 20px 0;
+            position: relative;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-cover {
+            position: absolute;
+            left: -80px;
+            top: 50px;
+            width: 150px;
+            height: 500px;
+            background: linear-gradient(135deg, #FFD700 0%, #CD7F32 100%);
+            border-radius: 10px 0 0 10px;
+            box-shadow: 0 10px 40px rgba(205, 127, 50, 0.4);
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px 0 0 10px;
+        }
+
+        /* Content overlay */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 80px;
+        }
+
+        /* Main headline */
+        .headline {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 140px;
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .headline-top {
+            color: #FFFFFF;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            display: block;
+            font-size: 100px;
+            margin-bottom: 10px;
+        }
+
+        .headline-main {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(0 6px 30px rgba(255, 215, 0, 0.6));
+            display: block;
+            font-size: 150px;
+            font-weight: 900;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                filter: drop-shadow(0 6px 30px rgba(255, 215, 0, 0.6)) brightness(1);
+            }
+            50% {
+                filter: drop-shadow(0 6px 40px rgba(255, 215, 0, 0.8)) brightness(1.1);
+            }
+        }
+
+        /* Subtitle */
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 56px;
+            color: #FFFFFF;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+
+        /* Accent line */
+        .accent-line {
+            width: 300px;
+            height: 6px;
+            background: linear-gradient(90deg, transparent 0%, #FFD700 50%, transparent 100%);
+            margin: 30px auto;
+            border-radius: 3px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Bottom branding */
+        .branding {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 44px;
+            color: #FFD700;
+            margin-bottom: 8px;
+            letter-spacing: 0px;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-tagline {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: #FFFFFF;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .free-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #002147;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 38px;
+            margin-left: 12px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 25px rgba(255, 215, 0, 0.7);
+            }
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #FFD700;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .sparkle:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 25%; left: 85%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { top: 70%; left: 15%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { top: 80%; left: 80%; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { top: 35%; left: 90%; animation-delay: 0.3s; }
+        .sparkle:nth-child(6) { top: 60%; left: 25%; animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <div class="thumbnail-container">
+        <!-- Sparkle effects -->
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+
+        <!-- Background book illustration -->
+        <div class="bg-book-icon">
+            <div class="book-cover"></div>
+            <div class="book-pages"></div>
+        </div>
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="headline">
+                <span class="headline-top">Learn English</span>
+                <span class="headline-main">FAST</span>
+            </div>
+
+            <div class="accent-line"></div>
+
+            <div class="subtitle">✨ One Expert Method ✨</div>
+        </div>
+
+        <!-- Bottom branding -->
+        <div class="branding">
+            <div class="brand-name">BookBridge</div>
+            <div class="brand-tagline">
+                100+ Books <span class="free-badge">FREE</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Print instructions
+        console.log('📸 To capture this thumbnail:');
+        console.log('1. Press F11 for fullscreen (or Cmd+Shift+F on Mac)');
+        console.log('2. Take a screenshot of the thumbnail');
+        console.log('3. The dimensions are exactly 1280x720px - perfect for YouTube!');
+        console.log('');
+        console.log('💡 Tip: Use browser screenshot tools for perfect quality:');
+        console.log('   - Chrome: Right-click → Inspect → Cmd+Shift+P → "Capture screenshot"');
+        console.log('   - Firefox: Right-click → "Take Screenshot"');
+    </script>
+</body>
+</html>
