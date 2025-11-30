@@ -77,9 +77,12 @@ node scripts/simplify-{content-id}.js [LEVEL]
 # - Cache progress every 10 sentences
 ```
 
-### Phase 2: Database Seeding (MODERN VOICES SPECIFIC)
+### Phase 2: Database Seeding (⚠️ MANDATORY FOR CATALOG VISIBILITY!)
 ```bash
-# ✅ 4. Create Database Seed Script (REQUIRED FOR MODERN CONTENT)
+# ⚠️ CRITICAL: This phase makes your content VISIBLE in the /library catalog!
+# If skipped, content will ONLY show in /featured-books but NOT in catalog!
+
+# ✅ 4. Create Database Seed Script (REQUIRED FOR CATALOG INTEGRATION)
 # Create scripts/seed-{content-id}.ts
 #
 # MANDATORY FIELDS for FeaturedBook:
@@ -117,16 +120,33 @@ npx tsx scripts/seed-{content-id}.ts
 node scripts/generate-{content-id}-preview.js [LEVEL]
 # Example: node scripts/generate-power-of-vulnerability-preview.js A1
 #
+# 🚨 CRITICAL ERROR TO AVOID:
+# ❌ DO NOT: Extract first 600 characters with fullText.substring(0, 600)
+# ❌ DO NOT: Copy raw content as preview
+# ❌ WRONG EXAMPLE: "I like to tell stories. I want to tell you some stories about..."
+#
+# ✅ DO: Craft a meta-description that DESCRIBES the content
+# ✅ DO: Follow the TED Talk template below
+# ✅ CORRECT EXAMPLE: "In this powerful TED Talk, writer Chimamanda Ngozi Adichie explores..."
+#
+# ⚠️ PREVIEW TEXT IS AUTHORED, NOT EXTRACTED!
+# The preview is marketing copy, not a content excerpt. It should:
+# - Entice readers to start listening
+# - Explain the value/transformation they'll get
+# - Create curiosity about the topic
+# - Match the CEFR level (simple language for A1)
+#
 # ⚠️ MODERN VOICES PREVIEW REQUIREMENTS (Different from books):
-# - Length: 50-100 words (same as books)
-# - Language: Match CEFR level (same as books)
-# - Required elements:
-#   1. Content type: "In this TED Talk..." or "In this podcast..." (NOT "In this story...")
-#   2. Speaker/Author: "researcher Brené Brown explores..."
-#   3. Main topic: "the power of vulnerability and human connection"
-#   4. Key insight: "what makes us capable of strong connections"
-#   5. Impact/Transformation: "A transformative message about..."
-# - AVOID: Story plot elements, spoilers, overwhelming context
+# - Length: 50-75 words (NOT 600 characters!)
+# - Language: Match CEFR level (A1 = simple, short sentences)
+# - Format: Meta-description (describes the content, not from the content)
+# - Required elements (in order):
+#   1. Content type: "In this [adjective] TED Talk..." or "In this podcast..." (NOT "In this story...")
+#   2. Speaker/Author: "[credentials] [name] explores..." or "writer [name] shares..."
+#   3. Main topic: "the [main theme/topic]" (e.g., "the danger of stereotypes")
+#   4. Key insight/revelation: "Through [method/approach], [they] reveal/show..."
+#   5. Impact/Transformation: "A [adjective] message about [outcome/learning]..."
+# - AVOID: Story plot elements, spoilers, overwhelming context, raw content copying
 #
 # ⚠️ PREVIEW AUDIO GENERATION:
 # - Use same voice as full content (Jane for TED Talks)
@@ -135,10 +155,24 @@ node scripts/generate-{content-id}-preview.js [LEVEL]
 # - Save to Supabase: {content-id}/{level}/preview.mp3
 # - Cache metadata: cache/{content-id}-{level}-preview-audio.json
 #
-# VALIDATION:
-# - Verify preview text saved: cache/{content-id}-{level}-preview.txt
-# - Verify audio saved: cache/{content-id}-{level}-preview-audio.json
-# - Verify audio uploaded: Check Supabase storage bucket
+# ✅ VALIDATION CHECKLIST (MANDATORY - Run before continuing):
+# 1. Check preview file exists: cache/{content-id}-{level}-preview.txt
+# 2. Check preview audio exists: cache/{content-id}-{level}-preview-audio.json
+# 3. Check audio uploaded to Supabase storage bucket
+# 4. 🚨 CRITICAL: Read preview text and verify it's NOT raw content:
+cat cache/{content-id}-{level}-preview.txt
+#    ✅ PASS: Starts with "In this TED Talk..." or similar meta-description
+#    ❌ FAIL: Starts with actual talk content (e.g., "I like to tell stories...")
+# 5. Check word count: Should be 50-75 words (NOT 100+ words)
+wc -w cache/{content-id}-{level}-preview.txt
+# 6. Check it matches CEFR level (A1 = simple, short sentences)
+# 7. Read it aloud - does it make you want to listen? (marketing test)
+#
+# ⚠️ IF VALIDATION FAILS:
+# - DO NOT proceed to Phase 4 (Audio Generation)
+# - Fix preview text first
+# - Regenerate preview audio with corrected text
+# - Re-run validation
 ```
 
 ### Phase 4: Audio Generation (MANDATORY SOLUTION 1)

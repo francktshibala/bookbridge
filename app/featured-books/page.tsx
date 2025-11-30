@@ -305,6 +305,16 @@ const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-pink-500 to-rose-600',
     abbreviation: 'PV'
   },
+  {
+    id: 'danger-of-single-story',
+    title: 'The Danger of a Single Story',
+    author: 'Chimamanda Ngozi Adichie',
+    description: 'Powerful TED Talk about stereotypes, identity, and the importance of diverse narratives. A1 level with Sarah voice narration. 122 sentences across 31 bundles exploring culture, representation, and human dignity.',
+    sentences: 122,
+    bundles: 31,
+    gradient: 'from-orange-500 to-purple-600',
+    abbreviation: 'DS'
+  },
 ];
 
 const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -349,6 +359,9 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A2': '/api/power-of-vulnerability-a2/bundles',
     'B1': '/api/power-of-vulnerability-b1/bundles'
   },
+  'danger-of-single-story': {
+    'A1': '/api/danger-of-single-story-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -364,7 +377,8 @@ const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'the-dead': 'A1',  // Default to A1 for The Dead
   'the-metamorphosis': 'A1',  // Default to A1 for The Metamorphosis
   'story-of-an-hour': 'A1',  // Default to A1 for The Story of an Hour
-  'power-of-vulnerability': 'A1'  // Default to A1 for The Power of Vulnerability (TED Talk)
+  'power-of-vulnerability': 'A1',  // Default to A1 for The Power of Vulnerability (TED Talk)
+  'danger-of-single-story': 'A1'  // Default to A1 for The Danger of a Single Story (TED Talk)
 };
 
 // Get the correct CEFR level for a book
