@@ -35,7 +35,9 @@ export async function GET(request: NextRequest): Promise<NextResponse<CatalogRes
   const sortBy = searchParams.get('sort') || 'popularityScore';
 
   // Build where clause
-  const where: any = { isClassic: true };
+  // If filtering by collection OR searching, show all books (classic + modern)
+  // Otherwise default to classics only for backwards compatibility
+  const where: any = (collectionId || search) ? {} : { isClassic: true };
 
   if (collectionId) {
     where.collections = { some: { collectionId } };

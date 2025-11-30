@@ -158,6 +158,18 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-orange-500 to-red-600',
     abbreviation: 'SH'
   },
+
+  // 🎤 MODERN VOICES COLLECTION - TED Talks & Contemporary Content
+  {
+    id: 'power-of-vulnerability',
+    title: 'The Power of Vulnerability',
+    author: 'Brené Brown',
+    description: 'Life-changing TED Talk about human connection, shame, and worthiness. A1 level with Jane voice narration. 388 sentences across 97 bundles exploring courage, authenticity, and vulnerability.',
+    sentences: 388,
+    bundles: 97,
+    gradient: 'from-pink-500 to-rose-600',
+    abbreviation: 'PV'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -211,6 +223,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'story-of-an-hour': {
     'A1': '/api/story-of-an-hour-a1/bundles'
   },
+  'power-of-vulnerability': {
+    'A1': '/api/power-of-vulnerability-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -229,6 +244,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'tell-tale-heart': 'A1',  // Default to A1 for The Tell-Tale Heart
   'the-last-leaf': 'B1',  // Default to B1 for The Last Leaf
   'after-twenty-years': 'A1',  // Default to A1 for After Twenty Years
+  'power-of-vulnerability': 'A1',  // Default to A1 for The Power of Vulnerability (TED Talk)
 };
 
 // Get the correct CEFR level for a book
@@ -287,6 +303,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'the-last-leaf': ['B1'],  // B1 with Jane
   'after-twenty-years': ['A1', 'A2', 'B1'],  // A1 with Daniel, A2 & B1 with Jane
   'story-of-an-hour': ['A1'],  // A1 with Jane (user requested)
+  'power-of-vulnerability': ['A1'],  // A1 with Jane (TED Talk - Modern Voices collection)
 };
 
 // Single-level books configuration

@@ -1,6 +1,19 @@
 # MASTER MISTAKES PREVENTION GUIDE
 
-## 🎯 EXECUTIVE SUMMARY - READ FIRST
+## 📘 CONTENT TYPE SELECTOR - READ FIRST
+
+**This guide covers CLASSICAL BOOKS from Project Gutenberg.**
+
+**For Modern Content (TED Talks, Podcasts, Essays):**
+- 👉 **Use:** [`MODERN_VOICES_IMPLEMENTATION_GUIDE.md`](./MODERN_VOICES_IMPLEMENTATION_GUIDE.md)
+- **Why Different:** No Gutenberg fetch, no modernization, different preview style, database seeding required
+- **What's Same:** Simplification, audio generation, bundle architecture, preview audio (mandatory)
+
+**Continue reading this guide ONLY for classical books (Victorian novels, short stories, plays).**
+
+---
+
+## 🎯 EXECUTIVE SUMMARY - CLASSICAL BOOKS
 
 **MISSION**: Achieve Speechify and Netflix-level audiobook quality with zero debugging time and minimal cost.
 

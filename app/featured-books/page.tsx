@@ -293,6 +293,18 @@ const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-orange-500 to-red-600',
     abbreviation: 'SH'
   },
+
+  // 🎤 MODERN VOICES COLLECTION - TED Talks & Contemporary Content
+  {
+    id: 'power-of-vulnerability',
+    title: 'The Power of Vulnerability',
+    author: 'Brené Brown',
+    description: 'Life-changing TED Talk about human connection, shame, and worthiness. A1 level with Jane voice narration. 388 sentences across 97 bundles exploring courage, authenticity, and vulnerability.',
+    sentences: 388,
+    bundles: 97,
+    gradient: 'from-pink-500 to-rose-600',
+    abbreviation: 'PV'
+  },
 ];
 
 const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -332,6 +344,9 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
   'story-of-an-hour': {
     'A1': '/api/story-of-an-hour-a1/bundles'
   },
+  'power-of-vulnerability': {
+    'A1': '/api/power-of-vulnerability-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -346,7 +361,8 @@ const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'lady-with-dog': 'A1',  // Default to A1 for The Lady with the Dog
   'the-dead': 'A1',  // Default to A1 for The Dead
   'the-metamorphosis': 'A1',  // Default to A1 for The Metamorphosis
-  'story-of-an-hour': 'A1'  // Default to A1 for The Story of an Hour
+  'story-of-an-hour': 'A1',  // Default to A1 for The Story of an Hour
+  'power-of-vulnerability': 'A1'  // Default to A1 for The Power of Vulnerability (TED Talk)
 };
 
 // Get the correct CEFR level for a book

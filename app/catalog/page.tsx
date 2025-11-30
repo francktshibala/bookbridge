@@ -17,7 +17,8 @@ function CatalogContent() {
   const router = useRouter();
 
   const handleSelectBook = (book: FeaturedBook) => {
-    // Navigate to the reading interface with the selected book
+    // Navigate to the featured-books reading page with bundle architecture
+    // This ensures all books use the modern bundle-based reader with BundleAudioManager
     router.push(`/featured-books?book=${book.slug}`);
   };
 
