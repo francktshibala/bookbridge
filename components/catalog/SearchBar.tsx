@@ -248,12 +248,20 @@ export function SearchBar({
                   background: focusedIndex === index 
                     ? 'var(--accent-primary)/10' 
                     : 'transparent',
-                  border: focusedIndex === index 
+                  borderTop: focusedIndex === index 
+                    ? '1px solid var(--accent-primary)/30' 
+                    : '1px solid transparent',
+                  borderLeft: focusedIndex === index 
+                    ? '1px solid var(--accent-primary)/30' 
+                    : '1px solid transparent',
+                  borderRight: focusedIndex === index 
                     ? '1px solid var(--accent-primary)/30' 
                     : '1px solid transparent',
                   borderBottom: index < suggestions.length - 1 
                     ? '1px solid var(--border-light)' 
-                    : 'none'
+                    : (focusedIndex === index 
+                      ? '1px solid var(--accent-primary)/30' 
+                      : 'none')
                 }}
               >
                 {/* Match BookCard design - Title and Author only */}

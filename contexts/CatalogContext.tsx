@@ -165,13 +165,14 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const cacheKey = searchParams.toString();
     const startTime = performance.now(); // Track TTFA (GPT-5)
+    const currentCollectionId = filters.collectionId; // Capture current collection ID at start of effect
 
     // Check cache first (GPT-5 recommendation)
     const cached = responseCache.get(cacheKey);
     if (cached) {
       const duration = performance.now() - startTime;
       // Transform cached FeaturedBooks to UnifiedBook format
-      const cachedUnifiedBooks: UnifiedBook[] = (cached.items as any[]).map((book: any) => {
+      let cachedUnifiedBooks: UnifiedBook[] = (cached.items as any[]).map((book: any) => {
         // Check if already UnifiedBook (has architecture field)
         if (book.architecture) return book as UnifiedBook;
         // Transform FeaturedBook to UnifiedBook
@@ -181,6 +182,13 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
           source: 'featured' as const
         };
       });
+
+      // Filter Enhanced Books when collection is selected (even from cache)
+      if (currentCollectionId) {
+        // Hide Enhanced Books when viewing a collection
+        cachedUnifiedBooks = cachedUnifiedBooks.filter(book => book.source !== 'enhanced');
+      }
+
       setBooks(cachedUnifiedBooks);
       setNextCursor(cached.nextCursor);
       setTotalApprox(cached.totalApprox);
@@ -211,16 +219,21 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
     setLoadState('loading');
     setError(null);
 
-    // Fetch both Featured Books and Enhanced Books in parallel
+    // Only fetch Enhanced Books if no collection is selected (they're not in collections)
+    const shouldFetchEnhanced = !filters.collectionId;
+
+    // Fetch Featured Books (always) and Enhanced Books (conditionally) in parallel
     Promise.all([
       fetchBooks(filters, abortController.signal),
-      fetch('/api/books/enhanced').then(res => res.ok ? res.json() : { books: [] }).catch(() => ({ books: [] }))
+      shouldFetchEnhanced 
+        ? fetch('/api/books/enhanced').then(res => res.ok ? res.json() : { books: [] }).catch(() => ({ books: [] }))
+        : Promise.resolve({ books: [] })
     ])
       .then(([featuredData, enhancedData]) => {
         const duration = performance.now() - startTime;
 
-        // Guard: Only apply if request is still current (Phase 1 pattern)
-        if (currentRequestIdRef.current === requestId) {
+        // Guard: Only apply if request is still current AND filters haven't changed (prevent double filtering)
+        if (currentRequestIdRef.current === requestId && filters.collectionId === currentCollectionId) {
           // Transform Featured Books to UnifiedBook format
           const featuredBooks: UnifiedBook[] = featuredData.items.map((book: FeaturedBook) => ({
             ...book,
@@ -228,7 +241,7 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
             source: 'featured' as const
           }));
 
-          // Transform Enhanced Books to UnifiedBook format
+          // Transform Enhanced Books to UnifiedBook format (only if fetched)
           let enhancedBooks: UnifiedBook[] = (enhancedData.books || []).map((book: any) => ({
             id: book.id,
             title: book.title,
@@ -247,14 +260,8 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
             theme: book.theme
           }));
 
-          // Client-side filtering for Enhanced Books
-          // 1. Hide Enhanced Books when a collection is selected (they're not in collections)
-          if (filters.collectionId) {
-            enhancedBooks = []; // Hide Enhanced Books when viewing a collection
-          }
-          
-          // 2. Client-side search filtering (if search query exists and no collection selected)
-          if (!filters.collectionId && filters.search && filters.search.length >= 2) {
+          // Client-side search filtering for Enhanced Books (if search query exists)
+          if (filters.search && filters.search.length >= 2) {
             const searchLower = filters.search.toLowerCase();
             const searchTerms = searchLower.split(' ').filter(term => term.length > 0);
             
