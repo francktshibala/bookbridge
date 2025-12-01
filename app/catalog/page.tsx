@@ -19,6 +19,7 @@ function CatalogContent() {
   const handleSelectBook = (book: FeaturedBook) => {
     // Navigate to the unified reading route
     // Phase 4: Catalog Unification - Route to /read/[slug] instead of /featured-books
+    // Phase 5: All Featured Books use bundle architecture, route to /read/[slug]
     router.push(`/read/${book.slug}`);
   };
 
