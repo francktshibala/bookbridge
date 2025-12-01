@@ -253,6 +253,10 @@ export async function GET(
           characterCount: fullText.length,
           totalChunks: allChunks.length,
           message: 'Enhanced book content loaded from simplifications (variant match)'
+        }, {
+          headers: {
+            'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600' // Cache for 5 min, stale for 10 min
+          }
         })
       }
 
