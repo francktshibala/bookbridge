@@ -251,14 +251,22 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
           ) : null;
         })()}
 
-        {/* Collections - Hide when a collection is selected */}
-        {collections.length > 0 && !filters.search && !selectedCollection && (
-          <CollectionSelector
-            collections={collections}
-            selectedCollection={selectedCollection}
-            onSelectCollection={selectCollection}
-          />
-        )}
+        {/* Collections - Hide when a collection is selected OR when filters are active */}
+        {(() => {
+          const hasActiveFilters = 
+            (filters.genres?.length ?? 0) > 0 ||
+            (filters.moods?.length ?? 0) > 0 ||
+            filters.readingTimeMax !== undefined ||
+            filters.search !== undefined;
+          
+          return collections.length > 0 && !hasActiveFilters && !selectedCollection ? (
+            <CollectionSelector
+              collections={collections}
+              selectedCollection={selectedCollection}
+              onSelectCollection={selectCollection}
+            />
+          ) : null;
+        })()}
 
         {/* Show "Back to Collections" button when collection is selected */}
         {selectedCollection && (
