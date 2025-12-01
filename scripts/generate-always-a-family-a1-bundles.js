@@ -42,6 +42,7 @@ console.log(`📚 Book ID: ${BOOK_ID}`);
 console.log(`🎯 CEFR Level: ${CEFR_LEVEL}`);
 console.log(`🗣️ Voice: Sarah (${SARAH_VOICE_SETTINGS.voice_id}) - American soft news`);
 console.log(`⚡ Speed: Generate at 0.90×, FFmpeg slow to 0.85×`);
+console.log(`🔧 Timing: Enhanced Timing v3 (character-count + punctuation penalties)`);
 
 if (isPilot) {
   console.log('🧪 PILOT MODE: Will generate only first 5 bundles (~$0.75 cost)');
@@ -55,6 +56,11 @@ const simplifiedText = fs.readFileSync(simplifiedTextPath, 'utf-8');
 const sentences = simplifiedText.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0);
 console.log(`📝 Total sentences: ${sentences.length}`);
 
+// Remove character names from text for audio generation (but keep for display)
+function removeCharacterNames(text) {
+  return text.replace(/(Danny|Annie):\s*/gi, '');
+}
+
 // Create 4-sentence bundles
 const bundles = [];
 for (let i = 0; i < sentences.length; i += 4) {
@@ -63,15 +69,102 @@ for (let i = 0; i < sentences.length; i += 4) {
     bundleIndex: Math.floor(i / 4),
     startSentenceIndex: i,
     endSentenceIndex: i + bundleSentences.length - 1,
-    text: bundleSentences.join(' '),
-    sentences: bundleSentences
+    text: bundleSentences.join(' '),  // Original text with names (for display)
+    sentences: bundleSentences,  // Original sentences with names (for display)
+    cleanedText: removeCharacterNames(bundleSentences.join(' ')),  // Cleaned text (for audio)
+    cleanedSentences: bundleSentences.map(s => removeCharacterNames(s))  // Cleaned sentences (for audio)
   });
 }
 
 console.log(`📦 Total bundles: ${bundles.length}`);
 console.log(`💰 Estimated cost: ~$${Math.ceil((bundles.length * 150) / 1000 * 0.30)}`);
 
-// Generate audio
+/**
+ * Enhanced Timing v3: Character-count proportion + punctuation penalties
+ * This ensures perfect sync for sentences with different lengths and punctuation
+ */
+function calculateEnhancedTimingV3(sentences, totalDuration) {
+  const totalCharacters = sentences.reduce((sum, sentence) => sum + sentence.length, 0);
+
+  // Calculate punctuation penalties for each sentence
+  const sentencePenalties = sentences.map(sentence => {
+    const commaCount = (sentence.match(/,/g) || []).length;
+    const semicolonCount = (sentence.match(/;/g) || []).length;
+    const colonCount = (sentence.match(/:/g) || []).length;
+    const emdashCount = (sentence.match(/—/g) || []).length;
+    const ellipsisCount = (sentence.match(/\.\.\./g) || []).length;
+
+    let pausePenalty = (commaCount * 0.15) +
+                       (semicolonCount * 0.25) +
+                       (colonCount * 0.20) +
+                       (emdashCount * 0.18) +
+                       (ellipsisCount * 0.12);
+
+    pausePenalty = Math.min(pausePenalty, 0.6);  // Max 600ms penalty
+
+    return { sentence, pausePenalty };
+  });
+
+  // Pause-budget-first approach: subtract pauses before distributing remaining time
+  const totalPauseBudget = sentencePenalties.reduce((sum, item) => sum + item.pausePenalty, 0);
+  let remainingDuration = totalDuration - totalPauseBudget;
+
+  // Handle overflow: if pauses exceed duration, scale them down
+  if (remainingDuration < 0) {
+    const scaleFactor = totalDuration * 0.8 / totalPauseBudget;
+    sentencePenalties.forEach(item => {
+      item.pausePenalty *= scaleFactor;
+    });
+    remainingDuration = totalDuration * 0.2;
+    console.warn(`   ⚠️ Pause budget exceeded duration, scaled down`);
+  }
+
+  // Calculate base duration using character-count proportion
+  const timings = sentencePenalties.map((item, index) => {
+    const characterRatio = item.sentence.length / totalCharacters;
+    const baseDuration = remainingDuration * characterRatio;
+    let adjustedDuration = baseDuration + item.pausePenalty;
+    adjustedDuration = Math.max(adjustedDuration, 0.25);  // Min 250ms duration
+
+    return { index, sentence: item.sentence, adjustedDuration };
+  });
+
+  // Renormalization: ensure sum equals measured duration exactly
+  const currentTotal = timings.reduce((sum, t) => sum + t.adjustedDuration, 0);
+  const renormalizeFactor = totalDuration / currentTotal;
+
+  if (Math.abs(renormalizeFactor - 1.0) > 0.001) {
+    console.log(`   📊 Renormalizing: ${currentTotal.toFixed(3)}s → ${totalDuration.toFixed(3)}s`);
+    timings.forEach(t => {
+      t.adjustedDuration *= renormalizeFactor;
+    });
+  }
+
+  // Build final timings array
+  let currentTime = 0;
+  const finalTimings = timings.map(t => {
+    const startTime = currentTime;
+    const endTime = currentTime + t.adjustedDuration;
+    currentTime = endTime;
+
+    return {
+      startTime: parseFloat(startTime.toFixed(3)),
+      endTime: parseFloat(endTime.toFixed(3)),
+      duration: parseFloat(t.adjustedDuration.toFixed(3))
+    };
+  });
+
+  // Validation: verify sum equals measured duration
+  const finalTotal = finalTimings[finalTimings.length - 1].endTime;
+  if (Math.abs(finalTotal - totalDuration) > 0.01) {
+    console.warn(`   ⚠️ Timing mismatch: ${finalTotal.toFixed(3)}s vs ${totalDuration.toFixed(3)}s`);
+  } else {
+    console.log(`   ✅ Timing validation: ${finalTotal.toFixed(3)}s === ${totalDuration.toFixed(3)}s`);
+  }
+
+  return finalTimings;
+}
+
 async function generateElevenLabsAudio(text, voiceSettings, maxRetries = 3) {
   let lastError;
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -145,28 +238,38 @@ async function generateBundles() {
     console.log(`   📝 "${bundle.text.substring(0, 60)}..."`);
 
     try {
-      // Generate audio
-      console.log(`   🎙️ Generating audio with Sarah voice...`);
-      const audioBuffer = await generateElevenLabsAudio(bundle.text, SARAH_VOICE_SETTINGS);
+      // Generate audio with cleaned text (no character names)
+      console.log(`   🎙️ Generating audio with Sarah voice (no character names)...`);
+      const audioBuffer = await generateElevenLabsAudio(bundle.cleanedText, SARAH_VOICE_SETTINGS);
 
-      // Save temp file
-      const tempFile = path.join(tempDir, `bundle_${bundle.bundleIndex}_temp.mp3`);
+      const tempFile = path.join(tempDir, `${BOOK_ID}-${CEFR_LEVEL}-bundle-${bundle.bundleIndex}-temp.mp3`);
       fs.writeFileSync(tempFile, audioBuffer);
 
-      // Apply FFmpeg slowdown
-      const slowedFile = path.join(tempDir, `bundle_${bundle.bundleIndex}_slowed.mp3`);
+      const slowedFile = path.join(tempDir, `${BOOK_ID}-${CEFR_LEVEL}-bundle-${bundle.bundleIndex}-slowed.mp3`);
       console.log(`   ⚡ Applying FFmpeg 0.85× slowdown...`);
-      await applyFFmpegSlowdown(tempFile, slowedFile);
+      const slowdownSuccess = await applyFFmpegSlowdown(tempFile, slowedFile);
 
-      // Measure duration
+      if (!slowdownSuccess) {
+        throw new Error('FFmpeg slowdown failed');
+      }
+
+      console.log(`   ⏱️ Measuring duration...`);
       const duration = await measureAudioDuration(slowedFile);
-      console.log(`   ⏱️ Duration: ${duration ? duration.toFixed(2) + 's' : 'unknown'}`);
 
-      // Upload to Supabase
+      if (duration === null) {
+        throw new Error('Failed to measure audio duration');
+      }
+
+      console.log(`   ⏱️ Duration: ${duration.toFixed(2)}s`);
+
+      // Calculate Enhanced Timing v3 for cleaned sentences
+      console.log(`   🔧 Calculating Enhanced Timing v3...`);
+      const sentenceTimings = calculateEnhancedTimingV3(bundle.cleanedSentences, duration);
+
+      console.log(`   ☁️ Uploading to Supabase...`);
       const fileName = `${BOOK_ID}/${CEFR_LEVEL}/bundle_${bundle.bundleIndex}.mp3`;
       const slowedBuffer = fs.readFileSync(slowedFile);
 
-      console.log(`   ☁️ Uploading to Supabase...`);
       const { data, error } = await supabase.storage
         .from('audio-files')
         .upload(fileName, slowedBuffer, {
@@ -176,71 +279,68 @@ async function generateBundles() {
         });
 
       if (error) {
-        console.error(`   ❌ Upload failed: ${error.message}`);
-        continue;
+        throw new Error(`Supabase upload error: ${error.message}`);
       }
 
-      const { data: { publicUrl } } = supabase.storage
+      const publicUrl = supabase.storage
         .from('audio-files')
-        .getPublicUrl(fileName);
+        .getPublicUrl(fileName).data.publicUrl;
 
       console.log(`   ✅ Uploaded: ${fileName}`);
+
+      // Map timings to original sentences (with names) for display
+      const sentenceTimingsWithOriginalText = bundle.sentences.map((originalSentence, idx) => ({
+        text: originalSentence,  // Display original with names
+        startTime: sentenceTimings[idx].startTime,
+        endTime: sentenceTimings[idx].endTime,
+        duration: sentenceTimings[idx].duration,
+        sentenceIndex: bundle.startSentenceIndex + idx
+      }));
 
       metadata.push({
         bundleIndex: bundle.bundleIndex,
         startSentenceIndex: bundle.startSentenceIndex,
         endSentenceIndex: bundle.endSentenceIndex,
-        text: bundle.text,
-        sentences: bundle.sentences,
+        text: bundle.text,  // Original text with names (for display)
+        sentences: bundle.sentences,  // Original sentences with names (for display)
+        cleanedText: bundle.cleanedText,  // Cleaned text (for reference)
+        cleanedSentences: bundle.cleanedSentences,  // Cleaned sentences (for reference)
         audioUrl: publicUrl,
         duration: duration,
         voiceId: SARAH_VOICE_SETTINGS.voice_id,
         voiceName: 'Sarah',
-        speed: TARGET_SPEED
+        speed: TARGET_SPEED,
+        sentenceTimings: sentenceTimingsWithOriginalText  // Timings mapped to original sentences
       });
 
-      // Cleanup
       fs.unlinkSync(tempFile);
       fs.unlinkSync(slowedFile);
 
-      // Rate limit
-      await new Promise(resolve => setTimeout(resolve, 500));
-
     } catch (error) {
-      console.error(`   ❌ Error: ${error.message}`);
-    }
-
-    if ((i + 1) % 5 === 0) {
-      console.log(`\n📈 Progress: ${i + 1}/${bundlesToProcess.length} (${Math.round((i + 1) / bundlesToProcess.length * 100)}%)\n`);
+      console.error(`   ❌ Error processing bundle ${progress}:`, error.message);
+      // Continue to next bundle even if one fails
     }
   }
 
-  // Save metadata
-  const metadataPath = path.join(process.cwd(), `cache/storycorps/${BOOK_ID}-${CEFR_LEVEL}-bundles-metadata.json`);
-  fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
+  console.log(`\n📈 Progress: ${metadata.length}/${bundlesToProcess.length} (100%)\n`);
 
+  const outputPath = path.join(process.cwd(), `cache/storycorps/${BOOK_ID}-${CEFR_LEVEL}-bundles-metadata.json`);
+  fs.writeFileSync(outputPath, JSON.stringify(metadata, null, 2));
   console.log(`\n🎉 AUDIO GENERATION COMPLETE!`);
   console.log(`=`.repeat(60));
   console.log(`📦 Total bundles: ${metadata.length}`);
-  console.log(`✅ Success rate: ${Math.round((metadata.length / bundlesToProcess.length) * 100)}%`);
-  console.log(`💾 Metadata: ${metadataPath}`);
+  console.log(`✅ Success rate: ${((metadata.length / bundlesToProcess.length) * 100).toFixed(0)}%`);
+  console.log(`💾 Metadata: ${outputPath}`);
   console.log(`🗣️ Voice: Sarah (${SARAH_VOICE_SETTINGS.voice_id}) - American soft news`);
-  console.log(`⚡ Speed: 0.85× (November 2025 standard)`);
+  console.log(`⚡ Speed: ${TARGET_SPEED}× (November 2025 standard)`);
+  console.log(`🔧 Timing: Enhanced Timing v3 (character-count + punctuation penalties)`);
+  console.log(`\n📝 Note: Character names removed from audio but kept in text display`);
   console.log(`\n🚀 Ready for database integration`);
-
-  await prisma.$disconnect();
 }
 
-process.on('SIGINT', async () => {
-  console.log('\n⏹️ Interrupted. Cleaning up...');
-  await prisma.$disconnect();
-  process.exit(0);
-});
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  generateBundles().catch(error => {
-    console.error('💥 Fatal error:', error);
+generateBundles()
+  .then(() => process.exit(0))
+  .catch(error => {
+    console.error(`\n💥 Fatal error during bundle generation:`, error);
     process.exit(1);
   });
-}
-

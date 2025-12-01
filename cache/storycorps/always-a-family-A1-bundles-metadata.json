@@ -10,11 +10,48 @@
       "We are married for over sixty years.",
       "Annie: Sixty-three years."
     ],
+    "cleanedText": "My name is Danny Perasa. This is my wife, Annie. We are married for over sixty years. Sixty-three years.",
+    "cleanedSentences": [
+      "My name is Danny Perasa.",
+      "This is my wife, Annie.",
+      "We are married for over sixty years.",
+      "Sixty-three years."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_0.mp3",
-    "duration": 9.357823,
+    "duration": 7.519955,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Danny: My name is Danny Perasa.",
+        "startTime": 0,
+        "endTime": 1.751,
+        "duration": 1.751,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "This is my wife, Annie.",
+        "startTime": 1.751,
+        "endTime": 3.58,
+        "duration": 1.828,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "We are married for over sixty years.",
+        "startTime": 3.58,
+        "endTime": 6.206,
+        "duration": 2.627,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Annie: Sixty-three years.",
+        "startTime": 6.206,
+        "endTime": 7.52,
+        "duration": 1.313,
+        "sentenceIndex": 3
+      }
+    ]
   },
   {
     "bundleIndex": 1,
@@ -27,11 +64,48 @@
       "I write it on paper.",
       "I put it where she will find it."
     ],
+    "cleanedText": "Yes, sixty-three years. Every day, I leave Annie a love note. I write it on paper. I put it where she will find it.",
+    "cleanedSentences": [
+      "Yes, sixty-three years.",
+      "Every day, I leave Annie a love note.",
+      "I write it on paper.",
+      "I put it where she will find it."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_1.mp3",
-    "duration": 9.477574,
+    "duration": 8.275238,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Danny: Yes, sixty-three years.",
+        "startTime": 0,
+        "endTime": 1.788,
+        "duration": 1.788,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Every day, I leave Annie a love note.",
+        "startTime": 1.788,
+        "endTime": 4.572,
+        "duration": 2.785,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "I write it on paper.",
+        "startTime": 4.572,
+        "endTime": 5.997,
+        "duration": 1.424,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "I put it where she will find it.",
+        "startTime": 5.997,
+        "endTime": 8.275,
+        "duration": 2.279,
+        "sentenceIndex": 7
+      }
+    ]
   },
   {
     "bundleIndex": 2,
@@ -44,11 +118,48 @@
       "Sometimes on her pillow.",
       "Annie: He does this every day."
     ],
+    "cleanedText": "Sometimes in her purse. Sometimes on the kitchen table. Sometimes on her pillow. He does this every day.",
+    "cleanedSentences": [
+      "Sometimes in her purse.",
+      "Sometimes on the kitchen table.",
+      "Sometimes on her pillow.",
+      "He does this every day."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_2.mp3",
-    "duration": 8.125283,
+    "duration": 7.230272,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Sometimes in her purse.",
+        "startTime": 0,
+        "endTime": 1.646,
+        "duration": 1.646,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "Sometimes on the kitchen table.",
+        "startTime": 1.646,
+        "endTime": 3.866,
+        "duration": 2.219,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "Sometimes on her pillow.",
+        "startTime": 3.866,
+        "endTime": 5.584,
+        "duration": 1.718,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "Annie: He does this every day.",
+        "startTime": 5.584,
+        "endTime": 7.23,
+        "duration": 1.646,
+        "sentenceIndex": 11
+      }
+    ]
   },
   {
     "bundleIndex": 3,
@@ -61,11 +172,48 @@
       "Danny: I write simple things.",
       "\"I love you.\" \"You make me happy.\" \"You are beautiful.\" Sometimes I write longer notes."
     ],
+    "cleanedText": "I never know where I will find it. But I always do. I write simple things. \"I love you.\" \"You make me happy.\" \"You are beautiful.\" Sometimes I write longer notes.",
+    "cleanedSentences": [
+      "I never know where I will find it.",
+      "But I always do.",
+      "I write simple things.",
+      "\"I love you.\" \"You make me happy.\" \"You are beautiful.\" Sometimes I write longer notes."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_3.mp3",
-    "duration": 15.713311,
+    "duration": 14.607438,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I never know where I will find it.",
+        "startTime": 0,
+        "endTime": 3.124,
+        "duration": 3.124,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "But I always do.",
+        "startTime": 3.124,
+        "endTime": 4.594,
+        "duration": 1.47,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "Danny: I write simple things.",
+        "startTime": 4.594,
+        "endTime": 6.615,
+        "duration": 2.021,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "\"I love you.\" \"You make me happy.\" \"You are beautiful.\" Sometimes I write longer notes.",
+        "startTime": 6.615,
+        "endTime": 14.607,
+        "duration": 7.993,
+        "sentenceIndex": 15
+      }
+    ]
   },
   {
     "bundleIndex": 4,
@@ -78,11 +226,48 @@
       "Annie: When I find the note, I read it.",
       "I smile."
     ],
+    "cleanedText": "I write about our life. I write about our memories. When I find the note, I read it. I smile.",
+    "cleanedSentences": [
+      "I write about our life.",
+      "I write about our memories.",
+      "When I find the note, I read it.",
+      "I smile."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_4.mp3",
-    "duration": 8.218186,
+    "duration": 6.909478,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I write about our life.",
+        "startTime": 0,
+        "endTime": 1.727,
+        "duration": 1.727,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "I write about our memories.",
+        "startTime": 1.727,
+        "endTime": 3.755,
+        "duration": 2.028,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "Annie: When I find the note, I read it.",
+        "startTime": 3.755,
+        "endTime": 6.309,
+        "duration": 2.553,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "I smile.",
+        "startTime": 6.309,
+        "endTime": 6.909,
+        "duration": 0.601,
+        "sentenceIndex": 19
+      }
+    ]
   },
   {
     "bundleIndex": 5,
@@ -95,11 +280,48 @@
       "After all these years, he still cares.",
       "Danny: I do it because I want her to know."
     ],
+    "cleanedText": "It makes my day. It reminds me he still loves me. After all these years, he still cares. I do it because I want her to know.",
+    "cleanedSentences": [
+      "It makes my day.",
+      "It reminds me he still loves me.",
+      "After all these years, he still cares.",
+      "I do it because I want her to know."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_5.mp3",
-    "duration": 10.304263,
+    "duration": 9.10966,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It makes my day.",
+        "startTime": 0,
+        "endTime": 1.185,
+        "duration": 1.185,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "It reminds me he still loves me.",
+        "startTime": 1.185,
+        "endTime": 3.554,
+        "duration": 2.369,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "After all these years, he still cares.",
+        "startTime": 3.554,
+        "endTime": 6.518,
+        "duration": 2.964,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "Danny: I do it because I want her to know.",
+        "startTime": 6.518,
+        "endTime": 9.11,
+        "duration": 2.592,
+        "sentenceIndex": 23
+      }
+    ]
   },
   {
     "bundleIndex": 6,
@@ -112,11 +334,48 @@
       "She is important to me.",
       "Life is short."
     ],
+    "cleanedText": "I want her to know every day. She is loved. She is important to me. Life is short.",
+    "cleanedSentences": [
+      "I want her to know every day.",
+      "She is loved.",
+      "She is important to me.",
+      "Life is short."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_6.mp3",
-    "duration": 5.911565,
+    "duration": 5.76059,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I want her to know every day.",
+        "startTime": 0,
+        "endTime": 2.115,
+        "duration": 2.115,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "She is loved.",
+        "startTime": 2.115,
+        "endTime": 3.063,
+        "duration": 0.948,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "She is important to me.",
+        "startTime": 3.063,
+        "endTime": 4.74,
+        "duration": 1.677,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "Life is short.",
+        "startTime": 4.74,
+        "endTime": 5.761,
+        "duration": 1.021,
+        "sentenceIndex": 27
+      }
+    ]
   },
   {
     "bundleIndex": 7,
@@ -129,11 +388,48 @@
       "Annie: One day, I asked him, \"Danny, when you leave me, how will I live?",
       "How will I live without your notes?\"\n\nDanny: I told her, \"Annie, I wrote enough notes."
     ],
+    "cleanedText": "I do not want to waste a day. I tell her how I feel. One day, I asked him, \"Danny, when you leave me, how will I live? How will I live without your notes?\"\n\nI told her, \"Annie, I wrote enough notes.",
+    "cleanedSentences": [
+      "I do not want to waste a day.",
+      "I tell her how I feel.",
+      "One day, I asked him, \"Danny, when you leave me, how will I live?",
+      "How will I live without your notes?\"\n\nI told her, \"Annie, I wrote enough notes."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_7.mp3",
-    "duration": 15.445261,
+    "duration": 14.062608,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I do not want to waste a day.",
+        "startTime": 0,
+        "endTime": 1.958,
+        "duration": 1.958,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "I tell her how I feel.",
+        "startTime": 1.958,
+        "endTime": 3.443,
+        "duration": 1.485,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "Annie: One day, I asked him, \"Danny, when you leave me, how will I live?",
+        "startTime": 3.443,
+        "endTime": 8.43,
+        "duration": 4.988,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "How will I live without your notes?\"\n\nDanny: I told her, \"Annie, I wrote enough notes.",
+        "startTime": 8.43,
+        "endTime": 14.063,
+        "duration": 5.633,
+        "sentenceIndex": 31
+      }
+    ]
   },
   {
     "bundleIndex": 8,
@@ -146,11 +442,48 @@
       "I hid them everywhere.",
       "In books, in drawers, in your favorite places."
     ],
+    "cleanedText": "I wrote enough for your whole life. You will find them. I hid them everywhere. In books, in drawers, in your favorite places.",
+    "cleanedSentences": [
+      "I wrote enough for your whole life.",
+      "You will find them.",
+      "I hid them everywhere.",
+      "In books, in drawers, in your favorite places."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_8.mp3",
-    "duration": 9.358186,
+    "duration": 8.434535,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I wrote enough for your whole life.",
+        "startTime": 0,
+        "endTime": 2.334,
+        "duration": 2.334,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "You will find them.",
+        "startTime": 2.334,
+        "endTime": 3.601,
+        "duration": 1.267,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "I hid them everywhere.",
+        "startTime": 3.601,
+        "endTime": 5.067,
+        "duration": 1.467,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "In books, in drawers, in your favorite places.",
+        "startTime": 5.067,
+        "endTime": 8.435,
+        "duration": 3.367,
+        "sentenceIndex": 35
+      }
+    ]
   },
   {
     "bundleIndex": 9,
@@ -163,11 +496,48 @@
       "In old books, in my jewelry box, even in my coat pocket from years ago.",
       "He is preparing for this."
     ],
+    "cleanedText": "You will find them when you need them most.\"\n\nHe is right. I find notes in strange places. In old books, in my jewelry box, even in my coat pocket from years ago. He is preparing for this.",
+    "cleanedSentences": [
+      "You will find them when you need them most.\"\n\nHe is right.",
+      "I find notes in strange places.",
+      "In old books, in my jewelry box, even in my coat pocket from years ago.",
+      "He is preparing for this."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_9.mp3",
-    "duration": 15.104785,
+    "duration": 14.73644,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "You will find them when you need them most.\"\n\nAnnie: He is right.",
+        "startTime": 0,
+        "endTime": 4.526,
+        "duration": 4.526,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "I find notes in strange places.",
+        "startTime": 4.526,
+        "endTime": 6.945,
+        "duration": 2.419,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "In old books, in my jewelry box, even in my coat pocket from years ago.",
+        "startTime": 6.945,
+        "endTime": 12.786,
+        "duration": 5.84,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "He is preparing for this.",
+        "startTime": 12.786,
+        "endTime": 14.736,
+        "duration": 1.951,
+        "sentenceIndex": 39
+      }
+    ]
   },
   {
     "bundleIndex": 10,
@@ -180,11 +550,48 @@
       "I loved her for sixty-three years.",
       "I will love her forever."
     ],
+    "cleanedText": "He writes notes for my future, for when he is gone. I love her. I loved her for sixty-three years. I will love her forever.",
+    "cleanedSentences": [
+      "He writes notes for my future, for when he is gone.",
+      "I love her.",
+      "I loved her for sixty-three years.",
+      "I will love her forever."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_10.mp3",
-    "duration": 8.709615,
+    "duration": 9.700181,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He writes notes for my future, for when he is gone.",
+        "startTime": 0,
+        "endTime": 4.209,
+        "duration": 4.209,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Danny: I love her.",
+        "startTime": 4.209,
+        "endTime": 5.084,
+        "duration": 0.875,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "I loved her for sixty-three years.",
+        "startTime": 5.084,
+        "endTime": 7.79,
+        "duration": 2.706,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "I will love her forever.",
+        "startTime": 7.79,
+        "endTime": 9.7,
+        "duration": 1.91,
+        "sentenceIndex": 43
+      }
+    ]
   },
   {
     "bundleIndex": 11,
@@ -197,11 +604,48 @@
       "Annie: We have a beautiful life together.",
       "We raised children."
     ],
+    "cleanedText": "These notes are my way to be with her. Even when I cannot be there. We have a beautiful life together. We raised children.",
+    "cleanedSentences": [
+      "These notes are my way to be with her.",
+      "Even when I cannot be there.",
+      "We have a beautiful life together.",
+      "We raised children."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_11.mp3",
-    "duration": 9.971474,
+    "duration": 9.143923,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "These notes are my way to be with her.",
+        "startTime": 0,
+        "endTime": 2.92,
+        "duration": 2.92,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "Even when I cannot be there.",
+        "startTime": 2.92,
+        "endTime": 5.071,
+        "duration": 2.152,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "Annie: We have a beautiful life together.",
+        "startTime": 5.071,
+        "endTime": 7.684,
+        "duration": 2.613,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "We raised children.",
+        "startTime": 7.684,
+        "endTime": 9.144,
+        "duration": 1.46,
+        "sentenceIndex": 47
+      }
+    ]
   },
   {
     "bundleIndex": 12,
@@ -214,11 +658,48 @@
       "We cried.",
       "But through it all, there is one constant: his love notes."
     ],
+    "cleanedText": "We traveled. We laughed. We cried. But through it all, there is one constant: his love notes.",
+    "cleanedSentences": [
+      "We traveled.",
+      "We laughed.",
+      "We cried.",
+      "But through it all, there is one constant: his love notes."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_12.mp3",
-    "duration": 7.393719,
+    "duration": 7.087732,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "We traveled.",
+        "startTime": 0,
+        "endTime": 0.898,
+        "duration": 0.898,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "We laughed.",
+        "startTime": 0.898,
+        "endTime": 1.722,
+        "duration": 0.824,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "We cried.",
+        "startTime": 1.722,
+        "endTime": 2.396,
+        "duration": 0.674,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "But through it all, there is one constant: his love notes.",
+        "startTime": 2.396,
+        "endTime": 7.088,
+        "duration": 4.692,
+        "sentenceIndex": 51
+      }
+    ]
   },
   {
     "bundleIndex": 13,
@@ -231,11 +712,48 @@
       "Danny: That is what I want her to remember.",
       "That is what I want her to know."
     ],
+    "cleanedText": "They remind me love does not end. It continues, even after someone is gone. That is what I want her to remember. That is what I want her to know.",
+    "cleanedSentences": [
+      "They remind me love does not end.",
+      "It continues, even after someone is gone.",
+      "That is what I want her to remember.",
+      "That is what I want her to know."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_13.mp3",
-    "duration": 10.959342,
+    "duration": 10.192676,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They remind me love does not end.",
+        "startTime": 0,
+        "endTime": 2.334,
+        "duration": 2.334,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "It continues, even after someone is gone.",
+        "startTime": 2.334,
+        "endTime": 5.384,
+        "duration": 3.05,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "Danny: That is what I want her to remember.",
+        "startTime": 5.384,
+        "endTime": 7.93,
+        "duration": 2.546,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "That is what I want her to know.",
+        "startTime": 7.93,
+        "endTime": 10.193,
+        "duration": 2.263,
+        "sentenceIndex": 55
+      }
+    ]
   },
   {
     "bundleIndex": 14,
@@ -248,10 +766,47 @@
       "Annie: We will always be a family.",
       "Always."
     ],
+    "cleanedText": "Love is forever. We will always be a family, no matter what happens. We will always be a family. Always.",
+    "cleanedSentences": [
+      "Love is forever.",
+      "We will always be a family, no matter what happens.",
+      "We will always be a family.",
+      "Always."
+    ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/bundle_14.mp3",
-    "duration": 8.225465,
+    "duration": 7.883741,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
-    "speed": 0.85
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Love is forever.",
+        "startTime": 0,
+        "endTime": 1.225,
+        "duration": 1.225,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "We will always be a family, no matter what happens.",
+        "startTime": 1.225,
+        "endTime": 5.28,
+        "duration": 4.055,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "Annie: We will always be a family.",
+        "startTime": 5.28,
+        "endTime": 7.348,
+        "duration": 2.067,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "Always.",
+        "startTime": 7.348,
+        "endTime": 7.884,
+        "duration": 0.536,
+        "sentenceIndex": 59
+      }
+    ]
   }
 ]
