@@ -1,0 +1,373 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Why do some things not happen as we think they will? Why do some people do things that seem impossible? Why is Apple always coming up with new ideas? They are just a computer company.",
+    "sentences": [
+      "Why do some things not happen as we think they will?",
+      "Why do some people do things that seem impossible?",
+      "Why is Apple always coming up with new ideas?",
+      "They are just a computer company."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_0.mp3",
+    "duration": 13.969615,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "They have the same people and resources as other companies. Why did Martin Luther King lead the fight for equal rights? Other people had the same problems. Why did the Wright brothers make a plane fly when others with more money failed?",
+    "sentences": [
+      "They have the same people and resources as other companies.",
+      "Why did Martin Luther King lead the fight for equal rights?",
+      "Other people had the same problems.",
+      "Why did the Wright brothers make a plane fly when others with more money failed?"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_1.mp3",
+    "duration": 16.985034,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "I found a pattern about three years ago. All great leaders and groups think, act, and talk in the same way. It is different from everyone else. I call it the Golden Circle: Why?",
+    "sentences": [
+      "I found a pattern about three years ago.",
+      "All great leaders and groups think, act, and talk in the same way.",
+      "It is different from everyone else.",
+      "I call it the Golden Circle: Why?"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_2.mp3",
+    "duration": 13.480998,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "How? What? Every group knows what they do. Some know how they do it.",
+    "sentences": [
+      "How?",
+      "What?",
+      "Every group knows what they do.",
+      "Some know how they do it."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_3.mp3",
+    "duration": 4.557755,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "But very few know why. By why, I don't mean money. Money is a result. I mean your purpose and belief.",
+    "sentences": [
+      "But very few know why.",
+      "By why, I don't mean money.",
+      "Money is a result.",
+      "I mean your purpose and belief."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_4.mp3",
+    "duration": 7.790522,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "Why does your group exist? Why do you get up in the morning? Most people talk from the outside in. They go from what to how to why.",
+    "sentences": [
+      "Why does your group exist?",
+      "Why do you get up in the morning?",
+      "Most people talk from the outside in.",
+      "They go from what to how to why."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_5.mp3",
+    "duration": 9.36898,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "Great leaders talk from the inside out. If Apple talked like everyone else, they would say: \"We make good computers. They look nice and are easy to use. Do you want to buy one?\" But Apple says: \"We believe in changing things and thinking differently.",
+    "sentences": [
+      "Great leaders talk from the inside out.",
+      "If Apple talked like everyone else, they would say: \"We make good computers.",
+      "They look nice and are easy to use.",
+      "Do you want to buy one?\" But Apple says: \"We believe in changing things and thinking differently."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_6.mp3",
+    "duration": 18.276825,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "We make beautiful, simple products. We also make computers. Do you want to buy one?\"\n\nPeople don't buy what you do. They buy why you do it.",
+    "sentences": [
+      "We make beautiful, simple products.",
+      "We also make computers.",
+      "Do you want to buy one?\"\n\nPeople don't buy what you do.",
+      "They buy why you do it."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_7.mp3",
+    "duration": 10.588073,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "This is why people buy iPhones and other products from Apple. They don't buy these from Dell or Gateway. These other companies can make them too. This is not just an idea.",
+    "sentences": [
+      "This is why people buy iPhones and other products from Apple.",
+      "They don't buy these from Dell or Gateway.",
+      "These other companies can make them too.",
+      "This is not just an idea."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_8.mp3",
+    "duration": 11.664036,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "It is based on how our brain works. Our brain has three main parts. One part handles thinking and talking. Another part controls feelings and decisions.",
+    "sentences": [
+      "It is based on how our brain works.",
+      "Our brain has three main parts.",
+      "One part handles thinking and talking.",
+      "Another part controls feelings and decisions."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_9.mp3",
+    "duration": 10.628186,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "It doesn't understand language. When we talk from the inside out, we speak to the part of the brain that makes decisions. People use facts to explain their decisions later. This is why people say decisions \"feel right\" even when facts say otherwise.",
+    "sentences": [
+      "It doesn't understand language.",
+      "When we talk from the inside out, we speak to the part of the brain that makes decisions.",
+      "People use facts to explain their decisions later.",
+      "This is why people say decisions \"feel right\" even when facts say otherwise."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_10.mp3",
+    "duration": 19.04059,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "Think about the Wright brothers and Samuel Pierpont Langley. Langley had a lot of money, went to Harvard, and was famous. The Wright brothers had no money, didn't go to college, and were not famous. But they succeeded.",
+    "sentences": [
+      "Think about the Wright brothers and Samuel Pierpont Langley.",
+      "Langley had a lot of money, went to Harvard, and was famous.",
+      "The Wright brothers had no money, didn't go to college, and were not famous.",
+      "But they succeeded."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_11.mp3",
+    "duration": 15.661995,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "Why? The Wright brothers believed that flying would change the world. Langley wanted money and fame. The Wright brothers worked hard.",
+    "sentences": [
+      "Why?",
+      "The Wright brothers believed that flying would change the world.",
+      "Langley wanted money and fame.",
+      "The Wright brothers worked hard."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_12.mp3",
+    "duration": 9.605057,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "When they flew their plane on December 17, 1903, no one was there. Langley quit right away. If you talk about what you believe, you attract people who believe the same thing. This is related to a theory about new ideas.",
+    "sentences": [
+      "When they flew their plane on December 17, 1903, no one was there.",
+      "Langley quit right away.",
+      "If you talk about what you believe, you attract people who believe the same thing.",
+      "This is related to a theory about new ideas."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_13.mp3",
+    "duration": 19.32288,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "The first 2.5 percent are the first to try new things. The next 13.5 percent are the early adopters. Then come the early majority, late majority, and lastly the laggards. To be successful, you need to reach 15-18 percent of the market.",
+    "sentences": [
+      "The first 2.5 percent are the first to try new things.",
+      "The next 13.5 percent are the early adopters.",
+      "Then come the early majority, late majority, and lastly the laggards.",
+      "To be successful, you need to reach 15-18 percent of the market."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_14.mp3",
+    "duration": 21.349184,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "Most businesses reach about 10 percent. Early adopters buy because they believe in the product, not because of its features. They were the first to buy iPhones and expensive flat-screen TVs. TiVo did not succeed even though it was a good product and had a lot of money.",
+    "sentences": [
+      "Most businesses reach about 10 percent.",
+      "Early adopters buy because they believe in the product, not because of its features.",
+      "They were the first to buy iPhones and expensive flat-screen TVs.",
+      "TiVo did not succeed even though it was a good product and had a lot of money."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_15.mp3",
+    "duration": 19.166599,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "They told people what they had. People said they didn't need it. If they had said, \"If you want control over your life, we have a product for you,\" things might have been different. Dr.",
+    "sentences": [
+      "They told people what they had.",
+      "People said they didn't need it.",
+      "If they had said, \"If you want control over your life, we have a product for you,\" things might have been different.",
+      "Dr."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_16.mp3",
+    "duration": 13.048594,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "Martin Luther King succeeded in a different way. In the summer of 1963, 250,000 people came to Washington's mall. There were no invitations or website. King didn't tell people what needed to change.",
+    "sentences": [
+      "Martin Luther King succeeded in a different way.",
+      "In the summer of 1963, 250,000 people came to Washington's mall.",
+      "There were no invitations or website.",
+      "King didn't tell people what needed to change."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_17.mp3",
+    "duration": 16.365193,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "He shared his beliefs. People who believed the same thing joined him. They didn't come for him. They came for themselves.",
+    "sentences": [
+      "He shared his beliefs.",
+      "People who believed the same thing joined him.",
+      "They didn't come for him.",
+      "They came for themselves."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_18.mp3",
+    "duration": 8.780454,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "King believed in two types of laws: those from God and those from men. Justice needs both. He gave the \"I have a dream\" speech, not an \"I have a plan\" speech. Today's politicians offer plans that don't inspire anyone.",
+    "sentences": [
+      "King believed in two types of laws: those from God and those from men.",
+      "Justice needs both.",
+      "He gave the \"I have a dream\" speech, not an \"I have a plan\" speech.",
+      "Today's politicians offer plans that don't inspire anyone."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_19.mp3",
+    "duration": 15.658481,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "Leaders have power or authority. Those who lead inspire us. We follow them not because we have to, but because we want to. We follow those who start with \"why\".",
+    "sentences": [
+      "Leaders have power or authority.",
+      "Those who lead inspire us.",
+      "We follow them not because we have to, but because we want to.",
+      "We follow those who start with \"why\"."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_20.mp3",
+    "duration": 12.097415,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 84,
+    "text": "They can inspire others or find those who inspire them.",
+    "sentences": [
+      "They can inspire others or find those who inspire them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/bundle_21.mp3",
+    "duration": 3.424762,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  }
+]

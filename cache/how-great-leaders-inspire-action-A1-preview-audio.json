@@ -1,0 +1,13 @@
+{
+  "contentId": "how-great-leaders-inspire-action",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/how-great-leaders-inspire-action/A1/preview.mp3",
+    "duration": 24.939138,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "generationSpeed": 0.9,
+    "ffmpegSpeed": 0.85
+  },
+  "generatedAt": "2025-12-01T00:17:44.165Z"
+}

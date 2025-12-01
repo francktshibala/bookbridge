@@ -180,6 +180,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-orange-500 to-purple-600',
     abbreviation: 'DS'
   },
+  {
+    id: 'how-great-leaders-inspire-action',
+    title: 'How Great Leaders Inspire Action',
+    author: 'Simon Sinek',
+    description: 'Transformative TED Talk about the Golden Circle: Why, How, and What. Learn why great leaders like Apple, Wright Brothers, and MLK inspire action by starting with purpose. A1 level with Daniel voice narration.',
+    sentences: 85,
+    bundles: 22,
+    gradient: 'from-blue-500 to-indigo-600',
+    abbreviation: 'GL'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -241,6 +251,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'A2': '/api/danger-of-single-story-a2/bundles',
     'B1': '/api/danger-of-single-story-b1/bundles'
   },
+  'how-great-leaders-inspire-action': {
+    'A1': '/api/how-great-leaders-inspire-action-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -261,6 +274,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'after-twenty-years': 'A1',  // Default to A1 for After Twenty Years
   'power-of-vulnerability': 'A1',  // Default to A1 for The Power of Vulnerability (TED Talk)
   'danger-of-single-story': 'A1',  // Default to A1 for The Danger of a Single Story (TED Talk)
+  'how-great-leaders-inspire-action': 'A1',  // Default to A1 for How Great Leaders Inspire Action (TED Talk)
 };
 
 // Get the correct CEFR level for a book
@@ -321,6 +335,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'story-of-an-hour': ['A1'],  // A1 with Jane (user requested)
   'power-of-vulnerability': ['A1', 'A2', 'B1'],  // A1 with Jane, A2 with Daniel, B1 with Jane (TED Talk - Modern Voices collection)
   'danger-of-single-story': ['A1', 'A2', 'B1'],  // A1 with Sarah, A2 with Daniel, B1 with Jane (TED Talk - Modern Voices collection)
+  'how-great-leaders-inspire-action': ['A1'],  // A1 with Daniel (TED Talk - Modern Voices collection)
 };
 
 // Single-level books configuration
