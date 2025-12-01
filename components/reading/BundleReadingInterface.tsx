@@ -30,6 +30,7 @@ import { useAudioContext } from '@/contexts/AudioContext';
 import { ReadingHeader } from '@/app/featured-books/components/ReadingHeader';
 import { SettingsModal } from '@/app/featured-books/components/SettingsModal';
 import { ChapterModal, type Chapter } from '@/app/featured-books/components/ChapterModal';
+// Note: Using ChapterModal's Chapter type (compatible with chapters.ts Chapter interface)
 import FeedbackWidget from '@/components/feedback/FeedbackWidget';
 
 // Import book data from shared config
@@ -44,9 +45,9 @@ import {
   YELLOW_WALLPAPER_CHAPTERS,
   GIFT_OF_THE_MAGI_CHAPTERS,
   JEKYLL_HYDE_CHAPTERS,
-  GREAT_GATSBY_CHAPTERS,
-  type Chapter
+  GREAT_GATSBY_CHAPTERS
 } from '@/lib/config/chapters';
+// Note: Using Chapter type from ChapterModal (compatible with chapters.ts)
 
 // Preview Audio Player Component
 function PreviewAudioPlayer({ audioUrl, duration }: { audioUrl: string; duration: number }) {
@@ -540,6 +541,7 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
 
     async function initializePageSideEffects() {
       try {
+        if (!selectedBook || !bundleData) return; // Guard clauses
         const currentBookId = selectedBook.id;
         
         if (!audioManagerRef.current && bundleData.audioType !== 'none') {
@@ -739,7 +741,7 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
   });
 
   // Show loading state while book is being selected or data is loading
-  if (!selectedBook || loadState === 'loading') {
+  if (!selectedBook || loadState === 'loading' || loadState === 'idle') {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[var(--bg-primary)]">
         <div className="text-center">
@@ -766,14 +768,6 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
 
         {/* Book Content */}
         <div className="pb-32 px-3 bg-[var(--bg-secondary)] mx-4 md:mx-8 rounded-b-lg shadow-sm border-2 border-[var(--accent-secondary)]/20 border-t-0">
-          {/* Loading state */}
-          {loadState === 'loading' && (
-            <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
-              <p className="text-gray-600">Loading {selectedBook?.title} bundles...</p>
-            </div>
-          )}
-
           {/* Error state */}
           {loadState === 'error' && error && (
             <div className="text-center py-12">
