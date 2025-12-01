@@ -172,13 +172,18 @@ This document establishes the universal accessibility vision while defining the 
 **Location**: `/CHUNK_ARCHITECTURE_QUESTIONS.md` *(Root level file)*  
 **Description**: Strategic architecture review and enhanced books content loading fix implementation guide. Contains architectural analysis comparing chunked vs continuous audio approaches (Speechify comparison), plus complete implementation status for fixing enhanced books' "0 of 0 words" display issues. **CRITICAL: Includes detailed implementation pattern with complete JavaScript code template for fixing remaining 6 enhanced books (Emma, Great Gatsby, Dr. Jekyll, etc.)** Documents Yellow Wallpaper fix completion with BookChunk record creation, API chunk inclusion, and database structure updates. Contains copy-paste code template with placeholder replacement instructions for systematic book fixes. Essential reference for enhanced books maintenance and architectural decision-making.
 
+### **CATALOG_UNIFICATION_FEASIBILITY.md** ⏳ **PLANNED**
+**Location**: `/docs/CATALOG_UNIFICATION_FEASIBILITY.md`  
+**Status**: 📋 **PLANNED - Not Yet Implemented**  
+**Description**: Comprehensive analysis and implementation plan for unifying book discovery into a single catalog entry point. **Goal**: Remove `/enhanced-collection` and `/featured-books` pages, making `/catalog` the ONLY entry point for book discovery. **Recommended Approach**: Option 1 - Extract reading interface to `/read/[slug]` route, creating clean separation between discovery (catalog) and reading (unified route). **Key Benefits**: Single entry point, cleaner URLs (`/read/always-a-family` vs `/featured-books?book=always-a-family`), Netflix-like instant gratification, better separation of concerns. **Implementation**: 9-phase migration checklist covering component extraction, route creation, catalog integration, Enhanced Books support, navigation updates, cleanup, testing, and documentation. **Architecture Compliance**: Follows FEATURED_BOOKS_REFACTOR_PLAN patterns (Single Source of Truth, explicit props, component extraction, service layer). **Styling Compliance**: Uses Neo-Classic theme variables and typography system. **Risk Assessment**: Low-Medium risk - reading interface is self-contained, requires component extraction (~400 lines). **Current State**: Three separate entry points (`/catalog`, `/featured-books`, `/enhanced-collection`) causing user confusion. **Target State**: One catalog (`/catalog`) → unified reading route (`/read/[slug]` for bundle books, `/read/[id]` for chunk books). Essential reference for future catalog unification work.
+
 ---
 
 ## 🏗️ **Core Application Structure**
 
 ### **Main Reading Page**
 **Location**: `/app/library/[id]/read/page.tsx`  
-**Description**: Central reading interface component handling book display, CEFR level controls, audio playback, and text simplification. Manages enhanced book detection (10 enhanced vs 19 limited books) and dynamic content fetching. Integrates WireframeAudioControls, voice selection, and word highlighting. Critical file modified in Phase 9 for clean reading experience implementation.
+**Description**: Central reading interface component handling book display, CEFR level controls, audio playback, and text simplification. Manages enhanced book detection (10 enhanced vs 19 limited books) and dynamic content fetching. Integrates WireframeAudioControls, voice selection, and word highlighting. Critical file modified in Phase 9 for clean reading experience implementation. **Note**: This route will remain for Enhanced Books (chunk architecture) per `CATALOG_UNIFICATION_FEASIBILITY.md` plan. Bundle books (FeaturedBooks) will migrate to `/read/[slug]` route.
 
 ### **Enhanced Collection API**
 **Location**: `/app/api/books/enhanced/route.ts`  
@@ -192,9 +197,10 @@ This document establishes the universal accessibility vision while defining the 
 
 ## 🎨 **User Interface Components**
 
-### **Enhanced Collection Page**
+### **Enhanced Collection Page** ⏳ **PLANNED FOR UNIFICATION**
 **Location**: `/app/enhanced-collection/page.tsx`  
-**Description**: Dedicated collection page showcasing 10 enhanced books with custom abbreviations (EM, P&P, FR), unique gradient colors, and compact wireframe-style cards. Features load-more pagination, CEFR level indicators, and responsive design matching wireframes exactly. Built in Phase 6 with real-time database integration.
+**Status**: 📋 **Current State** - Planned for removal/merger into unified catalog  
+**Description**: Dedicated collection page showcasing 10 enhanced books with custom abbreviations (EM, P&P, FR), unique gradient colors, and compact wireframe-style cards. Features load-more pagination, CEFR level indicators, and responsive design matching wireframes exactly. Built in Phase 6 with real-time database integration. **Future**: Will be merged into unified `/catalog` page per `CATALOG_UNIFICATION_FEASIBILITY.md` plan. Enhanced Books will appear in catalog with visual badges (✨) and route to `/read/[id]` or `/library/[id]/read`.
 
 ### **Wireframe Audio Controls**
 **Location**: `/components/audio/WireframeAudioControls.tsx`  
@@ -204,8 +210,9 @@ This document establishes the universal accessibility vision while defining the 
 **Location**: `/components/audio/SmartPlayButton.tsx`
 **Description**: Advanced play/pause control with auto-advance functionality created in Phase 9. Shows dynamic states (Play/Auto/Manual) with smart color coding (green for auto, blue for manual). Reduces cognitive load by combining play and auto-advance controls into single interface.
 
-### **CEFR Level Selection Architecture**
-**Location**: `/app/featured-books/page.tsx` (lines 628-723, 1747-1781)
+### **CEFR Level Selection Architecture** ⏳ **PLANNED FOR UNIFICATION**
+**Location**: `/app/featured-books/page.tsx` (lines 628-723, 1747-1781)  
+**Status**: 📋 **Current State** - Reading interface will be extracted to `/read/[slug]` route per `CATALOG_UNIFICATION_FEASIBILITY.md`  
 **Description**: Dynamic multi-level CEFR selection system supporting both single-level and multi-level books. **Key Components**:
 
 **Multi-Level Book Support**:
