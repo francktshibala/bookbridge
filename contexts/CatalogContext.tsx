@@ -232,8 +232,14 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
       .then(([featuredData, enhancedData]) => {
         const duration = performance.now() - startTime;
 
-        // Guard: Only apply if request is still current AND filters haven't changed (prevent double filtering)
-        if (currentRequestIdRef.current === requestId && filters.collectionId === currentCollectionId) {
+        // Guard: Only apply if request is still current (prevent double filtering)
+        if (currentRequestIdRef.current === requestId) {
+          // Double-check collectionId hasn't changed during fetch (prevent stale results)
+          const finalCollectionId = filters.collectionId;
+          if (finalCollectionId !== currentCollectionId) {
+            // Collection changed during fetch, ignore this result to prevent double filtering
+            return;
+          }
           // Transform Featured Books to UnifiedBook format
           const featuredBooks: UnifiedBook[] = featuredData.items.map((book: FeaturedBook) => ({
             ...book,
