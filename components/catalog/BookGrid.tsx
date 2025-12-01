@@ -210,7 +210,6 @@ function BookGridSkeleton() {
       {Array.from({ length: 6 }).map((_, index) => (
         <div
           key={index}
-          className="animate-pulse"
           style={{
             background: 'var(--bg-secondary)',
             border: '2px solid var(--accent-primary)/30',
@@ -219,9 +218,25 @@ function BookGridSkeleton() {
             height: '192px', // h-48 matches actual card
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
+          {/* Subtle shimmer overlay - doesn't move the card */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent)',
+              animation: 'skeleton-shimmer 2s infinite',
+              pointerEvents: 'none',
+              zIndex: 1
+            }}
+          />
           <div>
             {/* Title skeleton */}
             <div
