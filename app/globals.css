@@ -1163,6 +1163,8 @@ div span.mobile-reading-text[data-sentence] {
     position: relative;
     overflow: hidden;
     margin: 0 8px;
+    z-index: 1;
+    isolation: isolate;
   }
   
   .nav-link-styled::before {

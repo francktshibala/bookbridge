@@ -94,8 +94,9 @@ export default function Navigation() {
                         alignItems: 'center',
                         gap: '6px',
                         whiteSpace: 'nowrap',
-                        overflow: 'visible',
                         cursor: 'pointer',
+                        position: 'relative',
+                        zIndex: 1,
                         ...(link.label === 'Home' ? { padding: '8px 16px', fontSize: '15px', lineHeight: 1.2 } : {}),
                         ...(link.label === 'Home' && pathname === '/' ? {
                           background: 'transparent',
