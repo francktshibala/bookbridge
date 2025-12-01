@@ -44,6 +44,41 @@
   - `docs/research/CURRENT_BOOKS_IMPROVEMENT_RESEARCH.md` (4-week, $12.7K plan)
   - Updated codebase overview with implementation guides
 
+#### **`feature/catalog-unification` - Catalog Unification (Active)**
+- **Purpose**: Unify book discovery into single catalog entry point
+- **Status**: ✅ **COMPLETE - All Phases Implemented** (Phases 1-9 complete, ready for production)
+- **Implementation Plan**: `/docs/CATALOG_UNIFICATION_FEASIBILITY.md` - Complete 9-phase migration plan
+- **Goal**: Unify book discovery into `/catalog` entry point, create unified reading route `/read/[slug]`
+- **Approach**: Extract reading interface to `/read/[slug]` route (Option 1)
+- **Completed Phases**:
+  - ✅ Phase 1-2: Reading interface extracted to `BundleReadingInterface.tsx`
+  - ✅ Phase 3: Unified reading route `/read/[slug]` created
+  - ✅ Phase 4: Catalog routing updated to `/read/[slug]`
+  - ✅ Phase 5: Enhanced Books architecture detection implemented
+  - ✅ Phase 6: Navigation updated (Library replaces Catalog, Browse All Books disabled)
+  - ✅ Phase 7: Cleanup - `/featured-books` replaced with redirect to `/catalog`
+  - ✅ Phase 8: Enhanced Books merged into catalog, `/enhanced-collection` redirected to `/catalog`
+  - ✅ Phase 9: Testing & Documentation - Testing checklist created, documentation updated
+- **Current State**:
+  - `/catalog` - **UNIFIED ENTRY POINT** - Shows both Featured Books and Enhanced Books (routes to `/read/[slug]` or `/library/[id]/read`)
+  - `/enhanced-collection` - **REDIRECT** - Redirects to `/catalog` (legacy route, kept for backwards compatibility)
+  - `/featured-books` - **REDIRECT** - Redirects to `/catalog` or `/read/[slug]` (legacy route, kept for backwards compatibility)
+  - `/library` - Browse All Books page **DISABLED IN NAVIGATION** (still accessible via direct URL)
+- **Key Files**:
+  - `/app/featured-books/page.tsx` - **REDIRECT** - Redirects to `/catalog` or `/read/[slug]` (legacy route)
+  - `/app/catalog/page.tsx` - Updated routing to `/read/[slug]`
+  - `/app/enhanced-collection/page.tsx` - **REDIRECT** - Redirects to `/catalog` (legacy route)
+  - `/components/reading/BundleReadingInterface.tsx` - Extracted reading component ✅
+  - `/app/read/[slug]/page.tsx` - Unified reading route ✅
+  - `/components/Navigation.tsx` - Updated to show Catalog, disabled Browse All Books ✅
+  - `/components/MobileNavigationMenu.tsx` - Updated navigation ✅
+- **Navigation Changes**:
+  - "Simplified Books" → "Library" (replaced in nav, routes to `/catalog`)
+  - "Browse All Books" → **DISABLED** (removed from navigation, still accessible via `/library`)
+  - "Enhanced Books" → **REMOVED** (merged into unified catalog, accessible via "Library")
+- **Benefits**: Single entry point, cleaner URLs, Netflix-like instant gratification, better separation of concerns
+- **Risk**: Low-Medium - reading interface is self-contained, requires component extraction
+
 #### **Future Branch Strategy**
 - **`feature/continuous-architecture`** (planned) - For future books implementation (15-week strategic transformation)
 - **`feature/prefetch-optimization`** (planned) - Advanced prefetch system
@@ -56,6 +91,14 @@
 git checkout fix/audio-flow-interruptions
 # Implement Phase 1-4 improvements
 # Files: useAutoAdvance.ts, InstantAudioPlayer.tsx, read/page.tsx
+```
+
+#### **For Catalog Unification (Feature)**
+```bash
+git checkout -b feature/catalog-unification
+# Implement catalog unification plan
+# Files: Extract reading interface, create /read/[slug] route, update catalog routing
+# Reference: docs/CATALOG_UNIFICATION_FEASIBILITY.md
 ```
 
 #### **For Future Books Architecture (Strategic)**
@@ -77,6 +120,7 @@ git checkout research/future-and-current-books-architecture
 | Requirement | Branch | Timeline | Investment | ROI |
 |-------------|--------|----------|------------|-----|
 | Fix current books quickly | `fix/audio-flow-interruptions` | 4 weeks | $12.7K | Immediate user satisfaction |
+| Unify catalog entry point | `feature/catalog-unification` | 2-3 days | Low-Medium | Better UX, cleaner architecture |
 | Transform to Speechify-level | `feature/continuous-architecture` | 15 weeks | $121K | Market competitive advantage |
 | Research documentation | `research/future-and-current-books-architecture` | Reference | $0 | Strategic planning |
 
@@ -172,13 +216,18 @@ This document establishes the universal accessibility vision while defining the 
 **Location**: `/CHUNK_ARCHITECTURE_QUESTIONS.md` *(Root level file)*  
 **Description**: Strategic architecture review and enhanced books content loading fix implementation guide. Contains architectural analysis comparing chunked vs continuous audio approaches (Speechify comparison), plus complete implementation status for fixing enhanced books' "0 of 0 words" display issues. **CRITICAL: Includes detailed implementation pattern with complete JavaScript code template for fixing remaining 6 enhanced books (Emma, Great Gatsby, Dr. Jekyll, etc.)** Documents Yellow Wallpaper fix completion with BookChunk record creation, API chunk inclusion, and database structure updates. Contains copy-paste code template with placeholder replacement instructions for systematic book fixes. Essential reference for enhanced books maintenance and architectural decision-making.
 
+### **CATALOG_UNIFICATION_FEASIBILITY.md** ⏳ **PLANNED**
+**Location**: `/docs/CATALOG_UNIFICATION_FEASIBILITY.md`  
+**Status**: 📋 **PLANNED - Not Yet Implemented**  
+**Description**: Comprehensive analysis and implementation plan for unifying book discovery into a single catalog entry point. **Goal**: Remove `/enhanced-collection` and `/featured-books` pages, making `/catalog` the ONLY entry point for book discovery. **Recommended Approach**: Option 1 - Extract reading interface to `/read/[slug]` route, creating clean separation between discovery (catalog) and reading (unified route). **Key Benefits**: Single entry point, cleaner URLs (`/read/always-a-family` vs `/featured-books?book=always-a-family`), Netflix-like instant gratification, better separation of concerns. **Implementation**: 9-phase migration checklist covering component extraction, route creation, catalog integration, Enhanced Books support, navigation updates, cleanup, testing, and documentation. **Architecture Compliance**: Follows FEATURED_BOOKS_REFACTOR_PLAN patterns (Single Source of Truth, explicit props, component extraction, service layer). **Styling Compliance**: Uses Neo-Classic theme variables and typography system. **Risk Assessment**: Low-Medium risk - reading interface is self-contained, requires component extraction (~400 lines). **Current State**: Three separate entry points (`/catalog`, `/featured-books`, `/enhanced-collection`) causing user confusion. **Target State**: One catalog (`/catalog`) → unified reading route (`/read/[slug]` for bundle books, `/read/[id]` for chunk books). Essential reference for future catalog unification work.
+
 ---
 
 ## 🏗️ **Core Application Structure**
 
 ### **Main Reading Page**
 **Location**: `/app/library/[id]/read/page.tsx`  
-**Description**: Central reading interface component handling book display, CEFR level controls, audio playback, and text simplification. Manages enhanced book detection (10 enhanced vs 19 limited books) and dynamic content fetching. Integrates WireframeAudioControls, voice selection, and word highlighting. Critical file modified in Phase 9 for clean reading experience implementation.
+**Description**: Central reading interface component handling book display, CEFR level controls, audio playback, and text simplification. Manages enhanced book detection (10 enhanced vs 19 limited books) and dynamic content fetching. Integrates WireframeAudioControls, voice selection, and word highlighting. Critical file modified in Phase 9 for clean reading experience implementation. **Note**: This route will remain for Enhanced Books (chunk architecture) per `CATALOG_UNIFICATION_FEASIBILITY.md` plan. Bundle books (FeaturedBooks) will migrate to `/read/[slug]` route.
 
 ### **Enhanced Collection API**
 **Location**: `/app/api/books/enhanced/route.ts`  
@@ -192,9 +241,10 @@ This document establishes the universal accessibility vision while defining the 
 
 ## 🎨 **User Interface Components**
 
-### **Enhanced Collection Page**
+### **Enhanced Collection Page** ⏳ **KEPT FOR NOW - PLANNED FOR UNIFICATION**
 **Location**: `/app/enhanced-collection/page.tsx`  
-**Description**: Dedicated collection page showcasing 10 enhanced books with custom abbreviations (EM, P&P, FR), unique gradient colors, and compact wireframe-style cards. Features load-more pagination, CEFR level indicators, and responsive design matching wireframes exactly. Built in Phase 6 with real-time database integration.
+**Status**: 📋 **Current State** - **KEPT IN NAVIGATION** - Planned for future merger into unified catalog  
+**Description**: Dedicated collection page showcasing 10 enhanced books with custom abbreviations (EM, P&P, FR), unique gradient colors, and compact wireframe-style cards. Features load-more pagination, CEFR level indicators, and responsive design matching wireframes exactly. Built in Phase 6 with real-time database integration. **Current Status**: Enhanced Books page remains accessible via navigation menu. **Future**: Will be merged into unified `/catalog` page per `CATALOG_UNIFICATION_FEASIBILITY.md` plan (Phase 7+). Enhanced Books will appear in catalog with visual badges (✨) and route to `/read/[id]` or `/library/[id]/read`.
 
 ### **Wireframe Audio Controls**
 **Location**: `/components/audio/WireframeAudioControls.tsx`  
@@ -204,8 +254,9 @@ This document establishes the universal accessibility vision while defining the 
 **Location**: `/components/audio/SmartPlayButton.tsx`
 **Description**: Advanced play/pause control with auto-advance functionality created in Phase 9. Shows dynamic states (Play/Auto/Manual) with smart color coding (green for auto, blue for manual). Reduces cognitive load by combining play and auto-advance controls into single interface.
 
-### **CEFR Level Selection Architecture**
-**Location**: `/app/featured-books/page.tsx` (lines 628-723, 1747-1781)
+### **CEFR Level Selection Architecture** ⏳ **PLANNED FOR UNIFICATION**
+**Location**: `/app/featured-books/page.tsx` (lines 628-723, 1747-1781)  
+**Status**: 📋 **Current State** - Reading interface will be extracted to `/read/[slug]` route per `CATALOG_UNIFICATION_FEASIBILITY.md`  
 **Description**: Dynamic multi-level CEFR selection system supporting both single-level and multi-level books. **Key Components**:
 
 **Multi-Level Book Support**:

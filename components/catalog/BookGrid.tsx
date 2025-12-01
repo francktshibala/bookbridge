@@ -9,15 +9,16 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import type { FeaturedBook } from '@prisma/client';
+import type { UnifiedBook } from '@/types/unified-book';
+import { isFeaturedBook, isEnhancedBook } from '@/types/unified-book';
 
 interface BookGridProps {
-  books: FeaturedBook[];
+  books: UnifiedBook[];
   loading?: boolean;
   hasMore?: boolean;
   onLoadMore?: () => void;
-  onSelectBook: (book: FeaturedBook) => void;
-  onAskAI?: (book: FeaturedBook) => void;
+  onSelectBook: (book: UnifiedBook) => void;
+  onAskAI?: (book: UnifiedBook) => void;
   emptyMessage?: string;
 }
 
@@ -86,10 +87,10 @@ function BookCard({
   onSelectBook,
   onAskAI
 }: {
-  book: FeaturedBook;
+  book: UnifiedBook;
   index: number;
-  onSelectBook: (book: FeaturedBook) => void;
-  onAskAI?: (book: FeaturedBook) => void;
+  onSelectBook: (book: UnifiedBook) => void;
+  onAskAI?: (book: UnifiedBook) => void;
 }) {
   // Format reading time
   const formatReadingTime = (minutes: number) => {
@@ -131,19 +132,43 @@ function BookCard({
 
           {/* Meta Tags - Compact Style */}
           <div className="flex gap-2 mb-3 flex-wrap">
-            <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-              A1-C2
-            </span>
-            {book.isClassic && (
+            {/* Architecture Badge */}
+            {isEnhancedBook(book) && (
+              <span className="px-2 py-1 bg-purple-100 text-purple-700 border border-purple-300 rounded-full text-xs font-medium">
+                ✨ Enhanced
+              </span>
+            )}
+            {isFeaturedBook(book) && (
+              <span className="px-2 py-1 bg-blue-100 text-blue-700 border border-blue-300 rounded-full text-xs font-medium">
+                🎧 Audio
+              </span>
+            )}
+            {/* CEFR Levels */}
+            {isFeaturedBook(book) ? (
+              <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+                A1-C2
+              </span>
+            ) : book.cefrLevels ? (
+              <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+                {book.cefrLevels}
+              </span>
+            ) : null}
+            {/* Classic Badge (Featured Books only) */}
+            {isFeaturedBook(book) && (book as any).isClassic && (
               <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
                 Classic
               </span>
             )}
-            {book.readingTimeMinutes > 0 && (
+            {/* Reading Time */}
+            {isFeaturedBook(book) && (book as any).readingTimeMinutes > 0 ? (
               <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-                {formatReadingTime(book.readingTimeMinutes)}
+                {formatReadingTime((book as any).readingTimeMinutes)}
               </span>
-            )}
+            ) : isEnhancedBook(book) && book.estimatedHours ? (
+              <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+                ~{book.estimatedHours}h
+              </span>
+            ) : null}
           </div>
 
           {/* Action Buttons - Compact Style */}
@@ -177,49 +202,78 @@ function BookCard({
   );
 }
 
-// Loading Skeleton
+// Loading Skeleton - Matches actual book card dimensions
 
 function BookGridSkeleton() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {Array.from({ length: 8 }).map((_, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto px-4">
+      {Array.from({ length: 6 }).map((_, index) => (
         <div
           key={index}
-          className="animate-pulse"
           style={{
             background: 'var(--bg-secondary)',
-            border: '1px solid var(--border-light)',
-            borderRadius: '12px',
-            padding: '1.5rem'
+            border: '2px solid var(--accent-primary)/30',
+            borderRadius: '0.5rem',
+            padding: '1.25rem',
+            height: '192px', // h-48 matches actual card
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
-          {/* Cover skeleton */}
+          {/* Subtle shimmer overlay - doesn't move the card */}
           <div
-            className="w-full aspect-[3/4] rounded-lg mb-4"
-            style={{ background: 'var(--border-light)' }}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent)',
+              animation: 'skeleton-shimmer 2s infinite',
+              pointerEvents: 'none',
+              zIndex: 1
+            }}
           />
+          <div>
+            {/* Title skeleton */}
+            <div
+              className="h-6 w-4/5 mb-2 rounded"
+              style={{ background: 'var(--border-light)', opacity: 0.6 }}
+            />
 
-          {/* Title skeleton */}
-          <div
-            className="h-5 w-3/4 mb-2 rounded"
-            style={{ background: 'var(--border-light)' }}
-          />
+            {/* Author skeleton */}
+            <div
+              className="h-4 w-2/3 mb-3 rounded"
+              style={{ background: 'var(--border-light)', opacity: 0.5 }}
+            />
 
-          {/* Author skeleton */}
-          <div
-            className="h-4 w-1/2 mb-3 rounded"
-            style={{ background: 'var(--border-light)' }}
-          />
+            {/* Badges skeleton */}
+            <div className="flex gap-2 mb-3">
+              <div
+                className="h-6 w-16 rounded-full"
+                style={{ background: 'var(--border-light)', opacity: 0.4 }}
+              />
+              <div
+                className="h-6 w-20 rounded-full"
+                style={{ background: 'var(--border-light)', opacity: 0.4 }}
+              />
+            </div>
+          </div>
 
-          {/* Description skeleton */}
-          <div
-            className="h-3 w-full mb-1 rounded"
-            style={{ background: 'var(--border-light)' }}
-          />
-          <div
-            className="h-3 w-5/6 rounded"
-            style={{ background: 'var(--border-light)' }}
-          />
+          {/* Buttons skeleton */}
+          <div className="flex gap-2 mt-auto">
+            <div
+              className="h-9 flex-1 rounded-lg"
+              style={{ background: 'var(--border-light)', opacity: 0.3 }}
+            />
+            <div
+              className="h-9 flex-1 rounded-lg"
+              style={{ background: 'var(--border-light)', opacity: 0.3 }}
+            />
+          </div>
         </div>
       ))}
     </div>

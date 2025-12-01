@@ -186,6 +186,11 @@ div span.mobile-reading-text[data-sentence] {
       100% { transform: translateX(100%); }
     }
     
+    @keyframes skeleton-shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    
     @keyframes float {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-20px) rotate(180deg); }
@@ -1163,6 +1168,8 @@ div span.mobile-reading-text[data-sentence] {
     position: relative;
     overflow: hidden;
     margin: 0 8px;
+    z-index: 1;
+    isolation: isolate;
   }
   
   .nav-link-styled::before {

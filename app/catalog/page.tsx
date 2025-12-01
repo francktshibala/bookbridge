@@ -11,18 +11,26 @@ import { Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { CatalogProvider } from '@/contexts/CatalogContext';
 import { CatalogBrowser } from '@/components/catalog/CatalogBrowser';
-import type { FeaturedBook } from '@prisma/client';
+import type { UnifiedBook } from '@/types/unified-book';
+import { isFeaturedBook, isEnhancedBook } from '@/types/unified-book';
 
 function CatalogContent() {
   const router = useRouter();
 
-  const handleSelectBook = (book: FeaturedBook) => {
-    // Navigate to the featured-books reading page with bundle architecture
-    // This ensures all books use the modern bundle-based reader with BundleAudioManager
-    router.push(`/featured-books?book=${book.slug}`);
+  const handleSelectBook = (book: UnifiedBook) => {
+    // Phase 8: Unified routing - handle both Featured Books and Enhanced Books
+    if (isFeaturedBook(book) && book.slug) {
+      // Featured Books (bundle architecture) → /read/[slug]
+      router.push(`/read/${book.slug}`);
+    } else if (isEnhancedBook(book)) {
+      // Enhanced Books (chunk architecture) → /library/[id]/read
+      router.push(`/library/${book.id}/read`);
+    } else {
+      console.error('Unknown book architecture:', book);
+    }
   };
 
-  const handleAskAI = (book: FeaturedBook) => {
+  const handleAskAI = (book: UnifiedBook) => {
     // TODO: Implement AI chat modal for books
     console.log('Ask AI about:', book.title);
   };

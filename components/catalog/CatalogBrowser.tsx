@@ -13,11 +13,11 @@ import { CollectionSelector } from './CollectionSelector';
 import { SearchBar } from './SearchBar';
 import { BookFilters } from './BookFilters';
 import { BookGrid } from './BookGrid';
-import type { FeaturedBook } from '@prisma/client';
+import type { UnifiedBook } from '@/types/unified-book';
 
 interface CatalogBrowserProps {
-  onSelectBook: (book: FeaturedBook) => void;
-  onAskAI?: (book: FeaturedBook) => void;
+  onSelectBook: (book: UnifiedBook) => void;
+  onAskAI?: (book: UnifiedBook) => void;
 }
 
 export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
@@ -60,7 +60,7 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
               lineHeight: '1.2'
             }}
           >
-            Featured Books
+            Library
           </h1>
           <p
             className="text-lg max-w-2xl mx-auto"

@@ -939,8 +939,8 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         {/* Browse Library Button */}
         <button
           onClick={() => {
-            // Navigate to featured books (simplified books) page
-            window.location.href = '/featured-books';
+            // Navigate to unified library page
+            window.location.href = '/catalog';
           }}
           style={{
             background: 'var(--bg-primary)',

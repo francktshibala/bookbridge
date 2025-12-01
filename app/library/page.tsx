@@ -581,9 +581,9 @@ export default function LibraryPage() {
     const featuredBookBySlug = ALL_FEATURED_BOOKS.find(book => book.id === bookId);
     
     if (featuredBookBySlug) {
-      // Direct slug match - route to featured books page
-      console.log(`📚 Routing featured book "${bookId}" to featured-books page`);
-      router.push(`/featured-books?book=${bookId}`);
+      // Direct slug match - route to unified reading page
+      console.log(`📚 Routing featured book "${bookId}" to unified reading page`);
+      router.push(`/read/${bookId}`);
       return;
     }
     
@@ -596,7 +596,7 @@ export default function LibraryPage() {
           const book = await response.json();
           if (book.slug) {
             console.log(`📚 Found featured book by database ID, routing to "${book.slug}"`);
-            router.push(`/featured-books?book=${book.slug}`);
+            router.push(`/read/${book.slug}`);
             return;
           }
         }

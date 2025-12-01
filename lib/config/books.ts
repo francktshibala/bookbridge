@@ -190,6 +190,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-blue-500 to-indigo-600',
     abbreviation: 'GL'
   },
+  {
+    id: 'always-a-family',
+    title: 'Always a Family',
+    author: 'Danny & Annie Perasa',
+    description: 'Deeply moving StoryCorps conversation about 63 years of love. Danny reads daily love notes he leaves for Annie. A1-A2-B1 levels available. Heartwarming, tearjerker story perfect for all levels.',
+    sentences: 44,
+    bundles: 11,
+    gradient: 'from-pink-500 to-rose-600',
+    abbreviation: 'AF'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;

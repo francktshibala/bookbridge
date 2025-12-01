@@ -29,9 +29,8 @@ export default function Navigation() {
   // Show some navigation items for all users, with user-specific items when logged in
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/enhanced-collection', label: 'Enhanced Books' },
-    { href: '/featured-books', label: 'Simplified Books' },
-    { href: '/library', label: 'Browse All Books' },
+    { href: '/catalog', label: 'Library' },
+    // Note: Enhanced Books now merged into unified catalog, 'Browse All Books' (/library) disabled per catalog unification plan
     // PILOT PHASE: Feedback collection (Week 1 implementation)
     { href: '/feedback', label: 'Leave Feedback' },
     // PILOT PHASE: Support Us donation link (Donorbox)
@@ -93,7 +92,11 @@ export default function Navigation() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '6px',
-                        ...(link.label === 'Home' ? { padding: '8px 16px', fontSize: '15px', whiteSpace: 'nowrap', overflow: 'visible', lineHeight: 1.2 } : {}),
+                        whiteSpace: 'nowrap',
+                        cursor: 'pointer',
+                        position: 'relative',
+                        zIndex: 1,
+                        ...(link.label === 'Home' ? { padding: '8px 16px', fontSize: '15px', lineHeight: 1.2 } : {}),
                         ...(link.label === 'Home' && pathname === '/' ? {
                           background: 'transparent',
                           boxShadow: 'none',
