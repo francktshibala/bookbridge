@@ -30,35 +30,6 @@ const SORT_OPTIONS: { label: string; value: 'popularityScore' | 'readingTimeMinu
   { label: 'Title (A-Z)', value: 'title' }
 ];
 
-// Quick Filter Chip Component
-function QuickFilterChip({
-  label,
-  onClick,
-  isActive
-}: {
-  label: string;
-  onClick: () => void;
-  isActive: boolean;
-}) {
-  return (
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={onClick}
-      className="px-4 py-2 rounded-full text-sm font-medium transition-all"
-      style={{
-        fontFamily: '"Source Serif Pro", Georgia, serif',
-        background: isActive ? 'var(--accent-primary)' : 'var(--bg-secondary)',
-        color: isActive ? 'var(--bg-primary)' : 'var(--text-primary)',
-        border: isActive ? 'none' : '1px solid var(--border-light)',
-        boxShadow: isActive ? '0 2px 8px var(--shadow-soft)' : 'none'
-      }}
-    >
-      {label}
-    </motion.button>
-  );
-}
-
 interface CatalogBrowserProps {
   onSelectBook: (book: UnifiedBook) => void;
   onAskAI?: (book: UnifiedBook) => void;
@@ -124,65 +95,6 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
           placeholder="Search by title, author, genre, mood, theme, or description..."
           showSuggestions={true}
         />
-
-        {/* Quick Filter Chips - Always Visible */}
-        {!selectedCollection && (
-          <div className="flex items-center justify-center flex-wrap gap-2">
-            <QuickFilterChip
-              label="Quick Reads"
-              onClick={() => {
-                const currentMax = filters.readingTimeMax;
-                setFilters({ readingTimeMax: currentMax === 30 ? undefined : 30 });
-              }}
-              isActive={filters.readingTimeMax === 30}
-            />
-            {/* Dynamic quick filters based on available facets */}
-            {facets?.genres && facets.genres.length > 0 && (
-              <>
-                {/* Show top 3 most common genres */}
-                {facets.genres.slice(0, 3).map(({ name, count }) => (
-                  <QuickFilterChip
-                    key={name}
-                    label={`${name} (${count})`}
-                    onClick={() => {
-                      const currentGenres = filters.genres || [];
-                      const hasGenre = currentGenres.includes(name);
-                      const updatedGenres = hasGenre
-                        ? currentGenres.filter(g => g !== name)
-                        : [...currentGenres, name];
-                      setFilters({
-                        genres: updatedGenres.length > 0 ? updatedGenres : undefined
-                      });
-                    }}
-                    isActive={filters.genres?.includes(name) || false}
-                  />
-                ))}
-              </>
-            )}
-            {facets?.moods && facets.moods.length > 0 && (
-              <>
-                {/* Show top 2 most common moods */}
-                {facets.moods.slice(0, 2).map(({ name, count }) => (
-                  <QuickFilterChip
-                    key={name}
-                    label={`${name} (${count})`}
-                    onClick={() => {
-                      const currentMoods = filters.moods || [];
-                      const hasMood = currentMoods.includes(name);
-                      const updatedMoods = hasMood
-                        ? currentMoods.filter(m => m !== name)
-                        : [...currentMoods, name];
-                      setFilters({
-                        moods: updatedMoods.length > 0 ? updatedMoods : undefined
-                      });
-                    }}
-                    isActive={filters.moods?.includes(name) || false}
-                  />
-                ))}
-              </>
-            )}
-          </div>
-        )}
 
         {/* Persistent Active Filter Summary */}
         {(() => {
