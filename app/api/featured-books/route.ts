@@ -66,11 +66,15 @@ export async function GET(request: NextRequest): Promise<NextResponse<CatalogRes
   }
 
   if (search && search.length >= 2) {
-    // Use full-text search if available, otherwise fallback to contains
+    // Enhanced search: title, author, description, genres, themes, moods
+    const searchLower = search.toLowerCase();
     where.OR = [
       { title: { contains: search, mode: 'insensitive' } },
       { author: { contains: search, mode: 'insensitive' } },
-      { description: { contains: search, mode: 'insensitive' } }
+      { description: { contains: search, mode: 'insensitive' } },
+      { genres: { hasSome: [searchLower] } }, // Search in genres array
+      { themes: { hasSome: [searchLower] } }, // Search in themes array
+      { moods: { hasSome: [searchLower] } }   // Search in moods array
     ];
   }
 

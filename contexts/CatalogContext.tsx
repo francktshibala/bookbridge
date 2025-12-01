@@ -229,7 +229,7 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
           }));
 
           // Transform Enhanced Books to UnifiedBook format
-          const enhancedBooks: UnifiedBook[] = (enhancedData.books || []).map((book: any) => ({
+          let enhancedBooks: UnifiedBook[] = (enhancedData.books || []).map((book: any) => ({
             id: book.id,
             title: book.title,
             author: book.author,
@@ -241,8 +241,37 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
             estimatedHours: book.estimatedHours,
             totalChunks: book.totalChunks,
             status: book.status,
-            availableLevels: book.availableLevels
+            availableLevels: book.availableLevels,
+            // Include mood/theme if available in Enhanced Books data
+            mood: book.mood,
+            theme: book.theme
           }));
+
+          // Client-side search filtering for Enhanced Books (if search query exists)
+          if (filters.search && filters.search.length >= 2) {
+            const searchLower = filters.search.toLowerCase();
+            const searchTerms = searchLower.split(' ').filter(term => term.length > 0);
+            
+            enhancedBooks = enhancedBooks.filter(book => {
+              // Build searchable text from all fields
+              const searchableText = [
+                book.title,
+                book.author,
+                book.description,
+                book.genre,
+                book.cefrLevels,
+                (book as any).mood,
+                (book as any).theme,
+                book.availableLevels?.join(' ')
+              ]
+                .filter(Boolean)
+                .join(' ')
+                .toLowerCase();
+              
+              // Match all search terms (AND logic)
+              return searchTerms.every(term => searchableText.includes(term));
+            });
+          }
 
           // Merge and sort: Featured Books first, then Enhanced Books
           const unifiedBooks: UnifiedBook[] = [...featuredBooks, ...enhancedBooks];

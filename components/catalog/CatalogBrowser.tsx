@@ -77,7 +77,7 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
         {/* Search Bar */}
         <SearchBar
           onSearch={search}
-          placeholder="Search by title, author, or genre..."
+          placeholder="Search by title, author, genre, mood, theme, or description..."
           showSuggestions={true}
         />
 

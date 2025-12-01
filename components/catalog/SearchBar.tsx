@@ -20,7 +20,7 @@ interface SearchBarProps {
 
 export function SearchBar({
   onSearch,
-  placeholder = 'Search by title, author, or genre...',
+  placeholder = 'Search by title, author, genre, mood, theme, or description...',
   showSuggestions = true
 }: SearchBarProps) {
   const [query, setQuery] = useState('');
