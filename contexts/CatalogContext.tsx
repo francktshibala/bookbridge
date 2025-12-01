@@ -113,7 +113,8 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
   const prefetchAbortRef = useRef<AbortController | null>(null);
 
   // Derive filters from URL (GPT-5: URL as source of truth)
-  const filters = parseFiltersFromURL(searchParams);
+  // Memoize to prevent infinite loops
+  const filters = React.useMemo(() => parseFiltersFromURL(searchParams), [searchParams]);
   const selectedCollection = filters.collectionId || null;
 
   // Load collections on mount
@@ -285,7 +286,7 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
     return () => {
       abortController.abort();
     };
-  }, [searchParams, filters]); // Re-fetch when URL changes
+  }, [searchParams]); // Re-fetch when URL changes (filters derived from searchParams)
 
   // Prefetch next page when idle (GPT-5 recommendation)
   useEffect(() => {
