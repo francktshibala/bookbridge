@@ -248,13 +248,33 @@ const badges = [
 
 ### **Phase 2: Enhanced Features (3-5 days)**
 4. ✅ **Advanced Search Panel** - Dropdown with field-specific search
-5. ✅ **Quick Filters** - Always-visible common filters
+5. ⚠️ **Quick Filters** - Always-visible common filters (UI implemented, filtering logic needs work - see TODO below)
 6. ✅ **Search Suggestions** - Autocomplete as user types
 
 ### **Phase 3: Polish (2-3 days)**
 7. ✅ **Mobile Optimizations** - Better mobile card layout
 8. ✅ **Visual Hierarchy** - Improved spacing and typography
 9. ✅ **Loading States** - Better skeleton loaders
+
+---
+
+## ⚠️ Known Issues / Future Work
+
+### **Quick Filter Chips - Incomplete**
+**Status:** UI implemented, filtering logic not working  
+**Issue:** Quick filter chips appear and hide collections when clicked, but books are not actually filtered.  
+**Root Cause:** Filter state updates correctly, but API calls may not be receiving filter parameters properly, or URL sync may not be triggering refetch.  
+**Next Steps:**
+1. Verify `updateFilters` properly updates URL parameters
+2. Check if `useEffect` in `CatalogContext` triggers on URL changes
+3. Verify API endpoint receives and applies filter parameters correctly
+4. Test filter serialization/deserialization in URL
+5. Check if cache is preventing filtered results from showing
+
+**Files to Review:**
+- `contexts/CatalogContext.tsx` - `updateFilters` and `useEffect` for URL-driven fetching
+- `lib/services/book-catalog.ts` - `serializeFiltersToURL` and `parseFiltersFromURL`
+- `app/api/featured-books/route.ts` - Filter parameter handling
 
 ---
 

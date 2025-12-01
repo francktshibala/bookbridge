@@ -154,7 +154,6 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
     }
     
     const queryString = serializeFiltersToURL(merged);
-    console.log('🔍 [CatalogContext] Updating filters:', { newFilters, merged, queryString });
     router.push(`?${queryString}`, { scroll: false });
   }, [filters, router]);
 
@@ -190,8 +189,6 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
     const cacheKey = searchParams.toString();
     const startTime = performance.now(); // Track TTFA (GPT-5)
     const currentCollectionId = filters.collectionId; // Capture current collection ID at start of effect
-    
-    console.log('📚 [CatalogContext] Fetching books with filters:', { filters, cacheKey });
 
     // Check cache first (GPT-5 recommendation)
     const cached = responseCache.get(cacheKey);
