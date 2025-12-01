@@ -6,19 +6,18 @@ const prisma = new PrismaClient();
 export const runtime = 'nodejs';
 export const revalidate = 3600; // Cache for 1 hour
 
-interface SentenceTiming {
-  text: string;
-  start: number;
-  end: number;
-  duration: number;
-}
-
-interface BundleResponse {
-  id: string;
-  text: string;
-  sentences: SentenceTiming[];
+interface BundleMetadata {
+  bundleId: string;
+  bundleIndex: number;
   audioUrl: string;
   totalDuration: number;
+  sentences: Array<{
+    sentenceId: string;
+    sentenceIndex: number;
+    text: string;
+    startTime: number;
+    endTime: number;
+  }>;
 }
 
 export async function GET(request: NextRequest) {
@@ -33,6 +32,7 @@ export async function GET(request: NextRequest) {
       orderBy: { chunkIndex: 'asc' },
       select: {
         id: true,
+        chunkIndex: true,
         chunkText: true,
         audioFilePath: true,
         audioDurationMetadata: true
@@ -41,59 +41,111 @@ export async function GET(request: NextRequest) {
 
     console.log(`✅ Found ${bookChunks.length} A2 chunks`);
 
-    const bundles: BundleResponse[] = bookChunks.map(chunk => {
-      let sentencesWithTimings: SentenceTiming[] = [];
-      let totalDuration = 0;
+    // Convert BookChunk data to API format with cached timing (Solution 1)
+    const bundles: BundleMetadata[] = [];
+    let totalSentencesProcessed = 0;
 
-      // Solution 1: Use cached duration metadata (FAST PATH)
+    bookChunks.forEach((chunk: any, index) => {
+      // Generate audio URL from relative path
+      const audioUrl = `/audio-files/${chunk.audioFilePath}`;
+
+      let sentencesWithTimings;
+      let totalDuration: number;
+
+      // Check if we have cached duration metadata (Solution 1 - FAST PATH)
       if (chunk.audioDurationMetadata && typeof chunk.audioDurationMetadata === 'object') {
         const metadata = chunk.audioDurationMetadata as any;
         totalDuration = metadata.measuredDuration || 0;
 
+        // Use cached sentence timings if available
         if (metadata.sentenceTimings && Array.isArray(metadata.sentenceTimings)) {
-          sentencesWithTimings = metadata.sentenceTimings.map((timing: any) => ({
+          sentencesWithTimings = metadata.sentenceTimings.map((timing: any, idx: number) => ({
+            sentenceId: `s${totalSentencesProcessed + idx}`,
+            sentenceIndex: totalSentencesProcessed + idx,
             text: timing.text,
-            start: timing.start,
-            end: timing.end,
-            duration: timing.duration
+            startTime: timing.start,
+            endTime: timing.end
+          }));
+        } else {
+          // Fallback: split text and use proportional timing from cached duration
+          const chunkSentences = chunk.chunkText
+            .split(/(?<=[.!?])\s+/)
+            .map((s: string) => s.trim())
+            .filter((s: string) => s.length > 5);
+
+          const avgDuration = totalDuration / chunkSentences.length;
+
+          sentencesWithTimings = chunkSentences.map((text: string, sentenceIdx: number) => ({
+            sentenceId: `s${totalSentencesProcessed + sentenceIdx}`,
+            sentenceIndex: totalSentencesProcessed + sentenceIdx,
+            text: text,
+            startTime: sentenceIdx * avgDuration,
+            endTime: (sentenceIdx + 1) * avgDuration
           }));
         }
+      } else {
+        // No cached metadata - estimate using Jane voice timing (0.85× speed)
+        console.warn(`Bundle ${index}: No cached duration metadata, estimating...`);
+        const chunkSentences = chunk.chunkText
+          .split(/(?<=[.!?])\s+/)
+          .map((s: string) => s.trim())
+          .filter((s: string) => s.length > 5);
+
+        const baseSecondsPerWord = 0.40; // Jane voice base rate
+        const speed = 0.85; // FFmpeg slowdown applied
+
+        let currentTime = 0;
+        sentencesWithTimings = chunkSentences.map((text: string, sentenceIdx: number) => {
+          const words = text.split(/\s+/).length;
+          const baseDuration = (words * baseSecondsPerWord) / speed;
+          const punctuationBonus = text.match(/[.!?]$/) ? 0.3 : 0;
+          const estimatedDuration = baseDuration + punctuationBonus + 0.2;
+
+          const sentenceData = {
+            sentenceId: `s${totalSentencesProcessed + sentenceIdx}`,
+            sentenceIndex: totalSentencesProcessed + sentenceIdx,
+            text: text,
+            startTime: currentTime,
+            endTime: currentTime + estimatedDuration
+          };
+
+          currentTime += estimatedDuration;
+          return sentenceData;
+        });
+
+        totalDuration = currentTime;
       }
 
-      // Fallback: No timing metadata available
-      if (sentencesWithTimings.length === 0) {
-        const sentences = chunk.chunkText.split(/(?<=[.!?])\s+/).filter((s: string) => s.trim());
-        const avgDuration = totalDuration / sentences.length;
+      totalSentencesProcessed += sentencesWithTimings.length;
 
-        sentencesWithTimings = sentences.map((text: string, idx: number) => ({
-          text,
-          start: idx * avgDuration,
-          end: (idx + 1) * avgDuration,
-          duration: avgDuration
-        }));
-      }
-
-      return {
-        id: chunk.id,
-        text: chunk.chunkText,
-        sentences: sentencesWithTimings,
-        audioUrl: chunk.audioFilePath || '',
-        totalDuration
-      };
+      bundles.push({
+        bundleId: `b${chunk.chunkIndex}`,
+        bundleIndex: chunk.chunkIndex,
+        audioUrl: audioUrl,
+        totalDuration: totalDuration,
+        sentences: sentencesWithTimings
+      });
     });
+
+    const totalDurationMinutes = bundles.reduce((sum, b) => sum + b.totalDuration, 0) / 60;
+    console.log(`🎵 Total audio duration: ${totalDurationMinutes.toFixed(2)} minutes`);
 
     return NextResponse.json({
       success: true,
-      bundles,
-      metadata: {
-        bookId: 'how-great-leaders-inspire-action',
-        title: 'How Great Leaders Inspire Action',
-        author: 'Simon Sinek',
-        level: 'A2',
-        totalBundles: bundles.length,
-        voice: 'Jane',
-        voiceId: 'RILOU7YmBhvwJGDGjNmP',
-        speed: 0.85
+      bookId: 'how-great-leaders-inspire-action',
+      title: 'How Great Leaders Inspire Action',
+      author: 'Simon Sinek',
+      level: 'A2',
+      bundles: bundles,
+      bundleCount: bundles.length,
+      totalBundles: bundles.length,
+      totalSentences: totalSentencesProcessed,
+      totalDurationMinutes: parseFloat(totalDurationMinutes.toFixed(2)),
+      audioType: 'elevenlabs'
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=3600'
       }
     });
 
