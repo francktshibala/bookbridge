@@ -2,7 +2,9 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 
 // Configuration
 const LONG_PRESS_DURATION = 500; // 0.5 seconds
-const CLICK_TIMEOUT = 200; // 200ms for distinguishing click vs drag
+const CLICK_TIMEOUT = 300; // 300ms for distinguishing click vs drag (increased from 200ms)
+const DRAG_THRESHOLD = 10; // 10px threshold for drag detection (increased from 5px)
+const SCROLL_COOLDOWN = 300; // 300ms cooldown after scroll ends before allowing dictionary
 const HIGHLIGHT_CLASS = 'dictionary-word-selected';
 
 interface DictionaryInteractionResult {
@@ -24,12 +26,53 @@ export function useDictionaryInteraction(): DictionaryInteractionResult {
   const mouseDownTimeRef = useRef<number>(0);
   const isLongPressRef = useRef(false);
   const isDraggingRef = useRef(false);
+  
+  // Scroll detection state (Option 1: Scroll Detection + Cooldown)
+  const isScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastScrollTimeRef = useRef<number>(0);
+
+  // Scroll detection effect (Option 1: Scroll Detection + Cooldown)
+  useEffect(() => {
+    const handleScroll = () => {
+      isScrollingRef.current = true;
+      lastScrollTimeRef.current = Date.now();
+      
+      // Clear existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // Set cooldown period after scroll ends
+      scrollTimeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false;
+        console.log('📖 Dictionary: Scroll cooldown ended, dictionary enabled');
+      }, SCROLL_COOLDOWN);
+    };
+
+    // Listen for scroll events (wheel for desktop, touchmove for mobile)
+    window.addEventListener('wheel', handleScroll, { passive: true });
+    window.addEventListener('touchmove', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener('touchmove', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Clean up selection when component unmounts
   useEffect(() => {
     return () => {
       if (longPressTimerRef.current) {
         clearTimeout(longPressTimerRef.current);
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
       clearSelection();
     };
@@ -260,22 +303,39 @@ export function useDictionaryInteraction(): DictionaryInteractionResult {
     e.preventDefault();
     cancelLongPress();
 
+    // Option 1: Block dictionary if scrolling (with cooldown)
+    if (isScrollingRef.current) {
+      console.log('📖 Dictionary: Blocked - user is scrolling');
+      mouseDownPos.current = null;
+      mouseDownTimeRef.current = 0;
+      return;
+    }
+
+    // Check if scroll just ended (within cooldown period)
+    const timeSinceScroll = Date.now() - lastScrollTimeRef.current;
+    if (timeSinceScroll < SCROLL_COOLDOWN) {
+      console.log('📖 Dictionary: Blocked - scroll cooldown active');
+      mouseDownPos.current = null;
+      mouseDownTimeRef.current = 0;
+      return;
+    }
+
     const mouseUpTime = Date.now();
     const clickDuration = mouseUpTime - mouseDownTimeRef.current;
     const mouseDown = mouseDownPos.current;
 
-    // Check if mouse moved (dragging)
+    // Option 2: Check if mouse moved (dragging) with increased threshold
     if (mouseDown) {
       const dragDistance = Math.sqrt(
         Math.pow(e.clientX - mouseDown.x, 2) +
         Math.pow(e.clientY - mouseDown.y, 2)
       );
-      isDraggingRef.current = dragDistance > 5; // 5px threshold
+      isDraggingRef.current = dragDistance > DRAG_THRESHOLD; // 10px threshold (increased from 5px)
     }
 
     // Handle as dictionary lookup if:
     // 1. It was a long press, OR
-    // 2. It was a quick click (not drag) under 200ms
+    // 2. It was a quick click (not drag) under 300ms (increased from 200ms)
     const isQuickClick = clickDuration < CLICK_TIMEOUT && !isDraggingRef.current;
     const shouldTriggerDictionary = isLongPressRef.current || isQuickClick;
 
@@ -305,6 +365,19 @@ export function useDictionaryInteraction(): DictionaryInteractionResult {
 
   const handleTouchEnd = useCallback((e: React.TouchEvent<HTMLSpanElement>) => {
     cancelLongPress();
+
+    // Option 1: Block dictionary if scrolling (with cooldown)
+    if (isScrollingRef.current) {
+      console.log('📖 Dictionary: Blocked - user is scrolling (touch)');
+      return;
+    }
+
+    // Check if scroll just ended (within cooldown period)
+    const timeSinceScroll = Date.now() - lastScrollTimeRef.current;
+    if (timeSinceScroll < SCROLL_COOLDOWN) {
+      console.log('📖 Dictionary: Blocked - scroll cooldown active (touch)');
+      return;
+    }
 
     // Check if it was a long press
     if (!isLongPressRef.current) {

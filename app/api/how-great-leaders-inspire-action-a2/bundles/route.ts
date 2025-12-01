@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
+
+// Initialize Supabase client for audio URL generation
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+  process.env.SUPABASE_SERVICE_ROLE_KEY as string
+);
 
 export const runtime = 'nodejs';
 export const revalidate = 3600; // Cache for 1 hour
@@ -46,8 +53,11 @@ export async function GET(request: NextRequest) {
     let totalSentencesProcessed = 0;
 
     bookChunks.forEach((chunk: any, index) => {
-      // Generate audio URL from relative path
-      const audioUrl = `/audio-files/${chunk.audioFilePath}`;
+      // Generate Supabase storage URL from relative path using API
+      const audioUrl = supabase.storage
+        .from('audio-files')
+        .getPublicUrl(chunk.audioFilePath!)
+        .data.publicUrl;
 
       let sentencesWithTimings;
       let totalDuration: number;
