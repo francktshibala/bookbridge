@@ -139,15 +139,22 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
     // Explicitly clear properties that are set to undefined
     if (newFilters.genres === undefined && 'genres' in newFilters) {
       merged.genres = undefined;
+    } else if (newFilters.genres !== undefined) {
+      merged.genres = newFilters.genres.length === 0 ? undefined : newFilters.genres;
     }
+    
     if (newFilters.moods === undefined && 'moods' in newFilters) {
       merged.moods = undefined;
+    } else if (newFilters.moods !== undefined) {
+      merged.moods = newFilters.moods.length === 0 ? undefined : newFilters.moods;
     }
+    
     if (newFilters.readingTimeMax === undefined && 'readingTimeMax' in newFilters) {
       merged.readingTimeMax = undefined;
     }
     
     const queryString = serializeFiltersToURL(merged);
+    console.log('🔍 [CatalogContext] Updating filters:', { newFilters, merged, queryString });
     router.push(`?${queryString}`, { scroll: false });
   }, [filters, router]);
 
@@ -183,6 +190,8 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
     const cacheKey = searchParams.toString();
     const startTime = performance.now(); // Track TTFA (GPT-5)
     const currentCollectionId = filters.collectionId; // Capture current collection ID at start of effect
+    
+    console.log('📚 [CatalogContext] Fetching books with filters:', { filters, cacheKey });
 
     // Check cache first (GPT-5 recommendation)
     const cached = responseCache.get(cacheKey);
