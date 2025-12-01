@@ -33,7 +33,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
     { href: '/', label: 'Home', icon: '🏠' },
     { href: '/catalog', label: '📚 Catalog', icon: '📚' },
     { href: '/enhanced-collection', label: '✨ Enhanced Books', icon: '✨' },
-    { href: '/library', label: 'Browse All Books', icon: '📖' },
+    // Note: 'Browse All Books' (/library) disabled per catalog unification plan
     { href: '/feedback', label: '💬 Leave Feedback', icon: '💬' },
     { href: 'https://donorbox.org/bookbridge-make-books-accessible-to-everyone-regardless-of-their-their-situation', label: 'Support Us', icon: '❤️', isPremium: true, isExternal: true },
   ];

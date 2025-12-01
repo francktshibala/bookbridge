@@ -46,16 +46,33 @@
 
 #### **`feature/catalog-unification` - Catalog Unification (Active)**
 - **Purpose**: Unify book discovery into single catalog entry point
-- **Status**: 📋 **PLANNED - Documentation Complete, Implementation Pending**
+- **Status**: 🚧 **IN PROGRESS - Phase 6 Complete** (Phases 1-6 implemented, Phases 7-9 pending)
 - **Implementation Plan**: `/docs/CATALOG_UNIFICATION_FEASIBILITY.md` - Complete 9-phase migration plan
-- **Goal**: Remove `/enhanced-collection` and `/featured-books` pages, make `/catalog` the ONLY entry point
+- **Goal**: Unify book discovery into `/catalog` entry point, create unified reading route `/read/[slug]`
 - **Approach**: Extract reading interface to `/read/[slug]` route (Option 1)
+- **Completed Phases**:
+  - ✅ Phase 1-2: Reading interface extracted to `BundleReadingInterface.tsx`
+  - ✅ Phase 3: Unified reading route `/read/[slug]` created
+  - ✅ Phase 4: Catalog routing updated to `/read/[slug]`
+  - ✅ Phase 5: Enhanced Books architecture detection implemented
+  - ✅ Phase 6: Navigation updated (Catalog replaces Simplified Books, Browse All Books disabled)
+- **Current State**:
+  - `/catalog` - Unified entry point for Featured Books (routes to `/read/[slug]`)
+  - `/enhanced-collection` - **KEPT FOR NOW** - Enhanced Books still use separate page (will be merged later)
+  - `/featured-books` - Still exists but navigation removed (will be removed in Phase 7)
+  - `/library` - Browse All Books page **DISABLED IN NAVIGATION** (still accessible via direct URL)
 - **Key Files**:
-  - `/app/featured-books/page.tsx` - Extract reading interface component (~400 lines)
-  - `/app/catalog/page.tsx` - Update routing to `/read/[slug]`
-  - `/app/enhanced-collection/page.tsx` - Will be removed/merged into catalog
-  - `/components/reading/BundleReadingInterface.tsx` - New extracted component
-  - `/app/read/[slug]/page.tsx` - New unified reading route
+  - `/app/featured-books/page.tsx` - Reading interface extracted, page still exists
+  - `/app/catalog/page.tsx` - Updated routing to `/read/[slug]`
+  - `/app/enhanced-collection/page.tsx` - **KEPT** - Enhanced Books page (not removed yet)
+  - `/components/reading/BundleReadingInterface.tsx` - Extracted reading component ✅
+  - `/app/read/[slug]/page.tsx` - Unified reading route ✅
+  - `/components/Navigation.tsx` - Updated to show Catalog, disabled Browse All Books ✅
+  - `/components/MobileNavigationMenu.tsx` - Updated navigation ✅
+- **Navigation Changes**:
+  - "Simplified Books" → "Catalog" (replaced in nav)
+  - "Browse All Books" → **DISABLED** (removed from navigation, still accessible via `/library`)
+  - "Enhanced Books" → **KEPT** (still in navigation, will be merged into catalog later)
 - **Benefits**: Single entry point, cleaner URLs, Netflix-like instant gratification, better separation of concerns
 - **Risk**: Low-Medium - reading interface is self-contained, requires component extraction
 
@@ -221,10 +238,10 @@ This document establishes the universal accessibility vision while defining the 
 
 ## 🎨 **User Interface Components**
 
-### **Enhanced Collection Page** ⏳ **PLANNED FOR UNIFICATION**
+### **Enhanced Collection Page** ⏳ **KEPT FOR NOW - PLANNED FOR UNIFICATION**
 **Location**: `/app/enhanced-collection/page.tsx`  
-**Status**: 📋 **Current State** - Planned for removal/merger into unified catalog  
-**Description**: Dedicated collection page showcasing 10 enhanced books with custom abbreviations (EM, P&P, FR), unique gradient colors, and compact wireframe-style cards. Features load-more pagination, CEFR level indicators, and responsive design matching wireframes exactly. Built in Phase 6 with real-time database integration. **Future**: Will be merged into unified `/catalog` page per `CATALOG_UNIFICATION_FEASIBILITY.md` plan. Enhanced Books will appear in catalog with visual badges (✨) and route to `/read/[id]` or `/library/[id]/read`.
+**Status**: 📋 **Current State** - **KEPT IN NAVIGATION** - Planned for future merger into unified catalog  
+**Description**: Dedicated collection page showcasing 10 enhanced books with custom abbreviations (EM, P&P, FR), unique gradient colors, and compact wireframe-style cards. Features load-more pagination, CEFR level indicators, and responsive design matching wireframes exactly. Built in Phase 6 with real-time database integration. **Current Status**: Enhanced Books page remains accessible via navigation menu. **Future**: Will be merged into unified `/catalog` page per `CATALOG_UNIFICATION_FEASIBILITY.md` plan (Phase 7+). Enhanced Books will appear in catalog with visual badges (✨) and route to `/read/[id]` or `/library/[id]/read`.
 
 ### **Wireframe Audio Controls**
 **Location**: `/components/audio/WireframeAudioControls.tsx`  

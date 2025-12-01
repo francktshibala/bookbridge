@@ -31,7 +31,7 @@ export default function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/catalog', label: 'Catalog' },
     { href: '/enhanced-collection', label: 'Enhanced Books' },
-    { href: '/library', label: 'Browse All Books' },
+    // Note: 'Browse All Books' (/library) disabled per catalog unification plan
     // PILOT PHASE: Feedback collection (Week 1 implementation)
     { href: '/feedback', label: 'Leave Feedback' },
     // PILOT PHASE: Support Us donation link (Donorbox)
@@ -93,7 +93,9 @@ export default function Navigation() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '6px',
-                        ...(link.label === 'Home' ? { padding: '8px 16px', fontSize: '15px', whiteSpace: 'nowrap', overflow: 'visible', lineHeight: 1.2 } : {}),
+                        whiteSpace: 'nowrap',
+                        overflow: 'visible',
+                        ...(link.label === 'Home' ? { padding: '8px 16px', fontSize: '15px', lineHeight: 1.2 } : {}),
                         ...(link.label === 'Home' && pathname === '/' ? {
                           background: 'transparent',
                           boxShadow: 'none',
