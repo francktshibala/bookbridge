@@ -202,49 +202,63 @@ function BookCard({
   );
 }
 
-// Loading Skeleton
+// Loading Skeleton - Matches actual book card dimensions
 
 function BookGridSkeleton() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {Array.from({ length: 8 }).map((_, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto px-4">
+      {Array.from({ length: 6 }).map((_, index) => (
         <div
           key={index}
           className="animate-pulse"
           style={{
             background: 'var(--bg-secondary)',
-            border: '1px solid var(--border-light)',
-            borderRadius: '12px',
-            padding: '1.5rem'
+            border: '2px solid var(--accent-primary)/30',
+            borderRadius: '0.5rem',
+            padding: '1.25rem',
+            height: '192px', // h-48 matches actual card
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
           }}
         >
-          {/* Cover skeleton */}
-          <div
-            className="w-full aspect-[3/4] rounded-lg mb-4"
-            style={{ background: 'var(--border-light)' }}
-          />
+          <div>
+            {/* Title skeleton */}
+            <div
+              className="h-6 w-4/5 mb-2 rounded"
+              style={{ background: 'var(--border-light)', opacity: 0.6 }}
+            />
 
-          {/* Title skeleton */}
-          <div
-            className="h-5 w-3/4 mb-2 rounded"
-            style={{ background: 'var(--border-light)' }}
-          />
+            {/* Author skeleton */}
+            <div
+              className="h-4 w-2/3 mb-3 rounded"
+              style={{ background: 'var(--border-light)', opacity: 0.5 }}
+            />
 
-          {/* Author skeleton */}
-          <div
-            className="h-4 w-1/2 mb-3 rounded"
-            style={{ background: 'var(--border-light)' }}
-          />
+            {/* Badges skeleton */}
+            <div className="flex gap-2 mb-3">
+              <div
+                className="h-6 w-16 rounded-full"
+                style={{ background: 'var(--border-light)', opacity: 0.4 }}
+              />
+              <div
+                className="h-6 w-20 rounded-full"
+                style={{ background: 'var(--border-light)', opacity: 0.4 }}
+              />
+            </div>
+          </div>
 
-          {/* Description skeleton */}
-          <div
-            className="h-3 w-full mb-1 rounded"
-            style={{ background: 'var(--border-light)' }}
-          />
-          <div
-            className="h-3 w-5/6 rounded"
-            style={{ background: 'var(--border-light)' }}
-          />
+          {/* Buttons skeleton */}
+          <div className="flex gap-2 mt-auto">
+            <div
+              className="h-9 flex-1 rounded-lg"
+              style={{ background: 'var(--border-light)', opacity: 0.3 }}
+            />
+            <div
+              className="h-9 flex-1 rounded-lg"
+              style={{ background: 'var(--border-light)', opacity: 0.3 }}
+            />
+          </div>
         </div>
       ))}
     </div>

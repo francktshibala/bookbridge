@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
-export const revalidate = 0
+export const revalidate = 300 // Cache for 5 minutes
 
 // Minimal HEAD handler to ensure the route is matched by Next.js routing
 export async function HEAD() {
@@ -55,23 +55,7 @@ export async function GET(
         DATABASE_URL_EXISTS: !!process.env.DATABASE_URL 
       })
       
-      // Test database connection
-      const connectionTest = await prisma.$executeRaw`SELECT 1 as test`
-      console.log('✅ Database connection test:', connectionTest)
-      
-      // DEBUG: List all available book IDs in database
-      const allBookContent = await prisma.bookContent.findMany({
-        select: { bookId: true, title: true }
-      })
-      console.log('📚 Available bookContent IDs:', allBookContent.map(b => `${b.bookId}: ${b.title}`))
-      
-      const allSimplifications = await prisma.bookSimplification.findMany({
-        select: { bookId: true },
-        distinct: ['bookId']
-      })
-      console.log('📚 Available simplification IDs:', allSimplifications.map(s => s.bookId))
-      
-      // Try exact match first
+      // Try exact match first (removed debug queries for performance)
       let storedContent = await prisma.bookContent.findUnique({
         where: { bookId: trimmedId },
         include: {
@@ -131,6 +115,10 @@ export async function GET(
           totalChunks: storedContent.totalChunks,
           era: storedContent.era,
           message: 'Content loaded from database storage'
+        }, {
+          headers: {
+            'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600' // Cache for 5 min, stale for 10 min
+          }
         })
       }
 
@@ -192,6 +180,10 @@ export async function GET(
           characterCount: fullText.length,
           totalChunks: allChunks.length,
           message: 'Enhanced book content loaded from simplifications'
+        }, {
+          headers: {
+            'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600' // Cache for 5 min, stale for 10 min
+          }
         })
       }
 
