@@ -32,8 +32,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
   const navigationItems = [
     { href: '/', label: 'Home', icon: '🏠' },
     { href: '/catalog', label: '📚 Library', icon: '📚' },
-    { href: '/enhanced-collection', label: '✨ Enhanced Books', icon: '✨' },
-    // Note: 'Browse All Books' (/library) disabled per catalog unification plan
+    // Note: Enhanced Books now merged into unified catalog, 'Browse All Books' (/library) disabled per catalog unification plan
     { href: '/feedback', label: '💬 Leave Feedback', icon: '💬' },
     { href: 'https://donorbox.org/bookbridge-make-books-accessible-to-everyone-regardless-of-their-their-situation', label: 'Support Us', icon: '❤️', isPremium: true, isExternal: true },
   ];

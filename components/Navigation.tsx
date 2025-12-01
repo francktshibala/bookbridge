@@ -30,8 +30,7 @@ export default function Navigation() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/catalog', label: 'Library' },
-    { href: '/enhanced-collection', label: 'Enhanced Books' },
-    // Note: 'Browse All Books' (/library) disabled per catalog unification plan
+    // Note: Enhanced Books now merged into unified catalog, 'Browse All Books' (/library) disabled per catalog unification plan
     // PILOT PHASE: Feedback collection (Week 1 implementation)
     { href: '/feedback', label: 'Leave Feedback' },
     // PILOT PHASE: Support Us donation link (Donorbox)
