@@ -116,10 +116,23 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
 
   // Load book from slug on mount
   useEffect(() => {
+    console.log('🔍 [BundleReadingInterface] Loading book:', bookSlug);
     const book = ALL_FEATURED_BOOKS.find(b => b.id === bookSlug);
-    if (book && (!selectedBook || selectedBook.id !== bookSlug)) {
-      const level = defaultLevel as any || 'A1'; // TODO: Get from BOOK_DEFAULT_LEVELS
-      contextSelectBook(book, level);
+    
+    if (!book) {
+      console.error('❌ [BundleReadingInterface] Book not found:', bookSlug);
+      return;
+    }
+    
+    console.log('✅ [BundleReadingInterface] Book found:', book.title);
+    
+    // Always select the book if slug doesn't match (handles navigation between books)
+    if (!selectedBook || selectedBook.id !== bookSlug) {
+      console.log('📚 [BundleReadingInterface] Selecting book:', book.title);
+      const level = (defaultLevel as any) || undefined; // Let AudioContext use book's default
+      void contextSelectBook(book, level);
+    } else {
+      console.log('⏭️ [BundleReadingInterface] Book already selected:', selectedBook.title);
     }
   }, [bookSlug, defaultLevel, selectedBook, contextSelectBook]);
 
@@ -143,14 +156,18 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
   // TODO: Copy remaining logic from featured-books/page.tsx
   // This is a placeholder structure - we'll add the full reading interface next
 
-  if (!selectedBook) {
+  // Show loading state while book is being selected or data is loading
+  if (!selectedBook || loadState === 'loading') {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[var(--bg-primary)]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--accent-primary)] mx-auto mb-4"></div>
           <p className="text-[var(--text-secondary)]" style={{ fontFamily: '"Source Serif Pro", Georgia, serif' }}>
-            Loading book...
+            {!selectedBook ? 'Loading book...' : 'Loading book data...'}
           </p>
+          {error && (
+            <p className="text-red-500 text-sm mt-2">Error: {error}</p>
+          )}
         </div>
       </div>
     );
