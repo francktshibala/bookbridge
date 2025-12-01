@@ -252,7 +252,8 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'B1': '/api/danger-of-single-story-b1/bundles'
   },
   'how-great-leaders-inspire-action': {
-    'A1': '/api/how-great-leaders-inspire-action-a1/bundles'
+    'A1': '/api/how-great-leaders-inspire-action-a1/bundles',
+    'A2': '/api/how-great-leaders-inspire-action-a2/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };
@@ -335,7 +336,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'story-of-an-hour': ['A1'],  // A1 with Jane (user requested)
   'power-of-vulnerability': ['A1', 'A2', 'B1'],  // A1 with Jane, A2 with Daniel, B1 with Jane (TED Talk - Modern Voices collection)
   'danger-of-single-story': ['A1', 'A2', 'B1'],  // A1 with Sarah, A2 with Daniel, B1 with Jane (TED Talk - Modern Voices collection)
-  'how-great-leaders-inspire-action': ['A1'],  // A1 with Daniel (TED Talk - Modern Voices collection)
+  'how-great-leaders-inspire-action': ['A1', 'A2'],  // A1 with Daniel, A2 with Jane (TED Talk - Modern Voices collection)
 };
 
 // Single-level books configuration
