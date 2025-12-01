@@ -17,9 +17,9 @@ function CatalogContent() {
   const router = useRouter();
 
   const handleSelectBook = (book: FeaturedBook) => {
-    // Navigate to the featured-books reading page with bundle architecture
-    // This ensures all books use the modern bundle-based reader with BundleAudioManager
-    router.push(`/featured-books?book=${book.slug}`);
+    // Navigate to the unified reading route
+    // Phase 4: Catalog Unification - Route to /read/[slug] instead of /featured-books
+    router.push(`/read/${book.slug}`);
   };
 
   const handleAskAI = (book: FeaturedBook) => {
