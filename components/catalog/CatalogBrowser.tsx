@@ -8,7 +8,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useCatalogContext } from '@/contexts/CatalogContext';
 import { CollectionSelector } from './CollectionSelector';
 import { SearchBar } from './SearchBar';
