@@ -44,6 +44,21 @@
   - `docs/research/CURRENT_BOOKS_IMPROVEMENT_RESEARCH.md` (4-week, $12.7K plan)
   - Updated codebase overview with implementation guides
 
+#### **`feature/catalog-unification` - Catalog Unification (Active)**
+- **Purpose**: Unify book discovery into single catalog entry point
+- **Status**: 📋 **PLANNED - Documentation Complete, Implementation Pending**
+- **Implementation Plan**: `/docs/CATALOG_UNIFICATION_FEASIBILITY.md` - Complete 9-phase migration plan
+- **Goal**: Remove `/enhanced-collection` and `/featured-books` pages, make `/catalog` the ONLY entry point
+- **Approach**: Extract reading interface to `/read/[slug]` route (Option 1)
+- **Key Files**:
+  - `/app/featured-books/page.tsx` - Extract reading interface component (~400 lines)
+  - `/app/catalog/page.tsx` - Update routing to `/read/[slug]`
+  - `/app/enhanced-collection/page.tsx` - Will be removed/merged into catalog
+  - `/components/reading/BundleReadingInterface.tsx` - New extracted component
+  - `/app/read/[slug]/page.tsx` - New unified reading route
+- **Benefits**: Single entry point, cleaner URLs, Netflix-like instant gratification, better separation of concerns
+- **Risk**: Low-Medium - reading interface is self-contained, requires component extraction
+
 #### **Future Branch Strategy**
 - **`feature/continuous-architecture`** (planned) - For future books implementation (15-week strategic transformation)
 - **`feature/prefetch-optimization`** (planned) - Advanced prefetch system
@@ -56,6 +71,14 @@
 git checkout fix/audio-flow-interruptions
 # Implement Phase 1-4 improvements
 # Files: useAutoAdvance.ts, InstantAudioPlayer.tsx, read/page.tsx
+```
+
+#### **For Catalog Unification (Feature)**
+```bash
+git checkout -b feature/catalog-unification
+# Implement catalog unification plan
+# Files: Extract reading interface, create /read/[slug] route, update catalog routing
+# Reference: docs/CATALOG_UNIFICATION_FEASIBILITY.md
 ```
 
 #### **For Future Books Architecture (Strategic)**
@@ -77,6 +100,7 @@ git checkout research/future-and-current-books-architecture
 | Requirement | Branch | Timeline | Investment | ROI |
 |-------------|--------|----------|------------|-----|
 | Fix current books quickly | `fix/audio-flow-interruptions` | 4 weeks | $12.7K | Immediate user satisfaction |
+| Unify catalog entry point | `feature/catalog-unification` | 2-3 days | Low-Medium | Better UX, cleaner architecture |
 | Transform to Speechify-level | `feature/continuous-architecture` | 15 weeks | $121K | Market competitive advantage |
 | Research documentation | `research/future-and-current-books-architecture` | Reference | $0 | Strategic planning |
 
