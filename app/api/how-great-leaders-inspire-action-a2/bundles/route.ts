@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import fs from 'fs';
+import path from 'path';
 
 const prisma = new PrismaClient();
 
@@ -130,6 +132,32 @@ export async function GET(request: NextRequest) {
     const totalDurationMinutes = bundles.reduce((sum, b) => sum + b.totalDuration, 0) / 60;
     console.log(`🎵 Total audio duration: ${totalDurationMinutes.toFixed(2)} minutes`);
 
+    // Load preview text and audio from cache
+    let preview: string | null = null;
+    let previewAudio: { audioUrl: string; duration: number } | null = null;
+
+    const cacheDir = path.join(process.cwd(), 'cache');
+
+    // Load preview text
+    const previewTextPath = path.join(cacheDir, 'how-great-leaders-inspire-action-A2-preview.txt');
+    if (fs.existsSync(previewTextPath)) {
+      preview = fs.readFileSync(previewTextPath, 'utf8').trim();
+      console.log(`✅ Loaded A2 preview text from cache (${preview.length} characters)`);
+    }
+
+    // Load preview audio metadata
+    const previewAudioPath = path.join(cacheDir, 'how-great-leaders-inspire-action-A2-preview-audio.json');
+    if (fs.existsSync(previewAudioPath)) {
+      const audioMetadata = JSON.parse(fs.readFileSync(previewAudioPath, 'utf8'));
+      if (audioMetadata.audio && audioMetadata.audio.url && audioMetadata.audio.duration) {
+        previewAudio = {
+          audioUrl: audioMetadata.audio.url,
+          duration: audioMetadata.audio.duration
+        };
+        console.log('✅ Loaded A2 preview audio metadata from cache');
+      }
+    }
+
     return NextResponse.json({
       success: true,
       bookId: 'how-great-leaders-inspire-action',
@@ -141,6 +169,8 @@ export async function GET(request: NextRequest) {
       totalBundles: bundles.length,
       totalSentences: totalSentencesProcessed,
       totalDurationMinutes: parseFloat(totalDurationMinutes.toFixed(2)),
+      preview: preview,
+      previewAudio: previewAudio,
       audioType: 'elevenlabs'
     }, {
       headers: {
