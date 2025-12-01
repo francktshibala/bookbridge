@@ -939,7 +939,7 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         {/* Browse Library Button */}
         <button
           onClick={() => {
-            // Navigate to unified catalog page
+            // Navigate to unified library page
             window.location.href = '/catalog';
           }}
           style={{

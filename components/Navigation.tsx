@@ -29,7 +29,7 @@ export default function Navigation() {
   // Show some navigation items for all users, with user-specific items when logged in
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/catalog', label: 'Catalog' },
+    { href: '/catalog', label: 'Library' },
     { href: '/enhanced-collection', label: 'Enhanced Books' },
     // Note: 'Browse All Books' (/library) disabled per catalog unification plan
     // PILOT PHASE: Feedback collection (Week 1 implementation)
@@ -95,6 +95,7 @@ export default function Navigation() {
                         gap: '6px',
                         whiteSpace: 'nowrap',
                         overflow: 'visible',
+                        cursor: 'pointer',
                         ...(link.label === 'Home' ? { padding: '8px 16px', fontSize: '15px', lineHeight: 1.2 } : {}),
                         ...(link.label === 'Home' && pathname === '/' ? {
                           background: 'transparent',

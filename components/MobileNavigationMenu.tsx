@@ -31,7 +31,7 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
 
   const navigationItems = [
     { href: '/', label: 'Home', icon: '🏠' },
-    { href: '/catalog', label: '📚 Catalog', icon: '📚' },
+    { href: '/catalog', label: '📚 Library', icon: '📚' },
     { href: '/enhanced-collection', label: '✨ Enhanced Books', icon: '✨' },
     // Note: 'Browse All Books' (/library) disabled per catalog unification plan
     { href: '/feedback', label: '💬 Leave Feedback', icon: '💬' },
