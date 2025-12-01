@@ -200,6 +200,9 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
     clearSelection
   } = useDictionaryInteraction();
 
+  // Track if we're changing settings (to auto-close modal)
+  const isChangingSettingsRef = useRef(false);
+
   // Load book from slug on mount
   useEffect(() => {
     console.log('🔍 [BundleReadingInterface] Loading book:', bookSlug);
@@ -221,6 +224,26 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
       console.log('⏭️ [BundleReadingInterface] Book already selected:', selectedBook.title);
     }
   }, [bookSlug, defaultLevel, selectedBook, contextSelectBook]);
+
+  // Auto-close settings modal when loading completes after a settings change
+  useEffect(() => {
+    if (isChangingSettingsRef.current && loadState === 'ready' && showSettingsModal) {
+      console.log('✅ [BundleReadingInterface] Settings change complete, closing modal');
+      setShowSettingsModal(false);
+      isChangingSettingsRef.current = false;
+    }
+  }, [loadState, showSettingsModal]);
+
+  // Wrapper handlers that track settings changes
+  const handleLevelChange = async (level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2') => {
+    isChangingSettingsRef.current = true;
+    await contextSwitchLevel(level);
+  };
+
+  const handleContentModeChange = async (mode: 'simplified' | 'original') => {
+    isChangingSettingsRef.current = true;
+    await contextSwitchContentMode(mode);
+  };
 
   // Back button handler - routes to catalog
   const handleBack = () => {
@@ -892,11 +915,14 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
         {/* Settings Modal */}
         <SettingsModal
           isOpen={showSettingsModal}
-          onClose={() => setShowSettingsModal(false)}
+          onClose={() => {
+            setShowSettingsModal(false);
+            isChangingSettingsRef.current = false; // Reset flag when manually closed
+          }}
           currentLevel={cefrLevel}
-          onLevelChange={contextSwitchLevel}
+          onLevelChange={handleLevelChange}
           currentContentMode={contentMode}
-          onContentModeChange={contextSwitchContentMode}
+          onContentModeChange={handleContentModeChange}
           availableLevels={contextAvailableLevels}
         />
 
