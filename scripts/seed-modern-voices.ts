@@ -31,8 +31,8 @@ function convertGradient(tailwind: string): string {
 function inferTEDMetadata(title: string, description: string) {
   const desc = description.toLowerCase();
 
-  // Genres for TED Talk
-  const genres: string[] = ['Inspirational Talk', 'Psychology', 'Personal Development'];
+  // Genres from curation file: Psychology, Personal Growth, Inspiration
+  const genres: string[] = ['Psychology', 'Personal Growth', 'Inspiration'];
 
   // Themes
   const themes: string[] = [];
@@ -42,8 +42,8 @@ function inferTEDMetadata(title: string, description: string) {
   if (desc.includes('worthiness') || desc.includes('self-worth')) themes.push('Self-Worth');
   if (desc.includes('courage') || desc.includes('authentic')) themes.push('Courage', 'Authenticity');
 
-  // Moods
-  const moods: string[] = ['inspiring', 'eye-opening', 'vulnerable', 'heartwarming'];
+  // Moods from curation file: Vulnerable, Eye-opening, Heartwarming
+  const moods: string[] = ['Vulnerable', 'Eye-opening', 'Heartwarming'];
 
   return { genres, themes, moods };
 }

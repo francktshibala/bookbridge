@@ -256,6 +256,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'A2': '/api/how-great-leaders-inspire-action-a2/bundles',
     'B1': '/api/how-great-leaders-inspire-action-b1/bundles'
   },
+  'always-a-family': {
+    'A1': '/api/always-a-family-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -277,6 +280,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'power-of-vulnerability': 'A1',  // Default to A1 for The Power of Vulnerability (TED Talk)
   'danger-of-single-story': 'A1',  // Default to A1 for The Danger of a Single Story (TED Talk)
   'how-great-leaders-inspire-action': 'A1',  // Default to A1 for How Great Leaders Inspire Action (TED Talk)
+  'always-a-family': 'A1',  // Default to A1 for Always a Family (StoryCorps)
 };
 
 // Get the correct CEFR level for a book
@@ -338,6 +342,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'power-of-vulnerability': ['A1', 'A2', 'B1'],  // A1 with Jane, A2 with Daniel, B1 with Jane (TED Talk - Modern Voices collection)
   'danger-of-single-story': ['A1', 'A2', 'B1'],  // A1 with Sarah, A2 with Daniel, B1 with Jane (TED Talk - Modern Voices collection)
   'how-great-leaders-inspire-action': ['A1', 'A2', 'B1'],  // A1 with Daniel, A2 with Jane, B1 with Sarah (TED Talk - Modern Voices collection)
+  'always-a-family': ['A1'],  // A1 with Sarah (StoryCorps - Modern Voices collection)
 };
 
 // Single-level books configuration

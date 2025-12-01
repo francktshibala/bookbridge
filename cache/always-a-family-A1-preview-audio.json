@@ -1,0 +1,13 @@
+{
+  "contentId": "always-a-family",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/A1/preview.mp3",
+    "duration": 32.5861,
+    "voice": "Sarah",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "generationSpeed": 0.9,
+    "ffmpegSpeed": 0.85
+  },
+  "generatedAt": "2025-12-01T02:50:27.521Z"
+}

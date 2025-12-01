@@ -15,6 +15,7 @@ import { RecommendationsSection } from '@/components/RecommendationsSection';
 import { useBookViewTracking } from '@/lib/use-recommendations';
 import { useAuth } from '@/components/SimpleAuthProvider';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
+import { ALL_FEATURED_BOOKS } from '@/lib/config/books';
 import type { ExternalBook, BookSearchResults, BookSource } from '@/types/book-sources';
  
 
@@ -572,10 +573,40 @@ export default function LibraryPage() {
     }
   };
 
-  const handleReadBook = (bookId: string) => {
+  const handleReadBook = async (bookId: string) => {
     console.log('Reading book:', bookId);
     announceToScreenReader(`Opening book for reading`);
-    // Navigate to the reading page with browse source
+    
+    // Check if this is a featured book by slug (most common case)
+    const featuredBookBySlug = ALL_FEATURED_BOOKS.find(book => book.id === bookId);
+    
+    if (featuredBookBySlug) {
+      // Direct slug match - route to featured books page
+      console.log(`📚 Routing featured book "${bookId}" to featured-books page`);
+      router.push(`/featured-books?book=${bookId}`);
+      return;
+    }
+    
+    // If bookId looks like a database ID (long alphanumeric string), 
+    // it might be a FeaturedBook database ID - try to look it up
+    if (bookId.length > 20 && /^[a-z0-9]+$/.test(bookId)) {
+      try {
+        const response = await fetch(`/api/featured-books/by-id/${bookId}`);
+        if (response.ok) {
+          const book = await response.json();
+          if (book.slug) {
+            console.log(`📚 Found featured book by database ID, routing to "${book.slug}"`);
+            router.push(`/featured-books?book=${book.slug}`);
+            return;
+          }
+        }
+      } catch (error) {
+        // If lookup fails, continue to library route
+        console.log('Featured book lookup failed, routing to library');
+      }
+    }
+    
+    // Not a featured book - route to library reading page
     router.push(`/library/${bookId}/read?source=browse`);
   };
 

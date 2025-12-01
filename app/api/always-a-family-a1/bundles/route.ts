@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+  process.env.SUPABASE_SERVICE_ROLE_KEY as string
+);
 
 export const runtime = 'nodejs';
 export const revalidate = 3600; // Cache for 1 hour
@@ -20,14 +26,17 @@ interface BundleMetadata {
   }>;
 }
 
+const BOOK_ID = 'always-a-family';
+const CEFR_LEVEL = 'A1';
+
 export async function GET(request: NextRequest) {
   try {
-    console.log(`📚 Fetching B1 bundles for "How Great Leaders Inspire Action"...`);
+    console.log(`📚 Fetching A1 bundles for "Always a Family"...`);
 
     const bookChunks = await prisma.bookChunk.findMany({
       where: {
-        bookId: 'how-great-leaders-inspire-action',
-        cefrLevel: 'B1'
+        bookId: BOOK_ID,
+        cefrLevel: CEFR_LEVEL
       },
       orderBy: { chunkIndex: 'asc' },
       select: {
@@ -39,35 +48,34 @@ export async function GET(request: NextRequest) {
       }
     });
 
-    console.log(`✅ Found ${bookChunks.length} B1 chunks`);
+    console.log(`✅ Found ${bookChunks.length} A1 chunks`);
 
-    // Convert BookChunk data to API format with cached timing (Solution 1)
     const bundles: BundleMetadata[] = [];
     let totalSentencesProcessed = 0;
 
     bookChunks.forEach((chunk: any, index) => {
-      // Generate audio URL from relative path
-      const audioUrl = `/audio-files/${chunk.audioFilePath}`;
+      // Generate Supabase storage URL from relative path using API
+      const audioUrl = supabase.storage
+        .from('audio-files')
+        .getPublicUrl(chunk.audioFilePath!)
+        .data.publicUrl;
 
       let sentencesWithTimings;
       let totalDuration: number;
 
-      // Check if we have cached duration metadata (Solution 1 - FAST PATH)
       if (chunk.audioDurationMetadata && typeof chunk.audioDurationMetadata === 'object') {
         const metadata = chunk.audioDurationMetadata as any;
         totalDuration = metadata.measuredDuration || 0;
 
-        // Use cached sentence timings if available
         if (metadata.sentenceTimings && Array.isArray(metadata.sentenceTimings)) {
           sentencesWithTimings = metadata.sentenceTimings.map((timing: any, idx: number) => ({
             sentenceId: `s${totalSentencesProcessed + idx}`,
             sentenceIndex: totalSentencesProcessed + idx,
             text: timing.text,
-            startTime: timing.start,
-            endTime: timing.end
+            startTime: timing.startTime,
+            endTime: timing.endTime
           }));
         } else {
-          // Fallback: split text and use proportional timing from cached duration
           const chunkSentences = chunk.chunkText
             .split(/(?<=[.!?])\s+/)
             .map((s: string) => s.trim())
@@ -84,14 +92,13 @@ export async function GET(request: NextRequest) {
           }));
         }
       } else {
-        // No cached metadata - estimate using Sarah voice timing (0.85× speed)
         console.warn(`Bundle ${index}: No cached duration metadata, estimating...`);
         const chunkSentences = chunk.chunkText
           .split(/(?<=[.!?])\s+/)
           .map((s: string) => s.trim())
           .filter((s: string) => s.length > 5);
 
-        const baseSecondsPerWord = 0.40; // Sarah voice base rate
+        const baseSecondsPerWord = 0.30; // Sarah voice base rate
         const speed = 0.85; // FFmpeg slowdown applied
 
         let currentTime = 0;
@@ -130,21 +137,18 @@ export async function GET(request: NextRequest) {
     const totalDurationMinutes = bundles.reduce((sum, b) => sum + b.totalDuration, 0) / 60;
     console.log(`🎵 Total audio duration: ${totalDurationMinutes.toFixed(2)} minutes`);
 
-    // Load preview text and audio from cache
     let preview: string | null = null;
     let previewAudio: { audioUrl: string; duration: number } | null = null;
 
     const cacheDir = path.join(process.cwd(), 'cache');
 
-    // Load preview text
-    const previewTextPath = path.join(cacheDir, 'how-great-leaders-inspire-action-B1-preview.txt');
+    const previewTextPath = path.join(cacheDir, `${BOOK_ID}-${CEFR_LEVEL}-preview.txt`);
     if (fs.existsSync(previewTextPath)) {
       preview = fs.readFileSync(previewTextPath, 'utf8').trim();
-      console.log(`✅ Loaded B1 preview text from cache (${preview.length} characters)`);
+      console.log(`✅ Loaded A1 preview text from cache (${preview.length} characters)`);
     }
 
-    // Load preview audio metadata
-    const previewAudioPath = path.join(cacheDir, 'how-great-leaders-inspire-action-B1-preview-audio.json');
+    const previewAudioPath = path.join(cacheDir, `${BOOK_ID}-${CEFR_LEVEL}-preview-audio.json`);
     if (fs.existsSync(previewAudioPath)) {
       const audioMetadata = JSON.parse(fs.readFileSync(previewAudioPath, 'utf8'));
       if (audioMetadata.audio && audioMetadata.audio.url && audioMetadata.audio.duration) {
@@ -152,16 +156,16 @@ export async function GET(request: NextRequest) {
           audioUrl: audioMetadata.audio.url,
           duration: audioMetadata.audio.duration
         };
-        console.log('✅ Loaded B1 preview audio metadata from cache');
+        console.log('✅ Loaded A1 preview audio metadata from cache');
       }
     }
 
     return NextResponse.json({
       success: true,
-      bookId: 'how-great-leaders-inspire-action',
-      title: 'How Great Leaders Inspire Action',
-      author: 'Simon Sinek',
-      level: 'B1',
+      bookId: BOOK_ID,
+      title: 'Always a Family',
+      author: 'Danny & Annie Perasa',
+      level: CEFR_LEVEL,
       bundles: bundles,
       bundleCount: bundles.length,
       totalBundles: bundles.length,
@@ -173,17 +177,33 @@ export async function GET(request: NextRequest) {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'public, max-age=3600'
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
       }
     });
 
   } catch (error) {
-    console.error('❌ Error fetching B1 bundles:', error);
+    console.error('❌ Error fetching A1 bundles:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    
+    // Provide more helpful error message for database connection issues
+    if (errorMessage.includes('Can\'t reach database server')) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Database connection failed',
+          message: 'Unable to connect to database. Please check your database connection and try again.'
+        },
+        { status: 503 } // Service Unavailable
+      );
+    }
+    
     return NextResponse.json(
       {
         success: false,
         error: 'Failed to fetch bundles',
-        message: error instanceof Error ? error.message : 'Unknown error'
+        message: errorMessage
       },
       { status: 500 }
     );

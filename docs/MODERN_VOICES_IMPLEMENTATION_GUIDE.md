@@ -175,7 +175,7 @@ wc -w cache/{content-id}-{level}-preview.txt
 # - Re-run validation
 ```
 
-### Phase 4: Audio Generation (MANDATORY SOLUTION 1)
+### Phase 4: Audio Generation (MANDATORY SOLUTION 1 + ENHANCED TIMING V3)
 ```bash
 # ✅ 7. Generate Bundle Audio (Follow MASTER_MISTAKES Phase 3)
 node scripts/generate-{content-id}-bundles.js [LEVEL] --pilot
@@ -184,16 +184,47 @@ node scripts/generate-{content-id}-bundles.js [LEVEL] --pilot
 # SAME REQUIREMENTS AS BOOKS:
 # - Use November 2025 production formula (FFmpeg 0.85× post-processing)
 # - Measure duration with ffprobe during generation
-# - Calculate proportional sentence timings (Enhanced Timing v3)
+# - Calculate proportional sentence timings (Enhanced Timing v3 - MANDATORY)
 # - Cache audioDurationMetadata in database (Solution 1)
 # - Store relative audio paths (not full URLs)
 # - Run in TERMINAL for long-running generation
 # - Test pilot (10 bundles) before full generation
 #
+# ⚠️ ENHANCED TIMING V3 REQUIREMENTS (MANDATORY FOR PERFECT SYNC):
+# - ✅ Character-count proportion (NOT word-count) - prevents sync issues on complex sentences
+# - ✅ Punctuation penalties: commas (150ms), semicolons (250ms), colons (200ms), em-dashes (180ms), ellipses (120ms)
+# - ✅ Pause-budget-first approach (subtract pauses before distributing remaining time)
+# - ✅ Renormalization to ensure sum equals measured duration exactly
+# - ✅ Safeguards: max 600ms penalty/sentence, min 250ms duration, overflow handling
+# - ✅ Result: Perfect sync for complex sentences (30-50 words, 4+ commas)
+# - ❌ NEVER use simple word-count proportion (breaks on B1+ complexity with 15-20 word sentences)
+# - 📚 Reference: `docs/MASTER_MISTAKES_PREVENTION.md` lines 39-47 for complete specification
+# - 📚 Technical implementation: `docs/AUDIO_SYNC_IMPLEMENTATION_GUIDE.md` lines 194-238
+#
+# ⚠️ DATABASE TIMING FORMAT (CRITICAL - PREVENTS SYNC ISSUES):
+# When storing sentenceTimings in audioDurationMetadata, MUST use exact format:
+# {
+#   text: "Sentence text here",
+#   startTime: 0.0,        // ✅ Use startTime (NOT start)
+#   endTime: 2.34,         // ✅ Use endTime (NOT end)
+#   duration: 2.34,
+#   sentenceIndex: 0       // ✅ Include sentenceIndex for proper mapping
+# }
+# 
+# ❌ WRONG FORMAT (causes sync issues):
+# {
+#   text: "Sentence text here",
+#   start: 0.0,            // ❌ Wrong property name
+#   end: 2.34              // ❌ Wrong property name
+# }
+#
+# API endpoints expect startTime/endTime format - mismatch causes sync failures!
+#
 # VOICE SELECTION FOR MODERN VOICES:
 # - TED Talks: Jane voice (professional audiobook reader)
 # - Podcasts: Daniel or Jane (match content tone)
 # - Essays: Jane (neutral, professional)
+# - StoryCorps/Dialogues: Sarah voice (warm, conversational - see "Always a Family")
 ```
 
 ### Phase 5: Database Integration
@@ -208,6 +239,28 @@ node scripts/generate-{content-id}-bundles.js [LEVEL] --pilot
 # - Stores audioDurationMetadata (Solution 1) in database
 # - Validates integrity (checks audio paths, duration metadata)
 #
+# ⚠️ CRITICAL: Sentence Timing Format (MUST match API expectations):
+# When creating sentenceTimings array, use EXACT format:
+# const sentenceTimings = bundle.sentences.map((sentence, idx) => ({
+#   text: sentence,
+#   startTime: idx * avgDurationPerSentence,        // ✅ startTime (NOT start)
+#   endTime: (idx + 1) * avgDurationPerSentence,    // ✅ endTime (NOT end)
+#   duration: avgDurationPerSentence,
+#   sentenceIndex: bundle.startSentenceIndex + idx  // ✅ Include sentenceIndex
+# }));
+#
+# The audioDurationMetadata structure:
+# {
+#   version: 1,
+#   measuredDuration: bundle.duration,              // From ffprobe measurement
+#   sentenceTimings: sentenceTimings,               // Array with startTime/endTime
+#   measuredAt: new Date().toISOString(),
+#   method: 'ffprobe-measured',
+#   voiceId: bundle.voiceId,
+#   voiceName: bundle.voiceName,
+#   speed: bundle.speed
+# }
+#
 # Run integration script:
 npx tsx scripts/integrate-{content-id}-{level}-database.ts
 # Example: npx tsx scripts/integrate-power-of-vulnerability-a2-database.ts
@@ -221,6 +274,13 @@ npx tsx scripts/integrate-{content-id}-{level}-database.ts
 # If you skip this step:
 # - API endpoint will return 404 (no data found)
 # - Frontend will show "Failed to fetch book data"
+#
+# ⚠️ VALIDATION: Verify timing format matches working books:
+# Query database and check sentenceTimings format:
+# SELECT audioDurationMetadata->'sentenceTimings'->0 FROM "BookChunk" 
+# WHERE "bookId" = '{content-id}' AND "cefrLevel" = '{level}' LIMIT 1;
+# Expected keys: ["text", "startTime", "endTime", "duration", "sentenceIndex"]
+# If you see "start"/"end": WRONG - will cause sync issues!
 ```
 
 ### Phase 6: API Endpoint Creation

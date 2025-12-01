@@ -202,6 +202,16 @@ const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'LL'
   },
   {
+    id: 'always-a-family',
+    title: 'Always a Family',
+    author: 'Danny & Annie Perasa',
+    description: 'Deeply moving StoryCorps conversation about 63 years of love. Danny reads daily love notes he leaves for Annie. A1 level with Sarah voice. Heartwarming, tearjerker story perfect for beginners.',
+    sentences: 60,
+    bundles: 15,
+    gradient: 'from-pink-500 to-rose-600',
+    abbreviation: 'AF'
+  },
+  {
     id: 'after-twenty-years',
     title: 'After Twenty Years',
     author: 'O. Henry',
@@ -379,6 +389,9 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'A2': '/api/how-great-leaders-inspire-action-a2/bundles',
     'B1': '/api/how-great-leaders-inspire-action-b1/bundles'
   },
+  'always-a-family': {
+    'A1': '/api/always-a-family-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -396,7 +409,8 @@ const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'story-of-an-hour': 'A1',  // Default to A1 for The Story of an Hour
   'power-of-vulnerability': 'A1',  // Default to A1 for The Power of Vulnerability (TED Talk)
   'danger-of-single-story': 'A1',  // Default to A1 for The Danger of a Single Story (TED Talk)
-  'how-great-leaders-inspire-action': 'A1'  // Default to A1 for How Great Leaders Inspire Action (TED Talk)
+  'how-great-leaders-inspire-action': 'A1',  // Default to A1 for How Great Leaders Inspire Action (TED Talk)
+  'always-a-family': 'A1'  // Default to A1 for Always a Family (StoryCorps)
 };
 
 // Get the correct CEFR level for a book

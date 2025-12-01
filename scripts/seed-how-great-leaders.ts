@@ -30,18 +30,15 @@ function convertGradient(tailwind: string): string {
 function inferTEDMetadata(title: string, description: string) {
   const desc = description.toLowerCase();
 
-  // Genres for TED Talk
-  const genres: string[] = ['Inspirational Talk', 'Leadership', 'Business & Marketing'];
+  // Genres from curation file: Leadership, Business, Motivation
+  const genres: string[] = ['Leadership', 'Business', 'Motivation'];
 
-  // Themes
-  const themes: string[] = [];
-  if (desc.includes('purpose') || desc.includes('why')) themes.push('Purpose', 'Finding Meaning');
-  if (desc.includes('leadership') || desc.includes('leaders')) themes.push('Leadership', 'Influence');
-  if (desc.includes('inspire') || desc.includes('inspiration')) themes.push('Inspiration', 'Motivation');
+  // Themes (from curation: Leadership, purpose, inspiration)
+  const themes: string[] = ['Leadership', 'Purpose', 'Inspiration'];
   if (desc.includes('circle') || desc.includes('golden')) themes.push('Strategy', 'Innovation');
 
-  // Moods
-  const moods: string[] = ['inspiring', 'motivational', 'thought-provoking', 'transformative'];
+  // Moods from curation file: Inspiring, Thought-provoking, Practical
+  const moods: string[] = ['Inspiring', 'Thought-provoking', 'Practical'];
 
   return { genres, themes, moods };
 }
