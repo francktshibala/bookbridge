@@ -29,8 +29,8 @@ export default function Navigation() {
   // Show some navigation items for all users, with user-specific items when logged in
   const navLinks = [
     { href: '/', label: 'Home' },
+    { href: '/catalog', label: 'Catalog' },
     { href: '/enhanced-collection', label: 'Enhanced Books' },
-    { href: '/featured-books', label: 'Simplified Books' },
     { href: '/library', label: 'Browse All Books' },
     // PILOT PHASE: Feedback collection (Week 1 implementation)
     { href: '/feedback', label: 'Leave Feedback' },

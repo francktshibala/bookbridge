@@ -31,9 +31,9 @@ export default function MobileNavigationMenu({ isOpen, onClose }: MobileNavigati
 
   const navigationItems = [
     { href: '/', label: 'Home', icon: '🏠' },
+    { href: '/catalog', label: '📚 Catalog', icon: '📚' },
     { href: '/enhanced-collection', label: '✨ Enhanced Books', icon: '✨' },
-    { href: '/featured-books', label: '🎧 Simplified Books', icon: '🎧' },
-    { href: '/library', label: 'Browse All Books', icon: '📚' },
+    { href: '/library', label: 'Browse All Books', icon: '📖' },
     { href: '/feedback', label: '💬 Leave Feedback', icon: '💬' },
     { href: 'https://donorbox.org/bookbridge-make-books-accessible-to-everyone-regardless-of-their-their-situation', label: 'Support Us', icon: '❤️', isPremium: true, isExternal: true },
   ];
