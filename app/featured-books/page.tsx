@@ -376,7 +376,8 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
   },
   'how-great-leaders-inspire-action': {
     'A1': '/api/how-great-leaders-inspire-action-a1/bundles',
-    'A2': '/api/how-great-leaders-inspire-action-a2/bundles'
+    'A2': '/api/how-great-leaders-inspire-action-a2/bundles',
+    'B1': '/api/how-great-leaders-inspire-action-b1/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };
