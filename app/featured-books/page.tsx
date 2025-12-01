@@ -205,9 +205,9 @@ const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     id: 'always-a-family',
     title: 'Always a Family',
     author: 'Danny & Annie Perasa',
-    description: 'Deeply moving StoryCorps conversation about 63 years of love. Danny reads daily love notes he leaves for Annie. A1 level with Sarah voice. Heartwarming, tearjerker story perfect for beginners.',
-    sentences: 60,
-    bundles: 15,
+    description: 'Deeply moving StoryCorps conversation about 63 years of love. Danny reads daily love notes he leaves for Annie. A1-A2 levels available. Heartwarming, tearjerker story perfect for beginners.',
+    sentences: 46,
+    bundles: 12,
     gradient: 'from-pink-500 to-rose-600',
     abbreviation: 'AF'
   },
@@ -390,7 +390,8 @@ const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } } = {
     'B1': '/api/how-great-leaders-inspire-action-b1/bundles'
   },
   'always-a-family': {
-    'A1': '/api/always-a-family-a1/bundles'
+    'A1': '/api/always-a-family-a1/bundles',
+    'A2': '/api/always-a-family-a2/bundles'
   },
   // Single-level books use the default /api/test-book/real-bundles
 };
