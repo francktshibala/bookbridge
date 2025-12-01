@@ -9,15 +9,16 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import type { FeaturedBook } from '@prisma/client';
+import type { UnifiedBook } from '@/types/unified-book';
+import { isFeaturedBook, isEnhancedBook } from '@/types/unified-book';
 
 interface BookGridProps {
-  books: FeaturedBook[];
+  books: UnifiedBook[];
   loading?: boolean;
   hasMore?: boolean;
   onLoadMore?: () => void;
-  onSelectBook: (book: FeaturedBook) => void;
-  onAskAI?: (book: FeaturedBook) => void;
+  onSelectBook: (book: UnifiedBook) => void;
+  onAskAI?: (book: UnifiedBook) => void;
   emptyMessage?: string;
 }
 
@@ -86,10 +87,10 @@ function BookCard({
   onSelectBook,
   onAskAI
 }: {
-  book: FeaturedBook;
+  book: UnifiedBook;
   index: number;
-  onSelectBook: (book: FeaturedBook) => void;
-  onAskAI?: (book: FeaturedBook) => void;
+  onSelectBook: (book: UnifiedBook) => void;
+  onAskAI?: (book: UnifiedBook) => void;
 }) {
   // Format reading time
   const formatReadingTime = (minutes: number) => {
@@ -131,19 +132,43 @@ function BookCard({
 
           {/* Meta Tags - Compact Style */}
           <div className="flex gap-2 mb-3 flex-wrap">
-            <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-              A1-C2
-            </span>
-            {book.isClassic && (
+            {/* Architecture Badge */}
+            {isEnhancedBook(book) && (
+              <span className="px-2 py-1 bg-purple-100 text-purple-700 border border-purple-300 rounded-full text-xs font-medium">
+                ✨ Enhanced
+              </span>
+            )}
+            {isFeaturedBook(book) && (
+              <span className="px-2 py-1 bg-blue-100 text-blue-700 border border-blue-300 rounded-full text-xs font-medium">
+                🎧 Audio
+              </span>
+            )}
+            {/* CEFR Levels */}
+            {isFeaturedBook(book) ? (
+              <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+                A1-C2
+              </span>
+            ) : book.cefrLevels ? (
+              <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+                {book.cefrLevels}
+              </span>
+            ) : null}
+            {/* Classic Badge (Featured Books only) */}
+            {isFeaturedBook(book) && (book as any).isClassic && (
               <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
                 Classic
               </span>
             )}
-            {book.readingTimeMinutes > 0 && (
+            {/* Reading Time */}
+            {isFeaturedBook(book) && (book as any).readingTimeMinutes > 0 ? (
               <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
-                {formatReadingTime(book.readingTimeMinutes)}
+                {formatReadingTime((book as any).readingTimeMinutes)}
               </span>
-            )}
+            ) : isEnhancedBook(book) && book.estimatedHours ? (
+              <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/30 rounded-full text-xs font-medium">
+                ~{book.estimatedHours}h
+              </span>
+            ) : null}
           </div>
 
           {/* Action Buttons - Compact Style */}

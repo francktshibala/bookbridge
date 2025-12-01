@@ -23,6 +23,7 @@ import {
 import type { BookFilters, PaginatedBooks } from '@/lib/services/book-catalog';
 import type { FeaturedBook, BookCollection } from '@prisma/client';
 import { trackCatalogSearch, trackNoResults } from '@/lib/telemetry';
+import type { UnifiedBook } from '@/types/unified-book';
 
 // LRU Cache for responses (GPT-5 recommendation)
 class LRUCache<T> {
@@ -67,8 +68,8 @@ interface CatalogContextState {
   collections: BookCollection[];
   selectedCollection: string | null;
 
-  // Books
-  books: FeaturedBook[];
+  // Books (unified: Featured Books + Enhanced Books)
+  books: UnifiedBook[];
   nextCursor: string | null; // Cursor-based pagination
   totalApprox?: number;
   facets?: PaginatedBooks['facets'];
@@ -98,7 +99,7 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
 
   const [collections, setCollections] = useState<BookCollection[]>([]);
-  const [books, setBooks] = useState<FeaturedBook[]>([]);
+  const [books, setBooks] = useState<UnifiedBook[]>([]);
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [totalApprox, setTotalApprox] = useState<number | undefined>();
   const [facets, setFacets] = useState<PaginatedBooks['facets'] | undefined>();
@@ -168,7 +169,18 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
     const cached = responseCache.get(cacheKey);
     if (cached) {
       const duration = performance.now() - startTime;
-      setBooks(cached.items);
+      // Transform cached FeaturedBooks to UnifiedBook format
+      const cachedUnifiedBooks: UnifiedBook[] = (cached.items as any[]).map((book: any) => {
+        // Check if already UnifiedBook (has architecture field)
+        if (book.architecture) return book as UnifiedBook;
+        // Transform FeaturedBook to UnifiedBook
+        return {
+          ...book,
+          architecture: 'bundle' as const,
+          source: 'featured' as const
+        };
+      });
+      setBooks(cachedUnifiedBooks);
       setNextCursor(cached.nextCursor);
       setTotalApprox(cached.totalApprox);
       setFacets(cached.facets);
@@ -198,32 +210,66 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
     setLoadState('loading');
     setError(null);
 
-    fetchBooks(filters, abortController.signal)
-      .then(data => {
+    // Fetch both Featured Books and Enhanced Books in parallel
+    Promise.all([
+      fetchBooks(filters, abortController.signal),
+      fetch('/api/books/enhanced').then(res => res.ok ? res.json() : { books: [] }).catch(() => ({ books: [] }))
+    ])
+      .then(([featuredData, enhancedData]) => {
         const duration = performance.now() - startTime;
 
         // Guard: Only apply if request is still current (Phase 1 pattern)
         if (currentRequestIdRef.current === requestId) {
-          setBooks(data.items);
-          setNextCursor(data.nextCursor);
-          setTotalApprox(data.totalApprox);
-          setFacets(data.facets);
+          // Transform Featured Books to UnifiedBook format
+          const featuredBooks: UnifiedBook[] = featuredData.items.map((book: FeaturedBook) => ({
+            ...book,
+            architecture: 'bundle' as const,
+            source: 'featured' as const
+          }));
+
+          // Transform Enhanced Books to UnifiedBook format
+          const enhancedBooks: UnifiedBook[] = (enhancedData.books || []).map((book: any) => ({
+            id: book.id,
+            title: book.title,
+            author: book.author,
+            description: book.description,
+            architecture: 'chunk' as const,
+            source: 'enhanced' as const,
+            genre: book.genre,
+            cefrLevels: book.cefrLevels,
+            estimatedHours: book.estimatedHours,
+            totalChunks: book.totalChunks,
+            status: book.status,
+            availableLevels: book.availableLevels
+          }));
+
+          // Merge and sort: Featured Books first, then Enhanced Books
+          const unifiedBooks: UnifiedBook[] = [...featuredBooks, ...enhancedBooks];
+
+          setBooks(unifiedBooks);
+          setNextCursor(featuredData.nextCursor);
+          setTotalApprox(featuredData.totalApprox ? featuredData.totalApprox + enhancedBooks.length : undefined);
+          setFacets(featuredData.facets);
           setLoadState('ready');
 
           // Store in cache (GPT-5: prevent refetch on minor toggles)
-          responseCache.set(cacheKey, data);
+          // Store unified books, but keep Featured Books structure for cache compatibility
+          responseCache.set(cacheKey, { 
+            ...featuredData, 
+            items: unifiedBooks as any // Store UnifiedBook[] but typed as FeaturedBook[] for cache compatibility
+          });
 
           // Track search performance (GPT-5: telemetry)
           trackCatalogSearch({
             query: filters.search,
             filters,
-            resultCount: data.items.length,
+            resultCount: unifiedBooks.length,
             duration,
             cacheHit: false
           });
 
           // Track no results (GPT-5: important metric)
-          if (data.items.length === 0) {
+          if (unifiedBooks.length === 0) {
             trackNoResults({ query: filters.search, filters });
           }
         }
