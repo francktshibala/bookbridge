@@ -81,13 +81,35 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
           showSuggestions={true}
         />
 
-        {/* Collections */}
-        {collections.length > 0 && !filters.search && (
+        {/* Collections - Hide when a collection is selected */}
+        {collections.length > 0 && !filters.search && !selectedCollection && (
           <CollectionSelector
             collections={collections}
             selectedCollection={selectedCollection}
             onSelectCollection={selectCollection}
           />
+        )}
+
+        {/* Show "Back to Collections" button when collection is selected */}
+        {selectedCollection && (
+          <div className="flex items-center justify-center">
+            <button
+              onClick={() => selectCollection(null)}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all"
+              style={{
+                background: 'var(--bg-secondary)',
+                color: 'var(--text-primary)',
+                border: '1px solid var(--border-light)',
+                fontFamily: '"Source Serif Pro", Georgia, serif',
+                fontWeight: 600
+              }}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back to Collections
+            </button>
+          </div>
         )}
 
         {/* Filter Toggle & Active Filters */}

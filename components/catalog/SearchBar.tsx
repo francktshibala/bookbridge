@@ -242,55 +242,40 @@ export function SearchBar({
                 key={book.id}
                 onClick={() => handleSelectBook(book)}
                 onMouseEnter={() => setFocusedIndex(index)}
-                className="w-full text-left transition-colors"
+                className="w-full text-left transition-all duration-200 rounded-lg"
                 style={{
                   padding: '0.75rem 1rem',
-                  background: focusedIndex === index ? 'var(--accent-primary)' : 'transparent',
-                  opacity: focusedIndex === index ? 0.1 : 1,
-                  borderBottom: index < suggestions.length - 1 ? '1px solid var(--border-light)' : 'none'
+                  background: focusedIndex === index 
+                    ? 'var(--accent-primary)/10' 
+                    : 'transparent',
+                  border: focusedIndex === index 
+                    ? '1px solid var(--accent-primary)/30' 
+                    : '1px solid transparent',
+                  borderBottom: index < suggestions.length - 1 
+                    ? '1px solid var(--border-light)' 
+                    : 'none'
                 }}
               >
-                <div className="flex items-start gap-3">
-                  {/* Book Gradient */}
-                  <div
-                    className="flex-shrink-0 w-10 h-14 rounded"
+                {/* Match BookCard design - Title and Author only */}
+                <div>
+                  <h4
+                    className="font-bold text-base mb-1 line-clamp-2"
                     style={{
-                      background: book.gradient || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                      fontFamily: '"Playfair Display", Georgia, serif',
+                      color: 'var(--text-accent)'
                     }}
-                  />
-
-                  {/* Book Info */}
-                  <div className="flex-1 min-w-0">
-                    <h4
-                      className="font-semibold text-sm truncate mb-1"
-                      style={{
-                        fontFamily: '"Playfair Display", Georgia, serif',
-                        color: 'var(--text-accent)'
-                      }}
-                    >
-                      {book.title}
-                    </h4>
-                    <p
-                      className="text-xs truncate"
-                      style={{
-                        fontFamily: '"Source Serif Pro", Georgia, serif',
-                        color: 'var(--text-secondary)'
-                      }}
-                    >
-                      {book.author}
-                    </p>
-                    {book.readingTimeMinutes > 0 && (
-                      <p
-                        className="text-xs mt-1"
-                        style={{
-                          color: 'var(--text-tertiary)',
-                          fontFamily: '"Source Serif Pro", Georgia, serif'
-                        }}
-                      >
-                        {book.readingTimeMinutes} min read
-                      </p>
-                    )}
-                  </div>
+                  >
+                    {book.title}
+                  </h4>
+                  <p
+                    className="text-sm truncate"
+                    style={{
+                      fontFamily: '"Source Serif Pro", Georgia, serif',
+                      color: 'var(--text-secondary)'
+                    }}
+                  >
+                    by {book.author}
+                  </p>
                 </div>
               </button>
             ))}

@@ -247,8 +247,14 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
             theme: book.theme
           }));
 
-          // Client-side search filtering for Enhanced Books (if search query exists)
-          if (filters.search && filters.search.length >= 2) {
+          // Client-side filtering for Enhanced Books
+          // 1. Hide Enhanced Books when a collection is selected (they're not in collections)
+          if (filters.collectionId) {
+            enhancedBooks = []; // Hide Enhanced Books when viewing a collection
+          }
+          
+          // 2. Client-side search filtering (if search query exists and no collection selected)
+          if (!filters.collectionId && filters.search && filters.search.length >= 2) {
             const searchLower = filters.search.toLowerCase();
             const searchTerms = searchLower.split(' ').filter(term => term.length > 0);
             
