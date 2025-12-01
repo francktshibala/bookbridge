@@ -13,9 +13,300 @@
 1. [Current State Analysis](#current-state-analysis)
 2. [Desired End State](#desired-end-state)
 3. [UX/UI Goals & Inspiration](#uxui-goals--inspiration)
-4. [Implementation Strategy](#implementation-strategy)
-5. [Risk Assessment](#risk-assessment)
-6. [Recommendations](#recommendations)
+4. [Architecture Patterns to Follow](#architecture-patterns-to-follow)
+5. [Styling Patterns to Follow](#styling-patterns-to-follow)
+6. [Implementation Strategy](#implementation-strategy)
+7. [Risk Assessment](#risk-assessment)
+8. [Recommendations](#recommendations)
+
+---
+
+## 🏗️ Architecture Patterns to Follow
+
+**Reference:** `docs/implementation/FEATURED_BOOKS_REFACTOR_PLAN.md` and `docs/implementation/ARCHITECTURE_OVERVIEW.md`
+
+### **1. Single Source of Truth (SSoT) Pattern**
+
+**Principle:** AudioContext owns all app-scoped state (book, level, bundles, audio playback)
+
+**Application to Unification:**
+- ✅ Reading interface MUST use `AudioContext` (already implemented)
+- ✅ No duplicate state in reading component
+- ✅ Catalog page should NOT manage reading state (only routing)
+
+**Compliance:**
+```typescript
+// ✅ CORRECT: Reading component uses AudioContext
+const { selectedBook, cefrLevel, bundleData } = useAudioContext();
+
+// ❌ WRONG: Reading component creates its own state
+const [book, setBook] = useState(null); // Don't do this
+```
+
+---
+
+### **2. Explicit Prop Pattern**
+
+**Principle:** Leaf components receive data via props, not direct context access
+
+**Application to Unification:**
+- ✅ Reading interface components receive props from page
+- ✅ Page component (container) accesses context
+- ✅ Components are pure and testable
+
+**Compliance:**
+```typescript
+// ✅ CORRECT: Component receives props
+<ReadingHeader 
+  onBack={handleBack}
+  onSettings={() => setShowSettingsModal(true)}
+  autoScrollPaused={autoScrollPaused}
+/>
+
+// ❌ WRONG: Component accesses context directly
+<ReadingHeader /> // Component accesses context internally
+```
+
+---
+
+### **3. Component Extraction Pattern**
+
+**Principle:** Extract components to separate files (150-200 lines max)
+
+**Application to Unification:**
+- ✅ Extract reading interface to `components/reading/BundleReadingInterface.tsx`
+- ✅ Keep page.tsx as pure composition (< 400 lines)
+- ✅ Extract sub-components (ReadingHeader, TextDisplay, AudioControls)
+
+**Target Structure:**
+```
+app/read/[slug]/
+├── page.tsx (200-400 lines) - Pure composition
+└── components/
+    ├── BundleReadingInterface.tsx (200 lines)
+    ├── ReadingHeader.tsx (80 lines)
+    ├── TextDisplay.tsx (120 lines)
+    └── AudioControls.tsx (150 lines)
+```
+
+---
+
+### **4. Service Layer Pattern**
+
+**Principle:** Business logic in pure functions, not components
+
+**Application to Unification:**
+- ✅ Book loading logic in `lib/services/book-loader.ts`
+- ✅ Routing logic in page component (simple)
+- ✅ No business logic in UI components
+
+**Compliance:**
+```typescript
+// ✅ CORRECT: Service handles business logic
+import { loadBookBundles } from '@/lib/services/book-loader';
+
+// Page component only handles routing
+const bookSlug = params.slug;
+const bundles = await loadBookBundles(bookSlug, level);
+
+// ❌ WRONG: Business logic in component
+const fetchBundles = async () => {
+  // Complex API logic here
+};
+```
+
+---
+
+### **5. Context Separation Pattern**
+
+**Principle:** Separate app-scoped (AudioContext) from page-scoped (ReadingUIContext)
+
+**Application to Unification:**
+- ✅ AudioContext: book, level, bundles, audio state (app-scoped)
+- ✅ ReadingUIContext: modals, UI preferences (page-scoped)
+- ✅ No mixing of concerns
+
+**Compliance:**
+```typescript
+// ✅ CORRECT: Separate contexts
+const { selectedBook, bundleData } = useAudioContext(); // App-scoped
+const { showSettingsModal, setShowSettingsModal } = useReadingUIContext(); // Page-scoped
+
+// ❌ WRONG: Mixing concerns
+const { selectedBook, showSettingsModal } = useAudioContext(); // Don't mix
+```
+
+---
+
+## 🎨 Styling Patterns to Follow
+
+**Reference:** `NEO_CLASSIC_TRANSFORMATION_PLAN.md` and `VISUAL_STYLE_IMPLEMENTATION_PLAN.md`
+
+### **1. CSS Custom Properties (Theme Variables)**
+
+**Principle:** Use CSS variables for all colors, spacing, typography
+
+**Application to Unification:**
+- ✅ All colors from `var(--accent-primary)`, `var(--bg-primary)`, etc.
+- ✅ No hardcoded colors (`#667eea`, `#0f172a`)
+- ✅ Theme-aware (light/dark/sepia)
+
+**Compliance:**
+```css
+/* ✅ CORRECT: Use CSS variables */
+.reading-header {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+
+/* ❌ WRONG: Hardcoded colors */
+.reading-header {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e5ddd4;
+}
+```
+
+---
+
+### **2. Typography System**
+
+**Principle:** Use Neo-Classic fonts (Playfair Display + Source Serif Pro)
+
+**Application to Unification:**
+- ✅ Headings: `font-family: 'Playfair Display', Georgia, serif`
+- ✅ Body: `font-family: 'Source Serif Pro', Georgia, serif`
+- ✅ Consistent font weights and line heights
+
+**Compliance:**
+```css
+/* ✅ CORRECT: Neo-Classic typography */
+.neo-classic-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  color: var(--text-accent);
+  line-height: 1.2;
+}
+
+.neo-classic-body {
+  font-family: 'Source Serif Pro', Georgia, serif;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+```
+
+---
+
+### **3. Component Styling Patterns**
+
+**Principle:** Reusable Neo-Classic component classes
+
+**Application to Unification:**
+- ✅ Cards: `.neo-classic-card` pattern
+- ✅ Buttons: `.neo-classic-button` pattern
+- ✅ Consistent border-radius, shadows, transitions
+
+**Compliance:**
+```css
+/* ✅ CORRECT: Neo-Classic card */
+.neo-classic-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+/* ✅ CORRECT: Neo-Classic button */
+.neo-classic-button {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.neo-classic-button:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-soft);
+}
+```
+
+---
+
+### **4. Responsive Design**
+
+**Principle:** Mobile-first approach with consistent breakpoints
+
+**Application to Unification:**
+- ✅ Mobile: Stack layout, bottom controls
+- ✅ Desktop: Sidebar/centered layout, floating controls
+- ✅ Consistent spacing and padding
+
+**Compliance:**
+```css
+/* ✅ CORRECT: Mobile-first responsive */
+.reading-container {
+  padding: 1rem; /* Mobile */
+}
+
+@media (min-width: 768px) {
+  .reading-container {
+    padding: 2rem;
+    max-width: 4xl;
+    margin: 0 auto;
+  }
+}
+```
+
+---
+
+### **5. Animation Patterns**
+
+**Principle:** Smooth transitions (300ms ease), Framer Motion for complex animations
+
+**Application to Unification:**
+- ✅ Page transitions: Framer Motion `motion.div`
+- ✅ Hover effects: CSS transitions (300ms)
+- ✅ Loading states: Smooth fade-in
+
+**Compliance:**
+```typescript
+// ✅ CORRECT: Framer Motion for page transitions
+import { motion } from 'framer-motion';
+
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.3 }}
+>
+  {/* Content */}
+</motion.div>
+```
+
+---
+
+## ✅ Pattern Compliance Checklist
+
+### **Architecture Compliance:**
+- [ ] Reading interface uses AudioContext (SSoT)
+- [ ] Components follow explicit prop pattern
+- [ ] Page.tsx is pure composition (< 400 lines)
+- [ ] Business logic in service layer
+- [ ] Contexts properly separated (app vs page-scoped)
+
+### **Styling Compliance:**
+- [ ] All colors use CSS variables (no hardcoded colors)
+- [ ] Typography uses Neo-Classic fonts (Playfair Display + Source Serif Pro)
+- [ ] Components use Neo-Classic styling patterns
+- [ ] Responsive design (mobile-first)
+- [ ] Smooth animations (Framer Motion + CSS transitions)
 
 ---
 
