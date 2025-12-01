@@ -1,0 +1,13 @@
+{
+  "contentId": "always-a-family",
+  "level": "B1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/always-a-family/B1/preview.mp3",
+    "duration": 31.669819,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "generationSpeed": 0.9,
+    "ffmpegSpeed": 0.85
+  },
+  "generatedAt": "2025-12-01T04:37:14.387Z"
+}
