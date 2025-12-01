@@ -141,10 +141,11 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
               onClick={() => {
                 const currentGenres = filters.genres || [];
                 const hasClassic = currentGenres.includes('Classic Literature');
+                const updatedGenres = hasClassic
+                  ? currentGenres.filter(g => g !== 'Classic Literature')
+                  : [...currentGenres, 'Classic Literature'];
                 setFilters({
-                  genres: hasClassic
-                    ? currentGenres.filter(g => g !== 'Classic Literature')
-                    : [...currentGenres, 'Classic Literature']
+                  genres: updatedGenres.length > 0 ? updatedGenres : undefined
                 });
               }}
               isActive={filters.genres?.includes('Classic Literature') || false}
@@ -154,10 +155,11 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
               onClick={() => {
                 const currentMoods = filters.moods || [];
                 const hasRomance = currentMoods.includes('Romantic');
+                const updatedMoods = hasRomance
+                  ? currentMoods.filter(m => m !== 'Romantic')
+                  : [...currentMoods, 'Romantic'];
                 setFilters({
-                  moods: hasRomance
-                    ? currentMoods.filter(m => m !== 'Romantic')
-                    : [...currentMoods, 'Romantic']
+                  moods: updatedMoods.length > 0 ? updatedMoods : undefined
                 });
               }}
               isActive={filters.moods?.includes('Romantic') || false}
@@ -167,10 +169,11 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
               onClick={() => {
                 const currentMoods = filters.moods || [];
                 const hasAdventure = currentMoods.includes('Adventurous');
+                const updatedMoods = hasAdventure
+                  ? currentMoods.filter(m => m !== 'Adventurous')
+                  : [...currentMoods, 'Adventurous'];
                 setFilters({
-                  moods: hasAdventure
-                    ? currentMoods.filter(m => m !== 'Adventurous')
-                    : [...currentMoods, 'Adventurous']
+                  moods: updatedMoods.length > 0 ? updatedMoods : undefined
                 });
               }}
               isActive={filters.moods?.includes('Adventurous') || false}
@@ -180,10 +183,11 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
               onClick={() => {
                 const currentGenres = filters.genres || [];
                 const hasMystery = currentGenres.includes('Mystery');
+                const updatedGenres = hasMystery
+                  ? currentGenres.filter(g => g !== 'Mystery')
+                  : [...currentGenres, 'Mystery'];
                 setFilters({
-                  genres: hasMystery
-                    ? currentGenres.filter(g => g !== 'Mystery')
-                    : [...currentGenres, 'Mystery']
+                  genres: updatedGenres.length > 0 ? updatedGenres : undefined
                 });
               }}
               isActive={filters.genres?.includes('Mystery') || false}

@@ -129,7 +129,24 @@ export function CatalogProvider({ children }: { children: React.ReactNode }) {
 
   // Update URL when filters change (GPT-5: URL sync)
   const updateFilters = useCallback((newFilters: Partial<BookFilters>) => {
-    const merged = { ...filters, ...newFilters, cursor: undefined }; // Reset cursor on filter change
+    // Merge filters, but explicitly handle undefined values to clear filters
+    const merged: BookFilters = { 
+      ...filters, 
+      ...newFilters, 
+      cursor: undefined // Reset cursor on filter change
+    };
+    
+    // Explicitly clear properties that are set to undefined
+    if (newFilters.genres === undefined && 'genres' in newFilters) {
+      merged.genres = undefined;
+    }
+    if (newFilters.moods === undefined && 'moods' in newFilters) {
+      merged.moods = undefined;
+    }
+    if (newFilters.readingTimeMax === undefined && 'readingTimeMax' in newFilters) {
+      merged.readingTimeMax = undefined;
+    }
+    
     const queryString = serializeFiltersToURL(merged);
     router.push(`?${queryString}`, { scroll: false });
   }, [filters, router]);
