@@ -9,6 +9,7 @@ interface CatalogResponse {
   totalApprox?: number;
   facets?: {
     genres: { name: string; count: number }[];
+    themes: { name: string; count: number }[];
     moods: { name: string; count: number }[];
     readingTimes: { range: string; count: number }[];
   };
@@ -28,6 +29,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<CatalogRes
   // Filters
   const collectionId = searchParams.get('collection');
   const genres = searchParams.get('genres')?.split(',').filter(Boolean) || [];
+  const themes = searchParams.get('themes')?.split(',').filter(Boolean) || [];
   const moods = searchParams.get('moods')?.split(',').filter(Boolean) || [];
   const region = searchParams.get('region');
   const readingTimeMax = searchParams.get('readingTimeMax');
@@ -45,6 +47,10 @@ export async function GET(request: NextRequest): Promise<NextResponse<CatalogRes
 
   if (genres.length > 0) {
     where.genres = { hasSome: genres };
+  }
+
+  if (themes.length > 0) {
+    where.themes = { hasSome: themes };
   }
 
   if (moods.length > 0) {
@@ -144,7 +150,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<CatalogRes
         items: [],
         nextCursor: null,
         totalApprox: 0,
-        facets: { genres: [], moods: [], readingTimes: [] }
+        facets: { genres: [], themes: [], moods: [], readingTimes: [] }
       },
       {
         status: 500,
@@ -160,14 +166,16 @@ export async function GET(request: NextRequest): Promise<NextResponse<CatalogRes
 function computeFacetsFromBooks(books: FeaturedBook[]) {
   // Fast path for empty results (GPT-5 recommendation)
   if (books.length === 0) {
-    return {
-      genres: [],
-      moods: [],
-      readingTimes: []
-    };
+      return {
+        genres: [],
+        themes: [],
+        moods: [],
+        readingTimes: []
+      };
   }
 
   const genreCounts = new Map<string, number>();
+  const themeCounts = new Map<string, number>();
   const moodCounts = new Map<string, number>();
   const timeCounts = { quick: 0, short: 0, deep: 0 };
 
@@ -175,6 +183,11 @@ function computeFacetsFromBooks(books: FeaturedBook[]) {
     // Count genres
     book.genres.forEach(genre => {
       genreCounts.set(genre, (genreCounts.get(genre) || 0) + 1);
+    });
+
+    // Count themes
+    book.themes.forEach(theme => {
+      themeCounts.set(theme, (themeCounts.get(theme) || 0) + 1);
     });
 
     // Count moods
@@ -193,6 +206,10 @@ function computeFacetsFromBooks(books: FeaturedBook[]) {
       .map(([name, count]) => ({ name, count }))
       .sort((a, b) => b.count - a.count)
       .slice(0, 20), // Limit to top 20 (GPT-5: avoid huge facet lists)
+    themes: Array.from(themeCounts.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 20),
     moods: Array.from(moodCounts.entries())
       .map(([name, count]) => ({ name, count }))
       .sort((a, b) => b.count - a.count)
