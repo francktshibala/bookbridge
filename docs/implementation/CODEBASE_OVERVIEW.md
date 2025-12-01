@@ -46,7 +46,7 @@
 
 #### **`feature/catalog-unification` - Catalog Unification (Active)**
 - **Purpose**: Unify book discovery into single catalog entry point
-- **Status**: 🚧 **IN PROGRESS - Phase 7 Complete** (Phases 1-7 implemented, Phases 8-9 pending)
+- **Status**: ✅ **COMPLETE - Phase 8 Complete** (Phases 1-8 implemented, Phase 9 pending)
 - **Implementation Plan**: `/docs/CATALOG_UNIFICATION_FEASIBILITY.md` - Complete 9-phase migration plan
 - **Goal**: Unify book discovery into `/catalog` entry point, create unified reading route `/read/[slug]`
 - **Approach**: Extract reading interface to `/read/[slug]` route (Option 1)
@@ -57,15 +57,16 @@
   - ✅ Phase 5: Enhanced Books architecture detection implemented
   - ✅ Phase 6: Navigation updated (Library replaces Catalog, Browse All Books disabled)
   - ✅ Phase 7: Cleanup - `/featured-books` replaced with redirect to `/catalog`
+  - ✅ Phase 8: Enhanced Books merged into catalog, `/enhanced-collection` redirected to `/catalog`
 - **Current State**:
-  - `/catalog` - Unified entry point for Featured Books (routes to `/read/[slug]`)
-  - `/enhanced-collection` - **KEPT FOR NOW** - Enhanced Books still use separate page (will be merged in Phase 8)
+  - `/catalog` - **UNIFIED ENTRY POINT** - Shows both Featured Books and Enhanced Books (routes to `/read/[slug]` or `/library/[id]/read`)
+  - `/enhanced-collection` - **REDIRECT** - Redirects to `/catalog` (legacy route, kept for backwards compatibility)
   - `/featured-books` - **REDIRECT** - Redirects to `/catalog` or `/read/[slug]` (legacy route, kept for backwards compatibility)
   - `/library` - Browse All Books page **DISABLED IN NAVIGATION** (still accessible via direct URL)
 - **Key Files**:
   - `/app/featured-books/page.tsx` - **REDIRECT** - Redirects to `/catalog` or `/read/[slug]` (legacy route)
   - `/app/catalog/page.tsx` - Updated routing to `/read/[slug]`
-  - `/app/enhanced-collection/page.tsx` - **KEPT** - Enhanced Books page (not removed yet)
+  - `/app/enhanced-collection/page.tsx` - **REDIRECT** - Redirects to `/catalog` (legacy route)
   - `/components/reading/BundleReadingInterface.tsx` - Extracted reading component ✅
   - `/app/read/[slug]/page.tsx` - Unified reading route ✅
   - `/components/Navigation.tsx` - Updated to show Catalog, disabled Browse All Books ✅
@@ -73,7 +74,7 @@
 - **Navigation Changes**:
   - "Simplified Books" → "Library" (replaced in nav, routes to `/catalog`)
   - "Browse All Books" → **DISABLED** (removed from navigation, still accessible via `/library`)
-  - "Enhanced Books" → **KEPT** (still in navigation, will be merged into catalog later)
+  - "Enhanced Books" → **REMOVED** (merged into unified catalog, accessible via "Library")
 - **Benefits**: Single entry point, cleaner URLs, Netflix-like instant gratification, better separation of concerns
 - **Risk**: Low-Medium - reading interface is self-contained, requires component extraction
 
