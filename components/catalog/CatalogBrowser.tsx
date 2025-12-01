@@ -8,12 +8,56 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useCatalogContext } from '@/contexts/CatalogContext';
 import { CollectionSelector } from './CollectionSelector';
 import { SearchBar } from './SearchBar';
 import { BookFilters } from './BookFilters';
 import { BookGrid } from './BookGrid';
 import type { UnifiedBook } from '@/types/unified-book';
+
+const READING_TIME_RANGES = [
+  { label: 'Quick (< 15 min)', value: 15 },
+  { label: 'Short (15-30 min)', value: 30 },
+  { label: 'Medium (30-60 min)', value: 60 },
+  { label: 'Long (1-2 hours)', value: 120 },
+  { label: 'Extended (2+ hours)', value: 9999 }
+];
+
+const SORT_OPTIONS: { label: string; value: 'popularityScore' | 'readingTimeMinutes' | 'title' }[] = [
+  { label: 'Most Popular', value: 'popularityScore' },
+  { label: 'Shortest First', value: 'readingTimeMinutes' },
+  { label: 'Title (A-Z)', value: 'title' }
+];
+
+// Quick Filter Chip Component
+function QuickFilterChip({
+  label,
+  onClick,
+  isActive
+}: {
+  label: string;
+  onClick: () => void;
+  isActive: boolean;
+}) {
+  return (
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={onClick}
+      className="px-4 py-2 rounded-full text-sm font-medium transition-all"
+      style={{
+        fontFamily: '"Source Serif Pro", Georgia, serif',
+        background: isActive ? 'var(--accent-primary)' : 'var(--bg-secondary)',
+        color: isActive ? 'var(--bg-primary)' : 'var(--text-primary)',
+        border: isActive ? 'none' : '1px solid var(--border-light)',
+        boxShadow: isActive ? '0 2px 8px var(--shadow-soft)' : 'none'
+      }}
+    >
+      {label}
+    </motion.button>
+  );
+}
 
 interface CatalogBrowserProps {
   onSelectBook: (book: UnifiedBook) => void;
@@ -80,6 +124,139 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
           placeholder="Search by title, author, genre, mood, theme, or description..."
           showSuggestions={true}
         />
+
+        {/* Quick Filter Chips - Always Visible */}
+        {!selectedCollection && (
+          <div className="flex items-center justify-center flex-wrap gap-2">
+            <QuickFilterChip
+              label="Quick Reads"
+              onClick={() => {
+                const currentMax = filters.readingTimeMax;
+                setFilters({ readingTimeMax: currentMax === 30 ? undefined : 30 });
+              }}
+              isActive={filters.readingTimeMax === 30}
+            />
+            <QuickFilterChip
+              label="Classic"
+              onClick={() => {
+                const currentGenres = filters.genres || [];
+                const hasClassic = currentGenres.includes('Classic Literature');
+                setFilters({
+                  genres: hasClassic
+                    ? currentGenres.filter(g => g !== 'Classic Literature')
+                    : [...currentGenres, 'Classic Literature']
+                });
+              }}
+              isActive={filters.genres?.includes('Classic Literature') || false}
+            />
+            <QuickFilterChip
+              label="Romance"
+              onClick={() => {
+                const currentMoods = filters.moods || [];
+                const hasRomance = currentMoods.includes('Romantic');
+                setFilters({
+                  moods: hasRomance
+                    ? currentMoods.filter(m => m !== 'Romantic')
+                    : [...currentMoods, 'Romantic']
+                });
+              }}
+              isActive={filters.moods?.includes('Romantic') || false}
+            />
+            <QuickFilterChip
+              label="Adventure"
+              onClick={() => {
+                const currentMoods = filters.moods || [];
+                const hasAdventure = currentMoods.includes('Adventurous');
+                setFilters({
+                  moods: hasAdventure
+                    ? currentMoods.filter(m => m !== 'Adventurous')
+                    : [...currentMoods, 'Adventurous']
+                });
+              }}
+              isActive={filters.moods?.includes('Adventurous') || false}
+            />
+            <QuickFilterChip
+              label="Mystery"
+              onClick={() => {
+                const currentGenres = filters.genres || [];
+                const hasMystery = currentGenres.includes('Mystery');
+                setFilters({
+                  genres: hasMystery
+                    ? currentGenres.filter(g => g !== 'Mystery')
+                    : [...currentGenres, 'Mystery']
+                });
+              }}
+              isActive={filters.genres?.includes('Mystery') || false}
+            />
+          </div>
+        )}
+
+        {/* Persistent Active Filter Summary */}
+        {(() => {
+          const activeFilters: string[] = [];
+          if (filters.genres?.length) {
+            filters.genres.forEach(g => activeFilters.push(`Genre: ${g}`));
+          }
+          if (filters.moods?.length) {
+            filters.moods.forEach(m => activeFilters.push(`Mood: ${m}`));
+          }
+          if (filters.readingTimeMax) {
+            const timeLabel = READING_TIME_RANGES.find(r => r.value === filters.readingTimeMax)?.label || `${filters.readingTimeMax} min`;
+            activeFilters.push(`Time: ${timeLabel}`);
+          }
+          if (filters.sortBy && filters.sortBy !== 'popularityScore') {
+            const sortLabel = SORT_OPTIONS.find(s => s.value === filters.sortBy)?.label || filters.sortBy;
+            activeFilters.push(`Sort: ${sortLabel}`);
+          }
+          const hasActiveFilters = activeFilters.length > 0;
+
+          return hasActiveFilters ? (
+            <div
+              className="flex items-center justify-between flex-wrap gap-3 p-4 rounded-lg"
+              style={{
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border-light)'
+              }}
+            >
+              <div className="flex items-center gap-2 flex-wrap">
+                <span
+                  className="text-sm font-semibold"
+                  style={{
+                    fontFamily: '"Source Serif Pro", Georgia, serif',
+                    color: 'var(--text-accent)'
+                  }}
+                >
+                  Active Filters:
+                </span>
+                {activeFilters.map((filter, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 rounded-full text-xs font-medium"
+                    style={{
+                      fontFamily: '"Source Serif Pro", Georgia, serif',
+                      background: 'var(--accent-primary)/10',
+                      color: 'var(--accent-primary)',
+                      border: '1px solid var(--accent-primary)/30'
+                    }}
+                  >
+                    {filter}
+                  </span>
+                ))}
+              </div>
+              <button
+                onClick={handleClearFilters}
+                className="text-sm px-4 py-2 rounded-lg font-semibold transition-all hover:opacity-80"
+                style={{
+                  fontFamily: '"Source Serif Pro", Georgia, serif',
+                  background: 'var(--accent-primary)',
+                  color: 'var(--bg-primary)'
+                }}
+              >
+                Clear All
+              </button>
+            </div>
+          ) : null;
+        })()}
 
         {/* Collections - Hide when a collection is selected */}
         {collections.length > 0 && !filters.search && !selectedCollection && (
