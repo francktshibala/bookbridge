@@ -136,62 +136,51 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
               }}
               isActive={filters.readingTimeMax === 30}
             />
-            <QuickFilterChip
-              label="Classic"
-              onClick={() => {
-                const currentGenres = filters.genres || [];
-                const hasClassic = currentGenres.includes('Classic Literature');
-                const updatedGenres = hasClassic
-                  ? currentGenres.filter(g => g !== 'Classic Literature')
-                  : [...currentGenres, 'Classic Literature'];
-                setFilters({
-                  genres: updatedGenres.length > 0 ? updatedGenres : undefined
-                });
-              }}
-              isActive={filters.genres?.includes('Classic Literature') || false}
-            />
-            <QuickFilterChip
-              label="Romance"
-              onClick={() => {
-                const currentMoods = filters.moods || [];
-                const hasRomance = currentMoods.includes('Romantic');
-                const updatedMoods = hasRomance
-                  ? currentMoods.filter(m => m !== 'Romantic')
-                  : [...currentMoods, 'Romantic'];
-                setFilters({
-                  moods: updatedMoods.length > 0 ? updatedMoods : undefined
-                });
-              }}
-              isActive={filters.moods?.includes('Romantic') || false}
-            />
-            <QuickFilterChip
-              label="Adventure"
-              onClick={() => {
-                const currentMoods = filters.moods || [];
-                const hasAdventure = currentMoods.includes('Adventurous');
-                const updatedMoods = hasAdventure
-                  ? currentMoods.filter(m => m !== 'Adventurous')
-                  : [...currentMoods, 'Adventurous'];
-                setFilters({
-                  moods: updatedMoods.length > 0 ? updatedMoods : undefined
-                });
-              }}
-              isActive={filters.moods?.includes('Adventurous') || false}
-            />
-            <QuickFilterChip
-              label="Mystery"
-              onClick={() => {
-                const currentGenres = filters.genres || [];
-                const hasMystery = currentGenres.includes('Mystery');
-                const updatedGenres = hasMystery
-                  ? currentGenres.filter(g => g !== 'Mystery')
-                  : [...currentGenres, 'Mystery'];
-                setFilters({
-                  genres: updatedGenres.length > 0 ? updatedGenres : undefined
-                });
-              }}
-              isActive={filters.genres?.includes('Mystery') || false}
-            />
+            {/* Dynamic quick filters based on available facets */}
+            {facets?.genres && facets.genres.length > 0 && (
+              <>
+                {/* Show top 3 most common genres */}
+                {facets.genres.slice(0, 3).map(({ name, count }) => (
+                  <QuickFilterChip
+                    key={name}
+                    label={`${name} (${count})`}
+                    onClick={() => {
+                      const currentGenres = filters.genres || [];
+                      const hasGenre = currentGenres.includes(name);
+                      const updatedGenres = hasGenre
+                        ? currentGenres.filter(g => g !== name)
+                        : [...currentGenres, name];
+                      setFilters({
+                        genres: updatedGenres.length > 0 ? updatedGenres : undefined
+                      });
+                    }}
+                    isActive={filters.genres?.includes(name) || false}
+                  />
+                ))}
+              </>
+            )}
+            {facets?.moods && facets.moods.length > 0 && (
+              <>
+                {/* Show top 2 most common moods */}
+                {facets.moods.slice(0, 2).map(({ name, count }) => (
+                  <QuickFilterChip
+                    key={name}
+                    label={`${name} (${count})`}
+                    onClick={() => {
+                      const currentMoods = filters.moods || [];
+                      const hasMood = currentMoods.includes(name);
+                      const updatedMoods = hasMood
+                        ? currentMoods.filter(m => m !== name)
+                        : [...currentMoods, name];
+                      setFilters({
+                        moods: updatedMoods.length > 0 ? updatedMoods : undefined
+                      });
+                    }}
+                    isActive={filters.moods?.includes(name) || false}
+                  />
+                ))}
+              </>
+            )}
           </div>
         )}
 
