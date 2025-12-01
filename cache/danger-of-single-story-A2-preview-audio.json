@@ -1,0 +1,13 @@
+{
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/preview.mp3",
+    "duration": 27.397846
+  },
+  "voice": {
+    "id": "onwK4e9ZLuTAKqWW03F9",
+    "name": "Daniel",
+    "generationSpeed": 0.9,
+    "ffmpegSpeed": 0.85
+  },
+  "generatedAt": "2025-11-30T23:38:17.073Z"
+}

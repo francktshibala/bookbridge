@@ -1,0 +1,492 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "I love to tell stories. I want to tell you some stories about what I call \"the danger of the single story.\" I grew up in Nigeria. My mother says I started reading when I was two years old, but I think I was four. I read a lot of British and American children's books.",
+    "sentences": [
+      "I love to tell stories.",
+      "I want to tell you some stories about what I call \"the danger of the single story.\" I grew up in Nigeria.",
+      "My mother says I started reading when I was two years old, but I think I was four.",
+      "I read a lot of British and American children's books."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_0.mp3",
+    "duration": 18.492698,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "I also started writing when I was seven. I wrote stories like the ones I read. All my characters were white, they played in the snow, and they ate apples. They talked about the weather a lot.",
+    "sentences": [
+      "I also started writing when I was seven.",
+      "I wrote stories like the ones I read.",
+      "All my characters were white, they played in the snow, and they ate apples.",
+      "They talked about the weather a lot."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_1.mp3",
+    "duration": 13.267279,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "But I lived in Nigeria. We didn't have snow, we ate mangoes, and we didn't talk about the weather. My characters also drank ginger beer because the characters in the British books did. I didn't know what ginger beer was.",
+    "sentences": [
+      "But I lived in Nigeria.",
+      "We didn't have snow, we ate mangoes, and we didn't talk about the weather.",
+      "My characters also drank ginger beer because the characters in the British books did.",
+      "I didn't know what ginger beer was."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_2.mp3",
+    "duration": 15.168186,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "This shows how stories can influence us, especially when we are children. Because I only read books with foreign characters, I thought all books had to be about things I couldn't relate to. Then I found African books. They were hard to find, but they changed how I saw literature.",
+    "sentences": [
+      "This shows how stories can influence us, especially when we are children.",
+      "Because I only read books with foreign characters, I thought all books had to be about things I couldn't relate to.",
+      "Then I found African books.",
+      "They were hard to find, but they changed how I saw literature."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_3.mp3",
+    "duration": 21.134127,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "I realized that people like me could be in books too. I started to write about things I knew. I loved the American and British books I read. They made me think and dream.",
+    "sentences": [
+      "I realized that people like me could be in books too.",
+      "I started to write about things I knew.",
+      "I loved the American and British books I read.",
+      "They made me think and dream."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_4.mp3",
+    "duration": 12.555147,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "But they also made me think that people like me couldn't be in books. Finding African writers changed that. I come from a normal Nigerian family. My father was a professor and my mother was an administrator.",
+    "sentences": [
+      "But they also made me think that people like me couldn't be in books.",
+      "Finding African writers changed that.",
+      "I come from a normal Nigerian family.",
+      "My father was a professor and my mother was an administrator."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_5.mp3",
+    "duration": 14.467052,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "We had a house boy named Fide. His family was very poor. My mother would send them food and clothes. When I didn't finish my dinner, she would say, \"Finish your food!",
+    "sentences": [
+      "We had a house boy named Fide.",
+      "His family was very poor.",
+      "My mother would send them food and clothes.",
+      "When I didn't finish my dinner, she would say, \"Finish your food!"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_6.mp3",
+    "duration": 12.277324,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "People like Fide's family have nothing.\" I felt very sorry for Fide's family. Then one day, we visited his village. His mother showed us a beautiful basket his brother had made. I was surprised.",
+    "sentences": [
+      "People like Fide's family have nothing.\" I felt very sorry for Fide's family.",
+      "Then one day, we visited his village.",
+      "His mother showed us a beautiful basket his brother had made.",
+      "I was surprised."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_7.mp3",
+    "duration": 15.047596,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "I didn't think anyone in his family could make something. All I knew about them was that they were poor. That was my single story of them. When I was 19, I went to university in the United States.",
+    "sentences": [
+      "I didn't think anyone in his family could make something.",
+      "All I knew about them was that they were poor.",
+      "That was my single story of them.",
+      "When I was 19, I went to university in the United States."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_8.mp3",
+    "duration": 14.950635,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "My American roommate was surprised by me. She asked where I learned to speak English so well. She didn't know that English is the official language of Nigeria. She thought I would listen to \"tribal music\" and was disappointed when I played Mariah Carey.",
+    "sentences": [
+      "My American roommate was surprised by me.",
+      "She asked where I learned to speak English so well.",
+      "She didn't know that English is the official language of Nigeria.",
+      "She thought I would listen to \"tribal music\" and was disappointed when I played Mariah Carey."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_9.mp3",
+    "duration": 18.218662,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "She thought I didn't know how to use a stove. She felt sorry for me before she even met me. She had a single story of Africa: a story of disaster. In her story, Africans couldn't be like her.",
+    "sentences": [
+      "She thought I didn't know how to use a stove.",
+      "She felt sorry for me before she even met me.",
+      "She had a single story of Africa: a story of disaster.",
+      "In her story, Africans couldn't be like her."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_10.mp3",
+    "duration": 13.69678,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "Before I went to the U.S., I didn't think of myself as African. But in the U.S., people saw me as African. I started to see myself as African too. But I still get annoyed when people talk about Africa as if it's one country.",
+    "sentences": [
+      "Before I went to the U.S., I didn't think of myself as African.",
+      "But in the U.S., people saw me as African.",
+      "I started to see myself as African too.",
+      "But I still get annoyed when people talk about Africa as if it's one country."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_11.mp3",
+    "duration": 15.81746,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "After living in the U.S. for a while, I understood my roommate's view of me. If I didn't grow up in Nigeria, I might think Africa was a place of beautiful landscapes and animals, and people who couldn't speak for themselves. I would see Africans like I saw Fide's family.",
+    "sentences": [
+      "After living in the U.S.",
+      "for a while, I understood my roommate's view of me.",
+      "If I didn't grow up in Nigeria, I might think Africa was a place of beautiful landscapes and animals, and people who couldn't speak for themselves.",
+      "I would see Africans like I saw Fide's family."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_12.mp3",
+    "duration": 19.443288,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "This single story of Africa comes from Western literature. I also have a single story. I visited Mexico from the U.S. At that time, there were many stories about Mexicans being illegal immigrants.",
+    "sentences": [
+      "This single story of Africa comes from Western literature.",
+      "I also have a single story.",
+      "I visited Mexico from the U.S.",
+      "At that time, there were many stories about Mexicans being illegal immigrants."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_13.mp3",
+    "duration": 14.955669,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "When I saw people in Mexico going to work and laughing, I was surprised. Then I felt ashamed. I had believed the single story of Mexicans. This is how a single story is made.",
+    "sentences": [
+      "When I saw people in Mexico going to work and laughing, I was surprised.",
+      "Then I felt ashamed.",
+      "I had believed the single story of Mexicans.",
+      "This is how a single story is made."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_14.mp3",
+    "duration": 14.775238,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "If we only see people as one thing, that's what they become. Stories are about power. Power is not just telling someone's story, but making it the only story about them. If we start a story in the middle, it becomes a different story.",
+    "sentences": [
+      "If we only see people as one thing, that's what they become.",
+      "Stories are about power.",
+      "Power is not just telling someone's story, but making it the only story about them.",
+      "If we start a story in the middle, it becomes a different story."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_15.mp3",
+    "duration": 17.016825,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "For example, if we start the story of Native Americans with the arrival of the British, it's a different story. If we start the story of Africa with the failure of the African state, it's a different story. Once, a student told me it was a shame that Nigerian men were like the father in my book. I told him I had read a book about an American serial killer.",
+    "sentences": [
+      "For example, if we start the story of Native Americans with the arrival of the British, it's a different story.",
+      "If we start the story of Africa with the failure of the African state, it's a different story.",
+      "Once, a student told me it was a shame that Nigerian men were like the father in my book.",
+      "I told him I had read a book about an American serial killer."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_16.mp3",
+    "duration": 23.741224,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "I asked if it was a shame that young Americans were serial killers. I didn't think all Americans were like the character in the book. This is because I had many stories of America. I didn't have a single story of America.",
+    "sentences": [
+      "I asked if it was a shame that young Americans were serial killers.",
+      "I didn't think all Americans were like the character in the book.",
+      "This is because I had many stories of America.",
+      "I didn't have a single story of America."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_17.mp3",
+    "duration": 15.015261,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "I had a happy childhood. But I also had grandfathers who died in refugee camps. My cousin died because he couldn't get good healthcare. One of my best friends died in a plane crash because our fire trucks didn't have water.",
+    "sentences": [
+      "I had a happy childhood.",
+      "But I also had grandfathers who died in refugee camps.",
+      "My cousin died because he couldn't get good healthcare.",
+      "One of my best friends died in a plane crash because our fire trucks didn't have water."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_18.mp3",
+    "duration": 14.679365,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "I grew up under governments that didn't value education. Sometimes, my parents didn't get paid. So, we didn't have jam, margarine, bread, or milk. We lived in fear.",
+    "sentences": [
+      "I grew up under governments that didn't value education.",
+      "Sometimes, my parents didn't get paid.",
+      "So, we didn't have jam, margarine, bread, or milk.",
+      "We lived in fear."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_19.mp3",
+    "duration": 11.88678,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "All these stories are part of me. But if we only tell these sad stories, we miss the other stories. The single story creates stereotypes. The problem with stereotypes is not that they are untrue, but that they are incomplete.",
+    "sentences": [
+      "All these stories are part of me.",
+      "But if we only tell these sad stories, we miss the other stories.",
+      "The single story creates stereotypes.",
+      "The problem with stereotypes is not that they are untrue, but that they are incomplete."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_20.mp3",
+    "duration": 16.914739,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "They make one story the only story. Africa has many problems. But there are also other stories that are not about problems. It's important to tell these stories too.",
+    "sentences": [
+      "They make one story the only story.",
+      "Africa has many problems.",
+      "But there are also other stories that are not about problems.",
+      "It's important to tell these stories too."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_21.mp3",
+    "duration": 11.607823,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "We can't understand a place or a person without knowing all their stories. The single story takes away people's dignity. It makes it hard to see that we are all equal. It shows how we are different, not how we are similar.",
+    "sentences": [
+      "We can't understand a place or a person without knowing all their stories.",
+      "The single story takes away people's dignity.",
+      "It makes it hard to see that we are all equal.",
+      "It shows how we are different, not how we are similar."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_22.mp3",
+    "duration": 14.736054,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "What if I knew both sides of the immigration debate before my trip to Mexico? What if my mother told us that Fide's family was poor but hardworking? What if we had a TV network that showed different African stories? What if my roommate knew about my Nigerian publisher who started a publishing house because he believed people would read if books were affordable?",
+    "sentences": [
+      "What if I knew both sides of the immigration debate before my trip to Mexico?",
+      "What if my mother told us that Fide's family was poor but hardworking?",
+      "What if we had a TV network that showed different African stories?",
+      "What if my roommate knew about my Nigerian publisher who started a publishing house because he believed people would read if books were affordable?"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_23.mp3",
+    "duration": 23.898254,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "What if my roommate knew about my friend who hosts a TV show in Lagos? What if my roommate knew about the heart surgery that happened in a Lagos hospital last week? What if my roommate knew about the lawyer who went to court to change a law that was unfair to women? What if my roommate knew about the Nigerian film industry or my hair braider who started her own business?",
+    "sentences": [
+      "What if my roommate knew about my friend who hosts a TV show in Lagos?",
+      "What if my roommate knew about the heart surgery that happened in a Lagos hospital last week?",
+      "What if my roommate knew about the lawyer who went to court to change a law that was unfair to women?",
+      "What if my roommate knew about the Nigerian film industry or my hair braider who started her own business?"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_24.mp3",
+    "duration": 23.892925,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "Every time I go home, I see the problems in Nigeria. But I also see the resilience of people who succeed despite the government. I teach writing workshops in Lagos every summer. Many people apply.",
+    "sentences": [
+      "Every time I go home, I see the problems in Nigeria.",
+      "But I also see the resilience of people who succeed despite the government.",
+      "I teach writing workshops in Lagos every summer.",
+      "Many people apply."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_25.mp3",
+    "duration": 14.776531,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "They want to write, to tell stories. My publisher and I have started a non-profit. We want to build libraries, provide books for schools, and organize workshops for people who want to tell our many stories. Stories are important.",
+    "sentences": [
+      "They want to write, to tell stories.",
+      "My publisher and I have started a non-profit.",
+      "We want to build libraries, provide books for schools, and organize workshops for people who want to tell our many stories.",
+      "Stories are important."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_26.mp3",
+    "duration": 16.429705,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "Many stories are important. Stories can be used to take away and to give back. They can break a people's dignity, but they can also repair it. I want to finish with this thought: When we reject the single story, when we realize that there is never a single story about any place, we regain a kind of paradise.",
+    "sentences": [
+      "Many stories are important.",
+      "Stories can be used to take away and to give back.",
+      "They can break a people's dignity, but they can also repair it.",
+      "I want to finish with this thought: When we reject the single story, when we realize that there is never a single story about any place, we regain a kind of paradise."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_27.mp3",
+    "duration": 22.879932,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 112,
+    "text": "Thank you.",
+    "sentences": [
+      "Thank you."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/danger-of-single-story/A2/bundle_28.mp3",
+    "duration": 0.791429,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85
+  }
+]
