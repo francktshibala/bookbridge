@@ -60,11 +60,11 @@ export async function GET(request: NextRequest) {
         
         // Redirect based on type
         if (type === 'signup') {
-          // New signup - redirect to library
-          return NextResponse.redirect(`${baseUrl}/library?verified=true`);
+          // New signup - redirect to catalog (main book discovery page)
+          return NextResponse.redirect(`${baseUrl}/catalog?verified=true`);
         } else {
-          // Email verification or other callback - redirect to library
-          return NextResponse.redirect(`${baseUrl}/library?verified=true`);
+          // Email verification or other callback - redirect to catalog
+          return NextResponse.redirect(`${baseUrl}/catalog?verified=true`);
         }
       }
     } catch (err) {
