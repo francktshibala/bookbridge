@@ -51,9 +51,34 @@ export default function SignupPage() {
     const name = formData.get('name') as string;
 
     try {
-      // Use correct app URL (bookbridge.app in production, localhost in dev)
-      const appUrl = process.env.NEXT_PUBLIC_APP_URL || 
-                     (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+      // Better URL detection for email redirects
+      // Priority: 1. Explicit env var, 2. Vercel URL, 3. Current origin (if production), 4. localhost fallback
+      const getAppUrl = () => {
+        // 1. Check explicit env var (highest priority - set in Render/Vercel)
+        if (process.env.NEXT_PUBLIC_APP_URL) {
+          return process.env.NEXT_PUBLIC_APP_URL;
+        }
+        
+        // 2. Check Vercel URL (if deployed on Vercel)
+        if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+          return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+        }
+        
+        // 3. Check if we're in production (not localhost)
+        if (typeof window !== 'undefined') {
+          const origin = window.location.origin;
+          // If not localhost, use it (production)
+          if (!origin.includes('localhost') && !origin.includes('127.0.0.1')) {
+            return origin;
+          }
+        }
+        
+        // 4. Fallback to localhost for dev
+        return 'http://localhost:3000';
+      };
+      
+      const appUrl = getAppUrl();
+      console.log('[Signup] Using redirect URL:', `${appUrl}/auth/callback?type=signup`);
       
       const { error, data } = await supabase.auth.signUp({
         email,
