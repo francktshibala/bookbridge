@@ -3,6 +3,8 @@
 import { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { User } from '@supabase/supabase-js';
+import posthog from 'posthog-js';
+import { trackEmailVerified } from '@/lib/analytics/posthog';
 
 interface SimpleAuthContextType {
   user: User | null;
@@ -53,6 +55,15 @@ export function SimpleAuthProvider({ children }: { children: React.ReactNode }) 
         
         if (event === 'SIGNED_OUT') {
           setUser(null);
+          // PostHog: Reset user identification on logout
+          if (typeof window !== 'undefined') {
+            try {
+              posthog.reset();
+              console.log('📊 PostHog: User identification reset');
+            } catch (error) {
+              console.error('PostHog reset error:', error);
+            }
+          }
           // Only clear conversation data after initial load is complete
           // This prevents clearing data during the initial auth check
           if (initialLoadComplete && typeof window !== 'undefined') {
@@ -63,8 +74,46 @@ export function SimpleAuthProvider({ children }: { children: React.ReactNode }) 
               }
             });
           }
-        } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+        } else if (event === 'SIGNED_IN') {
           setUser(session?.user ?? null);
+          // PostHog: Identify user on signup/login
+          if (typeof window !== 'undefined' && session?.user) {
+            try {
+              posthog.identify(session.user.id, {
+                email: session.user.email,
+                signup_date: session.user.created_at,
+                // Add more properties from user metadata if available
+                ...(session.user.user_metadata?.source && { source: session.user.user_metadata.source }),
+                ...(session.user.user_metadata?.name && { name: session.user.user_metadata.name }),
+              });
+              console.log('📊 PostHog: User identified', session.user.id);
+              
+              // Track email verification if email is confirmed
+              if (session.user.email_confirmed_at) {
+                trackEmailVerified(session.user.id, session.user.email);
+              }
+            } catch (error) {
+              console.error('PostHog identify error:', error);
+            }
+          }
+        } else if (event === 'TOKEN_REFRESHED') {
+          const previousUser = user;
+          setUser(session?.user ?? null);
+          // Track email verification if email was just confirmed
+          if (typeof window !== 'undefined' && session?.user && 
+              session.user.email_confirmed_at && 
+              previousUser && !previousUser.email_confirmed_at) {
+            trackEmailVerified(session.user.id, session.user.email);
+          }
+        } else if (event === 'USER_UPDATED') {
+          const previousUser = user;
+          setUser(session?.user ?? null);
+          // Track email verification if email was just confirmed
+          if (typeof window !== 'undefined' && session?.user && 
+              session.user.email_confirmed_at && 
+              previousUser && !previousUser.email_confirmed_at) {
+            trackEmailVerified(session.user.id, session.user.email);
+          }
         }
         
         setLoading(false);

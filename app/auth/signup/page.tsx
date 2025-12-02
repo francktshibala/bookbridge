@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { AccessibleWrapper } from '@/components/AccessibleWrapper';
@@ -9,6 +9,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Mail, Lock, User, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { trackSignupStarted, trackUserSignedUp, trackSignupAbandoned } from '@/lib/analytics/posthog';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -19,6 +20,25 @@ export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [hasTrackedStarted, setHasTrackedStarted] = useState(false);
+
+  // Track signup started on component mount
+  useEffect(() => {
+    if (!hasTrackedStarted) {
+      trackSignupStarted('signup_page');
+      setHasTrackedStarted(true);
+    }
+  }, [hasTrackedStarted]);
+
+  // Track signup abandonment on unmount (user leaves page without completing)
+  useEffect(() => {
+    return () => {
+      if (!success && hasTrackedStarted) {
+        // Only track abandonment if user started but didn't complete
+        trackSignupAbandoned('signup_page', 'page_unmount');
+      }
+    };
+  }, [success, hasTrackedStarted]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,8 +63,13 @@ export default function SignupPage() {
       });
 
       if (error) {
+        // Track signup abandonment on error
+        trackSignupAbandoned('signup_page', 'signup_submit_error');
         throw error;
       }
+
+      // Track successful signup (Gate 1)
+      trackUserSignedUp('signup_page', 'email', email);
 
       // Send confirmation email via Resend (better deliverability)
       try {

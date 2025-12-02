@@ -9,6 +9,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
+import { trackEvent } from '@/lib/analytics/posthog';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -36,6 +37,12 @@ export default function LoginPage() {
       if (error) {
         throw error;
       }
+
+      // Track successful login (Gate 2: First Use)
+      trackEvent('user_logged_in', {
+        login_method: 'email',
+        timestamp: new Date().toISOString(),
+      });
 
       announceToScreenReader('Login successful! Redirecting to library.');
       router.push('/library');
