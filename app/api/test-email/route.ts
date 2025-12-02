@@ -27,7 +27,7 @@ export async function GET() {
   try {
     const result = await resend.emails.send({
       from: 'BookBridge <onboarding@resend.dev>',
-      to: 'franck1tshibala@gmail.com',
+      to: 'bookbridgegap@gmail.com', // Must be account owner email for unverified domain
       subject: 'BookBridge Email Test',
       text: 'This is a test email from BookBridge. If you receive this, Resend is working correctly!',
     });
@@ -36,7 +36,7 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      message: 'Email sent! Check franck1tshibala@gmail.com inbox (including spam)',
+      message: 'Email sent! Check bookbridgegap@gmail.com inbox (including spam)',
       result,
     });
   } catch (error) {
