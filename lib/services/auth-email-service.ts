@@ -42,7 +42,7 @@ export async function sendSignupConfirmationEmail({
   email: string;
   confirmationLink: string;
   name?: string;
-}): Promise<void> {
+}): Promise<any> {
   if (!RESEND_API_KEY) {
     console.warn('[AuthEmailService] RESEND_API_KEY not configured - skipping confirmation email');
     return;
@@ -115,9 +115,18 @@ Happy reading!
 The BookBridge Team
   `.trim();
 
+  // Debug logging before send (like feedback emails)
+  console.log('[AuthEmailService] About to send confirmation email:', {
+    to: email,
+    from: FROM_EMAIL,
+    hasApiKey: !!RESEND_API_KEY,
+    apiKeyLength: RESEND_API_KEY?.length,
+    confirmationLinkLength: confirmationLink.length,
+  });
+
   try {
     const resend = getResend();
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: email,
       subject: 'Welcome to BookBridge - Confirm Your Email',
@@ -125,10 +134,16 @@ The BookBridge Team
       text: textBody,
     });
 
-    console.log('[AuthEmailService] ✅ Confirmation email sent successfully to:', email);
+    console.log('[AuthEmailService] ✅ Confirmation email sent successfully! Result:', result);
+    return result;
   } catch (error) {
     console.error('[AuthEmailService] ❌ Failed to send confirmation email:', error);
-    // Don't throw - Supabase will still send its own email as fallback
+    console.error('[AuthEmailService] Error details:', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+    // Re-throw so API route can handle it
+    throw error;
   }
 }
 
