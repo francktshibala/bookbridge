@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
@@ -11,13 +11,54 @@ import { ArrowLeft, Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
 import { trackEvent } from '@/lib/analytics/posthog';
 
-export default function LoginPage() {
+function LoginPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { announceToScreenReader } = useAccessibility();
   const { isMobile, windowWidth } = useIsMobile();
   const isVerySmall = windowWidth < 375; // iPhone SE and smaller
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [resendingEmail, setResendingEmail] = useState(false);
+
+  // Read error from URL (e.g., from expired verification link)
+  useEffect(() => {
+    const urlError = searchParams.get('error');
+    const urlMessage = searchParams.get('message');
+    if (urlError || urlMessage) {
+      setError(urlMessage || urlError || null);
+      if (urlMessage) {
+        announceToScreenReader(urlMessage, 'assertive');
+      }
+    }
+  }, [searchParams, announceToScreenReader]);
+
+  // Resend confirmation email
+  const handleResendConfirmation = async (email: string) => {
+    setResendingEmail(true);
+    try {
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email: email,
+        options: {
+          emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/auth/callback?type=signup`,
+        },
+      });
+      
+      if (error) throw error;
+      
+      setError(null);
+      announceToScreenReader('New confirmation email sent! Please check your inbox.');
+      // Show success message
+      setError('New confirmation email sent! Please check your inbox.');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to resend email';
+      setError(errorMessage);
+      announceToScreenReader(`Failed to resend: ${errorMessage}`, 'assertive');
+    } finally {
+      setResendingEmail(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -254,17 +295,53 @@ export default function LoginPage() {
                     style={{
                       padding: '16px',
                       borderRadius: '12px',
-                      background: 'rgba(239, 68, 68, 0.1)',
-                      border: '1px solid rgba(239, 68, 68, 0.3)',
+                      background: error.includes('expired') || error.includes('New confirmation') 
+                        ? 'rgba(34, 197, 94, 0.1)' 
+                        : 'rgba(239, 68, 68, 0.1)',
+                      border: `1px solid ${error.includes('expired') || error.includes('New confirmation')
+                        ? 'rgba(34, 197, 94, 0.3)'
+                        : 'rgba(239, 68, 68, 0.3)'}`,
                       backdropFilter: 'blur(10px)'
                     }}
                   >
                     <div style={{
                       fontSize: '14px',
-                      color: 'var(--error-text)',
+                      color: error.includes('expired') || error.includes('New confirmation')
+                        ? '#16a34a'
+                        : 'var(--error-text)',
                       fontWeight: '600',
-                      fontFamily: 'Source Serif Pro, Georgia, serif'
+                      fontFamily: 'Source Serif Pro, Georgia, serif',
+                      marginBottom: error.includes('expired') ? '12px' : '0'
                     }}>{error}</div>
+                    {error.includes('expired') && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const email = (document.getElementById('email') as HTMLInputElement)?.value;
+                          if (email) {
+                            handleResendConfirmation(email);
+                          } else {
+                            setError('Please enter your email address first');
+                          }
+                        }}
+                        disabled={resendingEmail}
+                        style={{
+                          marginTop: '8px',
+                          padding: '8px 16px',
+                          background: 'var(--accent-primary)',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '8px',
+                          fontSize: '13px',
+                          fontWeight: '600',
+                          cursor: resendingEmail ? 'not-allowed' : 'pointer',
+                          opacity: resendingEmail ? 0.6 : 1,
+                          fontFamily: 'Source Serif Pro, Georgia, serif'
+                        }}
+                      >
+                        {resendingEmail ? 'Sending...' : 'Resend Confirmation Email'}
+                      </button>
+                    )}
                   </AccessibleWrapper>
                 </motion.div>
               )}
@@ -368,5 +445,17 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="page-container min-h-screen bg-[var(--bg-primary)] flex items-center justify-center">
+        <div style={{ color: 'var(--text-primary)' }}>Loading...</div>
+      </div>
+    }>
+      <LoginPageContent />
+    </Suspense>
   );
 }
