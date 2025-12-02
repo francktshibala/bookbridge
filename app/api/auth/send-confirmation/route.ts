@@ -8,8 +8,8 @@ export const runtime = 'nodejs';
 /**
  * POST /api/auth/send-confirmation
  *
- * Sends signup confirmation email via Resend (better deliverability than Supabase default).
- * Called after Supabase signup to send a Resend email with the confirmation link.
+ * Sends signup confirmation email via Resend API (bypasses SMTP issues).
+ * Generates Supabase confirmation link and sends via Resend for fast, professional delivery.
  */
 export async function POST(request: NextRequest) {
   try {
@@ -28,17 +28,71 @@ export async function POST(request: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    // Send Resend welcome email with instructions
-    // Supabase sends its own confirmation email, but Resend has better deliverability
-    // This ensures users get at least one email (from Resend) even if Supabase email is filtered
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000';
-    const loginLink = `${appUrl}/auth/login?email=${encodeURIComponent(email)}`;
+    // Get app URL for redirect
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 
+                   process.env.NEXT_PUBLIC_VERCEL_URL || 
+                   'https://bookbridge.app';
     
+    // Find the user by email to get their ID
+    const { data: users, error: userError } = await supabaseAdmin.auth.admin.listUsers();
+    
+    if (userError) {
+      console.error('[send-confirmation] Failed to list users:', userError);
+      // Fallback: trigger Supabase resend (uses their email service)
+      await supabaseAdmin.auth.resend({
+        type: 'signup',
+        email: email,
+        options: { emailRedirectTo: `${appUrl}/auth/callback?type=signup` },
+      });
+      return NextResponse.json(
+        { success: true, message: 'Confirmation email sent via Supabase' },
+        { status: 200 }
+      );
+    }
+
+    // Find user by email
+    const user = users.users.find(u => u.email === email);
+    
+    if (!user) {
+      console.error('[send-confirmation] User not found:', email);
+      return NextResponse.json(
+        { error: 'User not found' },
+        { status: 404 }
+      );
+    }
+
+    // Generate confirmation link for this user
+    const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+      type: 'signup',
+      email: email,
+      password: 'temp-password-ignore', // Required but not used for signup links
+      options: {
+        redirectTo: `${appUrl}/auth/callback?type=signup`,
+      },
+    });
+
+    if (linkError || !linkData?.properties?.action_link) {
+      console.error('[send-confirmation] Failed to generate link:', linkError);
+      // Fallback: trigger Supabase resend
+      await supabaseAdmin.auth.resend({
+        type: 'signup',
+        email: email,
+        options: { emailRedirectTo: `${appUrl}/auth/callback?type=signup` },
+      });
+      return NextResponse.json(
+        { success: true, message: 'Confirmation email sent via Supabase' },
+        { status: 200 }
+      );
+    }
+
+    // Send professional confirmation email via Resend with actual Supabase link
     await sendSignupConfirmationEmail({
       email,
-      confirmationLink: loginLink, // Link to login page (they can request new confirmation there)
+      confirmationLink: linkData.properties.action_link, // Real Supabase confirmation link
       name: name || undefined,
     });
+
+    console.log('[send-confirmation] ✅ Confirmation email sent via Resend to:', email);
 
     return NextResponse.json(
       { success: true, message: 'Confirmation email sent' },

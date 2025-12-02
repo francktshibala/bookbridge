@@ -111,21 +111,24 @@ export default function SignupPage() {
       // Track successful signup (Gate 1)
       trackUserSignedUp('signup_page', 'email', email);
 
-      // Note: Supabase sends confirmation email automatically
-      // Resend welcome email is optional and can be disabled to avoid duplicate emails
-      // If you want to keep Resend email, uncomment below:
-      /*
+      // Send confirmation email via Resend API (bypasses SMTP issues)
+      // This ensures fast, professional email delivery even if Supabase SMTP isn't working
       try {
-        await fetch('/api/auth/send-confirmation', {
+        const emailResponse = await fetch('/api/auth/send-confirmation', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, name }),
         });
+        
+        if (!emailResponse.ok) {
+          console.warn('[Signup] Resend email failed, but account created successfully');
+        } else {
+          console.log('[Signup] ✅ Confirmation email sent via Resend');
+        }
       } catch (emailError) {
-        // Log but don't fail signup - Supabase will still send its own email as fallback
+        // Log but don't fail signup - account is created, user can request new email
         console.error('[Signup] Failed to send Resend confirmation email:', emailError);
       }
-      */
 
       setSuccess(true);
       announceToScreenReader('Account created successfully! Please check your email to verify your account.');

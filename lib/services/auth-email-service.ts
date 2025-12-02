@@ -31,7 +31,7 @@ function getResend(): Resend {
  * Send signup confirmation email via Resend
  * 
  * @param email - User's email address
- * @param confirmationLink - Supabase confirmation link
+ * @param confirmationLink - Supabase confirmation link (actual verification URL)
  * @param name - User's name (optional)
  */
 export async function sendSignupConfirmationEmail({
@@ -71,18 +71,12 @@ export async function sendSignupConfirmationEmail({
           <div class="content">
             <p>Hi${name ? ` ${name}` : ''},</p>
             <p>Thank you for signing up for BookBridge! We're excited to help you learn English through classic literature.</p>
-            <p><strong>📧 Please check your email inbox (and spam folder) for a confirmation email.</strong></p>
-            <p>The confirmation email contains a link to verify your account. Click that link to activate your account.</p>
-            <p>If you don't see the confirmation email:</p>
-            <ul style="margin: 15px 0; padding-left: 20px;">
-              <li>Check your spam/junk folder</li>
-              <li>Wait a few minutes (emails can take 1-2 minutes to arrive)</li>
-              <li>Click the button below to go to login and request a new confirmation email</li>
-            </ul>
-            <div style="text-align: center;">
-              <a href="${confirmationLink}" class="button">Go to Login</a>
+            <p><strong>Please confirm your email address to activate your account.</strong></p>
+            <p>Click the button below to verify your email and start exploring our collection of classic books:</p>
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${confirmationLink}" class="button">Confirm Your Email</a>
             </div>
-            <p style="margin-top: 30px; font-size: 14px; color: #5D4E37;">This welcome email was sent via Resend for better deliverability. Your confirmation link will come in a separate email.</p>
+            <p style="font-size: 14px; color: #5D4E37; margin-top: 20px;">This link will expire in 24 hours. If you didn't create an account, you can safely ignore this email.</p>
             <div class="footer">
               <p><strong>What's Next?</strong></p>
               <ul style="margin: 10px 0;">
@@ -110,12 +104,12 @@ ${confirmationLink}
 
 This link will expire in 24 hours.
 
-If you didn't create an account, you can safely ignore this email.
-
 What's Next?
 - Explore our featured books
 - Listen to native speaker narration
 - Read at your perfect level (A1-C2)
+
+If you didn't create an account, you can safely ignore this email.
 
 Happy reading!
 The BookBridge Team
