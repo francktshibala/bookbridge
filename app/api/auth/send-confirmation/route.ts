@@ -50,14 +50,32 @@ export async function POST(request: NextRequest) {
     
     console.log('[send-confirmation] 📧 Step 3: Looking up user in Supabase...');
     
-    // Wait a moment for user to be created (user might not exist immediately)
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Wait longer for user to be created (user might not exist immediately)
+    // Retry up to 3 times with increasing delays
+    let user = null;
+    let userError = null;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1))); // 1s, 2s, 3s
+      
+      const { data: users, error: err } = await supabaseAdmin.auth.admin.listUsers();
+      
+      if (err) {
+        userError = err;
+        console.warn(`[send-confirmation] Attempt ${attempt + 1}: Failed to list users:`, err);
+        continue;
+      }
+
+      user = users.users.find(u => u.email === email);
+      if (user) {
+        console.log(`[send-confirmation] ✅ Step 3: Found user on attempt ${attempt + 1}:`, user.id);
+        break;
+      }
+      
+      console.warn(`[send-confirmation] Attempt ${attempt + 1}: User not found, retrying...`);
+    }
     
-    // Find the user by email to get their ID
-    const { data: users, error: userError } = await supabaseAdmin.auth.admin.listUsers();
-    
-    if (userError) {
-      console.error('[send-confirmation] ❌ Step 3 failed: Failed to list users:', userError);
+    if (userError && !user) {
+      console.error('[send-confirmation] ❌ Step 3 failed: Failed to list users after retries:', userError);
       // Fallback: trigger Supabase resend (uses their email service)
       await supabaseAdmin.auth.resend({
         type: 'signup',
@@ -70,15 +88,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Find user by email
-    const user = users.users.find(u => u.email === email);
-    
     if (!user) {
-      console.error('[send-confirmation] ❌ Step 3 failed: User not found:', email);
-      console.log('[send-confirmation] Available users:', users.users.map(u => u.email));
+      console.error('[send-confirmation] ❌ Step 3 failed: User not found after retries:', email);
+      // Fallback: trigger Supabase resend
+      await supabaseAdmin.auth.resend({
+        type: 'signup',
+        email: email,
+        options: { emailRedirectTo: `${appUrl}/auth/callback?type=signup` },
+      });
       return NextResponse.json(
-        { error: 'User not found. Please try signing up again.' },
-        { status: 404 }
+        { success: true, message: 'Confirmation email sent via Supabase (fallback)' },
+        { status: 200 }
       );
     }
 
