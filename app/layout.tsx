@@ -19,6 +19,7 @@ import OnboardingManager from '@/components/onboarding/OnboardingManager';
 import { PerformanceProvider } from '@/components/PerformanceProvider';
 import DeploymentInitializer from '@/components/DeploymentInitializer';
 import { PWAAnalyticsProvider } from '@/components/PWAAnalyticsProvider';
+import { PostHogProvider } from '@/components/providers/PostHogProvider';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { AudioProvider } from '@/contexts/AudioContext';
 
@@ -121,9 +122,10 @@ export default function RootLayout({
           className="sr-only"
         />
         
-        <ThemeProvider>
-          <AudioProvider>
-            <SimpleAuthProvider>
+        <PostHogProvider>
+          <ThemeProvider>
+            <AudioProvider>
+              <SimpleAuthProvider>
               <AccessibilityProvider>
               <KeyboardNavigationProvider>
                 <VoiceNavigationWrapper>
@@ -174,6 +176,7 @@ export default function RootLayout({
             </SimpleAuthProvider>
           </AudioProvider>
         </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
