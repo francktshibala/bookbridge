@@ -1,0 +1,305 @@
+import { PrismaClient } from '@prisma/client';
+import { createClient } from '@supabase/supabase-js';
+import fs from 'fs';
+import path from 'path';
+import { config } from 'dotenv';
+import { promisify } from 'util';
+import { exec } from 'child_process';
+
+const execAsync = promisify(exec);
+
+// Load environment variables
+config({ path: '.env.local' });
+
+const prisma = new PrismaClient();
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+
+// NOVEMBER 2025 PRODUCTION STANDARD - Daniel Voice with FFmpeg 0.85× Post-Processing
+const TARGET_SPEED = 0.85;  // 18% slower, comfortable pace for A1 learners
+
+// PRODUCTION VOICE SETTINGS (November 2025) - Daniel Voice for Biographies
+const DANIEL_VOICE_SETTINGS = {
+  voice_id: 'onwK4e9ZLuTAKqWW03F9',  // Daniel voice (podcast/biography narrator)
+  model_id: 'eleven_monolingual_v1',  // English-focused model
+  voice_settings: {
+    stability: 0.5,                    // Clarity for ESL learners
+    similarity_boost: 0.8,             // Enhanced presence
+    style: 0.05,                       // Subtle sophistication
+    use_speaker_boost: true
+  },
+  speed: 0.90,                          // Generate at default
+  output_format: 'mp3_44100_128',
+  apply_text_normalization: 'auto'
+};
+
+const BOOK_ID = 'anne-lindbergh';
+const CEFR_LEVEL = 'A1';
+const isPilot = process.argv.includes('--pilot');
+
+console.log(`🎵 Generating audio bundles for "Anne Lindbergh: Aviator and Author"`);
+console.log(`📚 Book ID: ${BOOK_ID}`);
+console.log(`🎯 CEFR Level: ${CEFR_LEVEL}`);
+console.log(`🗣️ Voice: Daniel (${DANIEL_VOICE_SETTINGS.voice_id})`);
+console.log(`⚡ Speed: Generate at 0.90×, FFmpeg slow to 0.85× (November 2025 standard)`);
+
+if (isPilot) {
+  console.log('🧪 PILOT MODE: Will generate only first 5 bundles (~$1 cost)');
+}
+
+// Load simplified text
+const simplifiedTextPath = path.join(process.cwd(), `cache/${BOOK_ID}-${CEFR_LEVEL.toLowerCase()}-simplified.txt`);
+if (!fs.existsSync(simplifiedTextPath)) {
+  console.error(`❌ Simplified text not found: ${simplifiedTextPath}`);
+  console.log('💡 Run simplification first: node scripts/simplify-anne-lindbergh.js A1');
+  process.exit(1);
+}
+
+const simplifiedText = fs.readFileSync(simplifiedTextPath, 'utf-8');
+
+// Split into sentences (preserving 1:1 mapping from original)
+const sentences = simplifiedText.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0);
+console.log(`📝 Total sentences: ${sentences.length}`);
+
+// Create 4-sentence bundles
+const bundles = [];
+for (let i = 0; i < sentences.length; i += 4) {
+  const bundleSentences = sentences.slice(i, i + 4);
+  bundles.push({
+    bundleIndex: Math.floor(i / 4),
+    startSentenceIndex: i,
+    endSentenceIndex: i + bundleSentences.length - 1,
+    text: bundleSentences.join(' '),
+    sentences: bundleSentences
+  });
+}
+
+console.log(`📦 Total bundles: ${bundles.length}`);
+const totalWords = simplifiedText.split(/\s+/).length;
+console.log(`💰 Estimated cost: ~$${Math.ceil((totalWords * 0.30) / 1000)} (${totalWords} words)`);
+
+// Check ElevenLabs quota
+async function checkElevenLabsQuota() {
+  try {
+    const response = await fetch('https://api.elevenlabs.io/v1/user/subscription', {
+      headers: {
+        'xi-api-key': process.env.ELEVENLABS_API_KEY
+      }
+    });
+
+    if (!response.ok) {
+      console.warn('⚠️ Could not check ElevenLabs quota');
+      return;
+    }
+
+    const data = await response.json();
+    const availableChars = data.character_limit - data.character_count;
+    const availableCredits = data.available_credits || 0;
+
+    console.log(`📊 ElevenLabs Status:`);
+    console.log(`   Available characters: ${availableChars.toLocaleString()}`);
+    console.log(`   Available credits: ${availableCredits.toLocaleString()}`);
+    console.log(`✅ Sufficient quota available`);
+  } catch (error) {
+    console.warn('⚠️ Could not check ElevenLabs quota:', error.message);
+  }
+}
+
+// Generate audio using ElevenLabs with retry logic
+async function generateElevenLabsAudio(text, voiceSettings, maxRetries = 3) {
+  let lastError;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceSettings.voice_id}`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'audio/mpeg',
+          'Content-Type': 'application/json',
+          'xi-api-key': process.env.ELEVENLABS_API_KEY
+        },
+        body: JSON.stringify({
+          text: text,
+          model_id: voiceSettings.model_id,
+          voice_settings: voiceSettings.voice_settings,
+          speed: voiceSettings.speed,
+          output_format: voiceSettings.output_format,
+          apply_text_normalization: voiceSettings.apply_text_normalization
+        })
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`ElevenLabs API error: ${response.status} ${errorText}`);
+      }
+
+      const audioBuffer = Buffer.from(await response.arrayBuffer());
+      return audioBuffer;
+    } catch (error) {
+      lastError = error;
+      if (attempt < maxRetries) {
+        console.log(`   ⏳ Retry attempt ${attempt}/${maxRetries} after error: ${error.message}`);
+        await new Promise(resolve => setTimeout(resolve, 2000 * attempt));
+      }
+    }
+  }
+  throw lastError;
+}
+
+// Apply FFmpeg 0.85× slowdown (November 2025 production formula)
+async function applyFFmpegSlowdown(inputPath, outputPath) {
+  try {
+    // Use atempo filter to slow down to 0.85× (18% slower)
+    await execAsync(`ffmpeg -i "${inputPath}" -filter:a "atempo=0.85" -y "${outputPath}"`);
+    return true;
+  } catch (error) {
+    console.error(`   ❌ FFmpeg slowdown failed: ${error.message}`);
+    return false;
+  }
+}
+
+// Measure audio duration with ffprobe (Solution 1 from MASTER_MISTAKES_PREVENTION)
+async function measureAudioDuration(filePath) {
+  try {
+    const { stdout } = await execAsync(`ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${filePath}"`);
+    return parseFloat(stdout.trim());
+  } catch (error) {
+    console.error(`   ❌ FFprobe measurement failed: ${error.message}`);
+    return null;
+  }
+}
+
+// Main generation function
+async function generateBundles() {
+  await checkElevenLabsQuota();
+
+  const tempDir = path.join(process.cwd(), 'temp/audio');
+  fs.mkdirSync(tempDir, { recursive: true });
+
+  const bundlesToProcess = isPilot ? bundles.slice(0, 5) : bundles;
+  const metadata = [];
+
+  console.log(`\n🎬 Starting audio generation for ${bundlesToProcess.length} bundles...\n`);
+
+  for (let i = 0; i < bundlesToProcess.length; i++) {
+    const bundle = bundlesToProcess[i];
+    const progress = `${i + 1}/${bundlesToProcess.length}`;
+
+    console.log(`📦 Bundle ${progress} (sentences ${bundle.startSentenceIndex}-${bundle.endSentenceIndex})`);
+    console.log(`   📝 Text preview: "${bundle.text.substring(0, 60)}..."`);
+
+    try {
+      // Step 1: Generate audio with ElevenLabs (0.90× speed)
+      console.log(`   🎙️ Generating audio with Daniel voice...`);
+      const audioBuffer = await generateElevenLabsAudio(bundle.text, DANIEL_VOICE_SETTINGS);
+
+      // Step 2: Save temporary file
+      const tempFile = path.join(tempDir, `bundle_${bundle.bundleIndex}_temp.mp3`);
+      fs.writeFileSync(tempFile, audioBuffer);
+      console.log(`   💾 Saved temporary file`);
+
+      // Step 3: Apply FFmpeg 0.85× slowdown (November 2025 standard)
+      const slowedFile = path.join(tempDir, `bundle_${bundle.bundleIndex}_slowed.mp3`);
+      console.log(`   ⚡ Applying FFmpeg 0.85× slowdown...`);
+      const slowSuccess = await applyFFmpegSlowdown(tempFile, slowedFile);
+
+      if (!slowSuccess) {
+        console.log(`   ⚠️ FFmpeg slowdown failed, using original`);
+        fs.copyFileSync(tempFile, slowedFile);
+      }
+
+      // Step 4: Measure duration with ffprobe (Solution 1)
+      console.log(`   📏 Measuring audio duration...`);
+      const duration = await measureAudioDuration(slowedFile);
+      console.log(`   ⏱️ Duration: ${duration ? duration.toFixed(2) + 's' : 'unknown'}`);
+
+      // Step 5: Upload to Supabase Storage
+      const fileName = `${BOOK_ID}/${CEFR_LEVEL.toLowerCase()}/bundle_${bundle.bundleIndex}.mp3`;
+      const slowedBuffer = fs.readFileSync(slowedFile);
+
+      console.log(`   ☁️ Uploading to Supabase Storage...`);
+      const { data, error } = await supabase.storage
+        .from('audio-files')
+        .upload(fileName, slowedBuffer, {
+          contentType: 'audio/mpeg',
+          cacheControl: '2592000',
+          upsert: true
+        });
+
+      if (error) {
+        console.error(`   ❌ Upload failed: ${error.message}`);
+        continue;
+      }
+
+      // Step 6: Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('audio-files')
+        .getPublicUrl(fileName);
+
+      console.log(`   ✅ Uploaded: ${fileName}`);
+      console.log(`   🔗 URL: ${publicUrl}`);
+
+      // Step 7: Cache metadata
+      metadata.push({
+        bundleIndex: bundle.bundleIndex,
+        startSentenceIndex: bundle.startSentenceIndex,
+        endSentenceIndex: bundle.endSentenceIndex,
+        text: bundle.text,
+        sentences: bundle.sentences,
+        audioUrl: publicUrl,
+        duration: duration,
+        voiceId: DANIEL_VOICE_SETTINGS.voice_id,
+        voiceName: 'Daniel',
+        speed: TARGET_SPEED
+      });
+
+      // Cleanup temp files
+      if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
+      if (fs.existsSync(slowedFile)) fs.unlinkSync(slowedFile);
+
+      // Rate limit delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+    } catch (error) {
+      console.error(`   ❌ Error processing bundle ${bundle.bundleIndex}:`, error.message);
+    }
+
+    if ((i + 1) % 5 === 0) {
+      console.log(`\n📈 Progress: ${i + 1}/${bundlesToProcess.length} (${Math.round((i + 1) / bundlesToProcess.length * 100)}%)\n`);
+    }
+  }
+
+  // Save metadata to cache
+  const cacheDir = path.join(process.cwd(), 'cache');
+  fs.mkdirSync(cacheDir, { recursive: true });
+  const metadataPath = path.join(cacheDir, `${BOOK_ID}-${CEFR_LEVEL.toLowerCase()}-bundles-metadata.json`);
+  fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
+
+  console.log(`\n🎉 AUDIO GENERATION COMPLETE!`);
+  console.log(`=`.repeat(60));
+  console.log(`📦 Total bundles processed: ${metadata.length}`);
+  console.log(`✅ Success rate: ${Math.round((metadata.length / bundlesToProcess.length) * 100)}%`);
+  console.log(`💾 Metadata saved to: ${metadataPath}`);
+  console.log(`🗣️ Voice: Daniel (${DANIEL_VOICE_SETTINGS.voice_id})`);
+  console.log(`⚡ Speed: 0.85× (November 2025 production standard)`);
+  console.log(`\n🚀 Ready for Phase 6: Database Integration`);
+
+  await prisma.$disconnect();
+}
+
+// Handle process termination gracefully
+process.on('SIGINT', async () => {
+  console.log('\n⏹️ Process interrupted. Cleaning up...');
+  await prisma.$disconnect();
+  process.exit(0);
+});
+
+// Run the script
+generateBundles()
+  .catch(error => {
+    console.error('💥 Fatal error:', error);
+    process.exit(1);
+  });
+

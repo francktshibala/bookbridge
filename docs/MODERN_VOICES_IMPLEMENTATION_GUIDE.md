@@ -337,9 +337,9 @@ npx tsx scripts/integrate-{content-id}-{level}-database.ts
 # If skipped, content exists in DB/API but users can't see it!
 
 # ✅ 10. Add to Featured Books Configuration
-# Edit app/featured-books/page.tsx
+# Edit lib/config/books.ts
 #
-# ⚠️ Location 1: Add to ALL_FEATURED_BOOKS array (around line 297) - REQUIRED FOR VISIBILITY:
+# ⚠️ Location 1: Add to ALL_FEATURED_BOOKS array (around line 160) - REQUIRED FOR VISIBILITY:
 # {
 #   id: '{content-id}',  # Must match database slug exactly
 #   title: 'The Power of Vulnerability',
@@ -351,24 +351,24 @@ npx tsx scripts/integrate-{content-id}-{level}-database.ts
 #   abbreviation: 'PV'
 # },
 #
-# ⚠️ Location 2: Add to BOOK_API_MAPPINGS (around line 347) - REQUIRED FOR BUNDLE LOADING:
+# ⚠️ Location 2: Add to BOOK_API_MAPPINGS (around line 208) - REQUIRED FOR BUNDLE LOADING:
 # '{content-id}': {
 #   'A1': '/api/{content-id}-a1/bundles'  # Must match your API endpoint exactly
 # },
 #
-# ⚠️ Location 3: Add to BOOK_DEFAULT_LEVELS (around line 365) - REQUIRED FOR DEFAULT LEVEL:
+# ⚠️ Location 3: Add to BOOK_DEFAULT_LEVELS (around line 250) - REQUIRED FOR DEFAULT LEVEL:
 # '{content-id}': 'A1',  // Default level when user opens content
 
 # ✅ 11. VALIDATION CHECKPOINT (BEFORE PROCEEDING TO CATALOG)
-# ⚠️ MANDATORY: Test featured-books page FIRST before testing catalog
+# ⚠️ MANDATORY: Test reading route FIRST before testing catalog
 #
 # TEST 1: Direct URL Access
-curl http://localhost:3003/featured-books?book={content-id}
+curl http://localhost:3003/read/{content-id}
 # Expected: Page loads, shows title, preview, and content
 # If 404 or "not found": Missing from ALL_FEATURED_BOOKS array
 #
 # TEST 2: Browser Verification
-# 1. Open: http://localhost:3003/featured-books?book={content-id}
+# 1. Open: http://localhost:3003/read/{content-id}
 # 2. Verify: Title shows (NOT "Unknown Title")
 # 3. Verify: Preview section appears with text + audio player
 # 4. Verify: Content loads (no "Level not available" error)
@@ -423,10 +423,12 @@ curl http://localhost:3003/featured-books?book={content-id}
 #
 # ⚠️ CRITICAL: Use bundle-based reader route (NOT chunk-based legacy route)
 #
-# ✅ CORRECT ROUTING (Bundle Architecture):
-const handleSelectBook = (book: FeaturedBook) => {
-  // Navigate to featured-books page (modern bundle architecture)
-  router.push(`/featured-books?book=${book.slug}`);
+# ✅ CORRECT ROUTING (Bundle Architecture - UNIFIED ROUTE):
+const handleSelectBook = (book: UnifiedBook) => {
+  if (isFeaturedBook(book) && book.slug) {
+    // Navigate to unified reading route (modern bundle architecture)
+    router.push(`/read/${book.slug}`);
+  }
 };
 #
 # Benefits of Bundle Architecture:
@@ -434,6 +436,7 @@ const handleSelectBook = (book: FeaturedBook) => {
 # - Solution 1 timing (perfect sync from cached metadata)
 # - Better UI/UX (preview section, level switching)
 # - Future-proof (all new development here)
+# - Clean URLs: /read/{slug} instead of /featured-books?book={slug}
 #
 # ❌ WRONG ROUTING (Chunk Architecture - DEPRECATED):
 # const handleSelectBook = (book: FeaturedBook) => {
@@ -448,8 +451,8 @@ const handleSelectBook = (book: FeaturedBook) => {
 #
 # ⚠️ VALIDATION: Verify routing BEFORE testing in browser
 grep -A 5 "handleSelectBook" app/catalog/page.tsx
-# Expected output should show: router.push(\`/featured-books?book=\${book.slug}\`)
-# If shows /library/${book.slug}/read: WRONG - fix immediately!
+# Expected output should show: router.push(\`/read/\${book.slug}\`)
+# If shows /library/${book.slug}/read or /featured-books: WRONG - fix immediately!
 
 # ✅ 14. Test Catalog Integration
 # 1. Open: http://localhost:3003/catalog
@@ -458,21 +461,22 @@ grep -A 5 "handleSelectBook" app/catalog/page.tsx
 # 4. Click: Modern Voices collection
 # 5. Verify: Your content card shows in results
 # 6. Click: "Start Reading" button
-# 7. ⚠️ CHECK URL: Should be /featured-books?book={content-id}
-#    - If /library/... appears: STOP and fix routing!
+# 7. ⚠️ CHECK URL: Should be /read/{content-id}
+#    - If /library/... or /featured-books appears: STOP and fix routing!
 # 8. Verify: Content loads with bundle architecture
 # 9. Verify: Preview section shows
 # 10. Test: Audio playback works
 
 # ⚠️ VALIDATION CHECKPOINT:
 # After clicking "Start Reading", check browser URL bar:
-# ✅ CORRECT: http://localhost:3003/featured-books?book=power-of-vulnerability
+# ✅ CORRECT: http://localhost:3003/read/power-of-vulnerability
 # ❌ WRONG: http://localhost:3003/library/power-of-vulnerability/read
+# ❌ WRONG: http://localhost:3003/featured-books?book=power-of-vulnerability
 #
 # If wrong URL appears:
 # - Stop immediately
 # - Check app/catalog/page.tsx routing
-# - Fix to use /featured-books?book=...
+# - Fix to use /read/{slug}
 # - Re-test before continuing
 ```
 
@@ -490,7 +494,7 @@ npm run dev  # Start development server
 
 # TEST READING EXPERIENCE:
 # 1. Click "Start Reading" on content card
-# 2. Verify routes to /featured-books?book={content-id}
+# 2. Verify routes to /read/{content-id}
 # 3. Verify title displays correctly (NOT "Unknown Title")
 # 4. Verify preview section shows:
 #    - Preview text description
@@ -534,21 +538,20 @@ npm run dev  # Start development server
   - Locations 2-6: Chapter structure, getCurrentChapter, ChapterPicker, etc.
 
 **Fix Applied:**
-- Added to `app/featured-books/page.tsx`:
-  - ALL_FEATURED_BOOKS array (makes book visible in /featured-books)
+- Added to `lib/config/books.ts`:
+  - ALL_FEATURED_BOOKS array (makes book visible in catalog and reading route)
   - BOOK_API_MAPPINGS (routes to correct API endpoint)
   - BOOK_DEFAULT_LEVELS (sets default level to A1)
 
 **Prevention for Modern Voices:**
 - ✅ Phase 7 (Frontend Integration) is now MANDATORY
-- ✅ Must add to 3 locations in featured-books/page.tsx
-- ✅ Must add to lib/config/books.ts (if used globally)
-- ✅ Validation: Open /featured-books and verify content shows BEFORE testing catalog
+- ✅ Must add to 3 locations in lib/config/books.ts
+- ✅ Validation: Open /read/{content-id} and verify content shows BEFORE testing catalog
 
 **Testing Checklist Added:**
 ```bash
 # MANDATORY VALIDATION BEFORE MOVING TO CATALOG:
-# 1. Test direct URL first: http://localhost:3003/featured-books?book={content-id}
+# 1. Test direct URL first: http://localhost:3003/read/{content-id}
 # 2. Verify book loads (not 404 or "not found")
 # 3. Verify title displays correctly
 # 4. ONLY THEN test catalog integration
@@ -561,20 +564,20 @@ npm run dev  # Start development server
 - Initial routing sent users to `/library/{slug}/read` (legacy chunk-based reader)
 - Content loaded but used OLD architecture (BookChunk, not bundles)
 - Different UI, no BundleAudioManager, wrong data structure
-- Had to backtrack and fix routing to `/featured-books?book={slug}`
+- Had to backtrack and fix routing to `/read/{slug}` (unified route)
 
 **Root Cause:**
 - Catalog routing copied from legacy pattern
 - Didn't understand the critical architecture difference:
-  - **Bundle Architecture** (modern): `/featured-books` → uses BundleAudioManager → Solution 1 timings
+  - **Bundle Architecture** (modern): `/read/[slug]` → uses BundleAudioManager → Solution 1 timings
   - **Chunk Architecture** (legacy): `/library/[id]/read` → old system → deprecated
 
 **Which MASTER_MISTAKES Phase Prevents This:**
 - **Phase 4.5** (lines 470-581): "Frontend API Integration Validation"
   - Verifies BOOK_API_MAPPINGS routes to bundle endpoint
-  - Tests /featured-books page works before catalog
+  - Tests /read/[slug] route works before catalog
 - **Phase 6** (lines 623-637): "UI Integration"
-  - All modern content MUST use featured-books page architecture
+  - All modern content MUST use unified reading route architecture
 
 **Fix Applied:**
 ```typescript
@@ -583,30 +586,32 @@ const handleSelectBook = (book: FeaturedBook) => {
   router.push(`/library/${book.slug}/read?level=A1`); // Chunk architecture!
 };
 
-// ✅ CORRECT (fixed):
-const handleSelectBook = (book: FeaturedBook) => {
-  router.push(`/featured-books?book=${book.slug}`); // Bundle architecture!
+// ✅ CORRECT (unified routing):
+const handleSelectBook = (book: UnifiedBook) => {
+  if (isFeaturedBook(book) && book.slug) {
+    router.push(`/read/${book.slug}`); // Bundle architecture, unified route!
+  }
 };
 ```
 
 **Prevention for Modern Voices:**
 - ✅ Phase 8 now explicitly documents this routing requirement
 - ✅ NEVER route to `/library/[id]/read` for new content
-- ✅ ALWAYS route to `/featured-books?book={slug}` for bundle architecture
+- ✅ ALWAYS route to `/read/{slug}` for bundle architecture (unified route)
 - ✅ Validation: Click "Start Reading" and verify URL before testing audio
 
 **Architecture Decision Rule:**
 ```
 ALL NEW CONTENT (books + modern voices) MUST USE:
-- Route: /featured-books?book={slug}
+- Route: /read/{slug} (unified reading route)
 - Architecture: Bundle-based with BundleAudioManager
 - Timing: Solution 1 (cached audioDurationMetadata)
 - API: /api/{content-id}-{level}/bundles
 
 NEVER USE (deprecated):
-- Route: /library/[id]/read
-- Architecture: Chunk-based (legacy)
-- Why: Old system, no Solution 1, worse UX
+- Route: /library/[id]/read (chunk architecture)
+- Route: /featured-books?book={slug} (old routing, replaced by /read/{slug})
+- Why: Old systems, no Solution 1, worse UX
 ```
 
 ---
@@ -867,17 +872,17 @@ async function generateCompletePreview(contentId, level) {
 
 ### Phase 7: Frontend Integration (CRITICAL)
 6. **Featured Books Config**: ✅ Added to ALL_FEATURED_BOOKS, BOOK_API_MAPPINGS, BOOK_DEFAULT_LEVELS
-7. **Direct URL Test**: ✅ `/featured-books?book={id}` loads correctly
+7. **Direct URL Test**: ✅ `/read/{id}` loads correctly
 8. **Title Display**: ✅ Shows correct title (NOT "Unknown Title")
 9. **Preview Section**: ✅ Shows text + audio player with working playback
 
 ### Phase 8: Catalog Integration (CRITICAL ROUTING)
-10. **Catalog Routing**: ✅ Routes to `/featured-books?book=...` (NOT `/library/.../read`)
+10. **Catalog Routing**: ✅ Routes to `/read/{slug}` (NOT `/library/.../read` or `/featured-books`)
 11. **Collection Visibility**: ✅ Content appears in Modern Voices collection when clicked
 12. **Complete Flow**: ✅ Catalog → Collection → Start Reading → Bundle reader → Audio works
 
 ### Final Validation
-13. **Architecture Check**: ✅ Verify URL is `/featured-books?book=...` (bundle architecture)
+13. **Architecture Check**: ✅ Verify URL is `/read/{slug}` (bundle architecture, unified route)
 14. **Cache Test**: ✅ Tested in incognito mode to verify no cache issues
 
 ---
