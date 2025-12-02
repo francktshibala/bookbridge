@@ -9,9 +9,10 @@
 
 import { Resend } from 'resend';
 
+// Only send to account owner email (Resend free tier restriction)
 const DEFAULT_ADMIN_EMAILS = [
-  'bookbridgegap@gmail.com',
-  'franck1tshibala@gmail.com',
+  'bookbridgegap@gmail.com', // Account owner - Resend allows this
+  // 'franck1tshibala@gmail.com', // Removed - Resend free tier doesn't allow multiple recipients
 ];
 const ADMIN_EMAILS = (process.env.FEEDBACK_ADMIN_EMAIL
   ? process.env.FEEDBACK_ADMIN_EMAIL.split(',')
