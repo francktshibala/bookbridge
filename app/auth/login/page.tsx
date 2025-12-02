@@ -85,8 +85,8 @@ function LoginPageContent() {
         timestamp: new Date().toISOString(),
       });
 
-      announceToScreenReader('Login successful! Redirecting to library.');
-      router.push('/library');
+      announceToScreenReader('Login successful! Redirecting to catalog.');
+      router.push('/catalog');
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Login failed';
       setError(errorMessage);
