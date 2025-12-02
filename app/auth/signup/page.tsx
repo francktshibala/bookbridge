@@ -51,6 +51,10 @@ export default function SignupPage() {
     const name = formData.get('name') as string;
 
     try {
+      // Use correct app URL (bookbridge.app in production, localhost in dev)
+      const appUrl = process.env.NEXT_PUBLIC_APP_URL || 
+                     (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+      
       const { error, data } = await supabase.auth.signUp({
         email,
         password,
@@ -58,7 +62,7 @@ export default function SignupPage() {
           data: {
             name: name,
           },
-          emailRedirectTo: `${window.location.origin}/auth/callback?type=signup`,
+          emailRedirectTo: `${appUrl}/auth/callback?type=signup`,
         },
       });
 
@@ -71,7 +75,10 @@ export default function SignupPage() {
       // Track successful signup (Gate 1)
       trackUserSignedUp('signup_page', 'email', email);
 
-      // Send confirmation email via Resend (better deliverability)
+      // Note: Supabase sends confirmation email automatically
+      // Resend welcome email is optional and can be disabled to avoid duplicate emails
+      // If you want to keep Resend email, uncomment below:
+      /*
       try {
         await fetch('/api/auth/send-confirmation', {
           method: 'POST',
@@ -82,6 +89,7 @@ export default function SignupPage() {
         // Log but don't fail signup - Supabase will still send its own email as fallback
         console.error('[Signup] Failed to send Resend confirmation email:', emailError);
       }
+      */
 
       setSuccess(true);
       announceToScreenReader('Account created successfully! Please check your email to verify your account.');
