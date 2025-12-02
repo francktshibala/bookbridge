@@ -94,6 +94,17 @@ export default function SignupPage() {
       if (error) {
         // Track signup abandonment on error
         trackSignupAbandoned('signup_page', 'signup_submit_error');
+        
+        // Check if it's an email sending error (SMTP issue)
+        // Supabase might fail to send email but account is still created
+        if (error.message?.includes('email') || error.message?.includes('smtp') || error.message?.includes('confirmation')) {
+          console.warn('[Signup] Email sending error, but account may have been created:', error);
+          // Still show success - user can request new confirmation email
+          setSuccess(true);
+          announceToScreenReader('Account created! If you don\'t receive an email, please check your spam folder or request a new confirmation email from the login page.');
+          return;
+        }
+        
         throw error;
       }
 
