@@ -11,11 +11,24 @@ export async function GET(request: NextRequest) {
   const error = requestUrl.searchParams.get('error');
   const errorDescription = requestUrl.searchParams.get('error_description');
 
-  // Handle errors
+  // Get base URL for redirects
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || requestUrl.origin;
+
+  // Handle errors (expired token, invalid link, etc.)
   if (error) {
     console.error('Auth callback error:', error, errorDescription);
+    
+    // Special handling for expired OTP
+    if (error === 'access_denied' && errorDescription?.includes('expired')) {
+      return NextResponse.redirect(
+        `${baseUrl}/auth/login?error=expired_link&message=${encodeURIComponent('Your verification link has expired. Please request a new confirmation email.')}`
+      );
+    }
+    
+    // Generic error handling
+    const errorMsg = errorDescription || error;
     return NextResponse.redirect(
-      new URL(`/auth/login?error=${encodeURIComponent(errorDescription || error)}`, request.url)
+      `${baseUrl}/auth/login?error=${encodeURIComponent(errorMsg)}`
     );
   }
 
@@ -28,8 +41,16 @@ export async function GET(request: NextRequest) {
       
       if (exchangeError) {
         console.error('Error exchanging code for session:', exchangeError);
+        
+        // Handle expired code specifically
+        if (exchangeError.message?.includes('expired') || exchangeError.message?.includes('invalid')) {
+          return NextResponse.redirect(
+            `${baseUrl}/auth/login?error=expired_link&message=${encodeURIComponent('Your verification link has expired. Please request a new confirmation email.')}`
+          );
+        }
+        
         return NextResponse.redirect(
-          new URL(`/auth/login?error=${encodeURIComponent(exchangeError.message)}`, request.url)
+          `${baseUrl}/auth/login?error=${encodeURIComponent(exchangeError.message)}`
         );
       }
 
@@ -40,21 +61,21 @@ export async function GET(request: NextRequest) {
         // Redirect based on type
         if (type === 'signup') {
           // New signup - redirect to library
-          return NextResponse.redirect(new URL('/library?verified=true', request.url));
+          return NextResponse.redirect(`${baseUrl}/library?verified=true`);
         } else {
           // Email verification or other callback - redirect to library
-          return NextResponse.redirect(new URL('/library?verified=true', request.url));
+          return NextResponse.redirect(`${baseUrl}/library?verified=true`);
         }
       }
     } catch (err) {
       console.error('Unexpected error in auth callback:', err);
       return NextResponse.redirect(
-        new URL('/auth/login?error=unexpected_error', request.url)
+        `${baseUrl}/auth/login?error=unexpected_error`
       );
     }
   }
 
   // No code provided - redirect to login
-  return NextResponse.redirect(new URL('/auth/login', request.url));
+  return NextResponse.redirect(`${baseUrl}/auth/login`);
 }
 
