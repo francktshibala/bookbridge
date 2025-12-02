@@ -132,21 +132,51 @@ export async function POST(request: NextRequest) {
 
     console.log('[send-confirmation] ✅ Step 4: Generated confirmation link');
     console.log('[send-confirmation] 📧 Step 5: Sending email via Resend...');
-
-    // Send professional confirmation email via Resend with actual Supabase link
-    await sendSignupConfirmationEmail({
-      email,
-      confirmationLink: linkData.properties.action_link, // Real Supabase confirmation link
-      name: name || undefined,
+    console.log('[send-confirmation] Email details:', {
+      to: email,
+      linkLength: linkData.properties.action_link.length,
+      linkPreview: linkData.properties.action_link.substring(0, 50) + '...',
     });
 
-    const duration = Date.now() - startTime;
-    console.log('[send-confirmation] ✅ Step 5: Confirmation email sent via Resend to:', email, `(${duration}ms)`);
+    // Send professional confirmation email via Resend with actual Supabase link
+    try {
+      const emailResult = await sendSignupConfirmationEmail({
+        email,
+        confirmationLink: linkData.properties.action_link, // Real Supabase confirmation link
+        name: name || undefined,
+      });
 
-    return NextResponse.json(
-      { success: true, message: 'Confirmation email sent' },
-      { status: 200 }
-    );
+      const duration = Date.now() - startTime;
+      console.log('[send-confirmation] ✅ Step 5: Confirmation email sent via Resend to:', email, `(${duration}ms)`);
+      console.log('[send-confirmation] Resend result:', emailResult);
+
+      return NextResponse.json(
+        { success: true, message: 'Confirmation email sent', result: emailResult },
+        { status: 200 }
+      );
+    } catch (emailError) {
+      console.error('[send-confirmation] ❌ Step 5 failed: Resend email error:', emailError);
+      console.error('[send-confirmation] Error details:', {
+        message: emailError instanceof Error ? emailError.message : String(emailError),
+        stack: emailError instanceof Error ? emailError.stack : undefined,
+      });
+      
+      // Fallback: trigger Supabase resend
+      await supabaseAdmin.auth.resend({
+        type: 'signup',
+        email: email,
+        options: { emailRedirectTo: `${appUrl}/auth/callback?type=signup` },
+      });
+      
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: 'Confirmation email sent via Supabase (Resend failed)',
+          error: emailError instanceof Error ? emailError.message : String(emailError)
+        },
+        { status: 200 }
+      );
+    }
 
   } catch (error) {
     const duration = Date.now() - startTime;
