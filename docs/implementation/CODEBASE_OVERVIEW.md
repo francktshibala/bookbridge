@@ -440,6 +440,26 @@ This document establishes the universal accessibility vision while defining the 
 
 ### **Key Research Files**
 
+#### **CONFIRMATION_EMAIL_SOLUTION.md** ⚠️ **CRITICAL AUTH ISSUE**
+**Location**: `/docs/research/CONFIRMATION_EMAIL_SOLUTION.md`  
+**Description**: **COMPLETE SOLUTION** for confirmation email delivery failure. Documents root cause analysis from 3-agent research (Email Service Expert, Supabase Auth Specialist, Debugging Expert). **ROOT CAUSES**: (1) Supabase API misuse - `generateLink({ type: 'signup' })` fails for existing users → falls back to Supabase resend → Resend never called, (2) Resend domain restriction - `onboarding@resend.dev` can't send to non-account-owner emails without domain verification. **SOLUTION IMPLEMENTED**: Changed to `generateLink({ type: 'magiclink' })` for existing users (works as confirmation + login). **REMAINING WORK**: Verify `bookbridge.app` domain in Resend (add DNS records SPF + DKIM, update `AUTH_FROM_EMAIL` to `noreply@bookbridge.app`). **KEY FILES**: `app/api/auth/send-confirmation/route.ts` (fixed), `lib/services/auth-email-service.ts` (Resend integration). **STATUS**: Fix 1 deployed ✅, Fix 2 pending ⏳. Essential reference for authentication email debugging and future email service issues.
+
+#### **CONFIRMATION_EMAIL_FINAL_PLAN.md**
+**Location**: `/docs/research/CONFIRMATION_EMAIL_FINAL_PLAN.md`  
+**Description**: Action plan and implementation guide for confirmation email fixes. Contains problem summary, why previous attempts failed (retry logic, error handling hiding failures, user lookup delays), solution plan with Fix 1 (magiclink API) and Fix 2 (domain verification), expected results, and testing strategy. Documents what to do now, expected results after each fix, and monitoring steps. Quick reference for understanding the complete solution and next steps.
+
+#### **Agent1_Email_Service_Findings.md**
+**Location**: `/docs/research/Agent1_Email_Service_Findings.md`  
+**Description**: Email Service Integration Expert research findings. Identified Resend free tier restrictions - `onboarding@resend.dev` can only send to account owner without domain verification. Documents why feedback emails work (sent to account owner) vs confirmation emails fail (sent to arbitrary users). Provides domain verification implementation guide, DNS record setup (SPF + DKIM), and testing strategy. Contains comprehensive Resend API analysis, error handling analysis, and solution recommendations ranked by priority.
+
+#### **Agent2_Supabase_Auth_Findings.md**
+**Location**: `/docs/research/Agent2_Supabase_Auth_Findings.md`  
+**Description**: Supabase Auth & Email Flow research findings. Identified API misuse - `generateLink({ type: 'signup' })` called after user exists → fails with "User already registered" → falls back to Supabase resend → Resend never called. Documents correct usage options: (1) Server-created users with `createUser` + `generateLink`, (2) Existing users with `generateLink({ type: 'magiclink' })`, (3) Built-in resend. Provides timing analysis (no race condition - user exists immediately), Supabase built-in email behavior, alternative confirmation link methods, and best practices for Supabase + Resend integration.
+
+#### **EMAIL_DEBUG_INSTRUCTIONS.md**
+**Location**: `/docs/EMAIL_DEBUG_INSTRUCTIONS.md`  
+**Description**: Original debugging instructions and problem context for confirmation email issue. Documents symptoms (users never receive confirmation emails, emails don't appear in Resend dashboard, Supabase SMTP issues), attempted solutions (retry logic, error handling improvements, logging), and research plan structure. Contains instructions for 3-agent research approach and systematic investigation methodology.
+
 #### **BACKGROUND_PROCESSING_API_PATTERNS.md**
 **Location**: `/docs/research/BACKGROUND_PROCESSING_API_PATTERNS.md`  
 **Description**: Analysis of background processing systems and API integration patterns. Documents URL construction utilities, client vs server-side API calls, and best practices for background jobs. Identifies 17 TTS API usage instances and provides recommendations for Progressive Voice background processing with proper URL handling and environment detection.
