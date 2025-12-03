@@ -48,69 +48,19 @@ export async function POST(request: NextRequest) {
                    process.env.NEXT_PUBLIC_VERCEL_URL || 
                    'https://bookbridge.app';
     
-    console.log('[send-confirmation] 📧 Step 3: Looking up user in Supabase...');
+    console.log('[send-confirmation] 📧 Step 3: User exists (signUp() already completed)');
     
-    // Wait longer for user to be created (user might not exist immediately)
-    // Retry up to 3 times with increasing delays
-    let user = null;
-    let userError = null;
-    for (let attempt = 0; attempt < 3; attempt++) {
-      await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1))); // 1s, 2s, 3s
-      
-      const { data: users, error: err } = await supabaseAdmin.auth.admin.listUsers();
-      
-      if (err) {
-        userError = err;
-        console.warn(`[send-confirmation] Attempt ${attempt + 1}: Failed to list users:`, err);
-        continue;
-      }
-
-      user = users.users.find(u => u.email === email);
-      if (user) {
-        console.log(`[send-confirmation] ✅ Step 3: Found user on attempt ${attempt + 1}:`, user.id);
-        break;
-      }
-      
-      console.warn(`[send-confirmation] Attempt ${attempt + 1}: User not found, retrying...`);
-    }
-    
-    if (userError && !user) {
-      console.error('[send-confirmation] ❌ Step 3 failed: Failed to list users after retries:', userError);
-      // Fallback: trigger Supabase resend (uses their email service)
-      await supabaseAdmin.auth.resend({
-        type: 'signup',
-        email: email,
-        options: { emailRedirectTo: `${appUrl}/auth/callback?type=signup` },
-      });
-      return NextResponse.json(
-        { success: true, message: 'Confirmation email sent via Supabase' },
-        { status: 200 }
-      );
-    }
-
-    if (!user) {
-      console.error('[send-confirmation] ❌ Step 3 failed: User not found after retries:', email);
-      // Fallback: trigger Supabase resend
-      await supabaseAdmin.auth.resend({
-        type: 'signup',
-        email: email,
-        options: { emailRedirectTo: `${appUrl}/auth/callback?type=signup` },
-      });
-      return NextResponse.json(
-        { success: true, message: 'Confirmation email sent via Supabase (fallback)' },
-        { status: 200 }
-      );
-    }
-
-    console.log('[send-confirmation] ✅ Step 3: Found user:', user.id);
+    // User exists immediately after signUp() resolves (no race condition)
+    // Skip lookup - we know user exists, just generate magic link directly
 
     console.log('[send-confirmation] 📧 Step 4: Generating confirmation link...');
     
     // Generate confirmation link for this user
+    // Use 'magiclink' for existing users (works as confirmation + login)
+    // 'signup' type only works for NEW users, fails if user already exists
     const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
-      type: 'signup',
+      type: 'magiclink', // Changed from 'signup' - works for existing users
       email: email,
-      password: 'temp-password-ignore', // Required but not used for signup links
       options: {
         redirectTo: `${appUrl}/auth/callback?type=signup`,
       },
