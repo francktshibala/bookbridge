@@ -91,39 +91,44 @@ export default function SignupPage() {
         },
       });
 
-      if (error) {
-        // Track signup abandonment on error
+      // Check if it's an email sending error (SMTP issue)
+      // Supabase might fail to send email but account is still created
+      const isEmailError = error && (
+        error.message?.includes('email') || 
+        error.message?.includes('smtp') || 
+        error.message?.includes('confirmation')
+      );
+
+      if (error && !isEmailError) {
+        // Track signup abandonment on non-email errors
         trackSignupAbandoned('signup_page', 'signup_submit_error');
-        
-        // Check if it's an email sending error (SMTP issue)
-        // Supabase might fail to send email but account is still created
-        if (error.message?.includes('email') || error.message?.includes('smtp') || error.message?.includes('confirmation')) {
-          console.warn('[Signup] Email sending error, but account may have been created:', error);
-          // Still show success - user can request new confirmation email
-          setSuccess(true);
-          announceToScreenReader('Account created! If you don\'t receive an email, please check your spam folder or request a new confirmation email from the login page.');
-          return;
-        }
-        
         throw error;
       }
 
-      // Track successful signup (Gate 1)
-      trackUserSignedUp('signup_page', 'email', email);
+      // If email error OR success, account is likely created - send via Resend
+      if (isEmailError) {
+        console.warn('[Signup] Supabase email failed, but account may have been created. Sending via Resend...', error);
+      } else {
+        // Track successful signup (Gate 1)
+        trackUserSignedUp('signup_page', 'email', email);
+      }
 
       // Send confirmation email via Resend API (bypasses SMTP issues)
       // This ensures fast, professional email delivery even if Supabase SMTP isn't working
       try {
+        console.log('[Signup] 📧 Calling Resend API to send confirmation email...');
         const emailResponse = await fetch('/api/auth/send-confirmation', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, name }),
         });
         
+        const emailResult = await emailResponse.json();
+        
         if (!emailResponse.ok) {
-          console.warn('[Signup] Resend email failed, but account created successfully');
+          console.warn('[Signup] Resend email failed:', emailResult);
         } else {
-          console.log('[Signup] ✅ Confirmation email sent via Resend');
+          console.log('[Signup] ✅ Confirmation email sent via Resend:', emailResult);
         }
       } catch (emailError) {
         // Log but don't fail signup - account is created, user can request new email

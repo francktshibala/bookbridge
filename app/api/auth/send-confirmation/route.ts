@@ -48,18 +48,13 @@ export async function POST(request: NextRequest) {
                    process.env.NEXT_PUBLIC_VERCEL_URL || 
                    'https://bookbridge.app';
     
-    console.log('[send-confirmation] 📧 Step 3: User exists (signUp() already completed)');
-    
-    // User exists immediately after signUp() resolves (no race condition)
-    // Skip lookup - we know user exists, just generate magic link directly
-
-    console.log('[send-confirmation] 📧 Step 4: Generating confirmation link...');
+    console.log('[send-confirmation] 📧 Step 3: Generating confirmation link...');
     
     // Generate confirmation link for this user
     // Use 'magiclink' for existing users (works as confirmation + login)
     // 'signup' type only works for NEW users, fails if user already exists
     const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
-      type: 'magiclink', // Changed from 'signup' - works for existing users
+      type: 'magiclink', // Works for both new and existing users
       email: email,
       options: {
         redirectTo: `${appUrl}/auth/callback?type=signup`,
@@ -67,7 +62,12 @@ export async function POST(request: NextRequest) {
     });
 
     if (linkError || !linkData?.properties?.action_link) {
-      console.error('[send-confirmation] ❌ Step 4 failed: Failed to generate link:', linkError);
+      console.error('[send-confirmation] ❌ Step 3 failed: Failed to generate link:', linkError);
+      console.error('[send-confirmation] Link error details:', {
+        message: linkError?.message,
+        status: linkError?.status,
+      });
+      
       // Fallback: trigger Supabase resend
       await supabaseAdmin.auth.resend({
         type: 'signup',
@@ -80,8 +80,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('[send-confirmation] ✅ Step 4: Generated confirmation link');
-    console.log('[send-confirmation] 📧 Step 5: Sending email via Resend...');
+    console.log('[send-confirmation] ✅ Step 3: Generated confirmation link');
+    console.log('[send-confirmation] 📧 Step 4: Sending email via Resend...');
     console.log('[send-confirmation] Email details:', {
       to: email,
       linkLength: linkData.properties.action_link.length,
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
       });
 
       const duration = Date.now() - startTime;
-      console.log('[send-confirmation] ✅ Step 5: Confirmation email sent via Resend to:', email, `(${duration}ms)`);
+      console.log('[send-confirmation] ✅ Step 4: Confirmation email sent via Resend to:', email, `(${duration}ms)`);
       console.log('[send-confirmation] Resend result:', emailResult);
 
       return NextResponse.json(
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
         { status: 200 }
       );
     } catch (emailError) {
-      console.error('[send-confirmation] ❌ Step 5 failed: Resend email error:', emailError);
+      console.error('[send-confirmation] ❌ Step 4 failed: Resend email error:', emailError);
       console.error('[send-confirmation] Error details:', {
         message: emailError instanceof Error ? emailError.message : String(emailError),
         stack: emailError instanceof Error ? emailError.stack : undefined,

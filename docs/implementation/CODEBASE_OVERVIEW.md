@@ -460,6 +460,21 @@ This document establishes the universal accessibility vision while defining the 
 **Location**: `/docs/EMAIL_DEBUG_INSTRUCTIONS.md`  
 **Description**: Original debugging instructions and problem context for confirmation email issue. Documents symptoms (users never receive confirmation emails, emails don't appear in Resend dashboard, Supabase SMTP issues), attempted solutions (retry logic, error handling improvements, logging), and research plan structure. Contains instructions for 3-agent research approach and systematic investigation methodology.
 
+#### **SPF_VERIFICATION_INVESTIGATION.md** ⚠️ **CURRENT EMAIL FIX**
+**Location**: `/docs/research/SPF_VERIFICATION_INVESTIGATION.md`  
+**Description**: Investigation document for SPF/DKIM verification and DNS migration to Cloudflare. Documents MX record issues with Namecheap subdomains and Resend domain verification requirements. **CURRENT STATUS**: DNS migration to Cloudflare complete, Resend domain verification pending. **RELATED FIXES**: Updated signup flow to call Resend API even when Supabase email fails (see `app/auth/signup/page.tsx` and `app/api/auth/send-confirmation/route.ts`).
+
+#### **Signup Email Flow Fix (January 2025)**
+**Status**: ✅ **IMPLEMENTED** - Resend API now called even when Supabase signup fails  
+**Problem**: Supabase signup failing with "Error sending confirmation email" (500 error) prevented Resend API from being called  
+**Solution**: Modified signup flow to call Resend API regardless of Supabase email status  
+**Files Modified**:
+- `app/auth/signup/page.tsx` - Updated to call Resend API even when Supabase email error occurs
+- `app/api/auth/send-confirmation/route.ts` - Added user existence check and better error handling
+- `scripts/test-signup-email.js` - Test script for verifying Resend API integration  
+**Key Changes**: Signup page now catches Supabase email errors and still attempts Resend delivery, API checks if user exists before generating confirmation link  
+**Testing**: Use `francoismatenda022+test1@gmail.com` alias for signup testing
+
 #### **BACKGROUND_PROCESSING_API_PATTERNS.md**
 **Location**: `/docs/research/BACKGROUND_PROCESSING_API_PATTERNS.md`  
 **Description**: Analysis of background processing systems and API integration patterns. Documents URL construction utilities, client vs server-side API calls, and best practices for background jobs. Identifies 17 TTS API usage instances and provides recommendations for Progressive Voice background processing with proper URL handling and environment detection.
