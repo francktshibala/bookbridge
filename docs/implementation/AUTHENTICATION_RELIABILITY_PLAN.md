@@ -182,28 +182,163 @@ Track all 4 conversion gates as defined in `POSTHOG_ANALYTICS_IMPLEMENTATION_PLA
 ### **Phase 5: Complete Conversion Funnel Tracking** (Priority 5 - Analytics)
 **Goal**: Measure complete signup → first use funnel
 
-**Implementation**:
-1. Track all funnel steps:
-   - `signup_started` ✅ (already implemented)
-   - `signup_submitted` ✅ (already implemented)
-   - `email_sent` - Track when Resend API succeeds
-   - `email_verified` - Track in callback (Phase 3)
-   - `first_login` - Track in login handler
-   - `first_book_opened` - Track in book reading page (Gate 2)
-2. Create PostHog funnel visualization
-3. Set up alerts for drop-off spikes
+**Status**: ⏳ **PENDING** - Ready for implementation
+
+**Implementation Steps**:
+
+#### **Step 1: Track `email_sent` Event** (15 min)
+**Location**: `app/api/auth/send-confirmation/route.ts`
+**Action**: 
+- After successful Resend email send (line ~100-130), track `email_sent` event
+- Use server-side PostHog HTTP API (similar to `trackEmailVerifiedServer` in callback route)
+- Track when `emailResult?.data` exists (email successfully sent)
+- Include properties: `user_id` (if available), `email` (partial), `method: 'resend'`
+
+**Code Pattern**:
+```typescript
+// After line 100 (successful Resend send)
+if (emailResult?.data && !emailResult?.error) {
+  // Track email_sent event via PostHog HTTP API
+  await trackEmailSentServer(email, userId); // Create this helper function
+}
+```
 
 **Files to Modify**:
-- `app/auth/signup/page.tsx` - Add `email_sent` tracking
-- `app/auth/login/page.tsx` - Add `first_login` tracking (check if first time)
-- `lib/analytics/posthog.ts` - Add missing funnel event helpers
+- `app/api/auth/send-confirmation/route.ts` - Add `trackEmailSentServer()` call after successful email send
+
+---
+
+#### **Step 2: Track `first_login` Event** (30 min)
+**Location**: `app/auth/login/page.tsx`
+**Action**:
+- After successful login (line ~73-86), check if this is user's first login
+- Check Supabase user metadata or PostHog user properties for `first_login_date`
+- If not set, this is first login → track `first_login` event
+- Set user property `first_login_date` in PostHog to prevent duplicate tracking
+- Use client-side PostHog tracking (`trackEvent` from `lib/analytics/posthog.ts`)
+
+**Detection Logic**:
+```typescript
+// After successful login (line 82-86)
+const { data: { user } } = await supabase.auth.getUser();
+if (user) {
+  // Check if first login (check PostHog user properties or Supabase metadata)
+  const isFirstLogin = !user.user_metadata?.first_login_date;
+  
+  if (isFirstLogin) {
+    trackEvent('first_login', {
+      user_id: user.id,
+      email: user.email ? user.email.substring(0, 3) + '***' : undefined,
+      time_since_signup: calculateTimeSinceSignup(user.created_at),
+      timestamp: new Date().toISOString(),
+    });
+    
+    // Set user property to prevent duplicate tracking
+    posthog.identify(user.id, {
+      first_login_date: new Date().toISOString(),
+    });
+  }
+}
+```
+
+**Files to Modify**:
+- `app/auth/login/page.tsx` - Add first login detection and tracking
+- `lib/analytics/posthog.ts` - Add helper function `trackFirstLogin()` if needed
+
+---
+
+#### **Step 3: Track `first_book_opened` Event** (45 min)
+**Location**: Book reading pages (`app/read/[slug]/page.tsx` and `app/library/[id]/read/page.tsx`)
+**Action**:
+- Track when user opens a book for the first time
+- Check if user has opened any book before (check PostHog events or Supabase)
+- If this is first book → track `first_book_opened` event
+- Use existing `trackFirstBookOpened()` function from `lib/analytics/posthog.ts`
+
+**Detection Logic**:
+```typescript
+// In book reading page component (on mount or when book loads)
+useEffect(() => {
+  if (user && bookId && bookTitle) {
+    // Check if user has opened any book before
+    // Option 1: Check PostHog user properties
+    const hasOpenedBook = posthog.getFeatureFlag('has_opened_book'); // Not ideal
+    
+    // Option 2: Check Supabase ReadingPosition table
+    const checkFirstBook = async () => {
+      const { data: positions } = await supabase
+        .from('reading_positions')
+        .select('book_id')
+        .eq('user_id', user.id)
+        .limit(1);
+      
+      if (!positions || positions.length === 0) {
+        // This is first book opened
+        trackFirstBookOpened(bookId, bookTitle);
+        
+        // Set user property to prevent duplicate tracking
+        posthog.identify(user.id, {
+          first_book_opened: true,
+          first_book_id: bookId,
+          first_book_title: bookTitle,
+        });
+      }
+    };
+    
+    checkFirstBook();
+  }
+}, [user, bookId, bookTitle]);
+```
+
+**Files to Modify**:
+- `app/read/[slug]/page.tsx` - Add first book tracking (unified reading route)
+- `app/library/[id]/read/page.tsx` - Add first book tracking (legacy library route)
+- `lib/analytics/posthog.ts` - Verify `trackFirstBookOpened()` function exists (already exists ✅)
+
+---
+
+#### **Step 4: Create PostHog Funnel Dashboard** (30 min)
+**Action**: Create funnel visualization in PostHog UI
+**Steps**:
+1. Go to PostHog Dashboard → Create New Funnel
+2. Add funnel steps in order:
+   - `signup_started`
+   - `user_signed_up` (or `signup_submitted`)
+   - `email_sent`
+   - `email_verified`
+   - `first_login`
+   - `first_book_opened`
+3. Set conversion window (e.g., 7 days)
+4. Save as "Signup → First Use Funnel"
+5. Add drop-off analysis between steps
 
 **PostHog Dashboard**:
-- Update Conversion Funnel dashboard with all steps
+- Create Conversion Funnel dashboard with all steps
 - Add drop-off analysis between steps
+- Set up alerts for drop-off spikes (>20% drop-off between steps)
+
+---
+
+**Files to Modify**:
+- ✅ `app/api/auth/send-confirmation/route.ts` - Add `email_sent` tracking (Step 1)
+- ✅ `app/auth/login/page.tsx` - Add `first_login` tracking (Step 2)
+- ✅ `app/read/[slug]/page.tsx` - Add `first_book_opened` tracking (Step 3)
+- ✅ `app/library/[id]/read/page.tsx` - Add `first_book_opened` tracking (Step 3)
+- ✅ `lib/analytics/posthog.ts` - Verify helpers exist (already exist ✅)
+
+**PostHog Events to Track**:
+- `email_sent` - Track when Resend API succeeds (Step 1) - **NEEDS HELPER FUNCTION**
+- `first_login` - Track when user logs in for first time (Step 2) - **NEEDS HELPER FUNCTION**
+- `first_book_opened` - Track when user opens first book (Step 3) - ✅ Function exists (`trackFirstBookOpened()`)
+
+**Helper Functions Needed**:
+- `trackEmailSentServer()` - Server-side function for `app/api/auth/send-confirmation/route.ts`
+- `trackFirstLogin()` - Client-side function for `app/auth/login/page.tsx` (or use `trackEvent` directly)
 
 **Success Criteria**:
 - ✅ Complete funnel tracked from signup to first use
+- ✅ All 6 funnel steps tracked: signup_started → signup_submitted → email_sent → email_verified → first_login → first_book_opened
+- ✅ PostHog funnel dashboard shows conversion rates at each step
 - ✅ Can identify where users drop off
 - ✅ Can measure impact of improvements
 
