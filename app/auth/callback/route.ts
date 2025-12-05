@@ -5,6 +5,48 @@ import { NextRequest, NextResponse } from 'next/server';
 // This route must be dynamic because it uses searchParams
 export const dynamic = 'force-dynamic';
 
+/**
+ * Server-side PostHog event tracking
+ * Uses PostHog HTTP API for server-side routes
+ */
+async function trackEmailVerifiedServer(userId: string, email?: string) {
+  const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+  const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
+
+  if (!posthogKey) {
+    console.warn('[auth/callback] ⚠️ PostHog key not configured - skipping email verification tracking');
+    return;
+  }
+
+  try {
+    const response = await fetch(`${posthogHost}/capture/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        api_key: posthogKey,
+        event: 'email_verified',
+        distinct_id: userId,
+        properties: {
+          user_id: userId,
+          email: email ? email.substring(0, 3) + '***' : undefined,
+          timestamp: new Date().toISOString(),
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('[auth/callback] ❌ PostHog tracking failed:', response.status, response.statusText);
+    } else {
+      console.log('[auth/callback] 📊 PostHog: Tracked email_verified event for user:', userId);
+    }
+  } catch (error) {
+    console.error('[auth/callback] ❌ PostHog tracking error:', error);
+    // Don't throw - tracking failure shouldn't break auth flow
+  }
+}
+
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
@@ -108,8 +150,12 @@ export async function GET(request: NextRequest) {
           userId: data.user.id,
         });
 
-        // Email verification tracking will happen in SimpleAuthProvider 
-        // when the auth state change event fires (USER_UPDATED or SIGNED_IN)
+        // Track email verification (Phase 3: Track Email Verification)
+        // Only track if this is NOT a password reset flow
+        if (!passwordResetDetection.isPasswordReset) {
+          console.log('[auth/callback] 📊 Tracking email verification for user:', data.user.id);
+          await trackEmailVerifiedServer(data.user.id, data.user.email);
+        }
         
         // Redirect based on type
         if (passwordResetDetection.isPasswordReset) {
