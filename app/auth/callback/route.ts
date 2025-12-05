@@ -28,18 +28,40 @@ export async function GET(request: NextRequest) {
   if (error) {
     console.error('Auth callback error:', error, errorDescription);
     
+    // Check if this is a password reset error (from URL type param or error context)
+    const isPasswordReset = type === 'password_reset' || 
+                            requestUrl.searchParams.get('type') === 'password_reset' ||
+                            errorDescription?.toLowerCase().includes('password') ||
+                            errorDescription?.toLowerCase().includes('reset');
+    
     // Special handling for expired OTP
     if (error === 'access_denied' && errorDescription?.includes('expired')) {
-      return NextResponse.redirect(
-        `${baseUrl}/auth/login?error=expired_link&message=${encodeURIComponent('Your verification link has expired. Please request a new confirmation email.')}`
-      );
+      if (isPasswordReset) {
+        // Password reset link expired - redirect to reset password page
+        return NextResponse.redirect(
+          `${baseUrl}/auth/reset-password?error=expired_link&message=${encodeURIComponent('Your password reset link has expired. Please request a new one.')}`
+        );
+      } else {
+        // Signup/verification link expired - redirect to login
+        return NextResponse.redirect(
+          `${baseUrl}/auth/login?error=expired_link&message=${encodeURIComponent('Your verification link has expired. Please request a new confirmation email.')}`
+        );
+      }
     }
     
     // Generic error handling
     const errorMsg = errorDescription || error;
-    return NextResponse.redirect(
-      `${baseUrl}/auth/login?error=${encodeURIComponent(errorMsg)}`
-    );
+    if (isPasswordReset) {
+      // Password reset error - redirect to reset password page
+      return NextResponse.redirect(
+        `${baseUrl}/auth/reset-password?error=${encodeURIComponent(errorMsg)}&message=${encodeURIComponent('Invalid or expired password reset link. Please request a new one.')}`
+      );
+    } else {
+      // Other auth errors - redirect to login
+      return NextResponse.redirect(
+        `${baseUrl}/auth/login?error=${encodeURIComponent(errorMsg)}`
+      );
+    }
   }
 
   // Handle email verification

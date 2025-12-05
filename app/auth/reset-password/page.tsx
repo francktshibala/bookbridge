@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
@@ -10,14 +10,27 @@ import { ArrowLeft, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { trackEvent } from '@/lib/analytics/posthog';
 
-export default function ResetPasswordPage() {
+function ResetPasswordPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { announceToScreenReader } = useAccessibility();
   const { isMobile, windowWidth } = useIsMobile();
   const isVerySmall = windowWidth < 375; // iPhone SE and smaller
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+
+  // Read error from URL (e.g., from expired reset link)
+  useEffect(() => {
+    const urlError = searchParams.get('error');
+    const urlMessage = searchParams.get('message');
+    if (urlError || urlMessage) {
+      setError(urlMessage || urlError || null);
+      if (urlMessage) {
+        announceToScreenReader(urlMessage, 'assertive');
+      }
+    }
+  }, [searchParams, announceToScreenReader]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -376,6 +389,20 @@ export default function ResetPasswordPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={
+      <div className="page-container min-h-screen bg-[var(--bg-primary)] flex items-center justify-center">
+        <div style={{ color: 'var(--text-primary)', fontFamily: 'Source Serif Pro, Georgia, serif' }}>
+          Loading...
+        </div>
+      </div>
+    }>
+      <ResetPasswordPageContent />
+    </Suspense>
   );
 }
 
