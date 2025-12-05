@@ -153,29 +153,254 @@ Track all 4 conversion gates as defined in `POSTHOG_ANALYTICS_IMPLEMENTATION_PLA
 ### **Phase 4: Improve Error Handling** (Priority 4 - Better UX)
 **Goal**: Clear error messages and recovery options for each failure point
 
-**Implementation**:
-1. Map all error scenarios:
-   - Signup: Email already exists, weak password, network error
-   - Email: Not sent, expired link, invalid link
-   - Login: Invalid credentials, unverified email, account locked
-   - Password reset: Email not found, expired link, invalid link
-2. Add user-friendly error messages for each scenario
-3. Add recovery actions (resend email, reset password, contact support)
+**Status**: ⏳ **PENDING** - Ready for implementation
+
+**Implementation Steps**:
+
+#### **Step 1: Map Error Scenarios & Create Error Handler** (30 min)
+**Action**: Create centralized error mapping utility
+**Location**: `lib/utils/auth-errors.ts` (new file)
+
+**Error Scenarios to Map**:
+
+**Signup Errors**:
+- `User already registered` → "This email is already registered. Try logging in instead."
+- `Password should be at least 6 characters` → "Password must be at least 6 characters long."
+- `Invalid email` → "Please enter a valid email address."
+- `Network error` → "Connection failed. Please check your internet and try again."
+
+**Email Errors**:
+- `Email not sent` → "We couldn't send the email. Click 'Resend' to try again."
+- `Expired link` → "This verification link has expired. Request a new one below."
+- `Invalid link` → "This link is invalid. Request a new verification email."
+
+**Login Errors**:
+- `Invalid login credentials` → "Email or password is incorrect. Check your credentials or reset your password."
+- `Email not confirmed` → "Please verify your email first. Check your inbox or request a new confirmation email."
+- `Too many requests` → "Too many login attempts. Please wait a few minutes and try again."
+
+**Password Reset Errors**:
+- `Email not found` → "No account found with this email. Check your email or sign up."
+- `Expired link` → "This reset link has expired. Request a new password reset."
+- `Invalid link` → "This reset link is invalid. Request a new password reset."
+
+**Code Pattern**:
+```typescript
+// lib/utils/auth-errors.ts
+export interface AuthError {
+  userMessage: string;
+  recoveryAction?: 'resend_email' | 'reset_password' | 'contact_support' | 'try_again';
+  errorType: string;
+}
+
+export function mapAuthError(error: Error | string): AuthError {
+  const errorMessage = typeof error === 'string' ? error : error.message;
+  const lowerMessage = errorMessage.toLowerCase();
+  
+  // Signup errors
+  if (lowerMessage.includes('already registered') || lowerMessage.includes('user already exists')) {
+    return {
+      userMessage: "This email is already registered. Try logging in instead.",
+      recoveryAction: undefined,
+      errorType: 'email_exists',
+    };
+  }
+  
+  if (lowerMessage.includes('password') && lowerMessage.includes('6')) {
+    return {
+      userMessage: "Password must be at least 6 characters long.",
+      recoveryAction: 'try_again',
+      errorType: 'weak_password',
+    };
+  }
+  
+  // Login errors
+  if (lowerMessage.includes('invalid login') || lowerMessage.includes('invalid credentials')) {
+    return {
+      userMessage: "Email or password is incorrect. Check your credentials or reset your password.",
+      recoveryAction: 'reset_password',
+      errorType: 'invalid_credentials',
+    };
+  }
+  
+  if (lowerMessage.includes('email not confirmed') || lowerMessage.includes('not verified')) {
+    return {
+      userMessage: "Please verify your email first. Check your inbox or request a new confirmation email.",
+      recoveryAction: 'resend_email',
+      errorType: 'email_not_verified',
+    };
+  }
+  
+  // Default fallback
+  return {
+    userMessage: "Something went wrong. Please try again.",
+    recoveryAction: 'try_again',
+    errorType: 'unknown',
+  };
+}
+```
+
+**Files to Create**:
+- `lib/utils/auth-errors.ts` - Centralized error mapping utility
+
+---
+
+#### **Step 2: Improve Signup Error Handling** (20 min)
+**Location**: `app/auth/signup/page.tsx`
+**Action**: 
+- Import `mapAuthError` from `lib/utils/auth-errors.ts`
+- Replace generic error messages (line ~176-178) with mapped user-friendly messages
+- Add PostHog tracking for signup errors
+- Show recovery actions when applicable
+
+**Code Pattern**:
+```typescript
+// In handleSubmit catch block (around line 175)
+catch (error) {
+  const authError = mapAuthError(error);
+  setError(authError.userMessage);
+  
+  // Track error in PostHog
+  trackEvent('signup_error', {
+    error_type: authError.errorType,
+    error_message: typeof error === 'string' ? error : error.message,
+    recovery_action: authError.recoveryAction,
+  });
+  
+  announceToScreenReader(authError.userMessage, 'assertive');
+}
+```
 
 **Files to Modify**:
-- `app/auth/signup/page.tsx` - Better error messages
-- `app/auth/login/page.tsx` - Better error messages + recovery options
-- `app/auth/callback/route.ts` - Better error handling for expired/invalid links
+- `app/auth/signup/page.tsx` - Replace error handling with mapped errors + PostHog tracking
 
-**PostHog Events**:
-- `signup_error` - Track signup errors with error type
-- `login_error` - Track login errors with error type
-- `email_error` - Track email delivery errors
+---
+
+#### **Step 3: Improve Login Error Handling** (25 min)
+**Location**: `app/auth/login/page.tsx`
+**Action**:
+- Import `mapAuthError` from `lib/utils/auth-errors.ts`
+- Replace generic error messages (line ~91-93) with mapped user-friendly messages
+- Add PostHog tracking for login errors
+- Show recovery action buttons (e.g., "Resend Confirmation Email" for unverified email)
+
+**Code Pattern**:
+```typescript
+// In handleSubmit catch block (around line 90)
+catch (error) {
+  const authError = mapAuthError(error);
+  setError(authError.userMessage);
+  
+  // Track error in PostHog
+  trackEvent('login_error', {
+    error_type: authError.errorType,
+    error_message: typeof error === 'string' ? error : error.message,
+    recovery_action: authError.recoveryAction,
+  });
+  
+  // Show recovery action button if applicable
+  if (authError.recoveryAction === 'resend_email') {
+    // Show "Resend Confirmation Email" button (already exists, line ~316-344)
+  }
+  
+  announceToScreenReader(authError.userMessage, 'assertive');
+}
+```
+
+**Files to Modify**:
+- `app/auth/login/page.tsx` - Replace error handling with mapped errors + PostHog tracking
+
+---
+
+#### **Step 4: Improve Callback Error Handling** (20 min)
+**Location**: `app/auth/callback/route.ts`
+**Action**:
+- Import `mapAuthError` from `lib/utils/auth-errors.ts`
+- Improve error messages in redirect URLs (lines ~84-110)
+- Add PostHog tracking for callback errors
+- Ensure error messages are user-friendly in redirects
+
+**Code Pattern**:
+```typescript
+// In error handling section (around line 84)
+if (error === 'access_denied' && errorDescription?.includes('expired')) {
+  const authError = mapAuthError('Expired link');
+  
+  // Track error
+  await trackCallbackErrorServer('expired_link', errorDescription);
+  
+  if (isPasswordReset) {
+    return NextResponse.redirect(
+      `${baseUrl}/auth/reset-password?error=expired_link&message=${encodeURIComponent(authError.userMessage)}`
+    );
+  } else {
+    return NextResponse.redirect(
+      `${baseUrl}/auth/login?error=expired_link&message=${encodeURIComponent(authError.userMessage)}`
+    );
+  }
+}
+```
+
+**Files to Modify**:
+- `app/auth/callback/route.ts` - Improve error messages + add PostHog tracking
+
+---
+
+#### **Step 5: Add PostHog Error Tracking Helpers** (15 min)
+**Location**: `lib/analytics/posthog.ts`
+**Action**: Add error tracking helper functions
+
+**Code Pattern**:
+```typescript
+// Add to lib/analytics/posthog.ts
+
+export function trackSignupError(errorType: string, errorMessage: string, recoveryAction?: string) {
+  trackEvent('signup_error', {
+    error_type: errorType,
+    error_message: errorMessage,
+    recovery_action: recoveryAction,
+    timestamp: new Date().toISOString(),
+  });
+}
+
+export function trackLoginError(errorType: string, errorMessage: string, recoveryAction?: string) {
+  trackEvent('login_error', {
+    error_type: errorType,
+    error_message: errorMessage,
+    recovery_action: recoveryAction,
+    timestamp: new Date().toISOString(),
+  });
+}
+
+// Server-side helper for callback errors
+export async function trackCallbackErrorServer(errorType: string, errorDescription?: string) {
+  // Similar to trackEmailVerifiedServer - use PostHog HTTP API
+}
+```
+
+**Files to Modify**:
+- `lib/analytics/posthog.ts` - Add error tracking helper functions
+
+---
+
+**Files to Create/Modify**:
+- ✅ `lib/utils/auth-errors.ts` - **NEW FILE** - Centralized error mapping (Step 1)
+- ✅ `app/auth/signup/page.tsx` - Improve error messages + tracking (Step 2)
+- ✅ `app/auth/login/page.tsx` - Improve error messages + tracking (Step 3)
+- ✅ `app/auth/callback/route.ts` - Improve error messages + tracking (Step 4)
+- ✅ `lib/analytics/posthog.ts` - Add error tracking helpers (Step 5)
+
+**PostHog Events to Track**:
+- `signup_error` - Track signup errors with error type (Step 2)
+- `login_error` - Track login errors with error type (Step 3)
+- `callback_error` - Track callback errors (Step 4)
 
 **Success Criteria**:
+- ✅ All error scenarios mapped to user-friendly messages
+- ✅ Recovery actions shown for each error type
+- ✅ Error rates tracked in PostHog with error types
 - ✅ Users understand what went wrong
 - ✅ Users know how to recover from errors
-- ✅ Error rates tracked in PostHog
 
 ---
 
