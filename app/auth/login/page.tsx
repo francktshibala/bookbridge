@@ -130,8 +130,16 @@ function LoginPageContent() {
         });
       }
 
-      announceToScreenReader('Login successful! Redirecting to catalog.');
-      router.push('/catalog');
+      announceToScreenReader('Login successful! Redirecting...');
+      
+      // Get redirectTo from URL or default to /catalog
+      const redirectTo = searchParams.get('redirectTo') || '/catalog';
+      
+      // Wait a moment for auth state to update, then redirect
+      // Use window.location for full page reload to ensure auth state is refreshed
+      setTimeout(() => {
+        window.location.href = redirectTo;
+      }, 100);
     } catch (error) {
       const authError = mapAuthError(error instanceof Error ? error : String(error));
       setError(authError.userMessage);
