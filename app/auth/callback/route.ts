@@ -154,7 +154,10 @@ export async function GET(request: NextRequest) {
         // Only track if this is NOT a password reset flow
         if (!passwordResetDetection.isPasswordReset) {
           console.log('[auth/callback] 📊 Tracking email verification for user:', data.user.id);
-          await trackEmailVerifiedServer(data.user.id, data.user.email);
+          // Fire and forget - don't block redirect on PostHog tracking
+          trackEmailVerifiedServer(data.user.id, data.user.email).catch(err => {
+            console.error('[auth/callback] PostHog tracking error (non-blocking):', err);
+          });
         }
         
         // Redirect based on type
