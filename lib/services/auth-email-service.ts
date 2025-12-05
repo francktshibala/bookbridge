@@ -134,7 +134,17 @@ The BookBridge Team
       text: textBody,
     });
 
-    console.log('[AuthEmailService] ✅ Confirmation email sent successfully! Result:', result);
+    console.log('[AuthEmailService] ✅ Confirmation email sent successfully! Result:', JSON.stringify(result, null, 2));
+    console.log('[AuthEmailService] Email data:', result?.data);
+    console.log('[AuthEmailService] Email error:', result?.error);
+    
+    // Check if email was actually sent (Resend returns data if successful)
+    if (!result?.data || result?.error) {
+      console.warn('[AuthEmailService] ⚠️ Resend returned error or no data - email may not have been sent');
+      console.warn('[AuthEmailService] This usually means: onboarding@resend.dev can only send to account owner email');
+      throw new Error(`Resend email failed: ${result?.error?.message || 'No data returned'}`);
+    }
+    
     return result;
   } catch (error) {
     console.error('[AuthEmailService] ❌ Failed to send confirmation email:', error);

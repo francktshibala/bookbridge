@@ -140,22 +140,34 @@ export default function SignupPage() {
       // Step 4: Send confirmation email via Resend API (bypasses SMTP issues)
       try {
         console.log('[Signup] 📧 Step 4: Calling Resend API to send confirmation email...');
+        console.log('[Signup] Email details:', { email, name: name || 'not provided' });
+        
         const emailResponse = await fetch('/api/auth/send-confirmation', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, name }),
         });
         
+        console.log('[Signup] Email API response status:', emailResponse.status);
+        
         const emailResult = await emailResponse.json();
+        console.log('[Signup] Email API response:', emailResult);
         
         if (!emailResponse.ok) {
-          console.warn('[Signup] Resend email failed:', emailResult);
+          console.error('[Signup] ❌ Resend email failed:', {
+            status: emailResponse.status,
+            error: emailResult.error,
+            details: emailResult.details,
+          });
         } else {
           console.log('[Signup] ✅ Confirmation email sent via Resend:', emailResult);
         }
       } catch (emailError) {
         // Log but don't fail signup - account is created, user can request new email
-        console.error('[Signup] Failed to send Resend confirmation email:', emailError);
+        console.error('[Signup] ❌ Failed to send Resend confirmation email:', {
+          error: emailError instanceof Error ? emailError.message : String(emailError),
+          stack: emailError instanceof Error ? emailError.stack : undefined,
+        });
       }
 
       setSuccess(true);

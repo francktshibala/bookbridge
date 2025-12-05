@@ -11,8 +11,18 @@ export async function GET(request: NextRequest) {
   const error = requestUrl.searchParams.get('error');
   const errorDescription = requestUrl.searchParams.get('error_description');
 
+  console.log('[auth/callback] 📧 Callback received:', {
+    code: code ? 'present' : 'missing',
+    type,
+    error,
+    errorDescription,
+    origin: requestUrl.origin,
+    fullUrl: requestUrl.toString(),
+  });
+
   // Get base URL for redirects
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || requestUrl.origin;
+  console.log('[auth/callback] 🔗 Base URL for redirects:', baseUrl);
 
   // Handle errors (expired token, invalid link, etc.)
   if (error) {
@@ -55,17 +65,29 @@ export async function GET(request: NextRequest) {
       }
 
       if (data?.user) {
+        console.log('[auth/callback] ✅ Email verified successfully:', {
+          userId: data.user.id,
+          email: data.user.email,
+          type,
+        });
+        
         // Email verification tracking will happen in SimpleAuthProvider 
         // when the auth state change event fires (USER_UPDATED or SIGNED_IN)
         
         // Redirect based on type
+        const redirectUrl = `${baseUrl}/catalog?verified=true`;
+        console.log('[auth/callback] 🔗 Redirecting to:', redirectUrl);
+        
         if (type === 'signup') {
           // New signup - redirect to catalog (main book discovery page)
-          return NextResponse.redirect(`${baseUrl}/catalog?verified=true`);
+          return NextResponse.redirect(redirectUrl);
         } else {
           // Email verification or other callback - redirect to catalog
-          return NextResponse.redirect(`${baseUrl}/catalog?verified=true`);
+          return NextResponse.redirect(redirectUrl);
         }
+      } else {
+        console.warn('[auth/callback] ⚠️ No user data after code exchange');
+        return NextResponse.redirect(`${baseUrl}/auth/login?error=no_user_data`);
       }
     } catch (err) {
       console.error('Unexpected error in auth callback:', err);

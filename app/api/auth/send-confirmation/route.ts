@@ -98,7 +98,36 @@ export async function POST(request: NextRequest) {
 
       const duration = Date.now() - startTime;
       console.log('[send-confirmation] ✅ Step 4: Confirmation email sent via Resend to:', email, `(${duration}ms)`);
-      console.log('[send-confirmation] Resend result:', emailResult);
+      console.log('[send-confirmation] Resend result:', JSON.stringify(emailResult, null, 2));
+      console.log('[send-confirmation] Resend data:', emailResult?.data);
+      console.log('[send-confirmation] Resend error:', emailResult?.error);
+      
+      // Check if Resend actually sent the email
+      // onboarding@resend.dev can only send to account owner's verified email
+      // If data is null or error exists, email wasn't sent
+      if (!emailResult?.data || emailResult?.error) {
+        console.warn('[send-confirmation] ⚠️ Resend returned error or no data - email likely not sent');
+        console.warn('[send-confirmation] ⚠️ onboarding@resend.dev restriction: can only send to account owner email');
+        console.warn('[send-confirmation] ⚠️ Falling back to Supabase email...');
+        
+        // Fallback to Supabase email
+        await supabaseAdmin.auth.resend({
+          type: 'signup',
+          email: email,
+          options: { emailRedirectTo: `${appUrl}/auth/callback?type=signup` },
+        });
+        
+        return NextResponse.json(
+          { 
+            success: true, 
+            message: 'Confirmation email sent via Supabase (Resend domain restriction)',
+            warning: 'Resend onboarding@resend.dev can only send to account owner email',
+            fallback: 'supabase',
+            resendError: emailResult?.error
+          },
+          { status: 200 }
+        );
+      }
 
       return NextResponse.json(
         { success: true, message: 'Confirmation email sent', result: emailResult },
