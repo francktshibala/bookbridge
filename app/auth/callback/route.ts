@@ -91,18 +91,20 @@ export async function GET(request: NextRequest) {
           userId: data.user.id,
           email: data.user.email,
           type,
-          sessionType: data.session?.type,
+          fullUrl: requestUrl.toString(),
         });
         
-        // Detect password reset: Check URL type param OR session type OR recovery token
-        // Supabase recovery sessions have type 'recovery' or we check URL param
-        const isPasswordReset = type === 'password_reset' || 
-                               data.session?.type === 'recovery' ||
-                               requestUrl.searchParams.get('type') === 'password_reset';
+        // Detect password reset: Check URL type param (query string or hash)
+        // Supabase may put type in hash fragment, so check both
+        const urlTypeParam = type || requestUrl.searchParams.get('type');
+        const hashParams = requestUrl.hash ? new URLSearchParams(requestUrl.hash.substring(1)) : null;
+        const hashType = hashParams?.get('type');
+        const isPasswordReset = urlTypeParam === 'password_reset' || hashType === 'password_reset';
         
         console.log('[auth/callback] 🔍 Password reset detection:', {
           urlType: type,
-          sessionType: data.session?.type,
+          queryType: requestUrl.searchParams.get('type'),
+          hashType: hashType,
           isPasswordReset,
         });
         
