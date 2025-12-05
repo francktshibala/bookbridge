@@ -346,6 +346,29 @@ function LoginPageContent() {
                 </motion.div>
               )}
 
+              {/* Forgot Password Link */}
+              <div style={{ textAlign: 'right', marginTop: '8px', marginBottom: '24px' }}>
+                <Link
+                  href="/auth/reset-password"
+                  style={{
+                    fontSize: '14px',
+                    color: 'var(--accent-primary)',
+                    textDecoration: 'none',
+                    fontFamily: 'Source Serif Pro, Georgia, serif',
+                    fontWeight: '500',
+                    transition: 'color 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = 'var(--accent-secondary)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = 'var(--accent-primary)';
+                  }}
+                >
+                  Forgot password?
+                </Link>
+              </div>
+
               {/* Premium Submit Button */}
               <motion.button
                 type="submit"

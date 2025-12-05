@@ -157,3 +157,122 @@ The BookBridge Team
   }
 }
 
+/**
+ * Send password reset email via Resend
+ * 
+ * @param email - User's email address
+ * @param resetLink - Supabase password reset link (actual reset URL)
+ */
+export async function sendPasswordResetEmail({
+  email,
+  resetLink,
+}: {
+  email: string;
+  resetLink: string;
+}): Promise<any> {
+  if (!RESEND_API_KEY) {
+    console.warn('[AuthEmailService] RESEND_API_KEY not configured - skipping password reset email');
+    return;
+  }
+
+  const htmlBody = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          body { font-family: 'Georgia', 'Times New Roman', serif; line-height: 1.6; color: #2C1810; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; background: #F4F1EB; }
+          .header { background: #002147; color: white; padding: 20px; border-radius: 8px 8px 0 0; border-left: 4px solid #CD7F32; }
+          .content { background: #FFFFFF; padding: 30px; border-radius: 0 0 8px 8px; border: 1px solid #E5DDD4; box-shadow: 0 2px 8px rgba(44, 24, 16, 0.1); }
+          .button { display: inline-block; padding: 16px 32px; background: #002147; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; margin: 20px 0; border: 2px solid #CD7F32; }
+          .button:hover { background: #003366; }
+          .footer { margin-top: 20px; padding-top: 20px; border-top: 2px solid #CD7F32; font-size: 12px; color: #5D4E37; }
+          .warning { background: #FFF8E1; border-left: 4px solid #FFC107; padding: 12px; margin: 20px 0; border-radius: 4px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1 style="margin: 0;">Reset Your Password 🔒</h1>
+            <p style="margin: 5px 0 0 0; opacity: 0.9;">BookBridge Account Recovery</p>
+          </div>
+          <div class="content">
+            <p>Hello,</p>
+            <p>We received a request to reset your password for your BookBridge account.</p>
+            <p><strong>Click the button below to set a new password:</strong></p>
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${resetLink}" class="button">Reset Password</a>
+            </div>
+            <div class="warning">
+              <p style="margin: 0; font-size: 14px; color: #5D4E37;"><strong>Security Notice:</strong> This link will expire in 1 hour. If you didn't request a password reset, you can safely ignore this email.</p>
+            </div>
+            <div class="footer">
+              <p><strong>Need Help?</strong></p>
+              <p style="margin: 10px 0;">If you're having trouble resetting your password, please contact our support team.</p>
+              <p style="margin-top: 20px;">If you didn't request this password reset, your account remains secure. No changes have been made.</p>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  const textBody = `
+Reset Your Password - BookBridge
+
+Hello,
+
+We received a request to reset your password for your BookBridge account.
+
+Click this link to set a new password:
+${resetLink}
+
+This link will expire in 1 hour.
+
+Security Notice: If you didn't request a password reset, you can safely ignore this email. Your account remains secure.
+
+Need Help?
+If you're having trouble resetting your password, please contact our support team.
+
+The BookBridge Team
+  `.trim();
+
+  console.log('[AuthEmailService] About to send password reset email:', {
+    to: email,
+    from: FROM_EMAIL,
+    hasApiKey: !!RESEND_API_KEY,
+    resetLinkLength: resetLink.length,
+  });
+
+  try {
+    const resend = getResend();
+    const result = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: email,
+      subject: 'Reset Your BookBridge Password',
+      html: htmlBody,
+      text: textBody,
+    });
+
+    console.log('[AuthEmailService] ✅ Password reset email sent successfully! Result:', JSON.stringify(result, null, 2));
+    console.log('[AuthEmailService] Email data:', result?.data);
+    console.log('[AuthEmailService] Email error:', result?.error);
+    
+    // Check if email was actually sent
+    if (!result?.data || result?.error) {
+      console.warn('[AuthEmailService] ⚠️ Resend returned error or no data - email may not have been sent');
+      throw new Error(`Resend email failed: ${result?.error?.message || 'No data returned'}`);
+    }
+    
+    return result;
+  } catch (error) {
+    console.error('[AuthEmailService] ❌ Failed to send password reset email:', error);
+    console.error('[AuthEmailService] Error details:', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+    // Re-throw so API route can handle it
+    throw error;
+  }
+}
+

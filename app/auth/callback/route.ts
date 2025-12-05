@@ -75,14 +75,15 @@ export async function GET(request: NextRequest) {
         // when the auth state change event fires (USER_UPDATED or SIGNED_IN)
         
         // Redirect based on type
-        const redirectUrl = `${baseUrl}/catalog?verified=true`;
-        console.log('[auth/callback] 🔗 Redirecting to:', redirectUrl);
-        
-        if (type === 'signup') {
-          // New signup - redirect to catalog (main book discovery page)
-          return NextResponse.redirect(redirectUrl);
+        if (type === 'password_reset') {
+          // Password reset - redirect to confirm password page
+          const resetUrl = `${baseUrl}/auth/reset-password/confirm`;
+          console.log('[auth/callback] 🔗 Redirecting to password reset confirmation:', resetUrl);
+          return NextResponse.redirect(resetUrl);
         } else {
-          // Email verification or other callback - redirect to catalog
+          // Signup or email verification - redirect to catalog
+          const redirectUrl = `${baseUrl}/catalog?verified=true`;
+          console.log('[auth/callback] 🔗 Redirecting to:', redirectUrl);
           return NextResponse.redirect(redirectUrl);
         }
       } else {
