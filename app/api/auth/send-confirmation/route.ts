@@ -2,6 +2,49 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { sendSignupConfirmationEmail } from '@/lib/services/auth-email-service';
 
+/**
+ * Server-side PostHog event tracking for email_sent
+ * Uses PostHog HTTP API for server-side routes
+ */
+async function trackEmailSentServer(email: string, userId?: string) {
+  const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+  const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
+
+  if (!posthogKey) {
+    console.warn('[send-confirmation] ⚠️ PostHog key not configured - skipping email_sent tracking');
+    return;
+  }
+
+  try {
+    const response = await fetch(`${posthogHost}/capture/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        api_key: posthogKey,
+        event: 'email_sent',
+        distinct_id: userId || email, // Use userId if available, otherwise email
+        properties: {
+          user_id: userId,
+          email: email ? email.substring(0, 3) + '***' : undefined,
+          email_service: 'resend',
+          timestamp: new Date().toISOString(),
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('[send-confirmation] ❌ PostHog tracking failed:', response.status, response.statusText);
+    } else {
+      console.log('[send-confirmation] 📊 PostHog: Tracked email_sent event for:', email);
+    }
+  } catch (error) {
+    console.error('[send-confirmation] ❌ PostHog tracking error:', error);
+    // Don't throw - tracking failure shouldn't break email sending
+  }
+}
+
 // Force Node runtime (Resend requires Node, not Edge)
 export const runtime = 'nodejs';
 
@@ -42,6 +85,19 @@ export async function POST(request: NextRequest) {
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
+
+    // Try to get user ID if user exists (for PostHog tracking)
+    let userId: string | undefined;
+    try {
+      const { data: users } = await supabaseAdmin.auth.admin.listUsers();
+      const existingUser = users?.users.find(u => u.email === email);
+      if (existingUser) {
+        userId = existingUser.id;
+      }
+    } catch (err) {
+      // Ignore - userId is optional for tracking
+      console.log('[send-confirmation] Could not fetch user ID for tracking:', err);
+    }
 
     // Get app URL for redirect
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 
@@ -117,6 +173,11 @@ export async function POST(request: NextRequest) {
           options: { emailRedirectTo: `${appUrl}/auth/callback?type=signup` },
         });
         
+        // Track email_sent even for Supabase fallback (Phase 5: Step 1)
+        trackEmailSentServer(email, userId).catch(err => {
+          console.error('[send-confirmation] Non-blocking PostHog tracking failed:', err);
+        });
+        
         return NextResponse.json(
           { 
             success: true, 
@@ -128,6 +189,11 @@ export async function POST(request: NextRequest) {
           { status: 200 }
         );
       }
+
+      // Track email_sent event (Phase 5: Step 1)
+      trackEmailSentServer(email, userId).catch(err => {
+        console.error('[send-confirmation] Non-blocking PostHog tracking failed:', err);
+      });
 
       return NextResponse.json(
         { success: true, message: 'Confirmation email sent', result: emailResult },
@@ -145,6 +211,11 @@ export async function POST(request: NextRequest) {
         type: 'signup',
         email: email,
         options: { emailRedirectTo: `${appUrl}/auth/callback?type=signup` },
+      });
+      
+      // Track email_sent even for Supabase fallback (Phase 5: Step 1)
+      trackEmailSentServer(email, userId).catch(err => {
+        console.error('[send-confirmation] Non-blocking PostHog tracking failed:', err);
       });
       
       return NextResponse.json(

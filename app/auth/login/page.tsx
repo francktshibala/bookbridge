@@ -11,6 +11,7 @@ import { ArrowLeft, Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
 import { trackEvent, trackLoginError } from '@/lib/analytics/posthog';
 import { mapAuthError } from '@/lib/utils/auth-errors';
+import posthog from 'posthog-js';
 
 function LoginPageContent() {
   const router = useRouter();
@@ -82,11 +83,52 @@ function LoginPageContent() {
         throw error;
       }
 
-      // Track successful login (Gate 2: First Use)
-      trackEvent('user_logged_in', {
-        login_method: 'email',
-        timestamp: new Date().toISOString(),
-      });
+      // Get user data to check if this is first login (Phase 5: Step 2)
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (user) {
+        // Check if this is the first login by checking Supabase user metadata
+        const hasFirstLoginDate = user.user_metadata?.first_login_date;
+        
+        if (!hasFirstLoginDate) {
+          // This is the first login - track first_login event
+          const firstLoginDate = new Date().toISOString();
+          
+          trackEvent('first_login', {
+            user_id: user.id,
+            email: user.email ? user.email.substring(0, 3) + '***' : undefined,
+            login_method: 'email',
+            timestamp: firstLoginDate,
+          });
+          
+          // Set user property in PostHog to prevent duplicate tracking
+          if (typeof window !== 'undefined') {
+            posthog.identify(user.id, {
+              first_login_date: firstLoginDate,
+              email: user.email ? user.email.substring(0, 3) + '***' : undefined,
+            });
+          }
+          
+          // Store in Supabase user metadata for future reference
+          await supabase.auth.updateUser({
+            data: {
+              first_login_date: firstLoginDate,
+            },
+          });
+        } else {
+          // Subsequent login - track user_logged_in
+          trackEvent('user_logged_in', {
+            login_method: 'email',
+            timestamp: new Date().toISOString(),
+          });
+        }
+      } else {
+        // Fallback: track user_logged_in if user data unavailable
+        trackEvent('user_logged_in', {
+          login_method: 'email',
+          timestamp: new Date().toISOString(),
+        });
+      }
 
       announceToScreenReader('Login successful! Redirecting to catalog.');
       router.push('/catalog');

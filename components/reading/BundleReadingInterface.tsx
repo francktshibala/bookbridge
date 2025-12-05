@@ -32,6 +32,9 @@ import { SettingsModal } from '@/app/featured-books/components/SettingsModal';
 import { ChapterModal, type Chapter } from '@/app/featured-books/components/ChapterModal';
 // Note: Using ChapterModal's Chapter type (compatible with chapters.ts Chapter interface)
 import FeedbackWidget from '@/components/feedback/FeedbackWidget';
+import { trackFirstBookOpened } from '@/lib/analytics/posthog';
+import { createClient } from '@/lib/supabase/client';
+import posthog from 'posthog-js';
 
 // Import book data from shared config
 import { ALL_FEATURED_BOOKS, type FeaturedBook } from '@/lib/config/books';
@@ -234,6 +237,45 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
       isChangingSettingsRef.current = false;
     }
   }, [loadState, showSettingsModal]);
+
+  // Track first_book_opened event (Phase 5: Step 3)
+  useEffect(() => {
+    const trackFirstBook = async () => {
+      if (!selectedBook || loadState !== 'ready' || !bundleData) return;
+
+      try {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        
+        if (!user) return; // Only track for logged-in users
+
+        // Check if user has opened any book before (check reading_positions table)
+        const { data: positions, error } = await supabase
+          .from('reading_positions')
+          .select('book_id')
+          .eq('user_id', user.id)
+          .limit(1);
+
+        // If no reading positions exist, this is the first book opened
+        if (!error && (!positions || positions.length === 0)) {
+          const bookTitle = selectedBook.title || selectedBook.id;
+          trackFirstBookOpened(selectedBook.id, bookTitle);
+          
+          // Set user property in PostHog to prevent duplicate tracking
+          if (typeof window !== 'undefined') {
+            posthog.identify(user.id, {
+              first_book_opened: true,
+              first_book_opened_date: new Date().toISOString(),
+            });
+          }
+        }
+      } catch (err) {
+        console.error('[BundleReadingInterface] Failed to track first_book_opened:', err);
+      }
+    };
+
+    trackFirstBook();
+  }, [selectedBook, loadState, bundleData]);
 
   // Wrapper handlers that track settings changes
   const handleLevelChange = async (level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2') => {

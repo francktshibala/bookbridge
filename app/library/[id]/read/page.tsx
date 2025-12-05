@@ -7,6 +7,8 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { ESLControls } from '@/components/esl/ESLControls';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { motion } from 'framer-motion';
+import { trackFirstBookOpened } from '@/lib/analytics/posthog';
+import posthog from 'posthog-js';
 // PWA COMPLETELY DISABLED FOR TESTING
 // import { useReadingEngagement } from '@/components/InstallPrompt';
 // import { ReadingProgressTracker } from '@/components/sync/ReadingProgressTracker';
@@ -214,6 +216,42 @@ export default function BookReaderPage() {
       loadReadingPosition(); // Re-validate position against actual book content
     }
   }, [bookContent]);
+
+  // Track first_book_opened event (Phase 5: Step 3)
+  useEffect(() => {
+    const trackFirstBook = async () => {
+      if (!bookContent || !user || !bookId) return;
+
+      try {
+        // Check if user has opened any book before (check reading_positions table)
+        const supabaseClient = createClient();
+        const { data: positions, error } = await supabaseClient
+          .from('reading_positions')
+          .select('book_id')
+          .eq('user_id', user.id)
+          .limit(1);
+
+        // If no reading positions exist, this is the first book opened
+        if (!error && (!positions || positions.length === 0)) {
+          const bookTitle = bookContent.title || bookId;
+          trackFirstBookOpened(bookId, bookTitle);
+          
+          // Set user property in PostHog to prevent duplicate tracking
+          if (typeof window !== 'undefined') {
+            const posthogModule = await import('posthog-js');
+            posthogModule.default.identify(user.id, {
+              first_book_opened: true,
+              first_book_opened_date: new Date().toISOString(),
+            });
+          }
+        }
+      } catch (err) {
+        console.error('[library/read] Failed to track first_book_opened:', err);
+      }
+    };
+
+    trackFirstBook();
+  }, [bookContent, user, bookId]);
 
   // Clear simplified content when chunk changes
   useEffect(() => {
