@@ -36,7 +36,11 @@ export function mapAuthError(error: Error | string): AuthError {
     };
   }
   
-  if (lowerMessage.includes('invalid email') || lowerMessage.includes('email format')) {
+  if (lowerMessage.includes('invalid email') || 
+      lowerMessage.includes('email format') ||
+      lowerMessage.includes('invalid email address') ||
+      lowerMessage.includes('email is invalid') ||
+      lowerMessage.includes('must be a valid email')) {
     return {
       userMessage: "Please enter a valid email address.",
       recoveryAction: 'try_again',

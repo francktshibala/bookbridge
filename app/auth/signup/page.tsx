@@ -51,6 +51,17 @@ export default function SignupPage() {
     const password = formData.get('password') as string;
     const name = formData.get('name') as string;
 
+    // Client-side email validation (before API call)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      const authError = mapAuthError('Invalid email format');
+      setError(authError.userMessage);
+      trackSignupError(authError.errorType, 'Invalid email format', authError.recoveryAction);
+      announceToScreenReader(`Signup failed: ${authError.userMessage}`, 'assertive');
+      setIsLoading(false);
+      return;
+    }
+
     try {
       // Better URL detection for email redirects
       // Priority: 1. Explicit env var, 2. Vercel URL, 3. Current origin (if production), 4. localhost fallback
