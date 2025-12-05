@@ -46,31 +46,14 @@ export async function POST(request: NextRequest) {
     if (existingUser) {
       console.log('[create-user] ⚠️ User already exists:', existingUser.id);
       
-      // Check if user has password set by trying to update it
-      // If update succeeds, password will be set/updated
-      const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(
-        existingUser.id,
-        { password: password }
-      );
-
-      if (updateError) {
-        console.error('[create-user] ❌ Failed to update password:', updateError);
-        return NextResponse.json(
-          { error: 'User exists but password update failed', details: updateError.message },
-          { status: 500 }
-        );
-      }
-
-      console.log('[create-user] ✅ Password updated for existing user');
-      
-      return NextResponse.json({
-        success: true,
-        user: {
-          id: existingUser.id,
-          email: existingUser.email,
+      // Return error - user should not be able to sign up with existing email
+      return NextResponse.json(
+        { 
+          error: 'User already registered',
+          message: 'An account with this email already exists. Please log in instead.',
         },
-        message: 'Password updated for existing user',
-      });
+        { status: 400 }
+      );
     }
 
     console.log('[create-user] 📧 Step 2: Creating new user with password...');

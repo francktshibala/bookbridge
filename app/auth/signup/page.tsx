@@ -93,17 +93,18 @@ export default function SignupPage() {
         },
       });
 
-      // Check if it's an email sending error (SMTP issue)
-      const isEmailError = error && (
-        error.message?.includes('email') || 
-        error.message?.includes('smtp') || 
-        error.message?.includes('confirmation')
-      );
-
-      if (error && !isEmailError) {
-        // Track signup abandonment on non-email errors
-        trackSignupAbandoned('signup_page', 'signup_submit_error');
-        throw error;
+      // Check for duplicate user error FIRST (before email errors)
+      if (error) {
+        const errorLower = error.message?.toLowerCase() || '';
+        const isDuplicateUser = errorLower.includes('already registered') || 
+                                errorLower.includes('user already exists') ||
+                                errorLower.includes('already exists');
+        
+        if (isDuplicateUser) {
+          // Track signup abandonment on duplicate user
+          trackSignupAbandoned('signup_page', 'duplicate_user');
+          throw error; // This will be caught and mapped by mapAuthError
+        }
       }
 
       // Step 2: Ensure user exists with password (fix if Supabase signup failed)
@@ -119,16 +120,47 @@ export default function SignupPage() {
         const createUserResult = await createUserResponse.json();
         
         if (!createUserResponse.ok) {
+          // Check if it's a duplicate user error
+          if (createUserResponse.status === 400 && 
+              (createUserResult.error?.includes('already registered') || 
+               createUserResult.error?.includes('already exists'))) {
+            console.log('[Signup] ⚠️ User already exists - aborting signup');
+            // Throw error that will be caught and mapped by mapAuthError
+            throw new Error(createUserResult.error || 'User already registered');
+          }
+          
           console.error('[Signup] ❌ Failed to ensure user/password:', createUserResult);
           trackPasswordSaved(false, 'create_user_api');
+          // Don't throw here - might be a temporary error, let email sending proceed
         } else {
           console.log('[Signup] ✅ User/password verified:', createUserResult.message);
           passwordSaved = true;
-          trackPasswordSaved(true, createUserResult.message.includes('updated') ? 'password_updated' : 'user_created');
+          trackPasswordSaved(true, 'user_created');
         }
       } catch (createUserError) {
+        // If it's a duplicate user error, re-throw it to be caught by outer catch
+        if (createUserError instanceof Error && 
+            (createUserError.message.includes('already registered') || 
+             createUserError.message.includes('already exists'))) {
+          throw createUserError;
+        }
         console.error('[Signup] Failed to ensure user/password:', createUserError);
         trackPasswordSaved(false, 'create_user_error');
+      }
+
+      // Check if it's an email sending error (SMTP issue) - but NOT duplicate user
+      const isEmailError = error && (
+        (error.message?.includes('email') || 
+         error.message?.includes('smtp') || 
+         error.message?.includes('confirmation')) &&
+        !error.message?.toLowerCase().includes('already registered') &&
+        !error.message?.toLowerCase().includes('user already exists')
+      );
+
+      if (error && !isEmailError) {
+        // Track signup abandonment on other non-email errors
+        trackSignupAbandoned('signup_page', 'signup_submit_error');
+        throw error;
       }
 
       // Step 3: Track successful signup (Gate 1)
