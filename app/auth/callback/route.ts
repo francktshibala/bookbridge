@@ -1,6 +1,7 @@
 import { detectPasswordResetIntent } from '@/lib/auth/password-reset-intent';
 import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
+import { mapAuthError } from '@/lib/utils/auth-errors';
 
 // This route must be dynamic because it uses searchParams
 export const dynamic = 'force-dynamic';
@@ -80,32 +81,34 @@ export async function GET(request: NextRequest) {
     });
     const isPasswordReset = passwordResetDetection.isPasswordReset;
     
+    // Map error to user-friendly message
+    const authError = mapAuthError(errorDescription || error);
+    
     // Special handling for expired OTP
     if (error === 'access_denied' && errorDescription?.includes('expired')) {
       if (isPasswordReset) {
         // Password reset link expired - redirect to reset password page
         return NextResponse.redirect(
-          `${baseUrl}/auth/reset-password?error=expired_link&message=${encodeURIComponent('Your password reset link has expired. Please request a new one.')}`
+          `${baseUrl}/auth/reset-password?error=${encodeURIComponent(authError.errorType)}&message=${encodeURIComponent(authError.userMessage)}`
         );
       } else {
         // Signup/verification link expired - redirect to login
         return NextResponse.redirect(
-          `${baseUrl}/auth/login?error=expired_link&message=${encodeURIComponent('Your verification link has expired. Please request a new confirmation email.')}`
+          `${baseUrl}/auth/login?error=${encodeURIComponent(authError.errorType)}&message=${encodeURIComponent(authError.userMessage)}`
         );
       }
     }
     
-    // Generic error handling
-    const errorMsg = errorDescription || error;
+    // Generic error handling with mapped messages
     if (isPasswordReset) {
       // Password reset error - redirect to reset password page
       return NextResponse.redirect(
-        `${baseUrl}/auth/reset-password?error=${encodeURIComponent(errorMsg)}&message=${encodeURIComponent('Invalid or expired password reset link. Please request a new one.')}`
+        `${baseUrl}/auth/reset-password?error=${encodeURIComponent(authError.errorType)}&message=${encodeURIComponent(authError.userMessage)}`
       );
     } else {
       // Other auth errors - redirect to login
       return NextResponse.redirect(
-        `${baseUrl}/auth/login?error=${encodeURIComponent(errorMsg)}`
+        `${baseUrl}/auth/login?error=${encodeURIComponent(authError.errorType)}&message=${encodeURIComponent(authError.userMessage)}`
       );
     }
   }
@@ -120,15 +123,18 @@ export async function GET(request: NextRequest) {
       if (exchangeError) {
         console.error('Error exchanging code for session:', exchangeError);
         
+        // Map error to user-friendly message
+        const authError = mapAuthError(exchangeError.message || 'Unknown error');
+        
         // Handle expired code specifically
         if (exchangeError.message?.includes('expired') || exchangeError.message?.includes('invalid')) {
           return NextResponse.redirect(
-            `${baseUrl}/auth/login?error=expired_link&message=${encodeURIComponent('Your verification link has expired. Please request a new confirmation email.')}`
+            `${baseUrl}/auth/login?error=${encodeURIComponent(authError.errorType)}&message=${encodeURIComponent(authError.userMessage)}`
           );
         }
         
         return NextResponse.redirect(
-          `${baseUrl}/auth/login?error=${encodeURIComponent(exchangeError.message)}`
+          `${baseUrl}/auth/login?error=${encodeURIComponent(authError.errorType)}&message=${encodeURIComponent(authError.userMessage)}`
         );
       }
 

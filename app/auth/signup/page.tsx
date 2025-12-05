@@ -9,7 +9,8 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Mail, Lock, User, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
-import { trackSignupStarted, trackUserSignedUp, trackSignupAbandoned, trackPasswordSaved } from '@/lib/analytics/posthog';
+import { trackSignupStarted, trackUserSignedUp, trackSignupAbandoned, trackPasswordSaved, trackSignupError } from '@/lib/analytics/posthog';
+import { mapAuthError } from '@/lib/utils/auth-errors';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -173,9 +174,17 @@ export default function SignupPage() {
       setSuccess(true);
       announceToScreenReader('Account created successfully! Please check your email to verify your account.');
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Signup failed';
-      setError(errorMessage);
-      announceToScreenReader(`Signup failed: ${errorMessage}`, 'assertive');
+      const authError = mapAuthError(error instanceof Error ? error : String(error));
+      setError(authError.userMessage);
+      
+      // Track error in PostHog
+      trackSignupError(
+        authError.errorType,
+        error instanceof Error ? error.message : String(error),
+        authError.recoveryAction
+      );
+      
+      announceToScreenReader(`Signup failed: ${authError.userMessage}`, 'assertive');
     } finally {
       setIsLoading(false);
     }

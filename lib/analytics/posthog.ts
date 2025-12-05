@@ -120,3 +120,32 @@ export function trackReturnVisit(daysSinceSignup: number) {
   });
 }
 
+/**
+ * Error Tracking (Phase 4: Improve Error Handling)
+ */
+export function trackSignupError(errorType: string, errorMessage: string, recoveryAction?: string) {
+  trackEvent('signup_error', {
+    error_type: errorType,
+    error_message: errorMessage,
+    recovery_action: recoveryAction,
+    timestamp: new Date().toISOString(),
+  });
+}
+
+export function trackLoginError(errorType: string, errorMessage: string, recoveryAction?: string) {
+  trackEvent('login_error', {
+    error_type: errorType,
+    error_message: errorMessage,
+    recovery_action: recoveryAction,
+    timestamp: new Date().toISOString(),
+  });
+}
+
+export function trackEmailError(errorType: string, errorMessage: string) {
+  trackEvent('email_error', {
+    error_type: errorType,
+    error_message: errorMessage,
+    timestamp: new Date().toISOString(),
+  });
+}
+

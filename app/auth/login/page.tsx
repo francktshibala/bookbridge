@@ -9,7 +9,8 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
-import { trackEvent } from '@/lib/analytics/posthog';
+import { trackEvent, trackLoginError } from '@/lib/analytics/posthog';
+import { mapAuthError } from '@/lib/utils/auth-errors';
 
 function LoginPageContent() {
   const router = useRouter();
@@ -21,14 +22,16 @@ function LoginPageContent() {
   const [error, setError] = useState<string | null>(null);
   const [resendingEmail, setResendingEmail] = useState(false);
 
-  // Read error from URL (e.g., from expired verification link)
+      // Read error from URL (e.g., from expired verification link)
   useEffect(() => {
     const urlError = searchParams.get('error');
     const urlMessage = searchParams.get('message');
     if (urlError || urlMessage) {
-      setError(urlMessage || urlError || null);
-      if (urlMessage) {
-        announceToScreenReader(urlMessage, 'assertive');
+      // Map URL error to user-friendly message
+      const mappedError = urlMessage ? { userMessage: urlMessage, errorType: urlError || 'unknown' } : mapAuthError(urlError || 'unknown');
+      setError(mappedError.userMessage);
+      if (mappedError.userMessage) {
+        announceToScreenReader(mappedError.userMessage, 'assertive');
       }
     }
   }, [searchParams, announceToScreenReader]);
@@ -88,9 +91,17 @@ function LoginPageContent() {
       announceToScreenReader('Login successful! Redirecting to catalog.');
       router.push('/catalog');
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Login failed';
-      setError(errorMessage);
-      announceToScreenReader(`Login failed: ${errorMessage}`, 'assertive');
+      const authError = mapAuthError(error instanceof Error ? error : String(error));
+      setError(authError.userMessage);
+      
+      // Track error in PostHog
+      trackLoginError(
+        authError.errorType,
+        error instanceof Error ? error.message : String(error),
+        authError.recoveryAction
+      );
+      
+      announceToScreenReader(`Login failed: ${authError.userMessage}`, 'assertive');
     } finally {
       setIsLoading(false);
     }
@@ -306,14 +317,14 @@ function LoginPageContent() {
                   >
                     <div style={{
                       fontSize: '14px',
-                      color: error.includes('expired') || error.includes('New confirmation')
+                      color: error.includes('expired') || error.includes('New confirmation') || error.includes('verification link')
                         ? '#16a34a'
                         : 'var(--error-text)',
                       fontWeight: '600',
                       fontFamily: 'Source Serif Pro, Georgia, serif',
-                      marginBottom: error.includes('expired') ? '12px' : '0'
+                      marginBottom: (error.includes('expired') || error.includes('verification link')) ? '12px' : '0'
                     }}>{error}</div>
-                    {error.includes('expired') && (
+                    {(error.includes('expired') || error.includes('verification link') || error.includes('verify your email')) && (
                       <button
                         type="button"
                         onClick={() => {
