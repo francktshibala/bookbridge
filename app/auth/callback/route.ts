@@ -87,17 +87,30 @@ export async function GET(request: NextRequest) {
       }
 
       if (data?.user) {
-        console.log('[auth/callback] ✅ Email verified successfully:', {
+        console.log('[auth/callback] ✅ Session created successfully:', {
           userId: data.user.id,
           email: data.user.email,
           type,
+          sessionType: data.session?.type,
+        });
+        
+        // Detect password reset: Check URL type param OR session type OR recovery token
+        // Supabase recovery sessions have type 'recovery' or we check URL param
+        const isPasswordReset = type === 'password_reset' || 
+                               data.session?.type === 'recovery' ||
+                               requestUrl.searchParams.get('type') === 'password_reset';
+        
+        console.log('[auth/callback] 🔍 Password reset detection:', {
+          urlType: type,
+          sessionType: data.session?.type,
+          isPasswordReset,
         });
         
         // Email verification tracking will happen in SimpleAuthProvider 
         // when the auth state change event fires (USER_UPDATED or SIGNED_IN)
         
         // Redirect based on type
-        if (type === 'password_reset') {
+        if (isPasswordReset) {
           // Password reset - redirect to confirm password page
           const resetUrl = `${baseUrl}/auth/reset-password/confirm`;
           console.log('[auth/callback] 🔗 Redirecting to password reset confirmation:', resetUrl);
