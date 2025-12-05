@@ -82,34 +82,45 @@ Track all 4 conversion gates as defined in `POSTHOG_ANALYTICS_IMPLEMENTATION_PLA
 
 ---
 
-### **Phase 2: Add Password Reset** (Priority 2 - Recovery Path)
+### **Phase 2: Add Password Reset** (Priority 2 - Recovery Path) ⚠️ **PARTIALLY COMPLETE**
 **Goal**: Allow users to reset forgotten passwords
 
+**Status**: 🔴 **BLOCKING ISSUE** - Reset links redirect to login instead of confirm page
+
 **Implementation**:
-1. Add "Forgot password?" link on login page
-2. Create `/auth/reset-password` page with email input
-3. Create `/api/auth/reset-password` route:
+1. ✅ Add "Forgot password?" link on login page
+2. ✅ Create `/auth/reset-password` page with email input
+3. ✅ Create `/api/auth/send-password-reset` route:
    - Generate reset link via Supabase Admin API (`generateLink({ type: 'recovery' })`)
    - Send reset email via Resend API
-4. Create `/auth/reset-password/confirm` page with new password form
-5. Handle reset callback in `/auth/callback` route
+4. ✅ Create `/auth/reset-password/confirm` page with new password form
+5. ⚠️ Handle reset callback in `/auth/callback` route - **REDIRECT DETECTION FAILING**
 
-**Files to Create**:
-- `app/auth/reset-password/page.tsx` - Request reset page
-- `app/auth/reset-password/confirm/page.tsx` - Set new password page
-- `app/api/auth/reset-password/route.ts` - Send reset email API
-- `lib/services/auth-email-service.ts` - Add `sendPasswordResetEmail()` function
+**Files Created**:
+- ✅ `app/auth/reset-password/page.tsx` - Request reset page (Neo-Classic styling)
+- ✅ `app/auth/reset-password/confirm/page.tsx` - Set new password page (Neo-Classic styling)
+- ✅ `app/api/auth/send-password-reset/route.ts` - Send reset email API
+- ✅ `lib/services/auth-email-service.ts` - Added `sendPasswordResetEmail()` function
 
 **PostHog Events**:
-- `password_reset_requested` - Track reset requests
-- `password_reset_email_sent` - Track email delivery
-- `password_reset_completed` - Track successful resets
+- ✅ `password_reset_requested` - Track reset requests
+- ✅ `password_reset_email_sent` - Track email delivery
+- ✅ `password_reset_completed` - Track successful resets
+
+**Known Issue**:
+- ❌ **Password reset links redirect to `/auth/login` instead of `/auth/reset-password/confirm`**
+- **Root Cause**: Supabase's `generateLink({ type: 'recovery' })` doesn't preserve `type=password_reset` query parameter through redirect chain
+- **Attempts Made**: URL param detection, hash fragment detection, session type detection (all failed)
+- **Investigation**: See `docs/implementation/PASSWORD_RESET_REDIRECT_ISSUE.md` for full context
+- **Status**: 🔴 **DEFERRED** - Need expert investigation of Supabase recovery flow (GPT-5 also unable to solve)
 
 **Success Criteria**:
 - ✅ Users can request password reset from login page
-- ✅ Reset emails sent via Resend
-- ✅ Users can set new password via reset link
+- ✅ Reset emails sent via Resend (with Supabase fallback)
+- ❌ Users cannot set new password via reset link (redirects to login)
 - ✅ PostHog tracks reset funnel (requested → sent → completed)
+- ✅ Neo-Classic styling applied (matches login/signup pages)
+- ✅ Architecture patterns followed (service layer, pure composition)
 
 ---
 
