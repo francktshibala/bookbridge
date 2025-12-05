@@ -7,18 +7,39 @@
 
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CatalogProvider } from '@/contexts/CatalogContext';
 import { CatalogBrowser } from '@/components/catalog/CatalogBrowser';
-import { useRequireAuth } from '@/hooks/useRequireAuth';
+import { useAuth } from '@/components/AuthProvider';
 import type { UnifiedBook } from '@/types/unified-book';
 import { isFeaturedBook, isEnhancedBook } from '@/types/unified-book';
 
 function CatalogContent() {
   const router = useRouter();
-  // Require authentication - redirects to login if not logged in
-  const { user, loading } = useRequireAuth('/auth/login?redirectTo=/catalog');
+  const { user, loading } = useAuth();
+  const [authCheckTimeout, setAuthCheckTimeout] = useState(false);
+
+  // Require authentication - redirect to login if not logged in
+  useEffect(() => {
+    // Timeout fallback: If auth check takes too long (2 seconds), redirect anyway
+    const timeoutId = setTimeout(() => {
+      console.log('[Catalog] Auth check timeout - redirecting to login');
+      setAuthCheckTimeout(true);
+      router.push('/auth/login?redirectTo=/catalog');
+    }, 2000);
+
+    // Once loading completes, clear timeout and check auth
+    if (!loading) {
+      clearTimeout(timeoutId);
+      if (!user) {
+        console.log('[Catalog] User not authenticated - redirecting to login');
+        router.push('/auth/login?redirectTo=/catalog');
+      }
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [user, loading, router]);
 
   const handleSelectBook = (book: UnifiedBook) => {
     // Phase 8: Unified routing - handle both Featured Books and Enhanced Books
@@ -38,8 +59,8 @@ function CatalogContent() {
     console.log('Ask AI about:', book.title);
   };
 
-  // Show loading state while checking auth
-  if (loading) {
+  // Show loading state while checking auth (but not if timeout triggered redirect)
+  if (loading && !authCheckTimeout) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}>
         <div className="text-center">
@@ -53,7 +74,7 @@ function CatalogContent() {
   }
 
   // Don't render catalog if not authenticated (will redirect)
-  if (!user) {
+  if (!user || authCheckTimeout) {
     return null;
   }
 
