@@ -1,3 +1,4 @@
+import { detectPasswordResetIntent } from '@/lib/auth/password-reset-intent';
 import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -27,12 +28,15 @@ export async function GET(request: NextRequest) {
   // Handle errors (expired token, invalid link, etc.)
   if (error) {
     console.error('Auth callback error:', error, errorDescription);
-    
-    // Check if this is a password reset error (from URL type param or error context)
-    const isPasswordReset = type === 'password_reset' || 
-                            requestUrl.searchParams.get('type') === 'password_reset' ||
-                            errorDescription?.toLowerCase().includes('password') ||
-                            errorDescription?.toLowerCase().includes('reset');
+
+    const passwordResetDetection = detectPasswordResetIntent({
+      queryType: type,
+      errorDescription,
+    });
+    console.log('[auth/callback] ⚠️ Password reset detection (error):', {
+      ...passwordResetDetection.details,
+    });
+    const isPasswordReset = passwordResetDetection.isPasswordReset;
     
     // Special handling for expired OTP
     if (error === 'access_denied' && errorDescription?.includes('expired')) {
@@ -93,26 +97,22 @@ export async function GET(request: NextRequest) {
           type,
           fullUrl: requestUrl.toString(),
         });
-        
-        // Detect password reset: Check URL type param (query string or hash)
-        // Supabase may put type in hash fragment, so check both
-        const urlTypeParam = type || requestUrl.searchParams.get('type');
-        const hashParams = requestUrl.hash ? new URLSearchParams(requestUrl.hash.substring(1)) : null;
-        const hashType = hashParams?.get('type');
-        const isPasswordReset = urlTypeParam === 'password_reset' || hashType === 'password_reset';
-        
-        console.log('[auth/callback] 🔍 Password reset detection:', {
-          urlType: type,
-          queryType: requestUrl.searchParams.get('type'),
-          hashType: hashType,
-          isPasswordReset,
+
+        const passwordResetDetection = detectPasswordResetIntent({
+          queryType: type,
+          user: data.user,
         });
-        
+
+        console.log('[auth/callback] 🔍 Password reset detection (success):', {
+          ...passwordResetDetection.details,
+          userId: data.user.id,
+        });
+
         // Email verification tracking will happen in SimpleAuthProvider 
         // when the auth state change event fires (USER_UPDATED or SIGNED_IN)
         
         // Redirect based on type
-        if (isPasswordReset) {
+        if (passwordResetDetection.isPasswordReset) {
           // Password reset - redirect to confirm password page
           const resetUrl = `${baseUrl}/auth/reset-password/confirm`;
           console.log('[auth/callback] 🔗 Redirecting to password reset confirmation:', resetUrl);
