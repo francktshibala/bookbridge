@@ -124,24 +124,28 @@ Track all 4 conversion gates as defined in `POSTHOG_ANALYTICS_IMPLEMENTATION_PLA
 
 ---
 
-### **Phase 3: Track Email Verification** (Priority 3 - Conversion Measurement)
+### **Phase 3: Track Email Verification** (Priority 3 - Conversion Measurement) ✅ **COMPLETED**
 **Goal**: Measure signup → email verified conversion rate
 
-**Implementation**:
-1. Call `trackEmailVerified()` in `/auth/callback` after successful confirmation
-2. Include user properties: `user_id`, `email`, `time_since_signup`
-3. Update PostHog Conversion Funnel dashboard to show email verification rate
+**Status**: ✅ **COMPLETE** - Email verification tracking implemented
 
-**Files to Modify**:
-- `app/auth/callback/route.ts` - Add `trackEmailVerified()` call after `exchangeCodeForSession`
-- `lib/analytics/posthog.ts` - Verify `trackEmailVerified()` function exists (already implemented)
+**Implementation**:
+1. ✅ Created server-side `trackEmailVerifiedServer()` function using PostHog HTTP API
+2. ✅ Called in `/auth/callback` after successful `exchangeCodeForSession`
+3. ✅ Only tracks for email verification (excludes password reset flows)
+4. ✅ Includes user properties: `user_id`, `email` (partial for privacy)
+
+**Files Modified**:
+- ✅ `app/auth/callback/route.ts` - Added server-side PostHog tracking after email verification
+- ✅ `lib/analytics/posthog.ts` - Client-side helper already exists (for future client-side tracking)
 
 **PostHog Events**:
-- `email_verified` - Already defined in `posthog.ts`, needs to be called
+- ✅ `email_verified` - Tracked server-side via HTTP API with user_id and partial email
 
 **Success Criteria**:
-- ✅ Email verification tracked in PostHog
-- ✅ Conversion Funnel dashboard shows signup → email verified rate
+- ✅ Email verification tracked in PostHog (server-side via HTTP API)
+- ✅ Only tracks email verification (not password reset)
+- ✅ Conversion Funnel dashboard can now show signup → email verified rate
 - ✅ Can measure drop-off between signup and email verification
 
 ---
