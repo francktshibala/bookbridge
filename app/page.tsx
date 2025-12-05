@@ -15,33 +15,17 @@ export default function HomePage() {
 
   // Hybrid approach: Redirect logged-in users to catalog, show demo to non-logged-in users
   useEffect(() => {
-    // Don't redirect while still loading auth state
-    if (loading) return;
-
-    // If user is logged in, redirect to catalog
-    if (user) {
+    // Only redirect if we're certain a user is logged in (not while loading)
+    if (!loading && user) {
       console.log('[HomePage] User logged in, redirecting to /catalog');
       router.push('/catalog');
     }
   }, [user, loading, router]);
 
-  // Show loading state while checking auth (prevents flash of homepage content)
-  if (loading) {
-    return (
-      <div className="page-container magical-bg min-h-screen theme-transition" style={{
-        background: 'var(--bg-primary)',
-        color: 'var(--text-primary)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <div className="neo-classic-body" style={{ color: 'var(--text-secondary)' }}>
-            Loading...
-          </div>
-        </div>
-      </div>
-    );
+  // Don't render homepage content if user is logged in (will redirect)
+  // Show homepage immediately for non-logged-in users (even while loading)
+  if (user) {
+    return null;
   }
 
   // Don't render homepage content if user is logged in (will redirect)
