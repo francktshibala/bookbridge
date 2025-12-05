@@ -9,7 +9,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Mail, Lock, User, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
-import { trackSignupStarted, trackUserSignedUp, trackSignupAbandoned } from '@/lib/analytics/posthog';
+import { trackSignupStarted, trackUserSignedUp, trackSignupAbandoned, trackPasswordSaved } from '@/lib/analytics/posthog';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -80,6 +80,7 @@ export default function SignupPage() {
       const appUrl = getAppUrl();
       console.log('[Signup] Using redirect URL:', `${appUrl}/auth/callback?type=signup`);
       
+      // Step 1: Try Supabase signup (may fail with email error but user might be created)
       const { error, data } = await supabase.auth.signUp({
         email,
         password,
@@ -92,7 +93,6 @@ export default function SignupPage() {
       });
 
       // Check if it's an email sending error (SMTP issue)
-      // Supabase might fail to send email but account is still created
       const isEmailError = error && (
         error.message?.includes('email') || 
         error.message?.includes('smtp') || 
@@ -105,18 +105,41 @@ export default function SignupPage() {
         throw error;
       }
 
-      // If email error OR success, account is likely created - send via Resend
-      if (isEmailError) {
-        console.warn('[Signup] Supabase email failed, but account may have been created. Sending via Resend...', error);
-      } else {
-        // Track successful signup (Gate 1)
-        trackUserSignedUp('signup_page', 'email', email);
+      // Step 2: Ensure user exists with password (fix if Supabase signup failed)
+      console.log('[Signup] 🔐 Step 2: Ensuring user exists with password...');
+      let passwordSaved = false;
+      try {
+        const createUserResponse = await fetch('/api/auth/create-user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, name }),
+        });
+        
+        const createUserResult = await createUserResponse.json();
+        
+        if (!createUserResponse.ok) {
+          console.error('[Signup] ❌ Failed to ensure user/password:', createUserResult);
+          trackPasswordSaved(false, 'create_user_api');
+        } else {
+          console.log('[Signup] ✅ User/password verified:', createUserResult.message);
+          passwordSaved = true;
+          trackPasswordSaved(true, createUserResult.message.includes('updated') ? 'password_updated' : 'user_created');
+        }
+      } catch (createUserError) {
+        console.error('[Signup] Failed to ensure user/password:', createUserError);
+        trackPasswordSaved(false, 'create_user_error');
       }
 
-      // Send confirmation email via Resend API (bypasses SMTP issues)
-      // This ensures fast, professional email delivery even if Supabase SMTP isn't working
+      // Step 3: Track successful signup (Gate 1)
+      if (!isEmailError) {
+        trackUserSignedUp('signup_page', 'email', email);
+      } else {
+        console.warn('[Signup] Supabase email failed, but ensuring password saved. Sending via Resend...', error);
+      }
+
+      // Step 4: Send confirmation email via Resend API (bypasses SMTP issues)
       try {
-        console.log('[Signup] 📧 Calling Resend API to send confirmation email...');
+        console.log('[Signup] 📧 Step 4: Calling Resend API to send confirmation email...');
         const emailResponse = await fetch('/api/auth/send-confirmation', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

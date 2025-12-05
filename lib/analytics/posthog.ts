@@ -57,6 +57,13 @@ export function trackSignupAbandoned(source?: string, step?: string) {
   });
 }
 
+export function trackPasswordSaved(success: boolean, method?: string) {
+  trackEvent(success ? 'signup_password_saved' : 'signup_password_failed', {
+    method: method || 'supabase_signup',
+    timestamp: new Date().toISOString(),
+  });
+}
+
 /**
  * Gate 2: First Use Events (placeholder for Increment 3)
  */

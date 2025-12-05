@@ -464,7 +464,11 @@ This document establishes the universal accessibility vision while defining the 
 **Location**: `/docs/research/SPF_VERIFICATION_INVESTIGATION.md`  
 **Description**: Investigation document for SPF/DKIM verification and DNS migration to Cloudflare. Documents MX record issues with Namecheap subdomains and Resend domain verification requirements. **CURRENT STATUS**: DNS migration to Cloudflare complete, Resend domain verification pending. **RELATED FIXES**: Updated signup flow to call Resend API even when Supabase email fails (see `app/auth/signup/page.tsx` and `app/api/auth/send-confirmation/route.ts`).
 
-#### **Signup Email Flow Fix (January 2025)**
+#### **AUTHENTICATION_RELIABILITY_PLAN.md** ⚠️ **CURRENT AUTH IMPROVEMENTS**
+**Location**: `/docs/implementation/AUTHENTICATION_RELIABILITY_PLAN.md`  
+**Description**: **COMPREHENSIVE AUTHENTICATION RELIABILITY PLAN** - Complete implementation plan for reliable authentication system with full conversion tracking. **CURRENT STATUS**: Email confirmation working ✅, password saving broken ❌, password reset missing ❌. **GOALS**: (1) Fix password saving when Supabase email fails, (2) Add password reset functionality, (3) Track email verification in PostHog, (4) Improve error handling, (5) Complete conversion funnel tracking. **POSTHOG INTEGRATION**: Maps auth events to 4 conversion gates (Signup → First Use → Wow → Retention) as defined in `POSTHOG_ANALYTICS_IMPLEMENTATION_PLAN.md`. **IMPLEMENTATION PHASES**: 5 phases (6-10 days total) - Phase 1: Fix password saving (critical), Phase 2: Add password reset, Phase 3: Track email verification, Phase 4: Improve error handling, Phase 5: Complete funnel tracking. **CROSS-REFERENCES**: Links to `CONFIRMATION_EMAIL_SOLUTION.md`, `CONFIRMATION_EMAIL_FINAL_PLAN.md`, `POSTHOG_ANALYTICS_IMPLEMENTATION_PLAN.md`, `Agent1_Email_Service_Findings.md`, `Agent2_Supabase_Auth_Findings.md`, `SPF_VERIFICATION_INVESTIGATION.md`. **SUCCESS METRICS**: Password save success ≥99%, reset success ≥95%, login success ≥98%, signup → email verified ≥85%, overall signup → D7 retention ≥19%. Essential reference for authentication reliability improvements and conversion tracking implementation.
+
+#### **Signup Email Flow Fix (January 2025)** ✅ **IMPLEMENTED**
 **Status**: ✅ **IMPLEMENTED** - Resend API now called even when Supabase signup fails  
 **Problem**: Supabase signup failing with "Error sending confirmation email" (500 error) prevented Resend API from being called  
 **Solution**: Modified signup flow to call Resend API regardless of Supabase email status  
@@ -473,7 +477,8 @@ This document establishes the universal accessibility vision while defining the 
 - `app/api/auth/send-confirmation/route.ts` - Added user existence check and better error handling
 - `scripts/test-signup-email.js` - Test script for verifying Resend API integration  
 **Key Changes**: Signup page now catches Supabase email errors and still attempts Resend delivery, API checks if user exists before generating confirmation link  
-**Testing**: Use `francoismatenda022+test1@gmail.com` alias for signup testing
+**Testing**: Use `francoismatenda022+test1@gmail.com` alias for signup testing  
+**Related Plan**: See `AUTHENTICATION_RELIABILITY_PLAN.md` for next steps (password saving fix, password reset, conversion tracking)
 
 #### **BACKGROUND_PROCESSING_API_PATTERNS.md**
 **Location**: `/docs/research/BACKGROUND_PROCESSING_API_PATTERNS.md`  
