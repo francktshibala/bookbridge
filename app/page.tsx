@@ -1,13 +1,54 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { EnhancedBooksGrid } from '@/components/ui/EnhancedBooksGrid';
 import { AIBookChatModal } from '@/lib/dynamic-imports';
 import { InteractiveReadingDemo } from '@/components/hero/InteractiveReadingDemo';
+import { useAuth } from '@/components/AuthProvider';
 import type { ExternalBook } from '@/types/book-sources';
 
 export default function HomePage() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
+  // Hybrid approach: Redirect logged-in users to catalog, show demo to non-logged-in users
+  useEffect(() => {
+    // Don't redirect while still loading auth state
+    if (loading) return;
+
+    // If user is logged in, redirect to catalog
+    if (user) {
+      console.log('[HomePage] User logged in, redirecting to /catalog');
+      router.push('/catalog');
+    }
+  }, [user, loading, router]);
+
+  // Show loading state while checking auth (prevents flash of homepage content)
+  if (loading) {
+    return (
+      <div className="page-container magical-bg min-h-screen theme-transition" style={{
+        background: 'var(--bg-primary)',
+        color: 'var(--text-primary)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div className="neo-classic-body" style={{ color: 'var(--text-secondary)' }}>
+            Loading...
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render homepage content if user is logged in (will redirect)
+  if (user) {
+    return null;
+  }
+
   // AI Chat Modal State
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
   const [selectedAIBook, setSelectedAIBook] = useState<ExternalBook | null>(null);
