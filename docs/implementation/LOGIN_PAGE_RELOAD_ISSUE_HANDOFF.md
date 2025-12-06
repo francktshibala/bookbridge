@@ -1,7 +1,7 @@
 # Login Page Reload Issue - GPT Agent Handoff
 
 **Date**: December 5, 2025  
-**Status**: 🔴 **CRITICAL BUG** - Login page reloads after successful login  
+**Status**: 🟡 **FIX IMPLEMENTED – NEEDS VERIFICATION** (Dec 6, 2025)  
 **Priority**: HIGH - Blocks user access to catalog
 
 ---
@@ -290,6 +290,36 @@ After implementing fix, verify:
 3. Login page does NOT reload after successful login
 4. User remains authenticated for subsequent navigation
 5. No redirect loop back to login page
+
+---
+
+## Fix and Testing Notes (Dec 6, 2025)
+
+### What Changed
+- **`app/auth/login/page.tsx`**
+  - Kept `waitForStableSession()` to ensure the Supabase session is fully established.
+  - Sanitizes `redirectTo` so only paths starting with `/` are used, defaulting to `/catalog` otherwise.
+  - After `waitForStableSession()`, performs a second `supabase.auth.getSession()` check and logs whether a user is present.
+  - Adds a short 300ms delay to give `AuthProvider` time to update its `user` state.
+  - Uses `router.push(redirectTo)` instead of `window.location.href`, preventing full page reloads and avoiding the login-page-reload loop.
+- **`app/catalog/page.tsx`**
+  - Already updated to patiently poll Supabase and wait for `AuthProvider` rather than instantly redirecting back to login.
+- **`components/AuthProvider.tsx`**
+  - Logs context updates so you can see when `user` and `loading` change relative to the login and catalog logs.
+
+### How to Manually Verify
+- [ ] **Test 1**: Homepage → login → catalog  
+  Log out → open homepage → click “Library” → log in → you should land on `/catalog` (not stay on `/auth/login`).
+- [ ] **Test 2**: Direct `/catalog` → login → catalog  
+  Log out → go directly to `/catalog` → you should be redirected to login → log in → land on `/catalog`.
+- [ ] **Test 3**: `/auth/login?redirectTo=/catalog`  
+  Log out → open `/auth/login?redirectTo=/catalog` → log in → land on `/catalog`.
+- [ ] **Test 4**: No page reload after login  
+  Open DevTools → watch `[Login]` and `[Catalog]` logs → click “Sign in” → confirm you see the redirect logs and a client-side navigation to `/catalog` without a full reload of the login page.
+- [ ] **Test 5**: Auth state consistency  
+  After login, confirm `useAuth()` returns a user in the catalog, and navigation within the catalog does not force you back to login.
+
+> Note: Manual testing requires valid Supabase credentials and environment variables; run these checks in your real environment to mark the items above as completed.
 
 ---
 

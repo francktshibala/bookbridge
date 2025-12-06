@@ -223,14 +223,28 @@ function LoginPageContent() {
       announceToScreenReader('Login successful! Redirecting...');
       
       // Get redirectTo from URL or default to /catalog
-      const redirectTo = searchParams.get('redirectTo') || '/catalog';
-      logAuthFlow('Redirect requested after login', { redirectTo });
+      const rawRedirectTo = searchParams.get('redirectTo') || '/catalog';
+      const redirectTo =
+        typeof rawRedirectTo === 'string' && rawRedirectTo.startsWith('/')
+          ? rawRedirectTo
+          : '/catalog';
+      logAuthFlow('Redirect requested after login', { rawRedirectTo, redirectTo });
 
       await waitForStableSession();
 
-      logAuthFlow('Session confirmed, performing redirect', { redirectTo });
-      // Use window.location for full page reload to ensure auth state is refreshed
-      window.location.href = redirectTo;
+      // Double-check session after wait
+      const { data: { session } } = await supabase.auth.getSession();
+      logAuthFlow('Post-wait session check before redirect', {
+        hasSessionUser: !!session?.user,
+      });
+
+      // Small delay to give AuthProvider a moment to update context
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      logAuthFlow('Session confirmed, performing client-side redirect with router.push', {
+        redirectTo,
+      });
+      router.push(redirectTo);
     } catch (error) {
       const authError = mapAuthError(error instanceof Error ? error : String(error));
       setError(authError.userMessage);
