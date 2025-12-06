@@ -11,7 +11,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CatalogProvider } from '@/contexts/CatalogContext';
 import { CatalogBrowser } from '@/components/catalog/CatalogBrowser';
-import { useAuth } from '@/components/AuthProvider';
+import { useAuth } from '@/components/SimpleAuthProvider';
 import type { UnifiedBook } from '@/types/unified-book';
 import { isFeaturedBook, isEnhancedBook } from '@/types/unified-book';
 import { supabase } from '@/lib/supabase/client';
