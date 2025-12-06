@@ -1,7 +1,7 @@
 # Login Redirect Issue - GPT Agent Handoff
 
 **Date**: December 5, 2025  
-**Status**: 🔴 **CRITICAL BUG** - Login redirect loop  
+**Status**: 🟡 **FIX IMPLEMENTED – NEEDS VERIFICATION** (Dec 6, 2025)  
 **Priority**: HIGH - Blocks user access to catalog
 
 ---
@@ -264,6 +264,25 @@ After implementing fix, verify:
 3. No redirect loop back to login page
 4. User remains authenticated for subsequent navigation
 5. Auth state is consistent across page loads
+
+---
+
+## Fix and Testing Notes (Dec 6, 2025)
+
+### What Changed
+- Added detailed `[Login]`, `[Catalog]`, and `[AuthProvider]` console logging to trace auth state transitions end-to-end.
+- Updated `app/auth/login/page.tsx` to wait for Supabase `SIGNED_IN` events or successful session polling before redirecting, preventing navigation before cookies persist.
+- Made `app/catalog/page.tsx` poll Supabase for a short period before forcing a logout redirect, avoiding false negatives while AuthProvider hydrates.
+- Documented context updates inside `components/AuthProvider.tsx` so we can correlate provider state with catalog/login logs.
+
+### Testing Status
+- [ ] Test 1: Homepage → login → catalog (pending Supabase creds)
+- [ ] Test 2: Direct `/catalog` → login → catalog (pending)
+- [ ] Test 3: Direct `/auth/login?redirectTo=/catalog` (pending)
+- [ ] Test 4: Confirm no redirect loop post-login (pending)
+- [ ] Test 5: Auth state consistency + PostHog events (pending)
+
+> Manual login requires live Supabase credentials; please run through the checklist in a connected environment to mark these off.
 
 ---
 

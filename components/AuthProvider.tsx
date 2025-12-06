@@ -93,6 +93,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, [router, initialLoadComplete, user]);
 
+  useEffect(() => {
+    console.log('AuthProvider: Context state updated', { hasUser: !!user, loading });
+  }, [user, loading]);
+
   return (
     <AuthContext.Provider value={{ user, loading }}>
       {children}

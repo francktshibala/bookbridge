@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { trackEvent, trackLoginError } from '@/lib/analytics/posthog';
 import { mapAuthError } from '@/lib/utils/auth-errors';
 import posthog from 'posthog-js';
+import type { Session } from '@supabase/supabase-js';
 
 function LoginPageContent() {
   const router = useRouter();
@@ -22,6 +23,86 @@ function LoginPageContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [resendingEmail, setResendingEmail] = useState(false);
+
+  const logAuthFlow = (message: string, details?: Record<string, unknown>) => {
+    if (details) {
+      console.log(`[Login] ${message}`, details);
+      return;
+    }
+    console.log(`[Login] ${message}`);
+  };
+
+  const maskEmail = (value: string) => {
+    if (!value) return 'unknown';
+    const [local, domain] = value.split('@');
+    if (!domain) {
+      return `${local.slice(0, 2)}***`;
+    }
+    return `${local.slice(0, 2)}***@${domain}`;
+  };
+
+  const waitForStableSession = async () => {
+    logAuthFlow('Ensuring Supabase session is ready before redirect');
+    const initialSessionCheck = await supabase.auth.getSession();
+    if (initialSessionCheck.data.session?.user) {
+      logAuthFlow('Session already available immediately after login');
+      return initialSessionCheck.data.session;
+    }
+
+    return new Promise<Session | null>((resolve) => {
+      let resolved = false;
+      let attempts = 0;
+      let pollIntervalId: ReturnType<typeof setInterval> | null = null;
+      let fallbackTimeoutId: ReturnType<typeof setTimeout> | null = null;
+      let authSubscription: { unsubscribe: () => void } | null = null;
+
+      const cleanup = () => {
+        if (pollIntervalId) {
+          clearInterval(pollIntervalId);
+          pollIntervalId = null;
+        }
+        if (fallbackTimeoutId) {
+          clearTimeout(fallbackTimeoutId);
+          fallbackTimeoutId = null;
+        }
+        if (authSubscription) {
+          authSubscription.unsubscribe();
+          authSubscription = null;
+        }
+      };
+
+      const finish = (session: Session | null, reason: string) => {
+        if (resolved) return;
+        resolved = true;
+        cleanup();
+        logAuthFlow(`Session wait resolved (${reason})`, { hasSession: !!session?.user });
+        resolve(session);
+      };
+
+      const { data } = supabase.auth.onAuthStateChange((event, session) => {
+        logAuthFlow('onAuthStateChange event received', { event, hasUser: !!session?.user });
+        if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session?.user) {
+          finish(session, `auth event ${event}`);
+        }
+      });
+      authSubscription = data.subscription;
+
+      pollIntervalId = setInterval(async () => {
+        attempts += 1;
+        const { data: sessionData } = await supabase.auth.getSession();
+        const hasSession = !!sessionData.session?.user;
+        logAuthFlow(`Session poll attempt ${attempts}`, { hasSession });
+        if (hasSession || attempts >= 10) {
+          finish(sessionData.session ?? null, hasSession ? 'poll success' : 'poll limit reached');
+        }
+      }, 150);
+
+      fallbackTimeoutId = setTimeout(async () => {
+        const { data: sessionData } = await supabase.auth.getSession();
+        finish(sessionData.session ?? null, 'fallback timeout');
+      }, 3000);
+    });
+  };
 
       // Read error from URL (e.g., from expired verification link)
   useEffect(() => {
@@ -72,9 +153,12 @@ function LoginPageContent() {
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
+    const maskedEmail = maskEmail(email);
+
+    logAuthFlow('Login form submitted', { email: maskedEmail });
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data: signInData, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -83,8 +167,14 @@ function LoginPageContent() {
         throw error;
       }
 
+      logAuthFlow('signInWithPassword succeeded', {
+        email: maskedEmail,
+        hasSessionFromResponse: !!signInData?.session,
+      });
+
       // Get user data to check if this is first login (Phase 5: Step 2)
       const { data: { user } } = await supabase.auth.getUser();
+      logAuthFlow('Fetched user data after login', { hasUser: !!user });
       
       if (user) {
         // Check if this is the first login by checking Supabase user metadata
@@ -134,15 +224,17 @@ function LoginPageContent() {
       
       // Get redirectTo from URL or default to /catalog
       const redirectTo = searchParams.get('redirectTo') || '/catalog';
-      
-      // Wait a moment for auth state to update, then redirect
+      logAuthFlow('Redirect requested after login', { redirectTo });
+
+      await waitForStableSession();
+
+      logAuthFlow('Session confirmed, performing redirect', { redirectTo });
       // Use window.location for full page reload to ensure auth state is refreshed
-      setTimeout(() => {
-        window.location.href = redirectTo;
-      }, 100);
+      window.location.href = redirectTo;
     } catch (error) {
       const authError = mapAuthError(error instanceof Error ? error : String(error));
       setError(authError.userMessage);
+      logAuthFlow('Login failed', { email: maskedEmail, errorType: authError.errorType });
       
       // Track error in PostHog
       trackLoginError(
