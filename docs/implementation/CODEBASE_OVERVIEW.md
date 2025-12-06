@@ -1607,9 +1607,9 @@ The Modern Voices implementation represents the **first successful integration o
 
 #### **Critical Implementation Files**
 
-**Implementation Guide**:
+**Technical Implementation Guide**:
 - **`/docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md`**
-  - **Purpose**: Complete 9-phase workflow for implementing TED Talks, podcasts, and essays distinct from classical books
+  - **Purpose**: Technical reference guide with detailed specifications for implementing modern content (TED Talks, podcasts, essays, AND biographies/stories)
   - **Key Content**:
     - Phase-by-phase implementation (Content Selection → Deployment)
     - 6 documented mistakes with prevention strategies
@@ -1617,12 +1617,15 @@ The Modern Voices implementation represents the **first successful integration o
     - Architecture decision rules (bundle vs chunk)
     - Validation checkpoints after Phase 7 and Phase 8
     - 14 success criteria checklist
+    - **Audio Generation Settings**: Exact voice IDs, FFmpeg formulas, Enhanced Timing v3
+    - **Database Formats**: Exact timing format (startTime/endTime) to prevent sync issues
+    - **API Structures**: Complete endpoint specifications
   - **Critical Differences from Classical Books**:
     - No Gutenberg fetch or modernization
     - Different preview style (50-100 word description, not excerpt)
     - Requires explicit database seeding (isClassic: false)
-    - Must use bundle architecture at `/featured-books?book={slug}`
-  - **Why Essential**: Prevents repeating mistakes made during Power of Vulnerability implementation
+    - Must use bundle architecture at `/read/{slug}` (unified route)
+  - **Why Essential**: Provides technical specifications needed to implement steps from Strategy File. Prevents repeating mistakes made during Power of Vulnerability implementation. Contains exact code examples, voice settings, and validation checks.
 
 **Database Seeding Script**:
 - **`/scripts/seed-modern-voices.ts`**
@@ -1804,6 +1807,104 @@ The Modern Voices implementation represents the **first successful integration o
 6. **Database Seeding Required**: Modern content needs explicit FeaturedBook + Collection records
 
 This success validates the complete strategy: **modern audio content → simplify for CEFR levels → generate bundles with preview → deploy seamlessly**. The Power of Vulnerability implementation proves BookBridge can integrate contemporary educational content alongside classical literature with perfect bundle architecture harmony.
+
+---
+
+## 📚 **Modern Content Expansion Strategy (December 2025)**
+
+### **✅ STRATEGY COMPLETE: 50-100 Powerful Stories Plan**
+
+**Date**: December 2025  
+**Status**: 🟡 **PLANNING PHASE**  
+**Goal**: Expand library with 50-100 powerful stories (15-25 minutes each) using reliable free sources while waiting for partnership approvals
+
+#### **Strategic Context**
+
+Users are requesting modern content, but partnerships (publishers, TED) are pending. This strategy enables immediate content expansion using reliable free sources (Wikipedia biographies, public domain memoirs, historical speeches) transformed through emotional curation and presentation to make ESL learners fall in love with the app.
+
+#### **Critical Strategy Files**
+
+**Emotional Impact Strategy**:
+- **`/docs/MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`**
+  - **Purpose**: Complete strategy for curating and presenting 50-100 powerful stories that create emotional connection and app loyalty
+  - **Key Content**:
+    - **Curated Story List**: 50 stories prioritized by emotional impact (Tier 1: 15 highest impact, Tier 2: 15 high impact, Tier 3: 20 strong impact)
+    - **Genre Strategy**: 20 genres with universal emotional impact (Survival & Resilience, Redemption & Transformation, Sacrifice & Love, etc.)
+    - **ESL Lens Framework**: How to select universal stories that resonate deeply with ESL learners (8 ESL resonance multipliers)
+    - **Three-Part Structure**: Preview (with audio) + Background Context + Emotional Hook
+    - **21-Step Implementation Checklist**: Complete workflow from content selection to deployment
+    - **Reliable Source Strategy**: Wikipedia Featured Biographies, public domain memoirs, historical speeches
+  - **Critical Features**:
+    - **Emotional Transformation Framework**: How to transform dry biographical facts into emotional experiences
+    - **Selection Criteria**: "Would someone text a friend about this?" test, 3+ ESL resonance multipliers
+    - **Story Prioritization**: Tier 1 stories have highest emotional impact + direct ESL parallels
+    - **Implementation Steps**: Detailed 21-step checklist with emotional framing (background context, hook, preview)
+  - **Why Essential**: Provides complete roadmap for expanding library with emotionally impactful stories while partnerships are pending. Ensures every story is "the best story ever" with maximum universal impact.
+
+**Technical Implementation Guide**:
+- **`/docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md`**
+  - **Purpose**: Technical reference guide with detailed specifications for implementing modern content (TED Talks, podcasts, essays, AND biographies)
+  - **Key Content**:
+    - **Audio Generation Settings**: Exact voice IDs (Jane: RILOU7YmBhvwJGDGjNmP, Daniel: onwK4e9ZLuTAKqWW03F9, Sarah: EXAVITQu4vr4xnSDxMaL), stability/similarity/style values
+    - **FFmpeg Post-Processing**: November 2025 production formula (generate at 0.90×, apply atempo=0.85, re-measure with ffprobe)
+    - **Enhanced Timing v3**: Character-count proportion, punctuation penalties, pause-budget-first approach, renormalization
+    - **Database Timing Format**: Exact format requirements (startTime/endTime, not start/end) to prevent sync issues
+    - **API Response Structure**: Complete API endpoint specifications with all required fields
+    - **Frontend Integration**: Exact code locations (4 locations in lib/config/books.ts)
+    - **Catalog API Fix**: Remove isClassic filter for collections/search
+  - **Critical Features**:
+    - **Solution 1 Requirements**: ffprobe measurement, proportional timing, cached metadata, relative paths
+    - **Script Validation**: Check VALID_LEVELS, AI guidelines, word counts before running
+    - **Terminal Execution**: MANDATORY for long-running processes (prevents timeouts)
+    - **6 Documented Mistakes**: Prevention strategies from Power of Vulnerability implementation
+  - **Why Essential**: Provides technical specifications needed to implement steps from Strategy File. Contains exact code examples, voice settings, and validation checks to prevent sync issues and runtime failures.
+
+#### **How to Use Both Files Together**
+
+**Workflow**:
+1. **Start with Strategy File** (`MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`) → Follow 21-step checklist as roadmap
+2. **Reference Implementation Guide** (`MODERN_VOICES_IMPLEMENTATION_GUIDE.md`) → Get technical details when needed
+3. **Example**: Step 10.5 (Generate Bundle Audio) → Check Implementation Guide for exact voice IDs, FFmpeg commands, timing formulas
+4. **Example**: Step 13 (Create API Endpoint) → Check Implementation Guide for exact API response structure
+
+**No Conflicts**: Strategy File tells you WHAT to do (emotional framing, story selection), Implementation Guide tells you HOW to do it (technical specs, code examples). Both are needed for complete implementation.
+
+#### **Key Strategic Elements**
+
+**Three-Part Structure**:
+- **Preview Section**: 50-75 word marketing copy with audio narration (separate, before story)
+- **Background Context**: 2-3 sentence factual background (before story text)
+- **Emotional Hook**: Opening paragraph that grabs attention ("Imagine..." or "At 19 months old...")
+
+**ESL Resonance Multipliers** (Priority Boosters):
+1. Communication & Language Barriers
+2. Learning & Education Journeys
+3. Belonging & Identity
+4. Overcoming "Not Good Enough"
+5. First-Time Courage
+6. Building New Life
+7. Connection Across Differences
+8. Persistence Despite Setbacks
+
+**Selection Priority Formula**:
+- **Tier 1**: Universal impact + 3+ ESL multipliers + direct language/learning parallel
+- **Tier 2**: Universal impact + 2+ ESL multipliers + relatable themes
+- **Tier 3**: Universal impact + 1+ ESL multiplier + inspiring arc
+
+#### **Implementation Status**
+
+**Current Status**: 🟡 **PLANNING PHASE**
+- ✅ Strategy documented with 50 curated stories
+- ✅ 21-step implementation checklist created
+- ✅ Three-part structure defined (Preview + Background + Hook)
+- ⏳ Ready to begin implementation with Tier 1 stories (15 highest impact)
+
+**Next Steps**:
+1. Begin with Tier 1 stories (José Hernández, Helen Keller, Frederick Douglass, etc.)
+2. Follow 21-step checklist from Strategy File
+3. Reference Implementation Guide for technical details
+4. Implement first 5 stories as pilot
+5. Monitor completion rates (target: 70%+) and emotional impact scores
 
 ---
 
