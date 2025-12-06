@@ -25,37 +25,62 @@ function CatalogContent() {
   // Require authentication - wait for auth state to settle before redirecting
   useEffect(() => {
     let cancelled = false;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
     const verifySessionBeforeRedirect = async () => {
+      if (hasRedirected) {
+        return;
+      }
+
+      // If user exists, we're authenticated
       if (user) {
         console.log('[Catalog] Auth confirmed via context user');
         setAuthChecking(false);
         return;
       }
 
-      if (loading || hasRedirected) {
-        console.log('[Catalog] Waiting for auth to settle', { loading, hasRedirected });
+      // If still loading, wait a bit but set timeout fallback
+      if (loading) {
+        console.log('[Catalog] Auth still loading, waiting...');
+        // Set timeout: if loading takes more than 2 seconds, redirect anyway
+        timeoutId = setTimeout(() => {
+          if (!cancelled && !hasRedirected) {
+            console.log('[Catalog] Loading timeout - redirecting to login');
+            setHasRedirected(true);
+            setAuthChecking(false);
+            router.push('/auth/login?redirectTo=/catalog');
+          }
+        }, 2000);
         return;
       }
 
+      // Loading complete, check session
       setAuthChecking(true);
-      console.log('[Catalog] No user yet, polling Supabase session to avoid false redirect');
+      console.log('[Catalog] Loading complete, checking Supabase session');
 
-      const maxAttempts = 5;
-      for (let attempt = 1; attempt <= maxAttempts && !cancelled; attempt++) {
+      const maxAttempts = 3;
+      for (let attempt = 1; attempt <= maxAttempts && !cancelled && !hasRedirected; attempt++) {
         const { data: { session } } = await supabase.auth.getSession();
         const hasSessionUser = !!session?.user;
         console.log(`[Catalog] Session poll attempt ${attempt}`, { hasSession: hasSessionUser });
 
         if (hasSessionUser) {
           console.log('[Catalog] Session detected, waiting for AuthProvider to update user');
+          setAuthChecking(false);
+          // Wait a moment for AuthProvider to update, then re-check
+          setTimeout(() => {
+            if (!cancelled && !user) {
+              // Still no user after session found, might be timing issue
+              console.log('[Catalog] Session found but user not set yet - will re-check on next render');
+            }
+          }, 500);
           return;
         }
 
         await new Promise((resolve) => setTimeout(resolve, 200));
       }
 
-      if (!cancelled) {
+      if (!cancelled && !hasRedirected) {
         console.log('[Catalog] No session found after retries - redirecting to login');
         setHasRedirected(true);
         setAuthChecking(false);
@@ -67,6 +92,9 @@ function CatalogContent() {
 
     return () => {
       cancelled = true;
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
   }, [user, loading, router, hasRedirected]);
 
