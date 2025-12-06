@@ -1815,14 +1815,20 @@ This success validates the complete strategy: **modern audio content → simplif
 ### **✅ STRATEGY COMPLETE: 50-100 Powerful Stories Plan**
 
 **Date**: December 2025  
-**Status**: 🟡 **PLANNING PHASE**  
-**Goal**: Expand library with 50-100 powerful stories (15-25 minutes each) using reliable free sources while waiting for partnership approvals
+**Status**: 🟡 **PLANNING PHASE - UPDATED BASED ON EXPERT VALIDATION**  
+**Goal**: Expand library with 50-100 powerful stories using reliable free sources while waiting for partnership approvals. **Length targets by CEFR level:** A1 (15-20 min), A2 (20-30 min), B1+ (30-45 min).
 
 #### **Strategic Context**
 
 Users are requesting modern content, but partnerships (publishers, TED) are pending. This strategy enables immediate content expansion using reliable free sources (Wikipedia biographies, public domain memoirs, historical speeches) transformed through emotional curation and presentation to make ESL learners fall in love with the app.
 
 #### **Critical Strategy Files**
+
+**End Result Brief** (Simple Explanation):
+- **`/docs/implementation/MODERN_CONTENT_END_RESULT_BRIEF.md`**
+  - **Purpose**: Simple, clear explanation of end result goal, files we work with, and how each book works
+  - **Key Content**: End result goal, complete file list, step-by-step user flow, visual flow diagram, success metrics, implementation roadmap
+  - **Why Essential**: Provides simple, clear picture of what we're building and how it works. Perfect for onboarding or explaining to stakeholders.
 
 **Emotional Impact Strategy**:
 - **`/docs/MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`**
@@ -1893,18 +1899,19 @@ Users are requesting modern content, but partnerships (publishers, TED) are pend
 
 #### **Implementation Status**
 
-**Current Status**: 🟡 **PLANNING PHASE**
+**Current Status**: 🟡 **PLANNING PHASE - UPDATED WITH EXPERT RECOMMENDATIONS**
 - ✅ Strategy documented with 50 curated stories
 - ✅ 21-step implementation checklist created
 - ✅ Three-part structure defined (Preview + Background + Hook)
-- ⏳ Ready to begin implementation with Tier 1 stories (15 highest impact)
+- ✅ Length targets updated by CEFR level (A1: 15-20 min, A2: 20-30 min, B1+: 30-45 min)
+- ✅ Success criteria recalibrated ("Exceptional" vs "Acceptable" stories)
+- ⏳ Ready to begin pilot phase (3 diverse stories) before full rollout
 
 **Next Steps**:
-1. Begin with Tier 1 stories (José Hernández, Helen Keller, Frederick Douglass, etc.)
-2. Follow 21-step checklist from Strategy File
-3. Reference Implementation Guide for technical details
-4. Implement first 5 stories as pilot
-5. Monitor completion rates (target: 70%+) and emotional impact scores
+1. **Pilot Phase (Week 3-6):** Implement 3 diverse A1 stories (José Hernández, Jane Goodall, Wangari Maathai)
+2. **Validation (Week 7-8):** Measure actual engagement metrics, recalibrate targets based on data
+3. **Full Rollout (Week 9+):** Scale to 50-100 stories using validated approach
+4. Monitor completion rates (pilot target: 50%+, acceptable: 55%+, exceptional: 70%+)
 
 ---
 
