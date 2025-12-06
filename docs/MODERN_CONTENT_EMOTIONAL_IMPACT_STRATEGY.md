@@ -17,7 +17,7 @@
 - Must be reliable, legal, and free/low-cost
 
 ### **The Solution**
-Use reliable free sources (Wikipedia biographies, public domain memoirs, historical speeches) but **transform them** through:
+Use reliable free sources (public domain memoirs, historical speeches, long-form journalism) but **transform them** through:
 1. **Emotional curation** (select only inspiring stories)
 2. **Emotional framing** (hook with struggle → breakthrough arcs)
 3. **Enhanced presentation** (premium audio + AI insights)
@@ -27,30 +27,36 @@ Use reliable free sources (Wikipedia biographies, public domain memoirs, histori
 
 ## 📚 **Reliable Source Strategy**
 
-### **Priority 1: Wikipedia Featured Biographies** (20 stories)
-**Why:** Free, reliable, well-sourced, diverse topics
+### **Priority 1: Public Domain Memoirs & Autobiographies** (20 stories)
+**Why:** First-person emotional journeys, story-driven narratives, free, reliable
+
+**⚠️ CRITICAL:** Do NOT use Wikipedia biographies as primary source. Wikipedia is fact-based (dates, achievements) and won't create emotional connection. Use Wikipedia only for background research to find names, then find their memoirs/autobiographies/interviews.
 
 **Selection Criteria:**
-- ✅ Featured Article status (highest quality)
-- ✅ Clear "before → struggle → breakthrough" narrative arc
+- ✅ First-person accounts (memoirs, autobiographies, interview transcripts)
+- ✅ Clear "before → struggle → breakthrough" narrative arc with emotional moments
 - ✅ Universal themes (perseverance, overcoming obstacles, achieving dreams)
 - ✅ ESL-relevant (immigration, education, language learning)
+- ✅ Story-driven (emotions, struggles, triumphs) NOT fact-driven (dates, achievements)
 
-**Target Stories:**
-- José Hernández (migrant farmworker → astronaut, rejected 11 times)
-- Helen Keller (deaf/blind → author/activist)
-- Frederick Douglass (enslaved → abolitionist/writer)
-- Malala Yousafzai (shot by Taliban → Nobel Prize winner)
-- Nelson Mandela (27 years prison → president)
-- Marie Curie (first woman Nobel Prize winner)
-- Albert Einstein (struggled in school → revolutionized physics)
-- Rosa Parks (refused to give up seat → civil rights icon)
-- Frida Kahlo (polio/accident → world-renowned artist)
-- Temple Grandin (autism → animal behavior expert)
+**Target Stories (Find Memoirs/Interviews, NOT Wikipedia):**
+- José Hernández (migrant farmworker → astronaut, rejected 11 times) - Find autobiography "Reaching for the Stars" or interviews
+- Helen Keller (deaf/blind → author/activist) - Use "The Story of My Life" memoir
+- Frederick Douglass (enslaved → abolitionist/writer) - Use "Narrative of the Life of Frederick Douglass"
+- Malala Yousafzai (shot by Taliban → Nobel Prize winner) - Use "I Am Malala" memoir
+- Nelson Mandela (27 years prison → president) - Use "Long Walk to Freedom" autobiography
+- Marie Curie (first woman Nobel Prize winner) - Find biographical films or interview transcripts
+- Albert Einstein (struggled in school → revolutionized physics) - Find memoirs or biographical narratives
+- Rosa Parks (refused to give up seat → civil rights icon) - Use "Rosa Parks: My Story" autobiography
+- Frida Kahlo (polio/accident → world-renowned artist) - Find diaries or biographical films
+- Temple Grandin (autism → animal behavior expert) - Use "Thinking in Pictures" memoir
 
-**Resource:** https://en.wikipedia.org/wiki/Wikipedia:Featured_articles/People
+**Resources:**
+- Project Gutenberg: https://www.gutenberg.org/ (public domain memoirs)
+- Internet Archive: https://archive.org/ (memoirs, interviews, speeches)
+- Library of Congress: https://www.loc.gov/ (historical speeches, interviews)
 
-**Legal Status:** ✅ CC-BY-SA (free with attribution)
+**Legal Status:** ✅ Public domain (free) or check individual licenses
 
 ---
 
@@ -208,17 +214,52 @@ Use reliable free sources (Wikipedia biographies, public domain memoirs, histori
 
 ### **Phase 0: Content Selection & Planning**
 - [ ] **Step 0: Content Planning** - Choose story from curated list, verify length by CEFR level (A1: 15-20 min, A2: 20-30 min, B1+: 30-45 min), select CEFR levels
-- [ ] **Step 0.5: Emotional Impact Validation** - Verify story passes "text a friend" test, has 3+ ESL resonance multipliers
+- [ ] **Step 0.25: Source Material Check (FIRST CHECK)** - **⚠️ DO THIS BEFORE ANYTHING ELSE** - Verify source material is story-driven, not fact-driven:
+  - **❌ REJECT Wikipedia articles** - Wikipedia is fact-based (dates, achievements, biographical data). These don't create emotional connection. Use Wikipedia only for background research, NOT as primary source.
+  - **✅ ACCEPT Story-Driven Sources:**
+    - **Memoirs & Autobiographies** (first-person emotional journey)
+    - **Biographical Films/Documentaries** (narrative structure with emotional arc)
+    - **Long-form Journalism** (story-driven articles with emotional moments)
+    - **Historical Speeches** (emotional, personal narratives)
+    - **Interview Transcripts** (first-person emotional accounts)
+  - **Length Check:** Does the source material have enough content to create engaging stories? Minimum targets:
+    - **A1:** Must support 15+ minutes of engaging content (not just facts)
+    - **A2:** Must support 20+ minutes of engaging content
+    - **B1+:** Must support 30+ minutes of engaging content
+  - **Why:** Prevents wasting time on sources that are inherently fact-based. Wikipedia biographies are lists of achievements, not emotional journeys. Stories under 15 minutes won't create deep engagement.
+- [ ] **Step 0.5: Emotional Impact Validation (MANDATORY GATE)** - **STOP HERE IF STORY FAILS** - Verify story meets ALL criteria before proceeding:
+  - **"Text a Friend" Test:** Would someone text a friend about this story? Can you imagine someone saying "You have to read this!" after finishing?
+  - **Emotional Arc Check:** Does the source material have clear struggle → perseverance → breakthrough moments? (Not just facts/dates/achievements)
+  - **Emotional Moments Count:** Can you identify 5-7 specific emotional moments that will make readers feel something? (Not just "he was born", "he graduated", "he achieved")
+  - **ESL Resonance Multipliers:** Does the story have 3+ of these elements?
+    - Communication & Language Barriers
+    - Learning & Education Journeys
+    - Belonging & Identity
+    - Overcoming "Not Good Enough"
+    - First-Time Courage
+    - Building New Life
+    - Connection Across Differences
+    - Persistence Despite Setbacks
+  - **Story-Driven vs Fact-Driven:** Is this a STORY (with emotions, struggles, triumphs) or just a BIOGRAPHY (dates, achievements, facts)? If it's just facts, STOP and pick a different story.
+  - **Engagement Check:** What's the moment that will make someone pause and think "Wow, I need to keep reading"? If you can't identify it, STOP.
+  - **Why:** Prevents wasting time on dry, factual content that won't create emotional connection. This gate saves hours of work on stories that won't engage readers.
 - [ ] **Step 0.6: Voice Selection** - Choose voice (Jane/Daniel/Sarah) based on story tone, estimate audio costs
 
 ### **Phase 1: Text Acquisition & Processing**
-- [ ] **Step 1: Extract Source Text** - Get source content:
-  - **Wikipedia Featured Articles:** Extract from https://en.wikipedia.org/wiki/Wikipedia:Featured_articles/People
-  - **Public Domain Memoirs:** Get from Project Gutenberg or Internet Archive
-  - **Historical Speeches:** Get from Library of Congress or National Archives
+- [ ] **Step 1: Extract Source Text** - **⚠️ CRITICAL: Complete Steps 0.25 and 0.5 validation FIRST** - Get source content:
+  - **✅ ACCEPTED Sources (Story-Driven):**
+    - **Public Domain Memoirs & Autobiographies:** Get from Project Gutenberg or Internet Archive
+    - **Historical Speeches:** Get from Library of Congress or National Archives (emotional, personal narratives)
+    - **Long-form Journalism:** ProPublica, Longform.org (story-driven articles with emotional moments)
+    - **Interview Transcripts:** First-person emotional accounts
+  - **❌ REJECTED Sources (Fact-Driven):**
+    - **Wikipedia Articles:** Fact-based, achievement-focused, no emotional journey. Use only for background research.
+    - **Academic Biographies:** Dates and achievements only, no story arc
+    - **Encyclopedia Entries:** Factual summaries without emotional connection
   - Clean text: Remove citations, references, timestamps
   - Save to: `cache/{story-id}-original.txt`
-  - **Why:** Reliable sources, free, legal
+  - **Why:** Story-driven sources create emotional connection. Fact-driven sources waste time and won't engage readers.
+  - **⚠️ Warning:** If Steps 0.25 or 0.5 validation revealed the story is fact-driven (not story-driven), STOP HERE and pick a different story. Don't waste time extracting text that won't create emotional connection.
 
 - [ ] **Step 2: Clean & Structure Text** - Format into narrative:
   - Remove Wikipedia citations `[1]`, `[citation needed]`, etc.
@@ -748,10 +789,11 @@ trackEvent('story_reaction', {
 - ✅ **3.5+ average rating** (users rate it positively)
 - ✅ **10%+ share rate** (some users share)
 
-**Length Targets by CEFR Level:**
-- **A1:** 15-20 minutes (simplification creates cognitive load; shorter = higher completion)
-- **A2:** 20-30 minutes (can handle slightly longer with careful pacing)
-- **B1+:** 30-45 minutes (can sustain longer content with compelling narrative)
+**Length Targets by CEFR Level (MINIMUM REQUIREMENTS):**
+- **A1:** 15-20 minutes minimum (simplification creates cognitive load; stories under 15 minutes won't create deep engagement)
+- **A2:** 20-30 minutes minimum (can handle slightly longer with careful pacing; stories under 20 minutes lack depth)
+- **B1+:** 30-45 minutes minimum (can sustain longer content with compelling narrative; stories under 30 minutes won't create lasting impact)
+- **Why:** Stories under these minimums are too short to create emotional connection and "text a friend" moments. They feel rushed and don't allow readers to invest emotionally.
 
 **If a story doesn't meet "acceptable" criteria:**
 - Review drop-off points (where users abandon)
