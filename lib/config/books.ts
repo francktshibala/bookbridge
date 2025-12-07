@@ -200,6 +200,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-pink-500 to-rose-600',
     abbreviation: 'AF'
   },
+  {
+    id: 'helen-keller',
+    title: 'The Story of My Life',
+    author: 'Helen Keller',
+    description: 'The inspiring true story of Helen Keller\'s breakthrough moment learning language at age 7. After years of frustration and isolation, Anne Sullivan arrives and teaches Helen that words have meaning. A powerful memoir about transformation, hope, and the power of education. A1 level with Jane voice.',
+    sentences: 117,
+    bundles: 30,
+    gradient: 'from-purple-500 to-indigo-600',
+    abbreviation: 'HK'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -271,6 +281,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'A2': '/api/always-a-family-a2/bundles',
     'B1': '/api/always-a-family-b1/bundles'
   },
+  'helen-keller': {
+    'A1': '/api/helen-keller-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -293,6 +306,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'danger-of-single-story': 'A1',  // Default to A1 for The Danger of a Single Story (TED Talk)
   'how-great-leaders-inspire-action': 'A1',  // Default to A1 for How Great Leaders Inspire Action (TED Talk)
   'always-a-family': 'A1',  // Default to A1 for Always a Family (StoryCorps)
+  'helen-keller': 'A1',  // Default to A1 for Helen Keller - The Story of My Life (Memoir)
 };
 
 // Get the correct CEFR level for a book
@@ -355,6 +369,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'danger-of-single-story': ['A1', 'A2', 'B1'],  // A1 with Sarah, A2 with Daniel, B1 with Jane (TED Talk - Modern Voices collection)
   'how-great-leaders-inspire-action': ['A1', 'A2', 'B1'],  // A1 with Daniel, A2 with Jane, B1 with Sarah (TED Talk - Modern Voices collection)
   'always-a-family': ['A1', 'A2', 'B1'],  // A1 with Sarah, A2 with Jane, B1 with Daniel (StoryCorps - Modern Voices collection)
+  'helen-keller': ['A1'],  // A1 with Jane (Memoir - Modern Voices collection)
 };
 
 // Single-level books configuration

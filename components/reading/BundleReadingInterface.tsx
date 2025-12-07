@@ -869,6 +869,46 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
                 </div>
               )}
 
+              {/* Background Context Section */}
+              {(bundleData as any).backgroundContext && (
+                <div className="px-4 py-5 mb-4 mx-4 md:mx-8 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-light)]">
+                  <div className="max-w-2xl mx-auto">
+                    <h3 
+                      className="text-sm font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wide"
+                      style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.85rem', letterSpacing: '0.05em' }}
+                    >
+                      Background Context
+                    </h3>
+                    <p 
+                      className="text-[var(--text-secondary)] leading-relaxed italic"
+                      style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '0.95rem' }}
+                    >
+                      {(bundleData as any).backgroundContext}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Emotional Hook Section */}
+              {(bundleData as any).emotionalHook && (
+                <div className="px-4 py-5 mb-6 mx-4 md:mx-8 rounded-lg bg-gradient-to-r from-[var(--accent-primary)]/5 to-[var(--accent-secondary)]/5 border border-[var(--accent-primary)]/20">
+                  <div className="max-w-2xl mx-auto">
+                    <h3 
+                      className="text-sm font-semibold text-[var(--text-accent)] mb-3 uppercase tracking-wide"
+                      style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.85rem', letterSpacing: '0.05em' }}
+                    >
+                      The Story Begins
+                    </h3>
+                    <p 
+                      className="text-[var(--text-primary)] leading-relaxed font-medium"
+                      style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}
+                    >
+                      {(bundleData as any).emotionalHook}
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {/* Real Text with Chapter Headers */}
               <div className="px-4 py-4 text-left">
                 {(() => {

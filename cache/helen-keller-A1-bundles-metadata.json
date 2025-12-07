@@ -1,0 +1,1388 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "My wish to speak grew very strong. My signs were not good, and I felt frustrated when I failed. I felt held by invisible hands and tried to free myself. I felt weak and tired, but my spirit stayed strong.",
+    "sentences": [
+      "My wish to speak grew very strong.",
+      "My signs were not good, and I felt frustrated when I failed.",
+      "I felt held by invisible hands and tried to free myself.",
+      "I felt weak and tired, but my spirit stayed strong."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_0.mp3",
+    "duration": 15.171859,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "My wish to speak grew very strong.",
+        "startTime": 0,
+        "endTime": 2.516,
+        "duration": 2.516,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "My signs were not good, and I felt frustrated when I failed.",
+        "startTime": 2.516,
+        "endTime": 7.105,
+        "duration": 4.589,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "I felt held by invisible hands and tried to free myself.",
+        "startTime": 7.105,
+        "endTime": 11.248,
+        "duration": 4.143,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "I felt weak and tired, but my spirit stayed strong.",
+        "startTime": 11.248,
+        "endTime": 15.172,
+        "duration": 3.923,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "I feel sad and want my mother’s arms when I am miserable. The need to communicate became urgent and outbursts happened every day. My parents felt very sad and confused. We lived far from any school for Helen Keller and it seemed hard to find help.",
+    "sentences": [
+      "I feel sad and want my mother’s arms when I am miserable.",
+      "The need to communicate became urgent and outbursts happened every day.",
+      "My parents felt very sad and confused.",
+      "We lived far from any school for Helen Keller and it seemed hard to find help."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_1.mp3",
+    "duration": 18.709025,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I feel sad and want my mother’s arms when I am miserable.",
+        "startTime": 0,
+        "endTime": 4.371,
+        "duration": 4.371,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "The need to communicate became urgent and outbursts happened every day.",
+        "startTime": 4.371,
+        "endTime": 9.815,
+        "duration": 5.444,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "My parents felt very sad and confused.",
+        "startTime": 9.815,
+        "endTime": 12.728,
+        "duration": 2.914,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "We lived far from any school for Helen Keller and it seemed hard to find help.",
+        "startTime": 12.728,
+        "endTime": 18.709,
+        "duration": 5.981,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "My friends and family sometimes doubted that I could learn. My mother felt hope when she read Dickens's \"American Notes. She read his story about Laura Bridgman, who was deaf and blind. But she also felt hopeless when she remembered Dr.",
+    "sentences": [
+      "My friends and family sometimes doubted that I could learn.",
+      "My mother felt hope when she read Dickens's \"American Notes.",
+      "She read his story about Laura Bridgman, who was deaf and blind.",
+      "But she also felt hopeless when she remembered Dr."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_2.mp3",
+    "duration": 19.044331,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "My friends and family sometimes doubted that I could learn.",
+        "startTime": 0,
+        "endTime": 4.784,
+        "duration": 4.784,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "My mother felt hope when she read Dickens's \"American Notes.",
+        "startTime": 4.784,
+        "endTime": 9.65,
+        "duration": 4.865,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "She read his story about Laura Bridgman, who was deaf and blind.",
+        "startTime": 9.65,
+        "endTime": 14.99,
+        "duration": 5.34,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "But she also felt hopeless when she remembered Dr.",
+        "startTime": 14.99,
+        "endTime": 19.044,
+        "duration": 4.055,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "Howe discovered how to teach the deaf and blind but he is dead. His methods may be gone, and a girl in Alabama can't use them. When I was six, my father found a famous eye doctor. My parents took me to Baltimore to help my eyes.",
+    "sentences": [
+      "Howe discovered how to teach the deaf and blind but he is dead.",
+      "His methods may be gone, and a girl in Alabama can't use them.",
+      "When I was six, my father found a famous eye doctor.",
+      "My parents took me to Baltimore to help my eyes."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_3.mp3",
+    "duration": 17.505964,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Howe discovered how to teach the deaf and blind but he is dead.",
+        "startTime": 0,
+        "endTime": 4.818,
+        "duration": 4.818,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "His methods may be gone, and a girl in Alabama can't use them.",
+        "startTime": 4.818,
+        "endTime": 9.709,
+        "duration": 4.891,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "When I was six, my father found a famous eye doctor.",
+        "startTime": 9.709,
+        "endTime": 13.835,
+        "duration": 4.126,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "My parents took me to Baltimore to help my eyes.",
+        "startTime": 13.835,
+        "endTime": 17.506,
+        "duration": 3.671,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "The journey I remember was very fun. I made friends with many people on the train. A lady gave me a box of shells. My father made holes in them and they kept me happy.",
+    "sentences": [
+      "The journey I remember was very fun.",
+      "I made friends with many people on the train.",
+      "A lady gave me a box of shells.",
+      "My father made holes in them and they kept me happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_4.mp3",
+    "duration": 13.266939,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The journey I remember was very fun.",
+        "startTime": 0,
+        "endTime": 2.912,
+        "duration": 2.912,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "I made friends with many people on the train.",
+        "startTime": 2.912,
+        "endTime": 6.553,
+        "duration": 3.64,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "A lady gave me a box of shells.",
+        "startTime": 6.553,
+        "endTime": 9.06,
+        "duration": 2.508,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "My father made holes in them and they kept me happy.",
+        "startTime": 9.06,
+        "endTime": 13.267,
+        "duration": 4.207,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "The conductor was also very kind. I held his coat when he collected and punched tickets. His punch was a fun toy that I played with. I sat in a corner and spent hours making funny holes.",
+    "sentences": [
+      "The conductor was also very kind.",
+      "I held his coat when he collected and punched tickets.",
+      "His punch was a fun toy that I played with.",
+      "I sat in a corner and spent hours making funny holes."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_5.mp3",
+    "duration": 13.965737,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The conductor was also very kind.",
+        "startTime": 0,
+        "endTime": 2.518,
+        "duration": 2.518,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "I held his coat when he collected and punched tickets.",
+        "startTime": 2.518,
+        "endTime": 6.639,
+        "duration": 4.121,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "His punch was a fun toy that I played with.",
+        "startTime": 6.639,
+        "endTime": 9.921,
+        "duration": 3.282,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "I sat in a corner and spent hours making funny holes.",
+        "startTime": 9.921,
+        "endTime": 13.966,
+        "duration": 4.045,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "My aunt made me a big doll from towels. This doll is funny and has no face or shape. The lack of eyes surprised me more than the other flaws. I told everyone about the doll, but no one helped.",
+    "sentences": [
+      "My aunt made me a big doll from towels.",
+      "This doll is funny and has no face or shape.",
+      "The lack of eyes surprised me more than the other flaws.",
+      "I told everyone about the doll, but no one helped."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_6.mp3",
+    "duration": 14.190431,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "My aunt made me a big doll from towels.",
+        "startTime": 0,
+        "endTime": 2.897,
+        "duration": 2.897,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "This doll is funny and has no face or shape.",
+        "startTime": 2.897,
+        "endTime": 6.166,
+        "duration": 3.269,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "The lack of eyes surprised me more than the other flaws.",
+        "startTime": 6.166,
+        "endTime": 10.326,
+        "duration": 4.16,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "I told everyone about the doll, but no one helped.",
+        "startTime": 10.326,
+        "endTime": 14.19,
+        "duration": 3.864,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "A bright idea came to me and solved the problem. I fell off the seat and found my aunt's cape. I took two beads and showed Helen Keller I wanted her to sew them. She raised her hand to her eyes and I nodded.",
+    "sentences": [
+      "A bright idea came to me and solved the problem.",
+      "I fell off the seat and found my aunt's cape.",
+      "I took two beads and showed Helen Keller I wanted her to sew them.",
+      "She raised her hand to her eyes and I nodded."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_7.mp3",
+    "duration": 13.636984,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "A bright idea came to me and solved the problem.",
+        "startTime": 0,
+        "endTime": 3.209,
+        "duration": 3.209,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "I fell off the seat and found my aunt's cape.",
+        "startTime": 3.209,
+        "endTime": 6.217,
+        "duration": 3.008,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "I took two beads and showed Helen Keller I wanted her to sew them.",
+        "startTime": 6.217,
+        "endTime": 10.629,
+        "duration": 4.412,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "She raised her hand to her eyes and I nodded.",
+        "startTime": 10.629,
+        "endTime": 13.637,
+        "duration": 3.008,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "I was happy when the beads were sewn, but then I lost interest. I didn’t get angry because I was busy the whole trip. When we got to Baltimore, Dr. Bell was there.",
+    "sentences": [
+      "I was happy when the beads were sewn, but then I lost interest.",
+      "I didn’t get angry because I was busy the whole trip.",
+      "When we got to Baltimore, Dr.",
+      "Bell was there."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_8.mp3",
+    "duration": 12.221882,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I was happy when the beads were sewn, but then I lost interest.",
+        "startTime": 0,
+        "endTime": 4.844,
+        "duration": 4.844,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "I didn’t get angry because I was busy the whole trip.",
+        "startTime": 4.844,
+        "endTime": 8.793,
+        "duration": 3.949,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "When we got to Baltimore, Dr.",
+        "startTime": 8.793,
+        "endTime": 11.104,
+        "duration": 2.311,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "Bell was there.",
+        "startTime": 11.104,
+        "endTime": 12.222,
+        "duration": 1.118,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "Chisholm welcomed us kindly but could not help us. He said I could learn and told my father to see Dr. Alexander Graham Bell can give information about schools for deaf and blind children. We went to Washington to see Dr.",
+    "sentences": [
+      "Chisholm welcomed us kindly but could not help us.",
+      "He said I could learn and told my father to see Dr.",
+      "Alexander Graham Bell can give information about schools for deaf and blind children.",
+      "We went to Washington to see Dr."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_9.mp3",
+    "duration": 15.882086,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Chisholm welcomed us kindly but could not help us.",
+        "startTime": 0,
+        "endTime": 3.643,
+        "duration": 3.643,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "He said I could learn and told my father to see Dr.",
+        "startTime": 3.643,
+        "endTime": 7.358,
+        "duration": 3.716,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "Alexander Graham Bell can give information about schools for deaf and blind children.",
+        "startTime": 7.358,
+        "endTime": 13.551,
+        "duration": 6.193,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "We went to Washington to see Dr.",
+        "startTime": 13.551,
+        "endTime": 15.882,
+        "duration": 2.331,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "right after his advice. Dr. Bell felt sad and worried while I was happy to move. As a child, I felt the kindness and love of Dr.",
+    "sentences": [
+      "right after his advice.",
+      "Dr.",
+      "Bell felt sad and worried while I was happy to move.",
+      "As a child, I felt the kindness and love of Dr."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_10.mp3",
+    "duration": 10.626213,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "right after his advice.",
+        "startTime": 0,
+        "endTime": 1.928,
+        "duration": 1.928,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Dr.",
+        "startTime": 1.928,
+        "endTime": 2.179,
+        "duration": 0.251,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "Bell felt sad and worried while I was happy to move.",
+        "startTime": 2.179,
+        "endTime": 6.537,
+        "duration": 4.358,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "As a child, I felt the kindness and love of Dr.",
+        "startTime": 6.537,
+        "endTime": 10.626,
+        "duration": 4.089,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "Bell. Dr. Bell touched many hearts with his great achievements and ideas. He held me on his knee and made his watch chime.",
+    "sentences": [
+      "Bell.",
+      "Dr.",
+      "Bell touched many hearts with his great achievements and ideas.",
+      "He held me on his knee and made his watch chime."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_11.mp3",
+    "duration": 10.469546,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Bell.",
+        "startTime": 0,
+        "endTime": 0.44,
+        "duration": 0.44,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "Dr.",
+        "startTime": 0.44,
+        "endTime": 0.704,
+        "duration": 0.264,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "Bell touched many hearts with his great achievements and ideas.",
+        "startTime": 0.704,
+        "endTime": 6.247,
+        "duration": 5.543,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "He held me on his knee and made his watch chime.",
+        "startTime": 6.247,
+        "endTime": 10.47,
+        "duration": 4.223,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "He understood my signs, so I loved him right away. I did not think this meeting would change my life and bring me light. Dr. Dr.",
+    "sentences": [
+      "He understood my signs, so I loved him right away.",
+      "I did not think this meeting would change my life and bring me light.",
+      "Dr.",
+      "Dr."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_12.mp3",
+    "duration": 9.638435,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He understood my signs, so I loved him right away.",
+        "startTime": 0,
+        "endTime": 3.927,
+        "duration": 3.927,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "I did not think this meeting would change my life and bring me light.",
+        "startTime": 3.927,
+        "endTime": 9.141,
+        "duration": 5.214,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "Dr.",
+        "startTime": 9.141,
+        "endTime": 9.39,
+        "duration": 0.249,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "Dr.",
+        "startTime": 9.39,
+        "endTime": 9.638,
+        "duration": 0.249,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "Bell told my father to write to Mr. Anagnos is the director of the Perkins Institution in Boston. Howe worked hard for the blind and asked if he had a teacher. My father did this quickly and we got a nice letter from Mr.",
+    "sentences": [
+      "Bell told my father to write to Mr.",
+      "Anagnos is the director of the Perkins Institution in Boston.",
+      "Howe worked hard for the blind and asked if he had a teacher.",
+      "My father did this quickly and we got a nice letter from Mr."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_13.mp3",
+    "duration": 15.172222,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Bell told my father to write to Mr.",
+        "startTime": 0,
+        "endTime": 2.447,
+        "duration": 2.447,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "Anagnos is the director of the Perkins Institution in Boston.",
+        "startTime": 2.447,
+        "endTime": 6.712,
+        "duration": 4.265,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "Howe worked hard for the blind and asked if he had a teacher.",
+        "startTime": 6.712,
+        "endTime": 10.977,
+        "duration": 4.265,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "My father did this quickly and we got a nice letter from Mr.",
+        "startTime": 10.977,
+        "endTime": 15.172,
+        "duration": 4.195,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "Anagnos brings good news that a teacher is found. This happened in the summer of 1886. Miss Sullivan did not come until the next March. I came up from Egypt and saw many wonders.",
+    "sentences": [
+      "Anagnos brings good news that a teacher is found.",
+      "This happened in the summer of 1886.",
+      "Miss Sullivan did not come until the next March.",
+      "I came up from Egypt and saw many wonders."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_14.mp3",
+    "duration": 13.201111,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Anagnos brings good news that a teacher is found.",
+        "startTime": 0,
+        "endTime": 3.696,
+        "duration": 3.696,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "This happened in the summer of 1886.",
+        "startTime": 3.696,
+        "endTime": 6.412,
+        "duration": 2.716,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "Miss Sullivan did not come until the next March.",
+        "startTime": 6.412,
+        "endTime": 10.033,
+        "duration": 3.621,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "I came up from Egypt and saw many wonders.",
+        "startTime": 10.033,
+        "endTime": 13.201,
+        "duration": 3.168,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "From the mountain, I heard a voice that said, \"Knowledge is light and love. The most important day of my life is when Anne Sullivan came. I feel wonder when I think about their very different lives. It was March third, 1887, before I turned seven.",
+    "sentences": [
+      "From the mountain, I heard a voice that said, \"Knowledge is light and love.",
+      "The most important day of my life is when Anne Sullivan came.",
+      "I feel wonder when I think about their very different lives.",
+      "It was March third, 1887, before I turned seven."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_15.mp3",
+    "duration": 19.688753,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "From the mountain, I heard a voice that said, \"Knowledge is light and love.",
+        "startTime": 0,
+        "endTime": 6.167,
+        "duration": 6.167,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "The most important day of my life is when Anne Sullivan came.",
+        "startTime": 6.167,
+        "endTime": 10.94,
+        "duration": 4.772,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "I feel wonder when I think about their very different lives.",
+        "startTime": 10.94,
+        "endTime": 15.634,
+        "duration": 4.694,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "It was March third, 1887, before I turned seven.",
+        "startTime": 15.634,
+        "endTime": 19.689,
+        "duration": 4.055,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "I stood on the porch, quiet and waiting for something special. I felt that something unusual was happening, so I went outside. The afternoon sun shines through the flowers and warms my face. My fingers touched the familiar leaves and flowers of spring.",
+    "sentences": [
+      "I stood on the porch, quiet and waiting for something special.",
+      "I felt that something unusual was happening, so I went outside.",
+      "The afternoon sun shines through the flowers and warms my face.",
+      "My fingers touched the familiar leaves and flowers of spring."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_16.mp3",
+    "duration": 22.645828,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I stood on the porch, quiet and waiting for something special.",
+        "startTime": 0,
+        "endTime": 5.714,
+        "duration": 5.714,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "I felt that something unusual was happening, so I went outside.",
+        "startTime": 5.714,
+        "endTime": 11.518,
+        "duration": 5.804,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "The afternoon sun shines through the flowers and warms my face.",
+        "startTime": 11.518,
+        "endTime": 17.172,
+        "duration": 5.654,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "My fingers touched the familiar leaves and flowers of spring.",
+        "startTime": 17.172,
+        "endTime": 22.646,
+        "duration": 5.474,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "I did not know what surprises the future had for me. Anger and tiredness stayed with me for many weeks. Have you ever felt lost in thick fog when a ship moved? I was like a ship without a compass before my education.",
+    "sentences": [
+      "I did not know what surprises the future had for me.",
+      "Anger and tiredness stayed with me for many weeks.",
+      "Have you ever felt lost in thick fog when a ship moved?",
+      "I was like a ship without a compass before my education."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_17.mp3",
+    "duration": 15.172222,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I did not know what surprises the future had for me.",
+        "startTime": 0,
+        "endTime": 3.704,
+        "duration": 3.704,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "Anger and tiredness stayed with me for many weeks.",
+        "startTime": 3.704,
+        "endTime": 7.266,
+        "duration": 3.562,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "Have you ever felt lost in thick fog when a ship moved?",
+        "startTime": 7.266,
+        "endTime": 11.183,
+        "duration": 3.918,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "I was like a ship without a compass before my education.",
+        "startTime": 11.183,
+        "endTime": 15.172,
+        "duration": 3.989,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "\"Light! Give me light and help me see. The wordless cry of my soul felt love in that moment. I felt footsteps and reached out my hand, thinking it was my mother.",
+    "sentences": [
+      "\"Light!",
+      "Give me light and help me see.",
+      "The wordless cry of my soul felt love in that moment.",
+      "I felt footsteps and reached out my hand, thinking it was my mother."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_18.mp3",
+    "duration": 11.074082,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "\"Light!",
+        "startTime": 0,
+        "endTime": 0.484,
+        "duration": 0.484,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "Give me light and help me see.",
+        "startTime": 0.484,
+        "endTime": 2.558,
+        "duration": 2.074,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "The wordless cry of my soul felt love in that moment.",
+        "startTime": 2.558,
+        "endTime": 6.223,
+        "duration": 3.664,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "I felt footsteps and reached out my hand, thinking it was my mother.",
+        "startTime": 6.223,
+        "endTime": 11.074,
+        "duration": 4.852,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "Someone took it, and I felt love in the arms of the one who came to me. The next morning, my teacher came and gave me a doll. The blind children at the Perkins Institution sent it, but I did not know this. Miss Sullivan slowly spelled the word \"d-o-l-l\" into my hand.",
+    "sentences": [
+      "Someone took it, and I felt love in the arms of the one who came to me.",
+      "The next morning, my teacher came and gave me a doll.",
+      "The blind children at the Perkins Institution sent it, but I did not know this.",
+      "Miss Sullivan slowly spelled the word \"d-o-l-l\" into my hand."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_19.mp3",
+    "duration": 22.145896,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Someone took it, and I felt love in the arms of the one who came to me.",
+        "startTime": 0,
+        "endTime": 5.985,
+        "duration": 5.985,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "The next morning, my teacher came and gave me a doll.",
+        "startTime": 5.985,
+        "endTime": 10.49,
+        "duration": 4.506,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "The blind children at the Perkins Institution sent it, but I did not know this.",
+        "startTime": 10.49,
+        "endTime": 17.133,
+        "duration": 6.642,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "Miss Sullivan slowly spelled the word \"d-o-l-l\" into my hand.",
+        "startTime": 17.133,
+        "endTime": 22.146,
+        "duration": 5.013,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "I was very interested in this finger play and tried to copy it. I felt happy and proud when I made the letters right. I ran to my mother and held up my hand for \"doll. I did not know I was spelling words; I just moved my fingers.",
+    "sentences": [
+      "I was very interested in this finger play and tried to copy it.",
+      "I felt happy and proud when I made the letters right.",
+      "I ran to my mother and held up my hand for \"doll.",
+      "I did not know I was spelling words; I just moved my fingers."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_20.mp3",
+    "duration": 16.523537,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I was very interested in this finger play and tried to copy it.",
+        "startTime": 0,
+        "endTime": 4.536,
+        "duration": 4.536,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "I felt happy and proud when I made the letters right.",
+        "startTime": 4.536,
+        "endTime": 8.353,
+        "duration": 3.816,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "I ran to my mother and held up my hand for \"doll.",
+        "startTime": 8.353,
+        "endTime": 11.881,
+        "duration": 3.528,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "I did not know I was spelling words; I just moved my fingers.",
+        "startTime": 11.881,
+        "endTime": 16.524,
+        "duration": 4.642,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "I learned to spell many words like \"pin,\" \"hat,\" and \"cup. But my teacher helped me for weeks before I knew names. One day, Miss Sullivan put my big doll in my lap and spelled \"d-o-l-l. We struggled with the words \"m-u-g\" and \"w-a-t-e-r.",
+    "sentences": [
+      "I learned to spell many words like \"pin,\" \"hat,\" and \"cup.",
+      "But my teacher helped me for weeks before I knew names.",
+      "One day, Miss Sullivan put my big doll in my lap and spelled \"d-o-l-l.",
+      "We struggled with the words \"m-u-g\" and \"w-a-t-e-r."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_21.mp3",
+    "duration": 19.657506,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I learned to spell many words like \"pin,\" \"hat,\" and \"cup.",
+        "startTime": 0,
+        "endTime": 5.061,
+        "duration": 5.061,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "But my teacher helped me for weeks before I knew names.",
+        "startTime": 5.061,
+        "endTime": 9.575,
+        "duration": 4.515,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "One day, Miss Sullivan put my big doll in my lap and spelled \"d-o-l-l.",
+        "startTime": 9.575,
+        "endTime": 15.471,
+        "duration": 5.896,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "We struggled with the words \"m-u-g\" and \"w-a-t-e-r.",
+        "startTime": 15.471,
+        "endTime": 19.658,
+        "duration": 4.186,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "Miss Sullivan tried to teach me that \"m-u-g\" is mug and \"w-a-t-e-r\" is water, but I mixed them up. She felt sad and dropped the subject but soon spoke again. I became impatient and threw the doll on the floor. I felt happy when I found the broken doll pieces.",
+    "sentences": [
+      "Miss Sullivan tried to teach me that \"m-u-g\" is mug and \"w-a-t-e-r\" is water, but I mixed them up.",
+      "She felt sad and dropped the subject but soon spoke again.",
+      "I became impatient and threw the doll on the floor.",
+      "I felt happy when I found the broken doll pieces."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_22.mp3",
+    "duration": 19.199433,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Miss Sullivan tried to teach me that \"m-u-g\" is mug and \"w-a-t-e-r\" is water, but I mixed them up.",
+        "startTime": 0,
+        "endTime": 7.442,
+        "duration": 7.442,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "She felt sad and dropped the subject but soon spoke again.",
+        "startTime": 7.442,
+        "endTime": 11.758,
+        "duration": 4.316,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "I became impatient and threw the doll on the floor.",
+        "startTime": 11.758,
+        "endTime": 15.553,
+        "duration": 3.795,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "I felt happy when I found the broken doll pieces.",
+        "startTime": 15.553,
+        "endTime": 19.199,
+        "duration": 3.646,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "No sadness or regret came after my strong feelings. I did not love the doll. In my dark world, I had no strong feelings or love. I felt happy when my teacher moved the pieces away.",
+    "sentences": [
+      "No sadness or regret came after my strong feelings.",
+      "I did not love the doll.",
+      "In my dark world, I had no strong feelings or love.",
+      "I felt happy when my teacher moved the pieces away."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_23.mp3",
+    "duration": 14.125306,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "No sadness or regret came after my strong feelings.",
+        "startTime": 0,
+        "endTime": 4.027,
+        "duration": 4.027,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "I did not love the doll.",
+        "startTime": 4.027,
+        "endTime": 5.922,
+        "duration": 1.895,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "In my dark world, I had no strong feelings or love.",
+        "startTime": 5.922,
+        "endTime": 10.099,
+        "duration": 4.177,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "I felt happy when my teacher moved the pieces away.",
+        "startTime": 10.099,
+        "endTime": 14.125,
+        "duration": 4.027,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "She brought my hat, and I knew I went out in the sun. This feeling made me hop and skip with joy. We walked to the well-house and smelled the sweet flowers. Someone was drawing water and my teacher put my hand under it.",
+    "sentences": [
+      "She brought my hat, and I knew I went out in the sun.",
+      "This feeling made me hop and skip with joy.",
+      "We walked to the well-house and smelled the sweet flowers.",
+      "Someone was drawing water and my teacher put my hand under it."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_24.mp3",
+    "duration": 15.326621,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She brought my hat, and I knew I went out in the sun.",
+        "startTime": 0,
+        "endTime": 3.874,
+        "duration": 3.874,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "This feeling made me hop and skip with joy.",
+        "startTime": 3.874,
+        "endTime": 6.895,
+        "duration": 3.021,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "We walked to the well-house and smelled the sweet flowers.",
+        "startTime": 6.895,
+        "endTime": 10.97,
+        "duration": 4.075,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "Someone was drawing water and my teacher put my hand under it.",
+        "startTime": 10.97,
+        "endTime": 15.327,
+        "duration": 4.356,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "She felt the cool water and spelled the word water quickly. I stood still and watched her fingers move. I suddenly felt a thrill when I remembered the mystery of language. I knew then that \"w-a-t-e-r\" was the cool thing on my hand.",
+    "sentences": [
+      "She felt the cool water and spelled the word water quickly.",
+      "I stood still and watched her fingers move.",
+      "I suddenly felt a thrill when I remembered the mystery of language.",
+      "I knew then that \"w-a-t-e-r\" was the cool thing on my hand."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_25.mp3",
+    "duration": 18.888186,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt the cool water and spelled the word water quickly.",
+        "startTime": 0,
+        "endTime": 4.888,
+        "duration": 4.888,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "I stood still and watched her fingers move.",
+        "startTime": 4.888,
+        "endTime": 8.45,
+        "duration": 3.562,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "I suddenly felt a thrill when I remembered the mystery of language.",
+        "startTime": 8.45,
+        "endTime": 14,
+        "duration": 5.55,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "I knew then that \"w-a-t-e-r\" was the cool thing on my hand.",
+        "startTime": 14,
+        "endTime": 18.888,
+        "duration": 4.888,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "That word helped my soul feel light, hope, and joy. There were barriers, but they could be removed one day. I left the well-house and wanted to learn. Everything has a name and each name brings a new thought.",
+    "sentences": [
+      "That word helped my soul feel light, hope, and joy.",
+      "There were barriers, but they could be removed one day.",
+      "I left the well-house and wanted to learn.",
+      "Everything has a name and each name brings a new thought."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_26.mp3",
+    "duration": 14.621791,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "That word helped my soul feel light, hope, and joy.",
+        "startTime": 0,
+        "endTime": 3.826,
+        "duration": 3.826,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "There were barriers, but they could be removed one day.",
+        "startTime": 3.826,
+        "endTime": 7.778,
+        "duration": 3.952,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "I left the well-house and wanted to learn.",
+        "startTime": 7.778,
+        "endTime": 10.681,
+        "duration": 2.903,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "Everything has a name and each name brings a new thought.",
+        "startTime": 10.681,
+        "endTime": 14.622,
+        "duration": 3.94,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "Every object I touched in the house felt alive. I saw everything with a strange and new vision. I remembered the doll I broke when I walked in. I felt my way to the fire and picked up the pieces.",
+    "sentences": [
+      "Every object I touched in the house felt alive.",
+      "I saw everything with a strange and new vision.",
+      "I remembered the doll I broke when I walked in.",
+      "I felt my way to the fire and picked up the pieces."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_27.mp3",
+    "duration": 14.399773,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Every object I touched in the house felt alive.",
+        "startTime": 0,
+        "endTime": 3.525,
+        "duration": 3.525,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "I saw everything with a strange and new vision.",
+        "startTime": 3.525,
+        "endTime": 7.05,
+        "duration": 3.525,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "I remembered the doll I broke when I walked in.",
+        "startTime": 7.05,
+        "endTime": 10.575,
+        "duration": 3.525,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "I felt my way to the fire and picked up the pieces.",
+        "startTime": 10.575,
+        "endTime": 14.4,
+        "duration": 3.825,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "I tried hard but could not put them back together. My eyes filled with tears because I felt regret and sadness. I learned many new words that day. I do not remember all the words, but I remember mother and teacher.",
+    "sentences": [
+      "I tried hard but could not put them back together.",
+      "My eyes filled with tears because I felt regret and sadness.",
+      "I learned many new words that day.",
+      "I do not remember all the words, but I remember mother and teacher."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_28.mp3",
+    "duration": 15.266757,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I tried hard but could not put them back together.",
+        "startTime": 0,
+        "endTime": 3.582,
+        "duration": 3.582,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "My eyes filled with tears because I felt regret and sadness.",
+        "startTime": 3.582,
+        "endTime": 7.881,
+        "duration": 4.299,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "I learned many new words that day.",
+        "startTime": 7.881,
+        "endTime": 10.317,
+        "duration": 2.436,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "I do not remember all the words, but I remember mother and teacher.",
+        "startTime": 10.317,
+        "endTime": 15.267,
+        "duration": 4.95,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 116,
+    "text": "I was happy in my crib and wanted a new day.",
+    "sentences": [
+      "I was happy in my crib and wanted a new day."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/bundle_29.mp3",
+    "duration": 2.939252,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I was happy in my crib and wanted a new day.",
+        "startTime": 0,
+        "endTime": 2.939,
+        "duration": 2.939,
+        "sentenceIndex": 116
+      }
+    ]
+  }
+]
