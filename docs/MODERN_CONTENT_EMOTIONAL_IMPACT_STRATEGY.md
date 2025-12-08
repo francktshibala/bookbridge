@@ -195,6 +195,46 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
 
 ---
 
+### **Collection Strategy - When to Create Themed Collections**
+
+**Current State:** All modern content is in "Modern Voices" collection (umbrella collection)
+
+**Strategy:** Create themed collections when themes reach critical mass (5-10 stories per theme)
+
+**Why Wait:**
+- Too early = fragmented, empty collections (poor UX)
+- Too late = hard to reorganize existing content
+- Critical mass ensures meaningful browsing experience
+
+**Phased Approach:**
+
+**Phase 1 (Current - 0-10 stories):**
+- Keep all modern content in "Modern Voices" collection
+- Focus on finding great stories across all genres
+- Document genres/themes for each story in completion log
+
+**Phase 2 (10-15 stories):**
+- Create 2-3 focused collections when themes reach 5+ stories:
+  - **"Personal Growth"** - Development, transformation, overcoming obstacles
+  - **"Family & Belonging"** - Immigration, generational stories, cultural bridges
+  - **"Inspiring Lives"** - Memoirs, biographies, breakthrough moments
+- Keep "Modern Voices" as umbrella OR rename to "Inspiring Lives"
+
+**Phase 3 (20+ stories):**
+- Add more specific collections as themes emerge:
+  - "Career Transformation" (when 5+ career stories)
+  - "Community & Connection" (when 5+ community stories)
+  - "Overcoming Adversity" (when 5+ adversity stories)
+
+**Alternative Approach (If Collections Feel Too Fragmented):**
+- Keep "Modern Voices" as main collection
+- Use tags/filters for themes (Personal Development, Family, Career, etc.)
+- Create collections only when a theme has 8-10+ stories
+
+**Recommendation:** Start collecting stories now, create collections when themes naturally reach 5-10 stories. Focus on quality first, organization second.
+
+---
+
 ### **Why Focus on Modern Stories**
 
 **Problem:** Classic Project Gutenberg stories may feel outdated and less relevant to modern ESL learners.
@@ -1041,8 +1081,20 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
   - **Why:** Prevents wasting time on dry, factual content that won't create emotional connection. This gate saves hours of work on stories that won't engage readers.
 - [ ] **Step 0.6: Voice Selection** - Choose voice (Jane/Daniel/Sarah) based on story tone, estimate audio costs
 
+- [ ] **Step 0.75: Find Source Material with Claude Code** - Use Claude Code (with web access) to find source articles/stories:
+  - **Create Source Instructions File:** Create `cache/{story-id}-SOURCE_INSTRUCTIONS.md` with:
+    - Story topic and search terms
+    - Preferred source types (news, essays, academic, etc.)
+    - Specific sources to search (e.g., Chalkbeat, NPR, StoryCorps)
+    - Where to save found sources: `cache/{story-id}-source-{number}.txt`
+  - **Hand Instructions to Claude Code:** Copy instructions file content to Claude Code
+  - **Claude Code Finds Sources:** Claude Code searches web, finds articles/stories, saves text to cache files
+  - **Verify Sources Found:** Check that 2-3 sources are saved in cache directory
+  - **Why:** Claude Code has web access and can efficiently find multiple sources for legal compliance and richer thematic material
+  - **Example:** See `cache/teen-translating-hospital-SOURCE_INSTRUCTIONS.md` for format
+
 ### **Phase 1: Text Acquisition & Processing**
-- [ ] **Step 1: Extract Source Text** - **⚠️ CRITICAL: Complete Steps 0.25 and 0.5 validation FIRST** - Get source content:
+- [ ] **Step 1: Extract Source Text** - **⚠️ CRITICAL: Complete Steps 0.25, 0.5, and 0.75 FIRST** - Get source content:
   - **✅ ACCEPTED Sources (Story-Driven):**
     - **Public Domain Memoirs & Autobiographies:** Get from Project Gutenberg or Internet Archive
     - **Historical Speeches:** Get from Library of Congress or National Archives (emotional, personal narratives)
@@ -1906,6 +1958,26 @@ Each story selected must pass the **"Would someone text a friend about this?"** 
 
 **17. Failure to Success**
 - Multiple failures leading to breakthrough
+
+**18. Overcoming Adversity** ⭐ **NEW - EXPANDED GENRE**
+- Disability, poverty, discrimination, systemic barriers
+- Examples: Overcoming disability to achieve dreams, breaking poverty cycle, fighting discrimination
+- **Why it works:** Universal struggle themes, inspires resilience, relatable to diverse learners
+
+**19. Family & Relationships** ⭐ **NEW - EXPANDED GENRE**
+- Immigration stories, generational bridges, cultural connections
+- Examples: Teen translating for parents, first-gen success, parent-child learning together
+- **Why it works:** Family is universal, immigration resonates with ESL learners, emotional depth
+
+**20. Career Transformation** ⭐ **NEW - EXPANDED GENRE**
+- First-gen success, career pivots, professional breakthroughs
+- Examples: Farmworker to astronaut, corporate to entrepreneur, first in family to graduate
+- **Why it works:** Career aspirations universal, transformation inspiring, relatable struggles
+
+**21. Community & Belonging** ⭐ **NEW - EXPANDED GENRE**
+- Finding home, building community, creating connections
+- Examples: Immigrant builds community center, finding belonging in new country, creating support networks
+- **Why it works:** Universal need for belonging, resonates with ESL learners, emotional connection
 - Examples: Rejected 100 times then success, failed businesses then win
 - **Why it works:** Everyone fails, hope that persistence pays off
 
@@ -2281,6 +2353,39 @@ Churchill gave a speech during World War II saying Britain would never surrender
   - **During implementation:** Reference similar stories for guidance
   - **After completion:** Document your story's completion details and learnings
 
+### **Claude Code Collaboration Workflow (Step 0.75)**
+
+**Purpose:** Use Claude Code (with web access) to efficiently find source articles/stories for legal compliance and richer thematic material.
+
+**Workflow:**
+1. **Create Source Instructions File:**
+   - Create `cache/{story-id}-SOURCE_INSTRUCTIONS.md`
+   - Include: Story topic, search terms, preferred source types (news, essays, academic), specific sources to search
+   - Specify where to save: `cache/{story-id}-source-{number}.txt`
+   - **Example:** See `cache/teen-translating-hospital-SOURCE_INSTRUCTIONS.md`
+
+2. **Hand Instructions to Claude Code:**
+   - Copy instruction file content to Claude Code
+   - Claude Code has web access and can search efficiently
+
+3. **Claude Code Finds Sources:**
+   - Claude Code searches web, finds 2-3 articles/stories
+   - Saves text content to cache files: `cache/{story-id}-source-1.txt`, `cache/{story-id}-source-2.txt`, etc.
+
+4. **Verify Sources Found:**
+   - Check cache directory for saved source files
+   - Ensure 2-3 sources are found (for legal compliance)
+
+5. **Proceed to Step 1:**
+   - Use found sources for theme extraction (Step 2.5)
+   - Never copy text directly - extract themes only
+
+**Why This Works:**
+- Claude Code has web access (we don't)
+- Efficient source discovery
+- Multiple sources = legal safety (fair use)
+- Richer thematic material for original narratives
+
 ### **No Conflicts - They Complement Each Other**
 
 **Strategy File (Primary):**
@@ -2300,14 +2405,21 @@ Churchill gave a speech during World War II saying Britain would never surrender
    - Check `story-completion-log.md` for completed stories and learnings
    - Review `MODERN_STORY_SOURCES_RESEARCH_PLAN.md` for story discovery guidance
 2. **Open Strategy File** → Follow Step 0-20 checklist
-3. **When you reach a technical step** → Open Implementation Guide for details
+3. **Step 0.75: Claude Code Collaboration (Finding Sources):**
+   - **Create Source Instructions:** Create `cache/{story-id}-SOURCE_INSTRUCTIONS.md` with story topic, search terms, preferred sources
+   - **Hand to Claude Code:** Copy instruction file content to Claude Code (has web access)
+   - **Claude Finds Sources:** Claude Code searches web, finds 2-3 articles/stories, saves to `cache/{story-id}-source-{number}.txt`
+   - **Verify Sources:** Check cache directory for saved source files
+   - **Example:** See `cache/teen-translating-hospital-SOURCE_INSTRUCTIONS.md` for format
+   - **Why:** Claude Code has web access and can efficiently find multiple sources for legal compliance
+4. **When you reach a technical step** → Open Implementation Guide for details
    - **Example:** Step 10.5 (Generate Bundle Audio) → Check Implementation Guide for exact voice IDs, FFmpeg commands, timing formulas
    - **Example:** Step 13 (Create API Endpoint) → Check Implementation Guide for exact API response structure
    - **Example:** Step 14 (Frontend Config) → Check Implementation Guide for exact code locations
-4. **During Implementation:**
+5. **During Implementation:**
    - Reference `story-completion-log.md` for similar stories and patterns
    - Check implementation notes from previous stories
-5. **After Completion:**
+6. **After Completion:**
    - Update `story-completion-log.md` with your story's completion details
    - Document learnings, technical notes, and quality metrics
    - Add to quick reference table and detailed notes section

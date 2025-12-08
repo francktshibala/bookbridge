@@ -1,76 +1,106 @@
 # Source Material Instructions for "First-Gen Student Teaching Dad to Read"
 
-## Step 1: Find Reddit Post
+## Your Task
+Find 2-3 source articles/stories about children or young adults teaching their parents to read or learn English. Focus on emotionally impactful, story-driven narratives (not fact-driven articles).
 
-**Source:** Reddit r/TwoXChromosomes  
-**Access:** Reddit website (easier than Vox!)
+## Step 1: Find Primary Source
+
+**Stories Already Identified:**
+1. **Lucy Flores (GMA):** Preschool teacher teaching illiterate Mexican dad to read. TikTok following, father-daughter healing.
+   - URL: goodmorningamerica.com
+   - Search for: "Lucy Flores teaching dad to read" OR "preschool teacher teaches father to read"
+
+2. **Kimi Pu (TODAY):** 9-year-old teaching Guatemalan dad English. Viral TikTok "Kimi and Her Dad".
+   - URL: today.com
+   - Search for: "Kimi Pu teaching dad English" OR "9-year-old teaches father English"
 
 **Action:**
-1. Go to: https://www.reddit.com/r/TwoXChromosomes/
-2. Search for: "teaching dad to read" OR "teaching parent to read" OR "dad illiterate" OR "teaching father"
-3. Look for posts with emotional stories about teaching a parent to read
-4. Copy the post text (title + post body)
-5. Save to: `cache/teaching-dad-to-read-source-reddit.txt`
-
-**Alternative:** If you can't find a specific post, search Reddit for:
-- r/TrueOffMyChest + "teaching parent to read"
-- r/offmychest + "dad can't read"
-- r/relationships + "teaching parent literacy"
+1. Search for and access the Lucy Flores story from GMA (goodmorningamerica.com)
+2. Copy the full article text (title + body)
+3. Save to: `cache/teaching-dad-to-read-source-1.txt`
 
 ## Step 2: Find Additional Sources (1-2 more)
 
 **Search Terms:**
-- "teaching parent to read"
-- "adult literacy family"
-- "intergenerational literacy"
+- "teaching parent to read" + "immigrant" OR "first generation"
+- "child teaches parent literacy" + "emotional story"
+- "intergenerational literacy" + "personal story"
+- "teaching dad to read" + "immigrant family"
 
 **Potential Sources:**
-- News articles about adult literacy programs
-- Personal essays about teaching parents
-- Academic case studies (extract themes only)
+- News articles (TODAY, GMA, NPR, local news)
+- Personal essays or first-person accounts
+- Reddit posts (r/TwoXChromosomes, r/TrueOffMyChest) - look for emotional stories
+- Academic case studies (extract themes only, don't copy text)
 
 **Action:**
-1. Find 1-2 additional sources
-2. Save each to: `cache/teaching-dad-to-read-source-{number}.txt`
-3. Document sources in `cache/teaching-dad-to-read-sources.md`
+1. Find 1-2 additional sources (can include Kimi Pu story from TODAY if not used as primary)
+2. Save each to: `cache/teaching-dad-to-read-source-2.txt`, `cache/teaching-dad-to-read-source-3.txt`
+3. Ensure sources are story-driven (emotional journey) NOT fact-driven (just statistics or data)
 
-## Step 3: Extract Themes (NOT Text)
+## Step 3: Verify Story Quality
 
-**Important:** We extract THEMES and EMOTIONAL MOMENTS only, NOT text. This is legal compliance.
+**Check Each Source:**
+- ✅ Is it story-driven? (first-person narrative, emotional moments, not just facts)
+- ✅ Does it have emotional arc? (struggle → perseverance → breakthrough)
+- ✅ Can you identify 5-7 emotional moments?
+- ✅ Is it relatable to ESL learners? (immigration, family, education themes)
 
-**Themes to Extract:**
-- Family literacy and intergenerational learning
-- Teaching and learning dynamics
-- Overcoming shame and embarrassment
-- Breakthrough moments in education
-- Family connection through education
+**If Source Doesn't Meet Criteria:**
+- Skip it and find another source
+- We need emotionally impactful stories, not dry articles
 
-**Emotional Moments (7):**
-1. Discovery of dad's secret illiteracy
-2. Dad's shame and embarrassment
-3. Decision to teach him
-4. First lesson (awkward but hopeful)
-5. Dad's frustration and wanting to quit
-6. Breakthrough moment - first word recognition
-7. Finishing first book together (triumph)
+## Step 4: Save Sources
 
-**Action:**
-1. Read all sources
-2. Extract themes and emotional moments (NOT text)
-3. Run: `node scripts/extract-teaching-dad-themes.js` (will create this)
-4. Review extracted themes
+**File Naming:**
+- Primary source: `cache/teaching-dad-to-read-source-1.txt`
+- Additional sources: `cache/teaching-dad-to-read-source-2.txt`, `cache/teaching-dad-to-read-source-3.txt`
 
-## Legal Compliance
+**What to Save:**
+- Full article text (title + body)
+- Include publication name and date if available
+- Remove ads, navigation, but keep the story content
+
+## Legal Compliance Reminder
 
 ✅ **DO:**
-- Extract themes and emotional moments
-- Use multiple sources (factual research)
-- Heavily paraphrase Reddit content (transformative)
-- Create original narrative structure
+- Find multiple sources (2-3 minimum)
+- Save full text for theme extraction
+- Document where sources came from
 
 ❌ **DON'T:**
-- Copy exact text from Reddit post
-- Use single source
-- Copy unique phrasing or expressions
-- Mimic source narrative structure
+- Copy text directly into our story (we'll extract themes only)
+- Use single source (need multiple for legal safety)
+- Worry about exact formatting - just get the content
 
+## Success Criteria
+
+**You're Done When:**
+- ✅ 2-3 source files saved in `cache/` directory
+- ✅ Sources are story-driven (not fact-driven)
+- ✅ Sources have emotional content (struggles, breakthroughs, family dynamics)
+- ✅ Files are named correctly: `teaching-dad-to-read-source-{number}.txt`
+
+**Next Step (After You Complete):**
+- Report back: "Found X sources, saved to cache/teaching-dad-to-read-source-*.txt"
+- List the sources found (publication names, URLs if available)
+- Confirm sources are story-driven and emotionally impactful
+
+---
+
+**Example Format for Your Response:**
+```
+✅ SOURCE RESEARCH COMPLETE
+
+Found 3 sources:
+1. Lucy Flores (GMA) - Preschool teacher teaching illiterate Mexican dad to read
+   Saved to: cache/teaching-dad-to-read-source-1.txt
+
+2. Kimi Pu (TODAY) - 9-year-old teaching Guatemalan dad English  
+   Saved to: cache/teaching-dad-to-read-source-2.txt
+
+3. [Additional source found]
+   Saved to: cache/teaching-dad-to-read-source-3.txt
+
+All sources are story-driven with emotional arcs. Ready for theme extraction.
+```
