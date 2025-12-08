@@ -1,0 +1,128 @@
+{
+  "themes": [
+    "immigration",
+    "entrepreneurship",
+    "overcoming adversity",
+    "resilience",
+    "building new life",
+    "language barriers",
+    "cultural adaptation",
+    "hard work",
+    "perseverance",
+    "family support",
+    "business building",
+    "transformation"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Saul Chavez experiences the devastation of losing his restaurant to a fire, feeling like he has lost everything.",
+      "emotionalWeight": "high",
+      "source": [
+        "source 1",
+        "source 2"
+      ]
+    },
+    {
+      "moment": "Ibrahim's restaurant in Aleppo is destroyed by a missile, forcing him to flee with his family.",
+      "emotionalWeight": "high",
+      "source": [
+        "source 3"
+      ]
+    },
+    {
+      "moment": "Saul's deep depression following the fire, compounded by sleepless nights and uncertainty about the future.",
+      "emotionalWeight": "high",
+      "source": [
+        "source 1",
+        "source 2"
+      ]
+    },
+    {
+      "moment": "Ibrahim takes a risk by borrowing money to open a small restaurant in Gaziantep, hoping to provide for his family.",
+      "emotionalWeight": "medium",
+      "source": [
+        "source 3"
+      ]
+    },
+    {
+      "moment": "Saul receives community support through a GoFundMe campaign, highlighting the importance of community during tough times.",
+      "emotionalWeight": "medium",
+      "source": [
+        "source 1"
+      ]
+    },
+    {
+      "moment": "Ibrahim's restaurant becomes popular, allowing him to regain financial independence and fulfill his dream.",
+      "emotionalWeight": "high",
+      "source": [
+        "source 3"
+      ]
+    },
+    {
+      "moment": "Saul successfully reopens El Gran Taco Loco in a new location, marking a significant comeback.",
+      "emotionalWeight": "high",
+      "source": [
+        "source 1",
+        "source 2"
+      ]
+    },
+    {
+      "moment": "Jen Ngozi reflects on her immigrant journey and the importance of embracing mistakes as part of growth.",
+      "emotionalWeight": "medium",
+      "source": [
+        "source 6"
+      ]
+    },
+    {
+      "moment": "Pinsi Lei describes the relentless hard work and sacrifices made by her immigrant family to succeed.",
+      "emotionalWeight": "high",
+      "source": [
+        "source 5"
+      ]
+    },
+    {
+      "moment": "The emotional journey of overcoming language barriers and cultural shock while adapting to a new environment.",
+      "emotionalWeight": "medium",
+      "source": [
+        "source 4",
+        "source 5"
+      ]
+    }
+  ],
+  "facts": {
+    "industries": [
+      "restaurant",
+      "food service",
+      "hospitality"
+    ],
+    "countries": [
+      "United States",
+      "Turkey",
+      "Syria"
+    ],
+    "challenges": [
+      "loss of business",
+      "language barriers",
+      "cultural adaptation"
+    ],
+    "successes": [
+      "reopening of restaurant",
+      "community support",
+      "financial independence"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers",
+    "Building New Life",
+    "Overcoming 'Not Good Enough'",
+    "First-Time Courage",
+    "Family & Belonging",
+    "Connection Across Differences"
+  ],
+  "storyArc": {
+    "struggle": "Entrepreneurs face significant challenges due to loss, cultural adaptation, and financial instability.",
+    "perseverance": "They demonstrate resilience through hard work, community support, and determination to rebuild.",
+    "breakthrough": "Key moments of success include securing funding, opening new locations, and gaining customer loyalty.",
+    "success": "Ultimately, they achieve their dreams, transforming their lives and contributing positively to their communities."
+  }
+}

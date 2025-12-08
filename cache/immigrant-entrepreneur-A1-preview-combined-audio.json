@@ -1,0 +1,110 @@
+{
+  "storyId": "immigrant-entrepreneur",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A1/preview-combined.mp3",
+    "duration": 90.278753,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 11.111,
+        "duration": 11.111,
+        "text": "About This Story\n\nA powerful story about immigrant entrepreneurs who lost everything—to fire, to war, to financial struggles—but refused to give up."
+      },
+      {
+        "startTime": 11.111,
+        "endTime": 19.516,
+        "duration": 8.404,
+        "text": "Through hard work, community support, and unwavering determination, they rebuilt their dreams and found success."
+      },
+      {
+        "startTime": 19.516,
+        "endTime": 26.981,
+        "duration": 7.465,
+        "text": "This inspiring tale shows that sometimes, losing everything is the beginning of something even greater."
+      },
+      {
+        "startTime": 26.981,
+        "endTime": 30.816,
+        "duration": 3.835,
+        "text": "Imagine working for fifteen years to build your dream."
+      },
+      {
+        "startTime": 30.816,
+        "endTime": 36.088,
+        "duration": 5.272,
+        "text": "You have a successful restaurant, loyal customers, a growing business."
+      },
+      {
+        "startTime": 36.088,
+        "endTime": 39.15,
+        "duration": 3.062,
+        "text": "Then one day, a fire destroys everything."
+      },
+      {
+        "startTime": 39.15,
+        "endTime": 41.572,
+        "duration": 2.423,
+        "text": "Your life's work, gone in hours."
+      },
+      {
+        "startTime": 41.572,
+        "endTime": 45.494,
+        "duration": 3.922,
+        "text": "You feel lost, broken, like you've lost everything."
+      },
+      {
+        "startTime": 45.494,
+        "endTime": 48.769,
+        "duration": 3.275,
+        "text": "But deep inside, you know you can't give up."
+      },
+      {
+        "startTime": 48.769,
+        "endTime": 55.817,
+        "duration": 7.047,
+        "text": "You have a family to support, a dream to rebuild, and a quiet strength that won't let you quit."
+      },
+      {
+        "startTime": 55.817,
+        "endTime": 67.559,
+        "duration": 11.743,
+        "text": "This is the story of starting over, of finding hope in the ashes, and discovering that sometimes, losing everything is the beginning of something even greater."
+      },
+      {
+        "startTime": 67.559,
+        "endTime": 69.548,
+        "duration": 1.989,
+        "text": "Starting a business is hard."
+      },
+      {
+        "startTime": 69.548,
+        "endTime": 76.461,
+        "duration": 6.913,
+        "text": "Starting a business in a new country, in a new language, with little money, is even harder."
+      },
+      {
+        "startTime": 76.461,
+        "endTime": 83.303,
+        "duration": 6.842,
+        "text": "Many immigrant entrepreneurs face fires, wars, financial struggles, and cultural barriers."
+      },
+      {
+        "startTime": 83.303,
+        "endTime": 84.936,
+        "duration": 1.634,
+        "text": "But they don't give up."
+      },
+      {
+        "startTime": 84.936,
+        "endTime": 90.279,
+        "duration": 5.343,
+        "text": "This is the story of resilience, community, and the courage to rebuild."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-08T10:04:36.388Z",
+  "timingMethod": "enhanced-timing-v3"
+}

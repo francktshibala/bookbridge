@@ -13,6 +13,7 @@
 | `teen-translating-hospital` | A Lifeline: Teen Translating for Parents Through Hospital Chaos | BookBridge | Chalkbeat, NPR Youth Radio, KQED | Language Barriers, Medical Emergencies, Teen Advocacy, Confidence Building | ✅ Complete | ✅ | - | - | ~21 min | 47 | 2025-01-08 |
 | `helen-keller` | The Story of My Life | Helen Keller | Project Gutenberg (Chapters III-IV) | Perseverance, Education, Communication, Transformation | ✅ Complete | ✅ | - | - | ~16 min | 30 | 2025-01-08 |
 | `teaching-dad-to-read` | First-Gen Student Teaching Dad to Read | BookBridge | GMA, Motherly, TODAY | Intergenerational Learning, Role Reversal, Family Dynamics, Education, Empowerment | ✅ Complete | ✅ | - | - | ~21 min | 39 | 2025-12-08 |
+| `immigrant-entrepreneur` | Immigrant Entrepreneur: From Failure to Success | BookBridge | SF Chronicle, MEDA, IOM, WNW, Swaay, MightyCall | Immigration, Entrepreneurship, Resilience, Overcoming Adversity, Building New Life, Community Support, Transformation | ✅ Complete | ✅ | - | - | ~20 min | 40 | 2025-12-08 |
 
 **Legend**:
 - ✅ Complete
@@ -296,6 +297,7 @@
 
 ### Source Material
 - **Multi-source approach** (3+ sources) provides legal safety through fair use
+- **Six-source approach** (as used in immigrant-entrepreneur) provides even richer thematic material and stronger legal safety
 - Prioritize story-driven sources (memoirs, interviews, long-form journalism)
 - Avoid fact-driven sources (Wikipedia) for emotional stories
 
@@ -306,7 +308,9 @@
 
 ### Audio Generation
 - **Enhanced Timing v3** is mandatory for perfect sync
-- Use Jane voice for A1 level (RILOU7YmBhvwJGDGjNmP)
+- **Voice Selection**: Use Jane voice for A1 level (RILOU7YmBhvwJGDGjNmP) OR Daniel voice (onwK4e9ZLuTAKqWW03F9) based on story theme
+  - Jane: Family stories, personal growth, emotional journeys
+  - Daniel: Business stories, entrepreneurship, professional narratives
 - Apply 0.85× FFmpeg slowdown for comfortable listening pace
 - Generate sentence-level timings for both intro and bundles
 

@@ -230,6 +230,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-orange-500 to-amber-600',
     abbreviation: 'TD'
   },
+  {
+    id: 'immigrant-entrepreneur',
+    title: 'Immigrant Entrepreneur: From Failure to Success',
+    author: 'BookBridge',
+    description: 'A powerful story about immigrant entrepreneurs who lost everything—to fire, to war, to financial struggles—but refused to give up. Through hard work, community support, and unwavering determination, they rebuilt their dreams and found success. This inspiring tale shows that sometimes, losing everything is the beginning of something even greater. A1 level with Daniel voice.',
+    sentences: 160,
+    bundles: 40,
+    gradient: 'from-green-500 to-emerald-600',
+    abbreviation: 'IE'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -310,6 +320,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'teaching-dad-to-read': {
     'A1': '/api/teaching-dad-to-read-a1/bundles'
   },
+  'immigrant-entrepreneur': {
+    'A1': '/api/immigrant-entrepreneur-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -335,6 +348,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'helen-keller': 'A1',  // Default to A1 for Helen Keller - The Story of My Life (Memoir)
   'teen-translating-hospital': 'A1',  // Default to A1 for Teen Translating for Parents Through Hospital Chaos (Modern Story)
   'teaching-dad-to-read': 'A1',  // Default to A1 for First-Gen Student Teaching Dad to Read (Modern Story)
+  'immigrant-entrepreneur': 'A1',  // Default to A1 for Immigrant Entrepreneur: From Failure to Success (Modern Story)
 };
 
 // Get the correct CEFR level for a book
@@ -400,6 +414,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'helen-keller': ['A1'],  // A1 with Jane (Memoir - Modern Voices collection)
   'teen-translating-hospital': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'teaching-dad-to-read': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'immigrant-entrepreneur': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
 };
 
 // Single-level books configuration
