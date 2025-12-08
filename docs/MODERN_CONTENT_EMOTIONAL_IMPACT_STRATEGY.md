@@ -10,7 +10,7 @@
 
 ## 📚 **Related Documentation Files**
 
-**This file works alongside two other key documents:**
+**This file works alongside three other key documents:**
 
 1. **`docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md`** - Technical implementation guide
    - Use for: Exact code examples, voice settings, database formats, API structures
@@ -22,15 +22,25 @@
    - Contains: Research methodology, source evaluation, story validation (Step 0.25 & 0.5)
    - **When to reference:** During Steps 0-1 (content selection, source validation)
 
+3. **`docs/implementation/story-completion-log.md`** - Story completion tracking and learnings
+   - Use for: Tracking completed stories, documenting learnings, reference for future implementations
+   - Contains: Completion status table, detailed story notes, implementation patterns, best practices
+   - **When to reference:** 
+     - Before starting: Check what's been completed, learn from previous stories
+     - During implementation: Reference similar stories for guidance
+     - After completion: Document your story's completion details and learnings
+
 **How to Use Together:**
 - **This file (Strategy):** Follow Steps 0-20 as your primary checklist
 - **MODERN_VOICES_IMPLEMENTATION_GUIDE:** Reference for technical details when implementing Steps 4-15
 - **MODERN_STORY_SOURCES_RESEARCH_PLAN:** Reference for finding and validating stories before Step 1
+- **story-completion-log.md:** Reference before/during/after implementation for learnings and patterns
 
 **Cross-References:**
 - Step 0.25 & 0.5 → See `MODERN_STORY_SOURCES_RESEARCH_PLAN.md` for detailed validation criteria
 - Steps 4-15 → See `MODERN_VOICES_IMPLEMENTATION_GUIDE.md` for technical specifications
 - Step 8 (Preview Audio) → See `MODERN_VOICES_IMPLEMENTATION_GUIDE.md` Phase 3 for Enhanced Timing v3 details
+- After Step 20 → Update `story-completion-log.md` with completion details and learnings
 
 ---
 
@@ -1060,6 +1070,28 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
     - **Result:** Original and simplified versions always cover the same story/content
   - **Why:** Clean text needed for simplification
 
+- [ ] **Step 2.1: Assess Original Complexity** - Validate original text complexity level:
+  - **Purpose:** Ensure original is more complex than any simplified version we'll create
+  - **Assessment Method:**
+    - Check average sentence length (words per sentence)
+    - Review vocabulary complexity (advanced/idiomatic usage)
+    - Analyze sentence structure (subordination, clauses, varied patterns)
+    - Use readability metrics if available (Flesch-Kincaid, etc.)
+  - **CEFR Complexity Indicators:**
+    - **A1/A2:** Simple sentences (5-15 words), basic vocabulary, straightforward structure
+    - **B1/B2:** Moderate complexity (15-25 words), varied vocabulary, some subordination
+    - **C1/C2:** Complex sentences (25+ words), advanced vocabulary, sophisticated structure
+  - **Decision Logic:**
+    - **If original is C1/C2:** ✅ Proceed - can simplify to all levels (A1-C1)
+    - **If original is B1/B2:** ✅ Proceed - simplify only to levels below (A1-B1 or A1-A2)
+    - **If original is A1/A2:** ⚠️ Flag - max achievable level is A1/A2, don't create higher levels
+  - **Documentation:**
+    - Assess and document: "Original assessed as [B1] → Simplify to A1, A2 only"
+    - Update frontend config to show only available levels
+    - Record in `story-completion-log.md` under story notes
+  - **Why:** Ensures we only simplify to levels below the original, maintaining quality hierarchy
+  - **Note:** This is flexible - we prioritize great stories over perfect complexity. If a story is excellent but naturally B1 level, we simplify to A1/A2 only and document it honestly.
+
 - [ ] **Step 2.5: Narrative Structure Creation** - Transform facts into story arc:
   - Identify struggle moment (beginning challenge)
   - Identify perseverance moments (middle obstacles)
@@ -1067,6 +1099,17 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
   - Create emotional journey map: struggle → perseverance → breakthrough
   - Identify 5-7 key emotional moments for story flow
   - **Why:** Biographical facts need narrative shaping for emotional impact
+
+- [ ] **Step 2.6: Write Main Story (For Original Narratives)** - If creating original narrative based on extracted themes:
+  - Write original story narrative (NOT copied from sources) based on extracted themes and emotional moments
+  - **Character Names:** Use generic names (e.g., Maria, Sofia, David) instead of real names from sources
+  - **Why Generic Names:** Avoids copyright concerns while maintaining authenticity; aligns with fair use principles for transformative works
+  - **Length:** Target 1,800-2,200 words for A2 level (will be simplified to A1 later)
+  - **Structure:** Follow emotional journey map from Step 2.5
+  - **Style:** Story-driven, emotional, engaging (NOT fact-driven)
+  - Save to: `cache/{story-id}-original.txt`
+  - **Note:** This step is for original narratives based on themes. For classic books, use extracted excerpts instead.
+  - **Why:** Creates original, emotionally impactful stories while respecting copyright boundaries
 
 - [ ] **Step 3: Create Background Context** - Write 2-3 sentence factual background:
   - **Format:** Neutral, factual tone (no spoilers)
@@ -2209,7 +2252,7 @@ Churchill gave a speech during World War II saying Britain would never surrender
 
 ---
 
-## 📖 **HOW TO USE BOTH FILES TOGETHER**
+## 📖 **HOW TO USE ALL IMPLEMENTATION FILES TOGETHER**
 
 ### **File Usage Strategy**
 
@@ -2217,11 +2260,26 @@ Churchill gave a speech during World War II saying Britain would never surrender
 - Use this file as your main implementation checklist
 - Contains: Story selection, emotional framing, complete 21-step workflow
 - Follow steps 0-20 in order
+- **When to use:** Throughout entire implementation process
 
 **`MODERN_VOICES_IMPLEMENTATION_GUIDE.md`** = **Technical Reference**
 - Use this file for detailed technical specifications
 - Contains: Exact code examples, voice settings, database formats, API structures
 - Reference when you need: Specific commands, code snippets, validation checks
+- **When to use:** During Steps 4-15 (audio generation, database, API, frontend)
+
+**`docs/research/MODERN_STORY_SOURCES_RESEARCH_PLAN.md`** = **Story Discovery Guide**
+- Use this file for finding and validating great stories
+- Contains: Research methodology, source evaluation, validation criteria
+- **When to use:** Before Step 1 (content selection, source validation)
+
+**`docs/implementation/story-completion-log.md`** = **Completion Tracking & Learnings**
+- Use this file to track completed stories and document learnings
+- Contains: Completion status table, detailed story notes, best practices
+- **When to use:**
+  - **Before starting:** Check what's been completed, learn from previous stories
+  - **During implementation:** Reference similar stories for guidance
+  - **After completion:** Document your story's completion details and learnings
 
 ### **No Conflicts - They Complement Each Other**
 
@@ -2238,11 +2296,21 @@ Churchill gave a speech during World War II saying Britain would never surrender
 ### **How to Use Together:**
 
 **Step-by-Step Workflow:**
-1. **Open Strategy File** → Follow Step 0-20 checklist
-2. **When you reach a technical step** → Open Implementation Guide for details
-3. **Example:** Step 10.5 (Generate Bundle Audio) → Check Implementation Guide for exact voice IDs, FFmpeg commands, timing formulas
-4. **Example:** Step 13 (Create API Endpoint) → Check Implementation Guide for exact API response structure
-5. **Example:** Step 14 (Frontend Config) → Check Implementation Guide for exact code locations
+1. **Before Starting:** 
+   - Check `story-completion-log.md` for completed stories and learnings
+   - Review `MODERN_STORY_SOURCES_RESEARCH_PLAN.md` for story discovery guidance
+2. **Open Strategy File** → Follow Step 0-20 checklist
+3. **When you reach a technical step** → Open Implementation Guide for details
+   - **Example:** Step 10.5 (Generate Bundle Audio) → Check Implementation Guide for exact voice IDs, FFmpeg commands, timing formulas
+   - **Example:** Step 13 (Create API Endpoint) → Check Implementation Guide for exact API response structure
+   - **Example:** Step 14 (Frontend Config) → Check Implementation Guide for exact code locations
+4. **During Implementation:**
+   - Reference `story-completion-log.md` for similar stories and patterns
+   - Check implementation notes from previous stories
+5. **After Completion:**
+   - Update `story-completion-log.md` with your story's completion details
+   - Document learnings, technical notes, and quality metrics
+   - Add to quick reference table and detailed notes section
 
 **Key Differences (Not Conflicts):**
 - **Strategy File:** Adds emotional elements (background context, hook) specific to biographies

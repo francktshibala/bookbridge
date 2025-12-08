@@ -1,0 +1,2187 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Maria sat in the hospital and her heart pounded. The air smells like antiseptic and machines beep loudly. Maria waits for the doctor because Sofia fell at school. Maria's mother sits next to her and taps her foot nervously.",
+    "sentences": [
+      "Maria sat in the hospital and her heart pounded.",
+      "The air smells like antiseptic and machines beep loudly.",
+      "Maria waits for the doctor because Sofia fell at school.",
+      "Maria's mother sits next to her and taps her foot nervously."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_0.mp3",
+    "duration": 16.920975,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria sat in the hospital and her heart pounded.",
+        "startTime": 0,
+        "endTime": 3.692,
+        "duration": 3.692,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "The air smells like antiseptic and machines beep loudly.",
+        "startTime": 3.692,
+        "endTime": 7.999,
+        "duration": 4.307,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Maria waits for the doctor because Sofia fell at school.",
+        "startTime": 7.999,
+        "endTime": 12.306,
+        "duration": 4.307,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Maria's mother sits next to her and taps her foot nervously.",
+        "startTime": 12.306,
+        "endTime": 16.921,
+        "duration": 4.615,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "Maria sees worry in her mother’s eyes and feels fear in her heart. The doctor spoke quickly and Maria listened carefully. She hears medical words she never knows before. Her arm needs an X-ray because it hurts.",
+    "sentences": [
+      "Maria sees worry in her mother’s eyes and feels fear in her heart.",
+      "The doctor spoke quickly and Maria listened carefully.",
+      "She hears medical words she never knows before.",
+      "Her arm needs an X-ray because it hurts."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_1.mp3",
+    "duration": 14.958753,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria sees worry in her mother’s eyes and feels fear in her heart.",
+        "startTime": 0,
+        "endTime": 4.769,
+        "duration": 4.769,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "The doctor spoke quickly and Maria listened carefully.",
+        "startTime": 4.769,
+        "endTime": 8.672,
+        "duration": 3.902,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "She hears medical words she never knows before.",
+        "startTime": 8.672,
+        "endTime": 12.068,
+        "duration": 3.396,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "Her arm needs an X-ray because it hurts.",
+        "startTime": 12.068,
+        "endTime": 14.959,
+        "duration": 2.891,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "Maria needs to check for a fracture and her mother is scared. She waits for Maria to translate the doctor’s words. One wrong word can give the wrong medicine. One small mistake can stop Maria from getting help.",
+    "sentences": [
+      "Maria needs to check for a fracture and her mother is scared.",
+      "She waits for Maria to translate the doctor’s words.",
+      "One wrong word can give the wrong medicine.",
+      "One small mistake can stop Maria from getting help."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_2.mp3",
+    "duration": 13.791134,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria needs to check for a fracture and her mother is scared.",
+        "startTime": 0,
+        "endTime": 4.064,
+        "duration": 4.064,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "She waits for Maria to translate the doctor’s words.",
+        "startTime": 4.064,
+        "endTime": 7.528,
+        "duration": 3.464,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "One wrong word can give the wrong medicine.",
+        "startTime": 7.528,
+        "endTime": 10.393,
+        "duration": 2.865,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "One small mistake can stop Maria from getting help.",
+        "startTime": 10.393,
+        "endTime": 13.791,
+        "duration": 3.398,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "Maria felt heavy responsibility on her shoulders. At 14, she had to be perfect and feel happy. There is no space for mistakes. This was the time she knew she was more than a daughter.",
+    "sentences": [
+      "Maria felt heavy responsibility on her shoulders.",
+      "At 14, she had to be perfect and feel happy.",
+      "There is no space for mistakes.",
+      "This was the time she knew she was more than a daughter."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_3.mp3",
+    "duration": 13.913016,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria felt heavy responsibility on her shoulders.",
+        "startTime": 0,
+        "endTime": 3.747,
+        "duration": 3.747,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "At 14, she had to be perfect and feel happy.",
+        "startTime": 3.747,
+        "endTime": 7.261,
+        "duration": 3.514,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "There is no space for mistakes.",
+        "startTime": 7.261,
+        "endTime": 9.631,
+        "duration": 2.37,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "This was the time she knew she was more than a daughter.",
+        "startTime": 9.631,
+        "endTime": 13.913,
+        "duration": 4.282,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "She was a help and support for many people. Maria is always the quiet one in her family. Maria often feels lost between her brother Miguel and sister Sofia. Their parents came from Mexico and spoke Spanish at home.",
+    "sentences": [
+      "She was a help and support for many people.",
+      "Maria is always the quiet one in her family.",
+      "Maria often feels lost between her brother Miguel and sister Sofia.",
+      "Their parents came from Mexico and spoke Spanish at home."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_4.mp3",
+    "duration": 16.37059,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She was a help and support for many people.",
+        "startTime": 0,
+        "endTime": 3.336,
+        "duration": 3.336,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "Maria is always the quiet one in her family.",
+        "startTime": 3.336,
+        "endTime": 6.75,
+        "duration": 3.414,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "Maria often feels lost between her brother Miguel and sister Sofia.",
+        "startTime": 6.75,
+        "endTime": 11.948,
+        "duration": 5.198,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "Their parents came from Mexico and spoke Spanish at home.",
+        "startTime": 11.948,
+        "endTime": 16.371,
+        "duration": 4.422,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "Maria listened to her parents and helped them with English. She understood both languages and helped her parents with homework. Translating medical terms is different and more difficult. It was serious, but she felt unprepared.",
+    "sentences": [
+      "Maria listened to her parents and helped them with English.",
+      "She understood both languages and helped her parents with homework.",
+      "Translating medical terms is different and more difficult.",
+      "It was serious, but she felt unprepared."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_5.mp3",
+    "duration": 15.727619,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria listened to her parents and helped them with English.",
+        "startTime": 0,
+        "endTime": 4.103,
+        "duration": 4.103,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "She understood both languages and helped her parents with homework.",
+        "startTime": 4.103,
+        "endTime": 8.762,
+        "duration": 4.659,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "Translating medical terms is different and more difficult.",
+        "startTime": 8.762,
+        "endTime": 12.796,
+        "duration": 4.033,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "It was serious, but she felt unprepared.",
+        "startTime": 12.796,
+        "endTime": 15.728,
+        "duration": 2.932,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "The day of the accident started like any other day. Maria walks to school with Sofia and holds her sister's hand. They laughed and played games on the road. Maria loved these moments and felt like a big sister.",
+    "sentences": [
+      "The day of the accident started like any other day.",
+      "Maria walks to school with Sofia and holds her sister's hand.",
+      "They laughed and played games on the road.",
+      "Maria loved these moments and felt like a big sister."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_6.mp3",
+    "duration": 14.894308,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The day of the accident started like any other day.",
+        "startTime": 0,
+        "endTime": 3.67,
+        "duration": 3.67,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "Maria walks to school with Sofia and holds her sister's hand.",
+        "startTime": 3.67,
+        "endTime": 8.059,
+        "duration": 4.389,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "They laughed and played games on the road.",
+        "startTime": 8.059,
+        "endTime": 11.081,
+        "duration": 3.022,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "Maria loved these moments and felt like a big sister.",
+        "startTime": 11.081,
+        "endTime": 14.894,
+        "duration": 3.814,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "When they reached school, they hugged and said goodbye. Maria never thought it was the last time to see Sofia. Later that day, she got a call from her mother. Maria.",
+    "sentences": [
+      "When they reached school, they hugged and said goodbye.",
+      "Maria never thought it was the last time to see Sofia.",
+      "Later that day, she got a call from her mother.",
+      "Maria."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_7.mp3",
+    "duration": 13.141859,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "When they reached school, they hugged and said goodbye.",
+        "startTime": 0,
+        "endTime": 4.51,
+        "duration": 4.51,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "Maria never thought it was the last time to see Sofia.",
+        "startTime": 4.51,
+        "endTime": 8.791,
+        "duration": 4.281,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "Later that day, she got a call from her mother.",
+        "startTime": 8.791,
+        "endTime": 12.666,
+        "duration": 3.876,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "Maria.",
+        "startTime": 12.666,
+        "endTime": 13.142,
+        "duration": 0.476,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "Come to the school and join us there. Sofia hurt her arm, and Maria felt very sad. She ran to school and worried about many things. Maria sees Sofia crying and feeling scared and alone.",
+    "sentences": [
+      "Come to the school and join us there.",
+      "Sofia hurt her arm, and Maria felt very sad.",
+      "She ran to school and worried about many things.",
+      "Maria sees Sofia crying and feeling scared and alone."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_8.mp3",
+    "duration": 14.525147,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Come to the school and join us there.",
+        "startTime": 0,
+        "endTime": 2.922,
+        "duration": 2.922,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "Sofia hurt her arm, and Maria felt very sad.",
+        "startTime": 2.922,
+        "endTime": 6.548,
+        "duration": 3.625,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "She ran to school and worried about many things.",
+        "startTime": 6.548,
+        "endTime": 10.339,
+        "duration": 3.791,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "Maria sees Sofia crying and feeling scared and alone.",
+        "startTime": 10.339,
+        "endTime": 14.525,
+        "duration": 4.186,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "When they arrived at the hospital, Sofia cried with pale cheeks. Maria felt very responsible and wanted to help. She had to be strong for her sister, Sofia. The doctor came in quickly and looked serious.",
+    "sentences": [
+      "When they arrived at the hospital, Sofia cried with pale cheeks.",
+      "Maria felt very responsible and wanted to help.",
+      "She had to be strong for her sister, Sofia.",
+      "The doctor came in quickly and looked serious."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_9.mp3",
+    "duration": 14.77907,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "When they arrived at the hospital, Sofia cried with pale cheeks.",
+        "startTime": 0,
+        "endTime": 4.783,
+        "duration": 4.783,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "Maria felt very responsible and wanted to help.",
+        "startTime": 4.783,
+        "endTime": 8.186,
+        "duration": 3.403,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "She had to be strong for her sister, Sofia.",
+        "startTime": 8.186,
+        "endTime": 11.449,
+        "duration": 3.263,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "The doctor came in quickly and looked serious.",
+        "startTime": 11.449,
+        "endTime": 14.779,
+        "duration": 3.33,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "He talks to Maria's mother in English. Maria watched her mother nod, but she looked confused. Maria knew she must help others and be kind. Mom, I can translate,\" she said with a shaking voice.",
+    "sentences": [
+      "He talks to Maria's mother in English.",
+      "Maria watched her mother nod, but she looked confused.",
+      "Maria knew she must help others and be kind.",
+      "Mom, I can translate,\" she said with a shaking voice."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_10.mp3",
+    "duration": 14.8878,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He talks to Maria's mother in English.",
+        "startTime": 0,
+        "endTime": 2.903,
+        "duration": 2.903,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Maria watched her mother nod, but she looked confused.",
+        "startTime": 2.903,
+        "endTime": 7.178,
+        "duration": 4.275,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "Maria knew she must help others and be kind.",
+        "startTime": 7.178,
+        "endTime": 10.539,
+        "duration": 3.361,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "Mom, I can translate,\" she said with a shaking voice.",
+        "startTime": 10.539,
+        "endTime": 14.888,
+        "duration": 4.349,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "Her mother looked surprised but then felt relief on her face. She whispers to Maria and asks her to listen. The doctor says Maria needs an X-ray and he needs you. We need to check her arm and Maria feels panic.",
+    "sentences": [
+      "Her mother looked surprised but then felt relief on her face.",
+      "She whispers to Maria and asks her to listen.",
+      "The doctor says Maria needs an X-ray and he needs you.",
+      "We need to check her arm and Maria feels panic."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_11.mp3",
+    "duration": 14.83576,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her mother looked surprised but then felt relief on her face.",
+        "startTime": 0,
+        "endTime": 4.372,
+        "duration": 4.372,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "She whispers to Maria and asks her to listen.",
+        "startTime": 4.372,
+        "endTime": 7.597,
+        "duration": 3.225,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "The doctor says Maria needs an X-ray and he needs you.",
+        "startTime": 7.597,
+        "endTime": 11.467,
+        "duration": 3.87,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "We need to check her arm and Maria feels panic.",
+        "startTime": 11.467,
+        "endTime": 14.836,
+        "duration": 3.369,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "She understands the doctor but worries she makes a mistake. What happens if she translates the words wrong. What happens if Sofia does not get the care she needs. Maria took a deep breath and felt calm.",
+    "sentences": [
+      "She understands the doctor but worries she makes a mistake.",
+      "What happens if she translates the words wrong.",
+      "What happens if Sofia does not get the care she needs.",
+      "Maria took a deep breath and felt calm."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_12.mp3",
+    "duration": 14.558844,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She understands the doctor but worries she makes a mistake.",
+        "startTime": 0,
+        "endTime": 4.316,
+        "duration": 4.316,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "What happens if she translates the words wrong.",
+        "startTime": 4.316,
+        "endTime": 7.755,
+        "duration": 3.439,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "What happens if Sofia does not get the care she needs.",
+        "startTime": 7.755,
+        "endTime": 11.706,
+        "duration": 3.951,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "Maria took a deep breath and felt calm.",
+        "startTime": 11.706,
+        "endTime": 14.559,
+        "duration": 2.853,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "Maria looked at Sofia, who cried and held her arm. Sofia, the doctor wants to take a picture of your arm. Maria said it will help him see what is wrong. Sofia nodded but still looked scared.",
+    "sentences": [
+      "Maria looked at Sofia, who cried and held her arm.",
+      "Sofia, the doctor wants to take a picture of your arm.",
+      "Maria said it will help him see what is wrong.",
+      "Sofia nodded but still looked scared."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_13.mp3",
+    "duration": 14.673175,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria looked at Sofia, who cried and held her arm.",
+        "startTime": 0,
+        "endTime": 3.993,
+        "duration": 3.993,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "Sofia, the doctor wants to take a picture of your arm.",
+        "startTime": 3.993,
+        "endTime": 8.294,
+        "duration": 4.301,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "Maria said it will help him see what is wrong.",
+        "startTime": 8.294,
+        "endTime": 11.829,
+        "duration": 3.536,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "Sofia nodded but still looked scared.",
+        "startTime": 11.829,
+        "endTime": 14.673,
+        "duration": 2.844,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "Maria feels her heart race with excitement. She must do this now and cannot wait. The doctor speaks fast and uses hard words. We need to keep her arm still and safe.",
+    "sentences": [
+      "Maria feels her heart race with excitement.",
+      "She must do this now and cannot wait.",
+      "The doctor speaks fast and uses hard words.",
+      "We need to keep her arm still and safe."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_14.mp3",
+    "duration": 12.097483,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria feels her heart race with excitement.",
+        "startTime": 0,
+        "endTime": 3.211,
+        "duration": 3.211,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "She must do this now and cannot wait.",
+        "startTime": 3.211,
+        "endTime": 5.974,
+        "duration": 2.763,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "The doctor speaks fast and uses hard words.",
+        "startTime": 5.974,
+        "endTime": 9.185,
+        "duration": 3.211,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "We need to keep her arm still and safe.",
+        "startTime": 9.185,
+        "endTime": 12.097,
+        "duration": 2.912,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "Maria feels lost and wants to know if she has a fracture. What does \"immobilize\" mean and why is it important. She wanted to ask the doctor to speak slowly, but she was scared. What if he thinks she is not smart enough.",
+    "sentences": [
+      "Maria feels lost and wants to know if she has a fracture.",
+      "What does \"immobilize\" mean and why is it important.",
+      "She wanted to ask the doctor to speak slowly, but she was scared.",
+      "What if he thinks she is not smart enough."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_15.mp3",
+    "duration": 14.619955,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria feels lost and wants to know if she has a fracture.",
+        "startTime": 0,
+        "endTime": 3.818,
+        "duration": 3.818,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "What does \"immobilize\" mean and why is it important.",
+        "startTime": 3.818,
+        "endTime": 7.302,
+        "duration": 3.484,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "She wanted to ask the doctor to speak slowly, but she was scared.",
+        "startTime": 7.302,
+        "endTime": 11.806,
+        "duration": 4.504,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "What if he thinks she is not smart enough.",
+        "startTime": 11.806,
+        "endTime": 14.62,
+        "duration": 2.814,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "Her mother asked what he said and looked very worried. Maria felt nervous and swallowed hard. He wants to hold Sofia's arm still and check for a break. Her mother looks relieved but is still worried.",
+    "sentences": [
+      "Her mother asked what he said and looked very worried.",
+      "Maria felt nervous and swallowed hard.",
+      "He wants to hold Sofia's arm still and check for a break.",
+      "Her mother looks relieved but is still worried."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_16.mp3",
+    "duration": 13.791338,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her mother asked what he said and looked very worried.",
+        "startTime": 0,
+        "endTime": 3.8,
+        "duration": 3.8,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "Maria felt nervous and swallowed hard.",
+        "startTime": 3.8,
+        "endTime": 6.473,
+        "duration": 2.674,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "He wants to hold Sofia's arm still and check for a break.",
+        "startTime": 6.473,
+        "endTime": 10.484,
+        "duration": 4.011,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "Her mother looks relieved but is still worried.",
+        "startTime": 10.484,
+        "endTime": 13.791,
+        "duration": 3.307,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "Maria sees her mother’s hands shake a little. She wished to take away her fear and feel safe. The doctor looks at Maria. That is right, he said and nodded.",
+    "sentences": [
+      "Maria sees her mother’s hands shake a little.",
+      "She wished to take away her fear and feel safe.",
+      "The doctor looks at Maria.",
+      "That is right, he said and nodded."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_17.mp3",
+    "duration": 10.962744,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria sees her mother’s hands shake a little.",
+        "startTime": 0,
+        "endTime": 3.201,
+        "duration": 3.201,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "She wished to take away her fear and feel safe.",
+        "startTime": 3.201,
+        "endTime": 6.545,
+        "duration": 3.343,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "The doctor looks at Maria.",
+        "startTime": 6.545,
+        "endTime": 8.394,
+        "duration": 1.85,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "That is right, he said and nodded.",
+        "startTime": 8.394,
+        "endTime": 10.963,
+        "duration": 2.569,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "His words help her feel better, but she still feels afraid. What happens if she does not understand the next part. What if Sofia gets the wrong treatment because of her. The doctor explains the procedure, but Maria feels nervous.",
+    "sentences": [
+      "His words help her feel better, but she still feels afraid.",
+      "What happens if she does not understand the next part.",
+      "What if Sofia gets the wrong treatment because of her.",
+      "The doctor explains the procedure, but Maria feels nervous."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_18.mp3",
+    "duration": 16.033946,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His words help her feel better, but she still feels afraid.",
+        "startTime": 0,
+        "endTime": 4.258,
+        "duration": 4.258,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "What happens if she does not understand the next part.",
+        "startTime": 4.258,
+        "endTime": 8.017,
+        "duration": 3.759,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "What if Sofia gets the wrong treatment because of her.",
+        "startTime": 8.017,
+        "endTime": 11.776,
+        "duration": 3.759,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "The doctor explains the procedure, but Maria feels nervous.",
+        "startTime": 11.776,
+        "endTime": 16.034,
+        "duration": 4.258,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "She was very scared and could not move. She thinks, \"What if I do not understand him. She feels her family's hopes on her shoulders and worries. Maria's mother whispers and asks her to ask him.",
+    "sentences": [
+      "She was very scared and could not move.",
+      "She thinks, \"What if I do not understand him.",
+      "She feels her family's hopes on her shoulders and worries.",
+      "Maria's mother whispers and asks her to ask him."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_19.mp3",
+    "duration": 14.402857,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She was very scared and could not move.",
+        "startTime": 0,
+        "endTime": 2.926,
+        "duration": 2.926,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "She thinks, \"What if I do not understand him.",
+        "startTime": 2.926,
+        "endTime": 6.451,
+        "duration": 3.526,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "She feels her family's hopes on her shoulders and worries.",
+        "startTime": 6.451,
+        "endTime": 10.802,
+        "duration": 4.351,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "Maria's mother whispers and asks her to ask him.",
+        "startTime": 10.802,
+        "endTime": 14.403,
+        "duration": 3.601,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "Maria nodded and turned to the doctor, feeling nervous. She asks how long the X-ray takes, and her voice shakes. The doctor said it takes a few minutes. Maria quickly translated for her mother, who looked worried and nodded.",
+    "sentences": [
+      "Maria nodded and turned to the doctor, feeling nervous.",
+      "She asks how long the X-ray takes, and her voice shakes.",
+      "The doctor said it takes a few minutes.",
+      "Maria quickly translated for her mother, who looked worried and nodded."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_20.mp3",
+    "duration": 15.226757,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria nodded and turned to the doctor, feeling nervous.",
+        "startTime": 0,
+        "endTime": 3.827,
+        "duration": 3.827,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "She asks how long the X-ray takes, and her voice shakes.",
+        "startTime": 3.827,
+        "endTime": 7.722,
+        "duration": 3.894,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "The doctor said it takes a few minutes.",
+        "startTime": 7.722,
+        "endTime": 10.329,
+        "duration": 2.608,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "Maria quickly translated for her mother, who looked worried and nodded.",
+        "startTime": 10.329,
+        "endTime": 15.227,
+        "duration": 4.897,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "Maria hears her mother say thank you but feels her worry. While they waited for the X-ray, Maria looked at Sofia. You are brave, Sofia,\" she said to comfort her. Sofia sniffled and nodded, but Maria saw she was still scared.",
+    "sentences": [
+      "Maria hears her mother say thank you but feels her worry.",
+      "While they waited for the X-ray, Maria looked at Sofia.",
+      "You are brave, Sofia,\" she said to comfort her.",
+      "Sofia sniffled and nodded, but Maria saw she was still scared."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_21.mp3",
+    "duration": 18.496395,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria hears her mother say thank you but feels her worry.",
+        "startTime": 0,
+        "endTime": 4.616,
+        "duration": 4.616,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "While they waited for the X-ray, Maria looked at Sofia.",
+        "startTime": 4.616,
+        "endTime": 9.22,
+        "duration": 4.604,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "You are brave, Sofia,\" she said to comfort her.",
+        "startTime": 9.22,
+        "endTime": 13.326,
+        "duration": 4.106,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "Sofia sniffled and nodded, but Maria saw she was still scared.",
+        "startTime": 13.326,
+        "endTime": 18.496,
+        "duration": 5.171,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "When the technician comes for Sofia, Maria feels panic. She asked if she can go with Sofia, who needs her. The technician smiled and was very kind. Of course, Maria understands and agrees with what you say.",
+    "sentences": [
+      "When the technician comes for Sofia, Maria feels panic.",
+      "She asked if she can go with Sofia, who needs her.",
+      "The technician smiled and was very kind.",
+      "Of course, Maria understands and agrees with what you say."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_22.mp3",
+    "duration": 14.344467,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "When the technician comes for Sofia, Maria feels panic.",
+        "startTime": 0,
+        "endTime": 3.915,
+        "duration": 3.915,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "She asked if she can go with Sofia, who needs her.",
+        "startTime": 3.915,
+        "endTime": 7.487,
+        "duration": 3.572,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "The technician smiled and was very kind.",
+        "startTime": 7.487,
+        "endTime": 10.225,
+        "duration": 2.738,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "Of course, Maria understands and agrees with what you say.",
+        "startTime": 10.225,
+        "endTime": 14.344,
+        "duration": 4.12,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "You can help her stay calm,\" he said. Maria felt happy and relaxed after the good news. She can stay with Sofia. The doctor came back with the X-ray results.",
+    "sentences": [
+      "You can help her stay calm,\" he said.",
+      "Maria felt happy and relaxed after the good news.",
+      "She can stay with Sofia.",
+      "The doctor came back with the X-ray results."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_23.mp3",
+    "duration": 11.173197,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "You can help her stay calm,\" he said.",
+        "startTime": 0,
+        "endTime": 2.798,
+        "duration": 2.798,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "Maria felt happy and relaxed after the good news.",
+        "startTime": 2.798,
+        "endTime": 6.306,
+        "duration": 3.507,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "She can stay with Sofia.",
+        "startTime": 6.306,
+        "endTime": 8.024,
+        "duration": 1.718,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "The doctor came back with the X-ray results.",
+        "startTime": 8.024,
+        "endTime": 11.173,
+        "duration": 3.149,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "Maria has good news and feels very happy. It is not broken and works well. Maria felt relief when she knew it was just a sprain. Sofia's arm is not broken, and she tells her mother.",
+    "sentences": [
+      "Maria has good news and feels very happy.",
+      "It is not broken and works well.",
+      "Maria felt relief when she knew it was just a sprain.",
+      "Sofia's arm is not broken, and she tells her mother."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_24.mp3",
+    "duration": 13.480408,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria has good news and feels very happy.",
+        "startTime": 0,
+        "endTime": 3.07,
+        "duration": 3.07,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "It is not broken and works well.",
+        "startTime": 3.07,
+        "endTime": 5.467,
+        "duration": 2.396,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "Maria felt relief when she knew it was just a sprain.",
+        "startTime": 5.467,
+        "endTime": 9.436,
+        "duration": 3.969,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "Sofia's arm is not broken, and she tells her mother.",
+        "startTime": 9.436,
+        "endTime": 13.48,
+        "duration": 4.044,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "It just hurts a lot. We need to rest, and her mother smiles with tears of joy. She said thank you to Maria in a soft voice. Maria feels proud when her mother says thank you.",
+    "sentences": [
+      "It just hurts a lot.",
+      "We need to rest, and her mother smiles with tears of joy.",
+      "She said thank you to Maria in a soft voice.",
+      "Maria feels proud when her mother says thank you."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_25.mp3",
+    "duration": 14.34356,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It just hurts a lot.",
+        "startTime": 0,
+        "endTime": 1.67,
+        "duration": 1.67,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "We need to rest, and her mother smiles with tears of joy.",
+        "startTime": 1.67,
+        "endTime": 6.579,
+        "duration": 4.909,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "She said thank you to Maria in a soft voice.",
+        "startTime": 6.579,
+        "endTime": 10.252,
+        "duration": 3.674,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "Maria feels proud when her mother says thank you.",
+        "startTime": 10.252,
+        "endTime": 14.344,
+        "duration": 4.091,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "She did it and felt happy. The first real translation is successful and helps many people. But there is still more to do. The doctor gave Sofia instructions to care for her arm.",
+    "sentences": [
+      "She did it and felt happy.",
+      "The first real translation is successful and helps many people.",
+      "But there is still more to do.",
+      "The doctor gave Sofia instructions to care for her arm."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_26.mp3",
+    "duration": 14.179342,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She did it and felt happy.",
+        "startTime": 0,
+        "endTime": 2.119,
+        "duration": 2.119,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "The first real translation is successful and helps many people.",
+        "startTime": 2.119,
+        "endTime": 7.253,
+        "duration": 5.134,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "But there is still more to do.",
+        "startTime": 7.253,
+        "endTime": 9.697,
+        "duration": 2.445,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "The doctor gave Sofia instructions to care for her arm.",
+        "startTime": 9.697,
+        "endTime": 14.179,
+        "duration": 4.482,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "She needs ice and pain medicine for her hurt. He said there are no sports for a few weeks. Maria listened carefully and her heart raced with each word. She translated every detail for her mother and helped her understand.",
+    "sentences": [
+      "She needs ice and pain medicine for her hurt.",
+      "He said there are no sports for a few weeks.",
+      "Maria listened carefully and her heart raced with each word.",
+      "She translated every detail for her mother and helped her understand."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_27.mp3",
+    "duration": 14.894467,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She needs ice and pain medicine for her hurt.",
+        "startTime": 0,
+        "endTime": 3.075,
+        "duration": 3.075,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "He said there are no sports for a few weeks.",
+        "startTime": 3.075,
+        "endTime": 6.081,
+        "duration": 3.006,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "Maria listened carefully and her heart raced with each word.",
+        "startTime": 6.081,
+        "endTime": 10.18,
+        "duration": 4.099,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "She translated every detail for her mother and helped her understand.",
+        "startTime": 10.18,
+        "endTime": 14.894,
+        "duration": 4.714,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "We need to give Maria ice and medicine. Maria feels happy because there are no sports for a while. She felt happy because she helped her family in a new way. The doctor smiled at Maria when they got ready to leave.",
+    "sentences": [
+      "We need to give Maria ice and medicine.",
+      "Maria feels happy because there are no sports for a while.",
+      "She felt happy because she helped her family in a new way.",
+      "The doctor smiled at Maria when they got ready to leave."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_28.mp3",
+    "duration": 14.957664,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "We need to give Maria ice and medicine.",
+        "startTime": 0,
+        "endTime": 2.765,
+        "duration": 2.765,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "Maria feels happy because there are no sports for a while.",
+        "startTime": 2.765,
+        "endTime": 6.876,
+        "duration": 4.112,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "She felt happy because she helped her family in a new way.",
+        "startTime": 6.876,
+        "endTime": 10.988,
+        "duration": 4.112,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "The doctor smiled at Maria when they got ready to leave.",
+        "startTime": 10.988,
+        "endTime": 14.958,
+        "duration": 3.97,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "He said you are a great translator. Maria felt proud because she helped her family a lot today. Hearing good words from the doctor makes her happy. She says thank you and feels very happy inside.",
+    "sentences": [
+      "He said you are a great translator.",
+      "Maria felt proud because she helped her family a lot today.",
+      "Hearing good words from the doctor makes her happy.",
+      "She says thank you and feels very happy inside."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_29.mp3",
+    "duration": 14.064739,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He said you are a great translator.",
+        "startTime": 0,
+        "endTime": 2.564,
+        "duration": 2.564,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "Maria felt proud because she helped her family a lot today.",
+        "startTime": 2.564,
+        "endTime": 6.886,
+        "duration": 4.322,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "Hearing good words from the doctor makes her happy.",
+        "startTime": 6.886,
+        "endTime": 10.622,
+        "duration": 3.736,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "She says thank you and feels very happy inside.",
+        "startTime": 10.622,
+        "endTime": 14.065,
+        "duration": 3.443,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "Maybe she is more than just a daughter. Maybe she is more than a student. She is important in this moment. Sofia said, \"Did you hear that, Maria.",
+    "sentences": [
+      "Maybe she is more than just a daughter.",
+      "Maybe she is more than a student.",
+      "She is important in this moment.",
+      "Sofia said, \"Did you hear that, Maria."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_30.mp3",
+    "duration": 9.979841,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maybe she is more than just a daughter.",
+        "startTime": 0,
+        "endTime": 2.659,
+        "duration": 2.659,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "Maybe she is more than a student.",
+        "startTime": 2.659,
+        "endTime": 4.908,
+        "duration": 2.25,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "She is important in this moment.",
+        "startTime": 4.908,
+        "endTime": 7.089,
+        "duration": 2.181,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "Sofia said, \"Did you hear that, Maria.",
+        "startTime": 7.089,
+        "endTime": 9.98,
+        "duration": 2.89,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "Maria smiled and felt joy inside her. She squeezed Sofia’s hand and felt proud and connected. Sofia is always happy and smiles a lot. Maria helps Sofia and holds her hand tightly when they leave.",
+    "sentences": [
+      "Maria smiled and felt joy inside her.",
+      "She squeezed Sofia’s hand and felt proud and connected.",
+      "Sofia is always happy and smiles a lot.",
+      "Maria helps Sofia and holds her hand tightly when they leave."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_31.mp3",
+    "duration": 14.523651,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria smiled and felt joy inside her.",
+        "startTime": 0,
+        "endTime": 2.799,
+        "duration": 2.799,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "She squeezed Sofia’s hand and felt proud and connected.",
+        "startTime": 2.799,
+        "endTime": 6.959,
+        "duration": 4.16,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "Sofia is always happy and smiles a lot.",
+        "startTime": 6.959,
+        "endTime": 9.909,
+        "duration": 2.95,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "Maria helps Sofia and holds her hand tightly when they leave.",
+        "startTime": 9.909,
+        "endTime": 14.524,
+        "duration": 4.614,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "Maria feels joy when her sister smiles. After that day, Maria feels different and thinks about it. She began to understand that translating is more than a job. It was a way to help her family and make them happy.",
+    "sentences": [
+      "Maria feels joy when her sister smiles.",
+      "After that day, Maria feels different and thinks about it.",
+      "She began to understand that translating is more than a job.",
+      "It was a way to help her family and make them happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_32.mp3",
+    "duration": 14.124104,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria feels joy when her sister smiles.",
+        "startTime": 0,
+        "endTime": 2.608,
+        "duration": 2.608,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "After that day, Maria feels different and thinks about it.",
+        "startTime": 2.608,
+        "endTime": 6.636,
+        "duration": 4.028,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "She began to understand that translating is more than a job.",
+        "startTime": 6.636,
+        "endTime": 10.647,
+        "duration": 4.012,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "It was a way to help her family and make them happy.",
+        "startTime": 10.647,
+        "endTime": 14.124,
+        "duration": 3.477,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "She practiced her English every day and spoke with friends. She wanted to be better and better. At school, she joined a club to help other students. It was a group that helped people talk and understand each other.",
+    "sentences": [
+      "She practiced her English every day and spoke with friends.",
+      "She wanted to be better and better.",
+      "At school, she joined a club to help other students.",
+      "It was a group that helped people talk and understand each other."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_33.mp3",
+    "duration": 13.577914,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She practiced her English every day and spoke with friends.",
+        "startTime": 0,
+        "endTime": 3.755,
+        "duration": 3.755,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "She wanted to be better and better.",
+        "startTime": 3.755,
+        "endTime": 5.982,
+        "duration": 2.227,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "At school, she joined a club to help other students.",
+        "startTime": 5.982,
+        "endTime": 9.441,
+        "duration": 3.459,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "It was a group that helped people talk and understand each other.",
+        "startTime": 9.441,
+        "endTime": 13.578,
+        "duration": 4.137,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "Maria tells her story about the hospital. Her friends listened and felt very impressed. One friend said Maria is very brave. Maria feels happy and encouraged.",
+    "sentences": [
+      "Maria tells her story about the hospital.",
+      "Her friends listened and felt very impressed.",
+      "One friend said Maria is very brave.",
+      "Maria feels happy and encouraged."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_34.mp3",
+    "duration": 11.510476,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria tells her story about the hospital.",
+        "startTime": 0,
+        "endTime": 3.045,
+        "duration": 3.045,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "Her friends listened and felt very impressed.",
+        "startTime": 3.045,
+        "endTime": 6.386,
+        "duration": 3.342,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "One friend said Maria is very brave.",
+        "startTime": 6.386,
+        "endTime": 9.06,
+        "duration": 2.673,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "Maria feels happy and encouraged.",
+        "startTime": 9.06,
+        "endTime": 11.51,
+        "duration": 2.451,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "She knows she can help others and not just her family. One afternoon, the club had a fun community event. They invited people to share their stories and speak different languages. Maria felt nervous and excited.",
+    "sentences": [
+      "She knows she can help others and not just her family.",
+      "One afternoon, the club had a fun community event.",
+      "They invited people to share their stories and speak different languages.",
+      "Maria felt nervous and excited."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_35.mp3",
+    "duration": 15.655873,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She knows she can help others and not just her family.",
+        "startTime": 0,
+        "endTime": 4.026,
+        "duration": 4.026,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "One afternoon, the club had a fun community event.",
+        "startTime": 4.026,
+        "endTime": 7.903,
+        "duration": 3.877,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "They invited people to share their stories and speak different languages.",
+        "startTime": 7.903,
+        "endTime": 13.345,
+        "duration": 5.442,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "Maria felt nervous and excited.",
+        "startTime": 13.345,
+        "endTime": 15.656,
+        "duration": 2.311,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "She wanted to talk about her experience and feelings. When it was her turn, Maria stood up and felt nervous. Maria says hello to everyone. My name is Maria,\" she said with a shaking voice.",
+    "sentences": [
+      "She wanted to talk about her experience and feelings.",
+      "When it was her turn, Maria stood up and felt nervous.",
+      "Maria says hello to everyone.",
+      "My name is Maria,\" she said with a shaking voice."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_36.mp3",
+    "duration": 14.249274,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to talk about her experience and feelings.",
+        "startTime": 0,
+        "endTime": 3.996,
+        "duration": 3.996,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "When it was her turn, Maria stood up and felt nervous.",
+        "startTime": 3.996,
+        "endTime": 8.218,
+        "duration": 4.222,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "Maria says hello to everyone.",
+        "startTime": 8.218,
+        "endTime": 10.405,
+        "duration": 2.187,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "My name is Maria,\" she said with a shaking voice.",
+        "startTime": 10.405,
+        "endTime": 14.249,
+        "duration": 3.845,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "I want to tell a story about my sister. She fell and hurt her arm when she played. Maria translated for the doctor and felt more confident as she spoke. I was scared, but I did it anyway.",
+    "sentences": [
+      "I want to tell a story about my sister.",
+      "She fell and hurt her arm when she played.",
+      "Maria translated for the doctor and felt more confident as she spoke.",
+      "I was scared, but I did it anyway."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_37.mp3",
+    "duration": 14.068639,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I want to tell a story about my sister.",
+        "startTime": 0,
+        "endTime": 2.95,
+        "duration": 2.95,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "She fell and hurt her arm when she played.",
+        "startTime": 2.95,
+        "endTime": 6.127,
+        "duration": 3.177,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "Maria translated for the doctor and felt more confident as she spoke.",
+        "startTime": 6.127,
+        "endTime": 11.347,
+        "duration": 5.219,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "I was scared, but I did it anyway.",
+        "startTime": 11.347,
+        "endTime": 14.069,
+        "duration": 2.722,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "I helped my family when they needed me, and the room was quiet. When she finished, the people clapped and smiled. Some people came to talk to her and help her. They said, 'You did great, Maria.",
+    "sentences": [
+      "I helped my family when they needed me, and the room was quiet.",
+      "When she finished, the people clapped and smiled.",
+      "Some people came to talk to her and help her.",
+      "They said, 'You did great, Maria."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_38.mp3",
+    "duration": 14.279546,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I helped my family when they needed me, and the room was quiet.",
+        "startTime": 0,
+        "endTime": 4.686,
+        "duration": 4.686,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "When she finished, the people clapped and smiled.",
+        "startTime": 4.686,
+        "endTime": 8.364,
+        "duration": 3.678,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "Some people came to talk to her and help her.",
+        "startTime": 8.364,
+        "endTime": 11.604,
+        "duration": 3.24,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "They said, 'You did great, Maria.",
+        "startTime": 11.604,
+        "endTime": 14.28,
+        "duration": 2.676,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 159,
+    "text": "She felt proud and happy when she won. Maybe she is more than a daughter and a translator. She becomes a person who can make a change. Weeks later, Maria sits in her room and thinks about the hospital.",
+    "sentences": [
+      "She felt proud and happy when she won.",
+      "Maybe she is more than a daughter and a translator.",
+      "She becomes a person who can make a change.",
+      "Weeks later, Maria sits in her room and thinks about the hospital."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_39.mp3",
+    "duration": 15.266327,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt proud and happy when she won.",
+        "startTime": 0,
+        "endTime": 2.901,
+        "duration": 2.901,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "Maybe she is more than a daughter and a translator.",
+        "startTime": 2.901,
+        "endTime": 6.795,
+        "duration": 3.894,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "She becomes a person who can make a change.",
+        "startTime": 6.795,
+        "endTime": 10.078,
+        "duration": 3.283,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "Weeks later, Maria sits in her room and thinks about the hospital.",
+        "startTime": 10.078,
+        "endTime": 15.266,
+        "duration": 5.189,
+        "sentenceIndex": 159
+      }
+    ]
+  },
+  {
+    "bundleIndex": 40,
+    "startSentenceIndex": 160,
+    "endSentenceIndex": 163,
+    "text": "She remembered being scared but she pushed through. She translated for her family when it was very important. One day, her mother asked her to help with a meeting. Maria felt nervous again but remembered the doctor’s words.",
+    "sentences": [
+      "She remembered being scared but she pushed through.",
+      "She translated for her family when it was very important.",
+      "One day, her mother asked her to help with a meeting.",
+      "Maria felt nervous again but remembered the doctor’s words."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_40.mp3",
+    "duration": 15.447846,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She remembered being scared but she pushed through.",
+        "startTime": 0,
+        "endTime": 3.546,
+        "duration": 3.546,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "She translated for her family when it was very important.",
+        "startTime": 3.546,
+        "endTime": 7.51,
+        "duration": 3.964,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "One day, her mother asked her to help with a meeting.",
+        "startTime": 7.51,
+        "endTime": 11.345,
+        "duration": 3.835,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "Maria felt nervous again but remembered the doctor’s words.",
+        "startTime": 11.345,
+        "endTime": 15.448,
+        "duration": 4.103,
+        "sentenceIndex": 163
+      }
+    ]
+  },
+  {
+    "bundleIndex": 41,
+    "startSentenceIndex": 164,
+    "endSentenceIndex": 167,
+    "text": "Maria helps her mother by translating at the meeting. She felt strong and ready for anything. Each word she said made her more confident. When the meeting finished, her mother hugged her.",
+    "sentences": [
+      "Maria helps her mother by translating at the meeting.",
+      "She felt strong and ready for anything.",
+      "Each word she said made her more confident.",
+      "When the meeting finished, her mother hugged her."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_41.mp3",
+    "duration": 13.787075,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria helps her mother by translating at the meeting.",
+        "startTime": 0,
+        "endTime": 3.928,
+        "duration": 3.928,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "She felt strong and ready for anything.",
+        "startTime": 3.928,
+        "endTime": 6.819,
+        "duration": 2.89,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "Each word she said made her more confident.",
+        "startTime": 6.819,
+        "endTime": 10.005,
+        "duration": 3.187,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "When the meeting finished, her mother hugged her.",
+        "startTime": 10.005,
+        "endTime": 13.787,
+        "duration": 3.782,
+        "sentenceIndex": 167
+      }
+    ]
+  },
+  {
+    "bundleIndex": 42,
+    "startSentenceIndex": 168,
+    "endSentenceIndex": 171,
+    "text": "I am very proud of you, Maria. Maria smiled and felt warm in her heart. She realized she is more than a daughter and a translator. She was a link between two different worlds.",
+    "sentences": [
+      "I am very proud of you, Maria.",
+      "Maria smiled and felt warm in her heart.",
+      "She realized she is more than a daughter and a translator.",
+      "She was a link between two different worlds."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_42.mp3",
+    "duration": 13.048413,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I am very proud of you, Maria.",
+        "startTime": 0,
+        "endTime": 2.4,
+        "duration": 2.4,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "Maria smiled and felt warm in her heart.",
+        "startTime": 2.4,
+        "endTime": 5.399,
+        "duration": 3,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "She realized she is more than a daughter and a translator.",
+        "startTime": 5.399,
+        "endTime": 9.749,
+        "duration": 4.349,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "She was a link between two different worlds.",
+        "startTime": 9.749,
+        "endTime": 13.048,
+        "duration": 3.3,
+        "sentenceIndex": 171
+      }
+    ]
+  },
+  {
+    "bundleIndex": 43,
+    "startSentenceIndex": 172,
+    "endSentenceIndex": 175,
+    "text": "She can help her family and other people. She had courage and learned something new every day. In that moment, Maria knew she had strength and felt brave. She can face any challenge and be strong.",
+    "sentences": [
+      "She can help her family and other people.",
+      "She had courage and learned something new every day.",
+      "In that moment, Maria knew she had strength and felt brave.",
+      "She can face any challenge and be strong."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_43.mp3",
+    "duration": 12.931678,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She can help her family and other people.",
+        "startTime": 0,
+        "endTime": 2.715,
+        "duration": 2.715,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "She had courage and learned something new every day.",
+        "startTime": 2.715,
+        "endTime": 6.159,
+        "duration": 3.444,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "In that moment, Maria knew she had strength and felt brave.",
+        "startTime": 6.159,
+        "endTime": 10.216,
+        "duration": 4.057,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "She can face any challenge and be strong.",
+        "startTime": 10.216,
+        "endTime": 12.932,
+        "duration": 2.715,
+        "sentenceIndex": 175
+      }
+    ]
+  },
+  {
+    "bundleIndex": 44,
+    "startSentenceIndex": 176,
+    "endSentenceIndex": 179,
+    "text": "She was brave and helped her family when they needed her. Maria is ready to help her family and herself as a translator. Maria lay in bed and thought about her journey that night. She knew more challenges were coming, but she felt ready.",
+    "sentences": [
+      "She was brave and helped her family when they needed her.",
+      "Maria is ready to help her family and herself as a translator.",
+      "Maria lay in bed and thought about her journey that night.",
+      "She knew more challenges were coming, but she felt ready."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_44.mp3",
+    "duration": 17.503991,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She was brave and helped her family when they needed her.",
+        "startTime": 0,
+        "endTime": 4.227,
+        "duration": 4.227,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "Maria is ready to help her family and herself as a translator.",
+        "startTime": 4.227,
+        "endTime": 8.825,
+        "duration": 4.598,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "Maria lay in bed and thought about her journey that night.",
+        "startTime": 8.825,
+        "endTime": 13.127,
+        "duration": 4.301,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "She knew more challenges were coming, but she felt ready.",
+        "startTime": 13.127,
+        "endTime": 17.504,
+        "duration": 4.377,
+        "sentenceIndex": 179
+      }
+    ]
+  },
+  {
+    "bundleIndex": 45,
+    "startSentenceIndex": 180,
+    "endSentenceIndex": 183,
+    "text": "She was a girl who translated words and made a difference. That thought gave her hope and made her strong. Maria closed her eyes and felt proud to face what comes. She is a lifeline for her family and helps those in need.",
+    "sentences": [
+      "She was a girl who translated words and made a difference.",
+      "That thought gave her hope and made her strong.",
+      "Maria closed her eyes and felt proud to face what comes.",
+      "She is a lifeline for her family and helps those in need."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_45.mp3",
+    "duration": 16.15,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She was a girl who translated words and made a difference.",
+        "startTime": 0,
+        "endTime": 4.297,
+        "duration": 4.297,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "That thought gave her hope and made her strong.",
+        "startTime": 4.297,
+        "endTime": 7.779,
+        "duration": 3.482,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "Maria closed her eyes and felt proud to face what comes.",
+        "startTime": 7.779,
+        "endTime": 11.927,
+        "duration": 4.149,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "She is a lifeline for her family and helps those in need.",
+        "startTime": 11.927,
+        "endTime": 16.15,
+        "duration": 4.223,
+        "sentenceIndex": 183
+      }
+    ]
+  },
+  {
+    "bundleIndex": 46,
+    "startSentenceIndex": 184,
+    "endSentenceIndex": 184,
+    "text": "She knew that she was strong enough to do it.",
+    "sentences": [
+      "She knew that she was strong enough to do it."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/bundle_46.mp3",
+    "duration": 2.600295,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She knew that she was strong enough to do it.",
+        "startTime": 0,
+        "endTime": 2.6,
+        "duration": 2.6,
+        "sentenceIndex": 184
+      }
+    ]
+  }
+]

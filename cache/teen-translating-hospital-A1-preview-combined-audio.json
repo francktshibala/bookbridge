@@ -1,0 +1,110 @@
+{
+  "storyId": "teen-translating-hospital",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teen-translating-hospital/A1/preview-combined.mp3",
+    "duration": 78.261293,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 8.383,
+        "duration": 8.383,
+        "text": "About This Story\n\nIn this inspiring story, a young teen becomes her family's translator during a medical emergency."
+      },
+      {
+        "startTime": 8.383,
+        "endTime": 15.048,
+        "duration": 6.665,
+        "text": "When her sister needs help at the hospital, she must translate between English and Spanish."
+      },
+      {
+        "startTime": 15.048,
+        "endTime": 19.415,
+        "duration": 4.367,
+        "text": "She feels scared but steps up when her family needs her most."
+      },
+      {
+        "startTime": 19.415,
+        "endTime": 26.301,
+        "duration": 6.886,
+        "text": "This is a powerful message about courage, responsibility, and discovering your own strength."
+      },
+      {
+        "startTime": 26.301,
+        "endTime": 28.377,
+        "duration": 2.076,
+        "text": "The doctor's words came fast."
+      },
+      {
+        "startTime": 28.377,
+        "endTime": 31.17,
+        "duration": 2.792,
+        "text": "Medical terms she'd never heard before."
+      },
+      {
+        "startTime": 31.17,
+        "endTime": 36.051,
+        "duration": 4.882,
+        "text": "Her mother's eyes, wide with fear, waiting for her to translate."
+      },
+      {
+        "startTime": 36.051,
+        "endTime": 39.273,
+        "duration": 3.222,
+        "text": "One wrong word could mean the wrong medicine."
+      },
+      {
+        "startTime": 39.273,
+        "endTime": 44.499,
+        "duration": 5.226,
+        "text": "One missed detail could mean her sister wouldn't get the help she needed."
+      },
+      {
+        "startTime": 44.499,
+        "endTime": 46.725,
+        "duration": 2.226,
+        "text": "At 14, she had to be perfect."
+      },
+      {
+        "startTime": 46.725,
+        "endTime": 48.945,
+        "duration": 2.219,
+        "text": "There was no room for mistakes."
+      },
+      {
+        "startTime": 48.945,
+        "endTime": 54.013,
+        "duration": 5.068,
+        "text": "This is the moment she realized: she wasn't just a daughter anymore."
+      },
+      {
+        "startTime": 54.013,
+        "endTime": 55.373,
+        "duration": 1.36,
+        "text": "She was a lifeline."
+      },
+      {
+        "startTime": 55.373,
+        "endTime": 65.225,
+        "duration": 9.852,
+        "text": "In immigrant families across America, millions of children become \"language brokers\"—translating for parents who don't speak English."
+      },
+      {
+        "startTime": 65.225,
+        "endTime": 71.89,
+        "duration": 6.665,
+        "text": "When medical emergencies happen, these young translators face life-or-death responsibility."
+      },
+      {
+        "startTime": 71.89,
+        "endTime": 78.261,
+        "duration": 6.372,
+        "text": "This is the story of one teen who stepped up in a crisis and discovered her own strength."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-08T04:13:04.880Z",
+  "timingMethod": "enhanced-timing-v3"
+}

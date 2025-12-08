@@ -1,0 +1,61 @@
+{
+  "themes": [
+    "language barriers",
+    "medical emergencies",
+    "teen advocacy",
+    "confidence building"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "parents' emergency",
+      "emotionalWeight": "high"
+    },
+    {
+      "moment": "teen realizes she must translate",
+      "emotionalWeight": "medium"
+    },
+    {
+      "moment": "fear of mistakes",
+      "emotionalWeight": "high"
+    },
+    {
+      "moment": "first successful translation",
+      "emotionalWeight": "medium"
+    },
+    {
+      "moment": "doctor's recognition",
+      "emotionalWeight": "medium"
+    },
+    {
+      "moment": "confidence building",
+      "emotionalWeight": "high"
+    },
+    {
+      "moment": "realization of strength",
+      "emotionalWeight": "medium"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "May 18, 2022",
+      "May 19, 2006",
+      "July 30, 2020"
+    ],
+    "locations": [
+      "California",
+      "Philadelphia",
+      "Peninsula Bay Area"
+    ],
+    "names": [
+      "Umme Orthy",
+      "Suzy Ramirez",
+      "Leland Yee"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers",
+    "First-Time Courage",
+    "Building New Life",
+    "Connection Across Differences"
+  ]
+}

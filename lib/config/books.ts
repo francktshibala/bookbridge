@@ -210,6 +210,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-purple-500 to-indigo-600',
     abbreviation: 'HK'
   },
+  {
+    id: 'teen-translating-hospital',
+    title: 'A Lifeline: Teen Translating for Parents Through Hospital Chaos',
+    author: 'BookBridge',
+    description: 'A powerful story about a 14-year-old girl who becomes her family\'s translator during a medical emergency. When her sister needs help at the hospital, she must translate between English and Spanish. This inspiring narrative explores courage, responsibility, and discovering your own strength. A1 level with Jane voice.',
+    sentences: 185,
+    bundles: 47,
+    gradient: 'from-teal-500 to-cyan-600',
+    abbreviation: 'TT'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -284,6 +294,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'helen-keller': {
     'A1': '/api/helen-keller-a1/bundles'
   },
+  'teen-translating-hospital': {
+    'A1': '/api/teen-translating-hospital-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -307,6 +320,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'how-great-leaders-inspire-action': 'A1',  // Default to A1 for How Great Leaders Inspire Action (TED Talk)
   'always-a-family': 'A1',  // Default to A1 for Always a Family (StoryCorps)
   'helen-keller': 'A1',  // Default to A1 for Helen Keller - The Story of My Life (Memoir)
+  'teen-translating-hospital': 'A1',  // Default to A1 for Teen Translating for Parents Through Hospital Chaos (Modern Story)
 };
 
 // Get the correct CEFR level for a book
@@ -370,6 +384,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'how-great-leaders-inspire-action': ['A1', 'A2', 'B1'],  // A1 with Daniel, A2 with Jane, B1 with Sarah (TED Talk - Modern Voices collection)
   'always-a-family': ['A1', 'A2', 'B1'],  // A1 with Sarah, A2 with Jane, B1 with Daniel (StoryCorps - Modern Voices collection)
   'helen-keller': ['A1'],  // A1 with Jane (Memoir - Modern Voices collection)
+  'teen-translating-hospital': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
 };
 
 // Single-level books configuration

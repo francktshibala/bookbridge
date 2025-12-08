@@ -1,0 +1,79 @@
+SOURCE: NPR Youth Radio
+TITLE: Kids Interpreting Medical Information to Parents
+URL: https://www.npr.org/2006/05/19/5418069/kids-interpreting-medical-information-to-parents
+DATE: May 19, 2006
+TYPE: Radio transcript / News report
+
+SUMMARY:
+NPR Youth Radio report on California legislation to ban young people under 15 from interpreting in medical situations. Features 17-year-old Suzy Ramirez who interprets for her pregnant Spanish-speaking mother at clinics, and California Assemblyman Leland Yee (himself a former child interpreter) who proposed the legislation due to the stress and potential for errors.
+
+WHY RELEVANT:
+- Direct medical setting focus (clinic visits, pregnant mother)
+- Teen perspective (Suzy, age 17, interpreting since age 12)
+- Emotional weight of responsibility ("guilt and anxiety")
+- Policy implications (proposed legislation)
+- Life-or-death stakes (medication dosing example)
+
+---
+FULL TRANSCRIPT:
+
+MADELEINE BRAND, host:
+
+Here in California, lawmakers are considering a law that would ban young people from serving as interpreters in all medical situations. It would affect children who interpret for non-English speaking family members, usually parents, in doctors' offices and in hospitals. The bill's author says it puts too much stress on the children to get it right. But many affected families worry they have no alternative.
+
+Youth Radio's Antony Jauregui has more.
+
+ANTONY JAUREGUI reporting:
+
+Suzy Ramirez is 17 years old. Ever since she was 12, she's had to play interpreter between her mom and doctors.
+
+Ms. SUZY RAMIREZ: Yeah, they don't take me seriously at first. Like, why she have to be here? You know, she's a grown woman, you know. But I do have to be there.
+
+JAUREGUI: Today, Suzy is at a local clinic where nurses speak only English, and Suzy's pregnant mom speaks only Spanish.
+
+Ms. SUSANNA RAMIREZ (Suzy's Mother): (Foreign language spoken)
+
+Ms. SUZY RAMIREZ: Basically, they were just giving her medicine for her baby. And also, they give her like vitamin supplements. And she wasn't sure to take them like, you know, once after every meal, or once a day. So I went and I asked the lady, and she explained it to me. And it was once after she ate, at lunch. So that was good. If not, you could overdose if she would have take more. So, like (unintelligible) to understand it, and I could translate for her.
+
+JAUREGUI: Suzy is like a lot of kids I know in Los Angeles with immigrant parents. Interpreting for her parents is part of her daily life, but not everyone thinks it's a good idea.
+
+Assemblyman LELAND YEE (California): Kids don't have the vocabulary, nor the content knowledge about what they're translating.
+
+JAUREGUI: Leland Yee is a California State assemblyman. He's proposing a law to keep young people under 15 from interpreting in all medical situations.
+
+Assemblyman LEE: Well, I was always a rather nervous as to, when I was translating for my mother, you know, the guilt and the anxiety that you feel, whether or not that you do the right thing. Did you translate accurately? Did you harm your mother? Did you do anything wrong that might make your mother a little bit sicker than she should be?
+
+JAUREGUI: I definitely relate. I'll never forget this one time when someone in my family was in the hospital. All of a sudden, my mom was like, You have to translate. But what the doctors said confused me. And all my family kept saying was, Are you sure? Did they really say that?
+
+Assemblyman LEE: So often the information is translated inaccurately. The child themselves may not have the full grasp of the English language and therefore may not fully understand the information that has been shared with them. This is not good clinical practice.
+
+Dr. DEBBIE GLUBCHINSKI (Physician): My name is Debbie Glubchinski. I use to work in a practice where we had lots of patients from Vietnam and Cambodia. And I don't speak either of those languages.
+
+JAUREGUI: So Dr. Glubchinski would rely on a service from AT&T.
+
+Dr. GLUBCHINSKI: But it's very awkward to pass a phone back and forth between you and a patient, because especially if somebody is in the emergency room, or something like that, or they're in horrible, horrible pain. And you're asking a question, and then passing the phone back and forth. It's really quite awkward.
+
+JAUREGUI: Back at the clinic in Los Angeles, Suzy's mom says she's against any law that would require her to use a professional interpreter instead of her daughter.
+
+Ms. SUSANNA RAMIREZ: (Foreign language spoken)
+
+Ms. SUZY RAMIREZ: She thinks that her own child is a perfect person for translating, because sometimes she'll be watching like a boxing match and she'll notice that the professional translator won't say everything. And he'll miss parts of it. So she's like, He's professional, isn't he supposed to know everything? And she notices that they miss parts of it. And since I'm her daughter, we understand each other. And we like speak similar terms, so she feels more confident with me translating.
+
+JAUREGUI: If the new law passes, Susanna would be in a tight spot. Her daughter wouldn't be able to interpret for her anymore. But the clinic would not be required to find someone else who could.
+
+For NPR News, I'm Antony Jauregui.
+
+BRAND: And that story was produced by Youth Radio.
+
+Copyright © 2006 NPR. All rights reserved.
+
+---
+KEY EMOTIONAL MOMENTS FOR THEME EXTRACTION:
+
+1. "They don't take me seriously at first" - Teen facing adult skepticism
+2. "If not, you could overdose if she would have take more" - Life-or-death stakes
+3. "The guilt and the anxiety that you feel" - Emotional burden
+4. "Did you harm your mother?" - Fear of causing harm
+5. "All my family kept saying was, Are you sure? Did they really say that?" - Pressure and doubt
+6. "Since I'm her daughter, we understand each other" - Family bond/trust
+7. Reporter Antony Jauregui's personal connection - "I definitely relate"

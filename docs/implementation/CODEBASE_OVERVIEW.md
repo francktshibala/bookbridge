@@ -1865,15 +1865,36 @@ Users are requesting modern content, but partnerships (publishers, TED) are pend
     - **6 Documented Mistakes**: Prevention strategies from Power of Vulnerability implementation
   - **Why Essential**: Provides technical specifications needed to implement steps from Strategy File. Contains exact code examples, voice settings, and validation checks to prevent sync issues and runtime failures.
 
-#### **How to Use Both Files Together**
+**Story Discovery & Research Plan**:
+- **`/docs/research/MODERN_STORY_SOURCES_RESEARCH_PLAN.md`**
+  - **Purpose**: Comprehensive research plan for discovering and validating 50-100 modern story sources that meet BookBridge's emotional impact criteria
+  - **Key Content**:
+    - **3-Agent Research Methodology**: Source Discovery (Agent 1), Legal Compliance (Agent 2), ESL Content Strategy (Agent 3)
+    - **Research Objectives**: Identify 20+ sources, validate 50+ stories, ensure legal compliance, create implementation roadmap
+    - **Story Validation Criteria**: Step 0.25 (Source Material Check) and Step 0.5 (Emotional Impact Validation) requirements
+    - **Helen Keller Benchmark**: Gold standard example of exceptional story quality
+    - **Source Discovery Guidelines**: What makes a great source (story-driven, modern relevance, accessible, rich emotional moments)
+    - **Legal Safety Framework**: Extract themes (not text), rewrite as original narratives, ensure copyright compliance
+    - **ESL Resonance Validation**: 3+ multipliers required, theme diversity analysis, pilot story prioritization
+  - **Critical Features**:
+    - **Creative Exploration**: Encourages discovering unexpected sources beyond obvious ones
+    - **Legal Enabling**: Focuses on finding legal paths for sources, not rejecting them
+    - **Quality Gatekeeping**: Ensures stories meet Helen Keller-level emotional impact
+    - **Cross-References**: Links to Strategy File (Steps 0.25 & 0.5) and Implementation Guide (technical specs)
+  - **Why Essential**: Provides systematic methodology for discovering great stories before implementation. Ensures stories are validated for emotional impact and legal compliance before investing time in extraction and processing.
+
+#### **How to Use All Three Files Together**
 
 **Workflow**:
-1. **Start with Strategy File** (`MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`) → Follow 21-step checklist as roadmap
-2. **Reference Implementation Guide** (`MODERN_VOICES_IMPLEMENTATION_GUIDE.md`) → Get technical details when needed
-3. **Example**: Step 10.5 (Generate Bundle Audio) → Check Implementation Guide for exact voice IDs, FFmpeg commands, timing formulas
-4. **Example**: Step 13 (Create API Endpoint) → Check Implementation Guide for exact API response structure
+1. **Start with Research Plan** (`MODERN_STORY_SOURCES_RESEARCH_PLAN.md`) → Discover and validate stories (before Step 1)
+2. **Use Strategy File** (`MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`) → Follow 21-step checklist as roadmap (Steps 0.25 & 0.5 for validation, Steps 1-20 for implementation)
+3. **Reference Implementation Guide** (`MODERN_VOICES_IMPLEMENTATION_GUIDE.md`) → Get technical details when needed (Steps 4-15)
+4. **Example**: Finding stories → Use Research Plan for discovery methodology
+5. **Example**: Validating stories → Use Strategy File Steps 0.25 & 0.5 for validation criteria
+6. **Example**: Step 10.5 (Generate Bundle Audio) → Check Implementation Guide for exact voice IDs, FFmpeg commands, timing formulas
+7. **Example**: Step 13 (Create API Endpoint) → Check Implementation Guide for exact API response structure
 
-**No Conflicts**: Strategy File tells you WHAT to do (emotional framing, story selection), Implementation Guide tells you HOW to do it (technical specs, code examples). Both are needed for complete implementation.
+**No Conflicts**: Research Plan tells you WHERE to find stories (discovery), Strategy File tells you WHAT to do (emotional framing, story selection), Implementation Guide tells you HOW to do it (technical specs, code examples). All three are needed for complete workflow from discovery to deployment.
 
 #### **Key Strategic Elements**
 
