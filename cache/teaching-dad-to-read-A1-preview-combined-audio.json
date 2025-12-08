@@ -1,0 +1,68 @@
+{
+  "storyId": "teaching-dad-to-read",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/preview-combined.mp3",
+    "duration": 89.259252,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 8.292,
+        "duration": 8.292,
+        "text": "A heartwarming story of an eight-year-old girl who becomes her father's teacher, helping him learn to read English."
+      },
+      {
+        "startTime": 8.292,
+        "endTime": 18.018,
+        "duration": 9.725,
+        "text": "Through patience, love, and determination, they discover that learning together can heal relationships and build unbreakable bonds."
+      },
+      {
+        "startTime": 18.018,
+        "endTime": 23.399,
+        "duration": 5.381,
+        "text": "This inspiring tale shows how courage and compassion can transform a family."
+      },
+      {
+        "startTime": 23.399,
+        "endTime": 35.664,
+        "duration": 12.266,
+        "text": "Sitting in the dim light of their cramped kitchen, eight-year-old Mia watched her father struggle with the words on the page, the shame etched deep in his furrowed brow."
+      },
+      {
+        "startTime": 35.664,
+        "endTime": 46.127,
+        "duration": 10.462,
+        "text": "Each faltering attempt made her heart ache; he was the hero of her world, yet here he was, lost in a language that danced just out of reach."
+      },
+      {
+        "startTime": 46.127,
+        "endTime": 56.356,
+        "duration": 10.229,
+        "text": "But then, with a small, trembling voice, she offered to help—her little hands guiding his through the letters, igniting a spark of hope."
+      },
+      {
+        "startTime": 56.356,
+        "endTime": 66.356,
+        "duration": 10,
+        "text": "As the first word finally tumbled from his lips, their bond began to transform, revealing a world where they could learn from each other."
+      },
+      {
+        "startTime": 66.356,
+        "endTime": 76.498,
+        "duration": 10.142,
+        "text": "In many immigrant families, children often adapt to their new environment faster than their parents, leading to role reversals in learning."
+      },
+      {
+        "startTime": 76.498,
+        "endTime": 89.259,
+        "duration": 12.761,
+        "text": "This dynamic can create opportunities for intergenerational teaching, fostering empowerment and patience, while also highlighting themes of shame and breakthrough in education."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-08T08:12:57.469Z",
+  "timingMethod": "enhanced-timing-v3"
+}

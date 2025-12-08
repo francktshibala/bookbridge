@@ -1,0 +1,67 @@
+{
+  "themes": [
+    "intergenerational learning",
+    "role reversal",
+    "family dynamics",
+    "education",
+    "empowerment",
+    "patience",
+    "shame",
+    "breakthrough"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Parent's shame/embarrassment",
+      "emotionalWeight": "high"
+    },
+    {
+      "moment": "Child recognizing need",
+      "emotionalWeight": "medium"
+    },
+    {
+      "moment": "First teaching attempt",
+      "emotionalWeight": "medium"
+    },
+    {
+      "moment": "Hesitation/fear",
+      "emotionalWeight": "high"
+    },
+    {
+      "moment": "Breakthrough moment",
+      "emotionalWeight": "high"
+    },
+    {
+      "moment": "Growing confidence",
+      "emotionalWeight": "medium"
+    },
+    {
+      "moment": "Relationship transformation",
+      "emotionalWeight": "high"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "June 2022",
+      "October 8, 2025",
+      "October 6, 2025"
+    ],
+    "locations": [
+      "San Francisco",
+      "Arizona"
+    ],
+    "names": [
+      "Lucy Flores",
+      "Luciano Flores",
+      "Kimi Pu",
+      "Nicolás Pu"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers",
+    "First-Time Courage",
+    "Building New Life",
+    "Connection Across Differences",
+    "Overcoming 'Not Good Enough'",
+    "Family & Belonging"
+  ]
+}

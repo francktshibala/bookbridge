@@ -1,0 +1,1827 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Mia sat in the dark kitchen and watched her father struggle. The small kitchen smells good with roasted chicken and vegetables. The warm and delicious smell filled the air and made Mia feel hungry. Mia hears the clock tick softly and remembers their time together.",
+    "sentences": [
+      "Mia sat in the dark kitchen and watched her father struggle.",
+      "The small kitchen smells good with roasted chicken and vegetables.",
+      "The warm and delicious smell filled the air and made Mia feel hungry.",
+      "Mia hears the clock tick softly and remembers their time together."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_0.mp3",
+    "duration": 19.93322,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia sat in the dark kitchen and watched her father struggle.",
+        "startTime": 0,
+        "endTime": 4.582,
+        "duration": 4.582,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "The small kitchen smells good with roasted chicken and vegetables.",
+        "startTime": 4.582,
+        "endTime": 9.623,
+        "duration": 5.041,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "The warm and delicious smell filled the air and made Mia feel hungry.",
+        "startTime": 9.623,
+        "endTime": 14.893,
+        "duration": 5.27,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Mia hears the clock tick softly and remembers their time together.",
+        "startTime": 14.893,
+        "endTime": 19.933,
+        "duration": 5.041,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "She thinks of all the moments they shared as a family. The light from the bulb makes the room feel small and cozy. It is a safe space, filled with love and warmth. Her father looked serious and his hands shook a little.",
+    "sentences": [
+      "She thinks of all the moments they shared as a family.",
+      "The light from the bulb makes the room feel small and cozy.",
+      "It is a safe space, filled with love and warmth.",
+      "Her father looked serious and his hands shook a little."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_1.mp3",
+    "duration": 16.094943,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She thinks of all the moments they shared as a family.",
+        "startTime": 0,
+        "endTime": 3.986,
+        "duration": 3.986,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "The light from the bulb makes the room feel small and cozy.",
+        "startTime": 3.986,
+        "endTime": 8.342,
+        "duration": 4.355,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "It is a safe space, filled with love and warmth.",
+        "startTime": 8.342,
+        "endTime": 12.035,
+        "duration": 3.693,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "Her father looked serious and his hands shook a little.",
+        "startTime": 12.035,
+        "endTime": 16.095,
+        "duration": 4.06,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "He was her hero and taught her to ride a bike. She remembers how proud she felt when she learned. He feels lost in a language that is hard to understand. The book is in English, but he cannot read it.",
+    "sentences": [
+      "He was her hero and taught her to ride a bike.",
+      "She remembers how proud she felt when she learned.",
+      "He feels lost in a language that is hard to understand.",
+      "The book is in English, but he cannot read it."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_2.mp3",
+    "duration": 14.067143,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He was her hero and taught her to ride a bike.",
+        "startTime": 0,
+        "endTime": 3.25,
+        "duration": 3.25,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "She remembers how proud she felt when she learned.",
+        "startTime": 3.25,
+        "endTime": 6.782,
+        "duration": 3.532,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "He feels lost in a language that is hard to understand.",
+        "startTime": 6.782,
+        "endTime": 10.667,
+        "duration": 3.885,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "The book is in English, but he cannot read it.",
+        "startTime": 10.667,
+        "endTime": 14.067,
+        "duration": 3.4,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "Mia felt sad when she saw him struggle. She wished she could help him in some way. Mia feels sad when she sees her father struggle. She wants to help him because he helps her with fears.",
+    "sentences": [
+      "Mia felt sad when she saw him struggle.",
+      "She wished she could help him in some way.",
+      "Mia feels sad when she sees her father struggle.",
+      "She wants to help him because he helps her with fears."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_3.mp3",
+    "duration": 13.54449,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia felt sad when she saw him struggle.",
+        "startTime": 0,
+        "endTime": 2.887,
+        "duration": 2.887,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "She wished she could help him in some way.",
+        "startTime": 2.887,
+        "endTime": 5.995,
+        "duration": 3.109,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "Mia feels sad when she sees her father struggle.",
+        "startTime": 5.995,
+        "endTime": 9.548,
+        "duration": 3.553,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "She wants to help him because he helps her with fears.",
+        "startTime": 9.548,
+        "endTime": 13.544,
+        "duration": 3.997,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "But how can she do it? She was a small child and felt unsure. Mia remembers how David encouraged her to try new things. He always believed in her, even when she doubted herself.",
+    "sentences": [
+      "But how can she do it?",
+      "She was a small child and felt unsure.",
+      "Mia remembers how David encouraged her to try new things.",
+      "He always believed in her, even when she doubted herself."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_4.mp3",
+    "duration": 13.853537,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "But how can she do it?",
+        "startTime": 0,
+        "endTime": 1.733,
+        "duration": 1.733,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "She was a small child and felt unsure.",
+        "startTime": 1.733,
+        "endTime": 4.725,
+        "duration": 2.993,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "Mia remembers how David encouraged her to try new things.",
+        "startTime": 4.725,
+        "endTime": 9.214,
+        "duration": 4.489,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "He always believed in her, even when she doubted herself.",
+        "startTime": 9.214,
+        "endTime": 13.854,
+        "duration": 4.639,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "Mia spoke softly and asked, “Dad, do you want help?” Her voice was gentle and full of care. Mia saw hope and embarrassment in his messy dark hair. It was all over the place, just like his feelings. “Do you want to help me, Mia?” he asked, his eyes looking at her with surprise.",
+    "sentences": [
+      "Mia spoke softly and asked, “Dad, do you want help?” Her voice was gentle and full of care.",
+      "Mia saw hope and embarrassment in his messy dark hair.",
+      "It was all over the place, just like his feelings.",
+      "“Do you want to help me, Mia?” he asked, his eyes looking at her with surprise."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_5.mp3",
+    "duration": 22.60898,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia spoke softly and asked, “Dad, do you want help?” Her voice was gentle and full of care.",
+        "startTime": 0,
+        "endTime": 7.56,
+        "duration": 7.56,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "Mia saw hope and embarrassment in his messy dark hair.",
+        "startTime": 7.56,
+        "endTime": 11.868,
+        "duration": 4.308,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "It was all over the place, just like his feelings.",
+        "startTime": 11.868,
+        "endTime": 16.007,
+        "duration": 4.139,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "“Do you want to help me, Mia?” he asked, his eyes looking at her with surprise.",
+        "startTime": 16.007,
+        "endTime": 22.609,
+        "duration": 6.602,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "She nodded and felt a spark of hope in her chest. It was a tiny flame, but it felt big and bright inside her. “If Mia helps Dad, we can learn together and grow closer.” Mia believed in this idea with all her heart. Mia moved quickly and pulled her chair closer to him.",
+    "sentences": [
+      "She nodded and felt a spark of hope in her chest.",
+      "It was a tiny flame, but it felt big and bright inside her.",
+      "“If Mia helps Dad, we can learn together and grow closer.” Mia believed in this idea with all her heart.",
+      "Mia moved quickly and pulled her chair closer to him."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_6.mp3",
+    "duration": 21.897732,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She nodded and felt a spark of hope in her chest.",
+        "startTime": 0,
+        "endTime": 3.994,
+        "duration": 3.994,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "It was a tiny flame, but it felt big and bright inside her.",
+        "startTime": 3.994,
+        "endTime": 8.952,
+        "duration": 4.959,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "“If Mia helps Dad, we can learn together and grow closer.” Mia believed in this idea with all her heart.",
+        "startTime": 8.952,
+        "endTime": 17.578,
+        "duration": 8.626,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "Mia moved quickly and pulled her chair closer to him.",
+        "startTime": 17.578,
+        "endTime": 21.898,
+        "duration": 4.32,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "The wooden chair squeaked and broke the quiet in the room. Mia says, \"Okay.\" She felt determined to help her father. Mia points to the word \"cat\" in the book and smiles. “Look, Dad!",
+    "sentences": [
+      "The wooden chair squeaked and broke the quiet in the room.",
+      "Mia says, \"Okay.\" She felt determined to help her father.",
+      "Mia points to the word \"cat\" in the book and smiles.",
+      "“Look, Dad!"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_7.mp3",
+    "duration": 15.506259,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The wooden chair squeaked and broke the quiet in the room.",
+        "startTime": 0,
+        "endTime": 4.955,
+        "duration": 4.955,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "Mia says, \"Okay.\" She felt determined to help her father.",
+        "startTime": 4.955,
+        "endTime": 9.974,
+        "duration": 5.019,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "Mia points to the word \"cat\" in the book and smiles.",
+        "startTime": 9.974,
+        "endTime": 14.417,
+        "duration": 4.442,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "“Look, Dad!",
+        "startTime": 14.417,
+        "endTime": 15.506,
+        "duration": 1.09,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "This word is like our cat, Whiskers!” She felt excited to share this moment with him. Her father smiled back, a small smile that made Mia feel warm. He said softly that he should know this and feels regret. “I am your father and I love you,” he whispered, and Mia felt his love.",
+    "sentences": [
+      "This word is like our cat, Whiskers!” She felt excited to share this moment with him.",
+      "Her father smiled back, a small smile that made Mia feel warm.",
+      "He said softly that he should know this and feels regret.",
+      "“I am your father and I love you,” he whispered, and Mia felt his love."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_8.mp3",
+    "duration": 21.223764,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "This word is like our cat, Whiskers!” She felt excited to share this moment with him.",
+        "startTime": 0,
+        "endTime": 6.525,
+        "duration": 6.525,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "Her father smiled back, a small smile that made Mia feel warm.",
+        "startTime": 6.525,
+        "endTime": 11.324,
+        "duration": 4.8,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "He said softly that he should know this and feels regret.",
+        "startTime": 11.324,
+        "endTime": 15.599,
+        "duration": 4.275,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "“I am your father and I love you,” he whispered, and Mia felt his love.",
+        "startTime": 15.599,
+        "endTime": 21.224,
+        "duration": 5.625,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "Mia shakes her head and feels her heart race. “But you teach me many things and I learn a lot!” She felt proud of her father and his efforts. “You teach me to be brave and strong,” Mia added with a smile. Mia takes a deep breath and feels excited but scared.",
+    "sentences": [
+      "Mia shakes her head and feels her heart race.",
+      "“But you teach me many things and I learn a lot!” She felt proud of her father and his efforts.",
+      "“You teach me to be brave and strong,” Mia added with a smile.",
+      "Mia takes a deep breath and feels excited but scared."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_9.mp3",
+    "duration": 19.044331,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia shakes her head and feels her heart race.",
+        "startTime": 0,
+        "endTime": 3.334,
+        "duration": 3.334,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "“But you teach me many things and I learn a lot!” She felt proud of her father and his efforts.",
+        "startTime": 3.334,
+        "endTime": 10.373,
+        "duration": 7.039,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "“You teach me to be brave and strong,” Mia added with a smile.",
+        "startTime": 10.373,
+        "endTime": 15.117,
+        "duration": 4.744,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "Mia takes a deep breath and feels excited but scared.",
+        "startTime": 15.117,
+        "endTime": 19.044,
+        "duration": 3.927,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "This was a big moment for Mia and she felt happy. It felt like standing on a board and looking at the water. Would she jump or stay still because of her fears? Mia felt nervous when they began.",
+    "sentences": [
+      "This was a big moment for Mia and she felt happy.",
+      "It felt like standing on a board and looking at the water.",
+      "Would she jump or stay still because of her fears?",
+      "Mia felt nervous when they began."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_10.mp3",
+    "duration": 14.064014,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "This was a big moment for Mia and she felt happy.",
+        "startTime": 0,
+        "endTime": 3.627,
+        "duration": 3.627,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "It felt like standing on a board and looking at the water.",
+        "startTime": 3.627,
+        "endTime": 7.92,
+        "duration": 4.293,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "Would she jump or stay still because of her fears?",
+        "startTime": 7.92,
+        "endTime": 11.621,
+        "duration": 3.701,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "Mia felt nervous when they began.",
+        "startTime": 11.621,
+        "endTime": 14.064,
+        "duration": 2.443,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "What happens if she makes a mistake? What happens if her father does not understand her? Doubt filled Mia's mind like a dark cloud and made her shiver. She thought of all the times she felt afraid.",
+    "sentences": [
+      "What happens if she makes a mistake?",
+      "What happens if her father does not understand her?",
+      "Doubt filled Mia's mind like a dark cloud and made her shiver.",
+      "She thought of all the times she felt afraid."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_11.mp3",
+    "duration": 14.067075,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "What happens if she makes a mistake?",
+        "startTime": 0,
+        "endTime": 2.61,
+        "duration": 2.61,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "What happens if her father does not understand her?",
+        "startTime": 2.61,
+        "endTime": 6.308,
+        "duration": 3.698,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "Doubt filled Mia's mind like a dark cloud and made her shiver.",
+        "startTime": 6.308,
+        "endTime": 10.804,
+        "duration": 4.496,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "She thought of all the times she felt afraid.",
+        "startTime": 10.804,
+        "endTime": 14.067,
+        "duration": 3.263,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "Mia thinks she cannot explain well and feels her heart beat fast. She remembers her father telling her to be brave and face fears. “I can do this,” she whispers to herself and feels strong like a seed growing. Mia pointed to the next word.",
+    "sentences": [
+      "Mia thinks she cannot explain well and feels her heart beat fast.",
+      "She remembers her father telling her to be brave and face fears.",
+      "“I can do this,” she whispers to herself and feels strong like a seed growing.",
+      "Mia pointed to the next word."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_12.mp3",
+    "duration": 20.916032,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia thinks she cannot explain well and feels her heart beat fast.",
+        "startTime": 0,
+        "endTime": 5.719,
+        "duration": 5.719,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "She remembers her father telling her to be brave and face fears.",
+        "startTime": 5.719,
+        "endTime": 11.351,
+        "duration": 5.631,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "“I can do this,” she whispers to herself and feels strong like a seed growing.",
+        "startTime": 11.351,
+        "endTime": 18.364,
+        "duration": 7.013,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "Mia pointed to the next word.",
+        "startTime": 18.364,
+        "endTime": 20.916,
+        "duration": 2.552,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "“This word is 'dog,'” she said slowly, and her father looked worried. He opened his mouth, but at first, he said nothing. Then, he tried again. He said \"Dog,\" but his voice was quiet and shaky.",
+    "sentences": [
+      "“This word is 'dog,'” she said slowly, and her father looked worried.",
+      "He opened his mouth, but at first, he said nothing.",
+      "Then, he tried again.",
+      "He said \"Dog,\" but his voice was quiet and shaky."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_13.mp3",
+    "duration": 13.910113,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“This word is 'dog,'” she said slowly, and her father looked worried.",
+        "startTime": 0,
+        "endTime": 5.025,
+        "duration": 5.025,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "He opened his mouth, but at first, he said nothing.",
+        "startTime": 5.025,
+        "endTime": 8.817,
+        "duration": 3.792,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "Then, he tried again.",
+        "startTime": 8.817,
+        "endTime": 10.405,
+        "duration": 1.588,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "He said \"Dog,\" but his voice was quiet and shaky.",
+        "startTime": 10.405,
+        "endTime": 13.91,
+        "duration": 3.505,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "Mia clapped her hands and felt very happy. “Yes, Dad! You did it!” Mia says \"yes\" and feels happy. Her father looked at her and felt surprise and joy.",
+    "sentences": [
+      "Mia clapped her hands and felt very happy.",
+      "“Yes, Dad!",
+      "You did it!” Mia says \"yes\" and feels happy.",
+      "Her father looked at her and felt surprise and joy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_14.mp3",
+    "duration": 10.579592,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia clapped her hands and felt very happy.",
+        "startTime": 0,
+        "endTime": 2.98,
+        "duration": 2.98,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "“Yes, Dad!",
+        "startTime": 2.98,
+        "endTime": 3.839,
+        "duration": 0.859,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "You did it!” Mia says \"yes\" and feels happy.",
+        "startTime": 3.839,
+        "endTime": 6.961,
+        "duration": 3.122,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "Her father looked at her and felt surprise and joy.",
+        "startTime": 6.961,
+        "endTime": 10.58,
+        "duration": 3.618,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "“Did I really?” he asked, his eyes wide with wonder. Mia says \"yes\" again and feels happy. “You can learn, Dad, and I believe in you!” She felt proud of him. “We can learn together,” and her father grows more confident.",
+    "sentences": [
+      "“Did I really?” he asked, his eyes wide with wonder.",
+      "Mia says \"yes\" again and feels happy.",
+      "“You can learn, Dad, and I believe in you!” She felt proud of him.",
+      "“We can learn together,” and her father grows more confident."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_15.mp3",
+    "duration": 14.96059,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Did I really?” he asked, his eyes wide with wonder.",
+        "startTime": 0,
+        "endTime": 3.607,
+        "duration": 3.607,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "Mia says \"yes\" again and feels happy.",
+        "startTime": 3.607,
+        "endTime": 6.067,
+        "duration": 2.46,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "“You can learn, Dad, and I believe in you!” She felt proud of him.",
+        "startTime": 6.067,
+        "endTime": 10.755,
+        "duration": 4.688,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "“We can learn together,” and her father grows more confident.",
+        "startTime": 10.755,
+        "endTime": 14.961,
+        "duration": 4.206,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "They practiced every evening at the small table with a bright cloth. The cloth had colorful flowers that made them smile. Mia laughed when David made silly mistakes, and they felt happy. They cheer for each other and celebrate every small win.",
+    "sentences": [
+      "They practiced every evening at the small table with a bright cloth.",
+      "The cloth had colorful flowers that made them smile.",
+      "Mia laughed when David made silly mistakes, and they felt happy.",
+      "They cheer for each other and celebrate every small win."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_16.mp3",
+    "duration": 17.966122,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They practiced every evening at the small table with a bright cloth.",
+        "startTime": 0,
+        "endTime": 5.048,
+        "duration": 5.048,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "The cloth had colorful flowers that made them smile.",
+        "startTime": 5.048,
+        "endTime": 8.908,
+        "duration": 3.86,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "Mia laughed when David made silly mistakes, and they felt happy.",
+        "startTime": 8.908,
+        "endTime": 13.809,
+        "duration": 4.901,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "They cheer for each other and celebrate every small win.",
+        "startTime": 13.809,
+        "endTime": 17.966,
+        "duration": 4.157,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "Every little victory made their hearts shine. It was a joyful game of words and sounds in the evenings. One evening, Mia and David saw something big happen. They read a story about a brave princess and a dragon.",
+    "sentences": [
+      "Every little victory made their hearts shine.",
+      "It was a joyful game of words and sounds in the evenings.",
+      "One evening, Mia and David saw something big happen.",
+      "They read a story about a brave princess and a dragon."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_17.mp3",
+    "duration": 14.891474,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Every little victory made their hearts shine.",
+        "startTime": 0,
+        "endTime": 3.189,
+        "duration": 3.189,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "It was a joyful game of words and sounds in the evenings.",
+        "startTime": 3.189,
+        "endTime": 7.229,
+        "duration": 4.04,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "One evening, Mia and David saw something big happen.",
+        "startTime": 7.229,
+        "endTime": 11.064,
+        "duration": 3.835,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "They read a story about a brave princess and a dragon.",
+        "startTime": 11.064,
+        "endTime": 14.891,
+        "duration": 3.827,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "The pictures are bright and colorful, inviting Mia and David to imagine. Mia pointed to the word \"adventure\" and felt very excited. Her eyes sparkled with joy as she looked at her father. She asked David if he wants to try it and smiled.",
+    "sentences": [
+      "The pictures are bright and colorful, inviting Mia and David to imagine.",
+      "Mia pointed to the word \"adventure\" and felt very excited.",
+      "Her eyes sparkled with joy as she looked at her father.",
+      "She asked David if he wants to try it and smiled."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_18.mp3",
+    "duration": 18.215125,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The pictures are bright and colorful, inviting Mia and David to imagine.",
+        "startTime": 0,
+        "endTime": 5.709,
+        "duration": 5.709,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "Mia pointed to the word \"adventure\" and felt very excited.",
+        "startTime": 5.709,
+        "endTime": 10.186,
+        "duration": 4.478,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "Her eyes sparkled with joy as she looked at her father.",
+        "startTime": 10.186,
+        "endTime": 14.432,
+        "duration": 4.246,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "She asked David if he wants to try it and smiled.",
+        "startTime": 14.432,
+        "endTime": 18.215,
+        "duration": 3.783,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "“Can you read this word, Dad?” she said with hope. He took a deep breath, and Mia saw his serious eyes. She believed in him so much. He tries and sounds out the letters slowly on his path.",
+    "sentences": [
+      "“Can you read this word, Dad?” she said with hope.",
+      "He took a deep breath, and Mia saw his serious eyes.",
+      "She believed in him so much.",
+      "He tries and sounds out the letters slowly on his path."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_19.mp3",
+    "duration": 13.968776,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Can you read this word, Dad?” she said with hope.",
+        "startTime": 0,
+        "endTime": 3.844,
+        "duration": 3.844,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "He took a deep breath, and Mia saw his serious eyes.",
+        "startTime": 3.844,
+        "endTime": 7.836,
+        "duration": 3.992,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "She believed in him so much.",
+        "startTime": 7.836,
+        "endTime": 9.905,
+        "duration": 2.069,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "He tries and sounds out the letters slowly on his path.",
+        "startTime": 9.905,
+        "endTime": 13.969,
+        "duration": 4.064,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "His voice was soft at first, but then he grew stronger. He paused and took a deep breath to gather his strength. His voice is strong and sounds like a happy song. Mia jumped up and down and laughed like bubbles in a stream.",
+    "sentences": [
+      "His voice was soft at first, but then he grew stronger.",
+      "He paused and took a deep breath to gather his strength.",
+      "His voice is strong and sounds like a happy song.",
+      "Mia jumped up and down and laughed like bubbles in a stream."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_20.mp3",
+    "duration": 14.552154,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His voice was soft at first, but then he grew stronger.",
+        "startTime": 0,
+        "endTime": 3.751,
+        "duration": 3.751,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "He paused and took a deep breath to gather his strength.",
+        "startTime": 3.751,
+        "endTime": 7.417,
+        "duration": 3.666,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "His voice is strong and sounds like a happy song.",
+        "startTime": 7.417,
+        "endTime": 10.624,
+        "duration": 3.208,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "Mia jumped up and down and laughed like bubbles in a stream.",
+        "startTime": 10.624,
+        "endTime": 14.552,
+        "duration": 3.928,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "“You did it, Dad! I am very happy!” Her father smiles and lights up the room with joy. “I read it!” he exclaimed, and Mia felt proud. From that day, her father read more at night and felt good.",
+    "sentences": [
+      "“You did it, Dad!",
+      "I am very happy!” Her father smiles and lights up the room with joy.",
+      "“I read it!” he exclaimed, and Mia felt proud.",
+      "From that day, her father read more at night and felt good."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_21.mp3",
+    "duration": 14.732063,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“You did it, Dad!",
+        "startTime": 0,
+        "endTime": 1.428,
+        "duration": 1.428,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "I am very happy!” Her father smiles and lights up the room with joy.",
+        "startTime": 1.428,
+        "endTime": 6.539,
+        "duration": 5.111,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "“I read it!” he exclaimed, and Mia felt proud.",
+        "startTime": 6.539,
+        "endTime": 10.147,
+        "duration": 3.608,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "From that day, her father read more at night and felt good.",
+        "startTime": 10.147,
+        "endTime": 14.732,
+        "duration": 4.585,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "He helped Mia with her homework and made studying fun. They sit together at the table with books and papers. They talked about school, sharing stories of fun and challenges. The kitchen changed from a hard place to a happy space.",
+    "sentences": [
+      "He helped Mia with her homework and made studying fun.",
+      "They sit together at the table with books and papers.",
+      "They talked about school, sharing stories of fun and challenges.",
+      "The kitchen changed from a hard place to a happy space."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_22.mp3",
+    "duration": 15.759342,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He helped Mia with her homework and made studying fun.",
+        "startTime": 0,
+        "endTime": 3.73,
+        "duration": 3.73,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "They sit together at the table with books and papers.",
+        "startTime": 3.73,
+        "endTime": 7.39,
+        "duration": 3.661,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "They talked about school, sharing stories of fun and challenges.",
+        "startTime": 7.39,
+        "endTime": 11.961,
+        "duration": 4.57,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "The kitchen changed from a hard place to a happy space.",
+        "startTime": 11.961,
+        "endTime": 15.759,
+        "duration": 3.799,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "Mia felt warm inside when she saw her father’s confidence grow. He was a teacher who helped Mia with math and spelling. Mia and David build a new life and share many moments together. As the weeks passed, Mia and David's relationship grew in good ways.",
+    "sentences": [
+      "Mia felt warm inside when she saw her father’s confidence grow.",
+      "He was a teacher who helped Mia with math and spelling.",
+      "Mia and David build a new life and share many moments together.",
+      "As the weeks passed, Mia and David's relationship grew in good ways."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_23.mp3",
+    "duration": 19.532494,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia felt warm inside when she saw her father’s confidence grow.",
+        "startTime": 0,
+        "endTime": 4.904,
+        "duration": 4.904,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "He was a teacher who helped Mia with math and spelling.",
+        "startTime": 4.904,
+        "endTime": 9.185,
+        "duration": 4.281,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "Mia and David build a new life and share many moments together.",
+        "startTime": 9.185,
+        "endTime": 14.089,
+        "duration": 4.904,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "As the weeks passed, Mia and David's relationship grew in good ways.",
+        "startTime": 14.089,
+        "endTime": 19.532,
+        "duration": 5.443,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "They shared stories and dreams, opening up in new ways. Mia learned about her father’s adventures and challenges in another country. He told her about the streets, his friends, and his dreams. He described the colorful markets and the laughter of children.",
+    "sentences": [
+      "They shared stories and dreams, opening up in new ways.",
+      "Mia learned about her father’s adventures and challenges in another country.",
+      "He told her about the streets, his friends, and his dreams.",
+      "He described the colorful markets and the laughter of children."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_24.mp3",
+    "duration": 17.99458,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They shared stories and dreams, opening up in new ways.",
+        "startTime": 0,
+        "endTime": 3.964,
+        "duration": 3.964,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "Mia learned about her father’s adventures and challenges in another country.",
+        "startTime": 3.964,
+        "endTime": 9.234,
+        "duration": 5.27,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "He told her about the streets, his friends, and his dreams.",
+        "startTime": 9.234,
+        "endTime": 13.626,
+        "duration": 4.391,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "He described the colorful markets and the laughter of children.",
+        "startTime": 13.626,
+        "endTime": 17.995,
+        "duration": 4.369,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "He learned about her hopes and worries at school, like making friends. They became close and understood each other like flowers in the sun. One night, her father looked at Mia with pride and love. “Mia, you teach me many things and I learn a lot,” he said softly.",
+    "sentences": [
+      "He learned about her hopes and worries at school, like making friends.",
+      "They became close and understood each other like flowers in the sun.",
+      "One night, her father looked at Mia with pride and love.",
+      "“Mia, you teach me many things and I learn a lot,” he said softly."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_25.mp3",
+    "duration": 20.522268,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He learned about her hopes and worries at school, like making friends.",
+        "startTime": 0,
+        "endTime": 5.514,
+        "duration": 5.514,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "They became close and understood each other like flowers in the sun.",
+        "startTime": 5.514,
+        "endTime": 10.724,
+        "duration": 5.21,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "One night, her father looked at Mia with pride and love.",
+        "startTime": 10.724,
+        "endTime": 15.165,
+        "duration": 4.441,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "“Mia, you teach me many things and I learn a lot,” he said softly.",
+        "startTime": 15.165,
+        "endTime": 20.522,
+        "duration": 5.357,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "He thanked her for being patient and held her hand gently. Mia felt happy, and her eyes shone with tears. “Thank you, Dad, for teaching me and helping me.” Mia said, feeling grateful. “You showed me how to be brave and strong.” In that moment, they understood they were stronger together.",
+    "sentences": [
+      "He thanked her for being patient and held her hand gently.",
+      "Mia felt happy, and her eyes shone with tears.",
+      "“Thank you, Dad, for teaching me and helping me.” Mia said, feeling grateful.",
+      "“You showed me how to be brave and strong.” In that moment, they understood they were stronger together."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_26.mp3",
+    "duration": 22.393878,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He thanked her for being patient and held her hand gently.",
+        "startTime": 0,
+        "endTime": 4.405,
+        "duration": 4.405,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "Mia felt happy, and her eyes shone with tears.",
+        "startTime": 4.405,
+        "endTime": 8.048,
+        "duration": 3.643,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "“Thank you, Dad, for teaching me and helping me.” Mia said, feeling grateful.",
+        "startTime": 8.048,
+        "endTime": 14.346,
+        "duration": 6.298,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "“You showed me how to be brave and strong.” In that moment, they understood they were stronger together.",
+        "startTime": 14.346,
+        "endTime": 22.394,
+        "duration": 8.048,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "Their shame and hesitation were gone, and they felt connected. They created a bond full of love and learning for life. Mia learned that teaching her father is about connection and growth. Her father learned it is okay to ask for help and be strong.",
+    "sentences": [
+      "Their shame and hesitation were gone, and they felt connected.",
+      "They created a bond full of love and learning for life.",
+      "Mia learned that teaching her father is about connection and growth.",
+      "Her father learned it is okay to ask for help and be strong."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_27.mp3",
+    "duration": 19.964014,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Their shame and hesitation were gone, and they felt connected.",
+        "startTime": 0,
+        "endTime": 5.164,
+        "duration": 5.164,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "They created a bond full of love and learning for life.",
+        "startTime": 5.164,
+        "endTime": 9.612,
+        "duration": 4.448,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "Mia learned that teaching her father is about connection and growth.",
+        "startTime": 9.612,
+        "endTime": 15.112,
+        "duration": 5.499,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "Her father learned it is okay to ask for help and be strong.",
+        "startTime": 15.112,
+        "endTime": 19.964,
+        "duration": 4.852,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "Mia and David help each other and understand their feelings better. In the warm kitchen, Mia and her father felt close and happy. They are partners in learning and support each other. Mia and David look at the books and feel excited for adventures.",
+    "sentences": [
+      "Mia and David help each other and understand their feelings better.",
+      "In the warm kitchen, Mia and her father felt close and happy.",
+      "They are partners in learning and support each other.",
+      "Mia and David look at the books and feel excited for adventures."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_28.mp3",
+    "duration": 19.534195,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia and David help each other and understand their feelings better.",
+        "startTime": 0,
+        "endTime": 5.301,
+        "duration": 5.301,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "In the warm kitchen, Mia and her father felt close and happy.",
+        "startTime": 5.301,
+        "endTime": 10.277,
+        "duration": 4.976,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "They are partners in learning and support each other.",
+        "startTime": 10.277,
+        "endTime": 14.471,
+        "duration": 4.193,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "Mia and David look at the books and feel excited for adventures.",
+        "startTime": 14.471,
+        "endTime": 19.534,
+        "duration": 5.064,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "Every evening is a new chance and a new part of their story. They laughed, shared dreams, and read together. The kitchen is full of joy and shows their love and learning. Each word they read brings Mia and David closer together.",
+    "sentences": [
+      "Every evening is a new chance and a new part of their story.",
+      "They laughed, shared dreams, and read together.",
+      "The kitchen is full of joy and shows their love and learning.",
+      "Each word they read brings Mia and David closer together."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_29.mp3",
+    "duration": 16.740771,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Every evening is a new chance and a new part of their story.",
+        "startTime": 0,
+        "endTime": 4.384,
+        "duration": 4.384,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "They laughed, shared dreams, and read together.",
+        "startTime": 4.384,
+        "endTime": 8.118,
+        "duration": 3.734,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "The kitchen is full of joy and shows their love and learning.",
+        "startTime": 8.118,
+        "endTime": 12.576,
+        "duration": 4.457,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "Each word they read brings Mia and David closer together.",
+        "startTime": 12.576,
+        "endTime": 16.741,
+        "duration": 4.165,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "Mia and her father learn lessons for a better future. They turn the pages of their books and embrace new adventures. Mia and David sit by the window and read a storybook. The rain makes a soft sound that feels warm and nice.",
+    "sentences": [
+      "Mia and her father learn lessons for a better future.",
+      "They turn the pages of their books and embrace new adventures.",
+      "Mia and David sit by the window and read a storybook.",
+      "The rain makes a soft sound that feels warm and nice."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_30.mp3",
+    "duration": 15.991088,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia and her father learn lessons for a better future.",
+        "startTime": 0,
+        "endTime": 3.835,
+        "duration": 3.835,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "They turn the pages of their books and embrace new adventures.",
+        "startTime": 3.835,
+        "endTime": 8.321,
+        "duration": 4.486,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "Mia and David sit by the window and read a storybook.",
+        "startTime": 8.321,
+        "endTime": 12.156,
+        "duration": 3.835,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "The rain makes a soft sound that feels warm and nice.",
+        "startTime": 12.156,
+        "endTime": 15.991,
+        "duration": 3.835,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "Mia snuggles close to her father and rests her head on him. His shoulder is strong and comforting. The story is about a girl in a magical forest with talking creatures. Mia could picture the trees and the friendly animals.",
+    "sentences": [
+      "Mia snuggles close to her father and rests her head on him.",
+      "His shoulder is strong and comforting.",
+      "The story is about a girl in a magical forest with talking creatures.",
+      "Mia could picture the trees and the friendly animals."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_31.mp3",
+    "duration": 16.214921,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia snuggles close to her father and rests her head on him.",
+        "startTime": 0,
+        "endTime": 4.368,
+        "duration": 4.368,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "His shoulder is strong and comforting.",
+        "startTime": 4.368,
+        "endTime": 7.182,
+        "duration": 2.814,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "The story is about a girl in a magical forest with talking creatures.",
+        "startTime": 7.182,
+        "endTime": 12.291,
+        "duration": 5.109,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "Mia could picture the trees and the friendly animals.",
+        "startTime": 12.291,
+        "endTime": 16.215,
+        "duration": 3.924,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "As they read, her father’s voice was full of excitement. “Look at this, Mia! The girl is happy because she will meet the wise owl!” His eyes sparkled like stars. Mia sees David change from a shy man to a storyteller.",
+    "sentences": [
+      "As they read, her father’s voice was full of excitement.",
+      "“Look at this, Mia!",
+      "The girl is happy because she will meet the wise owl!” His eyes sparkled like stars.",
+      "Mia sees David change from a shy man to a storyteller."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_32.mp3",
+    "duration": 14.778322,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "As they read, her father’s voice was full of excitement.",
+        "startTime": 0,
+        "endTime": 3.957,
+        "duration": 3.957,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "“Look at this, Mia!",
+        "startTime": 3.957,
+        "endTime": 5.398,
+        "duration": 1.441,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "The girl is happy because she will meet the wise owl!” His eyes sparkled like stars.",
+        "startTime": 5.398,
+        "endTime": 11.108,
+        "duration": 5.71,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "Mia sees David change from a shy man to a storyteller.",
+        "startTime": 11.108,
+        "endTime": 14.778,
+        "duration": 3.671,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "His voice brings the story to life, and they both feel joy. They laughed and felt excited when they listened to the story. Mia feels very happy in that moment. Their journey brought Mia and David closer and made a strong bond.",
+    "sentences": [
+      "His voice brings the story to life, and they both feel joy.",
+      "They laughed and felt excited when they listened to the story.",
+      "Mia feels very happy in that moment.",
+      "Their journey brought Mia and David closer and made a strong bond."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_33.mp3",
+    "duration": 15.526576,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His voice brings the story to life, and they both feel joy.",
+        "startTime": 0,
+        "endTime": 4.218,
+        "duration": 4.218,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "They laughed and felt excited when they listened to the story.",
+        "startTime": 4.218,
+        "endTime": 8.493,
+        "duration": 4.275,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "Mia feels very happy in that moment.",
+        "startTime": 8.493,
+        "endTime": 10.976,
+        "duration": 2.482,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "Their journey brought Mia and David closer and made a strong bond.",
+        "startTime": 10.976,
+        "endTime": 15.527,
+        "duration": 4.551,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "When they finished the story, her father looked serious and soft. He asked Mia what she wants to be when she grows up. Mia thinks and her eyes shine with dreams. “I want to be a teacher and help children learn!” She said it like you and sounded very sure.",
+    "sentences": [
+      "When they finished the story, her father looked serious and soft.",
+      "He asked Mia what she wants to be when she grows up.",
+      "Mia thinks and her eyes shine with dreams.",
+      "“I want to be a teacher and help children learn!” She said it like you and sounded very sure."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_34.mp3",
+    "duration": 21.065351,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "When they finished the story, her father looked serious and soft.",
+        "startTime": 0,
+        "endTime": 5.545,
+        "duration": 5.545,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "He asked Mia what she wants to be when she grows up.",
+        "startTime": 5.545,
+        "endTime": 9.861,
+        "duration": 4.316,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "Mia thinks and her eyes shine with dreams.",
+        "startTime": 9.861,
+        "endTime": 13.347,
+        "duration": 3.486,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "“I want to be a teacher and help children learn!” She said it like you and sounded very sure.",
+        "startTime": 13.347,
+        "endTime": 21.065,
+        "duration": 7.719,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "Her father smiles wide and feels proud of her. “That is wonderful! You are a great teacher, Mia, and you help students.” He beamed with happiness and love. “You have a big heart,” he said and hugged her tightly.",
+    "sentences": [
+      "Her father smiles wide and feels proud of her.",
+      "“That is wonderful!",
+      "You are a great teacher, Mia, and you help students.” He beamed with happiness and love.",
+      "“You have a big heart,” he said and hugged her tightly."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_35.mp3",
+    "duration": 15.231927,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her father smiles wide and feels proud of her.",
+        "startTime": 0,
+        "endTime": 3.269,
+        "duration": 3.269,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "“That is wonderful!",
+        "startTime": 3.269,
+        "endTime": 4.619,
+        "duration": 1.35,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "You are a great teacher, Mia, and you help students.” He beamed with happiness and love.",
+        "startTime": 4.619,
+        "endTime": 11.173,
+        "duration": 6.554,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "“You have a big heart,” he said and hugged her tightly.",
+        "startTime": 11.173,
+        "endTime": 15.232,
+        "duration": 4.059,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "Mia and David know they build a hopeful future together. Mia and David laugh, learn, and love every evening together. The kitchen is a safe place where Mia and David read books. They made a promise to always help and support each other.",
+    "sentences": [
+      "Mia and David know they build a hopeful future together.",
+      "Mia and David laugh, learn, and love every evening together.",
+      "The kitchen is a safe place where Mia and David read books.",
+      "They made a promise to always help and support each other."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_36.mp3",
+    "duration": 16.249229,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia and David know they build a hopeful future together.",
+        "startTime": 0,
+        "endTime": 3.833,
+        "duration": 3.833,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "Mia and David laugh, learn, and love every evening together.",
+        "startTime": 3.833,
+        "endTime": 8.24,
+        "duration": 4.407,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "The kitchen is a safe place where Mia and David read books.",
+        "startTime": 8.24,
+        "endTime": 12.279,
+        "duration": 4.039,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "They made a promise to always help and support each other.",
+        "startTime": 12.279,
+        "endTime": 16.249,
+        "duration": 3.97,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "Mia felt proud when she saw her father do well. He talks more confidently with her and with others now. She saw him talk with neighbors and share stories with joy. Mia knows their journey continues with challenges, but they face it together.",
+    "sentences": [
+      "Mia felt proud when she saw her father do well.",
+      "He talks more confidently with her and with others now.",
+      "She saw him talk with neighbors and share stories with joy.",
+      "Mia knows their journey continues with challenges, but they face it together."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_37.mp3",
+    "duration": 18.337823,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Mia felt proud when she saw her father do well.",
+        "startTime": 0,
+        "endTime": 3.592,
+        "duration": 3.592,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "He talks more confidently with her and with others now.",
+        "startTime": 3.592,
+        "endTime": 7.795,
+        "duration": 4.203,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "She saw him talk with neighbors and share stories with joy.",
+        "startTime": 7.795,
+        "endTime": 12.304,
+        "duration": 4.509,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "Mia knows their journey continues with challenges, but they face it together.",
+        "startTime": 12.304,
+        "endTime": 18.338,
+        "duration": 6.034,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 154,
+    "text": "In the little kitchen, Mia and her father built dreams and love. Their story shows strong growth and the power of learning together. Every word and lesson made their lives beautiful and connected them.",
+    "sentences": [
+      "In the little kitchen, Mia and her father built dreams and love.",
+      "Their story shows strong growth and the power of learning together.",
+      "Every word and lesson made their lives beautiful and connected them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/teaching-dad-to-read/A1/bundle_38.mp3",
+    "duration": 14.277392,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "In the little kitchen, Mia and her father built dreams and love.",
+        "startTime": 0,
+        "endTime": 4.693,
+        "duration": 4.693,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "Their story shows strong growth and the power of learning together.",
+        "startTime": 4.693,
+        "endTime": 9.45,
+        "duration": 4.756,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "Every word and lesson made their lives beautiful and connected them.",
+        "startTime": 9.45,
+        "endTime": 14.277,
+        "duration": 4.827,
+        "sentenceIndex": 154
+      }
+    ]
+  }
+]

@@ -3,23 +3,36 @@
 ## Your Task
 Find 2-3 source articles/stories about children or young adults teaching their parents to read or learn English. Focus on emotionally impactful, story-driven narratives (not fact-driven articles).
 
-## Step 1: Find Primary Source
+## ⚠️ CRITICAL: How to Get Article Content
+
+**DO NOT use `web_fetch` or automatic article downloading** - this triggers copyright protection blocks (19+ failures experienced).
+
+**CORRECT WORKFLOW:**
+1. **Find URLs:** Search for and identify article URLs
+2. **Give URLs to User:** Provide URLs to the user (they'll copy articles from browser)
+3. **User Pastes Content:** User copies full article text from browser and pastes in chat
+4. **Save Files:** Immediately save pasted content to files
+
+**Why This Works:** Manual copy/paste bypasses copyright filters and works 100% of the time.
+
+## Step 1: Find Primary Source URLs
 
 **Stories Already Identified:**
 1. **Lucy Flores (GMA):** Preschool teacher teaching illiterate Mexican dad to read. TikTok following, father-daughter healing.
-   - URL: goodmorningamerica.com
    - Search for: "Lucy Flores teaching dad to read" OR "preschool teacher teaches father to read"
+   - Find URL from goodmorningamerica.com
 
 2. **Kimi Pu (TODAY):** 9-year-old teaching Guatemalan dad English. Viral TikTok "Kimi and Her Dad".
-   - URL: today.com
    - Search for: "Kimi Pu teaching dad English" OR "9-year-old teaches father English"
+   - Find URL from today.com
 
 **Action:**
-1. Search for and access the Lucy Flores story from GMA (goodmorningamerica.com)
-2. Copy the full article text (title + body)
-3. Save to: `cache/teaching-dad-to-read-source-1.txt`
+1. Search for article URLs (don't download yet)
+2. Provide URLs to user: "Found these URLs: [list URLs]"
+3. Wait for user to paste article content
+4. Save pasted content to: `cache/teaching-dad-to-read-source-1.txt`
 
-## Step 2: Find Additional Sources (1-2 more)
+## Step 2: Find Additional Source URLs (1-2 more)
 
 **Search Terms:**
 - "teaching parent to read" + "immigrant" OR "first generation"
@@ -34,9 +47,13 @@ Find 2-3 source articles/stories about children or young adults teaching their p
 - Academic case studies (extract themes only, don't copy text)
 
 **Action:**
-1. Find 1-2 additional sources (can include Kimi Pu story from TODAY if not used as primary)
-2. Save each to: `cache/teaching-dad-to-read-source-2.txt`, `cache/teaching-dad-to-read-source-3.txt`
-3. Ensure sources are story-driven (emotional journey) NOT fact-driven (just statistics or data)
+1. Find 1-2 additional source URLs (can include Kimi Pu story from TODAY if not used as primary)
+2. Provide URLs to user: "Found additional URLs: [list URLs]"
+3. Wait for user to paste article content for each source
+4. Save each pasted content to: `cache/teaching-dad-to-read-source-2.txt`, `cache/teaching-dad-to-read-source-3.txt`
+5. Ensure sources are story-driven (emotional journey) NOT fact-driven (just statistics or data)
+
+**⚠️ REMEMBER:** Never use `web_fetch` - always wait for user to paste content manually.
 
 ## Step 3: Verify Story Quality
 

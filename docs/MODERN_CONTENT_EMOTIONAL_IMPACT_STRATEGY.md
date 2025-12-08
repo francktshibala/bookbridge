@@ -1088,10 +1088,16 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
     - Specific sources to search (e.g., Chalkbeat, NPR, StoryCorps)
     - Where to save found sources: `cache/{story-id}-source-{number}.txt`
   - **Hand Instructions to Claude Code:** Copy instructions file content to Claude Code
-  - **Claude Code Finds Sources:** Claude Code searches web, finds articles/stories, saves text to cache files
+  - **⚠️ CRITICAL WORKFLOW:**
+    - **Claude Code Finds URLs:** Claude Code searches web and finds article URLs (does NOT download)
+    - **Claude Provides URLs:** Claude Code gives URLs to you: "Found these URLs: [list]"
+    - **You Copy Articles:** You manually copy full article text from browser (bypasses copyright filters)
+    - **You Paste to Claude:** Paste article content in chat to Claude Code
+    - **Claude Saves Files:** Claude Code immediately saves pasted content to cache files
+  - **Why Manual Copy/Paste:** Automatic `web_fetch` triggers copyright protection blocks (19+ failures experienced). Manual copy/paste works 100% of the time.
   - **Verify Sources Found:** Check that 2-3 sources are saved in cache directory
-  - **Why:** Claude Code has web access and can efficiently find multiple sources for legal compliance and richer thematic material
-  - **Example:** See `cache/teen-translating-hospital-SOURCE_INSTRUCTIONS.md` for format
+  - **Why:** Claude Code has web access to find URLs, manual copy ensures no blocks, multiple sources for legal compliance
+  - **Example:** See `cache/teaching-dad-to-read-SOURCE_INSTRUCTIONS.md` for format
 
 ### **Phase 1: Text Acquisition & Processing**
 - [ ] **Step 1: Extract Source Text** - **⚠️ CRITICAL: Complete Steps 0.25, 0.5, and 0.75 FIRST** - Get source content:
@@ -2362,23 +2368,35 @@ Churchill gave a speech during World War II saying Britain would never surrender
    - Create `cache/{story-id}-SOURCE_INSTRUCTIONS.md`
    - Include: Story topic, search terms, preferred source types (news, essays, academic), specific sources to search
    - Specify where to save: `cache/{story-id}-source-{number}.txt`
-   - **Example:** See `cache/teen-translating-hospital-SOURCE_INSTRUCTIONS.md`
+   - **Example:** See `cache/teaching-dad-to-read-SOURCE_INSTRUCTIONS.md`
 
 2. **Hand Instructions to Claude Code:**
    - Copy instruction file content to Claude Code
    - Claude Code has web access and can search efficiently
 
-3. **Claude Code Finds Sources:**
-   - Claude Code searches web, finds 2-3 articles/stories
-   - Saves text content to cache files: `cache/{story-id}-source-1.txt`, `cache/{story-id}-source-2.txt`, etc.
+3. **⚠️ CRITICAL: Claude Code Finds URLs (NOT Downloads):**
+   - Claude Code searches web and finds article URLs
+   - Claude Code provides URLs to you: "Found these URLs: [list URLs]"
+   - **DO NOT have Claude Code use `web_fetch`** - this triggers copyright protection blocks (19+ failures experienced)
 
-4. **Verify Sources Found:**
+4. **You Copy Articles Manually:**
+   - Open URLs in your browser
+   - Copy full article text (title + body) from browser
+   - Paste article content in chat to Claude Code
+
+5. **Claude Code Saves Files:**
+   - Claude Code immediately saves pasted content to cache files
+   - Files saved to: `cache/{story-id}-source-1.txt`, `cache/{story-id}-source-2.txt`, etc.
+
+6. **Verify Sources Found:**
    - Check cache directory for saved source files
    - Ensure 2-3 sources are found (for legal compliance)
 
-5. **Proceed to Step 1:**
+7. **Proceed to Step 1:**
    - Use found sources for theme extraction (Step 2.5)
    - Never copy text directly - extract themes only
+
+**Why Manual Copy/Paste:** Automatic article fetching triggers copyright filters. Manual copy/paste bypasses all blocks and works 100% of the time.
 
 **Why This Works:**
 - Claude Code has web access (we don't)
@@ -2408,10 +2426,16 @@ Churchill gave a speech during World War II saying Britain would never surrender
 3. **Step 0.75: Claude Code Collaboration (Finding Sources):**
    - **Create Source Instructions:** Create `cache/{story-id}-SOURCE_INSTRUCTIONS.md` with story topic, search terms, preferred sources
    - **Hand to Claude Code:** Copy instruction file content to Claude Code (has web access)
-   - **Claude Finds Sources:** Claude Code searches web, finds 2-3 articles/stories, saves to `cache/{story-id}-source-{number}.txt`
+   - **⚠️ CRITICAL WORKFLOW:**
+     - **Claude Finds URLs:** Claude Code searches web and finds article URLs (does NOT download)
+     - **Claude Provides URLs:** Claude Code gives URLs to you: "Found these URLs: [list]"
+     - **You Copy Articles:** You manually copy full article text from browser (bypasses copyright filters)
+     - **You Paste to Claude:** Paste article content in chat to Claude Code
+     - **Claude Saves Files:** Claude Code immediately saves pasted content to `cache/{story-id}-source-{number}.txt`
+   - **Why Manual Copy/Paste:** Automatic `web_fetch` triggers copyright protection blocks (19+ failures experienced). Manual copy/paste works 100% of the time.
    - **Verify Sources:** Check cache directory for saved source files
-   - **Example:** See `cache/teen-translating-hospital-SOURCE_INSTRUCTIONS.md` for format
-   - **Why:** Claude Code has web access and can efficiently find multiple sources for legal compliance
+   - **Example:** See `cache/teaching-dad-to-read-SOURCE_INSTRUCTIONS.md` for format
+   - **Why:** Claude Code has web access to find URLs, manual copy ensures no blocks, multiple sources for legal compliance
 4. **When you reach a technical step** → Open Implementation Guide for details
    - **Example:** Step 10.5 (Generate Bundle Audio) → Check Implementation Guide for exact voice IDs, FFmpeg commands, timing formulas
    - **Example:** Step 13 (Create API Endpoint) → Check Implementation Guide for exact API response structure

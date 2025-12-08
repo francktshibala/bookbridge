@@ -220,6 +220,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-teal-500 to-cyan-600',
     abbreviation: 'TT'
   },
+  {
+    id: 'teaching-dad-to-read',
+    title: 'First-Gen Student Teaching Dad to Read',
+    author: 'BookBridge',
+    description: 'A heartwarming story of an eight-year-old girl who becomes her father\'s teacher, helping him learn to read English. Through patience, love, and determination, they discover that learning together can heal relationships and build unbreakable bonds. This inspiring tale shows how courage and compassion can transform a family. A1 level with Daniel voice.',
+    sentences: 155,
+    bundles: 39,
+    gradient: 'from-orange-500 to-amber-600',
+    abbreviation: 'TD'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -297,6 +307,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'teen-translating-hospital': {
     'A1': '/api/teen-translating-hospital-a1/bundles'
   },
+  'teaching-dad-to-read': {
+    'A1': '/api/teaching-dad-to-read-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -321,6 +334,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'always-a-family': 'A1',  // Default to A1 for Always a Family (StoryCorps)
   'helen-keller': 'A1',  // Default to A1 for Helen Keller - The Story of My Life (Memoir)
   'teen-translating-hospital': 'A1',  // Default to A1 for Teen Translating for Parents Through Hospital Chaos (Modern Story)
+  'teaching-dad-to-read': 'A1',  // Default to A1 for First-Gen Student Teaching Dad to Read (Modern Story)
 };
 
 // Get the correct CEFR level for a book
@@ -385,6 +399,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'always-a-family': ['A1', 'A2', 'B1'],  // A1 with Sarah, A2 with Jane, B1 with Daniel (StoryCorps - Modern Voices collection)
   'helen-keller': ['A1'],  // A1 with Jane (Memoir - Modern Voices collection)
   'teen-translating-hospital': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'teaching-dad-to-read': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
 };
 
 // Single-level books configuration

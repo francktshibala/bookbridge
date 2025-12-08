@@ -2,7 +2,7 @@
 
 **Purpose**: Track completion status, key details, and learnings for each modern story implementation.
 
-**Last Updated**: 2025-01-08
+**Last Updated**: 2025-12-08
 
 ---
 
@@ -12,6 +12,7 @@
 |----------|-------|--------|---------|--------|--------|----|----|-----|---------------|--------------|-----------------|
 | `teen-translating-hospital` | A Lifeline: Teen Translating for Parents Through Hospital Chaos | BookBridge | Chalkbeat, NPR Youth Radio, KQED | Language Barriers, Medical Emergencies, Teen Advocacy, Confidence Building | ✅ Complete | ✅ | - | - | ~21 min | 47 | 2025-01-08 |
 | `helen-keller` | The Story of My Life | Helen Keller | Project Gutenberg (Chapters III-IV) | Perseverance, Education, Communication, Transformation | ✅ Complete | ✅ | - | - | ~16 min | 30 | 2025-01-08 |
+| `teaching-dad-to-read` | First-Gen Student Teaching Dad to Read | BookBridge | GMA, Motherly, TODAY | Intergenerational Learning, Role Reversal, Family Dynamics, Education, Empowerment | ✅ Complete | ✅ | - | - | ~21 min | 39 | 2025-12-08 |
 
 **Legend**:
 - ✅ Complete
@@ -183,6 +184,106 @@
 - Modernized text before simplification
 - Enhanced Timing v3 implemented for intro and bundles
 - Unified intro section approach validated
+
+---
+
+### 3. First-Gen Student Teaching Dad to Read
+
+**Story ID**: `teaching-dad-to-read`  
+**Title**: First-Gen Student Teaching Dad to Read  
+**Author**: BookBridge  
+**Collection**: Modern Voices  
+**Completion Date**: 2025-12-08
+
+#### Sources
+- **Primary**: Good Morning America - Lucy Flores story (preschool teacher teaching illiterate Mexican dad to read)
+- **Secondary**: Motherly - Kimi Pu story (9-year-old teaching Guatemalan dad English)
+- **Secondary**: TODAY.com - Kimi Pu story (official NBC article)
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - Story-driven (personal narratives, emotional journeys)
+  - Sufficient content for 20+ minute story
+  - Multiple sources for legal compliance (thematic extraction approach)
+  
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Shame → Recognition → Teaching → Breakthrough → Confidence
+  - 7 emotional moments identified
+  - 6 ESL resonance multipliers: Communication & Language Barriers, First-Time Courage, Building New Life, Connection Across Differences, Overcoming 'Not Good Enough', Family & Belonging
+
+#### Content Details
+- **Original Text**: AI-generated narrative based on extracted themes (2,333 words, B1/B2 level)
+- **A1 Simplified**: 155 sentences, 1,656 words (~21 minutes)
+- **Bundles**: 39 (4 sentences per bundle)
+- **Voice**: Daniel (onwK4e9ZLuTAKqWW03F9)
+- **Audio Speed**: 0.85× (FFmpeg slowdown)
+
+#### Implementation Steps Completed
+- ✅ Step 0.25: Source Material Check
+- ✅ Step 0.5: Emotional Impact Validation
+- ✅ Theme extraction from 3 sources
+- ✅ Background context written (30-50 words)
+- ✅ Emotional hook written (50-100 words)
+- ✅ Main story written (original narrative)
+- ✅ Story expansion (from 9 min to 23 min)
+- ✅ Step 2.1: Original Complexity Assessment (B1/B2)
+- ✅ A1 simplification (max 12 words/sentence, 1:1 mapping)
+- ✅ A1 expansion (from 17 min to 21 min)
+- ✅ Combined preview text and audio generation
+- ✅ Bundle audio generation (39 bundles)
+- ✅ Database integration
+- ✅ API endpoint creation
+- ✅ Frontend config update
+- ✅ FeaturedBook seeding
+
+#### Key Learnings
+1. **Story Expansion**: Initial AI-generated story was 9 minutes; used expansion script twice to reach 23 minutes (A2 level), then simplified to 17 minutes, then expanded A1 version to 21 minutes.
+
+2. **A1 Simplification Quality**: Average 10.6 words per sentence, with 35 sentences exceeding 12 words (max 16) - acceptable for A1 level while maintaining natural flow.
+
+3. **Daniel Voice**: Used Daniel voice instead of Jane for this story, demonstrating flexibility in voice selection based on story tone.
+
+4. **Generic Character Names**: Used "Mia" and "David" instead of real names from sources (Lucy Flores, Kimi Pu, etc.) to avoid copyright concerns.
+
+5. **Original Complexity Assessment**: Assessed original text as B1/B2 level, confirming suitability for A1 simplification.
+
+#### Technical Notes
+- **Audio Generation**: All 39 bundles generated successfully with Daniel voice
+- **Database**: 39 BookChunk records created with Enhanced Timing v3 metadata
+- **API**: Endpoint returns `previewCombined` and `previewCombinedAudio` with sentence timings
+- **Frontend**: Added to Modern Voices collection (position 8)
+
+#### Quality Metrics
+- **Emotional Engagement**: High (passes "text a friend" test)
+- **ESL Relevance**: High (6 resonance multipliers)
+- **Length**: ✅ Meets requirement (21 minutes for A1)
+- **Audio Quality**: ✅ Perfect sync with Enhanced Timing v3
+- **Sentence Quality**: ✅ Natural flow, mostly ≤12 words
+
+#### Files Created
+- `cache/teaching-dad-to-read-source-1.txt` (GMA)
+- `cache/teaching-dad-to-read-source-2.txt` (Motherly)
+- `cache/teaching-dad-to-read-source-3.txt` (TODAY)
+- `cache/teaching-dad-to-read-themes.json`
+- `cache/teaching-dad-to-read-background.txt`
+- `cache/teaching-dad-to-read-hook.txt`
+- `cache/teaching-dad-to-read-original.txt`
+- `cache/teaching-dad-to-read-A1-simplified.txt`
+- `cache/teaching-dad-to-read-A1-preview-combined.txt`
+- `cache/teaching-dad-to-read-A1-preview-combined-audio.json`
+- `cache/teaching-dad-to-read-A1-bundles-metadata.json`
+- `cache/teaching-dad-to-read-complexity-assessment.md`
+- `scripts/extract-teaching-dad-themes.js`
+- `scripts/write-teaching-dad-story.js`
+- `scripts/expand-teaching-dad-story.js`
+- `scripts/expand-teaching-dad-a1.js`
+- `scripts/simplify-teaching-dad.js`
+- `scripts/generate-teaching-dad-preview-combined.js`
+- `scripts/generate-teaching-dad-bundles.js`
+- `scripts/integrate-teaching-dad-database.ts`
+- `scripts/seed-teaching-dad.ts`
+- `app/api/teaching-dad-to-read-a1/bundles/route.ts`
 
 ---
 
