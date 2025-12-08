@@ -212,46 +212,38 @@ export async function GET(request: NextRequest) {
     const totalDurationMinutes = bundles.reduce((sum, b) => sum + b.totalDuration, 0) / 60;
     console.log(`🎵 Total audio duration: ${totalDurationMinutes.toFixed(2)} minutes`);
 
-    // Load preview text and audio from cache
-    let preview: string | null = null;
-    let previewAudio: { audioUrl: string; duration: number } | null = null;
-    let backgroundContext: string | null = null;
-    let emotionalHook: string | null = null;
+    // Load combined preview text and audio from cache (Preview + Hook + Background combined)
+    let previewCombined: string | null = null;
+    let previewCombinedAudio: { 
+      audioUrl: string; 
+      duration: number; 
+      sentenceTimings?: Array<{ startTime: number; endTime: number; duration: number; text: string }> | null 
+    } | null = null;
 
     const cacheDir = path.join(process.cwd(), 'cache');
 
-    // Load preview text
-    const previewTextPath = path.join(cacheDir, 'helen-keller-A1-preview.txt');
-    if (fs.existsSync(previewTextPath)) {
-      preview = fs.readFileSync(previewTextPath, 'utf8').trim();
-      console.log(`✅ Loaded preview text from cache (${preview.length} characters)`);
+    // Load combined preview text (Preview + Hook + Background)
+    const previewCombinedTextPath = path.join(cacheDir, 'helen-keller-A1-preview-combined.txt');
+    if (fs.existsSync(previewCombinedTextPath)) {
+      previewCombined = fs.readFileSync(previewCombinedTextPath, 'utf8').trim();
+      console.log(`✅ Loaded combined preview text from cache (${previewCombined.length} characters)`);
     }
 
-    // Load preview audio metadata
-    const previewAudioPath = path.join(cacheDir, 'helen-keller-A1-preview-audio.json');
-    if (fs.existsSync(previewAudioPath)) {
-      const audioMetadata = JSON.parse(fs.readFileSync(previewAudioPath, 'utf8'));
+    // Load combined preview audio metadata (Preview + Hook + Background)
+    const previewCombinedAudioPath = path.join(cacheDir, 'helen-keller-A1-preview-combined-audio.json');
+    if (fs.existsSync(previewCombinedAudioPath)) {
+      const audioMetadata = JSON.parse(fs.readFileSync(previewCombinedAudioPath, 'utf8'));
       if (audioMetadata.audio && audioMetadata.audio.url && audioMetadata.audio.duration) {
-        previewAudio = {
+        previewCombinedAudio = {
           audioUrl: audioMetadata.audio.url,
-          duration: audioMetadata.audio.duration
+          duration: audioMetadata.audio.duration,
+          sentenceTimings: audioMetadata.audio.sentenceTimings || null
         };
-        console.log('✅ Loaded preview audio metadata from cache');
+        console.log('✅ Loaded combined preview audio metadata from cache');
+        if (audioMetadata.audio.sentenceTimings) {
+          console.log(`   📊 Found ${audioMetadata.audio.sentenceTimings.length} pre-calculated sentence timings`);
+        }
       }
-    }
-
-    // Load background context
-    const backgroundContextPath = path.join(cacheDir, 'helen-keller-background.txt');
-    if (fs.existsSync(backgroundContextPath)) {
-      backgroundContext = fs.readFileSync(backgroundContextPath, 'utf8').trim();
-      console.log(`✅ Loaded background context from cache (${backgroundContext.length} characters)`);
-    }
-
-    // Load emotional hook
-    const emotionalHookPath = path.join(cacheDir, 'helen-keller-hook.txt');
-    if (fs.existsSync(emotionalHookPath)) {
-      emotionalHook = fs.readFileSync(emotionalHookPath, 'utf8').trim();
-      console.log(`✅ Loaded emotional hook from cache (${emotionalHook.length} characters)`);
     }
 
     return NextResponse.json({
@@ -264,10 +256,8 @@ export async function GET(request: NextRequest) {
       bundleCount: bundles.length,
       totalBundles: bundles.length,
       totalSentences: totalSentencesProcessed,
-      preview: preview,
-      previewAudio: previewAudio,
-      backgroundContext: backgroundContext,
-      emotionalHook: emotionalHook,
+      previewCombined: previewCombined,
+      previewCombinedAudio: previewCombinedAudio,
       audioType: 'elevenlabs'
     }, {
       status: 200,

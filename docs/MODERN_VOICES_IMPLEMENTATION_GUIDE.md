@@ -1,9 +1,37 @@
 # Modern Voices Implementation Guide (TED Talks, Podcasts, Essays)
 
-**Last Updated:** November 30, 2025 (Updated after A2 implementation)
+**Last Updated:** December 2025 (Updated with Enhanced Timing v3 for intro audio)
 **Purpose:** Document the workflow for adding modern content (TED Talks, podcasts, essays) to BookBridge, distinct from classical literature workflow.
 
-**Source of Truth:** Lessons learned from "The Power of Vulnerability" TED Talk implementation (A1 + A2, Nov 30, 2025)
+**Source of Truth:** Lessons learned from "The Power of Vulnerability" TED Talk implementation (A1 + A2, Nov 30, 2025) and Helen Keller story implementation (Dec 2025)
+
+---
+
+## 📚 **Related Documentation Files**
+
+**This file works alongside two other key documents:**
+
+1. **`docs/MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`** - Primary implementation checklist
+   - Use for: Complete 21-step workflow (Steps 0-20), story selection, emotional framing
+   - Contains: Step-by-step checklist, validation gates, emotional impact criteria
+   - **When to reference:** Start here for any new story implementation
+
+2. **`docs/research/MODERN_STORY_SOURCES_RESEARCH_PLAN.md`** - Story discovery and research plan
+   - Use for: Finding great stories, source discovery, validation criteria
+   - Contains: Research methodology, source evaluation, story validation (Step 0.25 & 0.5)
+   - **When to reference:** Before starting implementation (finding and validating stories)
+
+**How to Use Together:**
+- **MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY:** Follow Steps 0-20 as your primary roadmap
+- **This file (Implementation Guide):** Reference for technical details during Steps 4-15
+- **MODERN_STORY_SOURCES_RESEARCH_PLAN:** Reference for finding stories before Step 1
+
+**Cross-References:**
+- Phase 0 (Content Selection) → See `MODERN_STORY_SOURCES_RESEARCH_PLAN.md` for discovery methodology
+- Phase 3 (Preview Generation) → See `MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md` Step 8 for Enhanced Timing v3 details
+- Phase 4 (Audio Generation) → See `MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md` Step 10.5 for Enhanced Timing v3 specification
+
+---
 
 **Latest Updates:**
 - ✅ Added Phase 5: Database Integration (MANDATORY - prevents 404 errors)
@@ -148,23 +176,35 @@ node scripts/generate-{content-id}-preview.js [LEVEL]
 #   5. Impact/Transformation: "A [adjective] message about [outcome/learning]..."
 # - AVOID: Story plot elements, spoilers, overwhelming context, raw content copying
 #
-# ⚠️ PREVIEW AUDIO GENERATION:
+# ⚠️ COMBINED PREVIEW AUDIO GENERATION (WITH ENHANCED TIMING V3):
+# - Generate audio for ENTIRE combined text (preview + background + hook)
 # - Use same voice as full content (Jane for TED Talks)
 # - Apply FFmpeg 0.85× slowdown (production standard)
 # - Measure duration with ffprobe (Solution 1)
-# - Save to Supabase: {content-id}/{level}/preview.mp3
-# - Cache metadata: cache/{content-id}-{level}-preview-audio.json
+# - **CRITICAL: Calculate Enhanced Timing v3 sentence timings:**
+#   - Split combined intro text into sentences
+#   - Use same Enhanced Timing v3 algorithm as bundle generation
+#   - Character-count proportion (NOT word-count) - prevents sync issues
+#   - Punctuation penalties: commas (150ms), semicolons (250ms), colons (200ms), em-dashes (180ms), ellipses (120ms)
+#   - Pause-budget-first approach, renormalization to match measured duration exactly
+#   - Save sentence timings in metadata: sentenceTimings: [{ startTime, endTime, duration, text }]
+# - Save to Supabase: {content-id}/{level}/preview-combined.mp3
+# - Cache metadata: cache/{content-id}-{level}-preview-combined-audio.json (with sentenceTimings array)
+# - **Why:** Pre-calculated timings ensure perfect sync between highlighting and audio (matching main story)
 #
 # ✅ VALIDATION CHECKLIST (MANDATORY - Run before continuing):
-# 1. Check preview file exists: cache/{content-id}-{level}-preview.txt
-# 2. Check preview audio exists: cache/{content-id}-{level}-preview-audio.json
+# 1. Check combined preview file exists: cache/{content-id}-{level}-preview-combined.txt
+# 2. Check combined preview audio exists: cache/{content-id}-{level}-preview-combined-audio.json
 # 3. Check audio uploaded to Supabase storage bucket
-# 4. 🚨 CRITICAL: Read preview text and verify it's NOT raw content:
-cat cache/{content-id}-{level}-preview.txt
-#    ✅ PASS: Starts with "In this TED Talk..." or similar meta-description
+# 4. 🚨 CRITICAL: Read combined preview text and verify structure:
+cat cache/{content-id}-{level}-preview-combined.txt
+#    ✅ PASS: Starts with "In this TED Talk..." or similar meta-description (preview section)
+#    ✅ PASS: Contains preview text (meta-description style)
+#    ✅ PASS: Contains emotional hook (starts with struggle, NO "The Story Begins" title)
+#    ✅ PASS: Background context is separate (not in combined preview)
 #    ❌ FAIL: Starts with actual talk content (e.g., "I like to tell stories...")
-# 5. Check word count: Should be 50-75 words (NOT 100+ words)
-wc -w cache/{content-id}-{level}-preview.txt
+# 5. Check word count: Should be ~130-225 words total (preview + background + hook)
+wc -w cache/{content-id}-{level}-preview-combined.txt
 # 6. Check it matches CEFR level (A1 = simple, short sentences)
 # 7. Read it aloud - does it make you want to listen? (marketing test)
 #
@@ -297,19 +337,22 @@ npx tsx scripts/integrate-{content-id}-{level}-database.ts
 # - bundles: [...bundle data with Solution 1 timings...]
 # - bundleCount: 97
 # - totalSentences: 388
-# - preview: '...preview text...'  # REQUIRED for preview section
-# - previewAudio: { audioUrl: '...', duration: 24.35 }  # REQUIRED for audio player
+# - previewCombined: '...combined preview + hook text (no "The Story Begins" title)...'  # REQUIRED: Preview + Hook combined
+# - previewCombinedAudio: { audioUrl: '...', duration: 45.67 }  # REQUIRED: Audio for preview + hook
+# - backgroundContext: '...background context text...'  # REQUIRED: Background context (separate section)
+# - backgroundContextAudio: { audioUrl: '...', duration: 22.33 }  # REQUIRED: Audio for background context
 # - audioType: 'elevenlabs'
 #
-# CRITICAL: Load preview from cache (MANDATORY):
+# CRITICAL: Load combined preview from cache (MANDATORY - with sentence timings):
 # const cacheDir = path.join(process.cwd(), 'cache');
-# const previewTextPath = path.join(cacheDir, '{content-id}-{level}-preview.txt');
-# const previewAudioPath = path.join(cacheDir, '{content-id}-{level}-preview-audio.json');
-# if (fs.existsSync(previewAudioPath)) {
-#   const metadata = JSON.parse(fs.readFileSync(previewAudioPath, 'utf8'));
-#   previewAudio = {
+# const previewCombinedPath = path.join(cacheDir, '{content-id}-{level}-preview-combined.txt');
+# const previewCombinedAudioPath = path.join(cacheDir, '{content-id}-{level}-preview-combined-audio.json');
+# if (fs.existsSync(previewCombinedAudioPath)) {
+#   const metadata = JSON.parse(fs.readFileSync(previewCombinedAudioPath, 'utf8'));
+#   previewCombinedAudio = {
 #     audioUrl: metadata.audio.url,
-#     duration: metadata.audio.duration
+#     duration: metadata.audio.duration,
+#     sentenceTimings: metadata.audio.sentenceTimings || null  // REQUIRED: Pre-calculated Enhanced Timing v3 timings
 #   };
 # }
 ```

@@ -14,7 +14,7 @@
 
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { BundleAudioManager, type BundleData } from '@/lib/audio/BundleAudioManager';
 import AudioBookPlayer from '@/lib/audio/AudioBookPlayer';
@@ -52,42 +52,346 @@ import {
 } from '@/lib/config/chapters';
 // Note: Using Chapter type from ChapterModal (compatible with chapters.ts)
 
-// Preview Audio Player Component
-function PreviewAudioPlayer({ audioUrl, duration }: { audioUrl: string; duration: number }) {
+// Intro Section with Sentence-Level Highlighting and Sync
+function IntroSectionWithHighlighting({ 
+  combinedText, 
+  audioUrl, 
+  duration,
+  sentenceTimings: providedTimings
+}: { 
+  combinedText: string; 
+  audioUrl: string; 
+  duration: number;
+  sentenceTimings?: Array<{ startTime: number; endTime: number; duration: number; text: string }> | null;
+}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [currentSentenceIndex, setCurrentSentenceIndex] = useState(-1);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const textContainerRef = useRef<HTMLDivElement | null>(null);
+  const timeUpdateRef = useRef<number | undefined>(undefined);
+  const lastKnownIndexRef = useRef<number>(0);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastScrolledIndexRef = useRef<number>(-1);
+  const lastUpdateTimeRef = useRef<number>(0);
+  const UPDATE_THROTTLE_MS = 100; // Update every 100ms (10fps) instead of 60fps for smoother performance
 
+  // Split text into sentences
+  const sentences = React.useMemo(() => {
+    if (!combinedText) return [];
+    
+    // Remove "About This Story" title and split by sentences
+    const textWithoutTitle = combinedText.replace(/^About This Story\s*\n\n*/i, '');
+    const sentenceRegex = /([^.!?]+[.!?]+)/g;
+    const matches = textWithoutTitle.match(sentenceRegex) || [];
+    return matches.map((text, index) => ({
+      index,
+      text: text.trim(),
+      wordCount: text.trim().split(/\s+/).length
+    })).filter(s => s.text.length > 0);
+  }, [combinedText]);
+
+  // Use pre-calculated timings if available, otherwise calculate on the fly (fallback)
+  const sentenceTimings = React.useMemo(() => {
+    // PREFERRED: Use pre-calculated Enhanced Timing v3 timings from audio generation
+    if (providedTimings && providedTimings.length > 0) {
+      return providedTimings.map((timing, index) => ({
+        start: timing.startTime,
+        end: timing.endTime,
+        duration: timing.duration,
+        sentence: timing.text,
+        index: index
+      }));
+    }
+    
+    // FALLBACK: Calculate timings on the fly (less accurate)
+    if (sentences.length === 0 || duration === 0) return [];
+    
+    // Enhanced Timing v3: Character-count-based with punctuation penalties
+    const baseSecondsPerChar = 0.05; // Base rate for Jane voice (adjusted for 0.85× slowdown)
+    const speed = 0.85; // FFmpeg slowdown applied
+    
+    // Calculate total "weighted" characters (characters + punctuation bonuses)
+    let totalWeightedChars = 0;
+    const sentenceWeights = sentences.map((sentence) => {
+      const chars = sentence.text.length;
+      // Punctuation penalties (adds time for pauses)
+      const punctuationBonus = (sentence.text.match(/[.!?]/g) || []).length * 5; // 5 chars per punctuation
+      const weightedChars = chars + punctuationBonus;
+      totalWeightedChars += weightedChars;
+      return { sentence, weightedChars, chars };
+    });
+    
+    // Calculate timings proportionally based on weighted characters
+    let currentTime = 0;
+    return sentenceWeights.map(({ sentence, weightedChars }) => {
+      const ratio = weightedChars / totalWeightedChars;
+      const sentenceDuration = duration * ratio;
+      
+      const timing = {
+        start: currentTime,
+        end: currentTime + sentenceDuration,
+        duration: sentenceDuration,
+        sentence: sentence.text,
+        index: sentence.index
+      };
+      currentTime += sentenceDuration;
+      return timing;
+    });
+  }, [sentences, duration, providedTimings]);
+
+  // Find current sentence based on audio time
+  const findCurrentSentence = useCallback((time: number) => {
+    if (sentenceTimings.length === 0) return -1;
+    
+    const LOOKAHEAD_MS = 0.12; // 120ms look-ahead
+    const t = time + LOOKAHEAD_MS;
+    const lastIdx = lastKnownIndexRef.current;
+    
+    // Check last known position first
+    if (lastIdx < sentenceTimings.length && t >= sentenceTimings[lastIdx].start && t < sentenceTimings[lastIdx].end) {
+      return lastIdx;
+    }
+    
+    // Check neighbors
+    if (lastIdx + 1 < sentenceTimings.length && t >= sentenceTimings[lastIdx + 1].start && t < sentenceTimings[lastIdx + 1].end) {
+      lastKnownIndexRef.current = lastIdx + 1;
+      return lastIdx + 1;
+    }
+    if (lastIdx - 1 >= 0 && t >= sentenceTimings[lastIdx - 1].start && t < sentenceTimings[lastIdx - 1].end) {
+      lastKnownIndexRef.current = lastIdx - 1;
+      return lastIdx - 1;
+    }
+    
+    // Full scan
+    for (let i = 0; i < sentenceTimings.length; i++) {
+      if (t >= sentenceTimings[i].start && t < sentenceTimings[i].end) {
+        lastKnownIndexRef.current = i;
+        return i;
+      }
+    }
+    
+    // If past all sentences, return last sentence
+    if (t >= sentenceTimings[sentenceTimings.length - 1].end) {
+      lastKnownIndexRef.current = sentenceTimings.length - 1;
+      return sentenceTimings.length - 1;
+    }
+    
+    return -1;
+  }, [sentenceTimings]);
+
+  // Update time and highlighting (throttled for smooth performance)
+  const updateTimeAndHighlight = useCallback(() => {
+    if (!audioRef.current || !isPlaying) return;
+    
+    const now = performance.now();
+    // Throttle updates to 10fps (every 100ms) for smoother performance
+    if (now - lastUpdateTimeRef.current < UPDATE_THROTTLE_MS) {
+      timeUpdateRef.current = requestAnimationFrame(updateTimeAndHighlight);
+      return;
+    }
+    lastUpdateTimeRef.current = now;
+    
+    const time = audioRef.current.currentTime;
+    setCurrentTime(time);
+    
+    const newSentenceIndex = findCurrentSentence(time);
+    if (newSentenceIndex !== currentSentenceIndex && newSentenceIndex >= 0) {
+      setCurrentSentenceIndex(newSentenceIndex);
+      
+      // Auto-scroll to current sentence (debounced and only when needed)
+      if (textContainerRef.current && newSentenceIndex !== lastScrolledIndexRef.current) {
+        // Clear any pending scroll
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+        
+        // Debounce scroll with delay for smoother transitions (like main story)
+        scrollTimeoutRef.current = setTimeout(() => {
+          const sentenceElements = textContainerRef.current?.querySelectorAll('span[data-sentence-index]');
+          const currentElement = sentenceElements?.[newSentenceIndex] as HTMLElement;
+          if (currentElement) {
+            const elementRect = currentElement.getBoundingClientRect();
+            const containerRect = textContainerRef.current?.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            
+            // Only scroll if element is actually out of view (like demo)
+            const isNearBottom = elementRect.bottom > viewportHeight - 150;
+            const isAboveView = elementRect.top < (containerRect?.top || 0);
+            
+            if (isNearBottom || isAboveView) {
+              currentElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'nearest'
+              });
+              lastScrolledIndexRef.current = newSentenceIndex;
+            }
+          }
+        }, 200); // 200ms delay like main story for smoother scrolling
+      }
+    }
+    
+    timeUpdateRef.current = requestAnimationFrame(updateTimeAndHighlight);
+  }, [isPlaying, findCurrentSentence, currentSentenceIndex]);
+
+  // Initialize audio (only when audioUrl changes)
   useEffect(() => {
+    if (!audioUrl) {
+      console.warn('⚠️ Intro audio: No audio URL provided');
+      return;
+    }
+    
+    console.log('🎵 Intro audio: Initializing with URL:', audioUrl);
+    console.log('🎵 Intro audio: Duration:', duration);
     const audio = new Audio(audioUrl);
     audioRef.current = audio;
-
-    const updateTime = () => setCurrentTime(audio.currentTime);
+    
+    // Set audio properties
+    audio.preload = 'metadata';
+    audio.volume = 1.0;
+    audio.muted = false;
+    
     const handleEnded = () => {
+      console.log('✅ Intro audio: Playback ended');
       setIsPlaying(false);
+      setCurrentSentenceIndex(-1);
       setCurrentTime(0);
+      lastKnownIndexRef.current = 0;
     };
-
-    audio.addEventListener('timeupdate', updateTime);
+    
+    const handlePause = () => {
+      console.log('⏸️ Intro audio: Paused');
+      setIsPlaying(false);
+      if (timeUpdateRef.current) {
+        cancelAnimationFrame(timeUpdateRef.current);
+      }
+    };
+    
+    const handlePlay = () => {
+      console.log('▶️ Intro audio: Playing');
+      setIsPlaying(true);
+      // Start the update loop
+      if (timeUpdateRef.current) {
+        cancelAnimationFrame(timeUpdateRef.current);
+      }
+      timeUpdateRef.current = requestAnimationFrame(updateTimeAndHighlight);
+    };
+    
+    const handleError = (e: any) => {
+      console.error('❌ Intro audio: Error occurred:', e);
+      setIsPlaying(false);
+    };
+    
+    const handleCanPlay = () => {
+      console.log('✅ Intro audio: Can play');
+    };
+    
+    const handleLoadedData = () => {
+      console.log('✅ Intro audio: Data loaded');
+    };
+    
     audio.addEventListener('ended', handleEnded);
-
+    audio.addEventListener('pause', handlePause);
+    audio.addEventListener('play', handlePlay);
+    audio.addEventListener('error', handleError);
+    audio.addEventListener('canplay', handleCanPlay);
+    audio.addEventListener('loadeddata', handleLoadedData);
+    
     return () => {
-      audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('error', handleError);
+      audio.removeEventListener('canplay', handleCanPlay);
+      audio.removeEventListener('loadeddata', handleLoadedData);
       audio.pause();
       audio.src = '';
+      if (timeUpdateRef.current) {
+        cancelAnimationFrame(timeUpdateRef.current);
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
-  }, [audioUrl]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [audioUrl]); // Only re-initialize when audioUrl changes, not when updateTimeAndHighlight changes
 
-  const togglePlay = () => {
-    if (!audioRef.current) return;
+  // Start time tracking when playing
+  useEffect(() => {
+    if (isPlaying && audioRef.current) {
+      // Start the update loop
+      const startLoop = () => {
+        if (timeUpdateRef.current) {
+          cancelAnimationFrame(timeUpdateRef.current);
+        }
+        timeUpdateRef.current = requestAnimationFrame(updateTimeAndHighlight);
+      };
+      startLoop();
+    } else if (timeUpdateRef.current) {
+      cancelAnimationFrame(timeUpdateRef.current);
+      timeUpdateRef.current = undefined;
+    }
+    
+    return () => {
+      if (timeUpdateRef.current) {
+        cancelAnimationFrame(timeUpdateRef.current);
+        timeUpdateRef.current = undefined;
+      }
+    };
+  }, [isPlaying, updateTimeAndHighlight]);
+
+  const togglePlay = async () => {
+    if (!audioRef.current) {
+      console.error('❌ Intro audio: No audio ref available');
+      return;
+    }
     
     if (isPlaying) {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+      try {
+        const audio = audioRef.current;
+        
+        // Check if audio is ready
+        if (audio.readyState < 2) {
+          console.log('⏳ Intro audio: Waiting for audio to load...');
+          await new Promise((resolve) => {
+            const handleCanPlay = () => {
+              audio.removeEventListener('canplay', handleCanPlay);
+              resolve(undefined);
+            };
+            audio.addEventListener('canplay', handleCanPlay);
+          });
+        }
+        
+        // Ensure volume is set
+        audio.volume = 1.0;
+        audio.muted = false;
+        
+        console.log('🎵 Intro audio: Attempting to play', {
+          src: audio.src,
+          readyState: audio.readyState,
+          networkState: audio.networkState,
+          duration: audio.duration
+        });
+        
+        // Play audio and handle promise
+        await audio.play();
+        setIsPlaying(true);
+        console.log('✅ Intro audio: Playback started successfully');
+      } catch (error: any) {
+        console.error('❌ Intro audio: Playback failed:', error);
+        console.error('Error details:', {
+          name: error.name,
+          message: error.message,
+          code: error.code
+        });
+        setIsPlaying(false);
+        // Show user-friendly error message
+        alert(`Unable to play audio: ${error.message || 'Please check your browser settings or try again.'}`);
+      }
     }
   };
 
@@ -97,31 +401,172 @@ function PreviewAudioPlayer({ audioUrl, duration }: { audioUrl: string; duration
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const displayDuration = duration > 0 ? duration : audioRef.current?.duration || 0;
-
-  return (
-    <div className="flex items-center gap-3 p-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-light)] mb-4">
-      <button
-        onClick={togglePlay}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-secondary)] transition-all shadow-md hover:shadow-lg"
-        aria-label={isPlaying ? 'Pause preview' : 'Play preview'}
-      >
-        {isPlaying ? '⏸️' : '▶️'}
-      </button>
-      
-      <div className="flex-1">
-        <div className="w-full h-1.5 bg-[var(--border-light)] rounded-full overflow-hidden">
-          <div
-            className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-100"
-            style={{ width: `${displayDuration > 0 ? (currentTime / displayDuration) * 100 : 0}%` }}
-          />
+  // Parse and render text with highlighting
+  const renderText = () => {
+    if (!combinedText || sentences.length === 0) return null;
+    
+    const sections = combinedText.split(/\n\n+/).filter(s => s.trim());
+    let previewContent = '';
+    let hookContent = '';
+    let backgroundContent = '';
+    let foundPreview = false;
+    
+    sections.forEach((section: string) => {
+      const trimmed = section.trim();
+      if (trimmed === 'About This Story') {
+        foundPreview = true;
+      } else if (foundPreview && previewContent === '') {
+        previewContent = trimmed;
+      } else if (foundPreview && previewContent !== '' && hookContent === '') {
+        hookContent = trimmed;
+      } else if (foundPreview && previewContent !== '' && hookContent !== '' && backgroundContent === '') {
+        backgroundContent = trimmed;
+      }
+    });
+    
+    // Split content into sentences for rendering
+    const splitIntoSentences = (text: string) => {
+      const sentenceRegex = /([^.!?]+[.!?]+)/g;
+      return text.match(sentenceRegex) || [text];
+    };
+    
+    const previewSentences = previewContent ? splitIntoSentences(previewContent) : [];
+    const hookSentences = hookContent ? splitIntoSentences(hookContent) : [];
+    const backgroundSentences = backgroundContent ? splitIntoSentences(backgroundContent) : [];
+    
+    let sentenceIdx = 0;
+    
+    return (
+      <>
+        <h2 
+          className="text-lg font-semibold text-[var(--text-accent)] mb-3"
+          style={{ fontFamily: 'Playfair Display, serif' }}
+        >
+          About This Story
+        </h2>
+        <div ref={textContainerRef} className="space-y-3">
+          {previewSentences.length > 0 && (
+            <p className="text-[var(--text-primary)] leading-relaxed" style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}>
+              {previewSentences.map((sentence, idx) => {
+                const currentIdx = sentenceIdx++;
+                const isCurrent = currentSentenceIndex === currentIdx;
+                return (
+                  <span
+                    key={idx}
+                    data-sentence-index={currentIdx}
+                    style={{
+                      background: isCurrent ? 'var(--accent-primary)' : 'transparent',
+                      color: isCurrent ? 'var(--bg-primary)' : 'inherit',
+                      padding: isCurrent ? '2px 6px' : '0',
+                      borderRadius: isCurrent ? '4px' : '0',
+                      transition: 'all 0.3s ease',
+                      fontWeight: isCurrent ? '500' : '400',
+                      display: 'inline'
+                    }}
+                  >
+                    {sentence}
+                  </span>
+                );
+              })}
+            </p>
+          )}
+          {hookSentences.length > 0 && (
+            <p className="text-[var(--text-primary)] leading-relaxed font-medium mt-4" style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}>
+              {hookSentences.map((sentence, idx) => {
+                const currentIdx = sentenceIdx++;
+                const isCurrent = currentSentenceIndex === currentIdx;
+                return (
+                  <span
+                    key={idx}
+                    data-sentence-index={currentIdx}
+                    style={{
+                      background: isCurrent ? 'var(--accent-primary)' : 'transparent',
+                      color: isCurrent ? 'var(--bg-primary)' : 'inherit',
+                      padding: isCurrent ? '2px 6px' : '0',
+                      borderRadius: isCurrent ? '4px' : '0',
+                      transition: 'all 0.3s ease',
+                      fontWeight: isCurrent ? '500' : '400',
+                      display: 'inline'
+                    }}
+                  >
+                    {sentence}
+                  </span>
+                );
+              })}
+            </p>
+          )}
+          {backgroundSentences.length > 0 && (
+            <>
+              <h3 
+                className="text-sm font-semibold text-[var(--text-secondary)] mb-2 mt-6 uppercase tracking-wide"
+                style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.85rem', letterSpacing: '0.05em' }}
+              >
+                Background Context
+              </h3>
+              <p className="text-[var(--text-secondary)] leading-relaxed italic" style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '0.95rem' }}>
+                {backgroundSentences.map((sentence, idx) => {
+                const currentIdx = sentenceIdx++;
+                const isCurrent = currentSentenceIndex === currentIdx;
+                return (
+                  <span
+                    key={idx}
+                    data-sentence-index={currentIdx}
+                    style={{
+                      background: isCurrent ? 'var(--accent-primary)' : 'transparent',
+                      color: isCurrent ? 'var(--bg-primary)' : 'inherit',
+                      padding: isCurrent ? '2px 6px' : '0',
+                      borderRadius: isCurrent ? '4px' : '0',
+                      transition: 'all 0.3s ease',
+                      fontWeight: isCurrent ? '500' : '400',
+                      display: 'inline'
+                    }}
+                  >
+                    {sentence}
+                  </span>
+                );
+              })}
+              </p>
+            </>
+          )}
         </div>
-        <div className="flex justify-between text-xs text-[var(--text-secondary)] mt-1">
-          <span>{formatTime(currentTime)}</span>
-          <span>{formatTime(displayDuration)}</span>
+      </>
+    );
+  };
+
+  // Don't render if no audio URL
+  if (!audioUrl) {
+    return null;
+  }
+  
+  return (
+    <>
+      {/* Audio Player Controls */}
+      <div className="flex items-center gap-3 p-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-light)] mb-4">
+        <button
+          onClick={togglePlay}
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-secondary)] transition-all shadow-md hover:shadow-lg"
+          aria-label={isPlaying ? 'Pause preview' : 'Play preview'}
+        >
+          {isPlaying ? '⏸️' : '▶️'}
+        </button>
+        
+        <div className="flex-1">
+          <div className="w-full h-1.5 bg-[var(--border-light)] rounded-full overflow-hidden">
+            <div
+              className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-100"
+              style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
+            />
+          </div>
+          <div className="flex justify-between text-xs text-[var(--text-secondary)] mt-1">
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
+          </div>
         </div>
       </div>
-    </div>
+      
+      {/* Text with Highlighting */}
+      {renderText()}
+    </>
   );
 }
 
@@ -833,32 +1278,18 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
                 </h1>
               </div>
 
-              {/* Book Preview Section */}
-              {(bundleData as any).preview && (
+              {/* Unified Intro Section (Preview + Hook + Background with highlighting) */}
+              {(bundleData as any).previewCombined && (bundleData as any).previewCombinedAudio?.audioUrl && (
                 <div className="px-4 py-6 mb-6 mx-4 md:mx-8 rounded-lg border-2 border-[var(--accent-primary)]/20 bg-[var(--bg-primary)]">
                   <div className="max-w-2xl mx-auto">
-                    <h2 
-                      className="text-lg font-semibold text-[var(--text-accent)] mb-3"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      About This Story
-                    </h2>
-                    <p 
-                      className="text-[var(--text-primary)] leading-relaxed mb-4"
-                      style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}
-                    >
-                      {(bundleData as any).preview}
-                    </p>
+                    <IntroSectionWithHighlighting
+                      combinedText={(bundleData as any).previewCombined}
+                      audioUrl={(bundleData as any).previewCombinedAudio.audioUrl}
+                      duration={(bundleData as any).previewCombinedAudio.duration || 0}
+                      sentenceTimings={(bundleData as any).previewCombinedAudio.sentenceTimings || null}
+                    />
                     
-                    {/* Preview Audio Player */}
-                    {(bundleData as any).previewAudio?.audioUrl && (
-                      <PreviewAudioPlayer 
-                        audioUrl={(bundleData as any).previewAudio.audioUrl}
-                        duration={(bundleData as any).previewAudio.duration}
-                      />
-                    )}
-                    
-                    <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)] mt-4">
+                    <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)] mt-6">
                       <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] rounded-full border border-[var(--accent-primary)]/30">
                         Level {cefrLevel}
                       </span>
@@ -869,44 +1300,82 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
                 </div>
               )}
 
-              {/* Background Context Section */}
-              {(bundleData as any).backgroundContext && (
-                <div className="px-4 py-5 mb-4 mx-4 md:mx-8 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-light)]">
-                  <div className="max-w-2xl mx-auto">
-                    <h3 
-                      className="text-sm font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wide"
-                      style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.85rem', letterSpacing: '0.05em' }}
-                    >
-                      Background Context
-                    </h3>
-                    <p 
-                      className="text-[var(--text-secondary)] leading-relaxed italic"
-                      style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '0.95rem' }}
-                    >
-                      {(bundleData as any).backgroundContext}
-                    </p>
-                  </div>
-                </div>
-              )}
+              {/* Fallback: Display separate sections if previewCombined is not available */}
+              {!(bundleData as any).previewCombined && (
+                <>
+                  {(bundleData as any).preview && (
+                    <div className="px-4 py-6 mb-6 mx-4 md:mx-8 rounded-lg border-2 border-[var(--accent-primary)]/20 bg-[var(--bg-primary)]">
+                      <div className="max-w-2xl mx-auto">
+                        <h2 
+                          className="text-lg font-semibold text-[var(--text-accent)] mb-3"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                        >
+                          About This Story
+                        </h2>
+                        <p 
+                          className="text-[var(--text-primary)] leading-relaxed mb-4"
+                          style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}
+                        >
+                          {(bundleData as any).preview}
+                        </p>
+                        
+                        {(bundleData as any).previewAudio?.audioUrl && (
+                          <audio 
+                            src={(bundleData as any).previewAudio.audioUrl}
+                            controls
+                            className="w-full mt-4"
+                          />
+                        )}
+                        
+                        <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)] mt-4">
+                          <span className="px-2 py-1 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] rounded-full border border-[var(--accent-primary)]/30">
+                            Level {cefrLevel}
+                          </span>
+                          <span>•</span>
+                          <span>~{Math.ceil((bundleData.totalSentences * 15) / 60)} minute read</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
-              {/* Emotional Hook Section */}
-              {(bundleData as any).emotionalHook && (
-                <div className="px-4 py-5 mb-6 mx-4 md:mx-8 rounded-lg bg-gradient-to-r from-[var(--accent-primary)]/5 to-[var(--accent-secondary)]/5 border border-[var(--accent-primary)]/20">
-                  <div className="max-w-2xl mx-auto">
-                    <h3 
-                      className="text-sm font-semibold text-[var(--text-accent)] mb-3 uppercase tracking-wide"
-                      style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.85rem', letterSpacing: '0.05em' }}
-                    >
-                      The Story Begins
-                    </h3>
-                    <p 
-                      className="text-[var(--text-primary)] leading-relaxed font-medium"
-                      style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}
-                    >
-                      {(bundleData as any).emotionalHook}
-                    </p>
-                  </div>
-                </div>
+                  {(bundleData as any).backgroundContext && (
+                    <div className="px-4 py-5 mb-4 mx-4 md:mx-8 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-light)]">
+                      <div className="max-w-2xl mx-auto">
+                        <h3 
+                          className="text-sm font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wide"
+                          style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.85rem', letterSpacing: '0.05em' }}
+                        >
+                          Background Context
+                        </h3>
+                        <p 
+                          className="text-[var(--text-secondary)] leading-relaxed italic"
+                          style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '0.95rem' }}
+                        >
+                          {(bundleData as any).backgroundContext}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {(bundleData as any).emotionalHook && (
+                    <div className="px-4 py-5 mb-6 mx-4 md:mx-8 rounded-lg bg-gradient-to-r from-[var(--accent-primary)]/5 to-[var(--accent-secondary)]/5 border border-[var(--accent-primary)]/20">
+                      <div className="max-w-2xl mx-auto">
+                        <h3 
+                          className="text-sm font-semibold text-[var(--text-accent)] mb-3 uppercase tracking-wide"
+                          style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.85rem', letterSpacing: '0.05em' }}
+                        >
+                          The Story Begins
+                        </h3>
+                        <p 
+                          className="text-[var(--text-primary)] leading-relaxed font-medium"
+                          style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}
+                        >
+                          {(bundleData as any).emotionalHook}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </>
               )}
 
               {/* Real Text with Chapter Headers */}

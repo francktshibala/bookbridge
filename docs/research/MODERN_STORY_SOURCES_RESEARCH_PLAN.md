@@ -15,6 +15,33 @@
 
 ---
 
+## 📚 **Related Documentation Files**
+
+**This file works alongside two other key documents:**
+
+1. **`docs/MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`** - Primary implementation checklist
+   - Use for: Complete 21-step workflow (Steps 0-20), story selection, emotional framing
+   - Contains: Step 0.25 (Source Material Check) and Step 0.5 (Emotional Impact Validation) criteria
+   - **When to reference:** After finding stories, validate using Steps 0.25 & 0.5 before implementation
+
+2. **`docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md`** - Technical implementation guide
+   - Use for: Technical details for implementing validated stories
+   - Contains: Database seeding, API creation, audio generation, frontend integration
+   - **When to reference:** After validation, use for Steps 4-15 implementation
+
+**How to Use Together:**
+- **This file (Research Plan):** Use for discovering and validating stories (before Step 1)
+- **MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY:** Use Steps 0.25 & 0.5 to validate discovered stories, then follow Steps 1-20
+- **MODERN_VOICES_IMPLEMENTATION_GUIDE:** Use for technical implementation after validation
+
+**Cross-References:**
+- Step 0.25 Validation → See `MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md` Step 0.25 for detailed criteria
+- Step 0.5 Validation → See `MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md` Step 0.5 for emotional impact requirements
+- After Validation → See `MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md` Steps 1-20 for implementation workflow
+- Technical Implementation → See `MODERN_VOICES_IMPLEMENTATION_GUIDE.md` for code examples and specifications
+
+---
+
 ## 🎯 Research Objectives
 
 ### Primary Goals

@@ -1,0 +1,98 @@
+{
+  "bookId": "helen-keller",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/helen-keller/A1/preview-combined.mp3",
+    "duration": 89.196621,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 7.294,
+        "duration": 7.294,
+        "text": "About This Story\n\nIn this inspiring story, Helen Keller was a young girl who could not see or hear."
+      },
+      {
+        "startTime": 7.294,
+        "endTime": 9.82,
+        "duration": 2.526,
+        "text": "She felt very frustrated and alone."
+      },
+      {
+        "startTime": 9.82,
+        "endTime": 13.573,
+        "duration": 3.753,
+        "text": "Then a teacher named Anne Sullivan came to help her."
+      },
+      {
+        "startTime": 13.573,
+        "endTime": 18.702,
+        "duration": 5.129,
+        "text": "Through patience and love, Anne taught Helen that words have meaning."
+      },
+      {
+        "startTime": 18.702,
+        "endTime": 24.054,
+        "duration": 5.352,
+        "text": "This is a powerful message about hope, education, and never giving up."
+      },
+      {
+        "startTime": 24.054,
+        "endTime": 31.349,
+        "duration": 7.294,
+        "text": "Imagine being trapped in darkness and silence, unable to tell anyone what you need or how you feel."
+      },
+      {
+        "startTime": 31.349,
+        "endTime": 35.179,
+        "duration": 3.83,
+        "text": "At six years old, Helen Keller lived in this world."
+      },
+      {
+        "startTime": 35.179,
+        "endTime": 41.186,
+        "duration": 6.007,
+        "text": "She could feel, smell, and touch everything around her, but she had no words."
+      },
+      {
+        "startTime": 41.186,
+        "endTime": 50.296,
+        "duration": 9.11,
+        "text": "Every day, her frustration grew until she broke down in tears, kicking and screaming, unable to make herself understood."
+      },
+      {
+        "startTime": 50.296,
+        "endTime": 56.297,
+        "duration": 6.001,
+        "text": "But then, one day in March 1887, a teacher arrived who would change everything."
+      },
+      {
+        "startTime": 56.297,
+        "endTime": 66.952,
+        "duration": 10.655,
+        "text": "This is the story of how Helen learned that everything has a name—and how one word, \"water,\" opened a door to a world she never knew existed."
+      },
+      {
+        "startTime": 66.952,
+        "endTime": 74.752,
+        "duration": 7.8,
+        "text": "In 1887, most people believed that children who were both deaf and blind could never learn to communicate."
+      },
+      {
+        "startTime": 74.752,
+        "endTime": 79.448,
+        "duration": 4.696,
+        "text": "Schools refused to accept them, and families often had no hope."
+      },
+      {
+        "startTime": 79.448,
+        "endTime": 89.197,
+        "duration": 9.748,
+        "text": "This story takes place in that world, when a six-year-old girl named Helen Keller had no way to express herself or understand others."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-08T00:05:55.895Z",
+  "timingMethod": "enhanced-timing-v3"
+}

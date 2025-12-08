@@ -8,6 +8,34 @@
 
 ---
 
+## 📚 **Related Documentation Files**
+
+**This file works alongside two other key documents:**
+
+1. **`docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md`** - Technical implementation guide
+   - Use for: Exact code examples, voice settings, database formats, API structures
+   - Contains: Commands, code snippets, validation checks, technical specifications
+   - **When to reference:** During Steps 4-15 (audio generation, database, API, frontend)
+
+2. **`docs/research/MODERN_STORY_SOURCES_RESEARCH_PLAN.md`** - Story discovery and research plan
+   - Use for: Finding great stories, source discovery, validation criteria
+   - Contains: Research methodology, source evaluation, story validation (Step 0.25 & 0.5)
+   - **When to reference:** During Steps 0-1 (content selection, source validation)
+
+**How to Use Together:**
+- **This file (Strategy):** Follow Steps 0-20 as your primary checklist
+- **MODERN_VOICES_IMPLEMENTATION_GUIDE:** Reference for technical details when implementing Steps 4-15
+- **MODERN_STORY_SOURCES_RESEARCH_PLAN:** Reference for finding and validating stories before Step 1
+
+**Cross-References:**
+- Step 0.25 & 0.5 → See `MODERN_STORY_SOURCES_RESEARCH_PLAN.md` for detailed validation criteria
+- Steps 4-15 → See `MODERN_VOICES_IMPLEMENTATION_GUIDE.md` for technical specifications
+- Step 8 (Preview Audio) → See `MODERN_VOICES_IMPLEMENTATION_GUIDE.md` Phase 3 for Enhanced Timing v3 details
+
+---
+
+---
+
 ## 🎯 **Core Strategy: Transform Reliable Sources into Emotional Experiences**
 
 ### **The Problem**
@@ -1046,6 +1074,7 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
   - **Length:** 30-50 words maximum
   - **Example:** "In 1880, most people believed deaf-blind children couldn't learn. Schools refused to accept them. This story takes place in that world."
   - Save to: `cache/{story-id}-background.txt`
+  - **Note:** This will be combined with preview and hook in Step 7 for unified intro section
   - **Why:** Provides understanding without overwhelming reader
 
 - [ ] **Step 3.5: Create Emotional Hook** - Write opening hook paragraph:
@@ -1054,7 +1083,7 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
   - **Style:** Emotional, engaging, creates curiosity
   - **Elements:** Struggle/challenge → "But then..." → creates desire to continue
   - Save to: `cache/{story-id}-hook.txt`
-  - **Display Note:** Hook will be displayed with "The Story Begins" title (or similar) - write as standalone paragraph that works with this title
+  - **Note:** This will be combined with preview and background in Step 7 for unified intro section
   - **Why:** Grabs attention immediately, creates emotional connection
 
 - [ ] **Step 3.6 (OPTIONAL): Generate Hook Audio** - For future implementations where hook connects to story:
@@ -1088,42 +1117,75 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
 - [ ] **Step 6: Run Seed Script** - Execute seed script, verify database records created
 
 ### **Phase 3: Preview Generation**
-- [ ] **Step 7: Generate Preview Text** - Write 50-75 word marketing copy:
+- [ ] **Step 7: Generate Combined Preview Text** - Write combined intro section:
   - **MANDATORY: Run in TERMINAL** - `node scripts/generate-{story-id}-preview.js [LEVEL]`
-  - **Format:** Meta-description style (NOT raw content excerpt)
-  - **Required elements:**
-    1. Content type: "In this inspiring story..." or "This powerful biography..."
-    2. Person/subject: "[Name] was [challenge]..."
-    3. Main theme: "the power of [perseverance/education/etc.]"
-    4. Key insight: "Through [method], [they] achieved..."
-    5. Impact: "A [adjective] message about [outcome]..."
-  - **Length:** 50-75 words (NOT 100+ words)
+  - **Format:** Combine preview + background context + emotional hook into one unified text
+  - **Structure:**
+    1. **Preview (50-75 words):** Meta-description style (NOT raw content excerpt)
+       - Content type: "In this inspiring story..." or "This powerful biography..."
+       - Person/subject: "[Name] was [challenge]..."
+       - Main theme: "the power of [perseverance/education/etc.]"
+       - Key insight: "Through [method], [they] achieved..."
+       - Impact: "A [adjective] message about [outcome]..."
+    2. **Background Context (30-50 words):** Neutral, factual tone (no spoilers)
+       - Cultural/social/historical context needed to understand story
+    3. **Emotional Hook (50-100 words):** Start with struggle, not facts
+       - Format: "Imagine..." or "At [age]..." (emotional, engaging)
+       - Elements: Struggle/challenge → "But then..." → creates desire to continue
+  - **Combined Length:** ~130-225 words total
   - **Language:** Match CEFR level (A1 = simple, short sentences)
-  - **Save to:** `cache/{story-id}-{level}-preview.txt`
-  - **Why:** Marketing copy entices readers, not content excerpt
+  - **Visual Separators:** Use line breaks or subtle dividers between sections (handled in frontend)
+  - **Save to:** `cache/{story-id}-{level}-preview-combined.txt`
+  - **Why:** Unified intro section with consistent audio experience
 
-- [ ] **Step 8: Generate Preview Audio** - Create preview audio:
-  - **MANDATORY: Run in TERMINAL** - Same script as Step 7
+- [ ] **Step 8: Generate Combined Preview Audio** - Create audio for preview + hook + background:
+  - **MANDATORY: Run in TERMINAL** - Use preview generation script
+  - Generate audio for ENTIRE combined text (preview + hook + background context)
   - Use same voice as full story (Jane/Daniel/Sarah)
   - **FFmpeg Post-Processing:**
     - Generate at 0.90× speed via ElevenLabs
     - Apply `atempo=0.85` filter (18% slower)
     - Measure duration with ffprobe (Solution 1)
-  - Upload to Supabase: `{story-id}/{level}/preview.mp3`
-  - Save metadata: `cache/{story-id}-{level}-preview-audio.json`
-  - **Why:** Preview audio is MANDATORY for featured books UI
+  - **CRITICAL: Enhanced Timing v3 for Intro Audio (MANDATORY FOR PERFECT SYNC):**
+    - Split combined intro text into sentences
+    - Calculate precise sentence timings using Enhanced Timing v3 (same algorithm as bundles)
+    - Use character-count proportion (NOT word-count) - prevents sync issues
+    - Apply punctuation penalties: commas (150ms), semicolons (250ms), colons (200ms), em-dashes (180ms), ellipses (120ms)
+    - Pause-budget-first approach: subtract pauses before distributing remaining time
+    - Renormalization: ensure sum equals measured duration exactly
+    - Save sentence timings in metadata: `sentenceTimings: [{ startTime, endTime, duration, text }]`
+  - Upload to Supabase: `{story-id}/{level}/preview-combined.mp3`
+  - Save metadata: `cache/{story-id}-{level}-preview-combined-audio.json` (with sentenceTimings array)
+  - **Why:** Unified intro section with perfect sync between highlighting and audio (matching main story behavior)
 
-- [ ] **Step 9: Validate Preview** - Verify preview quality:
-  - Check preview file exists: `cache/{story-id}-{level}-preview.txt`
-  - Check preview audio exists: `cache/{story-id}-{level}-preview-audio.json`
+- [ ] **Step 8.5: Generate Background Context Audio** - Create audio for background context:
+  - **MANDATORY: Run in TERMINAL** - Use background audio generation script
+  - Generate audio for background context text only
+  - Use same voice as full story (Jane/Daniel/Sarah)
+  - **FFmpeg Post-Processing:**
+    - Generate at 0.90× speed via ElevenLabs
+    - Apply `atempo=0.85` filter (18% slower)
+    - Measure duration with ffprobe (Solution 1)
+  - Upload to Supabase: `{story-id}/{level}/background-context.mp3`
+  - Save metadata: `cache/{story-id}-{level}-background-audio.json`
+  - **Why:** Background Context displayed separately with its own audio player
+
+- [ ] **Step 9: Validate Combined Preview** - Verify combined intro quality:
+  - Check combined preview file exists: `cache/{story-id}-{level}-preview-combined.txt`
+  - Check combined preview audio exists: `cache/{story-id}-{level}-preview-combined-audio.json`
   - Verify audio uploaded to Supabase storage bucket
-  - **CRITICAL: Read preview text** - verify it's NOT raw content:
-    - ✅ PASS: Starts with "In this inspiring story..." (meta-description)
+  - **CRITICAL: Read combined preview text** - verify structure:
+    - ✅ PASS: Starts with "In this inspiring story..." (meta-description preview)
+    - ✅ PASS: Contains emotional hook section (starts with struggle, NO "The Story Begins" title)
+    - ✅ PASS: Contains background context section (neutral, factual tone)
+    - ✅ PASS: All three parts in one unified text file
     - ❌ FAIL: Starts with actual story content (e.g., "At 19 months old...")
-  - Check word count: `wc -w cache/{story-id}-{level}-preview.txt` (should be 50-75 words)
+    - ❌ FAIL: Contains "The Story Begins" title in combined preview
+    - ❌ FAIL: Background context is in separate file
+  - Check word count: `wc -w cache/{story-id}-{level}-preview-combined.txt` (should be ~130-225 words)
   - Verify matches CEFR level (A1 = simple, short sentences)
   - **Marketing test:** Read aloud - does it make you want to listen?
-  - **Why:** Prevents deploying broken previews
+  - **Why:** Prevents deploying broken combined intro sections
 
 ### **Phase 4: Audio Generation**
 - [ ] **Step 10: Script Validation (MANDATORY FIRST)** - Verify script supports target level:
@@ -1218,58 +1280,100 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
       bundles: [...bundle data with Solution 1 timings...],
       bundleCount: 97,
       totalSentences: 388,
-      preview: '...preview text...',  // REQUIRED for preview section
-      previewAudio: { audioUrl: '...', duration: 24.35 },  // REQUIRED for audio player
-      backgroundContext: '...background text...',  // NEW: Background context
-      emotionalHook: '...hook text...',  // NEW: Emotional hook
+      previewCombined: '...combined preview + hook + background text (all three parts)...',  // REQUIRED: Unified intro section
+      previewCombinedAudio: { 
+        audioUrl: '...', 
+        duration: 70.79,
+        sentenceTimings: [{ startTime, endTime, duration, text }]  // REQUIRED: Pre-calculated Enhanced Timing v3 timings
+      },  // REQUIRED: Single audio for all three parts with sentence timings
       audioType: 'elevenlabs'
     }
     ```
-  - **CRITICAL: Load preview from cache:**
+  - **CRITICAL: Load combined preview from cache (with sentence timings):**
     ```typescript
     const cacheDir = path.join(process.cwd(), 'cache');
-    const previewTextPath = path.join(cacheDir, '{story-id}-{level}-preview.txt');
-    const previewAudioPath = path.join(cacheDir, '{story-id}-{level}-preview-audio.json');
-    const backgroundPath = path.join(cacheDir, '{story-id}-background.txt');
-    const hookPath = path.join(cacheDir, '{story-id}-hook.txt');
+    const previewCombinedPath = path.join(cacheDir, '{story-id}-{level}-preview-combined.txt');
+    const previewCombinedAudioPath = path.join(cacheDir, '{story-id}-{level}-preview-combined-audio.json');
+    // Load sentenceTimings from metadata.audio.sentenceTimings
     ```
-  - **Why:** API must return all three parts (preview, background, hook) for complete experience
+  - **Why:** API returns unified intro section with single audio file and pre-calculated timings for perfect sync
 
 - [ ] **Step 13.2: Update Frontend Component** - Edit `components/reading/BundleReadingInterface.tsx`:
-  - Add "Background Context" section with title (small, uppercase, subtle styling)
-  - Add "The Story Begins" section for emotional hook (gradient background, prominent)
-  - Display order: Preview → Background Context → Emotional Hook → Story Content
+  - **Display order:** Unified Intro Section (Preview + Hook + Background) → Story Content
+  - **CRITICAL: Use Pre-Calculated Sentence Timings (Enhanced Timing v3):**
+    - **PREFERRED:** Use `previewCombinedAudio.sentenceTimings` from API (pre-calculated Enhanced Timing v3)
+    - **FALLBACK:** If timings not available, calculate on-the-fly (less accurate)
+    - Split combined intro text into sentences
+    - Map sentences to pre-calculated timings: `{ startTime, endTime, duration, text }`
+    - Render sentences with `data-sentence-index` attributes
+    - Use `requestAnimationFrame` for smooth updates (throttled to 10fps)
+    - Track audio `currentTime` and find current sentence using pre-calculated timings
+    - Highlight current sentence with background color
+    - Auto-scroll with debouncing (200ms delay) only when sentence is out of view
+    - **Why:** Pre-calculated timings ensure perfect sync matching main story behavior
   - **Visual Styling Guidelines:**
-    - Background Context: Italic text, subtle background, small uppercase title
-    - Emotional Hook: Gradient background, medium weight text, clear title
-    - Add visual transition/bridge between hook and story (divider or fade effect)
+    - **Unified Intro Section:** Prominent box with border, contains all three parts (Preview + Hook + Background)
+    - Single audio player for entire section
+    - Sentence-level highlighting as audio plays
+    - Auto-scroll synchronized with audio playback
+    - Hook text flows directly after preview text (no separate title)
+    - Background context flows after hook (no separate section)
   - **Code Example:**
     ```typescript
-    {/* Background Context Section */}
-    {(bundleData as any).backgroundContext && (
-      <div className="px-4 py-5 mb-4 mx-4 md:mx-8 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-light)]">
-        <h3 className="text-sm font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wide">
-          Background Context
-        </h3>
-        <p className="text-[var(--text-secondary)] leading-relaxed italic">
-          {(bundleData as any).backgroundContext}
-        </p>
-      </div>
-    )}
-
-    {/* Emotional Hook Section */}
-    {(bundleData as any).emotionalHook && (
-      <div className="px-4 py-5 mb-6 mx-4 md:mx-8 rounded-lg bg-gradient-to-r from-[var(--accent-primary)]/5 to-[var(--accent-secondary)]/5 border border-[var(--accent-primary)]/20">
-        <h3 className="text-sm font-semibold text-[var(--text-accent)] mb-3 uppercase tracking-wide">
-          The Story Begins
-        </h3>
-        <p className="text-[var(--text-primary)] leading-relaxed font-medium">
-          {(bundleData as any).emotionalHook}
-        </p>
+    {/* Unified Intro Section */}
+    {(bundleData as any).previewCombined && (
+      <div className="px-4 py-6 mb-6 mx-4 md:mx-8 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-light)]">
+        {/* Audio Player */}
+        {(bundleData as any).previewCombinedAudio && (
+          <AudioPlayer
+            audioUrl={(bundleData as any).previewCombinedAudio.audioUrl}
+            duration={(bundleData as any).previewCombinedAudio.duration}
+          />
+        )}
+        
+        {/* Combined Text with Visual Separators */}
+        <div className="mt-4 space-y-4">
+          {/* Preview Section */}
+          <div>
+            <h2 className="text-xl font-bold text-[var(--text-primary)] mb-2">
+              About This Story
+            </h2>
+            <p className="text-[var(--text-primary)] leading-relaxed">
+              {/* Preview text portion */}
+            </p>
+          </div>
+          
+          {/* Divider */}
+          <div className="border-t border-[var(--border-light)] my-4"></div>
+          
+          {/* Background Context Section */}
+          <div>
+            <h3 className="text-sm font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wide">
+              Background Context
+            </h3>
+            <p className="text-[var(--text-secondary)] leading-relaxed italic">
+              {/* Background context portion */}
+            </p>
+          </div>
+          
+          {/* Divider */}
+          <div className="border-t border-[var(--border-light)] my-4"></div>
+          
+          {/* Emotional Hook Section */}
+          <div>
+            <h3 className="text-sm font-semibold text-[var(--text-accent)] mb-2 uppercase tracking-wide">
+              The Story Begins
+            </h3>
+            <p className="text-[var(--text-primary)] leading-relaxed font-medium">
+              {/* Emotional hook portion */}
+            </p>
+          </div>
+        </div>
       </div>
     )}
     ```
-  - **Why:** Ensures consistent presentation across all stories
+  - **Note:** Parse `previewCombined` text to split into preview/background/hook sections (or store separately and combine in frontend)
+  - **Why:** Unified intro section with consistent audio experience, cleaner UI
 
 - [ ] **Step 13.3 (FUTURE OPTION): Integrate Hook as First Sentence** - For seamless audio flow:
   - **Option A:** Prepend hook text as first sentence of first bundle (with audio)
@@ -1332,14 +1436,13 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
   - **TEST 1: Direct URL Access**
     - Open: `http://localhost:3003/read/{story-id}`
     - Verify: Title shows (NOT "Unknown Title")
-    - Verify: Preview section appears with text + audio player
-    - Verify: Background Context section displays with title "BACKGROUND CONTEXT"
-    - Verify: Emotional Hook section displays with title "THE STORY BEGINS"
-    - Verify: Visual flow from Preview → Background → Hook → Story
-    - Verify: Sections are visually distinct but connected
+    - Verify: Unified intro section appears with combined preview + background + hook
+    - Verify: Single audio player for entire combined intro section
+    - Verify: Visual separators between preview/background/hook sections visible
+    - Verify: Visual flow from Combined Intro → Story Content
     - Verify: Content loads (no "Level not available" error)
   - **TEST 2: Audio Playback**
-    - Click play on preview audio (should work)
+    - Click play on combined intro audio (should work - plays preview + background + hook)
     - Click play on main content (should work)
     - Verify: Word highlighting syncs perfectly
   - **TEST 3: Level Switching**
@@ -1349,29 +1452,27 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
   - **Why:** Catches integration issues before catalog testing
 
 - [ ] **Step 15.5: Visual Design Guidelines** - Document styling approach for consistent presentation:
-  - **Preview Section:**
+  - **Unified Intro Section (NEW APPROACH):**
+    - Single unified section containing preview + background + hook
     - Prominent box with border (border-[var(--accent-primary)]/20)
-    - Title: "About This Story" (Playfair Display, serif)
-    - Audio player embedded below text
+    - Single audio player for entire combined section (embedded at top)
     - Level badge and reading time displayed
-  - **Background Context Section:**
-    - Subtle background (bg-[var(--bg-secondary)])
+    - Visual separators (dividers or subtle backgrounds) between subsections
+  - **Preview Subsection:**
+    - Title: "About This Story" (Playfair Display, serif, bold)
+    - Standard text styling
+  - **Background Context Subsection:**
     - Small uppercase title: "BACKGROUND CONTEXT" (0.85rem, tracking-wide)
     - Italic text (informational tone)
-    - Light border for separation
-  - **Emotional Hook Section:**
-    - Gradient background (from-[var(--accent-primary)]/5 to-[var(--accent-secondary)]/5)
-    - Clear title: "THE STORY BEGINS" (0.85rem, uppercase, accent color)
+    - Subtle styling to distinguish from preview
+  - **Emotional Hook Subsection:**
+    - Small uppercase title: "THE STORY BEGINS" (0.85rem, tracking-wide)
     - Medium weight text (draws attention)
-    - Border with accent color (sets emotional tone)
-  - **Story Content:**
+    - Subtle accent styling to distinguish from background context
+  - **Story Section:**
     - Standard reading interface
-    - Continuous text flow
-  - **Transition Elements:**
-    - Consider divider lines or fade effects between sections
-    - Ensure visual bridge from hook to story (smooth transition)
-    - Maintain consistent spacing (mb-4, mb-6)
-  - **Why:** Ensures consistent, professional presentation across all stories
+  - **Transition Elements:** Visual separators (dividers) between preview/background/hook subsections within unified section
+  - **Why:** Unified intro section with consistent audio experience, cleaner UI, maintains visual distinction
 
 ### **Phase 6: Catalog Integration**
 - [ ] **Step 16: Update Catalog Routing** - Ensure routes to /read/{slug} (bundle architecture)
