@@ -33,11 +33,11 @@ export async function GET(request: NextRequest) {
     const bookId = searchParams.get('bookId');
     const level = searchParams.get('level') || 'A1';
 
-    // This API supports "First-Gen Student Teaching Dad to Read" for A1 level
-    if (bookId !== 'teaching-dad-to-read' && bookId !== 'teaching-dad-to-read-a1') {
+    // This API supports "Refugee Journey Story" for A1 level
+    if (bookId !== 'refugee-journey-1' && bookId !== 'refugee-journey-1-a1') {
       return NextResponse.json({
         success: false,
-        error: 'This API only supports First-Gen Student Teaching Dad to Read A1'
+        error: 'This API only supports Refugee Journey Story A1'
       }, {
         status: 400,
         headers: {
@@ -47,12 +47,12 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    console.log(`🎤 Loading "First-Gen Student Teaching Dad to Read" bundles for level: ${level}`);
+    console.log(`🎤 Loading "Refugee Journey Story" bundles for level: ${level}`);
 
     // Get bundles from BookChunk table with audio duration metadata
     const bookChunks = await prisma.bookChunk.findMany({
       where: {
-        bookId: 'teaching-dad-to-read',
+        bookId: 'refugee-journey-1',
         cefrLevel: 'A1'
       },
       orderBy: { chunkIndex: 'asc' },
@@ -71,7 +71,7 @@ export async function GET(request: NextRequest) {
     if (!bookChunks || bookChunks.length === 0) {
       return NextResponse.json({
         success: false,
-        error: 'No bundles found for First-Gen Student Teaching Dad to Read A1'
+        error: 'No bundles found for Refugee Journey Story A1'
       }, {
         status: 404,
         headers: {
@@ -150,7 +150,7 @@ export async function GET(request: NextRequest) {
           .map((s: string) => s.trim())
           .filter((s: string) => s.length > 5);
 
-        const baseSecondsPerWord = 0.40; // Daniel voice base rate
+        const baseSecondsPerWord = 0.40; // Sarah voice base rate
         const speed = 0.85; // FFmpeg slowdown applied
 
         let currentTime = 0;
@@ -203,14 +203,14 @@ export async function GET(request: NextRequest) {
     const cacheDir = path.join(process.cwd(), 'cache');
 
     // Load combined preview text (Preview + Hook + Background)
-    const previewCombinedTextPath = path.join(cacheDir, 'teaching-dad-to-read-A1-preview-combined.txt');
+    const previewCombinedTextPath = path.join(cacheDir, 'refugee-journey-1-A1-preview-combined.txt');
     if (fs.existsSync(previewCombinedTextPath)) {
       previewCombined = fs.readFileSync(previewCombinedTextPath, 'utf8').trim();
       console.log(`✅ Loaded combined preview text from cache (${previewCombined.length} characters)`);
     }
 
     // Load combined preview audio metadata (Preview + Hook + Background)
-    const previewCombinedAudioPath = path.join(cacheDir, 'teaching-dad-to-read-A1-preview-combined-audio.json');
+    const previewCombinedAudioPath = path.join(cacheDir, 'refugee-journey-1-A1-preview-combined-audio.json');
     if (fs.existsSync(previewCombinedAudioPath)) {
       const audioMetadata = JSON.parse(fs.readFileSync(previewCombinedAudioPath, 'utf8'));
       if (audioMetadata.audio && audioMetadata.audio.url && audioMetadata.audio.duration) {
@@ -228,8 +228,8 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      bookId: 'teaching-dad-to-read',
-      title: 'First-Gen Student Teaching Dad to Read',
+      bookId: 'refugee-journey-1',
+      title: 'Refugee Journey: From War Zone to Hope',
       author: 'BookBridge',
       level: 'A1',
       bundles: bundles,
@@ -248,7 +248,7 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('❌ Error loading Teaching Dad to Read bundles:', error);
+    console.error('❌ Error loading Refugee Journey Story bundles:', error);
     return NextResponse.json({
       success: false,
       error: 'Failed to load bundles',

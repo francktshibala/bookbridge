@@ -328,6 +328,39 @@ npx tsx scripts/integrate-{content-id}-{level}-database.ts
 # ✅ 9. Create Bundle API (Same as books, with preview support)
 # Create app/api/{content-id}-{level}/bundles/route.ts
 #
+# ⚠️ PERFORMANCE OPTIMIZATION (CRITICAL - 1-2 second loads vs 10+ seconds):
+# - ✅ DO: Go directly to findMany() query (no extra count query)
+# - ❌ DON'T: Do chunkCount query before findMany (adds unnecessary database round-trip)
+# - ✅ DO: Use select() to fetch only needed fields (id, bookId, cefrLevel, chunkIndex, chunkText, wordCount, audioFilePath, audioDurationMetadata)
+# - ✅ DO: Initialize Supabase client at module scope (reused across requests)
+# - ✅ DO: Use cached audioDurationMetadata (Solution 1 - no ffprobe calls)
+#
+# FAST LOADING PATTERN (Reference: the-necklace-a1/bundles/route.ts):
+# const bookChunks = await prisma.bookChunk.findMany({
+#   where: { bookId: '{content-id}', cefrLevel: '{level}' },
+#   orderBy: { chunkIndex: 'asc' },
+#   select: {
+#     id: true,
+#     bookId: true,
+#     cefrLevel: true,
+#     chunkIndex: true,
+#     chunkText: true,
+#     wordCount: true,
+#     audioFilePath: true,
+#     audioDurationMetadata: true
+#   }
+# });
+# // Check if empty AFTER query (not before with count query)
+# if (!bookChunks || bookChunks.length === 0) {
+#   return NextResponse.json({ success: false, error: 'No bundles found' }, { status: 404 });
+# }
+#
+# SLOW PATTERN (AVOID - causes 10+ second loads):
+# // ❌ DON'T DO THIS - adds unnecessary database round-trip:
+# const chunkCount = await prisma.bookChunk.count({ where: {...} });
+# if (chunkCount === 0) { return ...; }
+# const bookChunks = await prisma.bookChunk.findMany({...});
+#
 # MANDATORY API RESPONSE FIELDS:
 # - success: true
 # - bookId: '{content-id}'
@@ -352,7 +385,7 @@ npx tsx scripts/integrate-{content-id}-{level}-database.ts
 #   previewCombinedAudio = {
 #     audioUrl: metadata.audio.url,
 #     duration: metadata.audio.duration,
-#     sentenceTimings: metadata.audio.sentenceTimings || null  // REQUIRED: Pre-calculated Enhanced Timing v3 timings
+#     sentenceTimings: metadata.audio.sentenceTimings || null  # REQUIRED: Pre-calculated Enhanced Timing v3 timings
 #   };
 # }
 ```

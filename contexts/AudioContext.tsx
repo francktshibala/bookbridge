@@ -51,6 +51,12 @@ export interface RealBundleApiResponse {
   totalSentences: number;
   bundles: BundleData[];
   audioType: string;
+  previewCombined?: string | null;
+  previewCombinedAudio?: {
+    audioUrl: string;
+    duration: number;
+    sentenceTimings?: Array<{ startTime: number; endTime: number; duration: number; text: string }> | null;
+  } | null;
 }
 
 export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';

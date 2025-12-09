@@ -240,6 +240,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-green-500 to-emerald-600',
     abbreviation: 'IE'
   },
+  {
+    id: 'refugee-journey-1',
+    title: 'Refugee Journey: From War Zone to Hope',
+    author: 'BookBridge',
+    description: 'A powerful story about a young refugee who flees war and arrives in a new country with nothing. Through language barriers, hard work, and moments of despair, she finds hope and transforms her life. This inspiring tale shows the resilience of refugees and the power of finding belonging. A1 level with Sarah voice.',
+    sentences: 252,
+    bundles: 63,
+    gradient: 'from-indigo-500 to-blue-600',
+    abbreviation: 'RJ'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -323,6 +333,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'immigrant-entrepreneur': {
     'A1': '/api/immigrant-entrepreneur-a1/bundles'
   },
+  'refugee-journey-1': {
+    'A1': '/api/refugee-journey-1-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -349,6 +362,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'teen-translating-hospital': 'A1',  // Default to A1 for Teen Translating for Parents Through Hospital Chaos (Modern Story)
   'teaching-dad-to-read': 'A1',  // Default to A1 for First-Gen Student Teaching Dad to Read (Modern Story)
   'immigrant-entrepreneur': 'A1',  // Default to A1 for Immigrant Entrepreneur: From Failure to Success (Modern Story)
+  'refugee-journey-1': 'A1',  // Default to A1 for Refugee Journey: From War Zone to Hope (Modern Story)
 };
 
 // Get the correct CEFR level for a book
@@ -415,6 +429,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'teen-translating-hospital': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'teaching-dad-to-read': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'immigrant-entrepreneur': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'refugee-journey-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
 };
 
 // Single-level books configuration

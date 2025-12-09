@@ -1,0 +1,222 @@
+{
+  "themes": [
+    "refugee journey",
+    "war zone to safety",
+    "language barriers",
+    "building new life",
+    "identity loss and rediscovery",
+    "persistence despite hardship",
+    "finding belonging",
+    "giving back to community",
+    "family separation and reunion",
+    "epiphany moments",
+    "cultural adaptation",
+    "professional transformation",
+    "mentorship and support",
+    "forced migration",
+    "survival and resilience"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Arrival in new country - confusion and fear",
+      "emotionalWeight": "high",
+      "source": "all"
+    },
+    {
+      "moment": "Language barriers - not understanding 'double-double' or 'feeling blue'",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Working two jobs - overnight health care aide and daytime Tim Hortons",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Frostbite scars - didn't know how to protect from cold",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Visiting Sudan refugee camp - tiny room, 50°C heat, no water, no electricity",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Sandstorm epiphany - wishing for Canadian winter, realizing perspective",
+      "emotionalWeight": "very high",
+      "source": "1"
+    },
+    {
+      "moment": "Father jailed in Syria - Kurdish oppression",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Arrival in US after 9/11 - strange time to be Muslim",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Airport moment - man showing dog pictures, feeling American",
+      "emotionalWeight": "medium",
+      "source": "2"
+    },
+    {
+      "moment": "Washing dishes - hands wrinkled like prunes, no gloves, no one told him",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "6-mile trek to work - watching Emory students, dreaming of college",
+      "emotionalWeight": "medium",
+      "source": "2"
+    },
+    {
+      "moment": "Serendipity moment - brother's classmate's father is heart surgeon",
+      "emotionalWeight": "very high",
+      "source": "2"
+    },
+    {
+      "moment": "Training one block from dishwashing restaurant - full circle",
+      "emotionalWeight": "very high",
+      "source": "2"
+    },
+    {
+      "moment": "Childhood in Civil War - rockets hitting city, running from school",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Dream crushed - can't be doctor, no education for refugees",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Building life over 20 years - job, home, safety, status",
+      "emotionalWeight": "medium",
+      "source": "3"
+    },
+    {
+      "moment": "August 15, 2021 - lost everything overnight, 'I was just somebody afraid of everything'",
+      "emotionalWeight": "very high",
+      "source": "3"
+    },
+    {
+      "moment": "10 minutes to pack 20 years - backpack moment",
+      "emotionalWeight": "very high",
+      "source": "3"
+    },
+    {
+      "moment": "Kabul airport hell - 8.5 hours outside under hail of bullets",
+      "emotionalWeight": "very high",
+      "source": "3"
+    },
+    {
+      "moment": "Trash bag moment - refusing to leave without daughters, taking clothes back",
+      "emotionalWeight": "very high",
+      "source": "3"
+    },
+    {
+      "moment": "Arriving with nothing - 'no job, no relations, no friends, no family, no home, no country, nothing'",
+      "emotionalWeight": "very high",
+      "source": "3"
+    },
+    {
+      "moment": "Grieving multiple losses at once - house, work, people, while supporting daughters",
+      "emotionalWeight": "very high",
+      "source": "3"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "2001",
+      "2002",
+      "2004",
+      "2016",
+      "2021",
+      "2023"
+    ],
+    "locations": [
+      "Eritrea",
+      "Sudan",
+      "Saint John, New Brunswick",
+      "Hamilton, Ontario",
+      "Calgary, Alberta",
+      "Syria",
+      "Germany",
+      "Clarkston, Georgia",
+      "Atlanta",
+      "Emory University",
+      "Afghanistan",
+      "Pakistan",
+      "Kabul",
+      "Kuwait",
+      "Bahrain",
+      "Bulgaria",
+      "Dulles, USA"
+    ],
+    "names": [
+      "Syn Amanuel",
+      "Heval Mohamed Kelli",
+      "Yalda Royan",
+      "Christopher Keke"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers",
+    "Building New Life",
+    "First-Time Courage",
+    "Belonging & Identity",
+    "Persistence Despite Setbacks",
+    "Overcoming 'Not Good Enough'",
+    "Connection Across Differences"
+  ],
+  "storyArc": {
+    "struggle": [
+      "Fleeing war/persecution",
+      "Arrival in new country with nothing",
+      "Language barriers and confusion",
+      "Working multiple jobs to survive",
+      "Losing identity and feeling like 'nobody'",
+      "Family separation",
+      "Cultural isolation"
+    ],
+    "perseverance": [
+      "Learning language through work",
+      "Working two jobs to support family",
+      "Never giving up on dreams",
+      "Finding community and belonging",
+      "Surviving dangerous journeys",
+      "Refusing to leave family behind",
+      "Rebuilding from nothing"
+    ],
+    "breakthrough": [
+      "Epiphany moments (sandstorm, serendipity, perspective shift)",
+      "Finding mentors and support",
+      "Education and career transformation",
+      "Family reunion",
+      "Giving back to community",
+      "Finding purpose in helping others",
+      "Realizing new country is home"
+    ]
+  },
+  "keyQuotes": {
+    "source1": [
+      "I actually wished for what I hated most. Winter! I longed for the snow of Canada",
+      "When you are a refugee, you are a nobody. You've lost your identity",
+      "You won't always feel like a refugee"
+    ],
+    "source2": [
+      "The restaurant where I used to wash dishes is one block away from where I train as a cardiology fellow today",
+      "If I, as a refugee, could come here and become a physician 15 years later... this is the American Dream",
+      "I wished then that I had a mentor to motivate me"
+    ],
+    "source3": [
+      "I had 10 minutes, maybe 15 minutes, to put 20 years of my life in one backpack",
+      "I went back, took my clothes back from the trash bag and put them back on",
+      "I became a homeless person without anything: no job, no relations, no friends, no family, no home, no country, nothing"
+    ]
+  }
+}
+

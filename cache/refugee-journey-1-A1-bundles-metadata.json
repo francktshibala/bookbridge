@@ -1,0 +1,2963 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Amina packed her bag quickly. She had only ten minutes. “Hurry, Amina! We must go!” her mother said with a worried face.",
+    "sentences": [
+      "Amina packed her bag quickly.",
+      "She had only ten minutes.",
+      "“Hurry, Amina!",
+      "We must go!” her mother said with a worried face."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_0.mp3",
+    "duration": 8.343311,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina packed her bag quickly.",
+        "startTime": 0,
+        "endTime": 2.031,
+        "duration": 2.031,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She had only ten minutes.",
+        "startTime": 2.031,
+        "endTime": 3.782,
+        "duration": 1.751,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "“Hurry, Amina!",
+        "startTime": 3.782,
+        "endTime": 4.912,
+        "duration": 1.13,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "We must go!” her mother said with a worried face.",
+        "startTime": 4.912,
+        "endTime": 8.343,
+        "duration": 3.431,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "Amina felt her heart beat fast. It felt like a drum in her chest. She grabbed her clothes and her favorite book. It was a book with colorful pictures and fun stories.",
+    "sentences": [
+      "Amina felt her heart beat fast.",
+      "It felt like a drum in her chest.",
+      "She grabbed her clothes and her favorite book.",
+      "It was a book with colorful pictures and fun stories."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_1.mp3",
+    "duration": 11.326848,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina felt her heart beat fast.",
+        "startTime": 0,
+        "endTime": 2.154,
+        "duration": 2.154,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "It felt like a drum in her chest.",
+        "startTime": 2.154,
+        "endTime": 4.447,
+        "duration": 2.293,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "She grabbed her clothes and her favorite book.",
+        "startTime": 4.447,
+        "endTime": 7.644,
+        "duration": 3.197,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "It was a book with colorful pictures and fun stories.",
+        "startTime": 7.644,
+        "endTime": 11.327,
+        "duration": 3.683,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "It was her happy book. She loved this book. It made her smile and laugh. But now, she had to leave it behind.",
+    "sentences": [
+      "It was her happy book.",
+      "She loved this book.",
+      "It made her smile and laugh.",
+      "But now, she had to leave it behind."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_2.mp3",
+    "duration": 7.887528,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was her happy book.",
+        "startTime": 0,
+        "endTime": 1.606,
+        "duration": 1.606,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "She loved this book.",
+        "startTime": 1.606,
+        "endTime": 3.066,
+        "duration": 1.46,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "It made her smile and laugh.",
+        "startTime": 3.066,
+        "endTime": 5.11,
+        "duration": 2.044,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "But now, she had to leave it behind.",
+        "startTime": 5.11,
+        "endTime": 7.888,
+        "duration": 2.778,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "They left their home in Syria. The rockets were loud. They shook the ground. Amina and her mother were scared.",
+    "sentences": [
+      "They left their home in Syria.",
+      "The rockets were loud.",
+      "They shook the ground.",
+      "Amina and her mother were scared."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_3.mp3",
+    "duration": 7.727846,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They left their home in Syria.",
+        "startTime": 0,
+        "endTime": 2.167,
+        "duration": 2.167,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "The rockets were loud.",
+        "startTime": 2.167,
+        "endTime": 3.756,
+        "duration": 1.589,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "They shook the ground.",
+        "startTime": 3.756,
+        "endTime": 5.344,
+        "duration": 1.589,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "Amina and her mother were scared.",
+        "startTime": 5.344,
+        "endTime": 7.728,
+        "duration": 2.383,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "Amina could hear the loud BOOM! The sound echoed in her ears. It felt like the world was breaking. She felt her heart pound.",
+    "sentences": [
+      "Amina could hear the loud BOOM!",
+      "The sound echoed in her ears.",
+      "It felt like the world was breaking.",
+      "She felt her heart pound."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_4.mp3",
+    "duration": 9.629206,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina could hear the loud BOOM!",
+        "startTime": 0,
+        "endTime": 2.467,
+        "duration": 2.467,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "The sound echoed in her ears.",
+        "startTime": 2.467,
+        "endTime": 4.775,
+        "duration": 2.308,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "It felt like the world was breaking.",
+        "startTime": 4.775,
+        "endTime": 7.64,
+        "duration": 2.865,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "She felt her heart pound.",
+        "startTime": 7.64,
+        "endTime": 9.629,
+        "duration": 1.99,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "Amina and her mother ran through the streets. They were filled with people. Everyone looked worried and afraid. Amina felt confused.",
+    "sentences": [
+      "Amina and her mother ran through the streets.",
+      "They were filled with people.",
+      "Everyone looked worried and afraid.",
+      "Amina felt confused."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_5.mp3",
+    "duration": 9.84102,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina and her mother ran through the streets.",
+        "startTime": 0,
+        "endTime": 3.433,
+        "duration": 3.433,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "They were filled with people.",
+        "startTime": 3.433,
+        "endTime": 5.645,
+        "duration": 2.212,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "Everyone looked worried and afraid.",
+        "startTime": 5.645,
+        "endTime": 8.315,
+        "duration": 2.67,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "Amina felt confused.",
+        "startTime": 8.315,
+        "endTime": 9.841,
+        "duration": 1.526,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "What was happening? She held her mother’s hand tightly. It felt warm and safe. They waited for hours at the airport.",
+    "sentences": [
+      "What was happening?",
+      "She held her mother’s hand tightly.",
+      "It felt warm and safe.",
+      "They waited for hours at the airport."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_6.mp3",
+    "duration": 9.203447,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "What was happening?",
+        "startTime": 0,
+        "endTime": 1.547,
+        "duration": 1.547,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "She held her mother’s hand tightly.",
+        "startTime": 1.547,
+        "endTime": 4.398,
+        "duration": 2.851,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "It felt warm and safe.",
+        "startTime": 4.398,
+        "endTime": 6.19,
+        "duration": 1.792,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "They waited for hours at the airport.",
+        "startTime": 6.19,
+        "endTime": 9.203,
+        "duration": 3.014,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "There was a lot of noise everywhere. People shouted. Babies cried. Amina felt lost in the chaos.",
+    "sentences": [
+      "There was a lot of noise everywhere.",
+      "People shouted.",
+      "Babies cried.",
+      "Amina felt lost in the chaos."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_7.mp3",
+    "duration": 7.300317,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "There was a lot of noise everywhere.",
+        "startTime": 0,
+        "endTime": 2.826,
+        "duration": 2.826,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "People shouted.",
+        "startTime": 2.826,
+        "endTime": 4.003,
+        "duration": 1.177,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "Babies cried.",
+        "startTime": 4.003,
+        "endTime": 5.024,
+        "duration": 1.02,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "Amina felt lost in the chaos.",
+        "startTime": 5.024,
+        "endTime": 7.3,
+        "duration": 2.276,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "Many people spoke different languages. Amina felt alone in this big crowd. She wished she could understand them. She wanted to talk to them.",
+    "sentences": [
+      "Many people spoke different languages.",
+      "Amina felt alone in this big crowd.",
+      "She wished she could understand them.",
+      "She wanted to talk to them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_8.mp3",
+    "duration": 9.534399,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Many people spoke different languages.",
+        "startTime": 0,
+        "endTime": 2.645,
+        "duration": 2.645,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "Amina felt alone in this big crowd.",
+        "startTime": 2.645,
+        "endTime": 5.08,
+        "duration": 2.436,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "She wished she could understand them.",
+        "startTime": 5.08,
+        "endTime": 7.655,
+        "duration": 2.575,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "She wanted to talk to them.",
+        "startTime": 7.655,
+        "endTime": 9.534,
+        "duration": 1.879,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "Finally, they got on a plane. Amina looked out the window. The ground was far away. She saw little houses and cars.",
+    "sentences": [
+      "Finally, they got on a plane.",
+      "Amina looked out the window.",
+      "The ground was far away.",
+      "She saw little houses and cars."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_9.mp3",
+    "duration": 9.261723,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Finally, they got on a plane.",
+        "startTime": 0,
+        "endTime": 2.509,
+        "duration": 2.509,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "Amina looked out the window.",
+        "startTime": 2.509,
+        "endTime": 4.787,
+        "duration": 2.278,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "The ground was far away.",
+        "startTime": 4.787,
+        "endTime": 6.74,
+        "duration": 1.953,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "She saw little houses and cars.",
+        "startTime": 6.74,
+        "endTime": 9.262,
+        "duration": 2.522,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "“Where are we going?” she asked her mother, her voice trembling with worry. “To safety, Amina,” her mother said softly. But Amina did not know what safety meant. She thought about her home and her friends.",
+    "sentences": [
+      "“Where are we going?” she asked her mother, her voice trembling with worry.",
+      "“To safety, Amina,” her mother said softly.",
+      "But Amina did not know what safety meant.",
+      "She thought about her home and her friends."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_10.mp3",
+    "duration": 14.728299,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Where are we going?” she asked her mother, her voice trembling with worry.",
+        "startTime": 0,
+        "endTime": 5.451,
+        "duration": 5.451,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "“To safety, Amina,” her mother said softly.",
+        "startTime": 5.451,
+        "endTime": 8.791,
+        "duration": 3.339,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "But Amina did not know what safety meant.",
+        "startTime": 8.791,
+        "endTime": 11.689,
+        "duration": 2.898,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "She thought about her home and her friends.",
+        "startTime": 11.689,
+        "endTime": 14.728,
+        "duration": 3.039,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "She felt a tear run down her cheek. It was warm and salty on her skin. They arrived in Canada. It was cold.",
+    "sentences": [
+      "She felt a tear run down her cheek.",
+      "It was warm and salty on her skin.",
+      "They arrived in Canada.",
+      "It was cold."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_11.mp3",
+    "duration": 8.342381,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt a tear run down her cheek.",
+        "startTime": 0,
+        "endTime": 2.808,
+        "duration": 2.808,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "It was warm and salty on her skin.",
+        "startTime": 2.808,
+        "endTime": 5.535,
+        "duration": 2.727,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "They arrived in Canada.",
+        "startTime": 5.535,
+        "endTime": 7.38,
+        "duration": 1.845,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "It was cold.",
+        "startTime": 7.38,
+        "endTime": 8.342,
+        "duration": 0.963,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "Amina shivered. She wore a light jacket. It was not warm enough. Her teeth chattered.",
+    "sentences": [
+      "Amina shivered.",
+      "She wore a light jacket.",
+      "It was not warm enough.",
+      "Her teeth chattered."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_12.mp3",
+    "duration": 6.403832,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina shivered.",
+        "startTime": 0,
+        "endTime": 1.171,
+        "duration": 1.171,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "She wore a light jacket.",
+        "startTime": 1.171,
+        "endTime": 3.046,
+        "duration": 1.874,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "It was not warm enough.",
+        "startTime": 3.046,
+        "endTime": 4.842,
+        "duration": 1.796,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "Her teeth chattered.",
+        "startTime": 4.842,
+        "endTime": 6.404,
+        "duration": 1.562,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "“What is this place?” Amina thought. The people looked different. They wore heavy coats and hats. They spoke fast.",
+    "sentences": [
+      "“What is this place?” Amina thought.",
+      "The people looked different.",
+      "They wore heavy coats and hats.",
+      "They spoke fast."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_13.mp3",
+    "duration": 8.61517,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“What is this place?” Amina thought.",
+        "startTime": 0,
+        "endTime": 2.794,
+        "duration": 2.794,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "The people looked different.",
+        "startTime": 2.794,
+        "endTime": 4.967,
+        "duration": 2.173,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "They wore heavy coats and hats.",
+        "startTime": 4.967,
+        "endTime": 7.373,
+        "duration": 2.406,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "They spoke fast.",
+        "startTime": 7.373,
+        "endTime": 8.615,
+        "duration": 1.242,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "Amina felt afraid and out of place. The cold air made her cheeks feel numb. She wished for the warmth of her home. At the airport, they met a man.",
+    "sentences": [
+      "Amina felt afraid and out of place.",
+      "The cold air made her cheeks feel numb.",
+      "She wished for the warmth of her home.",
+      "At the airport, they met a man."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_14.mp3",
+    "duration": 10.680907,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina felt afraid and out of place.",
+        "startTime": 0,
+        "endTime": 2.577,
+        "duration": 2.577,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "The cold air made her cheeks feel numb.",
+        "startTime": 2.577,
+        "endTime": 5.45,
+        "duration": 2.872,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "She wished for the warmth of her home.",
+        "startTime": 5.45,
+        "endTime": 8.248,
+        "duration": 2.798,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "At the airport, they met a man.",
+        "startTime": 8.248,
+        "endTime": 10.681,
+        "duration": 2.433,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "He spoke slowly and smiled. “Welcome,” he said. Amina did not understand. “What is welcome?” she thought.",
+    "sentences": [
+      "He spoke slowly and smiled.",
+      "“Welcome,” he said.",
+      "Amina did not understand.",
+      "“What is welcome?” she thought."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_15.mp3",
+    "duration": 8.709683,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He spoke slowly and smiled.",
+        "startTime": 0,
+        "endTime": 2.266,
+        "duration": 2.266,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "“Welcome,” he said.",
+        "startTime": 2.266,
+        "endTime": 4.01,
+        "duration": 1.744,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "Amina did not understand.",
+        "startTime": 4.01,
+        "endTime": 6.108,
+        "duration": 2.098,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "“What is welcome?” she thought.",
+        "startTime": 6.108,
+        "endTime": 8.71,
+        "duration": 2.601,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "The word felt strange. She felt lost in this new world. The man showed them to a car. It was big and shiny.",
+    "sentences": [
+      "The word felt strange.",
+      "She felt lost in this new world.",
+      "The man showed them to a car.",
+      "It was big and shiny."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_16.mp3",
+    "duration": 8.344671,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The word felt strange.",
+        "startTime": 0,
+        "endTime": 1.765,
+        "duration": 1.765,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "She felt lost in this new world.",
+        "startTime": 1.765,
+        "endTime": 4.333,
+        "duration": 2.568,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "The man showed them to a car.",
+        "startTime": 4.333,
+        "endTime": 6.66,
+        "duration": 2.327,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "It was big and shiny.",
+        "startTime": 6.66,
+        "endTime": 8.345,
+        "duration": 1.685,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "Amina stared at it with wide eyes. The car was so different from anything she had seen before. They went to a small apartment. The building was tall and gray.",
+    "sentences": [
+      "Amina stared at it with wide eyes.",
+      "The car was so different from anything she had seen before.",
+      "They went to a small apartment.",
+      "The building was tall and gray."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_17.mp3",
+    "duration": 11.724558,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina stared at it with wide eyes.",
+        "startTime": 0,
+        "endTime": 2.572,
+        "duration": 2.572,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "The car was so different from anything she had seen before.",
+        "startTime": 2.572,
+        "endTime": 7.035,
+        "duration": 4.463,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "They went to a small apartment.",
+        "startTime": 7.035,
+        "endTime": 9.38,
+        "duration": 2.345,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "The building was tall and gray.",
+        "startTime": 9.38,
+        "endTime": 11.725,
+        "duration": 2.345,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "It looked old and uninviting. It was not home. There were no pictures on the walls. It felt empty and cold inside.",
+    "sentences": [
+      "It looked old and uninviting.",
+      "It was not home.",
+      "There were no pictures on the walls.",
+      "It felt empty and cold inside."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_18.mp3",
+    "duration": 8.923492,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It looked old and uninviting.",
+        "startTime": 0,
+        "endTime": 2.331,
+        "duration": 2.331,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "It was not home.",
+        "startTime": 2.331,
+        "endTime": 3.618,
+        "duration": 1.286,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "There were no pictures on the walls.",
+        "startTime": 3.618,
+        "endTime": 6.512,
+        "duration": 2.894,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "It felt empty and cold inside.",
+        "startTime": 6.512,
+        "endTime": 8.923,
+        "duration": 2.412,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "Amina missed her room. She missed her friends and her toys. She felt sad. Her heart felt heavy like a stone.",
+    "sentences": [
+      "Amina missed her room.",
+      "She missed her friends and her toys.",
+      "She felt sad.",
+      "Her heart felt heavy like a stone."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_19.mp3",
+    "duration": 8.289252,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina missed her room.",
+        "startTime": 0,
+        "endTime": 1.737,
+        "duration": 1.737,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "She missed her friends and her toys.",
+        "startTime": 1.737,
+        "endTime": 4.579,
+        "duration": 2.842,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "She felt sad.",
+        "startTime": 4.579,
+        "endTime": 5.605,
+        "duration": 1.026,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "Her heart felt heavy like a stone.",
+        "startTime": 5.605,
+        "endTime": 8.289,
+        "duration": 2.684,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "Days passed. Amina started school. The teacher spoke English. Amina did not understand the words.",
+    "sentences": [
+      "Days passed.",
+      "Amina started school.",
+      "The teacher spoke English.",
+      "Amina did not understand the words."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_20.mp3",
+    "duration": 7.58093,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Days passed.",
+        "startTime": 0,
+        "endTime": 0.968,
+        "duration": 0.968,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "Amina started school.",
+        "startTime": 0.968,
+        "endTime": 2.661,
+        "duration": 1.694,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "The teacher spoke English.",
+        "startTime": 2.661,
+        "endTime": 4.758,
+        "duration": 2.097,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "Amina did not understand the words.",
+        "startTime": 4.758,
+        "endTime": 7.581,
+        "duration": 2.823,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "“What is ‘double-double’?” she whispered to a friend, her voice soft. “It means two creams and two sugars in coffee,” her friend said, laughing. Amina felt embarrassed. She did not know what coffee was.",
+    "sentences": [
+      "“What is ‘double-double’?” she whispered to a friend, her voice soft.",
+      "“It means two creams and two sugars in coffee,” her friend said, laughing.",
+      "Amina felt embarrassed.",
+      "She did not know what coffee was."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_21.mp3",
+    "duration": 16.145533,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“What is ‘double-double’?” she whispered to a friend, her voice soft.",
+        "startTime": 0,
+        "endTime": 5.592,
+        "duration": 5.592,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "“It means two creams and two sugars in coffee,” her friend said, laughing.",
+        "startTime": 5.592,
+        "endTime": 11.729,
+        "duration": 6.137,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "Amina felt embarrassed.",
+        "startTime": 11.729,
+        "endTime": 13.543,
+        "duration": 1.814,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "She did not know what coffee was.",
+        "startTime": 13.543,
+        "endTime": 16.146,
+        "duration": 2.603,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "It made her feel more alone. She wished she could laugh with them. At lunchtime, Amina looked at her food. She brought rice and vegetables.",
+    "sentences": [
+      "It made her feel more alone.",
+      "She wished she could laugh with them.",
+      "At lunchtime, Amina looked at her food.",
+      "She brought rice and vegetables."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_22.mp3",
+    "duration": 10.459796,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It made her feel more alone.",
+        "startTime": 0,
+        "endTime": 2.123,
+        "duration": 2.123,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "She wished she could laugh with them.",
+        "startTime": 2.123,
+        "endTime": 4.927,
+        "duration": 2.805,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "At lunchtime, Amina looked at her food.",
+        "startTime": 4.927,
+        "endTime": 8.034,
+        "duration": 3.106,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "She brought rice and vegetables.",
+        "startTime": 8.034,
+        "endTime": 10.46,
+        "duration": 2.426,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "The other kids had sandwiches with meat and cheese. They asked her, “What are you eating?” Amina smiled but felt alone. She missed her old food. It was warm and full of flavor.",
+    "sentences": [
+      "The other kids had sandwiches with meat and cheese.",
+      "They asked her, “What are you eating?” Amina smiled but felt alone.",
+      "She missed her old food.",
+      "It was warm and full of flavor."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_23.mp3",
+    "duration": 13.203152,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The other kids had sandwiches with meat and cheese.",
+        "startTime": 0,
+        "endTime": 3.848,
+        "duration": 3.848,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "They asked her, “What are you eating?” Amina smiled but felt alone.",
+        "startTime": 3.848,
+        "endTime": 9.053,
+        "duration": 5.205,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "She missed her old food.",
+        "startTime": 9.053,
+        "endTime": 10.864,
+        "duration": 1.811,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "It was warm and full of flavor.",
+        "startTime": 10.864,
+        "endTime": 13.203,
+        "duration": 2.339,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "She wanted to share it with her new friends, but she felt shy. Amina worked hard. She helped her mother clean the apartment. They had to save money.",
+    "sentences": [
+      "She wanted to share it with her new friends, but she felt shy.",
+      "Amina worked hard.",
+      "She helped her mother clean the apartment.",
+      "They had to save money."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_24.mp3",
+    "duration": 9.633061,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to share it with her new friends, but she felt shy.",
+        "startTime": 0,
+        "endTime": 4.205,
+        "duration": 4.205,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "Amina worked hard.",
+        "startTime": 4.205,
+        "endTime": 5.382,
+        "duration": 1.177,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "She helped her mother clean the apartment.",
+        "startTime": 5.382,
+        "endTime": 8.129,
+        "duration": 2.747,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "They had to save money.",
+        "startTime": 8.129,
+        "endTime": 9.633,
+        "duration": 1.504,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "Amina also worked at a restaurant. She washed dishes. Her hands were cold and wrinkled. “No gloves?” she thought.",
+    "sentences": [
+      "Amina also worked at a restaurant.",
+      "She washed dishes.",
+      "Her hands were cold and wrinkled.",
+      "“No gloves?” she thought."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_25.mp3",
+    "duration": 8.868322,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina also worked at a restaurant.",
+        "startTime": 0,
+        "endTime": 2.741,
+        "duration": 2.741,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "She washed dishes.",
+        "startTime": 2.741,
+        "endTime": 4.192,
+        "duration": 1.451,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "Her hands were cold and wrinkled.",
+        "startTime": 4.192,
+        "endTime": 6.853,
+        "duration": 2.66,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "“No gloves?” she thought.",
+        "startTime": 6.853,
+        "endTime": 8.868,
+        "duration": 2.016,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "No one told her to wear them. The water felt like ice. It made her fingers ache. She wished for warm water.",
+    "sentences": [
+      "No one told her to wear them.",
+      "The water felt like ice.",
+      "It made her fingers ache.",
+      "She wished for warm water."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_26.mp3",
+    "duration": 7.789637,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "No one told her to wear them.",
+        "startTime": 0,
+        "endTime": 2.172,
+        "duration": 2.172,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "The water felt like ice.",
+        "startTime": 2.172,
+        "endTime": 3.97,
+        "duration": 1.798,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "It made her fingers ache.",
+        "startTime": 3.97,
+        "endTime": 5.842,
+        "duration": 1.873,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "She wished for warm water.",
+        "startTime": 5.842,
+        "endTime": 7.79,
+        "duration": 1.947,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "One day, Amina visited a refugee camp in Sudan. It was very hot. The sun was bright and shining down. The room was tiny and crowded.",
+    "sentences": [
+      "One day, Amina visited a refugee camp in Sudan.",
+      "It was very hot.",
+      "The sun was bright and shining down.",
+      "The room was tiny and crowded."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_27.mp3",
+    "duration": 10.030499,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One day, Amina visited a refugee camp in Sudan.",
+        "startTime": 0,
+        "endTime": 3.75,
+        "duration": 3.75,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "It was very hot.",
+        "startTime": 3.75,
+        "endTime": 4.975,
+        "duration": 1.225,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "The sun was bright and shining down.",
+        "startTime": 4.975,
+        "endTime": 7.733,
+        "duration": 2.757,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "The room was tiny and crowded.",
+        "startTime": 7.733,
+        "endTime": 10.03,
+        "duration": 2.298,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "There were many people inside. They looked tired and sad. Amina could see their worn faces. No water, no electricity.",
+    "sentences": [
+      "There were many people inside.",
+      "They looked tired and sad.",
+      "Amina could see their worn faces.",
+      "No water, no electricity."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_28.mp3",
+    "duration": 9.813583,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "There were many people inside.",
+        "startTime": 0,
+        "endTime": 2.543,
+        "duration": 2.543,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "They looked tired and sad.",
+        "startTime": 2.543,
+        "endTime": 4.747,
+        "duration": 2.204,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "Amina could see their worn faces.",
+        "startTime": 4.747,
+        "endTime": 7.544,
+        "duration": 2.797,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "No water, no electricity.",
+        "startTime": 7.544,
+        "endTime": 9.814,
+        "duration": 2.269,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "Amina felt her heart break. She thought about her life in Canada. “I have a home,” she realized. “I must be grateful.” She promised to help others like them.",
+    "sentences": [
+      "Amina felt her heart break.",
+      "She thought about her life in Canada.",
+      "“I have a home,” she realized.",
+      "“I must be grateful.” She promised to help others like them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_29.mp3",
+    "duration": 11.44737,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina felt her heart break.",
+        "startTime": 0,
+        "endTime": 1.981,
+        "duration": 1.981,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "She thought about her life in Canada.",
+        "startTime": 1.981,
+        "endTime": 4.695,
+        "duration": 2.714,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "“I have a home,” she realized.",
+        "startTime": 4.695,
+        "endTime": 7.046,
+        "duration": 2.351,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "“I must be grateful.” She promised to help others like them.",
+        "startTime": 7.046,
+        "endTime": 11.447,
+        "duration": 4.402,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "She wanted to make a difference. Then, a sandstorm hit. The wind was strong and loud. Dust filled the air.",
+    "sentences": [
+      "She wanted to make a difference.",
+      "Then, a sandstorm hit.",
+      "The wind was strong and loud.",
+      "Dust filled the air."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_30.mp3",
+    "duration": 7.510204,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to make a difference.",
+        "startTime": 0,
+        "endTime": 2.287,
+        "duration": 2.287,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "Then, a sandstorm hit.",
+        "startTime": 2.287,
+        "endTime": 4.009,
+        "duration": 1.722,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "The wind was strong and loud.",
+        "startTime": 4.009,
+        "endTime": 6.081,
+        "duration": 2.072,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "Dust filled the air.",
+        "startTime": 6.081,
+        "endTime": 7.51,
+        "duration": 1.429,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "Amina covered her face with her hands. She could hardly breathe. She thought, “I wish for winter.” In Syria, she hated the cold. Now, she wanted the cold.",
+    "sentences": [
+      "Amina covered her face with her hands.",
+      "She could hardly breathe.",
+      "She thought, “I wish for winter.” In Syria, she hated the cold.",
+      "Now, she wanted the cold."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_31.mp3",
+    "duration": 12.308141,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina covered her face with her hands.",
+        "startTime": 0,
+        "endTime": 2.984,
+        "duration": 2.984,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "She could hardly breathe.",
+        "startTime": 2.984,
+        "endTime": 4.947,
+        "duration": 1.963,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "She thought, “I wish for winter.” In Syria, she hated the cold.",
+        "startTime": 4.947,
+        "endTime": 10.195,
+        "duration": 5.247,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "Now, she wanted the cold.",
+        "startTime": 10.195,
+        "endTime": 12.308,
+        "duration": 2.113,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "The sandstorm felt scary, but it also made her think. “This is my new life,” she said to herself. The storm swirled around her, but inside, she found a small light of hope. After the sandstorm, Amina felt different.",
+    "sentences": [
+      "The sandstorm felt scary, but it also made her think.",
+      "“This is my new life,” she said to herself.",
+      "The storm swirled around her, but inside, she found a small light of hope.",
+      "After the sandstorm, Amina felt different."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_32.mp3",
+    "duration": 16.639184,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The sandstorm felt scary, but it also made her think.",
+        "startTime": 0,
+        "endTime": 4.122,
+        "duration": 4.122,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "“This is my new life,” she said to herself.",
+        "startTime": 4.122,
+        "endTime": 7.495,
+        "duration": 3.373,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "The storm swirled around her, but inside, she found a small light of hope.",
+        "startTime": 7.495,
+        "endTime": 13.341,
+        "duration": 5.846,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "After the sandstorm, Amina felt different.",
+        "startTime": 13.341,
+        "endTime": 16.639,
+        "duration": 3.298,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "She started to see her life in a new way. She was safe. She had a chance to learn. She wanted to help others like her.",
+    "sentences": [
+      "She started to see her life in a new way.",
+      "She was safe.",
+      "She had a chance to learn.",
+      "She wanted to help others like her."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_33.mp3",
+    "duration": 8.118798,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She started to see her life in a new way.",
+        "startTime": 0,
+        "endTime": 2.895,
+        "duration": 2.895,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "She was safe.",
+        "startTime": 2.895,
+        "endTime": 3.812,
+        "duration": 0.918,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "She had a chance to learn.",
+        "startTime": 3.812,
+        "endTime": 5.648,
+        "duration": 1.836,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "She wanted to help others like her.",
+        "startTime": 5.648,
+        "endTime": 8.119,
+        "duration": 2.471,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "Her heart filled with hope like a balloon. One day, at the restaurant, a man spoke to her. “I am a doctor,” he said. He was a heart surgeon.",
+    "sentences": [
+      "Her heart filled with hope like a balloon.",
+      "One day, at the restaurant, a man spoke to her.",
+      "“I am a doctor,” he said.",
+      "He was a heart surgeon."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_34.mp3",
+    "duration": 10.742041,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her heart filled with hope like a balloon.",
+        "startTime": 0,
+        "endTime": 3.155,
+        "duration": 3.155,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "One day, at the restaurant, a man spoke to her.",
+        "startTime": 3.155,
+        "endTime": 6.986,
+        "duration": 3.831,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "“I am a doctor,” he said.",
+        "startTime": 6.986,
+        "endTime": 9.014,
+        "duration": 2.028,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "He was a heart surgeon.",
+        "startTime": 9.014,
+        "endTime": 10.742,
+        "duration": 1.728,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "Amina felt a spark of hope in her heart. “Can I be a doctor too?” she asked, her eyes shining with excitement. “Yes,” he said with a smile. “You can study.” Amina felt joy.",
+    "sentences": [
+      "Amina felt a spark of hope in her heart.",
+      "“Can I be a doctor too?” she asked, her eyes shining with excitement.",
+      "“Yes,” he said with a smile.",
+      "“You can study.” Amina felt joy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_35.mp3",
+    "duration": 15.163311,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina felt a spark of hope in her heart.",
+        "startTime": 0,
+        "endTime": 3.518,
+        "duration": 3.518,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "“Can I be a doctor too?” she asked, her eyes shining with excitement.",
+        "startTime": 3.518,
+        "endTime": 9.736,
+        "duration": 6.218,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "“Yes,” he said with a smile.",
+        "startTime": 9.736,
+        "endTime": 12.349,
+        "duration": 2.613,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "“You can study.” Amina felt joy.",
+        "startTime": 12.349,
+        "endTime": 15.163,
+        "duration": 2.814,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "She wanted to learn. She felt like she could fly. She started to learn English. She practiced every day.",
+    "sentences": [
+      "She wanted to learn.",
+      "She felt like she could fly.",
+      "She started to learn English.",
+      "She practiced every day."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_36.mp3",
+    "duration": 7.855737,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to learn.",
+        "startTime": 0,
+        "endTime": 1.556,
+        "duration": 1.556,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "She felt like she could fly.",
+        "startTime": 1.556,
+        "endTime": 3.733,
+        "duration": 2.178,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "She started to learn English.",
+        "startTime": 3.733,
+        "endTime": 5.989,
+        "duration": 2.256,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "She practiced every day.",
+        "startTime": 5.989,
+        "endTime": 7.856,
+        "duration": 1.867,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "She listened to music with beautiful words. She watched TV with funny shows. Slowly, she understood more words. She felt proud when she could speak a little.",
+    "sentences": [
+      "She listened to music with beautiful words.",
+      "She watched TV with funny shows.",
+      "Slowly, she understood more words.",
+      "She felt proud when she could speak a little."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_37.mp3",
+    "duration": 12.00619,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She listened to music with beautiful words.",
+        "startTime": 0,
+        "endTime": 3.31,
+        "duration": 3.31,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "She watched TV with funny shows.",
+        "startTime": 3.31,
+        "endTime": 5.774,
+        "duration": 2.464,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "Slowly, she understood more words.",
+        "startTime": 5.774,
+        "endTime": 8.542,
+        "duration": 2.768,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "She felt proud when she could speak a little.",
+        "startTime": 8.542,
+        "endTime": 12.006,
+        "duration": 3.464,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "Every new word was a treasure to her. Amina kept working. She finished school. She got good grades.",
+    "sentences": [
+      "Every new word was a treasure to her.",
+      "Amina kept working.",
+      "She finished school.",
+      "She got good grades."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_38.mp3",
+    "duration": 6.806576,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Every new word was a treasure to her.",
+        "startTime": 0,
+        "endTime": 2.623,
+        "duration": 2.623,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "Amina kept working.",
+        "startTime": 2.623,
+        "endTime": 3.971,
+        "duration": 1.347,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "She finished school.",
+        "startTime": 3.971,
+        "endTime": 5.389,
+        "duration": 1.418,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "She got good grades.",
+        "startTime": 5.389,
+        "endTime": 6.807,
+        "duration": 1.418,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 159,
+    "text": "One day, she was invited to a special program. Young people could learn about medicine. Amina was excited. Her heart raced with happiness.",
+    "sentences": [
+      "One day, she was invited to a special program.",
+      "Young people could learn about medicine.",
+      "Amina was excited.",
+      "Her heart raced with happiness."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_39.mp3",
+    "duration": 10.093673,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One day, she was invited to a special program.",
+        "startTime": 0,
+        "endTime": 3.538,
+        "duration": 3.538,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "Young people could learn about medicine.",
+        "startTime": 3.538,
+        "endTime": 6.484,
+        "duration": 2.946,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "Amina was excited.",
+        "startTime": 6.484,
+        "endTime": 7.81,
+        "duration": 1.326,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "Her heart raced with happiness.",
+        "startTime": 7.81,
+        "endTime": 10.094,
+        "duration": 2.283,
+        "sentenceIndex": 159
+      }
+    ]
+  },
+  {
+    "bundleIndex": 40,
+    "startSentenceIndex": 160,
+    "endSentenceIndex": 163,
+    "text": "It felt like butterflies were dancing in her stomach. At the program, she met a teacher. “You have a bright future,” the teacher said. Amina felt proud and hopeful.",
+    "sentences": [
+      "It felt like butterflies were dancing in her stomach.",
+      "At the program, she met a teacher.",
+      "“You have a bright future,” the teacher said.",
+      "Amina felt proud and hopeful."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_40.mp3",
+    "duration": 12.305805,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It felt like butterflies were dancing in her stomach.",
+        "startTime": 0,
+        "endTime": 3.952,
+        "duration": 3.952,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "At the program, she met a teacher.",
+        "startTime": 3.952,
+        "endTime": 6.638,
+        "duration": 2.685,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "“You have a bright future,” the teacher said.",
+        "startTime": 6.638,
+        "endTime": 10.143,
+        "duration": 3.506,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "Amina felt proud and hopeful.",
+        "startTime": 10.143,
+        "endTime": 12.306,
+        "duration": 2.163,
+        "sentenceIndex": 163
+      }
+    ]
+  },
+  {
+    "bundleIndex": 41,
+    "startSentenceIndex": 164,
+    "endSentenceIndex": 167,
+    "text": "“I can be a doctor,” she thought. She worked hard in the program. Her dream was coming true. Years passed.",
+    "sentences": [
+      "“I can be a doctor,” she thought.",
+      "She worked hard in the program.",
+      "Her dream was coming true.",
+      "Years passed."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_41.mp3",
+    "duration": 8,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“I can be a doctor,” she thought.",
+        "startTime": 0,
+        "endTime": 2.665,
+        "duration": 2.665,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "She worked hard in the program.",
+        "startTime": 2.665,
+        "endTime": 5.028,
+        "duration": 2.363,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "Her dream was coming true.",
+        "startTime": 5.028,
+        "endTime": 7.009,
+        "duration": 1.982,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "Years passed.",
+        "startTime": 7.009,
+        "endTime": 8,
+        "duration": 0.991,
+        "sentenceIndex": 167
+      }
+    ]
+  },
+  {
+    "bundleIndex": 42,
+    "startSentenceIndex": 168,
+    "endSentenceIndex": 171,
+    "text": "Amina became a doctor. She helped many people. She remembered her own journey. She wanted to give back to her community.",
+    "sentences": [
+      "Amina became a doctor.",
+      "She helped many people.",
+      "She remembered her own journey.",
+      "She wanted to give back to her community."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_42.mp3",
+    "duration": 9.050567,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina became a doctor.",
+        "startTime": 0,
+        "endTime": 1.702,
+        "duration": 1.702,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "She helped many people.",
+        "startTime": 1.702,
+        "endTime": 3.481,
+        "duration": 1.779,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "She remembered her own journey.",
+        "startTime": 3.481,
+        "endTime": 5.879,
+        "duration": 2.398,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "She wanted to give back to her community.",
+        "startTime": 5.879,
+        "endTime": 9.051,
+        "duration": 3.172,
+        "sentenceIndex": 171
+      }
+    ]
+  },
+  {
+    "bundleIndex": 43,
+    "startSentenceIndex": 172,
+    "endSentenceIndex": 175,
+    "text": "She opened a clinic for refugees. Amina felt strong. She found her purpose. One day, she spoke to a group of young refugees.",
+    "sentences": [
+      "She opened a clinic for refugees.",
+      "Amina felt strong.",
+      "She found her purpose.",
+      "One day, she spoke to a group of young refugees."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_43.mp3",
+    "duration": 10.399501,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She opened a clinic for refugees.",
+        "startTime": 0,
+        "endTime": 2.795,
+        "duration": 2.795,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "Amina felt strong.",
+        "startTime": 2.795,
+        "endTime": 4.32,
+        "duration": 1.525,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "She found her purpose.",
+        "startTime": 4.32,
+        "endTime": 6.184,
+        "duration": 1.864,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "One day, she spoke to a group of young refugees.",
+        "startTime": 6.184,
+        "endTime": 10.4,
+        "duration": 4.216,
+        "sentenceIndex": 175
+      }
+    ]
+  },
+  {
+    "bundleIndex": 44,
+    "startSentenceIndex": 176,
+    "endSentenceIndex": 179,
+    "text": "They looked at her with wide eyes. “You can do anything,” she said with a big smile. “Believe in yourself.” They smiled back. Amina saw hope in their eyes.",
+    "sentences": [
+      "They looked at her with wide eyes.",
+      "“You can do anything,” she said with a big smile.",
+      "“Believe in yourself.” They smiled back.",
+      "Amina saw hope in their eyes."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_44.mp3",
+    "duration": 11.509025,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They looked at her with wide eyes.",
+        "startTime": 0,
+        "endTime": 2.541,
+        "duration": 2.541,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "“You can do anything,” she said with a big smile.",
+        "startTime": 2.541,
+        "endTime": 6.353,
+        "duration": 3.812,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "“Believe in yourself.” They smiled back.",
+        "startTime": 6.353,
+        "endTime": 9.342,
+        "duration": 2.989,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "Amina saw hope in their eyes.",
+        "startTime": 9.342,
+        "endTime": 11.509,
+        "duration": 2.167,
+        "sentenceIndex": 179
+      }
+    ]
+  },
+  {
+    "bundleIndex": 45,
+    "startSentenceIndex": 180,
+    "endSentenceIndex": 183,
+    "text": "She felt happy to inspire them. She wanted them to believe in their dreams. Amina thought about her journey. She remembered the fear and confusion.",
+    "sentences": [
+      "She felt happy to inspire them.",
+      "She wanted them to believe in their dreams.",
+      "Amina thought about her journey.",
+      "She remembered the fear and confusion."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_45.mp3",
+    "duration": 10.737937,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt happy to inspire them.",
+        "startTime": 0,
+        "endTime": 2.312,
+        "duration": 2.312,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "She wanted them to believe in their dreams.",
+        "startTime": 2.312,
+        "endTime": 5.518,
+        "duration": 3.206,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "Amina thought about her journey.",
+        "startTime": 5.518,
+        "endTime": 7.904,
+        "duration": 2.386,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "She remembered the fear and confusion.",
+        "startTime": 7.904,
+        "endTime": 10.738,
+        "duration": 2.834,
+        "sentenceIndex": 183
+      }
+    ]
+  },
+  {
+    "bundleIndex": 46,
+    "startSentenceIndex": 184,
+    "endSentenceIndex": 187,
+    "text": "She remembered the sandstorm. She remembered wishing for winter. That moment changed everything. It made her see her strength.",
+    "sentences": [
+      "She remembered the sandstorm.",
+      "She remembered wishing for winter.",
+      "That moment changed everything.",
+      "It made her see her strength."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_46.mp3",
+    "duration": 9.545714,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She remembered the sandstorm.",
+        "startTime": 0,
+        "endTime": 2.251,
+        "duration": 2.251,
+        "sentenceIndex": 184
+      },
+      {
+        "text": "She remembered wishing for winter.",
+        "startTime": 2.251,
+        "endTime": 4.889,
+        "duration": 2.639,
+        "sentenceIndex": 185
+      },
+      {
+        "text": "That moment changed everything.",
+        "startTime": 4.889,
+        "endTime": 7.295,
+        "duration": 2.406,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "It made her see her strength.",
+        "startTime": 7.295,
+        "endTime": 9.546,
+        "duration": 2.251,
+        "sentenceIndex": 187
+      }
+    ]
+  },
+  {
+    "bundleIndex": 47,
+    "startSentenceIndex": 188,
+    "endSentenceIndex": 191,
+    "text": "Now, Amina belonged. She found her strength. She was home. Amina smiled.",
+    "sentences": [
+      "Now, Amina belonged.",
+      "She found her strength.",
+      "She was home.",
+      "Amina smiled."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_47.mp3",
+    "duration": 5.815556,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Now, Amina belonged.",
+        "startTime": 0,
+        "endTime": 1.792,
+        "duration": 1.792,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "She found her strength.",
+        "startTime": 1.792,
+        "endTime": 3.681,
+        "duration": 1.889,
+        "sentenceIndex": 189
+      },
+      {
+        "text": "She was home.",
+        "startTime": 3.681,
+        "endTime": 4.748,
+        "duration": 1.067,
+        "sentenceIndex": 190
+      },
+      {
+        "text": "Amina smiled.",
+        "startTime": 4.748,
+        "endTime": 5.816,
+        "duration": 1.067,
+        "sentenceIndex": 191
+      }
+    ]
+  },
+  {
+    "bundleIndex": 48,
+    "startSentenceIndex": 192,
+    "endSentenceIndex": 195,
+    "text": "She was not just a refugee. She was a doctor, a helper, and a friend. She knew her journey was hard, but it made her who she was. And she was proud.",
+    "sentences": [
+      "She was not just a refugee.",
+      "She was a doctor, a helper, and a friend.",
+      "She knew her journey was hard, but it made her who she was.",
+      "And she was proud."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_48.mp3",
+    "duration": 10.680567,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She was not just a refugee.",
+        "startTime": 0,
+        "endTime": 1.905,
+        "duration": 1.905,
+        "sentenceIndex": 192
+      },
+      {
+        "text": "She was a doctor, a helper, and a friend.",
+        "startTime": 1.905,
+        "endTime": 5.098,
+        "duration": 3.193,
+        "sentenceIndex": 193
+      },
+      {
+        "text": "She knew her journey was hard, but it made her who she was.",
+        "startTime": 5.098,
+        "endTime": 9.411,
+        "duration": 4.313,
+        "sentenceIndex": 194
+      },
+      {
+        "text": "And she was proud.",
+        "startTime": 9.411,
+        "endTime": 10.681,
+        "duration": 1.27,
+        "sentenceIndex": 195
+      }
+    ]
+  },
+  {
+    "bundleIndex": 49,
+    "startSentenceIndex": 196,
+    "endSentenceIndex": 199,
+    "text": "Amina often thought about her family and friends left behind. She would close her eyes and remember their smiles. She would remember the laughter. They were her heart.",
+    "sentences": [
+      "Amina often thought about her family and friends left behind.",
+      "She would close her eyes and remember their smiles.",
+      "She would remember the laughter.",
+      "They were her heart."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_49.mp3",
+    "duration": 11.113197,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina often thought about her family and friends left behind.",
+        "startTime": 0,
+        "endTime": 4.134,
+        "duration": 4.134,
+        "sentenceIndex": 196
+      },
+      {
+        "text": "She would close her eyes and remember their smiles.",
+        "startTime": 4.134,
+        "endTime": 7.59,
+        "duration": 3.456,
+        "sentenceIndex": 197
+      },
+      {
+        "text": "She would remember the laughter.",
+        "startTime": 7.59,
+        "endTime": 9.758,
+        "duration": 2.168,
+        "sentenceIndex": 198
+      },
+      {
+        "text": "They were her heart.",
+        "startTime": 9.758,
+        "endTime": 11.113,
+        "duration": 1.355,
+        "sentenceIndex": 199
+      }
+    ]
+  },
+  {
+    "bundleIndex": 50,
+    "startSentenceIndex": 200,
+    "endSentenceIndex": 203,
+    "text": "She wanted to help them, too. One day, Amina organized a fundraiser. She wanted to send money to help her family and friends in Syria. She invited everyone from her community.",
+    "sentences": [
+      "She wanted to help them, too.",
+      "One day, Amina organized a fundraiser.",
+      "She wanted to send money to help her family and friends in Syria.",
+      "She invited everyone from her community."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_50.mp3",
+    "duration": 13.140658,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to help them, too.",
+        "startTime": 0,
+        "endTime": 2.315,
+        "duration": 2.315,
+        "sentenceIndex": 200
+      },
+      {
+        "text": "One day, Amina organized a fundraiser.",
+        "startTime": 2.315,
+        "endTime": 5.302,
+        "duration": 2.987,
+        "sentenceIndex": 201
+      },
+      {
+        "text": "She wanted to send money to help her family and friends in Syria.",
+        "startTime": 5.302,
+        "endTime": 10.154,
+        "duration": 4.853,
+        "sentenceIndex": 202
+      },
+      {
+        "text": "She invited everyone from her community.",
+        "startTime": 10.154,
+        "endTime": 13.141,
+        "duration": 2.986,
+        "sentenceIndex": 203
+      }
+    ]
+  },
+  {
+    "bundleIndex": 51,
+    "startSentenceIndex": 204,
+    "endSentenceIndex": 207,
+    "text": "They came together, people from different places. They shared food, stories, and laughter. Amina spoke to the crowd. “We can help each other,” she said.",
+    "sentences": [
+      "They came together, people from different places.",
+      "They shared food, stories, and laughter.",
+      "Amina spoke to the crowd.",
+      "“We can help each other,” she said."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_51.mp3",
+    "duration": 12.096712,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They came together, people from different places.",
+        "startTime": 0,
+        "endTime": 3.931,
+        "duration": 3.931,
+        "sentenceIndex": 204
+      },
+      {
+        "text": "They shared food, stories, and laughter.",
+        "startTime": 3.931,
+        "endTime": 7.317,
+        "duration": 3.386,
+        "sentenceIndex": 205
+      },
+      {
+        "text": "Amina spoke to the crowd.",
+        "startTime": 7.317,
+        "endTime": 9.246,
+        "duration": 1.929,
+        "sentenceIndex": 206
+      },
+      {
+        "text": "“We can help each other,” she said.",
+        "startTime": 9.246,
+        "endTime": 12.097,
+        "duration": 2.851,
+        "sentenceIndex": 207
+      }
+    ]
+  },
+  {
+    "bundleIndex": 52,
+    "startSentenceIndex": 208,
+    "endSentenceIndex": 211,
+    "text": "“Together, we are strong.” The people clapped and cheered. Amina felt warmth in her heart. They raised a lot of money. She was happy.",
+    "sentences": [
+      "“Together, we are strong.” The people clapped and cheered.",
+      "Amina felt warmth in her heart.",
+      "They raised a lot of money.",
+      "She was happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_52.mp3",
+    "duration": 11.110771,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Together, we are strong.” The people clapped and cheered.",
+        "startTime": 0,
+        "endTime": 5.04,
+        "duration": 5.04,
+        "sentenceIndex": 208
+      },
+      {
+        "text": "Amina felt warmth in her heart.",
+        "startTime": 5.04,
+        "endTime": 7.654,
+        "duration": 2.614,
+        "sentenceIndex": 209
+      },
+      {
+        "text": "They raised a lot of money.",
+        "startTime": 7.654,
+        "endTime": 9.93,
+        "duration": 2.276,
+        "sentenceIndex": 210
+      },
+      {
+        "text": "She was happy.",
+        "startTime": 9.93,
+        "endTime": 11.111,
+        "duration": 1.18,
+        "sentenceIndex": 211
+      }
+    ]
+  },
+  {
+    "bundleIndex": 53,
+    "startSentenceIndex": 212,
+    "endSentenceIndex": 215,
+    "text": "As she sent the money to her family, Amina felt peace. She was doing something good. She was giving back. She was not just a refugee; she was a bridge for others.",
+    "sentences": [
+      "As she sent the money to her family, Amina felt peace.",
+      "She was doing something good.",
+      "She was giving back.",
+      "She was not just a refugee; she was a bridge for others."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_53.mp3",
+    "duration": 12.007506,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "As she sent the money to her family, Amina felt peace.",
+        "startTime": 0,
+        "endTime": 4.092,
+        "duration": 4.092,
+        "sentenceIndex": 212
+      },
+      {
+        "text": "She was doing something good.",
+        "startTime": 4.092,
+        "endTime": 6.209,
+        "duration": 2.117,
+        "sentenceIndex": 213
+      },
+      {
+        "text": "She was giving back.",
+        "startTime": 6.209,
+        "endTime": 7.669,
+        "duration": 1.46,
+        "sentenceIndex": 214
+      },
+      {
+        "text": "She was not just a refugee; she was a bridge for others.",
+        "startTime": 7.669,
+        "endTime": 12.008,
+        "duration": 4.338,
+        "sentenceIndex": 215
+      }
+    ]
+  },
+  {
+    "bundleIndex": 54,
+    "startSentenceIndex": 216,
+    "endSentenceIndex": 219,
+    "text": "Amina continued to work hard. She helped her daughters with their studies. She wanted them to have a better life. She wanted them to dream big.",
+    "sentences": [
+      "Amina continued to work hard.",
+      "She helped her daughters with their studies.",
+      "She wanted them to have a better life.",
+      "She wanted them to dream big."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_54.mp3",
+    "duration": 9.274535,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina continued to work hard.",
+        "startTime": 0,
+        "endTime": 1.921,
+        "duration": 1.921,
+        "sentenceIndex": 216
+      },
+      {
+        "text": "She helped her daughters with their studies.",
+        "startTime": 1.921,
+        "endTime": 4.836,
+        "duration": 2.915,
+        "sentenceIndex": 217
+      },
+      {
+        "text": "She wanted them to have a better life.",
+        "startTime": 4.836,
+        "endTime": 7.353,
+        "duration": 2.517,
+        "sentenceIndex": 218
+      },
+      {
+        "text": "She wanted them to dream big.",
+        "startTime": 7.353,
+        "endTime": 9.275,
+        "duration": 1.921,
+        "sentenceIndex": 219
+      }
+    ]
+  },
+  {
+    "bundleIndex": 55,
+    "startSentenceIndex": 220,
+    "endSentenceIndex": 223,
+    "text": "Amina knew that with love and hard work, anything was possible. Every night, before they slept, Amina told her daughters stories. They were stories of courage, hope, and dreams. She wanted them to know that they could achieve anything.",
+    "sentences": [
+      "Amina knew that with love and hard work, anything was possible.",
+      "Every night, before they slept, Amina told her daughters stories.",
+      "They were stories of courage, hope, and dreams.",
+      "She wanted them to know that they could achieve anything."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_55.mp3",
+    "duration": 17.469569,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina knew that with love and hard work, anything was possible.",
+        "startTime": 0,
+        "endTime": 4.69,
+        "duration": 4.69,
+        "sentenceIndex": 220
+      },
+      {
+        "text": "Every night, before they slept, Amina told her daughters stories.",
+        "startTime": 4.69,
+        "endTime": 9.675,
+        "duration": 4.984,
+        "sentenceIndex": 221
+      },
+      {
+        "text": "They were stories of courage, hope, and dreams.",
+        "startTime": 9.675,
+        "endTime": 13.362,
+        "duration": 3.687,
+        "sentenceIndex": 222
+      },
+      {
+        "text": "She wanted them to know that they could achieve anything.",
+        "startTime": 13.362,
+        "endTime": 17.47,
+        "duration": 4.108,
+        "sentenceIndex": 223
+      }
+    ]
+  },
+  {
+    "bundleIndex": 56,
+    "startSentenceIndex": 224,
+    "endSentenceIndex": 227,
+    "text": "Amina looked at her daughters one night. She felt a wave of love wash over her. “You are my light,” she said. They smiled back at her.",
+    "sentences": [
+      "Amina looked at her daughters one night.",
+      "She felt a wave of love wash over her.",
+      "“You are my light,” she said.",
+      "They smiled back at her."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_56.mp3",
+    "duration": 10.188821,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina looked at her daughters one night.",
+        "startTime": 0,
+        "endTime": 3.065,
+        "duration": 3.065,
+        "sentenceIndex": 224
+      },
+      {
+        "text": "She felt a wave of love wash over her.",
+        "startTime": 3.065,
+        "endTime": 5.977,
+        "duration": 2.912,
+        "sentenceIndex": 225
+      },
+      {
+        "text": "“You are my light,” she said.",
+        "startTime": 5.977,
+        "endTime": 8.35,
+        "duration": 2.372,
+        "sentenceIndex": 226
+      },
+      {
+        "text": "They smiled back at her.",
+        "startTime": 8.35,
+        "endTime": 10.189,
+        "duration": 1.839,
+        "sentenceIndex": 227
+      }
+    ]
+  },
+  {
+    "bundleIndex": 57,
+    "startSentenceIndex": 228,
+    "endSentenceIndex": 231,
+    "text": "In that moment, Amina felt complete. She was not just a doctor or a helper. She was a mother. As the years went by, Amina continued to grow.",
+    "sentences": [
+      "In that moment, Amina felt complete.",
+      "She was not just a doctor or a helper.",
+      "She was a mother.",
+      "As the years went by, Amina continued to grow."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_57.mp3",
+    "duration": 10.615669,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "In that moment, Amina felt complete.",
+        "startTime": 0,
+        "endTime": 2.861,
+        "duration": 2.861,
+        "sentenceIndex": 228
+      },
+      {
+        "text": "She was not just a doctor or a helper.",
+        "startTime": 2.861,
+        "endTime": 5.722,
+        "duration": 2.861,
+        "sentenceIndex": 229
+      },
+      {
+        "text": "She was a mother.",
+        "startTime": 5.722,
+        "endTime": 7.002,
+        "duration": 1.28,
+        "sentenceIndex": 230
+      },
+      {
+        "text": "As the years went by, Amina continued to grow.",
+        "startTime": 7.002,
+        "endTime": 10.616,
+        "duration": 3.614,
+        "sentenceIndex": 231
+      }
+    ]
+  },
+  {
+    "bundleIndex": 58,
+    "startSentenceIndex": 232,
+    "endSentenceIndex": 235,
+    "text": "She faced challenges, but she never gave up. She remembered her journey. She remembered where she started. Amina knew that every step mattered.",
+    "sentences": [
+      "She faced challenges, but she never gave up.",
+      "She remembered her journey.",
+      "She remembered where she started.",
+      "Amina knew that every step mattered."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_58.mp3",
+    "duration": 11.069819,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She faced challenges, but she never gave up.",
+        "startTime": 0,
+        "endTime": 3.582,
+        "duration": 3.582,
+        "sentenceIndex": 232
+      },
+      {
+        "text": "She remembered her journey.",
+        "startTime": 3.582,
+        "endTime": 5.688,
+        "duration": 2.106,
+        "sentenceIndex": 233
+      },
+      {
+        "text": "She remembered where she started.",
+        "startTime": 5.688,
+        "endTime": 8.262,
+        "duration": 2.574,
+        "sentenceIndex": 234
+      },
+      {
+        "text": "Amina knew that every step mattered.",
+        "startTime": 8.262,
+        "endTime": 11.07,
+        "duration": 2.808,
+        "sentenceIndex": 235
+      }
+    ]
+  },
+  {
+    "bundleIndex": 59,
+    "startSentenceIndex": 236,
+    "endSentenceIndex": 239,
+    "text": "Amina was now a symbol of hope in her community. People came to her for help. They came to her for advice. She felt honored.",
+    "sentences": [
+      "Amina was now a symbol of hope in her community.",
+      "People came to her for help.",
+      "They came to her for advice.",
+      "She felt honored."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_59.mp3",
+    "duration": 8.627052,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amina was now a symbol of hope in her community.",
+        "startTime": 0,
+        "endTime": 3.422,
+        "duration": 3.422,
+        "sentenceIndex": 236
+      },
+      {
+        "text": "People came to her for help.",
+        "startTime": 3.422,
+        "endTime": 5.419,
+        "duration": 1.996,
+        "sentenceIndex": 237
+      },
+      {
+        "text": "They came to her for advice.",
+        "startTime": 5.419,
+        "endTime": 7.415,
+        "duration": 1.996,
+        "sentenceIndex": 238
+      },
+      {
+        "text": "She felt honored.",
+        "startTime": 7.415,
+        "endTime": 8.627,
+        "duration": 1.212,
+        "sentenceIndex": 239
+      }
+    ]
+  },
+  {
+    "bundleIndex": 60,
+    "startSentenceIndex": 240,
+    "endSentenceIndex": 243,
+    "text": "She wanted to be there for them, just like others were there for her. Amina looked around her clinic one day. It was filled with people. She smiled at them.",
+    "sentences": [
+      "She wanted to be there for them, just like others were there for her.",
+      "Amina looked around her clinic one day.",
+      "It was filled with people.",
+      "She smiled at them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_60.mp3",
+    "duration": 11.075079,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to be there for them, just like others were there for her.",
+        "startTime": 0,
+        "endTime": 5.077,
+        "duration": 5.077,
+        "sentenceIndex": 240
+      },
+      {
+        "text": "Amina looked around her clinic one day.",
+        "startTime": 5.077,
+        "endTime": 7.862,
+        "duration": 2.785,
+        "sentenceIndex": 241
+      },
+      {
+        "text": "It was filled with people.",
+        "startTime": 7.862,
+        "endTime": 9.718,
+        "duration": 1.857,
+        "sentenceIndex": 242
+      },
+      {
+        "text": "She smiled at them.",
+        "startTime": 9.718,
+        "endTime": 11.075,
+        "duration": 1.357,
+        "sentenceIndex": 243
+      }
+    ]
+  },
+  {
+    "bundleIndex": 61,
+    "startSentenceIndex": 244,
+    "endSentenceIndex": 247,
+    "text": "“We are all together,” she thought. “We are a family.” And she knew she would always fight for them. Amina’s journey was long and hard, but it made her who she was. She was proud of her story.",
+    "sentences": [
+      "“We are all together,” she thought.",
+      "“We are a family.” And she knew she would always fight for them.",
+      "Amina’s journey was long and hard, but it made her who she was.",
+      "She was proud of her story."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_61.mp3",
+    "duration": 15.594308,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“We are all together,” she thought.",
+        "startTime": 0,
+        "endTime": 2.982,
+        "duration": 2.982,
+        "sentenceIndex": 244
+      },
+      {
+        "text": "“We are a family.” And she knew she would always fight for them.",
+        "startTime": 2.982,
+        "endTime": 8.161,
+        "duration": 5.179,
+        "sentenceIndex": 245
+      },
+      {
+        "text": "Amina’s journey was long and hard, but it made her who she was.",
+        "startTime": 8.161,
+        "endTime": 13.409,
+        "duration": 5.248,
+        "sentenceIndex": 246
+      },
+      {
+        "text": "She was proud of her story.",
+        "startTime": 13.409,
+        "endTime": 15.594,
+        "duration": 2.185,
+        "sentenceIndex": 247
+      }
+    ]
+  },
+  {
+    "bundleIndex": 62,
+    "startSentenceIndex": 248,
+    "endSentenceIndex": 251,
+    "text": "It was a story of strength, love, and hope. And she knew that every person could write their own story. Amina smiled again, feeling grateful for her life. She was home, and she was exactly where she needed to be.",
+    "sentences": [
+      "It was a story of strength, love, and hope.",
+      "And she knew that every person could write their own story.",
+      "Amina smiled again, feeling grateful for her life.",
+      "She was home, and she was exactly where she needed to be."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_62.mp3",
+    "duration": 14.677438,
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "voiceName": "Sarah",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was a story of strength, love, and hope.",
+        "startTime": 0,
+        "endTime": 3.196,
+        "duration": 3.196,
+        "sentenceIndex": 248
+      },
+      {
+        "text": "And she knew that every person could write their own story.",
+        "startTime": 3.196,
+        "endTime": 7.17,
+        "duration": 3.974,
+        "sentenceIndex": 249
+      },
+      {
+        "text": "Amina smiled again, feeling grateful for her life.",
+        "startTime": 7.17,
+        "endTime": 10.688,
+        "duration": 3.518,
+        "sentenceIndex": 250
+      },
+      {
+        "text": "She was home, and she was exactly where she needed to be.",
+        "startTime": 10.688,
+        "endTime": 14.677,
+        "duration": 3.989,
+        "sentenceIndex": 251
+      }
+    ]
+  }
+]

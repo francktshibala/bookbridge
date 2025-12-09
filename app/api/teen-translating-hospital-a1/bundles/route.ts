@@ -49,26 +49,6 @@ export async function GET(request: NextRequest) {
 
     console.log(`🎤 Loading "Teen Translating for Parents Through Hospital Chaos" bundles for level: ${level}`);
 
-    // Fast-fail check: count bundles first to avoid timeout
-    const chunkCount = await prisma.bookChunk.count({
-      where: {
-        bookId: 'teen-translating-hospital',
-        cefrLevel: 'A1'
-      }
-    });
-
-    if (chunkCount === 0) {
-      return NextResponse.json({
-        success: false,
-        error: 'No bundles found for Teen Translating for Parents Through Hospital Chaos A1'
-      }, {
-        status: 404,
-        headers: { 'Cache-Control': 'no-store' }
-      });
-    }
-
-    console.log(`📊 Found ${chunkCount} bundles in database`);
-
     // Get bundles from BookChunk table with audio duration metadata
     const bookChunks = await prisma.bookChunk.findMany({
       where: {

@@ -445,15 +445,50 @@ node scripts/backfill-audio-durations.js
 # Create /api/[book-name]/bundles/route.ts
 # MANDATORY: APIs must use cached audioDurationMetadata, never estimate
 #
+# ⚠️ PERFORMANCE OPTIMIZATION (CRITICAL - 1-2 second loads vs 10+ seconds):
+# - ✅ DO: Go directly to findMany() query (no extra count query)
+# - ❌ DON'T: Do chunkCount query before findMany (adds unnecessary database round-trip)
+# - ✅ DO: Use select() to fetch only needed fields (id, bookId, cefrLevel, chunkIndex, chunkText, wordCount, audioFilePath, audioDurationMetadata)
+# - ✅ DO: Initialize Supabase client at module scope (reused across requests)
+# - ✅ DO: Use cached audioDurationMetadata (Solution 1 - no ffprobe calls)
+#
+# FAST LOADING PATTERN (Reference: the-necklace-a1/bundles/route.ts):
 # ```typescript
+# // Initialize Supabase client at module scope (reused)
+# const supabase = createClient(
+#   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+#   process.env.SUPABASE_SERVICE_ROLE_KEY as string
+# );
+#
+# // Go directly to findMany (no count query)
 # const chunks = await prisma.bookChunk.findMany({
 #   where: { bookId, cefrLevel },
+#   orderBy: { chunkIndex: 'asc' },
 #   select: {
+#     id: true,
+#     bookId: true,
+#     cefrLevel: true,
+#     chunkIndex: true,
 #     chunkText: true,
+#     wordCount: true,
 #     audioFilePath: true,
 #     audioDurationMetadata: true  // ← REQUIRED
 #   }
 # });
+#
+# // Check if empty AFTER query (not before with count query)
+# if (!chunks || chunks.length === 0) {
+#   return NextResponse.json({ success: false, error: 'No bundles found' }, { status: 404 });
+# }
+# ```
+#
+# SLOW PATTERN (AVOID - causes 10+ second loads):
+# ```typescript
+# // ❌ DON'T DO THIS - adds unnecessary database round-trip:
+# const chunkCount = await prisma.bookChunk.count({ where: { bookId, cefrLevel } });
+# if (chunkCount === 0) { return NextResponse.json({...}, { status: 404 }); }
+# const chunks = await prisma.bookChunk.findMany({...});
+# ```
 #
 # REQUIRED API pattern using Solution 1 (no fallbacks to estimation):
 # if (chunk.audioDurationMetadata && chunk.audioDurationMetadata.sentenceTimings) {

@@ -1,0 +1,104 @@
+{
+  "storyId": "refugee-journey-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/preview-combined.mp3",
+    "duration": 77.172744,
+    "voice": "Sarah",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 7.308,
+        "duration": 7.308,
+        "text": "About This Story\n\nIn this inspiring story, a young girl named Amina flees her home due to war."
+      },
+      {
+        "startTime": 7.308,
+        "endTime": 11.953,
+        "duration": 4.645,
+        "text": "She leaves everything behind and feels lost in a new country."
+      },
+      {
+        "startTime": 11.953,
+        "endTime": 16.293,
+        "duration": 4.34,
+        "text": "Amina's journey is about transformation and finding hope."
+      },
+      {
+        "startTime": 16.293,
+        "endTime": 19.339,
+        "duration": 3.046,
+        "text": "She learns about strength and belonging."
+      },
+      {
+        "startTime": 19.339,
+        "endTime": 23.603,
+        "duration": 4.264,
+        "text": "One moment in a refugee camp changes everything for her."
+      },
+      {
+        "startTime": 23.603,
+        "endTime": 26.953,
+        "duration": 3.35,
+        "text": "This moment helps her see life in a new way."
+      },
+      {
+        "startTime": 26.953,
+        "endTime": 30.913,
+        "duration": 3.96,
+        "text": "Imagine fleeing your home with only minutes to pack."
+      },
+      {
+        "startTime": 30.913,
+        "endTime": 36.167,
+        "duration": 5.254,
+        "text": "Imagine arriving in a new country where you don't speak the language."
+      },
+      {
+        "startTime": 36.167,
+        "endTime": 39.898,
+        "duration": 3.731,
+        "text": "Amina works two jobs and still feels like nobody."
+      },
+      {
+        "startTime": 39.898,
+        "endTime": 46.094,
+        "duration": 6.196,
+        "text": "She hated her new country—until one night in a refugee camp changed everything."
+      },
+      {
+        "startTime": 46.094,
+        "endTime": 51.876,
+        "duration": 5.782,
+        "text": "In a sandstorm, with no water and no electricity, she wished for winter."
+      },
+      {
+        "startTime": 51.876,
+        "endTime": 55.303,
+        "duration": 3.427,
+        "text": "This moment would change her journey forever."
+      },
+      {
+        "startTime": 55.303,
+        "endTime": 63.215,
+        "duration": 7.912,
+        "text": "In 2021, millions of people were forced to flee their homes due to war, persecution, and violence."
+      },
+      {
+        "startTime": 63.215,
+        "endTime": 72.071,
+        "duration": 8.856,
+        "text": "Many refugees arrive in new countries with nothing—no money, no home, no knowledge of the language or culture."
+      },
+      {
+        "startTime": 72.071,
+        "endTime": 77.173,
+        "duration": 5.102,
+        "text": "This story follows one refugee's journey from a war zone to safety."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-09T10:40:01.166Z",
+  "timingMethod": "enhanced-timing-v3"
+}
