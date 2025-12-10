@@ -14,6 +14,8 @@
 | `helen-keller` | The Story of My Life | Helen Keller | Project Gutenberg (Chapters III-IV) | Perseverance, Education, Communication, Transformation | ✅ Complete | ✅ | - | - | ~16 min | 30 | 2025-01-08 |
 | `teaching-dad-to-read` | First-Gen Student Teaching Dad to Read | BookBridge | GMA, Motherly, TODAY | Intergenerational Learning, Role Reversal, Family Dynamics, Education, Empowerment | ✅ Complete | ✅ | - | - | ~21 min | 39 | 2025-12-08 |
 | `immigrant-entrepreneur` | Immigrant Entrepreneur: From Failure to Success | BookBridge | SF Chronicle, MEDA, IOM, WNW, Swaay, MightyCall | Immigration, Entrepreneurship, Resilience, Overcoming Adversity, Building New Life, Community Support, Transformation | ✅ Complete | ✅ | - | - | ~20 min | 40 | 2025-12-08 |
+| `refugee-journey-1` | Refugee Journey: From War Zone to Hope | BookBridge | Multiple sources (thematic extraction) | Refugee Journey, War Zone to Safety, Language Barriers, Building New Life, Identity Loss and Rediscovery, Persistence Despite Hardship | ✅ Complete | ✅ | - | - | ~20 min | 63 | 2025-12-10 |
+| `community-builder-1` | Community Builder: One Person Transforms a Neighborhood | BookBridge | Multiple sources (thematic extraction) | Community Building, Belonging, Transformation, Food Access, Empowerment, Building Connections, Persistence | ✅ Complete | ✅ | - | - | ~20 min | 53 | 2025-12-10 |
 
 **Legend**:
 - ✅ Complete
@@ -313,6 +315,13 @@
   - Daniel: Business stories, entrepreneurship, professional narratives
 - Apply 0.85× FFmpeg slowdown for comfortable listening pace
 - Generate sentence-level timings for both intro and bundles
+
+### Preview-Combined Format
+- **CRITICAL**: File must have double newlines (`\n\n`) between sections
+- **Format**: "About This Story" → blank line → Preview → blank line → Hook → blank line → Background
+- **Parser**: Uses `split(/\n\n+/)` so missing blank lines cause intro text not to display
+- **Validation**: Always verify file format before proceeding to audio generation
+- **Fix**: Ensure proper double newlines between all sections
 
 ### Quality Gates
 - **Step 0.25**: Source Material Check (MANDATORY)

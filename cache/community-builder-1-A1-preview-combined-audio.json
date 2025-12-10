@@ -1,0 +1,140 @@
+{
+  "storyId": "community-builder-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/preview-combined.mp3",
+    "duration": 71.004263,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 7.19,
+        "duration": 7.19,
+        "text": "About This Story  \nIn this inspiring story, one person sees a need in their neighborhood."
+      },
+      {
+        "startTime": 7.19,
+        "endTime": 11.224,
+        "duration": 4.034,
+        "text": "They feel the sadness of people without fresh food."
+      },
+      {
+        "startTime": 11.224,
+        "endTime": 14.467,
+        "duration": 3.243,
+        "text": "This person decides to build a community."
+      },
+      {
+        "startTime": 14.467,
+        "endTime": 18.026,
+        "duration": 3.559,
+        "text": "They help others feel connected and included."
+      },
+      {
+        "startTime": 18.026,
+        "endTime": 21.111,
+        "duration": 3.085,
+        "text": "One small action can change many lives."
+      },
+      {
+        "startTime": 21.111,
+        "endTime": 26.094,
+        "duration": 4.983,
+        "text": "This story shows the power of hope and strength in a community."
+      },
+      {
+        "startTime": 26.094,
+        "endTime": 29.653,
+        "duration": 3.559,
+        "text": "Imagine living in a place with no fresh food."
+      },
+      {
+        "startTime": 29.653,
+        "endTime": 32.184,
+        "duration": 2.531,
+        "text": "Imagine feeling alone every day."
+      },
+      {
+        "startTime": 32.184,
+        "endTime": 36.21,
+        "duration": 4.026,
+        "text": "One night, Sofia walks in her quiet neighborhood."
+      },
+      {
+        "startTime": 36.21,
+        "endTime": 40.086,
+        "duration": 3.876,
+        "text": "She sees a mother and her child looking for food."
+      },
+      {
+        "startTime": 40.086,
+        "endTime": 41.509,
+        "duration": 1.424,
+        "text": "They feel ashamed."
+      },
+      {
+        "startTime": 41.509,
+        "endTime": 43.637,
+        "duration": 2.127,
+        "text": "Sofia feels ashamed, too."
+      },
+      {
+        "startTime": 43.637,
+        "endTime": 46.168,
+        "duration": 2.531,
+        "text": "She knows something must change."
+      },
+      {
+        "startTime": 46.168,
+        "endTime": 48.304,
+        "duration": 2.136,
+        "text": "She thinks of a small idea."
+      },
+      {
+        "startTime": 48.304,
+        "endTime": 51.626,
+        "duration": 3.322,
+        "text": "This small idea can bring people together."
+      },
+      {
+        "startTime": 51.626,
+        "endTime": 53.682,
+        "duration": 2.057,
+        "text": "It can bring hope to many."
+      },
+      {
+        "startTime": 53.682,
+        "endTime": 57.241,
+        "duration": 3.559,
+        "text": "Many neighborhoods have no fresh food stores."
+      },
+      {
+        "startTime": 57.241,
+        "endTime": 59.061,
+        "duration": 1.819,
+        "text": "Many people feel alone."
+      },
+      {
+        "startTime": 59.061,
+        "endTime": 62.225,
+        "duration": 3.164,
+        "text": "They need safe places to meet and share."
+      },
+      {
+        "startTime": 62.225,
+        "endTime": 66.812,
+        "duration": 4.588,
+        "text": "This story shows how one person can change a neighborhood."
+      },
+      {
+        "startTime": 66.812,
+        "endTime": 71.004,
+        "duration": 4.192,
+        "text": "One person can bring people together and create hope."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-10T05:04:04.597Z",
+  "timingMethod": "enhanced-timing-v3"
+}

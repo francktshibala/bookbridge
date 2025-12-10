@@ -1,0 +1,116 @@
+{
+  "themes": [
+    "community building",
+    "belonging",
+    "transformation",
+    "persistence",
+    "overcoming barriers",
+    "food access",
+    "immigrant advocacy",
+    "community safety",
+    "building connections"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Neighbors mocking him when he started his garden",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Mother and daughter feeling ashamed while seeking food",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "His response to the fear of theft, emphasizing sharing",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Realization of the need for a cooperative community garden",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Welcoming asylum seekers at Port Authority, witnessing their confusion",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Feeling of safety and peace found in the library as a refuge",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "The attack at age 15 that led to founding self-defense classes",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Post-election fear affecting her daily life and choices",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Empowerment through agency in self-defense classes",
+      "emotionalWeight": "high",
+      "source": "3"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "May 17, 2013",
+      "April 18, 2023",
+      "December 26, 2016"
+    ],
+    "locations": [
+      "South Central LA",
+      "Brooklyn, NYC",
+      "Queens, NYC"
+    ],
+    "names": [
+      "Ron Finley",
+      "Manuel Castro",
+      "Rana Abdelhamid"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Building New Life",
+    "Belonging & Identity",
+    "Connection Across Differences",
+    "Overcoming 'Not Good Enough'",
+    "Persistence Despite Setbacks",
+    "First-Time Courage"
+  ],
+  "storyArc": {
+    "struggle": [
+      "Living in a food desert and facing food access issues",
+      "Growing up undocumented and feeling chaotic",
+      "Experiencing an attack and the fear that followed"
+    ],
+    "perseverance": [
+      "Fighting city laws to establish community gardens",
+      "Advocating for immigrant rights and services",
+      "Building a self-defense movement despite initial rejection"
+    ],
+    "breakthrough": [
+      "Changing city law to support community gardens",
+      "Becoming a city leader in immigrant affairs",
+      "Empowering over 1,000 women through self-defense training"
+    ]
+  },
+  "keyQuotes": {
+    "source1": [
+      "Hell no, I ain't afraid they're going to steal it.",
+      "This garden is about bring-some-get-some."
+    ],
+    "source2": [
+      "The library was always a refuge for myself.",
+      "I just can't stop because it's just like ... we need to face this."
+    ],
+    "source3": [
+      "The look he had in his eyes and the hate he was carrying towards me was something that followed me around for a long time.",
+      "It's really important to use your voice and be heard."
+    ]
+  }
+}

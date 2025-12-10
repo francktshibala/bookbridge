@@ -1,0 +1,2493 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Imagine living in a place with no fresh food. Imagine feeling alone every day. In a small neighborhood, this was the life for many people. They wanted fruits and vegetables, but they had none.",
+    "sentences": [
+      "Imagine living in a place with no fresh food.",
+      "Imagine feeling alone every day.",
+      "In a small neighborhood, this was the life for many people.",
+      "They wanted fruits and vegetables, but they had none."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_0.mp3",
+    "duration": 13.544535,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Imagine living in a place with no fresh food.",
+        "startTime": 0,
+        "endTime": 3.153,
+        "duration": 3.153,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Imagine feeling alone every day.",
+        "startTime": 3.153,
+        "endTime": 5.396,
+        "duration": 2.242,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "In a small neighborhood, this was the life for many people.",
+        "startTime": 5.396,
+        "endTime": 9.68,
+        "duration": 4.285,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "They wanted fruits and vegetables, but they had none.",
+        "startTime": 9.68,
+        "endTime": 13.545,
+        "duration": 3.864,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "The stores only sold junk food. It was hard to eat healthy. People felt tired and sad. The air was heavy with a sense of longing.",
+    "sentences": [
+      "The stores only sold junk food.",
+      "It was hard to eat healthy.",
+      "People felt tired and sad.",
+      "The air was heavy with a sense of longing."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_1.mp3",
+    "duration": 10.133628,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The stores only sold junk food.",
+        "startTime": 0,
+        "endTime": 2.493,
+        "duration": 2.493,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "It was hard to eat healthy.",
+        "startTime": 2.493,
+        "endTime": 4.665,
+        "duration": 2.171,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "People felt tired and sad.",
+        "startTime": 4.665,
+        "endTime": 6.756,
+        "duration": 2.091,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "The air was heavy with a sense of longing.",
+        "startTime": 6.756,
+        "endTime": 10.134,
+        "duration": 3.378,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "One night, Sofia went for a walk. She felt restless. The streets were quiet, and the moon shone brightly. She needed to think.",
+    "sentences": [
+      "One night, Sofia went for a walk.",
+      "She felt restless.",
+      "The streets were quiet, and the moon shone brightly.",
+      "She needed to think."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_2.mp3",
+    "duration": 9.645964,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One night, Sofia went for a walk.",
+        "startTime": 0,
+        "endTime": 2.657,
+        "duration": 2.657,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "She felt restless.",
+        "startTime": 2.657,
+        "endTime": 4.025,
+        "duration": 1.368,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "The streets were quiet, and the moon shone brightly.",
+        "startTime": 4.025,
+        "endTime": 8.126,
+        "duration": 4.101,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "She needed to think.",
+        "startTime": 8.126,
+        "endTime": 9.646,
+        "duration": 1.52,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "Suddenly, she saw a mother and her child in a dark alley. They were looking for food. The mother looked sad and tired. Her clothes were old and worn.",
+    "sentences": [
+      "Suddenly, she saw a mother and her child in a dark alley.",
+      "They were looking for food.",
+      "The mother looked sad and tired.",
+      "Her clothes were old and worn."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_3.mp3",
+    "duration": 9.969093,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Suddenly, she saw a mother and her child in a dark alley.",
+        "startTime": 0,
+        "endTime": 3.983,
+        "duration": 3.983,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "They were looking for food.",
+        "startTime": 3.983,
+        "endTime": 5.799,
+        "duration": 1.816,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "The mother looked sad and tired.",
+        "startTime": 5.799,
+        "endTime": 7.951,
+        "duration": 2.152,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "Her clothes were old and worn.",
+        "startTime": 7.951,
+        "endTime": 9.969,
+        "duration": 2.018,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "The child looked scared. His eyes were wide, full of fear. Sofia's heart sank. She felt shame wash over her like a cold wave.",
+    "sentences": [
+      "The child looked scared.",
+      "His eyes were wide, full of fear.",
+      "Sofia's heart sank.",
+      "She felt shame wash over her like a cold wave."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_4.mp3",
+    "duration": 9.632971,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The child looked scared.",
+        "startTime": 0,
+        "endTime": 1.866,
+        "duration": 1.866,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "His eyes were wide, full of fear.",
+        "startTime": 1.866,
+        "endTime": 4.581,
+        "duration": 2.715,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "Sofia's heart sank.",
+        "startTime": 4.581,
+        "endTime": 6.057,
+        "duration": 1.477,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "She felt shame wash over her like a cold wave.",
+        "startTime": 6.057,
+        "endTime": 9.633,
+        "duration": 3.576,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "She felt their pain deeply. This was not just their problem; it was everyone’s problem. “What can I do to help?” Sofia whispered to herself, her voice shaking slightly. She wanted to cry, but she took a deep breath.",
+    "sentences": [
+      "She felt their pain deeply.",
+      "This was not just their problem; it was everyone’s problem.",
+      "“What can I do to help?” Sofia whispered to herself, her voice shaking slightly.",
+      "She wanted to cry, but she took a deep breath."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_5.mp3",
+    "duration": 16.151905,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt their pain deeply.",
+        "startTime": 0,
+        "endTime": 1.987,
+        "duration": 1.987,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "This was not just their problem; it was everyone’s problem.",
+        "startTime": 1.987,
+        "endTime": 6.579,
+        "duration": 4.592,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "“What can I do to help?” Sofia whispered to herself, her voice shaking slightly.",
+        "startTime": 6.579,
+        "endTime": 12.617,
+        "duration": 6.038,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "She wanted to cry, but she took a deep breath.",
+        "startTime": 12.617,
+        "endTime": 16.152,
+        "duration": 3.535,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "She had to stay strong. She turned and walked home, her mind racing. She thought about how many others felt like this mother and child. She could see their faces in her mind, and it hurt her heart.",
+    "sentences": [
+      "She had to stay strong.",
+      "She turned and walked home, her mind racing.",
+      "She thought about how many others felt like this mother and child.",
+      "She could see their faces in her mind, and it hurt her heart."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_6.mp3",
+    "duration": 14.27805,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She had to stay strong.",
+        "startTime": 0,
+        "endTime": 1.657,
+        "duration": 1.657,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "She turned and walked home, her mind racing.",
+        "startTime": 1.657,
+        "endTime": 4.977,
+        "duration": 3.32,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "She thought about how many others felt like this mother and child.",
+        "startTime": 4.977,
+        "endTime": 9.733,
+        "duration": 4.755,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "She could see their faces in her mind, and it hurt her heart.",
+        "startTime": 9.733,
+        "endTime": 14.278,
+        "duration": 4.545,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "Sofia often felt lonely. She missed her family. They were far away in another country. She wanted to belong.",
+    "sentences": [
+      "Sofia often felt lonely.",
+      "She missed her family.",
+      "They were far away in another country.",
+      "She wanted to belong."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_7.mp3",
+    "duration": 7.522562,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Sofia often felt lonely.",
+        "startTime": 0,
+        "endTime": 1.719,
+        "duration": 1.719,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "She missed her family.",
+        "startTime": 1.719,
+        "endTime": 3.296,
+        "duration": 1.576,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "They were far away in another country.",
+        "startTime": 3.296,
+        "endTime": 6.018,
+        "duration": 2.722,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "She wanted to belong.",
+        "startTime": 6.018,
+        "endTime": 7.523,
+        "duration": 1.505,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "She wanted to help her neighbors. One day, Sofia found a place that made her feel safe. It was the library. The library was quiet and peaceful.",
+    "sentences": [
+      "She wanted to help her neighbors.",
+      "One day, Sofia found a place that made her feel safe.",
+      "It was the library.",
+      "The library was quiet and peaceful."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_8.mp3",
+    "duration": 10.194943,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to help her neighbors.",
+        "startTime": 0,
+        "endTime": 2.368,
+        "duration": 2.368,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "One day, Sofia found a place that made her feel safe.",
+        "startTime": 2.368,
+        "endTime": 6.32,
+        "duration": 3.953,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "It was the library.",
+        "startTime": 6.32,
+        "endTime": 7.684,
+        "duration": 1.363,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "The library was quiet and peaceful.",
+        "startTime": 7.684,
+        "endTime": 10.195,
+        "duration": 2.511,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "It was warm, with soft lights shining gently. She loved the smell of old books, the scent of paper and stories. Sofia read books and dreamed of a better life. One day, while reading about gardens, she had an idea.",
+    "sentences": [
+      "It was warm, with soft lights shining gently.",
+      "She loved the smell of old books, the scent of paper and stories.",
+      "Sofia read books and dreamed of a better life.",
+      "One day, while reading about gardens, she had an idea."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_9.mp3",
+    "duration": 16.026213,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was warm, with soft lights shining gently.",
+        "startTime": 0,
+        "endTime": 3.456,
+        "duration": 3.456,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "She loved the smell of old books, the scent of paper and stories.",
+        "startTime": 3.456,
+        "endTime": 8.38,
+        "duration": 4.925,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "Sofia read books and dreamed of a better life.",
+        "startTime": 8.38,
+        "endTime": 11.759,
+        "duration": 3.379,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "One day, while reading about gardens, she had an idea.",
+        "startTime": 11.759,
+        "endTime": 16.026,
+        "duration": 4.267,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "“I can plant a garden,” she thought, excitement bubbling inside her. “I can grow food for everyone.” It was a small idea, but it felt big and bright. Sofia wanted to take action. She wanted to make her neighborhood better, to fill it with life and color.",
+    "sentences": [
+      "“I can plant a garden,” she thought, excitement bubbling inside her.",
+      "“I can grow food for everyone.” It was a small idea, but it felt big and bright.",
+      "Sofia wanted to take action.",
+      "She wanted to make her neighborhood better, to fill it with life and color."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_10.mp3",
+    "duration": 19.443673,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“I can plant a garden,” she thought, excitement bubbling inside her.",
+        "startTime": 0,
+        "endTime": 5.405,
+        "duration": 5.405,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "“I can grow food for everyone.” It was a small idea, but it felt big and bright.",
+        "startTime": 5.405,
+        "endTime": 11.561,
+        "duration": 6.156,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "Sofia wanted to take action.",
+        "startTime": 11.561,
+        "endTime": 13.663,
+        "duration": 2.102,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "She wanted to make her neighborhood better, to fill it with life and color.",
+        "startTime": 13.663,
+        "endTime": 19.444,
+        "duration": 5.781,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "Sofia talked to her neighbors. She gathered her courage. “I want to grow a garden,” she said with excitement shining in her eyes. “I need help!” Some neighbors smiled.",
+    "sentences": [
+      "Sofia talked to her neighbors.",
+      "She gathered her courage.",
+      "“I want to grow a garden,” she said with excitement shining in her eyes.",
+      "“I need help!” Some neighbors smiled."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_11.mp3",
+    "duration": 13.63542,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Sofia talked to her neighbors.",
+        "startTime": 0,
+        "endTime": 2.467,
+        "duration": 2.467,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "She gathered her courage.",
+        "startTime": 2.467,
+        "endTime": 4.523,
+        "duration": 2.056,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "“I want to grow a garden,” she said with excitement shining in her eyes.",
+        "startTime": 4.523,
+        "endTime": 10.593,
+        "duration": 6.07,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "“I need help!” Some neighbors smiled.",
+        "startTime": 10.593,
+        "endTime": 13.635,
+        "duration": 3.042,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "They liked her idea. They nodded and said, “Yes!” But others laughed loudly. “Gardens need space,” one neighbor said, shaking his head. “You cannot grow food here.” Sofia felt hurt.",
+    "sentences": [
+      "They liked her idea.",
+      "They nodded and said, “Yes!” But others laughed loudly.",
+      "“Gardens need space,” one neighbor said, shaking his head.",
+      "“You cannot grow food here.” Sofia felt hurt."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_12.mp3",
+    "duration": 14.886916,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They liked her idea.",
+        "startTime": 0,
+        "endTime": 1.622,
+        "duration": 1.622,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "They nodded and said, “Yes!” But others laughed loudly.",
+        "startTime": 1.622,
+        "endTime": 6.233,
+        "duration": 4.611,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "“Gardens need space,” one neighbor said, shaking his head.",
+        "startTime": 6.233,
+        "endTime": 11.237,
+        "duration": 5.004,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "“You cannot grow food here.” Sofia felt hurt.",
+        "startTime": 11.237,
+        "endTime": 14.887,
+        "duration": 3.65,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "The laughter stung her heart. She felt alone again, as if she was back in that dark alley. She looked down at her feet, but she did not give up. Sofia went to the city office.",
+    "sentences": [
+      "The laughter stung her heart.",
+      "She felt alone again, as if she was back in that dark alley.",
+      "She looked down at her feet, but she did not give up.",
+      "Sofia went to the city office."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_13.mp3",
+    "duration": 13.086825,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The laughter stung her heart.",
+        "startTime": 0,
+        "endTime": 2.156,
+        "duration": 2.156,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "She felt alone again, as if she was back in that dark alley.",
+        "startTime": 2.156,
+        "endTime": 6.766,
+        "duration": 4.611,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "She looked down at her feet, but she did not give up.",
+        "startTime": 6.766,
+        "endTime": 10.857,
+        "duration": 4.09,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "Sofia went to the city office.",
+        "startTime": 10.857,
+        "endTime": 13.087,
+        "duration": 2.23,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "She asked for a place to grow her garden. The city said no. “There are rules,” they said, their voices cold and firm. “You cannot plant here.” Sofia felt angry.",
+    "sentences": [
+      "She asked for a place to grow her garden.",
+      "The city said no.",
+      "“There are rules,” they said, their voices cold and firm.",
+      "“You cannot plant here.” Sofia felt angry."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_14.mp3",
+    "duration": 12.809093,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She asked for a place to grow her garden.",
+        "startTime": 0,
+        "endTime": 3.267,
+        "duration": 3.267,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "The city said no.",
+        "startTime": 3.267,
+        "endTime": 4.621,
+        "duration": 1.354,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "“There are rules,” they said, their voices cold and firm.",
+        "startTime": 4.621,
+        "endTime": 9.463,
+        "duration": 4.842,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "“You cannot plant here.” Sofia felt angry.",
+        "startTime": 9.463,
+        "endTime": 12.809,
+        "duration": 3.346,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "Her heart raced. She knew her idea was good. She wanted to fight for her garden. “I can do this,” she told herself, clenching her fists.",
+    "sentences": [
+      "Her heart raced.",
+      "She knew her idea was good.",
+      "She wanted to fight for her garden.",
+      "“I can do this,” she told herself, clenching her fists."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_15.mp3",
+    "duration": 10.121746,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her heart raced.",
+        "startTime": 0,
+        "endTime": 1.182,
+        "duration": 1.182,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "She knew her idea was good.",
+        "startTime": 1.182,
+        "endTime": 3.175,
+        "duration": 1.994,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "She wanted to fight for her garden.",
+        "startTime": 3.175,
+        "endTime": 5.76,
+        "duration": 2.585,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "“I can do this,” she told herself, clenching her fists.",
+        "startTime": 5.76,
+        "endTime": 10.122,
+        "duration": 4.362,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "Sofia started to talk to more people. She told them about her idea. “We need fresh food,” she said with passion. Some people listened.",
+    "sentences": [
+      "Sofia started to talk to more people.",
+      "She told them about her idea.",
+      "“We need fresh food,” she said with passion.",
+      "Some people listened."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_16.mp3",
+    "duration": 9.142404,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Sofia started to talk to more people.",
+        "startTime": 0,
+        "endTime": 2.54,
+        "duration": 2.54,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "She told them about her idea.",
+        "startTime": 2.54,
+        "endTime": 4.531,
+        "duration": 1.991,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "“We need fresh food,” she said with passion.",
+        "startTime": 4.531,
+        "endTime": 7.701,
+        "duration": 3.17,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "Some people listened.",
+        "startTime": 7.701,
+        "endTime": 9.142,
+        "duration": 1.442,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "They nodded and smiled. They started to help her. They wrote letters to the city. They shared her dream.",
+    "sentences": [
+      "They nodded and smiled.",
+      "They started to help her.",
+      "They wrote letters to the city.",
+      "They shared her dream."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_17.mp3",
+    "duration": 7.858481,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They nodded and smiled.",
+        "startTime": 0,
+        "endTime": 1.79,
+        "duration": 1.79,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "They started to help her.",
+        "startTime": 1.79,
+        "endTime": 3.735,
+        "duration": 1.945,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "They wrote letters to the city.",
+        "startTime": 3.735,
+        "endTime": 6.147,
+        "duration": 2.412,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "They shared her dream.",
+        "startTime": 6.147,
+        "endTime": 7.858,
+        "duration": 1.712,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "Sofia felt a spark of hope. Days passed, and Sofia faced many challenges. The city rules were hard to change. Some neighbors still mocked her.",
+    "sentences": [
+      "Sofia felt a spark of hope.",
+      "Days passed, and Sofia faced many challenges.",
+      "The city rules were hard to change.",
+      "Some neighbors still mocked her."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_18.mp3",
+    "duration": 10.963764,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Sofia felt a spark of hope.",
+        "startTime": 0,
+        "endTime": 2.101,
+        "duration": 2.101,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "Days passed, and Sofia faced many challenges.",
+        "startTime": 2.101,
+        "endTime": 5.751,
+        "duration": 3.651,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "The city rules were hard to change.",
+        "startTime": 5.751,
+        "endTime": 8.474,
+        "duration": 2.723,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "Some neighbors still mocked her.",
+        "startTime": 8.474,
+        "endTime": 10.964,
+        "duration": 2.489,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "“You are wasting your time,” they said, their voices dripping with disdain. Their laughter was loud and hurtful. It echoed in her ears. But Sofia remembered the mother and child she saw.",
+    "sentences": [
+      "“You are wasting your time,” they said, their voices dripping with disdain.",
+      "Their laughter was loud and hurtful.",
+      "It echoed in her ears.",
+      "But Sofia remembered the mother and child she saw."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_19.mp3",
+    "duration": 14.891723,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“You are wasting your time,” they said, their voices dripping with disdain.",
+        "startTime": 0,
+        "endTime": 6.28,
+        "duration": 6.28,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "Their laughter was loud and hurtful.",
+        "startTime": 6.28,
+        "endTime": 9.151,
+        "duration": 2.871,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "It echoed in her ears.",
+        "startTime": 9.151,
+        "endTime": 10.905,
+        "duration": 1.754,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "But Sofia remembered the mother and child she saw.",
+        "startTime": 10.905,
+        "endTime": 14.892,
+        "duration": 3.987,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "She remembered the shame. It made her stronger. “I will not give up,” she said to herself with determination. Then, one sunny day, something amazing happened.",
+    "sentences": [
+      "She remembered the shame.",
+      "It made her stronger.",
+      "“I will not give up,” she said to herself with determination.",
+      "Then, one sunny day, something amazing happened."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_20.mp3",
+    "duration": 11.941474,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She remembered the shame.",
+        "startTime": 0,
+        "endTime": 1.853,
+        "duration": 1.853,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "It made her stronger.",
+        "startTime": 1.853,
+        "endTime": 3.41,
+        "duration": 1.557,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "“I will not give up,” she said to herself with determination.",
+        "startTime": 3.41,
+        "endTime": 8.083,
+        "duration": 4.672,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "Then, one sunny day, something amazing happened.",
+        "startTime": 8.083,
+        "endTime": 11.941,
+        "duration": 3.859,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "The city called Sofia. “We will change the rules,” they said, their voices softer now. “You can have your garden.” Sofia was so happy! She could not believe it.",
+    "sentences": [
+      "The city called Sofia.",
+      "“We will change the rules,” they said, their voices softer now.",
+      "“You can have your garden.” Sofia was so happy!",
+      "She could not believe it."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_21.mp3",
+    "duration": 12.162177,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The city called Sofia.",
+        "startTime": 0,
+        "endTime": 1.662,
+        "duration": 1.662,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "“We will change the rules,” they said, their voices softer now.",
+        "startTime": 1.662,
+        "endTime": 6.722,
+        "duration": 5.06,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "“You can have your garden.” Sofia was so happy!",
+        "startTime": 6.722,
+        "endTime": 10.273,
+        "duration": 3.551,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "She could not believe it.",
+        "startTime": 10.273,
+        "endTime": 12.162,
+        "duration": 1.889,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "She jumped for joy. She shouted, “Thank you!” Her heart soared like a bird. She felt like dancing in the street, her feet light with joy. Sofia and her neighbors began to work.",
+    "sentences": [
+      "She jumped for joy.",
+      "She shouted, “Thank you!” Her heart soared like a bird.",
+      "She felt like dancing in the street, her feet light with joy.",
+      "Sofia and her neighbors began to work."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_22.mp3",
+    "duration": 15.724331,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She jumped for joy.",
+        "startTime": 0,
+        "endTime": 1.694,
+        "duration": 1.694,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "She shouted, “Thank you!” Her heart soared like a bird.",
+        "startTime": 1.694,
+        "endTime": 6.748,
+        "duration": 5.054,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "She felt like dancing in the street, her feet light with joy.",
+        "startTime": 6.748,
+        "endTime": 12.336,
+        "duration": 5.589,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "Sofia and her neighbors began to work.",
+        "startTime": 12.336,
+        "endTime": 15.724,
+        "duration": 3.388,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "They dug the ground and planted seeds. They watered the plants every day, feeling the warm sun on their backs. More people joined. They brought food, tools, and smiles.",
+    "sentences": [
+      "They dug the ground and planted seeds.",
+      "They watered the plants every day, feeling the warm sun on their backs.",
+      "More people joined.",
+      "They brought food, tools, and smiles."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_23.mp3",
+    "duration": 14.032857,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They dug the ground and planted seeds.",
+        "startTime": 0,
+        "endTime": 3.128,
+        "duration": 3.128,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "They watered the plants every day, feeling the warm sun on their backs.",
+        "startTime": 3.128,
+        "endTime": 9.123,
+        "duration": 5.995,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "More people joined.",
+        "startTime": 9.123,
+        "endTime": 10.687,
+        "duration": 1.564,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "They brought food, tools, and smiles.",
+        "startTime": 10.687,
+        "endTime": 14.033,
+        "duration": 3.346,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "Soon, there were tomatoes, peppers, and carrots. The garden grew tall and green. It was beautiful! The colors sparkled in the sunlight, and the air smelled sweet.",
+    "sentences": [
+      "Soon, there were tomatoes, peppers, and carrots.",
+      "The garden grew tall and green.",
+      "It was beautiful!",
+      "The colors sparkled in the sunlight, and the air smelled sweet."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_24.mp3",
+    "duration": 12.0922,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Soon, there were tomatoes, peppers, and carrots.",
+        "startTime": 0,
+        "endTime": 3.919,
+        "duration": 3.919,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "The garden grew tall and green.",
+        "startTime": 3.919,
+        "endTime": 6.16,
+        "duration": 2.241,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "It was beautiful!",
+        "startTime": 6.16,
+        "endTime": 7.389,
+        "duration": 1.229,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "The colors sparkled in the sunlight, and the air smelled sweet.",
+        "startTime": 7.389,
+        "endTime": 12.092,
+        "duration": 4.704,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "The garden changed the neighborhood. People came together to help. They shared food, stories, and laughter. Sofia felt the joy of belonging.",
+    "sentences": [
+      "The garden changed the neighborhood.",
+      "People came together to help.",
+      "They shared food, stories, and laughter.",
+      "Sofia felt the joy of belonging."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_25.mp3",
+    "duration": 9.971791,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The garden changed the neighborhood.",
+        "startTime": 0,
+        "endTime": 2.541,
+        "duration": 2.541,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "People came together to help.",
+        "startTime": 2.541,
+        "endTime": 4.589,
+        "duration": 2.047,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "They shared food, stories, and laughter.",
+        "startTime": 4.589,
+        "endTime": 7.713,
+        "duration": 3.124,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "Sofia felt the joy of belonging.",
+        "startTime": 7.713,
+        "endTime": 9.972,
+        "duration": 2.259,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "She saw the mother and child again. This time, they were smiling. They picked fresh tomatoes together. The child laughed and said, “These are so red and shiny!” Sofia smiled back, her heart swelling with happiness.",
+    "sentences": [
+      "She saw the mother and child again.",
+      "This time, they were smiling.",
+      "They picked fresh tomatoes together.",
+      "The child laughed and said, “These are so red and shiny!” Sofia smiled back, her heart swelling with happiness."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_26.mp3",
+    "duration": 15.172381,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She saw the mother and child again.",
+        "startTime": 0,
+        "endTime": 2.442,
+        "duration": 2.442,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "This time, they were smiling.",
+        "startTime": 2.442,
+        "endTime": 4.616,
+        "duration": 2.173,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "They picked fresh tomatoes together.",
+        "startTime": 4.616,
+        "endTime": 7.127,
+        "duration": 2.512,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "The child laughed and said, “These are so red and shiny!” Sofia smiled back, her heart swelling with happiness.",
+        "startTime": 7.127,
+        "endTime": 15.172,
+        "duration": 8.045,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "“They taste good too!” she replied, her voice filled with warmth. The garden was not just about food. It was about community. It was about connection.",
+    "sentences": [
+      "“They taste good too!” she replied, her voice filled with warmth.",
+      "The garden was not just about food.",
+      "It was about community.",
+      "It was about connection."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_27.mp3",
+    "duration": 10.097483,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“They taste good too!” she replied, her voice filled with warmth.",
+        "startTime": 0,
+        "endTime": 4.549,
+        "duration": 4.549,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "The garden was not just about food.",
+        "startTime": 4.549,
+        "endTime": 6.917,
+        "duration": 2.368,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "It was about community.",
+        "startTime": 6.917,
+        "endTime": 8.473,
+        "duration": 1.556,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "It was about connection.",
+        "startTime": 8.473,
+        "endTime": 10.097,
+        "duration": 1.624,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "People felt safe here. They made new friends. They talked to each other. Sofia was proud.",
+    "sentences": [
+      "People felt safe here.",
+      "They made new friends.",
+      "They talked to each other.",
+      "Sofia was proud."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_28.mp3",
+    "duration": 6.535578,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "People felt safe here.",
+        "startTime": 0,
+        "endTime": 1.672,
+        "duration": 1.672,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "They made new friends.",
+        "startTime": 1.672,
+        "endTime": 3.344,
+        "duration": 1.672,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "They talked to each other.",
+        "startTime": 3.344,
+        "endTime": 5.32,
+        "duration": 1.976,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "Sofia was proud.",
+        "startTime": 5.32,
+        "endTime": 6.536,
+        "duration": 1.216,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "She had built something special. One day, while working in the garden, Sofia met Carlos. He was new in the neighborhood. He looked lost and scared.",
+    "sentences": [
+      "She had built something special.",
+      "One day, while working in the garden, Sofia met Carlos.",
+      "He was new in the neighborhood.",
+      "He looked lost and scared."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_29.mp3",
+    "duration": 10.407846,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She had built something special.",
+        "startTime": 0,
+        "endTime": 2.246,
+        "duration": 2.246,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "One day, while working in the garden, Sofia met Carlos.",
+        "startTime": 2.246,
+        "endTime": 6.407,
+        "duration": 4.161,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "He was new in the neighborhood.",
+        "startTime": 6.407,
+        "endTime": 8.583,
+        "duration": 2.176,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "He looked lost and scared.",
+        "startTime": 8.583,
+        "endTime": 10.408,
+        "duration": 1.825,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "His eyes were looking down, filled with uncertainty. Sofia approached him with a warm smile. “You are welcome here,” she said gently, her voice soothing. Carlos looked up and smiled a little.",
+    "sentences": [
+      "His eyes were looking down, filled with uncertainty.",
+      "Sofia approached him with a warm smile.",
+      "“You are welcome here,” she said gently, her voice soothing.",
+      "Carlos looked up and smiled a little."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_30.mp3",
+    "duration": 15.012154,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His eyes were looking down, filled with uncertainty.",
+        "startTime": 0,
+        "endTime": 4.178,
+        "duration": 4.178,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "Sofia approached him with a warm smile.",
+        "startTime": 4.178,
+        "endTime": 7.199,
+        "duration": 3.021,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "“You are welcome here,” she said gently, her voice soothing.",
+        "startTime": 7.199,
+        "endTime": 12.146,
+        "duration": 4.947,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "Carlos looked up and smiled a little.",
+        "startTime": 12.146,
+        "endTime": 15.012,
+        "duration": 2.866,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "“Thank you,” he said softly, his voice barely above a whisper. He felt a little better, a small light in his heart. Sofia and Carlos became friends. They talked about their lives.",
+    "sentences": [
+      "“Thank you,” he said softly, his voice barely above a whisper.",
+      "He felt a little better, a small light in his heart.",
+      "Sofia and Carlos became friends.",
+      "They talked about their lives."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_31.mp3",
+    "duration": 15.269773,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Thank you,” he said softly, his voice barely above a whisper.",
+        "startTime": 0,
+        "endTime": 5.521,
+        "duration": 5.521,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "He felt a little better, a small light in his heart.",
+        "startTime": 5.521,
+        "endTime": 10.049,
+        "duration": 4.529,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "Sofia and Carlos became friends.",
+        "startTime": 10.049,
+        "endTime": 12.744,
+        "duration": 2.695,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "They talked about their lives.",
+        "startTime": 12.744,
+        "endTime": 15.27,
+        "duration": 2.526,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "Carlos told her about his fears. “I feel alone,” he said, his voice trembling. “I don’t know anyone.” Sofia understood. She felt that way too.",
+    "sentences": [
+      "Carlos told her about his fears.",
+      "“I feel alone,” he said, his voice trembling.",
+      "“I don’t know anyone.” Sofia understood.",
+      "She felt that way too."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_32.mp3",
+    "duration": 10.525556,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Carlos told her about his fears.",
+        "startTime": 0,
+        "endTime": 2.354,
+        "duration": 2.354,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "“I feel alone,” he said, his voice trembling.",
+        "startTime": 2.354,
+        "endTime": 5.965,
+        "duration": 3.61,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "“I don’t know anyone.” Sofia understood.",
+        "startTime": 5.965,
+        "endTime": 8.907,
+        "duration": 2.943,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "She felt that way too.",
+        "startTime": 8.907,
+        "endTime": 10.526,
+        "duration": 1.618,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "“We can change that,” she said, her eyes shining with determination. “Let’s make our neighborhood safer together.” \n\nTogether, they wanted to make the neighborhood better. They decided to start self-defense classes. “We can learn to protect ourselves,” Carlos said with determination, his voice strong now.",
+    "sentences": [
+      "“We can change that,” she said, her eyes shining with determination.",
+      "“Let’s make our neighborhood safer together.” \n\nTogether, they wanted to make the neighborhood better.",
+      "They decided to start self-defense classes.",
+      "“We can learn to protect ourselves,” Carlos said with determination, his voice strong now."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_33.mp3",
+    "duration": 22.378186,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“We can change that,” she said, her eyes shining with determination.",
+        "startTime": 0,
+        "endTime": 5.154,
+        "duration": 5.154,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "“Let’s make our neighborhood safer together.” \n\nTogether, they wanted to make the neighborhood better.",
+        "startTime": 5.154,
+        "endTime": 12.585,
+        "duration": 7.431,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "They decided to start self-defense classes.",
+        "startTime": 12.585,
+        "endTime": 15.654,
+        "duration": 3.069,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "“We can learn to protect ourselves,” Carlos said with determination, his voice strong now.",
+        "startTime": 15.654,
+        "endTime": 22.378,
+        "duration": 6.724,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "Sofia agreed. “We need to feel strong,” she said, nodding her head. They started the classes in the library. It was a big room with tall shelves and soft chairs.",
+    "sentences": [
+      "Sofia agreed.",
+      "“We need to feel strong,” she said, nodding her head.",
+      "They started the classes in the library.",
+      "It was a big room with tall shelves and soft chairs."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_34.mp3",
+    "duration": 12.861361,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Sofia agreed.",
+        "startTime": 0,
+        "endTime": 1.034,
+        "duration": 1.034,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "“We need to feel strong,” she said, nodding her head.",
+        "startTime": 1.034,
+        "endTime": 5.547,
+        "duration": 4.514,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "They started the classes in the library.",
+        "startTime": 5.547,
+        "endTime": 8.727,
+        "duration": 3.18,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "It was a big room with tall shelves and soft chairs.",
+        "startTime": 8.727,
+        "endTime": 12.861,
+        "duration": 4.134,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "At first, some people were afraid. “I cannot do this,” they said, shaking their heads. Their voices were filled with doubt. But Sofia and Carlos encouraged them.",
+    "sentences": [
+      "At first, some people were afraid.",
+      "“I cannot do this,” they said, shaking their heads.",
+      "Their voices were filled with doubt.",
+      "But Sofia and Carlos encouraged them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_35.mp3",
+    "duration": 11.731202,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "At first, some people were afraid.",
+        "startTime": 0,
+        "endTime": 2.578,
+        "duration": 2.578,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "“I cannot do this,” they said, shaking their heads.",
+        "startTime": 2.578,
+        "endTime": 6.519,
+        "duration": 3.941,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "Their voices were filled with doubt.",
+        "startTime": 6.519,
+        "endTime": 9.089,
+        "duration": 2.57,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "But Sofia and Carlos encouraged them.",
+        "startTime": 9.089,
+        "endTime": 11.731,
+        "duration": 2.642,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "“You can be strong! We are all together,” they said with big smiles. Slowly, more people joined. They learned how to defend themselves.",
+    "sentences": [
+      "“You can be strong!",
+      "We are all together,” they said with big smiles.",
+      "Slowly, more people joined.",
+      "They learned how to defend themselves."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_36.mp3",
+    "duration": 10.348594,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“You can be strong!",
+        "startTime": 0,
+        "endTime": 1.446,
+        "duration": 1.446,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "We are all together,” they said with big smiles.",
+        "startTime": 1.446,
+        "endTime": 5.25,
+        "duration": 3.804,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "Slowly, more people joined.",
+        "startTime": 5.25,
+        "endTime": 7.456,
+        "duration": 2.205,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "They learned how to defend themselves.",
+        "startTime": 7.456,
+        "endTime": 10.349,
+        "duration": 2.893,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "They practiced every week, their movements becoming more confident. As the classes grew, so did the community. Women felt empowered. They learned they were strong.",
+    "sentences": [
+      "They practiced every week, their movements becoming more confident.",
+      "As the classes grew, so did the community.",
+      "Women felt empowered.",
+      "They learned they were strong."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_37.mp3",
+    "duration": 12.161519,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They practiced every week, their movements becoming more confident.",
+        "startTime": 0,
+        "endTime": 5.117,
+        "duration": 5.117,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "As the classes grew, so did the community.",
+        "startTime": 5.117,
+        "endTime": 8.381,
+        "duration": 3.264,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "Women felt empowered.",
+        "startTime": 8.381,
+        "endTime": 9.937,
+        "duration": 1.557,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "They learned they were strong.",
+        "startTime": 9.937,
+        "endTime": 12.162,
+        "duration": 2.224,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "They felt safe. Sofia saw the change. She saw the smiles on their faces. “I never thought I could do this,” one woman said, her eyes shining with joy and pride.",
+    "sentences": [
+      "They felt safe.",
+      "Sofia saw the change.",
+      "She saw the smiles on their faces.",
+      "“I never thought I could do this,” one woman said, her eyes shining with joy and pride."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_38.mp3",
+    "duration": 13.142245,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They felt safe.",
+        "startTime": 0,
+        "endTime": 1.227,
+        "duration": 1.227,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "Sofia saw the change.",
+        "startTime": 1.227,
+        "endTime": 2.945,
+        "duration": 1.718,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "She saw the smiles on their faces.",
+        "startTime": 2.945,
+        "endTime": 5.726,
+        "duration": 2.781,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "“I never thought I could do this,” one woman said, her eyes shining with joy and pride.",
+        "startTime": 5.726,
+        "endTime": 13.142,
+        "duration": 7.416,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 159,
+    "text": "One day, after a class, a woman said, “Thank you, Sofia. I feel brave now.” Sofia felt proud. She had helped so many people. She had built a community of support.",
+    "sentences": [
+      "One day, after a class, a woman said, “Thank you, Sofia.",
+      "I feel brave now.” Sofia felt proud.",
+      "She had helped so many people.",
+      "She had built a community of support."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_39.mp3",
+    "duration": 11.88712,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One day, after a class, a woman said, “Thank you, Sofia.",
+        "startTime": 0,
+        "endTime": 4.575,
+        "duration": 4.575,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "I feel brave now.” Sofia felt proud.",
+        "startTime": 4.575,
+        "endTime": 7.131,
+        "duration": 2.556,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "She had helped so many people.",
+        "startTime": 7.131,
+        "endTime": 9.261,
+        "duration": 2.13,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "She had built a community of support.",
+        "startTime": 9.261,
+        "endTime": 11.887,
+        "duration": 2.627,
+        "sentenceIndex": 159
+      }
+    ]
+  },
+  {
+    "bundleIndex": 40,
+    "startSentenceIndex": 160,
+    "endSentenceIndex": 163,
+    "text": "The library was filled with laughter and encouragement, a warm place where people felt they could grow. Months passed, and the garden flourished. The self-defense classes continued. The neighborhood was changing.",
+    "sentences": [
+      "The library was filled with laughter and encouragement, a warm place where people felt they could grow.",
+      "Months passed, and the garden flourished.",
+      "The self-defense classes continued.",
+      "The neighborhood was changing."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_40.mp3",
+    "duration": 14.031746,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The library was filled with laughter and encouragement, a warm place where people felt they could grow.",
+        "startTime": 0,
+        "endTime": 6.917,
+        "duration": 6.917,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "Months passed, and the garden flourished.",
+        "startTime": 6.917,
+        "endTime": 9.761,
+        "duration": 2.844,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "The self-defense classes continued.",
+        "startTime": 9.761,
+        "endTime": 12.061,
+        "duration": 2.3,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "The neighborhood was changing.",
+        "startTime": 12.061,
+        "endTime": 14.032,
+        "duration": 1.971,
+        "sentenceIndex": 163
+      }
+    ]
+  },
+  {
+    "bundleIndex": 41,
+    "startSentenceIndex": 164,
+    "endSentenceIndex": 167,
+    "text": "People felt connected and safe. They shared food and stories. They celebrated together with picnics and music, their laughter echoing in the air. Then, one day, a big event happened.",
+    "sentences": [
+      "People felt connected and safe.",
+      "They shared food and stories.",
+      "They celebrated together with picnics and music, their laughter echoing in the air.",
+      "Then, one day, a big event happened."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_41.mp3",
+    "duration": 14.737098,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "People felt connected and safe.",
+        "startTime": 0,
+        "endTime": 2.474,
+        "duration": 2.474,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "They shared food and stories.",
+        "startTime": 2.474,
+        "endTime": 4.789,
+        "duration": 2.315,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "They celebrated together with picnics and music, their laughter echoing in the air.",
+        "startTime": 4.789,
+        "endTime": 11.564,
+        "duration": 6.775,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "Then, one day, a big event happened.",
+        "startTime": 11.564,
+        "endTime": 14.737,
+        "duration": 3.173,
+        "sentenceIndex": 167
+      }
+    ]
+  },
+  {
+    "bundleIndex": 42,
+    "startSentenceIndex": 168,
+    "endSentenceIndex": 171,
+    "text": "The city invited Sofia to speak. They wanted her to share her story. Sofia felt nervous. Her heart raced like a drum.",
+    "sentences": [
+      "The city invited Sofia to speak.",
+      "They wanted her to share her story.",
+      "Sofia felt nervous.",
+      "Her heart raced like a drum."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_42.mp3",
+    "duration": 9.76195,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The city invited Sofia to speak.",
+        "startTime": 0,
+        "endTime": 2.74,
+        "duration": 2.74,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "They wanted her to share her story.",
+        "startTime": 2.74,
+        "endTime": 5.737,
+        "duration": 2.997,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "Sofia felt nervous.",
+        "startTime": 5.737,
+        "endTime": 7.364,
+        "duration": 1.627,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "Her heart raced like a drum.",
+        "startTime": 7.364,
+        "endTime": 9.762,
+        "duration": 2.398,
+        "sentenceIndex": 171
+      }
+    ]
+  },
+  {
+    "bundleIndex": 43,
+    "startSentenceIndex": 172,
+    "endSentenceIndex": 175,
+    "text": "But she remembered her journey. She took a deep breath and went to the stage, her hands shaking slightly. Sofia spoke about the garden. She spoke about the people.",
+    "sentences": [
+      "But she remembered her journey.",
+      "She took a deep breath and went to the stage, her hands shaking slightly.",
+      "Sofia spoke about the garden.",
+      "She spoke about the people."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_43.mp3",
+    "duration": 12.161927,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "But she remembered her journey.",
+        "startTime": 0,
+        "endTime": 2.327,
+        "duration": 2.327,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "She took a deep breath and went to the stage, her hands shaking slightly.",
+        "startTime": 2.327,
+        "endTime": 7.958,
+        "duration": 5.63,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "Sofia spoke about the garden.",
+        "startTime": 7.958,
+        "endTime": 10.135,
+        "duration": 2.177,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "She spoke about the people.",
+        "startTime": 10.135,
+        "endTime": 12.162,
+        "duration": 2.027,
+        "sentenceIndex": 175
+      }
+    ]
+  },
+  {
+    "bundleIndex": 44,
+    "startSentenceIndex": 176,
+    "endSentenceIndex": 179,
+    "text": "“We built this community together,” she said, her voice strong and clear. “We are strong together.” The audience listened. They clapped and cheered. Sofia felt proud and happy.",
+    "sentences": [
+      "“We built this community together,” she said, her voice strong and clear.",
+      "“We are strong together.” The audience listened.",
+      "They clapped and cheered.",
+      "Sofia felt proud and happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_44.mp3",
+    "duration": 13.535442,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“We built this community together,” she said, her voice strong and clear.",
+        "startTime": 0,
+        "endTime": 5.885,
+        "duration": 5.885,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "“We are strong together.” The audience listened.",
+        "startTime": 5.885,
+        "endTime": 9.557,
+        "duration": 3.672,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "They clapped and cheered.",
+        "startTime": 9.557,
+        "endTime": 11.47,
+        "duration": 1.913,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "Sofia felt proud and happy.",
+        "startTime": 11.47,
+        "endTime": 13.535,
+        "duration": 2.066,
+        "sentenceIndex": 179
+      }
+    ]
+  },
+  {
+    "bundleIndex": 45,
+    "startSentenceIndex": 180,
+    "endSentenceIndex": 183,
+    "text": "She looked around and saw friendly faces. She felt their support like a warm blanket. After the event, people came to her. They thanked her for her work.",
+    "sentences": [
+      "She looked around and saw friendly faces.",
+      "She felt their support like a warm blanket.",
+      "After the event, people came to her.",
+      "They thanked her for her work."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_45.mp3",
+    "duration": 10.624875,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She looked around and saw friendly faces.",
+        "startTime": 0,
+        "endTime": 2.863,
+        "duration": 2.863,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "She felt their support like a warm blanket.",
+        "startTime": 2.863,
+        "endTime": 5.866,
+        "duration": 3.003,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "After the event, people came to her.",
+        "startTime": 5.866,
+        "endTime": 8.53,
+        "duration": 2.664,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "They thanked her for her work.",
+        "startTime": 8.53,
+        "endTime": 10.625,
+        "duration": 2.095,
+        "sentenceIndex": 183
+      }
+    ]
+  },
+  {
+    "bundleIndex": 46,
+    "startSentenceIndex": 184,
+    "endSentenceIndex": 187,
+    "text": "“You inspire us,” one woman said, her eyes shining with admiration. They wanted to help more. Sofia realized that her small idea had grown into something big. It changed the neighborhood.",
+    "sentences": [
+      "“You inspire us,” one woman said, her eyes shining with admiration.",
+      "They wanted to help more.",
+      "Sofia realized that her small idea had grown into something big.",
+      "It changed the neighborhood."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_46.mp3",
+    "duration": 14.248685,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“You inspire us,” one woman said, her eyes shining with admiration.",
+        "startTime": 0,
+        "endTime": 5.379,
+        "duration": 5.379,
+        "sentenceIndex": 184
+      },
+      {
+        "text": "They wanted to help more.",
+        "startTime": 5.379,
+        "endTime": 7.274,
+        "duration": 1.895,
+        "sentenceIndex": 185
+      },
+      {
+        "text": "Sofia realized that her small idea had grown into something big.",
+        "startTime": 7.274,
+        "endTime": 12.126,
+        "duration": 4.852,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "It changed the neighborhood.",
+        "startTime": 12.126,
+        "endTime": 14.249,
+        "duration": 2.123,
+        "sentenceIndex": 187
+      }
+    ]
+  },
+  {
+    "bundleIndex": 47,
+    "startSentenceIndex": 188,
+    "endSentenceIndex": 191,
+    "text": "It changed lives. Sofia looked at the garden. It was full of life and color. She saw children playing and families laughing together.",
+    "sentences": [
+      "It changed lives.",
+      "Sofia looked at the garden.",
+      "It was full of life and color.",
+      "She saw children playing and families laughing together."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_47.mp3",
+    "duration": 9.859546,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It changed lives.",
+        "startTime": 0,
+        "endTime": 1.289,
+        "duration": 1.289,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "Sofia looked at the garden.",
+        "startTime": 1.289,
+        "endTime": 3.337,
+        "duration": 2.048,
+        "sentenceIndex": 189
+      },
+      {
+        "text": "It was full of life and color.",
+        "startTime": 3.337,
+        "endTime": 5.612,
+        "duration": 2.275,
+        "sentenceIndex": 190
+      },
+      {
+        "text": "She saw children playing and families laughing together.",
+        "startTime": 5.612,
+        "endTime": 9.86,
+        "duration": 4.247,
+        "sentenceIndex": 191
+      }
+    ]
+  },
+  {
+    "bundleIndex": 48,
+    "startSentenceIndex": 192,
+    "endSentenceIndex": 195,
+    "text": "The flowers bloomed bright and beautiful, their colors dancing in the breeze. She saw the mother and child again, picking fresh food. They smiled at her, their faces glowing with happiness. Sofia felt joy in her heart, a feeling that warmed her from the inside.",
+    "sentences": [
+      "The flowers bloomed bright and beautiful, their colors dancing in the breeze.",
+      "She saw the mother and child again, picking fresh food.",
+      "They smiled at her, their faces glowing with happiness.",
+      "Sofia felt joy in her heart, a feeling that warmed her from the inside."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_48.mp3",
+    "duration": 19.689683,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The flowers bloomed bright and beautiful, their colors dancing in the breeze.",
+        "startTime": 0,
+        "endTime": 5.847,
+        "duration": 5.847,
+        "sentenceIndex": 192
+      },
+      {
+        "text": "She saw the mother and child again, picking fresh food.",
+        "startTime": 5.847,
+        "endTime": 10.067,
+        "duration": 4.22,
+        "sentenceIndex": 193
+      },
+      {
+        "text": "They smiled at her, their faces glowing with happiness.",
+        "startTime": 10.067,
+        "endTime": 14.286,
+        "duration": 4.22,
+        "sentenceIndex": 194
+      },
+      {
+        "text": "Sofia felt joy in her heart, a feeling that warmed her from the inside.",
+        "startTime": 14.286,
+        "endTime": 19.69,
+        "duration": 5.403,
+        "sentenceIndex": 195
+      }
+    ]
+  },
+  {
+    "bundleIndex": 49,
+    "startSentenceIndex": 196,
+    "endSentenceIndex": 199,
+    "text": "Sofia learned that one person can make a big difference. She built a community where everyone belonged. She created a place of hope and safety. Together, they grew food.",
+    "sentences": [
+      "Sofia learned that one person can make a big difference.",
+      "She built a community where everyone belonged.",
+      "She created a place of hope and safety.",
+      "Together, they grew food."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_49.mp3",
+    "duration": 13.691633,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Sofia learned that one person can make a big difference.",
+        "startTime": 0,
+        "endTime": 4.568,
+        "duration": 4.568,
+        "sentenceIndex": 196
+      },
+      {
+        "text": "She built a community where everyone belonged.",
+        "startTime": 4.568,
+        "endTime": 8.321,
+        "duration": 3.753,
+        "sentenceIndex": 197
+      },
+      {
+        "text": "She created a place of hope and safety.",
+        "startTime": 8.321,
+        "endTime": 11.502,
+        "duration": 3.181,
+        "sentenceIndex": 198
+      },
+      {
+        "text": "Together, they grew food.",
+        "startTime": 11.502,
+        "endTime": 13.692,
+        "duration": 2.189,
+        "sentenceIndex": 199
+      }
+    ]
+  },
+  {
+    "bundleIndex": 50,
+    "startSentenceIndex": 200,
+    "endSentenceIndex": 203,
+    "text": "Together, they grew strength. Together, they found a home. In the end, Sofia knew that her journey was not just about food or safety. It was about love and connection.",
+    "sentences": [
+      "Together, they grew strength.",
+      "Together, they found a home.",
+      "In the end, Sofia knew that her journey was not just about food or safety.",
+      "It was about love and connection."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_50.mp3",
+    "duration": 12.867392,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Together, they grew strength.",
+        "startTime": 0,
+        "endTime": 2.346,
+        "duration": 2.346,
+        "sentenceIndex": 200
+      },
+      {
+        "text": "Together, they found a home.",
+        "startTime": 2.346,
+        "endTime": 4.616,
+        "duration": 2.27,
+        "sentenceIndex": 201
+      },
+      {
+        "text": "In the end, Sofia knew that her journey was not just about food or safety.",
+        "startTime": 4.616,
+        "endTime": 10.369,
+        "duration": 5.753,
+        "sentenceIndex": 202
+      },
+      {
+        "text": "It was about love and connection.",
+        "startTime": 10.369,
+        "endTime": 12.867,
+        "duration": 2.499,
+        "sentenceIndex": 203
+      }
+    ]
+  },
+  {
+    "bundleIndex": 51,
+    "startSentenceIndex": 204,
+    "endSentenceIndex": 207,
+    "text": "It was about people coming together. They were no longer alone. They were a family. The garden was not just a garden.",
+    "sentences": [
+      "It was about people coming together.",
+      "They were no longer alone.",
+      "They were a family.",
+      "The garden was not just a garden."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_51.mp3",
+    "duration": 8.994286,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was about people coming together.",
+        "startTime": 0,
+        "endTime": 2.84,
+        "duration": 2.84,
+        "sentenceIndex": 204
+      },
+      {
+        "text": "They were no longer alone.",
+        "startTime": 2.84,
+        "endTime": 4.892,
+        "duration": 2.051,
+        "sentenceIndex": 205
+      },
+      {
+        "text": "They were a family.",
+        "startTime": 4.892,
+        "endTime": 6.391,
+        "duration": 1.499,
+        "sentenceIndex": 206
+      },
+      {
+        "text": "The garden was not just a garden.",
+        "startTime": 6.391,
+        "endTime": 8.994,
+        "duration": 2.604,
+        "sentenceIndex": 207
+      }
+    ]
+  },
+  {
+    "bundleIndex": 52,
+    "startSentenceIndex": 208,
+    "endSentenceIndex": 211,
+    "text": "It was a symbol of hope. It was a place where dreams could grow. And Sofia smiled, knowing that she had helped to create a better life for everyone. It was a garden of hope, filled with love and friendship.",
+    "sentences": [
+      "It was a symbol of hope.",
+      "It was a place where dreams could grow.",
+      "And Sofia smiled, knowing that she had helped to create a better life for everyone.",
+      "It was a garden of hope, filled with love and friendship."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-1/A1/bundle_52.mp3",
+    "duration": 14.245646,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was a symbol of hope.",
+        "startTime": 0,
+        "endTime": 1.649,
+        "duration": 1.649,
+        "sentenceIndex": 208
+      },
+      {
+        "text": "It was a place where dreams could grow.",
+        "startTime": 1.649,
+        "endTime": 4.328,
+        "duration": 2.679,
+        "sentenceIndex": 209
+      },
+      {
+        "text": "And Sofia smiled, knowing that she had helped to create a better life for everyone.",
+        "startTime": 4.328,
+        "endTime": 10.18,
+        "duration": 5.852,
+        "sentenceIndex": 210
+      },
+      {
+        "text": "It was a garden of hope, filled with love and friendship.",
+        "startTime": 10.18,
+        "endTime": 14.246,
+        "duration": 4.066,
+        "sentenceIndex": 211
+      }
+    ]
+  }
+]

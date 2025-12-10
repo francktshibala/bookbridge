@@ -276,6 +276,17 @@ cat cache/{content-id}-{level}-preview-combined.txt
 #    ✅ PASS: Contains emotional hook (starts with struggle, NO "The Story Begins" title)
 #    ✅ PASS: Background context is separate (not in combined preview)
 #    ❌ FAIL: Starts with actual talk content (e.g., "I like to tell stories...")
+# 4.5. 🚨 CRITICAL: Verify file format has double newlines between sections
+#    ✅ PASS: Format is:
+#        Line 1: "About This Story"
+#        Line 2: (blank line)
+#        Line 3: Preview content
+#        Line 4: (blank line)
+#        Line 5: Hook content
+#        Line 6: (blank line)
+#        Line 7: Background content
+#    ❌ FAIL: Missing blank lines between sections (parser splits on \n\n+)
+#    FIX: Ensure double newlines (\n\n) separate each section
 # 5. Check word count: Should be ~130-225 words total (preview + background + hook)
 wc -w cache/{content-id}-{level}-preview-combined.txt
 # 6. Check it matches CEFR level (A1 = simple, short sentences)

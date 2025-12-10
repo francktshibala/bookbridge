@@ -55,11 +55,16 @@
 - Must be reliable, legal, and free/low-cost
 
 ### **The Solution**
-Use reliable free sources (public domain memoirs, historical speeches, long-form journalism) but **transform them** through:
+**Expanded Source Discovery Strategy:** We creatively explore ALL source types—long-form journalism (CBC, CNN, ProPublica), nonprofit oral histories (Their Story is Our Story, IRC), documentary transcripts, personal essays, and interviews—prioritizing **emotional power over source convenience**. We use a **multi-source thematic extraction approach** (3+ sources per story) for legal compliance instead of limiting ourselves to public domain only.
+
+**Critical Workflow:** When finding sources, Claude Code searches for URLs → User manually copies articles from browser (bypasses copyright filters) → Claude creates downloadable files → User places in cache directory. **⚠️ NEVER use `web_fetch`** (triggers blocks); always manual copy/paste.
+
+Transform sources through:
 1. **Emotional curation** (select only inspiring stories)
 2. **Emotional framing** (hook with struggle → breakthrough arcs)
 3. **Enhanced presentation** (premium audio + AI insights)
 4. **Personal connection** (relate to learner's journey)
+5. **Multi-source extraction** (3+ sources per story for legal compliance)
 
 ---
 
@@ -539,19 +544,42 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
 
 ### **WORKFLOW: Finding and Validating Stories**
 
-**For Each Source:**
+**⚠️ CRITICAL: Multi-Source Thematic Extraction Approach**
 
-1. **Search & Discover:**
-   - Search source for inspiring stories (keywords: transformation, courage, perseverance, overcoming, inspiring)
+**Legal Compliance Strategy:** We use **3+ sources per story** and extract themes/emotional moments (not text), then write original narratives. This approach works for ALL source types (public domain, copyrighted, Creative Commons) because we're creating original content inspired by facts, not copying text.
+
+**Source Discovery Process:**
+
+1. **Search & Discover (ALL Source Types):**
+   - Explore long-form journalism (CBC, CNN, ProPublica, The Guardian, etc.)
+   - Explore nonprofit oral histories (Their Story is Our Story, IRC, UNHCR Stories)
+   - Explore documentary transcripts, personal essays, interviews
+   - Search for inspiring stories (keywords: transformation, courage, perseverance, overcoming, inspiring)
    - Filter by length (15-45 minutes or expandable to that)
    - Read/listen to identify emotional arcs
+   - **Priority: Emotional power over source convenience** - don't limit to public domain only
 
-2. **Step 0.25: Source Material Check (MANDATORY FIRST):**
+2. **Manual Copy/Paste Workflow (MANDATORY):**
+   - Claude Code searches for URLs and identifies potential sources
+   - **User manually copies articles from browser** (bypasses copyright filters)
+   - Claude creates downloadable text files from copied content
+   - User places files in `cache/files/{story-id}-source-{number}.txt`
+   - **⚠️ NEVER use `web_fetch`** - it triggers copyright blocks
+   - Always use manual copy/paste workflow
+
+3. **Multi-Source Collection:**
+   - Collect **3+ sources** per story from diverse sources
+   - Mix source types: journalism + oral history + documentary transcript
+   - Cross-reference facts across sources for legal safety
+   - Extract themes and emotional moments (not text) from all sources
+
+4. **Step 0.25: Source Material Check (MANDATORY FIRST):**
    - ✅ Is it story-driven (not fact-driven)?
    - ✅ Does it have enough content for 15-45 minutes?
-   - ✅ Is it public domain or properly licensed?
+   - ✅ Do we have 3+ sources for multi-source extraction?
+   - ✅ Can we extract themes/emotional moments (not copy text)?
 
-3. **Step 0.5: Emotional Impact Validation (MANDATORY GATE):**
+5. **Step 0.5: Emotional Impact Validation (MANDATORY GATE):**
    - ✅ "Text a friend" test - would someone recommend this?
    - ✅ Emotional arc check - struggle → perseverance → breakthrough?
    - ✅ 5-7 emotional moments identified?
@@ -577,19 +605,37 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
 
 ### **IMPLEMENTATION PRIORITY**
 
-**Immediate (Phase 1 - Public Domain):**
-1. StoryCorps Archive - proven source, already have one story
-2. Library of Congress Veterans History Project - rich emotional stories
-3. National Archives Oral Histories - diverse inspiring stories
+**Expanded Source Discovery (Prioritize Emotional Power):**
 
-**Next (Phase 2 - Creative Commons):**
-4. ProPublica - check for CC-BY inspiring articles
-5. The Marshall Project - check for CC-BY transformation stories
+**All Source Types (Using Multi-Source Extraction):**
+1. **Long-form Journalism:** CBC, CNN, ProPublica, The Guardian, The Atlantic, etc.
+2. **Nonprofit Oral Histories:** Their Story is Our Story, IRC (International Rescue Committee), UNHCR Stories
+3. **Documentary Transcripts:** PBS, BBC, independent documentaries
+4. **Personal Essays:** Medium, Longform.org, literary magazines
+5. **Interviews:** Podcast transcripts, video interviews, recorded conversations
+6. **Public Domain Sources:** StoryCorps Archive, Library of Congress, National Archives (still valuable, but not exclusive)
 
-**Later (Phase 3 - Need Permission):**
-6. TED Talks - contact for educational licensing
-7. NPR - contact for educational licensing
-8. Other sources based on Phase 1 & 2 results
+**Priority Strategy:**
+- **Emotional power > Source convenience** - Don't limit to public domain only
+- Use **multi-source thematic extraction** (3+ sources per story) for legal compliance
+- Manual copy/paste workflow (never `web_fetch`)
+- All stories MUST pass Step 0.25 (story-driven) and Step 0.5 (emotional impact validation)
+
+**Genre Priority (Confirmed Tier 1-3 List):**
+
+**Tier 1 (Maximum Impact - Start Here):**
+1. Refugee Journey (6+ ESL multipliers)
+2. Career Pivot (4+ ESL multipliers)
+3. First-Generation Professional Success (5+ ESL multipliers)
+4. Disability Overcome (4+ ESL multipliers)
+5. Community Builder (5+ ESL multipliers)
+6. Second Chance (4+ ESL multipliers)
+
+**Tier 2 (High Impact - Next Priority):**
+7. Cultural Bridge, 8. Romantic Love Across Cultures, 9. Grief to Purpose, 10. Age Defiance, 11. Single Parent Rising, 12. Medical Crisis Overcome, 13. Youth Activism
+
+**Tier 3 (Strong Impact - Future Expansion):**
+14. Lost Heritage Reclaimed, 15. Workplace Discrimination Overcome, 16. Environmental Hero, 17. Artistic Breakthrough, 18. Mentor-Student Bond
 
 ---
 
@@ -1312,13 +1358,20 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
   - Check combined preview audio exists: `cache/{story-id}-{level}-preview-combined-audio.json`
   - Verify audio uploaded to Supabase storage bucket
   - **CRITICAL: Read combined preview text** - verify structure:
-    - ✅ PASS: Starts with "In this inspiring story..." (meta-description preview)
+    - ✅ PASS: Starts with "About This Story" on line 1
+    - ✅ PASS: Line 2 is blank (double newline after "About This Story")
+    - ✅ PASS: Preview content starts on line 3
+    - ✅ PASS: Sections separated by blank lines (double newlines \n\n)
     - ✅ PASS: Contains emotional hook section (starts with struggle, NO "The Story Begins" title)
     - ✅ PASS: Contains background context section (neutral, factual tone)
     - ✅ PASS: All three parts in one unified text file
+    - ❌ FAIL: Missing blank lines between sections (parser splits on \n\n+)
     - ❌ FAIL: Starts with actual story content (e.g., "At 19 months old...")
     - ❌ FAIL: Contains "The Story Begins" title in combined preview
     - ❌ FAIL: Background context is in separate file
+  - **🚨 CRITICAL: Verify file format has double newlines between sections:**
+    - Format must be: "About This Story" → blank line → Preview → blank line → Hook → blank line → Background
+    - Parser uses `split(/\n\n+/)` so sections MUST be separated by double newlines
   - Check word count: `wc -w cache/{story-id}-{level}-preview-combined.txt` (should be ~130-225 words)
   - Verify matches CEFR level (A1 = simple, short sentences)
   - **Marketing test:** Read aloud - does it make you want to listen?
@@ -2388,9 +2441,11 @@ Every story must have:
 
 ## 🗺️ **IMPLEMENTATION ROADMAP**
 
+**⚠️ CRITICAL: All stories MUST pass Step 0.25 (story-driven NOT fact-driven) and Step 0.5 (emotional impact validation with "text a friend" test, 5-7 emotional moments, 3+ ESL multipliers) before implementation.**
+
 ### **Phase 1: Highest Priority Themes (Start Here - 6 stories)**
 
-**Priority Order:**
+**Confirmed Tier 1 Priority Order:**
 1. **Refugee Journey** (6+ ESL multipliers, fills major gap) - **Target: 2-3 stories**
 2. **Community Builder** (fills belonging gap, high ESL resonance) - **Target: 2-3 stories**
 3. **First-Generation Professional Success** ⭐ **NEW** (5+ ESL multipliers, high ESL relevance) - **Target: 2-3 stories**
@@ -2398,7 +2453,7 @@ Every story must have:
 5. **Career Pivot** (fills career gap, relatable to immigrants) - **Target: 2-3 stories**
 6. **Second Chance** (redemption arc, universal appeal) - **Target: 1-2 stories**
 
-**Why this order:** Maximizes ESL resonance while filling critical genre gaps. These six Tier 1 themes have highest universal + ESL impact and are distinct from current coverage.
+**Why this order:** Maximizes ESL resonance while filling critical genre gaps. These six Tier 1 themes have highest universal + ESL impact and are distinct from current coverage. **Priority list confirmed and solid.**
 
 **Total Phase 1 Target:** 11-18 stories across 6 themes
 
