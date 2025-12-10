@@ -271,6 +271,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'CB'
   },
   {
+    id: 'community-builder-2',
+    title: 'Community Builder: From Wrong Turn to School Network',
+    author: 'BookBridge',
+    description: 'An inspiring story about Layla, who lost everything when her family disowned her. She drifted from city to city, feeling alone. Then one wrong turn changed everything. She saw refugee children playing soccer with a deflated ball. This powerful tale shows how one person can build a community and transform lives. A1 level with Daniel voice.',
+    sentences: 207,
+    bundles: 52,
+    gradient: 'from-green-500 to-teal-600',
+    abbreviation: 'CB2'
+  },
+  {
     id: 'disability-overcome-1',
     title: 'Disability Overcome: Finding New Ways',
     author: 'BookBridge',
@@ -402,6 +412,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'community-builder-1': {
     'A1': '/api/community-builder-1-a1/bundles'
   },
+  'community-builder-2': {
+    'A1': '/api/community-builder-2-a1/bundles'
+  },
   'disability-overcome-1': {
     'A1': '/api/disability-overcome-1-a1/bundles'
   },
@@ -443,6 +456,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'refugee-journey-1': 'A1',  // Default to A1 for Refugee Journey: From War Zone to Hope (Modern Story)
   'refugee-journey-2': 'A1',  // Default to A1 for Refugee Journey: Family Reunited (Modern Story)
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
+  'community-builder-2': 'A1',  // Default to A1 for Community Builder: From Wrong Turn to School Network (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
@@ -516,6 +530,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'refugee-journey-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
   'refugee-journey-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'community-builder-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

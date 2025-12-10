@@ -1,0 +1,140 @@
+{
+  "themes": [
+    "community building",
+    "belonging",
+    "transformation",
+    "empowerment",
+    "educational justice",
+    "refugee support",
+    "mutual healing",
+    "soccer as universal language"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Grandmother's flight from Syria",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "Childhood visits to refugee camps",
+      "emotionalWeight": "medium",
+      "source": "research"
+    },
+    {
+      "moment": "Coming out and being disowned",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "Years of drifting without purpose",
+      "emotionalWeight": "medium",
+      "source": "research"
+    },
+    {
+      "moment": "Wrong turn leading to life-changing encounter",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "Seeing barefoot children playing with deflated ball",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "Discovery of goalie with chopped fingers",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "Realization that many children couldn't read",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "Debt trap realization for refugees",
+      "emotionalWeight": "medium",
+      "source": "research"
+    },
+    {
+      "moment": "Founding of the Fugees Academy",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "First graduation of Fugees Academy students",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "Soccer field as a place of transformation",
+      "emotionalWeight": "medium",
+      "source": "research"
+    },
+    {
+      "moment": "Ramadan celebrated with Fugees",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "Family reunion in Turkey after 26 years",
+      "emotionalWeight": "high",
+      "source": "research"
+    },
+    {
+      "moment": "TED Talk reaching global audience",
+      "emotionalWeight": "medium",
+      "source": "research"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "2004",
+      "2016",
+      "2023"
+    ],
+    "locations": [
+      "Jordan",
+      "Clarkston, Georgia",
+      "Columbus, Ohio"
+    ],
+    "organizations": [
+      "Fugees Academy",
+      "Smith College"
+    ]
+  },
+  "storyArc": {
+    "struggle": "Privileged upbringing followed by exile and drifting",
+    "perseverance": "Building connections through soccer and addressing educational failures",
+    "breakthrough": "Founding of Fugees Academy and personal healing through community"
+  },
+  "eslResonanceMultipliers": [
+    "Building New Life",
+    "Belonging & Identity",
+    "Connection Across Differences",
+    "Overcoming 'Not Good Enough'",
+    "Persistence Despite Setbacks",
+    "First-Time Courage"
+  ],
+  "keyQuotes": [
+    {
+      "quote": "Soccer has always been an escape",
+      "context": "Reflecting on childhood"
+    },
+    {
+      "quote": "The Fugees gave me belonging",
+      "context": "Discussing mutual healing"
+    },
+    {
+      "quote": "If you survived hunger and war, graduating high school is surmountable",
+      "context": "Empowering message for students"
+    },
+    {
+      "quote": "What could be more American than starting in debt?",
+      "context": "Discussing refugee debt trap"
+    },
+    {
+      "quote": "It's tough enough being a refugee",
+      "context": "On the need for educational support"
+    }
+  ]
+}

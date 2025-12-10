@@ -1,0 +1,2438 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Imagine having to leave your family and never come back. Imagine feeling alone every day and being sad. Layla had everything, but then she lost it all. She has a good life in Jordan.",
+    "sentences": [
+      "Imagine having to leave your family and never come back.",
+      "Imagine feeling alone every day and being sad.",
+      "Layla had everything, but then she lost it all.",
+      "She has a good life in Jordan."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_0.mp3",
+    "duration": 12.318889,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Imagine having to leave your family and never come back.",
+        "startTime": 0,
+        "endTime": 3.807,
+        "duration": 3.807,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Imagine feeling alone every day and being sad.",
+        "startTime": 3.807,
+        "endTime": 6.934,
+        "duration": 3.127,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Layla had everything, but then she lost it all.",
+        "startTime": 6.934,
+        "endTime": 10.279,
+        "duration": 3.345,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She has a good life in Jordan.",
+        "startTime": 10.279,
+        "endTime": 12.319,
+        "duration": 2.039,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "She plays soccer with her friends after school every day. Soccer was her favorite game and she loved to play. It made Layla happy and she smiled. The sun shined bright when they played outside.",
+    "sentences": [
+      "She plays soccer with her friends after school every day.",
+      "Soccer was her favorite game and she loved to play.",
+      "It made Layla happy and she smiled.",
+      "The sun shined bright when they played outside."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_1.mp3",
+    "duration": 12.931678,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She plays soccer with her friends after school every day.",
+        "startTime": 0,
+        "endTime": 3.88,
+        "duration": 3.88,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Soccer was her favorite game and she loved to play.",
+        "startTime": 3.88,
+        "endTime": 7.351,
+        "duration": 3.471,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "It made Layla happy and she smiled.",
+        "startTime": 7.351,
+        "endTime": 9.733,
+        "duration": 2.382,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "The sun shined bright when they played outside.",
+        "startTime": 9.733,
+        "endTime": 12.932,
+        "duration": 3.199,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "The warm sun feels good on Layla's skin. The ball rolls on the green grass. The children laughed and shouted because they felt joy. They ran fast and kicked the ball very high.",
+    "sentences": [
+      "The warm sun feels good on Layla's skin.",
+      "The ball rolls on the green grass.",
+      "The children laughed and shouted because they felt joy.",
+      "They ran fast and kicked the ball very high."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_2.mp3",
+    "duration": 14.552154,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The warm sun feels good on Layla's skin.",
+        "startTime": 0,
+        "endTime": 3.365,
+        "duration": 3.365,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "The ball rolls on the green grass.",
+        "startTime": 3.365,
+        "endTime": 6.225,
+        "duration": 2.86,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "The children laughed and shouted because they felt joy.",
+        "startTime": 6.225,
+        "endTime": 10.851,
+        "duration": 4.626,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "They ran fast and kicked the ball very high.",
+        "startTime": 10.851,
+        "endTime": 14.552,
+        "duration": 3.701,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "Layla feels free and alive now. Layla had a secret, but she did not tell anyone. She liked girls but did not like boys. When her family found out, they were very mad.",
+    "sentences": [
+      "Layla feels free and alive now.",
+      "Layla had a secret, but she did not tell anyone.",
+      "She liked girls but did not like boys.",
+      "When her family found out, they were very mad."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_3.mp3",
+    "duration": 12.223401,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla feels free and alive now.",
+        "startTime": 0,
+        "endTime": 2.268,
+        "duration": 2.268,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "Layla had a secret, but she did not tell anyone.",
+        "startTime": 2.268,
+        "endTime": 5.929,
+        "duration": 3.661,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "She liked girls but did not like boys.",
+        "startTime": 5.929,
+        "endTime": 8.709,
+        "duration": 2.78,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "When her family found out, they were very mad.",
+        "startTime": 8.709,
+        "endTime": 12.223,
+        "duration": 3.515,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "They shouted at her and made her feel bad. They yelled that Layla is not their daughter anymore. Their voices are loud and full of anger. They turned away from her and felt disgust.",
+    "sentences": [
+      "They shouted at her and made her feel bad.",
+      "They yelled that Layla is not their daughter anymore.",
+      "Their voices are loud and full of anger.",
+      "They turned away from her and felt disgust."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_4.mp3",
+    "duration": 12.808209,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They shouted at her and made her feel bad.",
+        "startTime": 0,
+        "endTime": 3.022,
+        "duration": 3.022,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "They yelled that Layla is not their daughter anymore.",
+        "startTime": 3.022,
+        "endTime": 6.836,
+        "duration": 3.814,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "Their voices are loud and full of anger.",
+        "startTime": 6.836,
+        "endTime": 9.714,
+        "duration": 2.878,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "They turned away from her and felt disgust.",
+        "startTime": 9.714,
+        "endTime": 12.808,
+        "duration": 3.094,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "Layla feels lost and scared. Tears ran down Layla's cheeks and she felt very sad. Her heart feels heavy and broken now. She left her home and moved to a new city.",
+    "sentences": [
+      "Layla feels lost and scared.",
+      "Tears ran down Layla's cheeks and she felt very sad.",
+      "Her heart feels heavy and broken now.",
+      "She left her home and moved to a new city."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_5.mp3",
+    "duration": 14.458685,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla feels lost and scared.",
+        "startTime": 0,
+        "endTime": 2.546,
+        "duration": 2.546,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "Tears ran down Layla's cheeks and she felt very sad.",
+        "startTime": 2.546,
+        "endTime": 7.275,
+        "duration": 4.729,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "Her heart feels heavy and broken now.",
+        "startTime": 7.275,
+        "endTime": 10.639,
+        "duration": 3.365,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "She left her home and moved to a new city.",
+        "startTime": 10.639,
+        "endTime": 14.459,
+        "duration": 3.819,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "It was cold and Layla felt lonely. The streets are quiet, and Layla misses her friends' laughter. She missed playing soccer and feeling the sun on her face. She applied for asylum but did not know what happens next.",
+    "sentences": [
+      "It was cold and Layla felt lonely.",
+      "The streets are quiet, and Layla misses her friends' laughter.",
+      "She missed playing soccer and feeling the sun on her face.",
+      "She applied for asylum but did not know what happens next."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_6.mp3",
+    "duration": 14.521134,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was cold and Layla felt lonely.",
+        "startTime": 0,
+        "endTime": 2.305,
+        "duration": 2.305,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "The streets are quiet, and Layla misses her friends' laughter.",
+        "startTime": 2.305,
+        "endTime": 6.658,
+        "duration": 4.353,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "She missed playing soccer and feeling the sun on her face.",
+        "startTime": 6.658,
+        "endTime": 10.589,
+        "duration": 3.932,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "She applied for asylum but did not know what happens next.",
+        "startTime": 10.589,
+        "endTime": 14.521,
+        "duration": 3.932,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "She felt small and scared in the big city. She worked small jobs and did her best to survive. Sometimes, she worked in restaurants and liked her job. She cleaned tables and washed the dishes.",
+    "sentences": [
+      "She felt small and scared in the big city.",
+      "She worked small jobs and did her best to survive.",
+      "Sometimes, she worked in restaurants and liked her job.",
+      "She cleaned tables and washed the dishes."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_7.mp3",
+    "duration": 13.756961,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt small and scared in the big city.",
+        "startTime": 0,
+        "endTime": 3.04,
+        "duration": 3.04,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "She worked small jobs and did her best to survive.",
+        "startTime": 3.04,
+        "endTime": 6.659,
+        "duration": 3.619,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "Sometimes, she worked in restaurants and liked her job.",
+        "startTime": 6.659,
+        "endTime": 10.789,
+        "duration": 4.131,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "She cleaned tables and washed the dishes.",
+        "startTime": 10.789,
+        "endTime": 13.757,
+        "duration": 2.967,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "The smell of food makes her stomach growl. Sometimes, she cleans houses for people and helps them. She woke up early when it was dark outside. She came home late when the moon was bright.",
+    "sentences": [
+      "The smell of food makes her stomach growl.",
+      "Sometimes, she cleans houses for people and helps them.",
+      "She woke up early when it was dark outside.",
+      "She came home late when the moon was bright."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_8.mp3",
+    "duration": 13.78678,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The smell of food makes her stomach growl.",
+        "startTime": 0,
+        "endTime": 3.113,
+        "duration": 3.113,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "Sometimes, she cleans houses for people and helps them.",
+        "startTime": 3.113,
+        "endTime": 7.339,
+        "duration": 4.226,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "She woke up early when it was dark outside.",
+        "startTime": 7.339,
+        "endTime": 10.526,
+        "duration": 3.187,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "She came home late when the moon was bright.",
+        "startTime": 10.526,
+        "endTime": 13.787,
+        "duration": 3.261,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "Every Ramadan, Layla breaks her fast alone. Layla misses her family and feels very sad. She misses her grandmother and feels sad. Layla remembers her grandmother's story about leaving Syria.",
+    "sentences": [
+      "Every Ramadan, Layla breaks her fast alone.",
+      "Layla misses her family and feels very sad.",
+      "She misses her grandmother and feels sad.",
+      "Layla remembers her grandmother's story about leaving Syria."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_9.mp3",
+    "duration": 13.57873,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Every Ramadan, Layla breaks her fast alone.",
+        "startTime": 0,
+        "endTime": 3.238,
+        "duration": 3.238,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "Layla misses her family and feels very sad.",
+        "startTime": 3.238,
+        "endTime": 6.326,
+        "duration": 3.088,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "She misses her grandmother and feels sad.",
+        "startTime": 6.326,
+        "endTime": 9.27,
+        "duration": 2.944,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "Layla remembers her grandmother's story about leaving Syria.",
+        "startTime": 9.27,
+        "endTime": 13.579,
+        "duration": 4.309,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "Her grandmother told her to leave everything and find safety. Layla, her grandmother said with sad eyes, I had to run. We left at night when it was dark. The sounds of war are very loud.",
+    "sentences": [
+      "Her grandmother told her to leave everything and find safety.",
+      "Layla, her grandmother said with sad eyes, I had to run.",
+      "We left at night when it was dark.",
+      "The sounds of war are very loud."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_10.mp3",
+    "duration": 15.017302,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her grandmother told her to leave everything and find safety.",
+        "startTime": 0,
+        "endTime": 4.906,
+        "duration": 4.906,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Layla, her grandmother said with sad eyes, I had to run.",
+        "startTime": 4.906,
+        "endTime": 9.709,
+        "duration": 4.804,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "We left at night when it was dark.",
+        "startTime": 9.709,
+        "endTime": 12.444,
+        "duration": 2.734,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "The sounds of war are very loud.",
+        "startTime": 12.444,
+        "endTime": 15.017,
+        "duration": 2.574,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "Layla felt scared and sad when she thought about being alone. She wished she could hug her grandmother once more. She wished to laugh with her family and feel happy. The memories make her heart feel sad and ache.",
+    "sentences": [
+      "Layla felt scared and sad when she thought about being alone.",
+      "She wished she could hug her grandmother once more.",
+      "She wished to laugh with her family and feel happy.",
+      "The memories make her heart feel sad and ache."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_11.mp3",
+    "duration": 14.457234,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla felt scared and sad when she thought about being alone.",
+        "startTime": 0,
+        "endTime": 4.22,
+        "duration": 4.22,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "She wished she could hug her grandmother once more.",
+        "startTime": 4.22,
+        "endTime": 7.747,
+        "duration": 3.528,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "She wished to laugh with her family and feel happy.",
+        "startTime": 7.747,
+        "endTime": 11.275,
+        "duration": 3.528,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "The memories make her heart feel sad and ache.",
+        "startTime": 11.275,
+        "endTime": 14.457,
+        "duration": 3.182,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "Years passed, but Layla still feels lost. She moved from city to city and felt free. She wanted a place where she can belong. One day in 2004, Layla drove her car.",
+    "sentences": [
+      "Years passed, but Layla still feels lost.",
+      "She moved from city to city and felt free.",
+      "She wanted a place where she can belong.",
+      "One day in 2004, Layla drove her car."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_12.mp3",
+    "duration": 15.010385,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Years passed, but Layla still feels lost.",
+        "startTime": 0,
+        "endTime": 3.92,
+        "duration": 3.92,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "She moved from city to city and felt free.",
+        "startTime": 3.92,
+        "endTime": 7.781,
+        "duration": 3.861,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "She wanted a place where she can belong.",
+        "startTime": 7.781,
+        "endTime": 11.459,
+        "duration": 3.678,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "One day in 2004, Layla drove her car.",
+        "startTime": 11.459,
+        "endTime": 15.01,
+        "duration": 3.552,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "She took a wrong turn and found a parking lot. The sun sets and the sky is orange and pink. The clouds looked soft and pink like cotton candy. Suddenly, she saw something that changed her life.",
+    "sentences": [
+      "She took a wrong turn and found a parking lot.",
+      "The sun sets and the sky is orange and pink.",
+      "The clouds looked soft and pink like cotton candy.",
+      "Suddenly, she saw something that changed her life."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_13.mp3",
+    "duration": 14.031247,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She took a wrong turn and found a parking lot.",
+        "startTime": 0,
+        "endTime": 3.361,
+        "duration": 3.361,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "The sun sets and the sky is orange and pink.",
+        "startTime": 3.361,
+        "endTime": 6.575,
+        "duration": 3.215,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "The clouds looked soft and pink like cotton candy.",
+        "startTime": 6.575,
+        "endTime": 10.228,
+        "duration": 3.653,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "Suddenly, she saw something that changed her life.",
+        "startTime": 10.228,
+        "endTime": 14.031,
+        "duration": 3.803,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "Children play soccer in the parking lot. They had no shoes and walked on the ground. Their feet are dirty and they look tired. They kicked a flat ball and felt happy.",
+    "sentences": [
+      "Children play soccer in the parking lot.",
+      "They had no shoes and walked on the ground.",
+      "Their feet are dirty and they look tired.",
+      "They kicked a flat ball and felt happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_14.mp3",
+    "duration": 11.098073,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Children play soccer in the parking lot.",
+        "startTime": 0,
+        "endTime": 2.723,
+        "duration": 2.723,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "They had no shoes and walked on the ground.",
+        "startTime": 2.723,
+        "endTime": 5.651,
+        "duration": 2.928,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "Their feet are dirty and they look tired.",
+        "startTime": 5.651,
+        "endTime": 8.443,
+        "duration": 2.792,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "They kicked a flat ball and felt happy.",
+        "startTime": 8.443,
+        "endTime": 11.098,
+        "duration": 2.655,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "The ball was flat, but they laughed and shouted. Layla watched them from her car and felt curious. The sounds of their laughter fill Layla's heart with warmth. They were happy and it made Layla think of her childhood.",
+    "sentences": [
+      "The ball was flat, but they laughed and shouted.",
+      "Layla watched them from her car and felt curious.",
+      "The sounds of their laughter fill Layla's heart with warmth.",
+      "They were happy and it made Layla think of her childhood."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_15.mp3",
+    "duration": 15.172381,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The ball was flat, but they laughed and shouted.",
+        "startTime": 0,
+        "endTime": 3.52,
+        "duration": 3.52,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "Layla watched them from her car and felt curious.",
+        "startTime": 3.52,
+        "endTime": 6.959,
+        "duration": 3.44,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "The sounds of their laughter fill Layla's heart with warmth.",
+        "startTime": 6.959,
+        "endTime": 11.171,
+        "duration": 4.212,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "They were happy and it made Layla think of her childhood.",
+        "startTime": 11.171,
+        "endTime": 15.172,
+        "duration": 4.001,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "Layla feels a strong connection to them. They were refugees and they were just like Layla. Then she saw a boy who was in goal. His fingers are cut and he feels pain.",
+    "sentences": [
+      "Layla feels a strong connection to them.",
+      "They were refugees and they were just like Layla.",
+      "Then she saw a boy who was in goal.",
+      "His fingers are cut and he feels pain."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_16.mp3",
+    "duration": 12.429932,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla feels a strong connection to them.",
+        "startTime": 0,
+        "endTime": 3.069,
+        "duration": 3.069,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "They were refugees and they were just like Layla.",
+        "startTime": 3.069,
+        "endTime": 6.829,
+        "duration": 3.76,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "Then she saw a boy who was in goal.",
+        "startTime": 6.829,
+        "endTime": 9.514,
+        "duration": 2.685,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "His fingers are cut and he feels pain.",
+        "startTime": 9.514,
+        "endTime": 12.43,
+        "duration": 2.916,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "They looked small and bent. He cannot use them well. He was smiling, but he felt sad inside. He tried to save the ball when the kids kicked it.",
+    "sentences": [
+      "They looked small and bent.",
+      "He cannot use them well.",
+      "He was smiling, but he felt sad inside.",
+      "He tried to save the ball when the kids kicked it."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_17.mp3",
+    "duration": 10.624853,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They looked small and bent.",
+        "startTime": 0,
+        "endTime": 2.02,
+        "duration": 2.02,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "He cannot use them well.",
+        "startTime": 2.02,
+        "endTime": 3.816,
+        "duration": 1.796,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "He was smiling, but he felt sad inside.",
+        "startTime": 3.816,
+        "endTime": 6.884,
+        "duration": 3.068,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "He tried to save the ball when the kids kicked it.",
+        "startTime": 6.884,
+        "endTime": 10.625,
+        "duration": 3.741,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "Layla's heart jumps when she feels excited. She felt a strong fire inside her heart. She wanted to learn more about him. She asked the boy his name when the game stopped.",
+    "sentences": [
+      "Layla's heart jumps when she feels excited.",
+      "She felt a strong fire inside her heart.",
+      "She wanted to learn more about him.",
+      "She asked the boy his name when the game stopped."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_18.mp3",
+    "duration": 12.712313,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla's heart jumps when she feels excited.",
+        "startTime": 0,
+        "endTime": 3.273,
+        "duration": 3.273,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "She felt a strong fire inside her heart.",
+        "startTime": 3.273,
+        "endTime": 6.318,
+        "duration": 3.045,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "She wanted to learn more about him.",
+        "startTime": 6.318,
+        "endTime": 8.982,
+        "duration": 2.664,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "She asked the boy his name when the game stopped.",
+        "startTime": 8.982,
+        "endTime": 12.712,
+        "duration": 3.73,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "My name is Amir and I am happy. He said he wants to be a great goalie and smiled. His eyes shine with hope and happiness. He stood proud but his fingers did not work well.",
+    "sentences": [
+      "My name is Amir and I am happy.",
+      "He said he wants to be a great goalie and smiled.",
+      "His eyes shine with hope and happiness.",
+      "He stood proud but his fingers did not work well."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_19.mp3",
+    "duration": 13.203061,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "My name is Amir and I am happy.",
+        "startTime": 0,
+        "endTime": 2.436,
+        "duration": 2.436,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "He said he wants to be a great goalie and smiled.",
+        "startTime": 2.436,
+        "endTime": 6.287,
+        "duration": 3.851,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "His eyes shine with hope and happiness.",
+        "startTime": 6.287,
+        "endTime": 9.352,
+        "duration": 3.065,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "He stood proud but his fingers did not work well.",
+        "startTime": 9.352,
+        "endTime": 13.203,
+        "duration": 3.851,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "Layla smiled back and felt happy. Layla feels inspired by Amir because he is already great. She wanted to help him and the other kids. As she talked with Amir, she saw the other kids.",
+    "sentences": [
+      "Layla smiled back and felt happy.",
+      "Layla feels inspired by Amir because he is already great.",
+      "She wanted to help him and the other kids.",
+      "As she talked with Amir, she saw the other kids."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_20.mp3",
+    "duration": 13.969841,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla smiled back and felt happy.",
+        "startTime": 0,
+        "endTime": 2.534,
+        "duration": 2.534,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "Layla feels inspired by Amir because he is already great.",
+        "startTime": 2.534,
+        "endTime": 6.91,
+        "duration": 4.376,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "She wanted to help him and the other kids.",
+        "startTime": 6.91,
+        "endTime": 10.135,
+        "duration": 3.225,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "As she talked with Amir, she saw the other kids.",
+        "startTime": 10.135,
+        "endTime": 13.97,
+        "duration": 3.835,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "They laughed and played, but some looked sad. Layla felt a strong pain in her heart. One girl said quietly that she does not understand her teacher. Her name is Fatima.",
+    "sentences": [
+      "They laughed and played, but some looked sad.",
+      "Layla felt a strong pain in her heart.",
+      "One girl said quietly that she does not understand her teacher.",
+      "Her name is Fatima."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_21.mp3",
+    "duration": 13.96839,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They laughed and played, but some looked sad.",
+        "startTime": 0,
+        "endTime": 3.919,
+        "duration": 3.919,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "Layla felt a strong pain in her heart.",
+        "startTime": 3.919,
+        "endTime": 7.101,
+        "duration": 3.182,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "One girl said quietly that she does not understand her teacher.",
+        "startTime": 7.101,
+        "endTime": 12.377,
+        "duration": 5.276,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "Her name is Fatima.",
+        "startTime": 12.377,
+        "endTime": 13.968,
+        "duration": 1.591,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "Layla listens closely because she thinks she talks too fast. Layla hears sadness in Fatima's voice. The girl looked down and her shoulders were low. Layla felt sad and her heart hurt for them.",
+    "sentences": [
+      "Layla listens closely because she thinks she talks too fast.",
+      "Layla hears sadness in Fatima's voice.",
+      "The girl looked down and her shoulders were low.",
+      "Layla felt sad and her heart hurt for them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_22.mp3",
+    "duration": 13.575261,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla listens closely because she thinks she talks too fast.",
+        "startTime": 0,
+        "endTime": 4.31,
+        "duration": 4.31,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "Layla hears sadness in Fatima's voice.",
+        "startTime": 4.31,
+        "endTime": 7.039,
+        "duration": 2.729,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "The girl looked down and her shoulders were low.",
+        "startTime": 7.039,
+        "endTime": 10.487,
+        "duration": 3.448,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "Layla felt sad and her heart hurt for them.",
+        "startTime": 10.487,
+        "endTime": 13.575,
+        "duration": 3.089,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "They said their teachers did not help them at all. They did not understand the lessons and felt confused. Amir said he wants to learn to read. Layla's eyes lit up when she wanted to read soccer stories.",
+    "sentences": [
+      "They said their teachers did not help them at all.",
+      "They did not understand the lessons and felt confused.",
+      "Amir said he wants to learn to read.",
+      "Layla's eyes lit up when she wanted to read soccer stories."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_23.mp3",
+    "duration": 14.067619,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They said their teachers did not help them at all.",
+        "startTime": 0,
+        "endTime": 3.535,
+        "duration": 3.535,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "They did not understand the lessons and felt confused.",
+        "startTime": 3.535,
+        "endTime": 7.352,
+        "duration": 3.817,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "Amir said he wants to learn to read.",
+        "startTime": 7.352,
+        "endTime": 9.897,
+        "duration": 2.545,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "Layla's eyes lit up when she wanted to read soccer stories.",
+        "startTime": 9.897,
+        "endTime": 14.068,
+        "duration": 4.171,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "Layla decided to make a school for refugee children. She wanted a place to learn and play soccer. She named it the Fugees Academy and liked it. It was a big dream, but she felt strong and ready.",
+    "sentences": [
+      "Layla decided to make a school for refugee children.",
+      "She wanted a place to learn and play soccer.",
+      "She named it the Fugees Academy and liked it.",
+      "It was a big dream, but she felt strong and ready."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_24.mp3",
+    "duration": 13.144422,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla decided to make a school for refugee children.",
+        "startTime": 0,
+        "endTime": 3.538,
+        "duration": 3.538,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "She wanted a place to learn and play soccer.",
+        "startTime": 3.538,
+        "endTime": 6.531,
+        "duration": 2.993,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "She named it the Fugees Academy and liked it.",
+        "startTime": 6.531,
+        "endTime": 9.593,
+        "duration": 3.062,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "It was a big dream, but she felt strong and ready.",
+        "startTime": 9.593,
+        "endTime": 13.144,
+        "duration": 3.552,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "At first, it was hard and difficult. Layla worked hard every day and night. She found people to help her and they worked together. They painted the school walls in bright colors.",
+    "sentences": [
+      "At first, it was hard and difficult.",
+      "Layla worked hard every day and night.",
+      "She found people to help her and they worked together.",
+      "They painted the school walls in bright colors."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_25.mp3",
+    "duration": 12.558073,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "At first, it was hard and difficult.",
+        "startTime": 0,
+        "endTime": 2.703,
+        "duration": 2.703,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "Layla worked hard every day and night.",
+        "startTime": 2.703,
+        "endTime": 5.397,
+        "duration": 2.694,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "She found people to help her and they worked together.",
+        "startTime": 5.397,
+        "endTime": 9.226,
+        "duration": 3.829,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "They painted the school walls in bright colors.",
+        "startTime": 9.226,
+        "endTime": 12.558,
+        "duration": 3.332,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "The colors make the school feel alive and happy. They brought books and soccer balls for everyone to enjoy. The school smells like fresh paint and new paper. The children came and laughter filled the air.",
+    "sentences": [
+      "The colors make the school feel alive and happy.",
+      "They brought books and soccer balls for everyone to enjoy.",
+      "The school smells like fresh paint and new paper.",
+      "The children came and laughter filled the air."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_26.mp3",
+    "duration": 14.067234,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The colors make the school feel alive and happy.",
+        "startTime": 0,
+        "endTime": 3.359,
+        "duration": 3.359,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "They brought books and soccer balls for everyone to enjoy.",
+        "startTime": 3.359,
+        "endTime": 7.419,
+        "duration": 4.059,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "The school smells like fresh paint and new paper.",
+        "startTime": 7.419,
+        "endTime": 10.848,
+        "duration": 3.429,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "The children came and laughter filled the air.",
+        "startTime": 10.848,
+        "endTime": 14.067,
+        "duration": 3.219,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "One boy asked with wide eyes if they will play soccer. His excitement makes everyone happy and excited too. Layla smiled and said, \"Yes. They played soccer every day after school and learned too.",
+    "sentences": [
+      "One boy asked with wide eyes if they will play soccer.",
+      "His excitement makes everyone happy and excited too.",
+      "Layla smiled and said, \"Yes.",
+      "They played soccer every day after school and learned too."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_27.mp3",
+    "duration": 14.614603,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One boy asked with wide eyes if they will play soccer.",
+        "startTime": 0,
+        "endTime": 4.068,
+        "duration": 4.068,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "His excitement makes everyone happy and excited too.",
+        "startTime": 4.068,
+        "endTime": 7.986,
+        "duration": 3.917,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "Layla smiled and said, \"Yes.",
+        "startTime": 7.986,
+        "endTime": 10.245,
+        "duration": 2.259,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "They played soccer every day after school and learned too.",
+        "startTime": 10.245,
+        "endTime": 14.615,
+        "duration": 4.37,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "The children laughed and became friends. When students learn, Layla feels proud and happy. She saw them read books and write stories. They learn new things and enjoy their time.",
+    "sentences": [
+      "The children laughed and became friends.",
+      "When students learn, Layla feels proud and happy.",
+      "She saw them read books and write stories.",
+      "They learn new things and enjoy their time."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_28.mp3",
+    "duration": 12.929274,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The children laughed and became friends.",
+        "startTime": 0,
+        "endTime": 2.938,
+        "duration": 2.938,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "When students learn, Layla feels proud and happy.",
+        "startTime": 2.938,
+        "endTime": 6.687,
+        "duration": 3.749,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "She saw them read books and write stories.",
+        "startTime": 6.687,
+        "endTime": 9.771,
+        "duration": 3.085,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "They learn new things and enjoy their time.",
+        "startTime": 9.771,
+        "endTime": 12.929,
+        "duration": 3.158,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "Look at Layla and see what she is doing. A girl named Amina holds a colorful book and says, \"I can read this. Her smile is bright and her eyes shine with joy. Layla cheered because she thought it was wonderful.",
+    "sentences": [
+      "Look at Layla and see what she is doing.",
+      "A girl named Amina holds a colorful book and says, \"I can read this.",
+      "Her smile is bright and her eyes shine with joy.",
+      "Layla cheered because she thought it was wonderful."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_29.mp3",
+    "duration": 13.909524,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Look at Layla and see what she is doing.",
+        "startTime": 0,
+        "endTime": 2.659,
+        "duration": 2.659,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "A girl named Amina holds a colorful book and says, \"I can read this.",
+        "startTime": 2.659,
+        "endTime": 7.329,
+        "duration": 4.67,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "Her smile is bright and her eyes shine with joy.",
+        "startTime": 7.329,
+        "endTime": 10.519,
+        "duration": 3.191,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "Layla cheered because she thought it was wonderful.",
+        "startTime": 10.519,
+        "endTime": 13.91,
+        "duration": 3.39,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "She clapped her hands and felt happy in her chest. Some children said they feel not good enough in school. In Fugees Academy, they feel special and happy. They belonged to a group and felt happy.",
+    "sentences": [
+      "She clapped her hands and felt happy in her chest.",
+      "Some children said they feel not good enough in school.",
+      "In Fugees Academy, they feel special and happy.",
+      "They belonged to a group and felt happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_30.mp3",
+    "duration": 13.790272,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She clapped her hands and felt happy in her chest.",
+        "startTime": 0,
+        "endTime": 3.552,
+        "duration": 3.552,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "Some children said they feel not good enough in school.",
+        "startTime": 3.552,
+        "endTime": 7.46,
+        "duration": 3.907,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "In Fugees Academy, they feel special and happy.",
+        "startTime": 7.46,
+        "endTime": 10.949,
+        "duration": 3.489,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "They belonged to a group and felt happy.",
+        "startTime": 10.949,
+        "endTime": 13.79,
+        "duration": 2.842,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "They felt safe and happy in their home. They shared their dreams and fears with each other. The first graduation day was great and everyone felt happy. The children wear caps and gowns for the ceremony.",
+    "sentences": [
+      "They felt safe and happy in their home.",
+      "They shared their dreams and fears with each other.",
+      "The first graduation day was great and everyone felt happy.",
+      "The children wear caps and gowns for the ceremony."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_31.mp3",
+    "duration": 14.276689,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They felt safe and happy in their home.",
+        "startTime": 0,
+        "endTime": 2.798,
+        "duration": 2.798,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "They shared their dreams and fears with each other.",
+        "startTime": 2.798,
+        "endTime": 6.457,
+        "duration": 3.659,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "The first graduation day was great and everyone felt happy.",
+        "startTime": 6.457,
+        "endTime": 10.69,
+        "duration": 4.233,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "The children wear caps and gowns for the ceremony.",
+        "startTime": 10.69,
+        "endTime": 14.277,
+        "duration": 3.587,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "They smiled big and felt proud. Their families came and cheered for them. Layla looked at the faces and saw they were happy. She felt joy in her heart and smiled.",
+    "sentences": [
+      "They smiled big and felt proud.",
+      "Their families came and cheered for them.",
+      "Layla looked at the faces and saw they were happy.",
+      "She felt joy in her heart and smiled."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_32.mp3",
+    "duration": 11.073401,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They smiled big and felt proud.",
+        "startTime": 0,
+        "endTime": 2.159,
+        "duration": 2.159,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "Their families came and cheered for them.",
+        "startTime": 2.159,
+        "endTime": 5.014,
+        "duration": 2.855,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "Layla looked at the faces and saw they were happy.",
+        "startTime": 5.014,
+        "endTime": 8.497,
+        "duration": 3.482,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "She felt joy in her heart and smiled.",
+        "startTime": 8.497,
+        "endTime": 11.073,
+        "duration": 2.577,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "She told the children that this is their special day. Omar said, \"You worked hard and thank you, Layla. Layla felt happy tears because you made this happen. She made a difference in their lives and helped them.",
+    "sentences": [
+      "She told the children that this is their special day.",
+      "Omar said, \"You worked hard and thank you, Layla.",
+      "Layla felt happy tears because you made this happen.",
+      "She made a difference in their lives and helped them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_33.mp3",
+    "duration": 14.403764,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She told the children that this is their special day.",
+        "startTime": 0,
+        "endTime": 3.611,
+        "duration": 3.611,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "Omar said, \"You worked hard and thank you, Layla.",
+        "startTime": 3.611,
+        "endTime": 7.25,
+        "duration": 3.639,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "Layla felt happy tears because you made this happen.",
+        "startTime": 7.25,
+        "endTime": 10.793,
+        "duration": 3.543,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "She made a difference in their lives and helped them.",
+        "startTime": 10.793,
+        "endTime": 14.404,
+        "duration": 3.611,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "The school was a place of hope and dreams for everyone. The air was full of love and happiness. Every Ramadan, Layla and her students celebrate together. They shared food and told stories together.",
+    "sentences": [
+      "The school was a place of hope and dreams for everyone.",
+      "The air was full of love and happiness.",
+      "Every Ramadan, Layla and her students celebrate together.",
+      "They shared food and told stories together."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_34.mp3",
+    "duration": 13.968231,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The school was a place of hope and dreams for everyone.",
+        "startTime": 0,
+        "endTime": 3.918,
+        "duration": 3.918,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "The air was full of love and happiness.",
+        "startTime": 3.918,
+        "endTime": 6.695,
+        "duration": 2.778,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "Every Ramadan, Layla and her students celebrate together.",
+        "startTime": 6.695,
+        "endTime": 10.905,
+        "duration": 4.21,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "They shared food and told stories together.",
+        "startTime": 10.905,
+        "endTime": 13.968,
+        "duration": 3.063,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "They helped each other and felt good together. Layla said, \"Let’s break our fast together,\" and she smiled happily. They sat in a circle and shared dates and water. The food is sweet and very tasty.",
+    "sentences": [
+      "They helped each other and felt good together.",
+      "Layla said, \"Let’s break our fast together,\" and she smiled happily.",
+      "They sat in a circle and shared dates and water.",
+      "The food is sweet and very tasty."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_35.mp3",
+    "duration": 13.53551,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They helped each other and felt good together.",
+        "startTime": 0,
+        "endTime": 3.122,
+        "duration": 3.122,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "Layla said, \"Let’s break our fast together,\" and she smiled happily.",
+        "startTime": 3.122,
+        "endTime": 8.038,
+        "duration": 4.915,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "They sat in a circle and shared dates and water.",
+        "startTime": 8.038,
+        "endTime": 11.296,
+        "duration": 3.258,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "The food is sweet and very tasty.",
+        "startTime": 11.296,
+        "endTime": 13.536,
+        "duration": 2.24,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "Layla felt happy because she belonged to a group. The Fugees Academy became a family and helped each other. They laughed and shared stories about their lives. One day, Layla got a call and felt happy.",
+    "sentences": [
+      "Layla felt happy because she belonged to a group.",
+      "The Fugees Academy became a family and helped each other.",
+      "They laughed and shared stories about their lives.",
+      "One day, Layla got a call and felt happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_36.mp3",
+    "duration": 13.300091,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla felt happy because she belonged to a group.",
+        "startTime": 0,
+        "endTime": 3.271,
+        "duration": 3.271,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "The Fugees Academy became a family and helped each other.",
+        "startTime": 3.271,
+        "endTime": 7.076,
+        "duration": 3.805,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "They laughed and shared stories about their lives.",
+        "startTime": 7.076,
+        "endTime": 10.413,
+        "duration": 3.338,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "One day, Layla got a call and felt happy.",
+        "startTime": 10.413,
+        "endTime": 13.3,
+        "duration": 2.887,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "It comes from Turkey. Her family wants to be together again. They miss her and feel sad. After 26 years, they want to see Layla again.",
+    "sentences": [
+      "It comes from Turkey.",
+      "Her family wants to be together again.",
+      "They miss her and feel sad.",
+      "After 26 years, they want to see Layla again."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_37.mp3",
+    "duration": 9.973016,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It comes from Turkey.",
+        "startTime": 0,
+        "endTime": 1.575,
+        "duration": 1.575,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "Her family wants to be together again.",
+        "startTime": 1.575,
+        "endTime": 4.424,
+        "duration": 2.849,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "They miss her and feel sad.",
+        "startTime": 4.424,
+        "endTime": 6.449,
+        "duration": 2.025,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "After 26 years, they want to see Layla again.",
+        "startTime": 6.449,
+        "endTime": 9.973,
+        "duration": 3.524,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "Layla felt nervous and excited at the same time. She thinks, \"What if they are still angry. Layla's heart told her to go, so she went to Turkey. When she saw her family, she cried with joy.",
+    "sentences": [
+      "Layla felt nervous and excited at the same time.",
+      "She thinks, \"What if they are still angry.",
+      "Layla's heart told her to go, so she went to Turkey.",
+      "When she saw her family, she cried with joy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_38.mp3",
+    "duration": 14.552789,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla felt nervous and excited at the same time.",
+        "startTime": 0,
+        "endTime": 3.639,
+        "duration": 3.639,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "She thinks, \"What if they are still angry.",
+        "startTime": 3.639,
+        "endTime": 6.974,
+        "duration": 3.335,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "Layla's heart told her to go, so she went to Turkey.",
+        "startTime": 6.974,
+        "endTime": 11.067,
+        "duration": 4.093,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "When she saw her family, she cried with joy.",
+        "startTime": 11.067,
+        "endTime": 14.553,
+        "duration": 3.486,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 159,
+    "text": "They hugged tightly and felt the warmth of love. Her grandmother was there too and she smiled. She looked older but was still beautiful. Layla, you are my dear friend and I care for you.",
+    "sentences": [
+      "They hugged tightly and felt the warmth of love.",
+      "Her grandmother was there too and she smiled.",
+      "She looked older but was still beautiful.",
+      "Layla, you are my dear friend and I care for you."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_39.mp3",
+    "duration": 13.267211,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They hugged tightly and felt the warmth of love.",
+        "startTime": 0,
+        "endTime": 3.441,
+        "duration": 3.441,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "Her grandmother was there too and she smiled.",
+        "startTime": 3.441,
+        "endTime": 6.666,
+        "duration": 3.226,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "She looked older but was still beautiful.",
+        "startTime": 6.666,
+        "endTime": 9.605,
+        "duration": 2.939,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "Layla, you are my dear friend and I care for you.",
+        "startTime": 9.605,
+        "endTime": 13.267,
+        "duration": 3.662,
+        "sentenceIndex": 159
+      }
+    ]
+  },
+  {
+    "bundleIndex": 40,
+    "startSentenceIndex": 160,
+    "endSentenceIndex": 163,
+    "text": "I missed you very much,\" her grandmother said with a shaking voice. Tears ran down Layla's grandmother's cheeks. Layla said she missed Grandma and had tears in her eyes. She feels safe and happy in her grandmother's arms.",
+    "sentences": [
+      "I missed you very much,\" her grandmother said with a shaking voice.",
+      "Tears ran down Layla's grandmother's cheeks.",
+      "Layla said she missed Grandma and had tears in her eyes.",
+      "She feels safe and happy in her grandmother's arms."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_40.mp3",
+    "duration": 15.538413,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I missed you very much,\" her grandmother said with a shaking voice.",
+        "startTime": 0,
+        "endTime": 4.879,
+        "duration": 4.879,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "Tears ran down Layla's grandmother's cheeks.",
+        "startTime": 4.879,
+        "endTime": 7.985,
+        "duration": 3.106,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "Layla said she missed Grandma and had tears in her eyes.",
+        "startTime": 7.985,
+        "endTime": 11.938,
+        "duration": 3.953,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "She feels safe and happy in her grandmother's arms.",
+        "startTime": 11.938,
+        "endTime": 15.538,
+        "duration": 3.6,
+        "sentenceIndex": 163
+      }
+    ]
+  },
+  {
+    "bundleIndex": 41,
+    "startSentenceIndex": 164,
+    "endSentenceIndex": 167,
+    "text": "They talked and shared their stories together. Layla feels love and gets better. She found her family again and felt very happy. They laughed together and cried at the same time.",
+    "sentences": [
+      "They talked and shared their stories together.",
+      "Layla feels love and gets better.",
+      "She found her family again and felt very happy.",
+      "They laughed together and cried at the same time."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_41.mp3",
+    "duration": 14.248844,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They talked and shared their stories together.",
+        "startTime": 0,
+        "endTime": 3.745,
+        "duration": 3.745,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "Layla feels love and gets better.",
+        "startTime": 3.745,
+        "endTime": 6.432,
+        "duration": 2.687,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "She found her family again and felt very happy.",
+        "startTime": 6.432,
+        "endTime": 10.259,
+        "duration": 3.827,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "They laughed together and cried at the same time.",
+        "startTime": 10.259,
+        "endTime": 14.249,
+        "duration": 3.99,
+        "sentenceIndex": 167
+      }
+    ]
+  },
+  {
+    "bundleIndex": 42,
+    "startSentenceIndex": 168,
+    "endSentenceIndex": 171,
+    "text": "Layla said she has much to tell and feels joy and sorrow. The Fugees Academy grows and helps many students. More children came to play and have fun. They learned and played while they smiled.",
+    "sentences": [
+      "Layla said she has much to tell and feels joy and sorrow.",
+      "The Fugees Academy grows and helps many students.",
+      "More children came to play and have fun.",
+      "They learned and played while they smiled."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_42.mp3",
+    "duration": 13.759002,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla said she has much to tell and feels joy and sorrow.",
+        "startTime": 0,
+        "endTime": 4.172,
+        "duration": 4.172,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "The Fugees Academy grows and helps many students.",
+        "startTime": 4.172,
+        "endTime": 7.758,
+        "duration": 3.586,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "More children came to play and have fun.",
+        "startTime": 7.758,
+        "endTime": 10.685,
+        "duration": 2.927,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "They learned and played while they smiled.",
+        "startTime": 10.685,
+        "endTime": 13.759,
+        "duration": 3.074,
+        "sentenceIndex": 171
+      }
+    ]
+  },
+  {
+    "bundleIndex": 43,
+    "startSentenceIndex": 172,
+    "endSentenceIndex": 175,
+    "text": "Layla feels proud of all of them. Layla told them that this is their home. You are all special and the school is a community. It was a place where everyone felt they belonged.",
+    "sentences": [
+      "Layla feels proud of all of them.",
+      "Layla told them that this is their home.",
+      "You are all special and the school is a community.",
+      "It was a place where everyone felt they belonged."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_43.mp3",
+    "duration": 12.552358,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla feels proud of all of them.",
+        "startTime": 0,
+        "endTime": 2.408,
+        "duration": 2.408,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "Layla told them that this is their home.",
+        "startTime": 2.408,
+        "endTime": 5.327,
+        "duration": 2.919,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "You are all special and the school is a community.",
+        "startTime": 5.327,
+        "endTime": 8.976,
+        "duration": 3.649,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "It was a place where everyone felt they belonged.",
+        "startTime": 8.976,
+        "endTime": 12.552,
+        "duration": 3.576,
+        "sentenceIndex": 175
+      }
+    ]
+  },
+  {
+    "bundleIndex": 44,
+    "startSentenceIndex": 176,
+    "endSentenceIndex": 179,
+    "text": "Layla saw that her wrong turn changed everything for her. She finds her purpose and feels happy. She learned that helping others also helps her. Layla built a new life and felt happy.",
+    "sentences": [
+      "Layla saw that her wrong turn changed everything for her.",
+      "She finds her purpose and feels happy.",
+      "She learned that helping others also helps her.",
+      "Layla built a new life and felt happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_44.mp3",
+    "duration": 14.033469,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla saw that her wrong turn changed everything for her.",
+        "startTime": 0,
+        "endTime": 4.444,
+        "duration": 4.444,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "She finds her purpose and feels happy.",
+        "startTime": 4.444,
+        "endTime": 7.407,
+        "duration": 2.963,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "She learned that helping others also helps her.",
+        "startTime": 7.407,
+        "endTime": 11.071,
+        "duration": 3.664,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "Layla built a new life and felt happy.",
+        "startTime": 11.071,
+        "endTime": 14.033,
+        "duration": 2.963,
+        "sentenceIndex": 179
+      }
+    ]
+  },
+  {
+    "bundleIndex": 45,
+    "startSentenceIndex": 180,
+    "endSentenceIndex": 183,
+    "text": "She found her true self and felt happy. She connects with children from many countries and makes friends. They shared their stories and their dreams with each other. Amina said she will be a doctor and feels hopeful.",
+    "sentences": [
+      "She found her true self and felt happy.",
+      "She connects with children from many countries and makes friends.",
+      "They shared their stories and their dreams with each other.",
+      "Amina said she will be a doctor and feels hopeful."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_45.mp3",
+    "duration": 13.357891,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She found her true self and felt happy.",
+        "startTime": 0,
+        "endTime": 2.446,
+        "duration": 2.446,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "She connects with children from many countries and makes friends.",
+        "startTime": 2.446,
+        "endTime": 6.522,
+        "duration": 4.076,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "They shared their stories and their dreams with each other.",
+        "startTime": 6.522,
+        "endTime": 10.222,
+        "duration": 3.7,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "Amina said she will be a doctor and feels hopeful.",
+        "startTime": 10.222,
+        "endTime": 13.358,
+        "duration": 3.136,
+        "sentenceIndex": 183
+      }
+    ]
+  },
+  {
+    "bundleIndex": 46,
+    "startSentenceIndex": 184,
+    "endSentenceIndex": 187,
+    "text": "Amir grinned wide and added he could be a teacher. They built a community of support and love together. Soccer brings Layla and her friends together. Reading and learning give them hope.",
+    "sentences": [
+      "Amir grinned wide and added he could be a teacher.",
+      "They built a community of support and love together.",
+      "Soccer brings Layla and her friends together.",
+      "Reading and learning give them hope."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_46.mp3",
+    "duration": 13.044943,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Amir grinned wide and added he could be a teacher.",
+        "startTime": 0,
+        "endTime": 3.564,
+        "duration": 3.564,
+        "sentenceIndex": 184
+      },
+      {
+        "text": "They built a community of support and love together.",
+        "startTime": 3.564,
+        "endTime": 7.271,
+        "duration": 3.707,
+        "sentenceIndex": 185
+      },
+      {
+        "text": "Soccer brings Layla and her friends together.",
+        "startTime": 7.271,
+        "endTime": 10.479,
+        "duration": 3.208,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "Reading and learning give them hope.",
+        "startTime": 10.479,
+        "endTime": 13.045,
+        "duration": 2.566,
+        "sentenceIndex": 187
+      }
+    ]
+  },
+  {
+    "bundleIndex": 47,
+    "startSentenceIndex": 188,
+    "endSentenceIndex": 191,
+    "text": "Layla understood she was more than just a teacher. She was a friend and part of something bigger. Layla turns her pain into purpose and helps others. She made a place for children to grow and be happy.",
+    "sentences": [
+      "Layla understood she was more than just a teacher.",
+      "She was a friend and part of something bigger.",
+      "Layla turns her pain into purpose and helps others.",
+      "She made a place for children to grow and be happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_47.mp3",
+    "duration": 13.08517,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla understood she was more than just a teacher.",
+        "startTime": 0,
+        "endTime": 3.304,
+        "duration": 3.304,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "She was a friend and part of something bigger.",
+        "startTime": 3.304,
+        "endTime": 6.344,
+        "duration": 3.04,
+        "sentenceIndex": 189
+      },
+      {
+        "text": "Layla turns her pain into purpose and helps others.",
+        "startTime": 6.344,
+        "endTime": 9.715,
+        "duration": 3.37,
+        "sentenceIndex": 190
+      },
+      {
+        "text": "She made a place for children to grow and be happy.",
+        "startTime": 9.715,
+        "endTime": 13.085,
+        "duration": 3.37,
+        "sentenceIndex": 191
+      }
+    ]
+  },
+  {
+    "bundleIndex": 48,
+    "startSentenceIndex": 192,
+    "endSentenceIndex": 195,
+    "text": "The Fugees Academy is more than just a school. It was a home and a family for Layla's dream. When Layla looked at the children, she remembered her journey. She remembers her grandmother's story and her own struggles.",
+    "sentences": [
+      "The Fugees Academy is more than just a school.",
+      "It was a home and a family for Layla's dream.",
+      "When Layla looked at the children, she remembered her journey.",
+      "She remembers her grandmother's story and her own struggles."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_48.mp3",
+    "duration": 14.345057,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The Fugees Academy is more than just a school.",
+        "startTime": 0,
+        "endTime": 3.066,
+        "duration": 3.066,
+        "sentenceIndex": 192
+      },
+      {
+        "text": "It was a home and a family for Layla's dream.",
+        "startTime": 3.066,
+        "endTime": 6.065,
+        "duration": 2.999,
+        "sentenceIndex": 193
+      },
+      {
+        "text": "When Layla looked at the children, she remembered her journey.",
+        "startTime": 6.065,
+        "endTime": 10.346,
+        "duration": 4.282,
+        "sentenceIndex": 194
+      },
+      {
+        "text": "She remembers her grandmother's story and her own struggles.",
+        "startTime": 10.346,
+        "endTime": 14.345,
+        "duration": 3.999,
+        "sentenceIndex": 195
+      }
+    ]
+  },
+  {
+    "bundleIndex": 49,
+    "startSentenceIndex": 196,
+    "endSentenceIndex": 199,
+    "text": "She feels grateful for the path to Fugees Academy. It was a place where love grew and hope stayed. Layla watched the children play soccer and thought about the future. She wondered what they will become in the future.",
+    "sentences": [
+      "She feels grateful for the path to Fugees Academy.",
+      "It was a place where love grew and hope stayed.",
+      "Layla watched the children play soccer and thought about the future.",
+      "She wondered what they will become in the future."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_49.mp3",
+    "duration": 14.280068,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She feels grateful for the path to Fugees Academy.",
+        "startTime": 0,
+        "endTime": 3.336,
+        "duration": 3.336,
+        "sentenceIndex": 196
+      },
+      {
+        "text": "It was a place where love grew and hope stayed.",
+        "startTime": 3.336,
+        "endTime": 6.473,
+        "duration": 3.136,
+        "sentenceIndex": 197
+      },
+      {
+        "text": "Layla watched the children play soccer and thought about the future.",
+        "startTime": 6.473,
+        "endTime": 11.01,
+        "duration": 4.538,
+        "sentenceIndex": 198
+      },
+      {
+        "text": "She wondered what they will become in the future.",
+        "startTime": 11.01,
+        "endTime": 14.28,
+        "duration": 3.27,
+        "sentenceIndex": 199
+      }
+    ]
+  },
+  {
+    "bundleIndex": 50,
+    "startSentenceIndex": 200,
+    "endSentenceIndex": 203,
+    "text": "Layla smiled and knew they would chase their dreams far. They had hope, love, and a community with them. Layla feels happy and complete in that moment. She found her family in the kids she taught.",
+    "sentences": [
+      "Layla smiled and knew they would chase their dreams far.",
+      "They had hope, love, and a community with them.",
+      "Layla feels happy and complete in that moment.",
+      "She found her family in the kids she taught."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_50.mp3",
+    "duration": 14.611905,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Layla smiled and knew they would chase their dreams far.",
+        "startTime": 0,
+        "endTime": 4.153,
+        "duration": 4.153,
+        "sentenceIndex": 200
+      },
+      {
+        "text": "They had hope, love, and a community with them.",
+        "startTime": 4.153,
+        "endTime": 7.938,
+        "duration": 3.785,
+        "sentenceIndex": 201
+      },
+      {
+        "text": "Layla feels happy and complete in that moment.",
+        "startTime": 7.938,
+        "endTime": 11.349,
+        "duration": 3.411,
+        "sentenceIndex": 202
+      },
+      {
+        "text": "She found her family in the kids she taught.",
+        "startTime": 11.349,
+        "endTime": 14.612,
+        "duration": 3.263,
+        "sentenceIndex": 203
+      }
+    ]
+  },
+  {
+    "bundleIndex": 51,
+    "startSentenceIndex": 204,
+    "endSentenceIndex": 206,
+    "text": "She found her purpose in their smiles and felt happy. She knew they could change the world together. That was the best win of all.",
+    "sentences": [
+      "She found her purpose in their smiles and felt happy.",
+      "She knew they could change the world together.",
+      "That was the best win of all."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/bundle_51.mp3",
+    "duration": 8.769456,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She found her purpose in their smiles and felt happy.",
+        "startTime": 0,
+        "endTime": 3.631,
+        "duration": 3.631,
+        "sentenceIndex": 204
+      },
+      {
+        "text": "She knew they could change the world together.",
+        "startTime": 3.631,
+        "endTime": 6.783,
+        "duration": 3.152,
+        "sentenceIndex": 205
+      },
+      {
+        "text": "That was the best win of all.",
+        "startTime": 6.783,
+        "endTime": 8.769,
+        "duration": 1.987,
+        "sentenceIndex": 206
+      }
+    ]
+  }
+]

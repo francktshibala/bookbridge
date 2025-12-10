@@ -2,7 +2,7 @@
 
 **Purpose**: Track completion status, key details, and learnings for each modern story implementation.
 
-**Last Updated**: 2025-12-10
+**Last Updated**: 2025-12-10 (Added community-builder-2)
 
 ---
 
@@ -21,6 +21,7 @@
 | `second-chance-1` | Second Chance: Finding Redemption | BookBridge | Multiple sources (thematic extraction) | Second Chance, Redemption, Transformation, Prison to Career, Addiction Recovery, License Reinstatement, Persistence, Spiritual Awakening, Community Support, Rebuilding Life, Belonging, Overcoming Stigma | ✅ Complete | ✅ | - | - | ~17 min | 53 | 2025-12-10 |
 | `refugee-journey-2` | Refugee Journey: Family Reunited | BookBridge | Multiple sources (thematic extraction) | Family Reunification, Refugee Journey, Persistence, Hope, Belonging, Building New Life, Education Transformation, Survival, Advocacy Leadership | ✅ Complete | ✅ | - | - | ~20 min | 56 | 2025-12-10 |
 | `career-pivot-2` | Career Pivot: New Path Forward | BookBridge | Multiple sources (thematic extraction) | Career Pivot, Fired, Layoff, Immigrant Barrier, Therapeutic Breakthrough, Financial Crisis, Identity Crisis, Service-Oriented Career, Multiple Pivots, Persistence, Hope, Reinvention | ✅ Complete | ✅ | - | - | ~19 min | 48 | 2025-12-10 |
+| `community-builder-2` | Community Builder: From Wrong Turn to School Network | BookBridge | Multiple sources (thematic extraction) | Community Building, Belonging, Transformation, Empowerment, Educational Justice, Refugee Support, Mutual Healing, Soccer as Universal Language | ✅ Complete | ✅ | - | - | ~22 min | 52 | 2025-12-10 |
 
 **Legend**:
 - ✅ Complete
@@ -559,6 +560,135 @@
 - `scripts/integrate-refugee-journey-2-database.ts`
 - `scripts/seed-refugee-journey-2.ts`
 - `app/api/refugee-journey-2-a1/bundles/route.ts`
+
+---
+
+### 7. Community Builder: From Wrong Turn to School Network
+
+**Story ID**: `community-builder-2`  
+**Title**: Community Builder: From Wrong Turn to School Network  
+**Author**: BookBridge  
+**Collection**: Modern Voices  
+**Completion Date**: 2025-12-10
+
+#### Sources
+- **Primary**: Luma Mufleh research document (237-page book "Learning America" + multiple interviews)
+- **Multi-source**: 7 distinct sources identified in research document for thematic extraction
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - Story-driven (personal narrative, interviews, memoir)
+  - Sufficient content for 20+ minute A1 story
+  - Multiple sources for legal compliance (7 sources)
+  
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement ("FLAGSHIP STORY" rating)
+  - Clear emotional arc: Privileged beginning → Exile → Drifting → Wrong turn → School founding → Transformation → Mutual healing
+  - 22 major emotional beats identified (exceeding 5-7 requirement)
+  - 6 ESL resonance multipliers: Building New Life, Belonging & Identity, Connection Across Differences, Overcoming "Not Good Enough", Persistence Despite Setbacks, First-Time Courage
+
+#### Content Details
+- **Original Text**: AI-generated narrative based on extracted themes (1,603 words)
+- **A1 Simplified**: 207 sentences, 1,796 words (~22 minutes)
+- **Bundles**: 52 (4 sentences per bundle)
+- **Voice**: Daniel (onwK4e9ZLuTAKqWW03F9)
+- **Audio Speed**: 0.85× (FFmpeg slowdown)
+
+#### Themes & Emotional Moments
+**Themes**:
+- Community building
+- Belonging
+- Transformation
+- Empowerment
+- Educational justice
+- Refugee support
+- Mutual healing
+- Soccer as universal language
+
+**Emotional Moments** (22 identified):
+1. Grandmother's flight from Syria (high)
+2. Coming out and being disowned (high)
+3. Wrong turn leading to life-changing encounter (high)
+4. Seeing barefoot children playing with deflated ball (high)
+5. Discovery of goalie with chopped fingers (high)
+6. Realization that many children couldn't read (high)
+7. Founding of the Fugees Academy (high)
+8. First graduation of Fugees Academy students (high)
+9. Ramadan celebrated with Fugees (high)
+10. Family reunion in Turkey after 26 years (high)
+11. And more...
+
+**ESL Resonance Multipliers**:
+- Building New Life
+- Belonging & Identity
+- Connection Across Differences
+- Overcoming "Not Good Enough"
+- Persistence Despite Setbacks
+- First-Time Courage
+
+#### Implementation Steps Completed
+- ✅ Step 0.25: Source Material Check
+- ✅ Step 0.5: Emotional Impact Validation
+- ✅ Step 1: Theme extraction from 7 sources
+- ✅ Step 2: Background context written (30-50 words)
+- ✅ Step 3: Emotional hook written (50-100 words)
+- ✅ Step 4: Main story written (original narrative, 1,603 words)
+- ✅ Step 4.5: Story expansion (from 759 words to 1,603 words)
+- ✅ Step 5: A1 simplification (207 sentences, max 12 words/sentence, 1:1 mapping)
+- ✅ Step 7: Combined preview text generated (209 words)
+- ✅ Step 8: Combined preview audio generated (93.63s, Daniel voice)
+- ✅ Step 9: Bundle audio generation (52 bundles, Enhanced Timing v3)
+- ✅ Step 10: Database integration (52 BookChunk records)
+- ✅ Step 11: API endpoint created (`/api/community-builder-2-a1/bundles`)
+- ✅ Step 12: Frontend config updated
+- ✅ Step 13: FeaturedBook seeded (Modern Voices collection, position 16)
+
+#### Key Learnings
+1. **Character Name Diversity**: Used "Layla" as protagonist name, avoiding repetition of Maria, David, Sofia, Carlos, Mia, Amina, Rami, Solomon, Helen from previous stories.
+
+2. **Multi-Source Thematic Extraction**: Successfully extracted themes from 7 sources (Luma Mufleh research document) into unified narrative about community building and refugee support, demonstrating legal compliance through thematic extraction.
+
+3. **Story Expansion**: Initial AI-generated story was 759 words (~9 minutes); expanded three times to reach 1,603 words (~20 minutes) meeting A1 target.
+
+4. **Daniel Voice**: Used Daniel voice for this community builder story, demonstrating appropriate voice selection for inspirational, transformation-focused narratives.
+
+5. **Enhanced Timing v3**: Perfect sync achieved for both intro section and main story bundles with Daniel voice.
+
+#### Technical Notes
+- **Audio Generation**: All 52 bundles generated successfully with Daniel voice
+- **Database**: 52 BookChunk records created with Enhanced Timing v3 metadata
+- **API**: Endpoint returns `previewCombined` and `previewCombinedAudio` with sentence timings
+- **Frontend**: Added to Modern Voices collection (position 16)
+
+#### Quality Metrics
+- **Emotional Engagement**: High (passes "text a friend" test, "FLAGSHIP STORY" rating)
+- **ESL Relevance**: High (6 resonance multipliers)
+- **Length**: ✅ Meets requirement (22 minutes for A1)
+- **Audio Quality**: ✅ Perfect sync with Enhanced Timing v3
+- **Sentence Quality**: ✅ Average 8.7 words per sentence (A1 appropriate)
+- **Character Names**: ✅ Used "Layla" - no repetition from previous stories
+
+#### Files Created
+- `cache/files/COMMUNITY-BUILDER-STORY-LUMA-MUFLEH-COMPLETE.txt`
+- `cache/community-builder-2-validation.md`
+- `cache/community-builder-2-themes.json`
+- `cache/community-builder-2-background.txt`
+- `cache/community-builder-2-hook.txt`
+- `cache/community-builder-2-A1-original.txt`
+- `cache/community-builder-2-A1-simplified.txt`
+- `cache/community-builder-2-A1-preview-combined.txt`
+- `cache/community-builder-2-A1-preview-combined-audio.json`
+- `cache/community-builder-2-A1-bundles-metadata.json`
+- `scripts/extract-community-builder-2-themes.js`
+- `scripts/write-community-builder-2-story.js`
+- `scripts/expand-community-builder-2-a1.js`
+- `scripts/simplify-community-builder-2.js`
+- `scripts/generate-community-builder-2-preview-combined.js`
+- `scripts/generate-community-builder-2-preview-audio.js`
+- `scripts/generate-community-builder-2-bundles.js`
+- `scripts/integrate-community-builder-2-database.ts`
+- `scripts/seed-community-builder-2.ts`
+- `app/api/community-builder-2-a1/bundles/route.ts`
 
 ---
 

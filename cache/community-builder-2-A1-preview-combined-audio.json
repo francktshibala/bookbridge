@@ -1,0 +1,170 @@
+{
+  "storyId": "community-builder-2",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-2/A1/preview-combined.mp3",
+    "duration": 93.627868,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 5.569,
+        "duration": 5.569,
+        "text": "About This Story\n\nIn this inspiring story, Layla faces many challenges."
+      },
+      {
+        "startTime": 5.569,
+        "endTime": 9.309,
+        "duration": 3.74,
+        "text": "She starts with a good life but loses everything."
+      },
+      {
+        "startTime": 9.309,
+        "endTime": 12.896,
+        "duration": 3.587,
+        "text": "She feels alone and drifts from place to place."
+      },
+      {
+        "startTime": 12.896,
+        "endTime": 16.102,
+        "duration": 3.206,
+        "text": "One wrong turn leads her to a soccer game."
+      },
+      {
+        "startTime": 16.102,
+        "endTime": 17.931,
+        "duration": 1.829,
+        "text": "There, she finds hope."
+      },
+      {
+        "startTime": 17.931,
+        "endTime": 21.213,
+        "duration": 3.282,
+        "text": "Layla builds a school for refugee children."
+      },
+      {
+        "startTime": 21.213,
+        "endTime": 27.242,
+        "duration": 6.03,
+        "text": "This story shows how one person can change a neighborhood and help many others."
+      },
+      {
+        "startTime": 27.242,
+        "endTime": 30.824,
+        "duration": 3.582,
+        "text": "It is about belonging, community, and hope."
+      },
+      {
+        "startTime": 30.824,
+        "endTime": 34.64,
+        "duration": 3.816,
+        "text": "Imagine being forced to leave your family forever."
+      },
+      {
+        "startTime": 34.64,
+        "endTime": 37.083,
+        "duration": 2.442,
+        "text": "Imagine feeling alone every day."
+      },
+      {
+        "startTime": 37.083,
+        "endTime": 40.515,
+        "duration": 3.432,
+        "text": "Layla had everything, then she lost it all."
+      },
+      {
+        "startTime": 40.515,
+        "endTime": 42.346,
+        "duration": 1.832,
+        "text": "Her family disowned her."
+      },
+      {
+        "startTime": 42.346,
+        "endTime": 46.313,
+        "duration": 3.966,
+        "text": "She drifted from city to city, working small jobs."
+      },
+      {
+        "startTime": 46.313,
+        "endTime": 47.992,
+        "duration": 1.679,
+        "text": "She felt lost and sad."
+      },
+      {
+        "startTime": 47.992,
+        "endTime": 51.271,
+        "duration": 3.279,
+        "text": "During Ramadan, she broke her fast alone."
+      },
+      {
+        "startTime": 51.271,
+        "endTime": 54.248,
+        "duration": 2.977,
+        "text": "Then one wrong turn changed everything."
+      },
+      {
+        "startTime": 54.248,
+        "endTime": 58.293,
+        "duration": 4.045,
+        "text": "She saw children playing soccer with a deflated ball."
+      },
+      {
+        "startTime": 58.293,
+        "endTime": 60.735,
+        "duration": 2.442,
+        "text": "They were barefoot and refugees."
+      },
+      {
+        "startTime": 60.735,
+        "endTime": 63.938,
+        "duration": 3.203,
+        "text": "In that moment, Layla found her purpose."
+      },
+      {
+        "startTime": 63.938,
+        "endTime": 70.044,
+        "duration": 6.106,
+        "text": "This is the story of how one wrong turn led to a school that changed many lives."
+      },
+      {
+        "startTime": 70.044,
+        "endTime": 74.471,
+        "duration": 4.427,
+        "text": "Many refugees arrive in new countries with little support."
+      },
+      {
+        "startTime": 74.471,
+        "endTime": 78.668,
+        "duration": 4.198,
+        "text": "They face language barriers and educational challenges."
+      },
+      {
+        "startTime": 78.668,
+        "endTime": 81.34,
+        "duration": 2.671,
+        "text": "Some children cannot read or write."
+      },
+      {
+        "startTime": 81.34,
+        "endTime": 84.24,
+        "duration": 2.9,
+        "text": "They are placed in wrong grade levels."
+      },
+      {
+        "startTime": 84.24,
+        "endTime": 87.293,
+        "duration": 3.053,
+        "text": "Schools often fail to help them succeed."
+      },
+      {
+        "startTime": 87.293,
+        "endTime": 93.628,
+        "duration": 6.335,
+        "text": "This story shows how one person created a school specifically for refugee children."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-10T10:17:46.161Z",
+  "timingMethod": "enhanced-timing-v3"
+}
