@@ -1,0 +1,2140 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "David worked in a big office. He was a lawyer. His job looked perfect. He had a good salary and nice reviews.",
+    "sentences": [
+      "David worked in a big office.",
+      "He was a lawyer.",
+      "His job looked perfect.",
+      "He had a good salary and nice reviews."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_0.mp3",
+    "duration": 6.658005,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "David worked in a big office.",
+        "startTime": 0,
+        "endTime": 1.822,
+        "duration": 1.822,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "He was a lawyer.",
+        "startTime": 1.822,
+        "endTime": 2.827,
+        "duration": 1.005,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "His job looked perfect.",
+        "startTime": 2.827,
+        "endTime": 4.271,
+        "duration": 1.445,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "He had a good salary and nice reviews.",
+        "startTime": 4.271,
+        "endTime": 6.658,
+        "duration": 2.387,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "But inside, he felt empty. Every day, he arrived early and left late. He worked all the time. He thought about work even at home.",
+    "sentences": [
+      "But inside, he felt empty.",
+      "Every day, he arrived early and left late.",
+      "He worked all the time.",
+      "He thought about work even at home."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_1.mp3",
+    "duration": 9.638707,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "But inside, he felt empty.",
+        "startTime": 0,
+        "endTime": 2.077,
+        "duration": 2.077,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Every day, he arrived early and left late.",
+        "startTime": 2.077,
+        "endTime": 5.34,
+        "duration": 3.263,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "He worked all the time.",
+        "startTime": 5.34,
+        "endTime": 7.045,
+        "duration": 1.705,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "He thought about work even at home.",
+        "startTime": 7.045,
+        "endTime": 9.639,
+        "duration": 2.594,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "His family talked to him, but he barely listened. He felt like he was in a bubble, and the world outside was moving on without him. One day, David’s son had a birthday party. David was excited for his son, but work was busy.",
+    "sentences": [
+      "His family talked to him, but he barely listened.",
+      "He felt like he was in a bubble, and the world outside was moving on without him.",
+      "One day, David’s son had a birthday party.",
+      "David was excited for his son, but work was busy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_2.mp3",
+    "duration": 15.382857,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His family talked to him, but he barely listened.",
+        "startTime": 0,
+        "endTime": 3.428,
+        "duration": 3.428,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "He felt like he was in a bubble, and the world outside was moving on without him.",
+        "startTime": 3.428,
+        "endTime": 8.996,
+        "duration": 5.568,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "One day, David’s son had a birthday party.",
+        "startTime": 8.996,
+        "endTime": 11.955,
+        "duration": 2.959,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "David was excited for his son, but work was busy.",
+        "startTime": 11.955,
+        "endTime": 15.383,
+        "duration": 3.428,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "He promised to come home early. He wore a smile, but it felt heavy on his face. As the day went on, more and more work came in. His phone rang.",
+    "sentences": [
+      "He promised to come home early.",
+      "He wore a smile, but it felt heavy on his face.",
+      "As the day went on, more and more work came in.",
+      "His phone rang."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_3.mp3",
+    "duration": 10.037324,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He promised to come home early.",
+        "startTime": 0,
+        "endTime": 2.156,
+        "duration": 2.156,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "He wore a smile, but it felt heavy on his face.",
+        "startTime": 2.156,
+        "endTime": 5.575,
+        "duration": 3.419,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "As the day went on, more and more work came in.",
+        "startTime": 5.575,
+        "endTime": 8.994,
+        "duration": 3.419,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "His phone rang.",
+        "startTime": 8.994,
+        "endTime": 10.037,
+        "duration": 1.043,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "Emails flooded in, one after another. David forgot to go. He was busy with work. The hours passed quickly, and the sun began to set.",
+    "sentences": [
+      "Emails flooded in, one after another.",
+      "David forgot to go.",
+      "He was busy with work.",
+      "The hours passed quickly, and the sun began to set."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_4.mp3",
+    "duration": 9.819184,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Emails flooded in, one after another.",
+        "startTime": 0,
+        "endTime": 2.88,
+        "duration": 2.88,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "David forgot to go.",
+        "startTime": 2.88,
+        "endTime": 4.282,
+        "duration": 1.402,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "He was busy with work.",
+        "startTime": 4.282,
+        "endTime": 5.906,
+        "duration": 1.623,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "The hours passed quickly, and the sun began to set.",
+        "startTime": 5.906,
+        "endTime": 9.819,
+        "duration": 3.913,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "He felt the weight of the world on his shoulders. Later that evening, he came home. He opened the door and saw balloons and a cake. The room was colorful and bright, filled with laughter and joy.",
+    "sentences": [
+      "He felt the weight of the world on his shoulders.",
+      "Later that evening, he came home.",
+      "He opened the door and saw balloons and a cake.",
+      "The room was colorful and bright, filled with laughter and joy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_5.mp3",
+    "duration": 14.12381,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt the weight of the world on his shoulders.",
+        "startTime": 0,
+        "endTime": 3.528,
+        "duration": 3.528,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "Later that evening, he came home.",
+        "startTime": 3.528,
+        "endTime": 6.054,
+        "duration": 2.526,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "He opened the door and saw balloons and a cake.",
+        "startTime": 6.054,
+        "endTime": 9.438,
+        "duration": 3.384,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "The room was colorful and bright, filled with laughter and joy.",
+        "startTime": 9.438,
+        "endTime": 14.124,
+        "duration": 4.686,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "But he felt like a shadow. His son stood by the table, looking sad. “Dad, you missed my party,” he said quietly, his voice small. David's heart sank.",
+    "sentences": [
+      "But he felt like a shadow.",
+      "His son stood by the table, looking sad.",
+      "“Dad, you missed my party,” he said quietly, his voice small.",
+      "David's heart sank."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_6.mp3",
+    "duration": 12.431406,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "But he felt like a shadow.",
+        "startTime": 0,
+        "endTime": 2.107,
+        "duration": 2.107,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "His son stood by the table, looking sad.",
+        "startTime": 2.107,
+        "endTime": 5.498,
+        "duration": 3.391,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "“Dad, you missed my party,” he said quietly, his voice small.",
+        "startTime": 5.498,
+        "endTime": 10.892,
+        "duration": 5.393,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "David's heart sank.",
+        "startTime": 10.892,
+        "endTime": 12.431,
+        "duration": 1.54,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "He felt awful. He missed a special moment. He knelt down and hugged his son tightly. “I’m so sorry,” he said, his voice shaking.",
+    "sentences": [
+      "He felt awful.",
+      "He missed a special moment.",
+      "He knelt down and hugged his son tightly.",
+      "“I’m so sorry,” he said, his voice shaking."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_7.mp3",
+    "duration": 9.603447,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt awful.",
+        "startTime": 0,
+        "endTime": 1.042,
+        "duration": 1.042,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "He missed a special moment.",
+        "startTime": 1.042,
+        "endTime": 3.052,
+        "duration": 2.01,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "He knelt down and hugged his son tightly.",
+        "startTime": 3.052,
+        "endTime": 6.103,
+        "duration": 3.052,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "“I’m so sorry,” he said, his voice shaking.",
+        "startTime": 6.103,
+        "endTime": 9.603,
+        "duration": 3.5,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "His son looked at him with big, disappointed eyes. The sadness in his son’s face pierced through David like a sharp knife. This was a huge wake-up call for him. David realized he was not a good father.",
+    "sentences": [
+      "His son looked at him with big, disappointed eyes.",
+      "The sadness in his son’s face pierced through David like a sharp knife.",
+      "This was a huge wake-up call for him.",
+      "David realized he was not a good father."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_8.mp3",
+    "duration": 14.467324,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His son looked at him with big, disappointed eyes.",
+        "startTime": 0,
+        "endTime": 3.765,
+        "duration": 3.765,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "The sadness in his son’s face pierced through David like a sharp knife.",
+        "startTime": 3.765,
+        "endTime": 8.899,
+        "duration": 5.134,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "This was a huge wake-up call for him.",
+        "startTime": 8.899,
+        "endTime": 11.575,
+        "duration": 2.675,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "David realized he was not a good father.",
+        "startTime": 11.575,
+        "endTime": 14.467,
+        "duration": 2.892,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "He felt trapped in his job. Days turned into weeks. David worked long hours. He was tired.",
+    "sentences": [
+      "He felt trapped in his job.",
+      "Days turned into weeks.",
+      "David worked long hours.",
+      "He was tired."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_9.mp3",
+    "duration": 6.25068,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt trapped in his job.",
+        "startTime": 0,
+        "endTime": 1.94,
+        "duration": 1.94,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "Days turned into weeks.",
+        "startTime": 1.94,
+        "endTime": 3.592,
+        "duration": 1.652,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "David worked long hours.",
+        "startTime": 3.592,
+        "endTime": 5.317,
+        "duration": 1.724,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "He was tired.",
+        "startTime": 5.317,
+        "endTime": 6.251,
+        "duration": 0.934,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "He felt burnt out. Every morning, he struggled to get out of bed. He wanted to change, but he did not know how. He sat at his desk and thought.",
+    "sentences": [
+      "He felt burnt out.",
+      "Every morning, he struggled to get out of bed.",
+      "He wanted to change, but he did not know how.",
+      "He sat at his desk and thought."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_10.mp3",
+    "duration": 9.761497,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt burnt out.",
+        "startTime": 0,
+        "endTime": 1.216,
+        "duration": 1.216,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Every morning, he struggled to get out of bed.",
+        "startTime": 1.216,
+        "endTime": 4.475,
+        "duration": 3.259,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "He wanted to change, but he did not know how.",
+        "startTime": 4.475,
+        "endTime": 7.666,
+        "duration": 3.191,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "He sat at his desk and thought.",
+        "startTime": 7.666,
+        "endTime": 9.761,
+        "duration": 2.095,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "His mind raced. He felt like he was in a slow-motion accident. Everything was moving, but he was stuck. He watched his coworkers rush around, but he felt frozen in time.",
+    "sentences": [
+      "His mind raced.",
+      "He felt like he was in a slow-motion accident.",
+      "Everything was moving, but he was stuck.",
+      "He watched his coworkers rush around, but he felt frozen in time."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_11.mp3",
+    "duration": 12.929184,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His mind raced.",
+        "startTime": 0,
+        "endTime": 1.141,
+        "duration": 1.141,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "He felt like he was in a slow-motion accident.",
+        "startTime": 1.141,
+        "endTime": 4.641,
+        "duration": 3.5,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "Everything was moving, but he was stuck.",
+        "startTime": 4.641,
+        "endTime": 7.834,
+        "duration": 3.193,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "He watched his coworkers rush around, but he felt frozen in time.",
+        "startTime": 7.834,
+        "endTime": 12.929,
+        "duration": 5.095,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "“What am I doing?” he wondered, gripping the edge of his desk. “Is this my life now?” He felt a knot in his stomach every day. At home, things were not better. His wife, Maria, tried to talk to him.",
+    "sentences": [
+      "“What am I doing?” he wondered, gripping the edge of his desk.",
+      "“Is this my life now?” He felt a knot in his stomach every day.",
+      "At home, things were not better.",
+      "His wife, Maria, tried to talk to him."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_12.mp3",
+    "duration": 13.634467,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“What am I doing?” he wondered, gripping the edge of his desk.",
+        "startTime": 0,
+        "endTime": 4.294,
+        "duration": 4.294,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "“Is this my life now?” He felt a knot in his stomach every day.",
+        "startTime": 4.294,
+        "endTime": 8.505,
+        "duration": 4.211,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "At home, things were not better.",
+        "startTime": 8.505,
+        "endTime": 10.794,
+        "duration": 2.289,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "His wife, Maria, tried to talk to him.",
+        "startTime": 10.794,
+        "endTime": 13.634,
+        "duration": 2.84,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "“David, can we have dinner together?” she asked one night, her voice soft but filled with worry. David looked at her, but he was always on his phone or computer. He missed family dinners. He missed helping his son with homework.",
+    "sentences": [
+      "“David, can we have dinner together?” she asked one night, her voice soft but filled with worry.",
+      "David looked at her, but he was always on his phone or computer.",
+      "He missed family dinners.",
+      "He missed helping his son with homework."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_13.mp3",
+    "duration": 15.114286,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“David, can we have dinner together?” she asked one night, her voice soft but filled with worry.",
+        "startTime": 0,
+        "endTime": 6.557,
+        "duration": 6.557,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "David looked at her, but he was always on his phone or computer.",
+        "startTime": 6.557,
+        "endTime": 10.878,
+        "duration": 4.321,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "He missed family dinners.",
+        "startTime": 10.878,
+        "endTime": 12.507,
+        "duration": 1.629,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "He missed helping his son with homework.",
+        "startTime": 12.507,
+        "endTime": 15.114,
+        "duration": 2.607,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "He looked at his screen instead of his family. Maria looked sad. Her eyes showed disappointment, and David felt a heavy guilt wash over him. He knew he was missing important moments, and it hurt.",
+    "sentences": [
+      "He looked at his screen instead of his family.",
+      "Maria looked sad.",
+      "Her eyes showed disappointment, and David felt a heavy guilt wash over him.",
+      "He knew he was missing important moments, and it hurt."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_14.mp3",
+    "duration": 14.525147,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He looked at his screen instead of his family.",
+        "startTime": 0,
+        "endTime": 3.408,
+        "duration": 3.408,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "Maria looked sad.",
+        "startTime": 3.408,
+        "endTime": 4.668,
+        "duration": 1.26,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "Her eyes showed disappointment, and David felt a heavy guilt wash over him.",
+        "startTime": 4.668,
+        "endTime": 10.374,
+        "duration": 5.707,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "He knew he was missing important moments, and it hurt.",
+        "startTime": 10.374,
+        "endTime": 14.525,
+        "duration": 4.151,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "One night, Maria sat next to him. She looked worried, her brow furrowed. “David, I miss you,” she said softly, almost a whisper. “You are always working.",
+    "sentences": [
+      "One night, Maria sat next to him.",
+      "She looked worried, her brow furrowed.",
+      "“David, I miss you,” she said softly, almost a whisper.",
+      "“You are always working."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_15.mp3",
+    "duration": 11.241066,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One night, Maria sat next to him.",
+        "startTime": 0,
+        "endTime": 2.458,
+        "duration": 2.458,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "She looked worried, her brow furrowed.",
+        "startTime": 2.458,
+        "endTime": 5.266,
+        "duration": 2.808,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "“David, I miss you,” she said softly, almost a whisper.",
+        "startTime": 5.266,
+        "endTime": 9.562,
+        "duration": 4.297,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "“You are always working.",
+        "startTime": 9.562,
+        "endTime": 11.241,
+        "duration": 1.679,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "You don’t talk to us anymore.” David looked at her. He felt a lump in his throat. “I’m sorry, Maria,” he said, his voice barely above a whisper. “I’m just trying to do my job.” But deep down, he knew it was more than that.",
+    "sentences": [
+      "You don’t talk to us anymore.” David looked at her.",
+      "He felt a lump in his throat.",
+      "“I’m sorry, Maria,” he said, his voice barely above a whisper.",
+      "“I’m just trying to do my job.” But deep down, he knew it was more than that."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_16.mp3",
+    "duration": 16.493401,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "You don’t talk to us anymore.” David looked at her.",
+        "startTime": 0,
+        "endTime": 3.701,
+        "duration": 3.701,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "He felt a lump in his throat.",
+        "startTime": 3.701,
+        "endTime": 5.806,
+        "duration": 2.105,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "“I’m sorry, Maria,” he said, his voice barely above a whisper.",
+        "startTime": 5.806,
+        "endTime": 10.755,
+        "duration": 4.95,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "“I’m just trying to do my job.” But deep down, he knew it was more than that.",
+        "startTime": 10.755,
+        "endTime": 16.493,
+        "duration": 5.738,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "He was losing himself. He saw the pain in her eyes and felt a wave of regret wash over him. David faced an identity crisis. He asked himself, \"Who am I?\" He was a lawyer, but he was not happy.",
+    "sentences": [
+      "He was losing himself.",
+      "He saw the pain in her eyes and felt a wave of regret wash over him.",
+      "David faced an identity crisis.",
+      "He asked himself, \"Who am I?\" He was a lawyer, but he was not happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_17.mp3",
+    "duration": 13.908345,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He was losing himself.",
+        "startTime": 0,
+        "endTime": 1.584,
+        "duration": 1.584,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "He saw the pain in her eyes and felt a wave of regret wash over him.",
+        "startTime": 1.584,
+        "endTime": 6.48,
+        "duration": 4.896,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "David faced an identity crisis.",
+        "startTime": 6.48,
+        "endTime": 8.712,
+        "duration": 2.232,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "He asked himself, \"Who am I?\" He was a lawyer, but he was not happy.",
+        "startTime": 8.712,
+        "endTime": 13.908,
+        "duration": 5.196,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "He felt lost. He wanted to be a good father and husband. He wanted to feel fulfilled. At night, he lay in bed and thought about his dreams.",
+    "sentences": [
+      "He felt lost.",
+      "He wanted to be a good father and husband.",
+      "He wanted to feel fulfilled.",
+      "At night, he lay in bed and thought about his dreams."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_18.mp3",
+    "duration": 9.762245,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt lost.",
+        "startTime": 0,
+        "endTime": 0.919,
+        "duration": 0.919,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "He wanted to be a good father and husband.",
+        "startTime": 0.919,
+        "endTime": 3.887,
+        "duration": 2.968,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "He wanted to feel fulfilled.",
+        "startTime": 3.887,
+        "endTime": 5.866,
+        "duration": 1.979,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "At night, he lay in bed and thought about his dreams.",
+        "startTime": 5.866,
+        "endTime": 9.762,
+        "duration": 3.896,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "He loved writing stories. When he was a child, he wrote stories about adventure and magic. He wanted to be a novelist, but he felt scared. “What if nobody likes my stories?” he thought.",
+    "sentences": [
+      "He loved writing stories.",
+      "When he was a child, he wrote stories about adventure and magic.",
+      "He wanted to be a novelist, but he felt scared.",
+      "“What if nobody likes my stories?” he thought."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_19.mp3",
+    "duration": 14.82839,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He loved writing stories.",
+        "startTime": 0,
+        "endTime": 1.996,
+        "duration": 1.996,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "When he was a child, he wrote stories about adventure and magic.",
+        "startTime": 1.996,
+        "endTime": 7.255,
+        "duration": 5.259,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "He wanted to be a novelist, but he felt scared.",
+        "startTime": 7.255,
+        "endTime": 11.156,
+        "duration": 3.902,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "“What if nobody likes my stories?” he thought.",
+        "startTime": 11.156,
+        "endTime": 14.828,
+        "duration": 3.672,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "“What if I fail?” His dreams felt out of reach and faded like a distant star. After months of thinking, David decided to quit his job. He was afraid. What if he made a mistake?",
+    "sentences": [
+      "“What if I fail?” His dreams felt out of reach and faded like a distant star.",
+      "After months of thinking, David decided to quit his job.",
+      "He was afraid.",
+      "What if he made a mistake?"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_20.mp3",
+    "duration": 14.337574,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“What if I fail?” His dreams felt out of reach and faded like a distant star.",
+        "startTime": 0,
+        "endTime": 6.315,
+        "duration": 6.315,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "After months of thinking, David decided to quit his job.",
+        "startTime": 6.315,
+        "endTime": 11.057,
+        "duration": 4.743,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "He was afraid.",
+        "startTime": 11.057,
+        "endTime": 12.205,
+        "duration": 1.148,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "What if he made a mistake?",
+        "startTime": 12.205,
+        "endTime": 14.338,
+        "duration": 2.132,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "What if he could not find another job? But he could not stay like this. He needed to change. “I have to do this,” he told himself, standing in front of the mirror, staring into his own eyes.",
+    "sentences": [
+      "What if he could not find another job?",
+      "But he could not stay like this.",
+      "He needed to change.",
+      "“I have to do this,” he told himself, standing in front of the mirror, staring into his own eyes."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_21.mp3",
+    "duration": 14.343968,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "What if he could not find another job?",
+        "startTime": 0,
+        "endTime": 2.823,
+        "duration": 2.823,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "But he could not stay like this.",
+        "startTime": 2.823,
+        "endTime": 5.201,
+        "duration": 2.378,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "He needed to change.",
+        "startTime": 5.201,
+        "endTime": 6.687,
+        "duration": 1.486,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "“I have to do this,” he told himself, standing in front of the mirror, staring into his own eyes.",
+        "startTime": 6.687,
+        "endTime": 14.344,
+        "duration": 7.657,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "He planned to leave his job, but it was hard. He felt a knot in his stomach. Each time he thought about quitting, his heart raced with fear. One day, David walked around the office.",
+    "sentences": [
+      "He planned to leave his job, but it was hard.",
+      "He felt a knot in his stomach.",
+      "Each time he thought about quitting, his heart raced with fear.",
+      "One day, David walked around the office."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_22.mp3",
+    "duration": 14.191179,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He planned to leave his job, but it was hard.",
+        "startTime": 0,
+        "endTime": 3.624,
+        "duration": 3.624,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "He felt a knot in his stomach.",
+        "startTime": 3.624,
+        "endTime": 5.94,
+        "duration": 2.316,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "Each time he thought about quitting, his heart raced with fear.",
+        "startTime": 5.94,
+        "endTime": 10.953,
+        "duration": 5.013,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "One day, David walked around the office.",
+        "startTime": 10.953,
+        "endTime": 14.191,
+        "duration": 3.238,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "His heart raced. He felt nervous. He thought about his family. He thought about his son’s sad eyes.",
+    "sentences": [
+      "His heart raced.",
+      "He felt nervous.",
+      "He thought about his family.",
+      "He thought about his son’s sad eyes."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_23.mp3",
+    "duration": 6.652177,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His heart raced.",
+        "startTime": 0,
+        "endTime": 1.109,
+        "duration": 1.109,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "He felt nervous.",
+        "startTime": 1.109,
+        "endTime": 2.217,
+        "duration": 1.109,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "He thought about his family.",
+        "startTime": 2.217,
+        "endTime": 4.158,
+        "duration": 1.94,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "He thought about his son’s sad eyes.",
+        "startTime": 4.158,
+        "endTime": 6.652,
+        "duration": 2.495,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "He thought about how much he missed Maria’s smile. Finally, he sat at his desk. He stared at the computer. “I can do this,” he said quietly, taking a deep breath.",
+    "sentences": [
+      "He thought about how much he missed Maria’s smile.",
+      "Finally, he sat at his desk.",
+      "He stared at the computer.",
+      "“I can do this,” he said quietly, taking a deep breath."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_24.mp3",
+    "duration": 12.586372,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He thought about how much he missed Maria’s smile.",
+        "startTime": 0,
+        "endTime": 3.816,
+        "duration": 3.816,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "Finally, he sat at his desk.",
+        "startTime": 3.816,
+        "endTime": 6.104,
+        "duration": 2.287,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "He stared at the computer.",
+        "startTime": 6.104,
+        "endTime": 8.088,
+        "duration": 1.985,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "“I can do this,” he said quietly, taking a deep breath.",
+        "startTime": 8.088,
+        "endTime": 12.586,
+        "duration": 4.498,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "He felt a mixture of fear and hope. He picked up his pen and wrote a note to himself. “I must be brave,” he wrote, his hand shaking. After finishing the note, David looked at it for a long time.",
+    "sentences": [
+      "He felt a mixture of fear and hope.",
+      "He picked up his pen and wrote a note to himself.",
+      "“I must be brave,” he wrote, his hand shaking.",
+      "After finishing the note, David looked at it for a long time."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_25.mp3",
+    "duration": 15.598435,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt a mixture of fear and hope.",
+        "startTime": 0,
+        "endTime": 2.776,
+        "duration": 2.776,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "He picked up his pen and wrote a note to himself.",
+        "startTime": 2.776,
+        "endTime": 6.662,
+        "duration": 3.886,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "“I must be brave,” he wrote, his hand shaking.",
+        "startTime": 6.662,
+        "endTime": 10.61,
+        "duration": 3.948,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "After finishing the note, David looked at it for a long time.",
+        "startTime": 10.61,
+        "endTime": 15.598,
+        "duration": 4.988,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "“What will my boss say?” he wondered. “Will he be angry?” He stood up and walked to his boss’s office. With each step, his heart beat faster, like a drum in his chest. He wanted to turn back, but he kept going.",
+    "sentences": [
+      "“What will my boss say?” he wondered.",
+      "“Will he be angry?” He stood up and walked to his boss’s office.",
+      "With each step, his heart beat faster, like a drum in his chest.",
+      "He wanted to turn back, but he kept going."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_26.mp3",
+    "duration": 13.076236,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“What will my boss say?” he wondered.",
+        "startTime": 0,
+        "endTime": 2.257,
+        "duration": 2.257,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "“Will he be angry?” He stood up and walked to his boss’s office.",
+        "startTime": 2.257,
+        "endTime": 6.161,
+        "duration": 3.904,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "With each step, his heart beat faster, like a drum in his chest.",
+        "startTime": 6.161,
+        "endTime": 10.364,
+        "duration": 4.204,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "He wanted to turn back, but he kept going.",
+        "startTime": 10.364,
+        "endTime": 13.076,
+        "duration": 2.712,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "“Am I really doing this?” he thought, doubt creeping in. When he arrived at the door, he knocked softly. “Come in,” his boss said. David entered.",
+    "sentences": [
+      "“Am I really doing this?” he thought, doubt creeping in.",
+      "When he arrived at the door, he knocked softly.",
+      "“Come in,” his boss said.",
+      "David entered."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_27.mp3",
+    "duration": 10.469751,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Am I really doing this?” he thought, doubt creeping in.",
+        "startTime": 0,
+        "endTime": 4.101,
+        "duration": 4.101,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "When he arrived at the door, he knocked softly.",
+        "startTime": 4.101,
+        "endTime": 7.568,
+        "duration": 3.466,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "“Come in,” his boss said.",
+        "startTime": 7.568,
+        "endTime": 9.482,
+        "duration": 1.914,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "David entered.",
+        "startTime": 9.482,
+        "endTime": 10.47,
+        "duration": 0.988,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "He felt like he was walking in slow motion. The office felt cold and big. He handed the letter to his boss. “I’m resigning,” he said.",
+    "sentences": [
+      "He felt like he was walking in slow motion.",
+      "The office felt cold and big.",
+      "He handed the letter to his boss.",
+      "“I’m resigning,” he said."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_28.mp3",
+    "duration": 9.366508,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt like he was walking in slow motion.",
+        "startTime": 0,
+        "endTime": 3.049,
+        "duration": 3.049,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "The office felt cold and big.",
+        "startTime": 3.049,
+        "endTime": 5.105,
+        "duration": 2.056,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "He handed the letter to his boss.",
+        "startTime": 5.105,
+        "endTime": 7.444,
+        "duration": 2.34,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "“I’m resigning,” he said.",
+        "startTime": 7.444,
+        "endTime": 9.367,
+        "duration": 1.922,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "His voice was strong, but his hands were sweaty. His boss looked surprised, his eyes wide. “Are you sure about this?” David nodded. “Yes, I need to change.” \n\nDavid started a new life.",
+    "sentences": [
+      "His voice was strong, but his hands were sweaty.",
+      "His boss looked surprised, his eyes wide.",
+      "“Are you sure about this?” David nodded.",
+      "“Yes, I need to change.” \n\nDavid started a new life."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_29.mp3",
+    "duration": 15.227506,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His voice was strong, but his hands were sweaty.",
+        "startTime": 0,
+        "endTime": 4.069,
+        "duration": 4.069,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "His boss looked surprised, his eyes wide.",
+        "startTime": 4.069,
+        "endTime": 7.566,
+        "duration": 3.497,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "“Are you sure about this?” David nodded.",
+        "startTime": 7.566,
+        "endTime": 10.832,
+        "duration": 3.266,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "“Yes, I need to change.” \n\nDavid started a new life.",
+        "startTime": 10.832,
+        "endTime": 15.228,
+        "duration": 4.395,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "He enrolled in a writing course. He learned how to write stories. It was exciting. He felt happy for the first time in a long time.",
+    "sentences": [
+      "He enrolled in a writing course.",
+      "He learned how to write stories.",
+      "It was exciting.",
+      "He felt happy for the first time in a long time."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_30.mp3",
+    "duration": 8.99678,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He enrolled in a writing course.",
+        "startTime": 0,
+        "endTime": 2.249,
+        "duration": 2.249,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "He learned how to write stories.",
+        "startTime": 2.249,
+        "endTime": 4.498,
+        "duration": 2.249,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "It was exciting.",
+        "startTime": 4.498,
+        "endTime": 5.623,
+        "duration": 1.125,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "He felt happy for the first time in a long time.",
+        "startTime": 5.623,
+        "endTime": 8.997,
+        "duration": 3.374,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "Every day, he wrote. He wrote about his feelings and his dreams. He found his passion. “This is what I want to do,” he thought, a smile spreading across his face.",
+    "sentences": [
+      "Every day, he wrote.",
+      "He wrote about his feelings and his dreams.",
+      "He found his passion.",
+      "“This is what I want to do,” he thought, a smile spreading across his face."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_31.mp3",
+    "duration": 12.096395,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Every day, he wrote.",
+        "startTime": 0,
+        "endTime": 1.615,
+        "duration": 1.615,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "He wrote about his feelings and his dreams.",
+        "startTime": 1.615,
+        "endTime": 4.765,
+        "duration": 3.15,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "He found his passion.",
+        "startTime": 4.765,
+        "endTime": 6.303,
+        "duration": 1.538,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "“This is what I want to do,” he thought, a smile spreading across his face.",
+        "startTime": 6.303,
+        "endTime": 12.096,
+        "duration": 5.794,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "He felt like he was finally free. He felt the spark of creativity return to him. At home, things began to change. David spent more time with his family.",
+    "sentences": [
+      "He felt like he was finally free.",
+      "He felt the spark of creativity return to him.",
+      "At home, things began to change.",
+      "David spent more time with his family."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_32.mp3",
+    "duration": 10.750363,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt like he was finally free.",
+        "startTime": 0,
+        "endTime": 2.348,
+        "duration": 2.348,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "He felt the spark of creativity return to him.",
+        "startTime": 2.348,
+        "endTime": 5.62,
+        "duration": 3.273,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "At home, things began to change.",
+        "startTime": 5.62,
+        "endTime": 8.047,
+        "duration": 2.427,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "David spent more time with his family.",
+        "startTime": 8.047,
+        "endTime": 10.75,
+        "duration": 2.703,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "He helped his son with homework. “Let’s do math together,” he said one evening, his heart full of joy. His son smiled brightly. They worked together, laughter filling the room.",
+    "sentences": [
+      "He helped his son with homework.",
+      "“Let’s do math together,” he said one evening, his heart full of joy.",
+      "His son smiled brightly.",
+      "They worked together, laughter filling the room."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_33.mp3",
+    "duration": 13.633878,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He helped his son with homework.",
+        "startTime": 0,
+        "endTime": 2.439,
+        "duration": 2.439,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "“Let’s do math together,” he said one evening, his heart full of joy.",
+        "startTime": 2.439,
+        "endTime": 7.997,
+        "duration": 5.558,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "His son smiled brightly.",
+        "startTime": 7.997,
+        "endTime": 9.826,
+        "duration": 1.829,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "They worked together, laughter filling the room.",
+        "startTime": 9.826,
+        "endTime": 13.634,
+        "duration": 3.808,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "David felt proud as he watched his son’s eyes light up with understanding. They played games together, and Maria smiled more. They talked and laughed. “I missed this,” David said one night, a soft smile on his lips.",
+    "sentences": [
+      "David felt proud as he watched his son’s eyes light up with understanding.",
+      "They played games together, and Maria smiled more.",
+      "They talked and laughed.",
+      "“I missed this,” David said one night, a soft smile on his lips."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_34.mp3",
+    "duration": 16.300363,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "David felt proud as he watched his son’s eyes light up with understanding.",
+        "startTime": 0,
+        "endTime": 5.533,
+        "duration": 5.533,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "They played games together, and Maria smiled more.",
+        "startTime": 5.533,
+        "endTime": 9.421,
+        "duration": 3.888,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "They talked and laughed.",
+        "startTime": 9.421,
+        "endTime": 11.215,
+        "duration": 1.794,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "“I missed this,” David said one night, a soft smile on his lips.",
+        "startTime": 11.215,
+        "endTime": 16.3,
+        "duration": 5.085,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "Maria nodded. “Me too.” David felt connected again. He felt the warmth of their love wrapping around him like a cozy blanket. David also discovered a new identity.",
+    "sentences": [
+      "Maria nodded.",
+      "“Me too.” David felt connected again.",
+      "He felt the warmth of their love wrapping around him like a cozy blanket.",
+      "David also discovered a new identity."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_35.mp3",
+    "duration": 13.78415,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria nodded.",
+        "startTime": 0,
+        "endTime": 1.12,
+        "duration": 1.12,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "“Me too.” David felt connected again.",
+        "startTime": 1.12,
+        "endTime": 4.308,
+        "duration": 3.188,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "He felt the warmth of their love wrapping around him like a cozy blanket.",
+        "startTime": 4.308,
+        "endTime": 10.597,
+        "duration": 6.289,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "David also discovered a new identity.",
+        "startTime": 10.597,
+        "endTime": 13.784,
+        "duration": 3.188,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "He was not just a lawyer. He was a writer. He shared his stories with others. Friends and family read them.",
+    "sentences": [
+      "He was not just a lawyer.",
+      "He was a writer.",
+      "He shared his stories with others.",
+      "Friends and family read them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_36.mp3",
+    "duration": 6.96483,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He was not just a lawyer.",
+        "startTime": 0,
+        "endTime": 1.674,
+        "duration": 1.674,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "He was a writer.",
+        "startTime": 1.674,
+        "endTime": 2.746,
+        "duration": 1.072,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "He shared his stories with others.",
+        "startTime": 2.746,
+        "endTime": 5.023,
+        "duration": 2.277,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "Friends and family read them.",
+        "startTime": 5.023,
+        "endTime": 6.965,
+        "duration": 1.942,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "They loved reading them. “This is amazing!” Maria said after reading one. David felt proud. He found a new purpose in life.",
+    "sentences": [
+      "They loved reading them.",
+      "“This is amazing!” Maria said after reading one.",
+      "David felt proud.",
+      "He found a new purpose in life."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_37.mp3",
+    "duration": 9.638821,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They loved reading them.",
+        "startTime": 0,
+        "endTime": 1.928,
+        "duration": 1.928,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "“This is amazing!” Maria said after reading one.",
+        "startTime": 1.928,
+        "endTime": 5.783,
+        "duration": 3.856,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "David felt proud.",
+        "startTime": 5.783,
+        "endTime": 7.149,
+        "duration": 1.365,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "He found a new purpose in life.",
+        "startTime": 7.149,
+        "endTime": 9.639,
+        "duration": 2.49,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "David learned that it is okay to change. It is okay to follow your dreams. His family was happy again. They supported him.",
+    "sentences": [
+      "David learned that it is okay to change.",
+      "It is okay to follow your dreams.",
+      "His family was happy again.",
+      "They supported him."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_38.mp3",
+    "duration": 8.781315,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "David learned that it is okay to change.",
+        "startTime": 0,
+        "endTime": 2.952,
+        "duration": 2.952,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "It is okay to follow your dreams.",
+        "startTime": 2.952,
+        "endTime": 5.387,
+        "duration": 2.435,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "His family was happy again.",
+        "startTime": 5.387,
+        "endTime": 7.379,
+        "duration": 1.992,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "They supported him.",
+        "startTime": 7.379,
+        "endTime": 8.781,
+        "duration": 1.402,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 159,
+    "text": "They built a new life together. They spent weekends exploring parks and writing stories together. They went on little adventures, finding joy in the small things. They visited the beach, where David would write in the sand, and his son would play in the waves.",
+    "sentences": [
+      "They built a new life together.",
+      "They spent weekends exploring parks and writing stories together.",
+      "They went on little adventures, finding joy in the small things.",
+      "They visited the beach, where David would write in the sand, and his son would play in the waves."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_39.mp3",
+    "duration": 19.430726,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They built a new life together.",
+        "startTime": 0,
+        "endTime": 2.29,
+        "duration": 2.29,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "They spent weekends exploring parks and writing stories together.",
+        "startTime": 2.29,
+        "endTime": 7.09,
+        "duration": 4.801,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "They went on little adventures, finding joy in the small things.",
+        "startTime": 7.09,
+        "endTime": 11.967,
+        "duration": 4.877,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "They visited the beach, where David would write in the sand, and his son would play in the waves.",
+        "startTime": 11.967,
+        "endTime": 19.431,
+        "duration": 7.464,
+        "sentenceIndex": 159
+      }
+    ]
+  },
+  {
+    "bundleIndex": 40,
+    "startSentenceIndex": 160,
+    "endSentenceIndex": 163,
+    "text": "David realized that being a good father and husband is the most important job. He learned to balance work and family. He found courage in his decision to leave his old job. Now, he feels fulfilled.",
+    "sentences": [
+      "David realized that being a good father and husband is the most important job.",
+      "He learned to balance work and family.",
+      "He found courage in his decision to leave his old job.",
+      "Now, he feels fulfilled."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_40.mp3",
+    "duration": 14.774626,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "David realized that being a good father and husband is the most important job.",
+        "startTime": 0,
+        "endTime": 5.88,
+        "duration": 5.88,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "He learned to balance work and family.",
+        "startTime": 5.88,
+        "endTime": 8.745,
+        "duration": 2.865,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "He found courage in his decision to leave his old job.",
+        "startTime": 8.745,
+        "endTime": 12.815,
+        "duration": 4.071,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "Now, he feels fulfilled.",
+        "startTime": 12.815,
+        "endTime": 14.775,
+        "duration": 1.959,
+        "sentenceIndex": 163
+      }
+    ]
+  },
+  {
+    "bundleIndex": 41,
+    "startSentenceIndex": 164,
+    "endSentenceIndex": 167,
+    "text": "One evening, David sat with his son. “Always follow your dreams,” he told him, looking deep into his son’s eyes. “It is important.” His son looked up with bright eyes. “I want to be a writer too, Dad!” he said, excitement shining in his voice.",
+    "sentences": [
+      "One evening, David sat with his son.",
+      "“Always follow your dreams,” he told him, looking deep into his son’s eyes.",
+      "“It is important.” His son looked up with bright eyes.",
+      "“I want to be a writer too, Dad!” he said, excitement shining in his voice."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_41.mp3",
+    "duration": 19.37483,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One evening, David sat with his son.",
+        "startTime": 0,
+        "endTime": 2.944,
+        "duration": 2.944,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "“Always follow your dreams,” he told him, looking deep into his son’s eyes.",
+        "startTime": 2.944,
+        "endTime": 9.064,
+        "duration": 6.12,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "“It is important.” His son looked up with bright eyes.",
+        "startTime": 9.064,
+        "endTime": 13.255,
+        "duration": 4.191,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "“I want to be a writer too, Dad!” he said, excitement shining in his voice.",
+        "startTime": 13.255,
+        "endTime": 19.375,
+        "duration": 6.12,
+        "sentenceIndex": 167
+      }
+    ]
+  },
+  {
+    "bundleIndex": 42,
+    "startSentenceIndex": 168,
+    "endSentenceIndex": 171,
+    "text": "David smiled, his heart swelling with pride. “You can do it,” he said. “Just be brave like me.” \n\nDavid’s journey was not easy, but he was persistent. He learned that overcoming fear is important.",
+    "sentences": [
+      "David smiled, his heart swelling with pride.",
+      "“You can do it,” he said.",
+      "“Just be brave like me.” \n\nDavid’s journey was not easy, but he was persistent.",
+      "He learned that overcoming fear is important."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_42.mp3",
+    "duration": 15.446145,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "David smiled, his heart swelling with pride.",
+        "startTime": 0,
+        "endTime": 3.569,
+        "duration": 3.569,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "“You can do it,” he said.",
+        "startTime": 3.569,
+        "endTime": 5.661,
+        "duration": 2.093,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "“Just be brave like me.” \n\nDavid’s journey was not easy, but he was persistent.",
+        "startTime": 5.661,
+        "endTime": 11.95,
+        "duration": 6.288,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "He learned that overcoming fear is important.",
+        "startTime": 11.95,
+        "endTime": 15.446,
+        "duration": 3.497,
+        "sentenceIndex": 171
+      }
+    ]
+  },
+  {
+    "bundleIndex": 43,
+    "startSentenceIndex": 172,
+    "endSentenceIndex": 175,
+    "text": "He found his place in the world. He discovered happiness in writing and in his family. Now, David is no longer trapped; he is free. He is a writer, a father, and a happy man.",
+    "sentences": [
+      "He found his place in the world.",
+      "He discovered happiness in writing and in his family.",
+      "Now, David is no longer trapped; he is free.",
+      "He is a writer, a father, and a happy man."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_43.mp3",
+    "duration": 15.169955,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He found his place in the world.",
+        "startTime": 0,
+        "endTime": 2.708,
+        "duration": 2.708,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "He discovered happiness in writing and in his family.",
+        "startTime": 2.708,
+        "endTime": 7.193,
+        "duration": 4.485,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "Now, David is no longer trapped; he is free.",
+        "startTime": 7.193,
+        "endTime": 11.316,
+        "duration": 4.123,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "He is a writer, a father, and a happy man.",
+        "startTime": 11.316,
+        "endTime": 15.17,
+        "duration": 3.854,
+        "sentenceIndex": 175
+      }
+    ]
+  },
+  {
+    "bundleIndex": 44,
+    "startSentenceIndex": 176,
+    "endSentenceIndex": 179,
+    "text": "He writes stories about love, adventure, and courage. He hopes his stories inspire others. With each word he writes, he feels the joy of his new life. David knows he made the right choice.",
+    "sentences": [
+      "He writes stories about love, adventure, and courage.",
+      "He hopes his stories inspire others.",
+      "With each word he writes, he feels the joy of his new life.",
+      "David knows he made the right choice."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_44.mp3",
+    "duration": 13.480249,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He writes stories about love, adventure, and courage.",
+        "startTime": 0,
+        "endTime": 4.033,
+        "duration": 4.033,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "He hopes his stories inspire others.",
+        "startTime": 4.033,
+        "endTime": 6.569,
+        "duration": 2.536,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "With each word he writes, he feels the joy of his new life.",
+        "startTime": 6.569,
+        "endTime": 10.874,
+        "duration": 4.306,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "David knows he made the right choice.",
+        "startTime": 10.874,
+        "endTime": 13.48,
+        "duration": 2.606,
+        "sentenceIndex": 179
+      }
+    ]
+  },
+  {
+    "bundleIndex": 45,
+    "startSentenceIndex": 180,
+    "endSentenceIndex": 180,
+    "text": "He has a family that loves him, and he is living his dream.",
+    "sentences": [
+      "He has a family that loves him, and he is living his dream."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/bundle_45.mp3",
+    "duration": 4.015306,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He has a family that loves him, and he is living his dream.",
+        "startTime": 0,
+        "endTime": 4.015,
+        "duration": 4.015,
+        "sentenceIndex": 180
+      }
+    ]
+  }
+]

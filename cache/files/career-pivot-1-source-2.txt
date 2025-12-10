@@ -1,0 +1,132 @@
+SOURCE 2: JESS GILBERT - PRIMARY TEACHER TO SOFTWARE ENGINEER
+Rating: 8/10
+URL: https://www.thosewhocan.org/jess-gilbert-primary-teacher-to-software-engineer/
+Source Type: Those Who Can / Featured on BBC News
+Date: February 26, 2025
+Author: Jess Gilbert
+
+===== STORY ARC =====
+High school: no career advice unless doctor/lawyer → Stopped maths/science 4th year, closed doors for university → Started Psychology degree (didn't enjoy) → Family convinced her to be teacher ("wonderful holidays") → Hesitantly transferred to Primary Education degree → Used psychology credits → 5 years later: graduated with Master's in Education → Year 1-2: keen to make positive impact → Reality: huge class sizes, minimal support, behavior issues, unrealistic expectations, lack of resources, vast paperwork → Felt unsupported, no professional autonomy → Experienced burnout (physical and emotional wellbeing impacted) → Year 3: started looking for way out, miserable/tired/rundown constantly → Applied to range of jobs with transferable skills → Masters counted for nothing, employers saw teaching as not "relevant experience" → Several unsuccessful interviews → Started looking for certifications to add to CV → Desperate for change → Discovered Code First Girls through Instagram ad → Viewed as another certification for college/university/charity jobs → Never imagined tech career → Started Kickstarter course (1 evening/week for 8 weeks) → Got email about CFGDegree program → Discounted it immediately (no tech experience, couldn't afford to quit) → Days before deadline: another email, took as sign → Shocked: degree could be done in evenings, wouldn't have to give up salary → Sponsor companies offered job upon completion → Sky Betting and Gaming sponsorship with job offer included → Few months later: sitting on beach in Malaga during school holidays, dreading August return → Email: accepted onto Full Stack Web Development Degree → "Over the moon" → Next 14 weeks: tough, juggling 4 nights/week classes + full-time teaching + studying/assessments/homework/group projects → Sky Betting and Gaming saw potential, invested in her → "This is what got me to the finish line" → January (year after first Instagram ad): began career as Junior Software Engineer at Sky Betting and Gaming
+
+===== KEY EMOTIONAL MOMENTS =====
+1. **Career advice void**: "Growing up I never really knew what I wanted to 'be'. Unless you wanted to become a doctor or a lawyer, career advice was non-existent at my school."
+
+2. **Closed doors**: "I decided not to continue learning maths or science beyond 4th year of high school, which really closed a lot of doors for me when it came to applying for university."
+
+3. **Hesitant beginning**: "I was convinced by family members that I'd be a 'great teacher' and to think of the 'wonderful holidays'. So, hesitantly, I transferred to a Primary Education degree."
+
+4. **Reality vs. expectation**: "I had images of learning outdoors, creating beautiful arts and crafts and planning fun and engaging maths and literacy lessons. These vanished very quickly."
+
+5. **Burnout moment**: "I was exposed to the reality of teaching when I was met with huge class sizes, minimal support to deal with the wide range of additional needs, behaviour issues, unrealistic expectations, lack of resources and vast amounts of planning and unnecessary paperwork. I felt unsupported, with very little professional autonomy, to actually do what I trained for 5 years to do – teach! I experienced burnout which impacted my physical and emotional wellbeing."
+
+6. **Year 3 misery**: "By year 3, I'd started to look for a way out of teaching. I knew I couldn't do this for much longer. I was miserable, tired and rundown all the time which had a knock-on effect on my life outside of work and relationships with friends and family."
+
+7. **Worthless credentials**: "It was disheartening to feel that my Masters Degree in Education counted for nothing and employers were unwilling to view my years as a teacher as 'relevant experience' in their field. After several unsuccessful interviews, I started looking for opportunities to add additional certifications to my CV – hoping this would make me more appealing to potential employers."
+
+8. **Desperation**: "I was desperate for something to change when luckily, I discovered Code First Girls through an Instagram ad."
+
+9. **Self-doubt**: "I immediately discounted it – there was no way they'd accept someone like me with no experience in tech and I couldn't afford to quit my job to retrain."
+
+10. **The sign**: "A few days before the deadline for applying, I got another email from Code First Girls – I took it as a sign that I should at least investigate it and see what was involved."
+
+11. **Beach moment**: "A few months later, whilst sitting on the beach in Malaga during the school holidays (dreading having to go back in August), I got an email to say I'd been accepted onto the Full Stack Web Development Degree sponsored by Sky Betting and Gaming, with a job offer from them included as well. I was over the moon."
+
+12. **Tough juggling**: "The next 14 weeks would be tough, juggling 4 nights a week of Code First Girls Degree classes and teaching full time during the day, in addition to all the extra studying for assessments, homework and group projects."
+
+13. **What kept her going**: "However, after encountering so many employers that were unable to see the value in my skill set as a career switcher, it really motivated me to know that Sky Betting and Gaming saw my potential and were willing to invest in me. This is what got me to the finish line."
+
+14. **New beginning**: "In January this year (a year on from seeing the first CFG Instagram ad), I began my new career as a Junior Software Engineer with Sky Betting and Gaming."
+
+15. **Teacher skills valued**: "Since starting, I have been able to apply my skills to new challenges and I continue to learn each day from my overwhelmingly kind and supportive colleagues. I have realised how valuable many of my 'teacher skills' are as I communicate with colleagues to solve problems and manage my own time and projects each day."
+
+16. **Gratitude**: "I believe ex-teachers can bring so much to an organisation and I am extremely grateful that I was given the chance by SBG to show this."
+
+17. **Helping others**: "I recently shared my story on a Facebook page called 'Life After Teaching' and received hundreds of messages from other teachers looking for advice on how to follow a similar route. I created an Instagram page @teacher2coder where I have since been providing inspiration, helpful resources and guidance to others who are interested in learning to code."
+
+===== ESL MULTIPLIERS =====
+- Building New Life: From burned-out teacher to software engineer
+- Belonging: "Overwhelmingly kind and supportive colleagues" vs. unsupported teaching
+- Connection Across Differences: Teacher skills in tech world
+- Overcoming "Not Good Enough": "Masters counted for nothing" → valued engineer
+- Persistence: 14 weeks juggling full-time teaching + 4 nights/week classes
+- First-Time Courage: Applying despite "no way they'd accept someone like me"
+- Language Barriers (metaphorical): Learning to "speak" coding
+
+===== FULL ARTICLE TEXT =====
+
+Primary Teacher To Software Engineer
+Updated 26th February, 2025
+Inspiring Stories
+
+A recent report showed that one of the biggest trends for career changers in the last year or so is teachers retraining in tech. Jess shares her story from primary teacher to Software Engineer.
+
+Career advice was non-existent at my school
+
+Growing up I never really knew what I wanted to 'be'. Unless you wanted to become a doctor or a lawyer, career advice was non-existent at my school. I decided not to continue learning maths or science beyond 4th year of high school, which really closed a lot of doors for me when it came to applying for university. I began a Psychology degree (which I didn't enjoy) until I was convinced by family members that I'd be a 'great teacher' and to think of the 'wonderful holidays'. So, hesitantly, I transferred to a Primary Education degree where I was allowed to use some of my existing credits from the year of psychology I'd just completed. 
+
+I experienced burnout
+
+Fast forward five years later, I graduated with a Master's in Education and like most young teachers, I was keen to make a positive impact in my field. I knew early on it wasn't for me. I had images of learning outdoors, creating beautiful arts and crafts and planning fun and engaging maths and literacy lessons. These vanished very quickly. I was exposed to the reality of teaching when I was met with huge class sizes, minimal support to deal with the wide range of additional needs, behaviour issues, unrealistic expectations, lack of resources and vast amounts of planning and unnecessary paperwork. I felt unsupported, with very little professional autonomy, to actually do what I trained for 5 years to do – teach! I experienced burnout which impacted my physical and emotional wellbeing.
+
+I started to look for a way out of teaching
+
+By year 3, I'd started to look for a way out of teaching. I knew I couldn't do this for much longer. I was miserable, tired and rundown all the time which had a knock-on effect on my life outside of work and relationships with friends and family. This prompted me to start applying for a range of jobs where I thought I could use my transferable skills. It was disheartening to feel that my Masters Degree in Education counted for nothing and employers were unwilling to view my years as a teacher as 'relevant experience' in their field. After several unsuccessful interviews, I started looking for opportunities to add additional certifications to my CV – hoping this would make me more appealing to potential employers. 
+
+I discovered Code First Girls through an Instagram ad
+
+I was desperate for something to change when luckily, I discovered Code First Girls through an Instagram ad. At first, I viewed it as another opportunity to add a certification to my CV, hoping that having knowledge about Databases and SQL would be appealing to the types of jobs at colleges, universities, and charities that I had been applying to. Never once did I imagine that it would lead me to pursue a career in the field of tech.
+
+CFGDegree could be completed in the evenings
+
+I began with one of their Kickstarter courses which was one evening a week for 8 weeks. Shortly after completing it, I got an email from them advertising their degree programme. I immediately discounted it – there was no way they'd accept someone like me with no experience in tech and I couldn't afford to quit my job to retrain. A few days before the deadline for applying, I got another email from Code First Girls – I took it as a sign that I should at least investigate it and see what was involved. I was shocked to discover that the CFGDegree could be completed in the evenings, so I wouldn't have to give up my teaching salary just yet. What really sparked my interest was the opportunity to apply via one of their sponsor companies, who also offered a job opportunity upon successful completion of the degree, it seemed too good to be true – I couldn't believe it! Safe to say I spent the next couple of evenings filling out the application in the hope I might get an interview. 
+
+This is what got me to the finish line 
+
+A few months later, whilst sitting on the beach in Malaga during the school holidays (dreading having to go back in August), I got an email to say I'd been accepted onto the Full Stack Web Development Degree sponsored by Sky Betting and Gaming, with a job offer from them included as well. I was over the moon. The next 14 weeks would be tough, juggling 4 nights a week of Code First Girls Degree classes and teaching full time during the day, in addition to all the extra studying for assessments, homework and group projects. However, after encountering so many employers that were unable to see the value in my skill set as a career switcher, it really motivated me to know that Sky Betting and Gaming saw my potential and were willing to invest in me. This is what got me to the finish line. 
+
+I began my new career
+
+In January this year (a year on from seeing the first CFG Instagram ad), I began my new career as a Junior Software Engineer with Sky Betting and Gaming. Since starting, I have been able to apply my skills to new challenges and I continue to learn each day from my overwhelmingly kind and supportive colleagues. I have realised how valuable many of my 'teacher skills' are as I communicate with colleagues to solve problems and manage my own time and projects each day. I believe ex-teachers can bring so much to an organisation and I am extremely grateful that I was given the chance by SBG to show this.
+
+Teachers retraining in tech
+
+I recently shared my story on a Facebook page called 'Life After Teaching' and received hundreds of messages from other teachers looking for advice on how to follow a similar route. I created an Instagram page @teacher2coder where I have since been providing inspiration, helpful resources and guidance to others who are interested in learning to code. It is incredible to see the number of teachers now signing up for Code First Girls and other coding courses. A recent report showed that one of the biggest trends for career changers in the last year or so is teachers retraining in tech.
+
+My advice for anyone considering the tech industry – DO IT! There are so many opportunities to learn and progress, the salaries are great, and I have found there to be a fantastic work-life balance.
+
+Instagram page – @teacher2coder
+LinkedIn – Jess G.
+
+Recently Jess' story featured on BBC News: The women who left their jobs to Code
+
+===== KEY QUOTES =====
+"Unless you wanted to become a doctor or a lawyer, career advice was non-existent at my school."
+
+"I decided not to continue learning maths or science beyond 4th year of high school, which really closed a lot of doors for me."
+
+"So, hesitantly, I transferred to a Primary Education degree."
+
+"I had images of learning outdoors, creating beautiful arts and crafts and planning fun and engaging maths and literacy lessons. These vanished very quickly."
+
+"I experienced burnout which impacted my physical and emotional wellbeing."
+
+"I was miserable, tired and rundown all the time which had a knock-on effect on my life outside of work and relationships with friends and family."
+
+"It was disheartening to feel that my Masters Degree in Education counted for nothing."
+
+"I was desperate for something to change."
+
+"There was no way they'd accept someone like me with no experience in tech."
+
+"I took it as a sign that I should at least investigate it."
+
+"Whilst sitting on the beach in Malaga during the school holidays (dreading having to go back in August), I got an email to say I'd been accepted."
+
+"I was over the moon."
+
+"This is what got me to the finish line."
+
+"I have realised how valuable many of my 'teacher skills' are."
+
+===== ANALYSIS =====
+This source provides strong burnout narrative with clear emotional progression from enthusiasm ("keen to make positive impact") to desperation ("I couldn't do this for much longer"). The reality vs. expectation gap ("images of learning outdoors" vanishing quickly) is relatable. The Masters degree being worthless in job market adds frustration layer beyond just burnout. Instagram ad discovery feels serendipitous but earned through persistent searching. Self-doubt moment ("no way they'd accept someone like me") shows vulnerability despite Master's degree. Beach scene in Malaga is vivid turning point - "dreading having to go back in August" captures teacher summer anxiety. The 14-week juggling act (4 nights + full-time teaching) demonstrates commitment. Sky Betting and Gaming seeing her potential after so many rejections is validating. Strong ESL resonance: building new life (burnout teacher to fulfilled engineer), overcoming "not good enough" (worthless credentials to valued skills), persistence (14 brutal weeks), first-time courage (applying despite doubt), belonging shift (unsupported to "kind and supportive colleagues"). BBC News feature adds credibility. Instagram account @teacher2coder shows she's helping others, extending impact beyond personal story. Slightly less emotional depth than Jason's family disconnection but solid transformation narrative with clear crisis, struggle, and resolution.

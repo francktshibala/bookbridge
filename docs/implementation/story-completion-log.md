@@ -17,6 +17,7 @@
 | `refugee-journey-1` | Refugee Journey: From War Zone to Hope | BookBridge | Multiple sources (thematic extraction) | Refugee Journey, War Zone to Safety, Language Barriers, Building New Life, Identity Loss and Rediscovery, Persistence Despite Hardship | ✅ Complete | ✅ | - | - | ~20 min | 63 | 2025-12-10 |
 | `community-builder-1` | Community Builder: One Person Transforms a Neighborhood | BookBridge | Multiple sources (thematic extraction) | Community Building, Belonging, Transformation, Food Access, Empowerment, Building Connections, Persistence | ✅ Complete | ✅ | - | - | ~20 min | 53 | 2025-12-10 |
 | `disability-overcome-1` | Disability Overcome: Finding New Ways | BookBridge | Multiple sources (thematic extraction) | Disability Overcome, Adaptation, Finding New Ways, Persistence, Identity Transformation, Communication Barriers, Belonging, Building New Life | ✅ Complete | ✅ | - | - | ~20 min | 52 | 2025-12-10 |
+| `career-pivot-1` | Career Pivot: Finding Your Path | BookBridge | Multiple sources (thematic extraction) | Career Pivot, Burnout, Identity Crisis, Family-Work Balance, Following Passion, Courage to Change, Persistence, Finding New Purpose, Transformation | ✅ Complete | ✅ | - | - | ~18 min | 46 | 2025-12-10 |
 
 **Legend**:
 - ✅ Complete

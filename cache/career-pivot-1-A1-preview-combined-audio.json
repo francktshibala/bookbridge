@@ -1,0 +1,146 @@
+{
+  "storyId": "career-pivot-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-1/A1/preview-combined.mp3",
+    "duration": 72.792676,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 5.759,
+        "duration": 5.759,
+        "text": "About This Story\n\nIn this inspiring story, David is a lawyer with a good job."
+      },
+      {
+        "startTime": 5.759,
+        "endTime": 8.527,
+        "duration": 2.768,
+        "text": "He has a nice salary and good reviews."
+      },
+      {
+        "startTime": 8.527,
+        "endTime": 10.421,
+        "duration": 1.894,
+        "text": "But he feels empty inside."
+      },
+      {
+        "startTime": 10.421,
+        "endTime": 15.302,
+        "duration": 4.881,
+        "text": "He works all the time and misses important moments with his family."
+      },
+      {
+        "startTime": 15.302,
+        "endTime": 18.802,
+        "duration": 3.501,
+        "text": "Through courage, he learns to change his life."
+      },
+      {
+        "startTime": 18.802,
+        "endTime": 23.829,
+        "duration": 5.026,
+        "text": "A powerful message about finding happiness and following your dreams."
+      },
+      {
+        "startTime": 23.829,
+        "endTime": 28.709,
+        "duration": 4.881,
+        "text": "Imagine working for ten years in a job that looks perfect on paper."
+      },
+      {
+        "startTime": 28.709,
+        "endTime": 31.113,
+        "duration": 2.404,
+        "text": "You get good reviews and bonuses."
+      },
+      {
+        "startTime": 31.113,
+        "endTime": 33.23,
+        "duration": 2.117,
+        "text": "But inside, you feel empty."
+      },
+      {
+        "startTime": 33.23,
+        "endTime": 34.832,
+        "duration": 1.603,
+        "text": "You work all the time."
+      },
+      {
+        "startTime": 34.832,
+        "endTime": 38.479,
+        "duration": 3.647,
+        "text": "Your family talks to you, but you barely listen."
+      },
+      {
+        "startTime": 38.479,
+        "endTime": 42.417,
+        "duration": 3.938,
+        "text": "One day, you realize you missed your son's birthday."
+      },
+      {
+        "startTime": 42.417,
+        "endTime": 45.476,
+        "duration": 3.059,
+        "text": "You missed being there when he needed you."
+      },
+      {
+        "startTime": 45.476,
+        "endTime": 47.734,
+        "duration": 2.258,
+        "text": "That moment changes everything."
+      },
+      {
+        "startTime": 47.734,
+        "endTime": 49.847,
+        "duration": 2.112,
+        "text": "But leaving feels impossible."
+      },
+      {
+        "startTime": 49.847,
+        "endTime": 53.416,
+        "duration": 3.569,
+        "text": "What if you make the worst decision of your life?"
+      },
+      {
+        "startTime": 53.416,
+        "endTime": 56.913,
+        "duration": 3.497,
+        "text": "Many people work in jobs that make them unhappy."
+      },
+      {
+        "startTime": 56.913,
+        "endTime": 59.317,
+        "duration": 2.404,
+        "text": "They feel trapped and burned out."
+      },
+      {
+        "startTime": 59.317,
+        "endTime": 62.449,
+        "duration": 3.132,
+        "text": "Some people decide to change their careers."
+      },
+      {
+        "startTime": 62.449,
+        "endTime": 65.654,
+        "duration": 3.205,
+        "text": "They leave safe jobs to follow their dreams."
+      },
+      {
+        "startTime": 65.654,
+        "endTime": 69.66,
+        "duration": 4.006,
+        "text": "This story shows how people find courage to start over."
+      },
+      {
+        "startTime": 69.66,
+        "endTime": 72.793,
+        "duration": 3.132,
+        "text": "They discover new paths and find happiness."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-10T06:50:25.175Z",
+  "timingMethod": "enhanced-timing-v3"
+}

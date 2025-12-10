@@ -1,0 +1,121 @@
+{
+  "themes": [
+    "career pivot",
+    "burnout",
+    "identity crisis",
+    "family-work balance",
+    "following passion",
+    "courage to change",
+    "persistence",
+    "finding new purpose",
+    "transformation"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Identity crisis - 'slow-motion accident'",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Senior year panic about career choices",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Burnout from overwhelming job responsibilities",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Family disconnection due to work obsession",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Decision moment to quit after years of deliberation",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Fear of the unknown after resignation",
+      "emotionalWeight": "medium",
+      "source": "3"
+    },
+    {
+      "moment": "Breakthrough in realizing the need for change",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Transformation into a new identity as a novelist/software engineer",
+      "emotionalWeight": "high",
+      "source": "1/2"
+    },
+    {
+      "moment": "Family reconnection after leaving corporate job",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Desperation for change leading to discovering new opportunities",
+      "emotionalWeight": "medium",
+      "source": "2"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "September 5, 2013",
+      "February 26, 2025",
+      "October 3, 2024"
+    ],
+    "locations": [
+      "University of Iowa",
+      "Malaga",
+      "Sky Betting and Gaming"
+    ],
+    "names": [
+      "Jason Steffens",
+      "Jess Gilbert",
+      "Sophia"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Building New Life",
+    "Belonging & Identity",
+    "Connection Across Differences",
+    "Overcoming 'Not Good Enough'",
+    "Persistence Despite Setbacks",
+    "First-Time Courage"
+  ],
+  "storyArc": {
+    "struggle": [
+      "Feeling trapped in a corporate job",
+      "Experiencing burnout and disconnection from family",
+      "Facing an identity crisis and lack of direction"
+    ],
+    "perseverance": [
+      "Months of deliberation before deciding to quit",
+      "Juggling full-time teaching with retraining in tech",
+      "Planning exit strategy while ensuring financial stability"
+    ],
+    "breakthrough": [
+      "Realizing the need for a career change",
+      "Acceptance into a new educational program",
+      "Finding fulfillment in a new career path"
+    ]
+  },
+  "keyQuotes": {
+    "source1": [
+      "That I came to be a lawyer felt like a slow-motion accident.",
+      "I stopped coming in to the office. I stopped thinking of myself as a lawyer."
+    ],
+    "source2": [
+      "I was desperate for something to change when luckily, I discovered Code First Girls through an Instagram ad.",
+      "I have realized how valuable many of my 'teacher skills' are."
+    ],
+    "source3": [
+      "On paper, it looked perfect. I was getting glowing reviews and bonuses.",
+      "It felt liberating... almost."
+    ]
+  }
+}

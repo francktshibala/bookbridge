@@ -270,6 +270,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-indigo-500 to-purple-600',
     abbreviation: 'DO'
   },
+  {
+    id: 'career-pivot-1',
+    title: 'Career Pivot: Finding Your Path',
+    author: 'BookBridge',
+    description: 'An inspiring story about David, a lawyer with a perfect job on paper but empty inside. He works all the time and misses important moments with his family. When he misses his son\'s birthday, it becomes a wake-up call. This powerful tale shows how people find courage to leave safe jobs and follow their dreams. A1 level with Daniel voice.',
+    sentences: 181,
+    bundles: 46,
+    gradient: 'from-blue-500 to-cyan-600',
+    abbreviation: 'CP'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -362,6 +372,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'disability-overcome-1': {
     'A1': '/api/disability-overcome-1-a1/bundles'
   },
+  'career-pivot-1': {
+    'A1': '/api/career-pivot-1-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -391,6 +404,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'refugee-journey-1': 'A1',  // Default to A1 for Refugee Journey: From War Zone to Hope (Modern Story)
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
+  'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
 };
 
 // Get the correct CEFR level for a book
@@ -460,6 +474,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'refugee-journey-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
 };
 
 // Single-level books configuration
