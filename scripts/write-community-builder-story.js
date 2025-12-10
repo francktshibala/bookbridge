@@ -38,7 +38,11 @@ async function writeMainStory() {
 
 CRITICAL RULES:
 - Write ORIGINAL text based on themes, NOT copying from sources
-- Use GENERIC character names (e.g., Sofia, Maria, Carlos) - NOT real names from sources (NOT Ron Finley, NOT Manuel Castro, NOT Rana Abdelhamid)
+- Use DIVERSE, CULTURALLY APPROPRIATE character names - AVOID repeating names from previous stories
+- DO NOT use: Maria, David, Sofia (already used in multiple stories)
+- For community/immigrant stories, use Hispanic/Latino names: Ana, Carlos, Diego, Elena, Gabriel, Isabella, Javier, Lucia, Miguel, Rosa, Santiago, Valentina
+- Use unique names per story to avoid confusion
+- NOT real names from sources (NOT Ron Finley, NOT Manuel Castro, NOT Rana Abdelhamid)
 - Target length: 1,600-1,700 words (20 minutes reading time for A1 level)
 - Use SIMPLE language appropriate for A1 CEFR level:
   * Short sentences (6-12 words average)
@@ -99,7 +103,7 @@ Write an original narrative story that:
    - Simple vocabulary
    - Clear, direct language
    - Present and simple past tense
-9. Uses generic character names (e.g., Sofia, Maria, Carlos) - NEVER use real names from sources
+9. Uses DIVERSE Hispanic/Latino character names (avoid Maria, Sofia, Carlos if already used). Choose names like Ana, Diego, Elena, Gabriel, Isabella, Javier, Lucia, Miguel, Rosa, Santiago, Valentina. NEVER use real names from sources
 
 Return ONLY the story text, no explanations.`;
 
@@ -109,7 +113,7 @@ Return ONLY the story text, no explanations.`;
       messages: [
         {
           role: 'system',
-          content: 'You are a skilled storyteller writing original narratives for A1 level ESL learners. You NEVER copy text from sources - you create original stories based on themes and emotional moments. Your writing is simple, clear, and appropriate for A1 level learners (short sentences, simple words, basic grammar). You always use generic character names (Sofia, Maria, Carlos, etc.), never real names from sources (never Ron Finley, Manuel Castro, Rana Abdelhamid).',
+          content: 'You are a skilled storyteller writing original narratives for A1 level ESL learners. You NEVER copy text from sources - you create original stories based on themes and emotional moments. Your writing is simple, clear, and appropriate for A1 level learners (short sentences, simple words, basic grammar). You always use DIVERSE Hispanic/Latino character names (avoid Maria, Sofia, Carlos if already used - use Ana, Diego, Elena, Gabriel, Isabella, Javier, Lucia, Miguel, Rosa, Santiago, Valentina). Never use real names from sources (never Ron Finley, Manuel Castro, Rana Abdelhamid).',
         },
         {
           role: 'user',

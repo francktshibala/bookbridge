@@ -40,7 +40,11 @@ async function writeMainStory() {
 
 CRITICAL RULES:
 - Write ORIGINAL text based on themes, NOT copying from sources
-- Use GENERIC character names (e.g., Maria, David, Sofia) - NOT real names from sources (NOT Jason Steffens, NOT Jess Gilbert, NOT Sophia)
+- Use DIVERSE, CULTURALLY APPROPRIATE character names - AVOID repeating names from previous stories
+- DO NOT use: Maria, David, Sofia (already used in multiple stories)
+- Choose names that fit the story's cultural context (e.g., Anna, Emma, Lucas, Oliver, Thomas for professional/European contexts; or Ana, Carlos, Elena, Gabriel, Isabella, Javier, Lucia, Miguel, Rosa, Santiago, Valentina for diverse contexts)
+- Use unique names per story to avoid confusion
+- NOT real names from sources (NOT Jason Steffens, NOT Jess Gilbert, NOT Sophia)
 - Target length: 1,600-1,700 words (20 minutes reading time for A1 level)
 - Use SIMPLE language appropriate for A1 CEFR level:
   * Short sentences (6-12 words average)
@@ -101,7 +105,7 @@ Write an original narrative story that:
    - Simple vocabulary
    - Clear, direct language
    - Present and simple past tense
-9. Uses generic character names (e.g., Maria, David, Sofia) - NEVER use real names from sources (never Jason Steffens, Jess Gilbert, Sophia)
+9. Uses DIVERSE character names (avoid Maria, David, Sofia - already used). Choose culturally appropriate names that fit the story context. NEVER use real names from sources (never Jason Steffens, Jess Gilbert, Sophia)
 
 Return ONLY the story text, no explanations.`;
 
@@ -111,7 +115,7 @@ Return ONLY the story text, no explanations.`;
       messages: [
         {
           role: 'system',
-          content: 'You are a skilled storyteller writing original narratives for A1 level ESL learners. You NEVER copy text from sources - you create original stories based on themes and emotional moments. Your writing is simple, clear, and appropriate for A1 level learners (short sentences, simple words, basic grammar). You always use generic character names (Maria, David, Sofia, etc.), never real names from sources (never Jason Steffens, Jess Gilbert, Sophia).',
+          content: 'You are a skilled storyteller writing original narratives for A1 level ESL learners. You NEVER copy text from sources - you create original stories based on themes and emotional moments. Your writing is simple, clear, and appropriate for A1 level learners (short sentences, simple words, basic grammar). You always use DIVERSE, culturally appropriate character names (avoid Maria, David, Sofia - already used in multiple stories). Choose names that fit the story context. Never use real names from sources (never Jason Steffens, Jess Gilbert, Sophia).',
         },
         {
           role: 'user',

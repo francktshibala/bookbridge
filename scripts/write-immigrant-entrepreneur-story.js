@@ -37,7 +37,11 @@ async function writeMainStory() {
 
 CRITICAL RULES:
 - Write ORIGINAL text based on themes, NOT copying from sources
-- Use GENERIC character names (e.g., Carlos, Maria, David, Sofia) - NOT real names from sources
+- Use DIVERSE, CULTURALLY APPROPRIATE character names - AVOID repeating names from previous stories
+- DO NOT use: Maria, David, Sofia (already used in multiple stories)
+- For immigrant/entrepreneur stories, use diverse names: Ana, Diego, Elena, Gabriel, Isabella, Javier, Lucia, Miguel, Rosa, Santiago, Valentina (Hispanic) or Anna, Emma, Lucas, Oliver, Thomas (European) or Chen, Jin, Li, Mei, Wei (Asian)
+- Use unique names per story to avoid confusion
+- NOT real names from sources
 - Target length: 2000-2500 words (20-25 minutes reading time for A2 level)
 - Use simple, clear language appropriate for A2 CEFR level
 - Structure: struggle → perseverance → breakthrough → success

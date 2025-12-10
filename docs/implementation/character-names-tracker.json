@@ -1,0 +1,23 @@
+{
+  "usedNames": {
+    "Maria": ["second-chance-1", "disability-overcome-1", "career-pivot-1"],
+    "David": ["disability-overcome-1", "career-pivot-1"],
+    "Sofia": ["community-builder-1"],
+    "Carlos": ["community-builder-1"],
+    "Mia": ["teaching-dad-to-read"]
+  },
+  "guidelines": {
+    "avoidRepeating": true,
+    "culturalAppropriateness": true,
+    "diversity": true
+  },
+  "nameSuggestions": {
+    "hispanic": ["Ana", "Carlos", "Diego", "Elena", "Gabriel", "Isabella", "Javier", "Lucia", "Miguel", "Rosa", "Santiago", "Valentina"],
+    "asian": ["Chen", "Hiroshi", "Jin", "Li", "Mei", "Raj", "Sakura", "Wei", "Yuki", "Zara"],
+    "african": ["Amina", "Kwame", "Nia", "Omar", "Zara"],
+    "european": ["Anna", "Emma", "Lucas", "Oliver", "Sophia", "Thomas"],
+    "middleEastern": ["Fatima", "Hassan", "Layla", "Omar", "Yusuf"],
+    "universal": ["Alex", "Jordan", "Sam", "Taylor"]
+  }
+}
+

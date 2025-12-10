@@ -426,9 +426,13 @@
 ## Implementation Patterns & Best Practices
 
 ### Character Names
-- **Use generic names** (Maria, Sofia, etc.) for original narratives based on extracted themes
-- This avoids copyright concerns while maintaining authenticity
+- **Use DIVERSE, culturally appropriate names** for original narratives based on extracted themes
+- **AVOID repeating names** from previous stories (Maria, David, Sofia have been used multiple times)
+- **Choose names that fit story context**: Hispanic names for immigrant/community stories, diverse names for universal stories
+- **Name suggestions**: Ana, Carlos, Diego, Elena, Gabriel, Isabella, Javier, Lucia, Miguel, Rosa, Santiago, Valentina (Hispanic); Anna, Emma, Lucas, Oliver, Thomas (European); Chen, Jin, Li, Mei, Wei (Asian); Amina, Kwame, Nia, Omar (African/Middle Eastern)
+- This avoids copyright concerns while maintaining authenticity AND diversity
 - Real names from sources should be avoided unless explicitly public domain
+- **Track used names** in `docs/implementation/character-names-tracker.json` to prevent repetition
 
 ### Source Material
 - **Multi-source approach** (3+ sources) provides legal safety through fair use

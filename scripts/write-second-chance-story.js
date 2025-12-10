@@ -40,7 +40,11 @@ async function writeMainStory() {
 
 CRITICAL RULES:
 - Write ORIGINAL text based on themes, NOT copying from sources
-- Use GENERIC character names (e.g., Maria, David, Sofia) - NOT real names from sources (NOT Brett Buskirk, NOT Sean Pica, NOT any real names)
+- Use DIVERSE, CULTURALLY APPROPRIATE character names - AVOID repeating names from previous stories
+- DO NOT use: Maria, David, Sofia (already used in multiple stories)
+- Choose names that fit the story's cultural context (e.g., Hispanic names for immigrant/community stories, diverse names for universal stories)
+- Use unique names per story to avoid confusion (e.g., Ana, Carlos, Elena, Gabriel, Isabella, Javier, Lucia, Miguel, Rosa, Santiago, Valentina for Hispanic contexts; or Anna, Emma, Lucas, Oliver, Thomas for European contexts)
+- NOT real names from sources (NOT Brett Buskirk, NOT Sean Pica, NOT any real names)
 - Target length: 1,600-1,700 words (20 minutes reading time for A1 level)
 - Use SIMPLE language appropriate for A1 CEFR level:
   * Short sentences (6-12 words average)
@@ -98,7 +102,7 @@ Write an original narrative story that:
    - Simple vocabulary
    - Clear, direct language
    - Present and simple past tense
-9. Uses generic character names (e.g., Maria, David, Sofia) - NEVER use real names from sources (never Brett Buskirk, Sean Pica, or any real names)
+9. Uses DIVERSE character names (avoid Maria, David, Sofia - already used). Choose culturally appropriate names that fit the story context. NEVER use real names from sources (never Brett Buskirk, Sean Pica, or any real names)
 
 Return ONLY the story text, no explanations.`;
 
