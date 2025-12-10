@@ -1,0 +1,146 @@
+{
+  "storyId": "refugee-journey-2",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-2/A1/preview-combined.mp3",
+    "duration": 86.833968,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 6.504,
+        "duration": 6.504,
+        "text": "About This Story  \n\nIn this inspiring story, Amina and Rami face many challenges."
+      },
+      {
+        "startTime": 6.504,
+        "endTime": 10.419,
+        "duration": 3.915,
+        "text": "They are refugees, separated from their parents."
+      },
+      {
+        "startTime": 10.419,
+        "endTime": 13.791,
+        "duration": 3.373,
+        "text": "They wait a long time to be together again."
+      },
+      {
+        "startTime": 13.791,
+        "endTime": 18.955,
+        "duration": 5.163,
+        "text": "This story is about family reunification, education, and hope."
+      },
+      {
+        "startTime": 18.955,
+        "endTime": 22.249,
+        "duration": 3.294,
+        "text": "It shows how refugees can build new lives."
+      },
+      {
+        "startTime": 22.249,
+        "endTime": 25.066,
+        "duration": 2.817,
+        "text": "Even in hard times, hope persists."
+      },
+      {
+        "startTime": 25.066,
+        "endTime": 30.393,
+        "duration": 5.327,
+        "text": "Amina dreams of a better life, and she believes in new beginnings."
+      },
+      {
+        "startTime": 30.393,
+        "endTime": 35.556,
+        "duration": 5.163,
+        "text": "Amina and her little brother, Rami, were torn from their home."
+      },
+      {
+        "startTime": 35.556,
+        "endTime": 39.713,
+        "duration": 4.157,
+        "text": "They hid in the dark as loud sounds filled the night."
+      },
+      {
+        "startTime": 39.713,
+        "endTime": 42.615,
+        "duration": 2.902,
+        "text": "They lost their parents in the chaos."
+      },
+      {
+        "startTime": 42.615,
+        "endTime": 47.243,
+        "duration": 4.628,
+        "text": "Amina was scared but promised Rami she would keep him safe."
+      },
+      {
+        "startTime": 47.243,
+        "endTime": 49.596,
+        "duration": 2.353,
+        "text": "Years passed in a new country."
+      },
+      {
+        "startTime": 49.596,
+        "endTime": 54.067,
+        "duration": 4.471,
+        "text": "Amina worked hard in school and dreamed of a better life."
+      },
+      {
+        "startTime": 54.067,
+        "endTime": 56.649,
+        "duration": 2.582,
+        "text": "One day, she received a letter."
+      },
+      {
+        "startTime": 56.649,
+        "endTime": 58.61,
+        "duration": 1.961,
+        "text": "Their parents were alive!"
+      },
+      {
+        "startTime": 58.61,
+        "endTime": 61.198,
+        "duration": 2.588,
+        "text": "They would come to see them soon."
+      },
+      {
+        "startTime": 61.198,
+        "endTime": 64.957,
+        "duration": 3.758,
+        "text": "Amina smiled, feeling hope bloom in her heart."
+      },
+      {
+        "startTime": 64.957,
+        "endTime": 68.643,
+        "duration": 3.687,
+        "text": "Many refugees leave their homes to find safety."
+      },
+      {
+        "startTime": 68.643,
+        "endTime": 72.173,
+        "duration": 3.53,
+        "text": "They often face long separations from family."
+      },
+      {
+        "startTime": 72.173,
+        "endTime": 77.036,
+        "duration": 4.863,
+        "text": "Some children miss school and cannot continue their education."
+      },
+      {
+        "startTime": 77.036,
+        "endTime": 80.252,
+        "duration": 3.216,
+        "text": "Others struggle to find food and shelter."
+      },
+      {
+        "startTime": 80.252,
+        "endTime": 86.834,
+        "duration": 6.582,
+        "text": "Together, they hope for a better future and the chance to reunite with loved ones."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-10T08:25:58.248Z",
+  "timingMethod": "enhanced-timing-v3"
+}

@@ -1,0 +1,172 @@
+{
+  "themes": [
+    "family reunification",
+    "education transformation",
+    "advocacy leadership",
+    "survival miracle",
+    "cultural bridge",
+    "language barriers",
+    "building new life",
+    "persistence",
+    "hope",
+    "belonging"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "family persecution in Eritrea",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "family separation (Solomon → Greece, Helen + kids → Uganda)",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "children grew up seeing father only through video calls",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "12 years of waiting and fighting for reunification",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "tight embraces after 12 years",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Naemi's realization of lost childhood",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Karime's separation from family since 2016",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Karime's father's death and its emotional impact",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Jonathan's family believed dead",
+      "emotionalWeight": "high",
+      "source": "4"
+    },
+    {
+      "moment": "Jacob killed by rebels",
+      "emotionalWeight": "high",
+      "source": "4"
+    },
+    {
+      "moment": "boys walking 300 miles alone through jungle",
+      "emotionalWeight": "high",
+      "source": "4"
+    },
+    {
+      "moment": "Christine's abduction and injury",
+      "emotionalWeight": "high",
+      "source": "4"
+    },
+    {
+      "moment": "reunion after almost 10 years",
+      "emotionalWeight": "high",
+      "source": "4"
+    },
+    {
+      "moment": "Maria's realization of her impact as a teacher",
+      "emotionalWeight": "medium",
+      "source": "2"
+    },
+    {
+      "moment": "Kapungu's transition from teacher to advocate",
+      "emotionalWeight": "medium",
+      "source": "3"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "2011",
+      "2013",
+      "2015",
+      "2001",
+      "2003",
+      "2004",
+      "2007",
+      "2008",
+      "2010",
+      "2023",
+      "2025"
+    ],
+    "locations": [
+      "Eritrea",
+      "Greece",
+      "Uganda",
+      "South Sudan",
+      "Kakuma Refugee Camp",
+      "Democratic Republic of Congo",
+      "Tanzania",
+      "Kenya",
+      "USA"
+    ],
+    "names": [
+      "Solomon",
+      "Helen",
+      "Naemi",
+      "Bruck",
+      "Yoftahie",
+      "Karime",
+      "Jacob",
+      "Jonathan",
+      "Christine",
+      "Kapungu"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Building New Life",
+    "Belonging & Identity",
+    "Connection Across Differences",
+    "Overcoming 'Not Good Enough'",
+    "Persistence Despite Setbacks",
+    "First-Time Courage",
+    "Communication & Language Barriers"
+  ],
+  "storyArc": {
+    "struggle": [
+      "family persecution in Eritrea",
+      "war in DRC",
+      "separation of families",
+      "long wait for reunification"
+    ],
+    "perseverance": [
+      "applying for family reunification",
+      "fighting legal battles",
+      "surviving in refugee camps",
+      "advocating for children's education"
+    ],
+    "breakthrough": [
+      "family reunification approval",
+      "finding out family members are alive",
+      "successful integration into new communities"
+    ]
+  },
+  "keyQuotes": {
+    "source1": [
+      "We could not believe we had finally arrived in Greece. Even when the pilot announced our landing, it still felt unreal.",
+      "I wanted to bring my family here in a safe and legal way. I didn't want them to risk their lives crossing the sea."
+    ],
+    "source2": [
+      "If they see a [South Sudanese] refugee teaching [Swahili], they will believe it's not hard. They, too, can do it."
+    ],
+    "source3": [
+      "I kept thinking about the kids in the refugee camp who were suffering–no clothes, no shoes, no school supplies."
+    ],
+    "source4": [
+      "When I found my husband and my children, that was like… well, I have no words to say it."
+    ]
+  }
+}

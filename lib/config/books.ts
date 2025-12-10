@@ -251,6 +251,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'RJ'
   },
   {
+    id: 'refugee-journey-2',
+    title: 'Refugee Journey: Family Reunited',
+    author: 'BookBridge',
+    description: 'An inspiring story about Amina and Rami, separated from their parents for 12 years. Through long waits, video calls, legal battles, and perseverance, they fight for family reunification. This powerful tale shows the resilience of refugees, the importance of family, and the hope that keeps people going. A1 level with Jane voice.',
+    sentences: 222,
+    bundles: 56,
+    gradient: 'from-indigo-500 to-blue-600',
+    abbreviation: 'RJ2'
+  },
+  {
     id: 'community-builder-1',
     title: 'Community Builder: One Person Transforms a Neighborhood',
     author: 'BookBridge',
@@ -376,6 +386,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'refugee-journey-1': {
     'A1': '/api/refugee-journey-1-a1/bundles'
   },
+  'refugee-journey-2': {
+    'A1': '/api/refugee-journey-2-a1/bundles'
+  },
   'community-builder-1': {
     'A1': '/api/community-builder-1-a1/bundles'
   },
@@ -415,6 +428,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'teaching-dad-to-read': 'A1',  // Default to A1 for First-Gen Student Teaching Dad to Read (Modern Story)
   'immigrant-entrepreneur': 'A1',  // Default to A1 for Immigrant Entrepreneur: From Failure to Success (Modern Story)
   'refugee-journey-1': 'A1',  // Default to A1 for Refugee Journey: From War Zone to Hope (Modern Story)
+  'refugee-journey-2': 'A1',  // Default to A1 for Refugee Journey: Family Reunited (Modern Story)
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
@@ -486,6 +500,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'teaching-dad-to-read': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'immigrant-entrepreneur': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'refugee-journey-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
+  'refugee-journey-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)

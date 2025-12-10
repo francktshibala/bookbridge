@@ -19,6 +19,7 @@
 | `disability-overcome-1` | Disability Overcome: Finding New Ways | BookBridge | Multiple sources (thematic extraction) | Disability Overcome, Adaptation, Finding New Ways, Persistence, Identity Transformation, Communication Barriers, Belonging, Building New Life | ✅ Complete | ✅ | - | - | ~20 min | 52 | 2025-12-10 |
 | `career-pivot-1` | Career Pivot: Finding Your Path | BookBridge | Multiple sources (thematic extraction) | Career Pivot, Burnout, Identity Crisis, Family-Work Balance, Following Passion, Courage to Change, Persistence, Finding New Purpose, Transformation | ✅ Complete | ✅ | - | - | ~18 min | 46 | 2025-12-10 |
 | `second-chance-1` | Second Chance: Finding Redemption | BookBridge | Multiple sources (thematic extraction) | Second Chance, Redemption, Transformation, Prison to Career, Addiction Recovery, License Reinstatement, Persistence, Spiritual Awakening, Community Support, Rebuilding Life, Belonging, Overcoming Stigma | ✅ Complete | ✅ | - | - | ~17 min | 53 | 2025-12-10 |
+| `refugee-journey-2` | Refugee Journey: Family Reunited | BookBridge | Multiple sources (thematic extraction) | Family Reunification, Refugee Journey, Persistence, Hope, Belonging, Building New Life, Education Transformation, Survival, Advocacy Leadership | ✅ Complete | ✅ | - | - | ~20 min | 56 | 2025-12-10 |
 
 **Legend**:
 - ✅ Complete
@@ -420,6 +421,143 @@
 - `scripts/integrate-disability-overcome-database.ts`
 - `scripts/seed-disability-overcome.ts`
 - `app/api/disability-overcome-1-a1/bundles/route.ts`
+
+---
+
+### 6. Refugee Journey: Family Reunited
+
+**Story ID**: `refugee-journey-2`  
+**Title**: Refugee Journey: Family Reunited  
+**Author**: BookBridge  
+**Collection**: Modern Voices  
+**Completion Date**: 2025-12-10
+
+#### Sources
+- **Source 1**: UNHCR Europe - Solomon Family (12-year separation, Eritrea → Greece, family reunification)
+- **Source 2**: IRC TeachWell - Maria Nyamal (refugee becomes teacher, South Sudan → Kenya)
+- **Source 3**: TSOS - Kapungu Ruhereshwa (teacher to advocate, DRC → Tanzania → USA, 19 years)
+- **Source 4**: RefugePoint - Jonathan & Christine (believed dead → reunion, DRC → Kenya → USA)
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - Story-driven (personal narratives with clear emotional journeys)
+  - Sufficient content for ~20-minute A1 story
+  - 4 distinct sources for multi-source extraction (legal compliance)
+  
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Separation → Perseverance → Breakthrough → Reunion → Transformation
+  - 15+ emotional moments identified (exceeding 5-7 requirement)
+  - 7 ESL resonance multipliers: Building New Life, Belonging & Identity, Connection Across Differences, Overcoming "Not Good Enough", Persistence Despite Setbacks, First-Time Courage, Communication & Language Barriers
+
+#### Content Details
+- **Original Text**: AI-generated narrative based on extracted themes (1,706 words)
+- **A1 Level**: 222 sentences, 1,706 words (~20 minutes)
+- **Bundles**: 56 (4 sentences per bundle)
+- **Voice**: Jane (RILOU7YmBhvwJGDGjNmP)
+- **Audio Speed**: 0.85× (FFmpeg slowdown)
+
+#### Themes & Emotional Moments
+**Themes**:
+- Family reunification
+- Education transformation
+- Advocacy leadership
+- Survival miracle
+- Cultural bridge
+- Language barriers
+- Building new life
+- Persistence
+- Hope
+- Belonging
+
+**Emotional Moments** (15+ identified):
+1. Family persecution in Eritrea (high)
+2. Family separation (Solomon → Greece, Helen + kids → Uganda) (high)
+3. Children grew up seeing father only through video calls (high)
+4. 12 years of waiting and fighting for reunification (high)
+5. Tight embraces after 12 years (high)
+6. Naemi's realization of lost childhood (high)
+7. Maria's realization of her impact as a teacher (medium)
+8. Kapungu's transition from teacher to advocate (medium)
+9. Jonathan's family believed dead (high)
+10. Jacob killed by rebels (high)
+11. Boys walking 300 miles alone through jungle (high)
+12. Christine's abduction and injury (high)
+13. Reunion after almost 10 years (high)
+14. And more...
+
+**ESL Resonance Multipliers**:
+- Building New Life
+- Belonging & Identity
+- Connection Across Differences
+- Overcoming "Not Good Enough"
+- Persistence Despite Setbacks
+- First-Time Courage
+- Communication & Language Barriers
+
+#### Implementation Steps Completed
+- ✅ Step 0.25: Source Material Check
+- ✅ Step 0.5: Emotional Impact Validation
+- ✅ Step 1: Theme extraction from 4 sources
+- ✅ Step 2: Background context written (30-50 words)
+- ✅ Step 3: Emotional hook written (50-100 words)
+- ✅ Step 4: Main story written (original narrative, 1,706 words)
+- ✅ Step 4.5: Markdown/metadata cleanup (verified clean)
+- ✅ Step 7: Combined preview text generated (192 words)
+- ✅ Step 8: Combined preview audio generated (86.83s, Jane voice)
+- ✅ Step 9: Bundle audio generation (56 bundles, Enhanced Timing v3)
+- ✅ Step 10: Database integration (56 BookChunk records)
+- ✅ Step 11: API endpoint created (`/api/refugee-journey-2-a1/bundles`)
+- ✅ Step 12: Frontend config updated
+- ✅ Step 13: FeaturedBook seeded (Modern Voices collection, position 14)
+
+#### Key Learnings
+1. **Character Name Diversity**: Successfully used diverse names (Amina, Rami, Solomon, Helen) instead of repeating Maria/David/Sofia, demonstrating the character name diversity system working effectively.
+
+2. **Four-Source Approach**: Using 4 sources provided excellent diversity (family reunification, education transformation, advocacy, survival miracle) while maintaining legal compliance through thematic extraction.
+
+3. **Story Expansion**: Initial AI-generated story was 1,011 words (~13 minutes); expanded twice to reach 1,706 words (~20 minutes) meeting A1 target.
+
+4. **Jane Voice**: Used Jane voice for this refugee journey story, demonstrating appropriate voice selection for emotional, family-focused narratives.
+
+5. **Enhanced Timing v3**: Perfect sync achieved for both intro section and main story bundles with Jane voice.
+
+#### Technical Notes
+- **Audio Generation**: All 56 bundles generated successfully with Jane voice
+- **Database**: 56 BookChunk records created with Enhanced Timing v3 metadata
+- **API**: Endpoint returns `previewCombined` and `previewCombinedAudio` with sentence timings
+- **Frontend**: Added to Modern Voices collection (position 14)
+
+#### Quality Metrics
+- **Emotional Engagement**: High (passes "text a friend" test)
+- **ESL Relevance**: High (7 resonance multipliers)
+- **Length**: ✅ Meets requirement (20 minutes for A1)
+- **Audio Quality**: ✅ Perfect sync with Enhanced Timing v3
+- **Sentence Quality**: ✅ Average 7.7 words per sentence (A1 appropriate)
+- **Character Names**: ✅ Diverse names (Amina, Rami, Solomon, Helen) - no repetition
+
+#### Files Created
+- `cache/files/refugee-journey-2-source-1-solomon-family.txt`
+- `cache/files/refugee-journey-2-source-2-maria-teacher.txt`
+- `cache/files/refugee-journey-2-source-3-kapungu-advocate.txt`
+- `cache/files/refugee-journey-2-source-4-jonathan-christine-reunion.txt`
+- `cache/refugee-journey-2-validation.md`
+- `cache/refugee-journey-2-themes.json`
+- `cache/refugee-journey-2-background.txt`
+- `cache/refugee-journey-2-hook.txt`
+- `cache/refugee-journey-2-A1-original.txt`
+- `cache/refugee-journey-2-A1-preview-combined.txt`
+- `cache/refugee-journey-2-A1-preview-combined-audio.json`
+- `cache/refugee-journey-2-A1-bundles-metadata.json`
+- `scripts/extract-refugee-journey-2-themes.js`
+- `scripts/write-refugee-journey-2-story.js`
+- `scripts/expand-refugee-journey-2-a1.js`
+- `scripts/generate-refugee-journey-2-preview-combined.js`
+- `scripts/generate-refugee-journey-2-preview-audio.js`
+- `scripts/generate-refugee-journey-2-bundles.js`
+- `scripts/integrate-refugee-journey-2-database.ts`
+- `scripts/seed-refugee-journey-2.ts`
+- `app/api/refugee-journey-2-a1/bundles/route.ts`
 
 ---
 
