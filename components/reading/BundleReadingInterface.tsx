@@ -73,8 +73,8 @@ function IntroSectionWithHighlighting({
   const lastKnownIndexRef = useRef<number>(0);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastScrolledIndexRef = useRef<number>(-1);
-  const lastUpdateTimeRef = useRef<number>(0);
-  const UPDATE_THROTTLE_MS = 100; // Update every 100ms (10fps) instead of 60fps for smoother performance
+  const durationScaleRef = useRef<number>(1.0); // Duration calibration scale (like BundleAudioManager)
+  const highlightLeadSeconds = -0.5; // Hardware delay compensation (same as main story BundleAudioManager)
 
   // Split text into sentences
   const sentences = React.useMemo(() => {
@@ -92,13 +92,16 @@ function IntroSectionWithHighlighting({
   }, [combinedText]);
 
   // Use pre-calculated timings if available, otherwise calculate on the fly (fallback)
+  // Apply duration scaling if actual audio duration differs from metadata
   const sentenceTimings = React.useMemo(() => {
+    const scale = durationScaleRef.current;
+    
     // PREFERRED: Use pre-calculated Enhanced Timing v3 timings from audio generation
     if (providedTimings && providedTimings.length > 0) {
       return providedTimings.map((timing, index) => ({
-        start: timing.startTime,
-        end: timing.endTime,
-        duration: timing.duration,
+        start: timing.startTime * scale,
+        end: timing.endTime * scale,
+        duration: timing.duration * scale,
         sentence: timing.text,
         index: index
       }));
@@ -140,39 +143,40 @@ function IntroSectionWithHighlighting({
     });
   }, [sentences, duration, providedTimings]);
 
-  // Find current sentence based on audio time
+  // Find current sentence based on audio time (with hardware delay compensation)
   const findCurrentSentence = useCallback((time: number) => {
     if (sentenceTimings.length === 0) return -1;
     
-    const LOOKAHEAD_MS = 0.12; // 120ms look-ahead
-    const t = time + LOOKAHEAD_MS;
+    // Apply hardware delay compensation (same as main story BundleAudioManager)
+    // highlightLeadSeconds = -0.5 means we add 500ms to compensate for audio pipeline delay
+    const highlightTime = time + highlightLeadSeconds;
     const lastIdx = lastKnownIndexRef.current;
     
     // Check last known position first
-    if (lastIdx < sentenceTimings.length && t >= sentenceTimings[lastIdx].start && t < sentenceTimings[lastIdx].end) {
+    if (lastIdx < sentenceTimings.length && highlightTime >= sentenceTimings[lastIdx].start && highlightTime < sentenceTimings[lastIdx].end) {
       return lastIdx;
     }
     
     // Check neighbors
-    if (lastIdx + 1 < sentenceTimings.length && t >= sentenceTimings[lastIdx + 1].start && t < sentenceTimings[lastIdx + 1].end) {
+    if (lastIdx + 1 < sentenceTimings.length && highlightTime >= sentenceTimings[lastIdx + 1].start && highlightTime < sentenceTimings[lastIdx + 1].end) {
       lastKnownIndexRef.current = lastIdx + 1;
       return lastIdx + 1;
     }
-    if (lastIdx - 1 >= 0 && t >= sentenceTimings[lastIdx - 1].start && t < sentenceTimings[lastIdx - 1].end) {
+    if (lastIdx - 1 >= 0 && highlightTime >= sentenceTimings[lastIdx - 1].start && highlightTime < sentenceTimings[lastIdx - 1].end) {
       lastKnownIndexRef.current = lastIdx - 1;
       return lastIdx - 1;
     }
     
     // Full scan
     for (let i = 0; i < sentenceTimings.length; i++) {
-      if (t >= sentenceTimings[i].start && t < sentenceTimings[i].end) {
+      if (highlightTime >= sentenceTimings[i].start && highlightTime < sentenceTimings[i].end) {
         lastKnownIndexRef.current = i;
         return i;
       }
     }
     
     // If past all sentences, return last sentence
-    if (t >= sentenceTimings[sentenceTimings.length - 1].end) {
+    if (highlightTime >= sentenceTimings[sentenceTimings.length - 1].end) {
       lastKnownIndexRef.current = sentenceTimings.length - 1;
       return sentenceTimings.length - 1;
     }
@@ -180,17 +184,9 @@ function IntroSectionWithHighlighting({
     return -1;
   }, [sentenceTimings]);
 
-  // Update time and highlighting (throttled for smooth performance)
+  // Update time and highlighting (using requestAnimationFrame for smooth 60fps updates)
   const updateTimeAndHighlight = useCallback(() => {
     if (!audioRef.current || !isPlaying) return;
-    
-    const now = performance.now();
-    // Throttle updates to 10fps (every 100ms) for smoother performance
-    if (now - lastUpdateTimeRef.current < UPDATE_THROTTLE_MS) {
-      timeUpdateRef.current = requestAnimationFrame(updateTimeAndHighlight);
-      return;
-    }
-    lastUpdateTimeRef.current = now;
     
     const time = audioRef.current.currentTime;
     setCurrentTime(time);
@@ -289,6 +285,22 @@ function IntroSectionWithHighlighting({
     
     const handleLoadedData = () => {
       console.log('✅ Intro audio: Data loaded');
+      
+      // Duration calibration (like BundleAudioManager) - measure actual audio duration
+      const actualDuration = audio.duration || duration;
+      const metadataDuration = duration;
+      
+      if (metadataDuration > 0 && actualDuration > 0 && Number.isFinite(actualDuration)) {
+        const rawScale = actualDuration / metadataDuration;
+        // Clamp duration scale to prevent extreme timing distortions (same as BundleAudioManager)
+        const clampedScale = Math.min(1.10, Math.max(0.85, rawScale));
+        durationScaleRef.current = clampedScale;
+        
+        console.log(`📐 Intro audio duration calibration: metadata=${metadataDuration.toFixed(2)}s, actual=${actualDuration.toFixed(2)}s, scale=${rawScale.toFixed(3)} (clamped to ${clampedScale.toFixed(3)})`);
+      } else {
+        durationScaleRef.current = 1.0;
+        console.log('⚠️ Intro audio: Using default scale (1.0) - duration calibration skipped');
+      }
     };
     
     audio.addEventListener('ended', handleEnded);

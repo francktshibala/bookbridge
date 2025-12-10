@@ -232,7 +232,46 @@ node scripts/simplify-[book-name].js [LEVEL]
 #   4. Include in simplification scripts for production reliability
 #   5. This prevents costly regeneration and maintains perfect audio-text sync
 
-# ✅ 7.5. Generate Book Preview (AFTER simplification, BEFORE audio generation)
+# ✅ 7.25. Remove Markdown/Metadata Characters (AFTER simplification, BEFORE preview/audio)
+# CRITICAL: Clean text to prevent markdown/metadata characters from displaying in UI
+# PROBLEM: AI sometimes includes markdown formatting (**, #, @, /) that displays as raw text
+# SYMPTOM: Users see "**A New Beginning**" or "# Chapter 1" instead of clean text
+# COST: Poor UX + broken sentence parsing + audio-text mismatch
+#
+# MANDATORY CLEANUP FUNCTION (add to simplification scripts):
+# function cleanMarkdownAndMetadata(text: string): string {
+#   return text
+#     // Remove markdown headings (# ## ###)
+#     .replace(/^#{1,6}\s+/gm, '')
+#     // Remove markdown bold (**text** or __text__)
+#     .replace(/\*\*([^*]+)\*\*/g, '$1')
+#     .replace(/__([^_]+)__/g, '$1')
+#     // Remove markdown italic (*text* or _text_)
+#     .replace(/\*([^*]+)\*/g, '$1')
+#     .replace(/_([^_]+)_/g, '$1')
+#     // Remove markdown code (`code`)
+#     .replace(/`([^`]+)`/g, '$1')
+#     // Remove markdown links [text](url)
+#     .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+#     // Remove metadata markers (@, /, etc. when not part of words)
+#     .replace(/\s@\s/g, ' ')
+#     .replace(/\s\/\s/g, ' ')
+#     // Clean up multiple spaces
+#     .replace(/\s+/g, ' ')
+#     .trim();
+# }
+#
+# VALIDATION: After simplification, run cleanup before saving:
+# const cleanedText = cleanMarkdownAndMetadata(simplifiedText);
+# // Save cleanedText to cache and database, NOT raw simplifiedText
+#
+# ⚠️ CRITICAL: Apply cleanup AFTER simplification but BEFORE:
+# - Preview generation (Step 7.5)
+# - Audio generation (Step 8)
+# - Database storage (Step 10)
+# This ensures clean text appears in UI and matches audio exactly
+
+# ✅ 7.5. Generate Book Preview (AFTER simplification and cleanup, BEFORE audio generation)
 node scripts/generate-[book-name]-preview.js [LEVEL]
 # Example: node scripts/generate-necklace-preview.js A1
 # CRITICAL: Generate preview AFTER simplification to use level-appropriate text

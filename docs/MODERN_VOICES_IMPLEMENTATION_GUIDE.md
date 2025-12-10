@@ -103,6 +103,45 @@ node scripts/simplify-{content-id}.js [LEVEL]
 # - Follow CEFR word limits (A1: 6-12 words, A2: 8-15, B1: 12-25)
 # - Run in TERMINAL (not chat) for long-running processes
 # - Cache progress every 10 sentences
+#
+# ✅ 3.5. Remove Markdown/Metadata Characters (MANDATORY - After simplification)
+# CRITICAL: Clean text to prevent markdown/metadata characters from displaying in UI
+# PROBLEM: AI sometimes includes markdown formatting (**, #, @, /) that displays as raw text
+# SYMPTOM: Users see "**A New Beginning**" or "# Chapter 1" instead of clean text
+# COST: Poor UX + broken sentence parsing + audio-text mismatch
+#
+# MANDATORY CLEANUP FUNCTION (add to simplification scripts):
+# function cleanMarkdownAndMetadata(text: string): string {
+#   return text
+#     // Remove markdown headings (# ## ###)
+#     .replace(/^#{1,6}\s+/gm, '')
+#     // Remove markdown bold (**text** or __text__)
+#     .replace(/\*\*([^*]+)\*\*/g, '$1')
+#     .replace(/__([^_]+)__/g, '$1')
+#     // Remove markdown italic (*text* or _text_)
+#     .replace(/\*([^*]+)\*/g, '$1')
+#     .replace(/_([^_]+)_/g, '$1')
+#     // Remove markdown code (`code`)
+#     .replace(/`([^`]+)`/g, '$1')
+#     // Remove markdown links [text](url)
+#     .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+#     // Remove metadata markers (@, /, etc. when not part of words)
+#     .replace(/\s@\s/g, ' ')
+#     .replace(/\s\/\s/g, ' ')
+#     // Clean up multiple spaces
+#     .replace(/\s+/g, ' ')
+#     .trim();
+# }
+#
+# VALIDATION: After simplification, run cleanup before saving:
+# const cleanedText = cleanMarkdownAndMetadata(simplifiedText);
+# // Save cleanedText to cache and database, NOT raw simplifiedText
+#
+# ⚠️ CRITICAL: Apply cleanup AFTER simplification but BEFORE:
+# - Preview generation (Phase 3)
+# - Audio generation (Phase 4)
+# - Database storage (Phase 5)
+# This ensures clean text appears in UI and matches audio exactly
 ```
 
 ### Phase 2: Database Seeding (⚠️ MANDATORY FOR CATALOG VISIBILITY!)
@@ -191,6 +230,40 @@ node scripts/generate-{content-id}-preview.js [LEVEL]
 # - Save to Supabase: {content-id}/{level}/preview-combined.mp3
 # - Cache metadata: cache/{content-id}-{level}-preview-combined-audio.json (with sentenceTimings array)
 # - **Why:** Pre-calculated timings ensure perfect sync between highlighting and audio (matching main story)
+#
+# ⚠️ CRITICAL: Intro Audio Sync Fix (MANDATORY for perfect highlighting)
+# PROBLEM: Intro section highlighting runs ahead/behind audio compared to main story
+# ROOT CAUSE: Intro uses different timing approach than main story (BundleAudioManager)
+# SYMPTOM: Highlighting doesn't match voice, auto-scroll feels off
+#
+# FIX REQUIREMENTS (must match main story timing):
+# 1. Hardware Delay Compensation:
+#    - Use -500ms lead (NOT +120ms lookahead) to compensate for audio pipeline delay
+#    - Main story uses: highlightLeadSeconds = -0.5 (500ms lead)
+#    - Intro currently uses: LOOKAHEAD_MS = 0.12 (120ms - too small)
+#    - Fix: Change intro to use -0.5s offset (same as main story)
+#
+# 2. Duration Calibration:
+#    - Measure actual audio duration on load (like BundleAudioManager)
+#    - Scale sentence timings proportionally if metadata duration ≠ actual duration
+#    - Main story uses: durationScale = actualDuration / metadataDuration
+#    - Intro currently: Uses raw metadata timings (no scaling)
+#    - Fix: Add duration calibration to intro component
+#
+# 3. Update Frequency:
+#    - Use requestAnimationFrame (60fps) instead of throttled 10fps
+#    - Main story uses: requestAnimationFrame for smooth updates
+#    - Intro currently: Throttled to 100ms (10fps)
+#    - Fix: Use requestAnimationFrame for smoother highlighting
+#
+# IMPLEMENTATION LOCATION:
+# - File: components/reading/BundleReadingInterface.tsx
+# - Component: IntroSectionWithHighlighting
+# - Changes needed:
+#   1. Change LOOKAHEAD_MS from 0.12 to -0.5 (hardware delay compensation)
+#   2. Add duration calibration on audio load (measure actual duration, scale timings)
+#   3. Replace throttled updates with requestAnimationFrame
+#   4. Use same timing logic as BundleAudioManager for consistency
 #
 # ✅ VALIDATION CHECKLIST (MANDATORY - Run before continuing):
 # 1. Check combined preview file exists: cache/{content-id}-{level}-preview-combined.txt

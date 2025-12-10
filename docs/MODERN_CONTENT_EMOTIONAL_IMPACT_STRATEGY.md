@@ -1213,6 +1213,42 @@ Use reliable free sources (public domain memoirs, historical speeches, long-form
     - Cache results after every 10 sentences (can resume if interrupted)
   - **Why:** Prevents sync issues, ensures natural reading flow
 
+- [ ] **Step 4.5: Remove Markdown/Metadata Characters** - Clean text before saving:
+  - **CRITICAL:** AI sometimes includes markdown formatting (**, #, @, /) that displays as raw text
+  - **PROBLEM:** Users see "**A New Beginning**" or "# Chapter 1" instead of clean text
+  - **SYMPTOM:** Broken sentence parsing, poor UX, audio-text mismatch
+  - **MANDATORY CLEANUP FUNCTION** (add to simplification scripts):
+    ```javascript
+    function cleanMarkdownAndMetadata(text) {
+      return text
+        // Remove markdown headings (# ## ###)
+        .replace(/^#{1,6}\s+/gm, '')
+        // Remove markdown bold (**text** or __text__)
+        .replace(/\*\*([^*]+)\*\*/g, '$1')
+        .replace(/__([^_]+)__/g, '$1')
+        // Remove markdown italic (*text* or _text_)
+        .replace(/\*([^*]+)\*/g, '$1')
+        .replace(/_([^_]+)_/g, '$1')
+        // Remove markdown code (`code`)
+        .replace(/`([^`]+)`/g, '$1')
+        // Remove markdown links [text](url)
+        .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+        // Remove metadata markers (@, /, etc. when not part of words)
+        .replace(/\s@\s/g, ' ')
+        .replace(/\s\/\s/g, ' ')
+        // Clean up multiple spaces
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+    ```
+  - **VALIDATION:** After simplification, run cleanup before saving:
+    ```javascript
+    const cleanedText = cleanMarkdownAndMetadata(simplifiedText);
+    // Save cleanedText to cache and database, NOT raw simplifiedText
+    ```
+  - **CRITICAL:** Apply cleanup AFTER simplification but BEFORE preview/audio generation
+  - **Why:** Ensures clean text appears in UI and matches audio exactly
+
 ### **Phase 2: Database Seeding**
 - [ ] **Step 5: Create Seed Script** - Create scripts/seed-{story-id}.ts with FeaturedBook, Collection, Membership records
 - [ ] **Step 6: Run Seed Script** - Execute seed script, verify database records created
