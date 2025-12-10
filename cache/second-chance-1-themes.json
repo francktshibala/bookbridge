@@ -1,0 +1,151 @@
+{
+  "themes": [
+    "second chance",
+    "redemption",
+    "transformation",
+    "prison to career",
+    "addiction recovery",
+    "license reinstatement",
+    "persistence",
+    "spiritual awakening",
+    "community support",
+    "rebuilding life",
+    "belonging",
+    "overcoming stigma"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Facing the possibility of dying in prison",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Believing life was over at age 16 with a 24-year sentence",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Experiencing loss and grief after brother's death",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Disbelief in the opportunity for change when hearing about The Last Mile",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Determination to fight for enrollment in coding program despite computer ban",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Vulnerability in reading to fellow inmates for the first time",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Realizing addiction was a symptom of spiritual brokenness",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "First day of freedom logging on for work",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Tears of joy during license reinstatement hearing",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Relapse at new job and subsequent arrest",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Witnessing community education fostered in prison",
+      "emotionalWeight": "medium",
+      "source": "2"
+    },
+    {
+      "moment": "First time sharing personal story publicly",
+      "emotionalWeight": "medium",
+      "source": "2"
+    },
+    {
+      "moment": "Overcoming fear of being buried alive due to addiction",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "First steps toward healing after spiritual awakening",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Transitioning from addiction to a fit construction worker",
+      "emotionalWeight": "medium",
+      "source": "3"
+    },
+    {
+      "moment": "Becoming a teaching assistant and helping others",
+      "emotionalWeight": "medium",
+      "source": "1"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "2002",
+      "October 2018"
+    ],
+    "locations": [
+      "America",
+      "New York"
+    ],
+    "names": [
+      "Brett Buskirk",
+      "Sean Pica"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Building New Life",
+    "Belonging & Identity",
+    "Connection Across Differences",
+    "Overcoming 'Not Good Enough'",
+    "Persistence Despite Setbacks",
+    "First-Time Courage"
+  ],
+  "storyArc": {
+    "struggle": [
+      "Incarceration at a young age",
+      "Facing addiction and its consequences",
+      "Experiencing loss and grief"
+    ],
+    "perseverance": [
+      "Fighting for enrollment in educational programs",
+      "Continuing education despite barriers",
+      "Seeking help and support from others"
+    ],
+    "breakthrough": [
+      "Gaining acceptance into The Last Mile program",
+      "Achieving multiple degrees and professional recognition",
+      "Reinstatement of nursing license"
+    ]
+  },
+  "keyQuotes": {
+    "source1": [
+      "I had to face the possibility I might die in prison.",
+      "For the first time, I was allowed to think, to build, to be more than just another person serving time."
+    ],
+    "source2": [
+      "I thought my life was over.",
+      "That vulnerability knocked down walls. I learned that sharing my story heals."
+    ],
+    "source3": [
+      "Addiction is merely a symptom of complete spiritual brokenness.",
+      "My license was reinstated."
+    ]
+  }
+}

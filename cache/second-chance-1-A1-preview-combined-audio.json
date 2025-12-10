@@ -1,0 +1,140 @@
+{
+  "storyId": "second-chance-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/preview-combined.mp3",
+    "duration": 73.462472,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 5.63,
+        "duration": 5.63,
+        "text": "About This Story  \n\nIn this inspiring story, Maria faces hard times."
+      },
+      {
+        "startTime": 5.63,
+        "endTime": 7.725,
+        "duration": 2.095,
+        "text": "She feels lost and scared."
+      },
+      {
+        "startTime": 7.725,
+        "endTime": 11.109,
+        "duration": 3.384,
+        "text": "But she gets a second chance after prison."
+      },
+      {
+        "startTime": 11.109,
+        "endTime": 14.977,
+        "duration": 3.868,
+        "text": "This story shows her journey of change and hope."
+      },
+      {
+        "startTime": 14.977,
+        "endTime": 18.926,
+        "duration": 3.949,
+        "text": "Maria learns that people can rebuild their lives."
+      },
+      {
+        "startTime": 18.926,
+        "endTime": 24.152,
+        "duration": 5.227,
+        "text": "Everyone deserves a new start, and second chances are possible."
+      },
+      {
+        "startTime": 24.152,
+        "endTime": 26.811,
+        "duration": 2.659,
+        "text": "Maria sat alone in her dark cell."
+      },
+      {
+        "startTime": 26.811,
+        "endTime": 29.229,
+        "duration": 2.417,
+        "text": "She felt very lost and scared."
+      },
+      {
+        "startTime": 29.229,
+        "endTime": 31.566,
+        "duration": 2.337,
+        "text": "Her days were long and empty."
+      },
+      {
+        "startTime": 31.566,
+        "endTime": 36.601,
+        "duration": 5.035,
+        "text": "Drugs had taken everything from her: her family and friends."
+      },
+      {
+        "startTime": 36.601,
+        "endTime": 40.377,
+        "duration": 3.776,
+        "text": "She cried every night, wishing for a way out."
+      },
+      {
+        "startTime": 40.377,
+        "endTime": 44.234,
+        "duration": 3.857,
+        "text": "Then, a kind guard gave her a book about hope."
+      },
+      {
+        "startTime": 44.234,
+        "endTime": 47.285,
+        "duration": 3.051,
+        "text": "As she read, a spark lit inside her."
+      },
+      {
+        "startTime": 47.285,
+        "endTime": 49.138,
+        "duration": 1.853,
+        "text": "Maybe she could change."
+      },
+      {
+        "startTime": 49.138,
+        "endTime": 51.878,
+        "duration": 2.74,
+        "text": "This was her moment to fight back."
+      },
+      {
+        "startTime": 51.878,
+        "endTime": 54.779,
+        "duration": 2.901,
+        "text": "Many people face hard times in life."
+      },
+      {
+        "startTime": 54.779,
+        "endTime": 58.727,
+        "duration": 3.949,
+        "text": "Some may go to prison or struggle with addiction."
+      },
+      {
+        "startTime": 58.727,
+        "endTime": 61.386,
+        "duration": 2.659,
+        "text": "These challenges can change them."
+      },
+      {
+        "startTime": 61.386,
+        "endTime": 66.452,
+        "duration": 5.065,
+        "text": "After these difficult experiences, some find a second chance."
+      },
+      {
+        "startTime": 66.452,
+        "endTime": 71.045,
+        "duration": 4.593,
+        "text": "They work to rebuild their lives and make better choices."
+      },
+      {
+        "startTime": 71.045,
+        "endTime": 73.462,
+        "duration": 2.417,
+        "text": "Everyone deserves a new start."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-10T07:31:55.107Z",
+  "timingMethod": "enhanced-timing-v3"
+}

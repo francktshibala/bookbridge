@@ -280,6 +280,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-blue-500 to-cyan-600',
     abbreviation: 'CP'
   },
+  {
+    id: 'second-chance-1',
+    title: 'Second Chance: Finding Redemption',
+    author: 'BookBridge',
+    description: 'An inspiring story about Maria, who faces difficult times and gets a second chance. After despair and rock bottom, she finds hope through determination, support, and transformation. This powerful tale shows how people can rebuild their lives, find redemption, and create new beginnings. A1 level with Jane voice.',
+    sentences: 212,
+    bundles: 53,
+    gradient: 'from-orange-500 to-red-600',
+    abbreviation: 'SC'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -375,6 +385,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
+  'second-chance-1': {
+    'A1': '/api/second-chance-1-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -405,6 +418,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
+  'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
 };
 
 // Get the correct CEFR level for a book
@@ -475,6 +489,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
 };
 
 // Single-level books configuration

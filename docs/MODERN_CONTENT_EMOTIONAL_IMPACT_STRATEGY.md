@@ -2451,7 +2451,7 @@ Every story must have:
 3. ✅ **First-Generation Professional Success** ⭐ **NEW** (5+ ESL multipliers, high ESL relevance) - **Target: 2-3 stories** - **COMPLETED: 2/2-3** (`teaching-dad-to-read`, `immigrant-entrepreneur`)
 4. ✅ **Disability Overcome** (universal inspiration, strong ESL parallel) - **Target: 2-3 stories** - **COMPLETED: 1/2-3** (`disability-overcome-1`)
 5. ✅ **Career Pivot** (fills career gap, relatable to immigrants) - **Target: 2-3 stories** - **COMPLETED: 1/2-3** (`career-pivot-1`)
-6. ❌ **Second Chance** (redemption arc, universal appeal) - **Target: 1-2 stories** - **NEXT**
+6. ✅ **Second Chance** (redemption arc, universal appeal) - **Target: 1-2 stories** - **COMPLETED: 1/1-2** (`second-chance-1`)
 
 **Why this order:** Maximizes ESL resonance while filling critical genre gaps. These six Tier 1 themes have highest universal + ESL impact and are distinct from current coverage. **Priority list confirmed and solid.**
 

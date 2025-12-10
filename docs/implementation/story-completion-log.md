@@ -2,7 +2,7 @@
 
 **Purpose**: Track completion status, key details, and learnings for each modern story implementation.
 
-**Last Updated**: 2025-12-08
+**Last Updated**: 2025-12-10
 
 ---
 
@@ -18,6 +18,7 @@
 | `community-builder-1` | Community Builder: One Person Transforms a Neighborhood | BookBridge | Multiple sources (thematic extraction) | Community Building, Belonging, Transformation, Food Access, Empowerment, Building Connections, Persistence | ✅ Complete | ✅ | - | - | ~20 min | 53 | 2025-12-10 |
 | `disability-overcome-1` | Disability Overcome: Finding New Ways | BookBridge | Multiple sources (thematic extraction) | Disability Overcome, Adaptation, Finding New Ways, Persistence, Identity Transformation, Communication Barriers, Belonging, Building New Life | ✅ Complete | ✅ | - | - | ~20 min | 52 | 2025-12-10 |
 | `career-pivot-1` | Career Pivot: Finding Your Path | BookBridge | Multiple sources (thematic extraction) | Career Pivot, Burnout, Identity Crisis, Family-Work Balance, Following Passion, Courage to Change, Persistence, Finding New Purpose, Transformation | ✅ Complete | ✅ | - | - | ~18 min | 46 | 2025-12-10 |
+| `second-chance-1` | Second Chance: Finding Redemption | BookBridge | Multiple sources (thematic extraction) | Second Chance, Redemption, Transformation, Prison to Career, Addiction Recovery, License Reinstatement, Persistence, Spiritual Awakening, Community Support, Rebuilding Life, Belonging, Overcoming Stigma | ✅ Complete | ✅ | - | - | ~17 min | 53 | 2025-12-10 |
 
 **Legend**:
 - ✅ Complete

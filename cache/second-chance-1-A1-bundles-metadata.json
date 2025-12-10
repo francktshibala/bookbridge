@@ -1,0 +1,2493 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Maria sat alone in her dark cell. The cold walls felt like they were closing in on her. She felt lost and scared. Her days were long and empty.",
+    "sentences": [
+      "Maria sat alone in her dark cell.",
+      "The cold walls felt like they were closing in on her.",
+      "She felt lost and scared.",
+      "Her days were long and empty."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_0.mp3",
+    "duration": 10.961837,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria sat alone in her dark cell.",
+        "startTime": 0,
+        "endTime": 2.584,
+        "duration": 2.584,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "The cold walls felt like they were closing in on her.",
+        "startTime": 2.584,
+        "endTime": 6.734,
+        "duration": 4.15,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She felt lost and scared.",
+        "startTime": 6.734,
+        "endTime": 8.691,
+        "duration": 1.957,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Her days were long and empty.",
+        "startTime": 8.691,
+        "endTime": 10.962,
+        "duration": 2.271,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "She could hear the sounds of other inmates talking, but she felt very alone. Drugs had taken everything from her: her family, her friends, her dreams. She cried every night, wishing for a way out. The tears fell hot on her cheeks.",
+    "sentences": [
+      "She could hear the sounds of other inmates talking, but she felt very alone.",
+      "Drugs had taken everything from her: her family, her friends, her dreams.",
+      "She cried every night, wishing for a way out.",
+      "The tears fell hot on her cheeks."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_1.mp3",
+    "duration": 17.476984,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She could hear the sounds of other inmates talking, but she felt very alone.",
+        "startTime": 0,
+        "endTime": 5.733,
+        "duration": 5.733,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Drugs had taken everything from her: her family, her friends, her dreams.",
+        "startTime": 5.733,
+        "endTime": 11.597,
+        "duration": 5.863,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "She cried every night, wishing for a way out.",
+        "startTime": 11.597,
+        "endTime": 15.053,
+        "duration": 3.456,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "The tears fell hot on her cheeks.",
+        "startTime": 15.053,
+        "endTime": 17.477,
+        "duration": 2.424,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "Her heart ached. One day, a kind guard named Mr. Johnson came to her cell. He smiled softly and handed her a book about hope.",
+    "sentences": [
+      "Her heart ached.",
+      "One day, a kind guard named Mr.",
+      "Johnson came to her cell.",
+      "He smiled softly and handed her a book about hope."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_2.mp3",
+    "duration": 9.701655,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her heart ached.",
+        "startTime": 0,
+        "endTime": 1.253,
+        "duration": 1.253,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "One day, a kind guard named Mr.",
+        "startTime": 1.253,
+        "endTime": 3.83,
+        "duration": 2.577,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "Johnson came to her cell.",
+        "startTime": 3.83,
+        "endTime": 5.787,
+        "duration": 1.957,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "He smiled softly and handed her a book about hope.",
+        "startTime": 5.787,
+        "endTime": 9.702,
+        "duration": 3.915,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "“You should read this, Maria. It might help you,” he said gently. As she read, a spark lit inside her. The words felt warm and bright.",
+    "sentences": [
+      "“You should read this, Maria.",
+      "It might help you,” he said gently.",
+      "As she read, a spark lit inside her.",
+      "The words felt warm and bright."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_3.mp3",
+    "duration": 10.901587,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“You should read this, Maria.",
+        "startTime": 0,
+        "endTime": 2.464,
+        "duration": 2.464,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "It might help you,” he said gently.",
+        "startTime": 2.464,
+        "endTime": 5.406,
+        "duration": 2.942,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "As she read, a spark lit inside her.",
+        "startTime": 5.406,
+        "endTime": 8.428,
+        "duration": 3.022,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "The words felt warm and bright.",
+        "startTime": 8.428,
+        "endTime": 10.902,
+        "duration": 2.473,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "Maybe she could change. Maybe there was still a chance for a new life. Maria took a deep breath. This was her moment to fight back.",
+    "sentences": [
+      "Maybe she could change.",
+      "Maybe there was still a chance for a new life.",
+      "Maria took a deep breath.",
+      "This was her moment to fight back."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_4.mp3",
+    "duration": 10.250658,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maybe she could change.",
+        "startTime": 0,
+        "endTime": 1.842,
+        "duration": 1.842,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "Maybe there was still a chance for a new life.",
+        "startTime": 1.842,
+        "endTime": 5.526,
+        "duration": 3.684,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "Maria took a deep breath.",
+        "startTime": 5.526,
+        "endTime": 7.528,
+        "duration": 2.002,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "This was her moment to fight back.",
+        "startTime": 7.528,
+        "endTime": 10.251,
+        "duration": 2.723,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "Maria was only sixteen when she came to prison. She felt like life was over. The judge gave her a twenty-four-year sentence. She thought, \"I will die here.\" The air felt heavy with despair.",
+    "sentences": [
+      "Maria was only sixteen when she came to prison.",
+      "She felt like life was over.",
+      "The judge gave her a twenty-four-year sentence.",
+      "She thought, \"I will die here.\" The air felt heavy with despair."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_5.mp3",
+    "duration": 13.911247,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria was only sixteen when she came to prison.",
+        "startTime": 0,
+        "endTime": 3.477,
+        "duration": 3.477,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "She felt like life was over.",
+        "startTime": 3.477,
+        "endTime": 5.549,
+        "duration": 2.072,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "The judge gave her a twenty-four-year sentence.",
+        "startTime": 5.549,
+        "endTime": 9.026,
+        "duration": 3.477,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "She thought, \"I will die here.\" The air felt heavy with despair.",
+        "startTime": 9.026,
+        "endTime": 13.911,
+        "duration": 4.885,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "Every day was hard. She missed her brother. He died a few years ago. The pain was deep.",
+    "sentences": [
+      "Every day was hard.",
+      "She missed her brother.",
+      "He died a few years ago.",
+      "The pain was deep."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_6.mp3",
+    "duration": 6.161134,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Every day was hard.",
+        "startTime": 0,
+        "endTime": 1.394,
+        "duration": 1.394,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "She missed her brother.",
+        "startTime": 1.394,
+        "endTime": 3.081,
+        "duration": 1.687,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "He died a few years ago.",
+        "startTime": 3.081,
+        "endTime": 4.841,
+        "duration": 1.76,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "The pain was deep.",
+        "startTime": 4.841,
+        "endTime": 6.161,
+        "duration": 1.32,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "She thought about him often. He was her best friend. They shared secrets and dreams. Maria felt alone and sad.",
+    "sentences": [
+      "She thought about him often.",
+      "He was her best friend.",
+      "They shared secrets and dreams.",
+      "Maria felt alone and sad."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_7.mp3",
+    "duration": 8.503197,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She thought about him often.",
+        "startTime": 0,
+        "endTime": 2.225,
+        "duration": 2.225,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "He was her best friend.",
+        "startTime": 2.225,
+        "endTime": 4.053,
+        "duration": 1.828,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "They shared secrets and dreams.",
+        "startTime": 4.053,
+        "endTime": 6.516,
+        "duration": 2.464,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "Maria felt alone and sad.",
+        "startTime": 6.516,
+        "endTime": 8.503,
+        "duration": 1.987,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "She wanted to talk to him again. She missed the sound of his laughter. Maria thought about her past. She remembered the happy times.",
+    "sentences": [
+      "She wanted to talk to him again.",
+      "She missed the sound of his laughter.",
+      "Maria thought about her past.",
+      "She remembered the happy times."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_8.mp3",
+    "duration": 10.040204,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to talk to him again.",
+        "startTime": 0,
+        "endTime": 2.491,
+        "duration": 2.491,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "She missed the sound of his laughter.",
+        "startTime": 2.491,
+        "endTime": 5.37,
+        "duration": 2.88,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "Maria thought about her past.",
+        "startTime": 5.37,
+        "endTime": 7.627,
+        "duration": 2.257,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "She remembered the happy times.",
+        "startTime": 7.627,
+        "endTime": 10.04,
+        "duration": 2.413,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "The days when they played in the park, laughing under the sun. But those times felt far away now. One day, Maria heard about a coding program. It was called The Last Mile.",
+    "sentences": [
+      "The days when they played in the park, laughing under the sun.",
+      "But those times felt far away now.",
+      "One day, Maria heard about a coding program.",
+      "It was called The Last Mile."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_9.mp3",
+    "duration": 15.381678,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The days when they played in the park, laughing under the sun.",
+        "startTime": 0,
+        "endTime": 5.716,
+        "duration": 5.716,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "But those times felt far away now.",
+        "startTime": 5.716,
+        "endTime": 8.768,
+        "duration": 3.052,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "One day, Maria heard about a coding program.",
+        "startTime": 8.768,
+        "endTime": 12.868,
+        "duration": 4.1,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "It was called The Last Mile.",
+        "startTime": 12.868,
+        "endTime": 15.382,
+        "duration": 2.514,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "It helped people in prison learn how to code. Maria felt a spark of hope again. “Could I really do this?” she wondered. Her heart raced with excitement.",
+    "sentences": [
+      "It helped people in prison learn how to code.",
+      "Maria felt a spark of hope again.",
+      "“Could I really do this?” she wondered.",
+      "Her heart raced with excitement."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_10.mp3",
+    "duration": 11.44737,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It helped people in prison learn how to code.",
+        "startTime": 0,
+        "endTime": 3.457,
+        "duration": 3.457,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Maria felt a spark of hope again.",
+        "startTime": 3.457,
+        "endTime": 5.993,
+        "duration": 2.535,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "“Could I really do this?” she wondered.",
+        "startTime": 5.993,
+        "endTime": 8.989,
+        "duration": 2.996,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "Her heart raced with excitement.",
+        "startTime": 8.989,
+        "endTime": 11.447,
+        "duration": 2.458,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "She wanted to join the program. But there was a problem. Prison rules said no computers. Maria felt disbelief.",
+    "sentences": [
+      "She wanted to join the program.",
+      "But there was a problem.",
+      "Prison rules said no computers.",
+      "Maria felt disbelief."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_11.mp3",
+    "duration": 8.659252,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to join the program.",
+        "startTime": 0,
+        "endTime": 2.509,
+        "duration": 2.509,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "But there was a problem.",
+        "startTime": 2.509,
+        "endTime": 4.451,
+        "duration": 1.942,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "Prison rules said no computers.",
+        "startTime": 4.451,
+        "endTime": 6.96,
+        "duration": 2.509,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "Maria felt disbelief.",
+        "startTime": 6.96,
+        "endTime": 8.659,
+        "duration": 1.699,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "\"Can I really do this?\" she thought. \"This sounds impossible.\" The walls of her cell seemed to close in again. But she did not give up. Maria talked to Mr.",
+    "sentences": [
+      "\"Can I really do this?\" she thought.",
+      "\"This sounds impossible.\" The walls of her cell seemed to close in again.",
+      "But she did not give up.",
+      "Maria talked to Mr."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_12.mp3",
+    "duration": 12.066644,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "\"Can I really do this?\" she thought.",
+        "startTime": 0,
+        "endTime": 2.858,
+        "duration": 2.858,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "\"This sounds impossible.\" The walls of her cell seemed to close in again.",
+        "startTime": 2.858,
+        "endTime": 8.653,
+        "duration": 5.795,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "But she did not give up.",
+        "startTime": 8.653,
+        "endTime": 10.558,
+        "duration": 1.905,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "Maria talked to Mr.",
+        "startTime": 10.558,
+        "endTime": 12.067,
+        "duration": 1.508,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "Johnson. She asked, \"Can I write my story?\" The guard smiled and said yes. “You have a voice, Maria. Use it,” he encouraged.",
+    "sentences": [
+      "Johnson.",
+      "She asked, \"Can I write my story?\" The guard smiled and said yes.",
+      "“You have a voice, Maria.",
+      "Use it,” he encouraged."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_13.mp3",
+    "duration": 11.085329,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Johnson.",
+        "startTime": 0,
+        "endTime": 0.703,
+        "duration": 0.703,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "She asked, \"Can I write my story?\" The guard smiled and said yes.",
+        "startTime": 0.703,
+        "endTime": 6.566,
+        "duration": 5.863,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "“You have a voice, Maria.",
+        "startTime": 6.566,
+        "endTime": 8.914,
+        "duration": 2.347,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "Use it,” he encouraged.",
+        "startTime": 8.914,
+        "endTime": 11.085,
+        "duration": 2.172,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "Maria was nervous. She had never read to others before. What if they laughed at her? But she stood in front of her friends in prison.",
+    "sentences": [
+      "Maria was nervous.",
+      "She had never read to others before.",
+      "What if they laughed at her?",
+      "But she stood in front of her friends in prison."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_14.mp3",
+    "duration": 9.049932,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria was nervous.",
+        "startTime": 0,
+        "endTime": 1.253,
+        "duration": 1.253,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "She had never read to others before.",
+        "startTime": 1.253,
+        "endTime": 3.759,
+        "duration": 2.506,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "What if they laughed at her?",
+        "startTime": 3.759,
+        "endTime": 5.708,
+        "duration": 1.949,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "But she stood in front of her friends in prison.",
+        "startTime": 5.708,
+        "endTime": 9.05,
+        "duration": 3.342,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "Her heart beat fast. She took a deep breath and began to read her story. She saw their faces. They listened and understood.",
+    "sentences": [
+      "Her heart beat fast.",
+      "She took a deep breath and began to read her story.",
+      "She saw their faces.",
+      "They listened and understood."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_15.mp3",
+    "duration": 9.111769,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her heart beat fast.",
+        "startTime": 0,
+        "endTime": 1.519,
+        "duration": 1.519,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "She took a deep breath and began to read her story.",
+        "startTime": 1.519,
+        "endTime": 5.391,
+        "duration": 3.873,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "She saw their faces.",
+        "startTime": 5.391,
+        "endTime": 6.91,
+        "duration": 1.519,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "They listened and understood.",
+        "startTime": 6.91,
+        "endTime": 9.112,
+        "duration": 2.202,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "In that moment, Maria felt strong. She felt like she belonged. The words flowed from her heart. The other inmates nodded.",
+    "sentences": [
+      "In that moment, Maria felt strong.",
+      "She felt like she belonged.",
+      "The words flowed from her heart.",
+      "The other inmates nodded."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_16.mp3",
+    "duration": 9.213356,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "In that moment, Maria felt strong.",
+        "startTime": 0,
+        "endTime": 2.761,
+        "duration": 2.761,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "She felt like she belonged.",
+        "startTime": 2.761,
+        "endTime": 4.835,
+        "duration": 2.074,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "The words flowed from her heart.",
+        "startTime": 4.835,
+        "endTime": 7.293,
+        "duration": 2.458,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "The other inmates nodded.",
+        "startTime": 7.293,
+        "endTime": 9.213,
+        "duration": 1.92,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "They felt her pain and her dreams. Maria finished her story, and they clapped for her. She smiled widely. It was a moment of pure joy.",
+    "sentences": [
+      "They felt her pain and her dreams.",
+      "Maria finished her story, and they clapped for her.",
+      "She smiled widely.",
+      "It was a moment of pure joy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_17.mp3",
+    "duration": 9.917256,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They felt her pain and her dreams.",
+        "startTime": 0,
+        "endTime": 2.535,
+        "duration": 2.535,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "Maria finished her story, and they clapped for her.",
+        "startTime": 2.535,
+        "endTime": 6.488,
+        "duration": 3.953,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "She smiled widely.",
+        "startTime": 6.488,
+        "endTime": 7.83,
+        "duration": 1.342,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "It was a moment of pure joy.",
+        "startTime": 7.83,
+        "endTime": 9.917,
+        "duration": 2.088,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "The coding program started. Maria worked hard. She learned how to build websites and apps. It was hard at first, but she did not stop.",
+    "sentences": [
+      "The coding program started.",
+      "Maria worked hard.",
+      "She learned how to build websites and apps.",
+      "It was hard at first, but she did not stop."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_18.mp3",
+    "duration": 9.972041,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The coding program started.",
+        "startTime": 0,
+        "endTime": 2.024,
+        "duration": 2.024,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "Maria worked hard.",
+        "startTime": 2.024,
+        "endTime": 3.374,
+        "duration": 1.35,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "She learned how to build websites and apps.",
+        "startTime": 3.374,
+        "endTime": 6.598,
+        "duration": 3.224,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "It was hard at first, but she did not stop.",
+        "startTime": 6.598,
+        "endTime": 9.972,
+        "duration": 3.374,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "“I want a better life,” she told herself every day. She wanted to help others. The first time she wrote code, she felt like a magician. She created something from nothing.",
+    "sentences": [
+      "“I want a better life,” she told herself every day.",
+      "She wanted to help others.",
+      "The first time she wrote code, she felt like a magician.",
+      "She created something from nothing."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_19.mp3",
+    "duration": 13.419456,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“I want a better life,” she told herself every day.",
+        "startTime": 0,
+        "endTime": 4.133,
+        "duration": 4.133,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "She wanted to help others.",
+        "startTime": 4.133,
+        "endTime": 6.163,
+        "duration": 2.03,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "The first time she wrote code, she felt like a magician.",
+        "startTime": 6.163,
+        "endTime": 10.686,
+        "duration": 4.523,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "She created something from nothing.",
+        "startTime": 10.686,
+        "endTime": 13.419,
+        "duration": 2.733,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "One day, she realized something important. Her addiction was not just about drugs. It was about her pain and sadness. She needed to heal inside.",
+    "sentences": [
+      "One day, she realized something important.",
+      "Her addiction was not just about drugs.",
+      "It was about her pain and sadness.",
+      "She needed to heal inside."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_20.mp3",
+    "duration": 10.804717,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One day, she realized something important.",
+        "startTime": 0,
+        "endTime": 3.324,
+        "duration": 3.324,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "Her addiction was not just about drugs.",
+        "startTime": 3.324,
+        "endTime": 6.271,
+        "duration": 2.947,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "It was about her pain and sadness.",
+        "startTime": 6.271,
+        "endTime": 8.84,
+        "duration": 2.569,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "She needed to heal inside.",
+        "startTime": 8.84,
+        "endTime": 10.805,
+        "duration": 1.965,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "This was her spiritual awakening. “I must face my fears,” she thought. She wrote in her journal, “I am stronger than my past.” After months of hard work, Maria graduated from The Last Mile. She felt proud.",
+    "sentences": [
+      "This was her spiritual awakening.",
+      "“I must face my fears,” she thought.",
+      "She wrote in her journal, “I am stronger than my past.” After months of hard work, Maria graduated from The Last Mile.",
+      "She felt proud."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_21.mp3",
+    "duration": 16.217551,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "This was her spiritual awakening.",
+        "startTime": 0,
+        "endTime": 2.576,
+        "duration": 2.576,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "“I must face my fears,” she thought.",
+        "startTime": 2.576,
+        "endTime": 5.536,
+        "duration": 2.96,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "She wrote in her journal, “I am stronger than my past.” After months of hard work, Maria graduated from The Last Mile.",
+        "startTime": 5.536,
+        "endTime": 15.047,
+        "duration": 9.511,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "She felt proud.",
+        "startTime": 15.047,
+        "endTime": 16.218,
+        "duration": 1.171,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "She had new skills. The day of her graduation was bright and sunny. Maria wore her best clothes. She smiled at her friends.",
+    "sentences": [
+      "She had new skills.",
+      "The day of her graduation was bright and sunny.",
+      "Maria wore her best clothes.",
+      "She smiled at her friends."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_22.mp3",
+    "duration": 9.816735,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She had new skills.",
+        "startTime": 0,
+        "endTime": 1.554,
+        "duration": 1.554,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "The day of her graduation was bright and sunny.",
+        "startTime": 1.554,
+        "endTime": 5.399,
+        "duration": 3.845,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "Maria wore her best clothes.",
+        "startTime": 5.399,
+        "endTime": 7.69,
+        "duration": 2.291,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "She smiled at her friends.",
+        "startTime": 7.69,
+        "endTime": 9.817,
+        "duration": 2.127,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "They cheered for her. But the real test was coming. Maria wanted to get her nursing license back. She was a nurse before her addiction.",
+    "sentences": [
+      "They cheered for her.",
+      "But the real test was coming.",
+      "Maria wanted to get her nursing license back.",
+      "She was a nurse before her addiction."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_23.mp3",
+    "duration": 9.271655,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They cheered for her.",
+        "startTime": 0,
+        "endTime": 1.475,
+        "duration": 1.475,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "But the real test was coming.",
+        "startTime": 1.475,
+        "endTime": 3.512,
+        "duration": 2.037,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "Maria wanted to get her nursing license back.",
+        "startTime": 3.512,
+        "endTime": 6.673,
+        "duration": 3.161,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "She was a nurse before her addiction.",
+        "startTime": 6.673,
+        "endTime": 9.272,
+        "duration": 2.599,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "She wanted to help people again. The process was long and hard. Maria faced many barriers. She felt scared.",
+    "sentences": [
+      "She wanted to help people again.",
+      "The process was long and hard.",
+      "Maria faced many barriers.",
+      "She felt scared."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_24.mp3",
+    "duration": 8.288027,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to help people again.",
+        "startTime": 0,
+        "endTime": 2.55,
+        "duration": 2.55,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "The process was long and hard.",
+        "startTime": 2.55,
+        "endTime": 4.941,
+        "duration": 2.391,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "Maria faced many barriers.",
+        "startTime": 4.941,
+        "endTime": 7.013,
+        "duration": 2.072,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "She felt scared.",
+        "startTime": 7.013,
+        "endTime": 8.288,
+        "duration": 1.275,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "Would they accept her? Would they trust her? Maria went to the hearing. She wore her best clothes.",
+    "sentences": [
+      "Would they accept her?",
+      "Would they trust her?",
+      "Maria went to the hearing.",
+      "She wore her best clothes."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_25.mp3",
+    "duration": 7.577392,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Would they accept her?",
+        "startTime": 0,
+        "endTime": 1.755,
+        "duration": 1.755,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "Would they trust her?",
+        "startTime": 1.755,
+        "endTime": 3.43,
+        "duration": 1.675,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "Maria went to the hearing.",
+        "startTime": 3.43,
+        "endTime": 5.504,
+        "duration": 2.074,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "She wore her best clothes.",
+        "startTime": 5.504,
+        "endTime": 7.577,
+        "duration": 2.074,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "She felt nervous but hopeful. Her hands trembled slightly. When the hearing started, she shared her story. Her voice shook, but she spoke from her heart.",
+    "sentences": [
+      "She felt nervous but hopeful.",
+      "Her hands trembled slightly.",
+      "When the hearing started, she shared her story.",
+      "Her voice shook, but she spoke from her heart."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_26.mp3",
+    "duration": 10.253265,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt nervous but hopeful.",
+        "startTime": 0,
+        "endTime": 1.924,
+        "duration": 1.924,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "Her hands trembled slightly.",
+        "startTime": 1.924,
+        "endTime": 3.782,
+        "duration": 1.858,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "When the hearing started, she shared her story.",
+        "startTime": 3.782,
+        "endTime": 7.051,
+        "duration": 3.269,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "Her voice shook, but she spoke from her heart.",
+        "startTime": 7.051,
+        "endTime": 10.253,
+        "duration": 3.202,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "She talked about her time in prison and her journey. Tears filled her eyes. “I want to help others again. I am ready,” she said with determination.",
+    "sentences": [
+      "She talked about her time in prison and her journey.",
+      "Tears filled her eyes.",
+      "“I want to help others again.",
+      "I am ready,” she said with determination."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_27.mp3",
+    "duration": 9.913651,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She talked about her time in prison and her journey.",
+        "startTime": 0,
+        "endTime": 3.526,
+        "duration": 3.526,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "Tears filled her eyes.",
+        "startTime": 3.526,
+        "endTime": 5.017,
+        "duration": 1.492,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "“I want to help others again.",
+        "startTime": 5.017,
+        "endTime": 6.984,
+        "duration": 1.966,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "I am ready,” she said with determination.",
+        "startTime": 6.984,
+        "endTime": 9.914,
+        "duration": 2.93,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "The panel listened carefully. They nodded, and Maria felt a little hope. After a long wait, they said yes! Maria cried tears of joy.",
+    "sentences": [
+      "The panel listened carefully.",
+      "They nodded, and Maria felt a little hope.",
+      "After a long wait, they said yes!",
+      "Maria cried tears of joy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_28.mp3",
+    "duration": 10.253946,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The panel listened carefully.",
+        "startTime": 0,
+        "endTime": 2.238,
+        "duration": 2.238,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "They nodded, and Maria felt a little hope.",
+        "startTime": 2.238,
+        "endTime": 5.629,
+        "duration": 3.391,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "After a long wait, they said yes!",
+        "startTime": 5.629,
+        "endTime": 8.325,
+        "duration": 2.696,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "Maria cried tears of joy.",
+        "startTime": 8.325,
+        "endTime": 10.254,
+        "duration": 1.929,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "She felt free and alive. “Thank you! Thank you!” she exclaimed, feeling the weight lift off her shoulders. The world outside felt bright and new.",
+    "sentences": [
+      "She felt free and alive.",
+      "“Thank you!",
+      "Thank you!” she exclaimed, feeling the weight lift off her shoulders.",
+      "The world outside felt bright and new."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_29.mp3",
+    "duration": 10.3978,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt free and alive.",
+        "startTime": 0,
+        "endTime": 1.732,
+        "duration": 1.732,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "“Thank you!",
+        "startTime": 1.732,
+        "endTime": 2.526,
+        "duration": 0.794,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "Thank you!” she exclaimed, feeling the weight lift off her shoulders.",
+        "startTime": 2.526,
+        "endTime": 7.655,
+        "duration": 5.13,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "The world outside felt bright and new.",
+        "startTime": 7.655,
+        "endTime": 10.398,
+        "duration": 2.742,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "But life was not easy. Maria started a new job as a nurse. She was excited. She wore her uniform proudly.",
+    "sentences": [
+      "But life was not easy.",
+      "Maria started a new job as a nurse.",
+      "She was excited.",
+      "She wore her uniform proudly."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_30.mp3",
+    "duration": 7.368163,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "But life was not easy.",
+        "startTime": 0,
+        "endTime": 1.589,
+        "duration": 1.589,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "Maria started a new job as a nurse.",
+        "startTime": 1.589,
+        "endTime": 4.118,
+        "duration": 2.528,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "She was excited.",
+        "startTime": 4.118,
+        "endTime": 5.273,
+        "duration": 1.156,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "She wore her uniform proudly.",
+        "startTime": 5.273,
+        "endTime": 7.368,
+        "duration": 2.095,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "But one day, she felt the old feelings come back. The stress of the job was high. She felt overwhelmed. She thought, “What if I fail?” She relapsed and used drugs again.",
+    "sentences": [
+      "But one day, she felt the old feelings come back.",
+      "The stress of the job was high.",
+      "She felt overwhelmed.",
+      "She thought, “What if I fail?” She relapsed and used drugs again."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_31.mp3",
+    "duration": 14.403946,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "But one day, she felt the old feelings come back.",
+        "startTime": 0,
+        "endTime": 4.313,
+        "duration": 4.313,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "The stress of the job was high.",
+        "startTime": 4.313,
+        "endTime": 6.947,
+        "duration": 2.634,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "She felt overwhelmed.",
+        "startTime": 6.947,
+        "endTime": 8.731,
+        "duration": 1.784,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "She thought, “What if I fail?” She relapsed and used drugs again.",
+        "startTime": 8.731,
+        "endTime": 14.404,
+        "duration": 5.673,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "The police arrested her. Maria felt crushed. She thought, \"I am not good enough.\" Her heart sank. She felt like she was buried alive.",
+    "sentences": [
+      "The police arrested her.",
+      "Maria felt crushed.",
+      "She thought, \"I am not good enough.\" Her heart sank.",
+      "She felt like she was buried alive."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_32.mp3",
+    "duration": 9.980136,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The police arrested her.",
+        "startTime": 0,
+        "endTime": 1.815,
+        "duration": 1.815,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "Maria felt crushed.",
+        "startTime": 1.815,
+        "endTime": 3.252,
+        "duration": 1.437,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "She thought, \"I am not good enough.\" Her heart sank.",
+        "startTime": 3.252,
+        "endTime": 7.334,
+        "duration": 4.082,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "She felt like she was buried alive.",
+        "startTime": 7.334,
+        "endTime": 9.98,
+        "duration": 2.647,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "The darkness returned. But deep inside, she remembered her dreams. She remembered the people who supported her. “I cannot give up,” she whispered to herself.",
+    "sentences": [
+      "The darkness returned.",
+      "But deep inside, she remembered her dreams.",
+      "She remembered the people who supported her.",
+      "“I cannot give up,” she whispered to herself."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_33.mp3",
+    "duration": 13.045556,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The darkness returned.",
+        "startTime": 0,
+        "endTime": 1.821,
+        "duration": 1.821,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "But deep inside, she remembered her dreams.",
+        "startTime": 1.821,
+        "endTime": 5.53,
+        "duration": 3.709,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "She remembered the people who supported her.",
+        "startTime": 5.53,
+        "endTime": 9.171,
+        "duration": 3.642,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "“I cannot give up,” she whispered to herself.",
+        "startTime": 9.171,
+        "endTime": 13.046,
+        "duration": 3.874,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "After her arrest, Maria went back to treatment. She knew she had to face her demons. She learned more about herself. She spoke to a counselor.",
+    "sentences": [
+      "After her arrest, Maria went back to treatment.",
+      "She knew she had to face her demons.",
+      "She learned more about herself.",
+      "She spoke to a counselor."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_34.mp3",
+    "duration": 10.25381,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "After her arrest, Maria went back to treatment.",
+        "startTime": 0,
+        "endTime": 3.566,
+        "duration": 3.566,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "She knew she had to face her demons.",
+        "startTime": 3.566,
+        "endTime": 6.183,
+        "duration": 2.617,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "She learned more about herself.",
+        "startTime": 6.183,
+        "endTime": 8.437,
+        "duration": 2.253,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "She spoke to a counselor.",
+        "startTime": 8.437,
+        "endTime": 10.254,
+        "duration": 1.817,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "They talked about her fears and struggles. “I need to be strong,” she told the counselor. With support, Maria began to heal. She found a new job at a clinic.",
+    "sentences": [
+      "They talked about her fears and struggles.",
+      "“I need to be strong,” she told the counselor.",
+      "With support, Maria began to heal.",
+      "She found a new job at a clinic."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_35.mp3",
+    "duration": 12.092948,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They talked about her fears and struggles.",
+        "startTime": 0,
+        "endTime": 3.216,
+        "duration": 3.216,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "“I need to be strong,” she told the counselor.",
+        "startTime": 3.216,
+        "endTime": 6.889,
+        "duration": 3.673,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "With support, Maria began to heal.",
+        "startTime": 6.889,
+        "endTime": 9.642,
+        "duration": 2.754,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "She found a new job at a clinic.",
+        "startTime": 9.642,
+        "endTime": 12.093,
+        "duration": 2.45,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "This time, she felt ready. She was focused on her work and her health. She wrote goals on her wall. One day, she walked into the clinic.",
+    "sentences": [
+      "This time, she felt ready.",
+      "She was focused on her work and her health.",
+      "She wrote goals on her wall.",
+      "One day, she walked into the clinic."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_36.mp3",
+    "duration": 10.748367,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "This time, she felt ready.",
+        "startTime": 0,
+        "endTime": 2.193,
+        "duration": 2.193,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "She was focused on her work and her health.",
+        "startTime": 2.193,
+        "endTime": 5.571,
+        "duration": 3.378,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "She wrote goals on her wall.",
+        "startTime": 5.571,
+        "endTime": 7.77,
+        "duration": 2.2,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "One day, she walked into the clinic.",
+        "startTime": 7.77,
+        "endTime": 10.748,
+        "duration": 2.978,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "It was her first day of freedom. The sun shone bright outside. She logged on to the computer. Maria smiled.",
+    "sentences": [
+      "It was her first day of freedom.",
+      "The sun shone bright outside.",
+      "She logged on to the computer.",
+      "Maria smiled."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_37.mp3",
+    "duration": 8.291156,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was her first day of freedom.",
+        "startTime": 0,
+        "endTime": 2.551,
+        "duration": 2.551,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "The sun shone bright outside.",
+        "startTime": 2.551,
+        "endTime": 4.863,
+        "duration": 2.312,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "She logged on to the computer.",
+        "startTime": 4.863,
+        "endTime": 7.255,
+        "duration": 2.392,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "Maria smiled.",
+        "startTime": 7.255,
+        "endTime": 8.291,
+        "duration": 1.036,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "She felt happy. She was building her new life. The sounds of the clinic filled her with hope. Phones rang, and people chatted.",
+    "sentences": [
+      "She felt happy.",
+      "She was building her new life.",
+      "The sounds of the clinic filled her with hope.",
+      "Phones rang, and people chatted."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_38.mp3",
+    "duration": 10.189388,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt happy.",
+        "startTime": 0,
+        "endTime": 1.224,
+        "duration": 1.224,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "She was building her new life.",
+        "startTime": 1.224,
+        "endTime": 3.673,
+        "duration": 2.449,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "The sounds of the clinic filled her with hope.",
+        "startTime": 3.673,
+        "endTime": 7.428,
+        "duration": 3.755,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "Phones rang, and people chatted.",
+        "startTime": 7.428,
+        "endTime": 10.189,
+        "duration": 2.762,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 159,
+    "text": "Maria also made new friends. They understood her journey. They shared stories of pain and hope. Together, they grew stronger.",
+    "sentences": [
+      "Maria also made new friends.",
+      "They understood her journey.",
+      "They shared stories of pain and hope.",
+      "Together, they grew stronger."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_39.mp3",
+    "duration": 9.272245,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria also made new friends.",
+        "startTime": 0,
+        "endTime": 2.094,
+        "duration": 2.094,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "They understood her journey.",
+        "startTime": 2.094,
+        "endTime": 4.187,
+        "duration": 2.094,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "They shared stories of pain and hope.",
+        "startTime": 4.187,
+        "endTime": 6.954,
+        "duration": 2.767,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "Together, they grew stronger.",
+        "startTime": 6.954,
+        "endTime": 9.272,
+        "duration": 2.318,
+        "sentenceIndex": 159
+      }
+    ]
+  },
+  {
+    "bundleIndex": 40,
+    "startSentenceIndex": 160,
+    "endSentenceIndex": 163,
+    "text": "Maria felt proud of her progress. She was becoming someone new. Every day, Maria reminded herself of her goals. She wanted to help others.",
+    "sentences": [
+      "Maria felt proud of her progress.",
+      "She was becoming someone new.",
+      "Every day, Maria reminded herself of her goals.",
+      "She wanted to help others."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_40.mp3",
+    "duration": 10.189342,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria felt proud of her progress.",
+        "startTime": 0,
+        "endTime": 2.454,
+        "duration": 2.454,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "She was becoming someone new.",
+        "startTime": 2.454,
+        "endTime": 4.611,
+        "duration": 2.157,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "Every day, Maria reminded herself of her goals.",
+        "startTime": 4.611,
+        "endTime": 8.256,
+        "duration": 3.645,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "She wanted to help others.",
+        "startTime": 8.256,
+        "endTime": 10.189,
+        "duration": 1.934,
+        "sentenceIndex": 163
+      }
+    ]
+  },
+  {
+    "bundleIndex": 41,
+    "startSentenceIndex": 164,
+    "endSentenceIndex": 167,
+    "text": "She wanted to show them that change is possible. Maria spoke at community events. She shared her story of hope and recovery. Many people listened.",
+    "sentences": [
+      "She wanted to show them that change is possible.",
+      "Maria spoke at community events.",
+      "She shared her story of hope and recovery.",
+      "Many people listened."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_41.mp3",
+    "duration": 10.252449,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She wanted to show them that change is possible.",
+        "startTime": 0,
+        "endTime": 3.441,
+        "duration": 3.441,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "Maria spoke at community events.",
+        "startTime": 3.441,
+        "endTime": 5.736,
+        "duration": 2.294,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "She shared her story of hope and recovery.",
+        "startTime": 5.736,
+        "endTime": 8.747,
+        "duration": 3.011,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "Many people listened.",
+        "startTime": 8.747,
+        "endTime": 10.252,
+        "duration": 1.506,
+        "sentenceIndex": 167
+      }
+    ]
+  },
+  {
+    "bundleIndex": 42,
+    "startSentenceIndex": 168,
+    "endSentenceIndex": 171,
+    "text": "They felt inspired. Maria was not just a nurse; she was a beacon of hope. Months passed, and Maria continued to grow. She learned to be kind to herself.",
+    "sentences": [
+      "They felt inspired.",
+      "Maria was not just a nurse; she was a beacon of hope.",
+      "Months passed, and Maria continued to grow.",
+      "She learned to be kind to herself."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_42.mp3",
+    "duration": 11.511701,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They felt inspired.",
+        "startTime": 0,
+        "endTime": 1.417,
+        "duration": 1.417,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "Maria was not just a nurse; she was a beacon of hope.",
+        "startTime": 1.417,
+        "endTime": 5.619,
+        "duration": 4.202,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "Months passed, and Maria continued to grow.",
+        "startTime": 5.619,
+        "endTime": 8.976,
+        "duration": 3.357,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "She learned to be kind to herself.",
+        "startTime": 8.976,
+        "endTime": 11.512,
+        "duration": 2.536,
+        "sentenceIndex": 171
+      }
+    ]
+  },
+  {
+    "bundleIndex": 43,
+    "startSentenceIndex": 172,
+    "endSentenceIndex": 175,
+    "text": "She knew it was okay to ask for help. “I am not alone anymore,” she told her friends. Maria found strength in her community. They celebrated her successes together.",
+    "sentences": [
+      "She knew it was okay to ask for help.",
+      "“I am not alone anymore,” she told her friends.",
+      "Maria found strength in her community.",
+      "They celebrated her successes together."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_43.mp3",
+    "duration": 13.04737,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She knew it was okay to ask for help.",
+        "startTime": 0,
+        "endTime": 2.964,
+        "duration": 2.964,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "“I am not alone anymore,” she told her friends.",
+        "startTime": 2.964,
+        "endTime": 6.879,
+        "duration": 3.915,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "Maria found strength in her community.",
+        "startTime": 6.879,
+        "endTime": 9.923,
+        "duration": 3.044,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "They celebrated her successes together.",
+        "startTime": 9.923,
+        "endTime": 13.047,
+        "duration": 3.124,
+        "sentenceIndex": 175
+      }
+    ]
+  },
+  {
+    "bundleIndex": 44,
+    "startSentenceIndex": 176,
+    "endSentenceIndex": 179,
+    "text": "One day, Maria stood in front of her friends and family. She wanted to thank them for their support. She said, \"I was in a dark place. But you believed in me.",
+    "sentences": [
+      "One day, Maria stood in front of her friends and family.",
+      "She wanted to thank them for their support.",
+      "She said, \"I was in a dark place.",
+      "But you believed in me."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_44.mp3",
+    "duration": 11.451202,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One day, Maria stood in front of her friends and family.",
+        "startTime": 0,
+        "endTime": 4.179,
+        "duration": 4.179,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "She wanted to thank them for their support.",
+        "startTime": 4.179,
+        "endTime": 7.272,
+        "duration": 3.094,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "She said, \"I was in a dark place.",
+        "startTime": 7.272,
+        "endTime": 9.797,
+        "duration": 2.524,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "But you believed in me.",
+        "startTime": 9.797,
+        "endTime": 11.451,
+        "duration": 1.655,
+        "sentenceIndex": 179
+      }
+    ]
+  },
+  {
+    "bundleIndex": 45,
+    "startSentenceIndex": 180,
+    "endSentenceIndex": 183,
+    "text": "You showed me love. I am here today because of you.\" Everyone clapped and cheered. Maria felt so loved. She felt at home.",
+    "sentences": [
+      "You showed me love.",
+      "I am here today because of you.\" Everyone clapped and cheered.",
+      "Maria felt so loved.",
+      "She felt at home."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_45.mp3",
+    "duration": 9.32678,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "You showed me love.",
+        "startTime": 0,
+        "endTime": 1.502,
+        "duration": 1.502,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "I am here today because of you.\" Everyone clapped and cheered.",
+        "startTime": 1.502,
+        "endTime": 6.402,
+        "duration": 4.901,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "Maria felt so loved.",
+        "startTime": 6.402,
+        "endTime": 7.983,
+        "duration": 1.581,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "She felt at home.",
+        "startTime": 7.983,
+        "endTime": 9.327,
+        "duration": 1.344,
+        "sentenceIndex": 183
+      }
+    ]
+  },
+  {
+    "bundleIndex": 46,
+    "startSentenceIndex": 184,
+    "endSentenceIndex": 187,
+    "text": "As time went on, Maria’s life changed completely. She became a successful nurse. She was helping people every day. She was also helping herself.",
+    "sentences": [
+      "As time went on, Maria’s life changed completely.",
+      "She became a successful nurse.",
+      "She was helping people every day.",
+      "She was also helping herself."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_46.mp3",
+    "duration": 10.471043,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "As time went on, Maria’s life changed completely.",
+        "startTime": 0,
+        "endTime": 3.737,
+        "duration": 3.737,
+        "sentenceIndex": 184
+      },
+      {
+        "text": "She became a successful nurse.",
+        "startTime": 3.737,
+        "endTime": 5.933,
+        "duration": 2.196,
+        "sentenceIndex": 185
+      },
+      {
+        "text": "She was helping people every day.",
+        "startTime": 5.933,
+        "endTime": 8.348,
+        "duration": 2.416,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "She was also helping herself.",
+        "startTime": 8.348,
+        "endTime": 10.471,
+        "duration": 2.123,
+        "sentenceIndex": 187
+      }
+    ]
+  },
+  {
+    "bundleIndex": 47,
+    "startSentenceIndex": 188,
+    "endSentenceIndex": 191,
+    "text": "Maria found joy in small things. She loved to read, cook, and spend time with friends. She no longer felt like a prisoner. She felt free.",
+    "sentences": [
+      "Maria found joy in small things.",
+      "She loved to read, cook, and spend time with friends.",
+      "She no longer felt like a prisoner.",
+      "She felt free."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_47.mp3",
+    "duration": 9.214444,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria found joy in small things.",
+        "startTime": 0,
+        "endTime": 2.129,
+        "duration": 2.129,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "She loved to read, cook, and spend time with friends.",
+        "startTime": 2.129,
+        "endTime": 5.955,
+        "duration": 3.826,
+        "sentenceIndex": 189
+      },
+      {
+        "text": "She no longer felt like a prisoner.",
+        "startTime": 5.955,
+        "endTime": 8.283,
+        "duration": 2.328,
+        "sentenceIndex": 190
+      },
+      {
+        "text": "She felt free.",
+        "startTime": 8.283,
+        "endTime": 9.214,
+        "duration": 0.931,
+        "sentenceIndex": 191
+      }
+    ]
+  },
+  {
+    "bundleIndex": 48,
+    "startSentenceIndex": 192,
+    "endSentenceIndex": 195,
+    "text": "Maria’s journey was not easy. But she learned that life is about second chances. She learned that everyone can change. She found a new purpose.",
+    "sentences": [
+      "Maria’s journey was not easy.",
+      "But she learned that life is about second chances.",
+      "She learned that everyone can change.",
+      "She found a new purpose."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_48.mp3",
+    "duration": 9.815465,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria’s journey was not easy.",
+        "startTime": 0,
+        "endTime": 2.033,
+        "duration": 2.033,
+        "sentenceIndex": 192
+      },
+      {
+        "text": "But she learned that life is about second chances.",
+        "startTime": 2.033,
+        "endTime": 5.539,
+        "duration": 3.506,
+        "sentenceIndex": 193
+      },
+      {
+        "text": "She learned that everyone can change.",
+        "startTime": 5.539,
+        "endTime": 8.133,
+        "duration": 2.594,
+        "sentenceIndex": 194
+      },
+      {
+        "text": "She found a new purpose.",
+        "startTime": 8.133,
+        "endTime": 9.815,
+        "duration": 1.683,
+        "sentenceIndex": 195
+      }
+    ]
+  },
+  {
+    "bundleIndex": 49,
+    "startSentenceIndex": 196,
+    "endSentenceIndex": 199,
+    "text": "Every day, she woke up with hope. She knew her past did not define her. Maria was proud of who she was becoming. In the end, Maria looked back at her journey.",
+    "sentences": [
+      "Every day, she woke up with hope.",
+      "She knew her past did not define her.",
+      "Maria was proud of who she was becoming.",
+      "In the end, Maria looked back at her journey."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_49.mp3",
+    "duration": 11.663719,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Every day, she woke up with hope.",
+        "startTime": 0,
+        "endTime": 2.569,
+        "duration": 2.569,
+        "sentenceIndex": 196
+      },
+      {
+        "text": "She knew her past did not define her.",
+        "startTime": 2.569,
+        "endTime": 5.282,
+        "duration": 2.713,
+        "sentenceIndex": 197
+      },
+      {
+        "text": "Maria was proud of who she was becoming.",
+        "startTime": 5.282,
+        "endTime": 8.215,
+        "duration": 2.933,
+        "sentenceIndex": 198
+      },
+      {
+        "text": "In the end, Maria looked back at her journey.",
+        "startTime": 8.215,
+        "endTime": 11.664,
+        "duration": 3.449,
+        "sentenceIndex": 199
+      }
+    ]
+  },
+  {
+    "bundleIndex": 50,
+    "startSentenceIndex": 200,
+    "endSentenceIndex": 203,
+    "text": "She remembered her dark days in prison. She remembered her brother and the pain of loss. The memories flooded her mind, but they no longer held her back. She remembered the kindness of Mr.",
+    "sentences": [
+      "She remembered her dark days in prison.",
+      "She remembered her brother and the pain of loss.",
+      "The memories flooded her mind, but they no longer held her back.",
+      "She remembered the kindness of Mr."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_50.mp3",
+    "duration": 15.113039,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She remembered her dark days in prison.",
+        "startTime": 0,
+        "endTime": 3.154,
+        "duration": 3.154,
+        "sentenceIndex": 200
+      },
+      {
+        "text": "She remembered her brother and the pain of loss.",
+        "startTime": 3.154,
+        "endTime": 7.037,
+        "duration": 3.882,
+        "sentenceIndex": 201
+      },
+      {
+        "text": "The memories flooded her mind, but they no longer held her back.",
+        "startTime": 7.037,
+        "endTime": 12.363,
+        "duration": 5.326,
+        "sentenceIndex": 202
+      },
+      {
+        "text": "She remembered the kindness of Mr.",
+        "startTime": 12.363,
+        "endTime": 15.113,
+        "duration": 2.75,
+        "sentenceIndex": 203
+      }
+    ]
+  },
+  {
+    "bundleIndex": 51,
+    "startSentenceIndex": 204,
+    "endSentenceIndex": 207,
+    "text": "Johnson, the support of her friends, and the joy of her achievements. Maria smiled. She was alive, free, and full of hope. She was ready to help others find their way too.",
+    "sentences": [
+      "Johnson, the support of her friends, and the joy of her achievements.",
+      "Maria smiled.",
+      "She was alive, free, and full of hope.",
+      "She was ready to help others find their way too."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_51.mp3",
+    "duration": 15.32322,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Johnson, the support of her friends, and the joy of her achievements.",
+        "startTime": 0,
+        "endTime": 6.347,
+        "duration": 6.347,
+        "sentenceIndex": 204
+      },
+      {
+        "text": "Maria smiled.",
+        "startTime": 6.347,
+        "endTime": 7.486,
+        "duration": 1.139,
+        "sentenceIndex": 205
+      },
+      {
+        "text": "She was alive, free, and full of hope.",
+        "startTime": 7.486,
+        "endTime": 11.117,
+        "duration": 3.63,
+        "sentenceIndex": 206
+      },
+      {
+        "text": "She was ready to help others find their way too.",
+        "startTime": 11.117,
+        "endTime": 15.323,
+        "duration": 4.207,
+        "sentenceIndex": 207
+      }
+    ]
+  },
+  {
+    "bundleIndex": 52,
+    "startSentenceIndex": 208,
+    "endSentenceIndex": 211,
+    "text": "Maria knew that everyone deserves a second chance. And she was living hers every day. She felt the warmth of the sun on her face. She was ready for whatever came next.",
+    "sentences": [
+      "Maria knew that everyone deserves a second chance.",
+      "And she was living hers every day.",
+      "She felt the warmth of the sun on her face.",
+      "She was ready for whatever came next."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/second-chance-1/A1/bundle_52.mp3",
+    "duration": 13.267438,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria knew that everyone deserves a second chance.",
+        "startTime": 0,
+        "endTime": 4.045,
+        "duration": 4.045,
+        "sentenceIndex": 208
+      },
+      {
+        "text": "And she was living hers every day.",
+        "startTime": 4.045,
+        "endTime": 6.796,
+        "duration": 2.751,
+        "sentenceIndex": 209
+      },
+      {
+        "text": "She felt the warmth of the sun on her face.",
+        "startTime": 6.796,
+        "endTime": 10.274,
+        "duration": 3.479,
+        "sentenceIndex": 210
+      },
+      {
+        "text": "She was ready for whatever came next.",
+        "startTime": 10.274,
+        "endTime": 13.267,
+        "duration": 2.993,
+        "sentenceIndex": 211
+      }
+    ]
+  }
+]
