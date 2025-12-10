@@ -1,0 +1,2438 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Maria loved music. She wanted to sing and teach music. At age 18, she dreamed of being a choir director. She imagined standing in front of a big group of singers.",
+    "sentences": [
+      "Maria loved music.",
+      "She wanted to sing and teach music.",
+      "At age 18, she dreamed of being a choir director.",
+      "She imagined standing in front of a big group of singers."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_0.mp3",
+    "duration": 12.434104,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria loved music.",
+        "startTime": 0,
+        "endTime": 1.391,
+        "duration": 1.391,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She wanted to sing and teach music.",
+        "startTime": 1.391,
+        "endTime": 4.095,
+        "duration": 2.704,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "At age 18, she dreamed of being a choir director.",
+        "startTime": 4.095,
+        "endTime": 8.03,
+        "duration": 3.936,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She imagined standing in front of a big group of singers.",
+        "startTime": 8.03,
+        "endTime": 12.434,
+        "duration": 4.404,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "She saw herself smiling and guiding them with joy. She dreamed of the beautiful voices singing together. But one day, everything changed. Maria lost her hearing.",
+    "sentences": [
+      "She saw herself smiling and guiding them with joy.",
+      "She dreamed of the beautiful voices singing together.",
+      "But one day, everything changed.",
+      "Maria lost her hearing."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_1.mp3",
+    "duration": 13.57551,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She saw herself smiling and guiding them with joy.",
+        "startTime": 0,
+        "endTime": 4.249,
+        "duration": 4.249,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She dreamed of the beautiful voices singing together.",
+        "startTime": 4.249,
+        "endTime": 8.752,
+        "duration": 4.503,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "But one day, everything changed.",
+        "startTime": 8.752,
+        "endTime": 11.621,
+        "duration": 2.869,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "Maria lost her hearing.",
+        "startTime": 11.621,
+        "endTime": 13.576,
+        "duration": 1.954,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "It felt like her heart broke into tiny pieces. Her dream was gone, and she felt it like a heavy weight on her chest. Maria felt lost. She thought, “I cannot hear.",
+    "sentences": [
+      "It felt like her heart broke into tiny pieces.",
+      "Her dream was gone, and she felt it like a heavy weight on her chest.",
+      "Maria felt lost.",
+      "She thought, “I cannot hear."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_2.mp3",
+    "duration": 12.711723,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It felt like her heart broke into tiny pieces.",
+        "startTime": 0,
+        "endTime": 3.591,
+        "duration": 3.591,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "Her dream was gone, and she felt it like a heavy weight on her chest.",
+        "startTime": 3.591,
+        "endTime": 9.127,
+        "duration": 5.536,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "Maria felt lost.",
+        "startTime": 9.127,
+        "endTime": 10.376,
+        "duration": 1.249,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "She thought, “I cannot hear.",
+        "startTime": 10.376,
+        "endTime": 12.712,
+        "duration": 2.336,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "I cannot sing.” She sat in her dark room. The walls felt like they were closing in on her. Every day was dark and heavy. She felt sad and empty.",
+    "sentences": [
+      "I cannot sing.” She sat in her dark room.",
+      "The walls felt like they were closing in on her.",
+      "Every day was dark and heavy.",
+      "She felt sad and empty."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_3.mp3",
+    "duration": 10.317098,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I cannot sing.” She sat in her dark room.",
+        "startTime": 0,
+        "endTime": 3,
+        "duration": 3,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "The walls felt like they were closing in on her.",
+        "startTime": 3,
+        "endTime": 6.512,
+        "duration": 3.512,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "Every day was dark and heavy.",
+        "startTime": 6.512,
+        "endTime": 8.634,
+        "duration": 2.122,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "She felt sad and empty.",
+        "startTime": 8.634,
+        "endTime": 10.317,
+        "duration": 1.683,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "Maria did not want to see her friends. She did not want to talk to anyone. She felt like she died inside. The silence around her was loud.",
+    "sentences": [
+      "Maria did not want to see her friends.",
+      "She did not want to talk to anyone.",
+      "She felt like she died inside.",
+      "The silence around her was loud."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_4.mp3",
+    "duration": 9.817823,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria did not want to see her friends.",
+        "startTime": 0,
+        "endTime": 2.764,
+        "duration": 2.764,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "She did not want to talk to anyone.",
+        "startTime": 2.764,
+        "endTime": 5.309,
+        "duration": 2.545,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "She felt like she died inside.",
+        "startTime": 5.309,
+        "endTime": 7.491,
+        "duration": 2.182,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "The silence around her was loud.",
+        "startTime": 7.491,
+        "endTime": 9.818,
+        "duration": 2.327,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "It was a silence that screamed in her ears. She missed the music. She missed the joy it brought her life. Her father, David, saw her sadness.",
+    "sentences": [
+      "It was a silence that screamed in her ears.",
+      "She missed the music.",
+      "She missed the joy it brought her life.",
+      "Her father, David, saw her sadness."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_5.mp3",
+    "duration": 9.857619,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was a silence that screamed in her ears.",
+        "startTime": 0,
+        "endTime": 2.978,
+        "duration": 2.978,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "She missed the music.",
+        "startTime": 2.978,
+        "endTime": 4.433,
+        "duration": 1.454,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "She missed the joy it brought her life.",
+        "startTime": 4.433,
+        "endTime": 7.134,
+        "duration": 2.701,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "Her father, David, saw her sadness.",
+        "startTime": 7.134,
+        "endTime": 9.858,
+        "duration": 2.724,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "He wanted to help her find a way back to happiness. One day, he came to her room. He sat beside her on the bed. He looked at her with love in his eyes.",
+    "sentences": [
+      "He wanted to help her find a way back to happiness.",
+      "One day, he came to her room.",
+      "He sat beside her on the bed.",
+      "He looked at her with love in his eyes."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_6.mp3",
+    "duration": 10.249705,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He wanted to help her find a way back to happiness.",
+        "startTime": 0,
+        "endTime": 3.48,
+        "duration": 3.48,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "One day, he came to her room.",
+        "startTime": 3.48,
+        "endTime": 5.609,
+        "duration": 2.129,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "He sat beside her on the bed.",
+        "startTime": 5.609,
+        "endTime": 7.588,
+        "duration": 1.979,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "He looked at her with love in his eyes.",
+        "startTime": 7.588,
+        "endTime": 10.25,
+        "duration": 2.661,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "“Maria,” he said softly, “let’s try something new. Let’s learn a new song.” Maria shook her head. “No, Dad. I can’t.",
+    "sentences": [
+      "“Maria,” he said softly, “let’s try something new.",
+      "Let’s learn a new song.” Maria shook her head.",
+      "“No, Dad.",
+      "I can’t."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_7.mp3",
+    "duration": 8.562404,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Maria,” he said softly, “let’s try something new.",
+        "startTime": 0,
+        "endTime": 3.89,
+        "duration": 3.89,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "Let’s learn a new song.” Maria shook her head.",
+        "startTime": 3.89,
+        "endTime": 7.192,
+        "duration": 3.302,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "“No, Dad.",
+        "startTime": 7.192,
+        "endTime": 7.988,
+        "duration": 0.796,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "I can’t.",
+        "startTime": 7.988,
+        "endTime": 8.562,
+        "duration": 0.574,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "I will fail. I am not good enough.” Tears filled her eyes, blurring her vision. She felt hopeless and scared. It was hard to face the world.",
+    "sentences": [
+      "I will fail.",
+      "I am not good enough.” Tears filled her eyes, blurring her vision.",
+      "She felt hopeless and scared.",
+      "It was hard to face the world."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_8.mp3",
+    "duration": 10.962268,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I will fail.",
+        "startTime": 0,
+        "endTime": 0.947,
+        "duration": 0.947,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "I am not good enough.” Tears filled her eyes, blurring her vision.",
+        "startTime": 0.947,
+        "endTime": 6.306,
+        "duration": 5.359,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "She felt hopeless and scared.",
+        "startTime": 6.306,
+        "endTime": 8.595,
+        "duration": 2.289,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "It was hard to face the world.",
+        "startTime": 8.595,
+        "endTime": 10.962,
+        "duration": 2.368,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "David did not give up. He smiled gently and said, “Just try. You may be surprised.” Maria looked away and thought of her lost dreams. But she also felt a small spark of hope inside her.",
+    "sentences": [
+      "David did not give up.",
+      "He smiled gently and said, “Just try.",
+      "You may be surprised.” Maria looked away and thought of her lost dreams.",
+      "But she also felt a small spark of hope inside her."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_9.mp3",
+    "duration": 14.948685,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "David did not give up.",
+        "startTime": 0,
+        "endTime": 1.789,
+        "duration": 1.789,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "He smiled gently and said, “Just try.",
+        "startTime": 1.789,
+        "endTime": 4.947,
+        "duration": 3.159,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "You may be surprised.” Maria looked away and thought of her lost dreams.",
+        "startTime": 4.947,
+        "endTime": 10.802,
+        "duration": 5.854,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "But she also felt a small spark of hope inside her.",
+        "startTime": 10.802,
+        "endTime": 14.949,
+        "duration": 4.147,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "“What if I can do it?” she wondered, but the fear was strong. It wrapped around her like a thick fog. After a few days, Maria looked at her old music sheets. They were dusty and yellowed, hidden in a corner.",
+    "sentences": [
+      "“What if I can do it?” she wondered, but the fear was strong.",
+      "It wrapped around her like a thick fog.",
+      "After a few days, Maria looked at her old music sheets.",
+      "They were dusty and yellowed, hidden in a corner."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_10.mp3",
+    "duration": 13.55873,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“What if I can do it?” she wondered, but the fear was strong.",
+        "startTime": 0,
+        "endTime": 4.07,
+        "duration": 4.07,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "It wrapped around her like a thick fog.",
+        "startTime": 4.07,
+        "endTime": 6.576,
+        "duration": 2.506,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "After a few days, Maria looked at her old music sheets.",
+        "startTime": 6.576,
+        "endTime": 10.26,
+        "duration": 3.684,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "They were dusty and yellowed, hidden in a corner.",
+        "startTime": 10.26,
+        "endTime": 13.559,
+        "duration": 3.299,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "She picked up her keyboard. It felt heavy in her hands, like it was full of memories. At first, she felt nothing. The silence was loud, almost deafening.",
+    "sentences": [
+      "She picked up her keyboard.",
+      "It felt heavy in her hands, like it was full of memories.",
+      "At first, she felt nothing.",
+      "The silence was loud, almost deafening."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_11.mp3",
+    "duration": 9.979841,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She picked up her keyboard.",
+        "startTime": 0,
+        "endTime": 1.715,
+        "duration": 1.715,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "It felt heavy in her hands, like it was full of memories.",
+        "startTime": 1.715,
+        "endTime": 5.487,
+        "duration": 3.771,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "At first, she felt nothing.",
+        "startTime": 5.487,
+        "endTime": 7.352,
+        "duration": 1.865,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "The silence was loud, almost deafening.",
+        "startTime": 7.352,
+        "endTime": 9.98,
+        "duration": 2.628,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "Then, she put her fingers on the keys. She closed her eyes and took a deep breath. She felt the vibrations of the keys under her fingers. The music was different, but it was still there, waiting to be found.",
+    "sentences": [
+      "Then, she put her fingers on the keys.",
+      "She closed her eyes and took a deep breath.",
+      "She felt the vibrations of the keys under her fingers.",
+      "The music was different, but it was still there, waiting to be found."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_12.mp3",
+    "duration": 14.185782,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Then, she put her fingers on the keys.",
+        "startTime": 0,
+        "endTime": 2.709,
+        "duration": 2.709,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "She closed her eyes and took a deep breath.",
+        "startTime": 2.709,
+        "endTime": 5.604,
+        "duration": 2.895,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "She felt the vibrations of the keys under her fingers.",
+        "startTime": 5.604,
+        "endTime": 9.24,
+        "duration": 3.636,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "The music was different, but it was still there, waiting to be found.",
+        "startTime": 9.24,
+        "endTime": 14.186,
+        "duration": 4.946,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "Maria started to learn again. It was hard, but she practiced every day. She used visual tuners to see the notes. She felt the music in her body, in her heart, and in her soul.",
+    "sentences": [
+      "Maria started to learn again.",
+      "It was hard, but she practiced every day.",
+      "She used visual tuners to see the notes.",
+      "She felt the music in her body, in her heart, and in her soul."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_13.mp3",
+    "duration": 15.046485,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria started to learn again.",
+        "startTime": 0,
+        "endTime": 2.461,
+        "duration": 2.461,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "It was hard, but she practiced every day.",
+        "startTime": 2.461,
+        "endTime": 6.09,
+        "duration": 3.629,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "She used visual tuners to see the notes.",
+        "startTime": 6.09,
+        "endTime": 9.485,
+        "duration": 3.395,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "She felt the music in her body, in her heart, and in her soul.",
+        "startTime": 9.485,
+        "endTime": 15.046,
+        "duration": 5.562,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "She spent hours on the keyboard. Sometimes, she would play for hours, tears streaming down her face. She worked hard, but sometimes she felt sad again. She thought, “Will I ever be good?",
+    "sentences": [
+      "She spent hours on the keyboard.",
+      "Sometimes, she would play for hours, tears streaming down her face.",
+      "She worked hard, but sometimes she felt sad again.",
+      "She thought, “Will I ever be good?"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_14.mp3",
+    "duration": 14.025147,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She spent hours on the keyboard.",
+        "startTime": 0,
+        "endTime": 2.348,
+        "duration": 2.348,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "Sometimes, she would play for hours, tears streaming down her face.",
+        "startTime": 2.348,
+        "endTime": 7.563,
+        "duration": 5.215,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "She worked hard, but sometimes she felt sad again.",
+        "startTime": 7.563,
+        "endTime": 11.381,
+        "duration": 3.818,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "She thought, “Will I ever be good?",
+        "startTime": 11.381,
+        "endTime": 14.025,
+        "duration": 2.644,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "Will I ever sing again?” The doubts crept in like shadows. One morning, David came to her room. He smiled, but Maria could see worry in his eyes. “Maria, I believe in you.",
+    "sentences": [
+      "Will I ever sing again?” The doubts crept in like shadows.",
+      "One morning, David came to her room.",
+      "He smiled, but Maria could see worry in his eyes.",
+      "“Maria, I believe in you."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_15.mp3",
+    "duration": 14.4661,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Will I ever sing again?” The doubts crept in like shadows.",
+        "startTime": 0,
+        "endTime": 4.839,
+        "duration": 4.839,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "One morning, David came to her room.",
+        "startTime": 4.839,
+        "endTime": 7.992,
+        "duration": 3.153,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "He smiled, but Maria could see worry in his eyes.",
+        "startTime": 7.992,
+        "endTime": 12.23,
+        "duration": 4.238,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "“Maria, I believe in you.",
+        "startTime": 12.23,
+        "endTime": 14.466,
+        "duration": 2.236,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "Let’s play together,” he suggested. Maria felt nervous. She thought, “What if I am not good enough?” But she picked up her keyboard and played. She tried to play the notes, but they felt foreign.",
+    "sentences": [
+      "Let’s play together,” he suggested.",
+      "Maria felt nervous.",
+      "She thought, “What if I am not good enough?” But she picked up her keyboard and played.",
+      "She tried to play the notes, but they felt foreign."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_16.mp3",
+    "duration": 12.221701,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Let’s play together,” he suggested.",
+        "startTime": 0,
+        "endTime": 2.296,
+        "duration": 2.296,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "Maria felt nervous.",
+        "startTime": 2.296,
+        "endTime": 3.461,
+        "duration": 1.165,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "She thought, “What if I am not good enough?” But she picked up her keyboard and played.",
+        "startTime": 3.461,
+        "endTime": 8.945,
+        "duration": 5.484,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "She tried to play the notes, but they felt foreign.",
+        "startTime": 8.945,
+        "endTime": 12.222,
+        "duration": 3.277,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "At first, it was not good. Maria heard mistakes. The music sounded wrong to her. She felt frustrated and angry at herself.",
+    "sentences": [
+      "At first, it was not good.",
+      "Maria heard mistakes.",
+      "The music sounded wrong to her.",
+      "She felt frustrated and angry at herself."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_17.mp3",
+    "duration": 8.713923,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "At first, it was not good.",
+        "startTime": 0,
+        "endTime": 2.021,
+        "duration": 2.021,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "Maria heard mistakes.",
+        "startTime": 2.021,
+        "endTime": 3.532,
+        "duration": 1.511,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "The music sounded wrong to her.",
+        "startTime": 3.532,
+        "endTime": 5.763,
+        "duration": 2.231,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "She felt frustrated and angry at herself.",
+        "startTime": 5.763,
+        "endTime": 8.714,
+        "duration": 2.951,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "“Why can’t I get it right?” she thought. She wanted to scream. But David listened closely. He smiled and said, “You are getting better.",
+    "sentences": [
+      "“Why can’t I get it right?” she thought.",
+      "She wanted to scream.",
+      "But David listened closely.",
+      "He smiled and said, “You are getting better."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_18.mp3",
+    "duration": 9.979841,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Why can’t I get it right?” she thought.",
+        "startTime": 0,
+        "endTime": 2.979,
+        "duration": 2.979,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "She wanted to scream.",
+        "startTime": 2.979,
+        "endTime": 4.543,
+        "duration": 1.564,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "But David listened closely.",
+        "startTime": 4.543,
+        "endTime": 6.553,
+        "duration": 2.011,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "He smiled and said, “You are getting better.",
+        "startTime": 6.553,
+        "endTime": 9.98,
+        "duration": 3.427,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "Keep going!” Maria felt a little happy, but doubt still lingered. She practiced for many hours each day. Sometimes, she felt tired, but she never gave up. She thought of her father’s smile and the warmth of his encouragement.",
+    "sentences": [
+      "Keep going!” Maria felt a little happy, but doubt still lingered.",
+      "She practiced for many hours each day.",
+      "Sometimes, she felt tired, but she never gave up.",
+      "She thought of her father’s smile and the warmth of his encouragement."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_19.mp3",
+    "duration": 17.354422,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Keep going!” Maria felt a little happy, but doubt still lingered.",
+        "startTime": 0,
+        "endTime": 5.099,
+        "duration": 5.099,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "She practiced for many hours each day.",
+        "startTime": 5.099,
+        "endTime": 7.993,
+        "duration": 2.894,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "Sometimes, she felt tired, but she never gave up.",
+        "startTime": 7.993,
+        "endTime": 12.024,
+        "duration": 4.031,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "She thought of her father’s smile and the warmth of his encouragement.",
+        "startTime": 12.024,
+        "endTime": 17.354,
+        "duration": 5.33,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "Days turned into weeks. Maria struggled, but she kept going. She practiced in the morning when the sun rose. She practiced at night when the stars twinkled.",
+    "sentences": [
+      "Days turned into weeks.",
+      "Maria struggled, but she kept going.",
+      "She practiced in the morning when the sun rose.",
+      "She practiced at night when the stars twinkled."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_20.mp3",
+    "duration": 10.904512,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Days turned into weeks.",
+        "startTime": 0,
+        "endTime": 1.617,
+        "duration": 1.617,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "Maria struggled, but she kept going.",
+        "startTime": 1.617,
+        "endTime": 4.297,
+        "duration": 2.68,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "She practiced in the morning when the sun rose.",
+        "startTime": 4.297,
+        "endTime": 7.601,
+        "duration": 3.304,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "She practiced at night when the stars twinkled.",
+        "startTime": 7.601,
+        "endTime": 10.905,
+        "duration": 3.304,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "She even practiced when it was hard to feel good. She thought of her father’s smile and her dream of being a choir director. “I want to be a choir director,” she reminded herself, holding on to that dream like a lifeline. Then, one day, Maria had a breakthrough.",
+    "sentences": [
+      "She even practiced when it was hard to feel good.",
+      "She thought of her father’s smile and her dream of being a choir director.",
+      "“I want to be a choir director,” she reminded herself, holding on to that dream like a lifeline.",
+      "Then, one day, Maria had a breakthrough."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_21.mp3",
+    "duration": 21.445102,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She even practiced when it was hard to feel good.",
+        "startTime": 0,
+        "endTime": 3.944,
+        "duration": 3.944,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "She thought of her father’s smile and her dream of being a choir director.",
+        "startTime": 3.944,
+        "endTime": 9.899,
+        "duration": 5.956,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "“I want to be a choir director,” she reminded herself, holding on to that dream like a lifeline.",
+        "startTime": 9.899,
+        "endTime": 17.926,
+        "duration": 8.026,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "Then, one day, Maria had a breakthrough.",
+        "startTime": 17.926,
+        "endTime": 21.445,
+        "duration": 3.519,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "She played a song. She played it with her heart, feeling every note deeply. David listened, his eyes wide with joy. Tears streamed down his cheeks.",
+    "sentences": [
+      "She played a song.",
+      "She played it with her heart, feeling every note deeply.",
+      "David listened, his eyes wide with joy.",
+      "Tears streamed down his cheeks."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_22.mp3",
+    "duration": 10.253129,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She played a song.",
+        "startTime": 0,
+        "endTime": 1.244,
+        "duration": 1.244,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "She played it with her heart, feeling every note deeply.",
+        "startTime": 1.244,
+        "endTime": 5.265,
+        "duration": 4.021,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "David listened, his eyes wide with joy.",
+        "startTime": 5.265,
+        "endTime": 8.11,
+        "duration": 2.846,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "Tears streamed down his cheeks.",
+        "startTime": 8.11,
+        "endTime": 10.253,
+        "duration": 2.143,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "“Maria, you did it! You played the notes perfectly!” Maria was surprised. She felt proud, a warmth spreading through her chest. “I can do this.",
+    "sentences": [
+      "“Maria, you did it!",
+      "You played the notes perfectly!” Maria was surprised.",
+      "She felt proud, a warmth spreading through her chest.",
+      "“I can do this."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_23.mp3",
+    "duration": 10.252222,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Maria, you did it!",
+        "startTime": 0,
+        "endTime": 1.501,
+        "duration": 1.501,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "You played the notes perfectly!” Maria was surprised.",
+        "startTime": 1.501,
+        "endTime": 5.268,
+        "duration": 3.768,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "She felt proud, a warmth spreading through her chest.",
+        "startTime": 5.268,
+        "endTime": 9.186,
+        "duration": 3.918,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "“I can do this.",
+        "startTime": 9.186,
+        "endTime": 10.252,
+        "duration": 1.066,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "I can make music!” But she still felt fear. Would people like her music? What if they did not? The thought made her stomach turn.",
+    "sentences": [
+      "I can make music!” But she still felt fear.",
+      "Would people like her music?",
+      "What if they did not?",
+      "The thought made her stomach turn."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_24.mp3",
+    "duration": 9.6361,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "I can make music!” But she still felt fear.",
+        "startTime": 0,
+        "endTime": 3.289,
+        "duration": 3.289,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "Would people like her music?",
+        "startTime": 3.289,
+        "endTime": 5.43,
+        "duration": 2.141,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "What if they did not?",
+        "startTime": 5.43,
+        "endTime": 7.036,
+        "duration": 1.606,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "The thought made her stomach turn.",
+        "startTime": 7.036,
+        "endTime": 9.636,
+        "duration": 2.6,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "Maria decided to perform. She found a small group of friends. They were nervous too. They were kind and supportive.",
+    "sentences": [
+      "Maria decided to perform.",
+      "She found a small group of friends.",
+      "They were nervous too.",
+      "They were kind and supportive."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_25.mp3",
+    "duration": 7.522449,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria decided to perform.",
+        "startTime": 0,
+        "endTime": 1.679,
+        "duration": 1.679,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "She found a small group of friends.",
+        "startTime": 1.679,
+        "endTime": 4.03,
+        "duration": 2.351,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "They were nervous too.",
+        "startTime": 4.03,
+        "endTime": 5.508,
+        "duration": 1.478,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "They were kind and supportive.",
+        "startTime": 5.508,
+        "endTime": 7.522,
+        "duration": 2.015,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "Maria said, “I want to sing for you.” They smiled and cheered her on. “We believe in you, Maria!” one friend said, clapping her hands. Their encouragement filled her with hope. When it was time to sing, Maria felt scared.",
+    "sentences": [
+      "Maria said, “I want to sing for you.” They smiled and cheered her on.",
+      "“We believe in you, Maria!” one friend said, clapping her hands.",
+      "Their encouragement filled her with hope.",
+      "When it was time to sing, Maria felt scared."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_26.mp3",
+    "duration": 16.739206,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria said, “I want to sing for you.” They smiled and cheered her on.",
+        "startTime": 0,
+        "endTime": 5.258,
+        "duration": 5.258,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "“We believe in you, Maria!” one friend said, clapping her hands.",
+        "startTime": 5.258,
+        "endTime": 10.296,
+        "duration": 5.038,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "Their encouragement filled her with hope.",
+        "startTime": 10.296,
+        "endTime": 13.332,
+        "duration": 3.035,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "When it was time to sing, Maria felt scared.",
+        "startTime": 13.332,
+        "endTime": 16.739,
+        "duration": 3.407,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "Her hands shook. She stood in front of them, heart racing. She took a deep breath. She remembered her father’s words.",
+    "sentences": [
+      "Her hands shook.",
+      "She stood in front of them, heart racing.",
+      "She took a deep breath.",
+      "She remembered her father’s words."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_27.mp3",
+    "duration": 8.497868,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her hands shook.",
+        "startTime": 0,
+        "endTime": 1.172,
+        "duration": 1.172,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "She stood in front of them, heart racing.",
+        "startTime": 1.172,
+        "endTime": 4.324,
+        "duration": 3.152,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "She took a deep breath.",
+        "startTime": 4.324,
+        "endTime": 6.008,
+        "duration": 1.684,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "She remembered her father’s words.",
+        "startTime": 6.008,
+        "endTime": 8.498,
+        "duration": 2.49,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "“Just try.” Maria looked into the faces of her friends. They were smiling, their eyes shining with belief. Maria started to sing. She felt the music inside her.",
+    "sentences": [
+      "“Just try.” Maria looked into the faces of her friends.",
+      "They were smiling, their eyes shining with belief.",
+      "Maria started to sing.",
+      "She felt the music inside her."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_28.mp3",
+    "duration": 12.097256,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "“Just try.” Maria looked into the faces of her friends.",
+        "startTime": 0,
+        "endTime": 4.185,
+        "duration": 4.185,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "They were smiling, their eyes shining with belief.",
+        "startTime": 4.185,
+        "endTime": 8.14,
+        "duration": 3.955,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "Maria started to sing.",
+        "startTime": 8.14,
+        "endTime": 9.814,
+        "duration": 1.674,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "She felt the music inside her.",
+        "startTime": 9.814,
+        "endTime": 12.097,
+        "duration": 2.283,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "She sang from her heart, pouring her soul into each note. Her friends listened, captivated. They clapped and cheered. Maria felt happy.",
+    "sentences": [
+      "She sang from her heart, pouring her soul into each note.",
+      "Her friends listened, captivated.",
+      "They clapped and cheered.",
+      "Maria felt happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_29.mp3",
+    "duration": 9.762608,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She sang from her heart, pouring her soul into each note.",
+        "startTime": 0,
+        "endTime": 4.236,
+        "duration": 4.236,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "Her friends listened, captivated.",
+        "startTime": 4.236,
+        "endTime": 6.752,
+        "duration": 2.516,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "They clapped and cheered.",
+        "startTime": 6.752,
+        "endTime": 8.544,
+        "duration": 1.792,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "Maria felt happy.",
+        "startTime": 8.544,
+        "endTime": 9.763,
+        "duration": 1.219,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "She felt alive again. It was a moment she had craved for so long. After that, Maria wanted to perform more. She practiced more and more.",
+    "sentences": [
+      "She felt alive again.",
+      "It was a moment she had craved for so long.",
+      "After that, Maria wanted to perform more.",
+      "She practiced more and more."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_30.mp3",
+    "duration": 10.588095,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt alive again.",
+        "startTime": 0,
+        "endTime": 1.648,
+        "duration": 1.648,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "It was a moment she had craved for so long.",
+        "startTime": 1.648,
+        "endTime": 5.023,
+        "duration": 3.375,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "After that, Maria wanted to perform more.",
+        "startTime": 5.023,
+        "endTime": 8.391,
+        "duration": 3.368,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "She practiced more and more.",
+        "startTime": 8.391,
+        "endTime": 10.588,
+        "duration": 2.197,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "She spent 40 to 70 hours each week on her music. She loved it. She felt free, like she was flying. She imagined herself on a big stage, singing for a large audience.",
+    "sentences": [
+      "She spent 40 to 70 hours each week on her music.",
+      "She loved it.",
+      "She felt free, like she was flying.",
+      "She imagined herself on a big stage, singing for a large audience."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_31.mp3",
+    "duration": 13.574399,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She spent 40 to 70 hours each week on her music.",
+        "startTime": 0,
+        "endTime": 3.933,
+        "duration": 3.933,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "She loved it.",
+        "startTime": 3.933,
+        "endTime": 4.998,
+        "duration": 1.065,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "She felt free, like she was flying.",
+        "startTime": 4.998,
+        "endTime": 8.016,
+        "duration": 3.018,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "She imagined herself on a big stage, singing for a large audience.",
+        "startTime": 8.016,
+        "endTime": 13.574,
+        "duration": 5.558,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "But there were still hard days. Maria faced other challenges. She had health problems. She had blood clots.",
+    "sentences": [
+      "But there were still hard days.",
+      "Maria faced other challenges.",
+      "She had health problems.",
+      "She had blood clots."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_32.mp3",
+    "duration": 7.147347,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "But there were still hard days.",
+        "startTime": 0,
+        "endTime": 2.13,
+        "duration": 2.13,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "Maria faced other challenges.",
+        "startTime": 2.13,
+        "endTime": 4.123,
+        "duration": 1.993,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "She had health problems.",
+        "startTime": 4.123,
+        "endTime": 5.773,
+        "duration": 1.649,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "She had blood clots.",
+        "startTime": 5.773,
+        "endTime": 7.147,
+        "duration": 1.374,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "The doctor said, “You need to rest for a long time.” Maria felt scared and sad. Her heart sank. Some days, she felt like giving up. “Why is this happening to me?” she thought.",
+    "sentences": [
+      "The doctor said, “You need to rest for a long time.” Maria felt scared and sad.",
+      "Her heart sank.",
+      "Some days, she felt like giving up.",
+      "“Why is this happening to me?” she thought."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_33.mp3",
+    "duration": 15.756825,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The doctor said, “You need to rest for a long time.” Maria felt scared and sad.",
+        "startTime": 0,
+        "endTime": 7.249,
+        "duration": 7.249,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "Her heart sank.",
+        "startTime": 7.249,
+        "endTime": 8.597,
+        "duration": 1.348,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "Some days, she felt like giving up.",
+        "startTime": 8.597,
+        "endTime": 11.893,
+        "duration": 3.295,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "“Why is this happening to me?” she thought.",
+        "startTime": 11.893,
+        "endTime": 15.757,
+        "duration": 3.864,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "She stared at the ceiling, feeling trapped. But with David’s support, Maria kept going. “You are strong,” he said. “You can do this.” Maria believed him.",
+    "sentences": [
+      "She stared at the ceiling, feeling trapped.",
+      "But with David’s support, Maria kept going.",
+      "“You are strong,” he said.",
+      "“You can do this.” Maria believed him."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_34.mp3",
+    "duration": 11.88678,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She stared at the ceiling, feeling trapped.",
+        "startTime": 0,
+        "endTime": 3.429,
+        "duration": 3.429,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "But with David’s support, Maria kept going.",
+        "startTime": 3.429,
+        "endTime": 6.857,
+        "duration": 3.429,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "“You are strong,” he said.",
+        "startTime": 6.857,
+        "endTime": 8.989,
+        "duration": 2.132,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "“You can do this.” Maria believed him.",
+        "startTime": 8.989,
+        "endTime": 11.887,
+        "duration": 2.897,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "She practiced quietly, using her music sheets and visual aids. She learned to be patient with herself. Every time she felt weak, David reminded her of her strength. “Remember how far you have come,” he said, his voice full of love.",
+    "sentences": [
+      "She practiced quietly, using her music sheets and visual aids.",
+      "She learned to be patient with herself.",
+      "Every time she felt weak, David reminded her of her strength.",
+      "“Remember how far you have come,” he said, his voice full of love."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_35.mp3",
+    "duration": 19.687664,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She practiced quietly, using her music sheets and visual aids.",
+        "startTime": 0,
+        "endTime": 5.341,
+        "duration": 5.341,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "She learned to be patient with herself.",
+        "startTime": 5.341,
+        "endTime": 8.606,
+        "duration": 3.265,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "Every time she felt weak, David reminded her of her strength.",
+        "startTime": 8.606,
+        "endTime": 13.862,
+        "duration": 5.257,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "“Remember how far you have come,” he said, his voice full of love.",
+        "startTime": 13.862,
+        "endTime": 19.688,
+        "duration": 5.825,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "After 18 months, Maria was ready. She wanted to perform again. She found a place at the local theater. It was big and beautiful, with bright lights.",
+    "sentences": [
+      "After 18 months, Maria was ready.",
+      "She wanted to perform again.",
+      "She found a place at the local theater.",
+      "It was big and beautiful, with bright lights."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_36.mp3",
+    "duration": 10.091995,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "After 18 months, Maria was ready.",
+        "startTime": 0,
+        "endTime": 2.379,
+        "duration": 2.379,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "She wanted to perform again.",
+        "startTime": 2.379,
+        "endTime": 4.269,
+        "duration": 1.891,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "She found a place at the local theater.",
+        "startTime": 4.269,
+        "endTime": 6.903,
+        "duration": 2.634,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "It was big and beautiful, with bright lights.",
+        "startTime": 6.903,
+        "endTime": 10.092,
+        "duration": 3.189,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "She was excited but scared. What if people did not like her music? What if she forgot the words? Maria took a deep breath.",
+    "sentences": [
+      "She was excited but scared.",
+      "What if people did not like her music?",
+      "What if she forgot the words?",
+      "Maria took a deep breath."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_37.mp3",
+    "duration": 8.994717,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She was excited but scared.",
+        "startTime": 0,
+        "endTime": 2.041,
+        "duration": 2.041,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "What if people did not like her music?",
+        "startTime": 2.041,
+        "endTime": 4.913,
+        "duration": 2.872,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "What if she forgot the words?",
+        "startTime": 4.913,
+        "endTime": 7.105,
+        "duration": 2.192,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "Maria took a deep breath.",
+        "startTime": 7.105,
+        "endTime": 8.995,
+        "duration": 1.89,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "She reminded herself of her journey. She thought of her father’s encouragement and her hard work. “I can do this,” she whispered to herself. She felt her heart race with anticipation.",
+    "sentences": [
+      "She reminded herself of her journey.",
+      "She thought of her father’s encouragement and her hard work.",
+      "“I can do this,” she whispered to herself.",
+      "She felt her heart race with anticipation."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_38.mp3",
+    "duration": 12.767959,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She reminded herself of her journey.",
+        "startTime": 0,
+        "endTime": 2.524,
+        "duration": 2.524,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "She thought of her father’s encouragement and her hard work.",
+        "startTime": 2.524,
+        "endTime": 6.73,
+        "duration": 4.206,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "“I can do this,” she whispered to herself.",
+        "startTime": 6.73,
+        "endTime": 9.824,
+        "duration": 3.094,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "She felt her heart race with anticipation.",
+        "startTime": 9.824,
+        "endTime": 12.768,
+        "duration": 2.944,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 159,
+    "text": "The night of the performance arrived. The theater was full. People filled the seats, chatting and laughing. Maria felt her heart race.",
+    "sentences": [
+      "The night of the performance arrived.",
+      "The theater was full.",
+      "People filled the seats, chatting and laughing.",
+      "Maria felt her heart race."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_39.mp3",
+    "duration": 9.209002,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The night of the performance arrived.",
+        "startTime": 0,
+        "endTime": 2.559,
+        "duration": 2.559,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "The theater was full.",
+        "startTime": 2.559,
+        "endTime": 4.011,
+        "duration": 1.452,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "People filled the seats, chatting and laughing.",
+        "startTime": 4.011,
+        "endTime": 7.411,
+        "duration": 3.4,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "Maria felt her heart race.",
+        "startTime": 7.411,
+        "endTime": 9.209,
+        "duration": 1.798,
+        "sentenceIndex": 159
+      }
+    ]
+  },
+  {
+    "bundleIndex": 40,
+    "startSentenceIndex": 160,
+    "endSentenceIndex": 163,
+    "text": "She walked on stage, her legs shaking. The lights were bright and warm. She looked at the audience. They smiled at her.",
+    "sentences": [
+      "She walked on stage, her legs shaking.",
+      "The lights were bright and warm.",
+      "She looked at the audience.",
+      "They smiled at her."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_40.mp3",
+    "duration": 7.789161,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She walked on stage, her legs shaking.",
+        "startTime": 0,
+        "endTime": 2.652,
+        "duration": 2.652,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "The lights were bright and warm.",
+        "startTime": 2.652,
+        "endTime": 4.76,
+        "duration": 2.107,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "She looked at the audience.",
+        "startTime": 4.76,
+        "endTime": 6.538,
+        "duration": 1.778,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "They smiled at her.",
+        "startTime": 6.538,
+        "endTime": 7.789,
+        "duration": 1.251,
+        "sentenceIndex": 163
+      }
+    ]
+  },
+  {
+    "bundleIndex": 41,
+    "startSentenceIndex": 164,
+    "endSentenceIndex": 167,
+    "text": "Some waved, giving her strength. Maria took a deep breath and began to sing. She felt the vibrations in her chest, in her bones. The music flowed through her like a river.",
+    "sentences": [
+      "Some waved, giving her strength.",
+      "Maria took a deep breath and began to sing.",
+      "She felt the vibrations in her chest, in her bones.",
+      "The music flowed through her like a river."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_41.mp3",
+    "duration": 12.376327,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Some waved, giving her strength.",
+        "startTime": 0,
+        "endTime": 2.45,
+        "duration": 2.45,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "Maria took a deep breath and began to sing.",
+        "startTime": 2.45,
+        "endTime": 5.541,
+        "duration": 3.091,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "She felt the vibrations in her chest, in her bones.",
+        "startTime": 5.541,
+        "endTime": 9.357,
+        "duration": 3.816,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "The music flowed through her like a river.",
+        "startTime": 9.357,
+        "endTime": 12.376,
+        "duration": 3.019,
+        "sentenceIndex": 167
+      }
+    ]
+  },
+  {
+    "bundleIndex": 42,
+    "startSentenceIndex": 168,
+    "endSentenceIndex": 171,
+    "text": "She sang with all her heart. The audience listened closely. Maria could see their faces. They looked happy, engaged in her story.",
+    "sentences": [
+      "She sang with all her heart.",
+      "The audience listened closely.",
+      "Maria could see their faces.",
+      "They looked happy, engaged in her story."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_42.mp3",
+    "duration": 9.860952,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She sang with all her heart.",
+        "startTime": 0,
+        "endTime": 2.158,
+        "duration": 2.158,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "The audience listened closely.",
+        "startTime": 2.158,
+        "endTime": 4.47,
+        "duration": 2.312,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "Maria could see their faces.",
+        "startTime": 4.47,
+        "endTime": 6.628,
+        "duration": 2.158,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "They looked happy, engaged in her story.",
+        "startTime": 6.628,
+        "endTime": 9.861,
+        "duration": 3.233,
+        "sentenceIndex": 171
+      }
+    ]
+  },
+  {
+    "bundleIndex": 43,
+    "startSentenceIndex": 172,
+    "endSentenceIndex": 175,
+    "text": "When she finished, there was silence. Maria felt a moment of fear wash over her. “Did they like it?” she wondered, her heart pounding. Then, suddenly, everyone stood up and clapped.",
+    "sentences": [
+      "When she finished, there was silence.",
+      "Maria felt a moment of fear wash over her.",
+      "“Did they like it?” she wondered, her heart pounding.",
+      "Then, suddenly, everyone stood up and clapped."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_43.mp3",
+    "duration": 13.137891,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "When she finished, there was silence.",
+        "startTime": 0,
+        "endTime": 2.756,
+        "duration": 2.756,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "Maria felt a moment of fear wash over her.",
+        "startTime": 2.756,
+        "endTime": 5.715,
+        "duration": 2.958,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "“Did they like it?” she wondered, her heart pounding.",
+        "startTime": 5.715,
+        "endTime": 9.598,
+        "duration": 3.883,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "Then, suddenly, everyone stood up and clapped.",
+        "startTime": 9.598,
+        "endTime": 13.138,
+        "duration": 3.54,
+        "sentenceIndex": 175
+      }
+    ]
+  },
+  {
+    "bundleIndex": 44,
+    "startSentenceIndex": 176,
+    "endSentenceIndex": 179,
+    "text": "Maria felt tears in her eyes. She was happy and proud. She found her voice again. She had taken back her dream.",
+    "sentences": [
+      "Maria felt tears in her eyes.",
+      "She was happy and proud.",
+      "She found her voice again.",
+      "She had taken back her dream."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_44.mp3",
+    "duration": 7.94542,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria felt tears in her eyes.",
+        "startTime": 0,
+        "endTime": 2.133,
+        "duration": 2.133,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "She was happy and proud.",
+        "startTime": 2.133,
+        "endTime": 3.899,
+        "duration": 1.766,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "She found her voice again.",
+        "startTime": 3.899,
+        "endTime": 5.812,
+        "duration": 1.913,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "She had taken back her dream.",
+        "startTime": 5.812,
+        "endTime": 7.945,
+        "duration": 2.133,
+        "sentenceIndex": 179
+      }
+    ]
+  },
+  {
+    "bundleIndex": 45,
+    "startSentenceIndex": 180,
+    "endSentenceIndex": 183,
+    "text": "Maria had transformed. She learned to adapt and find new ways to connect with music. She found joy in music again. She felt connected to others.",
+    "sentences": [
+      "Maria had transformed.",
+      "She learned to adapt and find new ways to connect with music.",
+      "She found joy in music again.",
+      "She felt connected to others."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_45.mp3",
+    "duration": 10.528481,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria had transformed.",
+        "startTime": 0,
+        "endTime": 1.643,
+        "duration": 1.643,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "She learned to adapt and find new ways to connect with music.",
+        "startTime": 1.643,
+        "endTime": 6.198,
+        "duration": 4.555,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "She found joy in music again.",
+        "startTime": 6.198,
+        "endTime": 8.363,
+        "duration": 2.165,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "She felt connected to others.",
+        "startTime": 8.363,
+        "endTime": 10.528,
+        "duration": 2.165,
+        "sentenceIndex": 183
+      }
+    ]
+  },
+  {
+    "bundleIndex": 46,
+    "startSentenceIndex": 184,
+    "endSentenceIndex": 187,
+    "text": "She felt like she belonged. She thought, “I am not just a girl who lost her hearing. I am a musician.” \n\nMaria realized something important. Her hearing loss did not stop her.",
+    "sentences": [
+      "She felt like she belonged.",
+      "She thought, “I am not just a girl who lost her hearing.",
+      "I am a musician.” \n\nMaria realized something important.",
+      "Her hearing loss did not stop her."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_46.mp3",
+    "duration": 13.357392,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She felt like she belonged.",
+        "startTime": 0,
+        "endTime": 2.073,
+        "duration": 2.073,
+        "sentenceIndex": 184
+      },
+      {
+        "text": "She thought, “I am not just a girl who lost her hearing.",
+        "startTime": 2.073,
+        "endTime": 6.523,
+        "duration": 4.45,
+        "sentenceIndex": 185
+      },
+      {
+        "text": "I am a musician.” \n\nMaria realized something important.",
+        "startTime": 6.523,
+        "endTime": 10.747,
+        "duration": 4.223,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "Her hearing loss did not stop her.",
+        "startTime": 10.747,
+        "endTime": 13.357,
+        "duration": 2.611,
+        "sentenceIndex": 187
+      }
+    ]
+  },
+  {
+    "bundleIndex": 47,
+    "startSentenceIndex": 188,
+    "endSentenceIndex": 191,
+    "text": "She found strength in her struggle. She learned to believe in herself. She thought, “I can do anything if I try.” Every challenge became a stepping stone. Now, Maria teaches music to others.",
+    "sentences": [
+      "She found strength in her struggle.",
+      "She learned to believe in herself.",
+      "She thought, “I can do anything if I try.” Every challenge became a stepping stone.",
+      "Now, Maria teaches music to others."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_47.mp3",
+    "duration": 13.0461,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She found strength in her struggle.",
+        "startTime": 0,
+        "endTime": 2.386,
+        "duration": 2.386,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "She learned to believe in herself.",
+        "startTime": 2.386,
+        "endTime": 4.703,
+        "duration": 2.317,
+        "sentenceIndex": 189
+      },
+      {
+        "text": "She thought, “I can do anything if I try.” Every challenge became a stepping stone.",
+        "startTime": 4.703,
+        "endTime": 10.51,
+        "duration": 5.807,
+        "sentenceIndex": 190
+      },
+      {
+        "text": "Now, Maria teaches music to others.",
+        "startTime": 10.51,
+        "endTime": 13.046,
+        "duration": 2.536,
+        "sentenceIndex": 191
+      }
+    ]
+  },
+  {
+    "bundleIndex": 48,
+    "startSentenceIndex": 192,
+    "endSentenceIndex": 195,
+    "text": "She shows them that they can overcome challenges too. She tells them, “You are not alone. You can find your voice.” She shares her story with them. She wants them to know that it is okay to struggle.",
+    "sentences": [
+      "She shows them that they can overcome challenges too.",
+      "She tells them, “You are not alone.",
+      "You can find your voice.” She shares her story with them.",
+      "She wants them to know that it is okay to struggle."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_48.mp3",
+    "duration": 13.756961,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She shows them that they can overcome challenges too.",
+        "startTime": 0,
+        "endTime": 3.679,
+        "duration": 3.679,
+        "sentenceIndex": 192
+      },
+      {
+        "text": "She tells them, “You are not alone.",
+        "startTime": 3.679,
+        "endTime": 6.259,
+        "duration": 2.58,
+        "sentenceIndex": 193
+      },
+      {
+        "text": "You can find your voice.” She shares her story with them.",
+        "startTime": 6.259,
+        "endTime": 10.216,
+        "duration": 3.957,
+        "sentenceIndex": 194
+      },
+      {
+        "text": "She wants them to know that it is okay to struggle.",
+        "startTime": 10.216,
+        "endTime": 13.757,
+        "duration": 3.541,
+        "sentenceIndex": 195
+      }
+    ]
+  },
+  {
+    "bundleIndex": 49,
+    "startSentenceIndex": 196,
+    "endSentenceIndex": 199,
+    "text": "Maria’s journey was not easy, but she never gave up. She faced her struggles and found new ways to build a life filled with music. Music was no longer just a dream; it was her reality. Through her story, Maria shows that everyone can adapt, persist, and find joy.",
+    "sentences": [
+      "Maria’s journey was not easy, but she never gave up.",
+      "She faced her struggles and found new ways to build a life filled with music.",
+      "Music was no longer just a dream; it was her reality.",
+      "Through her story, Maria shows that everyone can adapt, persist, and find joy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_49.mp3",
+    "duration": 21.654059,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Maria’s journey was not easy, but she never gave up.",
+        "startTime": 0,
+        "endTime": 4.311,
+        "duration": 4.311,
+        "sentenceIndex": 196
+      },
+      {
+        "text": "She faced her struggles and found new ways to build a life filled with music.",
+        "startTime": 4.311,
+        "endTime": 10.472,
+        "duration": 6.161,
+        "sentenceIndex": 197
+      },
+      {
+        "text": "Music was no longer just a dream; it was her reality.",
+        "startTime": 10.472,
+        "endTime": 14.963,
+        "duration": 4.491,
+        "sentenceIndex": 198
+      },
+      {
+        "text": "Through her story, Maria shows that everyone can adapt, persist, and find joy.",
+        "startTime": 14.963,
+        "endTime": 21.654,
+        "duration": 6.691,
+        "sentenceIndex": 199
+      }
+    ]
+  },
+  {
+    "bundleIndex": 50,
+    "startSentenceIndex": 200,
+    "endSentenceIndex": 203,
+    "text": "No matter the challenges, everyone can achieve their dreams. Maria learned that strength comes from within. And that is the most important lesson of all. Maria stands in front of her students.",
+    "sentences": [
+      "No matter the challenges, everyone can achieve their dreams.",
+      "Maria learned that strength comes from within.",
+      "And that is the most important lesson of all.",
+      "Maria stands in front of her students."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_50.mp3",
+    "duration": 14.521247,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "No matter the challenges, everyone can achieve their dreams.",
+        "startTime": 0,
+        "endTime": 4.712,
+        "duration": 4.712,
+        "sentenceIndex": 200
+      },
+      {
+        "text": "Maria learned that strength comes from within.",
+        "startTime": 4.712,
+        "endTime": 8.21,
+        "duration": 3.498,
+        "sentenceIndex": 201
+      },
+      {
+        "text": "And that is the most important lesson of all.",
+        "startTime": 8.21,
+        "endTime": 11.632,
+        "duration": 3.422,
+        "sentenceIndex": 202
+      },
+      {
+        "text": "Maria stands in front of her students.",
+        "startTime": 11.632,
+        "endTime": 14.521,
+        "duration": 2.889,
+        "sentenceIndex": 203
+      }
+    ]
+  },
+  {
+    "bundleIndex": 51,
+    "startSentenceIndex": 204,
+    "endSentenceIndex": 206,
+    "text": "She smiles and says, “Let’s make music together!” They cheer, and in that moment, Maria knows she has found her place in the world. She has built a life filled with music, joy, and love. And as she looks at her students, she sees hope and possibility in their eyes, just as her father once saw in hers.",
+    "sentences": [
+      "She smiles and says, “Let’s make music together!” They cheer, and in that moment, Maria knows she has found her place in the world.",
+      "She has built a life filled with music, joy, and love.",
+      "And as she looks at her students, she sees hope and possibility in their eyes, just as her father once saw in hers."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/bundle_51.mp3",
+    "duration": 22.14678,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She smiles and says, “Let’s make music together!” They cheer, and in that moment, Maria knows she has found her place in the world.",
+        "startTime": 0,
+        "endTime": 9.662,
+        "duration": 9.662,
+        "sentenceIndex": 204
+      },
+      {
+        "text": "She has built a life filled with music, joy, and love.",
+        "startTime": 9.662,
+        "endTime": 13.76,
+        "duration": 4.097,
+        "sentenceIndex": 205
+      },
+      {
+        "text": "And as she looks at her students, she sees hope and possibility in their eyes, just as her father once saw in hers.",
+        "startTime": 13.76,
+        "endTime": 22.147,
+        "duration": 8.387,
+        "sentenceIndex": 206
+      }
+    ]
+  }
+]

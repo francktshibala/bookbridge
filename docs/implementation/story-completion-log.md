@@ -16,6 +16,7 @@
 | `immigrant-entrepreneur` | Immigrant Entrepreneur: From Failure to Success | BookBridge | SF Chronicle, MEDA, IOM, WNW, Swaay, MightyCall | Immigration, Entrepreneurship, Resilience, Overcoming Adversity, Building New Life, Community Support, Transformation | ✅ Complete | ✅ | - | - | ~20 min | 40 | 2025-12-08 |
 | `refugee-journey-1` | Refugee Journey: From War Zone to Hope | BookBridge | Multiple sources (thematic extraction) | Refugee Journey, War Zone to Safety, Language Barriers, Building New Life, Identity Loss and Rediscovery, Persistence Despite Hardship | ✅ Complete | ✅ | - | - | ~20 min | 63 | 2025-12-10 |
 | `community-builder-1` | Community Builder: One Person Transforms a Neighborhood | BookBridge | Multiple sources (thematic extraction) | Community Building, Belonging, Transformation, Food Access, Empowerment, Building Connections, Persistence | ✅ Complete | ✅ | - | - | ~20 min | 53 | 2025-12-10 |
+| `disability-overcome-1` | Disability Overcome: Finding New Ways | BookBridge | Multiple sources (thematic extraction) | Disability Overcome, Adaptation, Finding New Ways, Persistence, Identity Transformation, Communication Barriers, Belonging, Building New Life | ✅ Complete | ✅ | - | - | ~20 min | 52 | 2025-12-10 |
 
 **Legend**:
 - ✅ Complete
@@ -287,6 +288,136 @@
 - `scripts/integrate-teaching-dad-database.ts`
 - `scripts/seed-teaching-dad.ts`
 - `app/api/teaching-dad-to-read-a1/bundles/route.ts`
+
+---
+
+### 4. Disability Overcome: Finding New Ways
+
+**Story ID**: `disability-overcome-1`  
+**Title**: Disability Overcome: Finding New Ways  
+**Author**: BookBridge  
+**Collection**: Modern Voices  
+**Completion Date**: 2025-12-10
+
+#### Sources
+- **Source 1**: CNN Feature Interview - Mandy Harvey (deaf singer who lost hearing at 18)
+- **Source 2**: NPR All Things Considered Interview - Mandy Harvey (barefoot performance, adaptation methods)
+- **Source 3**: CNBC Make It Interview - Tatyana McFadden (wheelchair racer from Russian orphanage)
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - Story-driven (personal narratives with clear emotional journeys)
+  - Sufficient content for ~20-minute A1 story
+  - 3 distinct sources for multi-source extraction (legal compliance)
+  
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Loss → Depression → Finding New Ways → Persistence → Breakthrough → Transformation
+  - 12 emotional moments identified (exceeding 5-7 requirement)
+  - 7 ESL resonance multipliers: Communication & Language Barriers, Overcoming "Not Good Enough", Persistence Despite Setbacks, Building New Life, Belonging & Identity, First-Time Courage, Connection Across Differences
+
+#### Content Details
+- **Original Text**: AI-generated narrative based on extracted themes (1,584 words)
+- **A1 Level**: 207 sentences, 1,584 words (~20 minutes)
+- **Bundles**: 52 (4 sentences per bundle)
+- **Voice**: Daniel (onwK4e9ZLuTAKqWW03F9)
+- **Audio Speed**: 0.85× (FFmpeg slowdown)
+
+#### Themes & Emotional Moments
+**Themes**:
+- Disability overcome
+- Adaptation
+- Finding new ways
+- Persistence
+- Identity transformation
+- Communication barriers
+- Belonging
+- Building new life
+
+**Emotional Moments** (12 identified):
+1. Initial loss of hearing and identity crisis (high)
+2. Deep depression following loss (high)
+3. Realization of need to change direction (medium)
+4. Father's suggestion to learn new song (high)
+5. First performance in jazz club (medium)
+6. Overcoming performance anxiety (medium)
+7. Struggles with blood clots and recovery (high)
+8. Adoption at age 6 (high)
+9. Vulnerable admission of not being good at sports (medium)
+10. Breakthrough moment (father crying) (high)
+11. Finding new ways to communicate (high)
+12. Transformation and success (high)
+
+**ESL Resonance Multipliers**:
+- Communication & Language Barriers (metaphorical)
+- Overcoming "Not Good Enough"
+- Persistence Despite Setbacks
+- Building New Life
+- Belonging & Identity
+- First-Time Courage
+- Connection Across Differences
+
+#### Implementation Steps Completed
+- ✅ Step 0.25: Source Material Check
+- ✅ Step 0.5: Emotional Impact Validation
+- ✅ Step 1: Theme extraction from 3 sources
+- ✅ Step 2: Background context written (37 words)
+- ✅ Step 3: Emotional hook written (72 words)
+- ✅ Step 4: Main story written (original narrative, 1,584 words)
+- ✅ Step 4.5: Markdown/metadata cleanup (verified clean)
+- ✅ Step 7: Combined preview text generated (162 words)
+- ✅ Step 8: Combined preview audio generated (74.55s, Daniel voice)
+- ✅ Step 9: Bundle audio generation (52 bundles, Enhanced Timing v3)
+- ✅ Step 10: Database integration (52 BookChunk records)
+- ✅ Step 11: API endpoint created (`/api/disability-overcome-1-a1/bundles`)
+- ✅ Step 12: Frontend config updated
+- ✅ Step 13: FeaturedBook seeded (Modern Voices collection, position 11)
+
+#### Key Learnings
+1. **Multi-Source Thematic Extraction**: Successfully combined themes from Mandy Harvey (hearing loss) and Tatyana McFadden (physical disability) into unified narrative about overcoming disability and finding new ways.
+
+2. **Story Expansion**: Initial AI-generated story was 892 words (~11 minutes); expanded twice to reach 1,584 words (~20 minutes) meeting A1 target.
+
+3. **Daniel Voice**: Used Daniel voice instead of Jane for this story, demonstrating flexibility in voice selection based on story theme (professional/inspirational tone).
+
+4. **Generic Character Names**: Used "Maria" and "David" instead of real names from sources (Mandy Harvey, Tatyana McFadden) to avoid copyright concerns while maintaining authenticity.
+
+5. **Enhanced Timing v3**: Perfect sync achieved for both intro section and main story bundles with Daniel voice.
+
+#### Technical Notes
+- **Audio Generation**: All 52 bundles generated successfully with Daniel voice
+- **Database**: 52 BookChunk records created with Enhanced Timing v3 metadata
+- **API**: Endpoint returns `previewCombined` and `previewCombinedAudio` with sentence timings
+- **Frontend**: Added to Modern Voices collection (position 11)
+
+#### Quality Metrics
+- **Emotional Engagement**: High (passes "text a friend" test)
+- **ESL Relevance**: High (7 resonance multipliers)
+- **Length**: ✅ Meets requirement (20 minutes for A1)
+- **Audio Quality**: ✅ Perfect sync with Enhanced Timing v3
+- **Sentence Quality**: ✅ Average 6.9 words per sentence (A1 appropriate)
+
+#### Files Created
+- `cache/files/disability-overcome-1-source-1.txt` (CNN - Mandy Harvey)
+- `cache/files/disability-overcome-1-source-2.txt` (NPR - Mandy Harvey)
+- `cache/files/disability-overcome-1-source-3.txt` (CNBC - Tatyana McFadden)
+- `cache/disability-overcome-1-validation.md`
+- `cache/disability-overcome-1-themes.json`
+- `cache/disability-overcome-1-background.txt`
+- `cache/disability-overcome-1-hook.txt`
+- `cache/disability-overcome-1-A1-original.txt`
+- `cache/disability-overcome-1-A1-preview-combined.txt`
+- `cache/disability-overcome-1-A1-preview-combined-audio.json`
+- `cache/disability-overcome-1-A1-bundles-metadata.json`
+- `scripts/extract-disability-overcome-themes.js`
+- `scripts/write-disability-overcome-story.js`
+- `scripts/expand-disability-overcome-a1.js`
+- `scripts/generate-disability-overcome-preview-combined.js`
+- `scripts/generate-disability-overcome-preview-audio.js`
+- `scripts/generate-disability-overcome-bundles.js`
+- `scripts/integrate-disability-overcome-database.ts`
+- `scripts/seed-disability-overcome.ts`
+- `app/api/disability-overcome-1-a1/bundles/route.ts`
 
 ---
 

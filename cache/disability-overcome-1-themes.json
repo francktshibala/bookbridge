@@ -1,0 +1,111 @@
+{
+  "themes": [
+    "disability overcome",
+    "adaptation",
+    "finding new ways",
+    "persistence",
+    "identity transformation",
+    "communication barriers",
+    "belonging",
+    "building new life"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Initial loss of hearing and identity crisis as dreams of becoming a choir director are shattered.",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Deep depression following the loss of hearing and dropping out of the music program.",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Realization of the need to change direction and overcome despair.",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Father's suggestion to learn a new song, leading to a breakthrough moment.",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "First performance in a jazz club, overcoming initial anxiety.",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Facing and overcoming performance anxiety after losing hearing.",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Struggles with blood clots and the subsequent 18-month recovery period.",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Adoption at age 6 and the transformative experiences that followed.",
+      "emotionalWeight": "high",
+      "source": "3"
+    },
+    {
+      "moment": "Vulnerable admission of not being good at sports but developing strength through persistence.",
+      "emotionalWeight": "medium",
+      "source": "3"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "February 23, 2018",
+      "September 19, 2017",
+      "August 26, 2021",
+      "Athens 2004",
+      "Rio 2016",
+      "Tokyo 2021"
+    ],
+    "locations": [
+      "Cincinnati, Ohio",
+      "St. Petersburg, Russia",
+      "Baltimore, Maryland"
+    ],
+    "names": [
+      "Mandy Harvey",
+      "Tatyana McFadden",
+      "Debbie McFadden",
+      "Joe Harvey"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers",
+    "Overcoming 'Not Good Enough'",
+    "Persistence Despite Setbacks",
+    "Building New Life",
+    "Belonging & Identity",
+    "First-Time Courage",
+    "Connection Across Differences"
+  ],
+  "storyArc": {
+    "struggle": [
+      "Initial loss of hearing and identity crisis",
+      "Deep depression after dropping out of music program",
+      "Challenges faced in the orphanage"
+    ],
+    "perseverance": [
+      "Father's encouragement leading to new musical journey",
+      "Training and competing despite physical challenges",
+      "Legal battle for inclusion in sports"
+    ],
+    "breakthrough": [
+      "First performance after losing hearing",
+      "Success at the Paralympics",
+      "Finding joy in music despite disabilities"
+    ]
+  },
+  "keyQuotes": {
+    "source1": [],
+    "source2": [],
+    "source3": []
+  }
+}

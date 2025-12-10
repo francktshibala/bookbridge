@@ -260,6 +260,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-green-500 to-teal-600',
     abbreviation: 'CB'
   },
+  {
+    id: 'disability-overcome-1',
+    title: 'Disability Overcome: Finding New Ways',
+    author: 'BookBridge',
+    description: 'An inspiring story about Maria, who loses her hearing at age 18 and watches her dream of becoming a choir director die. Through deep depression, her father\'s encouragement, and finding new ways to make music, she transforms her life and achieves her dreams. This powerful tale shows how people adapt, persist, and overcome challenges. A1 level with Daniel voice.',
+    sentences: 207,
+    bundles: 52,
+    gradient: 'from-indigo-500 to-purple-600',
+    abbreviation: 'DO'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -349,6 +359,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'community-builder-1': {
     'A1': '/api/community-builder-1-a1/bundles'
   },
+  'disability-overcome-1': {
+    'A1': '/api/disability-overcome-1-a1/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -377,6 +390,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'immigrant-entrepreneur': 'A1',  // Default to A1 for Immigrant Entrepreneur: From Failure to Success (Modern Story)
   'refugee-journey-1': 'A1',  // Default to A1 for Refugee Journey: From War Zone to Hope (Modern Story)
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
+  'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
 };
 
 // Get the correct CEFR level for a book
@@ -445,6 +459,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'immigrant-entrepreneur': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'refugee-journey-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
 };
 
 // Single-level books configuration

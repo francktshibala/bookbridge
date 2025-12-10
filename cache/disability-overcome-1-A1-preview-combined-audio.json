@@ -1,0 +1,158 @@
+{
+  "storyId": "disability-overcome-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-1/A1/preview-combined.mp3",
+    "duration": 74.54517,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 8.123,
+        "duration": 8.123,
+        "text": "About This Story\n\nIn this inspiring story, Maria loves music and dreams of being a choir director."
+      },
+      {
+        "startTime": 8.123,
+        "endTime": 10.958,
+        "duration": 2.835,
+        "text": "But at 18, she loses her hearing."
+      },
+      {
+        "startTime": 10.958,
+        "endTime": 14.782,
+        "duration": 3.824,
+        "text": "This big challenge makes her feel lost and sad."
+      },
+      {
+        "startTime": 14.782,
+        "endTime": 19.733,
+        "duration": 4.95,
+        "text": "Through her father’s support, she learns to find joy again."
+      },
+      {
+        "startTime": 19.733,
+        "endTime": 24.289,
+        "duration": 4.556,
+        "text": "A powerful message about never giving up on your dreams."
+      },
+      {
+        "startTime": 24.289,
+        "endTime": 27.137,
+        "duration": 2.848,
+        "text": "Imagine losing everything you love."
+      },
+      {
+        "startTime": 27.137,
+        "endTime": 29.74,
+        "duration": 2.604,
+        "text": "Imagine your biggest dream dies."
+      },
+      {
+        "startTime": 29.74,
+        "endTime": 32.738,
+        "duration": 2.998,
+        "text": "At age 18, Maria's dream was music."
+      },
+      {
+        "startTime": 32.738,
+        "endTime": 35.586,
+        "duration": 2.848,
+        "text": "She wanted to sing and teach music."
+      },
+      {
+        "startTime": 35.586,
+        "endTime": 37.701,
+        "duration": 2.115,
+        "text": "Then she lost her hearing."
+      },
+      {
+        "startTime": 37.701,
+        "endTime": 38.921,
+        "duration": 1.22,
+        "text": "Her dream died."
+      },
+      {
+        "startTime": 38.921,
+        "endTime": 41.118,
+        "duration": 2.197,
+        "text": "She felt like she died too."
+      },
+      {
+        "startTime": 41.118,
+        "endTime": 43.559,
+        "duration": 2.441,
+        "text": "She stopped leaving her house."
+      },
+      {
+        "startTime": 43.559,
+        "endTime": 45.105,
+        "duration": 1.546,
+        "text": "She stopped living."
+      },
+      {
+        "startTime": 45.105,
+        "endTime": 49.079,
+        "duration": 3.974,
+        "text": "But one day, her father asked her to try again."
+      },
+      {
+        "startTime": 49.079,
+        "endTime": 50.055,
+        "duration": 0.976,
+        "text": "She said no."
+      },
+      {
+        "startTime": 50.055,
+        "endTime": 53.147,
+        "duration": 3.092,
+        "text": "She wanted to prove it was impossible."
+      },
+      {
+        "startTime": 53.147,
+        "endTime": 56.971,
+        "duration": 3.824,
+        "text": "But something happened that changed everything."
+      },
+      {
+        "startTime": 56.971,
+        "endTime": 61.446,
+        "duration": 4.475,
+        "text": "Many people face challenges with their bodies or minds."
+      },
+      {
+        "startTime": 61.446,
+        "endTime": 62.829,
+        "duration": 1.383,
+        "text": "Some cannot hear."
+      },
+      {
+        "startTime": 62.829,
+        "endTime": 64.212,
+        "duration": 1.383,
+        "text": "Some cannot walk."
+      },
+      {
+        "startTime": 64.212,
+        "endTime": 66.816,
+        "duration": 2.604,
+        "text": "Others face different struggles."
+      },
+      {
+        "startTime": 66.816,
+        "endTime": 72.186,
+        "duration": 5.37,
+        "text": "This story shows how people find new ways to achieve their dreams."
+      },
+      {
+        "startTime": 72.186,
+        "endTime": 74.545,
+        "duration": 2.359,
+        "text": "They adapt and never give up."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-10T06:00:30.824Z",
+  "timingMethod": "enhanced-timing-v3"
+}

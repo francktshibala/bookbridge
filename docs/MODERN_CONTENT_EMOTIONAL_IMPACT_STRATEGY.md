@@ -2446,12 +2446,12 @@ Every story must have:
 ### **Phase 1: Highest Priority Themes (Start Here - 6 stories)**
 
 **Confirmed Tier 1 Priority Order:**
-1. **Refugee Journey** (6+ ESL multipliers, fills major gap) - **Target: 2-3 stories**
-2. **Community Builder** (fills belonging gap, high ESL resonance) - **Target: 2-3 stories**
-3. **First-Generation Professional Success** ⭐ **NEW** (5+ ESL multipliers, high ESL relevance) - **Target: 2-3 stories**
-4. **Disability Overcome** (universal inspiration, strong ESL parallel) - **Target: 2-3 stories**
-5. **Career Pivot** (fills career gap, relatable to immigrants) - **Target: 2-3 stories**
-6. **Second Chance** (redemption arc, universal appeal) - **Target: 1-2 stories**
+1. ✅ **Refugee Journey** (6+ ESL multipliers, fills major gap) - **Target: 2-3 stories** - **COMPLETED: 1/2-3** (`refugee-journey-1`)
+2. ✅ **Community Builder** (fills belonging gap, high ESL resonance) - **Target: 2-3 stories** - **COMPLETED: 1/2-3** (`community-builder-1`)
+3. ✅ **First-Generation Professional Success** ⭐ **NEW** (5+ ESL multipliers, high ESL relevance) - **Target: 2-3 stories** - **COMPLETED: 2/2-3** (`teaching-dad-to-read`, `immigrant-entrepreneur`)
+4. ❌ **Disability Overcome** (universal inspiration, strong ESL parallel) - **Target: 2-3 stories** - **NEXT**
+5. ❌ **Career Pivot** (fills career gap, relatable to immigrants) - **Target: 2-3 stories**
+6. ❌ **Second Chance** (redemption arc, universal appeal) - **Target: 1-2 stories**
 
 **Why this order:** Maximizes ESL resonance while filling critical genre gaps. These six Tier 1 themes have highest universal + ESL impact and are distinct from current coverage. **Priority list confirmed and solid.**
 
