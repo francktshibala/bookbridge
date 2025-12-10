@@ -89,10 +89,15 @@ export async function GET(request: NextRequest) {
 
     bookChunks.forEach((chunk: any, index) => {
       // Generate Supabase storage URL from relative path using API
-      const audioUrl = supabase.storage
+      let audioUrl = supabase.storage
         .from('audio-files')
         .getPublicUrl(chunk.audioFilePath!)
         .data.publicUrl;
+      
+      // Add cache-busting parameter for bundle 0 (regenerated on Dec 10, 2025)
+      if (chunk.chunkIndex === 0) {
+        audioUrl += '?v=2';
+      }
 
       let sentencesWithTimings;
       let totalDuration: number;

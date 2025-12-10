@@ -11,7 +11,7 @@
       "We must go!” her mother said with a worried face."
     ],
     "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-1/A1/bundle_0.mp3",
-    "duration": 8.343311,
+    "duration": 8.614104,
     "voiceId": "EXAVITQu4vr4xnSDxMaL",
     "voiceName": "Sarah",
     "speed": 0.85,
@@ -19,29 +19,29 @@
       {
         "text": "Amina packed her bag quickly.",
         "startTime": 0,
-        "endTime": 2.031,
-        "duration": 2.031,
+        "endTime": 2.098,
+        "duration": 2.098,
         "sentenceIndex": 0
       },
       {
         "text": "She had only ten minutes.",
-        "startTime": 2.031,
-        "endTime": 3.782,
-        "duration": 1.751,
+        "startTime": 2.098,
+        "endTime": 3.907,
+        "duration": 1.809,
         "sentenceIndex": 1
       },
       {
         "text": "“Hurry, Amina!",
-        "startTime": 3.782,
-        "endTime": 4.912,
-        "duration": 1.13,
+        "startTime": 3.907,
+        "endTime": 5.069,
+        "duration": 1.163,
         "sentenceIndex": 2
       },
       {
         "text": "We must go!” her mother said with a worried face.",
-        "startTime": 4.912,
-        "endTime": 8.343,
-        "duration": 3.431,
+        "startTime": 5.069,
+        "endTime": 8.614,
+        "duration": 3.545,
         "sentenceIndex": 3
       }
     ]
