@@ -4,7 +4,6 @@ import Script from 'next/script';
 import './globals.css';
 import '../styles/wireframe-typography.css';
 import { SkipLinks } from '@/components/SkipLinks';
-import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 import { CapacitorWrapper } from '@/components/CapacitorWrapper';
 import { AccessibilityProvider } from '@/contexts/AccessibilityContext';
 import { KeyboardNavigationProvider } from '@/components/KeyboardNavigationProvider';
@@ -12,13 +11,9 @@ import Navigation from '@/components/Navigation';
 import { VoiceNavigationWrapper } from '@/components/VoiceNavigationWrapper';
 import { SimpleAuthProvider } from '@/components/SimpleAuthProvider';
 import { ConditionalFooter } from '@/components/ConditionalFooter';
-import InstallPrompt from '@/components/InstallPrompt';
-import OfflineIndicator from '@/components/offline/OfflineIndicator';
-import UpdateManager from '@/components/updates/UpdateManager';
 import OnboardingManager from '@/components/onboarding/OnboardingManager';
 import { PerformanceProvider } from '@/components/PerformanceProvider';
 import DeploymentInitializer from '@/components/DeploymentInitializer';
-import { PWAAnalyticsProvider } from '@/components/PWAAnalyticsProvider';
 import { PostHogProvider } from '@/components/providers/PostHogProvider';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { AudioProvider } from '@/contexts/AudioContext';
@@ -130,23 +125,9 @@ export default function RootLayout({
               <KeyboardNavigationProvider>
                 <VoiceNavigationWrapper>
                   <PerformanceProvider enableMonitoring={true} enableAnalytics={true}>
-                    <PWAAnalyticsProvider enableTracking={true}>
                       <OnboardingManager enableAutoOnboarding={true}>
-                {/* Service Worker Registration */}
-                <ServiceWorkerRegistration />
-                
                 {/* Capacitor App Listener */}
                 <CapacitorWrapper />
-                
-                {/* PWA Update Manager */}
-                <UpdateManager 
-                  enableAutoCheck={true}
-                  checkInterval={30 * 60 * 1000}
-                  showBanner={true}
-                />
-                
-                {/* PWA Offline Indicator */}
-                <OfflineIndicator />
                 
                 <Navigation />
               
@@ -162,13 +143,9 @@ export default function RootLayout({
                 
                 <ConditionalFooter />
                 
-                {/* PWA Install Prompt */}
-                <InstallPrompt />
-                
                 {/* Deployment Initialization */}
                 <DeploymentInitializer />
                       </OnboardingManager>
-                    </PWAAnalyticsProvider>
                   </PerformanceProvider>
                 </VoiceNavigationWrapper>
               </KeyboardNavigationProvider>

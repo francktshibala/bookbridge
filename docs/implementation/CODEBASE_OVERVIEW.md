@@ -367,7 +367,7 @@ This document establishes the universal accessibility vision while defining the 
 **🚨 Priority Tasks**:
 - **iOS App Store Resubmission** - Fix 4 rejection issues (iPad screenshots, IAP visibility, account deletion, products submission)
 - Touch interactions for mobile experience
-- PWA features for offline support
+- ~~PWA features for offline support~~ **DISABLED** (December 2025) - PWA was never working properly and causing issues, disabled via `ENABLE_PWA=false` in `.env.local`. Components removed from `app/layout.tsx`: ServiceWorkerRegistration, InstallPrompt, PWAAnalyticsProvider, OfflineIndicator, UpdateManager. Service worker files cleaned up. Can be re-enabled if needed.
 - Native app deployment preparation
 
 **📊 Database Status**:
