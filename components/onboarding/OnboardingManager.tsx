@@ -1,15 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import PWAOnboarding from './PWAOnboarding';
 import FeatureSpotlight from './FeatureSpotlight';
 import { BOOKBRIDGE_SPOTLIGHT_TOURS } from './FeatureSpotlight';
 
 interface OnboardingState {
-  showPWAOnboarding: boolean;
   showFeatureSpotlight: boolean;
   currentTour: string | null;
-  hasSeenPWAOnboarding: boolean;
   completedTours: string[];
 }
 
@@ -23,34 +20,21 @@ export default function OnboardingManager({
   children 
 }: OnboardingManagerProps) {
   const [state, setState] = useState<OnboardingState>({
-    showPWAOnboarding: false,
     showFeatureSpotlight: false,
     currentTour: null,
-    hasSeenPWAOnboarding: false,
     completedTours: []
   });
 
   useEffect(() => {
     // Load onboarding state from localStorage
     const loadOnboardingState = () => {
-      const hasSeenPWA = localStorage.getItem('bookbridge-pwa-onboarding-completed') === 'true';
       const completedToursStr = localStorage.getItem('bookbridge-completed-tours');
       const completedTours = completedToursStr ? JSON.parse(completedToursStr) : [];
 
       setState(prev => ({
         ...prev,
-        hasSeenPWAOnboarding: hasSeenPWA,
         completedTours
       }));
-
-      // Auto-show PWA onboarding for new users
-      if (enableAutoOnboarding && !hasSeenPWA) {
-        const timer = setTimeout(() => {
-          setState(prev => ({ ...prev, showPWAOnboarding: true }));
-        }, 2000);
-
-        return () => clearTimeout(timer);
-      }
     };
 
     loadOnboardingState();
@@ -60,9 +44,6 @@ export default function OnboardingManager({
   useEffect(() => {
     const handleRouteChange = () => {
       const pathname = window.location.pathname;
-      
-      // Only show tours if PWA onboarding is complete
-      if (!state.hasSeenPWAOnboarding) return;
 
       // Check if we should show a contextual tour based on the current page
       if (pathname.includes('/library') && !state.completedTours.includes('library')) {
@@ -93,11 +74,11 @@ export default function OnboardingManager({
       window.removeEventListener('popstate', handleRouteChange);
       history.pushState = originalPushState;
     };
-  }, [state.hasSeenPWAOnboarding, state.completedTours]);
+  }, [state.completedTours]);
 
   const startTour = (tourName: string) => {
     // Prevent multiple tours from showing simultaneously
-    if (state.showFeatureSpotlight || state.showPWAOnboarding) {
+    if (state.showFeatureSpotlight) {
       return;
     }
 
@@ -105,34 +86,6 @@ export default function OnboardingManager({
       ...prev,
       showFeatureSpotlight: true,
       currentTour: tourName
-    }));
-  };
-
-  const handlePWAOnboardingComplete = () => {
-    setState(prev => ({
-      ...prev,
-      showPWAOnboarding: false,
-      hasSeenPWAOnboarding: true
-    }));
-
-    // Show a brief welcome message
-    const welcomeMessage = document.createElement('div');
-    welcomeMessage.textContent = 'Welcome to BookBridge! 🎉';
-    welcomeMessage.className = 'fixed top-4 right-4 bg-green-500/20 text-green-300 px-4 py-2 rounded-md z-50 animate-pulse';
-    document.body.appendChild(welcomeMessage);
-    
-    setTimeout(() => {
-      if (document.body.contains(welcomeMessage)) {
-        document.body.removeChild(welcomeMessage);
-      }
-    }, 3000);
-  };
-
-  const handlePWAOnboardingSkip = () => {
-    setState(prev => ({
-      ...prev,
-      showPWAOnboarding: false,
-      hasSeenPWAOnboarding: true
     }));
   };
 
@@ -174,8 +127,6 @@ export default function OnboardingManager({
         return BOOKBRIDGE_SPOTLIGHT_TOURS.readingPageTour;
       case 'library':
         return BOOKBRIDGE_SPOTLIGHT_TOURS.libraryTour;
-      case 'pwaFeatures':
-        return BOOKBRIDGE_SPOTLIGHT_TOURS.pwaFeaturesTour;
       default:
         return [];
     }
@@ -184,20 +135,14 @@ export default function OnboardingManager({
   // Public API for manual tour triggering
   useEffect(() => {
     const onboardingAPI = {
-      showPWAOnboarding: () => {
-        setState(prev => ({ ...prev, showPWAOnboarding: true }));
-      },
       startTour: (tourName: string) => {
         startTour(tourName);
       },
       resetOnboarding: () => {
-        localStorage.removeItem('bookbridge-pwa-onboarding-completed');
         localStorage.removeItem('bookbridge-completed-tours');
         setState({
-          showPWAOnboarding: false,
           showFeatureSpotlight: false,
           currentTour: null,
-          hasSeenPWAOnboarding: false,
           completedTours: []
         });
       },
@@ -215,14 +160,6 @@ export default function OnboardingManager({
     <>
       {children}
       
-      {/* PWA Onboarding Modal */}
-      <PWAOnboarding
-        autoShow={false} // Controlled by this manager
-        isVisible={state.showPWAOnboarding}
-        onComplete={handlePWAOnboardingComplete}
-        onSkip={handlePWAOnboardingSkip}
-      />
-
       {/* Feature Spotlight Tours */}
       {state.showFeatureSpotlight && state.currentTour && (
         <FeatureSpotlight
@@ -255,7 +192,6 @@ export const useOnboarding = () => {
   }, []);
 
   return api || {
-    showPWAOnboarding: () => console.warn('Onboarding API not ready'),
     startTour: () => console.warn('Onboarding API not ready'),
     resetOnboarding: () => console.warn('Onboarding API not ready'),
     getState: () => null
