@@ -4,7 +4,6 @@ import React from 'react';
 import { 
   BookOpen, 
   PlayCircle, 
-  Smartphone,
   RotateCcw,
   HelpCircle,
   CheckCircle
@@ -18,20 +17,12 @@ interface OnboardingSettingsProps {
 export default function OnboardingSettings({ className = '' }: OnboardingSettingsProps) {
   const onboardingAPI = useOnboarding();
 
-  const handleShowPWAOnboarding = () => {
-    onboardingAPI.showPWAOnboarding();
-  };
-
   const handleShowReadingTour = () => {
     onboardingAPI.startTour('readingPage');
   };
 
   const handleShowLibraryTour = () => {
     onboardingAPI.startTour('library');
-  };
-
-  const handleShowPWAFeaturesTour = () => {
-    onboardingAPI.startTour('pwaFeatures');
   };
 
   const handleResetAll = () => {
@@ -57,18 +48,8 @@ export default function OnboardingSettings({ className = '' }: OnboardingSetting
 
   const state = onboardingAPI.getState();
   const completedTours = state?.completedTours || [];
-  const hasSeenPWAOnboarding = state?.hasSeenPWAOnboarding || false;
 
   const tours = [
-    {
-      id: 'pwa',
-      title: 'PWA Introduction',
-      description: 'Learn about BookBridge\'s app-like features and offline capabilities',
-      icon: <Smartphone className="w-5 h-5" />,
-      completed: hasSeenPWAOnboarding,
-      action: handleShowPWAOnboarding,
-      available: true
-    },
     {
       id: 'library',
       title: 'Library Tour',
@@ -86,15 +67,6 @@ export default function OnboardingSettings({ className = '' }: OnboardingSetting
       completed: completedTours.includes('readingPage'),
       action: handleShowReadingTour,
       available: window.location.pathname.includes('/read')
-    },
-    {
-      id: 'pwaFeatures',
-      title: 'PWA Features',
-      description: 'Explore offline indicators, install prompts, and app features',
-      icon: <HelpCircle className="w-5 h-5" />,
-      completed: completedTours.includes('pwaFeatures'),
-      action: handleShowPWAFeaturesTour,
-      available: true
     }
   ];
 
