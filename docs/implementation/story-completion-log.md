@@ -20,6 +20,7 @@
 | `career-pivot-1` | Career Pivot: Finding Your Path | BookBridge | Multiple sources (thematic extraction) | Career Pivot, Burnout, Identity Crisis, Family-Work Balance, Following Passion, Courage to Change, Persistence, Finding New Purpose, Transformation | ✅ Complete | ✅ | - | - | ~18 min | 46 | 2025-12-10 |
 | `second-chance-1` | Second Chance: Finding Redemption | BookBridge | Multiple sources (thematic extraction) | Second Chance, Redemption, Transformation, Prison to Career, Addiction Recovery, License Reinstatement, Persistence, Spiritual Awakening, Community Support, Rebuilding Life, Belonging, Overcoming Stigma | ✅ Complete | ✅ | - | - | ~17 min | 53 | 2025-12-10 |
 | `refugee-journey-2` | Refugee Journey: Family Reunited | BookBridge | Multiple sources (thematic extraction) | Family Reunification, Refugee Journey, Persistence, Hope, Belonging, Building New Life, Education Transformation, Survival, Advocacy Leadership | ✅ Complete | ✅ | - | - | ~20 min | 56 | 2025-12-10 |
+| `career-pivot-2` | Career Pivot: New Path Forward | BookBridge | Multiple sources (thematic extraction) | Career Pivot, Fired, Layoff, Immigrant Barrier, Therapeutic Breakthrough, Financial Crisis, Identity Crisis, Service-Oriented Career, Multiple Pivots, Persistence, Hope, Reinvention | ✅ Complete | ✅ | - | - | ~19 min | 48 | 2025-12-10 |
 
 **Legend**:
 - ✅ Complete

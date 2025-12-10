@@ -1,0 +1,189 @@
+{
+  "themes": [
+    "career pivot",
+    "fired",
+    "layoff",
+    "immigrant barrier",
+    "therapeutic breakthrough",
+    "financial crisis",
+    "identity crisis",
+    "service-oriented career",
+    "multiple pivots",
+    "persistence",
+    "hope",
+    "reinvention"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Monday suspension, escorted out (public humiliation)",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Suicidal ideation ('better if I wasn't around')",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Complete identity loss",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Feeling hurt, angry, afraid after layoff",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Qualifying for food stamps",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Nightmare imagery of living out of a shopping cart",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Isolation in a gloomy basement",
+      "emotionalWeight": "high",
+      "source": "4"
+    },
+    {
+      "moment": "Job search desperation and negative responses",
+      "emotionalWeight": "high",
+      "source": "4"
+    },
+    {
+      "moment": "Feeling of being last on the layoff list",
+      "emotionalWeight": "medium",
+      "source": "3"
+    },
+    {
+      "moment": "Just back from maternity leave and laid off",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Feeling like a failure after being fired",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Finding a supportive counselor",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Deciding to pivot to coaching after layoff",
+      "emotionalWeight": "medium",
+      "source": "2"
+    },
+    {
+      "moment": "Emotional rollercoaster of motherhood and job loss",
+      "emotionalWeight": "medium",
+      "source": "2"
+    },
+    {
+      "moment": "First-time courage in starting a cookie business",
+      "emotionalWeight": "medium",
+      "source": "3"
+    },
+    {
+      "moment": "Nature as a lifeline during struggles",
+      "emotionalWeight": "medium",
+      "source": "4"
+    },
+    {
+      "moment": "Hope maintained despite ongoing challenges",
+      "emotionalWeight": "medium",
+      "source": "4"
+    },
+    {
+      "moment": "Transformation from corporate to coaching",
+      "emotionalWeight": "medium",
+      "source": "2"
+    },
+    {
+      "moment": "Realization that failure can lead to new opportunities",
+      "emotionalWeight": "high",
+      "source": "2"
+    },
+    {
+      "moment": "Ending a toxic relationship after job loss",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Finding community through coaching",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Acceptance of retail job despite journalism background",
+      "emotionalWeight": "medium",
+      "source": "4"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "February 23, 2022",
+      "September 15, 2022",
+      "April 30, 2020",
+      "February 29, 2024",
+      "October 31, 2023"
+    ],
+    "locations": [
+      "Italy",
+      "Canada",
+      "Toronto"
+    ],
+    "names": [
+      "Tracy Sharp",
+      "Camila",
+      "Sabrina Ling",
+      "Somya Lohia"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Building New Life",
+    "Belonging & Identity",
+    "Connection Across Differences",
+    "Overcoming 'Not Good Enough'",
+    "Persistence Despite Setbacks",
+    "First-Time Courage"
+  ],
+  "storyArc": {
+    "struggle": [
+      "Career climber facing unexpected termination",
+      "Motherhood and job loss",
+      "Immigrant struggles with credential recognition"
+    ],
+    "crisis": [
+      "Suicidal ideation and identity loss",
+      "Financial crisis after layoff",
+      "Isolation in a new country"
+    ],
+    "breakthrough": [
+      "Finding a supportive counselor",
+      "Pivoting to coaching and entrepreneurship",
+      "Maintaining hope despite challenges"
+    ]
+  },
+  "keyQuotes": {
+    "source1": [
+      "I. Had. Failed.",
+      "This is not a failure. This is a blessing."
+    ],
+    "source2": [
+      "Getting laid off with no notice was the SHOVE OUT OF THE NEST I probably needed to take a risk on myself.",
+      "Wouldn't trade where I am now for the world."
+    ],
+    "source3": [
+      "I can't imagine what the alternative case would have been."
+    ],
+    "source4": [
+      "The 'SEED' of aspiration remains firmly planted within me."
+    ]
+  }
+}

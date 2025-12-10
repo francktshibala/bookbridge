@@ -291,6 +291,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'CP'
   },
   {
+    id: 'career-pivot-2',
+    title: 'Career Pivot: New Path Forward',
+    author: 'BookBridge',
+    description: 'An inspiring story about Jamal, who loses his job unexpectedly and faces financial crisis. Through fear, isolation, and struggle, he finds support and discovers a new career path helping others. This powerful tale shows how setbacks can lead to transformation and how persistence and support can help people find new purpose. A1 level with Jane voice.',
+    sentences: 190,
+    bundles: 48,
+    gradient: 'from-indigo-500 to-purple-600',
+    abbreviation: 'CP2'
+  },
+  {
     id: 'second-chance-1',
     title: 'Second Chance: Finding Redemption',
     author: 'BookBridge',
@@ -398,6 +408,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
+  'career-pivot-2': {
+    'A1': '/api/career-pivot-2-a1/bundles'
+  },
   'second-chance-1': {
     'A1': '/api/second-chance-1-a1/bundles'
   },
@@ -432,6 +445,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
+  'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
 };
 
@@ -504,6 +518,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
 };
 

@@ -1,0 +1,2242 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Jamal lost his job suddenly. One day, he was working hard at the office. He typed on his computer and talked to his coworkers. The office was busy and loud.",
+    "sentences": [
+      "Jamal lost his job suddenly.",
+      "One day, he was working hard at the office.",
+      "He typed on his computer and talked to his coworkers.",
+      "The office was busy and loud."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_0.mp3",
+    "duration": 11.236304,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Jamal lost his job suddenly.",
+        "startTime": 0,
+        "endTime": 2.029,
+        "duration": 2.029,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "One day, he was working hard at the office.",
+        "startTime": 2.029,
+        "endTime": 5.295,
+        "duration": 3.266,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "He typed on his computer and talked to his coworkers.",
+        "startTime": 5.295,
+        "endTime": 9.135,
+        "duration": 3.84,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "The office was busy and loud.",
+        "startTime": 9.135,
+        "endTime": 11.236,
+        "duration": 2.101,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "People laughed and shared stories. The smell of coffee filled the air. Jamal felt happy and productive. He loved his job.",
+    "sentences": [
+      "People laughed and shared stories.",
+      "The smell of coffee filled the air.",
+      "Jamal felt happy and productive.",
+      "He loved his job."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_1.mp3",
+    "duration": 9.145601,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "People laughed and shared stories.",
+        "startTime": 0,
+        "endTime": 2.635,
+        "duration": 2.635,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "The smell of coffee filled the air.",
+        "startTime": 2.635,
+        "endTime": 5.348,
+        "duration": 2.713,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "Jamal felt happy and productive.",
+        "startTime": 5.348,
+        "endTime": 7.828,
+        "duration": 2.48,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "He loved his job.",
+        "startTime": 7.828,
+        "endTime": 9.146,
+        "duration": 1.318,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "The next day, he was called to the manager's office. Jamal felt a cold wave of fear wash over him. His stomach twisted. He walked slowly down the hall.",
+    "sentences": [
+      "The next day, he was called to the manager's office.",
+      "Jamal felt a cold wave of fear wash over him.",
+      "His stomach twisted.",
+      "He walked slowly down the hall."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_2.mp3",
+    "duration": 11.240839,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The next day, he was called to the manager's office.",
+        "startTime": 0,
+        "endTime": 4.047,
+        "duration": 4.047,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "Jamal felt a cold wave of fear wash over him.",
+        "startTime": 4.047,
+        "endTime": 7.419,
+        "duration": 3.372,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "His stomach twisted.",
+        "startTime": 7.419,
+        "endTime": 8.918,
+        "duration": 1.499,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "He walked slowly down the hall.",
+        "startTime": 8.918,
+        "endTime": 11.241,
+        "duration": 2.323,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "The bright lights above felt too harsh. His heart raced. \"You are fired,\" the manager said. The words hit him like a heavy rock.",
+    "sentences": [
+      "The bright lights above felt too harsh.",
+      "His heart raced.",
+      "\"You are fired,\" the manager said.",
+      "The words hit him like a heavy rock."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_3.mp3",
+    "duration": 9.546644,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The bright lights above felt too harsh.",
+        "startTime": 0,
+        "endTime": 2.932,
+        "duration": 2.932,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "His heart raced.",
+        "startTime": 2.932,
+        "endTime": 4.135,
+        "duration": 1.203,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "\"You are fired,\" the manager said.",
+        "startTime": 4.135,
+        "endTime": 6.84,
+        "duration": 2.706,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "The words hit him like a heavy rock.",
+        "startTime": 6.84,
+        "endTime": 9.547,
+        "duration": 2.706,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "Jamal’s heart sank deep in his chest. He could not believe it. He worked for three years at this company. Now, he was out of a job.",
+    "sentences": [
+      "Jamal’s heart sank deep in his chest.",
+      "He could not believe it.",
+      "He worked for three years at this company.",
+      "Now, he was out of a job."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_4.mp3",
+    "duration": 10.529887,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Jamal’s heart sank deep in his chest.",
+        "startTime": 0,
+        "endTime": 3,
+        "duration": 3,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "He could not believe it.",
+        "startTime": 3,
+        "endTime": 4.947,
+        "duration": 1.946,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "He worked for three years at this company.",
+        "startTime": 4.947,
+        "endTime": 8.353,
+        "duration": 3.406,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "Now, he was out of a job.",
+        "startTime": 8.353,
+        "endTime": 10.53,
+        "duration": 2.177,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "His hands shook as he left the office. He felt embarrassed. He felt like everyone was looking at him. As he walked out, he overheard two coworkers whispering.",
+    "sentences": [
+      "His hands shook as he left the office.",
+      "He felt embarrassed.",
+      "He felt like everyone was looking at him.",
+      "As he walked out, he overheard two coworkers whispering."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_5.mp3",
+    "duration": 11.021315,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His hands shook as he left the office.",
+        "startTime": 0,
+        "endTime": 2.665,
+        "duration": 2.665,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "He felt embarrassed.",
+        "startTime": 2.665,
+        "endTime": 4.068,
+        "duration": 1.403,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "He felt like everyone was looking at him.",
+        "startTime": 4.068,
+        "endTime": 6.944,
+        "duration": 2.876,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "As he walked out, he overheard two coworkers whispering.",
+        "startTime": 6.944,
+        "endTime": 11.021,
+        "duration": 4.078,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "\"Did you hear about Jamal? He got fired.\" Their words cut through him like a sharp knife. Jamal felt small and alone. How could this happen?",
+    "sentences": [
+      "\"Did you hear about Jamal?",
+      "He got fired.\" Their words cut through him like a sharp knife.",
+      "Jamal felt small and alone.",
+      "How could this happen?"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_6.mp3",
+    "duration": 9.912109,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "\"Did you hear about Jamal?",
+        "startTime": 0,
+        "endTime": 1.881,
+        "duration": 1.881,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "He got fired.\" Their words cut through him like a sharp knife.",
+        "startTime": 1.881,
+        "endTime": 6.367,
+        "duration": 4.486,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "Jamal felt small and alone.",
+        "startTime": 6.367,
+        "endTime": 8.32,
+        "duration": 1.953,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "How could this happen?",
+        "startTime": 8.32,
+        "endTime": 9.912,
+        "duration": 1.592,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "He wanted to run away, but he had to walk past them. He kept his head down, feeling the heat of shame on his cheeks. Jamal went home feeling sad and scared. How would he pay his bills?",
+    "sentences": [
+      "He wanted to run away, but he had to walk past them.",
+      "He kept his head down, feeling the heat of shame on his cheeks.",
+      "Jamal went home feeling sad and scared.",
+      "How would he pay his bills?"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_7.mp3",
+    "duration": 16.249456,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He wanted to run away, but he had to walk past them.",
+        "startTime": 0,
+        "endTime": 4.732,
+        "duration": 4.732,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "He kept his head down, feeling the heat of shame on his cheeks.",
+        "startTime": 4.732,
+        "endTime": 10.434,
+        "duration": 5.701,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "Jamal went home feeling sad and scared.",
+        "startTime": 10.434,
+        "endTime": 13.87,
+        "duration": 3.437,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "How would he pay his bills?",
+        "startTime": 13.87,
+        "endTime": 16.249,
+        "duration": 2.379,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "His mind raced with thoughts. He had a wife and two young children. They depended on him. That night, he could not sleep.",
+    "sentences": [
+      "His mind raced with thoughts.",
+      "He had a wife and two young children.",
+      "They depended on him.",
+      "That night, he could not sleep."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_8.mp3",
+    "duration": 9.980862,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His mind raced with thoughts.",
+        "startTime": 0,
+        "endTime": 2.416,
+        "duration": 2.416,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "He had a wife and two young children.",
+        "startTime": 2.416,
+        "endTime": 5.499,
+        "duration": 3.083,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "They depended on him.",
+        "startTime": 5.499,
+        "endTime": 7.248,
+        "duration": 1.75,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "That night, he could not sleep.",
+        "startTime": 7.248,
+        "endTime": 9.981,
+        "duration": 2.733,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "He tossed and turned in bed. The room felt dark and heavy. Shadows danced on the walls, and he could hear the clock ticking loudly in the silence. He thought about money and how to find a new job.",
+    "sentences": [
+      "He tossed and turned in bed.",
+      "The room felt dark and heavy.",
+      "Shadows danced on the walls, and he could hear the clock ticking loudly in the silence.",
+      "He thought about money and how to find a new job."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_9.mp3",
+    "duration": 15.046122,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He tossed and turned in bed.",
+        "startTime": 0,
+        "endTime": 2.161,
+        "duration": 2.161,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "The room felt dark and heavy.",
+        "startTime": 2.161,
+        "endTime": 4.399,
+        "duration": 2.238,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "Shadows danced on the walls, and he could hear the clock ticking loudly in the silence.",
+        "startTime": 4.399,
+        "endTime": 11.264,
+        "duration": 6.865,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "He thought about money and how to find a new job.",
+        "startTime": 11.264,
+        "endTime": 15.046,
+        "duration": 3.782,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "He felt alone in a new country. Jamal and his family moved from a different land for better opportunities. Now, everything felt dark and heavy. The next day was Monday.",
+    "sentences": [
+      "He felt alone in a new country.",
+      "Jamal and his family moved from a different land for better opportunities.",
+      "Now, everything felt dark and heavy.",
+      "The next day was Monday."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_10.mp3",
+    "duration": 14.248209,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt alone in a new country.",
+        "startTime": 0,
+        "endTime": 2.649,
+        "duration": 2.649,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Jamal and his family moved from a different land for better opportunities.",
+        "startTime": 2.649,
+        "endTime": 8.972,
+        "duration": 6.323,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "Now, everything felt dark and heavy.",
+        "startTime": 8.972,
+        "endTime": 12.198,
+        "duration": 3.226,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "The next day was Monday.",
+        "startTime": 12.198,
+        "endTime": 14.248,
+        "duration": 2.051,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "Jamal woke up feeling lost. He sat in the kitchen, staring at the wall. The sun came through the window, but he did not see it. The light felt cold and distant.",
+    "sentences": [
+      "Jamal woke up feeling lost.",
+      "He sat in the kitchen, staring at the wall.",
+      "The sun came through the window, but he did not see it.",
+      "The light felt cold and distant."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_11.mp3",
+    "duration": 13.356893,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Jamal woke up feeling lost.",
+        "startTime": 0,
+        "endTime": 2.245,
+        "duration": 2.245,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "He sat in the kitchen, staring at the wall.",
+        "startTime": 2.245,
+        "endTime": 5.972,
+        "duration": 3.726,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "The sun came through the window, but he did not see it.",
+        "startTime": 5.972,
+        "endTime": 10.696,
+        "duration": 4.724,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "The light felt cold and distant.",
+        "startTime": 10.696,
+        "endTime": 13.357,
+        "duration": 2.661,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "His wife, Anya, tried to talk to him, but he could not listen. \"Jamal, are you okay?\" she asked softly. She looked worried, her brow furrowed with concern. He sighed and shook his head.",
+    "sentences": [
+      "His wife, Anya, tried to talk to him, but he could not listen.",
+      "\"Jamal, are you okay?\" she asked softly.",
+      "She looked worried, her brow furrowed with concern.",
+      "He sighed and shook his head."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_12.mp3",
+    "duration": 14.124263,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His wife, Anya, tried to talk to him, but he could not listen.",
+        "startTime": 0,
+        "endTime": 5.006,
+        "duration": 5.006,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "\"Jamal, are you okay?\" she asked softly.",
+        "startTime": 5.006,
+        "endTime": 8.095,
+        "duration": 3.089,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "She looked worried, her brow furrowed with concern.",
+        "startTime": 8.095,
+        "endTime": 11.993,
+        "duration": 3.898,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "He sighed and shook his head.",
+        "startTime": 11.993,
+        "endTime": 14.124,
+        "duration": 2.131,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "\"No, I am not okay,\" he said quietly. \"I lost my job. What will we do?\" He felt like a failure. He lost his job just after returning from paternity leave.",
+    "sentences": [
+      "\"No, I am not okay,\" he said quietly.",
+      "\"I lost my job.",
+      "What will we do?\" He felt like a failure.",
+      "He lost his job just after returning from paternity leave."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_13.mp3",
+    "duration": 11.576259,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "\"No, I am not okay,\" he said quietly.",
+        "startTime": 0,
+        "endTime": 3.063,
+        "duration": 3.063,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "\"I lost my job.",
+        "startTime": 3.063,
+        "endTime": 4.183,
+        "duration": 1.12,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "What will we do?\" He felt like a failure.",
+        "startTime": 4.183,
+        "endTime": 7.245,
+        "duration": 3.062,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "He lost his job just after returning from paternity leave.",
+        "startTime": 7.245,
+        "endTime": 11.576,
+        "duration": 4.331,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "How could this happen? He felt angry and hurt. Days passed, and Jamal searched for jobs. He sat at his computer, clicking buttons and typing emails.",
+    "sentences": [
+      "How could this happen?",
+      "He felt angry and hurt.",
+      "Days passed, and Jamal searched for jobs.",
+      "He sat at his computer, clicking buttons and typing emails."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_14.mp3",
+    "duration": 11.575057,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "How could this happen?",
+        "startTime": 0,
+        "endTime": 1.711,
+        "duration": 1.711,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "He felt angry and hurt.",
+        "startTime": 1.711,
+        "endTime": 3.499,
+        "duration": 1.788,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "Days passed, and Jamal searched for jobs.",
+        "startTime": 3.499,
+        "endTime": 6.837,
+        "duration": 3.338,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "He sat at his computer, clicking buttons and typing emails.",
+        "startTime": 6.837,
+        "endTime": 11.575,
+        "duration": 4.738,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "The bright screen felt harsh against his tired eyes. He sent many applications but got no good answers. Each time he checked his email, he felt hope fade. He felt more isolated.",
+    "sentences": [
+      "The bright screen felt harsh against his tired eyes.",
+      "He sent many applications but got no good answers.",
+      "Each time he checked his email, he felt hope fade.",
+      "He felt more isolated."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_15.mp3",
+    "duration": 14.125442,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The bright screen felt harsh against his tired eyes.",
+        "startTime": 0,
+        "endTime": 4.177,
+        "duration": 4.177,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "He sent many applications but got no good answers.",
+        "startTime": 4.177,
+        "endTime": 8.193,
+        "duration": 4.016,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "Each time he checked his email, he felt hope fade.",
+        "startTime": 8.193,
+        "endTime": 12.358,
+        "duration": 4.166,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "He felt more isolated.",
+        "startTime": 12.358,
+        "endTime": 14.125,
+        "duration": 1.767,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "He imagined living in a shopping cart, with no home and no job. This scared him. He saw images in his mind. A shopping cart filled with old clothes and empty cans.",
+    "sentences": [
+      "He imagined living in a shopping cart, with no home and no job.",
+      "This scared him.",
+      "He saw images in his mind.",
+      "A shopping cart filled with old clothes and empty cans."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_16.mp3",
+    "duration": 12.092721,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He imagined living in a shopping cart, with no home and no job.",
+        "startTime": 0,
+        "endTime": 4.852,
+        "duration": 4.852,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "This scared him.",
+        "startTime": 4.852,
+        "endTime": 6.047,
+        "duration": 1.194,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "He saw images in his mind.",
+        "startTime": 6.047,
+        "endTime": 7.987,
+        "duration": 1.941,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "A shopping cart filled with old clothes and empty cans.",
+        "startTime": 7.987,
+        "endTime": 12.093,
+        "duration": 4.105,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "He felt cold and hungry. He could almost hear the sound of wheels squeaking as he pushed the cart down a busy street. Sometimes, he thought, \"Maybe it is better if I am not around.\" Dark thoughts filled his mind, creeping in like shadows. He wanted to hide.",
+    "sentences": [
+      "He felt cold and hungry.",
+      "He could almost hear the sound of wheels squeaking as he pushed the cart down a busy street.",
+      "Sometimes, he thought, \"Maybe it is better if I am not around.\" Dark thoughts filled his mind, creeping in like shadows.",
+      "He wanted to hide."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_17.mp3",
+    "duration": 20.08737,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt cold and hungry.",
+        "startTime": 0,
+        "endTime": 1.855,
+        "duration": 1.855,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "He could almost hear the sound of wheels squeaking as he pushed the cart down a busy street.",
+        "startTime": 1.855,
+        "endTime": 8.968,
+        "duration": 7.113,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "Sometimes, he thought, \"Maybe it is better if I am not around.\" Dark thoughts filled his mind, creeping in like shadows.",
+        "startTime": 8.968,
+        "endTime": 18.696,
+        "duration": 9.727,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "He wanted to hide.",
+        "startTime": 18.696,
+        "endTime": 20.087,
+        "duration": 1.392,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "But deep down, he wanted to see his children grow up. He wanted to be a good father. He wanted to play with them and teach them things. He closed his eyes and imagined their happy faces, laughing and running in the park.",
+    "sentences": [
+      "But deep down, he wanted to see his children grow up.",
+      "He wanted to be a good father.",
+      "He wanted to play with them and teach them things.",
+      "He closed his eyes and imagined their happy faces, laughing and running in the park."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_18.mp3",
+    "duration": 16.215986,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "But deep down, he wanted to see his children grow up.",
+        "startTime": 0,
+        "endTime": 4.037,
+        "duration": 4.037,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "He wanted to be a good father.",
+        "startTime": 4.037,
+        "endTime": 6.238,
+        "duration": 2.2,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "He wanted to play with them and teach them things.",
+        "startTime": 6.238,
+        "endTime": 9.905,
+        "duration": 3.667,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "He closed his eyes and imagined their happy faces, laughing and running in the park.",
+        "startTime": 9.905,
+        "endTime": 16.216,
+        "duration": 6.311,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "Then one day, Jamal met a woman named Lila. She was kind and understanding. Lila worked at a local community center. She helped people who lost their jobs.",
+    "sentences": [
+      "Then one day, Jamal met a woman named Lila.",
+      "She was kind and understanding.",
+      "Lila worked at a local community center.",
+      "She helped people who lost their jobs."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_19.mp3",
+    "duration": 11.326213,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Then one day, Jamal met a woman named Lila.",
+        "startTime": 0,
+        "endTime": 3.312,
+        "duration": 3.312,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "She was kind and understanding.",
+        "startTime": 3.312,
+        "endTime": 5.591,
+        "duration": 2.279,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "Lila worked at a local community center.",
+        "startTime": 5.591,
+        "endTime": 8.532,
+        "duration": 2.941,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "She helped people who lost their jobs.",
+        "startTime": 8.532,
+        "endTime": 11.326,
+        "duration": 2.794,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "Jamal went to her office. The office was bright and welcoming. There were colorful posters on the walls, showing smiling faces and happy words. It smelled like fresh paint and coffee.",
+    "sentences": [
+      "Jamal went to her office.",
+      "The office was bright and welcoming.",
+      "There were colorful posters on the walls, showing smiling faces and happy words.",
+      "It smelled like fresh paint and coffee."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_20.mp3",
+    "duration": 15.503946,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Jamal went to her office.",
+        "startTime": 0,
+        "endTime": 2.132,
+        "duration": 2.132,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "The office was bright and welcoming.",
+        "startTime": 2.132,
+        "endTime": 5.203,
+        "duration": 3.071,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "There were colorful posters on the walls, showing smiling faces and happy words.",
+        "startTime": 5.203,
+        "endTime": 12.177,
+        "duration": 6.974,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "It smelled like fresh paint and coffee.",
+        "startTime": 12.177,
+        "endTime": 15.504,
+        "duration": 3.327,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "At first, he felt shy. Lila smiled warmly, her eyes sparkling with kindness. \"I am here to help,\" she said. Her voice was soft and friendly.",
+    "sentences": [
+      "At first, he felt shy.",
+      "Lila smiled warmly, her eyes sparkling with kindness.",
+      "\"I am here to help,\" she said.",
+      "Her voice was soft and friendly."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_21.mp3",
+    "duration": 11.823243,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "At first, he felt shy.",
+        "startTime": 0,
+        "endTime": 1.976,
+        "duration": 1.976,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "Lila smiled warmly, her eyes sparkling with kindness.",
+        "startTime": 1.976,
+        "endTime": 6.526,
+        "duration": 4.55,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "\"I am here to help,\" she said.",
+        "startTime": 6.526,
+        "endTime": 9.167,
+        "duration": 2.64,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "Her voice was soft and friendly.",
+        "startTime": 9.167,
+        "endTime": 11.823,
+        "duration": 2.657,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "Jamal felt a little comfort in her presence, a small light in his dark world. They talked for a long time. Jamal shared his story. “I feel lost,” he said, his voice trembling.",
+    "sentences": [
+      "Jamal felt a little comfort in her presence, a small light in his dark world.",
+      "They talked for a long time.",
+      "Jamal shared his story.",
+      "“I feel lost,” he said, his voice trembling."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_22.mp3",
+    "duration": 15.113515,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Jamal felt a little comfort in her presence, a small light in his dark world.",
+        "startTime": 0,
+        "endTime": 6.714,
+        "duration": 6.714,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "They talked for a long time.",
+        "startTime": 6.714,
+        "endTime": 9.102,
+        "duration": 2.387,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "Jamal shared his story.",
+        "startTime": 9.102,
+        "endTime": 11.062,
+        "duration": 1.961,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "“I feel lost,” he said, his voice trembling.",
+        "startTime": 11.062,
+        "endTime": 15.114,
+        "duration": 4.051,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "Lila listened carefully, her expression serious yet warm. She nodded and took notes. \"You have skills,\" she said. \"Your experience is valuable.\" Jamal blinked.",
+    "sentences": [
+      "Lila listened carefully, her expression serious yet warm.",
+      "She nodded and took notes.",
+      "\"You have skills,\" she said.",
+      "\"Your experience is valuable.\" Jamal blinked."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_23.mp3",
+    "duration": 13.535533,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Lila listened carefully, her expression serious yet warm.",
+        "startTime": 0,
+        "endTime": 4.986,
+        "duration": 4.986,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "She nodded and took notes.",
+        "startTime": 4.986,
+        "endTime": 7.192,
+        "duration": 2.206,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "\"You have skills,\" she said.",
+        "startTime": 7.192,
+        "endTime": 9.718,
+        "duration": 2.526,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "\"Your experience is valuable.\" Jamal blinked.",
+        "startTime": 9.718,
+        "endTime": 13.536,
+        "duration": 3.818,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "He never thought about himself this way. Lila helped him see his worth. She said it was okay to feel sad and lost. But it was also okay to ask for help.",
+    "sentences": [
+      "He never thought about himself this way.",
+      "Lila helped him see his worth.",
+      "She said it was okay to feel sad and lost.",
+      "But it was also okay to ask for help."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_24.mp3",
+    "duration": 11.790748,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He never thought about himself this way.",
+        "startTime": 0,
+        "endTime": 3.165,
+        "duration": 3.165,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "Lila helped him see his worth.",
+        "startTime": 3.165,
+        "endTime": 5.539,
+        "duration": 2.374,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "She said it was okay to feel sad and lost.",
+        "startTime": 5.539,
+        "endTime": 8.863,
+        "duration": 3.324,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "But it was also okay to ask for help.",
+        "startTime": 8.863,
+        "endTime": 11.791,
+        "duration": 2.928,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "Jamal felt a small spark of hope grow in his heart. Lila told Jamal about a workshop. It was for people who want to start new careers. Jamal hesitated.",
+    "sentences": [
+      "Jamal felt a small spark of hope grow in his heart.",
+      "Lila told Jamal about a workshop.",
+      "It was for people who want to start new careers.",
+      "Jamal hesitated."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_25.mp3",
+    "duration": 10.750816,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Jamal felt a small spark of hope grow in his heart.",
+        "startTime": 0,
+        "endTime": 3.705,
+        "duration": 3.705,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "Lila told Jamal about a workshop.",
+        "startTime": 3.705,
+        "endTime": 6.102,
+        "duration": 2.397,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "It was for people who want to start new careers.",
+        "startTime": 6.102,
+        "endTime": 9.589,
+        "duration": 3.487,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "Jamal hesitated.",
+        "startTime": 9.589,
+        "endTime": 10.751,
+        "duration": 1.162,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "He felt afraid. \"What if I fail again?\" he asked, his voice shaking. \"What if people laugh at me?\" But Lila encouraged him with a gentle smile. \"You can do it,\" she said, smiling.",
+    "sentences": [
+      "He felt afraid.",
+      "\"What if I fail again?\" he asked, his voice shaking.",
+      "\"What if people laugh at me?\" But Lila encouraged him with a gentle smile.",
+      "\"You can do it,\" she said, smiling."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_26.mp3",
+    "duration": 15.816236,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt afraid.",
+        "startTime": 0,
+        "endTime": 1.31,
+        "duration": 1.31,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "\"What if I fail again?\" he asked, his voice shaking.",
+        "startTime": 1.31,
+        "endTime": 6,
+        "duration": 4.69,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "\"What if people laugh at me?\" But Lila encouraged him with a gentle smile.",
+        "startTime": 6,
+        "endTime": 12.46,
+        "duration": 6.461,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "\"You can do it,\" she said, smiling.",
+        "startTime": 12.46,
+        "endTime": 15.816,
+        "duration": 3.356,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "Her smile felt warm and bright, like sunlight breaking through the clouds. Jamal felt a little hope, a tiny flame flickering in the darkness. He decided to go to the workshop. It was a small group.",
+    "sentences": [
+      "Her smile felt warm and bright, like sunlight breaking through the clouds.",
+      "Jamal felt a little hope, a tiny flame flickering in the darkness.",
+      "He decided to go to the workshop.",
+      "It was a small group."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_27.mp3",
+    "duration": 15.226349,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Her smile felt warm and bright, like sunlight breaking through the clouds.",
+        "startTime": 0,
+        "endTime": 5.844,
+        "duration": 5.844,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "Jamal felt a little hope, a tiny flame flickering in the darkness.",
+        "startTime": 5.844,
+        "endTime": 11.072,
+        "duration": 5.228,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "He decided to go to the workshop.",
+        "startTime": 11.072,
+        "endTime": 13.611,
+        "duration": 2.539,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "It was a small group.",
+        "startTime": 13.611,
+        "endTime": 15.226,
+        "duration": 1.616,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "There were five other people, all with stories of their own. They talked about different careers and how to find a new path. Jamal felt inspired. He learned about coaching and helping others.",
+    "sentences": [
+      "There were five other people, all with stories of their own.",
+      "They talked about different careers and how to find a new path.",
+      "Jamal felt inspired.",
+      "He learned about coaching and helping others."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_28.mp3",
+    "duration": 13.421973,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "There were five other people, all with stories of their own.",
+        "startTime": 0,
+        "endTime": 4.386,
+        "duration": 4.386,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "They talked about different careers and how to find a new path.",
+        "startTime": 4.386,
+        "endTime": 8.833,
+        "duration": 4.448,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "Jamal felt inspired.",
+        "startTime": 8.833,
+        "endTime": 10.245,
+        "duration": 1.412,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "He learned about coaching and helping others.",
+        "startTime": 10.245,
+        "endTime": 13.422,
+        "duration": 3.177,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "He liked the idea of supporting people who faced struggles. It reminded him of his own journey. After the workshop, Jamal felt different. He wanted to learn more.",
+    "sentences": [
+      "He liked the idea of supporting people who faced struggles.",
+      "It reminded him of his own journey.",
+      "After the workshop, Jamal felt different.",
+      "He wanted to learn more."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_29.mp3",
+    "duration": 12.867551,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He liked the idea of supporting people who faced struggles.",
+        "startTime": 0,
+        "endTime": 4.719,
+        "duration": 4.719,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "It reminded him of his own journey.",
+        "startTime": 4.719,
+        "endTime": 7.519,
+        "duration": 2.799,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "After the workshop, Jamal felt different.",
+        "startTime": 7.519,
+        "endTime": 10.948,
+        "duration": 3.429,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "He wanted to learn more.",
+        "startTime": 10.948,
+        "endTime": 12.868,
+        "duration": 1.92,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "He took a course on coaching. It was not easy, but he worked hard. He spent hours reading and practicing. Lila supported him all the way.",
+    "sentences": [
+      "He took a course on coaching.",
+      "It was not easy, but he worked hard.",
+      "He spent hours reading and practicing.",
+      "Lila supported him all the way."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_30.mp3",
+    "duration": 9.918345,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He took a course on coaching.",
+        "startTime": 0,
+        "endTime": 2.114,
+        "duration": 2.114,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "It was not easy, but he worked hard.",
+        "startTime": 2.114,
+        "endTime": 4.888,
+        "duration": 2.774,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "He spent hours reading and practicing.",
+        "startTime": 4.888,
+        "endTime": 7.659,
+        "duration": 2.77,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "Lila supported him all the way.",
+        "startTime": 7.659,
+        "endTime": 9.918,
+        "duration": 2.26,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "She always said, \"You are making progress!\" Her words made Jamal feel strong. He remembered the first day he sat in the workshop, nervous but excited. One evening, while studying, he had a breakthrough. He realized that failure can lead to new opportunities.",
+    "sentences": [
+      "She always said, \"You are making progress!\" Her words made Jamal feel strong.",
+      "He remembered the first day he sat in the workshop, nervous but excited.",
+      "One evening, while studying, he had a breakthrough.",
+      "He realized that failure can lead to new opportunities."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_31.mp3",
+    "duration": 20.914331,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She always said, \"You are making progress!\" Her words made Jamal feel strong.",
+        "startTime": 0,
+        "endTime": 6.284,
+        "duration": 6.284,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "He remembered the first day he sat in the workshop, nervous but excited.",
+        "startTime": 6.284,
+        "endTime": 12.17,
+        "duration": 5.886,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "One evening, while studying, he had a breakthrough.",
+        "startTime": 12.17,
+        "endTime": 16.533,
+        "duration": 4.363,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "He realized that failure can lead to new opportunities.",
+        "startTime": 16.533,
+        "endTime": 20.914,
+        "duration": 4.382,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "\"I can use my experiences to help others,\" he thought, a smile spreading across his face. He felt a spark of excitement. He wanted to be a coach. Jamal started small.",
+    "sentences": [
+      "\"I can use my experiences to help others,\" he thought, a smile spreading across his face.",
+      "He felt a spark of excitement.",
+      "He wanted to be a coach.",
+      "Jamal started small."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_32.mp3",
+    "duration": 13.629229,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "\"I can use my experiences to help others,\" he thought, a smile spreading across his face.",
+        "startTime": 0,
+        "endTime": 7.578,
+        "duration": 7.578,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "He felt a spark of excitement.",
+        "startTime": 7.578,
+        "endTime": 10.031,
+        "duration": 2.453,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "He wanted to be a coach.",
+        "startTime": 10.031,
+        "endTime": 11.994,
+        "duration": 1.963,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "Jamal started small.",
+        "startTime": 11.994,
+        "endTime": 13.629,
+        "duration": 1.635,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "He offered free coaching sessions to friends and neighbors. People listened to him. They told him their stories and dreams. Jamal felt alive again.",
+    "sentences": [
+      "He offered free coaching sessions to friends and neighbors.",
+      "People listened to him.",
+      "They told him their stories and dreams.",
+      "Jamal felt alive again."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_33.mp3",
+    "duration": 10.472517,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He offered free coaching sessions to friends and neighbors.",
+        "startTime": 0,
+        "endTime": 4.291,
+        "duration": 4.291,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "People listened to him.",
+        "startTime": 4.291,
+        "endTime": 5.964,
+        "duration": 1.673,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "They told him their stories and dreams.",
+        "startTime": 5.964,
+        "endTime": 8.8,
+        "duration": 2.836,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "Jamal felt alive again.",
+        "startTime": 8.8,
+        "endTime": 10.473,
+        "duration": 1.673,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "He found new purpose in helping others. He started to build his new life. As months passed, Jamal's coaching business grew. He learned about marketing and how to work with clients.",
+    "sentences": [
+      "He found new purpose in helping others.",
+      "He started to build his new life.",
+      "As months passed, Jamal's coaching business grew.",
+      "He learned about marketing and how to work with clients."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_34.mp3",
+    "duration": 14.245692,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He found new purpose in helping others.",
+        "startTime": 0,
+        "endTime": 3.106,
+        "duration": 3.106,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "He started to build his new life.",
+        "startTime": 3.106,
+        "endTime": 5.734,
+        "duration": 2.628,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "As months passed, Jamal's coaching business grew.",
+        "startTime": 5.734,
+        "endTime": 9.786,
+        "duration": 4.052,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "He learned about marketing and how to work with clients.",
+        "startTime": 9.786,
+        "endTime": 14.246,
+        "duration": 4.46,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "He was still worried about money, but he kept going. He believed in himself now. He was not just a man who lost his job; he was a coach. One day, Jamal got a message from a client.",
+    "sentences": [
+      "He was still worried about money, but he kept going.",
+      "He believed in himself now.",
+      "He was not just a man who lost his job; he was a coach.",
+      "One day, Jamal got a message from a client."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_35.mp3",
+    "duration": 15.228957,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He was still worried about money, but he kept going.",
+        "startTime": 0,
+        "endTime": 4.462,
+        "duration": 4.462,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "He believed in himself now.",
+        "startTime": 4.462,
+        "endTime": 6.702,
+        "duration": 2.239,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "He was not just a man who lost his job; he was a coach.",
+        "startTime": 6.702,
+        "endTime": 11.513,
+        "duration": 4.811,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "One day, Jamal got a message from a client.",
+        "startTime": 11.513,
+        "endTime": 15.229,
+        "duration": 3.716,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "\"Thank you for helping me,\" the message said. \"You changed my life.\" Tears filled Jamal's eyes. This was why he wanted to do this work. He felt joy and pride.",
+    "sentences": [
+      "\"Thank you for helping me,\" the message said.",
+      "\"You changed my life.\" Tears filled Jamal's eyes.",
+      "This was why he wanted to do this work.",
+      "He felt joy and pride."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_36.mp3",
+    "duration": 13.295147,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "\"Thank you for helping me,\" the message said.",
+        "startTime": 0,
+        "endTime": 3.966,
+        "duration": 3.966,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "\"You changed my life.\" Tears filled Jamal's eyes.",
+        "startTime": 3.966,
+        "endTime": 8.122,
+        "duration": 4.156,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "This was why he wanted to do this work.",
+        "startTime": 8.122,
+        "endTime": 11.429,
+        "duration": 3.307,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "He felt joy and pride.",
+        "startTime": 11.429,
+        "endTime": 13.295,
+        "duration": 1.866,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "He remembered the first time he helped someone find their way. Jamal also joined a group for immigrant professionals. They shared stories and helped each other. He made friends from different backgrounds.",
+    "sentences": [
+      "He remembered the first time he helped someone find their way.",
+      "Jamal also joined a group for immigrant professionals.",
+      "They shared stories and helped each other.",
+      "He made friends from different backgrounds."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_37.mp3",
+    "duration": 14.401519,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He remembered the first time he helped someone find their way.",
+        "startTime": 0,
+        "endTime": 4.442,
+        "duration": 4.442,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "Jamal also joined a group for immigrant professionals.",
+        "startTime": 4.442,
+        "endTime": 8.311,
+        "duration": 3.869,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "They shared stories and helped each other.",
+        "startTime": 8.311,
+        "endTime": 11.321,
+        "duration": 3.009,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "He made friends from different backgrounds.",
+        "startTime": 11.321,
+        "endTime": 14.402,
+        "duration": 3.081,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "They laughed and supported one another. Jamal felt he belonged. He was not alone anymore. He remembered sitting with them, sharing food and laughter at a small cafe.",
+    "sentences": [
+      "They laughed and supported one another.",
+      "Jamal felt he belonged.",
+      "He was not alone anymore.",
+      "He remembered sitting with them, sharing food and laughter at a small cafe."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_38.mp3",
+    "duration": 13.200635,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They laughed and supported one another.",
+        "startTime": 0,
+        "endTime": 3.142,
+        "duration": 3.142,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "Jamal felt he belonged.",
+        "startTime": 3.142,
+        "endTime": 4.995,
+        "duration": 1.853,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "He was not alone anymore.",
+        "startTime": 4.995,
+        "endTime": 7.009,
+        "duration": 2.014,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "He remembered sitting with them, sharing food and laughter at a small cafe.",
+        "startTime": 7.009,
+        "endTime": 13.201,
+        "duration": 6.192,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 159,
+    "text": "The place smelled like fresh bread and coffee, and the laughter felt warm and comforting. Jamal learned that being fired did not define him. He learned that he could rise again. His identity grew stronger with every challenge.",
+    "sentences": [
+      "The place smelled like fresh bread and coffee, and the laughter felt warm and comforting.",
+      "Jamal learned that being fired did not define him.",
+      "He learned that he could rise again.",
+      "His identity grew stronger with every challenge."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_39.mp3",
+    "duration": 16.493946,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The place smelled like fresh bread and coffee, and the laughter felt warm and comforting.",
+        "startTime": 0,
+        "endTime": 6.673,
+        "duration": 6.673,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "Jamal learned that being fired did not define him.",
+        "startTime": 6.673,
+        "endTime": 10.337,
+        "duration": 3.665,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "He learned that he could rise again.",
+        "startTime": 10.337,
+        "endTime": 12.976,
+        "duration": 2.638,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "His identity grew stronger with every challenge.",
+        "startTime": 12.976,
+        "endTime": 16.494,
+        "duration": 3.518,
+        "sentenceIndex": 159
+      }
+    ]
+  },
+  {
+    "bundleIndex": 40,
+    "startSentenceIndex": 160,
+    "endSentenceIndex": 163,
+    "text": "He began to embrace his role as a father, husband, and coach. He felt proud of his journey. Finally, he reached a point where he could pay his bills. He was no longer afraid of living out of a shopping cart.",
+    "sentences": [
+      "He began to embrace his role as a father, husband, and coach.",
+      "He felt proud of his journey.",
+      "Finally, he reached a point where he could pay his bills.",
+      "He was no longer afraid of living out of a shopping cart."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_40.mp3",
+    "duration": 13.789524,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He began to embrace his role as a father, husband, and coach.",
+        "startTime": 0,
+        "endTime": 4.289,
+        "duration": 4.289,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "He felt proud of his journey.",
+        "startTime": 4.289,
+        "endTime": 6.185,
+        "duration": 1.896,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "Finally, he reached a point where he could pay his bills.",
+        "startTime": 6.185,
+        "endTime": 10.062,
+        "duration": 3.877,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "He was no longer afraid of living out of a shopping cart.",
+        "startTime": 10.062,
+        "endTime": 13.79,
+        "duration": 3.727,
+        "sentenceIndex": 163
+      }
+    ]
+  },
+  {
+    "bundleIndex": 41,
+    "startSentenceIndex": 164,
+    "endSentenceIndex": 167,
+    "text": "He had a home full of love and laughter. Life was still not perfect, but he was happy. He could take his children to the park and play with them. He could buy groceries without worry.",
+    "sentences": [
+      "He had a home full of love and laughter.",
+      "Life was still not perfect, but he was happy.",
+      "He could take his children to the park and play with them.",
+      "He could buy groceries without worry."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_41.mp3",
+    "duration": 13.141043,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He had a home full of love and laughter.",
+        "startTime": 0,
+        "endTime": 2.887,
+        "duration": 2.887,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "Life was still not perfect, but he was happy.",
+        "startTime": 2.887,
+        "endTime": 6.285,
+        "duration": 3.398,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "He could take his children to the park and play with them.",
+        "startTime": 6.285,
+        "endTime": 10.471,
+        "duration": 4.186,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "He could buy groceries without worry.",
+        "startTime": 10.471,
+        "endTime": 13.141,
+        "duration": 2.67,
+        "sentenceIndex": 167
+      }
+    ]
+  },
+  {
+    "bundleIndex": 42,
+    "startSentenceIndex": 168,
+    "endSentenceIndex": 171,
+    "text": "With Lila’s help and his own hard work, Jamal transformed from a man lost in despair to a man full of hope. He built a new life, and now he helps others do the same. He learned to connect with people across differences. He overcame feelings of \"not good enough.\" \n\nJamal’s journey was full of ups and downs.",
+    "sentences": [
+      "With Lila’s help and his own hard work, Jamal transformed from a man lost in despair to a man full of hope.",
+      "He built a new life, and now he helps others do the same.",
+      "He learned to connect with people across differences.",
+      "He overcame feelings of \"not good enough.\" \n\nJamal’s journey was full of ups and downs."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_42.mp3",
+    "duration": 23.514308,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "With Lila’s help and his own hard work, Jamal transformed from a man lost in despair to a man full of hope.",
+        "startTime": 0,
+        "endTime": 8.321,
+        "duration": 8.321,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "He built a new life, and now he helps others do the same.",
+        "startTime": 8.321,
+        "endTime": 12.824,
+        "duration": 4.503,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "He learned to connect with people across differences.",
+        "startTime": 12.824,
+        "endTime": 16.871,
+        "duration": 4.047,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "He overcame feelings of \"not good enough.\" \n\nJamal’s journey was full of ups and downs.",
+        "startTime": 16.871,
+        "endTime": 23.514,
+        "duration": 6.644,
+        "sentenceIndex": 171
+      }
+    ]
+  },
+  {
+    "bundleIndex": 43,
+    "startSentenceIndex": 172,
+    "endSentenceIndex": 175,
+    "text": "But he never gave up. He always remembered Lila’s words: \"You can do it.\" And he did. Jamal found his new path, and it was bright. It was filled with hope, purpose, and connection.",
+    "sentences": [
+      "But he never gave up.",
+      "He always remembered Lila’s words: \"You can do it.\" And he did.",
+      "Jamal found his new path, and it was bright.",
+      "It was filled with hope, purpose, and connection."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_43.mp3",
+    "duration": 15.604762,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "But he never gave up.",
+        "startTime": 0,
+        "endTime": 1.774,
+        "duration": 1.774,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "He always remembered Lila’s words: \"You can do it.\" And he did.",
+        "startTime": 1.774,
+        "endTime": 7.297,
+        "duration": 5.523,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "Jamal found his new path, and it was bright.",
+        "startTime": 7.297,
+        "endTime": 11.165,
+        "duration": 3.868,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "It was filled with hope, purpose, and connection.",
+        "startTime": 11.165,
+        "endTime": 15.605,
+        "duration": 4.44,
+        "sentenceIndex": 175
+      }
+    ]
+  },
+  {
+    "bundleIndex": 44,
+    "startSentenceIndex": 176,
+    "endSentenceIndex": 179,
+    "text": "As he looked at his children playing in the yard, he smiled. They laughed and ran after each other, their giggles ringing through the air. He felt proud. He was home.",
+    "sentences": [
+      "As he looked at his children playing in the yard, he smiled.",
+      "They laughed and ran after each other, their giggles ringing through the air.",
+      "He felt proud.",
+      "He was home."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_44.mp3",
+    "duration": 13.26449,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "As he looked at his children playing in the yard, he smiled.",
+        "startTime": 0,
+        "endTime": 4.922,
+        "duration": 4.922,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "They laughed and ran after each other, their giggles ringing through the air.",
+        "startTime": 4.922,
+        "endTime": 11.197,
+        "duration": 6.274,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "He felt proud.",
+        "startTime": 11.197,
+        "endTime": 12.31,
+        "duration": 1.114,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "He was home.",
+        "startTime": 12.31,
+        "endTime": 13.264,
+        "duration": 0.954,
+        "sentenceIndex": 179
+      }
+    ]
+  },
+  {
+    "bundleIndex": 45,
+    "startSentenceIndex": 180,
+    "endSentenceIndex": 183,
+    "text": "He was a coach. He was Jamal, and he was proud. Jamal knew life would still have challenges. But he felt ready.",
+    "sentences": [
+      "He was a coach.",
+      "He was Jamal, and he was proud.",
+      "Jamal knew life would still have challenges.",
+      "But he felt ready."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_45.mp3",
+    "duration": 8.065465,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He was a coach.",
+        "startTime": 0,
+        "endTime": 1.099,
+        "duration": 1.099,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "He was Jamal, and he was proud.",
+        "startTime": 1.099,
+        "endTime": 3.521,
+        "duration": 2.422,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "Jamal knew life would still have challenges.",
+        "startTime": 3.521,
+        "endTime": 6.746,
+        "duration": 3.225,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "But he felt ready.",
+        "startTime": 6.746,
+        "endTime": 8.065,
+        "duration": 1.319,
+        "sentenceIndex": 183
+      }
+    ]
+  },
+  {
+    "bundleIndex": 46,
+    "startSentenceIndex": 184,
+    "endSentenceIndex": 187,
+    "text": "He could face anything. With his family by his side, he felt strong. Together, they could overcome anything. He looked forward to the future.",
+    "sentences": [
+      "He could face anything.",
+      "With his family by his side, he felt strong.",
+      "Together, they could overcome anything.",
+      "He looked forward to the future."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_46.mp3",
+    "duration": 10.587574,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He could face anything.",
+        "startTime": 0,
+        "endTime": 1.715,
+        "duration": 1.715,
+        "sentenceIndex": 184
+      },
+      {
+        "text": "With his family by his side, he felt strong.",
+        "startTime": 1.715,
+        "endTime": 5.145,
+        "duration": 3.43,
+        "sentenceIndex": 185
+      },
+      {
+        "text": "Together, they could overcome anything.",
+        "startTime": 5.145,
+        "endTime": 8.202,
+        "duration": 3.057,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "He looked forward to the future.",
+        "startTime": 8.202,
+        "endTime": 10.588,
+        "duration": 2.386,
+        "sentenceIndex": 187
+      }
+    ]
+  },
+  {
+    "bundleIndex": 47,
+    "startSentenceIndex": 188,
+    "endSentenceIndex": 189,
+    "text": "It was bright and full of possibilities. He felt a wave of gratitude wash over him.",
+    "sentences": [
+      "It was bright and full of possibilities.",
+      "He felt a wave of gratitude wash over him."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/bundle_47.mp3",
+    "duration": 5.671814,
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "voiceName": "Jane",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was bright and full of possibilities.",
+        "startTime": 0,
+        "endTime": 2.767,
+        "duration": 2.767,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "He felt a wave of gratitude wash over him.",
+        "startTime": 2.767,
+        "endTime": 5.672,
+        "duration": 2.905,
+        "sentenceIndex": 189
+      }
+    ]
+  }
+]

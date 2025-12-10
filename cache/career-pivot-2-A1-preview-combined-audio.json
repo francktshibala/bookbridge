@@ -1,0 +1,140 @@
+{
+  "storyId": "career-pivot-2",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-2/A1/preview-combined.mp3",
+    "duration": 70.574172,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 6.155,
+        "duration": 6.155,
+        "text": "About This Story  \n\nIn this inspiring story, Jamal loses his job unexpectedly."
+      },
+      {
+        "startTime": 6.155,
+        "endTime": 9.081,
+        "duration": 2.926,
+        "text": "He faces a hard time and feels scared."
+      },
+      {
+        "startTime": 9.081,
+        "endTime": 12.469,
+        "duration": 3.388,
+        "text": "But he finds a new path with help from Lila."
+      },
+      {
+        "startTime": 12.469,
+        "endTime": 17.165,
+        "duration": 4.697,
+        "text": "This story is about changing careers and finding new purpose."
+      },
+      {
+        "startTime": 17.165,
+        "endTime": 21.246,
+        "duration": 4.081,
+        "text": "It shows that setbacks can lead to new opportunities."
+      },
+      {
+        "startTime": 21.246,
+        "endTime": 25.631,
+        "duration": 4.385,
+        "text": "With persistence, hope and transformation are possible."
+      },
+      {
+        "startTime": 25.631,
+        "endTime": 27.786,
+        "duration": 2.156,
+        "text": "Jamal lost his job suddenly."
+      },
+      {
+        "startTime": 27.786,
+        "endTime": 32.933,
+        "duration": 5.147,
+        "text": "One day, he was working hard, and the next day, he was fired."
+      },
+      {
+        "startTime": 32.933,
+        "endTime": 35.012,
+        "duration": 2.079,
+        "text": "He felt shocked and scared."
+      },
+      {
+        "startTime": 35.012,
+        "endTime": 37.09,
+        "duration": 2.079,
+        "text": "How would he pay his bills?"
+      },
+      {
+        "startTime": 37.09,
+        "endTime": 38.553,
+        "duration": 1.463,
+        "text": "Every day was hard."
+      },
+      {
+        "startTime": 38.553,
+        "endTime": 41.783,
+        "duration": 3.23,
+        "text": "Then, Jamal met a kind woman named Lila."
+      },
+      {
+        "startTime": 41.783,
+        "endTime": 44.17,
+        "duration": 2.387,
+        "text": "She helped him find a new path."
+      },
+      {
+        "startTime": 44.17,
+        "endTime": 46.014,
+        "duration": 1.844,
+        "text": "Slowly, hope returned."
+      },
+      {
+        "startTime": 46.014,
+        "endTime": 50.479,
+        "duration": 4.466,
+        "text": "Jamal realized that this setback could be a new beginning."
+      },
+      {
+        "startTime": 50.479,
+        "endTime": 53.328,
+        "duration": 2.849,
+        "text": "Many people lose their jobs suddenly."
+      },
+      {
+        "startTime": 53.328,
+        "endTime": 55.638,
+        "duration": 2.31,
+        "text": "They can be laid off or fired."
+      },
+      {
+        "startTime": 55.638,
+        "endTime": 58.178,
+        "duration": 2.541,
+        "text": "This can happen for many reasons."
+      },
+      {
+        "startTime": 58.178,
+        "endTime": 63.337,
+        "duration": 5.158,
+        "text": "Some workers face problems because their skills are not recognized."
+      },
+      {
+        "startTime": 63.337,
+        "endTime": 67.263,
+        "duration": 3.927,
+        "text": "Immigrants may have trouble with their credentials."
+      },
+      {
+        "startTime": 67.263,
+        "endTime": 70.574,
+        "duration": 3.311,
+        "text": "These challenges can lead to new job paths."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-10T09:21:21.695Z",
+  "timingMethod": "enhanced-timing-v3"
+}
