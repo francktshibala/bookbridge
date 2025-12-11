@@ -1,0 +1,122 @@
+{
+  "storyId": "single-parent-rising-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A1/preview-combined.mp3",
+    "duration": 69.041406,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 3.458,
+        "duration": 3.458,
+        "text": "In this powerful story, Lisa faces a big change."
+      },
+      {
+        "startTime": 3.458,
+        "endTime": 6.353,
+        "duration": 2.895,
+        "text": "She is suddenly alone with three children."
+      },
+      {
+        "startTime": 6.353,
+        "endTime": 8.421,
+        "duration": 2.068,
+        "text": "She has no job and no savings."
+      },
+      {
+        "startTime": 8.421,
+        "endTime": 12.488,
+        "duration": 4.067,
+        "text": "Lisa finds strength through the \"Parents for Life\" package."
+      },
+      {
+        "startTime": 12.488,
+        "endTime": 15.658,
+        "duration": 3.171,
+        "text": "She goes back to school and builds a new life."
+      },
+      {
+        "startTime": 15.658,
+        "endTime": 19.587,
+        "duration": 3.929,
+        "text": "This story is about a single mother overcoming obstacles."
+      },
+      {
+        "startTime": 19.587,
+        "endTime": 23.999,
+        "duration": 4.411,
+        "text": "It shows the importance of education and children as motivation."
+      },
+      {
+        "startTime": 23.999,
+        "endTime": 31.305,
+        "duration": 7.306,
+        "text": "An inspiring story about a single mother finding strength through her children and building a better life."
+      },
+      {
+        "startTime": 31.305,
+        "endTime": 34.062,
+        "duration": 2.757,
+        "text": "Imagine losing everything in one moment."
+      },
+      {
+        "startTime": 34.062,
+        "endTime": 34.751,
+        "duration": 0.689,
+        "text": "Your home."
+      },
+      {
+        "startTime": 34.751,
+        "endTime": 35.371,
+        "duration": 0.62,
+        "text": "Your job."
+      },
+      {
+        "startTime": 35.371,
+        "endTime": 36.267,
+        "duration": 0.896,
+        "text": "Your partner."
+      },
+      {
+        "startTime": 36.267,
+        "endTime": 42.909,
+        "duration": 6.641,
+        "text": "You're suddenly alone with three young children, no savings, and no idea how you'll survive."
+      },
+      {
+        "startTime": 42.909,
+        "endTime": 44.908,
+        "duration": 1.999,
+        "text": "That's what happened to Lisa."
+      },
+      {
+        "startTime": 44.908,
+        "endTime": 52.337,
+        "duration": 7.429,
+        "text": "But in her darkest moment, she found a reason to keep going—and it came from the most unexpected place."
+      },
+      {
+        "startTime": 52.337,
+        "endTime": 56.541,
+        "duration": 4.205,
+        "text": "Single parents face unique challenges raising children alone."
+      },
+      {
+        "startTime": 56.541,
+        "endTime": 62.907,
+        "duration": 6.366,
+        "text": "Many struggle with financial stress, lack of support, and overwhelming responsibilities."
+      },
+      {
+        "startTime": 62.907,
+        "endTime": 69.041,
+        "duration": 6.134,
+        "text": "This story shows how one mother found strength through her children and built a new life."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-11T23:00:59.365Z",
+  "timingMethod": "enhanced-timing-v3"
+}

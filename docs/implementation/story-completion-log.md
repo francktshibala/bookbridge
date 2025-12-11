@@ -2,7 +2,7 @@
 
 **Purpose**: Track completion status, key details, and learnings for each modern story implementation.
 
-**Last Updated**: 2025-12-11 (Added grief-to-purpose-1)
+**Last Updated**: 2025-12-11 (Added single-parent-rising-1)
 
 ---
 
@@ -28,6 +28,7 @@
 | `cultural-bridge-2` | Bridging Traditions and Modern Life | BookBridge | 3 sources (composite) | Career Choice, Generational Conflict, Immigrant Parents, Following Your Dreams, Honoring Sacrifices, Family Expectations, Personal Fulfillment, Tradition vs Modern Life | ✅ Complete | ✅ | - | - | ~19 min | 27 | 2025-12-11 |
 | `romantic-love-1` | Cross-Cultural Love Story | BookBridge | 4 sources (composite) | Cross-Cultural Love, Family Resistance, Choosing Love Over Expectations, Cultural Adaptation, Building Bicultural Family, Finding Voice, Persistence Despite Opposition | ✅ Complete | ✅ | - | - | ~17 min | 29 | 2025-12-11 |
 | `grief-to-purpose-1` | Grief to Purpose: Finding Meaning in Loss | BookBridge | 4 sources (composite) | Grief to Purpose, Loss, Finding Meaning, Helping Others, Transformation, Legacy, Service, Healing | ✅ Complete | ✅ | - | - | ~21 min | 31 | 2025-12-11 |
+| `single-parent-rising-1` | Single Parent Rising: Building a New Life | BookBridge | 3 sources (composite) | Single Parent, Overcoming Obstacles, Building New Life, Education Journey, Children as Motivation, Resilience, Transformation, Strength | ✅ Complete | ✅ | - | - | ~21 min | 32 | 2025-12-11 |
 
 **Legend**:
 - ✅ Complete
@@ -1477,6 +1478,152 @@
 - `scripts/integrate-grief-to-purpose-1-database.ts`
 - `scripts/seed-grief-to-purpose-1.ts`
 - `app/api/grief-to-purpose-1-a1/bundles/route.ts`
+
+---
+
+### 18. Single Parent Rising: Building a New Life
+
+**Story ID**: `single-parent-rising-1`  
+**Title**: Single Parent Rising: Building a New Life  
+**Author**: BookBridge  
+**Collection**: Modern Voices  
+**Completion Date**: 2025-12-11
+
+#### Sources
+- **Primary (9/10)**: Love What Matters - Ieshia Champs (Single mom of 5, foster care to law school)
+- **Primary (9.5/10)**: Salt & Light - Wayne Toh (Single father of 4, Singapore, 12 years raising children alone)
+- **Primary (9/10)**: Maid memoir - Stephanie Land (Single mom, homeless shelter to bestselling author)
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - All sources story-driven (first-person narratives, memoirs, interviews)
+  - Sufficient emotional depth for 20+ minute story
+  - 3 sources for legal compliance (composite approach)
+  
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Sudden loss → Alone with children → Rock bottom → "Parents for Life" turning point → Education journey → Success
+  - 10-16 emotional moments per source (exceeds 5-7 requirement)
+  - 6-8 ESL resonance multipliers per source (exceeds 3+ requirement)
+
+#### Content Details
+- **Original Text**: 1,642 words (~B1/B2 level)
+- **A1 Simplified**: 196 sentences, 1,689 words (~21 minutes)
+- **Bundles**: 32 (6 sentences per bundle)
+- **Voice**: Daniel (onwK4e9ZLuTAKqWW03F9) - stability 0.45, similarity_boost 0.8, style 0.1
+- **Audio Speed**: 0.765× effective (0.90× ElevenLabs → 0.85× FFmpeg)
+- **Total Audio Duration**: 660.79s (~11 minutes audio, ~21 minutes reading time)
+
+#### Themes & Emotional Moments
+**Themes**:
+- Single Parent Rising
+- Overcoming Obstacles
+- Building New Life
+- Education Journey
+- Children as Motivation
+- Resilience
+- Transformation
+- Strength
+
+**Key Emotional Moments** (10-16 per source):
+**Ieshia Champs:**
+1. Age 6: Taken by CPS from grandmother
+2. Age 14: Bouncing between homes, worrying where to sleep
+3. Dropping out, dream dying
+4. 2009 devastation: house fire, job loss, death, suicide attempt
+5. Pastor's call: "God says you'll be a lawyer"
+6. Law school fear with 5 children
+7. Children helping with flash cards, mock jury
+8. Son secretly taking over duties
+9. Graduation with "We did it!" signs
+10. Passing bar exam
+
+**Wayne Toh:**
+1. Picture-perfect family / hidden struggles
+2. Wife's abandonment: "Let me go, just let me go"
+3. Divorce papers thrown by courier
+4. Alone with four children, financial strain
+5. Midnight drives to Malaysia to cry
+6. Suicidal voices intensifying
+7. Friday night prayer of desperation
+8. "Dads for Life" package from son (turning point)
+9. Learning to love with God's love
+10. 12 years later: four thriving children
+
+**Stephanie Land:**
+1. Daughter learning to walk in homeless shelter
+2. Taking humiliating cleaning job ($9/hour)
+3. Becoming "invisible" / nameless ghost
+4. Public stigma for using food stamps
+5. Endless bureaucracy of proving poverty
+6. Kicked off food stamps while in school
+7. Writing 10 minutes daily (persisting dream)
+8. Graduation from university
+9. Viral Vox article (1M+ views)
+10. Book deal and national recognition
+
+**ESL Resonance Multipliers** (6-8 per source):
+- Learning & Education Journeys (GED → college → law school / university degree)
+- Overcoming "Not Good Enough" (odds against them, public stigma, society's expectations)
+- Building New Life (homeless → attorney, broken → whole, invisible → visible)
+- First-Time Courage (starting school with children, learning to parent alone, leaving abuse)
+- Persistence Despite Setbacks (fire, death, abandonment, poverty, system failures)
+- Belonging & Identity (church family, support groups, finding new definition of family)
+- Connection Across Differences (colleagues helping, support systems, community acceptance)
+- Communication Barriers (being invisible, nameless, unheard - Stephanie's theme)
+
+#### Implementation Steps Completed
+- ✅ Step 0: Content Planning (verified single parent theme not covered)
+- ✅ Step 0.25: Source Material Check (3 story-driven sources)
+- ✅ Step 0.5: Emotional Impact Validation (all 6 criteria met)
+- ✅ Step 0.6: Voice Selection (Daniel voice - professional/inspirational)
+- ✅ Step 0.75: Find Source Material (3 sources saved)
+- ✅ Step 1: Extract Source Text (themes extracted)
+- ✅ Step 2.5: Extract Themes & Emotional Moments
+- ✅ Step 2.6: Write Main Story (COMPOSITE APPROACH - generic characters Lisa/James/Emily/Noah)
+- ✅ Step 2.1: Assess Original Complexity (B1/B2 → can simplify to A1/A2/B1)
+- ✅ Step 3: Create Background Context
+- ✅ Step 3.5: Create Emotional Hook
+- ✅ Step 4: Simplify to A1 Level (196 sentences)
+- ✅ Step 4: Expand A1 text (from 17 min to 21 min)
+- ✅ Step 7: Generate Preview Combined
+- ✅ Step 8: Generate Preview Audio (Daniel voice, Enhanced Timing v3)
+- ✅ Step 10.5: Generate Bundle Audio (32 bundles, Enhanced Timing v3)
+- ✅ Step 11.5: Integrate Database (32 BookChunks)
+- ✅ Step 13: Create API Endpoint
+- ✅ Step 14: Update Frontend Config (4 locations)
+- ✅ Step 15: Seed Database (sortOrder 23)
+
+#### Key Learnings
+1. **Three-source composite works excellently** - Rich emotional material from diverse single parent perspectives (single mom law school, single father 12 years, single mom author)
+2. **Daniel voice perfect for professional/inspirational stories** - Professional tone fits education journey and career transformation theme
+3. **Story expansion needed** - Initial simplification was 17 minutes, expanded to 21 minutes to meet 20-minute minimum
+4. **Single parent theme highly resonant** - Strong ESL multipliers (6-8 per source), universal experience of overcoming obstacles
+5. **Character names**: Used "Lisa", "James", "Emily", "Noah" - tracked for diversity
+
+#### Issues Encountered
+- None - Implementation went smoothly following established patterns
+
+#### Files Created
+- `cache/files/single-parent-rising-1-sources.txt` (3-source research document)
+- `cache/single-parent-rising-1-validation.md`
+- `cache/single-parent-rising-1-themes.json`
+- `cache/single-parent-rising-1-background.txt`
+- `cache/single-parent-rising-1-hook.txt`
+- `cache/single-parent-rising-1-original.txt` (1,642 words B1/B2)
+- `cache/single-parent-rising-1-complexity-assessment.md`
+- `cache/single-parent-rising-1-A1-simplified.txt` (1,689 words, 196 sentences)
+- `cache/single-parent-rising-1-A1-preview-combined.txt`
+- `cache/single-parent-rising-1-A1-preview-combined-audio.json`
+- `cache/single-parent-rising-1-A1-bundles-metadata.json` (32 bundles)
+- `scripts/simplify-single-parent-rising-1.js`
+- `scripts/expand-single-parent-rising-1-a1.js`
+- `scripts/generate-single-parent-rising-1-preview-combined.js`
+- `scripts/generate-single-parent-rising-1-preview-audio.js`
+- `scripts/generate-single-parent-rising-1-bundles.js`
+- `scripts/integrate-single-parent-rising-1-database.ts`
+- `scripts/seed-single-parent-rising-1.ts`
+- `app/api/single-parent-rising-1-a1/bundles/route.ts`
 
 ---
 

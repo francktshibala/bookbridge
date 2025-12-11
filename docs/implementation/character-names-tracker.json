@@ -13,7 +13,11 @@
     "Maya": ["romantic-love-1"],
     "Alex": ["romantic-love-1"],
     "Anna": ["grief-to-purpose-1"],
-    "Ethan": ["grief-to-purpose-1"]
+    "Ethan": ["grief-to-purpose-1"],
+    "Lisa": ["single-parent-rising-1"],
+    "James": ["single-parent-rising-1"],
+    "Emily": ["single-parent-rising-1"],
+    "Noah": ["single-parent-rising-1"]
   },
   "guidelines": {
     "avoidRepeating": true,

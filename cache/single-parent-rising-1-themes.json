@@ -1,0 +1,167 @@
+{
+  "storyId": "single-parent-rising-1",
+  "theme": "Raising children alone while building a new life",
+  "sources": [
+    {
+      "sourceNumber": 1,
+      "name": "Ieshia Champs",
+      "rating": "9/10",
+      "type": "Love What Matters - First-person narrative",
+      "struggle": "Foster care at age 6, homeless teen, dropped out senior year, became teen mom, house fire, laid off, widowed while 7 months pregnant, suicide attempt",
+      "transformation": "Pastor called saying 'God told me you'll be a lawyer', got GED, enrolled in community college, transferred to university, accepted to law school",
+      "breakthrough": "Graduated magna cum laude from law school with 5 children, passed bar exam, became Attorney Ieshia N. Champs",
+      "keyEmotionalMoments": [
+        "Age 6: Taken by CPS from grandmother",
+        "Age 14: Bouncing between homes, worrying where to sleep tomorrow",
+        "Dropping out senior year, dream dying",
+        "2009 devastation: house fire, job loss, children's father died, suicide attempt",
+        "Pastor's unexpected call: 'God says you'll be a lawyer'",
+        "Law school fear with 5 children",
+        "Children helping with flash cards, serving as mock jury",
+        "Son secretly taking over duties (baths, snacks, school clothes)",
+        "Graduation photo with children holding 'We did it!' signs",
+        "Passing bar exam, becoming Attorney Ieshia N. Champs"
+      ],
+      "keyQuotes": [
+        "I was worried about whose house could I stay at the following day",
+        "I had to succeed for them and for myself",
+        "They're graduating too!",
+        "I responded by not just defying the odds, but destroying them",
+        "Resurrecting a dream that died"
+      ]
+    },
+    {
+      "sourceNumber": 2,
+      "name": "Wayne Toh",
+      "rating": "9.5/10",
+      "type": "Salt & Light - First-person narrative",
+      "struggle": "Wife developed depression, left when he started new business, alone with 4 children ages 5-11, financial strain, suicidal thoughts intensifying",
+      "transformation": "Friday night prayer of desperation, son brought 'Dads for Life' package next morning, vowed to never give up",
+      "breakthrough": "Offered stable job, children transferred to same school, career success, 12 years later all 4 children thriving",
+      "keyEmotionalMoments": [
+        "Picture-perfect family with hidden struggles",
+        "Wife's depression, Wayne's escape fantasies",
+        "Leap of faith into photography business",
+        "Wife's behavioral changes, growing fear",
+        "The abandonment: 'Let me go, just let me go'",
+        "Divorce papers thrown by courier",
+        "Alone with four children, financial strain",
+        "Midnight drives to Malaysia to cry alone",
+        "Suicidal voices: 'Speed up and bang the car', 'Jump and end this'",
+        "Friday night prayer: 'God, I don't have the strength to fight anymore'",
+        "'Dads for Life' package from son (turning point)",
+        "Learning to love with God's love",
+        "12 years later: four thriving children"
+      ],
+      "keyQuotes": [
+        "I cannot fail... my children need me to succeed",
+        "Once I crossed the customs and hit the highway, the tears would burst out",
+        "Speed up and bang the car in front",
+        "God, I don't have the strength to fight all these suicidal thoughts anymore",
+        "Dads for Life - I knew God had heard me",
+        "You and your kids are still a family",
+        "They are my greatest success"
+      ]
+    },
+    {
+      "sourceNumber": 3,
+      "name": "Stephanie Land",
+      "rating": "9/10",
+      "type": "Maid memoir - First-person narrative",
+      "struggle": "Unexpected pregnancy at 28, trapped in abusive relationship, left with nothing, homeless shelter, cleaning houses for $9/hour, invisible worker, public stigma",
+      "transformation": "Writing 10 minutes daily, taking online classes, slowly working toward degree",
+      "breakthrough": "Graduated from university, wrote viral Vox article, book deal, NYT bestseller, Netflix adaptation",
+      "keyEmotionalMoments": [
+        "Dreams of becoming a writer (childhood)",
+        "Unexpected pregnancy at 28",
+        "Trapped in abusive relationship",
+        "Leaving with nothing, homeless shelter",
+        "Daughter learning to walk in shelter",
+        "Taking humiliating cleaning job ($9/hour)",
+        "Becoming 'invisible' / nameless ghost",
+        "Public stigma for using food stamps",
+        "Endless bureaucracy of proving poverty",
+        "Kicked off food stamps while in school",
+        "Mia's struggles / rage episodes",
+        "Weekend bubbles of joy with daughter",
+        "Writing 10 minutes a day (persisting dream)",
+        "Graduation from university",
+        "Viral Vox article (1M+ views)",
+        "Book deal and national recognition"
+      ],
+      "keyQuotes": [
+        "My daughter learned to walk in a homeless shelter",
+        "I'd become a nameless ghost",
+        "I was overwhelmed by how much work it took to prove I was poor",
+        "Scraped out. Ghosts of our former selves.",
+        "I didn't have the privilege to feel",
+        "We would drift in a bubble, just me and this amazing kid",
+        "The only way anything is going to change is if we start listening"
+      ]
+    }
+  ],
+  "emotionalArc": {
+    "struggle": [
+      "Rock bottom moments (suicide attempt, suicidal thoughts, homeless shelter)",
+      "Financial crisis (job loss, poverty, cleaning houses for low pay)",
+      "Alone with children (widowed, abandoned, left abusive relationship)",
+      "Feeling overwhelmed and invisible",
+      "Children as motivation but also source of stress"
+    ],
+    "perseverance": [
+      "Unexpected support or message (pastor's call, 'Dads for Life' package, writing dream)",
+      "Children helping in unexpected ways",
+      "Slow climb through education",
+      "Finding small moments of joy",
+      "Refusing to give up despite overwhelming odds"
+    ],
+    "breakthrough": [
+      "Pivotal moment of determination (pastor's call, 'Dads for Life', writing 10 minutes daily)",
+      "Graduation or career success",
+      "Children thriving despite challenges",
+      "Recognition and visibility (viral photo, media interviews, book deal)"
+    ],
+    "transformation": [
+      "Professional achievement (lawyer, successful father, bestselling author)",
+      "Children as greatest success",
+      "Helping others facing similar struggles",
+      "From invisible to visible, from broken to whole"
+    ]
+  },
+  "compositeElements": {
+    "bestMoments": [
+      "Pastor's unexpected call (Ieshia)",
+      "'Dads for Life' package from son (Wayne)",
+      "Daughter learning to walk in homeless shelter (Stephanie)",
+      "Children helping with flash cards and mock jury (Ieshia)",
+      "Son secretly taking over duties (Ieshia)",
+      "Midnight drives to Malaysia to cry (Wayne)",
+      "Writing 10 minutes daily (Stephanie)",
+      "Graduation with children holding signs (Ieshia)",
+      "12 years later: four thriving children (Wayne)",
+      "Viral article reaching 1M+ people (Stephanie)"
+    ],
+    "themes": [
+      "Rock bottom moments (suicide, homelessness, abandonment)",
+      "Children as motivation and partners",
+      "Defying expectations and odds",
+      "Transformation through education",
+      "Faith/support systems",
+      "From invisible to visible",
+      "Building new life from nothing",
+      "Children as greatest success"
+    ],
+    "universalExperience": "Single parent facing overwhelming challenges, finding strength through children and unexpected support, transforming life through education and determination, proving that single parents can succeed against all odds"
+  },
+  "eslResonanceMultipliers": [
+    "Learning & Education Journeys (GED → college → law school / university degree)",
+    "Overcoming 'Not Good Enough' (odds against them, public stigma, society's expectations)",
+    "Building New Life (homeless → attorney, broken → whole, invisible → visible)",
+    "First-Time Courage (starting school with children, learning to parent alone, leaving abuse)",
+    "Persistence Despite Setbacks (fire, death, abandonment, poverty, system failures)",
+    "Belonging & Identity (church family, support groups, finding new definition of family)",
+    "Connection Across Differences (colleagues helping, support systems, community acceptance)",
+    "Communication Barriers (being invisible, nameless, unheard - Stephanie's theme)"
+  ]
+}
+

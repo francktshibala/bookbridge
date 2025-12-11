@@ -351,6 +351,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'GP1'
   },
   {
+    id: 'single-parent-rising-1',
+    title: 'Single Parent Rising: Building a New Life',
+    author: 'BookBridge',
+    description: 'An inspiring composite story about Lisa, who suddenly finds herself alone with three young children after losing her partner. With no job, no savings, and overwhelming responsibilities, Lisa faces her darkest moment. But when her son brings home a "Parents for Life" package, everything changes. This powerful story shows how a single parent found strength through her children, went back to school, and built a new life. A moving tale about overcoming impossible odds, the power of education, and proving that single parents can succeed. A1 level with Daniel voice.',
+    sentences: 196,
+    bundles: 32,
+    gradient: 'from-teal-500 to-cyan-600',
+    abbreviation: 'SPR1'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -496,6 +506,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'grief-to-purpose-1': {
     'A1': '/api/grief-to-purpose-1-a1/bundles'
   },
+  'single-parent-rising-1': {
+    'A1': '/api/single-parent-rising-1-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -542,6 +555,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'cultural-bridge-2': 'A1',  // Default to A1 for Bridging Traditions and Modern Life (Modern Story)
   'romantic-love-1': 'A1',  // Default to A1 for Cross-Cultural Love Story (Modern Story)
   'grief-to-purpose-1': 'A1',  // Default to A1 for Grief to Purpose: Finding Meaning in Loss (Modern Story)
+  'single-parent-rising-1': 'A1',  // Default to A1 for Single Parent Rising: Building a New Life (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -622,6 +636,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'cultural-bridge-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'romantic-love-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'grief-to-purpose-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'single-parent-rising-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

@@ -258,67 +258,70 @@ Verify story meets ALL criteria:
 - [ ] Estimate audio costs (number of bundles × cost per bundle)
 
 #### **Step 0.75: Find Source Material**
-**⚠️ PROVEN WORKFLOW (Used for all 16 stories):**
+**⚠️ PROVEN WORKFLOW (Used for all stories):**
 
 **Division of Labor:**
-- **Claude in Browser (User):** Research expert - finds and evaluates sources
-- **Claude Code (Me):** Implementation expert - saves sources, creates story, generates audio
+- **Claude in Browser:** Research expert - finds sources, evaluates them, creates downloadable file
+- **User:** Clicks links, copies content, pastes to Claude Browser
+- **Claude Code:** Implementation expert - receives sources file, saves it, validates, creates story
 
 **Workflow:**
-1. **Claude Code provides story requirements to User:**
-   - Story theme/category (e.g., "Grief to Purpose #1")
-   - **Story requirements (focus on these):**
-     - Emotional arc needed: Clear struggle → perseverance → breakthrough/transformation
-     - Emotional depth: Must have 5-7+ identifiable emotional moments
-     - ESL resonance: Must have 3+ ESL multipliers (see Step 0.5 for list)
-     - Length requirement: Must support minimum 20 minutes A1 content (~1,500-1,700 words)
-     - Story-driven: Personal narratives, emotional journeys (NOT fact-driven biographies)
-     - "Text a friend" test: Would someone text a friend about this story?
-   - What to avoid: Themes/concepts already covered (check `story-subjects-tracker.json`)
-   - **Note:** Don't limit to specific sources - find ANY sources that meet these requirements
+1. **Claude Code writes concise message for Claude (Browser):**
+   - Use the template below (copy and paste to Claude Browser)
+   - Provides story theme and requirements only
+   - Focuses on story requirements, NOT specific source types
 
-2. **User (Claude in Browser) researches sources:**
-   - Search broadly for stories meeting the requirements above
-   - Use emotional keywords: "my journey," "personal story," "transformation," "overcoming," etc.
-   - Look for ANY source type that meets requirements: journalism, essays, interviews, podcasts, The Moth, personal blogs, documentaries, memoirs, etc.
-   - Prioritize sources with:
-     - Clear narrative arcs (struggle → crisis → transformation)
-     - First-person emotional accounts
-     - Sufficient length/content for 20+ minute story
-   - Avoid fact-driven/Wikipedia-style content
+2. **Claude (Browser) finds sources:**
+   - Provides links to sources
+   - User clicks links, copies content, pastes back to Claude Browser
+   - Claude Browser evaluates sources against requirements
+   - Claude Browser creates downloadable file with all sources that meet requirements
 
-3. **User provides back:**
-   - URL + publication name + brief description (2-3 sentences)
-   - Rating potential (1-10) based on emotional depth and story requirements
-   - Key emotional moments visible
-   - Estimated content length (does it support 20+ minutes?)
-   - Target: 3-5 sources (minimum 3 for legal/thematic diversity)
-   - Aim for 2-3 flagship (9-10/10) + 1-2 supporting (8-8.5/10)
+3. **User copies sources file to Claude Code:**
+   - Copy the entire sources file from Claude Browser
+   - Paste it here in Claude Code chat
 
-4. **User manually copies article content:**
-   - Opens each URL in browser
-   - Selects all text (⌘+A or Ctrl+A)
-   - Copies (⌘+C or Ctrl+C)
-   - Pastes to Claude Code with label "SOURCE 1:", "SOURCE 2:", etc.
+4. **Claude Code saves and validates:**
+   - Save to: `cache/files/{story-id}-sources.txt`
+   - Proceed to Step 0.25: Source Material Check
+   - Proceed to Step 0.5: Emotional Impact Validation
 
-5. **Claude Code saves files:**
-   - Save each source to `cache/files/{story-id}-source-{number}.txt`
-   - Verify 3+ sources saved
+**Message Template for Claude (Browser):**
+
+Copy this message and customize with story details:
+
+```
+Story Theme: [STORY THEME]
+Story Concept: [BRIEF CONCEPT DESCRIPTION]
+
+Find 3-5 story-driven sources that meet these requirements:
+
+**Story Requirements:**
+1. Emotional Arc: Clear struggle → perseverance → breakthrough/transformation
+2. Emotional Depth: 5-7+ identifiable emotional moments
+3. ESL Resonance: 3+ multipliers (Communication Barriers, Learning Journeys, Belonging & Identity, Overcoming "Not Good Enough", First-Time Courage, Building New Life, Connection Across Differences, Persistence Despite Setbacks)
+4. Length: Must support minimum 20 minutes A1 content (~1,500-1,700 words)
+5. Story-Driven: Personal narratives, emotional journeys (NOT fact-driven)
+6. "Text a Friend" Test: Would someone text a friend about this?
+
+**What to Provide:**
+- Find sources and provide links
+- I'll click links, copy content, paste back to you
+- You evaluate sources against requirements
+- Create downloadable file with all sources that meet requirements (3-5 sources minimum)
+
+**Search Strategy:**
+- Use emotional keywords related to [THEME]
+- Find ANY sources that meet requirements - don't limit to specific source types
+- Prioritize: Clear narrative arcs, first-person accounts, sufficient content length
+- Avoid: Fact-driven/Wikipedia-style content
+```
 
 **Why This Works:**
-- User's browser access bypasses copyright blocks (manual copy works 100%)
-- Claude in Browser excels at research, evaluation, pattern recognition
-- Claude Code excels at technical implementation
-- Proven with all 16 completed stories
+- Claude Browser excels at research and evaluation
+- User's manual copy bypasses copyright blocks
 - Focusing on story requirements (not source types) allows discovery of unexpected great sources
-
-**Validation Before Sources:**
-- Story-driven NOT fact-driven (Step 0.25)
-- 5-7+ emotional moments visible (Step 0.5)
-- 3+ ESL multipliers potential
-- Clear transformation arc
-- Minimum 20 minutes content potential (A1 level)
-- Different angles/perspectives across sources
+- Proven workflow used for all completed stories
 
 ---
 

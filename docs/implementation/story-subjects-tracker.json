@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
   "lastUpdated": "2025-12-11",
-  "totalStories": 17,
+  "totalStories": 18,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -146,6 +146,15 @@
       "specificSubject": "Grief transformation, loss of child, creating nonprofit to help others",
       "status": "complete",
       "notes": "Composite from 4 sources (Kate Braestrup, Scarlett Lewis, Leslie Morissette, Michelle Schwartzmier), generic characters Anna/Ethan"
+    },
+    {
+      "storyId": "single-parent-rising-1",
+      "realPerson": null,
+      "storyConcept": "Single parent raising children alone while building new life through education",
+      "themeCategory": "Single Parent Rising - Building New Life",
+      "specificSubject": "Single parent overcoming obstacles, education journey, children as motivation, building new life",
+      "status": "complete",
+      "notes": "Composite from 3 sources (Ieshia Champs, Wayne Toh, Stephanie Land), generic characters Lisa/James/Emily/Noah"
     }
   ],
   "themeSaturation": {
@@ -160,7 +169,8 @@
     "medicalCrisis": 1,
     "culturalBridge": 2,
     "romanticLove": 1,
-    "griefToPurpose": 1
+    "griefToPurpose": 1,
+    "singleParentRising": 1
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -184,7 +194,8 @@
     "Stroke recovery and aphasia",
     "Career choice pressure from immigrant parents",
     "Cross-cultural/interfaith romantic relationships with family resistance",
-    "Grief transformation after loss of child"
+    "Grief transformation after loss of child",
+    "Single parent raising children alone while building new life through education"
   ],
   "guidelines": {
     "beforeImplementing": [
