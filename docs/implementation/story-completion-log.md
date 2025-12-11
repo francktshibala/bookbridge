@@ -2,7 +2,7 @@
 
 **Purpose**: Track completion status, key details, and learnings for each modern story implementation.
 
-**Last Updated**: 2025-12-10 (Added community-builder-2)
+**Last Updated**: 2025-12-11 (Added cultural-bridge-1)
 
 ---
 
@@ -24,6 +24,7 @@
 | `community-builder-2` | Community Builder: From Wrong Turn to School Network | BookBridge | Multiple sources (thematic extraction) | Community Building, Belonging, Transformation, Empowerment, Educational Justice, Refugee Support, Mutual Healing, Soccer as Universal Language | ✅ Complete | ✅ | - | - | ~22 min | 52 | 2025-12-10 |
 | `disability-overcome-2` | Blind Mountaineer: Reaching the Top | BookBridge | Multiple sources (thematic extraction) | Overcoming Challenges, Blindness, Mountaineering, Determination, Courage, Adaptation, Achievement, No Barriers | ✅ Complete | ✅ | - | - | ~14 min | 40 | 2025-12-10 |
 | `medical-crisis-1` | Finding New Wings: A Medical Crisis Story | BookBridge | 6 sources (composite) | Hope, Resilience, Family Support, Identity Loss, Communication Barriers, Rebuilding, Medical Recovery, Finding New Purpose | ✅ Complete | ✅ | - | - | ~12 min | 46 | 2025-12-10 |
+| `cultural-bridge-1` | Between Two Worlds: A Cultural Bridge Story | BookBridge | 5 sources (composite) | Bicultural Identity, Belonging, Shame to Pride, Immigration, Cultural Bridge, Self-Acceptance, Family, Finding Community | ✅ Complete | ✅ | - | - | ~15 min | 44 | 2025-12-11 |
 
 **Legend**:
 - ✅ Complete
@@ -964,6 +965,134 @@
 - `scripts/integrate-medical-crisis-1-database.ts`
 - `scripts/seed-medical-crisis-1.ts`
 - `app/api/medical-crisis-1-a1/bundles/route.ts`
+
+---
+
+### 15. Between Two Worlds: A Cultural Bridge Story
+
+**Story ID**: `cultural-bridge-1`
+**Title**: Between Two Worlds: A Cultural Bridge Story
+**Author**: BookBridge
+**Collection**: Modern Voices
+**Completion Date**: 2025-12-11
+
+#### Sources
+- **Primary (9.5/10)**: CanCulture Magazine - Filipino-Canadian narrative on bicultural identity
+- **Primary (9.5/10)**: NextShark - Chinese-NZ "Banana" story (yellow outside, white inside)
+- **Secondary (9/10)**: NPR - Jhumpa Lahiri interview on immigrant identity
+- **Secondary (8.5/10)**: Bree Zhang blog - Chinese-American journey, claiming real name
+- **Secondary (8.5/10)**: Land of Marvels - Third Culture Kid (American in Saudi Arabia)
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - All sources story-driven (first-person essays, interviews)
+  - Sufficient emotional depth for 15-20 minute story
+  - 5 sources for strong legal compliance (composite approach)
+
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Early awareness of difference → Shame → Racism → Awakening → Pride
+  - 10 emotional moments identified
+  - 5+ ESL resonance multipliers: Communication & Language Barriers, Belonging & Identity, Overcoming 'Not Good Enough', Connection Across Differences, Building New Life, Intergenerational Gap
+
+#### Content Details
+- **Original Text**: 1,807 words (~18 minutes A2 level)
+- **A1 Simplified**: 2,346 words (~29 minutes) - 259 sentences
+- **Character**: Mei (Chinese-Canadian, composite character)
+- **Bundles**: 44 (6 sentences per bundle, except final bundle with 1 sentence)
+- **Voice**: Jane (RILOU7YmBhvwJGDGjNmP)
+- **Audio Speed**: 0.765× effective (0.90× ElevenLabs → 0.85× FFmpeg)
+- **Total Duration**: 910.73s (~15.2 minutes)
+
+#### Themes & Emotional Moments
+**Themes**:
+- Bicultural Identity
+- Belonging (caught between two worlds)
+- Shame to Pride transformation
+- Immigration experience
+- Cultural Bridge concept
+- Self-Acceptance
+- Family dynamics
+- Finding Community
+
+**Key Emotional Moments** (10):
+1. Age 3 at preschool - grandfather stays because "I knew I was different" (very high)
+2. Father's boss talks down to him; he can only smile and apologize (very high)
+3. Man refuses paper delivery: "He doesn't like Chinese people" (very high)
+4. Parents ignored by salesman, daughter must translate (high)
+5. Newspaper delivery man's racism - "he doesn't want Chinese people" (very high)
+6. "Banana" metaphor - yellow outside, white inside (high)
+7. School history lesson shows racist cartoons of Chinese immigrants (high)
+8. Meeting others with bicultural identity at university (medium)
+9. Claiming real name pronunciation publicly (high)
+10. Realization: being bridge between cultures is beautiful, not shameful (very high)
+
+**ESL Resonance Multipliers** (5+):
+- Communication & Language Barriers (parents' accents, translation role)
+- Belonging & Identity (caught between two cultures)
+- Overcoming 'Not Good Enough' (shame to pride)
+- Connection Across Differences (becoming bridge)
+- Building New Life (parents' immigration journey)
+- Intergenerational Gap (parents vs. child experience)
+
+#### Implementation Details
+
+**Character Selection**:
+- Name: Mei (Chinese-Canadian)
+- Chosen from Asian names list in character-names-tracker.json
+- Generic character (NOT based on any single source person)
+- Composite of 5 different bicultural experiences
+
+**Voice Rationale**:
+- Jane voice selected for emotional/family story tone
+- Similar to refugee-journey-2 and medical-crisis-1
+- Stability 0.5, similarity_boost 0.8, style 0.05
+
+**Composite Approach**:
+- Grandfather staying at preschool (Chinese-NZ source)
+- Parents' code-switching shame (Filipino-Canadian source)
+- "Banana" metaphor (Chinese-NZ + Bree Zhang sources)
+- Salesman ignoring parents (Jhumpa Lahiri interview)
+- Newspaper man racism (Chinese-NZ source)
+- Finding community at university (Chinese-NZ source)
+- Claiming real name pronunciation (Bree Zhang source)
+
+**Enhanced Timing v3**:
+- Character-count proportion (NOT word-count)
+- Punctuation penalties: commas 0.15s, semicolons 0.25s, colons 0.20s
+- Pause-budget-first approach
+- Renormalization to match measured duration
+- All 44 bundles verified with perfect sync
+
+#### Key Learnings
+1. **Five-source composite works well** - Provides rich emotional material while ensuring legal safety
+2. **Cultural Bridge theme highly resonant** - Strong ESL multipliers (6 identified)
+3. **Shame-to-pride arc universal** - Works across all bicultural identities (Filipino, Chinese, Indian, American TCK)
+4. **"Banana" metaphor powerful** - Simple visual that ESL learners immediately understand
+5. **Context window management critical** - User should run long scripts in terminal, not Claude Code
+
+#### Issues Encountered
+- None - Implementation went smoothly following medical-crisis-1 pattern
+- Used copy/sed approach to replicate working scripts
+- All 44 bundles generated successfully on first attempt
+
+#### Files Created
+- `cache/files/cultural-bridge-1-sources.txt` (5-source research document)
+- `cache/cultural-bridge-1-themes.json`
+- `cache/cultural-bridge-1-background.txt`
+- `cache/cultural-bridge-1-hook.txt`
+- `cache/cultural-bridge-1-original.txt` (1,807 words A2)
+- `cache/cultural-bridge-1-A1-simplified.txt` (2,346 words, 259 sentences)
+- `cache/cultural-bridge-1-A1-preview-combined.txt`
+- `cache/cultural-bridge-1-A1-preview-combined-audio.json`
+- `cache/cultural-bridge-1-A1-bundles-metadata.json` (44 bundles)
+- `scripts/simplify-cultural-bridge-1.js`
+- `scripts/generate-cultural-bridge-1-preview-combined.js`
+- `scripts/generate-cultural-bridge-1-preview-audio.js`
+- `scripts/generate-cultural-bridge-1-bundles.js`
+- `scripts/integrate-cultural-bridge-1-database.ts`
+- `scripts/seed-cultural-bridge-1.ts`
+- `app/api/cultural-bridge-1-a1/bundles/route.ts`
 
 ---
 
