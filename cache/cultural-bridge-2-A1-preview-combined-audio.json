@@ -1,0 +1,134 @@
+{
+  "storyId": "cultural-bridge-2",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/preview-combined.mp3",
+    "duration": 71.005578,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 3.723,
+        "duration": 3.723,
+        "text": "In this inspiring story, Jin faces a big challenge."
+      },
+      {
+        "startTime": 3.723,
+        "endTime": 8.206,
+        "duration": 4.484,
+        "text": "Her parents want her to have safe careers like doctor or lawyer."
+      },
+      {
+        "startTime": 8.206,
+        "endTime": 10.728,
+        "duration": 2.522,
+        "text": "But Jin dreams of a creative career."
+      },
+      {
+        "startTime": 10.728,
+        "endTime": 13.881,
+        "duration": 3.152,
+        "text": "She feels pressure to honor their sacrifices."
+      },
+      {
+        "startTime": 13.881,
+        "endTime": 22.297,
+        "duration": 8.417,
+        "text": "Through choosing her own dreams, Jin learns that maybe choosing your own path is the ultimate expression of gratitude."
+      },
+      {
+        "startTime": 22.297,
+        "endTime": 27.061,
+        "duration": 4.764,
+        "text": "This story shows the struggle between tradition and personal dreams."
+      },
+      {
+        "startTime": 27.061,
+        "endTime": 32.245,
+        "duration": 5.184,
+        "text": "Imagine being sixteen years old and locking yourself in a bathroom to cry."
+      },
+      {
+        "startTime": 32.245,
+        "endTime": 35.818,
+        "duration": 3.573,
+        "text": "Jin worked at her father's restaurant every summer."
+      },
+      {
+        "startTime": 35.818,
+        "endTime": 39.881,
+        "duration": 4.063,
+        "text": "Her father expected her to take over the business one day."
+      },
+      {
+        "startTime": 39.881,
+        "endTime": 42.333,
+        "duration": 2.452,
+        "text": "But Jin wanted something different."
+      },
+      {
+        "startTime": 42.333,
+        "endTime": 44.155,
+        "duration": 1.821,
+        "text": "She wanted to help people."
+      },
+      {
+        "startTime": 44.155,
+        "endTime": 47.517,
+        "duration": 3.363,
+        "text": "Her parents wanted her to be a doctor or lawyer."
+      },
+      {
+        "startTime": 47.517,
+        "endTime": 48.918,
+        "duration": 1.401,
+        "text": "This is Jin's story."
+      },
+      {
+        "startTime": 48.918,
+        "endTime": 51.37,
+        "duration": 2.452,
+        "text": "It is about choosing your own path."
+      },
+      {
+        "startTime": 51.37,
+        "endTime": 56.274,
+        "duration": 4.904,
+        "text": "Many immigrant parents work hard to give their children a better life."
+      },
+      {
+        "startTime": 56.274,
+        "endTime": 58.796,
+        "duration": 2.522,
+        "text": "They want their children to succeed."
+      },
+      {
+        "startTime": 58.796,
+        "endTime": 63.299,
+        "duration": 4.503,
+        "text": "They push for safe careers like doctor, lawyer, or engineer."
+      },
+      {
+        "startTime": 63.299,
+        "endTime": 66.592,
+        "duration": 3.293,
+        "text": "But their children often have different dreams."
+      },
+      {
+        "startTime": 66.592,
+        "endTime": 68.974,
+        "duration": 2.382,
+        "text": "This story takes place in America."
+      },
+      {
+        "startTime": 68.974,
+        "endTime": 71.006,
+        "duration": 2.032,
+        "text": "But it could happen anywhere."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-11T09:13:22.060Z",
+  "timingMethod": "enhanced-timing-v3"
+}

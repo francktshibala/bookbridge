@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
-  "lastUpdated": "2025-12-10",
-  "totalStories": 14,
+  "lastUpdated": "2025-12-11",
+  "totalStories": 15,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -128,6 +128,15 @@
       "specificSubject": "Stroke recovery, aphasia, identity rebuilding",
       "status": "complete",
       "notes": "Composite from 6 sources (Jill, Andy, Celeste, Anne, Richard, Janine), generic character Rachel"
+    },
+    {
+      "storyId": "cultural-bridge-2",
+      "realPerson": null,
+      "storyConcept": "Immigrant child chooses creative career over parents' traditional expectations",
+      "themeCategory": "Cultural Bridge - Traditions vs Modern Life",
+      "specificSubject": "Career choice pressure, generational conflict, honoring sacrifices while following dreams",
+      "status": "complete",
+      "notes": "Composite from 3 sources (Greek-American, various Asian-American, Salvadoran-American), generic character Jin"
     }
   ],
   "themeSaturation": {
@@ -139,7 +148,8 @@
     "intergenerationalLearning": 1,
     "entrepreneurship": 1,
     "secondChance": 1,
-    "medicalCrisis": 1
+    "medicalCrisis": 1,
+    "culturalBridge": 2
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -160,7 +170,8 @@
     "Career burnout to passion",
     "Career layoff to service profession",
     "Addiction/prison redemption",
-    "Stroke recovery and aphasia"
+    "Stroke recovery and aphasia",
+    "Career choice pressure from immigrant parents"
   ],
   "guidelines": {
     "beforeImplementing": [

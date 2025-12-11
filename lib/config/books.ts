@@ -321,6 +321,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'CB1'
   },
   {
+    id: 'cultural-bridge-2',
+    title: 'Bridging Traditions and Modern Life',
+    author: 'BookBridge',
+    description: 'An inspiring composite story about Jin, who faces pressure from her immigrant parents to choose safe careers like doctor or lawyer. But Jin dreams of a creative career with purpose. Through struggle, guilt, and courage, Jin learns that choosing her own dreams is the ultimate expression of gratitude. A powerful tale about honoring parents\' sacrifices while following your own heart, bridging traditions and modern life. A1 level with Daniel voice.',
+    sentences: 160,
+    bundles: 27,
+    gradient: 'from-purple-500 to-indigo-600',
+    abbreviation: 'CB2'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -457,6 +467,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'cultural-bridge-1': {
     'A1': '/api/cultural-bridge-1-a1/bundles'
   },
+  'cultural-bridge-2': {
+    'A1': '/api/cultural-bridge-2-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -500,6 +513,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'disability-overcome-2': 'A1',  // Default to A1 for Blind Mountaineer: Reaching the Top (Modern Story)
   'medical-crisis-1': 'A1',  // Default to A1 for Finding New Wings: A Medical Crisis Story (Modern Story)
   'cultural-bridge-1': 'A1',  // Default to A1 for Between Two Worlds: A Cultural Bridge Story (Modern Story)
+  'cultural-bridge-2': 'A1',  // Default to A1 for Bridging Traditions and Modern Life (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -577,6 +591,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'disability-overcome-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'medical-crisis-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'cultural-bridge-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'cultural-bridge-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

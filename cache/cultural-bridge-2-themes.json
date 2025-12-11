@@ -1,0 +1,159 @@
+{
+  "storyId": "cultural-bridge-2",
+  "theme": "Cultural Bridge - Bridging Traditions and Modern Life",
+  "sources": [
+    "HuffPost - Lena Papadopoulos (Greek-American, 9/10)",
+    "Bustle - 10 First-Generation Women (8/10)",
+    "Vocal Media - Carly Henriquez (Salvadoran-American, 8/10)"
+  ],
+
+  "emotionalArc": {
+    "struggle": "Parents' expectations for 'safe' careers (doctor, lawyer, engineer) vs. child's desire for creative/passion careers. Pressure to take over family business vs. pursuing own dreams. Guilt over 'wasting' parents' sacrifices.",
+    "crisis": "Locking self in bathroom and crying. 'It's not too late to become a doctor' - burst into tears. 'I didn't think you'd be so ordinary' - father's words. 'I studied communications and my dad said I would end up homeless.'",
+    "perseverance": "Changed major just days before freshman year. Switched majors without telling parents until third year. Quit law school to pursue event planning. Moved away to 'fully be yourself.'",
+    "breakthrough": "'Maybe choosing my own dreams is the ultimate expression of my gratitude.' 'I'm so proud of you — I'd never heard her say that in my entire life.' Finding balance between honoring immigrant identity AND personal dreams."
+  },
+
+  "keyEmotionalMoments": [
+    {
+      "moment": "Locking self in bathroom and crying while working at father's restaurant (teenage years)",
+      "emotionalWeight": "very-high",
+      "source": "HuffPost - Lena Papadopoulos",
+      "eslResonance": "Feeling trapped, suffocated by expectations, internal conflict"
+    },
+    {
+      "moment": "'It's not too late to become a doctor' - mother says seriously after master's degree, burst into tears",
+      "emotionalWeight": "very-high",
+      "source": "Bustle - Cynthia Salim",
+      "eslResonance": "Parental expectations never ending, achievements not recognized, emotional breakdown"
+    },
+    {
+      "moment": "'I didn't think you'd be so ordinary' - father's words to daughter",
+      "emotionalWeight": "very-high",
+      "source": "Bustle - Traci Cheng",
+      "eslResonance": "Parental disappointment, feeling like failure, harsh judgment"
+    },
+    {
+      "moment": "'I studied communications and my dad said I would end up homeless'",
+      "emotionalWeight": "very-high",
+      "source": "Bustle - Diana Villegas",
+      "eslResonance": "Parental fear, rejection of non-traditional path, harsh reality"
+    },
+    {
+      "moment": "Graduated third in high school class, mom disappointed (not salutatorian or valedictorian)",
+      "emotionalWeight": "high",
+      "source": "HuffPost - Lena Papadopoulos",
+      "eslResonance": "Never good enough, impossible standards, constant pressure"
+    },
+    {
+      "moment": "Changed major just days before freshman year (architecture to sociology/psychology)",
+      "emotionalWeight": "high",
+      "source": "HuffPost - Lena Papadopoulos",
+      "eslResonance": "Courage to follow heart, last-minute decision, breaking expectations"
+    },
+    {
+      "moment": "Switched majors without telling parents until third year (pre-med to marketing)",
+      "emotionalWeight": "high",
+      "source": "Bustle - Marian Bacol-Uba",
+      "eslResonance": "Hiding truth, fear of disappointment, secret pursuit of passion"
+    },
+    {
+      "moment": "Quit law school after first semester ('I'm miserable')",
+      "emotionalWeight": "high",
+      "source": "Bustle - Michelle Perez",
+      "eslResonance": "Courage to quit 'safe' path, following passion, risking stability"
+    },
+    {
+      "moment": "Translating for father at back-to-school night in 'mediocre Spanish'",
+      "emotionalWeight": "high",
+      "source": "Vocal Media - Carly Henriquez",
+      "eslResonance": "Role reversal, language barriers, child as translator"
+    },
+    {
+      "moment": "'It still breaks my heart knowing he won't understand what I went through'",
+      "emotionalWeight": "high",
+      "source": "Vocal Media - Carly Henriquez",
+      "eslResonance": "Emotional distance, language barrier creating disconnect, sadness"
+    },
+    {
+      "moment": "Called 'white-washed' with 'gringa accent' by family friends",
+      "emotionalWeight": "high",
+      "source": "Vocal Media - Carly Henriquez",
+      "eslResonance": "Not belonging to either culture, identity rejection, isolation"
+    },
+    {
+      "moment": "'I had no idea what people actually did in an office'",
+      "emotionalWeight": "medium",
+      "source": "Bustle - Raman Deol",
+      "eslResonance": "Lack of exposure, limited career knowledge, first-gen challenges"
+    },
+    {
+      "moment": "'I'm so proud of you — I'd never heard her say that in my entire life'",
+      "emotionalWeight": "very-high",
+      "source": "Bustle - Christine Serra",
+      "eslResonance": "Breakthrough moment, parental acceptance, validation after years"
+    },
+    {
+      "moment": "'There's constant guilt of \"you have these luxuries that we were never given\"'",
+      "emotionalWeight": "high",
+      "source": "Vocal Media - Carly Henriquez",
+      "eslResonance": "Immigrant child guilt, pressure to succeed, unspoken expectations"
+    },
+    {
+      "moment": "'Am I really supposed to follow in their footsteps when everything they did was to make sure I could make choices for myself?'",
+      "emotionalWeight": "very-high",
+      "source": "HuffPost - Lena Papadopoulos",
+      "eslResonance": "Realization, paradox of immigrant dreams, choosing own path"
+    },
+    {
+      "moment": "'Maybe choosing my own dreams is the ultimate expression of my gratitude'",
+      "emotionalWeight": "very-high",
+      "source": "HuffPost - Lena Papadopoulos",
+      "eslResonance": "Reframing gratitude, honoring sacrifices through independence, breakthrough"
+    }
+  ],
+
+  "commonThemes": [
+    "Career trinity pressure: doctor, engineer, lawyer as only acceptable paths",
+    "Parents' credentials not recognized in new country → projected expectations onto children",
+    "Guilt over 'wasting' parents' sacrifices by choosing different path",
+    "Lack of exposure to creative careers ('I had no idea what people actually did in an office')",
+    "Language barriers creating role reversal (children translating for parents)",
+    "Not fully belonging to either culture ('white-washed,' 'gringa accent')",
+    "Cultural traditions that don't match American media depictions",
+    "Collectivist culture (family honor, inherited paths) vs. individualist culture (personal choice)",
+    "Parents' survival mindset vs. children's growth mindset",
+    "'Safe' careers vs. creative/passion careers"
+  ],
+
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers (translating for parents, language disconnect)",
+    "Belonging & Identity (stuck between two worlds, not fully belonging anywhere)",
+    "Overcoming 'Not Good Enough' (never good enough, impossible standards)",
+    "Building New Life (parents' immigration journey, children creating new path)",
+    "Connection Across Differences (finding others who share experience)",
+    "Persistence Despite Setbacks (changing majors, quitting law school, pursuing passion)"
+  ],
+
+  "characterProfile": {
+    "genericName": "To be chosen from available names (avoid Mei from cultural-bridge-1, consider: Chen, Jin, Li, Wei, Raj, Yuki, Sakura from Asian names)",
+    "culturalBackground": "Composite from 3 sources (Greek-American, various Asian-American, Salvadoran-American backgrounds)",
+    "ageRange": "Story spans teenage years through young adulthood (college age)",
+    "familyDynamics": "Parents immigrated for better life, want child to succeed in 'safe' careers, don't understand creative paths",
+    "internalConflict": "Caught between honoring parents' sacrifices and following own dreams",
+    "externalConflict": "Parental pressure for traditional careers vs. personal passion, language barriers, cultural disconnect",
+    "transformation": "Pressure and guilt → courage to choose own path → realization that choosing own dreams honors parents' sacrifices"
+  },
+
+  "targetLength": "20 minutes A1 level (~1,800-2,200 words)",
+
+  "validationPassed": {
+    "step025": true,
+    "step05": true,
+    "textAFriendTest": true,
+    "emotionalMomentsCount": 16,
+    "eslMultipliers": 6,
+    "clearArc": true
+  }
+}
+

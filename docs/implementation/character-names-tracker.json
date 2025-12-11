@@ -8,7 +8,8 @@
     "Lucas": ["disability-overcome-2"],
     "Rachel": ["medical-crisis-1"],
     "Emma": ["medical-crisis-1"],
-    "Mei": ["cultural-bridge-1"]
+    "Mei": ["cultural-bridge-1"],
+    "Jin": ["cultural-bridge-2"]
   },
   "guidelines": {
     "avoidRepeating": true,

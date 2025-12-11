@@ -1,0 +1,1392 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-0.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "Jin is sixteen and starts working at her father's restaurant.",
+        "startTime": 0,
+        "endTime": 4.197,
+        "duration": 4.197,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Her father opened the business at twenty-one with help from his parents.",
+        "startTime": 4.197,
+        "endTime": 9.15,
+        "duration": 4.953,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "He left Greece as a teenager and worked in restaurants.",
+        "startTime": 9.15,
+        "endTime": 12.934,
+        "duration": 3.784,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Now he has his own place.",
+        "startTime": 12.934,
+        "endTime": 14.654,
+        "duration": 1.72,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "He was proud of it and smiled.",
+        "startTime": 14.654,
+        "endTime": 16.718,
+        "duration": 2.064,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "He thinks Jin will take over one day.",
+        "startTime": 16.718,
+        "endTime": 19.263,
+        "duration": 2.545,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 19.263061,
+    "measuredDuration": 19.263061
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-1.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "Jin has no interest in running a restaurant.",
+        "startTime": 0,
+        "endTime": 2.95,
+        "duration": 2.95,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "She wanted to do something that felt important and good.",
+        "startTime": 2.95,
+        "endTime": 6.706,
+        "duration": 3.755,
+        "sentenceIndex": 7
+      },
+      {
+        "text": "Something that made me feel good and gave me purpose.",
+        "startTime": 6.706,
+        "endTime": 10.259,
+        "duration": 3.554,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "When she worked at the restaurant, she sometimes cried in the bathroom.",
+        "startTime": 10.259,
+        "endTime": 15.17,
+        "duration": 4.911,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "She felt trapped and wanted to be free.",
+        "startTime": 15.17,
+        "endTime": 17.786,
+        "duration": 2.615,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "Jin feels overwhelmed and needs help to feel better.",
+        "startTime": 17.786,
+        "endTime": 21.272,
+        "duration": 3.487,
+        "sentenceIndex": 11
+      }
+    ],
+    "totalDuration": 21.272404,
+    "measuredDuration": 21.272404
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-2.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "She does not want to run a restaurant for her life.",
+        "startTime": 0,
+        "endTime": 3.555,
+        "duration": 3.555,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "During summer breaks, Jin tried to find jobs in high school.",
+        "startTime": 3.555,
+        "endTime": 7.888,
+        "duration": 4.333,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "She does not want to run the register or wait tables.",
+        "startTime": 7.888,
+        "endTime": 11.583,
+        "duration": 3.695,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "Her father saw that Jin wanted to live her own life.",
+        "startTime": 11.583,
+        "endTime": 15.208,
+        "duration": 3.625,
+        "sentenceIndex": 15
+      },
+      {
+        "text": "He understood it was important for her to follow her dreams.",
+        "startTime": 15.208,
+        "endTime": 19.391,
+        "duration": 4.183,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "He sees himself in her eyes.",
+        "startTime": 19.391,
+        "endTime": 21.343,
+        "duration": 1.952,
+        "sentenceIndex": 17
+      }
+    ],
+    "totalDuration": 21.343107,
+    "measuredDuration": 21.343107
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-3.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "Jin's mother has different hopes and dreams for him.",
+        "startTime": 0,
+        "endTime": 3.534,
+        "duration": 3.534,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "She had very high standards for herself and others.",
+        "startTime": 3.534,
+        "endTime": 7,
+        "duration": 3.466,
+        "sentenceIndex": 19
+      },
+      {
+        "text": "Jin feels pressure to make her mother proud.",
+        "startTime": 7,
+        "endTime": 9.991,
+        "duration": 2.99,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "This meant joining many activities and keeping good grades in school.",
+        "startTime": 9.991,
+        "endTime": 14.681,
+        "duration": 4.69,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "When Jin graduated third, her mother felt sad and wanted more.",
+        "startTime": 14.681,
+        "endTime": 19.044,
+        "duration": 4.364,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "Jin feels she is not enough, even with success.",
+        "startTime": 19.044,
+        "endTime": 22.389,
+        "duration": 3.344,
+        "sentenceIndex": 23
+      }
+    ],
+    "totalDuration": 22.388866,
+    "measuredDuration": 22.388866
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-4.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "Jin was always a very creative child.",
+        "startTime": 0,
+        "endTime": 2.518,
+        "duration": 2.518,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "She loved reading, writing, and making art.",
+        "startTime": 2.518,
+        "endTime": 5.744,
+        "duration": 3.226,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "She tried to make art work that her mother liked.",
+        "startTime": 5.744,
+        "endTime": 9.078,
+        "duration": 3.334,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "Architecture is a good choice and seems nice.",
+        "startTime": 9.078,
+        "endTime": 12.14,
+        "duration": 3.062,
+        "sentenceIndex": 27
+      },
+      {
+        "text": "It was creative and also good for money.",
+        "startTime": 12.14,
+        "endTime": 14.862,
+        "duration": 2.722,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "Her mother supports her interest in architecture and design.",
+        "startTime": 14.862,
+        "endTime": 18.945,
+        "duration": 4.083,
+        "sentenceIndex": 29
+      }
+    ],
+    "totalDuration": 18.944694,
+    "measuredDuration": 18.944694
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-5.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "After a close friend died, Jin thought about being a therapist.",
+        "startTime": 0,
+        "endTime": 4.706,
+        "duration": 4.706,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "She wanted to help people and make them happy.",
+        "startTime": 4.706,
+        "endTime": 8.032,
+        "duration": 3.326,
+        "sentenceIndex": 31
+      },
+      {
+        "text": "We grow strong human connections with care and understanding.",
+        "startTime": 8.032,
+        "endTime": 12.444,
+        "duration": 4.411,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "When she talked about social sciences, her mother felt it was bad.",
+        "startTime": 12.444,
+        "endTime": 17.366,
+        "duration": 4.923,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "She asked why Jin gives up safety and comfort.",
+        "startTime": 17.366,
+        "endTime": 20.693,
+        "duration": 3.326,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "Jin feels she must make her mother happy after saying no to her father.",
+        "startTime": 20.693,
+        "endTime": 25.827,
+        "duration": 5.134,
+        "sentenceIndex": 35
+      }
+    ],
+    "totalDuration": 25.827143,
+    "measuredDuration": 25.827143
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-6.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "She applied to a top school and got accepted.",
+        "startTime": 0,
+        "endTime": 3.294,
+        "duration": 3.294,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "She thinks about helping people and wants a good job.",
+        "startTime": 3.294,
+        "endTime": 7.173,
+        "duration": 3.879,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "A few days before school, Jin changed her study to sociology and psychology.",
+        "startTime": 7.173,
+        "endTime": 12.885,
+        "duration": 5.713,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "She did not tell her parents right away.",
+        "startTime": 12.885,
+        "endTime": 15.813,
+        "duration": 2.928,
+        "sentenceIndex": 39
+      },
+      {
+        "text": "She was afraid they would be disappointed.",
+        "startTime": 15.813,
+        "endTime": 18.887,
+        "duration": 3.074,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "She knew they wanted her to pick a safe way to succeed.",
+        "startTime": 18.887,
+        "endTime": 22.913,
+        "duration": 4.026,
+        "sentenceIndex": 41
+      }
+    ],
+    "totalDuration": 22.91254,
+    "measuredDuration": 22.91254
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-7.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "They pushed her hard and wanted her to do well.",
+        "startTime": 0,
+        "endTime": 3.364,
+        "duration": 3.364,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "They wanted the best for her, but they hurt her spirit.",
+        "startTime": 3.364,
+        "endTime": 7.45,
+        "duration": 4.086,
+        "sentenceIndex": 43
+      },
+      {
+        "text": "Jin and other children want to make their parents proud.",
+        "startTime": 7.45,
+        "endTime": 11.457,
+        "duration": 4.008,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "They wanted their parents to feel their sacrifice was worth it.",
+        "startTime": 11.457,
+        "endTime": 15.966,
+        "duration": 4.509,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "But what does that really mean.",
+        "startTime": 15.966,
+        "endTime": 18.184,
+        "duration": 2.219,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "Did they follow their parents' path or make their own.",
+        "startTime": 18.184,
+        "endTime": 22.049,
+        "duration": 3.865,
+        "sentenceIndex": 47
+      }
+    ],
+    "totalDuration": 22.048866,
+    "measuredDuration": 22.048866
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-8.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "The problem is often harder because of cultural differences.",
+        "startTime": 0,
+        "endTime": 4.11,
+        "duration": 4.11,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "Many immigrant parents come from places with group cultures.",
+        "startTime": 4.11,
+        "endTime": 8.22,
+        "duration": 4.11,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "These societies focus on community and help each other.",
+        "startTime": 8.22,
+        "endTime": 11.987,
+        "duration": 3.767,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "Inheriting a family business is what people expect.",
+        "startTime": 11.987,
+        "endTime": 15.481,
+        "duration": 3.493,
+        "sentenceIndex": 51
+      },
+      {
+        "text": "People do not encourage individual dreams.",
+        "startTime": 15.481,
+        "endTime": 18.358,
+        "duration": 2.877,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "Their children are in the United States and they have freedom.",
+        "startTime": 18.358,
+        "endTime": 22.604,
+        "duration": 4.247,
+        "sentenceIndex": 53
+      }
+    ],
+    "totalDuration": 22.60449,
+    "measuredDuration": 22.60449
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-9.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "They want to be themselves but feel pressure to fit in.",
+        "startTime": 0,
+        "endTime": 3.916,
+        "duration": 3.916,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "Jin chose her own path and did not take her father's business.",
+        "startTime": 3.916,
+        "endTime": 8.33,
+        "duration": 4.414,
+        "sentenceIndex": 55
+      },
+      {
+        "text": "She often worried her parents did not feel appreciated.",
+        "startTime": 8.33,
+        "endTime": 12.245,
+        "duration": 3.916,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "But this is not true at all.",
+        "startTime": 12.245,
+        "endTime": 14.239,
+        "duration": 1.993,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "Choosing her dreams shows her gratitude and happiness.",
+        "startTime": 14.239,
+        "endTime": 18.083,
+        "duration": 3.844,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "She has a choice because they made sacrifices for her.",
+        "startTime": 18.083,
+        "endTime": 21.928,
+        "duration": 3.844,
+        "sentenceIndex": 59
+      }
+    ],
+    "totalDuration": 21.927823,
+    "measuredDuration": 21.927823
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-10.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "They made it possible for her to define her future.",
+        "startTime": 0,
+        "endTime": 3.499,
+        "duration": 3.499,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "Was she really meant to follow them when they wanted her choices.",
+        "startTime": 3.499,
+        "endTime": 7.959,
+        "duration": 4.46,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "Jin's parents came to the United States with very little.",
+        "startTime": 7.959,
+        "endTime": 11.87,
+        "duration": 3.911,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "Her father left Greece when he was a teenager.",
+        "startTime": 11.87,
+        "endTime": 15.027,
+        "duration": 3.156,
+        "sentenceIndex": 63
+      },
+      {
+        "text": "Her mother grew up poor and worked on farms with her parents.",
+        "startTime": 15.027,
+        "endTime": 19.212,
+        "duration": 4.186,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "They worked many hours each day for the life they wanted.",
+        "startTime": 19.212,
+        "endTime": 23.123,
+        "duration": 3.911,
+        "sentenceIndex": 65
+      }
+    ],
+    "totalDuration": 23.123424,
+    "measuredDuration": 23.123424
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-11.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "They wanted Jin to have chances they did not have.",
+        "startTime": 0,
+        "endTime": 3.492,
+        "duration": 3.492,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "They wanted her to choose safe paths and be happy.",
+        "startTime": 3.492,
+        "endTime": 6.985,
+        "duration": 3.492,
+        "sentenceIndex": 67
+      },
+      {
+        "text": "Jin is a doctor and helps many sick people.",
+        "startTime": 6.985,
+        "endTime": 9.988,
+        "duration": 3.003,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "Jin is a lawyer and helps people with their problems.",
+        "startTime": 9.988,
+        "endTime": 13.69,
+        "duration": 3.702,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "Jin is an engineer and works on important projects.",
+        "startTime": 13.69,
+        "endTime": 17.252,
+        "duration": 3.562,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "They understood these jobs and liked them.",
+        "startTime": 17.252,
+        "endTime": 20.186,
+        "duration": 2.934,
+        "sentenceIndex": 71
+      }
+    ],
+    "totalDuration": 20.186122,
+    "measuredDuration": 20.186122
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-12.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "These jobs promised success and made people happy.",
+        "startTime": 0,
+        "endTime": 3.78,
+        "duration": 3.78,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "Jin does not know what people do in an office.",
+        "startTime": 3.78,
+        "endTime": 7.257,
+        "duration": 3.477,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "She never sees creative jobs and does not know them.",
+        "startTime": 7.257,
+        "endTime": 11.188,
+        "duration": 3.931,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "She only knew about jobs with clear paths and plans.",
+        "startTime": 11.188,
+        "endTime": 15.119,
+        "duration": 3.931,
+        "sentenceIndex": 75
+      },
+      {
+        "text": "Law is important and helps people live together.",
+        "startTime": 15.119,
+        "endTime": 18.748,
+        "duration": 3.629,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "Medicine helps people feel better and stay healthy.",
+        "startTime": 18.748,
+        "endTime": 22.603,
+        "duration": 3.855,
+        "sentenceIndex": 77
+      }
+    ],
+    "totalDuration": 22.603084,
+    "measuredDuration": 22.603084
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-13.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "Engineering is the design and building of machines and structures.",
+        "startTime": 0,
+        "endTime": 4.442,
+        "duration": 4.442,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "Architecture is the art of designing buildings and spaces.",
+        "startTime": 4.442,
+        "endTime": 8.345,
+        "duration": 3.903,
+        "sentenceIndex": 79
+      },
+      {
+        "text": "Her parents and their friends understood these jobs well.",
+        "startTime": 8.345,
+        "endTime": 12.181,
+        "duration": 3.836,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "These jobs looked safe and good for people.",
+        "startTime": 12.181,
+        "endTime": 15.075,
+        "duration": 2.894,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "When Jin started college, she met other students like her.",
+        "startTime": 15.075,
+        "endTime": 19.129,
+        "duration": 4.053,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "They talked about their families and shared their stories.",
+        "startTime": 19.129,
+        "endTime": 23.032,
+        "duration": 3.903,
+        "sentenceIndex": 83
+      }
+    ],
+    "totalDuration": 23.032313,
+    "measuredDuration": 23.032313
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-14.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "People feel pressure to succeed in America and other places.",
+        "startTime": 0,
+        "endTime": 3.921,
+        "duration": 3.921,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "They feel guilty about having things their parents did not have.",
+        "startTime": 3.921,
+        "endTime": 8.103,
+        "duration": 4.182,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "Students feel pressure to do well because of their parents' sacrifices.",
+        "startTime": 8.103,
+        "endTime": 12.743,
+        "duration": 4.64,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "It can feel hard to breathe sometimes.",
+        "startTime": 12.743,
+        "endTime": 15.226,
+        "duration": 2.483,
+        "sentenceIndex": 87
+      },
+      {
+        "text": "A friend told Jin her mother said it is not too late.",
+        "startTime": 15.226,
+        "endTime": 18.69,
+        "duration": 3.463,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "No matter what Jin did, it was never enough.",
+        "startTime": 18.69,
+        "endTime": 21.715,
+        "duration": 3.025,
+        "sentenceIndex": 89
+      }
+    ],
+    "totalDuration": 21.714853,
+    "measuredDuration": 21.714853
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-15.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "Jin's friend said her father thought tech was ordinary, not medicine.",
+        "startTime": 0,
+        "endTime": 4.695,
+        "duration": 4.695,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "Those words hurt me when I heard them.",
+        "startTime": 4.695,
+        "endTime": 7.197,
+        "duration": 2.503,
+        "sentenceIndex": 91
+      },
+      {
+        "text": "They made her feel like she disappointed her parents and their work.",
+        "startTime": 7.197,
+        "endTime": 11.676,
+        "duration": 4.479,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "A friend studied communications, but her father said she would be homeless.",
+        "startTime": 11.676,
+        "endTime": 16.766,
+        "duration": 5.09,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "He wanted her to be an engineer, a doctor, or a dentist.",
+        "startTime": 16.766,
+        "endTime": 20.754,
+        "duration": 3.988,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "But she followed her passion instead.",
+        "startTime": 20.754,
+        "endTime": 23.191,
+        "duration": 2.437,
+        "sentenceIndex": 95
+      }
+    ],
+    "totalDuration": 23.190998,
+    "measuredDuration": 23.190998
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-16.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "Jin moved to Greece to study and learned she could be independent.",
+        "startTime": 0,
+        "endTime": 4.468,
+        "duration": 4.468,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "Jin listened to the stories and felt she was not alone.",
+        "startTime": 4.468,
+        "endTime": 8.191,
+        "duration": 3.723,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "Many immigrant children face the same struggle.",
+        "startTime": 8.191,
+        "endTime": 11.372,
+        "duration": 3.181,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "They wanted to honor their parents and remember their hard work.",
+        "startTime": 11.372,
+        "endTime": 15.704,
+        "duration": 4.332,
+        "sentenceIndex": 99
+      },
+      {
+        "text": "They wanted to follow their dreams and be happy.",
+        "startTime": 15.704,
+        "endTime": 18.953,
+        "duration": 3.249,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "They wanted to choose paths that gave them joy and safety.",
+        "startTime": 18.953,
+        "endTime": 22.88,
+        "duration": 3.926,
+        "sentenceIndex": 101
+      }
+    ],
+    "totalDuration": 22.879524,
+    "measuredDuration": 22.879524
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-17.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "Jin lived in a place for students from many countries and America.",
+        "startTime": 0,
+        "endTime": 4.694,
+        "duration": 4.694,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "This experience changed her life in a big way.",
+        "startTime": 4.694,
+        "endTime": 7.965,
+        "duration": 3.271,
+        "sentenceIndex": 103
+      },
+      {
+        "text": "It changed her job path and helped her grow.",
+        "startTime": 7.965,
+        "endTime": 11.094,
+        "duration": 3.129,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "She got her master's degree and worked in intercultural education.",
+        "startTime": 11.094,
+        "endTime": 15.788,
+        "duration": 4.694,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "She travels the world as a coach and consultant.",
+        "startTime": 15.788,
+        "endTime": 19.202,
+        "duration": 3.414,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "She worked every day and felt good about her life.",
+        "startTime": 19.202,
+        "endTime": 22.758,
+        "duration": 3.556,
+        "sentenceIndex": 107
+      }
+    ],
+    "totalDuration": 22.757891,
+    "measuredDuration": 22.757891
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-18.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "Not everyone, even her parents, understands her work and life.",
+        "startTime": 0,
+        "endTime": 4.669,
+        "duration": 4.669,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "But Jin did it anyway.",
+        "startTime": 4.669,
+        "endTime": 6.219,
+        "duration": 1.55,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "She realizes that it has to be enough for her.",
+        "startTime": 6.219,
+        "endTime": 9.46,
+        "duration": 3.241,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "She does not need to change for other people's ideas.",
+        "startTime": 9.46,
+        "endTime": 13.195,
+        "duration": 3.735,
+        "sentenceIndex": 111
+      },
+      {
+        "text": "It was not her job to make other people happy.",
+        "startTime": 13.195,
+        "endTime": 16.436,
+        "duration": 3.241,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "She is here to live her purpose and do what she wants.",
+        "startTime": 16.436,
+        "endTime": 20.241,
+        "duration": 3.805,
+        "sentenceIndex": 113
+      }
+    ],
+    "totalDuration": 20.241497,
+    "measuredDuration": 20.241497
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-19.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "Jin learns a big lesson from her immigrant parents.",
+        "startTime": 0,
+        "endTime": 3.66,
+        "duration": 3.66,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "Only she can give herself the love and worth she needs.",
+        "startTime": 3.66,
+        "endTime": 7.607,
+        "duration": 3.947,
+        "sentenceIndex": 115
+      },
+      {
+        "text": "She chose a life that brings her joy.",
+        "startTime": 7.607,
+        "endTime": 10.262,
+        "duration": 2.655,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "She did not choose therapy, but she helped people understand each other.",
+        "startTime": 10.262,
+        "endTime": 15.579,
+        "duration": 5.317,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "Jin goes home and helps her father understand English sometimes.",
+        "startTime": 15.579,
+        "endTime": 20.172,
+        "duration": 4.593,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "She saw that he worked very hard.",
+        "startTime": 20.172,
+        "endTime": 22.54,
+        "duration": 2.368,
+        "sentenceIndex": 119
+      }
+    ],
+    "totalDuration": 22.540454,
+    "measuredDuration": 22.540454
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-20.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "He sacrificed a lot for his family and friends.",
+        "startTime": 0,
+        "endTime": 3.773,
+        "duration": 3.773,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "He wanted her to succeed very much.",
+        "startTime": 3.773,
+        "endTime": 6.582,
+        "duration": 2.81,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "She saw that he understood why she needed her own path.",
+        "startTime": 6.582,
+        "endTime": 10.997,
+        "duration": 4.415,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "He did the same thing before.",
+        "startTime": 10.997,
+        "endTime": 13.325,
+        "duration": 2.328,
+        "sentenceIndex": 123
+      },
+      {
+        "text": "Her mother was slow to come around.",
+        "startTime": 13.325,
+        "endTime": 16.135,
+        "duration": 2.81,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "One day, Jin told her mother about her work success.",
+        "startTime": 16.135,
+        "endTime": 20.459,
+        "duration": 4.324,
+        "sentenceIndex": 125
+      }
+    ],
+    "totalDuration": 20.458798,
+    "measuredDuration": 20.458798
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-21.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "Jin feels happy because those words mean everything to him.",
+        "startTime": 0,
+        "endTime": 4.155,
+        "duration": 4.155,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "Jin spent her life trying to hear them.",
+        "startTime": 4.155,
+        "endTime": 6.901,
+        "duration": 2.746,
+        "sentenceIndex": 127
+      },
+      {
+        "text": "Jin knows her parents worked hard for her happiness.",
+        "startTime": 6.901,
+        "endTime": 10.563,
+        "duration": 3.662,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "Shouldn't she decide what happiness looks like for her.",
+        "startTime": 10.563,
+        "endTime": 14.436,
+        "duration": 3.873,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "They gave up everything and felt very sad.",
+        "startTime": 14.436,
+        "endTime": 17.394,
+        "duration": 2.958,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "Their language is different and interesting to learn.",
+        "startTime": 17.394,
+        "endTime": 21.126,
+        "duration": 3.732,
+        "sentenceIndex": 131
+      }
+    ],
+    "totalDuration": 21.126009,
+    "measuredDuration": 21.126009
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-22.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "Their home is a warm and happy place.",
+        "startTime": 0,
+        "endTime": 2.94,
+        "duration": 2.94,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "Their culture is rich and interesting for many people.",
+        "startTime": 2.94,
+        "endTime": 7.23,
+        "duration": 4.291,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "Everything is for her.",
+        "startTime": 7.23,
+        "endTime": 8.978,
+        "duration": 1.748,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "She wants choices so she can be happy.",
+        "startTime": 8.978,
+        "endTime": 11.998,
+        "duration": 3.019,
+        "sentenceIndex": 135
+      },
+      {
+        "text": "She wants to make decisions for herself and be free.",
+        "startTime": 11.998,
+        "endTime": 16.129,
+        "duration": 4.132,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "Choosing her dreams does not mean she rejects their sacrifices.",
+        "startTime": 16.129,
+        "endTime": 21.135,
+        "duration": 5.006,
+        "sentenceIndex": 137
+      }
+    ],
+    "totalDuration": 21.135034,
+    "measuredDuration": 21.135034
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-23.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "It was her best way to show gratitude.",
+        "startTime": 0,
+        "endTime": 2.796,
+        "duration": 2.796,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "She uses the freedom they give her.",
+        "startTime": 2.796,
+        "endTime": 5.371,
+        "duration": 2.575,
+        "sentenceIndex": 139
+      },
+      {
+        "text": "She used the chances they made.",
+        "startTime": 5.371,
+        "endTime": 7.652,
+        "duration": 2.281,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "She lives the life they dreamed for her.",
+        "startTime": 7.652,
+        "endTime": 10.594,
+        "duration": 2.943,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "It was not how they thought it would be.",
+        "startTime": 10.594,
+        "endTime": 13.537,
+        "duration": 2.943,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "Jin does not follow their path.",
+        "startTime": 13.537,
+        "endTime": 15.818,
+        "duration": 2.281,
+        "sentenceIndex": 143
+      }
+    ],
+    "totalDuration": 15.818027,
+    "measuredDuration": 15.818027
+  },
+  {
+    "bundleId": "b24",
+    "bundleIndex": 24,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-24.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-24.mp3",
+    "sentences": [
+      {
+        "text": "She creates her own path and feels happy.",
+        "startTime": 0,
+        "endTime": 3.105,
+        "duration": 3.105,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "She does it because of all they did for her.",
+        "startTime": 3.105,
+        "endTime": 6.438,
+        "duration": 3.333,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "Their sacrifices made her choices possible and helped her life.",
+        "startTime": 6.438,
+        "endTime": 11.21,
+        "duration": 4.772,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "She chooses joy and feels happy.",
+        "startTime": 11.21,
+        "endTime": 13.634,
+        "duration": 2.424,
+        "sentenceIndex": 147
+      },
+      {
+        "text": "She chooses a purpose for her life.",
+        "startTime": 13.634,
+        "endTime": 16.285,
+        "duration": 2.651,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "She honors her immigrant identity and her personal dreams.",
+        "startTime": 16.285,
+        "endTime": 20.678,
+        "duration": 4.393,
+        "sentenceIndex": 149
+      }
+    ],
+    "totalDuration": 20.677619,
+    "measuredDuration": 20.677619
+  },
+  {
+    "bundleId": "b25",
+    "bundleIndex": 25,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-25.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-25.mp3",
+    "sentences": [
+      {
+        "text": "She connects two worlds and helps people understand each other.",
+        "startTime": 0,
+        "endTime": 4.31,
+        "duration": 4.31,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "Jin lives in a world of her parents' traditions and rules.",
+        "startTime": 4.31,
+        "endTime": 8.277,
+        "duration": 3.968,
+        "sentenceIndex": 151
+      },
+      {
+        "text": "Jin has a world of dreams and passions.",
+        "startTime": 8.277,
+        "endTime": 10.945,
+        "duration": 2.668,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "She does not have to choose one or the other.",
+        "startTime": 10.945,
+        "endTime": 14.023,
+        "duration": 3.078,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "She can honor both and feel proud.",
+        "startTime": 14.023,
+        "endTime": 16.349,
+        "duration": 2.326,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "She can be thankful for their help and follow her own heart.",
+        "startTime": 16.349,
+        "endTime": 20.453,
+        "duration": 4.104,
+        "sentenceIndex": 155
+      }
+    ],
+    "totalDuration": 20.453424,
+    "measuredDuration": 20.453424
+  },
+  {
+    "bundleId": "b26",
+    "bundleIndex": 26,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-2/A1/bundle-26.mp3",
+    "audioPath": "cultural-bridge-2/A1/bundle-26.mp3",
+    "sentences": [
+      {
+        "text": "She can be the daughter they raised and the person she wants to be.",
+        "startTime": 0,
+        "endTime": 4.764,
+        "duration": 4.764,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "That was the bridge we saw yesterday.",
+        "startTime": 4.764,
+        "endTime": 7.394,
+        "duration": 2.631,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "That was the right balance for us.",
+        "startTime": 7.394,
+        "endTime": 9.812,
+        "duration": 2.417,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "That is the way to go forward.",
+        "startTime": 9.812,
+        "endTime": 11.945,
+        "duration": 2.133,
+        "sentenceIndex": 159
+      }
+    ],
+    "totalDuration": 11.94458,
+    "measuredDuration": 11.94458
+  }
+]
