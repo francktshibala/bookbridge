@@ -31,14 +31,15 @@
 ### **Before You Start:**
 1. ✅ Read this entire file first (15-20 minutes)
 2. ✅ Verify you have access to the codebase
-3. ✅ **Check `docs/implementation/story-subjects-tracker.json`** - Verify person/concept not already covered
-4. ✅ **LEARN from `docs/implementation/story-completion-log.md`** - This is a goldmine:
-   - **Current Progress**: 14/50 stories completed (28%), Phase 1 complete
+3. ✅ **Find next story**: Open `docs/MODERN_CONTENT_MASTER_PLAN.md` → "Sequential Story Roadmap (#15-#50)" → Find first unchecked box
+4. ✅ **Check `docs/implementation/story-subjects-tracker.json`** - Verify person/concept not already covered
+5. ✅ **LEARN from `docs/implementation/story-completion-log.md`** - This is a goldmine:
+   - **Current Progress**: 15/50 stories completed (30%), Phase 2 started
    - **Find Similar Stories**: Search for same theme (Refugee Journey, Career Pivot, etc.)
    - **Study Patterns**: Character names used, voice selection, story length, source count
    - **Copy What Works**: Voice settings, composite approach (3-6 sources), validation steps
    - **Avoid Past Mistakes**: See "Key Learnings" sections for each story
-5. ✅ Review `docs/implementation/character-names-tracker.json` to avoid repeating names
+6. ✅ Review `docs/implementation/character-names-tracker.json` to avoid repeating names
 
 ### **📋 Pre-Implementation Checklist (MANDATORY)**
 
@@ -767,7 +768,7 @@ Update `lib/config/books.ts`:
 **Your workflow:**
 1. ✅ Read this file (you're done!)
 2. ✅ Check `story-completion-log.md` for similar stories
-3. ✅ Choose story from `MODERN_CONTENT_MASTER_PLAN.md`
+3. ✅ **Find next story**: Open `MODERN_CONTENT_MASTER_PLAN.md` → Go to "Sequential Story Roadmap (#15-#50)" section → Find first unchecked box (e.g., Story #16: Cultural Bridge #2)
 4. ✅ Follow Steps 0-20 in order
 5. ✅ **Log completion when done** (Step 20)
 
