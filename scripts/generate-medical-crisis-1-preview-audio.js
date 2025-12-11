@@ -187,7 +187,7 @@ async function generateCombinedPreviewAudio(combinedText, storyId, level) {
     const sentences = combinedText
       .split(/(?<=[.!?])\s+/)
       .map(s => s.trim())
-      .filter(s => s.length > 0 && !s.match(/^About This Story$/i));
+      .filter(s => s.length > 0);
 
     console.log(`   📊 Splitting into ${sentences.length} sentences for timing calculation...`);
 
@@ -247,10 +247,15 @@ async function main() {
     throw new Error(`Combined text file not found: ${combinedTextPath}. Run generate-medical-crisis-1-preview-combined.js first.`);
   }
 
-  const combinedText = fs.readFileSync(combinedTextPath, 'utf8').trim();
+  let combinedText = fs.readFileSync(combinedTextPath, 'utf8').trim();
+
+  // Remove "About This Story" header before generating audio
+  // This ensures timing calculations match the actual spoken audio
+  combinedText = combinedText.replace(/^About This Story\s*\n+/i, '').trim();
+
   const wordCount = combinedText.split(/\s+/).filter(word => word.length > 0).length;
 
-  console.log(`\n📝 Combined preview text (${wordCount} words):`);
+  console.log(`\n📝 Combined preview text (${wordCount} words, header removed):`);
   console.log(`   "${combinedText.substring(0, 200)}..."`);
 
   // Generate audio

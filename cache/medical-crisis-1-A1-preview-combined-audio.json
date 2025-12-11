@@ -3,96 +3,96 @@
   "level": "A1",
   "audio": {
     "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/preview-combined.mp3",
-    "duration": 84.772381,
+    "duration": 84.833379,
     "voice": "Jane",
     "voiceId": "RILOU7YmBhvwJGDGjNmP",
     "sentenceTimings": [
       {
         "startTime": 0,
-        "endTime": 5.532,
-        "duration": 5.532,
-        "text": "About This Story\n\nIn this inspiring story, Rachel faces a big challenge."
+        "endTime": 4.256,
+        "duration": 4.256,
+        "text": "In this inspiring story, Rachel faces a big challenge."
       },
       {
-        "startTime": 5.532,
-        "endTime": 9.195,
-        "duration": 3.663,
+        "startTime": 4.256,
+        "endTime": 7.98,
+        "duration": 3.724,
         "text": "After a stroke, she loses her ability to speak."
       },
       {
-        "startTime": 9.195,
-        "endTime": 15.026,
-        "duration": 5.831,
+        "startTime": 7.98,
+        "endTime": 13.909,
+        "duration": 5.929,
         "text": "With family support, she shows resilience and finds new ways to communicate."
       },
       {
-        "startTime": 15.026,
-        "endTime": 21.38,
-        "duration": 6.354,
+        "startTime": 13.909,
+        "endTime": 20.371,
+        "duration": 6.461,
         "text": "Through her daughter's help and small steps, Rachel learns about hope and patience."
       },
       {
-        "startTime": 21.38,
-        "endTime": 28.855,
-        "duration": 7.475,
+        "startTime": 20.371,
+        "endTime": 27.975,
+        "duration": 7.604,
         "text": "This story shares a powerful message about finding beauty in brokenness and the journey of recovery."
       },
       {
-        "startTime": 28.855,
-        "endTime": 32.817,
-        "duration": 3.962,
+        "startTime": 27.975,
+        "endTime": 32.003,
+        "duration": 4.028,
         "text": "Rachel woke up in a hospital room, unable to speak."
       },
       {
-        "startTime": 32.817,
-        "endTime": 36.779,
-        "duration": 3.962,
+        "startTime": 32.003,
+        "endTime": 36.033,
+        "duration": 4.03,
         "text": "The words in her mind wouldn't come out of her mouth."
       },
       {
-        "startTime": 36.779,
-        "endTime": 48.517,
-        "duration": 11.738,
+        "startTime": 36.033,
+        "endTime": 47.964,
+        "duration": 11.93,
         "text": "Her daughter held her hand and said, \"You will be fine, Mom, because you have me.\" But Rachel wondered: if she couldn't speak, was she still herself?"
       },
       {
-        "startTime": 48.517,
-        "endTime": 51.731,
-        "duration": 3.214,
+        "startTime": 47.964,
+        "endTime": 51.233,
+        "duration": 3.27,
         "text": "Could broken things become beautiful again?"
       },
       {
-        "startTime": 51.731,
-        "endTime": 58.832,
-        "duration": 7.101,
+        "startTime": 51.233,
+        "endTime": 58.457,
+        "duration": 7.224,
         "text": "This is the story of how Rachel learned that recovery isn't about becoming who you were before."
       },
       {
-        "startTime": 58.832,
-        "endTime": 64.065,
-        "duration": 5.233,
+        "startTime": 58.457,
+        "endTime": 63.778,
+        "duration": 5.321,
         "text": "It's about discovering who you can become, one small step at a time."
       },
       {
-        "startTime": 64.065,
-        "endTime": 69.971,
-        "duration": 5.906,
+        "startTime": 63.778,
+        "endTime": 69.783,
+        "duration": 6.005,
         "text": "Every year, millions of people experience strokes and serious medical crises."
       },
       {
-        "startTime": 69.971,
-        "endTime": 78.568,
-        "duration": 8.597,
+        "startTime": 69.783,
+        "endTime": 78.524,
+        "duration": 8.741,
         "text": "Many survivors face the challenge of relearning basic skills like speaking, walking, or recognizing loved ones."
       },
       {
-        "startTime": 78.568,
-        "endTime": 84.772,
-        "duration": 6.205,
+        "startTime": 78.524,
+        "endTime": 84.833,
+        "duration": 6.309,
         "text": "Recovery often takes months or years, requiring patience and support from family."
       }
     ]
   },
-  "generatedAt": "2025-12-11T05:14:01.000Z",
+  "generatedAt": "2025-12-11T05:27:53.425Z",
   "timingMethod": "enhanced-timing-v3"
 }
