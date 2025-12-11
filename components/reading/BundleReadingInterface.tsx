@@ -76,20 +76,27 @@ function IntroSectionWithHighlighting({
   const lastScrolledIndexRef = useRef<number>(-1);
   const highlightLeadSeconds = -0.5; // Hardware delay compensation (same as main story BundleAudioManager)
 
-  // Split text into sentences
+  // Use sentence texts from metadata (don't re-split to avoid mismatch)
   const sentences = React.useMemo(() => {
+    // PREFERRED: Use sentences from metadata (matches audio generation exactly)
+    if (providedTimings && providedTimings.length > 0) {
+      return providedTimings.map((timing, index) => ({
+        index,
+        text: timing.text.trim(),
+        wordCount: timing.text.trim().split(/\s+/).length
+      }));
+    }
+
+    // FALLBACK: Split text (only if no metadata available)
     if (!combinedText) return [];
-    
-    // Remove "About This Story" title and split by sentences
     const textWithoutTitle = combinedText.replace(/^About This Story\s*\n\n*/i, '');
-    const sentenceRegex = /([^.!?]+[.!?]+)/g;
-    const matches = textWithoutTitle.match(sentenceRegex) || [];
+    const matches = textWithoutTitle.split(/(?<=[.!?])\s+/); // Same regex as audio generation script
     return matches.map((text, index) => ({
       index,
       text: text.trim(),
       wordCount: text.trim().split(/\s+/).length
     })).filter(s => s.text.length > 0);
-  }, [combinedText]);
+  }, [combinedText, providedTimings]);
 
   // Use pre-calculated timings if available, otherwise calculate on the fly (fallback)
   // Apply duration scaling if actual audio duration differs from metadata
@@ -413,59 +420,61 @@ function IntroSectionWithHighlighting({
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Parse and render text with highlighting
+  // Render text with highlighting (using sentences from metadata - no re-splitting)
   const renderText = () => {
-    if (!combinedText || sentences.length === 0) return null;
-    
+    if (sentences.length === 0) return null;
+
+    // Parse combinedText to identify section boundaries (but render using metadata sentences)
     const sections = combinedText.split(/\n\n+/).filter(s => s.trim());
-    let previewContent = '';
-    let hookContent = '';
-    let backgroundContent = '';
+    let previewText = '';
+    let hookText = '';
+    let backgroundText = '';
     let foundPreview = false;
-    
+
     sections.forEach((section: string) => {
       const trimmed = section.trim();
       if (trimmed === 'About This Story') {
         foundPreview = true;
-      } else if (foundPreview && previewContent === '') {
-        previewContent = trimmed;
-      } else if (foundPreview && previewContent !== '' && hookContent === '') {
-        hookContent = trimmed;
-      } else if (foundPreview && previewContent !== '' && hookContent !== '' && backgroundContent === '') {
-        backgroundContent = trimmed;
+      } else if (foundPreview && previewText === '') {
+        previewText = trimmed;
+      } else if (foundPreview && previewText !== '' && hookText === '') {
+        hookText = trimmed;
+      } else if (foundPreview && previewText !== '' && hookText !== '' && backgroundText === '') {
+        backgroundText = trimmed;
       }
     });
-    
-    // Split content into sentences for rendering
-    const splitIntoSentences = (text: string) => {
-      const sentenceRegex = /([^.!?]+[.!?]+)/g;
-      return text.match(sentenceRegex) || [text];
-    };
-    
-    const previewSentences = previewContent ? splitIntoSentences(previewContent) : [];
-    const hookSentences = hookContent ? splitIntoSentences(hookContent) : [];
-    const backgroundSentences = backgroundContent ? splitIntoSentences(backgroundContent) : [];
-    
+
+    // Calculate sentence counts for each section using character boundaries
+    const previewSentenceCount = previewText ? previewText.split(/(?<=[.!?])\s+/).length : 0;
+    const hookSentenceCount = hookText ? hookText.split(/(?<=[.!?])\s+/).length : 0;
+    const backgroundSentenceCount = backgroundText ? backgroundText.split(/(?<=[.!?])\s+/).length : 0;
+
     let sentenceIdx = 0;
-    
+    const previewSentences = sentences.slice(0, previewSentenceCount);
+    sentenceIdx += previewSentenceCount;
+    const hookSentences = sentences.slice(sentenceIdx, sentenceIdx + hookSentenceCount);
+    sentenceIdx += hookSentenceCount;
+    const backgroundSentences = sentences.slice(sentenceIdx, sentenceIdx + backgroundSentenceCount);
+
     return (
       <>
-        <h2 
+        <h2
           className="text-lg font-semibold text-[var(--text-accent)] mb-3"
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
           About This Story
         </h2>
         <div ref={textContainerRef} className="space-y-3">
+          {/* Preview section (no header) */}
           {previewSentences.length > 0 && (
             <p className="text-[var(--text-primary)] leading-relaxed" style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}>
               {previewSentences.map((sentence, idx) => {
-                const currentIdx = sentenceIdx++;
-                const isCurrent = currentSentenceIndex === currentIdx;
+                const globalIdx = idx;
+                const isCurrent = currentSentenceIndex === globalIdx;
                 return (
                   <span
-                    key={idx}
-                    data-sentence-index={currentIdx}
+                    key={globalIdx}
+                    data-sentence-index={globalIdx}
                     style={{
                       background: isCurrent ? 'var(--accent-primary)' : 'transparent',
                       color: isCurrent ? 'var(--bg-primary)' : 'inherit',
@@ -476,21 +485,23 @@ function IntroSectionWithHighlighting({
                       display: 'inline'
                     }}
                   >
-                    {sentence}
+                    {sentence.text}{' '}
                   </span>
                 );
               })}
             </p>
           )}
+
+          {/* Hook section (no header) */}
           {hookSentences.length > 0 && (
             <p className="text-[var(--text-primary)] leading-relaxed font-medium mt-4" style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '1.05rem' }}>
               {hookSentences.map((sentence, idx) => {
-                const currentIdx = sentenceIdx++;
-                const isCurrent = currentSentenceIndex === currentIdx;
+                const globalIdx = previewSentenceCount + idx;
+                const isCurrent = currentSentenceIndex === globalIdx;
                 return (
                   <span
-                    key={idx}
-                    data-sentence-index={currentIdx}
+                    key={globalIdx}
+                    data-sentence-index={globalIdx}
                     style={{
                       background: isCurrent ? 'var(--accent-primary)' : 'transparent',
                       color: isCurrent ? 'var(--bg-primary)' : 'inherit',
@@ -501,15 +512,17 @@ function IntroSectionWithHighlighting({
                       display: 'inline'
                     }}
                   >
-                    {sentence}
+                    {sentence.text}{' '}
                   </span>
                 );
               })}
             </p>
           )}
+
+          {/* Background section (with header) */}
           {backgroundSentences.length > 0 && (
             <>
-              <h3 
+              <h3
                 className="text-sm font-semibold text-[var(--text-secondary)] mb-2 mt-6 uppercase tracking-wide"
                 style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.85rem', letterSpacing: '0.05em' }}
               >
@@ -517,26 +530,26 @@ function IntroSectionWithHighlighting({
               </h3>
               <p className="text-[var(--text-secondary)] leading-relaxed italic" style={{ fontFamily: 'Source Serif Pro, serif', fontSize: '0.95rem' }}>
                 {backgroundSentences.map((sentence, idx) => {
-                const currentIdx = sentenceIdx++;
-                const isCurrent = currentSentenceIndex === currentIdx;
-                return (
-                  <span
-                    key={idx}
-                    data-sentence-index={currentIdx}
-                    style={{
-                      background: isCurrent ? 'var(--accent-primary)' : 'transparent',
-                      color: isCurrent ? 'var(--bg-primary)' : 'inherit',
-                      padding: isCurrent ? '2px 6px' : '0',
-                      borderRadius: isCurrent ? '4px' : '0',
-                      transition: 'all 0.3s ease',
-                      fontWeight: isCurrent ? '500' : '400',
-                      display: 'inline'
-                    }}
-                  >
-                    {sentence}
-                  </span>
-                );
-              })}
+                  const globalIdx = previewSentenceCount + hookSentenceCount + idx;
+                  const isCurrent = currentSentenceIndex === globalIdx;
+                  return (
+                    <span
+                      key={globalIdx}
+                      data-sentence-index={globalIdx}
+                      style={{
+                        background: isCurrent ? 'var(--accent-primary)' : 'transparent',
+                        color: isCurrent ? 'var(--bg-primary)' : 'inherit',
+                        padding: isCurrent ? '2px 6px' : '0',
+                        borderRadius: isCurrent ? '4px' : '0',
+                        transition: 'all 0.3s ease',
+                        fontWeight: isCurrent ? '500' : '400',
+                        display: 'inline'
+                      }}
+                    >
+                      {sentence.text}{' '}
+                    </span>
+                  );
+                })}
               </p>
             </>
           )}

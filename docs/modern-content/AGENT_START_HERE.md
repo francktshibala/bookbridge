@@ -35,6 +35,44 @@
 4. ✅ Check `docs/implementation/story-completion-log.md` for similar stories (learn from previous work)
 5. ✅ Review `docs/implementation/character-names-tracker.json` to avoid repeating names
 
+### **📋 Pre-Implementation Checklist (MANDATORY)**
+
+**Run BEFORE writing ANY code:**
+
+- [ ] **Identify correct implementation guide:**
+  - Modern content (TED talks, podcasts, modern stories) → `docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md`
+  - Classical books (Dickens, Austen, Shakespeare) → `docs/MASTER_MISTAKES_PREVENTION.md`
+  - **⚠️ Using wrong guide = wrong patterns = multiple fixes required**
+
+- [ ] **Read MODERN_VOICES_IMPLEMENTATION_GUIDE.md** (not classical books guide)
+  - PRE-COMMIT TESTING PROTOCOL (lines ~1168-1306)
+  - FRONTEND PATTERN: Intro Highlighting Component (lines ~1310-1397)
+  - Validation Checkpoint #1: Bundle Metadata Check (lines ~392-434)
+  - Validation Checkpoint #2: Preview Audio Files Check (lines ~302-338)
+
+- [ ] **Review working implementation for comparison:**
+  - Find similar story type in `story-completion-log.md`
+  - Read that story's implementation notes
+  - Compare voice settings, timing approach, frontend config
+  - Use as reference for your implementation
+
+- [ ] **Identify voice settings from working story:**
+  - Modern stories: Usually Jane voice (RILOU7YmBhvwJGDGjNmP)
+  - TED talks: Jane (professional audiobook reader)
+  - Podcasts: Daniel or Jane (match content tone)
+  - Copy settings from similar working story (don't guess)
+
+- [ ] **Understand validation requirements:**
+  - 3 mandatory tests before commit (console check, intro check, main story check)
+  - User approval required after ALL tests pass
+  - No commits to GitHub without explicit user approval
+
+**⚠️ If you skip this checklist:**
+- You'll use wrong implementation guide (wastes time)
+- You'll guess voice settings instead of copying working ones
+- You'll miss validation steps (multiple fix commits required)
+- See Medical Crisis #1: 6 separate issues from skipping this checklist
+
 ### **Critical Rules:**
 1. **NEVER skip Steps 0.25 and 0.5** (validation gates prevent wasted work)
 2. **ALWAYS use 1:1 sentence mapping** (critical for audio sync)

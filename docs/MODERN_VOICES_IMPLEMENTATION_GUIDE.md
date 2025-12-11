@@ -299,6 +299,44 @@ wc -w cache/{content-id}-{level}-preview-combined.txt
 # - Re-run validation
 ```
 
+### ✅ VALIDATION CHECKPOINT #2: Preview Audio Files Check (MANDATORY)
+```bash
+# Run BEFORE proceeding to Phase 4 (Audio Generation)
+
+# 1. Verify ALL preview files exist
+echo "📋 Checking preview files..."
+ls -la cache/{story-id}-{level}-preview-combined.txt
+ls -la cache/{story-id}-{level}-preview-combined-audio.json
+ls -la scripts/generate-{story-id}-preview-audio.js
+
+# 2. Verify header text was removed BEFORE audio generation
+echo "📋 Checking first sentence timing..."
+cat cache/{story-id}-{level}-preview-combined-audio.json | grep -A 5 '"sentenceTimings"'
+
+# Expected: First timing.text should NOT include "About This Story"
+# ❌ WRONG: "text": "About This Story\n\nIn this inspiring story..."
+# ✅ CORRECT: "text": "In this inspiring story..."
+
+# 3. Verify all required sections present
+cat cache/{story-id}-{level}-preview-combined.txt
+
+# Expected format:
+#   Line 1: "About This Story"
+#   Line 2: (blank line)
+#   Line 3: Preview content
+#   Line 4: (blank line)
+#   Line 5: Hook content
+#   Line 6: (blank line)
+#   Line 7: Background content
+
+# ⚠️ CRITICAL: If header found in timing text, regenerate preview audio
+# The script must strip "About This Story" BEFORE generating audio:
+# combinedText = combinedText.replace(/^About This Story\s*\n+/i, '').trim();
+
+# ✅ ALL CHECKS PASSED? → Proceed to Phase 4
+# ❌ ANY CHECK FAILED? → Fix issues and regenerate preview audio
+```
+
 ### Phase 4: Audio Generation (MANDATORY SOLUTION 1 + ENHANCED TIMING V3)
 ```bash
 # ✅ 7. Generate Bundle Audio (Follow MASTER_MISTAKES Phase 3)
@@ -349,6 +387,64 @@ node scripts/generate-{content-id}-bundles.js [LEVEL] --pilot
 # - Podcasts: Daniel or Jane (match content tone)
 # - Essays: Jane (neutral, professional)
 # - StoryCorps/Dialogues: Sarah voice (warm, conversational - see "Always a Family")
+```
+
+### ✅ VALIDATION CHECKPOINT #1: Bundle Metadata Check (MANDATORY)
+```bash
+# Run AFTER bundle generation, BEFORE database integration
+
+# 1. Verify sentenceIndex is GLOBAL (not local per bundle)
+echo "📋 Checking sentence indices in metadata..."
+cat cache/{story-id}-{level}-bundles-metadata.json | grep -o '"sentenceIndex":[0-9]*' | head -30
+
+# Expected output for story with 6 sentences per bundle:
+# Bundle 0: sentenceIndex: 0, 1, 2, 3, 4, 5
+# Bundle 1: sentenceIndex: 6, 7, 8, 9, 10, 11
+# Bundle 2: sentenceIndex: 12, 13, 14, 15, 16, 17
+# ... (indices should NEVER repeat)
+
+# ❌ WRONG: Every bundle has indices 0, 1, 2, 3, 4, 5 (local indexing)
+#   This causes: React "duplicate key" error, multiple sentences highlight simultaneously
+#   Code bug: sentenceIndex: idx (local index)
+#
+# ✅ CORRECT: Indices increment globally across all bundles
+#   Code fix: sentenceIndex: (bundle.index * SENTENCES_PER_BUNDLE) + idx
+
+# 2. Verify no duplicate indices
+echo "📋 Checking for duplicate indices..."
+cat cache/{story-id}-{level}-bundles-metadata.json | \
+  grep -o '"sentenceIndex":[0-9]*' | \
+  sort | uniq -d
+
+# Expected: No output (no duplicates)
+# ❌ If duplicates found: Fix bundle generation script and regenerate
+
+# 3. Count total unique sentence indices
+echo "📋 Counting unique sentence indices..."
+UNIQUE_COUNT=$(cat cache/{story-id}-{level}-bundles-metadata.json | \
+  grep -o '"sentenceIndex":[0-9]*' | \
+  sort -u | wc -l)
+echo "Total unique sentence indices: $UNIQUE_COUNT"
+
+# Expected: Should match total sentence count in simplified text
+# Verify: wc -l cache/{story-id}-{level}-simplified.txt
+
+# ✅ ALL CHECKS PASSED? → Proceed to Phase 5 (Database Integration)
+# ❌ ANY CHECK FAILED? → Fix bundle generation and regenerate ALL bundles
+
+# 4. RECOMMENDED: Run automated validation script
+node scripts/validate-bundle-metadata.js cache/{story-id}-{level}-bundles-metadata.json
+
+# This script checks:
+# - Duplicate sentence indices
+# - Sequential numbering (0, 1, 2, ...)
+# - Header text in timing.text
+# - Required fields (text, startTime, endTime, duration, sentenceIndex)
+# - Timing values validity
+# - Logical consistency (endTime > startTime)
+
+# ✅ If validation passes: "VALIDATION PASSED - Metadata is valid"
+# ❌ If validation fails: Fix errors and regenerate bundles
 ```
 
 ### Phase 5: Database Integration
@@ -1080,6 +1176,300 @@ grep -A 5 "handleSelectBook" app/catalog/page.tsx
 
 # If URL is wrong: Using deprecated chunk architecture!
 ```
+
+---
+
+## ✅ STORY COMPLETION CHECKLIST (MANDATORY)
+
+**Before marking story as complete:**
+
+### Phase 1: Implementation Complete
+- [ ] All text files generated (original, simplified, preview, hook, background)
+- [ ] Preview combined audio generated (with sentence timings)
+- [ ] All bundles generated (pilot tested, then full generation)
+- [ ] Database integrated (BookContent + BookChunks created)
+- [ ] API endpoint created and tested
+- [ ] Frontend config updated (all 4 locations in lib/config/books.ts)
+- [ ] FeaturedBook seeded (Modern Voices collection)
+
+### Phase 2: Validation Checkpoints Passed
+- [ ] Validation Checkpoint #1: Bundle metadata check passed
+  - [ ] No duplicate sentence indices
+  - [ ] Indices are sequential (0, 1, 2, ...)
+  - [ ] No header text in timing.text
+- [ ] Validation Checkpoint #2: Preview audio files check passed
+  - [ ] Preview combined text exists
+  - [ ] Preview combined audio exists
+  - [ ] Header stripped before audio generation
+
+### Phase 3: User Testing Complete
+- [ ] User tested intro section
+  - [ ] Perfect sync confirmed (highlighting matches voice)
+  - [ ] All 3 sections display correctly (preview, hook, background)
+  - [ ] "Background Context" header visible
+  - [ ] No console errors
+- [ ] User tested main story
+  - [ ] No duplicate highlights (only ONE sentence at a time)
+  - [ ] Perfect sync confirmed (same quality as working stories)
+  - [ ] Auto-scroll works smoothly
+  - [ ] No console errors
+- [ ] User explicitly approved: "ready to commit"
+
+### Phase 4: Documentation Complete
+- [ ] Updated `story-completion-log.md` with:
+  - [ ] Story details (title, author, sources)
+  - [ ] Validation checkpoints passed
+  - [ ] Content details (sentences, bundles, duration)
+  - [ ] Key learnings (what went well, what was challenging)
+  - [ ] Files created (list all scripts and cache files)
+- [ ] Updated `story-subjects-tracker.json`:
+  - [ ] Incremented totalStories count
+  - [ ] Added to completedStories array
+  - [ ] Updated themeSaturation counts
+  - [ ] Added to specificConceptsCovered (if applicable)
+- [ ] Updated `character-names-tracker.json` (if applicable):
+  - [ ] Added character names to usedNames
+
+### Phase 5: Commit & Push
+- [ ] All 3 tests passed (console, intro, main story)
+- [ ] User approval received
+- [ ] Changes committed with detailed message
+- [ ] Changes pushed to GitHub
+- [ ] Verified deployment (story works on production)
+
+**⚠️ Only mark story as complete after ALL checkboxes are checked!**
+
+---
+
+## 🧪 PRE-COMMIT TESTING PROTOCOL (MANDATORY)
+
+**⚠️ CRITICAL: Run ALL tests and get user approval BEFORE committing to GitHub!**
+
+This protocol prevents the 6 common mistakes discovered during Medical Crisis #1 implementation.
+
+### Test 1: Console Error Check
+```bash
+# Purpose: Catch React "duplicate key" errors from wrong sentence indices
+
+# Steps:
+# 1. Start dev server: npm run dev
+# 2. Open http://localhost:3003/read/{story-id}
+# 3. Open browser DevTools → Console tab
+# 4. Click "Start Reading"
+# 5. Play first bundle
+
+# ❌ FAIL CONDITIONS:
+# - "Encountered two children with the same key" error
+# - Multiple warnings about duplicate keys
+# - Any React hydration errors
+
+# ✅ PASS CONDITIONS:
+# - No console errors
+# - No React warnings
+# - Clean console output
+
+# If test fails:
+# - Check bundle metadata: sentenceIndex should be global, not local
+# - Fix: sentenceIndex: (bundle.index * SENTENCES_PER_BUNDLE) + idx
+# - Regenerate all bundles
+# - Re-run this test
+```
+
+### Test 2: Intro Section Check
+```bash
+# Purpose: Verify intro displays correctly with perfect sync
+
+# Steps:
+# 1. Navigate to /read/{story-id}
+# 2. Verify intro section structure:
+#    [ ] "About This Story" header
+#    [ ] Preview paragraph (no header)
+#    [ ] Hook paragraph (no header)
+#    [ ] "BACKGROUND CONTEXT" header (uppercase, smaller font)
+#    [ ] Background paragraph (italic, lighter color)
+#
+# 3. Click play button on intro audio
+# 4. Watch sentence highlighting while audio plays
+# 5. Check sync accuracy (highlighting should match voice exactly)
+
+# ❌ FAIL CONDITIONS:
+# - Missing "Background Context" header
+# - Sections merged into one paragraph
+# - Highlighting lags/leads voice by >0.5 seconds
+# - Multiple sentences highlight simultaneously
+# - Background text not italic/lighter color
+
+# ✅ PASS CONDITIONS:
+# - All 3 sections visible with correct styling
+# - Background Context header present
+# - Highlighting syncs perfectly with audio (±0.2s tolerance)
+# - Only ONE sentence highlights at a time
+# - Smooth auto-scroll follows current sentence
+
+# If test fails:
+# Sync issues:
+#   - Verify "About This Story" header was stripped before audio generation
+#   - Check frontend uses timing.text from metadata (not re-splitting)
+#   - Verify duration calibration triggers useMemo re-calculation
+#
+# Layout issues:
+#   - Verify renderText() creates 3 separate sections
+#   - Check section boundaries are calculated from combinedText
+#   - Ensure sentences are rendered from metadata (not re-split)
+```
+
+### Test 3: Main Story Sync Check
+```bash
+# Purpose: Verify main story has perfect sync (like working stories)
+
+# Steps:
+# 1. Click "Start Reading" from intro
+# 2. Play first 3 bundles
+# 3. Watch sentence highlighting
+# 4. Compare sync quality to working story (e.g., community-builder-1)
+
+# ❌ FAIL CONDITIONS:
+# - 5+ sentences highlight simultaneously
+# - Highlighting doesn't move (stuck on first sentence)
+# - Audio plays but no highlighting
+# - Highlighting runs ahead/behind audio
+
+# ✅ PASS CONDITIONS:
+# - ONE sentence highlights at a time
+# - Highlighting matches audio perfectly
+# - Auto-scroll works smoothly
+# - Same quality as other working stories
+
+# If test fails:
+# - Check sentenceIndex is global (not local per bundle)
+# - Verify Enhanced Timing v3 is used
+# - Check audio metadata has correct startTime/endTime format
+# - Compare with working story's metadata structure
+```
+
+### User Approval Checklist
+```bash
+# After ALL 3 tests pass:
+
+[ ] User tested intro section - confirmed perfect sync
+[ ] User tested main story - confirmed no duplicate highlights
+[ ] User confirmed no console errors
+[ ] User confirmed all sections display correctly
+[ ] User explicitly approved: "ready to commit"
+
+# ⚠️ DO NOT commit until user gives explicit approval
+# ⚠️ DO NOT assume tests passed - verify each one with user
+# ⚠️ DO NOT skip any test - all 3 are mandatory
+
+# Only after user approval:
+git add -A
+git commit -m "Add {story-name} - Complete implementation
+
+Story: {Story Title}
+- Level: {CEFR Level}
+- Bundles: {count}
+- Duration: {duration}
+- Voice: {voice name}
+
+✅ All 3 tests passed
+✅ User approved for commit
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+
+git push origin main
+```
+
+---
+
+## 🎯 FRONTEND PATTERN: Intro Highlighting Component
+
+**Critical patterns learned from Medical Crisis #1 debugging:**
+
+### RULE #1: Always Use Metadata Sentence Texts
+```typescript
+// ❌ WRONG: Re-splitting text in frontend (causes sync mismatch)
+const sentences = combinedText.split(/([^.!?]+[.!?]+)/g);
+
+// ✅ CORRECT: Use timing.text from metadata
+const sentences = useMemo(() => {
+  if (providedTimings && providedTimings.length > 0) {
+    return providedTimings.map((timing, index) => ({
+      index,
+      text: timing.text.trim(),  // Use metadata text directly
+      wordCount: timing.text.trim().split(/\s+/).length
+    }));
+  }
+  // Fallback only if no metadata
+}, [providedTimings]);
+```
+
+**Why:** Frontend and audio script must use IDENTICAL sentence boundaries. Re-splitting risks:
+- Different regex patterns → different sentence counts
+- "Mr. Smith" → 1 sentence (audio) vs 2 sentences (frontend) = sync failure
+
+### RULE #2: Use useState for Dynamic Values (Not useRef)
+```typescript
+// ❌ WRONG: useRef doesn't trigger re-render
+const durationScaleRef = useRef(1.0);
+
+const sentenceTimings = useMemo(() => {
+  const scale = durationScaleRef.current;  // ❌ Ref value
+  return timings.map(t => ({ ...t, start: t.start * scale }));
+}, [timings]);  // ❌ Missing dependency on scale
+
+// When audio loads:
+durationScaleRef.current = 0.95;  // ❌ useMemo doesn't re-run!
+
+// ✅ CORRECT: useState triggers re-render and useMemo re-calculation
+const [durationScale, setDurationScale] = useState(1.0);
+
+const sentenceTimings = useMemo(() => {
+  const scale = durationScale;  // ✅ State value
+  return timings.map(t => ({ ...t, start: t.start * scale }));
+}, [timings, durationScale]);  // ✅ Include durationScale in deps
+
+// When audio loads:
+setDurationScale(0.95);  // ✅ Triggers re-render and recalculation!
+```
+
+**Why:** Duration calibration measures actual audio duration and scales timings. If scale update doesn't trigger recalculation, highlighting uses uncalibrated timings → sync drift.
+
+### RULE #3: Match Audio Generation Regex (Fallback Only)
+```typescript
+// Only use if providedTimings is null/empty (rare fallback case)
+
+// ❌ WRONG: Different regex than audio script
+const matches = text.match(/([^.!?]+[.!?]+)/g);
+
+// ✅ CORRECT: Same regex as audio generation script
+const matches = text.split(/(?<=[.!?])\s+/);
+```
+
+**Why:** Even with fallback, matching the audio script's regex minimizes risk. Consistency prevents edge case mismatches.
+
+### RULE #4: Render Sections Using Metadata Sentences
+```typescript
+// Calculate section boundaries from combinedText (structure info)
+const sections = combinedText.split(/\n\n+/);
+const previewSentenceCount = previewText.split(/(?<=[.!?])\s+/).length;
+const hookSentenceCount = hookText.split(/(?<=[.!?])\s+/).length;
+
+// But render using metadata sentences (content + timings)
+const previewSentences = sentences.slice(0, previewSentenceCount);
+const hookSentences = sentences.slice(previewSentenceCount, previewSentenceCount + hookSentenceCount);
+const backgroundSentences = sentences.slice(previewSentenceCount + hookSentenceCount);
+
+// Render each section
+{previewSentences.map((sentence, idx) => (
+  <span key={idx} data-sentence-index={idx}>
+    {sentence.text}  {/* ✅ From metadata, not re-split */}
+  </span>
+))}
+```
+
+**Why:** Section boundaries come from structure (double newlines), but sentence content comes from metadata (matches audio exactly).
 
 ---
 
