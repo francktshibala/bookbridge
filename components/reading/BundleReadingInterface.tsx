@@ -67,13 +67,13 @@ function IntroSectionWithHighlighting({
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(-1);
+  const [durationScale, setDurationScale] = useState(1.0); // Duration calibration scale (triggers re-render)
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const textContainerRef = useRef<HTMLDivElement | null>(null);
   const timeUpdateRef = useRef<number | undefined>(undefined);
   const lastKnownIndexRef = useRef<number>(0);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastScrolledIndexRef = useRef<number>(-1);
-  const durationScaleRef = useRef<number>(1.0); // Duration calibration scale (like BundleAudioManager)
   const highlightLeadSeconds = -0.5; // Hardware delay compensation (same as main story BundleAudioManager)
 
   // Split text into sentences
@@ -94,8 +94,8 @@ function IntroSectionWithHighlighting({
   // Use pre-calculated timings if available, otherwise calculate on the fly (fallback)
   // Apply duration scaling if actual audio duration differs from metadata
   const sentenceTimings = React.useMemo(() => {
-    const scale = durationScaleRef.current;
-    
+    const scale = durationScale; // Use state variable to trigger re-calculation
+
     // PREFERRED: Use pre-calculated Enhanced Timing v3 timings from audio generation
     if (providedTimings && providedTimings.length > 0) {
       return providedTimings.map((timing, index) => ({
@@ -141,7 +141,7 @@ function IntroSectionWithHighlighting({
       currentTime += sentenceDuration;
       return timing;
     });
-  }, [sentences, duration, providedTimings]);
+  }, [sentences, duration, providedTimings, durationScale]); // Include durationScale to re-calculate when calibration updates
 
   // Find current sentence based on audio time (with hardware delay compensation)
   const findCurrentSentence = useCallback((time: number) => {
@@ -285,20 +285,20 @@ function IntroSectionWithHighlighting({
     
     const handleLoadedData = () => {
       console.log('✅ Intro audio: Data loaded');
-      
+
       // Duration calibration (like BundleAudioManager) - measure actual audio duration
       const actualDuration = audio.duration || duration;
       const metadataDuration = duration;
-      
+
       if (metadataDuration > 0 && actualDuration > 0 && Number.isFinite(actualDuration)) {
         const rawScale = actualDuration / metadataDuration;
         // Clamp duration scale to prevent extreme timing distortions (same as BundleAudioManager)
         const clampedScale = Math.min(1.10, Math.max(0.85, rawScale));
-        durationScaleRef.current = clampedScale;
-        
+        setDurationScale(clampedScale); // Use setState to trigger re-render and useMemo re-calculation
+
         console.log(`📐 Intro audio duration calibration: metadata=${metadataDuration.toFixed(2)}s, actual=${actualDuration.toFixed(2)}s, scale=${rawScale.toFixed(3)} (clamped to ${clampedScale.toFixed(3)})`);
       } else {
-        durationScaleRef.current = 1.0;
+        setDurationScale(1.0);
         console.log('⚠️ Intro audio: Using default scale (1.0) - duration calibration skipped');
       }
     };
