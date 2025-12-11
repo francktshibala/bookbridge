@@ -103,46 +103,44 @@ async function seedMedicalCrisis1() {
   console.log(`✅ Created/Updated FeaturedBook: ${book.title} (id: ${book.id}, slug: ${book.slug})`);
 
   // Get or create Modern Voices collection
-  const modernVoicesCollection = await prisma.collection.upsert({
+  const modernVoicesCollection = await prisma.bookCollection.upsert({
     where: { slug: 'modern-voices' },
     create: {
       slug: 'modern-voices',
       name: 'Modern Voices',
       description: 'Powerful modern stories of resilience, courage, and transformation. Each story follows real people who overcame incredible challenges and found new ways forward.',
-      isActive: true,
+      type: 'theme',
       sortOrder: 0,
+      isPrimary: true,
     },
     update: {
       name: 'Modern Voices',
       description: 'Powerful modern stories of resilience, courage, and transformation. Each story follows real people who overcame incredible challenges and found new ways forward.',
-      isActive: true,
+      type: 'theme',
+      isPrimary: true,
     },
   });
 
   console.log(`✅ Created/Updated Collection: ${modernVoicesCollection.name} (id: ${modernVoicesCollection.id})`);
 
-  // Create membership (skip if error - likely already exists)
-  try {
-    const membership = await prisma.collectionMembership.upsert({
-      where: {
-        collectionId_featuredBookId: {
-          collectionId: modernVoicesCollection.id,
-          featuredBookId: book.id,
-        },
-      },
-      create: {
+  // Create membership
+  const membership = await prisma.bookCollectionMembership.upsert({
+    where: {
+      bookId_collectionId: {
+        bookId: book.id,
         collectionId: modernVoicesCollection.id,
-        featuredBookId: book.id,
-        sortOrder: 13, // 14th story in Modern Voices collection
       },
-      update: {
-        sortOrder: 13,
-      },
-    });
-    console.log(`✅ Added "${book.title}" to "${modernVoicesCollection.name}" collection`);
-  } catch (error) {
-    console.log(`ℹ️  Collection membership may already exist`);
-  }
+    },
+    create: {
+      bookId: book.id,
+      collectionId: modernVoicesCollection.id,
+      sortOrder: 13, // 14th story in Modern Voices collection
+    },
+    update: {
+      sortOrder: 13,
+    },
+  });
+  console.log(`✅ Added "${book.title}" to "${modernVoicesCollection.name}" collection`);
   console.log(`\n🎉 Seeding complete!\n`);
   console.log(`📊 Story Stats:`);
   console.log(`   - Sentences: ${sentences}`);

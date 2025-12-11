@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
   "lastUpdated": "2025-12-10",
-  "totalStories": 13,
+  "totalStories": 14,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -119,6 +119,15 @@
       "specificSubject": "Erik Weihenmayer's Everest climb",
       "status": "complete",
       "notes": "Inspired by Erik Weihenmayer, character name in story is Lucas"
+    },
+    {
+      "storyId": "medical-crisis-1",
+      "realPerson": null,
+      "storyConcept": "Stroke survivor loses speech, finds new identity with family support",
+      "themeCategory": "Medical Crisis - Stroke Recovery",
+      "specificSubject": "Stroke recovery, aphasia, identity rebuilding",
+      "status": "complete",
+      "notes": "Composite from 6 sources (Jill, Andy, Celeste, Anne, Richard, Janine), generic character Rachel"
     }
   ],
   "themeSaturation": {
@@ -129,7 +138,8 @@
     "languageBarriers": 1,
     "intergenerationalLearning": 1,
     "entrepreneurship": 1,
-    "secondChance": 1
+    "secondChance": 1,
+    "medicalCrisis": 1
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -149,7 +159,8 @@
     "Blind mountaineering (Everest)",
     "Career burnout to passion",
     "Career layoff to service profession",
-    "Addiction/prison redemption"
+    "Addiction/prison redemption",
+    "Stroke recovery and aphasia"
   ],
   "guidelines": {
     "beforeImplementing": [

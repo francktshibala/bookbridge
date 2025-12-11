@@ -23,6 +23,7 @@
 | `career-pivot-2` | Career Pivot: New Path Forward | BookBridge | Multiple sources (thematic extraction) | Career Pivot, Fired, Layoff, Immigrant Barrier, Therapeutic Breakthrough, Financial Crisis, Identity Crisis, Service-Oriented Career, Multiple Pivots, Persistence, Hope, Reinvention | ✅ Complete | ✅ | - | - | ~19 min | 48 | 2025-12-10 |
 | `community-builder-2` | Community Builder: From Wrong Turn to School Network | BookBridge | Multiple sources (thematic extraction) | Community Building, Belonging, Transformation, Empowerment, Educational Justice, Refugee Support, Mutual Healing, Soccer as Universal Language | ✅ Complete | ✅ | - | - | ~22 min | 52 | 2025-12-10 |
 | `disability-overcome-2` | Blind Mountaineer: Reaching the Top | BookBridge | Multiple sources (thematic extraction) | Overcoming Challenges, Blindness, Mountaineering, Determination, Courage, Adaptation, Achievement, No Barriers | ✅ Complete | ✅ | - | - | ~14 min | 40 | 2025-12-10 |
+| `medical-crisis-1` | Finding New Wings: A Medical Crisis Story | BookBridge | 6 sources (composite) | Hope, Resilience, Family Support, Identity Loss, Communication Barriers, Rebuilding, Medical Recovery, Finding New Purpose | ✅ Complete | ✅ | - | - | ~12 min | 46 | 2025-12-10 |
 
 **Legend**:
 - ✅ Complete
@@ -817,6 +818,152 @@
 - `scripts/integrate-disability-overcome-2-database.ts`
 - `scripts/seed-disability-overcome-2.ts`
 - `app/api/disability-overcome-2-a1/bundles/route.ts`
+
+---
+
+### 14. Finding New Wings: A Medical Crisis Story
+
+**Story ID**: `medical-crisis-1`
+**Title**: Finding New Wings: A Medical Crisis Story
+**Author**: BookBridge
+**Collection**: Modern Voices
+**Completion Date**: 2025-12-10
+
+#### Sources
+- **Source 1**: Jill Bolte Taylor - "Golden Retriever speech" moment (stroke survivor's communication breakthrough)
+- **Source 2**: Andy - Crawling upstairs perseverance (stroke recovery)
+- **Source 3**: Celeste Palmer - Identity rebuilding after medical crisis
+- **Source 4**: Anne - Pelican wings metaphor (finding new ways after disability)
+- **Source 5**: Richard McLean - "Pole pole" (slowly, slowly) wisdom (patience in recovery)
+- **Source 6**: Janine - "You have me" mother-son support moment
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - Story-driven (personal narratives, interviews, memoirs)
+  - Sufficient content for composite story approach
+  - 6 distinct sources for legal compliance (MANDATORY composite approach)
+
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Crisis → Loss → Support → Slow Progress → Finding New Ways → Transformation
+  - Multiple emotional moments identified
+  - ESL resonance multipliers: Overcoming "Not Good Enough", Communication Barriers, Building New Life, Persistence, Family Support, Identity Transformation
+
+#### Content Details
+- **Original Text**: AI-generated narrative based on extracted themes (1,945 words, A2 level)
+- **A1 Simplified**: 274 sentences, 1,674 words (~12 minutes)
+- **Bundles**: 46 (6 sentences per bundle)
+- **Voice**: Jane (RILOU7YmBhvwJGDGjNmP)
+- **Audio Speed**: 0.765× effective (0.90× ElevenLabs + 0.85× FFmpeg slowdown)
+
+#### Themes & Emotional Moments
+**Themes**:
+- Hope
+- Resilience
+- Family Support
+- Identity Loss
+- Communication Barriers
+- Rebuilding
+- Medical Recovery
+- Finding New Purpose
+
+**Key Emotional Moments**:
+1. Sudden stroke at work (high)
+2. Realization of inability to speak (high)
+3. Emma's "You have me" moment (high)
+4. Frustration with slow progress (medium)
+5. Doctor's "pole pole" (slowly, slowly) wisdom (medium)
+6. Golden Retriever moment - single word breakthrough (high)
+7. Pelican wings metaphor - finding new ways (high)
+8. Final transformation - not returning to old self but discovering new self (high)
+
+**ESL Resonance Multipliers**:
+- Communication & Language Barriers (literal)
+- Overcoming "Not Good Enough"
+- Persistence Despite Setbacks
+- Building New Life
+- Family & Belonging
+- Identity Transformation
+- Finding New Purpose
+
+#### Implementation Steps Completed
+- ✅ Step 0: Check story-subjects-tracker.json (medical crisis theme not covered)
+- ✅ Step 1: Theme extraction from 6 sources
+- ✅ Step 2: Background context written (47 words)
+- ✅ Step 3: Emotional hook written (99 words)
+- ✅ Step 4: Main story written (original narrative, 1,945 words A2)
+- ✅ Step 5: A1 simplification (274 sentences, 1,674 words)
+- ✅ Step 7: Combined preview text generated (289 words)
+- ✅ Step 8: Combined preview audio generated (Enhanced Timing v3)
+- ✅ Step 9: Bundle audio generation (46 bundles, Enhanced Timing v3)
+  - Pilot: 10 bundles generated first for testing
+  - Full: All 46 bundles generated successfully
+- ✅ Step 10: Database integration (46 BookChunk records, total duration: 735.14s)
+- ✅ Step 11: API endpoint created (`/api/medical-crisis-1-a1/bundles`)
+- ✅ Step 12: Frontend config updated (all 4 locations in lib/config/books.ts)
+- ✅ Step 13: FeaturedBook seeded (Modern Voices collection, position 18)
+
+#### Key Learnings
+1. **MANDATORY Composite Approach**: This story demonstrates the mandatory composite story approach implemented in AGENT_START_HERE.md. Combined best emotional moments from 6 sources into unified narrative with generic character (Rachel).
+
+2. **Character Names**: Used "Rachel" and "Emma" (mother/daughter) - tracked in character-names-tracker.json to prevent future repetition.
+
+3. **Six-Source Composite**: Successfully wove together:
+   - Jill's "Golden Retriever" communication breakthrough
+   - Andy's physical perseverance (crawling upstairs)
+   - Celeste's identity rebuilding journey
+   - Anne's pelican wings metaphor (finding new ways)
+   - Richard's "pole pole" wisdom (patience)
+   - Janine's family support moment
+
+4. **Legal Safety**: Generic character names + 6-source thematic extraction provides strong legal protection while creating emotionally powerful narrative.
+
+5. **Story Length**: 12 minutes (below typical 15-20 min target) but emotionally dense with high ESL resonance. Quality over quantity approach.
+
+6. **Jane Voice**: Used Jane voice for medical/family story, demonstrating appropriate voice selection for emotional, personal narratives.
+
+7. **Enhanced Timing v3**: Perfect sync achieved for all 46 bundles with character-count proportion + punctuation penalties.
+
+8. **Pilot-Then-Full Approach**: Generated 10 pilot bundles first for testing, then completed all 46 bundles. This validates workflow before full generation.
+
+#### Technical Notes
+- **Audio Generation**: All 46 bundles generated successfully with Jane voice
+  - ElevenLabs: 0.90× speed
+  - FFmpeg: 0.85× slowdown
+  - Effective: 0.765× speed (comfortable listening pace)
+- **Database**: 46 BookChunk records created with Enhanced Timing v3 metadata
+  - Total duration: 735.14 seconds (~12.25 minutes)
+  - Average bundle duration: 15.98 seconds
+- **API**: Endpoint returns `previewCombined` and `previewCombinedAudio` with sentence timings
+- **Frontend**: Added to Modern Voices collection (position 18, sortOrder: 13)
+
+#### Quality Metrics
+- **Emotional Engagement**: High (composite approach creates emotionally rich narrative)
+- **ESL Relevance**: High (7 resonance multipliers)
+- **Length**: ⚠️ Below target (12 minutes vs 15-20 min target) but HIGH QUALITY
+- **Audio Quality**: ✅ Perfect sync with Enhanced Timing v3
+- **Sentence Quality**: ✅ Average 6.1 words per sentence (A1 appropriate)
+- **Character Names**: ✅ Used "Rachel" and "Emma" - tracked for diversity
+- **Legal Compliance**: ✅ 6-source composite with generic characters
+
+#### Files Created
+- `cache/files/MEDICAL-CRISIS-1-COMPLETE.txt` (6-source research document)
+- `cache/medical-crisis-1-themes.json`
+- `cache/medical-crisis-1-background.txt`
+- `cache/medical-crisis-1-hook.txt`
+- `cache/medical-crisis-1-original.txt` (1,945 words A2)
+- `cache/medical-crisis-1-A1-simplified.txt` (1,674 words)
+- `cache/medical-crisis-1-A1-preview-combined.txt`
+- `cache/medical-crisis-1-A1-preview-combined-audio.json`
+- `cache/medical-crisis-1-A1-bundles-metadata.json` (46 bundles)
+- `scripts/extract-medical-crisis-1-themes.js`
+- `scripts/write-medical-crisis-1-story.js`
+- `scripts/generate-medical-crisis-1-preview-combined.js`
+- `scripts/generate-medical-crisis-1-preview-audio.js`
+- `scripts/generate-medical-crisis-1-bundles.js`
+- `scripts/integrate-medical-crisis-1-database.ts`
+- `scripts/seed-medical-crisis-1.ts`
+- `app/api/medical-crisis-1-a1/bundles/route.ts`
 
 ---
 

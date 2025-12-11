@@ -1,0 +1,2380 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-0.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "Rachel's world changed very fast.",
+        "startTime": 0,
+        "endTime": 2.51,
+        "duration": 2.51,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She was at her desk.",
+        "startTime": 2.51,
+        "endTime": 4.031,
+        "duration": 1.521,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She was answering emails.",
+        "startTime": 4.031,
+        "endTime": 5.932,
+        "duration": 1.901,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Then, something felt wrong.",
+        "startTime": 5.932,
+        "endTime": 8.135,
+        "duration": 2.203,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Very wrong.",
+        "startTime": 8.135,
+        "endTime": 8.972,
+        "duration": 0.837,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Her right hand stopped working.",
+        "startTime": 8.972,
+        "endTime": 11.329,
+        "duration": 2.357,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 11.32907,
+    "measuredDuration": 11.32907
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-1.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "The computer looked strange.",
+        "startTime": 0,
+        "endTime": 2.173,
+        "duration": 2.173,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "It looked like it was melting.",
+        "startTime": 2.173,
+        "endTime": 4.501,
+        "duration": 2.328,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She tried to speak, but it was hard.",
+        "startTime": 4.501,
+        "endTime": 7.445,
+        "duration": 2.944,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "The words came out wrong.",
+        "startTime": 7.445,
+        "endTime": 9.386,
+        "duration": 1.94,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Everything felt like a dream.",
+        "startTime": 9.386,
+        "endTime": 11.636,
+        "duration": 2.251,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "A friend at work shouted.",
+        "startTime": 11.636,
+        "endTime": 13.576,
+        "duration": 1.94,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 13.576417,
+    "measuredDuration": 13.576417
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-2.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "Rachel heard sirens.",
+        "startTime": 0,
+        "endTime": 1.672,
+        "duration": 1.672,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Then everything went dark.",
+        "startTime": 1.672,
+        "endTime": 3.847,
+        "duration": 2.174,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "When Rachel woke up, she was in a hospital.",
+        "startTime": 3.847,
+        "endTime": 7.592,
+        "duration": 3.746,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Nothing made sense.",
+        "startTime": 7.592,
+        "endTime": 9.181,
+        "duration": 1.589,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "The doctors talked to her.",
+        "startTime": 9.181,
+        "endTime": 11.355,
+        "duration": 2.174,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Their words sounded strange.",
+        "startTime": 11.355,
+        "endTime": 13.697,
+        "duration": 2.341,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 13.696689,
+    "measuredDuration": 13.696689
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-3.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "She knew they spoke English.",
+        "startTime": 0,
+        "endTime": 2.328,
+        "duration": 2.328,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She had spoken English her whole life.",
+        "startTime": 2.328,
+        "endTime": 5.488,
+        "duration": 3.16,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "But now, she could not understand.",
+        "startTime": 5.488,
+        "endTime": 8.465,
+        "duration": 2.977,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "It felt like a dog barking.",
+        "startTime": 8.465,
+        "endTime": 10.71,
+        "duration": 2.245,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She heard sounds, but they meant nothing.",
+        "startTime": 10.71,
+        "endTime": 14.269,
+        "duration": 3.559,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Rachel wanted to tell them, \"I don't understand.\" But when she opened her mouth, random words came out.",
+        "startTime": 14.269,
+        "endTime": 23.134,
+        "duration": 8.864,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 23.133741,
+    "measuredDuration": 23.133741
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-4.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "\"Book.",
+        "startTime": 0,
+        "endTime": 0.445,
+        "duration": 0.445,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Tree.",
+        "startTime": 0.445,
+        "endTime": 0.815,
+        "duration": 0.371,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Yesterday.\" The doctors looked worried.",
+        "startTime": 0.815,
+        "endTime": 3.707,
+        "duration": 2.891,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "One wrote something on a clipboard.",
+        "startTime": 3.707,
+        "endTime": 6.302,
+        "duration": 2.595,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Rachel felt scared.",
+        "startTime": 6.302,
+        "endTime": 7.71,
+        "duration": 1.409,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "What was happening to her?",
+        "startTime": 7.71,
+        "endTime": 9.638,
+        "duration": 1.928,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 9.637642,
+    "measuredDuration": 9.637642
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-5.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "The stroke had hurt the part of her brain for language.",
+        "startTime": 0,
+        "endTime": 4.728,
+        "duration": 4.728,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Rachel could think.",
+        "startTime": 4.728,
+        "endTime": 6.361,
+        "duration": 1.633,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She could feel.",
+        "startTime": 6.361,
+        "endTime": 7.65,
+        "duration": 1.289,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She could remember her life.",
+        "startTime": 7.65,
+        "endTime": 10.057,
+        "duration": 2.407,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "But she could not talk.",
+        "startTime": 10.057,
+        "endTime": 12.034,
+        "duration": 1.977,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She felt trapped in her mind.",
+        "startTime": 12.034,
+        "endTime": 14.527,
+        "duration": 2.493,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 14.527211,
+    "measuredDuration": 14.527211
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-6.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "She wanted to scream, but no one could hear her.",
+        "startTime": 0,
+        "endTime": 3.858,
+        "duration": 3.858,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "The worst moment was on the third day.",
+        "startTime": 3.858,
+        "endTime": 6.793,
+        "duration": 2.935,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Her daughter Emma visited her.",
+        "startTime": 6.793,
+        "endTime": 9.11,
+        "duration": 2.317,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Emma was nineteen years old.",
+        "startTime": 9.11,
+        "endTime": 11.273,
+        "duration": 2.163,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She came home from college.",
+        "startTime": 11.273,
+        "endTime": 13.359,
+        "duration": 2.086,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She walked into the room with red eyes.",
+        "startTime": 13.359,
+        "endTime": 16.371,
+        "duration": 3.012,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 16.371111,
+    "measuredDuration": 16.371111
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-7.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "Rachel's heart broke.",
+        "startTime": 0,
+        "endTime": 1.553,
+        "duration": 1.553,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She wanted to say, \"I'm okay.",
+        "startTime": 1.553,
+        "endTime": 3.848,
+        "duration": 2.295,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Don't cry.\" But when she tried to speak, nonsense came out.",
+        "startTime": 3.848,
+        "endTime": 8.362,
+        "duration": 4.514,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "\"Window.",
+        "startTime": 8.362,
+        "endTime": 8.954,
+        "duration": 0.592,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Happy.",
+        "startTime": 8.954,
+        "endTime": 9.398,
+        "duration": 0.444,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Shoe.\"\n\nEmma looked sad.",
+        "startTime": 9.398,
+        "endTime": 11.173,
+        "duration": 1.775,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 11.173243,
+    "measuredDuration": 11.173243
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-8.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "She sat down by the bed.",
+        "startTime": 0,
+        "endTime": 1.77,
+        "duration": 1.77,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She put her head in her hands.",
+        "startTime": 1.77,
+        "endTime": 3.983,
+        "duration": 2.213,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Rachel felt like she was disappearing.",
+        "startTime": 3.983,
+        "endTime": 6.786,
+        "duration": 2.803,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "If she could not speak, was she still herself?",
+        "startTime": 6.786,
+        "endTime": 10.329,
+        "duration": 3.543,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "If she could not say \"I love you,\" did it still exist?",
+        "startTime": 10.329,
+        "endTime": 14.462,
+        "duration": 4.133,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Then Emma looked up.",
+        "startTime": 14.462,
+        "endTime": 15.937,
+        "duration": 1.475,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 15.936939,
+    "measuredDuration": 15.936939
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-9.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "She wiped her eyes.",
+        "startTime": 0,
+        "endTime": 1.697,
+        "duration": 1.697,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She took Rachel's left hand.",
+        "startTime": 1.697,
+        "endTime": 4.198,
+        "duration": 2.501,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Rachel's right hand could not move, but her left hand was fine.",
+        "startTime": 4.198,
+        "endTime": 9.974,
+        "duration": 5.777,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Emma squeezed it tight.",
+        "startTime": 9.974,
+        "endTime": 12.029,
+        "duration": 2.054,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "\"You will be fine, Mom,\" Emma said softly.",
+        "startTime": 12.029,
+        "endTime": 16.08,
+        "duration": 4.051,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "\"Because you have me.\"\n\nThose words became Rachel's anchor.",
+        "startTime": 16.08,
+        "endTime": 21.349,
+        "duration": 5.269,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 21.349116,
+    "measuredDuration": 21.349116
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-10.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "In the weeks that followed, when everything felt hard, she remembered them.",
+        "startTime": 0,
+        "endTime": 6.229,
+        "duration": 6.229,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "\"You have me.\" She was not alone.",
+        "startTime": 6.229,
+        "endTime": 8.838,
+        "duration": 2.609,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "But recovery was harder than anything Rachel imagined.",
+        "startTime": 8.838,
+        "endTime": 13.106,
+        "duration": 4.269,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "The helper gave her simple exercises.",
+        "startTime": 13.106,
+        "endTime": 16.031,
+        "duration": 2.925,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "\"Point to the cup.\" \"Point to the door.\" Rachel felt like a child again.",
+        "startTime": 16.031,
+        "endTime": 21.723,
+        "duration": 5.692,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She had been a manager at work.",
+        "startTime": 21.723,
+        "endTime": 24.173,
+        "duration": 2.451,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 24.173424,
+    "measuredDuration": 24.173424
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-11.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "She had given talks to many people.",
+        "startTime": 0,
+        "endTime": 2.565,
+        "duration": 2.565,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Now she struggled to point at things and say their names.",
+        "startTime": 2.565,
+        "endTime": 6.741,
+        "duration": 4.177,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "One day, the speech helper showed her a picture of a dog.",
+        "startTime": 6.741,
+        "endTime": 11.068,
+        "duration": 4.327,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Rachel knew what it was.",
+        "startTime": 11.068,
+        "endTime": 12.827,
+        "duration": 1.759,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She could see it in her mind.",
+        "startTime": 12.827,
+        "endTime": 14.952,
+        "duration": 2.125,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "A dog.",
+        "startTime": 14.952,
+        "endTime": 15.391,
+        "duration": 0.44,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 15.391156,
+    "measuredDuration": 15.391156
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-12.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "A furry animal that barks and wags its tail.",
+        "startTime": 0,
+        "endTime": 3.088,
+        "duration": 3.088,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She remembered her childhood dog named Max.",
+        "startTime": 3.088,
+        "endTime": 6.105,
+        "duration": 3.017,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She could remember everything about Max.",
+        "startTime": 6.105,
+        "endTime": 8.912,
+        "duration": 2.807,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "But when she tried to say \"dog,\" her mouth would not work.",
+        "startTime": 8.912,
+        "endTime": 13.132,
+        "duration": 4.22,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "\"Gah,\" she said.",
+        "startTime": 13.132,
+        "endTime": 14.405,
+        "duration": 1.273,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "\"Gah...",
+        "startTime": 14.405,
+        "endTime": 15.016,
+        "duration": 0.611,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 15.016122,
+    "measuredDuration": 15.016122
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-13.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "gah...\"\n\nThe helper waited.",
+        "startTime": 0,
+        "endTime": 2.326,
+        "duration": 2.326,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Rachel tried again.",
+        "startTime": 2.326,
+        "endTime": 3.878,
+        "duration": 1.552,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She thought about Max.",
+        "startTime": 3.878,
+        "endTime": 5.675,
+        "duration": 1.797,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She thought about all the dogs she had known.",
+        "startTime": 5.675,
+        "endTime": 9.352,
+        "duration": 3.676,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She pushed the word from her brain to her mouth.",
+        "startTime": 9.352,
+        "endTime": 13.273,
+        "duration": 3.922,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "\"Duh...",
+        "startTime": 13.273,
+        "endTime": 13.965,
+        "duration": 0.692,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 13.965261,
+    "measuredDuration": 13.965261
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-14.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "duh...",
+        "startTime": 0,
+        "endTime": 0.61,
+        "duration": 0.61,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "dog!\" The word came out.",
+        "startTime": 0.61,
+        "endTime": 2.57,
+        "duration": 1.96,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Rachel started crying.",
+        "startTime": 2.57,
+        "endTime": 4.366,
+        "duration": 1.796,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "It was a small thing.",
+        "startTime": 4.366,
+        "endTime": 6.081,
+        "duration": 1.715,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "One word.",
+        "startTime": 6.081,
+        "endTime": 6.815,
+        "duration": 0.735,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Three letters.",
+        "startTime": 6.815,
+        "endTime": 7.959,
+        "duration": 1.143,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 7.958594,
+    "measuredDuration": 7.958594
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-15.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "But it felt like climbing a mountain.",
+        "startTime": 0,
+        "endTime": 3.107,
+        "duration": 3.107,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "The helper smiled and wrote something down.",
+        "startTime": 3.107,
+        "endTime": 6.718,
+        "duration": 3.611,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Emma rushed over and hugged her.",
+        "startTime": 6.718,
+        "endTime": 9.405,
+        "duration": 2.687,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "\"You did it, Mom!",
+        "startTime": 9.405,
+        "endTime": 10.982,
+        "duration": 1.578,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "You said 'dog!'\"\n\nThat night, Rachel lay in her hospital bed.",
+        "startTime": 10.982,
+        "endTime": 16.255,
+        "duration": 5.272,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She thought about the word \"dog.\" One word.",
+        "startTime": 16.255,
+        "endTime": 19.865,
+        "duration": 3.611,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 19.865488,
+    "measuredDuration": 19.865488
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-16.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "If she could say one word today, maybe she could say two words tomorrow.",
+        "startTime": 0,
+        "endTime": 5.891,
+        "duration": 5.891,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Maybe, step by step, she could find her way back.",
+        "startTime": 5.891,
+        "endTime": 10.097,
+        "duration": 4.207,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "But some days, Rachel did not want to try.",
+        "startTime": 10.097,
+        "endTime": 13.596,
+        "duration": 3.499,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Her right arm hung limp.",
+        "startTime": 13.596,
+        "endTime": 15.51,
+        "duration": 1.914,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Her words came out wrong.",
+        "startTime": 15.51,
+        "endTime": 17.503,
+        "duration": 1.993,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "When she looked in the mirror, she did not know herself.",
+        "startTime": 17.503,
+        "endTime": 22.118,
+        "duration": 4.615,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 22.117732,
+    "measuredDuration": 22.117732
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-17.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "The old Rachel was strong and confident.",
+        "startTime": 0,
+        "endTime": 3.217,
+        "duration": 3.217,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "This new Rachel needed help.",
+        "startTime": 3.217,
+        "endTime": 5.468,
+        "duration": 2.252,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "This new Rachel cried when she dropped a spoon.",
+        "startTime": 5.468,
+        "endTime": 9.248,
+        "duration": 3.78,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "The physical helper taught her to walk again.",
+        "startTime": 9.248,
+        "endTime": 12.867,
+        "duration": 3.619,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Rachel's right leg dragged behind her.",
+        "startTime": 12.867,
+        "endTime": 15.923,
+        "duration": 3.056,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She held onto the bars and took tiny steps.",
+        "startTime": 15.923,
+        "endTime": 19.381,
+        "duration": 3.458,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 19.38068,
+    "measuredDuration": 19.38068
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-18.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "It hurt.",
+        "startTime": 0,
+        "endTime": 0.616,
+        "duration": 0.616,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Everything hurt.",
+        "startTime": 0.616,
+        "endTime": 1.847,
+        "duration": 1.231,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Her muscles screamed.",
+        "startTime": 1.847,
+        "endTime": 3.463,
+        "duration": 1.616,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Sweat dripped down her face.",
+        "startTime": 3.463,
+        "endTime": 5.618,
+        "duration": 2.155,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "\"Pole pole,\" the helper said.",
+        "startTime": 5.618,
+        "endTime": 7.999,
+        "duration": 2.382,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "\"That means 'slowly, slowly' in Swahili.",
+        "startTime": 7.999,
+        "endTime": 11.227,
+        "duration": 3.228,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 11.22737,
+    "measuredDuration": 11.22737
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-19.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "You don't have to run.",
+        "startTime": 0,
+        "endTime": 1.849,
+        "duration": 1.849,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Just take one small step.\"\n\nPole pole.",
+        "startTime": 1.849,
+        "endTime": 5.044,
+        "duration": 3.194,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Rachel repeated it in her mind.",
+        "startTime": 5.044,
+        "endTime": 7.65,
+        "duration": 2.606,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Slowly, slowly.",
+        "startTime": 7.65,
+        "endTime": 9.061,
+        "duration": 1.411,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "One step.",
+        "startTime": 9.061,
+        "endTime": 9.817,
+        "duration": 0.757,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Then another step.",
+        "startTime": 9.817,
+        "endTime": 11.33,
+        "duration": 1.513,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 11.330454,
+    "measuredDuration": 11.330454
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-20.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "Then rest.",
+        "startTime": 0,
+        "endTime": 0.794,
+        "duration": 0.794,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Then one more step.",
+        "startTime": 0.794,
+        "endTime": 2.303,
+        "duration": 1.509,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She did not have to be the old Rachel today.",
+        "startTime": 2.303,
+        "endTime": 5.797,
+        "duration": 3.494,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She just had to take one small step forward.",
+        "startTime": 5.797,
+        "endTime": 9.292,
+        "duration": 3.494,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Three months after the stroke, Rachel went home.",
+        "startTime": 9.292,
+        "endTime": 13.254,
+        "duration": 3.962,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Emma took time off from college to help.",
+        "startTime": 13.254,
+        "endTime": 16.43,
+        "duration": 3.177,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 16.430272,
+    "measuredDuration": 16.430272
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-21.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "They made a routine.",
+        "startTime": 0,
+        "endTime": 1.589,
+        "duration": 1.589,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Every morning, Rachel did her exercises.",
+        "startTime": 1.589,
+        "endTime": 4.918,
+        "duration": 3.329,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "\"Point to the cup.",
+        "startTime": 4.918,
+        "endTime": 6.348,
+        "duration": 1.43,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Say 'cup.' Pick up the cup.",
+        "startTime": 6.348,
+        "endTime": 8.494,
+        "duration": 2.146,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Drink from the cup.\" \"Point to the door.",
+        "startTime": 8.494,
+        "endTime": 11.673,
+        "duration": 3.179,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Say 'door.' Open the door.\"\n\nSome days were better.",
+        "startTime": 11.673,
+        "endTime": 15.726,
+        "duration": 4.053,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 15.725714,
+    "measuredDuration": 15.725714
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-22.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "On good days, Rachel made simple sentences.",
+        "startTime": 0,
+        "endTime": 3.431,
+        "duration": 3.431,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "\"I want coffee.\" \"Thank you.\" \"I love you.\" On bad days, the words disappeared again.",
+        "startTime": 3.431,
+        "endTime": 10.068,
+        "duration": 6.636,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She felt like she was drowning in silence.",
+        "startTime": 10.068,
+        "endTime": 13.273,
+        "duration": 3.205,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "One afternoon, Emma found Rachel in the backyard.",
+        "startTime": 13.273,
+        "endTime": 17.162,
+        "duration": 3.889,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Rachel was staring at nothing.",
+        "startTime": 17.162,
+        "endTime": 19.452,
+        "duration": 2.289,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She had stopped doing her exercises.",
+        "startTime": 19.452,
+        "endTime": 22.199,
+        "duration": 2.747,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 22.198821,
+    "measuredDuration": 22.198821
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-23.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "She had stopped trying.",
+        "startTime": 0,
+        "endTime": 2.021,
+        "duration": 2.021,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "What was the point?",
+        "startTime": 2.021,
+        "endTime": 3.691,
+        "duration": 1.67,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She would never be herself again.",
+        "startTime": 3.691,
+        "endTime": 6.591,
+        "duration": 2.9,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She was broken.",
+        "startTime": 6.591,
+        "endTime": 7.909,
+        "duration": 1.318,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Emma sat down next to her.",
+        "startTime": 7.909,
+        "endTime": 10.193,
+        "duration": 2.285,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "They sat in silence for a long time.",
+        "startTime": 10.193,
+        "endTime": 13.357,
+        "duration": 3.163,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 13.356803,
+    "measuredDuration": 13.356803
+  },
+  {
+    "bundleId": "b24",
+    "bundleIndex": 24,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-24.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-24.mp3",
+    "sentences": [
+      {
+        "text": "Then Emma showed Rachel a photo on her phone.",
+        "startTime": 0,
+        "endTime": 3.272,
+        "duration": 3.272,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "It was from a nature show.",
+        "startTime": 3.272,
+        "endTime": 5.162,
+        "duration": 1.89,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "A pelican with a broken wing.",
+        "startTime": 5.162,
+        "endTime": 7.27,
+        "duration": 2.108,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "The pelican could not fly anymore.",
+        "startTime": 7.27,
+        "endTime": 9.742,
+        "duration": 2.472,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "But it learned to swim differently.",
+        "startTime": 9.742,
+        "endTime": 12.286,
+        "duration": 2.545,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "It found a new way to live.",
+        "startTime": 12.286,
+        "endTime": 14.249,
+        "duration": 1.963,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 14.249342,
+    "measuredDuration": 14.249342
+  },
+  {
+    "bundleId": "b25",
+    "bundleIndex": 25,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-25.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-25.mp3",
+    "sentences": [
+      {
+        "text": "\"Look, Mom,\" Emma said.",
+        "startTime": 0,
+        "endTime": 2.107,
+        "duration": 2.107,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "\"This bird can't fly.",
+        "startTime": 2.107,
+        "endTime": 3.757,
+        "duration": 1.65,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "But it's still alive.",
+        "startTime": 3.757,
+        "endTime": 5.407,
+        "duration": 1.65,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "It's still beautiful.",
+        "startTime": 5.407,
+        "endTime": 7.057,
+        "duration": 1.65,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "It found a new way.\"\n\nRachel looked at the pelican.",
+        "startTime": 7.057,
+        "endTime": 11.065,
+        "duration": 4.007,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Its wing hung funny, just like her arm.",
+        "startTime": 11.065,
+        "endTime": 14.279,
+        "duration": 3.214,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 14.278934,
+    "measuredDuration": 14.278934
+  },
+  {
+    "bundleId": "b26",
+    "bundleIndex": 26,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-26.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-26.mp3",
+    "sentences": [
+      {
+        "text": "But in the photo, the pelican glided through water.",
+        "startTime": 0,
+        "endTime": 4.113,
+        "duration": 4.113,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "It was graceful and strong.",
+        "startTime": 4.113,
+        "endTime": 6.212,
+        "duration": 2.098,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Different, but still beautiful.",
+        "startTime": 6.212,
+        "endTime": 8.771,
+        "duration": 2.559,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "That image stayed with Rachel.",
+        "startTime": 8.771,
+        "endTime": 11.102,
+        "duration": 2.331,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She thought about it during her therapy.",
+        "startTime": 11.102,
+        "endTime": 14.211,
+        "duration": 3.109,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She thought about it when she felt frustrated.",
+        "startTime": 14.211,
+        "endTime": 17.785,
+        "duration": 3.575,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 17.785329,
+    "measuredDuration": 17.785329
+  },
+  {
+    "bundleId": "b27",
+    "bundleIndex": 27,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-27.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-27.mp3",
+    "sentences": [
+      {
+        "text": "The pelican could not fly.",
+        "startTime": 0,
+        "endTime": 2.15,
+        "duration": 2.15,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Rachel could not speak like before.",
+        "startTime": 2.15,
+        "endTime": 5.043,
+        "duration": 2.894,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "But maybe that was okay.",
+        "startTime": 5.043,
+        "endTime": 7.028,
+        "duration": 1.984,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Maybe there was a new way to be herself.",
+        "startTime": 7.028,
+        "endTime": 10.335,
+        "duration": 3.307,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Slowly, Rachel started to get better.",
+        "startTime": 10.335,
+        "endTime": 13.544,
+        "duration": 3.209,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She practiced speaking for hours each day.",
+        "startTime": 13.544,
+        "endTime": 17.016,
+        "duration": 3.472,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 17.016145,
+    "measuredDuration": 17.016145
+  },
+  {
+    "bundleId": "b28",
+    "bundleIndex": 28,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-28.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-28.mp3",
+    "sentences": [
+      {
+        "text": "She learned to accept help without feeling bad.",
+        "startTime": 0,
+        "endTime": 4.272,
+        "duration": 4.272,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She learned that \"slowly, slowly\" was not giving up.",
+        "startTime": 4.272,
+        "endTime": 9.148,
+        "duration": 4.876,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "It was wisdom.",
+        "startTime": 9.148,
+        "endTime": 10.421,
+        "duration": 1.272,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "One day, six months after the stroke, Rachel tried to climb the stairs in her house.",
+        "startTime": 10.421,
+        "endTime": 18.355,
+        "duration": 7.935,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She had been sleeping downstairs.",
+        "startTime": 18.355,
+        "endTime": 21.355,
+        "duration": 2.999,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "The stairs were too hard.",
+        "startTime": 21.355,
+        "endTime": 23.627,
+        "duration": 2.272,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 23.626916,
+    "measuredDuration": 23.626916
+  },
+  {
+    "bundleId": "b29",
+    "bundleIndex": 29,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-29.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-29.mp3",
+    "sentences": [
+      {
+        "text": "But she missed her bedroom.",
+        "startTime": 0,
+        "endTime": 1.747,
+        "duration": 1.747,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She missed the view from her window.",
+        "startTime": 1.747,
+        "endTime": 4.075,
+        "duration": 2.329,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Emma offered to help, but Rachel shook her head.",
+        "startTime": 4.075,
+        "endTime": 7.33,
+        "duration": 3.255,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She wanted to try.",
+        "startTime": 7.33,
+        "endTime": 8.494,
+        "duration": 1.164,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She gripped the railing with her left hand.",
+        "startTime": 8.494,
+        "endTime": 11.276,
+        "duration": 2.781,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She lifted her right leg onto the first step.",
+        "startTime": 11.276,
+        "endTime": 14.187,
+        "duration": 2.911,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 14.186848,
+    "measuredDuration": 14.186848
+  },
+  {
+    "bundleId": "b30",
+    "bundleIndex": 30,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-30.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-30.mp3",
+    "sentences": [
+      {
+        "text": "It barely moved.",
+        "startTime": 0,
+        "endTime": 1.156,
+        "duration": 1.156,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She pulled herself up using the railing.",
+        "startTime": 1.156,
+        "endTime": 4.045,
+        "duration": 2.889,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "One step.",
+        "startTime": 4.045,
+        "endTime": 4.695,
+        "duration": 0.65,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Then she rested.",
+        "startTime": 4.695,
+        "endTime": 5.85,
+        "duration": 1.156,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Then another step.",
+        "startTime": 5.85,
+        "endTime": 7.15,
+        "duration": 1.3,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "It took twenty minutes to climb twelve stairs.",
+        "startTime": 7.15,
+        "endTime": 10.473,
+        "duration": 3.322,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 10.472789,
+    "measuredDuration": 10.472789
+  },
+  {
+    "bundleId": "b31",
+    "bundleIndex": 31,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-31.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-31.mp3",
+    "sentences": [
+      {
+        "text": "When Rachel reached the top, she was crying and laughing.",
+        "startTime": 0,
+        "endTime": 4.699,
+        "duration": 4.699,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Emma ran up behind her.",
+        "startTime": 4.699,
+        "endTime": 6.535,
+        "duration": 1.836,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "\"You did it, Mom!\"\n\nRachel sat down on the top step, breathing hard.",
+        "startTime": 6.535,
+        "endTime": 12.262,
+        "duration": 5.727,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "\"Pole...",
+        "startTime": 12.262,
+        "endTime": 13.02,
+        "duration": 0.758,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "pole,\" she said, and Emma laughed.",
+        "startTime": 13.02,
+        "endTime": 16.034,
+        "duration": 3.013,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Something changed in Rachel that day.",
+        "startTime": 16.034,
+        "endTime": 18.987,
+        "duration": 2.953,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 18.986508,
+    "measuredDuration": 18.986508
+  },
+  {
+    "bundleId": "b32",
+    "bundleIndex": 32,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-32.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-32.mp3",
+    "sentences": [
+      {
+        "text": "She realized she was building a new version of herself.",
+        "startTime": 0,
+        "endTime": 4.139,
+        "duration": 4.139,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "The old Rachel had walked up stairs without thinking.",
+        "startTime": 4.139,
+        "endTime": 8.127,
+        "duration": 3.988,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "The new Rachel had to fight for every step.",
+        "startTime": 8.127,
+        "endTime": 11.363,
+        "duration": 3.236,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "The old Rachel spoke in long sentences.",
+        "startTime": 11.363,
+        "endTime": 14.298,
+        "duration": 2.935,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "The new Rachel struggled with simple words.",
+        "startTime": 14.298,
+        "endTime": 17.534,
+        "duration": 3.236,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "But the new Rachel learned things the old Rachel never knew.",
+        "startTime": 17.534,
+        "endTime": 22.049,
+        "duration": 4.515,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 22.048844,
+    "measuredDuration": 22.048844
+  },
+  {
+    "bundleId": "b33",
+    "bundleIndex": 33,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-33.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-33.mp3",
+    "sentences": [
+      {
+        "text": "She learned patience.",
+        "startTime": 0,
+        "endTime": 1.645,
+        "duration": 1.645,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She learned courage.",
+        "startTime": 1.645,
+        "endTime": 3.211,
+        "duration": 1.566,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She learned that love does not need perfect words.",
+        "startTime": 3.211,
+        "endTime": 7.127,
+        "duration": 3.916,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Eight months after the stroke, Rachel started helping at the hospital.",
+        "startTime": 7.127,
+        "endTime": 12.76,
+        "duration": 5.633,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She visited other stroke patients.",
+        "startTime": 12.76,
+        "endTime": 15.423,
+        "duration": 2.663,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She could not give them long talks or advice.",
+        "startTime": 15.423,
+        "endTime": 18.948,
+        "duration": 3.525,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 18.947732,
+    "measuredDuration": 18.947732
+  },
+  {
+    "bundleId": "b34",
+    "bundleIndex": 34,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-34.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-34.mp3",
+    "sentences": [
+      {
+        "text": "But she could sit with them.",
+        "startTime": 0,
+        "endTime": 1.889,
+        "duration": 1.889,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She could hold their hands.",
+        "startTime": 1.889,
+        "endTime": 3.711,
+        "duration": 1.822,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She could show them that survival was possible.",
+        "startTime": 3.711,
+        "endTime": 6.882,
+        "duration": 3.171,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "One patient, an older woman named Margaret, was having a hard time.",
+        "startTime": 6.882,
+        "endTime": 11.702,
+        "duration": 4.82,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She wanted to give up.",
+        "startTime": 11.702,
+        "endTime": 13.187,
+        "duration": 1.484,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Rachel understood.",
+        "startTime": 13.187,
+        "endTime": 14.401,
+        "duration": 1.214,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 14.400975,
+    "measuredDuration": 14.400975
+  },
+  {
+    "bundleId": "b35",
+    "bundleIndex": 35,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-35.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-35.mp3",
+    "sentences": [
+      {
+        "text": "She remembered that feeling.",
+        "startTime": 0,
+        "endTime": 2.319,
+        "duration": 2.319,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She remembered thinking she would never be whole again.",
+        "startTime": 2.319,
+        "endTime": 6.874,
+        "duration": 4.555,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Rachel sat next to Margaret's bed.",
+        "startTime": 6.874,
+        "endTime": 9.691,
+        "duration": 2.816,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She spoke slowly.",
+        "startTime": 9.691,
+        "endTime": 11.099,
+        "duration": 1.408,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "\"You...",
+        "startTime": 11.099,
+        "endTime": 11.798,
+        "duration": 0.7,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "will...",
+        "startTime": 11.798,
+        "endTime": 12.498,
+        "duration": 0.7,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 12.498118,
+    "measuredDuration": 12.498118
+  },
+  {
+    "bundleId": "b36",
+    "bundleIndex": 36,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-36.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-36.mp3",
+    "sentences": [
+      {
+        "text": "be...",
+        "startTime": 0,
+        "endTime": 0.447,
+        "duration": 0.447,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "okay.",
+        "startTime": 0.447,
+        "endTime": 0.774,
+        "duration": 0.327,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Because...",
+        "startTime": 0.774,
+        "endTime": 1.548,
+        "duration": 0.774,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "you...",
+        "startTime": 1.548,
+        "endTime": 2.06,
+        "duration": 0.512,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "have...",
+        "startTime": 2.06,
+        "endTime": 2.638,
+        "duration": 0.578,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "people.",
+        "startTime": 2.638,
+        "endTime": 3.095,
+        "duration": 0.458,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 3.095442,
+    "measuredDuration": 3.095442
+  },
+  {
+    "bundleId": "b37",
+    "bundleIndex": 37,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-37.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-37.mp3",
+    "sentences": [
+      {
+        "text": "You...",
+        "startTime": 0,
+        "endTime": 0.643,
+        "duration": 0.643,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "have...",
+        "startTime": 0.643,
+        "endTime": 1.372,
+        "duration": 0.73,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "me.\"\n\nMargaret started crying.",
+        "startTime": 1.372,
+        "endTime": 3.985,
+        "duration": 2.613,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Rachel held her hand, and they cried together.",
+        "startTime": 3.985,
+        "endTime": 8.141,
+        "duration": 4.156,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Two people who had lost their words, finding connection in silence.",
+        "startTime": 8.141,
+        "endTime": 14.126,
+        "duration": 5.985,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Rachel's daughter Emma went back to college, but they talked every day.",
+        "startTime": 14.126,
+        "endTime": 20.459,
+        "duration": 6.333,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 20.458798,
+    "measuredDuration": 20.458798
+  },
+  {
+    "bundleId": "b38",
+    "bundleIndex": 38,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-38.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-38.mp3",
+    "sentences": [
+      {
+        "text": "Sometimes Rachel still struggled to find the right words on the phone.",
+        "startTime": 0,
+        "endTime": 5.356,
+        "duration": 5.356,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Emma waited patiently until Rachel found them.",
+        "startTime": 5.356,
+        "endTime": 8.876,
+        "duration": 3.52,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "There was never any rush.",
+        "startTime": 8.876,
+        "endTime": 10.789,
+        "duration": 1.913,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Love could wait for the right words.",
+        "startTime": 10.789,
+        "endTime": 13.543,
+        "duration": 2.755,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "One year after the stroke, Rachel returned to her old workplace.",
+        "startTime": 13.543,
+        "endTime": 18.59,
+        "duration": 5.047,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Not to work, but to visit.",
+        "startTime": 18.59,
+        "endTime": 20.729,
+        "duration": 2.139,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 20.729342,
+    "measuredDuration": 20.729342
+  },
+  {
+    "bundleId": "b39",
+    "bundleIndex": 39,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-39.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-39.mp3",
+    "sentences": [
+      {
+        "text": "Her old friends hugged her and asked how she was.",
+        "startTime": 0,
+        "endTime": 4.417,
+        "duration": 4.417,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Rachel spoke slowly, but her words were clear.",
+        "startTime": 4.417,
+        "endTime": 8.713,
+        "duration": 4.296,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "\"I am different now.",
+        "startTime": 8.713,
+        "endTime": 10.515,
+        "duration": 1.803,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "But I am okay.",
+        "startTime": 10.515,
+        "endTime": 11.777,
+        "duration": 1.262,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "I found a new way.\"\n\nThey did not fully understand.",
+        "startTime": 11.777,
+        "endTime": 16.374,
+        "duration": 4.597,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "How could they?",
+        "startTime": 16.374,
+        "endTime": 17.726,
+        "duration": 1.352,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 17.726281,
+    "measuredDuration": 17.726281
+  },
+  {
+    "bundleId": "b40",
+    "bundleIndex": 40,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-40.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-40.mp3",
+    "sentences": [
+      {
+        "text": "They had not lived through the fear of losing themselves.",
+        "startTime": 0,
+        "endTime": 4.839,
+        "duration": 4.839,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "But Rachel did not need them to understand.",
+        "startTime": 4.839,
+        "endTime": 8.489,
+        "duration": 3.65,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She knew her own truth.",
+        "startTime": 8.489,
+        "endTime": 10.442,
+        "duration": 1.953,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "That night, Rachel sat in her backyard again.",
+        "startTime": 10.442,
+        "endTime": 14.412,
+        "duration": 3.97,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "The same spot where she wanted to give up.",
+        "startTime": 14.412,
+        "endTime": 17.978,
+        "duration": 3.566,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She thought about the pelican.",
+        "startTime": 17.978,
+        "endTime": 20.525,
+        "duration": 2.547,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 20.52458,
+    "measuredDuration": 20.52458
+  },
+  {
+    "bundleId": "b41",
+    "bundleIndex": 41,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-41.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-41.mp3",
+    "sentences": [
+      {
+        "text": "She thought about all the small victories.",
+        "startTime": 0,
+        "endTime": 3.236,
+        "duration": 3.236,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Saying \"dog.\" Climbing twelve stairs.",
+        "startTime": 3.236,
+        "endTime": 6.087,
+        "duration": 2.851,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Holding Margaret's hand.",
+        "startTime": 6.087,
+        "endTime": 7.936,
+        "duration": 1.849,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Each moment had felt impossible until it wasn't.",
+        "startTime": 7.936,
+        "endTime": 11.635,
+        "duration": 3.698,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Rachel's right arm would never work perfectly again.",
+        "startTime": 11.635,
+        "endTime": 15.641,
+        "duration": 4.007,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Her words would always come slower than before.",
+        "startTime": 15.641,
+        "endTime": 19.263,
+        "duration": 3.621,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 19.262562,
+    "measuredDuration": 19.262562
+  },
+  {
+    "bundleId": "b42",
+    "bundleIndex": 42,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-42.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-42.mp3",
+    "sentences": [
+      {
+        "text": "She would always walk with a slight drag in her right leg.",
+        "startTime": 0,
+        "endTime": 4.051,
+        "duration": 4.051,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "But she was here.",
+        "startTime": 4.051,
+        "endTime": 5.238,
+        "duration": 1.187,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She was alive.",
+        "startTime": 5.238,
+        "endTime": 6.216,
+        "duration": 0.978,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She was Rachel, just a different version.",
+        "startTime": 6.216,
+        "endTime": 9.229,
+        "duration": 3.013,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "The stroke had taken many things from her.",
+        "startTime": 9.229,
+        "endTime": 12.162,
+        "duration": 2.933,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "But it had also given her gifts.",
+        "startTime": 12.162,
+        "endTime": 14.397,
+        "duration": 2.235,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 14.397052,
+    "measuredDuration": 14.397052
+  },
+  {
+    "bundleId": "b43",
+    "bundleIndex": 43,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-43.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-43.mp3",
+    "sentences": [
+      {
+        "text": "Patience.",
+        "startTime": 0,
+        "endTime": 0.858,
+        "duration": 0.858,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "Courage.",
+        "startTime": 0.858,
+        "endTime": 1.621,
+        "duration": 0.763,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "Compassion.",
+        "startTime": 1.621,
+        "endTime": 2.67,
+        "duration": 1.049,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "The ability to find beauty in small victories.",
+        "startTime": 2.67,
+        "endTime": 7.056,
+        "duration": 4.386,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "The understanding that broken things can still be beautiful.",
+        "startTime": 7.056,
+        "endTime": 12.778,
+        "duration": 5.721,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "Rachel looked up at the sky.",
+        "startTime": 12.778,
+        "endTime": 15.448,
+        "duration": 2.67,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 15.447868,
+    "measuredDuration": 15.447868
+  },
+  {
+    "bundleId": "b44",
+    "bundleIndex": 44,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-44.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-44.mp3",
+    "sentences": [
+      {
+        "text": "The sun was setting.",
+        "startTime": 0,
+        "endTime": 1.595,
+        "duration": 1.595,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "It painted everything in gold and pink.",
+        "startTime": 1.595,
+        "endTime": 4.707,
+        "duration": 3.111,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She thought about saying \"beautiful,\" but she didn't need to.",
+        "startTime": 4.707,
+        "endTime": 9.723,
+        "duration": 5.016,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Some things are felt, not spoken.",
+        "startTime": 9.723,
+        "endTime": 12.505,
+        "duration": 2.783,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She smiled and whispered two words.",
+        "startTime": 12.505,
+        "endTime": 15.297,
+        "duration": 2.792,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "\"Pole pole.\" \n\nSlowly, slowly.",
+        "startTime": 15.297,
+        "endTime": 17.841,
+        "duration": 2.543,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 17.840544,
+    "measuredDuration": 17.840544
+  },
+  {
+    "bundleId": "b45",
+    "bundleIndex": 45,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-1/A1/bundle-45.mp3",
+    "audioPath": "medical-crisis-1/A1/bundle-45.mp3",
+    "sentences": [
+      {
+        "text": "One step at a time.",
+        "startTime": 0,
+        "endTime": 1.335,
+        "duration": 1.335,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "That's how you climb mountains.",
+        "startTime": 1.335,
+        "endTime": 3.513,
+        "duration": 2.178,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "That's how you rebuild a life.",
+        "startTime": 3.513,
+        "endTime": 5.621,
+        "duration": 2.108,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "That's how broken wings learn to swim.",
+        "startTime": 5.621,
+        "endTime": 8.291,
+        "duration": 2.67,
+        "sentenceIndex": 3
+      }
+    ],
+    "totalDuration": 8.291202,
+    "measuredDuration": 8.291202
+  }
+]
