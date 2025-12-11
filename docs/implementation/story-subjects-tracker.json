@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
   "lastUpdated": "2025-12-11",
-  "totalStories": 15,
+  "totalStories": 16,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -149,7 +149,8 @@
     "entrepreneurship": 1,
     "secondChance": 1,
     "medicalCrisis": 1,
-    "culturalBridge": 2
+    "culturalBridge": 2,
+    "romanticLove": 1
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -171,7 +172,8 @@
     "Career layoff to service profession",
     "Addiction/prison redemption",
     "Stroke recovery and aphasia",
-    "Career choice pressure from immigrant parents"
+    "Career choice pressure from immigrant parents",
+    "Cross-cultural/interfaith romantic relationships with family resistance"
   ],
   "guidelines": {
     "beforeImplementing": [

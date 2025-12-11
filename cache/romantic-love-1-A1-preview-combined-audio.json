@@ -1,0 +1,110 @@
+{
+  "storyId": "romantic-love-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/preview-combined.mp3",
+    "duration": 76.413107,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 4.022,
+        "duration": 4.022,
+        "text": "In this inspiring story, Maya falls in love with Alex."
+      },
+      {
+        "startTime": 4.022,
+        "endTime": 7.973,
+        "duration": 3.951,
+        "text": "Their cultures are different, and her family says no."
+      },
+      {
+        "startTime": 7.973,
+        "endTime": 10.554,
+        "duration": 2.581,
+        "text": "They hide their love for five years."
+      },
+      {
+        "startTime": 10.554,
+        "endTime": 13.351,
+        "duration": 2.797,
+        "text": "Maya chooses love over family approval."
+      },
+      {
+        "startTime": 13.351,
+        "endTime": 18.162,
+        "duration": 4.811,
+        "text": "Through this journey, she learns that love is worth fighting for."
+      },
+      {
+        "startTime": 18.162,
+        "endTime": 22.321,
+        "duration": 4.159,
+        "text": "This story shows the power of love and finding your voice."
+      },
+      {
+        "startTime": 22.321,
+        "endTime": 27.771,
+        "duration": 5.45,
+        "text": "Imagine falling in love with someone your family says you can never be with."
+      },
+      {
+        "startTime": 27.771,
+        "endTime": 33.227,
+        "duration": 5.456,
+        "text": "Imagine hiding that love for five years, lying to everyone you care about."
+      },
+      {
+        "startTime": 33.227,
+        "endTime": 35.88,
+        "duration": 2.653,
+        "text": "Maya was seventeen when she met Alex."
+      },
+      {
+        "startTime": 35.88,
+        "endTime": 41.315,
+        "duration": 5.435,
+        "text": "Her family had strict rules: never date someone from a different culture."
+      },
+      {
+        "startTime": 41.315,
+        "endTime": 45.767,
+        "duration": 4.452,
+        "text": "But Alex was different, and everything about him felt right."
+      },
+      {
+        "startTime": 45.767,
+        "endTime": 50.07,
+        "duration": 4.302,
+        "text": "This is the story of choosing love over family expectations."
+      },
+      {
+        "startTime": 50.07,
+        "endTime": 57.032,
+        "duration": 6.962,
+        "text": "In many cultures around the world, families have traditions about who their children can marry."
+      },
+      {
+        "startTime": 57.032,
+        "endTime": 64.36,
+        "duration": 7.327,
+        "text": "Some families want their children to marry someone from the same culture, religion, or background."
+      },
+      {
+        "startTime": 64.36,
+        "endTime": 72.899,
+        "duration": 8.54,
+        "text": "When young people fall in love with someone from a different culture, they often face resistance from their families."
+      },
+      {
+        "startTime": 72.899,
+        "endTime": 76.413,
+        "duration": 3.514,
+        "text": "This story is about choosing love over tradition."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-11T20:14:31.224Z",
+  "timingMethod": "enhanced-timing-v3"
+}

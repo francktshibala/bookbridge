@@ -1064,6 +1064,32 @@ NEVER USE (deprecated):
 
 ---
 
+### Mistake #7: Frontend Pagination Limit Too Low for Collections
+**What Happened:**
+- Frontend hardcoded `limit: 20` in `parseFiltersFromURL()`
+- Modern Voices collection has 21+ books
+- Book at position 21 ("Cross-Cultural Love Story") was cut off and didn't appear
+- Book appeared in search but not in collection view
+
+**Root Cause:**
+- Frontend limit (20) didn't match API limit (50) for collections
+- No validation to ensure collection size < frontend limit
+- Frontend and API limits were out of sync
+
+**Fix:**
+- Updated `lib/services/book-catalog.ts` to use `limit: 50` when collection is selected
+- Updated `app/api/featured-books/route.ts` to default to 50 for collections
+- Both frontend and API now use consistent limits
+
+**Prevention:**
+- ✅ Always check collection size before setting limits
+- ✅ Use higher default limit (50) for collections vs. general search (20)
+- ✅ Add validation: warn if collection has more books than limit
+- ✅ Document limit requirements in Phase 7 (Frontend Integration)
+- ✅ Test with collections that have 20+ books before deployment
+
+---
+
 ## 📝 UPDATED PHASE 7.5 SPECIFICATION
 
 **Based on Power of Vulnerability lessons, Phase 7.5 must include:**

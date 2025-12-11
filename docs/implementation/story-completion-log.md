@@ -26,6 +26,7 @@
 | `medical-crisis-1` | Finding New Wings: A Medical Crisis Story | BookBridge | 6 sources (composite) | Hope, Resilience, Family Support, Identity Loss, Communication Barriers, Rebuilding, Medical Recovery, Finding New Purpose | ✅ Complete | ✅ | - | - | ~12 min | 46 | 2025-12-10 |
 | `cultural-bridge-1` | Between Two Worlds: A Cultural Bridge Story | BookBridge | 5 sources (composite) | Bicultural Identity, Belonging, Shame to Pride, Immigration, Cultural Bridge, Self-Acceptance, Family, Finding Community | ✅ Complete | ✅ | - | - | ~15 min | 44 | 2025-12-11 |
 | `cultural-bridge-2` | Bridging Traditions and Modern Life | BookBridge | 3 sources (composite) | Career Choice, Generational Conflict, Immigrant Parents, Following Your Dreams, Honoring Sacrifices, Family Expectations, Personal Fulfillment, Tradition vs Modern Life | ✅ Complete | ✅ | - | - | ~19 min | 27 | 2025-12-11 |
+| `romantic-love-1` | Cross-Cultural Love Story | BookBridge | 4 sources (composite) | Cross-Cultural Love, Family Resistance, Choosing Love Over Expectations, Cultural Adaptation, Building Bicultural Family, Finding Voice, Persistence Despite Opposition | ✅ Complete | ✅ | - | - | ~17 min | 29 | 2025-12-11 |
 
 **Legend**:
 - ✅ Complete
@@ -1229,6 +1230,120 @@
 - `scripts/integrate-cultural-bridge-2-database.ts`
 - `scripts/seed-cultural-bridge-2.ts`
 - `app/api/cultural-bridge-2-a1/bundles/route.ts`
+
+---
+
+### 16. Cross-Cultural Love Story
+
+**Story ID**: `romantic-love-1`  
+**Title**: Cross-Cultural Love Story  
+**Author**: BookBridge  
+**Collection**: Modern Voices  
+**Completion Date**: 2025-12-11
+
+#### Sources
+- **Primary**: Love What Matters - Emily Burden (Lebanese/African American couple)
+- **Secondary**: Growing Up Gupta - Amreet and Luis (British Indian/Angolan Black couple)
+- **Secondary**: Al Jazeera - Multiple interfaith couples (Indian Hindu-Muslim)
+- **Secondary**: Sheryl Parbhoo - White Southern/Indian couple
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - Story-driven (personal essays, interviews)
+  - Sufficient content for 15-20 minute story
+  - 4 sources for legal compliance
+  
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Initial attraction → Family resistance → Hiding relationship → Crisis → Acceptance → Building bicultural family
+  - 9 emotional moments identified
+  - 6 ESL resonance multipliers: Belonging & Identity, Overcoming 'Not Good Enough', Persistence Despite Setbacks, Building New Life, Connection Across Differences, First-Time Courage
+
+#### Content Details
+- **Original Text**: 1,177 words (~B1/B2 level)
+- **A1 Simplified**: 171 sentences (~17 minutes)
+- **Bundles**: 29 (4-6 sentences per bundle)
+- **Voice**: Jane (RILOU7YmBhvwJGDGjNmP) - stability 0.5, style 0.05
+- **Audio Speed**: 0.85× (FFmpeg slowdown)
+
+#### Themes & Emotional Moments
+**Themes**:
+- Cross-cultural love
+- Family resistance
+- Choosing love over expectations
+- Cultural adaptation
+- Building bicultural family
+- Finding voice
+
+**Emotional Moments** (9):
+1. Family making racist remarks or forbidding relationship (very-high)
+2. Hiding relationship for years, constant lying (very-high)
+3. Friends abandoning the couple (high)
+4. Physical/mental health issues from stress (very-high)
+5. Initial rejection from parents when revealed (very-high)
+6. Partner asking profound questions (high)
+7. Gradual acceptance from family (very-high)
+8. Navigating cultural differences after marriage (medium)
+9. Building bicultural family, children as bridges (high)
+
+**ESL Resonance Multipliers**:
+- Belonging & Identity (caught between cultures, finding self-acceptance)
+- Overcoming 'Not Good Enough' (feeling devalued by family/society)
+- Persistence Despite Setbacks (fighting for love despite opposition)
+- Building New Life (creating a new family unit, new traditions)
+- Connection Across Differences (love as a bridge between cultures)
+- First-Time Courage (standing up to family, choosing own path)
+
+#### Implementation Steps Completed
+- ✅ Step 0.25: Source Material Check
+- ✅ Step 0.5: Emotional Impact Validation
+- ✅ Step 1: Extract Source Text (4 sources)
+- ✅ Step 2: Clean & Structure Text
+- ✅ Step 2.5: Extract Themes & Emotional Moments
+- ✅ Step 2.6: Write Main Story (COMPOSITE APPROACH - generic characters Maya & Alex)
+- ✅ Step 3: Create Background Context
+- ✅ Step 3.5: Create Emotional Hook
+- ✅ Step 4: Simplify to A1 Level (171 sentences)
+- ✅ Step 7: Generate Preview Combined
+- ✅ Step 8: Generate Preview Audio (Jane voice)
+- ✅ Step 9: Generate Bundle Audio (29 bundles, Jane voice)
+- ✅ Step 10.5: Integrate Database
+- ✅ Step 13: Create API Endpoint
+- ✅ Step 14: Update Frontend Config (4 locations)
+- ✅ Step 15: Seed Database (sortOrder 21)
+- ✅ Step 20: Log Completion
+
+#### Key Learnings
+1. **Four-source composite works excellently** - Rich emotional material from diverse cross-cultural perspectives
+2. **Jane voice perfect for romantic/personal stories** - Emotional warmth fits love story theme
+3. **Collection limit issue discovered** - Frontend limit (20) was too low for collections with 21+ books
+4. **Fix implemented** - Frontend and API now use limit 50 for collections, 20 for general search
+5. **Validation script created** - `scripts/validate-collection-limits.ts` prevents future pagination cutoff issues
+
+#### Issues Encountered
+- **Collection pagination cutoff**: Book at position 21 didn't appear due to frontend limit 20
+- **Root cause**: Frontend hardcoded limit 20, API used 50 for collections
+- **Resolution**: Updated `lib/services/book-catalog.ts` to use limit 50 for collections
+- **Prevention**: Added validation script and documented as Mistake #7 in MODERN_VOICES_IMPLEMENTATION_GUIDE.md
+
+#### Files Created
+- `cache/files/romantic-love-1-sources.txt` (4-source research document)
+- `cache/romantic-love-1-validation.md`
+- `cache/romantic-love-1-themes.json`
+- `cache/romantic-love-1-background.txt`
+- `cache/romantic-love-1-hook.txt`
+- `cache/romantic-love-1-original.txt` (1,177 words B1/B2)
+- `cache/romantic-love-1-A1-simplified.json` (171 sentences)
+- `cache/romantic-love-1-A1-preview-combined.txt`
+- `cache/romantic-love-1-A1-preview-combined-audio.json`
+- `scripts/simplify-romantic-love-1.js`
+- `scripts/generate-romantic-love-1-preview-combined.js`
+- `scripts/generate-romantic-love-1-preview-audio.js`
+- `scripts/generate-romantic-love-1-bundles.js`
+- `scripts/integrate-romantic-love-1-database.ts`
+- `scripts/seed-romantic-love-1.ts`
+- `scripts/validate-collection-limits.ts` (NEW - prevents pagination cutoff)
+- `app/api/romantic-love-1-a1/bundles/route.ts`
 
 ---
 

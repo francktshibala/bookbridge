@@ -794,13 +794,13 @@ Every story in Priority 1 and Priority 2 sources passes the "would someone text 
 
 ## 📋 **SEQUENTIAL STORY ROADMAP (Stories #15-#50)**
 
-**Current Progress:** 14/50 stories completed (28%) - **Phase 1 COMPLETE** ✅
+**Current Progress:** 16/50 stories completed (32%) - **Phase 1 COMPLETE** ✅
 
 ### **Phase 2 Stories (#15-#27) - PRIORITY: HIGH**
 
 **Cultural Bridge (2-3 stories needed)**
-- [ ] **#15**: Cultural Bridge #1 - VOA/Web Research - Finding identity between two cultures
-- [ ] **#16**: Cultural Bridge #2 - VOA/Web Research - Bridging traditions and modern life
+- [x] **#15**: Cultural Bridge #1 - ✅ Complete (Between Two Worlds)
+- [x] **#16**: Cultural Bridge #2 - ✅ Complete (Bridging Traditions and Modern Life)
 
 **Romantic Love Across Cultures (1-2 stories needed)**
 - [ ] **#17**: Romantic Love #1 - Web Research/The Moth - Cross-cultural love story

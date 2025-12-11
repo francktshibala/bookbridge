@@ -22,12 +22,17 @@ export const dynamic = 'force-dynamic'; // Always run fresh (can be 'auto' if ca
 export async function GET(request: NextRequest): Promise<NextResponse<CatalogResponse>> {
   const searchParams = request.nextUrl.searchParams;
 
+  // Filters (read first to determine default limit)
+  const collectionId = searchParams.get('collection');
+
   // Cursor-based pagination (GPT-5 recommendation)
   const cursor = searchParams.get('cursor'); // Base64 encoded cursor
-  const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 50); // Cap at 50
-
-  // Filters
-  const collectionId = searchParams.get('collection');
+  // CRITICAL: Increase default limit for collections to show all books
+  // Collections can have 20+ books (e.g., Modern Voices has 21+)
+  // Default: 50 for collections, 20 for general search
+  // See: docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md Mistake #7
+  const defaultLimit = collectionId ? 50 : 20;
+  const limit = Math.min(parseInt(searchParams.get('limit') || defaultLimit.toString()), 50); // Cap at 50
   const genres = searchParams.get('genres')?.split(',').filter(Boolean) || [];
   const themes = searchParams.get('themes')?.split(',').filter(Boolean) || [];
   const moods = searchParams.get('moods')?.split(',').filter(Boolean) || [];
@@ -102,31 +107,67 @@ export async function GET(request: NextRequest): Promise<NextResponse<CatalogRes
   }
 
   try {
-    // Execute query with cursor pagination
-    const [items, totalApprox] = await Promise.all([
-      prisma.featuredBook.findMany({
-        where: { ...where, ...cursorCondition },
-        take: limit + 1, // Fetch one extra to determine if there's a next page
-        orderBy: [
-          { [sortBy]: 'desc' },
-          { id: 'asc' } // Secondary sort for stable pagination
-        ],
-        include: {
-          collections: {
-            include: { collection: true }
+    let items: FeaturedBook[];
+    let totalApprox: number;
+    let hasNext: boolean;
+    let nextCursor: string | null = null;
+
+    // When filtering by collection, use BookCollectionMembership sortOrder
+    if (collectionId) {
+      const [memberships, total] = await Promise.all([
+        prisma.bookCollectionMembership.findMany({
+          where: { collectionId },
+          take: limit + 1, // Fetch one extra to determine if there's a next page
+          orderBy: { sortOrder: 'asc' },
+          include: {
+            featuredBook: {
+              include: {
+                collections: {
+                  include: { collection: true }
+                }
+              }
+            }
           }
-        }
-      }),
-      prisma.featuredBook.count({ where }) // Approximate count
-    ]);
+        }),
+        prisma.bookCollectionMembership.count({ where: { collectionId } })
+      ]);
 
-    // Determine next cursor
-    const hasNext = items.length > limit;
-    const books = hasNext ? items.slice(0, limit) : items;
+      // Extract FeaturedBooks from memberships
+      hasNext = memberships.length > limit;
+      const membershipsToReturn = hasNext ? memberships.slice(0, limit) : memberships;
+      items = membershipsToReturn.map(m => m.featuredBook);
+      totalApprox = total;
+      // No cursor pagination for collections (they use sortOrder which is stable)
+    } else {
+      // Default query for non-collection filtering
+      const [books, total] = await Promise.all([
+        prisma.featuredBook.findMany({
+          where: { ...where, ...cursorCondition },
+          take: limit + 1, // Fetch one extra to determine if there's a next page
+          orderBy: [
+            { [sortBy]: 'desc' },
+            { id: 'asc' } // Secondary sort for stable pagination
+          ],
+          include: {
+            collections: {
+              include: { collection: true }
+            }
+          }
+        }),
+        prisma.featuredBook.count({ where }) // Approximate count
+      ]);
 
-    const nextCursor = hasNext && books.length > 0
-      ? Buffer.from(`${books[books.length - 1][sortBy as keyof FeaturedBook]}:${books[books.length - 1].id}`).toString('base64')
-      : null;
+      hasNext = books.length > limit;
+      items = hasNext ? books.slice(0, limit) : books;
+      totalApprox = total;
+
+      // Determine next cursor for non-collection queries
+      if (hasNext && items.length > 0) {
+        nextCursor = Buffer.from(`${items[items.length - 1][sortBy as keyof FeaturedBook]}:${items[items.length - 1].id}`).toString('base64');
+      }
+    }
+
+    const books = items;
 
     // Compute facets for filters (GPT-5: only from visible result set)
     const facets = computeFacetsFromBooks(books);

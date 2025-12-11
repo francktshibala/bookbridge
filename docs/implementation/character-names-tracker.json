@@ -9,7 +9,9 @@
     "Rachel": ["medical-crisis-1"],
     "Emma": ["medical-crisis-1"],
     "Mei": ["cultural-bridge-1"],
-    "Jin": ["cultural-bridge-2"]
+    "Jin": ["cultural-bridge-2"],
+    "Maya": ["romantic-love-1"],
+    "Alex": ["romantic-love-1"]
   },
   "guidelines": {
     "avoidRepeating": true,

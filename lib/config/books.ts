@@ -331,6 +331,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'CB2'
   },
   {
+    id: 'romantic-love-1',
+    title: 'Cross-Cultural Love Story',
+    author: 'BookBridge',
+    description: 'An inspiring composite story about Maya, who falls in love with Alex from a different culture. Her family says no, forcing her to hide their relationship for five years. Through fear, stress, and choosing love over family approval, Maya learns that love is worth fighting for and that she can have both family and love. A powerful tale about choosing love over tradition, building bridges between cultures, and finding your voice when the world says no. A1 level with Jane voice.',
+    sentences: 171,
+    bundles: 29,
+    gradient: 'from-pink-500 to-rose-600',
+    abbreviation: 'RL1'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -470,6 +480,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'cultural-bridge-2': {
     'A1': '/api/cultural-bridge-2-a1/bundles'
   },
+  'romantic-love-1': {
+    'A1': '/api/romantic-love-1-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -514,6 +527,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'medical-crisis-1': 'A1',  // Default to A1 for Finding New Wings: A Medical Crisis Story (Modern Story)
   'cultural-bridge-1': 'A1',  // Default to A1 for Between Two Worlds: A Cultural Bridge Story (Modern Story)
   'cultural-bridge-2': 'A1',  // Default to A1 for Bridging Traditions and Modern Life (Modern Story)
+  'romantic-love-1': 'A1',  // Default to A1 for Cross-Cultural Love Story (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -592,6 +606,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'medical-crisis-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'cultural-bridge-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'cultural-bridge-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'romantic-love-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

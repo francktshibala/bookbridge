@@ -1,0 +1,136 @@
+{
+  "storyId": "romantic-love-1",
+  "theme": "Romantic Love Across Cultures - Choosing Love Over Family Expectations",
+  "sources": [
+    "Love What Matters - Emily Burden (Lebanese/African American, 9/10)",
+    "Growing Up Gupta - Amreet and Luis (British Indian/Angolan, 9.5/10)",
+    "Al Jazeera - Multiple interfaith couples (Indian Hindu-Muslim, 8.5/10)",
+    "Sheryl Parbhoo - White Southern/Indian (9/10)"
+  ],
+  "emotionalArc": {
+    "struggle": "Couple from different cultures falls in love, faces immediate family resistance and cultural barriers. Forced to hide relationship for years, losing friends and support.",
+    "crisis": "Family discovers relationship, threatens to cut ties. Couple must choose between love and family approval. Physical/emotional toll of secrecy (illness, isolation, fear).",
+    "perseverance": "Choosing love despite opposition, hiding relationship for years, building life together in secret, facing community disapproval, cultural adaptation struggles after marriage.",
+    "breakthrough": "Family gradually accepts after seeing couple's commitment and love. Building bicultural family, finding common ground, cultural differences become richness not division."
+  },
+  "keyEmotionalMoments": [
+    {
+      "moment": "Family members said 'They should still be slaves' - racist comments from grandparents",
+      "emotionalWeight": "very-high",
+      "source": "Love What Matters",
+      "eslResonance": "Racism, family rejection, cultural prejudice"
+    },
+    {
+      "moment": "'I was not allowed to tell my grandparents' - forced secrecy from day one",
+      "emotionalWeight": "very-high",
+      "source": "Love What Matters",
+      "eslResonance": "Hiding true self, fear of family disapproval, living double life"
+    },
+    {
+      "moment": "'We quickly found ourselves without friends' - social isolation",
+      "emotionalWeight": "high",
+      "source": "Love What Matters",
+      "eslResonance": "Loneliness, standing alone, choosing love over acceptance"
+    },
+    {
+      "moment": "Romantic moment on ice: 'Never forget this moment' - love persisting despite everything",
+      "emotionalWeight": "very-high",
+      "source": "Love What Matters",
+      "eslResonance": "Finding joy in struggle, love as anchor, beautiful moments in hardship"
+    },
+    {
+      "moment": "Grandfather apologized for family's intolerance after meeting partner - breakthrough",
+      "emotionalWeight": "very-high",
+      "source": "Love What Matters",
+      "eslResonance": "Family acceptance, transformation, hope"
+    },
+    {
+      "moment": "'Do not bring a Black or Muslim person into the family' - explicit family rule",
+      "emotionalWeight": "very-high",
+      "source": "Growing Up Gupta",
+      "eslResonance": "Racism, cultural barriers, impossible expectations"
+    },
+    {
+      "moment": "Hid relationship for 5 years with 'constant lying and sneaking around'",
+      "emotionalWeight": "very-high",
+      "source": "Growing Up Gupta",
+      "eslResonance": "Living in fear, exhaustion of secrecy, mental burden"
+    },
+    {
+      "moment": "Diagnosed with Ulcerative Colitis from stress - physical toll of hiding",
+      "emotionalWeight": "very-high",
+      "source": "Growing Up Gupta",
+      "eslResonance": "Physical consequences of emotional stress, breaking point"
+    },
+    {
+      "moment": "Dad's initial response: 'You've made your decision; what's the point in meeting him now?'",
+      "emotionalWeight": "very-high",
+      "source": "Growing Up Gupta",
+      "eslResonance": "Rejection, feeling dismissed, hopelessness"
+    },
+    {
+      "moment": "Luis's three questions: 'What do you want? What does your heart say? What does your intuition tell you?'",
+      "emotionalWeight": "very-high",
+      "source": "Growing Up Gupta",
+      "eslResonance": "Self-discovery, choosing own path, finding voice"
+    },
+    {
+      "moment": "'We have had to leave our families, our homes, our friends – just everything behind'",
+      "emotionalWeight": "very-high",
+      "source": "Al Jazeera",
+      "eslResonance": "Ultimate sacrifice, choosing love over everything, starting over"
+    },
+    {
+      "moment": "'Her brothers had locked her up' - physical imprisonment",
+      "emotionalWeight": "very-high",
+      "source": "Al Jazeera",
+      "eslResonance": "Extreme control, danger, desperation"
+    },
+    {
+      "moment": "'I was a dirty little secret kept from Indians in his community'",
+      "emotionalWeight": "very-high",
+      "source": "Sheryl Parbhoo",
+      "eslResonance": "Feeling hidden, shame, not belonging"
+    },
+    {
+      "moment": "'Why can't you stand up for me with your family?' - cultural clash after marriage",
+      "emotionalWeight": "high",
+      "source": "Sheryl Parbhoo",
+      "eslResonance": "Feeling unsupported, cultural differences, adaptation struggles"
+    },
+    {
+      "moment": "'Life broke us in' - gradual acceptance over decades",
+      "emotionalWeight": "very-high",
+      "source": "Sheryl Parbhoo",
+      "eslResonance": "Time healing wounds, patience, eventual understanding"
+    }
+  ],
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers (language differences, cultural translation)",
+    "Belonging & Identity (caught between two cultures, finding identity)",
+    "Connection Across Differences (love bridging cultures)",
+    "First-Time Courage (choosing love despite family disapproval)",
+    "Building New Life (creating bicultural families)",
+    "Persistence Despite Setbacks (years of resistance, gradual acceptance)"
+  ],
+  "characterProfile": {
+    "genericName": "Maya",
+    "partnerName": "Alex",
+    "culturalBackground": "Composite: Maya is from traditional immigrant family (Middle Eastern/South Asian background), Alex is from different cultural background (African American/Latinx/European).",
+    "ageRange": "Late teens to early twenties when relationship starts, spans 5-10 years to show progression.",
+    "familyDynamics": "Maya's family holds traditional values, explicit rules against interracial/interfaith relationships, strong community pressure.",
+    "internalConflict": "Torn between love for partner and love for family, fear of rejection, guilt over hiding, exhaustion from secrecy.",
+    "externalConflict": "Family resistance, community disapproval, losing friends, cultural clashes, forced secrecy, eventual confrontation.",
+    "transformation": "From hiding and fear to finding voice, choosing love, building life together, family gradual acceptance, becoming bridge between cultures."
+  },
+  "targetLength": "15-20 minutes A1 level (~1,500-1,700 words)",
+  "validationPassed": {
+    "step025": true,
+    "step05": true,
+    "textAFriendTest": true,
+    "emotionalMomentsCount": 15,
+    "eslMultipliers": 6,
+    "clearArc": true
+  }
+}
+

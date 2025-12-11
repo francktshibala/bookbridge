@@ -1,0 +1,33 @@
+STORY #17: ROMANTIC LOVE #1 - RESEARCH REQUIREMENTS
+
+Story Theme: Cross-cultural love story (Romantic Love Across Cultures)
+
+What to Look For:
+- Couples from different cultures/ethnicities/religions/nationalities
+- Overcoming family resistance or cultural barriers
+- First-person accounts: "I fell in love with..." or "We met despite..."
+- Emotional moments: family disapproval, cultural clashes, choosing love over tradition
+- Happy endings: families accepting, building life together
+
+What to Avoid:
+- Stories already covered (check story-subjects-tracker.json)
+- Fact-driven content (Wikipedia, academic papers)
+- Stories without emotional depth
+
+Source Types Preferred:
+- Long-form journalism (CNN, NPR, CBC, The Guardian)
+- First-person essays (Medium, personal blogs)
+- StoryCorps interviews
+- The Moth stories (if accessible)
+
+Target: 3-5 sources (2-3 flagship 9-10/10 + 1-2 supporting 8-8.5/10)
+
+Search Terms:
+- "cross-cultural love story"
+- "interracial marriage resistance"
+- "falling in love different culture"
+- "family disapproval love story"
+- "interfaith marriage story"
+- "love across cultures first person"
+- "my interracial relationship story"
+

@@ -1,0 +1,1489 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-0.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "I met Alex when I was 17 years old.",
+        "startTime": 0,
+        "endTime": 2.657,
+        "duration": 2.657,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "We were at a school event, but I thought he was annoying.",
+        "startTime": 2.657,
+        "endTime": 7.134,
+        "duration": 4.477,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "He came late and made jokes all the time.",
+        "startTime": 7.134,
+        "endTime": 10.246,
+        "duration": 3.112,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "But something about him makes me smile.",
+        "startTime": 10.246,
+        "endTime": 13.206,
+        "duration": 2.96,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "A few months later, we talked more and became friends.",
+        "startTime": 13.206,
+        "endTime": 17.456,
+        "duration": 4.249,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "We became friends and shared many happy moments together.",
+        "startTime": 17.456,
+        "endTime": 21.782,
+        "duration": 4.327,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 21.782336,
+    "measuredDuration": 21.782336
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-1.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "One day, I saw I had feelings for him.",
+        "startTime": 0,
+        "endTime": 3.126,
+        "duration": 3.126,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "Maya has real feelings and she shows them to Alex.",
+        "startTime": 3.126,
+        "endTime": 7.041,
+        "duration": 3.916,
+        "sentenceIndex": 7
+      },
+      {
+        "text": "The kind that makes your heart race is exciting and fun.",
+        "startTime": 7.041,
+        "endTime": 11.427,
+        "duration": 4.385,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "There was a problem, but they found a solution.",
+        "startTime": 11.427,
+        "endTime": 15.258,
+        "duration": 3.831,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "This is a big problem for Maya and Alex.",
+        "startTime": 15.258,
+        "endTime": 18.39,
+        "duration": 3.132,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "My family has rules and we follow them.",
+        "startTime": 18.39,
+        "endTime": 21.444,
+        "duration": 3.054,
+        "sentenceIndex": 11
+      }
+    ],
+    "totalDuration": 21.444286,
+    "measuredDuration": 21.444286
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-2.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "The rules are strict and everyone must follow them.",
+        "startTime": 0,
+        "endTime": 3.619,
+        "duration": 3.619,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "Rules said I could not date someone from a different culture.",
+        "startTime": 3.619,
+        "endTime": 7.948,
+        "duration": 4.329,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "My parents told me this when I was a child.",
+        "startTime": 7.948,
+        "endTime": 10.999,
+        "duration": 3.051,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "They said not to bring someone like that into our family.",
+        "startTime": 10.999,
+        "endTime": 15.044,
+        "duration": 4.045,
+        "sentenceIndex": 15
+      },
+      {
+        "text": "Alex is different from me and it brings shame.",
+        "startTime": 15.044,
+        "endTime": 18.308,
+        "duration": 3.264,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "His family comes from another country.",
+        "startTime": 18.308,
+        "endTime": 21.005,
+        "duration": 2.697,
+        "sentenceIndex": 17
+      }
+    ],
+    "totalDuration": 21.004671,
+    "measuredDuration": 21.004671
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-3.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "His skin is a different color than mine.",
+        "startTime": 0,
+        "endTime": 2.961,
+        "duration": 2.961,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "His religion is different from others.",
+        "startTime": 2.961,
+        "endTime": 5.773,
+        "duration": 2.813,
+        "sentenceIndex": 19
+      },
+      {
+        "text": "My family thinks everything about him is wrong.",
+        "startTime": 5.773,
+        "endTime": 9.252,
+        "duration": 3.479,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "Everything about him feels good to me.",
+        "startTime": 9.252,
+        "endTime": 12.064,
+        "duration": 2.813,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "We started to date quietly and kept it a secret.",
+        "startTime": 12.064,
+        "endTime": 15.617,
+        "duration": 3.553,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "I could not tell anyone about it.",
+        "startTime": 15.617,
+        "endTime": 18.06,
+        "duration": 2.443,
+        "sentenceIndex": 23
+      }
+    ],
+    "totalDuration": 18.059728,
+    "measuredDuration": 18.059728
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-4.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "They are not my parents.",
+        "startTime": 0,
+        "endTime": 1.593,
+        "duration": 1.593,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "They are not my grandparents.",
+        "startTime": 1.593,
+        "endTime": 3.518,
+        "duration": 1.925,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "Not even my best friends help me.",
+        "startTime": 3.518,
+        "endTime": 5.709,
+        "duration": 2.191,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "I was scared when they found out my secret.",
+        "startTime": 5.709,
+        "endTime": 8.564,
+        "duration": 2.855,
+        "sentenceIndex": 27
+      },
+      {
+        "text": "At school, we acted like we were just friends.",
+        "startTime": 8.564,
+        "endTime": 11.767,
+        "duration": 3.204,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "We never hold hands in public and feel shy.",
+        "startTime": 11.767,
+        "endTime": 14.622,
+        "duration": 2.855,
+        "sentenceIndex": 29
+      }
+    ],
+    "totalDuration": 14.621927,
+    "measuredDuration": 14.621927
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-5.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "We never sat together at lunch and felt lonely.",
+        "startTime": 0,
+        "endTime": 3.72,
+        "duration": 3.72,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "We never showed that we were together and happy.",
+        "startTime": 3.72,
+        "endTime": 7.52,
+        "duration": 3.8,
+        "sentenceIndex": 31
+      },
+      {
+        "text": "Living this double life is very tiring for me.",
+        "startTime": 7.52,
+        "endTime": 11.161,
+        "duration": 3.641,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "The stress made me feel very bad and tired.",
+        "startTime": 11.161,
+        "endTime": 14.565,
+        "duration": 3.404,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "I could not sleep at all last night.",
+        "startTime": 14.565,
+        "endTime": 17.415,
+        "duration": 2.85,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "I felt sick every day and it was hard.",
+        "startTime": 17.415,
+        "endTime": 20.423,
+        "duration": 3.008,
+        "sentenceIndex": 35
+      }
+    ],
+    "totalDuration": 20.422834,
+    "measuredDuration": 20.422834
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-6.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "I lied to everyone I loved and felt very guilty.",
+        "startTime": 0,
+        "endTime": 3.474,
+        "duration": 3.474,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "But I could not stop doing it.",
+        "startTime": 3.474,
+        "endTime": 5.645,
+        "duration": 2.171,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "I could not let him go.",
+        "startTime": 5.645,
+        "endTime": 7.31,
+        "duration": 1.665,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "After six months, I told my best friend, Maya.",
+        "startTime": 7.31,
+        "endTime": 10.939,
+        "duration": 3.629,
+        "sentenceIndex": 39
+      },
+      {
+        "text": "I thought she would understand me but she did not.",
+        "startTime": 10.939,
+        "endTime": 14.558,
+        "duration": 3.619,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "But she did not do it.",
+        "startTime": 14.558,
+        "endTime": 16.15,
+        "duration": 1.592,
+        "sentenceIndex": 41
+      }
+    ],
+    "totalDuration": 16.150249,
+    "measuredDuration": 16.150249
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-7.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "She stopped talking to me and I feel sad.",
+        "startTime": 0,
+        "endTime": 3.021,
+        "duration": 3.021,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "Then other friends also avoid us.",
+        "startTime": 3.021,
+        "endTime": 5.453,
+        "duration": 2.432,
+        "sentenceIndex": 43
+      },
+      {
+        "text": "People hear we are together, but they do not like it.",
+        "startTime": 5.453,
+        "endTime": 9.509,
+        "duration": 4.056,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "I remember thinking that we had no friends.",
+        "startTime": 9.509,
+        "endTime": 12.677,
+        "duration": 3.169,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "Alex and I walked outside one night, but we persisted.",
+        "startTime": 12.677,
+        "endTime": 16.807,
+        "duration": 4.129,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "It was winter and the ground was icy.",
+        "startTime": 16.807,
+        "endTime": 19.533,
+        "duration": 2.727,
+        "sentenceIndex": 47
+      }
+    ],
+    "totalDuration": 19.533311,
+    "measuredDuration": 19.533311
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-8.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "I slipped but Alex caught me.",
+        "startTime": 0,
+        "endTime": 2.537,
+        "duration": 2.537,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "He picked me up and carried me home.",
+        "startTime": 2.537,
+        "endTime": 5.686,
+        "duration": 3.149,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "We stood under the stars, and he said to remember this moment.",
+        "startTime": 5.686,
+        "endTime": 11.26,
+        "duration": 5.574,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "But the hiding cannot last forever.",
+        "startTime": 11.26,
+        "endTime": 14.322,
+        "duration": 3.062,
+        "sentenceIndex": 51
+      },
+      {
+        "text": "After two years, my parents found out my secret.",
+        "startTime": 14.322,
+        "endTime": 18.671,
+        "duration": 4.349,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "They found a message on my phone and read it.",
+        "startTime": 18.671,
+        "endTime": 22.608,
+        "duration": 3.937,
+        "sentenceIndex": 53
+      }
+    ],
+    "totalDuration": 22.608073,
+    "measuredDuration": 22.608073
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-9.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "They were very angry and did not want to talk.",
+        "startTime": 0,
+        "endTime": 3.906,
+        "duration": 3.906,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "My father said I cannot see him.",
+        "startTime": 3.906,
+        "endTime": 6.622,
+        "duration": 2.717,
+        "sentenceIndex": 55
+      },
+      {
+        "text": "I said, \"This relationship is over,\" and I tried to explain.",
+        "startTime": 6.622,
+        "endTime": 12.017,
+        "duration": 5.394,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "I tried to show them how much Alex means to me.",
+        "startTime": 12.017,
+        "endTime": 16.007,
+        "duration": 3.99,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "But they do not listen.",
+        "startTime": 16.007,
+        "endTime": 17.96,
+        "duration": 1.953,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "My father said you made your decision coldly.",
+        "startTime": 17.96,
+        "endTime": 21.78,
+        "duration": 3.821,
+        "sentenceIndex": 59
+      }
+    ],
+    "totalDuration": 21.780385,
+    "measuredDuration": 21.780385
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-10.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "What is the reason to meet him now.",
+        "startTime": 0,
+        "endTime": 2.793,
+        "duration": 2.793,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "It is too late, and I feel very sad.",
+        "startTime": 2.793,
+        "endTime": 5.816,
+        "duration": 3.023,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "But I did not give up.",
+        "startTime": 5.816,
+        "endTime": 7.572,
+        "duration": 1.756,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "I could not lose Alex and I felt sad.",
+        "startTime": 7.572,
+        "endTime": 10.524,
+        "duration": 2.953,
+        "sentenceIndex": 63
+      },
+      {
+        "text": "I saw him in secret many times.",
+        "startTime": 10.524,
+        "endTime": 12.998,
+        "duration": 2.474,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "I hid my relationship with Maya for three more years.",
+        "startTime": 12.998,
+        "endTime": 17.228,
+        "duration": 4.23,
+        "sentenceIndex": 65
+      }
+    ],
+    "totalDuration": 17.228005,
+    "measuredDuration": 17.228005
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-11.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "I lied all the time and felt bad.",
+        "startTime": 0,
+        "endTime": 2.53,
+        "duration": 2.53,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "I made excuses and did not tell the truth.",
+        "startTime": 2.53,
+        "endTime": 5.75,
+        "duration": 3.22,
+        "sentenceIndex": 67
+      },
+      {
+        "text": "I sneaked around quietly and looked for something.",
+        "startTime": 5.75,
+        "endTime": 9.583,
+        "duration": 3.833,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "The stress made me feel sick and tired.",
+        "startTime": 9.583,
+        "endTime": 12.573,
+        "duration": 2.99,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "I stayed in the hospital for many weeks.",
+        "startTime": 12.573,
+        "endTime": 15.64,
+        "duration": 3.067,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "The doctors said it was from stress.",
+        "startTime": 15.64,
+        "endTime": 18.399,
+        "duration": 2.76,
+        "sentenceIndex": 71
+      }
+    ],
+    "totalDuration": 18.399433,
+    "measuredDuration": 18.399433
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-12.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "My body breaks down when I hide too much.",
+        "startTime": 0,
+        "endTime": 3.348,
+        "duration": 3.348,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "I could not do it anymore and felt very tired.",
+        "startTime": 3.348,
+        "endTime": 7.105,
+        "duration": 3.757,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "I had to tell them the true story.",
+        "startTime": 7.105,
+        "endTime": 9.882,
+        "duration": 2.777,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "I told them I was still with Alex after five years.",
+        "startTime": 9.882,
+        "endTime": 14.047,
+        "duration": 4.165,
+        "sentenceIndex": 75
+      },
+      {
+        "text": "I wanted Maya and Alex to meet him.",
+        "startTime": 14.047,
+        "endTime": 16.905,
+        "duration": 2.858,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "My father said no and I felt sad.",
+        "startTime": 16.905,
+        "endTime": 19.6,
+        "duration": 2.695,
+        "sentenceIndex": 77
+      }
+    ],
+    "totalDuration": 19.599819,
+    "measuredDuration": 19.599819
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-13.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "My mother said she understood, but I saw her disappointment.",
+        "startTime": 0,
+        "endTime": 4.781,
+        "duration": 4.781,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "I felt sad because I broke their hearts.",
+        "startTime": 4.781,
+        "endTime": 7.869,
+        "duration": 3.088,
+        "sentenceIndex": 79
+      },
+      {
+        "text": "But then something is different now.",
+        "startTime": 7.869,
+        "endTime": 10.648,
+        "duration": 2.779,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "A week later, my father came to see me.",
+        "startTime": 10.648,
+        "endTime": 13.808,
+        "duration": 3.16,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "He talked to some work friends from different cultures.",
+        "startTime": 13.808,
+        "endTime": 18.053,
+        "duration": 4.245,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "They said he should be thankful that I told him about Alex.",
+        "startTime": 18.053,
+        "endTime": 22.607,
+        "duration": 4.554,
+        "sentenceIndex": 83
+      }
+    ],
+    "totalDuration": 22.607279,
+    "measuredDuration": 22.607279
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-14.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "They said it was a sign of respect.",
+        "startTime": 0,
+        "endTime": 2.616,
+        "duration": 2.616,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "They said it showed that I trust him.",
+        "startTime": 2.616,
+        "endTime": 5.381,
+        "duration": 2.765,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "My father asks me to plan a dinner.",
+        "startTime": 5.381,
+        "endTime": 7.997,
+        "duration": 2.616,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "He wants to meet Alex.",
+        "startTime": 7.997,
+        "endTime": 9.641,
+        "duration": 1.644,
+        "sentenceIndex": 87
+      },
+      {
+        "text": "I felt very scared and was terrified.",
+        "startTime": 9.641,
+        "endTime": 12.407,
+        "duration": 2.765,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "What happens if they do not like him.",
+        "startTime": 12.407,
+        "endTime": 15.172,
+        "duration": 2.765,
+        "sentenceIndex": 89
+      }
+    ],
+    "totalDuration": 15.172177,
+    "measuredDuration": 15.172177
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-15.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "What happens if they say no again.",
+        "startTime": 0,
+        "endTime": 2.643,
+        "duration": 2.643,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "But I needed to try and I did.",
+        "startTime": 2.643,
+        "endTime": 4.975,
+        "duration": 2.332,
+        "sentenceIndex": 91
+      },
+      {
+        "text": "The dinner was one of the most stressful nights for me.",
+        "startTime": 4.975,
+        "endTime": 9.25,
+        "duration": 4.275,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "But something great happens.",
+        "startTime": 9.25,
+        "endTime": 11.427,
+        "duration": 2.176,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "My parents liked Alex very much.",
+        "startTime": 11.427,
+        "endTime": 13.914,
+        "duration": 2.487,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "They saw that he was kind and nice.",
+        "startTime": 13.914,
+        "endTime": 16.635,
+        "duration": 2.721,
+        "sentenceIndex": 95
+      }
+    ],
+    "totalDuration": 16.634535,
+    "measuredDuration": 16.634535
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-16.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "That is very respectful and kind.",
+        "startTime": 0,
+        "endTime": 2.57,
+        "duration": 2.57,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "He cared a lot about me.",
+        "startTime": 2.57,
+        "endTime": 4.439,
+        "duration": 1.869,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "After dinner, my father took me to a quiet place.",
+        "startTime": 4.439,
+        "endTime": 8.405,
+        "duration": 3.966,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "He said he was wrong.",
+        "startTime": 8.405,
+        "endTime": 10.04,
+        "duration": 1.635,
+        "sentenceIndex": 99
+      },
+      {
+        "text": "Maya says, \"I am sorry.",
+        "startTime": 10.04,
+        "endTime": 11.981,
+        "duration": 1.941,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "I should trust you, but it is not easy.",
+        "startTime": 11.981,
+        "endTime": 15.168,
+        "duration": 3.187,
+        "sentenceIndex": 101
+      }
+    ],
+    "totalDuration": 15.168118,
+    "measuredDuration": 15.168118
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-17.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "It took a long time to finish the work.",
+        "startTime": 0,
+        "endTime": 3.186,
+        "duration": 3.186,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "But my family slowly accepted me.",
+        "startTime": 3.186,
+        "endTime": 5.881,
+        "duration": 2.696,
+        "sentenceIndex": 103
+      },
+      {
+        "text": "My grandparents were very strict and worked hard.",
+        "startTime": 5.881,
+        "endTime": 9.884,
+        "duration": 4.003,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "They said bad things about people like Alex.",
+        "startTime": 9.884,
+        "endTime": 13.478,
+        "duration": 3.594,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "They met him too, but it took some time.",
+        "startTime": 13.478,
+        "endTime": 16.895,
+        "duration": 3.417,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "They saw the same thing that I saw.",
+        "startTime": 16.895,
+        "endTime": 19.754,
+        "duration": 2.859,
+        "sentenceIndex": 107
+      }
+    ],
+    "totalDuration": 19.754263,
+    "measuredDuration": 19.754263
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-18.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "They saw a kind person who loved their granddaughter.",
+        "startTime": 0,
+        "endTime": 4.183,
+        "duration": 4.183,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "My grandfather says sorry for what he did.",
+        "startTime": 4.183,
+        "endTime": 7.499,
+        "duration": 3.315,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "He said he was sorry for the family's bad behavior.",
+        "startTime": 7.499,
+        "endTime": 11.524,
+        "duration": 4.026,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "He said he will not allow it anymore.",
+        "startTime": 11.524,
+        "endTime": 14.445,
+        "duration": 2.921,
+        "sentenceIndex": 111
+      },
+      {
+        "text": "We got engaged and are very happy.",
+        "startTime": 14.445,
+        "endTime": 17.129,
+        "duration": 2.684,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "We got married and are very happy.",
+        "startTime": 17.129,
+        "endTime": 19.812,
+        "duration": 2.684,
+        "sentenceIndex": 113
+      }
+    ],
+    "totalDuration": 19.812336,
+    "measuredDuration": 19.812336
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-19.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "It was not easy for Maya and Alex.",
+        "startTime": 0,
+        "endTime": 2.56,
+        "duration": 2.56,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "There are still challenges for Maya and Alex.",
+        "startTime": 2.56,
+        "endTime": 5.949,
+        "duration": 3.389,
+        "sentenceIndex": 115
+      },
+      {
+        "text": "Some people in our community gave us bad looks and stared.",
+        "startTime": 5.949,
+        "endTime": 10.317,
+        "duration": 4.368,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "Some people said bad things and hurt others' feelings.",
+        "startTime": 10.317,
+        "endTime": 14.384,
+        "duration": 4.067,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "But we did not care anymore.",
+        "startTime": 14.384,
+        "endTime": 16.492,
+        "duration": 2.109,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "We had each other and felt happy together.",
+        "startTime": 16.492,
+        "endTime": 19.655,
+        "duration": 3.163,
+        "sentenceIndex": 119
+      }
+    ],
+    "totalDuration": 19.655238,
+    "measuredDuration": 19.655238
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-20.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "We had our families' support, but it took time.",
+        "startTime": 0,
+        "endTime": 3.699,
+        "duration": 3.699,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "After we married, we faced new problems and changes.",
+        "startTime": 3.699,
+        "endTime": 7.775,
+        "duration": 4.076,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "Our cultures are different but we can still be friends.",
+        "startTime": 7.775,
+        "endTime": 11.927,
+        "duration": 4.153,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "We celebrated holidays in a different way than before.",
+        "startTime": 11.927,
+        "endTime": 16.005,
+        "duration": 4.077,
+        "sentenceIndex": 123
+      },
+      {
+        "text": "The food we ate was not the same.",
+        "startTime": 16.005,
+        "endTime": 18.496,
+        "duration": 2.492,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "Sometimes we argue about traditions and it makes us upset.",
+        "startTime": 18.496,
+        "endTime": 22.875,
+        "duration": 4.379,
+        "sentenceIndex": 125
+      }
+    ],
+    "totalDuration": 22.875238,
+    "measuredDuration": 22.875238
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-21.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "I wanted to do things my way and be happy.",
+        "startTime": 0,
+        "endTime": 3.327,
+        "duration": 3.327,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "He wanted to do things his way and be happy.",
+        "startTime": 3.327,
+        "endTime": 6.813,
+        "duration": 3.486,
+        "sentenceIndex": 127
+      },
+      {
+        "text": "I asked him why he does not help me with his family.",
+        "startTime": 6.813,
+        "endTime": 10.932,
+        "duration": 4.119,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "He said it is not his place to change them.",
+        "startTime": 10.932,
+        "endTime": 14.339,
+        "duration": 3.406,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "But I will stand with you, Maya.",
+        "startTime": 14.339,
+        "endTime": 17.024,
+        "duration": 2.685,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "It took years, but we always found our way.",
+        "startTime": 17.024,
+        "endTime": 20.58,
+        "duration": 3.556,
+        "sentenceIndex": 131
+      }
+    ],
+    "totalDuration": 20.58034,
+    "measuredDuration": 20.58034
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-22.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "We learn to mix our cultures and share our stories.",
+        "startTime": 0,
+        "endTime": 3.852,
+        "duration": 3.852,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "We made new traditions that honored our backgrounds and cultures.",
+        "startTime": 3.852,
+        "endTime": 8.762,
+        "duration": 4.91,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "We found the things Maya and Alex liked together.",
+        "startTime": 8.762,
+        "endTime": 12.463,
+        "duration": 3.701,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "Family was important to Maya and me.",
+        "startTime": 12.463,
+        "endTime": 15.182,
+        "duration": 2.719,
+        "sentenceIndex": 135
+      },
+      {
+        "text": "Love was important for Maya and me.",
+        "startTime": 15.182,
+        "endTime": 17.826,
+        "duration": 2.644,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "That was enough for me and I felt happy.",
+        "startTime": 17.826,
+        "endTime": 20.847,
+        "duration": 3.021,
+        "sentenceIndex": 137
+      }
+    ],
+    "totalDuration": 20.847302,
+    "measuredDuration": 20.847302
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-23.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "Now we have kids and they are happy.",
+        "startTime": 0,
+        "endTime": 2.47,
+        "duration": 2.47,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "Maya and Alex are beautiful children from both our cultures.",
+        "startTime": 2.47,
+        "endTime": 6.588,
+        "duration": 4.117,
+        "sentenceIndex": 139
+      },
+      {
+        "text": "They speak English and Spanish very well.",
+        "startTime": 6.588,
+        "endTime": 9.401,
+        "duration": 2.813,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "They celebrate the holidays and have fun together.",
+        "startTime": 9.401,
+        "endTime": 12.832,
+        "duration": 3.431,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "They connect two worlds and help people understand each other.",
+        "startTime": 12.832,
+        "endTime": 17.087,
+        "duration": 4.254,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "I sometimes think about the five years I hid.",
+        "startTime": 17.087,
+        "endTime": 20.174,
+        "duration": 3.088,
+        "sentenceIndex": 143
+      }
+    ],
+    "totalDuration": 20.174422,
+    "measuredDuration": 20.174422
+  },
+  {
+    "bundleId": "b24",
+    "bundleIndex": 24,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-24.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-24.mp3",
+    "sentences": [
+      {
+        "text": "The stress makes Maya feel tired and worried.",
+        "startTime": 0,
+        "endTime": 3.282,
+        "duration": 3.282,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "The fear is strong and makes me feel worried.",
+        "startTime": 3.282,
+        "endTime": 6.564,
+        "duration": 3.282,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "Maya feels lonely and wants to talk to someone.",
+        "startTime": 6.564,
+        "endTime": 9.991,
+        "duration": 3.428,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "I wish it was easier for me.",
+        "startTime": 9.991,
+        "endTime": 12.033,
+        "duration": 2.042,
+        "sentenceIndex": 147
+      },
+      {
+        "text": "Those years made us stronger and I know it.",
+        "startTime": 12.033,
+        "endTime": 15.169,
+        "duration": 3.136,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "They taught us love is good and worth fighting for.",
+        "startTime": 15.169,
+        "endTime": 18.889,
+        "duration": 3.719,
+        "sentenceIndex": 149
+      }
+    ],
+    "totalDuration": 18.888617,
+    "measuredDuration": 18.888617
+  },
+  {
+    "bundleId": "b25",
+    "bundleIndex": 25,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-25.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-25.mp3",
+    "sentences": [
+      {
+        "text": "They taught us to choose our own path when it is hard.",
+        "startTime": 0,
+        "endTime": 4.4,
+        "duration": 4.4,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "My family accepted us in the end.",
+        "startTime": 4.4,
+        "endTime": 7.089,
+        "duration": 2.689,
+        "sentenceIndex": 151
+      },
+      {
+        "text": "They helped us because they saw how happy we were.",
+        "startTime": 7.089,
+        "endTime": 11.163,
+        "duration": 4.074,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "They saw how much we love each other.",
+        "startTime": 11.163,
+        "endTime": 14.178,
+        "duration": 3.015,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "They see that love is love in every culture.",
+        "startTime": 14.178,
+        "endTime": 17.763,
+        "duration": 3.585,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "I found my voice when I faced this struggle.",
+        "startTime": 17.763,
+        "endTime": 21.349,
+        "duration": 3.585,
+        "sentenceIndex": 155
+      }
+    ],
+    "totalDuration": 21.348571,
+    "measuredDuration": 21.348571
+  },
+  {
+    "bundleId": "b26",
+    "bundleIndex": 26,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-26.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-26.mp3",
+    "sentences": [
+      {
+        "text": "I learned to stand up for my beliefs and values.",
+        "startTime": 0,
+        "endTime": 3.934,
+        "duration": 3.934,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "I learned I can have my family and my love.",
+        "startTime": 3.934,
+        "endTime": 7.457,
+        "duration": 3.524,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "I can have both things I want and feel happy.",
+        "startTime": 7.457,
+        "endTime": 11.145,
+        "duration": 3.688,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "It takes time to do things well and be happy.",
+        "startTime": 11.145,
+        "endTime": 14.833,
+        "duration": 3.688,
+        "sentenceIndex": 159
+      },
+      {
+        "text": "It needs patience to wait for good things.",
+        "startTime": 14.833,
+        "endTime": 18.275,
+        "duration": 3.442,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "Love is important and it takes love.",
+        "startTime": 18.275,
+        "endTime": 21.225,
+        "duration": 2.95,
+        "sentenceIndex": 161
+      }
+    ],
+    "totalDuration": 21.224853,
+    "measuredDuration": 21.224853
+  },
+  {
+    "bundleId": "b27",
+    "bundleIndex": 27,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-27.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-27.mp3",
+    "sentences": [
+      {
+        "text": "Alex and I are together for ten years now.",
+        "startTime": 0,
+        "endTime": 3.411,
+        "duration": 3.411,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "We build a life together and are happy.",
+        "startTime": 3.411,
+        "endTime": 6.579,
+        "duration": 3.168,
+        "sentenceIndex": 163
+      },
+      {
+        "text": "We build a family and love each other.",
+        "startTime": 6.579,
+        "endTime": 9.665,
+        "duration": 3.086,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "We build a bridge between two cultures and connect people.",
+        "startTime": 9.665,
+        "endTime": 14.376,
+        "duration": 4.711,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "I am thankful every day that I chose love.",
+        "startTime": 14.376,
+        "endTime": 17.788,
+        "duration": 3.411,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "I am thankful that I did not give up.",
+        "startTime": 17.788,
+        "endTime": 20.793,
+        "duration": 3.005,
+        "sentenceIndex": 167
+      }
+    ],
+    "totalDuration": 20.792698,
+    "measuredDuration": 20.792698
+  },
+  {
+    "bundleId": "b28",
+    "bundleIndex": 28,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/romantic-love-1/A1/bundle-28.mp3",
+    "audioPath": "romantic-love-1/A1/bundle-28.mp3",
+    "sentences": [
+      {
+        "text": "I am thankful for that night when he said to remember.",
+        "startTime": 0,
+        "endTime": 3.666,
+        "duration": 3.666,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "I never have and I do not want to.",
+        "startTime": 3.666,
+        "endTime": 5.974,
+        "duration": 2.308,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "I will never do that.",
+        "startTime": 5.974,
+        "endTime": 7.4,
+        "duration": 1.426,
+        "sentenceIndex": 170
+      }
+    ],
+    "totalDuration": 7.399569,
+    "measuredDuration": 7.399569
+  }
+]

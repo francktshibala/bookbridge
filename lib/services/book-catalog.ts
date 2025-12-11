@@ -111,8 +111,14 @@ export function serializeFiltersToURL(filters: BookFilters): string {
 }
 
 export function parseFiltersFromURL(searchParams: URLSearchParams): BookFilters {
+  const collectionId = searchParams.get('collection') || undefined;
+  // CRITICAL: Use higher limit for collections to show all books
+  // Collections can have 20+ books (e.g., Modern Voices has 21+)
+  // Default: 50 for collections, 20 for general search
+  // See: docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md Mistake #7
+  const defaultLimit = collectionId ? 50 : 20;
   return {
-    collectionId: searchParams.get('collection') || undefined,
+    collectionId,
     genres: searchParams.get('genres')?.split(',').filter(Boolean) || undefined,
     moods: searchParams.get('moods')?.split(',').filter(Boolean) || undefined,
     region: searchParams.get('region') || undefined,
@@ -120,7 +126,7 @@ export function parseFiltersFromURL(searchParams: URLSearchParams): BookFilters 
     search: searchParams.get('q') || undefined,
     cursor: searchParams.get('cursor') || undefined,
     sortBy: (searchParams.get('sort') as BookFilters['sortBy']) || 'popularityScore',
-    limit: 20
+    limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : defaultLimit
   };
 }
 

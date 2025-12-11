@@ -560,6 +560,7 @@ Update `lib/config/books.ts`:
   - Update `themeSaturation` counts
   - Add to `realPeopleCovered` array (if real person)
   - Add to `specificConceptsCovered` array
+- [ ] **Validate collection limits**: Run `npx tsx scripts/validate-collection-limits.ts` to ensure all books appear in collections (prevents pagination cutoff - see Mistake #7 in MODERN_VOICES_IMPLEMENTATION_GUIDE.md)
 
 ---
 
@@ -720,6 +721,7 @@ Update `lib/config/books.ts`:
 
 **Completion:**
 - [ ] Story logged in `story-completion-log.md`
+- [ ] Collection limits validated (`npx tsx scripts/validate-collection-limits.ts`) - ensures all books appear in collections
 - [ ] Character names added to `character-names-tracker.json`
 - [ ] Key learnings documented
 - [ ] Build passes (`npm run build`)
