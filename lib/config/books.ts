@@ -291,6 +291,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'DO'
   },
   {
+    id: 'disability-overcome-2',
+    title: 'Blind Mountaineer: Reaching the Top',
+    author: 'BookBridge',
+    description: 'An inspiring story about Lucas (Erik Weihenmayer), who loses his sight at age 14 and faces a world that says he cannot do many things anymore. Through determination, courage, and finding new ways to navigate, he achieves his dream of climbing Mount Everest. This powerful tale shows how people overcome fear, adapt, and find new paths. A1 level with Daniel voice.',
+    sentences: 158,
+    bundles: 40,
+    gradient: 'from-indigo-500 to-purple-600',
+    abbreviation: 'DO2'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -418,6 +428,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'disability-overcome-1': {
     'A1': '/api/disability-overcome-1-a1/bundles'
   },
+  'disability-overcome-2': {
+    'A1': '/api/disability-overcome-2-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -458,6 +471,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
   'community-builder-2': 'A1',  // Default to A1 for Community Builder: From Wrong Turn to School Network (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
+  'disability-overcome-2': 'A1',  // Default to A1 for Blind Mountaineer: Reaching the Top (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -532,6 +546,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'disability-overcome-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

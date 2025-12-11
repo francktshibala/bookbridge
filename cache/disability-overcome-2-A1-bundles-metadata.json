@@ -1,0 +1,1866 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "Lucas was born in a small town. He was a happy child. He loved to run and play. He loved to ride his bicycle.",
+    "sentences": [
+      "Lucas was born in a small town.",
+      "He was a happy child.",
+      "He loved to run and play.",
+      "He loved to ride his bicycle."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_0.mp3",
+    "duration": 7.02458,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Lucas was born in a small town.",
+        "startTime": 0,
+        "endTime": 2.054,
+        "duration": 2.054,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "He was a happy child.",
+        "startTime": 2.054,
+        "endTime": 3.446,
+        "duration": 1.392,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "He loved to run and play.",
+        "startTime": 3.446,
+        "endTime": 5.103,
+        "duration": 1.657,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "He loved to ride his bicycle.",
+        "startTime": 5.103,
+        "endTime": 7.025,
+        "duration": 1.922,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "He loved to explore the woods behind his house. But when he was four years old, his mother took him to the doctor. The doctor said, \"Lucas has juvenile retinoschisis.\" This was a big word. Lucas did not understand it.",
+    "sentences": [
+      "He loved to explore the woods behind his house.",
+      "But when he was four years old, his mother took him to the doctor.",
+      "The doctor said, \"Lucas has juvenile retinoschisis.\" This was a big word.",
+      "Lucas did not understand it."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_1.mp3",
+    "duration": 15.113061,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He loved to explore the woods behind his house.",
+        "startTime": 0,
+        "endTime": 3.253,
+        "duration": 3.253,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "But when he was four years old, his mother took him to the doctor.",
+        "startTime": 3.253,
+        "endTime": 7.972,
+        "duration": 4.719,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "The doctor said, \"Lucas has juvenile retinoschisis.\" This was a big word.",
+        "startTime": 7.972,
+        "endTime": 13.175,
+        "duration": 5.203,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "Lucas did not understand it.",
+        "startTime": 13.175,
+        "endTime": 15.113,
+        "duration": 1.938,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "His mother explained, \"You will lose your sight, dear.\" Lucas felt scared. He did not want to be blind. He thought about his favorite games. How could he play without seeing?",
+    "sentences": [
+      "His mother explained, \"You will lose your sight, dear.\" Lucas felt scared.",
+      "He did not want to be blind.",
+      "He thought about his favorite games.",
+      "How could he play without seeing?"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_2.mp3",
+    "duration": 13.045261,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His mother explained, \"You will lose your sight, dear.\" Lucas felt scared.",
+        "startTime": 0,
+        "endTime": 5.815,
+        "duration": 5.815,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "He did not want to be blind.",
+        "startTime": 5.815,
+        "endTime": 7.902,
+        "duration": 2.087,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "He thought about his favorite games.",
+        "startTime": 7.902,
+        "endTime": 10.586,
+        "duration": 2.683,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "How could he play without seeing?",
+        "startTime": 10.586,
+        "endTime": 13.045,
+        "duration": 2.46,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "As the years passed, Lucas's vision got worse. He learned to use his other senses. He listened carefully. He touched things to feel them.",
+    "sentences": [
+      "As the years passed, Lucas's vision got worse.",
+      "He learned to use his other senses.",
+      "He listened carefully.",
+      "He touched things to feel them."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_3.mp3",
+    "duration": 9.91356,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "As the years passed, Lucas's vision got worse.",
+        "startTime": 0,
+        "endTime": 3.502,
+        "duration": 3.502,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "He learned to use his other senses.",
+        "startTime": 3.502,
+        "endTime": 6.052,
+        "duration": 2.55,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "He listened carefully.",
+        "startTime": 6.052,
+        "endTime": 7.655,
+        "duration": 1.603,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "He touched things to feel them.",
+        "startTime": 7.655,
+        "endTime": 9.914,
+        "duration": 2.259,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "The world became less bright. He missed the colors and the light. But by age 14, he lost all his sight. He sat in his room and cried.",
+    "sentences": [
+      "The world became less bright.",
+      "He missed the colors and the light.",
+      "But by age 14, he lost all his sight.",
+      "He sat in his room and cried."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_4.mp3",
+    "duration": 9.854172,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The world became less bright.",
+        "startTime": 0,
+        "endTime": 2.165,
+        "duration": 2.165,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "He missed the colors and the light.",
+        "startTime": 2.165,
+        "endTime": 4.777,
+        "duration": 2.613,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "But by age 14, he lost all his sight.",
+        "startTime": 4.777,
+        "endTime": 7.689,
+        "duration": 2.912,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "He sat in his room and cried.",
+        "startTime": 7.689,
+        "endTime": 9.854,
+        "duration": 2.165,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "He felt trapped in darkness. The shadows felt heavy around him. His friends called him. They said, \"Come out and play!\" But Lucas could not go outside.",
+    "sentences": [
+      "He felt trapped in darkness.",
+      "The shadows felt heavy around him.",
+      "His friends called him.",
+      "They said, \"Come out and play!\" But Lucas could not go outside."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_5.mp3",
+    "duration": 9.27093,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt trapped in darkness.",
+        "startTime": 0,
+        "endTime": 1.726,
+        "duration": 1.726,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "The shadows felt heavy around him.",
+        "startTime": 1.726,
+        "endTime": 3.821,
+        "duration": 2.095,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "His friends called him.",
+        "startTime": 3.821,
+        "endTime": 5.238,
+        "duration": 1.417,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "They said, \"Come out and play!\" But Lucas could not go outside.",
+        "startTime": 5.238,
+        "endTime": 9.271,
+        "duration": 4.033,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "He felt alone and afraid. He thought, \"Will I ever play again? Will I ever be happy?\"\n\nAt age 16, Lucas faced another big loss. His mother died.",
+    "sentences": [
+      "He felt alone and afraid.",
+      "He thought, \"Will I ever play again?",
+      "Will I ever be happy?\"\n\nAt age 16, Lucas faced another big loss.",
+      "His mother died."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_6.mp3",
+    "duration": 11.826939,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt alone and afraid.",
+        "startTime": 0,
+        "endTime": 2.044,
+        "duration": 2.044,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "He thought, \"Will I ever play again?",
+        "startTime": 2.044,
+        "endTime": 5.137,
+        "duration": 3.093,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "Will I ever be happy?\"\n\nAt age 16, Lucas faced another big loss.",
+        "startTime": 5.137,
+        "endTime": 10.519,
+        "duration": 5.382,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "His mother died.",
+        "startTime": 10.519,
+        "endTime": 11.827,
+        "duration": 1.308,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "She had always supported him. She was his rock. Now, she was gone. Lucas felt deep sadness.",
+    "sentences": [
+      "She had always supported him.",
+      "She was his rock.",
+      "Now, she was gone.",
+      "Lucas felt deep sadness."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_7.mp3",
+    "duration": 7.302834,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "She had always supported him.",
+        "startTime": 0,
+        "endTime": 2.357,
+        "duration": 2.357,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "She was his rock.",
+        "startTime": 2.357,
+        "endTime": 3.739,
+        "duration": 1.382,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "Now, she was gone.",
+        "startTime": 3.739,
+        "endTime": 5.352,
+        "duration": 1.613,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "Lucas felt deep sadness.",
+        "startTime": 5.352,
+        "endTime": 7.303,
+        "duration": 1.951,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "The world felt colder. He thought he would never smile again. Life felt heavy and dark. But one rainy day, he remembered what his mother always said, \"You are strong, Lucas.",
+    "sentences": [
+      "The world felt colder.",
+      "He thought he would never smile again.",
+      "Life felt heavy and dark.",
+      "But one rainy day, he remembered what his mother always said, \"You are strong, Lucas."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_8.mp3",
+    "duration": 16.370272,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The world felt colder.",
+        "startTime": 0,
+        "endTime": 2.06,
+        "duration": 2.06,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "He thought he would never smile again.",
+        "startTime": 2.06,
+        "endTime": 5.619,
+        "duration": 3.559,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "Life felt heavy and dark.",
+        "startTime": 5.619,
+        "endTime": 7.96,
+        "duration": 2.341,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "But one rainy day, he remembered what his mother always said, \"You are strong, Lucas.",
+        "startTime": 7.96,
+        "endTime": 16.37,
+        "duration": 8.41,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "You can do anything.\" Her words were like a warm hug. They gave him hope. One day, Lucas found a flyer. It was for a rock climbing group for blind kids.",
+    "sentences": [
+      "You can do anything.\" Her words were like a warm hug.",
+      "They gave him hope.",
+      "One day, Lucas found a flyer.",
+      "It was for a rock climbing group for blind kids."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_9.mp3",
+    "duration": 10.588526,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "You can do anything.\" Her words were like a warm hug.",
+        "startTime": 0,
+        "endTime": 3.713,
+        "duration": 3.713,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "They gave him hope.",
+        "startTime": 3.713,
+        "endTime": 5.044,
+        "duration": 1.331,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "One day, Lucas found a flyer.",
+        "startTime": 5.044,
+        "endTime": 7.226,
+        "duration": 2.182,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "It was for a rock climbing group for blind kids.",
+        "startTime": 7.226,
+        "endTime": 10.589,
+        "duration": 3.363,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "\"Who would be crazy enough to climb?\" he thought. But he felt a spark of hope. Maybe this was a chance. He decided to join.",
+    "sentences": [
+      "\"Who would be crazy enough to climb?\" he thought.",
+      "But he felt a spark of hope.",
+      "Maybe this was a chance.",
+      "He decided to join."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_10.mp3",
+    "duration": 8.781361,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "\"Who would be crazy enough to climb?\" he thought.",
+        "startTime": 0,
+        "endTime": 3.586,
+        "duration": 3.586,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "But he felt a spark of hope.",
+        "startTime": 3.586,
+        "endTime": 5.635,
+        "duration": 2.049,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "Maybe this was a chance.",
+        "startTime": 5.635,
+        "endTime": 7.391,
+        "duration": 1.756,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "He decided to join.",
+        "startTime": 7.391,
+        "endTime": 8.781,
+        "duration": 1.39,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "He was scared, but he wanted to feel alive again. The first day, he was nervous. He met other kids who were blind too. They were happy and excited.",
+    "sentences": [
+      "He was scared, but he wanted to feel alive again.",
+      "The first day, he was nervous.",
+      "He met other kids who were blind too.",
+      "They were happy and excited."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_11.mp3",
+    "duration": 10.194422,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He was scared, but he wanted to feel alive again.",
+        "startTime": 0,
+        "endTime": 3.517,
+        "duration": 3.517,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "The first day, he was nervous.",
+        "startTime": 3.517,
+        "endTime": 5.728,
+        "duration": 2.211,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "He met other kids who were blind too.",
+        "startTime": 5.728,
+        "endTime": 8.271,
+        "duration": 2.542,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "They were happy and excited.",
+        "startTime": 8.271,
+        "endTime": 10.194,
+        "duration": 1.924,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "They were laughing. The instructor said, \"Climbing is about trust and teamwork.\" Lucas felt something change inside him. He thought, “Maybe I can do this.”\n\nHe climbed for the first time. His hands felt the rough rock.",
+    "sentences": [
+      "They were laughing.",
+      "The instructor said, \"Climbing is about trust and teamwork.\" Lucas felt something change inside him.",
+      "He thought, “Maybe I can do this.”\n\nHe climbed for the first time.",
+      "His hands felt the rough rock."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_12.mp3",
+    "duration": 16.371542,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They were laughing.",
+        "startTime": 0,
+        "endTime": 1.42,
+        "duration": 1.42,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "The instructor said, \"Climbing is about trust and teamwork.\" Lucas felt something change inside him.",
+        "startTime": 1.42,
+        "endTime": 9.045,
+        "duration": 7.625,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "He thought, “Maybe I can do this.”\n\nHe climbed for the first time.",
+        "startTime": 9.045,
+        "endTime": 14.129,
+        "duration": 5.084,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "His hands felt the rough rock.",
+        "startTime": 14.129,
+        "endTime": 16.372,
+        "duration": 2.243,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "He listened to his friends. They guided him with their voices. \"Left! Right!\" they shouted.",
+    "sentences": [
+      "He listened to his friends.",
+      "They guided him with their voices.",
+      "\"Left!",
+      "Right!\" they shouted."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_13.mp3",
+    "duration": 6.597732,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He listened to his friends.",
+        "startTime": 0,
+        "endTime": 2.024,
+        "duration": 2.024,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "They guided him with their voices.",
+        "startTime": 2.024,
+        "endTime": 4.573,
+        "duration": 2.549,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "\"Left!",
+        "startTime": 4.573,
+        "endTime": 5.023,
+        "duration": 0.45,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "Right!\" they shouted.",
+        "startTime": 5.023,
+        "endTime": 6.598,
+        "duration": 1.574,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "He felt the wind on his face. For the first time, he felt free. Climbing was not about seeing. It was about feeling and trusting.",
+    "sentences": [
+      "He felt the wind on his face.",
+      "For the first time, he felt free.",
+      "Climbing was not about seeing.",
+      "It was about feeling and trusting."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_14.mp3",
+    "duration": 9.147596,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt the wind on his face.",
+        "startTime": 0,
+        "endTime": 2.071,
+        "duration": 2.071,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "For the first time, he felt free.",
+        "startTime": 2.071,
+        "endTime": 4.577,
+        "duration": 2.507,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "Climbing was not about seeing.",
+        "startTime": 4.577,
+        "endTime": 6.72,
+        "duration": 2.142,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "It was about feeling and trusting.",
+        "startTime": 6.72,
+        "endTime": 9.148,
+        "duration": 2.428,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "Lucas smiled. He found joy again. He thought, “I am not alone. We are all climbing together.”\n\nIn the months that followed, Lucas trained hard.",
+    "sentences": [
+      "Lucas smiled.",
+      "He found joy again.",
+      "He thought, “I am not alone.",
+      "We are all climbing together.”\n\nIn the months that followed, Lucas trained hard."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_15.mp3",
+    "duration": 10.74907,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Lucas smiled.",
+        "startTime": 0,
+        "endTime": 0.97,
+        "duration": 0.97,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "He found joy again.",
+        "startTime": 0.97,
+        "endTime": 2.388,
+        "duration": 1.418,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "He thought, “I am not alone.",
+        "startTime": 2.388,
+        "endTime": 4.628,
+        "duration": 2.24,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "We are all climbing together.”\n\nIn the months that followed, Lucas trained hard.",
+        "startTime": 4.628,
+        "endTime": 10.749,
+        "duration": 6.121,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "He joined a mountaineering club. He learned to ice climb. He faced many challenges. Sometimes he fell.",
+    "sentences": [
+      "He joined a mountaineering club.",
+      "He learned to ice climb.",
+      "He faced many challenges.",
+      "Sometimes he fell."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_16.mp3",
+    "duration": 6.867937,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He joined a mountaineering club.",
+        "startTime": 0,
+        "endTime": 2.22,
+        "duration": 2.22,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "He learned to ice climb.",
+        "startTime": 2.22,
+        "endTime": 3.885,
+        "duration": 1.665,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "He faced many challenges.",
+        "startTime": 3.885,
+        "endTime": 5.619,
+        "duration": 1.734,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "Sometimes he fell.",
+        "startTime": 5.619,
+        "endTime": 6.868,
+        "duration": 1.249,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "Sometimes he felt afraid. He thought, “What if I cannot do this?” But he never gave up. His friends helped him. They yelled encouragement.",
+    "sentences": [
+      "Sometimes he felt afraid.",
+      "He thought, “What if I cannot do this?” But he never gave up.",
+      "His friends helped him.",
+      "They yelled encouragement."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_17.mp3",
+    "duration": 9.85771,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Sometimes he felt afraid.",
+        "startTime": 0,
+        "endTime": 1.798,
+        "duration": 1.798,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "He thought, “What if I cannot do this?” But he never gave up.",
+        "startTime": 1.798,
+        "endTime": 6.334,
+        "duration": 4.536,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "His friends helped him.",
+        "startTime": 6.334,
+        "endTime": 7.988,
+        "duration": 1.654,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "They yelled encouragement.",
+        "startTime": 7.988,
+        "endTime": 9.858,
+        "duration": 1.87,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "They said, \"You can do it, Lucas!\" Their words made him strong. He practiced every week. He learned how to find holds on the rock. He learned how to listen to the sounds of climbing.",
+    "sentences": [
+      "They said, \"You can do it, Lucas!\" Their words made him strong.",
+      "He practiced every week.",
+      "He learned how to find holds on the rock.",
+      "He learned how to listen to the sounds of climbing."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_18.mp3",
+    "duration": 14.068367,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They said, \"You can do it, Lucas!\" Their words made him strong.",
+        "startTime": 0,
+        "endTime": 5.146,
+        "duration": 5.146,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "He practiced every week.",
+        "startTime": 5.146,
+        "endTime": 6.992,
+        "duration": 1.846,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "He learned how to find holds on the rock.",
+        "startTime": 6.992,
+        "endTime": 10.146,
+        "duration": 3.154,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "He learned how to listen to the sounds of climbing.",
+        "startTime": 10.146,
+        "endTime": 14.068,
+        "duration": 3.923,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "He was getting better. Lucas began to dream of climbing Mount Everest. People told him, \"You cannot do that. It is too dangerous.\" But Lucas remembered his mother's words.",
+    "sentences": [
+      "He was getting better.",
+      "Lucas began to dream of climbing Mount Everest.",
+      "People told him, \"You cannot do that.",
+      "It is too dangerous.\" But Lucas remembered his mother's words."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_19.mp3",
+    "duration": 13.755057,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He was getting better.",
+        "startTime": 0,
+        "endTime": 1.782,
+        "duration": 1.782,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "Lucas began to dream of climbing Mount Everest.",
+        "startTime": 1.782,
+        "endTime": 5.588,
+        "duration": 3.806,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "People told him, \"You cannot do that.",
+        "startTime": 5.588,
+        "endTime": 8.734,
+        "duration": 3.146,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "It is too dangerous.\" But Lucas remembered his mother's words.",
+        "startTime": 8.734,
+        "endTime": 13.755,
+        "duration": 5.021,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "\"You are strong.\" He knew he could face the mountain. He wanted to show everyone that blind climbers could reach the top. He thought, “I want to show them I am not afraid.”\n\nLucas trained for months. He prepared himself.",
+    "sentences": [
+      "\"You are strong.\" He knew he could face the mountain.",
+      "He wanted to show everyone that blind climbers could reach the top.",
+      "He thought, “I want to show them I am not afraid.”\n\nLucas trained for months.",
+      "He prepared himself."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_20.mp3",
+    "duration": 16.246916,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "\"You are strong.\" He knew he could face the mountain.",
+        "startTime": 0,
+        "endTime": 3.932,
+        "duration": 3.932,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "He wanted to show everyone that blind climbers could reach the top.",
+        "startTime": 3.932,
+        "endTime": 8.902,
+        "duration": 4.97,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "He thought, “I want to show them I am not afraid.”\n\nLucas trained for months.",
+        "startTime": 8.902,
+        "endTime": 14.763,
+        "duration": 5.862,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "He prepared himself.",
+        "startTime": 14.763,
+        "endTime": 16.247,
+        "duration": 1.484,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "He learned about the mountain. He listened to his guides. They practiced climbing together. They taught him how to use ropes and harnesses.",
+    "sentences": [
+      "He learned about the mountain.",
+      "He listened to his guides.",
+      "They practiced climbing together.",
+      "They taught him how to use ropes and harnesses."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_21.mp3",
+    "duration": 8.713333,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He learned about the mountain.",
+        "startTime": 0,
+        "endTime": 1.922,
+        "duration": 1.922,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "He listened to his guides.",
+        "startTime": 1.922,
+        "endTime": 3.588,
+        "duration": 1.666,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "They practiced climbing together.",
+        "startTime": 3.588,
+        "endTime": 5.702,
+        "duration": 2.114,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "They taught him how to use ropes and harnesses.",
+        "startTime": 5.702,
+        "endTime": 8.713,
+        "duration": 3.011,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "He felt ready. But self-doubt crept in. \"What if I fail?\" he thought. \"What if I am not good enough?\" He had to fight these thoughts.",
+    "sentences": [
+      "He felt ready.",
+      "But self-doubt crept in.",
+      "\"What if I fail?\" he thought.",
+      "\"What if I am not good enough?\" He had to fight these thoughts."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_22.mp3",
+    "duration": 11.295442,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt ready.",
+        "startTime": 0,
+        "endTime": 1.216,
+        "duration": 1.216,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "But self-doubt crept in.",
+        "startTime": 1.216,
+        "endTime": 3.302,
+        "duration": 2.085,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "\"What if I fail?\" he thought.",
+        "startTime": 3.302,
+        "endTime": 5.821,
+        "duration": 2.52,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "\"What if I am not good enough?\" He had to fight these thoughts.",
+        "startTime": 5.821,
+        "endTime": 11.295,
+        "duration": 5.474,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "He remembered, \"What’s within you is stronger than what’s in your way.\"\n\nThe day to climb Everest arrived. Lucas stood at the base of the mountain. He looked up, even though he could not see it. It was huge and scary.",
+    "sentences": [
+      "He remembered, \"What’s within you is stronger than what’s in your way.\"\n\nThe day to climb Everest arrived.",
+      "Lucas stood at the base of the mountain.",
+      "He looked up, even though he could not see it.",
+      "It was huge and scary."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_23.mp3",
+    "duration": 16.802857,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He remembered, \"What’s within you is stronger than what’s in your way.\"\n\nThe day to climb Everest arrived.",
+        "startTime": 0,
+        "endTime": 8.324,
+        "duration": 8.324,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "Lucas stood at the base of the mountain.",
+        "startTime": 8.324,
+        "endTime": 11.409,
+        "duration": 3.085,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "He looked up, even though he could not see it.",
+        "startTime": 11.409,
+        "endTime": 15.106,
+        "duration": 3.697,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "It was huge and scary.",
+        "startTime": 15.106,
+        "endTime": 16.803,
+        "duration": 1.697,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "He felt the cold wind on his face. It bit his skin. His heart raced. \"I can do this,\" he said to himself.",
+    "sentences": [
+      "He felt the cold wind on his face.",
+      "It bit his skin.",
+      "His heart raced.",
+      "\"I can do this,\" he said to himself."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_24.mp3",
+    "duration": 8.010113,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt the cold wind on his face.",
+        "startTime": 0,
+        "endTime": 2.62,
+        "duration": 2.62,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "It bit his skin.",
+        "startTime": 2.62,
+        "endTime": 3.853,
+        "duration": 1.233,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "His heart raced.",
+        "startTime": 3.853,
+        "endTime": 5.086,
+        "duration": 1.233,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "\"I can do this,\" he said to himself.",
+        "startTime": 5.086,
+        "endTime": 8.01,
+        "duration": 2.924,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "The team began to climb. They moved slowly and carefully. Lucas listened to the sounds of the mountain. He felt the ice under his hands and feet.",
+    "sentences": [
+      "The team began to climb.",
+      "They moved slowly and carefully.",
+      "Lucas listened to the sounds of the mountain.",
+      "He felt the ice under his hands and feet."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_25.mp3",
+    "duration": 9.916145,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The team began to climb.",
+        "startTime": 0,
+        "endTime": 1.676,
+        "duration": 1.676,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "They moved slowly and carefully.",
+        "startTime": 1.676,
+        "endTime": 3.911,
+        "duration": 2.235,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "Lucas listened to the sounds of the mountain.",
+        "startTime": 3.911,
+        "endTime": 7.053,
+        "duration": 3.142,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "He felt the ice under his hands and feet.",
+        "startTime": 7.053,
+        "endTime": 9.916,
+        "duration": 2.863,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "He thought, “Each step is a victory.”\n\nAfter many days of climbing, they reached the summit. Lucas felt the air change. It was thin and cold. He was at the top of the world!",
+    "sentences": [
+      "He thought, “Each step is a victory.”\n\nAfter many days of climbing, they reached the summit.",
+      "Lucas felt the air change.",
+      "It was thin and cold.",
+      "He was at the top of the world!"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_26.mp3",
+    "duration": 16.087687,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He thought, “Each step is a victory.”\n\nAfter many days of climbing, they reached the summit.",
+        "startTime": 0,
+        "endTime": 8.844,
+        "duration": 8.844,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "Lucas felt the air change.",
+        "startTime": 8.844,
+        "endTime": 11.259,
+        "duration": 2.415,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "It was thin and cold.",
+        "startTime": 11.259,
+        "endTime": 13.209,
+        "duration": 1.95,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "He was at the top of the world!",
+        "startTime": 13.209,
+        "endTime": 16.088,
+        "duration": 2.879,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "He raised his arms. \"I did it!\" he shouted. His friends cheered. They hugged him tightly.",
+    "sentences": [
+      "He raised his arms.",
+      "\"I did it!\" he shouted.",
+      "His friends cheered.",
+      "They hugged him tightly."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_27.mp3",
+    "duration": 6.868662,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He raised his arms.",
+        "startTime": 0,
+        "endTime": 1.517,
+        "duration": 1.517,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "\"I did it!\" he shouted.",
+        "startTime": 1.517,
+        "endTime": 3.354,
+        "duration": 1.837,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "His friends cheered.",
+        "startTime": 3.354,
+        "endTime": 4.952,
+        "duration": 1.597,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "They hugged him tightly.",
+        "startTime": 4.952,
+        "endTime": 6.869,
+        "duration": 1.917,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "Lucas felt joy in his heart. He thought of his mother. He knew she was proud. He had shown everyone that blind climbers can reach their dreams.",
+    "sentences": [
+      "Lucas felt joy in his heart.",
+      "He thought of his mother.",
+      "He knew she was proud.",
+      "He had shown everyone that blind climbers can reach their dreams."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_28.mp3",
+    "duration": 10.348322,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Lucas felt joy in his heart.",
+        "startTime": 0,
+        "endTime": 2.07,
+        "duration": 2.07,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "He thought of his mother.",
+        "startTime": 2.07,
+        "endTime": 3.918,
+        "duration": 1.848,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "He knew she was proud.",
+        "startTime": 3.918,
+        "endTime": 5.544,
+        "duration": 1.626,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "He had shown everyone that blind climbers can reach their dreams.",
+        "startTime": 5.544,
+        "endTime": 10.348,
+        "duration": 4.805,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "He thought, “I did this for her.”\n\nBut Lucas did not stop there. He wanted to climb more mountains. He completed the Seven Summits. This is when climbers reach the highest mountain on each continent.",
+    "sentences": [
+      "He thought, “I did this for her.”\n\nBut Lucas did not stop there.",
+      "He wanted to climb more mountains.",
+      "He completed the Seven Summits.",
+      "This is when climbers reach the highest mountain on each continent."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_29.mp3",
+    "duration": 13.912721,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He thought, “I did this for her.”\n\nBut Lucas did not stop there.",
+        "startTime": 0,
+        "endTime": 4.644,
+        "duration": 4.644,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "He wanted to climb more mountains.",
+        "startTime": 4.644,
+        "endTime": 7.031,
+        "duration": 2.387,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "He completed the Seven Summits.",
+        "startTime": 7.031,
+        "endTime": 9.208,
+        "duration": 2.177,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "This is when climbers reach the highest mountain on each continent.",
+        "startTime": 9.208,
+        "endTime": 13.913,
+        "duration": 4.705,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "He felt strong and happy. He wanted to help others. He wanted to show them that they could do anything too. He thought, “If I can climb, they can too.”\n\nSo, Lucas founded a nonprofit.",
+    "sentences": [
+      "He felt strong and happy.",
+      "He wanted to help others.",
+      "He wanted to show them that they could do anything too.",
+      "He thought, “If I can climb, they can too.”\n\nSo, Lucas founded a nonprofit."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_30.mp3",
+    "duration": 13.787415,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt strong and happy.",
+        "startTime": 0,
+        "endTime": 1.852,
+        "duration": 1.852,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "He wanted to help others.",
+        "startTime": 1.852,
+        "endTime": 3.705,
+        "duration": 1.852,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "He wanted to show them that they could do anything too.",
+        "startTime": 3.705,
+        "endTime": 7.78,
+        "duration": 4.075,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "He thought, “If I can climb, they can too.”\n\nSo, Lucas founded a nonprofit.",
+        "startTime": 7.78,
+        "endTime": 13.787,
+        "duration": 6.007,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "It was called No Barriers. He helped blind kids learn to climb. He wanted them to feel what he felt. He said, \"Going blind allowed me to start my life.\" He reminded them, \"Don't make Everest the greatest thing you ever do.\" He taught them to dream big.",
+    "sentences": [
+      "It was called No Barriers.",
+      "He helped blind kids learn to climb.",
+      "He wanted them to feel what he felt.",
+      "He said, \"Going blind allowed me to start my life.\" He reminded them, \"Don't make Everest the greatest thing you ever do.\" He taught them to dream big."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_31.mp3",
+    "duration": 20.089955,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was called No Barriers.",
+        "startTime": 0,
+        "endTime": 2.066,
+        "duration": 2.066,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "He helped blind kids learn to climb.",
+        "startTime": 2.066,
+        "endTime": 4.928,
+        "duration": 2.861,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "He wanted them to feel what he felt.",
+        "startTime": 4.928,
+        "endTime": 7.789,
+        "duration": 2.861,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "He said, \"Going blind allowed me to start my life.\" He reminded them, \"Don't make Everest the greatest thing you ever do.\" He taught them to dream big.",
+        "startTime": 7.789,
+        "endTime": 20.09,
+        "duration": 12.301,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "He said, “You are strong. You can do more than you think.”\n\nLucas's story inspired many people. He showed that disability can be an advantage. He helped others find their strength.",
+    "sentences": [
+      "He said, “You are strong.",
+      "You can do more than you think.”\n\nLucas's story inspired many people.",
+      "He showed that disability can be an advantage.",
+      "He helped others find their strength."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_32.mp3",
+    "duration": 14.279728,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He said, “You are strong.",
+        "startTime": 0,
+        "endTime": 2.146,
+        "duration": 2.146,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "You can do more than you think.”\n\nLucas's story inspired many people.",
+        "startTime": 2.146,
+        "endTime": 7.654,
+        "duration": 5.508,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "He showed that disability can be an advantage.",
+        "startTime": 7.654,
+        "endTime": 11.326,
+        "duration": 3.672,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "He helped others find their strength.",
+        "startTime": 11.326,
+        "endTime": 14.28,
+        "duration": 2.954,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "He built a community of climbers. They worked together. They trusted each other. They faced challenges.",
+    "sentences": [
+      "He built a community of climbers.",
+      "They worked together.",
+      "They trusted each other.",
+      "They faced challenges."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_33.mp3",
+    "duration": 6.909342,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He built a community of climbers.",
+        "startTime": 0,
+        "endTime": 2.28,
+        "duration": 2.28,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "They worked together.",
+        "startTime": 2.28,
+        "endTime": 3.731,
+        "duration": 1.451,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "They trusted each other.",
+        "startTime": 3.731,
+        "endTime": 5.389,
+        "duration": 1.658,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "They faced challenges.",
+        "startTime": 5.389,
+        "endTime": 6.909,
+        "duration": 1.52,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "They climbed mountains. Lucas felt proud. He thought, “Together, we can do anything.”\n\nLucas learned that life is a mountain too. There are ups and downs.",
+    "sentences": [
+      "They climbed mountains.",
+      "Lucas felt proud.",
+      "He thought, “Together, we can do anything.”\n\nLucas learned that life is a mountain too.",
+      "There are ups and downs."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_34.mp3",
+    "duration": 12.653039,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They climbed mountains.",
+        "startTime": 0,
+        "endTime": 1.882,
+        "duration": 1.882,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "Lucas felt proud.",
+        "startTime": 1.882,
+        "endTime": 3.272,
+        "duration": 1.391,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "He thought, “Together, we can do anything.”\n\nLucas learned that life is a mountain too.",
+        "startTime": 3.272,
+        "endTime": 10.69,
+        "duration": 7.417,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "There are ups and downs.",
+        "startTime": 10.69,
+        "endTime": 12.653,
+        "duration": 1.963,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "Sometimes it is hard to climb. He faced many obstacles. Sometimes he felt tired and wanted to quit. But he remembered his friends.",
+    "sentences": [
+      "Sometimes it is hard to climb.",
+      "He faced many obstacles.",
+      "Sometimes he felt tired and wanted to quit.",
+      "But he remembered his friends."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_35.mp3",
+    "duration": 9.356213,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Sometimes it is hard to climb.",
+        "startTime": 0,
+        "endTime": 2.21,
+        "duration": 2.21,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "He faced many obstacles.",
+        "startTime": 2.21,
+        "endTime": 3.978,
+        "duration": 1.768,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "Sometimes he felt tired and wanted to quit.",
+        "startTime": 3.978,
+        "endTime": 7.146,
+        "duration": 3.168,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "But he remembered his friends.",
+        "startTime": 7.146,
+        "endTime": 9.356,
+        "duration": 2.21,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "He remembered his mother. With teamwork, trust, and persistence, he knew they could reach the top. He found his purpose. He felt strong.",
+    "sentences": [
+      "He remembered his mother.",
+      "With teamwork, trust, and persistence, he knew they could reach the top.",
+      "He found his purpose.",
+      "He felt strong."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_36.mp3",
+    "duration": 9.760068,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He remembered his mother.",
+        "startTime": 0,
+        "endTime": 1.75,
+        "duration": 1.75,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "With teamwork, trust, and persistence, he knew they could reach the top.",
+        "startTime": 1.75,
+        "endTime": 7.24,
+        "duration": 5.49,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "He found his purpose.",
+        "startTime": 7.24,
+        "endTime": 8.71,
+        "duration": 1.47,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "He felt strong.",
+        "startTime": 8.71,
+        "endTime": 9.76,
+        "duration": 1.05,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "He realized he could help others find their way. In the end, Lucas's journey was not just about climbing. It was about transformation. He changed from a boy who felt trapped to a man who helps others.",
+    "sentences": [
+      "He realized he could help others find their way.",
+      "In the end, Lucas's journey was not just about climbing.",
+      "It was about transformation.",
+      "He changed from a boy who felt trapped to a man who helps others."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_37.mp3",
+    "duration": 15.047596,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He realized he could help others find their way.",
+        "startTime": 0,
+        "endTime": 3.63,
+        "duration": 3.63,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "In the end, Lucas's journey was not just about climbing.",
+        "startTime": 3.63,
+        "endTime": 8.015,
+        "duration": 4.385,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "It was about transformation.",
+        "startTime": 8.015,
+        "endTime": 10.132,
+        "duration": 2.117,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "He changed from a boy who felt trapped to a man who helps others.",
+        "startTime": 10.132,
+        "endTime": 15.048,
+        "duration": 4.915,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "He found his identity in the mountains. He found joy in helping. Lucas knew that what’s within you is stronger than what’s in your way. And he wanted everyone to feel that strength too.",
+    "sentences": [
+      "He found his identity in the mountains.",
+      "He found joy in helping.",
+      "Lucas knew that what’s within you is stronger than what’s in your way.",
+      "And he wanted everyone to feel that strength too."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_38.mp3",
+    "duration": 13.908231,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He found his identity in the mountains.",
+        "startTime": 0,
+        "endTime": 2.98,
+        "duration": 2.98,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "He found joy in helping.",
+        "startTime": 2.98,
+        "endTime": 4.814,
+        "duration": 1.834,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "Lucas knew that what’s within you is stronger than what’s in your way.",
+        "startTime": 4.814,
+        "endTime": 10.164,
+        "duration": 5.349,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "And he wanted everyone to feel that strength too.",
+        "startTime": 10.164,
+        "endTime": 13.908,
+        "duration": 3.745,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 157,
+    "text": "He thought, “If I can climb this mountain, so can you. Let’s go together.”",
+    "sentences": [
+      "He thought, “If I can climb this mountain, so can you.",
+      "Let’s go together.”"
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/bundle_39.mp3",
+    "duration": 4.452018,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He thought, “If I can climb this mountain, so can you.",
+        "startTime": 0,
+        "endTime": 3.371,
+        "duration": 3.371,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "Let’s go together.”",
+        "startTime": 3.371,
+        "endTime": 4.452,
+        "duration": 1.081,
+        "sentenceIndex": 157
+      }
+    ]
+  }
+]

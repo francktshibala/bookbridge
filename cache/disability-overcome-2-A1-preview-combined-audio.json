@@ -1,0 +1,146 @@
+{
+  "storyId": "disability-overcome-2",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/disability-overcome-2/A1/preview-combined.mp3",
+    "duration": 78.046145,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 5.458,
+        "duration": 5.458,
+        "text": "About This Story\n\nIn this inspiring story, Lucas faces a big challenge."
+      },
+      {
+        "startTime": 5.458,
+        "endTime": 8.149,
+        "duration": 2.691,
+        "text": "He loses his sight when he is young."
+      },
+      {
+        "startTime": 8.149,
+        "endTime": 11.438,
+        "duration": 3.289,
+        "text": "People say he cannot do many things anymore."
+      },
+      {
+        "startTime": 11.438,
+        "endTime": 14.503,
+        "duration": 3.065,
+        "text": "But Lucas finds a way to climb mountains."
+      },
+      {
+        "startTime": 14.503,
+        "endTime": 20.857,
+        "duration": 6.355,
+        "text": "Through determination and courage, he achieves his dream of climbing Mount Everest."
+      },
+      {
+        "startTime": 20.857,
+        "endTime": 25.567,
+        "duration": 4.71,
+        "text": "A powerful message about overcoming fear and finding new paths."
+      },
+      {
+        "startTime": 25.567,
+        "endTime": 27.735,
+        "duration": 2.168,
+        "text": "Imagine you are 14 years old."
+      },
+      {
+        "startTime": 27.735,
+        "endTime": 30.052,
+        "duration": 2.317,
+        "text": "You lose your sight completely."
+      },
+      {
+        "startTime": 30.052,
+        "endTime": 32.145,
+        "duration": 2.093,
+        "text": "You cannot see your friends."
+      },
+      {
+        "startTime": 32.145,
+        "endTime": 34.836,
+        "duration": 2.691,
+        "text": "You cannot see the world around you."
+      },
+      {
+        "startTime": 34.836,
+        "endTime": 36.107,
+        "duration": 1.271,
+        "text": "You feel trapped."
+      },
+      {
+        "startTime": 36.107,
+        "endTime": 37.303,
+        "duration": 1.196,
+        "text": "You feel afraid."
+      },
+      {
+        "startTime": 37.303,
+        "endTime": 40.518,
+        "duration": 3.214,
+        "text": "Everyone says you cannot do things anymore."
+      },
+      {
+        "startTime": 40.518,
+        "endTime": 45.751,
+        "duration": 5.234,
+        "text": "But then, at age 16, Lucas read something that changed everything."
+      },
+      {
+        "startTime": 45.751,
+        "endTime": 49.041,
+        "duration": 3.289,
+        "text": "A group was taking blind kids rock climbing."
+      },
+      {
+        "startTime": 49.041,
+        "endTime": 52.031,
+        "duration": 2.99,
+        "text": "\"Who would be crazy enough?\" he thought."
+      },
+      {
+        "startTime": 52.031,
+        "endTime": 53.227,
+        "duration": 1.196,
+        "text": "So he signed up."
+      },
+      {
+        "startTime": 53.227,
+        "endTime": 58.609,
+        "duration": 5.382,
+        "text": "This decision would lead him to the top of the world's tallest mountain."
+      },
+      {
+        "startTime": 58.609,
+        "endTime": 62.422,
+        "duration": 3.812,
+        "text": "Mount Everest is the tallest mountain in the world."
+      },
+      {
+        "startTime": 62.422,
+        "endTime": 65.038,
+        "duration": 2.616,
+        "text": "Climbing it is extremely dangerous."
+      },
+      {
+        "startTime": 65.038,
+        "endTime": 70.795,
+        "duration": 5.757,
+        "text": "Most climbers need perfect vision to navigate ice, snow, and deep cracks."
+      },
+      {
+        "startTime": 70.795,
+        "endTime": 78.046,
+        "duration": 7.251,
+        "text": "This story takes place in a world where people believed blind climbers could never reach the top."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-10T23:32:46.526Z",
+  "timingMethod": "enhanced-timing-v3"
+}

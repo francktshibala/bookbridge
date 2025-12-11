@@ -240,6 +240,78 @@ Transform sources through:
 
 ---
 
+### **5-Collection Split Strategy (After Phase 2+3 Completion)**
+
+**Timeline:** After Phase 2+3 completion (26-39 total stories), split "Modern Voices" into 5 themed collections.
+
+**Story Count Analysis:**
+- Phase 1: 12 stories (completed)
+- Phase 2: 9-17 stories
+- Phase 3: 5-10 stories
+- **Total: 26-39 stories** (sufficient for 5 collections with 5-6 stories each)
+
+**Recommended 5 Collections:**
+
+**1. "Starting Over"** (5-6 stories)
+- Themes: Refugee Journey, Second Chance, Single Parent Rising, Age Defiance
+- Appeal: Fresh starts, rebuilding, hope for new beginnings
+- Stories: refugee-journey-1, refugee-journey-2, second-chance-1, + single parent stories, + age defiance stories
+
+**2. "Breaking Barriers"** (5-6 stories)
+- Themes: Disability Overcome, Medical Crisis Overcome, Workplace Discrimination Overcome, First-Gen Success
+- Appeal: Overcoming obstacles, proving doubters wrong, resilience
+- Stories: disability-overcome-1, + medical crisis stories, + workplace discrimination stories, teaching-dad-to-read, immigrant-entrepreneur
+
+**3. "Finding Home"** (5-6 stories)
+- Themes: Community Builder, Cultural Bridge, Lost Heritage Reclaimed, Romantic Love Across Cultures
+- Appeal: Belonging, connection, identity, building community
+- Stories: community-builder-1, community-builder-2, + cultural bridge stories, + lost heritage stories, + romantic love stories
+
+**4. "Building Dreams"** (5-6 stories)
+- Themes: Career Pivot, Artistic Breakthrough, First-Gen Success
+- Appeal: Following passion, professional transformation, achieving goals
+- Stories: career-pivot-1, career-pivot-2, + artistic breakthrough stories, teaching-dad-to-read, immigrant-entrepreneur
+
+**5. "Making a Difference"** (5-6 stories)
+- Themes: Grief to Purpose, Youth Activism, Environmental Hero, Mentor-Student Bond
+- Appeal: Impact, purpose, legacy, helping others
+- Stories: + grief to purpose stories, + youth activism stories, + environmental hero stories, + mentor-student stories
+
+**Why These Names Work:**
+- ✅ Action-oriented verbs (Starting, Breaking, Finding, Building, Making)
+- ✅ Emotionally resonant and aspirational
+- ✅ Clear value proposition for each collection
+- ✅ Broad enough to include multiple themes
+- ✅ ESL-friendly language (simple, clear)
+
+**Implementation Steps (After Phase 2+3 Completion):**
+
+1. **Create 5 New Collections in Database:**
+   - Create FeaturedCollection records for: "Starting Over", "Breaking Barriers", "Finding Home", "Building Dreams", "Making a Difference"
+   - Set appropriate metadata (description, gradient colors, etc.)
+
+2. **Reorganize Story Assignments:**
+   - Remove stories from "Modern Voices" collection
+   - Assign stories to appropriate new collections based on theme mapping above
+   - Update FeaturedBookMembership records (collectionId, position)
+
+3. **Update Frontend Config:**
+   - Update `lib/config/books.ts` if needed for collection display
+   - Verify collection filtering works correctly
+
+4. **Update Collection Metadata:**
+   - Add descriptions for each collection
+   - Set visual identifiers (gradients, icons if applicable)
+
+5. **Test & Validate:**
+   - Verify all stories appear in correct collections
+   - Test collection filtering in catalog
+   - Ensure no stories are orphaned
+
+**Timeline:** Execute after Phase 2+3 completion (when you have 26-39 total stories).
+
+---
+
 ### **Why Focus on Modern Stories**
 
 **Problem:** Classic Project Gutenberg stories may feel outdated and less relevant to modern ESL learners.
@@ -1229,6 +1301,12 @@ Transform sources through:
   - **Length:** 50-100 words (1-2 paragraphs)
   - **Style:** Emotional, engaging, creates curiosity
   - **Elements:** Struggle/challenge → "But then..." → creates desire to continue
+  - **🚨 CRITICAL: Character Names (MANDATORY):**
+    - **DO NOT use real names from sources** (e.g., NOT Erik Weihenmayer, NOT Mandy Harvey)
+    - **Use generic names** that fit story context (e.g., Lucas, Anna, Emma, Oliver, Thomas for European contexts)
+    - **Check character-names-tracker.json** to avoid repeating: Maria, David, Sofia, Carlos, Mia, Amina, Rami, Solomon, Helen
+    - **Why:** Avoids copyright violations; aligns with fair use for transformative works
+    - **Reference:** See Step 2.6 for complete character naming guidelines
   - Save to: `cache/{story-id}-hook.txt`
   - **Note:** This will be combined with preview and background in Step 7 for unified intro section
   - **Why:** Grabs attention immediately, creates emotional connection

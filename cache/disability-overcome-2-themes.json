@@ -1,0 +1,110 @@
+{
+  "themes": [
+    "disability overcome",
+    "visual impairment",
+    "mountaineering",
+    "adaptation",
+    "persistence",
+    "identity transformation",
+    "teamwork",
+    "helping others",
+    "building new life"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Diagnosis of juvenile retinoschisis at age 4",
+      "emotionalWeight": "high",
+      "section": "Diagnosis & Slow Loss"
+    },
+    {
+      "moment": "Going completely blind by age 14",
+      "emotionalWeight": "high",
+      "section": "Diagnosis & Slow Loss"
+    },
+    {
+      "moment": "Mother's death at age 16",
+      "emotionalWeight": "high",
+      "section": "Finding Identity Through Struggle"
+    },
+    {
+      "moment": "Breakthrough in wrestling as a blind athlete",
+      "emotionalWeight": "medium",
+      "section": "Finding Identity Through Struggle"
+    },
+    {
+      "moment": "Rock climbing revelation at age 16",
+      "emotionalWeight": "high",
+      "section": "Finding Identity Through Struggle"
+    },
+    {
+      "moment": "Summiting Mount Everest in 2001",
+      "emotionalWeight": "high",
+      "section": "Everest - The Impossible Dream"
+    },
+    {
+      "moment": "Completing the Seven Summits",
+      "emotionalWeight": "medium",
+      "section": "Building Skills & Vision"
+    },
+    {
+      "moment": "Founding No Barriers nonprofit in 2005",
+      "emotionalWeight": "medium",
+      "section": "Building Skills & Vision"
+    }
+  ],
+  "facts": {
+    "dates": [
+      "September 23, 1968",
+      "1972 (diagnosis)",
+      "2001 (Everest summit)",
+      "2008 (Seven Summits completion)",
+      "2005 (No Barriers founded)"
+    ],
+    "locations": [
+      "Princeton, New Jersey",
+      "Coral Gables, Florida",
+      "Hong Kong",
+      "Connecticut",
+      "Nepal (Everest)",
+      "Various locations for Seven Summits"
+    ],
+    "achievements": [
+      "First blind person to summit Mount Everest",
+      "Completed Seven Summits",
+      "Kayaked Grand Canyon 277 miles",
+      "Author of three books including 'Touch the Top of the World'"
+    ]
+  },
+  "storyArc": {
+    "struggle": [
+      "Diagnosis of juvenile retinoschisis",
+      "Going blind at age 14",
+      "Mother's death"
+    ],
+    "perseverance": [
+      "Wrestling breakthrough",
+      "Rock climbing revelation",
+      "Training for Everest"
+    ],
+    "breakthrough": [
+      "Summiting Mount Everest",
+      "Completing the Seven Summits",
+      "Founding No Barriers nonprofit"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Universal barrier metaphor",
+    "Problem-solving focus",
+    "Teamwork emphasis",
+    "Growth mindset",
+    "Reframing disability as advantage",
+    "Multiple dramatic arcs",
+    "Helping others focus",
+    "Quotable philosophy"
+  ],
+  "keyQuotes": [
+    "What's Within You is Stronger Than What's in Your Way",
+    "Don't make Everest the greatest thing you ever do",
+    "Going blind allowed me to start my life"
+  ]
+}
