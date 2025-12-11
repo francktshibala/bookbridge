@@ -1,0 +1,123 @@
+{
+  "storyId": "cultural-bridge-1",
+  "theme": "Cultural Bridge - Navigating Identity Between Two Cultures",
+  "sources": [
+    "CanCulture Magazine - Filipino-Canadian narrative (9.5/10)",
+    "NextShark - Chinese-NZ 'Banana' story (9.5/10)",
+    "NPR - Jhumpa Lahiri interview (9/10)",
+    "Bree Zhang blog - Chinese-American journey (8.5/10)",
+    "Land of Marvels - Third Culture Kid in Saudi Arabia (8.5/10)"
+  ],
+
+  "emotionalArc": {
+    "struggle": "Early awareness of being different (age 3-5), shame of parents' accents/traditional ways, visible markers setting family apart",
+    "crisis": "Overt racism incidents, parent being disrespected at work, choosing to hide cultural identity to fit in",
+    "perseverance": "Code-switching between cultures, performing 'whiteness,' caught between 'not enough' and 'too much,' trying desperately to belong",
+    "awakening": "Discrimination incident forces recognition of reality, history lesson about racism, or finding community of others who share experience",
+    "breakthrough": "Claiming real cultural name/identity, accepting both cultures create unique 'third culture,' finding belonging in hybrid identity, reconnecting with heritage"
+  },
+
+  "keyEmotionalMoments": [
+    {
+      "moment": "Dad's boss talks down to him at work; all dad can do is smile and apologize",
+      "emotionalWeight": "very-high",
+      "source": "Filipino-Canadian narrative",
+      "eslResonance": "Power dynamics, workplace discrimination, parent's silent suffering"
+    },
+    {
+      "moment": "Age 3 at preschool - throws fit if grandfather tries to leave because 'I knew I was different'",
+      "emotionalWeight": "very-high",
+      "source": "Chinese-NZ narrative",
+      "eslResonance": "Early awareness of not belonging, isolation, fear of being alone in difference"
+    },
+    {
+      "moment": "Man refuses paper delivery: 'He doesn't like Chinese people'",
+      "emotionalWeight": "very-high",
+      "source": "Chinese-NZ narrative",
+      "eslResonance": "First overt racism experience, shattering innocence, direct rejection"
+    },
+    {
+      "moment": "Sales clerks talk to child instead of parents (assuming parents don't understand English)",
+      "emotionalWeight": "high",
+      "source": "Jhumpa Lahiri interview",
+      "eslResonance": "Parents invisible/dismissed, child as translator/spokesperson, humiliation"
+    },
+    {
+      "moment": "Mother decides what food she can't bring to work because it 'smells weird' to American coworkers",
+      "emotionalWeight": "high",
+      "source": "Bree Zhang blog",
+      "eslResonance": "Cultural shame internalized, traditional food as source of embarrassment"
+    },
+    {
+      "moment": "Age 11 leaving childhood home - 'I knew I was saying goodbye forever'",
+      "emotionalWeight": "very-high",
+      "source": "Third Culture Kid narrative",
+      "eslResonance": "Uprooting, permanent loss, grieving place that formed you"
+    },
+    {
+      "moment": "Calling herself 'banana' - yellow outside, white inside - and being proud of it",
+      "emotionalWeight": "medium-high",
+      "source": "Chinese-NZ & Bree Zhang",
+      "eslResonance": "Self-rejection, internalized racism, pride in assimilation"
+    },
+    {
+      "moment": "Chinese students in NYC immediately welcoming her - 'I realized I wouldn't be alone'",
+      "emotionalWeight": "medium-high",
+      "source": "Chinese-NZ narrative",
+      "eslResonance": "Finding community, instant belonging, acceptance without explanation"
+    },
+    {
+      "moment": "Claiming real cultural name publicly for first time (instead of Americanized version)",
+      "emotionalWeight": "high",
+      "source": "Bree Zhang blog",
+      "eslResonance": "Reclaiming identity, courage to be authentic, pride in heritage"
+    },
+    {
+      "moment": "'I felt more embraced in my birth country than in the country of my passport'",
+      "emotionalWeight": "high",
+      "source": "Third Culture Kid narrative",
+      "eslResonance": "Irony of belonging, questioning 'home,' compassion from unexpected place"
+    }
+  ],
+
+  "commonThemes": [
+    "Visible markers of difference (accents, appearance, traditional clothing/food)",
+    "Shame of parents (code-switching, being talked down to, not fitting in)",
+    "Double bind: 'not ethnic enough' vs 'too ethnic' (FOB vs whitewashed)",
+    "Hiding culture to fit in (refusing traditional food, Americanizing name, avoiding language)",
+    "Ditching ethnic friends for white friends",
+    "Awakening through discrimination or finding community",
+    "Journey from self-rejection to self-acceptance",
+    "Creating 'third culture' - neither fully one nor the other, but uniquely both"
+  ],
+
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers (parents' accents mark them, child as translator)",
+    "Belonging & Identity (not fully belonging anywhere, caught between worlds)",
+    "Overcoming 'Not Good Enough' (shame of heritage → pride)",
+    "Connection Across Differences (finding others who share bicultural experience)",
+    "Building New Life (parents immigrating, children navigating hybrid identity)",
+    "Intergenerational Gap (parents' dreams vs child's reality, cultural disconnect)"
+  ],
+
+  "characterProfile": {
+    "genericName": "To be chosen from available names (avoid Maria, David, Sofia, Carlos, Mia, Lucas, Rachel, Emma)",
+    "culturalBackground": "Composite from 5 sources (Filipino, Chinese, Indian, Arab backgrounds)",
+    "ageRange": "Story spans childhood (age 3-5) through young adulthood (college age)",
+    "familyDynamics": "Parents immigrated for better life, work multiple jobs, want child to succeed",
+    "internalConflict": "Caught between loving parents and being ashamed of what makes them different",
+    "externalConflict": "Racism, microaggressions, pressure to assimilate vs. preserve heritage",
+    "transformation": "Shame and hiding → awareness and anger → acceptance and pride"
+  },
+
+  "targetLength": "20 minutes A1 level (~1,800-2,200 words)",
+
+  "validationPassed": {
+    "step025": true,
+    "step05": true,
+    "textAFriendTest": true,
+    "emotionalMomentsCount": 10,
+    "eslMultipliers": 6,
+    "clearArc": true
+  }
+}

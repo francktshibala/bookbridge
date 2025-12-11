@@ -1,0 +1,206 @@
+{
+  "storyId": "cultural-bridge-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/preview-combined.mp3",
+    "duration": 111.87737,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 4.55,
+        "duration": 4.55,
+        "text": "In this inspiring story, Mei grows up between two cultures."
+      },
+      {
+        "startTime": 4.55,
+        "endTime": 8.727,
+        "duration": 4.177,
+        "text": "She feels different because of her parents' immigration."
+      },
+      {
+        "startTime": 8.727,
+        "endTime": 12.53,
+        "duration": 3.804,
+        "text": "Mei learns about bicultural identity and belonging."
+      },
+      {
+        "startTime": 12.53,
+        "endTime": 15.887,
+        "duration": 3.356,
+        "text": "She goes from shame to pride in her heritage."
+      },
+      {
+        "startTime": 15.887,
+        "endTime": 23.271,
+        "duration": 7.384,
+        "text": "Through finding community and accepting who she is, Mei learns to embrace her place in the world."
+      },
+      {
+        "startTime": 23.271,
+        "endTime": 31.104,
+        "duration": 7.833,
+        "text": "This story gives a powerful message about identity, belonging, and being a bridge between two worlds."
+      },
+      {
+        "startTime": 31.104,
+        "endTime": 37.443,
+        "duration": 6.339,
+        "text": "Imagine being three years old and knowing you are different from everyone around you."
+      },
+      {
+        "startTime": 37.443,
+        "endTime": 42.515,
+        "duration": 5.072,
+        "text": "Mei stood in her new preschool and looked at all the other children."
+      },
+      {
+        "startTime": 42.515,
+        "endTime": 44.006,
+        "duration": 1.492,
+        "text": "They were all white."
+      },
+      {
+        "startTime": 44.006,
+        "endTime": 45.722,
+        "duration": 1.715,
+        "text": "They all spoke English."
+      },
+      {
+        "startTime": 45.722,
+        "endTime": 48.183,
+        "duration": 2.461,
+        "text": "Mei had dark hair and brown eyes."
+      },
+      {
+        "startTime": 48.183,
+        "endTime": 51.241,
+        "duration": 3.058,
+        "text": "She spoke Cantonese with her grandfather."
+      },
+      {
+        "startTime": 51.241,
+        "endTime": 56.537,
+        "duration": 5.296,
+        "text": "When her grandfather tried to leave that first morning, Mei screamed."
+      },
+      {
+        "startTime": 56.537,
+        "endTime": 58.401,
+        "duration": 1.865,
+        "text": "She threw a terrible fit."
+      },
+      {
+        "startTime": 58.401,
+        "endTime": 62.951,
+        "duration": 4.55,
+        "text": "Because she knew if he left, she would be completely alone."
+      },
+      {
+        "startTime": 62.951,
+        "endTime": 64.667,
+        "duration": 1.715,
+        "text": "Her grandfather stayed."
+      },
+      {
+        "startTime": 64.667,
+        "endTime": 69.068,
+        "duration": 4.401,
+        "text": "Every day for two years, he stayed at preschool with her."
+      },
+      {
+        "startTime": 69.068,
+        "endTime": 70.559,
+        "duration": 1.492,
+        "text": "This is Mei's story."
+      },
+      {
+        "startTime": 70.559,
+        "endTime": 73.692,
+        "duration": 3.132,
+        "text": "It is about growing up between two worlds."
+      },
+      {
+        "startTime": 73.692,
+        "endTime": 77.421,
+        "duration": 3.729,
+        "text": "About feeling shame for the people she loved most."
+      },
+      {
+        "startTime": 77.421,
+        "endTime": 80.926,
+        "duration": 3.505,
+        "text": "About learning that she did not have to choose."
+      },
+      {
+        "startTime": 80.926,
+        "endTime": 87.639,
+        "duration": 6.712,
+        "text": "About discovering that being caught between two cultures could create something beautiful."
+      },
+      {
+        "startTime": 87.639,
+        "endTime": 88.683,
+        "duration": 1.044,
+        "text": "Something new."
+      },
+      {
+        "startTime": 88.683,
+        "endTime": 89.354,
+        "duration": 0.671,
+        "text": "A bridge."
+      },
+      {
+        "startTime": 89.354,
+        "endTime": 93.083,
+        "duration": 3.729,
+        "text": "Many children grow up caught between two cultures."
+      },
+      {
+        "startTime": 93.083,
+        "endTime": 95.768,
+        "duration": 2.685,
+        "text": "Their parents come from one country."
+      },
+      {
+        "startTime": 95.768,
+        "endTime": 98.527,
+        "duration": 2.759,
+        "text": "But the children are born in another."
+      },
+      {
+        "startTime": 98.527,
+        "endTime": 102.331,
+        "duration": 3.804,
+        "text": "These children often feel like they belong nowhere."
+      },
+      {
+        "startTime": 102.331,
+        "endTime": 104.718,
+        "duration": 2.387,
+        "text": "They feel too different at home."
+      },
+      {
+        "startTime": 104.718,
+        "endTime": 107.253,
+        "duration": 2.536,
+        "text": "They feel too different at school."
+      },
+      {
+        "startTime": 107.253,
+        "endTime": 109.715,
+        "duration": 2.461,
+        "text": "This story takes place in Canada."
+      },
+      {
+        "startTime": 109.715,
+        "endTime": 111.877,
+        "duration": 2.163,
+        "text": "But it could happen anywhere."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-11T08:05:57.668Z",
+  "timingMethod": "enhanced-timing-v3"
+}

@@ -256,15 +256,54 @@ Verify story meets ALL criteria:
 - [ ] Estimate audio costs (number of bundles × cost per bundle)
 
 #### **Step 0.75: Find Source Material**
-**⚠️ CRITICAL WORKFLOW:**
-1. **Claude Code Finds URLs:** Search web and find article URLs
-2. **User Copies Articles:** Manually copy full text from browser (bypasses copyright filters)
-3. **User Pastes to Claude:** Paste article content in chat
-4. **Claude Saves Files:** Save to `cache/{story-id}-source-{number}.txt`
+**⚠️ PROVEN WORKFLOW (Used for all 14 stories):**
 
-**Why Manual Copy/Paste:** Automatic `web_fetch` triggers copyright blocks. Manual copy works 100%.
+**Division of Labor:**
+- **Claude in Browser (User):** Research expert - finds and evaluates sources
+- **Claude Code (Me):** Implementation expert - saves sources, creates story, generates audio
 
-**Verify:** Check that 3+ sources are saved in cache directory.
+**Workflow:**
+1. **Claude Code provides requirements to User:**
+   - Story theme/category (e.g., "Cultural Bridge #1")
+   - What to look for (e.g., "immigrant/bicultural identity, navigating two cultures")
+   - What to avoid (themes already covered)
+   - Source types preferred (long-form journalism, first-person essays, oral histories)
+
+2. **User (Claude in Browser) researches sources:**
+   - Multiple targeted searches with emotional keywords ("first-person," "my journey," "I grew up between")
+   - Prioritizes: CNN, NPR, CBC, ProPublica, StoryCorps, The Guardian, Medium essays, TED talks
+   - Looks for clear narrative arcs (struggle → crisis → transformation)
+   - Avoids fact-driven/Wikipedia-style content
+
+3. **User provides back:**
+   - URL + publication name + brief description (2-3 sentences)
+   - Rating potential (1-10) based on emotional depth
+   - Key emotional moments visible
+   - Target: 3-5 sources (minimum 3 for legal/thematic diversity)
+   - Aim for 2-3 flagship (9-10/10) + 1-2 supporting (8-8.5/10)
+
+4. **User manually copies article content:**
+   - Opens each URL in browser
+   - Selects all text (⌘+A or Ctrl+A)
+   - Copies (⌘+C or Ctrl+C)
+   - Pastes to Claude Code with label "SOURCE 1:", "SOURCE 2:", etc.
+
+5. **Claude Code saves files:**
+   - Save each source to `cache/files/{story-id}-source-{number}.txt`
+   - Verify 3+ sources saved
+
+**Why This Works:**
+- User's browser access bypasses copyright blocks (manual copy works 100%)
+- Claude in Browser excels at research, evaluation, pattern recognition
+- Claude Code excels at technical implementation
+- Proven with all 14 completed stories
+
+**Validation Before Sources:**
+- Story-driven NOT fact-driven (Step 0.25)
+- 5-7+ emotional moments visible (Step 0.5)
+- 3+ ESL multipliers potential
+- Clear transformation arc
+- Different angles/perspectives across sources
 
 ---
 

@@ -1,0 +1,2255 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-0.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "Mei was three years old when she knew she was different.",
+        "startTime": 0,
+        "endTime": 3.855,
+        "duration": 3.855,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "It is her first day at preschool in Toronto.",
+        "startTime": 3.855,
+        "endTime": 6.884,
+        "duration": 3.029,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "All the other children are white and play together.",
+        "startTime": 6.884,
+        "endTime": 10.394,
+        "duration": 3.511,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "They all spoke English and understood each other well.",
+        "startTime": 10.394,
+        "endTime": 14.111,
+        "duration": 3.717,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Mei has dark hair and brown eyes.",
+        "startTime": 14.111,
+        "endTime": 16.383,
+        "duration": 2.272,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "She spoke Cantonese at home with her grandpa and felt happy.",
+        "startTime": 16.383,
+        "endTime": 20.513,
+        "duration": 4.13,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 20.51288,
+    "measuredDuration": 20.51288
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-1.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "When her grandfather tried to leave, Mei got very upset.",
+        "startTime": 0,
+        "endTime": 4.578,
+        "duration": 4.578,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "She screamed and cried while holding onto his leg.",
+        "startTime": 4.578,
+        "endTime": 8.532,
+        "duration": 3.954,
+        "sentenceIndex": 7
+      },
+      {
+        "text": "She knew she would be alone if he left.",
+        "startTime": 8.532,
+        "endTime": 11.616,
+        "duration": 3.084,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "Mei feels alone because of her difference.",
+        "startTime": 11.616,
+        "endTime": 14.937,
+        "duration": 3.321,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "Her grandfather stayed in Toronto and visited Mei.",
+        "startTime": 14.937,
+        "endTime": 18.891,
+        "duration": 3.954,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "He stayed at preschool with her every day for two years.",
+        "startTime": 18.891,
+        "endTime": 23.319,
+        "duration": 4.428,
+        "sentenceIndex": 11
+      }
+    ],
+    "totalDuration": 23.31898,
+    "measuredDuration": 23.31898
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-2.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "He cannot speak any English words.",
+        "startTime": 0,
+        "endTime": 2.702,
+        "duration": 2.702,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "He was there but did not speak.",
+        "startTime": 2.702,
+        "endTime": 5.165,
+        "duration": 2.463,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "Mei is scared to be alone in a place that feels strange.",
+        "startTime": 5.165,
+        "endTime": 9.615,
+        "duration": 4.45,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "Mei's parents moved to Canada before she was born.",
+        "startTime": 9.615,
+        "endTime": 13.588,
+        "duration": 3.973,
+        "sentenceIndex": 15
+      },
+      {
+        "text": "They came from a small village in China and had little money.",
+        "startTime": 13.588,
+        "endTime": 18.435,
+        "duration": 4.847,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "They meet in English class.",
+        "startTime": 18.435,
+        "endTime": 20.581,
+        "duration": 2.145,
+        "sentenceIndex": 17
+      }
+    ],
+    "totalDuration": 20.580544,
+    "measuredDuration": 20.580544
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-3.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "They married in a small office and saved money for the future.",
+        "startTime": 0,
+        "endTime": 4.476,
+        "duration": 4.476,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "They both work full time and are very busy.",
+        "startTime": 4.476,
+        "endTime": 7.581,
+        "duration": 3.105,
+        "sentenceIndex": 19
+      },
+      {
+        "text": "Her mother cleans office buildings at night and works hard.",
+        "startTime": 7.581,
+        "endTime": 11.841,
+        "duration": 4.26,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "Her father worked in a restaurant kitchen during the day.",
+        "startTime": 11.841,
+        "endTime": 15.956,
+        "duration": 4.115,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "They left when Mei did not wake up.",
+        "startTime": 15.956,
+        "endTime": 18.483,
+        "duration": 2.527,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "They came home when she was asleep.",
+        "startTime": 18.483,
+        "endTime": 21.01,
+        "duration": 2.527,
+        "sentenceIndex": 23
+      }
+    ],
+    "totalDuration": 21.010045,
+    "measuredDuration": 21.010045
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-4.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "Her grandfather takes care of Mei and her little brother.",
+        "startTime": 0,
+        "endTime": 4.105,
+        "duration": 4.105,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "When Mei started school, she had only two friends.",
+        "startTime": 4.105,
+        "endTime": 7.856,
+        "duration": 3.751,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "Their names are Amy and Catherine.",
+        "startTime": 7.856,
+        "endTime": 10.305,
+        "duration": 2.449,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "They were the only other Asian kids in her whole grade.",
+        "startTime": 10.305,
+        "endTime": 14.265,
+        "duration": 3.961,
+        "sentenceIndex": 27
+      },
+      {
+        "text": "Mei feels safe when she is with them.",
+        "startTime": 14.265,
+        "endTime": 16.93,
+        "duration": 2.665,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "They understood the problem and found a solution.",
+        "startTime": 16.93,
+        "endTime": 20.459,
+        "duration": 3.529,
+        "sentenceIndex": 29
+      }
+    ],
+    "totalDuration": 20.459002,
+    "measuredDuration": 20.459002
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-5.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "But she does not feel comfortable with them.",
+        "startTime": 0,
+        "endTime": 3.141,
+        "duration": 3.141,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "She felt they knew something about being Chinese that she did not.",
+        "startTime": 3.141,
+        "endTime": 7.852,
+        "duration": 4.711,
+        "sentenceIndex": 31
+      },
+      {
+        "text": "They spoke Mandarin and Cantonese at home in China.",
+        "startTime": 7.852,
+        "endTime": 11.492,
+        "duration": 3.64,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "Mei's parents did not want to teach her.",
+        "startTime": 11.492,
+        "endTime": 14.347,
+        "duration": 2.855,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "They wanted her to pay attention to English.",
+        "startTime": 14.347,
+        "endTime": 17.488,
+        "duration": 3.141,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "Mei wants to fit in with her friends in Toronto.",
+        "startTime": 17.488,
+        "endTime": 20.914,
+        "duration": 3.426,
+        "sentenceIndex": 35
+      }
+    ],
+    "totalDuration": 20.914354,
+    "measuredDuration": 20.914354
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-6.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "To succeed in Canada, you need hard work and good friends.",
+        "startTime": 0,
+        "endTime": 4.557,
+        "duration": 4.557,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "At school, Mei watched the other children and smiled.",
+        "startTime": 4.557,
+        "endTime": 8.734,
+        "duration": 4.177,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "She saw what they wore.",
+        "startTime": 8.734,
+        "endTime": 10.482,
+        "duration": 1.748,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "They ate lunch together and enjoyed their food.",
+        "startTime": 10.482,
+        "endTime": 14.053,
+        "duration": 3.571,
+        "sentenceIndex": 39
+      },
+      {
+        "text": "They talked in a nice way and shared their thoughts.",
+        "startTime": 14.053,
+        "endTime": 18.004,
+        "duration": 3.951,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "She wanted to copy them well and be perfect.",
+        "startTime": 18.004,
+        "endTime": 21.347,
+        "duration": 3.343,
+        "sentenceIndex": 41
+      }
+    ],
+    "totalDuration": 21.347007,
+    "measuredDuration": 21.347007
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-7.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "When her mother said to pack rice and vegetables, Mei said no.",
+        "startTime": 0,
+        "endTime": 4.502,
+        "duration": 4.502,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "She asked for sandwiches and wanted to eat them.",
+        "startTime": 4.502,
+        "endTime": 7.872,
+        "duration": 3.369,
+        "sentenceIndex": 43
+      },
+      {
+        "text": "Mei eats plain sandwiches with cheese and peanut butter.",
+        "startTime": 7.872,
+        "endTime": 11.803,
+        "duration": 3.931,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "Nothing smelled different from what Mei knew.",
+        "startTime": 11.803,
+        "endTime": 14.961,
+        "duration": 3.159,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "There is nothing to make the other children look and stare.",
+        "startTime": 14.961,
+        "endTime": 19.103,
+        "duration": 4.142,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "At home, Mei saw her parents change a lot.",
+        "startTime": 19.103,
+        "endTime": 22.201,
+        "duration": 3.098,
+        "sentenceIndex": 47
+      }
+    ],
+    "totalDuration": 22.201134,
+    "measuredDuration": 22.201134
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-8.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "They spoke in normal voices at the dinner table.",
+        "startTime": 0,
+        "endTime": 3.406,
+        "duration": 3.406,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "They laughed loudly and had fun together.",
+        "startTime": 3.406,
+        "endTime": 6.316,
+        "duration": 2.91,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "They tell stories in Cantonese and move their hands quickly.",
+        "startTime": 6.316,
+        "endTime": 10.574,
+        "duration": 4.258,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "When the phone rang, it was her father's boss and everything changed.",
+        "startTime": 10.574,
+        "endTime": 15.62,
+        "duration": 5.047,
+        "sentenceIndex": 51
+      },
+      {
+        "text": "Her father’s voice is quiet now.",
+        "startTime": 15.62,
+        "endTime": 17.891,
+        "duration": 2.271,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "It is softer than before and feels nice.",
+        "startTime": 17.891,
+        "endTime": 20.73,
+        "duration": 2.839,
+        "sentenceIndex": 53
+      }
+    ],
+    "totalDuration": 20.729909,
+    "measuredDuration": 20.729909
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-9.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "Be more careful and pay attention to details.",
+        "startTime": 0,
+        "endTime": 3.569,
+        "duration": 3.569,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "He used easier words to help people understand.",
+        "startTime": 3.569,
+        "endTime": 7.297,
+        "duration": 3.728,
+        "sentenceIndex": 55
+      },
+      {
+        "text": "He said sorry for things that were not his fault.",
+        "startTime": 7.297,
+        "endTime": 11.184,
+        "duration": 3.887,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "When he hung up, Mei asked why he talked like that.",
+        "startTime": 11.184,
+        "endTime": 15.379,
+        "duration": 4.195,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "He said it is easier.",
+        "startTime": 15.379,
+        "endTime": 17.044,
+        "duration": 1.666,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "Mei saw the shame in his eyes and felt sad.",
+        "startTime": 17.044,
+        "endTime": 20.455,
+        "duration": 3.411,
+        "sentenceIndex": 59
+      }
+    ],
+    "totalDuration": 20.455079,
+    "measuredDuration": 20.455079
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-10.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "One day, Mei went with her parents to buy a washing machine.",
+        "startTime": 0,
+        "endTime": 4.971,
+        "duration": 4.971,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "The salesman looked at Mei's parents and then looked away.",
+        "startTime": 4.971,
+        "endTime": 9.631,
+        "duration": 4.66,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "He talked to Mei instead of someone else.",
+        "startTime": 9.631,
+        "endTime": 12.926,
+        "duration": 3.294,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "He asked her what her parents want.",
+        "startTime": 12.926,
+        "endTime": 15.738,
+        "duration": 2.812,
+        "sentenceIndex": 63
+      },
+      {
+        "text": "He asked her if they understand him.",
+        "startTime": 15.738,
+        "endTime": 18.63,
+        "duration": 2.893,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "Mei felt hot on her face.",
+        "startTime": 18.63,
+        "endTime": 20.639,
+        "duration": 2.009,
+        "sentenceIndex": 65
+      }
+    ],
+    "totalDuration": 20.639229,
+    "measuredDuration": 20.639229
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-11.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "She felt embarrassed and did not want to talk.",
+        "startTime": 0,
+        "endTime": 3.099,
+        "duration": 3.099,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "She does not do it for herself.",
+        "startTime": 3.099,
+        "endTime": 5.187,
+        "duration": 2.088,
+        "sentenceIndex": 67
+      },
+      {
+        "text": "It is for her parents in Toronto, Canada.",
+        "startTime": 5.187,
+        "endTime": 8.099,
+        "duration": 2.912,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "They stand right there and watch.",
+        "startTime": 8.099,
+        "endTime": 10.321,
+        "duration": 2.223,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "They spoke English, so they understood each other well.",
+        "startTime": 10.321,
+        "endTime": 14.176,
+        "duration": 3.855,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "The salesman treats them like they are not there.",
+        "startTime": 14.176,
+        "endTime": 17.477,
+        "duration": 3.301,
+        "sentenceIndex": 71
+      }
+    ],
+    "totalDuration": 17.476984,
+    "measuredDuration": 17.476984
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-12.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "Her mother sometimes wears traditional clothing from China.",
+        "startTime": 0,
+        "endTime": 4.152,
+        "duration": 4.152,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "Long dresses have beautiful embroidery and look very nice.",
+        "startTime": 4.152,
+        "endTime": 8.233,
+        "duration": 4.081,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "When they went out, people looked at them.",
+        "startTime": 8.233,
+        "endTime": 11.339,
+        "duration": 3.106,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "Mei started to hate those dresses and felt very unhappy.",
+        "startTime": 11.339,
+        "endTime": 15.28,
+        "duration": 3.941,
+        "sentenceIndex": 75
+      },
+      {
+        "text": "She wanted her mother to wear jeans and T-shirts like others.",
+        "startTime": 15.28,
+        "endTime": 19.572,
+        "duration": 4.293,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "She wanted her parents to speak clearly and without accents.",
+        "startTime": 19.572,
+        "endTime": 23.794,
+        "duration": 4.222,
+        "sentenceIndex": 77
+      }
+    ],
+    "totalDuration": 23.794286,
+    "measuredDuration": 23.794286
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-13.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "She wanted them to fit in and feel good.",
+        "startTime": 0,
+        "endTime": 2.663,
+        "duration": 2.663,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "She did not blend in when they did not blend in.",
+        "startTime": 2.663,
+        "endTime": 5.859,
+        "duration": 3.196,
+        "sentenceIndex": 79
+      },
+      {
+        "text": "In middle school, Mei made a choice and felt happy.",
+        "startTime": 5.859,
+        "endTime": 9.404,
+        "duration": 3.546,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "She chose to stay away from things that made her different.",
+        "startTime": 9.404,
+        "endTime": 13.333,
+        "duration": 3.928,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "She stopped speaking Cantonese and forgot the little she knew.",
+        "startTime": 13.333,
+        "endTime": 17.46,
+        "duration": 4.128,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "She does not want to go to Chinese school on Saturdays.",
+        "startTime": 17.46,
+        "endTime": 21.122,
+        "duration": 3.662,
+        "sentenceIndex": 83
+      }
+    ],
+    "totalDuration": 21.122336,
+    "measuredDuration": 21.122336
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-14.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "She spent all her time with her friends in Canada.",
+        "startTime": 0,
+        "endTime": 3.347,
+        "duration": 3.347,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "She joined the volleyball team and felt happy.",
+        "startTime": 3.347,
+        "endTime": 6.427,
+        "duration": 3.079,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "Mei got good grades in English but stopped trying in math.",
+        "startTime": 6.427,
+        "endTime": 10.309,
+        "duration": 3.883,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "Her friends call her whitewashed because she is different now.",
+        "startTime": 10.309,
+        "endTime": 14.46,
+        "duration": 4.151,
+        "sentenceIndex": 87
+      },
+      {
+        "text": "Mei felt proud when they said they don’t see her as Asian.",
+        "startTime": 14.46,
+        "endTime": 18.343,
+        "duration": 3.883,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "She calls herself a banana when she feels funny.",
+        "startTime": 18.343,
+        "endTime": 21.556,
+        "duration": 3.213,
+        "sentenceIndex": 89
+      }
+    ],
+    "totalDuration": 21.556077,
+    "measuredDuration": 21.556077
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-15.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "It is yellow on the outside.",
+        "startTime": 0,
+        "endTime": 2.188,
+        "duration": 2.188,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "It is white inside and looks nice.",
+        "startTime": 2.188,
+        "endTime": 4.845,
+        "duration": 2.657,
+        "sentenceIndex": 91
+      },
+      {
+        "text": "It was a funny joke and everyone laughed.",
+        "startTime": 4.845,
+        "endTime": 8.048,
+        "duration": 3.204,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "But it was also the truth of what Mei wanted to be.",
+        "startTime": 8.048,
+        "endTime": 12.034,
+        "duration": 3.985,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "When Mei was thirteen, she delivered newspapers to earn money.",
+        "startTime": 12.034,
+        "endTime": 17.028,
+        "duration": 4.995,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "She puts a paper in a mailbox when a man comes out.",
+        "startTime": 17.028,
+        "endTime": 21.013,
+        "duration": 3.985,
+        "sentenceIndex": 95
+      }
+    ],
+    "totalDuration": 21.013288,
+    "measuredDuration": 21.013288
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-16.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "He shook his head at her and looked unhappy.",
+        "startTime": 0,
+        "endTime": 3.548,
+        "duration": 3.548,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "Mei asked politely if you want the paper.",
+        "startTime": 3.548,
+        "endTime": 6.854,
+        "duration": 3.306,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "The man shook his head and waved her away.",
+        "startTime": 6.854,
+        "endTime": 10.24,
+        "duration": 3.386,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "The next week, an old woman waits for Mei at the house.",
+        "startTime": 10.24,
+        "endTime": 14.825,
+        "duration": 4.585,
+        "sentenceIndex": 99
+      },
+      {
+        "text": "The woman said he does not want his paper delivered.",
+        "startTime": 14.825,
+        "endTime": 19.018,
+        "duration": 4.193,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "He does not like people from China.",
+        "startTime": 19.018,
+        "endTime": 21.84,
+        "duration": 2.822,
+        "sentenceIndex": 101
+      }
+    ],
+    "totalDuration": 21.83966,
+    "measuredDuration": 21.83966
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-17.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "Mei stands frozen but still wants it.",
+        "startTime": 0,
+        "endTime": 2.87,
+        "duration": 2.87,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "She felt pain in her stomach like a punch.",
+        "startTime": 2.87,
+        "endTime": 6.129,
+        "duration": 3.258,
+        "sentenceIndex": 103
+      },
+      {
+        "text": "She wanted to cry because she felt very sad.",
+        "startTime": 6.129,
+        "endTime": 9.542,
+        "duration": 3.413,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "She felt angry and more than that.",
+        "startTime": 9.542,
+        "endTime": 12.18,
+        "duration": 2.638,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "Mei is angry at the man.",
+        "startTime": 12.18,
+        "endTime": 14.042,
+        "duration": 1.862,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "Mei is angry at herself because she made a mistake.",
+        "startTime": 14.042,
+        "endTime": 17.998,
+        "duration": 3.957,
+        "sentenceIndex": 107
+      }
+    ],
+    "totalDuration": 17.998209,
+    "measuredDuration": 17.998209
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-18.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "She tries hard to be different from who she is.",
+        "startTime": 0,
+        "endTime": 3.684,
+        "duration": 3.684,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "It did not matter at all to me.",
+        "startTime": 3.684,
+        "endTime": 6.114,
+        "duration": 2.43,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "To that man, she is always Chinese and proud.",
+        "startTime": 6.114,
+        "endTime": 9.791,
+        "duration": 3.677,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "She is always yellow on the outside and feels different.",
+        "startTime": 9.791,
+        "endTime": 14.181,
+        "duration": 4.39,
+        "sentenceIndex": 111
+      },
+      {
+        "text": "It did not matter what color she was inside or outside.",
+        "startTime": 14.181,
+        "endTime": 18.492,
+        "duration": 4.311,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "Mei took a history class in high school.",
+        "startTime": 18.492,
+        "endTime": 21.628,
+        "duration": 3.135,
+        "sentenceIndex": 113
+      }
+    ],
+    "totalDuration": 21.627551,
+    "measuredDuration": 21.627551
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-19.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "They studied how people moved to Canada in the 1920s.",
+        "startTime": 0,
+        "endTime": 3.884,
+        "duration": 3.884,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "The textbook showed old cartoons from newspapers.",
+        "startTime": 3.884,
+        "endTime": 7.476,
+        "duration": 3.591,
+        "sentenceIndex": 115
+      },
+      {
+        "text": "They showed Chinese people as bad and not good.",
+        "startTime": 7.476,
+        "endTime": 10.92,
+        "duration": 3.445,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "It is a danger to people and the world.",
+        "startTime": 10.92,
+        "endTime": 13.778,
+        "duration": 2.858,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "They showed signs that said \"No Chinese Allowed\" and the teacher talked about pay.",
+        "startTime": 13.778,
+        "endTime": 19.788,
+        "duration": 6.01,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "They were blamed for taking jobs in Canada and China.",
+        "startTime": 19.788,
+        "endTime": 23.673,
+        "duration": 3.884,
+        "sentenceIndex": 119
+      }
+    ],
+    "totalDuration": 23.672608,
+    "measuredDuration": 23.672608
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-20.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "They were hated by many people in China.",
+        "startTime": 0,
+        "endTime": 2.961,
+        "duration": 2.961,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "Mei looked at the cartoons and felt very sick.",
+        "startTime": 2.961,
+        "endTime": 6.366,
+        "duration": 3.405,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "She thinks about the newspaper man who does not like Chinese people.",
+        "startTime": 6.366,
+        "endTime": 11.399,
+        "duration": 5.033,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "Mei thought about her father and his boss on the phone.",
+        "startTime": 11.399,
+        "endTime": 15.47,
+        "duration": 4.071,
+        "sentenceIndex": 123
+      },
+      {
+        "text": "She thought about the salesman who did not see her parents.",
+        "startTime": 15.47,
+        "endTime": 19.837,
+        "duration": 4.367,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "She saw that nothing really changed for her.",
+        "startTime": 19.837,
+        "endTime": 23.094,
+        "duration": 3.257,
+        "sentenceIndex": 125
+      }
+    ],
+    "totalDuration": 23.093583,
+    "measuredDuration": 23.093583
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-21.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "The hate is quieter now but still there.",
+        "startTime": 0,
+        "endTime": 2.942,
+        "duration": 2.942,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "She is more polite than before.",
+        "startTime": 2.942,
+        "endTime": 5.223,
+        "duration": 2.28,
+        "sentenceIndex": 127
+      },
+      {
+        "text": "But she is still there.",
+        "startTime": 5.223,
+        "endTime": 6.914,
+        "duration": 1.692,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "She looked around her classroom and saw many history books.",
+        "startTime": 6.914,
+        "endTime": 11.254,
+        "duration": 4.34,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "She was the only Asian student in her class.",
+        "startTime": 11.254,
+        "endTime": 14.491,
+        "duration": 3.237,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "All her white friends sigh and shake their heads at racism.",
+        "startTime": 14.491,
+        "endTime": 18.831,
+        "duration": 4.34,
+        "sentenceIndex": 131
+      }
+    ],
+    "totalDuration": 18.830703,
+    "measuredDuration": 18.830703
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-22.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "They did not see that it was still going on.",
+        "startTime": 0,
+        "endTime": 3.525,
+        "duration": 3.525,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "It is right in front of them.",
+        "startTime": 3.525,
+        "endTime": 5.849,
+        "duration": 2.323,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "I write a letter to Mei in Toronto.",
+        "startTime": 5.849,
+        "endTime": 8.653,
+        "duration": 2.804,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "She talks to her parents in Cantonese.",
+        "startTime": 8.653,
+        "endTime": 11.698,
+        "duration": 3.045,
+        "sentenceIndex": 135
+      },
+      {
+        "text": "Mei goes to school every day.",
+        "startTime": 11.698,
+        "endTime": 14.021,
+        "duration": 2.323,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "That night, Mei went home and looked in the glass.",
+        "startTime": 14.021,
+        "endTime": 18.177,
+        "duration": 4.156,
+        "sentenceIndex": 137
+      }
+    ],
+    "totalDuration": 18.176984,
+    "measuredDuration": 18.176984
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-23.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "She spent years trying to be less Chinese and fit in.",
+        "startTime": 0,
+        "endTime": 4.016,
+        "duration": 4.016,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "It is less different than before.",
+        "startTime": 4.016,
+        "endTime": 6.517,
+        "duration": 2.501,
+        "sentenceIndex": 139
+      },
+      {
+        "text": "She looks at her face and knows the truth.",
+        "startTime": 6.517,
+        "endTime": 9.7,
+        "duration": 3.183,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "She will always be Chinese and proud of it.",
+        "startTime": 9.7,
+        "endTime": 12.958,
+        "duration": 3.259,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "Her English was good, but it was not perfect.",
+        "startTime": 12.958,
+        "endTime": 16.518,
+        "duration": 3.56,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "She had many white friends but felt alone sometimes.",
+        "startTime": 16.518,
+        "endTime": 20.459,
+        "duration": 3.941,
+        "sentenceIndex": 143
+      }
+    ],
+    "totalDuration": 20.45898,
+    "measuredDuration": 20.45898
+  },
+  {
+    "bundleId": "b24",
+    "bundleIndex": 24,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-24.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-24.mp3",
+    "sentences": [
+      {
+        "text": "I will help you no matter what happens.",
+        "startTime": 0,
+        "endTime": 2.823,
+        "duration": 2.823,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "She thinks about her grandfather and misses him a lot.",
+        "startTime": 2.823,
+        "endTime": 6.731,
+        "duration": 3.908,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "He stayed at preschool with her every day for two years.",
+        "startTime": 6.731,
+        "endTime": 10.783,
+        "duration": 4.053,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "He never learned English but stayed true to himself.",
+        "startTime": 10.783,
+        "endTime": 14.547,
+        "duration": 3.763,
+        "sentenceIndex": 147
+      },
+      {
+        "text": "She thinks about her parents and misses them very much.",
+        "startTime": 14.547,
+        "endTime": 18.527,
+        "duration": 3.98,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "They worked hard to give Mei good chances in life.",
+        "startTime": 18.527,
+        "endTime": 22.146,
+        "duration": 3.619,
+        "sentenceIndex": 149
+      }
+    ],
+    "totalDuration": 22.145782,
+    "measuredDuration": 22.145782
+  },
+  {
+    "bundleId": "b25",
+    "bundleIndex": 25,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-25.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-25.mp3",
+    "sentences": [
+      {
+        "text": "They gave up everything and felt very sad.",
+        "startTime": 0,
+        "endTime": 3.097,
+        "duration": 3.097,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "Their language is Cantonese and it is spoken in China.",
+        "startTime": 3.097,
+        "endTime": 7.078,
+        "duration": 3.982,
+        "sentenceIndex": 151
+      },
+      {
+        "text": "Their home is in Toronto, Canada, but they come from China.",
+        "startTime": 7.078,
+        "endTime": 11.729,
+        "duration": 4.65,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "Their culture is rich and comes from China and Canada.",
+        "startTime": 11.729,
+        "endTime": 15.71,
+        "duration": 3.982,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "Everything is for her and she is happy.",
+        "startTime": 15.71,
+        "endTime": 18.586,
+        "duration": 2.876,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "She felt ashamed and did not want to show it.",
+        "startTime": 18.586,
+        "endTime": 21.904,
+        "duration": 3.318,
+        "sentenceIndex": 155
+      }
+    ],
+    "totalDuration": 21.903878,
+    "measuredDuration": 21.903878
+  },
+  {
+    "bundleId": "b26",
+    "bundleIndex": 26,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-26.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-26.mp3",
+    "sentences": [
+      {
+        "text": "None of them are here.",
+        "startTime": 0,
+        "endTime": 1.628,
+        "duration": 1.628,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "She thinks about herself and her life in Canada.",
+        "startTime": 1.628,
+        "endTime": 5.18,
+        "duration": 3.552,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "When Mei went to university, her life changed a lot.",
+        "startTime": 5.18,
+        "endTime": 9.178,
+        "duration": 3.998,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "On her first day, Mei sits alone when students come to her.",
+        "startTime": 9.178,
+        "endTime": 13.694,
+        "duration": 4.516,
+        "sentenceIndex": 159
+      },
+      {
+        "text": "They asked her if she wants to sit with them.",
+        "startTime": 13.694,
+        "endTime": 17.024,
+        "duration": 3.33,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "At first, Mei wants to say no but changes her mind.",
+        "startTime": 17.024,
+        "endTime": 20.947,
+        "duration": 3.924,
+        "sentenceIndex": 161
+      }
+    ],
+    "totalDuration": 20.947415,
+    "measuredDuration": 20.947415
+  },
+  {
+    "bundleId": "b27",
+    "bundleIndex": 27,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-27.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-27.mp3",
+    "sentences": [
+      {
+        "text": "Old habits are hard to change and can stay with us.",
+        "startTime": 0,
+        "endTime": 3.764,
+        "duration": 3.764,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "But something makes her say yes.",
+        "startTime": 3.764,
+        "endTime": 6.126,
+        "duration": 2.362,
+        "sentenceIndex": 163
+      },
+      {
+        "text": "They talked about their families and shared their stories.",
+        "startTime": 6.126,
+        "endTime": 10.408,
+        "duration": 4.281,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "Mei grows up in Toronto and feels caught between two worlds.",
+        "startTime": 10.408,
+        "endTime": 14.836,
+        "duration": 4.429,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "Mei feels too white for her Asian family and too Asian for friends.",
+        "startTime": 14.836,
+        "endTime": 19.782,
+        "duration": 4.945,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "They felt shame about their parents' accents and their mothers' food.",
+        "startTime": 19.782,
+        "endTime": 24.875,
+        "duration": 5.093,
+        "sentenceIndex": 167
+      }
+    ],
+    "totalDuration": 24.874966,
+    "measuredDuration": 24.874966
+  },
+  {
+    "bundleId": "b28",
+    "bundleIndex": 28,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-28.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-28.mp3",
+    "sentences": [
+      {
+        "text": "They saw the racism but pretended not to see it.",
+        "startTime": 0,
+        "endTime": 3.293,
+        "duration": 3.293,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "They laughed at the jokes even when they hurt.",
+        "startTime": 3.293,
+        "endTime": 6.449,
+        "duration": 3.156,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "For the first time, Mei did not need to explain herself.",
+        "startTime": 6.449,
+        "endTime": 10.441,
+        "duration": 3.992,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "Everyone at the table understands what is happening.",
+        "startTime": 10.441,
+        "endTime": 14.008,
+        "duration": 3.567,
+        "sentenceIndex": 171
+      },
+      {
+        "text": "They all lived it before and remember it well.",
+        "startTime": 14.008,
+        "endTime": 17.164,
+        "duration": 3.156,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "They all carry the same weight and feel it together.",
+        "startTime": 17.164,
+        "endTime": 20.731,
+        "duration": 3.567,
+        "sentenceIndex": 173
+      }
+    ],
+    "totalDuration": 20.731156,
+    "measuredDuration": 20.731156
+  },
+  {
+    "bundleId": "b29",
+    "bundleIndex": 29,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-29.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-29.mp3",
+    "sentences": [
+      {
+        "text": "They feel confused about where they belong in Canada.",
+        "startTime": 0,
+        "endTime": 3.868,
+        "duration": 3.868,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "One girl said she called herself a banana before.",
+        "startTime": 3.868,
+        "endTime": 7.443,
+        "duration": 3.576,
+        "sentenceIndex": 175
+      },
+      {
+        "text": "I felt proud, but everyone laughed at me.",
+        "startTime": 7.443,
+        "endTime": 10.585,
+        "duration": 3.142,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "They all did the same thing and felt the same way.",
+        "startTime": 10.585,
+        "endTime": 14.234,
+        "duration": 3.649,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "They all tried to change parts of themselves and be better.",
+        "startTime": 14.234,
+        "endTime": 18.539,
+        "duration": 4.305,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "They could not erase parts no matter how hard they tried.",
+        "startTime": 18.539,
+        "endTime": 22.698,
+        "duration": 4.159,
+        "sentenceIndex": 179
+      }
+    ],
+    "totalDuration": 22.698345,
+    "measuredDuration": 22.698345
+  },
+  {
+    "bundleId": "b30",
+    "bundleIndex": 30,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-30.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-30.mp3",
+    "sentences": [
+      {
+        "text": "Mei spends more time with her friends now.",
+        "startTime": 0,
+        "endTime": 2.922,
+        "duration": 2.922,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "Mei asked her parents to teach her Cantonese again.",
+        "startTime": 2.922,
+        "endTime": 6.47,
+        "duration": 3.548,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "Mei went to the library and got books about China.",
+        "startTime": 6.47,
+        "endTime": 9.948,
+        "duration": 3.478,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "She signed up for a Mandarin class in Toronto.",
+        "startTime": 9.948,
+        "endTime": 13.148,
+        "duration": 3.2,
+        "sentenceIndex": 183
+      },
+      {
+        "text": "She cooked traditional foods with her mother in China.",
+        "startTime": 13.148,
+        "endTime": 16.905,
+        "duration": 3.757,
+        "sentenceIndex": 184
+      },
+      {
+        "text": "Mei bought her mother flowers and said the dresses were beautiful.",
+        "startTime": 16.905,
+        "endTime": 21.497,
+        "duration": 4.592,
+        "sentenceIndex": 185
+      }
+    ],
+    "totalDuration": 21.496599,
+    "measuredDuration": 21.496599
+  },
+  {
+    "bundleId": "b31",
+    "bundleIndex": 31,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-31.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-31.mp3",
+    "sentences": [
+      {
+        "text": "Her mother cried because she felt very sad.",
+        "startTime": 0,
+        "endTime": 3.106,
+        "duration": 3.106,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "In her second year, Mei gives a presentation for art class.",
+        "startTime": 3.106,
+        "endTime": 7.517,
+        "duration": 4.411,
+        "sentenceIndex": 187
+      },
+      {
+        "text": "When it was her turn, Mei stood up in front of everyone.",
+        "startTime": 7.517,
+        "endTime": 11.711,
+        "duration": 4.194,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "For the first time, she introduces herself the right way.",
+        "startTime": 11.711,
+        "endTime": 15.978,
+        "duration": 4.267,
+        "sentenceIndex": 189
+      },
+      {
+        "text": "She said, \"My name is Mei.",
+        "startTime": 15.978,
+        "endTime": 18.005,
+        "duration": 2.028,
+        "sentenceIndex": 190
+      },
+      {
+        "text": "It is not the way Mei always says it.",
+        "startTime": 18.005,
+        "endTime": 20.677,
+        "duration": 2.672,
+        "sentenceIndex": 191
+      }
+    ],
+    "totalDuration": 20.677483,
+    "measuredDuration": 20.677483
+  },
+  {
+    "bundleId": "b32",
+    "bundleIndex": 32,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-32.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-32.mp3",
+    "sentences": [
+      {
+        "text": "But this is the real way.",
+        "startTime": 0,
+        "endTime": 1.9,
+        "duration": 1.9,
+        "sentenceIndex": 192
+      },
+      {
+        "text": "The way in China is very different from Canada.",
+        "startTime": 1.9,
+        "endTime": 5.473,
+        "duration": 3.573,
+        "sentenceIndex": 193
+      },
+      {
+        "text": "Mei remembers how her grandfather always said it.",
+        "startTime": 5.473,
+        "endTime": 9.197,
+        "duration": 3.725,
+        "sentenceIndex": 194
+      },
+      {
+        "text": "Some people in the class look confused and worried.",
+        "startTime": 9.197,
+        "endTime": 13.074,
+        "duration": 3.877,
+        "sentenceIndex": 195
+      },
+      {
+        "text": "Mei did not care about anything at all.",
+        "startTime": 13.074,
+        "endTime": 16.039,
+        "duration": 2.964,
+        "sentenceIndex": 196
+      },
+      {
+        "text": "She claims something that always belongs to her.",
+        "startTime": 16.039,
+        "endTime": 19.687,
+        "duration": 3.649,
+        "sentenceIndex": 197
+      }
+    ],
+    "totalDuration": 19.687075,
+    "measuredDuration": 19.687075
+  },
+  {
+    "bundleId": "b33",
+    "bundleIndex": 33,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-33.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-33.mp3",
+    "sentences": [
+      {
+        "text": "Her name is Mei and she is from China.",
+        "startTime": 0,
+        "endTime": 3.105,
+        "duration": 3.105,
+        "sentenceIndex": 198
+      },
+      {
+        "text": "Her identity is important to her and connects to her culture.",
+        "startTime": 3.105,
+        "endTime": 8.089,
+        "duration": 4.984,
+        "sentenceIndex": 199
+      },
+      {
+        "text": "Her place in the world is important and makes her happy.",
+        "startTime": 8.089,
+        "endTime": 12.665,
+        "duration": 4.576,
+        "sentenceIndex": 200
+      },
+      {
+        "text": "After class, a white student talks to her.",
+        "startTime": 12.665,
+        "endTime": 16.246,
+        "duration": 3.582,
+        "sentenceIndex": 201
+      },
+      {
+        "text": "He said he could not say your name before.",
+        "startTime": 16.246,
+        "endTime": 19.678,
+        "duration": 3.432,
+        "sentenceIndex": 202
+      },
+      {
+        "text": "Mei smiled and asked, \"Can you teach me the right way.",
+        "startTime": 19.678,
+        "endTime": 24.24,
+        "duration": 4.562,
+        "sentenceIndex": 203
+      }
+    ],
+    "totalDuration": 24.240431,
+    "measuredDuration": 24.240431
+  },
+  {
+    "bundleId": "b34",
+    "bundleIndex": 34,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-34.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-34.mp3",
+    "sentences": [
+      {
+        "text": "She realized something important that day in Toronto.",
+        "startTime": 0,
+        "endTime": 3.823,
+        "duration": 3.823,
+        "sentenceIndex": 204
+      },
+      {
+        "text": "She does not have to choose being Chinese and being Canadian.",
+        "startTime": 3.823,
+        "endTime": 8.224,
+        "duration": 4.4,
+        "sentenceIndex": 205
+      },
+      {
+        "text": "She did not have to choose one or the other.",
+        "startTime": 8.224,
+        "endTime": 11.398,
+        "duration": 3.174,
+        "sentenceIndex": 206
+      },
+      {
+        "text": "She can be both happy and sad.",
+        "startTime": 11.398,
+        "endTime": 13.562,
+        "duration": 2.164,
+        "sentenceIndex": 207
+      },
+      {
+        "text": "She can be something new and exciting.",
+        "startTime": 13.562,
+        "endTime": 16.303,
+        "duration": 2.741,
+        "sentenceIndex": 208
+      },
+      {
+        "text": "There is something else important to say.",
+        "startTime": 16.303,
+        "endTime": 19.261,
+        "duration": 2.958,
+        "sentenceIndex": 209
+      }
+    ],
+    "totalDuration": 19.260907,
+    "measuredDuration": 19.260907
+  },
+  {
+    "bundleId": "b35",
+    "bundleIndex": 35,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-35.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-35.mp3",
+    "sentences": [
+      {
+        "text": "A bridge connects two different worlds in life.",
+        "startTime": 0,
+        "endTime": 3.526,
+        "duration": 3.526,
+        "sentenceIndex": 210
+      },
+      {
+        "text": "She would never feel like she belongs in China.",
+        "startTime": 3.526,
+        "endTime": 7.053,
+        "duration": 3.526,
+        "sentenceIndex": 211
+      },
+      {
+        "text": "She is born in Canada and lives in Toronto.",
+        "startTime": 7.053,
+        "endTime": 10.279,
+        "duration": 3.226,
+        "sentenceIndex": 212
+      },
+      {
+        "text": "She thinks in English.",
+        "startTime": 10.279,
+        "endTime": 11.93,
+        "duration": 1.651,
+        "sentenceIndex": 213
+      },
+      {
+        "text": "She never lived in her parents' village in China.",
+        "startTime": 11.93,
+        "endTime": 15.606,
+        "duration": 3.676,
+        "sentenceIndex": 214
+      },
+      {
+        "text": "But she will never fully belong in the Canadian world.",
+        "startTime": 15.606,
+        "endTime": 19.658,
+        "duration": 4.052,
+        "sentenceIndex": 215
+      }
+    ],
+    "totalDuration": 19.657528,
+    "measuredDuration": 19.657528
+  },
+  {
+    "bundleId": "b36",
+    "bundleIndex": 36,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-36.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-36.mp3",
+    "sentences": [
+      {
+        "text": "Her face always shows that she is different.",
+        "startTime": 0,
+        "endTime": 3.047,
+        "duration": 3.047,
+        "sentenceIndex": 216
+      },
+      {
+        "text": "Her family history is always different from others.",
+        "startTime": 3.047,
+        "endTime": 6.58,
+        "duration": 3.532,
+        "sentenceIndex": 217
+      },
+      {
+        "text": "That was fine and everything was okay.",
+        "startTime": 6.58,
+        "endTime": 9.212,
+        "duration": 2.632,
+        "sentenceIndex": 218
+      },
+      {
+        "text": "She creates her own culture in Toronto, Canada, and feels proud.",
+        "startTime": 9.212,
+        "endTime": 13.944,
+        "duration": 4.733,
+        "sentenceIndex": 219
+      },
+      {
+        "text": "A third culture is a mix of different ways of life.",
+        "startTime": 13.944,
+        "endTime": 17.477,
+        "duration": 3.532,
+        "sentenceIndex": 220
+      },
+      {
+        "text": "It took the best things from both worlds and made them better.",
+        "startTime": 17.477,
+        "endTime": 21.771,
+        "duration": 4.294,
+        "sentenceIndex": 221
+      }
+    ],
+    "totalDuration": 21.770816,
+    "measuredDuration": 21.770816
+  },
+  {
+    "bundleId": "b37",
+    "bundleIndex": 37,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-37.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-37.mp3",
+    "sentences": [
+      {
+        "text": "Mei loves the strength and sacrifice of her parents.",
+        "startTime": 0,
+        "endTime": 3.856,
+        "duration": 3.856,
+        "sentenceIndex": 222
+      },
+      {
+        "text": "Canada has independence and many opportunities for people.",
+        "startTime": 3.856,
+        "endTime": 8.156,
+        "duration": 4.301,
+        "sentenceIndex": 223
+      },
+      {
+        "text": "The food, language, and history of China are very rich.",
+        "startTime": 8.156,
+        "endTime": 12.534,
+        "duration": 4.378,
+        "sentenceIndex": 224
+      },
+      {
+        "text": "Toronto is diverse and open to many cultures.",
+        "startTime": 12.534,
+        "endTime": 15.871,
+        "duration": 3.337,
+        "sentenceIndex": 225
+      },
+      {
+        "text": "She was not yellow outside and white inside.",
+        "startTime": 15.871,
+        "endTime": 19.134,
+        "duration": 3.263,
+        "sentenceIndex": 226
+      },
+      {
+        "text": "She is not a banana now.",
+        "startTime": 19.134,
+        "endTime": 20.913,
+        "duration": 1.78,
+        "sentenceIndex": 227
+      }
+    ],
+    "totalDuration": 20.913107,
+    "measuredDuration": 20.913107
+  },
+  {
+    "bundleId": "b38",
+    "bundleIndex": 38,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-38.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-38.mp3",
+    "sentences": [
+      {
+        "text": "Her name is Mei and she is from China.",
+        "startTime": 0,
+        "endTime": 2.933,
+        "duration": 2.933,
+        "sentenceIndex": 228
+      },
+      {
+        "text": "Mei is fully Chinese and speaks Cantonese at home.",
+        "startTime": 2.933,
+        "endTime": 6.792,
+        "duration": 3.859,
+        "sentenceIndex": 229
+      },
+      {
+        "text": "Mei is fully Canadian and lives in Toronto, Canada.",
+        "startTime": 6.792,
+        "endTime": 10.879,
+        "duration": 4.086,
+        "sentenceIndex": 230
+      },
+      {
+        "text": "She is fully herself and feels happy.",
+        "startTime": 10.879,
+        "endTime": 13.735,
+        "duration": 2.856,
+        "sentenceIndex": 231
+      },
+      {
+        "text": "When she went home, she asked her father for stories from China.",
+        "startTime": 13.735,
+        "endTime": 18.824,
+        "duration": 5.09,
+        "sentenceIndex": 232
+      },
+      {
+        "text": "He looked surprised when he saw the news.",
+        "startTime": 18.824,
+        "endTime": 21.989,
+        "duration": 3.165,
+        "sentenceIndex": 233
+      }
+    ],
+    "totalDuration": 21.989093,
+    "measuredDuration": 21.989093
+  },
+  {
+    "bundleId": "b39",
+    "bundleIndex": 39,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-39.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-39.mp3",
+    "sentences": [
+      {
+        "text": "His eyes fill with tears when he feels sad.",
+        "startTime": 0,
+        "endTime": 3.402,
+        "duration": 3.402,
+        "sentenceIndex": 234
+      },
+      {
+        "text": "He starts to talk and shares his ideas.",
+        "startTime": 3.402,
+        "endTime": 6.488,
+        "duration": 3.086,
+        "sentenceIndex": 235
+      },
+      {
+        "text": "Cantonese and English mix together in one conversation.",
+        "startTime": 6.488,
+        "endTime": 10.84,
+        "duration": 4.352,
+        "sentenceIndex": 236
+      },
+      {
+        "text": "Mei thinks about rice fields and his grandfather when he leaves home.",
+        "startTime": 10.84,
+        "endTime": 16.299,
+        "duration": 5.459,
+        "sentenceIndex": 237
+      },
+      {
+        "text": "Mei listened to music and felt happy.",
+        "startTime": 16.299,
+        "endTime": 19.227,
+        "duration": 2.928,
+        "sentenceIndex": 238
+      },
+      {
+        "text": "I really listened to what Mei said.",
+        "startTime": 19.227,
+        "endTime": 21.996,
+        "duration": 2.769,
+        "sentenceIndex": 239
+      }
+    ],
+    "totalDuration": 21.996168,
+    "measuredDuration": 21.996168
+  },
+  {
+    "bundleId": "b40",
+    "bundleIndex": 40,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-40.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-40.mp3",
+    "sentences": [
+      {
+        "text": "She felt something new that she had not felt before.",
+        "startTime": 0,
+        "endTime": 3.698,
+        "duration": 3.698,
+        "sentenceIndex": 240
+      },
+      {
+        "text": "Pride is a strong feeling of happiness and respect for oneself.",
+        "startTime": 3.698,
+        "endTime": 8.178,
+        "duration": 4.48,
+        "sentenceIndex": 241
+      },
+      {
+        "text": "There is no shame in being yourself and feeling good.",
+        "startTime": 8.178,
+        "endTime": 11.947,
+        "duration": 3.769,
+        "sentenceIndex": 242
+      },
+      {
+        "text": "There is no embarrassment for Mei in Toronto, Canada.",
+        "startTime": 11.947,
+        "endTime": 15.866,
+        "duration": 3.919,
+        "sentenceIndex": 243
+      },
+      {
+        "text": "Mei feels deep pride in where she comes from.",
+        "startTime": 15.866,
+        "endTime": 19.066,
+        "duration": 3.2,
+        "sentenceIndex": 244
+      },
+      {
+        "text": "Mei wants to know who her parents are.",
+        "startTime": 19.066,
+        "endTime": 21.768,
+        "duration": 2.702,
+        "sentenceIndex": 245
+      }
+    ],
+    "totalDuration": 21.768073,
+    "measuredDuration": 21.768073
+  },
+  {
+    "bundleId": "b41",
+    "bundleIndex": 41,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-41.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-41.mp3",
+    "sentences": [
+      {
+        "text": "She thinks about who she is becoming.",
+        "startTime": 0,
+        "endTime": 2.865,
+        "duration": 2.865,
+        "sentenceIndex": 246
+      },
+      {
+        "text": "Her mother came and sat down next to her.",
+        "startTime": 2.865,
+        "endTime": 6.04,
+        "duration": 3.175,
+        "sentenceIndex": 247
+      },
+      {
+        "text": "She brings tea and almond cookies.",
+        "startTime": 6.04,
+        "endTime": 8.673,
+        "duration": 2.633,
+        "sentenceIndex": 248
+      },
+      {
+        "text": "The three of them sat together when the sun set.",
+        "startTime": 8.673,
+        "endTime": 12.39,
+        "duration": 3.717,
+        "sentenceIndex": 249
+      },
+      {
+        "text": "Two languages mix in the air around Mei.",
+        "startTime": 12.39,
+        "endTime": 15.487,
+        "duration": 3.097,
+        "sentenceIndex": 250
+      },
+      {
+        "text": "Two cultures meet in the same room and share ideas.",
+        "startTime": 15.487,
+        "endTime": 19.436,
+        "duration": 3.949,
+        "sentenceIndex": 251
+      }
+    ],
+    "totalDuration": 19.436417,
+    "measuredDuration": 19.436417
+  },
+  {
+    "bundleId": "b42",
+    "bundleIndex": 42,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-42.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-42.mp3",
+    "sentences": [
+      {
+        "text": "They are all in the same family.",
+        "startTime": 0,
+        "endTime": 2.199,
+        "duration": 2.199,
+        "sentenceIndex": 252
+      },
+      {
+        "text": "In the same person, there are many good and bad things.",
+        "startTime": 2.199,
+        "endTime": 6.129,
+        "duration": 3.93,
+        "sentenceIndex": 253
+      },
+      {
+        "text": "Mei finally understands what her grandfather knew all along.",
+        "startTime": 6.129,
+        "endTime": 10.252,
+        "duration": 4.123,
+        "sentenceIndex": 254
+      },
+      {
+        "text": "You do not need to make a choice.",
+        "startTime": 10.252,
+        "endTime": 12.519,
+        "duration": 2.268,
+        "sentenceIndex": 255
+      },
+      {
+        "text": "You do not need to change who you are to fit in.",
+        "startTime": 12.519,
+        "endTime": 15.818,
+        "duration": 3.298,
+        "sentenceIndex": 256
+      },
+      {
+        "text": "You are your own person and you belong to yourself.",
+        "startTime": 15.818,
+        "endTime": 19.322,
+        "duration": 3.505,
+        "sentenceIndex": 257
+      }
+    ],
+    "totalDuration": 19.322449,
+    "measuredDuration": 19.322449
+  },
+  {
+    "bundleId": "b43",
+    "bundleIndex": 43,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/cultural-bridge-1/A1/bundle-43.mp3",
+    "audioPath": "cultural-bridge-1/A1/bundle-43.mp3",
+    "sentences": [
+      {
+        "text": "That is enough for me and I feel happy.",
+        "startTime": 0,
+        "endTime": 2.379,
+        "duration": 2.379,
+        "sentenceIndex": 258
+      }
+    ],
+    "totalDuration": 2.37941,
+    "measuredDuration": 2.37941
+  }
+]

@@ -311,6 +311,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'MC1'
   },
   {
+    id: 'cultural-bridge-1',
+    title: 'Between Two Worlds: A Cultural Bridge Story',
+    author: 'BookBridge',
+    description: 'An inspiring composite story about Mei, who grows up caught between two cultures. From age three, she knows she is different—her parents speak with accents, bring strange food, follow different customs. Through shame, racism, and feeling like she belongs nowhere, Mei discovers that being caught between two worlds can create something beautiful: a bridge. A powerful tale about bicultural identity, belonging, and finding pride in who you are. A1 level with Jane voice.',
+    sentences: 259,
+    bundles: 44,
+    gradient: 'from-teal-500 to-cyan-600',
+    abbreviation: 'CB1'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -444,6 +454,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'medical-crisis-1': {
     'A1': '/api/medical-crisis-1-a1/bundles'
   },
+  'cultural-bridge-1': {
+    'A1': '/api/cultural-bridge-1-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -486,6 +499,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
   'disability-overcome-2': 'A1',  // Default to A1 for Blind Mountaineer: Reaching the Top (Modern Story)
   'medical-crisis-1': 'A1',  // Default to A1 for Finding New Wings: A Medical Crisis Story (Modern Story)
+  'cultural-bridge-1': 'A1',  // Default to A1 for Between Two Worlds: A Cultural Bridge Story (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -562,6 +576,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'medical-crisis-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'cultural-bridge-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
