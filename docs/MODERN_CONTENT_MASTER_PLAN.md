@@ -803,7 +803,7 @@ Every story in Priority 1 and Priority 2 sources passes the "would someone text 
 - [x] **#16**: Cultural Bridge #2 - ✅ Complete (Bridging Traditions and Modern Life)
 
 **Romantic Love Across Cultures (1-2 stories needed)**
-- [ ] **#17**: Romantic Love #1 - Web Research/The Moth - Cross-cultural love story
+- [x] **#17**: Romantic Love #1 - Cross-Cultural Love Story ✅ Complete (2025-12-11)
 
 **Grief to Purpose (1-2 stories needed)**
 - [ ] **#18**: Grief to Purpose #1 - Web Research/The Moth - Loss transformed into helping others

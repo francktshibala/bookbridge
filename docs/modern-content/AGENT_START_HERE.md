@@ -577,8 +577,14 @@ Update `lib/config/books.ts`:
 #### **Step 20: Log Completion ⚠️**
 **MANDATORY - DO NOT SKIP THIS STEP**
 
-- [ ] Update `docs/implementation/story-completion-log.md` (see [Where to Log Completion](#where-to-log-completion) below)
-- [ ] Update `docs/implementation/character-names-tracker.json` with character names used
+- [ ] **Update `docs/implementation/story-completion-log.md`** (see [Where to Log Completion](#where-to-log-completion) below)
+  - Add to Quick Reference Table (top of file)
+  - Add detailed story notes (bottom of file)
+- [ ] **Update `docs/MODERN_CONTENT_MASTER_PLAN.md`**
+  - Find story in "Sequential Story Roadmap (#15-#50)" section
+  - Change checkbox from `[ ]` to `[x]` and add completion date
+  - Example: `- [x] **#17**: Romantic Love #1 ✅ Complete (2025-12-11)`
+- [ ] **Update `docs/implementation/character-names-tracker.json`** with character names used
 - [ ] **Update `docs/implementation/story-subjects-tracker.json`** with:
   - Real person covered (if any)
   - Story concept
@@ -642,9 +648,9 @@ Update `lib/config/books.ts`:
 
 ## 📝 Where to Log Completion
 
-### **MANDATORY: After Completing Story**
+### **MANDATORY: After Completing Story - Update These 3 Files**
 
-**File:** `docs/implementation/story-completion-log.md`
+**1. File:** `docs/implementation/story-completion-log.md`
 
 **What to add:**
 
@@ -690,7 +696,21 @@ Update `lib/config/books.ts`:
 - Prevents repeating mistakes
 - Shows what's been completed
 
-**Example entry:** See stories 1-13 in the completion log for format.
+**Example entry:** See stories 1-16 in the completion log for format.
+
+**2. File:** `docs/MODERN_CONTENT_MASTER_PLAN.md`
+- Navigate to "Sequential Story Roadmap (#15-#50)" section
+- Find your story (e.g., Story #17: Romantic Love #1)
+- Change checkbox: `- [ ]` → `- [x]`
+- Add completion status: `✅ Complete (YYYY-MM-DD)`
+- Example: `- [x] **#17**: Romantic Love #1 ✅ Complete (2025-12-11)`
+
+**3. File:** `docs/implementation/story-subjects-tracker.json` (already mentioned in Step 20)
+
+**Why These 3 Files:**
+- `story-completion-log.md`: Detailed implementation notes and learnings
+- `MODERN_CONTENT_MASTER_PLAN.md`: Master roadmap tracking (shows progress toward 50-story goal)
+- `story-subjects-tracker.json`: Prevents duplicate themes/people
 
 ---
 
