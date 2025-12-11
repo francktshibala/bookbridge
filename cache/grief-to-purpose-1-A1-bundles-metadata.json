@@ -1,0 +1,1614 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-0.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "Anna never thought her worst day would start with a call.",
+        "startTime": 0,
+        "endTime": 4.489,
+        "duration": 4.489,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "It was a normal Tuesday morning.",
+        "startTime": 4.489,
+        "endTime": 7.009,
+        "duration": 2.52,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She was at work and feeling busy.",
+        "startTime": 7.009,
+        "endTime": 9.608,
+        "duration": 2.599,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Suddenly, her phone rang loudly.",
+        "startTime": 9.608,
+        "endTime": 12.279,
+        "duration": 2.67,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "The voice on the other end was calm but felt urgent.",
+        "startTime": 12.279,
+        "endTime": 16.374,
+        "duration": 4.095,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "“Hello, this is the hospital,” the voice said.",
+        "startTime": 16.374,
+        "endTime": 20.297,
+        "duration": 3.923,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 20.296735,
+    "measuredDuration": 20.296735
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-1.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "“There was an accident.” Anna's heart began to race.",
+        "startTime": 0,
+        "endTime": 3.737,
+        "duration": 3.737,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "“Your son Ethan is eight years old,” the voice continued.",
+        "startTime": 3.737,
+        "endTime": 7.983,
+        "duration": 4.246,
+        "sentenceIndex": 7
+      },
+      {
+        "text": "“He is at the hospital.” Anna's world stops when she feels very sad.",
+        "startTime": 7.983,
+        "endTime": 12.87,
+        "duration": 4.887,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "She dropped everything and ran to her car with shaking hands.",
+        "startTime": 12.87,
+        "endTime": 17.253,
+        "duration": 4.384,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "The drive to the hospital felt long but was only fifteen minutes.",
+        "startTime": 17.253,
+        "endTime": 21.924,
+        "duration": 4.671,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "Each second felt like an hour.",
+        "startTime": 21.924,
+        "endTime": 24.08,
+        "duration": 2.156,
+        "sentenceIndex": 11
+      }
+    ],
+    "totalDuration": 24.080136,
+    "measuredDuration": 24.080136
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-2.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "Her thoughts were a blur.",
+        "startTime": 0,
+        "endTime": 2.217,
+        "duration": 2.217,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "When she arrived, the doctors waited for her.",
+        "startTime": 2.217,
+        "endTime": 6.358,
+        "duration": 4.141,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "They looked serious and sad.",
+        "startTime": 6.358,
+        "endTime": 8.841,
+        "duration": 2.483,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "They told her Ethan was hit by a car after school.",
+        "startTime": 8.841,
+        "endTime": 13.275,
+        "duration": 4.434,
+        "sentenceIndex": 15
+      },
+      {
+        "text": "“He died quickly and did not feel pain,” the doctor said gently.",
+        "startTime": 13.275,
+        "endTime": 19.101,
+        "duration": 5.826,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "Anna could not understand.",
+        "startTime": 19.101,
+        "endTime": 21.406,
+        "duration": 2.306,
+        "sentenceIndex": 17
+      }
+    ],
+    "totalDuration": 21.406281,
+    "measuredDuration": 21.406281
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-3.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "The words do not make sense at first.",
+        "startTime": 0,
+        "endTime": 2.845,
+        "duration": 2.845,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "Did someone die or is it just a question?",
+        "startTime": 2.845,
+        "endTime": 5.997,
+        "duration": 3.152,
+        "sentenceIndex": 19
+      },
+      {
+        "text": "Is her son here or not?",
+        "startTime": 5.997,
+        "endTime": 7.766,
+        "duration": 1.768,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "No, that is not right.",
+        "startTime": 7.766,
+        "endTime": 9.607,
+        "duration": 1.842,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "Ethan was to come home that afternoon, but he did not.",
+        "startTime": 9.607,
+        "endTime": 13.91,
+        "duration": 4.302,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "He was meant to do his homework but did not.",
+        "startTime": 13.91,
+        "endTime": 17.293,
+        "duration": 3.383,
+        "sentenceIndex": 23
+      }
+    ],
+    "totalDuration": 17.292653,
+    "measuredDuration": 17.292653
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-4.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "He was to have dinner with her.",
+        "startTime": 0,
+        "endTime": 2.276,
+        "duration": 2.276,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "They always had dinner together.",
+        "startTime": 2.276,
+        "endTime": 4.625,
+        "duration": 2.349,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "He grows up, goes to college, and has a family.",
+        "startTime": 4.625,
+        "endTime": 8.375,
+        "duration": 3.75,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "He was meant to bury her, but it was the other way.",
+        "startTime": 8.375,
+        "endTime": 12.269,
+        "duration": 3.894,
+        "sentenceIndex": 27
+      },
+      {
+        "text": "Anna realized the doctors were still talking and asking her questions.",
+        "startTime": 12.269,
+        "endTime": 17.407,
+        "duration": 5.139,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "What does she want to do now?",
+        "startTime": 17.407,
+        "endTime": 19.536,
+        "duration": 2.129,
+        "sentenceIndex": 29
+      }
+    ],
+    "totalDuration": 19.536009,
+    "measuredDuration": 19.536009
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-5.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "Did she want to see Ethan?",
+        "startTime": 0,
+        "endTime": 1.977,
+        "duration": 1.977,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "Did she want to pick clothes for him?",
+        "startTime": 1.977,
+        "endTime": 4.791,
+        "duration": 2.813,
+        "sentenceIndex": 31
+      },
+      {
+        "text": "The questions feel very hard and make her worried.",
+        "startTime": 4.791,
+        "endTime": 8.593,
+        "duration": 3.802,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "How can Anna choose clothes for Ethan if he won't wear them?",
+        "startTime": 8.593,
+        "endTime": 13.155,
+        "duration": 4.562,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "How can she think about what he wears when he is gone?",
+        "startTime": 13.155,
+        "endTime": 17.261,
+        "duration": 4.106,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "Still, she went home and felt alone.",
+        "startTime": 17.261,
+        "endTime": 20.149,
+        "duration": 2.887,
+        "sentenceIndex": 35
+      }
+    ],
+    "totalDuration": 20.148617,
+    "measuredDuration": 20.148617
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-6.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "Each step felt heavy.",
+        "startTime": 0,
+        "endTime": 1.603,
+        "duration": 1.603,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "Anna walked into Ethan's room and saw his drawing on the desk.",
+        "startTime": 1.603,
+        "endTime": 6.334,
+        "duration": 4.731,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "It was colorful and bright.",
+        "startTime": 6.334,
+        "endTime": 8.395,
+        "duration": 2.06,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "It showed a heart and said, \"I love you, Mom.\" \n\nAnna picked it up and cried for the first time.",
+        "startTime": 8.395,
+        "endTime": 16.021,
+        "duration": 7.626,
+        "sentenceIndex": 39
+      },
+      {
+        "text": "Tears fell down her cheeks.",
+        "startTime": 16.021,
+        "endTime": 18.081,
+        "duration": 2.06,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "She opened Ethan's closet and looked at his clothes.",
+        "startTime": 18.081,
+        "endTime": 22.05,
+        "duration": 3.968,
+        "sentenceIndex": 41
+      }
+    ],
+    "totalDuration": 22.049546,
+    "measuredDuration": 22.049546
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-7.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "Each shirt and pair of pants reminded her of him.",
+        "startTime": 0,
+        "endTime": 3.734,
+        "duration": 3.734,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "She chose his blue sweater because he wanted to wear it.",
+        "startTime": 3.734,
+        "endTime": 8.002,
+        "duration": 4.268,
+        "sentenceIndex": 43
+      },
+      {
+        "text": "It was his favorite.",
+        "startTime": 8.002,
+        "endTime": 9.526,
+        "duration": 1.524,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "She chose the jeans that he likes best.",
+        "startTime": 9.526,
+        "endTime": 12.498,
+        "duration": 2.972,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "They fit him perfectly.",
+        "startTime": 12.498,
+        "endTime": 14.251,
+        "duration": 1.753,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "She chose warm socks so her boy would not be cold.",
+        "startTime": 14.251,
+        "endTime": 18.061,
+        "duration": 3.81,
+        "sentenceIndex": 47
+      }
+    ],
+    "totalDuration": 18.061474,
+    "measuredDuration": 18.061474
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-8.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "The thought makes her cry more and feel sad.",
+        "startTime": 0,
+        "endTime": 3.29,
+        "duration": 3.29,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "He will never feel warm or cold again.",
+        "startTime": 3.29,
+        "endTime": 6.131,
+        "duration": 2.841,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "He will never feel anything again.",
+        "startTime": 6.131,
+        "endTime": 8.673,
+        "duration": 2.542,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "The days after that were very confusing and unclear.",
+        "startTime": 8.673,
+        "endTime": 12.56,
+        "duration": 3.888,
+        "sentenceIndex": 51
+      },
+      {
+        "text": "Friends and family come to visit Anna and Ethan.",
+        "startTime": 12.56,
+        "endTime": 16.149,
+        "duration": 3.589,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "They brought food and shared it with everyone.",
+        "startTime": 16.149,
+        "endTime": 19.588,
+        "duration": 3.439,
+        "sentenceIndex": 53
+      }
+    ],
+    "totalDuration": 19.587937,
+    "measuredDuration": 19.587937
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-9.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "Some brought cookies and cakes.",
+        "startTime": 0,
+        "endTime": 2.446,
+        "duration": 2.446,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "They brought flowers and gave them to Anna.",
+        "startTime": 2.446,
+        "endTime": 5.839,
+        "duration": 3.393,
+        "sentenceIndex": 55
+      },
+      {
+        "text": "The flowers smelled sweet, but they did not help.",
+        "startTime": 5.839,
+        "endTime": 9.855,
+        "duration": 4.016,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "They brought words of comfort, but Anna could not hear them.",
+        "startTime": 9.855,
+        "endTime": 14.739,
+        "duration": 4.884,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "She moved through each day slowly and felt far away.",
+        "startTime": 14.739,
+        "endTime": 18.842,
+        "duration": 4.103,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "She felt like she was in a dream.",
+        "startTime": 18.842,
+        "endTime": 21.445,
+        "duration": 2.604,
+        "sentenceIndex": 59
+      }
+    ],
+    "totalDuration": 21.445351,
+    "measuredDuration": 21.445351
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-10.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "She went to the funeral and felt very sad.",
+        "startTime": 0,
+        "endTime": 3.36,
+        "duration": 3.36,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "The sky was gray that day.",
+        "startTime": 3.36,
+        "endTime": 5.44,
+        "duration": 2.08,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "She watched them lower her son's small casket into the ground.",
+        "startTime": 5.44,
+        "endTime": 10.399,
+        "duration": 4.96,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "It was so tiny.",
+        "startTime": 10.399,
+        "endTime": 11.599,
+        "duration": 1.2,
+        "sentenceIndex": 63
+      },
+      {
+        "text": "She went home to a house that now feels empty.",
+        "startTime": 11.599,
+        "endTime": 15.279,
+        "duration": 3.68,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "The silence was painful.",
+        "startTime": 15.279,
+        "endTime": 17.199,
+        "duration": 1.92,
+        "sentenceIndex": 65
+      }
+    ],
+    "totalDuration": 17.198685,
+    "measuredDuration": 17.198685
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-11.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "Weeks go by and time changes.",
+        "startTime": 0,
+        "endTime": 2.66,
+        "duration": 2.66,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "Then there are months.",
+        "startTime": 2.66,
+        "endTime": 4.678,
+        "duration": 2.018,
+        "sentenceIndex": 67
+      },
+      {
+        "text": "Anna went back to work but felt like a new person.",
+        "startTime": 4.678,
+        "endTime": 9.264,
+        "duration": 4.586,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "She did her daily tasks, but nothing felt real to her.",
+        "startTime": 9.264,
+        "endTime": 14.367,
+        "duration": 5.103,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "It was like she was on autopilot.",
+        "startTime": 14.367,
+        "endTime": 17.394,
+        "duration": 3.027,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "Anna wakes up and forgets for a moment, but then remembers Ethan is gone.",
+        "startTime": 17.394,
+        "endTime": 24.24,
+        "duration": 6.846,
+        "sentenceIndex": 71
+      }
+    ],
+    "totalDuration": 24.239569,
+    "measuredDuration": 24.239569
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-12.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "Each morning was hard.",
+        "startTime": 0,
+        "endTime": 1.814,
+        "duration": 1.814,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "One afternoon, Anna cleaned Ethan's room six months after his death.",
+        "startTime": 1.814,
+        "endTime": 7.572,
+        "duration": 5.757,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "She put it off but knew she must not leave it forever.",
+        "startTime": 7.572,
+        "endTime": 12.024,
+        "duration": 4.453,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "She organized his books and found a notebook.",
+        "startTime": 12.024,
+        "endTime": 15.735,
+        "duration": 3.711,
+        "sentenceIndex": 75
+      },
+      {
+        "text": "It was blue and had stickers on it.",
+        "startTime": 15.735,
+        "endTime": 18.621,
+        "duration": 2.886,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "Ethan wrote a list inside the notebook.",
+        "startTime": 18.621,
+        "endTime": 21.837,
+        "duration": 3.216,
+        "sentenceIndex": 77
+      }
+    ],
+    "totalDuration": 21.837347,
+    "measuredDuration": 21.837347
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-13.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "Anna sat on the floor and read the list of kind ideas.",
+        "startTime": 0,
+        "endTime": 4.251,
+        "duration": 4.251,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "Her son thinks about helping others.",
+        "startTime": 4.251,
+        "endTime": 7.085,
+        "duration": 2.834,
+        "sentenceIndex": 79
+      },
+      {
+        "text": "At eight years old, he wanted to make the world better.",
+        "startTime": 7.085,
+        "endTime": 11.565,
+        "duration": 4.48,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "He wrote about sharing toys, helping friends, and being kind.",
+        "startTime": 11.565,
+        "endTime": 16.667,
+        "duration": 5.102,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "And now he will never do it again.",
+        "startTime": 16.667,
+        "endTime": 19.343,
+        "duration": 2.677,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "But then Anna had a new idea.",
+        "startTime": 19.343,
+        "endTime": 21.626,
+        "duration": 2.283,
+        "sentenceIndex": 83
+      }
+    ],
+    "totalDuration": 21.626417,
+    "measuredDuration": 21.626417
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-14.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "What if Anna can do these things for Ethan?",
+        "startTime": 0,
+        "endTime": 3.544,
+        "duration": 3.544,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "What if she helps people like Ethan wanted?",
+        "startTime": 3.544,
+        "endTime": 7.089,
+        "duration": 3.544,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "The idea felt strange at first, like wearing other clothes.",
+        "startTime": 7.089,
+        "endTime": 12.102,
+        "duration": 5.013,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "It felt like a way to honor Ethan's spirit and memory.",
+        "startTime": 12.102,
+        "endTime": 16.553,
+        "duration": 4.451,
+        "sentenceIndex": 87
+      },
+      {
+        "text": "She felt a small spark of hope.",
+        "startTime": 16.553,
+        "endTime": 19.109,
+        "duration": 2.555,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "Anna begins small and grows bigger.",
+        "startTime": 19.109,
+        "endTime": 21.994,
+        "duration": 2.885,
+        "sentenceIndex": 89
+      }
+    ],
+    "totalDuration": 21.993741,
+    "measuredDuration": 21.993741
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-15.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "She thought about what Ethan loved the most.",
+        "startTime": 0,
+        "endTime": 3.541,
+        "duration": 3.541,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "He loved school very much.",
+        "startTime": 3.541,
+        "endTime": 5.633,
+        "duration": 2.092,
+        "sentenceIndex": 91
+      },
+      {
+        "text": "He loved learning very much.",
+        "startTime": 5.633,
+        "endTime": 7.887,
+        "duration": 2.253,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "He loved helping kids who had problems.",
+        "startTime": 7.887,
+        "endTime": 11.025,
+        "duration": 3.139,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "Anna remembered when he came home and talked about classmates needing help.",
+        "startTime": 11.025,
+        "endTime": 17.061,
+        "duration": 6.036,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "“Mom, I want to help them,” he said with bright eyes.",
+        "startTime": 17.061,
+        "endTime": 21.627,
+        "duration": 4.565,
+        "sentenceIndex": 95
+      }
+    ],
+    "totalDuration": 21.626667,
+    "measuredDuration": 21.626667
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-16.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "One day, Anna talked to a friend at a hospital.",
+        "startTime": 0,
+        "endTime": 3.819,
+        "duration": 3.819,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "The friend said many children there feel alone.",
+        "startTime": 3.819,
+        "endTime": 7.488,
+        "duration": 3.669,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "They cannot go to school today.",
+        "startTime": 7.488,
+        "endTime": 9.907,
+        "duration": 2.42,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "They cannot see their friends now or later.",
+        "startTime": 9.907,
+        "endTime": 13.264,
+        "duration": 3.357,
+        "sentenceIndex": 99
+      },
+      {
+        "text": "They spent weeks in the hospital and felt alone from the world.",
+        "startTime": 13.264,
+        "endTime": 18.182,
+        "duration": 4.918,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "Anna thinks about Ethan's list again.",
+        "startTime": 18.182,
+        "endTime": 21.07,
+        "duration": 2.888,
+        "sentenceIndex": 101
+      }
+    ],
+    "totalDuration": 21.069841,
+    "measuredDuration": 21.069841
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-17.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "Anna makes cards for sad people and wants to help more.",
+        "startTime": 0,
+        "endTime": 3.932,
+        "duration": 3.932,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "What if she helps sick children stay close to school and friends?",
+        "startTime": 3.932,
+        "endTime": 8.579,
+        "duration": 4.647,
+        "sentenceIndex": 103
+      },
+      {
+        "text": "What if she gives them technology to talk and feel less alone?",
+        "startTime": 8.579,
+        "endTime": 13.011,
+        "duration": 4.432,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "The idea grew in Anna's mind and made her happy.",
+        "startTime": 13.011,
+        "endTime": 16.443,
+        "duration": 3.432,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "She started to research and learn new things.",
+        "startTime": 16.443,
+        "endTime": 19.66,
+        "duration": 3.217,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "She learned about programs that help sick children with technology.",
+        "startTime": 19.66,
+        "endTime": 24.45,
+        "duration": 4.79,
+        "sentenceIndex": 107
+      }
+    ],
+    "totalDuration": 24.449887,
+    "measuredDuration": 24.449887
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-18.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "She learned about robots that help children go to school online.",
+        "startTime": 0,
+        "endTime": 4.354,
+        "duration": 4.354,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "She learned about tablets and computers that connect children to teachers.",
+        "startTime": 4.354,
+        "endTime": 9.389,
+        "duration": 5.035,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "Anna wants to start a nonprofit group to help others.",
+        "startTime": 9.389,
+        "endTime": 12.995,
+        "duration": 3.606,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "She named it Ethan's Connection after her son.",
+        "startTime": 12.995,
+        "endTime": 16.125,
+        "duration": 3.13,
+        "sentenceIndex": 111
+      },
+      {
+        "text": "It felt right to keep his memory alive.",
+        "startTime": 16.125,
+        "endTime": 18.779,
+        "duration": 2.654,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "She started to raise money for a good cause.",
+        "startTime": 18.779,
+        "endTime": 21.772,
+        "duration": 2.994,
+        "sentenceIndex": 113
+      }
+    ],
+    "totalDuration": 21.772358,
+    "measuredDuration": 21.772358
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-19.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "She reached out to hospitals for help and support.",
+        "startTime": 0,
+        "endTime": 3.568,
+        "duration": 3.568,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "She found people who believed in her work and helped her.",
+        "startTime": 3.568,
+        "endTime": 7.635,
+        "duration": 4.067,
+        "sentenceIndex": 115
+      },
+      {
+        "text": "They shared her vision and dreams.",
+        "startTime": 7.635,
+        "endTime": 10.061,
+        "duration": 2.426,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "The organization grew slowly and became bigger.",
+        "startTime": 10.061,
+        "endTime": 13.414,
+        "duration": 3.354,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "Ethan's Connection gives technology to fifty children in one year.",
+        "startTime": 13.414,
+        "endTime": 18.124,
+        "duration": 4.709,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "In two years, that number grows to two hundred.",
+        "startTime": 18.124,
+        "endTime": 21.627,
+        "duration": 3.504,
+        "sentenceIndex": 119
+      }
+    ],
+    "totalDuration": 21.627075,
+    "measuredDuration": 21.627075
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-20.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "Anna was proud but tired.",
+        "startTime": 0,
+        "endTime": 2.244,
+        "duration": 2.244,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "The work was hard, but Anna tried her best.",
+        "startTime": 2.244,
+        "endTime": 6.255,
+        "duration": 4.01,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "Anna often feels very overwhelmed.",
+        "startTime": 6.255,
+        "endTime": 9.307,
+        "duration": 3.052,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "She comes home feeling exhausted and missed Ethan very much.",
+        "startTime": 9.307,
+        "endTime": 14.693,
+        "duration": 5.386,
+        "sentenceIndex": 123
+      },
+      {
+        "text": "There were days when Anna wanted to give up and felt sad.",
+        "startTime": 14.693,
+        "endTime": 19.81,
+        "duration": 5.117,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "On a hard day, Anna visits a hospital.",
+        "startTime": 19.81,
+        "endTime": 23.371,
+        "duration": 3.561,
+        "sentenceIndex": 125
+      }
+    ],
+    "totalDuration": 23.371451,
+    "measuredDuration": 23.371451
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-21.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "She felt nervous but knew she must go.",
+        "startTime": 0,
+        "endTime": 3.027,
+        "duration": 3.027,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "Anna delivers a tablet to Maya, who is in the hospital.",
+        "startTime": 3.027,
+        "endTime": 7.559,
+        "duration": 4.532,
+        "sentenceIndex": 127
+      },
+      {
+        "text": "Maya's face lit up when she saw the tablet.",
+        "startTime": 7.559,
+        "endTime": 10.985,
+        "duration": 3.426,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "It was shiny and new.",
+        "startTime": 10.985,
+        "endTime": 12.658,
+        "duration": 1.673,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "She started a video call with her best friend Anna.",
+        "startTime": 12.658,
+        "endTime": 16.721,
+        "duration": 4.063,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "“Look!",
+        "startTime": 16.721,
+        "endTime": 17.199,
+        "duration": 0.478,
+        "sentenceIndex": 131
+      }
+    ],
+    "totalDuration": 17.198662,
+    "measuredDuration": 17.198662
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-22.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "I can see you!” Maya shouted with joy.",
+        "startTime": 0,
+        "endTime": 2.917,
+        "duration": 2.917,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "Anna watched Maya laugh and talk, forgetting she was sick.",
+        "startTime": 2.917,
+        "endTime": 7.518,
+        "duration": 4.602,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "She was a kid and talked to her friend.",
+        "startTime": 7.518,
+        "endTime": 10.512,
+        "duration": 2.993,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "Anna watched and felt something strange.",
+        "startTime": 10.512,
+        "endTime": 13.582,
+        "duration": 3.07,
+        "sentenceIndex": 135
+      },
+      {
+        "text": "It was a feeling Anna had not felt for a long time.",
+        "startTime": 13.582,
+        "endTime": 17.497,
+        "duration": 3.914,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "It was a feeling of peace, purpose, and connection.",
+        "startTime": 17.497,
+        "endTime": 21.711,
+        "duration": 4.214,
+        "sentenceIndex": 137
+      }
+    ],
+    "totalDuration": 21.711088,
+    "measuredDuration": 21.711088
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-23.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "Ethan is with her and tells her this is right.",
+        "startTime": 0,
+        "endTime": 3.177,
+        "duration": 3.177,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "Anna saw that helping others is about more than Ethan's memory.",
+        "startTime": 3.177,
+        "endTime": 7.529,
+        "duration": 4.352,
+        "sentenceIndex": 139
+      },
+      {
+        "text": "It was about Anna finding meaning in her life again.",
+        "startTime": 7.529,
+        "endTime": 11.121,
+        "duration": 3.592,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "Anna takes her love for her son and shares it with children.",
+        "startTime": 11.121,
+        "endTime": 15.265,
+        "duration": 4.144,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "She changes her pain into purpose and helps others.",
+        "startTime": 15.265,
+        "endTime": 18.787,
+        "duration": 3.523,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "The work did not help with the grief.",
+        "startTime": 18.787,
+        "endTime": 21.343,
+        "duration": 2.556,
+        "sentenceIndex": 143
+      }
+    ],
+    "totalDuration": 21.343107,
+    "measuredDuration": 21.343107
+  },
+  {
+    "bundleId": "b24",
+    "bundleIndex": 24,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-24.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-24.mp3",
+    "sentences": [
+      {
+        "text": "Anna misses Ethan every day and feels sad.",
+        "startTime": 0,
+        "endTime": 3.365,
+        "duration": 3.365,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "She still cries sometimes and feels lost.",
+        "startTime": 3.365,
+        "endTime": 6.65,
+        "duration": 3.285,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "She still has times when the loss feels very hard.",
+        "startTime": 6.65,
+        "endTime": 10.656,
+        "duration": 4.006,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "Now she has joy when she sees a child's happy face.",
+        "startTime": 10.656,
+        "endTime": 14.742,
+        "duration": 4.086,
+        "sentenceIndex": 147
+      },
+      {
+        "text": "One evening, Anna was at home and looked at photos of Ethan.",
+        "startTime": 14.742,
+        "endTime": 19.7,
+        "duration": 4.957,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "She found a picture of him helping a child at school.",
+        "startTime": 19.7,
+        "endTime": 23.946,
+        "duration": 4.246,
+        "sentenceIndex": 149
+      }
+    ],
+    "totalDuration": 23.946077,
+    "measuredDuration": 23.946077
+  },
+  {
+    "bundleId": "b25",
+    "bundleIndex": 25,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-25.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-25.mp3",
+    "sentences": [
+      {
+        "text": "Ethan shows a classmate how to solve a math problem.",
+        "startTime": 0,
+        "endTime": 3.447,
+        "duration": 3.447,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "His face is serious and kind when he helps others understand.",
+        "startTime": 3.447,
+        "endTime": 7.49,
+        "duration": 4.043,
+        "sentenceIndex": 151
+      },
+      {
+        "text": "Anna looked at the photo and thought about the children she helped.",
+        "startTime": 7.49,
+        "endTime": 11.931,
+        "duration": 4.441,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "She thinks about Maya, who can now go to school from bed.",
+        "startTime": 11.931,
+        "endTime": 15.859,
+        "duration": 3.928,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "She thinks about other children who stay connected and feel less alone.",
+        "startTime": 15.859,
+        "endTime": 20.564,
+        "duration": 4.706,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "Anna saw something important and understood it.",
+        "startTime": 20.564,
+        "endTime": 23.68,
+        "duration": 3.115,
+        "sentenceIndex": 155
+      }
+    ],
+    "totalDuration": 23.679683,
+    "measuredDuration": 23.679683
+  },
+  {
+    "bundleId": "b26",
+    "bundleIndex": 26,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-26.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-26.mp3",
+    "sentences": [
+      {
+        "text": "Ethan's life was short, but it was important.",
+        "startTime": 0,
+        "endTime": 3.449,
+        "duration": 3.449,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "She helps others and keeps Ethan's spirit alive.",
+        "startTime": 3.449,
+        "endTime": 6.969,
+        "duration": 3.519,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "Anna took Ethan's love and shared it with children in need.",
+        "startTime": 6.969,
+        "endTime": 11.295,
+        "duration": 4.326,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "Anna knew she would always feel sad for Ethan.",
+        "startTime": 11.295,
+        "endTime": 14.668,
+        "duration": 3.373,
+        "sentenceIndex": 159
+      },
+      {
+        "text": "The loss is always a part of Anna.",
+        "startTime": 14.668,
+        "endTime": 17.161,
+        "duration": 2.493,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "She knew she could live with her loss and make it beautiful.",
+        "startTime": 17.161,
+        "endTime": 21.56,
+        "duration": 4.399,
+        "sentenceIndex": 161
+      }
+    ],
+    "totalDuration": 21.560023,
+    "measuredDuration": 21.560023
+  },
+  {
+    "bundleId": "b27",
+    "bundleIndex": 27,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-27.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-27.mp3",
+    "sentences": [
+      {
+        "text": "She found her purpose and helped others like Ethan wanted.",
+        "startTime": 0,
+        "endTime": 4.49,
+        "duration": 4.49,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "Years go by and change many things.",
+        "startTime": 4.49,
+        "endTime": 7.2,
+        "duration": 2.71,
+        "sentenceIndex": 163
+      },
+      {
+        "text": "Ethan's Connection grows and becomes very important.",
+        "startTime": 7.2,
+        "endTime": 11.226,
+        "duration": 4.026,
+        "sentenceIndex": 164
+      },
+      {
+        "text": "It helped many children and made them happy.",
+        "startTime": 11.226,
+        "endTime": 14.632,
+        "duration": 3.406,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "Anna spoke at conferences and shared her ideas.",
+        "startTime": 14.632,
+        "endTime": 18.271,
+        "duration": 3.639,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "She met other parents who lost their children too.",
+        "startTime": 18.271,
+        "endTime": 22.142,
+        "duration": 3.871,
+        "sentenceIndex": 167
+      }
+    ],
+    "totalDuration": 22.141678,
+    "measuredDuration": 22.141678
+  },
+  {
+    "bundleId": "b28",
+    "bundleIndex": 28,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-28.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-28.mp3",
+    "sentences": [
+      {
+        "text": "They shared their stories, and tears flowed.",
+        "startTime": 0,
+        "endTime": 3.399,
+        "duration": 3.399,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "She learned she was not alone, and helping others helped her heal.",
+        "startTime": 3.399,
+        "endTime": 8.422,
+        "duration": 5.023,
+        "sentenceIndex": 169
+      },
+      {
+        "text": "One day, Anna got a letter from a mother about a tablet.",
+        "startTime": 8.422,
+        "endTime": 12.707,
+        "duration": 4.285,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "The daughter attends her graduation from her hospital bed with Anna's help.",
+        "startTime": 12.707,
+        "endTime": 18.245,
+        "duration": 5.538,
+        "sentenceIndex": 171
+      },
+      {
+        "text": "The mother wrote she will never forget what Anna did.",
+        "startTime": 18.245,
+        "endTime": 22.158,
+        "duration": 3.913,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "Anna read the letter and cried, but her tears felt different.",
+        "startTime": 22.158,
+        "endTime": 26.812,
+        "duration": 4.654,
+        "sentenceIndex": 173
+      }
+    ],
+    "totalDuration": 26.812426,
+    "measuredDuration": 26.812426
+  },
+  {
+    "bundleId": "b29",
+    "bundleIndex": 29,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-29.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-29.mp3",
+    "sentences": [
+      {
+        "text": "They were not only tears of sadness and loss.",
+        "startTime": 0,
+        "endTime": 3.275,
+        "duration": 3.275,
+        "sentenceIndex": 174
+      },
+      {
+        "text": "They were tears of love, pride, and gratitude.",
+        "startTime": 3.275,
+        "endTime": 6.924,
+        "duration": 3.648,
+        "sentenceIndex": 175
+      },
+      {
+        "text": "She took the worst thing in her life and made it good.",
+        "startTime": 6.924,
+        "endTime": 10.854,
+        "duration": 3.93,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "Anna knew Ethan would not come back.",
+        "startTime": 10.854,
+        "endTime": 13.474,
+        "duration": 2.62,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "She knew she would always miss him very much.",
+        "startTime": 13.474,
+        "endTime": 16.75,
+        "duration": 3.275,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "She knew his love lived on in her work and the children she helped.",
+        "startTime": 16.75,
+        "endTime": 21.626,
+        "duration": 4.877,
+        "sentenceIndex": 179
+      }
+    ],
+    "totalDuration": 21.626463,
+    "measuredDuration": 21.626463
+  },
+  {
+    "bundleId": "b30",
+    "bundleIndex": 30,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/bundle-30.mp3",
+    "audioPath": "grief-to-purpose-1/A1/bundle-30.mp3",
+    "sentences": [
+      {
+        "text": "Anna changed her grief into purpose and keeps Ethan's spirit alive.",
+        "startTime": 0,
+        "endTime": 5.298,
+        "duration": 5.298,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "Each child she helps is a part of Ethan.",
+        "startTime": 5.298,
+        "endTime": 8.461,
+        "duration": 3.163,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "He is with her in every smile and every moment of joy.",
+        "startTime": 8.461,
+        "endTime": 12.731,
+        "duration": 4.27,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "Anna feels a little lighter every day.",
+        "startTime": 12.731,
+        "endTime": 15.736,
+        "duration": 3.005,
+        "sentenceIndex": 183
+      },
+      {
+        "text": "She knows she is not alone.",
+        "startTime": 15.736,
+        "endTime": 17.871,
+        "duration": 2.135,
+        "sentenceIndex": 184
+      },
+      {
+        "text": "Ethan’s love will always guide her.",
+        "startTime": 17.871,
+        "endTime": 20.639,
+        "duration": 2.768,
+        "sentenceIndex": 185
+      }
+    ],
+    "totalDuration": 20.638866,
+    "measuredDuration": 20.638866
+  }
+]

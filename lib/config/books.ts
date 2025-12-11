@@ -341,6 +341,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'RL1'
   },
   {
+    id: 'grief-to-purpose-1',
+    title: 'Grief to Purpose: Finding Meaning in Loss',
+    author: 'BookBridge',
+    description: 'A powerful composite story about Anna, who loses her eight-year-old son Ethan in a tragic accident. Devastated by grief, Anna discovers Ethan\'s list of ways to help others and decides to honor his memory by creating Ethan\'s Connection, a nonprofit providing technology to sick children. This moving story shows how we can transform our deepest pain into purpose, finding meaning in tragedy and helping others through our own loss. A1 level with Jane voice.',
+    sentences: 190,
+    bundles: 31,
+    gradient: 'from-indigo-500 to-purple-600',
+    abbreviation: 'GP1'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -483,6 +493,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'romantic-love-1': {
     'A1': '/api/romantic-love-1-a1/bundles'
   },
+  'grief-to-purpose-1': {
+    'A1': '/api/grief-to-purpose-1-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -528,6 +541,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'cultural-bridge-1': 'A1',  // Default to A1 for Between Two Worlds: A Cultural Bridge Story (Modern Story)
   'cultural-bridge-2': 'A1',  // Default to A1 for Bridging Traditions and Modern Life (Modern Story)
   'romantic-love-1': 'A1',  // Default to A1 for Cross-Cultural Love Story (Modern Story)
+  'grief-to-purpose-1': 'A1',  // Default to A1 for Grief to Purpose: Finding Meaning in Loss (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -607,6 +621,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'cultural-bridge-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'cultural-bridge-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'romantic-love-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'grief-to-purpose-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

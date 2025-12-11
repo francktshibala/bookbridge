@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
   "lastUpdated": "2025-12-11",
-  "totalStories": 16,
+  "totalStories": 17,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -137,6 +137,15 @@
       "specificSubject": "Career choice pressure, generational conflict, honoring sacrifices while following dreams",
       "status": "complete",
       "notes": "Composite from 3 sources (Greek-American, various Asian-American, Salvadoran-American), generic character Jin"
+    },
+    {
+      "storyId": "grief-to-purpose-1",
+      "realPerson": null,
+      "storyConcept": "Mother loses son, finds purpose by helping other children",
+      "themeCategory": "Grief to Purpose - Loss Transformation",
+      "specificSubject": "Grief transformation, loss of child, creating nonprofit to help others",
+      "status": "complete",
+      "notes": "Composite from 4 sources (Kate Braestrup, Scarlett Lewis, Leslie Morissette, Michelle Schwartzmier), generic characters Anna/Ethan"
     }
   ],
   "themeSaturation": {
@@ -150,7 +159,8 @@
     "secondChance": 1,
     "medicalCrisis": 1,
     "culturalBridge": 2,
-    "romanticLove": 1
+    "romanticLove": 1,
+    "griefToPurpose": 1
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -173,7 +183,8 @@
     "Addiction/prison redemption",
     "Stroke recovery and aphasia",
     "Career choice pressure from immigrant parents",
-    "Cross-cultural/interfaith romantic relationships with family resistance"
+    "Cross-cultural/interfaith romantic relationships with family resistance",
+    "Grief transformation after loss of child"
   ],
   "guidelines": {
     "beforeImplementing": [

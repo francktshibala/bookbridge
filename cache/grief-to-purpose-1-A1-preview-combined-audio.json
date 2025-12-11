@@ -1,0 +1,104 @@
+{
+  "storyId": "grief-to-purpose-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/grief-to-purpose-1/A1/preview-combined.mp3",
+    "duration": 76.229501,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 3.699,
+        "duration": 3.699,
+        "text": "In this powerful story, Anna faces great loss."
+      },
+      {
+        "startTime": 3.699,
+        "endTime": 8.323,
+        "duration": 4.624,
+        "text": "Her son Ethan dies in an accident, leaving her devastated."
+      },
+      {
+        "startTime": 8.323,
+        "endTime": 12.257,
+        "duration": 3.934,
+        "text": "Anna finds Ethan's list and decides to help others."
+      },
+      {
+        "startTime": 12.257,
+        "endTime": 16.192,
+        "duration": 3.934,
+        "text": "She creates Ethan's Connection to honor his memory."
+      },
+      {
+        "startTime": 16.192,
+        "endTime": 23.289,
+        "duration": 7.097,
+        "text": "This moving story shows how we can find meaning in tragedy and help others through our pain."
+      },
+      {
+        "startTime": 23.289,
+        "endTime": 29.538,
+        "duration": 6.249,
+        "text": "Anna never imagined that the worst day of her life would begin with a phone call."
+      },
+      {
+        "startTime": 29.538,
+        "endTime": 34.779,
+        "duration": 5.241,
+        "text": "It was a Tuesday morning, and she was at work when her phone rang."
+      },
+      {
+        "startTime": 34.779,
+        "endTime": 38.405,
+        "duration": 3.626,
+        "text": "The voice on the other end was calm but urgent."
+      },
+      {
+        "startTime": 38.405,
+        "endTime": 40.488,
+        "duration": 2.083,
+        "text": "There had been an accident."
+      },
+      {
+        "startTime": 40.488,
+        "endTime": 46.342,
+        "duration": 5.854,
+        "text": "Her son Ethan, who was eight years old, had been rushed to the hospital."
+      },
+      {
+        "startTime": 46.342,
+        "endTime": 47.962,
+        "duration": 1.62,
+        "text": "Anna's world stopped."
+      },
+      {
+        "startTime": 47.962,
+        "endTime": 56.675,
+        "duration": 8.713,
+        "text": "She dropped everything and ran to her car, her hands shaking so badly she could barely hold the steering wheel."
+      },
+      {
+        "startTime": 56.675,
+        "endTime": 62.656,
+        "duration": 5.981,
+        "text": "When a child dies, parents face an impossible question: How do you go on?"
+      },
+      {
+        "startTime": 62.656,
+        "endTime": 65.202,
+        "duration": 2.546,
+        "text": "Some people never find an answer."
+      },
+      {
+        "startTime": 65.202,
+        "endTime": 76.23,
+        "duration": 11.027,
+        "text": "Others discover that helping others can transform grief into purpose, creating meaning from loss and honoring the memory of those they loved."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-11T21:59:05.286Z",
+  "timingMethod": "enhanced-timing-v3"
+}

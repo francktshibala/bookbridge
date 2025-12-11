@@ -24,7 +24,7 @@
 ## 🎯 Quick Start
 
 ### **What You're Building:**
-- Powerful modern stories (15-45 minutes) that make ESL learners fall in love with BookBridge
+- Powerful modern stories (minimum 20 minutes for A1, 30-45 minutes for higher levels) that make ESL learners fall in love with BookBridge
 - Each story has perfect audio sync (word-by-word highlighting with Enhanced Timing v3)
 - Stories are emotionally curated - only stories that pass the "text a friend" test
 - Multi-level support (A1, A2, B1) with appropriate length per level
@@ -199,9 +199,9 @@ Meticulous Execution = Zero Bugs + One Commit + Happy User
   - **If person/concept exists:** STOP and pick different story
 - [ ] Choose story from curated list in `docs/MODERN_CONTENT_MASTER_PLAN.md`
 - [ ] Verify length targets by CEFR level:
-  - **A1:** 15-20 minutes
-  - **A2:** 20-30 minutes
-  - **B1+:** 30-45 minutes
+  - **A1:** Minimum 20 minutes (~1,500-1,700 words)
+  - **A2:** 20-30 minutes (~1,800-2,200 words)
+  - **B1+:** 30-45 minutes (~2,500+ words)
 - [ ] Select CEFR levels to implement (usually start with A1)
 
 #### **Step 0.25: Source Material Check (MANDATORY FIRST) ⚠️**
@@ -220,9 +220,9 @@ Meticulous Execution = Zero Bugs + One Commit + Happy User
 - Encyclopedia entries (factual summaries)
 
 **Length Check:**
-- A1: Must support 15+ minutes of engaging content
-- A2: Must support 20+ minutes
-- B1+: Must support 30+ minutes
+- A1: Must support minimum 20 minutes of engaging content (~1,500-1,700 words)
+- A2: Must support 20-30 minutes (~1,800-2,200 words)
+- B1+: Must support 30+ minutes (~2,500+ words)
 
 **Why:** Prevents wasting time on sources that won't create emotional connection.
 
@@ -258,29 +258,40 @@ Verify story meets ALL criteria:
 - [ ] Estimate audio costs (number of bundles × cost per bundle)
 
 #### **Step 0.75: Find Source Material**
-**⚠️ PROVEN WORKFLOW (Used for all 14 stories):**
+**⚠️ PROVEN WORKFLOW (Used for all 16 stories):**
 
 **Division of Labor:**
 - **Claude in Browser (User):** Research expert - finds and evaluates sources
 - **Claude Code (Me):** Implementation expert - saves sources, creates story, generates audio
 
 **Workflow:**
-1. **Claude Code provides requirements to User:**
-   - Story theme/category (e.g., "Cultural Bridge #1")
-   - What to look for (e.g., "immigrant/bicultural identity, navigating two cultures")
-   - What to avoid (themes already covered)
-   - Source types preferred (long-form journalism, first-person essays, oral histories)
+1. **Claude Code provides story requirements to User:**
+   - Story theme/category (e.g., "Grief to Purpose #1")
+   - **Story requirements (focus on these):**
+     - Emotional arc needed: Clear struggle → perseverance → breakthrough/transformation
+     - Emotional depth: Must have 5-7+ identifiable emotional moments
+     - ESL resonance: Must have 3+ ESL multipliers (see Step 0.5 for list)
+     - Length requirement: Must support minimum 20 minutes A1 content (~1,500-1,700 words)
+     - Story-driven: Personal narratives, emotional journeys (NOT fact-driven biographies)
+     - "Text a friend" test: Would someone text a friend about this story?
+   - What to avoid: Themes/concepts already covered (check `story-subjects-tracker.json`)
+   - **Note:** Don't limit to specific sources - find ANY sources that meet these requirements
 
 2. **User (Claude in Browser) researches sources:**
-   - Multiple targeted searches with emotional keywords ("first-person," "my journey," "I grew up between")
-   - Prioritizes: CNN, NPR, CBC, ProPublica, StoryCorps, The Guardian, Medium essays, TED talks
-   - Looks for clear narrative arcs (struggle → crisis → transformation)
-   - Avoids fact-driven/Wikipedia-style content
+   - Search broadly for stories meeting the requirements above
+   - Use emotional keywords: "my journey," "personal story," "transformation," "overcoming," etc.
+   - Look for ANY source type that meets requirements: journalism, essays, interviews, podcasts, The Moth, personal blogs, documentaries, memoirs, etc.
+   - Prioritize sources with:
+     - Clear narrative arcs (struggle → crisis → transformation)
+     - First-person emotional accounts
+     - Sufficient length/content for 20+ minute story
+   - Avoid fact-driven/Wikipedia-style content
 
 3. **User provides back:**
    - URL + publication name + brief description (2-3 sentences)
-   - Rating potential (1-10) based on emotional depth
+   - Rating potential (1-10) based on emotional depth and story requirements
    - Key emotional moments visible
+   - Estimated content length (does it support 20+ minutes?)
    - Target: 3-5 sources (minimum 3 for legal/thematic diversity)
    - Aim for 2-3 flagship (9-10/10) + 1-2 supporting (8-8.5/10)
 
@@ -298,13 +309,15 @@ Verify story meets ALL criteria:
 - User's browser access bypasses copyright blocks (manual copy works 100%)
 - Claude in Browser excels at research, evaluation, pattern recognition
 - Claude Code excels at technical implementation
-- Proven with all 14 completed stories
+- Proven with all 16 completed stories
+- Focusing on story requirements (not source types) allows discovery of unexpected great sources
 
 **Validation Before Sources:**
 - Story-driven NOT fact-driven (Step 0.25)
 - 5-7+ emotional moments visible (Step 0.5)
 - 3+ ESL multipliers potential
 - Clear transformation arc
+- Minimum 20 minutes content potential (A1 level)
 - Different angles/perspectives across sources
 
 ---
@@ -370,7 +383,9 @@ Verify story meets ALL criteria:
   - Select best moments: e.g., Jill's "La La Land" + Anne's "pelican wings" + Janine's "you have me"
   - Combine themes: stroke recovery + identity rebuilding + family support
   - Universal experience vs. one person's specific journey
-- [ ] Target length: 1,800-2,200 words for A2 level
+- [ ] Target length: Original text typically 1,800-2,200 words (A2/B1 level)
+  - **After A1 simplification:** Must be minimum 20 minutes (~1,500-1,700 words)
+  - **Higher levels:** A2 = 20-30 min, B1+ = 30-45 min
 - [ ] Follow emotional journey map from Step 2.5
 - [ ] Save to: `cache/{story-id}-original.txt`
 
@@ -738,7 +753,7 @@ Update `lib/config/books.ts`:
 ### **Before Committing:**
 
 **Text Quality:**
-- [ ] Story is 15-20 minutes for A1 (minimum requirement)
+- [ ] Story is minimum 20 minutes for A1 (required - not 15 minutes)
 - [ ] Emotional arc is clear (struggle → perseverance → breakthrough)
 - [ ] 5-7 emotional moments identified
 - [ ] 3+ ESL resonance multipliers

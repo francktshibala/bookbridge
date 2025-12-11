@@ -11,7 +11,9 @@
     "Mei": ["cultural-bridge-1"],
     "Jin": ["cultural-bridge-2"],
     "Maya": ["romantic-love-1"],
-    "Alex": ["romantic-love-1"]
+    "Alex": ["romantic-love-1"],
+    "Anna": ["grief-to-purpose-1"],
+    "Ethan": ["grief-to-purpose-1"]
   },
   "guidelines": {
     "avoidRepeating": true,
