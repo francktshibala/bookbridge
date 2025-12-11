@@ -369,7 +369,8 @@ Verify story meets ALL criteria:
 - [ ] Save to: `cache/{story-id}-hook.txt`
 
 #### **Step 4: Text Simplification**
-- [ ] Run in TERMINAL: `node scripts/simplify-{story-id}.js [LEVEL]`
+**⚠️ USER RUNS IN THEIR TERMINAL - NOT Claude Code (saves context window)**
+- [ ] Ask user to run: `node scripts/simplify-{story-id}.js [LEVEL]`
 - [ ] **CRITICAL: 1:1 sentence mapping** (same number of sentences)
 - [ ] Sentence length limits:
   - A1: max 12 words
@@ -397,7 +398,8 @@ Verify story meets ALL criteria:
 ### **Phase 3: Preview Generation**
 
 #### **Step 7: Generate Combined Preview Text**
-- [ ] Run in TERMINAL: `node scripts/generate-{story-id}-preview-combined.js [LEVEL]`
+**⚠️ USER RUNS IN THEIR TERMINAL - NOT Claude Code (saves context window)**
+- [ ] Ask user to run: `node scripts/generate-{story-id}-preview-combined.js [LEVEL]`
 - [ ] Combine preview + background + hook into one unified text
 - [ ] Structure:
   1. Preview (50-75 words)
@@ -407,7 +409,8 @@ Verify story meets ALL criteria:
 - [ ] Save to: `cache/{story-id}-{level}-preview-combined.txt`
 
 #### **Step 8: Generate Combined Preview Audio**
-- [ ] Run in TERMINAL: `node scripts/generate-{story-id}-preview-audio.js [LEVEL]`
+**⚠️ USER RUNS IN THEIR TERMINAL - NOT Claude Code (saves context window)**
+- [ ] Ask user to run: `node scripts/generate-{story-id}-preview-audio.js [LEVEL]`
 - [ ] Generate audio for ENTIRE combined text
 - [ ] **Enhanced Timing v3 REQUIRED** (sentence-level timings)
 - [ ] FFmpeg: 0.90× speed via ElevenLabs → apply `atempo=0.85` filter
@@ -430,7 +433,8 @@ Verify story meets ALL criteria:
 - [ ] Confirm getVoiceForLevel() function maps correctly
 
 #### **Step 10.5: Generate Bundle Audio (PILOT FIRST) ⚠️**
-- [ ] Run in TERMINAL: `node scripts/generate-{story-id}-bundles.js [LEVEL] --pilot`
+**⚠️ USER RUNS IN THEIR TERMINAL - NOT Claude Code (saves context window, takes 3-5 min)**
+- [ ] Ask user to run: `node scripts/generate-{story-id}-bundles.js [LEVEL] --pilot`
 - [ ] Generate 10 bundles first (validate before full generation)
 - [ ] Voice Settings:
   - Jane: stability 0.5, similarity_boost 0.8, style 0.05
@@ -444,7 +448,8 @@ Verify story meets ALL criteria:
   - Renormalization
 
 #### **Step 11: Full Bundle Generation**
-- [ ] Run in TERMINAL: `node scripts/generate-{story-id}-bundles.js [LEVEL]`
+**⚠️ USER RUNS IN THEIR TERMINAL - NOT Claude Code (saves context window, takes 15-20 min)**
+- [ ] Ask user to run: `node scripts/generate-{story-id}-bundles.js [LEVEL]`
 - [ ] Verify all bundles generated with Solution 1 metadata
 - [ ] Save to: `cache/{story-id}-{level}-bundles-metadata.json`
 
