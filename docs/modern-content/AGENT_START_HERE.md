@@ -82,6 +82,72 @@
 
 ---
 
+## ⚠️ CRITICAL: FOLLOW INSTRUCTIONS METICULOUSLY
+
+**This is NOT a suggestion - it's a REQUIREMENT.**
+
+### **Execute EVERY Step EXACTLY as Written**
+
+- ✅ **Read EVERY step before starting** - Don't skim, don't assume, read completely
+- ✅ **Complete steps IN ORDER** - Don't skip ahead, don't jump around
+- ✅ **Run ALL validation checkpoints** - They exist to catch mistakes BEFORE deployment
+- ✅ **Test with user BEFORE committing** - No assumptions, get explicit approval
+- ✅ **Follow the framework EXACTLY** - Don't improvise, don't "improve", follow the proven path
+
+### **Why Meticulous Execution Matters**
+
+**Real Example: Medical Crisis #1 Implementation**
+
+**❌ What Happened When Shortcuts Were Taken:**
+- Skipped validation checkpoints → 6 separate issues discovered
+- Committed before user testing → 3 fix commits required
+- Didn't follow MODERN_VOICES_IMPLEMENTATION_GUIDE.md → Wrong patterns used
+- Assumed tests passed → User found sync issues, duplicate highlights, missing sections
+
+**Issues Encountered (ALL preventable):**
+1. Duplicate sentence indices → React "duplicate key" errors
+2. Missing preview audio files → Intro section broken
+3. Header text in timings → 1.3 second sync error
+4. Frontend calibration bug → Intro sync didn't work
+5. Sentence splitting mismatch → More sync issues
+6. Wrong implementation guide → Had to relearn everything
+
+**Result:** 6 bugs, 3 fix commits, frustrated user, wasted time
+
+**✅ What Happens When You Follow Meticulously:**
+- ALL validation checkpoints passed → Issues caught BEFORE deployment
+- User testing BEFORE commit → Zero fix commits needed
+- MODERN_VOICES_IMPLEMENTATION_GUIDE.md followed → Perfect sync first try
+- All tests verified → User happy, story works perfectly
+
+**Result:** 0 bugs, 1 commit, happy user, time saved
+
+### **The Pattern is Clear**
+
+```
+Shortcuts & Assumptions = Multiple Bugs + Fix Commits + Wasted Time
+Meticulous Execution = Zero Bugs + One Commit + Happy User
+```
+
+### **If You Take Shortcuts:**
+
+- ⚠️ You **WILL** encounter the same 6 issues (they're documented for a reason)
+- ⚠️ You **WILL** need multiple fix commits (user will catch what you missed)
+- ⚠️ You **WILL** waste time debugging (prevention is faster than fixing)
+- ⚠️ User **WILL** be frustrated (testing is their job, implementation is yours)
+
+### **Bottom Line**
+
+**Every validation checkpoint exists because someone made that mistake before.**
+**Every test exists because that issue happened in production.**
+**Every warning exists because that shortcut caused problems.**
+
+**Follow the framework EXACTLY as written. No shortcuts. No assumptions. Meticulous execution.**
+
+**The framework works - but only if you follow it completely.**
+
+---
+
 ## 📁 Files to Read (In Order)
 
 ### **Phase 0: Story Selection**
