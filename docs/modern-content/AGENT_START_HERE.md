@@ -186,11 +186,20 @@ Verify story meets ALL criteria:
 - [ ] Identify 5-7 key emotional moments for story flow
 - [ ] Save to: `cache/{story-id}-themes.json`
 
-#### **Step 2.6: Write Main Story**
+#### **Step 2.6: Write Main Story (COMPOSITE APPROACH - MANDATORY)**
+- [ ] **CRITICAL: Create composite story from multiple sources (3+ sources minimum)**
+  - **NEVER base story on single real person** (except public domain like Helen Keller)
+  - Extract best emotional moments from ALL sources
+  - Weave themes/moments into original narrative with generic character
+  - **Why:** Legal safety, emotional power, broader ESL resonance, creative freedom
 - [ ] Write original story narrative (NOT copied from sources)
 - [ ] Use generic character names (check `character-names-tracker.json` to avoid repetition)
-  - **DO NOT use real names** (e.g., NOT Erik Weihenmayer)
-  - **Use generic names** (e.g., Lucas, Anna, Emma, Oliver, Thomas)
+  - **DO NOT use real names** (e.g., NOT Erik Weihenmayer, NOT Jill Bolte Taylor)
+  - **Use generic names** (e.g., Lucas, Anna, Emma, Oliver, Thomas, Rachel, Nathan)
+- [ ] **Composite Elements:**
+  - Select best moments: e.g., Jill's "La La Land" + Anne's "pelican wings" + Janine's "you have me"
+  - Combine themes: stroke recovery + identity rebuilding + family support
+  - Universal experience vs. one person's specific journey
 - [ ] Target length: 1,800-2,200 words for A2 level
 - [ ] Follow emotional journey map from Step 2.5
 - [ ] Save to: `cache/{story-id}-original.txt`
@@ -407,12 +416,14 @@ Update `lib/config/books.ts`:
 
 **If story fails either gate:** STOP and pick different story.
 
-### **2. Multi-Source Thematic Extraction**
+### **2. Multi-Source Thematic Extraction & Composite Stories**
 **Always use 3+ sources** for legal compliance.
 
 - Extract themes/emotions (NOT copy text)
+- **MANDATORY: Create composite stories** - combine best moments from multiple sources
 - Use generic character names (avoid copyright)
 - Check `character-names-tracker.json` to avoid name repetition
+- **Never base story on single real person** (unless public domain)
 
 ### **3. Enhanced Timing v3 (Perfect Sync)**
 **MANDATORY for both preview and bundles:**

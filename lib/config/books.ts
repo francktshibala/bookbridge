@@ -301,6 +301,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'DO2'
   },
   {
+    id: 'medical-crisis-1',
+    title: 'Finding New Wings: A Medical Crisis Story',
+    author: 'BookBridge',
+    description: 'An inspiring composite story about Rachel, who experiences a sudden stroke that takes away her ability to speak. Through her daughter Emma\'s unwavering support and the wisdom of "pole pole" (slowly, slowly), Rachel learns that recovery isn\'t about becoming who you were before—it\'s about discovering who you can become. Like a pelican with a broken wing learning to swim, Rachel finds new ways to be herself. A1 level with Jane voice.',
+    sentences: 300,
+    bundles: 50,
+    gradient: 'from-rose-500 to-pink-600',
+    abbreviation: 'MC1'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -431,6 +441,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'disability-overcome-2': {
     'A1': '/api/disability-overcome-2-a1/bundles'
   },
+  'medical-crisis-1': {
+    'A1': '/api/medical-crisis-1-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -472,6 +485,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'community-builder-2': 'A1',  // Default to A1 for Community Builder: From Wrong Turn to School Network (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
   'disability-overcome-2': 'A1',  // Default to A1 for Blind Mountaineer: Reaching the Top (Modern Story)
+  'medical-crisis-1': 'A1',  // Default to A1 for Finding New Wings: A Medical Crisis Story (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -547,6 +561,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'community-builder-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'medical-crisis-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

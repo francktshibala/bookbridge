@@ -5,7 +5,9 @@
     "Sofia": ["community-builder-1"],
     "Carlos": ["community-builder-1"],
     "Mia": ["teaching-dad-to-read"],
-    "Lucas": ["disability-overcome-2"]
+    "Lucas": ["disability-overcome-2"],
+    "Rachel": ["medical-crisis-1"],
+    "Emma": ["medical-crisis-1"]
   },
   "guidelines": {
     "avoidRepeating": true,

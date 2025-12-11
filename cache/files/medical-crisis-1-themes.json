@@ -1,0 +1,231 @@
+{
+  "story_id": "medical-crisis-1",
+  "story_title": "When Everything Changed: A Medical Crisis Story",
+  "composite": true,
+  "sources": 6,
+  "average_rating": 9.4,
+
+  "common_themes": [
+    {
+      "theme": "Sudden Loss of Control",
+      "description": "Life changes in seconds - no warning, no preparation",
+      "examples": ["Jill's blood vessel exploding", "Andy's blowtorch pain on conference call", "Celeste's car crash", "Anne's Christmas Eve diagnosis"]
+    },
+    {
+      "theme": "Identity Dissolution",
+      "description": "Who am I when my body/mind fails?",
+      "examples": ["Jill becoming 'infant in woman's body'", "Celeste not knowing what a President is", "Andy thinking 'this isn't the man you married'"]
+    },
+    {
+      "theme": "Communication Barriers",
+      "description": "Unable to speak, be understood, or understand",
+      "examples": ["Jill sounding like Golden Retriever", "Andy drooling during FAST test", "Richard's slurred speech"]
+    },
+    {
+      "theme": "Family as Anchor",
+      "description": "Loved ones provide reason to fight and practical support",
+      "examples": ["Janine's son: 'You have me'", "Andy's wife Nic as rock", "Jill's mother as 'true angel'", "Anne's husband Tony"]
+    },
+    {
+      "theme": "Kindness of Strangers",
+      "description": "Unexpected help from people you don't know",
+      "examples": ["Anne's Turkish family teaching headscarves", "Strangers paying for Anne's dinner", "Richard's hospital staff"]
+    },
+    {
+      "theme": "Redefining Normal",
+      "description": "Accepting new reality, new self, new limitations",
+      "examples": ["Anne: 'Bald Anne is normal Anne'", "Celeste sculpting new personality", "Richard's list of 'firsts'"]
+    },
+    {
+      "theme": "Small Steps Forward",
+      "description": "Recovery happens in tiny increments",
+      "examples": ["Richard's 'pole pole'", "Andy throwing tennis ball hand to hand", "Jill's 8-year recovery"]
+    },
+    {
+      "theme": "Purpose Through Pain",
+      "description": "Finding meaning, helping others, transformation",
+      "examples": ["Celeste founding nonprofit", "Andy sharing story", "Jill teaching peace", "Anne's letter to help others"]
+    }
+  ],
+
+  "top_emotional_moments": [
+    {
+      "rank": 1,
+      "moment": "Golden Retriever Speech",
+      "source": "Jill Bolte Taylor",
+      "description": "Trying to call for help, colleague sounds like 'Woo woo woo' - then realizes SHE sounds like a Golden Retriever too",
+      "emotion": "Terror + dark humor",
+      "esl_parallel": "Trying to communicate in new language, being misunderstood"
+    },
+    {
+      "rank": 2,
+      "moment": "You Have Me",
+      "source": "Janine (mother-son)",
+      "description": "At rock bottom crying uncontrollably, son holds her and says 'You will be fine, Mum, because you have me'",
+      "emotion": "Despair → hope through love",
+      "esl_parallel": "Family support during impossible times"
+    },
+    {
+      "rank": 3,
+      "moment": "Carrying Father's Coffin",
+      "source": "Andy",
+      "description": "Father diagnosed with leukemia 1 week after Andy's stroke discharge, dies in May. Andy's single recovery goal: get strong enough to carry the coffin",
+      "emotion": "Grief channeled into determination",
+      "esl_parallel": "Setting concrete goal during crisis"
+    },
+    {
+      "rank": 4,
+      "moment": "Pelican Wings",
+      "source": "Anne (terminal cancer)",
+      "description": "Saw pelican on shore with wings outstretched, stood behind it, held out her own arms, felt 'greatest sense of freedom wash over me'",
+      "emotion": "Peace, acceptance, transcendence",
+      "esl_parallel": "Finding beauty despite circumstances"
+    },
+    {
+      "rank": 5,
+      "moment": "Headscarves with Serviettes",
+      "source": "Anne (terminal cancer)",
+      "description": "Turkish Muslim family couldn't remove headscarves in public, so demonstrated tying techniques using serviettes. Two weeks later drove hours to bring her scarves and teach her",
+      "emotion": "Cross-cultural kindness, unexpected connection",
+      "esl_parallel": "Strangers helping across cultural barriers"
+    },
+    {
+      "rank": 6,
+      "moment": "What is a President?",
+      "source": "Celeste Palmer",
+      "description": "Woke from car accident not knowing who she was, didn't recognize son, asked 'Who was the President?' then realized she didn't even know what a President IS",
+      "emotion": "Complete disorientation, identity void",
+      "esl_parallel": "Starting from zero in new country/language"
+    },
+    {
+      "rank": 7,
+      "moment": "La La Land Euphoria",
+      "source": "Jill Bolte Taylor",
+      "description": "Brain chatter goes silent, feels enormous and expansive, 'like a genie liberated from her bottle,' finds Nirvana while dying",
+      "emotion": "Terror transformed to peace",
+      "esl_parallel": "Unexpected gifts within struggle"
+    },
+    {
+      "rank": 8,
+      "moment": "Crawling Upstairs",
+      "source": "Andy",
+      "description": "Couldn't walk, had to crawl upstairs to bed while thinking it was just vertigo",
+      "emotion": "Denial, physical helplessness",
+      "esl_parallel": "Body failing when mind hasn't caught up"
+    },
+    {
+      "rank": 9,
+      "moment": "Pole Pole (Slowly Slowly)",
+      "source": "Richard McLean",
+      "description": "Brother reminds him of Kilimanjaro guides' advice: go 'pole pole' - slowly, slowly, small steps. They reached the summit that way.",
+      "emotion": "Wisdom, patience, hope",
+      "esl_parallel": "Language learning requires small consistent steps"
+    },
+    {
+      "rank": 10,
+      "moment": "Sculpting a New Personality",
+      "source": "Celeste Palmer",
+      "description": "Couldn't remember who she was before, so decided to CHOOSE who to become. Created 'happiness project' - chose to be known as a happy person",
+      "emotion": "Agency from loss, intentional identity",
+      "esl_parallel": "Immigrants can choose who they become in new country"
+    }
+  ],
+
+  "esl_resonance_multipliers": [
+    {
+      "multiplier": "Communication Barriers",
+      "strength": "MAXIMUM",
+      "reason": "Jill's Golden Retriever moment = exact feeling of ESL learner trying to be understood"
+    },
+    {
+      "multiplier": "Identity Loss/Rebuild",
+      "strength": "MAXIMUM",
+      "reason": "Celeste's amnesia = starting over with no past, like immigration"
+    },
+    {
+      "multiplier": "Family Bonds",
+      "strength": "HIGH",
+      "reason": "Universal anchor - Janine's son, Andy's wife, Anne's husband"
+    },
+    {
+      "multiplier": "Fear of Unknown",
+      "strength": "HIGH",
+      "reason": "Medical system navigation = bureaucratic navigation in new country"
+    },
+    {
+      "multiplier": "Small Steps Progress",
+      "strength": "HIGH",
+      "reason": "'Pole pole' = language learning pace"
+    },
+    {
+      "multiplier": "Kindness Across Cultures",
+      "strength": "HIGH",
+      "reason": "Anne's Turkish family = strangers helping immigrants"
+    }
+  ],
+
+  "composite_emotional_arc": {
+    "act_1_normal_life": {
+      "description": "Protagonist living full life - career, family, health",
+      "sources": ["Jill at Harvard", "Andy fit at 42", "Celeste running consulting firm", "Anne active at 61"]
+    },
+    "act_2_crisis_hits": {
+      "description": "Sudden onset - no warning, world shatters",
+      "key_moments": ["Blowtorch pain", "Car crash", "Christmas Eve diagnosis", "Can't move arm"],
+      "emotion": "Shock, denial, terror"
+    },
+    "act_3_darkest_moment": {
+      "description": "Rock bottom - loss of identity, abilities, hope",
+      "key_moments": ["Golden Retriever speech", "What is a President?", "Murky water depression", "6 weeks to live"],
+      "emotion": "Despair, grief, 'why me?'"
+    },
+    "act_4_turning_point": {
+      "description": "Small hope appears - person, moment, realization",
+      "key_moments": ["You have me", "La La Land peace", "Headscarves with serviettes", "First squeeze of fingers"],
+      "emotion": "Glimmer of hope, connection"
+    },
+    "act_5_small_steps": {
+      "description": "Slow recovery through repetition, patience, support",
+      "key_moments": ["Pole pole", "Tennis ball hand to hand", "First walk outside", "Volunteering to learn abilities"],
+      "emotion": "Determination, small wins"
+    },
+    "act_6_transformation": {
+      "description": "New normal, new purpose, helping others",
+      "key_moments": ["Ultramarathons", "Nonprofit founded", "Teaching peace", "Letter to help others"],
+      "emotion": "Gratitude, purpose, wisdom"
+    }
+  },
+
+  "composite_story_recommendations": {
+    "protagonist_profile": "Professional in their 40s, healthy, active, family - could be any gender/background",
+    "crisis_type": "Stroke recommended (most relatable communication barrier)",
+    "setting": "Home when crisis hits, hospital, rehabilitation, return to life",
+    "key_scenes_to_include": [
+      "Normal morning routine interrupted",
+      "Body failing while mind watches",
+      "Communication breakdown (Golden Retriever moment)",
+      "Family member recognizing signs, calling for help",
+      "Hospital - seeing own condition clearly",
+      "Darkest moment - depression, 'why me?'",
+      "Unexpected kindness from stranger",
+      "Family member's words as turning point",
+      "First small victory (squeeze fingers, walk to bench)",
+      "Slow progress montage",
+      "New purpose discovered",
+      "Sharing story to help others"
+    ],
+    "quotable_lines_to_adapt": [
+      "I became an infant in an adult's body",
+      "The room was spinning like I was drunk",
+      "You will be fine, because you have me",
+      "Pole pole - slowly, slowly",
+      "I decided to sculpt a new personality",
+      "Bald me is normal me. Tired me is normal me.",
+      "Life has to give up on me - I'm not giving up on life"
+    ]
+  },
+
+  "bundle_estimate": "40-45 bundles",
+  "recommended_level": "Intermediate-Advanced",
+  "primary_vocabulary_domains": ["medical", "emotional", "family", "recovery"]
+}
