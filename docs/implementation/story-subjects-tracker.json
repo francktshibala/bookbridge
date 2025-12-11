@@ -1,0 +1,169 @@
+{
+  "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
+  "lastUpdated": "2025-12-10",
+  "totalStories": 13,
+  "stories": [
+    {
+      "storyId": "teen-translating-hospital",
+      "realPerson": null,
+      "storyConcept": "Teen translating for immigrant parents in hospital emergency",
+      "themeCategory": "Language Barriers - Medical Context",
+      "specificSubject": "Child language broker / Medical interpreter",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "helen-keller",
+      "realPerson": "Helen Keller",
+      "storyConcept": "Deaf-blind child learns to communicate with teacher's help",
+      "themeCategory": "Disability Overcome - Deaf-Blind",
+      "specificSubject": "Helen Keller's childhood learning journey",
+      "status": "complete",
+      "notes": "Public domain memoir from Project Gutenberg"
+    },
+    {
+      "storyId": "teaching-dad-to-read",
+      "realPerson": null,
+      "storyConcept": "First-generation student teaches illiterate parent to read",
+      "themeCategory": "Intergenerational Learning - Role Reversal",
+      "specificSubject": "Child teaching parent literacy",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "immigrant-entrepreneur",
+      "realPerson": null,
+      "storyConcept": "Immigrant builds business after multiple failures",
+      "themeCategory": "Entrepreneurship - Immigration",
+      "specificSubject": "Immigrant entrepreneurship journey",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "refugee-journey-1",
+      "realPerson": null,
+      "storyConcept": "Refugee flees war zone, rebuilds life in new country",
+      "themeCategory": "Refugee Journey - War to Safety",
+      "specificSubject": "War refugee resettlement",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "community-builder-1",
+      "realPerson": null,
+      "storyConcept": "Individual transforms struggling neighborhood through community action",
+      "themeCategory": "Community Building - Neighborhood Transformation",
+      "specificSubject": "Grassroots community organizing",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "disability-overcome-1",
+      "realPerson": null,
+      "storyConcept": "Person with disability finds new ways to adapt and succeed",
+      "themeCategory": "Disability Overcome - General Adaptation",
+      "specificSubject": "Disability adaptation journey",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "career-pivot-1",
+      "realPerson": null,
+      "storyConcept": "Professional leaves burnout job to follow passion",
+      "themeCategory": "Career Pivot - Burnout to Passion",
+      "specificSubject": "Career transition from corporate to passion",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "second-chance-1",
+      "realPerson": null,
+      "storyConcept": "Person overcomes addiction/prison, rebuilds life",
+      "themeCategory": "Second Chance - Redemption",
+      "specificSubject": "Redemption from addiction/incarceration",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "refugee-journey-2",
+      "realPerson": null,
+      "storyConcept": "Separated refugee family reunites after years apart",
+      "themeCategory": "Refugee Journey - Family Reunification",
+      "specificSubject": "Refugee family separation and reunion",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "career-pivot-2",
+      "realPerson": null,
+      "storyConcept": "Person fired/laid off, pivots to service-oriented career",
+      "themeCategory": "Career Pivot - Layoff to Service",
+      "specificSubject": "Career transition from corporate to helping profession",
+      "status": "complete",
+      "notes": "Generic character, multi-source thematic extraction"
+    },
+    {
+      "storyId": "community-builder-2",
+      "realPerson": "Luma Mufleh",
+      "storyConcept": "Soccer coach builds school network for refugee students",
+      "themeCategory": "Community Building - Educational Justice",
+      "specificSubject": "Luma Mufleh's Fugees Family schools",
+      "status": "complete",
+      "notes": "Inspired by Luma Mufleh, character name in story is generic"
+    },
+    {
+      "storyId": "disability-overcome-2",
+      "realPerson": "Erik Weihenmayer",
+      "storyConcept": "Blind person climbs Mount Everest",
+      "themeCategory": "Disability Overcome - Blindness + Mountaineering",
+      "specificSubject": "Erik Weihenmayer's Everest climb",
+      "status": "complete",
+      "notes": "Inspired by Erik Weihenmayer, character name in story is Lucas"
+    }
+  ],
+  "themeSaturation": {
+    "refugeeJourney": 2,
+    "careerPivot": 2,
+    "communityBuilder": 2,
+    "disabilityOvercome": 2,
+    "languageBarriers": 1,
+    "intergenerationalLearning": 1,
+    "entrepreneurship": 1,
+    "secondChance": 1
+  },
+  "realPeopleCovered": [
+    "Helen Keller",
+    "Luma Mufleh",
+    "Erik Weihenmayer"
+  ],
+  "specificConceptsCovered": [
+    "Child language broker in medical context",
+    "Deaf-blind learning to communicate",
+    "Child teaching parent to read",
+    "Immigrant entrepreneurship",
+    "War refugee resettlement",
+    "Refugee family reunification",
+    "Grassroots community organizing",
+    "Soccer school for refugees",
+    "Disability adaptation",
+    "Blind mountaineering (Everest)",
+    "Career burnout to passion",
+    "Career layoff to service profession",
+    "Addiction/prison redemption"
+  ],
+  "guidelines": {
+    "beforeImplementing": [
+      "Check if real person is already in 'realPeopleCovered' array",
+      "Check if specific concept is already in 'specificConceptsCovered' array",
+      "Check 'themeSaturation' - if theme has 3+ stories, consider different theme for variety",
+      "If person/concept exists, pick different story",
+      "Update this file after implementing new story"
+    ],
+    "varietyGoals": [
+      "No more than 3 stories per theme before expanding to other themes",
+      "Avoid duplicate real people",
+      "Avoid near-duplicate concepts (e.g., 2 stories about blind musicians)",
+      "Aim for diverse representation across themes"
+    ]
+  }
+}

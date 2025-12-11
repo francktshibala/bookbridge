@@ -1822,79 +1822,122 @@ This success validates the complete strategy: **modern audio content → simplif
 
 Users are requesting modern content, but partnerships (publishers, TED) are pending. This strategy enables immediate content expansion using reliable free sources (Wikipedia biographies, public domain memoirs, historical speeches) transformed through emotional curation and presentation to make ESL learners fall in love with the app.
 
-#### **Critical Strategy Files**
+#### **Reorganized File Structure (December 2025)**
 
-**End Result Brief** (Simple Explanation):
-- **`/docs/implementation/MODERN_CONTENT_END_RESULT_BRIEF.md`**
-  - **Purpose**: Simple, clear explanation of end result goal, files we work with, and how each book works
-  - **Key Content**: End result goal, complete file list, step-by-step user flow, visual flow diagram, success metrics, implementation roadmap
-  - **Why Essential**: Provides simple, clear picture of what we're building and how it works. Perfect for onboarding or explaining to stakeholders.
+**✅ NEW: Reorganized for Easier Workflow**
 
-**Emotional Impact Strategy**:
-- **`/docs/MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`**
-  - **Purpose**: Complete strategy for curating and presenting 50-100 powerful stories that create emotional connection and app loyalty
-  - **Key Content**:
-    - **Curated Story List**: 50 stories prioritized by emotional impact (Tier 1: 15 highest impact, Tier 2: 15 high impact, Tier 3: 20 strong impact)
-    - **Genre Strategy**: 20 genres with universal emotional impact (Survival & Resilience, Redemption & Transformation, Sacrifice & Love, etc.)
-    - **ESL Lens Framework**: How to select universal stories that resonate deeply with ESL learners (8 ESL resonance multipliers)
-    - **Three-Part Structure**: Preview (with audio) + Background Context + Emotional Hook
-    - **21-Step Implementation Checklist**: Complete workflow from content selection to deployment
-    - **Reliable Source Strategy**: Wikipedia Featured Biographies, public domain memoirs, historical speeches
-  - **Critical Features**:
-    - **Emotional Transformation Framework**: How to transform dry biographical facts into emotional experiences
-    - **Selection Criteria**: "Would someone text a friend about this?" test, 3+ ESL resonance multipliers
-    - **Story Prioritization**: Tier 1 stories have highest emotional impact + direct ESL parallels
-    - **Implementation Steps**: Detailed 21-step checklist with emotional framing (background context, hook, preview)
-  - **Why Essential**: Provides complete roadmap for expanding library with emotionally impactful stories while partnerships are pending. Ensures every story is "the best story ever" with maximum universal impact.
+The modern content documentation has been reorganized into a clear, phase-based structure for easier navigation and implementation:
 
-**Technical Implementation Guide**:
-- **`/docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md`**
-  - **Purpose**: Technical reference guide with detailed specifications for implementing modern content (TED Talks, podcasts, essays, AND biographies)
-  - **Key Content**:
-    - **Audio Generation Settings**: Exact voice IDs (Jane: RILOU7YmBhvwJGDGjNmP, Daniel: onwK4e9ZLuTAKqWW03F9, Sarah: EXAVITQu4vr4xnSDxMaL), stability/similarity/style values
-    - **FFmpeg Post-Processing**: November 2025 production formula (generate at 0.90×, apply atempo=0.85, re-measure with ffprobe)
-    - **Enhanced Timing v3**: Character-count proportion, punctuation penalties, pause-budget-first approach, renormalization
-    - **Database Timing Format**: Exact format requirements (startTime/endTime, not start/end) to prevent sync issues
-    - **API Response Structure**: Complete API endpoint specifications with all required fields
-    - **Frontend Integration**: Exact code locations (4 locations in lib/config/books.ts)
-    - **Catalog API Fix**: Remove isClassic filter for collections/search
-  - **Critical Features**:
-    - **Solution 1 Requirements**: ffprobe measurement, proportional timing, cached metadata, relative paths
-    - **Script Validation**: Check VALID_LEVELS, AI guidelines, word counts before running
-    - **Terminal Execution**: MANDATORY for long-running processes (prevents timeouts)
-    - **6 Documented Mistakes**: Prevention strategies from Power of Vulnerability implementation
-  - **Why Essential**: Provides technical specifications needed to implement steps from Strategy File. Contains exact code examples, voice settings, and validation checks to prevent sync issues and runtime failures.
+**Master Guides** (Start Here):
+- **`/docs/modern-content/README.md`** ⭐ **START HERE**
+  - **Purpose**: Complete overview of the reorganized structure and workflow
+  - **Key Content**: File organization, phase-by-phase workflow, quick reference
+  - **Why Essential**: Your entry point - explains how to use all the files together
 
-**Story Discovery & Research Plan**:
+- **`/docs/modern-content/WORKFLOW_GUIDE.md`**
+  - **Purpose**: Quick reference checklist for implementing stories
+  - **Key Content**: Step-by-step checklist, file locations, critical rules
+  - **Why Essential**: Quick reference when implementing - shows what to do at each phase
+
+- **`/docs/modern-content/HOW_TO_USE.md`**
+  - **Purpose**: Detailed instructions on using the new structure
+  - **Key Content**: Example workflows, finding scripts, quick reference table
+  - **Why Essential**: Detailed guide for working with the reorganized files
+
+**Phase Files** (Follow in Order):
+- **`/docs/modern-content/00-strategy-overview.md`** (To be created)
+  - **Purpose**: High-level strategy and story selection overview
+  - **When to use**: Understanding the overall approach
+
+- **`/docs/modern-content/01-story-selection.md`** (To be created)
+  - **Purpose**: Phase 0 - Steps 0-0.75 (Story validation and source finding)
+  - **When to use**: Before starting any work - validates story is worth implementing
+  - **Critical Steps**: 0.25 (Source Material Check), 0.5 (Emotional Impact Validation)
+
+- **`/docs/modern-content/02-content-creation.md`** (To be created)
+  - **Purpose**: Phase 1 - Steps 1-4.5 (Creating story text content)
+  - **When to use**: Writing and preparing story text
+
+- **`/docs/modern-content/03-preview-generation.md`** (To be created)
+  - **Purpose**: Phase 2 - Steps 7-9 (Preview text and audio generation)
+  - **When to use**: Creating the intro section users see first
+  - **Critical**: Enhanced Timing v3 required for preview audio
+
+- **`/docs/modern-content/04-audio-generation.md`** (To be created)
+  - **Purpose**: Phase 3 - Steps 10-12 (Bundle audio generation)
+  - **When to use**: Generating audio files for the main story
+
+- **`/docs/modern-content/05-integration.md`** (To be created)
+  - **Purpose**: Phase 4 - Steps 13-15 (Database, API, frontend integration)
+  - **When to use**: Making the story visible and functional in the app
+
+- **`/docs/modern-content/06-completion-log.md`**
+  - **Purpose**: Phase 5 - Track completed stories and learnings
+  - **When to use**: After story is live - document completion and learnings
+  - **Status**: ✅ Updated with disability-overcome-2
+
+**Technical Reference** (Reference When Needed):
+- **`/docs/modern-content/technical/voice-settings.md`** (To be created)
+  - **Purpose**: Voice IDs, production settings, when to use which voice
+  - **When to use**: Need voice IDs or settings
+
+- **`/docs/modern-content/technical/database-schemas.md`** (To be created)
+  - **Purpose**: Timing format requirements, Prisma models
+  - **When to use**: Need database format details
+
+- **`/docs/modern-content/technical/api-structures.md`** (To be created)
+  - **Purpose**: API response formats, required fields
+  - **When to use**: Creating API endpoints
+
+- **`/docs/modern-content/technical/troubleshooting.md`** (To be created)
+  - **Purpose**: Common errors and how to fix them
+  - **When to use**: Encountering issues
+
+**Scripts Organization**:
+- **`/scripts/modern-content/`** - Scripts organized by function:
+  - `extract-themes/` - Theme extraction scripts
+  - `generate-preview/` - Preview generation scripts
+  - `generate-bundles/` - Bundle audio generation scripts
+  - `integrate-database/` - Database integration scripts
+  - `seed/` - Database seeding scripts
+- **Benefit**: Related scripts grouped together, easier to find
+
+**Legacy Files** (Still Available for Reference):
+- **`/docs/MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`** (3,034 lines)
+  - **Status**: Being phased out - use new phase files instead
+  - **Still useful**: For reference until phase files are fully created
+
+- **`/docs/MODERN_VOICES_IMPLEMENTATION_GUIDE.md`** (1,138 lines)
+  - **Status**: Being phased out - technical details moving to `technical/` subdirectory
+  - **Still useful**: For reference until technical files are created
+
 - **`/docs/research/MODERN_STORY_SOURCES_RESEARCH_PLAN.md`**
-  - **Purpose**: Comprehensive research plan for discovering and validating 50-100 modern story sources that meet BookBridge's emotional impact criteria
-  - **Key Content**:
-    - **3-Agent Research Methodology**: Source Discovery (Agent 1), Legal Compliance (Agent 2), ESL Content Strategy (Agent 3)
-    - **Research Objectives**: Identify 20+ sources, validate 50+ stories, ensure legal compliance, create implementation roadmap
-    - **Story Validation Criteria**: Step 0.25 (Source Material Check) and Step 0.5 (Emotional Impact Validation) requirements
-    - **Helen Keller Benchmark**: Gold standard example of exceptional story quality
-    - **Source Discovery Guidelines**: What makes a great source (story-driven, modern relevance, accessible, rich emotional moments)
-    - **Legal Safety Framework**: Extract themes (not text), rewrite as original narratives, ensure copyright compliance
-    - **ESL Resonance Validation**: 3+ multipliers required, theme diversity analysis, pilot story prioritization
-  - **Critical Features**:
-    - **Creative Exploration**: Encourages discovering unexpected sources beyond obvious ones
-    - **Legal Enabling**: Focuses on finding legal paths for sources, not rejecting them
-    - **Quality Gatekeeping**: Ensures stories meet Helen Keller-level emotional impact
-    - **Cross-References**: Links to Strategy File (Steps 0.25 & 0.5) and Implementation Guide (technical specs)
-  - **Why Essential**: Provides systematic methodology for discovering great stories before implementation. Ensures stories are validated for emotional impact and legal compliance before investing time in extraction and processing.
+  - **Status**: Still active - story discovery guide
+  - **When to use**: Finding and validating stories before Step 1
 
-#### **How to Use All Three Files Together**
+#### **How to Use the Reorganized Structure**
+
+**For New Implementations**:
+1. **Start**: Read `docs/modern-content/README.md`
+2. **Follow**: `docs/modern-content/WORKFLOW_GUIDE.md` checklist
+3. **Reference**: Phase files (01-05) as you work through each phase
+4. **Technical**: Use `technical/` files for specific details (voice IDs, formats, etc.)
 
 **Workflow**:
-1. **Start with Research Plan** (`MODERN_STORY_SOURCES_RESEARCH_PLAN.md`) → Discover and validate stories (before Step 1)
-2. **Use Strategy File** (`MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`) → Follow 21-step checklist as roadmap (Steps 0.25 & 0.5 for validation, Steps 1-20 for implementation)
-3. **Reference Implementation Guide** (`MODERN_VOICES_IMPLEMENTATION_GUIDE.md`) → Get technical details when needed (Steps 4-15)
-4. **Example**: Finding stories → Use Research Plan for discovery methodology
-5. **Example**: Validating stories → Use Strategy File Steps 0.25 & 0.5 for validation criteria
-6. **Example**: Step 10.5 (Generate Bundle Audio) → Check Implementation Guide for exact voice IDs, FFmpeg commands, timing formulas
-7. **Example**: Step 13 (Create API Endpoint) → Check Implementation Guide for exact API response structure
+1. **Phase 0** (`01-story-selection.md`) → Validate story first (Steps 0.25 & 0.5 are mandatory gates)
+2. **Phase 1** (`02-content-creation.md`) → Create story text content
+3. **Phase 2** (`03-preview-generation.md`) → Generate preview with Enhanced Timing v3
+4. **Phase 3** (`04-audio-generation.md`) → Generate bundle audio
+5. **Phase 4** (`05-integration.md`) → Connect to app (API, frontend)
+6. **Phase 5** (`06-completion-log.md`) → Document completion
 
-**No Conflicts**: Research Plan tells you WHERE to find stories (discovery), Strategy File tells you WHAT to do (emotional framing, story selection), Implementation Guide tells you HOW to do it (technical specs, code examples). All three are needed for complete workflow from discovery to deployment.
+**Benefits of Reorganization**:
+- ✅ **Easier navigation**: Files are 200-800 lines instead of 3,000+
+- ✅ **Clear workflow**: Follow phases in order
+- ✅ **Organized scripts**: Find related scripts easily
+- ✅ **Better documentation**: Clear guides and references
+
+**Status**: ✅ Foundation complete (guides created, scripts organized), phase files being created
 
 #### **Key Strategic Elements**
 
@@ -1920,19 +1963,30 @@ Users are requesting modern content, but partnerships (publishers, TED) are pend
 
 #### **Implementation Status**
 
-**Current Status**: 🟡 **PLANNING PHASE - UPDATED WITH EXPERT RECOMMENDATIONS**
+**Current Status**: 🟡 **PLANNING PHASE - REORGANIZED FOR EASIER WORKFLOW (December 2025)**
 - ✅ Strategy documented with 50 curated stories
 - ✅ 21-step implementation checklist created
 - ✅ Three-part structure defined (Preview + Background + Hook)
 - ✅ Length targets updated by CEFR level (A1: 15-20 min, A2: 20-30 min, B1+: 30-45 min)
 - ✅ Success criteria recalibrated ("Exceptional" vs "Acceptable" stories)
+- ✅ **File reorganization complete**: Documentation split into phase-based files, scripts organized by function
+- ✅ **Foundation guides created**: README.md, WORKFLOW_GUIDE.md, HOW_TO_USE.md
+- ⏳ Phase files (01-06) being created from large strategy file
 - ⏳ Ready to begin pilot phase (3 diverse stories) before full rollout
 
+**Reorganization Status** (December 2025):
+- ✅ Master guides created (`docs/modern-content/README.md`, `WORKFLOW_GUIDE.md`, `HOW_TO_USE.md`)
+- ✅ Scripts organized (`scripts/modern-content/extract-themes/`, `generate/`, `integrate-database/`, `seed/`)
+- ✅ Completion log updated (`docs/modern-content/06-completion-log.md`)
+- ⏳ Phase files (01-05) being created from `MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md`
+- ⏳ Technical reference files being created from `MODERN_VOICES_IMPLEMENTATION_GUIDE.md`
+
 **Next Steps**:
-1. **Pilot Phase (Week 3-6):** Implement 3 diverse A1 stories (José Hernández, Jane Goodall, Wangari Maathai)
-2. **Validation (Week 7-8):** Measure actual engagement metrics, recalibrate targets based on data
-3. **Full Rollout (Week 9+):** Scale to 50-100 stories using validated approach
-4. Monitor completion rates (pilot target: 50%+, acceptable: 55%+, exceptional: 70%+)
+1. **Complete Reorganization**: Finish creating phase files (01-05) and technical reference files
+2. **Pilot Phase (Week 3-6):** Implement 3 diverse A1 stories (José Hernández, Jane Goodall, Wangari Maathai)
+3. **Validation (Week 7-8):** Measure actual engagement metrics, recalibrate targets based on data
+4. **Full Rollout (Week 9+):** Scale to 50-100 stories using validated approach
+5. Monitor completion rates (pilot target: 50%+, acceptable: 55%+, exceptional: 70%+)
 
 ---
 
@@ -1940,7 +1994,7 @@ Users are requesting modern content, but partnerships (publishers, TED) are pend
 
 ### **MASTER_MISTAKES_PREVENTION.md**
 **Location**: `/docs/MASTER_MISTAKES_PREVENTION.md`
-**Description**: Consolidated prevention guide for audiobook implementation that consolidates lessons from all successful and failed book generations. **CRITICAL REFERENCE**: Organized by implementation phase (Fetching → Modernization → Simplification → Audio → Bundle Architecture → Database) with specific prevention strategies for each stage. Contains compound sentence generation patterns for natural A2 flow (11-13 words vs robotic micro-sentences), universal timing formula (0.4s/word + 2.0s minimum) from Jekyll lessons, race condition prevention strategies, content hashing for version control, and emergency recovery procedures. **Essential for avoiding costly mistakes**: Prevents database conflicts, API call losses, text-audio mismatches, and expensive regeneration cycles. All new audiobook implementations must reference this guide to ensure reliable, high-quality generation without repeating documented failures. **NOTE**: For modern content (TED Talks, Podcasts, Essays), see `MODERN_VOICES_IMPLEMENTATION_GUIDE.md` which documents content type-specific workflow differences.
+**Description**: Consolidated prevention guide for audiobook implementation that consolidates lessons from all successful and failed book generations. **CRITICAL REFERENCE**: Organized by implementation phase (Fetching → Modernization → Simplification → Audio → Bundle Architecture → Database) with specific prevention strategies for each stage. Contains compound sentence generation patterns for natural A2 flow (11-13 words vs robotic micro-sentences), universal timing formula (0.4s/word + 2.0s minimum) from Jekyll lessons, race condition prevention strategies, content hashing for version control, and emergency recovery procedures. **Essential for avoiding costly mistakes**: Prevents database conflicts, API call losses, text-audio mismatches, and expensive regeneration cycles. All new audiobook implementations must reference this guide to ensure reliable, high-quality generation without repeating documented failures. **NOTE**: For modern content (TED Talks, Podcasts, Essays), see `docs/modern-content/` directory (reorganized December 2025) - start with `README.md` and `WORKFLOW_GUIDE.md`, then reference phase files (01-05) and technical reference files as needed. Legacy `MODERN_VOICES_IMPLEMENTATION_GUIDE.md` still available for reference until phase files are complete.
 
 ---
 
