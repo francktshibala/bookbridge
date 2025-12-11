@@ -13,10 +13,11 @@
 1. [Quick Start](#quick-start)
 2. [Files to Read (In Order)](#files-to-read-in-order)
 3. [Complete 21-Step Workflow](#complete-21-step-workflow)
-4. [Critical Success Factors](#critical-success-factors)
-5. [Where to Log Completion](#where-to-log-completion)
-6. [Frontend Config Checklist](#frontend-config-checklist)
-7. [Quality Validation Checklist](#quality-validation-checklist)
+4. [Adding Additional CEFR Levels to Existing Stories](#adding-additional-cefr-levels-to-existing-stories)
+5. [Critical Success Factors](#critical-success-factors)
+6. [Where to Log Completion](#where-to-log-completion)
+7. [Frontend Config Checklist](#frontend-config-checklist)
+8. [Quality Validation Checklist](#quality-validation-checklist)
 
 ---
 
@@ -324,11 +325,28 @@ Verify story meets ALL criteria:
 - [ ] Verify sentence count and text quality
 - [ ] Save to: `cache/{story-id}-original.txt`
 
-#### **Step 2.1: Assess Original Complexity**
+#### **Step 2.1: Assess Original Complexity** ⚠️
+**CRITICAL: Determines which CEFR levels can be created**
+
 - [ ] Check average sentence length (words per sentence)
-- [ ] Review vocabulary complexity
-- [ ] Document complexity level (B1/B2/C1/C2)
-- [ ] Record in `story-completion-log.md`
+- [ ] Review vocabulary complexity (advanced/idiomatic usage)
+- [ ] Analyze sentence structure (subordination, clauses, varied patterns)
+- [ ] Assess CEFR level using indicators:
+  - **A1/A2:** Simple sentences (5-15 words), basic vocabulary, straightforward structure
+  - **B1/B2:** Moderate complexity (15-25 words), varied vocabulary, some subordination
+  - **C1/C2:** Complex sentences (25+ words), advanced vocabulary, sophisticated structure
+- [ ] **Decision Logic - Determine available simplification levels:**
+  - **If original is C1/C2:** ✅ Can simplify to all levels (A1, A2, B1, B2)
+  - **If original is B1/B2:** ✅ Can simplify to levels below only (A1, A2, B1)
+    - ⚠️ **B2 = Use original text as-is** (cannot simplify to same level as original)
+  - **If original is A1/A2:** ⚠️ Max achievable level is A1/A2 (don't create higher levels)
+- [ ] Create assessment file: `cache/{story-id}-complexity-assessment.md`
+  - Document: "Original assessed as [LEVEL] → Can simplify to [LEVELS]"
+  - Note: "B2 level uses original text (no simplification)" if original is B1/B2
+- [ ] Record in `story-completion-log.md` under story notes
+- [ ] **Why:** Ensures we only simplify to levels below the original, maintaining quality hierarchy
+
+**Reference:** See `docs/research/ORIGINAL_COMPLEXITY_A2_B2_INVESTIGATION.md` for detailed analysis
 
 #### **Step 2.5: Extract Themes & Emotional Moments**
 - [ ] Identify struggle moment (beginning challenge)
@@ -371,13 +389,21 @@ Verify story meets ALL criteria:
 
 #### **Step 4: Text Simplification**
 **⚠️ USER RUNS IN THEIR TERMINAL - NOT Claude Code (saves context window)**
+**⚠️ CRITICAL: Check Step 2.1 complexity assessment BEFORE simplifying**
+
+- [ ] **Verify available levels** from Step 2.1 assessment:
+  - If original is B1/B2: Can create A1, A2, B1 (B2 uses original as-is)
+  - If original is C1/C2: Can create A1, A2, B1, B2
+  - If original is A1/A2: Can only create A1/A2
 - [ ] Ask user to run: `node scripts/simplify-{story-id}.js [LEVEL]`
 - [ ] **CRITICAL: 1:1 sentence mapping** (same number of sentences)
 - [ ] Sentence length limits:
   - A1: max 12 words
   - A2: max 15 words
-  - B1: max 25 words
-- [ ] Save to: `cache/{story-id}-A1-simplified.txt`
+  - B1: max 18 words
+  - B2: Use original text (if original is B1/B2) OR simplify from C1/C2 original
+- [ ] Save to: `cache/{story-id}-{LEVEL}-simplified.txt`
+- [ ] **Note:** For B2 level with B1/B2 original, use original text file (no simplification script needed)
 
 #### **Step 4.5: Remove Markdown/Metadata**
 - [ ] Clean AI formatting (**, #, @, /) before saving
@@ -778,6 +804,61 @@ Update `lib/config/books.ts`:
 - Reference phase files for detailed instructions
 - Check technical files for specific formats
 - Review completed stories in completion log
+
+---
+
+## 🔄 Adding Additional CEFR Levels to Existing Stories
+
+**When:** You want to add A2, B1, or B2 to a story that already has A1
+
+### **Step 0: Check Original Complexity Assessment** ⚠️
+**MANDATORY: Verify which levels are possible**
+
+- [ ] **Locate assessment file:** `cache/{story-id}-complexity-assessment.md`
+- [ ] **Read original complexity level** from assessment file
+- [ ] **Verify available levels** using decision logic:
+  - **If original is B1/B2:** ✅ Can add A2, B1 (B2 uses original as-is)
+  - **If original is C1/C2:** ✅ Can add A2, B1, B2
+  - **If original is A1/A2:** ⚠️ Cannot add higher levels (max is A1/A2)
+- [ ] **If assessment file missing:** Re-run Step 2.1 from original workflow
+- [ ] **Document decision:** Note which levels you're adding and why
+
+**Example:**
+```markdown
+# Check: cache/romantic-love-1-complexity-assessment.md
+# Original Level: B1/B2
+# Available Levels: A1 ✅ (done), A2 ✅ (can add), B1 ✅ (can add), B2 ⚠️ (use original)
+```
+
+### **Step 1: Simplify to New Level**
+- [ ] Use existing original text: `cache/{story-id}-original.txt`
+- [ ] Run simplification script: `node scripts/simplify-{story-id}.js A2` (or B1)
+- [ ] **Sentence length limits:**
+  - A2: max 15 words per sentence
+  - B1: max 18 words per sentence
+  - B2: Use original text (if original is B1/B2)
+- [ ] Save to: `cache/{story-id}-A2-simplified.txt` (or B1)
+
+### **Step 2: Generate Audio for New Level**
+- [ ] Generate preview audio: `node scripts/generate-{story-id}-preview-audio.js A2`
+- [ ] Generate bundles: `node scripts/generate-{story-id}-bundles.js A2`
+- [ ] Use same voice settings as A1 version (Jane or Daniel)
+
+### **Step 3: Integrate New Level**
+- [ ] Update database: Run `npx tsx scripts/integrate-{story-id}-database.ts` (should handle multiple levels)
+- [ ] Update API endpoint: Add A2/B1 level support to existing route
+- [ ] Update frontend config: Add new level to `BOOK_API_MAPPINGS` and `MULTI_LEVEL_BOOKS`
+- [ ] Update seed script: Add new level to `MULTI_LEVEL_BOOKS` array
+
+### **Step 4: Test & Validate**
+- [ ] Test reading route with new level: `/read/{story-id}?level=A2`
+- [ ] Verify audio sync works correctly
+- [ ] Check word highlighting matches audio
+- [ ] Update completion log with new level
+
+**Reference:** Original complexity assessment determines which levels are possible. Always check `cache/{story-id}-complexity-assessment.md` before adding levels.
+
+---
 
 **Good luck! 🎉**
 
