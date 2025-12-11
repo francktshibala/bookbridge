@@ -301,7 +301,7 @@ async function generateBundles() {
           startTime: sentenceTimings[idx].startTime,
           endTime: sentenceTimings[idx].endTime,
           duration: sentenceTimings[idx].duration,
-          sentenceIndex: idx
+          sentenceIndex: (bundle.index * SENTENCES_PER_BUNDLE) + idx  // Global sentence index
         })),
         totalDuration: finalDuration,
         measuredDuration: finalDuration

@@ -8,48 +8,48 @@
       {
         "text": "Rachel's world changed very fast.",
         "startTime": 0,
-        "endTime": 2.51,
-        "duration": 2.51,
+        "endTime": 2.634,
+        "duration": 2.634,
         "sentenceIndex": 0
       },
       {
         "text": "She was at her desk.",
-        "startTime": 2.51,
-        "endTime": 4.031,
-        "duration": 1.521,
+        "startTime": 2.634,
+        "endTime": 4.231,
+        "duration": 1.597,
         "sentenceIndex": 1
       },
       {
         "text": "She was answering emails.",
-        "startTime": 4.031,
-        "endTime": 5.932,
-        "duration": 1.901,
+        "startTime": 4.231,
+        "endTime": 6.227,
+        "duration": 1.996,
         "sentenceIndex": 2
       },
       {
         "text": "Then, something felt wrong.",
-        "startTime": 5.932,
-        "endTime": 8.135,
-        "duration": 2.203,
+        "startTime": 6.227,
+        "endTime": 8.532,
+        "duration": 2.305,
         "sentenceIndex": 3
       },
       {
         "text": "Very wrong.",
-        "startTime": 8.135,
-        "endTime": 8.972,
-        "duration": 0.837,
+        "startTime": 8.532,
+        "endTime": 9.411,
+        "duration": 0.878,
         "sentenceIndex": 4
       },
       {
         "text": "Her right hand stopped working.",
-        "startTime": 8.972,
-        "endTime": 11.329,
-        "duration": 2.357,
+        "startTime": 9.411,
+        "endTime": 11.885,
+        "duration": 2.475,
         "sentenceIndex": 5
       }
     ],
-    "totalDuration": 11.32907,
-    "measuredDuration": 11.32907
+    "totalDuration": 11.885306,
+    "measuredDuration": 11.885306
   },
   {
     "bundleId": "b1",
@@ -60,48 +60,48 @@
       {
         "text": "The computer looked strange.",
         "startTime": 0,
-        "endTime": 2.173,
-        "duration": 2.173,
-        "sentenceIndex": 0
+        "endTime": 2.094,
+        "duration": 2.094,
+        "sentenceIndex": 6
       },
       {
         "text": "It looked like it was melting.",
-        "startTime": 2.173,
-        "endTime": 4.501,
-        "duration": 2.328,
-        "sentenceIndex": 1
+        "startTime": 2.094,
+        "endTime": 4.337,
+        "duration": 2.243,
+        "sentenceIndex": 7
       },
       {
         "text": "She tried to speak, but it was hard.",
-        "startTime": 4.501,
-        "endTime": 7.445,
-        "duration": 2.944,
-        "sentenceIndex": 2
+        "startTime": 4.337,
+        "endTime": 7.179,
+        "duration": 2.842,
+        "sentenceIndex": 8
       },
       {
         "text": "The words came out wrong.",
-        "startTime": 7.445,
-        "endTime": 9.386,
-        "duration": 1.94,
-        "sentenceIndex": 3
+        "startTime": 7.179,
+        "endTime": 9.048,
+        "duration": 1.869,
+        "sentenceIndex": 9
       },
       {
         "text": "Everything felt like a dream.",
-        "startTime": 9.386,
-        "endTime": 11.636,
-        "duration": 2.251,
-        "sentenceIndex": 4
+        "startTime": 9.048,
+        "endTime": 11.217,
+        "duration": 2.168,
+        "sentenceIndex": 10
       },
       {
         "text": "A friend at work shouted.",
-        "startTime": 11.636,
-        "endTime": 13.576,
-        "duration": 1.94,
-        "sentenceIndex": 5
+        "startTime": 11.217,
+        "endTime": 13.086,
+        "duration": 1.869,
+        "sentenceIndex": 11
       }
     ],
-    "totalDuration": 13.576417,
-    "measuredDuration": 13.576417
+    "totalDuration": 13.086213,
+    "measuredDuration": 13.086213
   },
   {
     "bundleId": "b2",
@@ -112,48 +112,48 @@
       {
         "text": "Rachel heard sirens.",
         "startTime": 0,
-        "endTime": 1.672,
-        "duration": 1.672,
-        "sentenceIndex": 0
+        "endTime": 1.949,
+        "duration": 1.949,
+        "sentenceIndex": 12
       },
       {
         "text": "Then everything went dark.",
-        "startTime": 1.672,
-        "endTime": 3.847,
-        "duration": 2.174,
-        "sentenceIndex": 1
+        "startTime": 1.949,
+        "endTime": 4.483,
+        "duration": 2.534,
+        "sentenceIndex": 13
       },
       {
         "text": "When Rachel woke up, she was in a hospital.",
-        "startTime": 3.847,
-        "endTime": 7.592,
-        "duration": 3.746,
-        "sentenceIndex": 2
+        "startTime": 4.483,
+        "endTime": 8.824,
+        "duration": 4.341,
+        "sentenceIndex": 14
       },
       {
         "text": "Nothing made sense.",
-        "startTime": 7.592,
-        "endTime": 9.181,
-        "duration": 1.589,
-        "sentenceIndex": 3
+        "startTime": 8.824,
+        "endTime": 10.676,
+        "duration": 1.852,
+        "sentenceIndex": 15
       },
       {
         "text": "The doctors talked to her.",
-        "startTime": 9.181,
-        "endTime": 11.355,
-        "duration": 2.174,
-        "sentenceIndex": 4
+        "startTime": 10.676,
+        "endTime": 13.21,
+        "duration": 2.534,
+        "sentenceIndex": 16
       },
       {
         "text": "Their words sounded strange.",
-        "startTime": 11.355,
-        "endTime": 13.697,
-        "duration": 2.341,
-        "sentenceIndex": 5
+        "startTime": 13.21,
+        "endTime": 15.939,
+        "duration": 2.729,
+        "sentenceIndex": 17
       }
     ],
-    "totalDuration": 13.696689,
-    "measuredDuration": 13.696689
+    "totalDuration": 15.939297,
+    "measuredDuration": 15.939297
   },
   {
     "bundleId": "b3",
@@ -164,48 +164,48 @@
       {
         "text": "She knew they spoke English.",
         "startTime": 0,
-        "endTime": 2.328,
-        "duration": 2.328,
-        "sentenceIndex": 0
+        "endTime": 2.226,
+        "duration": 2.226,
+        "sentenceIndex": 18
       },
       {
         "text": "She had spoken English her whole life.",
-        "startTime": 2.328,
-        "endTime": 5.488,
-        "duration": 3.16,
-        "sentenceIndex": 1
+        "startTime": 2.226,
+        "endTime": 5.248,
+        "duration": 3.021,
+        "sentenceIndex": 19
       },
       {
         "text": "But now, she could not understand.",
-        "startTime": 5.488,
-        "endTime": 8.465,
-        "duration": 2.977,
-        "sentenceIndex": 2
+        "startTime": 5.248,
+        "endTime": 8.101,
+        "duration": 2.853,
+        "sentenceIndex": 20
       },
       {
         "text": "It felt like a dog barking.",
-        "startTime": 8.465,
-        "endTime": 10.71,
-        "duration": 2.245,
-        "sentenceIndex": 3
+        "startTime": 8.101,
+        "endTime": 10.248,
+        "duration": 2.147,
+        "sentenceIndex": 21
       },
       {
         "text": "She heard sounds, but they meant nothing.",
-        "startTime": 10.71,
-        "endTime": 14.269,
-        "duration": 3.559,
-        "sentenceIndex": 4
+        "startTime": 10.248,
+        "endTime": 13.657,
+        "duration": 3.41,
+        "sentenceIndex": 22
       },
       {
         "text": "Rachel wanted to tell them, \"I don't understand.\" But when she opened her mouth, random words came out.",
-        "startTime": 14.269,
-        "endTime": 23.134,
-        "duration": 8.864,
-        "sentenceIndex": 5
+        "startTime": 13.657,
+        "endTime": 22.147,
+        "duration": 8.489,
+        "sentenceIndex": 23
       }
     ],
-    "totalDuration": 23.133741,
-    "measuredDuration": 23.133741
+    "totalDuration": 22.14678,
+    "measuredDuration": 22.14678
   },
   {
     "bundleId": "b4",
@@ -216,48 +216,48 @@
       {
         "text": "\"Book.",
         "startTime": 0,
-        "endTime": 0.445,
-        "duration": 0.445,
-        "sentenceIndex": 0
+        "endTime": 0.516,
+        "duration": 0.516,
+        "sentenceIndex": 24
       },
       {
         "text": "Tree.",
-        "startTime": 0.445,
-        "endTime": 0.815,
-        "duration": 0.371,
-        "sentenceIndex": 1
+        "startTime": 0.516,
+        "endTime": 0.946,
+        "duration": 0.43,
+        "sentenceIndex": 25
       },
       {
         "text": "Yesterday.\" The doctors looked worried.",
-        "startTime": 0.815,
-        "endTime": 3.707,
-        "duration": 2.891,
-        "sentenceIndex": 2
+        "startTime": 0.946,
+        "endTime": 4.299,
+        "duration": 3.353,
+        "sentenceIndex": 26
       },
       {
         "text": "One wrote something on a clipboard.",
-        "startTime": 3.707,
-        "endTime": 6.302,
-        "duration": 2.595,
-        "sentenceIndex": 3
+        "startTime": 4.299,
+        "endTime": 7.308,
+        "duration": 3.009,
+        "sentenceIndex": 27
       },
       {
         "text": "Rachel felt scared.",
-        "startTime": 6.302,
-        "endTime": 7.71,
-        "duration": 1.409,
-        "sentenceIndex": 4
+        "startTime": 7.308,
+        "endTime": 8.941,
+        "duration": 1.633,
+        "sentenceIndex": 28
       },
       {
         "text": "What was happening to her?",
-        "startTime": 7.71,
-        "endTime": 9.638,
-        "duration": 1.928,
-        "sentenceIndex": 5
+        "startTime": 8.941,
+        "endTime": 11.176,
+        "duration": 2.235,
+        "sentenceIndex": 29
       }
     ],
-    "totalDuration": 9.637642,
-    "measuredDuration": 9.637642
+    "totalDuration": 11.176281,
+    "measuredDuration": 11.176281
   },
   {
     "bundleId": "b5",
@@ -268,48 +268,48 @@
       {
         "text": "The stroke had hurt the part of her brain for language.",
         "startTime": 0,
-        "endTime": 4.728,
-        "duration": 4.728,
-        "sentenceIndex": 0
+        "endTime": 4.636,
+        "duration": 4.636,
+        "sentenceIndex": 30
       },
       {
         "text": "Rachel could think.",
-        "startTime": 4.728,
-        "endTime": 6.361,
-        "duration": 1.633,
-        "sentenceIndex": 1
+        "startTime": 4.636,
+        "endTime": 6.238,
+        "duration": 1.602,
+        "sentenceIndex": 31
       },
       {
         "text": "She could feel.",
-        "startTime": 6.361,
-        "endTime": 7.65,
-        "duration": 1.289,
-        "sentenceIndex": 2
+        "startTime": 6.238,
+        "endTime": 7.502,
+        "duration": 1.264,
+        "sentenceIndex": 32
       },
       {
         "text": "She could remember her life.",
-        "startTime": 7.65,
-        "endTime": 10.057,
-        "duration": 2.407,
-        "sentenceIndex": 3
+        "startTime": 7.502,
+        "endTime": 9.862,
+        "duration": 2.36,
+        "sentenceIndex": 33
       },
       {
         "text": "But she could not talk.",
-        "startTime": 10.057,
-        "endTime": 12.034,
-        "duration": 1.977,
-        "sentenceIndex": 4
+        "startTime": 9.862,
+        "endTime": 11.801,
+        "duration": 1.939,
+        "sentenceIndex": 34
       },
       {
         "text": "She felt trapped in her mind.",
-        "startTime": 12.034,
-        "endTime": 14.527,
-        "duration": 2.493,
-        "sentenceIndex": 5
+        "startTime": 11.801,
+        "endTime": 14.245,
+        "duration": 2.444,
+        "sentenceIndex": 35
       }
     ],
-    "totalDuration": 14.527211,
-    "measuredDuration": 14.527211
+    "totalDuration": 14.245102,
+    "measuredDuration": 14.245102
   },
   {
     "bundleId": "b6",
@@ -320,48 +320,48 @@
       {
         "text": "She wanted to scream, but no one could hear her.",
         "startTime": 0,
-        "endTime": 3.858,
-        "duration": 3.858,
-        "sentenceIndex": 0
+        "endTime": 3.73,
+        "duration": 3.73,
+        "sentenceIndex": 36
       },
       {
         "text": "The worst moment was on the third day.",
-        "startTime": 3.858,
-        "endTime": 6.793,
-        "duration": 2.935,
-        "sentenceIndex": 1
+        "startTime": 3.73,
+        "endTime": 6.564,
+        "duration": 2.834,
+        "sentenceIndex": 37
       },
       {
         "text": "Her daughter Emma visited her.",
-        "startTime": 6.793,
-        "endTime": 9.11,
-        "duration": 2.317,
-        "sentenceIndex": 2
+        "startTime": 6.564,
+        "endTime": 8.801,
+        "duration": 2.237,
+        "sentenceIndex": 38
       },
       {
         "text": "Emma was nineteen years old.",
-        "startTime": 9.11,
-        "endTime": 11.273,
-        "duration": 2.163,
-        "sentenceIndex": 3
+        "startTime": 8.801,
+        "endTime": 10.889,
+        "duration": 2.088,
+        "sentenceIndex": 39
       },
       {
         "text": "She came home from college.",
-        "startTime": 11.273,
-        "endTime": 13.359,
-        "duration": 2.086,
-        "sentenceIndex": 4
+        "startTime": 10.889,
+        "endTime": 12.903,
+        "duration": 2.014,
+        "sentenceIndex": 40
       },
       {
         "text": "She walked into the room with red eyes.",
-        "startTime": 13.359,
-        "endTime": 16.371,
-        "duration": 3.012,
-        "sentenceIndex": 5
+        "startTime": 12.903,
+        "endTime": 15.811,
+        "duration": 2.909,
+        "sentenceIndex": 41
       }
     ],
-    "totalDuration": 16.371111,
-    "measuredDuration": 16.371111
+    "totalDuration": 15.811361,
+    "measuredDuration": 15.811361
   },
   {
     "bundleId": "b7",
@@ -372,48 +372,48 @@
       {
         "text": "Rachel's heart broke.",
         "startTime": 0,
-        "endTime": 1.553,
-        "duration": 1.553,
-        "sentenceIndex": 0
+        "endTime": 1.576,
+        "duration": 1.576,
+        "sentenceIndex": 42
       },
       {
         "text": "She wanted to say, \"I'm okay.",
-        "startTime": 1.553,
-        "endTime": 3.848,
-        "duration": 2.295,
-        "sentenceIndex": 1
+        "startTime": 1.576,
+        "endTime": 3.901,
+        "duration": 2.326,
+        "sentenceIndex": 43
       },
       {
         "text": "Don't cry.\" But when she tried to speak, nonsense came out.",
-        "startTime": 3.848,
-        "endTime": 8.362,
-        "duration": 4.514,
-        "sentenceIndex": 2
+        "startTime": 3.901,
+        "endTime": 8.478,
+        "duration": 4.576,
+        "sentenceIndex": 44
       },
       {
         "text": "\"Window.",
-        "startTime": 8.362,
-        "endTime": 8.954,
-        "duration": 0.592,
-        "sentenceIndex": 3
+        "startTime": 8.478,
+        "endTime": 9.078,
+        "duration": 0.6,
+        "sentenceIndex": 45
       },
       {
         "text": "Happy.",
-        "startTime": 8.954,
-        "endTime": 9.398,
-        "duration": 0.444,
-        "sentenceIndex": 4
+        "startTime": 9.078,
+        "endTime": 9.528,
+        "duration": 0.45,
+        "sentenceIndex": 46
       },
       {
         "text": "Shoe.\"\n\nEmma looked sad.",
-        "startTime": 9.398,
-        "endTime": 11.173,
-        "duration": 1.775,
-        "sentenceIndex": 5
+        "startTime": 9.528,
+        "endTime": 11.329,
+        "duration": 1.801,
+        "sentenceIndex": 47
       }
     ],
-    "totalDuration": 11.173243,
-    "measuredDuration": 11.173243
+    "totalDuration": 11.32873,
+    "measuredDuration": 11.32873
   },
   {
     "bundleId": "b8",
@@ -424,48 +424,48 @@
       {
         "text": "She sat down by the bed.",
         "startTime": 0,
-        "endTime": 1.77,
-        "duration": 1.77,
-        "sentenceIndex": 0
+        "endTime": 1.837,
+        "duration": 1.837,
+        "sentenceIndex": 48
       },
       {
         "text": "She put her head in her hands.",
-        "startTime": 1.77,
-        "endTime": 3.983,
-        "duration": 2.213,
-        "sentenceIndex": 1
+        "startTime": 1.837,
+        "endTime": 4.133,
+        "duration": 2.296,
+        "sentenceIndex": 49
       },
       {
         "text": "Rachel felt like she was disappearing.",
-        "startTime": 3.983,
-        "endTime": 6.786,
-        "duration": 2.803,
-        "sentenceIndex": 2
+        "startTime": 4.133,
+        "endTime": 7.042,
+        "duration": 2.909,
+        "sentenceIndex": 50
       },
       {
         "text": "If she could not speak, was she still herself?",
-        "startTime": 6.786,
-        "endTime": 10.329,
-        "duration": 3.543,
-        "sentenceIndex": 3
+        "startTime": 7.042,
+        "endTime": 10.713,
+        "duration": 3.671,
+        "sentenceIndex": 51
       },
       {
         "text": "If she could not say \"I love you,\" did it still exist?",
-        "startTime": 10.329,
-        "endTime": 14.462,
-        "duration": 4.133,
-        "sentenceIndex": 4
+        "startTime": 10.713,
+        "endTime": 14.997,
+        "duration": 4.283,
+        "sentenceIndex": 52
       },
       {
         "text": "Then Emma looked up.",
-        "startTime": 14.462,
-        "endTime": 15.937,
-        "duration": 1.475,
-        "sentenceIndex": 5
+        "startTime": 14.997,
+        "endTime": 16.527,
+        "duration": 1.531,
+        "sentenceIndex": 53
       }
     ],
-    "totalDuration": 15.936939,
-    "measuredDuration": 15.936939
+    "totalDuration": 16.527415,
+    "measuredDuration": 16.527415
   },
   {
     "bundleId": "b9",
@@ -476,48 +476,48 @@
       {
         "text": "She wiped her eyes.",
         "startTime": 0,
-        "endTime": 1.697,
-        "duration": 1.697,
-        "sentenceIndex": 0
+        "endTime": 1.732,
+        "duration": 1.732,
+        "sentenceIndex": 54
       },
       {
         "text": "She took Rachel's left hand.",
-        "startTime": 1.697,
-        "endTime": 4.198,
-        "duration": 2.501,
-        "sentenceIndex": 1
+        "startTime": 1.732,
+        "endTime": 4.284,
+        "duration": 2.552,
+        "sentenceIndex": 55
       },
       {
         "text": "Rachel's right hand could not move, but her left hand was fine.",
-        "startTime": 4.198,
-        "endTime": 9.974,
-        "duration": 5.777,
-        "sentenceIndex": 2
+        "startTime": 4.284,
+        "endTime": 10.178,
+        "duration": 5.893,
+        "sentenceIndex": 56
       },
       {
         "text": "Emma squeezed it tight.",
-        "startTime": 9.974,
-        "endTime": 12.029,
-        "duration": 2.054,
-        "sentenceIndex": 3
+        "startTime": 10.178,
+        "endTime": 12.274,
+        "duration": 2.097,
+        "sentenceIndex": 57
       },
       {
         "text": "\"You will be fine, Mom,\" Emma said softly.",
-        "startTime": 12.029,
-        "endTime": 16.08,
-        "duration": 4.051,
-        "sentenceIndex": 4
+        "startTime": 12.274,
+        "endTime": 16.403,
+        "duration": 4.129,
+        "sentenceIndex": 58
       },
       {
         "text": "\"Because you have me.\"\n\nThose words became Rachel's anchor.",
-        "startTime": 16.08,
-        "endTime": 21.349,
-        "duration": 5.269,
-        "sentenceIndex": 5
+        "startTime": 16.403,
+        "endTime": 21.781,
+        "duration": 5.378,
+        "sentenceIndex": 59
       }
     ],
-    "totalDuration": 21.349116,
-    "measuredDuration": 21.349116
+    "totalDuration": 21.781293,
+    "measuredDuration": 21.781293
   },
   {
     "bundleId": "b10",
@@ -528,48 +528,48 @@
       {
         "text": "In the weeks that followed, when everything felt hard, she remembered them.",
         "startTime": 0,
-        "endTime": 6.229,
-        "duration": 6.229,
-        "sentenceIndex": 0
+        "endTime": 6.38,
+        "duration": 6.38,
+        "sentenceIndex": 60
       },
       {
         "text": "\"You have me.\" She was not alone.",
-        "startTime": 6.229,
-        "endTime": 8.838,
-        "duration": 2.609,
-        "sentenceIndex": 1
+        "startTime": 6.38,
+        "endTime": 9.056,
+        "duration": 2.675,
+        "sentenceIndex": 61
       },
       {
         "text": "But recovery was harder than anything Rachel imagined.",
-        "startTime": 8.838,
-        "endTime": 13.106,
-        "duration": 4.269,
-        "sentenceIndex": 2
+        "startTime": 9.056,
+        "endTime": 13.433,
+        "duration": 4.378,
+        "sentenceIndex": 62
       },
       {
         "text": "The helper gave her simple exercises.",
-        "startTime": 13.106,
-        "endTime": 16.031,
-        "duration": 2.925,
-        "sentenceIndex": 3
+        "startTime": 13.433,
+        "endTime": 16.433,
+        "duration": 3,
+        "sentenceIndex": 63
       },
       {
         "text": "\"Point to the cup.\" \"Point to the door.\" Rachel felt like a child again.",
-        "startTime": 16.031,
-        "endTime": 21.723,
-        "duration": 5.692,
-        "sentenceIndex": 4
+        "startTime": 16.433,
+        "endTime": 22.27,
+        "duration": 5.837,
+        "sentenceIndex": 64
       },
       {
         "text": "She had been a manager at work.",
-        "startTime": 21.723,
-        "endTime": 24.173,
-        "duration": 2.451,
-        "sentenceIndex": 5
+        "startTime": 22.27,
+        "endTime": 24.783,
+        "duration": 2.513,
+        "sentenceIndex": 65
       }
     ],
-    "totalDuration": 24.173424,
-    "measuredDuration": 24.173424
+    "totalDuration": 24.783288,
+    "measuredDuration": 24.783288
   },
   {
     "bundleId": "b11",
@@ -580,48 +580,48 @@
       {
         "text": "She had given talks to many people.",
         "startTime": 0,
-        "endTime": 2.565,
-        "duration": 2.565,
-        "sentenceIndex": 0
+        "endTime": 2.627,
+        "duration": 2.627,
+        "sentenceIndex": 66
       },
       {
         "text": "Now she struggled to point at things and say their names.",
-        "startTime": 2.565,
-        "endTime": 6.741,
-        "duration": 4.177,
-        "sentenceIndex": 1
+        "startTime": 2.627,
+        "endTime": 6.904,
+        "duration": 4.277,
+        "sentenceIndex": 67
       },
       {
         "text": "One day, the speech helper showed her a picture of a dog.",
-        "startTime": 6.741,
-        "endTime": 11.068,
-        "duration": 4.327,
-        "sentenceIndex": 2
+        "startTime": 6.904,
+        "endTime": 11.331,
+        "duration": 4.427,
+        "sentenceIndex": 68
       },
       {
         "text": "Rachel knew what it was.",
-        "startTime": 11.068,
-        "endTime": 12.827,
-        "duration": 1.759,
-        "sentenceIndex": 3
+        "startTime": 11.331,
+        "endTime": 13.132,
+        "duration": 1.801,
+        "sentenceIndex": 69
       },
       {
         "text": "She could see it in her mind.",
-        "startTime": 12.827,
-        "endTime": 14.952,
-        "duration": 2.125,
-        "sentenceIndex": 4
+        "startTime": 13.132,
+        "endTime": 15.309,
+        "duration": 2.176,
+        "sentenceIndex": 70
       },
       {
         "text": "A dog.",
-        "startTime": 14.952,
-        "endTime": 15.391,
-        "duration": 0.44,
-        "sentenceIndex": 5
+        "startTime": 15.309,
+        "endTime": 15.759,
+        "duration": 0.45,
+        "sentenceIndex": 71
       }
     ],
-    "totalDuration": 15.391156,
-    "measuredDuration": 15.391156
+    "totalDuration": 15.758934,
+    "measuredDuration": 15.758934
   },
   {
     "bundleId": "b12",
@@ -632,48 +632,48 @@
       {
         "text": "A furry animal that barks and wags its tail.",
         "startTime": 0,
-        "endTime": 3.088,
-        "duration": 3.088,
-        "sentenceIndex": 0
+        "endTime": 3.121,
+        "duration": 3.121,
+        "sentenceIndex": 72
       },
       {
         "text": "She remembered her childhood dog named Max.",
-        "startTime": 3.088,
-        "endTime": 6.105,
-        "duration": 3.017,
-        "sentenceIndex": 1
+        "startTime": 3.121,
+        "endTime": 6.17,
+        "duration": 3.05,
+        "sentenceIndex": 73
       },
       {
         "text": "She could remember everything about Max.",
-        "startTime": 6.105,
-        "endTime": 8.912,
-        "duration": 2.807,
-        "sentenceIndex": 2
+        "startTime": 6.17,
+        "endTime": 9.007,
+        "duration": 2.837,
+        "sentenceIndex": 74
       },
       {
         "text": "But when she tried to say \"dog,\" her mouth would not work.",
-        "startTime": 8.912,
-        "endTime": 13.132,
-        "duration": 4.22,
-        "sentenceIndex": 3
+        "startTime": 9.007,
+        "endTime": 13.271,
+        "duration": 4.263,
+        "sentenceIndex": 75
       },
       {
         "text": "\"Gah,\" she said.",
-        "startTime": 13.132,
-        "endTime": 14.405,
-        "duration": 1.273,
-        "sentenceIndex": 4
+        "startTime": 13.271,
+        "endTime": 14.555,
+        "duration": 1.285,
+        "sentenceIndex": 76
       },
       {
         "text": "\"Gah...",
-        "startTime": 14.405,
-        "endTime": 15.016,
-        "duration": 0.611,
-        "sentenceIndex": 5
+        "startTime": 14.555,
+        "endTime": 15.172,
+        "duration": 0.616,
+        "sentenceIndex": 77
       }
     ],
-    "totalDuration": 15.016122,
-    "measuredDuration": 15.016122
+    "totalDuration": 15.171791,
+    "measuredDuration": 15.171791
   },
   {
     "bundleId": "b13",
@@ -684,48 +684,48 @@
       {
         "text": "gah...\"\n\nThe helper waited.",
         "startTime": 0,
-        "endTime": 2.326,
-        "duration": 2.326,
-        "sentenceIndex": 0
+        "endTime": 2.421,
+        "duration": 2.421,
+        "sentenceIndex": 78
       },
       {
         "text": "Rachel tried again.",
-        "startTime": 2.326,
-        "endTime": 3.878,
-        "duration": 1.552,
-        "sentenceIndex": 1
+        "startTime": 2.421,
+        "endTime": 4.04,
+        "duration": 1.619,
+        "sentenceIndex": 79
       },
       {
         "text": "She thought about Max.",
-        "startTime": 3.878,
-        "endTime": 5.675,
-        "duration": 1.797,
-        "sentenceIndex": 2
+        "startTime": 4.04,
+        "endTime": 5.914,
+        "duration": 1.875,
+        "sentenceIndex": 80
       },
       {
         "text": "She thought about all the dogs she had known.",
-        "startTime": 5.675,
-        "endTime": 9.352,
-        "duration": 3.676,
-        "sentenceIndex": 3
+        "startTime": 5.914,
+        "endTime": 9.749,
+        "duration": 3.835,
+        "sentenceIndex": 81
       },
       {
         "text": "She pushed the word from her brain to her mouth.",
-        "startTime": 9.352,
-        "endTime": 13.273,
-        "duration": 3.922,
-        "sentenceIndex": 4
+        "startTime": 9.749,
+        "endTime": 13.839,
+        "duration": 4.09,
+        "sentenceIndex": 82
       },
       {
         "text": "\"Duh...",
-        "startTime": 13.273,
-        "endTime": 13.965,
-        "duration": 0.692,
-        "sentenceIndex": 5
+        "startTime": 13.839,
+        "endTime": 14.556,
+        "duration": 0.716,
+        "sentenceIndex": 83
       }
     ],
-    "totalDuration": 13.965261,
-    "measuredDuration": 13.965261
+    "totalDuration": 14.555646,
+    "measuredDuration": 14.555646
   },
   {
     "bundleId": "b14",
@@ -736,48 +736,48 @@
       {
         "text": "duh...",
         "startTime": 0,
-        "endTime": 0.61,
-        "duration": 0.61,
-        "sentenceIndex": 0
+        "endTime": 0.569,
+        "duration": 0.569,
+        "sentenceIndex": 84
       },
       {
         "text": "dog!\" The word came out.",
-        "startTime": 0.61,
-        "endTime": 2.57,
-        "duration": 1.96,
-        "sentenceIndex": 1
+        "startTime": 0.569,
+        "endTime": 2.364,
+        "duration": 1.795,
+        "sentenceIndex": 85
       },
       {
         "text": "Rachel started crying.",
-        "startTime": 2.57,
-        "endTime": 4.366,
-        "duration": 1.796,
-        "sentenceIndex": 2
+        "startTime": 2.364,
+        "endTime": 4.009,
+        "duration": 1.645,
+        "sentenceIndex": 86
       },
       {
         "text": "It was a small thing.",
-        "startTime": 4.366,
-        "endTime": 6.081,
-        "duration": 1.715,
-        "sentenceIndex": 3
+        "startTime": 4.009,
+        "endTime": 5.579,
+        "duration": 1.57,
+        "sentenceIndex": 87
       },
       {
         "text": "One word.",
-        "startTime": 6.081,
-        "endTime": 6.815,
-        "duration": 0.735,
-        "sentenceIndex": 4
+        "startTime": 5.579,
+        "endTime": 6.252,
+        "duration": 0.673,
+        "sentenceIndex": 88
       },
       {
         "text": "Three letters.",
-        "startTime": 6.815,
-        "endTime": 7.959,
-        "duration": 1.143,
-        "sentenceIndex": 5
+        "startTime": 6.252,
+        "endTime": 7.299,
+        "duration": 1.047,
+        "sentenceIndex": 89
       }
     ],
-    "totalDuration": 7.958594,
-    "measuredDuration": 7.958594
+    "totalDuration": 7.299342,
+    "measuredDuration": 7.299342
   },
   {
     "bundleId": "b15",
@@ -788,48 +788,48 @@
       {
         "text": "But it felt like climbing a mountain.",
         "startTime": 0,
-        "endTime": 3.107,
-        "duration": 3.107,
-        "sentenceIndex": 0
+        "endTime": 2.908,
+        "duration": 2.908,
+        "sentenceIndex": 90
       },
       {
         "text": "The helper smiled and wrote something down.",
-        "startTime": 3.107,
-        "endTime": 6.718,
-        "duration": 3.611,
-        "sentenceIndex": 1
+        "startTime": 2.908,
+        "endTime": 6.288,
+        "duration": 3.38,
+        "sentenceIndex": 91
       },
       {
         "text": "Emma rushed over and hugged her.",
-        "startTime": 6.718,
-        "endTime": 9.405,
-        "duration": 2.687,
-        "sentenceIndex": 2
+        "startTime": 6.288,
+        "endTime": 8.803,
+        "duration": 2.515,
+        "sentenceIndex": 92
       },
       {
         "text": "\"You did it, Mom!",
-        "startTime": 9.405,
-        "endTime": 10.982,
-        "duration": 1.578,
-        "sentenceIndex": 3
+        "startTime": 8.803,
+        "endTime": 10.289,
+        "duration": 1.486,
+        "sentenceIndex": 93
       },
       {
         "text": "You said 'dog!'\"\n\nThat night, Rachel lay in her hospital bed.",
-        "startTime": 10.982,
-        "endTime": 16.255,
-        "duration": 5.272,
-        "sentenceIndex": 4
+        "startTime": 10.289,
+        "endTime": 15.234,
+        "duration": 4.944,
+        "sentenceIndex": 94
       },
       {
         "text": "She thought about the word \"dog.\" One word.",
-        "startTime": 16.255,
-        "endTime": 19.865,
-        "duration": 3.611,
-        "sentenceIndex": 5
+        "startTime": 15.234,
+        "endTime": 18.613,
+        "duration": 3.38,
+        "sentenceIndex": 95
       }
     ],
-    "totalDuration": 19.865488,
-    "measuredDuration": 19.865488
+    "totalDuration": 18.613333,
+    "measuredDuration": 18.613333
   },
   {
     "bundleId": "b16",
@@ -840,48 +840,48 @@
       {
         "text": "If she could say one word today, maybe she could say two words tomorrow.",
         "startTime": 0,
-        "endTime": 5.891,
-        "duration": 5.891,
-        "sentenceIndex": 0
+        "endTime": 5.831,
+        "duration": 5.831,
+        "sentenceIndex": 96
       },
       {
         "text": "Maybe, step by step, she could find her way back.",
-        "startTime": 5.891,
-        "endTime": 10.097,
-        "duration": 4.207,
-        "sentenceIndex": 1
+        "startTime": 5.831,
+        "endTime": 9.997,
+        "duration": 4.166,
+        "sentenceIndex": 97
       },
       {
         "text": "But some days, Rachel did not want to try.",
-        "startTime": 10.097,
-        "endTime": 13.596,
-        "duration": 3.499,
-        "sentenceIndex": 2
+        "startTime": 9.997,
+        "endTime": 13.46,
+        "duration": 3.464,
+        "sentenceIndex": 98
       },
       {
         "text": "Her right arm hung limp.",
-        "startTime": 13.596,
-        "endTime": 15.51,
-        "duration": 1.914,
-        "sentenceIndex": 3
+        "startTime": 13.46,
+        "endTime": 15.354,
+        "duration": 1.894,
+        "sentenceIndex": 99
       },
       {
         "text": "Her words came out wrong.",
-        "startTime": 15.51,
-        "endTime": 17.503,
-        "duration": 1.993,
-        "sentenceIndex": 4
+        "startTime": 15.354,
+        "endTime": 17.326,
+        "duration": 1.972,
+        "sentenceIndex": 100
       },
       {
         "text": "When she looked in the mirror, she did not know herself.",
-        "startTime": 17.503,
-        "endTime": 22.118,
-        "duration": 4.615,
-        "sentenceIndex": 5
+        "startTime": 17.326,
+        "endTime": 21.894,
+        "duration": 4.568,
+        "sentenceIndex": 101
       }
     ],
-    "totalDuration": 22.117732,
-    "measuredDuration": 22.117732
+    "totalDuration": 21.894331,
+    "measuredDuration": 21.894331
   },
   {
     "bundleId": "b17",
@@ -892,48 +892,48 @@
       {
         "text": "The old Rachel was strong and confident.",
         "startTime": 0,
-        "endTime": 3.217,
-        "duration": 3.217,
-        "sentenceIndex": 0
+        "endTime": 3.227,
+        "duration": 3.227,
+        "sentenceIndex": 102
       },
       {
         "text": "This new Rachel needed help.",
-        "startTime": 3.217,
-        "endTime": 5.468,
-        "duration": 2.252,
-        "sentenceIndex": 1
+        "startTime": 3.227,
+        "endTime": 5.486,
+        "duration": 2.259,
+        "sentenceIndex": 103
       },
       {
         "text": "This new Rachel cried when she dropped a spoon.",
-        "startTime": 5.468,
-        "endTime": 9.248,
-        "duration": 3.78,
-        "sentenceIndex": 2
+        "startTime": 5.486,
+        "endTime": 9.277,
+        "duration": 3.792,
+        "sentenceIndex": 104
       },
       {
         "text": "The physical helper taught her to walk again.",
-        "startTime": 9.248,
-        "endTime": 12.867,
-        "duration": 3.619,
-        "sentenceIndex": 3
+        "startTime": 9.277,
+        "endTime": 12.907,
+        "duration": 3.63,
+        "sentenceIndex": 105
       },
       {
         "text": "Rachel's right leg dragged behind her.",
-        "startTime": 12.867,
-        "endTime": 15.923,
-        "duration": 3.056,
-        "sentenceIndex": 4
+        "startTime": 12.907,
+        "endTime": 15.973,
+        "duration": 3.065,
+        "sentenceIndex": 106
       },
       {
         "text": "She held onto the bars and took tiny steps.",
-        "startTime": 15.923,
-        "endTime": 19.381,
-        "duration": 3.458,
-        "sentenceIndex": 5
+        "startTime": 15.973,
+        "endTime": 19.442,
+        "duration": 3.469,
+        "sentenceIndex": 107
       }
     ],
-    "totalDuration": 19.38068,
-    "measuredDuration": 19.38068
+    "totalDuration": 19.441565,
+    "measuredDuration": 19.441565
   },
   {
     "bundleId": "b18",
@@ -944,48 +944,48 @@
       {
         "text": "It hurt.",
         "startTime": 0,
-        "endTime": 0.616,
-        "duration": 0.616,
-        "sentenceIndex": 0
+        "endTime": 0.612,
+        "duration": 0.612,
+        "sentenceIndex": 108
       },
       {
         "text": "Everything hurt.",
-        "startTime": 0.616,
-        "endTime": 1.847,
-        "duration": 1.231,
-        "sentenceIndex": 1
+        "startTime": 0.612,
+        "endTime": 1.837,
+        "duration": 1.225,
+        "sentenceIndex": 109
       },
       {
         "text": "Her muscles screamed.",
-        "startTime": 1.847,
-        "endTime": 3.463,
-        "duration": 1.616,
-        "sentenceIndex": 2
+        "startTime": 1.837,
+        "endTime": 3.445,
+        "duration": 1.608,
+        "sentenceIndex": 110
       },
       {
         "text": "Sweat dripped down her face.",
-        "startTime": 3.463,
-        "endTime": 5.618,
-        "duration": 2.155,
-        "sentenceIndex": 3
+        "startTime": 3.445,
+        "endTime": 5.588,
+        "duration": 2.143,
+        "sentenceIndex": 111
       },
       {
         "text": "\"Pole pole,\" the helper said.",
-        "startTime": 5.618,
-        "endTime": 7.999,
-        "duration": 2.382,
-        "sentenceIndex": 4
+        "startTime": 5.588,
+        "endTime": 7.958,
+        "duration": 2.37,
+        "sentenceIndex": 112
       },
       {
         "text": "\"That means 'slowly, slowly' in Swahili.",
-        "startTime": 7.999,
-        "endTime": 11.227,
-        "duration": 3.228,
-        "sentenceIndex": 5
+        "startTime": 7.958,
+        "endTime": 11.17,
+        "duration": 3.212,
+        "sentenceIndex": 113
       }
     ],
-    "totalDuration": 11.22737,
-    "measuredDuration": 11.22737
+    "totalDuration": 11.170136,
+    "measuredDuration": 11.170136
   },
   {
     "bundleId": "b19",
@@ -996,48 +996,48 @@
       {
         "text": "You don't have to run.",
         "startTime": 0,
-        "endTime": 1.849,
-        "duration": 1.849,
-        "sentenceIndex": 0
+        "endTime": 1.779,
+        "duration": 1.779,
+        "sentenceIndex": 114
       },
       {
         "text": "Just take one small step.\"\n\nPole pole.",
-        "startTime": 1.849,
-        "endTime": 5.044,
-        "duration": 3.194,
-        "sentenceIndex": 1
+        "startTime": 1.779,
+        "endTime": 4.851,
+        "duration": 3.073,
+        "sentenceIndex": 115
       },
       {
         "text": "Rachel repeated it in her mind.",
-        "startTime": 5.044,
-        "endTime": 7.65,
-        "duration": 2.606,
-        "sentenceIndex": 2
+        "startTime": 4.851,
+        "endTime": 7.358,
+        "duration": 2.507,
+        "sentenceIndex": 116
       },
       {
         "text": "Slowly, slowly.",
-        "startTime": 7.65,
-        "endTime": 9.061,
-        "duration": 1.411,
-        "sentenceIndex": 3
+        "startTime": 7.358,
+        "endTime": 8.721,
+        "duration": 1.363,
+        "sentenceIndex": 117
       },
       {
         "text": "One step.",
-        "startTime": 9.061,
-        "endTime": 9.817,
-        "duration": 0.757,
-        "sentenceIndex": 4
+        "startTime": 8.721,
+        "endTime": 9.448,
+        "duration": 0.728,
+        "sentenceIndex": 118
       },
       {
         "text": "Then another step.",
-        "startTime": 9.817,
-        "endTime": 11.33,
-        "duration": 1.513,
-        "sentenceIndex": 5
+        "startTime": 9.448,
+        "endTime": 10.904,
+        "duration": 1.455,
+        "sentenceIndex": 119
       }
     ],
-    "totalDuration": 11.330454,
-    "measuredDuration": 11.330454
+    "totalDuration": 10.903855,
+    "measuredDuration": 10.903855
   },
   {
     "bundleId": "b20",
@@ -1048,48 +1048,48 @@
       {
         "text": "Then rest.",
         "startTime": 0,
-        "endTime": 0.794,
-        "duration": 0.794,
-        "sentenceIndex": 0
+        "endTime": 0.76,
+        "duration": 0.76,
+        "sentenceIndex": 120
       },
       {
         "text": "Then one more step.",
-        "startTime": 0.794,
-        "endTime": 2.303,
-        "duration": 1.509,
-        "sentenceIndex": 1
+        "startTime": 0.76,
+        "endTime": 2.203,
+        "duration": 1.444,
+        "sentenceIndex": 121
       },
       {
         "text": "She did not have to be the old Rachel today.",
-        "startTime": 2.303,
-        "endTime": 5.797,
-        "duration": 3.494,
-        "sentenceIndex": 2
+        "startTime": 2.203,
+        "endTime": 5.546,
+        "duration": 3.343,
+        "sentenceIndex": 122
       },
       {
         "text": "She just had to take one small step forward.",
-        "startTime": 5.797,
-        "endTime": 9.292,
-        "duration": 3.494,
-        "sentenceIndex": 3
+        "startTime": 5.546,
+        "endTime": 8.889,
+        "duration": 3.343,
+        "sentenceIndex": 123
       },
       {
         "text": "Three months after the stroke, Rachel went home.",
-        "startTime": 9.292,
-        "endTime": 13.254,
-        "duration": 3.962,
-        "sentenceIndex": 4
+        "startTime": 8.889,
+        "endTime": 12.686,
+        "duration": 3.797,
+        "sentenceIndex": 124
       },
       {
         "text": "Emma took time off from college to help.",
-        "startTime": 13.254,
-        "endTime": 16.43,
-        "duration": 3.177,
-        "sentenceIndex": 5
+        "startTime": 12.686,
+        "endTime": 15.725,
+        "duration": 3.039,
+        "sentenceIndex": 125
       }
     ],
-    "totalDuration": 16.430272,
-    "measuredDuration": 16.430272
+    "totalDuration": 15.724807,
+    "measuredDuration": 15.724807
   },
   {
     "bundleId": "b21",
@@ -1100,48 +1100,48 @@
       {
         "text": "They made a routine.",
         "startTime": 0,
-        "endTime": 1.589,
-        "duration": 1.589,
-        "sentenceIndex": 0
+        "endTime": 1.627,
+        "duration": 1.627,
+        "sentenceIndex": 126
       },
       {
         "text": "Every morning, Rachel did her exercises.",
-        "startTime": 1.589,
-        "endTime": 4.918,
-        "duration": 3.329,
-        "sentenceIndex": 1
+        "startTime": 1.627,
+        "endTime": 5.031,
+        "duration": 3.404,
+        "sentenceIndex": 127
       },
       {
         "text": "\"Point to the cup.",
-        "startTime": 4.918,
-        "endTime": 6.348,
-        "duration": 1.43,
-        "sentenceIndex": 2
+        "startTime": 5.031,
+        "endTime": 6.495,
+        "duration": 1.464,
+        "sentenceIndex": 128
       },
       {
         "text": "Say 'cup.' Pick up the cup.",
-        "startTime": 6.348,
-        "endTime": 8.494,
-        "duration": 2.146,
-        "sentenceIndex": 3
+        "startTime": 6.495,
+        "endTime": 8.691,
+        "duration": 2.196,
+        "sentenceIndex": 129
       },
       {
         "text": "Drink from the cup.\" \"Point to the door.",
-        "startTime": 8.494,
-        "endTime": 11.673,
-        "duration": 3.179,
-        "sentenceIndex": 4
+        "startTime": 8.691,
+        "endTime": 11.945,
+        "duration": 3.254,
+        "sentenceIndex": 130
       },
       {
         "text": "Say 'door.' Open the door.\"\n\nSome days were better.",
-        "startTime": 11.673,
-        "endTime": 15.726,
-        "duration": 4.053,
-        "sentenceIndex": 5
+        "startTime": 11.945,
+        "endTime": 16.093,
+        "duration": 4.148,
+        "sentenceIndex": 131
       }
     ],
-    "totalDuration": 15.725714,
-    "measuredDuration": 15.725714
+    "totalDuration": 16.093243,
+    "measuredDuration": 16.093243
   },
   {
     "bundleId": "b22",
@@ -1152,48 +1152,48 @@
       {
         "text": "On good days, Rachel made simple sentences.",
         "startTime": 0,
-        "endTime": 3.431,
-        "duration": 3.431,
-        "sentenceIndex": 0
+        "endTime": 3.497,
+        "duration": 3.497,
+        "sentenceIndex": 132
       },
       {
         "text": "\"I want coffee.\" \"Thank you.\" \"I love you.\" On bad days, the words disappeared again.",
-        "startTime": 3.431,
-        "endTime": 10.068,
-        "duration": 6.636,
-        "sentenceIndex": 1
+        "startTime": 3.497,
+        "endTime": 10.264,
+        "duration": 6.767,
+        "sentenceIndex": 133
       },
       {
         "text": "She felt like she was drowning in silence.",
-        "startTime": 10.068,
-        "endTime": 13.273,
-        "duration": 3.205,
-        "sentenceIndex": 2
+        "startTime": 10.264,
+        "endTime": 13.533,
+        "duration": 3.269,
+        "sentenceIndex": 134
       },
       {
         "text": "One afternoon, Emma found Rachel in the backyard.",
-        "startTime": 13.273,
-        "endTime": 17.162,
-        "duration": 3.889,
-        "sentenceIndex": 3
+        "startTime": 13.533,
+        "endTime": 17.498,
+        "duration": 3.964,
+        "sentenceIndex": 135
       },
       {
         "text": "Rachel was staring at nothing.",
-        "startTime": 17.162,
-        "endTime": 19.452,
-        "duration": 2.289,
-        "sentenceIndex": 4
+        "startTime": 17.498,
+        "endTime": 19.833,
+        "duration": 2.335,
+        "sentenceIndex": 136
       },
       {
         "text": "She had stopped doing her exercises.",
-        "startTime": 19.452,
-        "endTime": 22.199,
-        "duration": 2.747,
-        "sentenceIndex": 5
+        "startTime": 19.833,
+        "endTime": 22.635,
+        "duration": 2.802,
+        "sentenceIndex": 137
       }
     ],
-    "totalDuration": 22.198821,
-    "measuredDuration": 22.198821
+    "totalDuration": 22.635488,
+    "measuredDuration": 22.635488
   },
   {
     "bundleId": "b23",
@@ -1204,48 +1204,48 @@
       {
         "text": "She had stopped trying.",
         "startTime": 0,
-        "endTime": 2.021,
-        "duration": 2.021,
-        "sentenceIndex": 0
+        "endTime": 1.864,
+        "duration": 1.864,
+        "sentenceIndex": 138
       },
       {
         "text": "What was the point?",
-        "startTime": 2.021,
-        "endTime": 3.691,
-        "duration": 1.67,
-        "sentenceIndex": 1
+        "startTime": 1.864,
+        "endTime": 3.404,
+        "duration": 1.54,
+        "sentenceIndex": 139
       },
       {
         "text": "She would never be herself again.",
-        "startTime": 3.691,
-        "endTime": 6.591,
-        "duration": 2.9,
-        "sentenceIndex": 2
+        "startTime": 3.404,
+        "endTime": 6.078,
+        "duration": 2.674,
+        "sentenceIndex": 140
       },
       {
         "text": "She was broken.",
-        "startTime": 6.591,
-        "endTime": 7.909,
-        "duration": 1.318,
-        "sentenceIndex": 3
+        "startTime": 6.078,
+        "endTime": 7.294,
+        "duration": 1.216,
+        "sentenceIndex": 141
       },
       {
         "text": "Emma sat down next to her.",
-        "startTime": 7.909,
-        "endTime": 10.193,
-        "duration": 2.285,
-        "sentenceIndex": 4
+        "startTime": 7.294,
+        "endTime": 9.401,
+        "duration": 2.107,
+        "sentenceIndex": 142
       },
       {
         "text": "They sat in silence for a long time.",
-        "startTime": 10.193,
-        "endTime": 13.357,
-        "duration": 3.163,
-        "sentenceIndex": 5
+        "startTime": 9.401,
+        "endTime": 12.318,
+        "duration": 2.917,
+        "sentenceIndex": 143
       }
     ],
-    "totalDuration": 13.356803,
-    "measuredDuration": 13.356803
+    "totalDuration": 12.318322,
+    "measuredDuration": 12.318322
   },
   {
     "bundleId": "b24",
@@ -1256,48 +1256,48 @@
       {
         "text": "Then Emma showed Rachel a photo on her phone.",
         "startTime": 0,
-        "endTime": 3.272,
-        "duration": 3.272,
-        "sentenceIndex": 0
+        "endTime": 3.448,
+        "duration": 3.448,
+        "sentenceIndex": 144
       },
       {
         "text": "It was from a nature show.",
-        "startTime": 3.272,
-        "endTime": 5.162,
-        "duration": 1.89,
-        "sentenceIndex": 1
+        "startTime": 3.448,
+        "endTime": 5.44,
+        "duration": 1.992,
+        "sentenceIndex": 145
       },
       {
         "text": "A pelican with a broken wing.",
-        "startTime": 5.162,
-        "endTime": 7.27,
-        "duration": 2.108,
-        "sentenceIndex": 2
+        "startTime": 5.44,
+        "endTime": 7.662,
+        "duration": 2.222,
+        "sentenceIndex": 146
       },
       {
         "text": "The pelican could not fly anymore.",
-        "startTime": 7.27,
-        "endTime": 9.742,
-        "duration": 2.472,
-        "sentenceIndex": 3
+        "startTime": 7.662,
+        "endTime": 10.267,
+        "duration": 2.605,
+        "sentenceIndex": 147
       },
       {
         "text": "But it learned to swim differently.",
-        "startTime": 9.742,
-        "endTime": 12.286,
-        "duration": 2.545,
-        "sentenceIndex": 4
+        "startTime": 10.267,
+        "endTime": 12.948,
+        "duration": 2.682,
+        "sentenceIndex": 148
       },
       {
         "text": "It found a new way to live.",
-        "startTime": 12.286,
-        "endTime": 14.249,
-        "duration": 1.963,
-        "sentenceIndex": 5
+        "startTime": 12.948,
+        "endTime": 15.017,
+        "duration": 2.069,
+        "sentenceIndex": 149
       }
     ],
-    "totalDuration": 14.249342,
-    "measuredDuration": 14.249342
+    "totalDuration": 15.016689,
+    "measuredDuration": 15.016689
   },
   {
     "bundleId": "b25",
@@ -1308,48 +1308,48 @@
       {
         "text": "\"Look, Mom,\" Emma said.",
         "startTime": 0,
-        "endTime": 2.107,
-        "duration": 2.107,
-        "sentenceIndex": 0
+        "endTime": 2.16,
+        "duration": 2.16,
+        "sentenceIndex": 150
       },
       {
         "text": "\"This bird can't fly.",
-        "startTime": 2.107,
-        "endTime": 3.757,
-        "duration": 1.65,
-        "sentenceIndex": 1
+        "startTime": 2.16,
+        "endTime": 3.858,
+        "duration": 1.698,
+        "sentenceIndex": 151
       },
       {
         "text": "But it's still alive.",
-        "startTime": 3.757,
-        "endTime": 5.407,
-        "duration": 1.65,
-        "sentenceIndex": 2
+        "startTime": 3.858,
+        "endTime": 5.556,
+        "duration": 1.698,
+        "sentenceIndex": 152
       },
       {
         "text": "It's still beautiful.",
-        "startTime": 5.407,
-        "endTime": 7.057,
-        "duration": 1.65,
-        "sentenceIndex": 3
+        "startTime": 5.556,
+        "endTime": 7.253,
+        "duration": 1.698,
+        "sentenceIndex": 153
       },
       {
         "text": "It found a new way.\"\n\nRachel looked at the pelican.",
-        "startTime": 7.057,
-        "endTime": 11.065,
-        "duration": 4.007,
-        "sentenceIndex": 4
+        "startTime": 7.253,
+        "endTime": 11.377,
+        "duration": 4.124,
+        "sentenceIndex": 154
       },
       {
         "text": "Its wing hung funny, just like her arm.",
-        "startTime": 11.065,
-        "endTime": 14.279,
-        "duration": 3.214,
-        "sentenceIndex": 5
+        "startTime": 11.377,
+        "endTime": 14.68,
+        "duration": 3.303,
+        "sentenceIndex": 155
       }
     ],
-    "totalDuration": 14.278934,
-    "measuredDuration": 14.278934
+    "totalDuration": 14.680385,
+    "measuredDuration": 14.680385
   },
   {
     "bundleId": "b26",
@@ -1360,48 +1360,48 @@
       {
         "text": "But in the photo, the pelican glided through water.",
         "startTime": 0,
-        "endTime": 4.113,
-        "duration": 4.113,
-        "sentenceIndex": 0
+        "endTime": 4.376,
+        "duration": 4.376,
+        "sentenceIndex": 156
       },
       {
         "text": "It was graceful and strong.",
-        "startTime": 4.113,
-        "endTime": 6.212,
-        "duration": 2.098,
-        "sentenceIndex": 1
+        "startTime": 4.376,
+        "endTime": 6.613,
+        "duration": 2.237,
+        "sentenceIndex": 157
       },
       {
         "text": "Different, but still beautiful.",
-        "startTime": 6.212,
-        "endTime": 8.771,
-        "duration": 2.559,
-        "sentenceIndex": 2
+        "startTime": 6.613,
+        "endTime": 9.332,
+        "duration": 2.719,
+        "sentenceIndex": 158
       },
       {
         "text": "That image stayed with Rachel.",
-        "startTime": 8.771,
-        "endTime": 11.102,
-        "duration": 2.331,
-        "sentenceIndex": 3
+        "startTime": 9.332,
+        "endTime": 11.818,
+        "duration": 2.486,
+        "sentenceIndex": 159
       },
       {
         "text": "She thought about it during her therapy.",
-        "startTime": 11.102,
-        "endTime": 14.211,
-        "duration": 3.109,
-        "sentenceIndex": 4
+        "startTime": 11.818,
+        "endTime": 15.132,
+        "duration": 3.315,
+        "sentenceIndex": 160
       },
       {
         "text": "She thought about it when she felt frustrated.",
-        "startTime": 14.211,
-        "endTime": 17.785,
-        "duration": 3.575,
-        "sentenceIndex": 5
+        "startTime": 15.132,
+        "endTime": 18.944,
+        "duration": 3.812,
+        "sentenceIndex": 161
       }
     ],
-    "totalDuration": 17.785329,
-    "measuredDuration": 17.785329
+    "totalDuration": 18.944195,
+    "measuredDuration": 18.944195
   },
   {
     "bundleId": "b27",
@@ -1412,48 +1412,48 @@
       {
         "text": "The pelican could not fly.",
         "startTime": 0,
-        "endTime": 2.15,
-        "duration": 2.15,
-        "sentenceIndex": 0
+        "endTime": 2.067,
+        "duration": 2.067,
+        "sentenceIndex": 162
       },
       {
         "text": "Rachel could not speak like before.",
-        "startTime": 2.15,
-        "endTime": 5.043,
-        "duration": 2.894,
-        "sentenceIndex": 1
+        "startTime": 2.067,
+        "endTime": 4.849,
+        "duration": 2.782,
+        "sentenceIndex": 163
       },
       {
         "text": "But maybe that was okay.",
-        "startTime": 5.043,
-        "endTime": 7.028,
-        "duration": 1.984,
-        "sentenceIndex": 2
+        "startTime": 4.849,
+        "endTime": 6.757,
+        "duration": 1.908,
+        "sentenceIndex": 164
       },
       {
         "text": "Maybe there was a new way to be herself.",
-        "startTime": 7.028,
-        "endTime": 10.335,
-        "duration": 3.307,
-        "sentenceIndex": 3
+        "startTime": 6.757,
+        "endTime": 9.937,
+        "duration": 3.18,
+        "sentenceIndex": 165
       },
       {
         "text": "Slowly, Rachel started to get better.",
-        "startTime": 10.335,
-        "endTime": 13.544,
-        "duration": 3.209,
-        "sentenceIndex": 4
+        "startTime": 9.937,
+        "endTime": 13.029,
+        "duration": 3.091,
+        "sentenceIndex": 166
       },
       {
         "text": "She practiced speaking for hours each day.",
-        "startTime": 13.544,
-        "endTime": 17.016,
-        "duration": 3.472,
-        "sentenceIndex": 5
+        "startTime": 13.029,
+        "endTime": 16.368,
+        "duration": 3.339,
+        "sentenceIndex": 167
       }
     ],
-    "totalDuration": 17.016145,
-    "measuredDuration": 17.016145
+    "totalDuration": 16.367891,
+    "measuredDuration": 16.367891
   },
   {
     "bundleId": "b28",
@@ -1464,48 +1464,48 @@
       {
         "text": "She learned to accept help without feeling bad.",
         "startTime": 0,
-        "endTime": 4.272,
-        "duration": 4.272,
-        "sentenceIndex": 0
+        "endTime": 4.162,
+        "duration": 4.162,
+        "sentenceIndex": 168
       },
       {
         "text": "She learned that \"slowly, slowly\" was not giving up.",
-        "startTime": 4.272,
-        "endTime": 9.148,
-        "duration": 4.876,
-        "sentenceIndex": 1
+        "startTime": 4.162,
+        "endTime": 8.916,
+        "duration": 4.754,
+        "sentenceIndex": 169
       },
       {
         "text": "It was wisdom.",
-        "startTime": 9.148,
-        "endTime": 10.421,
-        "duration": 1.272,
-        "sentenceIndex": 2
+        "startTime": 8.916,
+        "endTime": 10.156,
+        "duration": 1.24,
+        "sentenceIndex": 170
       },
       {
         "text": "One day, six months after the stroke, Rachel tried to climb the stairs in her house.",
-        "startTime": 10.421,
-        "endTime": 18.355,
-        "duration": 7.935,
-        "sentenceIndex": 3
+        "startTime": 10.156,
+        "endTime": 17.894,
+        "duration": 7.738,
+        "sentenceIndex": 171
       },
       {
         "text": "She had been sleeping downstairs.",
-        "startTime": 18.355,
-        "endTime": 21.355,
-        "duration": 2.999,
-        "sentenceIndex": 4
+        "startTime": 17.894,
+        "endTime": 20.816,
+        "duration": 2.922,
+        "sentenceIndex": 172
       },
       {
         "text": "The stairs were too hard.",
-        "startTime": 21.355,
-        "endTime": 23.627,
-        "duration": 2.272,
-        "sentenceIndex": 5
+        "startTime": 20.816,
+        "endTime": 23.029,
+        "duration": 2.214,
+        "sentenceIndex": 173
       }
     ],
-    "totalDuration": 23.626916,
-    "measuredDuration": 23.626916
+    "totalDuration": 23.029365,
+    "measuredDuration": 23.029365
   },
   {
     "bundleId": "b29",
@@ -1516,48 +1516,48 @@
       {
         "text": "But she missed her bedroom.",
         "startTime": 0,
-        "endTime": 1.747,
-        "duration": 1.747,
-        "sentenceIndex": 0
+        "endTime": 1.819,
+        "duration": 1.819,
+        "sentenceIndex": 174
       },
       {
         "text": "She missed the view from her window.",
-        "startTime": 1.747,
-        "endTime": 4.075,
-        "duration": 2.329,
-        "sentenceIndex": 1
+        "startTime": 1.819,
+        "endTime": 4.245,
+        "duration": 2.426,
+        "sentenceIndex": 175
       },
       {
         "text": "Emma offered to help, but Rachel shook her head.",
-        "startTime": 4.075,
-        "endTime": 7.33,
-        "duration": 3.255,
-        "sentenceIndex": 2
+        "startTime": 4.245,
+        "endTime": 7.629,
+        "duration": 3.384,
+        "sentenceIndex": 176
       },
       {
         "text": "She wanted to try.",
-        "startTime": 7.33,
-        "endTime": 8.494,
-        "duration": 1.164,
-        "sentenceIndex": 3
+        "startTime": 7.629,
+        "endTime": 8.842,
+        "duration": 1.213,
+        "sentenceIndex": 177
       },
       {
         "text": "She gripped the railing with her left hand.",
-        "startTime": 8.494,
-        "endTime": 11.276,
-        "duration": 2.781,
-        "sentenceIndex": 4
+        "startTime": 8.842,
+        "endTime": 11.739,
+        "duration": 2.897,
+        "sentenceIndex": 178
       },
       {
         "text": "She lifted her right leg onto the first step.",
-        "startTime": 11.276,
-        "endTime": 14.187,
-        "duration": 2.911,
-        "sentenceIndex": 5
+        "startTime": 11.739,
+        "endTime": 14.771,
+        "duration": 3.032,
+        "sentenceIndex": 179
       }
     ],
-    "totalDuration": 14.186848,
-    "measuredDuration": 14.186848
+    "totalDuration": 14.771111,
+    "measuredDuration": 14.771111
   },
   {
     "bundleId": "b30",
@@ -1568,48 +1568,48 @@
       {
         "text": "It barely moved.",
         "startTime": 0,
-        "endTime": 1.156,
-        "duration": 1.156,
-        "sentenceIndex": 0
+        "endTime": 1.185,
+        "duration": 1.185,
+        "sentenceIndex": 180
       },
       {
         "text": "She pulled herself up using the railing.",
-        "startTime": 1.156,
-        "endTime": 4.045,
-        "duration": 2.889,
-        "sentenceIndex": 1
+        "startTime": 1.185,
+        "endTime": 4.148,
+        "duration": 2.963,
+        "sentenceIndex": 181
       },
       {
         "text": "One step.",
-        "startTime": 4.045,
-        "endTime": 4.695,
-        "duration": 0.65,
-        "sentenceIndex": 2
+        "startTime": 4.148,
+        "endTime": 4.815,
+        "duration": 0.667,
+        "sentenceIndex": 182
       },
       {
         "text": "Then she rested.",
-        "startTime": 4.695,
-        "endTime": 5.85,
-        "duration": 1.156,
-        "sentenceIndex": 3
+        "startTime": 4.815,
+        "endTime": 6,
+        "duration": 1.185,
+        "sentenceIndex": 183
       },
       {
         "text": "Then another step.",
-        "startTime": 5.85,
-        "endTime": 7.15,
-        "duration": 1.3,
-        "sentenceIndex": 4
+        "startTime": 6,
+        "endTime": 7.334,
+        "duration": 1.333,
+        "sentenceIndex": 184
       },
       {
         "text": "It took twenty minutes to climb twelve stairs.",
-        "startTime": 7.15,
-        "endTime": 10.473,
-        "duration": 3.322,
-        "sentenceIndex": 5
+        "startTime": 7.334,
+        "endTime": 10.741,
+        "duration": 3.407,
+        "sentenceIndex": 185
       }
     ],
-    "totalDuration": 10.472789,
-    "measuredDuration": 10.472789
+    "totalDuration": 10.74102,
+    "measuredDuration": 10.74102
   },
   {
     "bundleId": "b31",
@@ -1620,48 +1620,48 @@
       {
         "text": "When Rachel reached the top, she was crying and laughing.",
         "startTime": 0,
-        "endTime": 4.699,
-        "duration": 4.699,
-        "sentenceIndex": 0
+        "endTime": 4.945,
+        "duration": 4.945,
+        "sentenceIndex": 186
       },
       {
         "text": "Emma ran up behind her.",
-        "startTime": 4.699,
-        "endTime": 6.535,
-        "duration": 1.836,
-        "sentenceIndex": 1
+        "startTime": 4.945,
+        "endTime": 6.88,
+        "duration": 1.935,
+        "sentenceIndex": 187
       },
       {
         "text": "\"You did it, Mom!\"\n\nRachel sat down on the top step, breathing hard.",
-        "startTime": 6.535,
-        "endTime": 12.262,
-        "duration": 5.727,
-        "sentenceIndex": 2
+        "startTime": 6.88,
+        "endTime": 12.9,
+        "duration": 6.02,
+        "sentenceIndex": 188
       },
       {
         "text": "\"Pole...",
-        "startTime": 12.262,
-        "endTime": 13.02,
-        "duration": 0.758,
-        "sentenceIndex": 3
+        "startTime": 12.9,
+        "endTime": 13.693,
+        "duration": 0.793,
+        "sentenceIndex": 189
       },
       {
         "text": "pole,\" she said, and Emma laughed.",
-        "startTime": 13.02,
-        "endTime": 16.034,
-        "duration": 3.013,
-        "sentenceIndex": 4
+        "startTime": 13.693,
+        "endTime": 16.854,
+        "duration": 3.16,
+        "sentenceIndex": 190
       },
       {
         "text": "Something changed in Rachel that day.",
-        "startTime": 16.034,
-        "endTime": 18.987,
-        "duration": 2.953,
-        "sentenceIndex": 5
+        "startTime": 16.854,
+        "endTime": 19.966,
+        "duration": 3.113,
+        "sentenceIndex": 191
       }
     ],
-    "totalDuration": 18.986508,
-    "measuredDuration": 18.986508
+    "totalDuration": 19.966145,
+    "measuredDuration": 19.966145
   },
   {
     "bundleId": "b32",
@@ -1672,48 +1672,48 @@
       {
         "text": "She realized she was building a new version of herself.",
         "startTime": 0,
-        "endTime": 4.139,
-        "duration": 4.139,
-        "sentenceIndex": 0
+        "endTime": 4.076,
+        "duration": 4.076,
+        "sentenceIndex": 192
       },
       {
         "text": "The old Rachel had walked up stairs without thinking.",
-        "startTime": 4.139,
-        "endTime": 8.127,
-        "duration": 3.988,
-        "sentenceIndex": 1
+        "startTime": 4.076,
+        "endTime": 8.004,
+        "duration": 3.928,
+        "sentenceIndex": 193
       },
       {
         "text": "The new Rachel had to fight for every step.",
-        "startTime": 8.127,
-        "endTime": 11.363,
-        "duration": 3.236,
-        "sentenceIndex": 2
+        "startTime": 8.004,
+        "endTime": 11.191,
+        "duration": 3.187,
+        "sentenceIndex": 194
       },
       {
         "text": "The old Rachel spoke in long sentences.",
-        "startTime": 11.363,
-        "endTime": 14.298,
-        "duration": 2.935,
-        "sentenceIndex": 3
+        "startTime": 11.191,
+        "endTime": 14.082,
+        "duration": 2.89,
+        "sentenceIndex": 195
       },
       {
         "text": "The new Rachel struggled with simple words.",
-        "startTime": 14.298,
-        "endTime": 17.534,
-        "duration": 3.236,
-        "sentenceIndex": 4
+        "startTime": 14.082,
+        "endTime": 17.269,
+        "duration": 3.187,
+        "sentenceIndex": 196
       },
       {
         "text": "But the new Rachel learned things the old Rachel never knew.",
-        "startTime": 17.534,
-        "endTime": 22.049,
-        "duration": 4.515,
-        "sentenceIndex": 5
+        "startTime": 17.269,
+        "endTime": 21.716,
+        "duration": 4.447,
+        "sentenceIndex": 197
       }
     ],
-    "totalDuration": 22.048844,
-    "measuredDuration": 22.048844
+    "totalDuration": 21.715805,
+    "measuredDuration": 21.715805
   },
   {
     "bundleId": "b33",
@@ -1726,46 +1726,46 @@
         "startTime": 0,
         "endTime": 1.645,
         "duration": 1.645,
-        "sentenceIndex": 0
+        "sentenceIndex": 198
       },
       {
         "text": "She learned courage.",
         "startTime": 1.645,
         "endTime": 3.211,
         "duration": 1.566,
-        "sentenceIndex": 1
+        "sentenceIndex": 199
       },
       {
         "text": "She learned that love does not need perfect words.",
         "startTime": 3.211,
         "endTime": 7.127,
         "duration": 3.916,
-        "sentenceIndex": 2
+        "sentenceIndex": 200
       },
       {
         "text": "Eight months after the stroke, Rachel started helping at the hospital.",
         "startTime": 7.127,
-        "endTime": 12.76,
-        "duration": 5.633,
-        "sentenceIndex": 3
+        "endTime": 12.759,
+        "duration": 5.632,
+        "sentenceIndex": 201
       },
       {
         "text": "She visited other stroke patients.",
-        "startTime": 12.76,
-        "endTime": 15.423,
+        "startTime": 12.759,
+        "endTime": 15.422,
         "duration": 2.663,
-        "sentenceIndex": 4
+        "sentenceIndex": 202
       },
       {
         "text": "She could not give them long talks or advice.",
-        "startTime": 15.423,
-        "endTime": 18.948,
-        "duration": 3.525,
-        "sentenceIndex": 5
+        "startTime": 15.422,
+        "endTime": 18.947,
+        "duration": 3.524,
+        "sentenceIndex": 203
       }
     ],
-    "totalDuration": 18.947732,
-    "measuredDuration": 18.947732
+    "totalDuration": 18.946735,
+    "measuredDuration": 18.946735
   },
   {
     "bundleId": "b34",
@@ -1776,48 +1776,48 @@
       {
         "text": "But she could sit with them.",
         "startTime": 0,
-        "endTime": 1.889,
-        "duration": 1.889,
-        "sentenceIndex": 0
+        "endTime": 1.934,
+        "duration": 1.934,
+        "sentenceIndex": 204
       },
       {
         "text": "She could hold their hands.",
-        "startTime": 1.889,
-        "endTime": 3.711,
-        "duration": 1.822,
-        "sentenceIndex": 1
+        "startTime": 1.934,
+        "endTime": 3.799,
+        "duration": 1.865,
+        "sentenceIndex": 205
       },
       {
         "text": "She could show them that survival was possible.",
-        "startTime": 3.711,
-        "endTime": 6.882,
-        "duration": 3.171,
-        "sentenceIndex": 2
+        "startTime": 3.799,
+        "endTime": 7.046,
+        "duration": 3.246,
+        "sentenceIndex": 206
       },
       {
         "text": "One patient, an older woman named Margaret, was having a hard time.",
-        "startTime": 6.882,
-        "endTime": 11.702,
-        "duration": 4.82,
-        "sentenceIndex": 3
+        "startTime": 7.046,
+        "endTime": 11.973,
+        "duration": 4.928,
+        "sentenceIndex": 207
       },
       {
         "text": "She wanted to give up.",
-        "startTime": 11.702,
-        "endTime": 13.187,
-        "duration": 1.484,
-        "sentenceIndex": 4
+        "startTime": 11.973,
+        "endTime": 13.493,
+        "duration": 1.52,
+        "sentenceIndex": 208
       },
       {
         "text": "Rachel understood.",
-        "startTime": 13.187,
-        "endTime": 14.401,
-        "duration": 1.214,
-        "sentenceIndex": 5
+        "startTime": 13.493,
+        "endTime": 14.736,
+        "duration": 1.243,
+        "sentenceIndex": 209
       }
     ],
-    "totalDuration": 14.400975,
-    "measuredDuration": 14.400975
+    "totalDuration": 14.736395,
+    "measuredDuration": 14.736395
   },
   {
     "bundleId": "b35",
@@ -1828,48 +1828,48 @@
       {
         "text": "She remembered that feeling.",
         "startTime": 0,
-        "endTime": 2.319,
-        "duration": 2.319,
-        "sentenceIndex": 0
+        "endTime": 2.306,
+        "duration": 2.306,
+        "sentenceIndex": 210
       },
       {
         "text": "She remembered thinking she would never be whole again.",
-        "startTime": 2.319,
-        "endTime": 6.874,
-        "duration": 4.555,
-        "sentenceIndex": 1
+        "startTime": 2.306,
+        "endTime": 6.837,
+        "duration": 4.531,
+        "sentenceIndex": 211
       },
       {
         "text": "Rachel sat next to Margaret's bed.",
-        "startTime": 6.874,
-        "endTime": 9.691,
-        "duration": 2.816,
-        "sentenceIndex": 2
+        "startTime": 6.837,
+        "endTime": 9.638,
+        "duration": 2.801,
+        "sentenceIndex": 212
       },
       {
         "text": "She spoke slowly.",
-        "startTime": 9.691,
-        "endTime": 11.099,
-        "duration": 1.408,
-        "sentenceIndex": 3
+        "startTime": 9.638,
+        "endTime": 11.038,
+        "duration": 1.4,
+        "sentenceIndex": 213
       },
       {
         "text": "\"You...",
-        "startTime": 11.099,
-        "endTime": 11.798,
-        "duration": 0.7,
-        "sentenceIndex": 4
+        "startTime": 11.038,
+        "endTime": 11.735,
+        "duration": 0.697,
+        "sentenceIndex": 214
       },
       {
         "text": "will...",
-        "startTime": 11.798,
-        "endTime": 12.498,
-        "duration": 0.7,
-        "sentenceIndex": 5
+        "startTime": 11.735,
+        "endTime": 12.431,
+        "duration": 0.697,
+        "sentenceIndex": 215
       }
     ],
-    "totalDuration": 12.498118,
-    "measuredDuration": 12.498118
+    "totalDuration": 12.431383,
+    "measuredDuration": 12.431383
   },
   {
     "bundleId": "b36",
@@ -1880,48 +1880,48 @@
       {
         "text": "be...",
         "startTime": 0,
-        "endTime": 0.447,
-        "duration": 0.447,
-        "sentenceIndex": 0
+        "endTime": 0.489,
+        "duration": 0.489,
+        "sentenceIndex": 216
       },
       {
         "text": "okay.",
-        "startTime": 0.447,
-        "endTime": 0.774,
-        "duration": 0.327,
-        "sentenceIndex": 1
+        "startTime": 0.489,
+        "endTime": 0.857,
+        "duration": 0.369,
+        "sentenceIndex": 217
       },
       {
         "text": "Because...",
-        "startTime": 0.774,
-        "endTime": 1.548,
-        "duration": 0.774,
-        "sentenceIndex": 2
+        "startTime": 0.857,
+        "endTime": 1.714,
+        "duration": 0.857,
+        "sentenceIndex": 218
       },
       {
         "text": "you...",
-        "startTime": 1.548,
-        "endTime": 2.06,
-        "duration": 0.512,
-        "sentenceIndex": 3
+        "startTime": 1.714,
+        "endTime": 2.277,
+        "duration": 0.562,
+        "sentenceIndex": 219
       },
       {
         "text": "have...",
-        "startTime": 2.06,
-        "endTime": 2.638,
-        "duration": 0.578,
-        "sentenceIndex": 4
+        "startTime": 2.277,
+        "endTime": 2.912,
+        "duration": 0.636,
+        "sentenceIndex": 220
       },
       {
         "text": "people.",
-        "startTime": 2.638,
-        "endTime": 3.095,
-        "duration": 0.458,
-        "sentenceIndex": 5
+        "startTime": 2.912,
+        "endTime": 3.428,
+        "duration": 0.516,
+        "sentenceIndex": 221
       }
     ],
-    "totalDuration": 3.095442,
-    "measuredDuration": 3.095442
+    "totalDuration": 3.428481,
+    "measuredDuration": 3.428481
   },
   {
     "bundleId": "b37",
@@ -1932,48 +1932,48 @@
       {
         "text": "You...",
         "startTime": 0,
-        "endTime": 0.643,
-        "duration": 0.643,
-        "sentenceIndex": 0
+        "endTime": 0.596,
+        "duration": 0.596,
+        "sentenceIndex": 222
       },
       {
         "text": "have...",
-        "startTime": 0.643,
-        "endTime": 1.372,
-        "duration": 0.73,
-        "sentenceIndex": 1
+        "startTime": 0.596,
+        "endTime": 1.272,
+        "duration": 0.676,
+        "sentenceIndex": 223
       },
       {
         "text": "me.\"\n\nMargaret started crying.",
-        "startTime": 1.372,
-        "endTime": 3.985,
-        "duration": 2.613,
-        "sentenceIndex": 2
+        "startTime": 1.272,
+        "endTime": 3.653,
+        "duration": 2.381,
+        "sentenceIndex": 224
       },
       {
         "text": "Rachel held her hand, and they cried together.",
-        "startTime": 3.985,
-        "endTime": 8.141,
-        "duration": 4.156,
-        "sentenceIndex": 3
+        "startTime": 3.653,
+        "endTime": 7.455,
+        "duration": 3.802,
+        "sentenceIndex": 225
       },
       {
         "text": "Two people who had lost their words, finding connection in silence.",
-        "startTime": 8.141,
-        "endTime": 14.126,
-        "duration": 5.985,
-        "sentenceIndex": 4
+        "startTime": 7.455,
+        "endTime": 12.923,
+        "duration": 5.469,
+        "sentenceIndex": 226
       },
       {
         "text": "Rachel's daughter Emma went back to college, but they talked every day.",
-        "startTime": 14.126,
-        "endTime": 20.459,
-        "duration": 6.333,
-        "sentenceIndex": 5
+        "startTime": 12.923,
+        "endTime": 18.71,
+        "duration": 5.786,
+        "sentenceIndex": 227
       }
     ],
-    "totalDuration": 20.458798,
-    "measuredDuration": 20.458798
+    "totalDuration": 18.709524,
+    "measuredDuration": 18.709524
   },
   {
     "bundleId": "b38",
@@ -1984,48 +1984,48 @@
       {
         "text": "Sometimes Rachel still struggled to find the right words on the phone.",
         "startTime": 0,
-        "endTime": 5.356,
-        "duration": 5.356,
-        "sentenceIndex": 0
+        "endTime": 5.405,
+        "duration": 5.405,
+        "sentenceIndex": 228
       },
       {
         "text": "Emma waited patiently until Rachel found them.",
-        "startTime": 5.356,
-        "endTime": 8.876,
-        "duration": 3.52,
-        "sentenceIndex": 1
+        "startTime": 5.405,
+        "endTime": 8.957,
+        "duration": 3.552,
+        "sentenceIndex": 229
       },
       {
         "text": "There was never any rush.",
-        "startTime": 8.876,
-        "endTime": 10.789,
-        "duration": 1.913,
-        "sentenceIndex": 2
+        "startTime": 8.957,
+        "endTime": 10.888,
+        "duration": 1.93,
+        "sentenceIndex": 230
       },
       {
         "text": "Love could wait for the right words.",
-        "startTime": 10.789,
-        "endTime": 13.543,
-        "duration": 2.755,
-        "sentenceIndex": 3
+        "startTime": 10.888,
+        "endTime": 13.667,
+        "duration": 2.78,
+        "sentenceIndex": 231
       },
       {
         "text": "One year after the stroke, Rachel returned to her old workplace.",
-        "startTime": 13.543,
-        "endTime": 18.59,
-        "duration": 5.047,
-        "sentenceIndex": 4
+        "startTime": 13.667,
+        "endTime": 18.759,
+        "duration": 5.092,
+        "sentenceIndex": 232
       },
       {
         "text": "Not to work, but to visit.",
-        "startTime": 18.59,
-        "endTime": 20.729,
-        "duration": 2.139,
-        "sentenceIndex": 5
+        "startTime": 18.759,
+        "endTime": 20.917,
+        "duration": 2.158,
+        "sentenceIndex": 233
       }
     ],
-    "totalDuration": 20.729342,
-    "measuredDuration": 20.729342
+    "totalDuration": 20.917007,
+    "measuredDuration": 20.917007
   },
   {
     "bundleId": "b39",
@@ -2036,48 +2036,48 @@
       {
         "text": "Her old friends hugged her and asked how she was.",
         "startTime": 0,
-        "endTime": 4.417,
-        "duration": 4.417,
-        "sentenceIndex": 0
+        "endTime": 4.037,
+        "duration": 4.037,
+        "sentenceIndex": 234
       },
       {
         "text": "Rachel spoke slowly, but her words were clear.",
-        "startTime": 4.417,
-        "endTime": 8.713,
-        "duration": 4.296,
-        "sentenceIndex": 1
+        "startTime": 4.037,
+        "endTime": 7.977,
+        "duration": 3.94,
+        "sentenceIndex": 235
       },
       {
         "text": "\"I am different now.",
-        "startTime": 8.713,
-        "endTime": 10.515,
-        "duration": 1.803,
-        "sentenceIndex": 2
+        "startTime": 7.977,
+        "endTime": 9.624,
+        "duration": 1.648,
+        "sentenceIndex": 236
       },
       {
         "text": "But I am okay.",
-        "startTime": 10.515,
-        "endTime": 11.777,
-        "duration": 1.262,
-        "sentenceIndex": 3
+        "startTime": 9.624,
+        "endTime": 10.778,
+        "duration": 1.153,
+        "sentenceIndex": 237
       },
       {
         "text": "I found a new way.\"\n\nThey did not fully understand.",
-        "startTime": 11.777,
-        "endTime": 16.374,
-        "duration": 4.597,
-        "sentenceIndex": 4
+        "startTime": 10.778,
+        "endTime": 14.979,
+        "duration": 4.202,
+        "sentenceIndex": 238
       },
       {
         "text": "How could they?",
-        "startTime": 16.374,
-        "endTime": 17.726,
-        "duration": 1.352,
-        "sentenceIndex": 5
+        "startTime": 14.979,
+        "endTime": 16.215,
+        "duration": 1.236,
+        "sentenceIndex": 239
       }
     ],
-    "totalDuration": 17.726281,
-    "measuredDuration": 17.726281
+    "totalDuration": 16.215238,
+    "measuredDuration": 16.215238
   },
   {
     "bundleId": "b40",
@@ -2088,48 +2088,48 @@
       {
         "text": "They had not lived through the fear of losing themselves.",
         "startTime": 0,
-        "endTime": 4.839,
-        "duration": 4.839,
-        "sentenceIndex": 0
+        "endTime": 4.437,
+        "duration": 4.437,
+        "sentenceIndex": 240
       },
       {
         "text": "But Rachel did not need them to understand.",
-        "startTime": 4.839,
-        "endTime": 8.489,
-        "duration": 3.65,
-        "sentenceIndex": 1
+        "startTime": 4.437,
+        "endTime": 7.784,
+        "duration": 3.347,
+        "sentenceIndex": 241
       },
       {
         "text": "She knew her own truth.",
-        "startTime": 8.489,
-        "endTime": 10.442,
-        "duration": 1.953,
-        "sentenceIndex": 2
+        "startTime": 7.784,
+        "endTime": 9.574,
+        "duration": 1.79,
+        "sentenceIndex": 242
       },
       {
         "text": "That night, Rachel sat in her backyard again.",
-        "startTime": 10.442,
-        "endTime": 14.412,
-        "duration": 3.97,
-        "sentenceIndex": 3
+        "startTime": 9.574,
+        "endTime": 13.227,
+        "duration": 3.653,
+        "sentenceIndex": 243
       },
       {
         "text": "The same spot where she wanted to give up.",
-        "startTime": 14.412,
-        "endTime": 17.978,
-        "duration": 3.566,
-        "sentenceIndex": 4
+        "startTime": 13.227,
+        "endTime": 16.497,
+        "duration": 3.269,
+        "sentenceIndex": 244
       },
       {
         "text": "She thought about the pelican.",
-        "startTime": 17.978,
-        "endTime": 20.525,
-        "duration": 2.547,
-        "sentenceIndex": 5
+        "startTime": 16.497,
+        "endTime": 18.832,
+        "duration": 2.335,
+        "sentenceIndex": 245
       }
     ],
-    "totalDuration": 20.52458,
-    "measuredDuration": 20.52458
+    "totalDuration": 18.831905,
+    "measuredDuration": 18.831905
   },
   {
     "bundleId": "b41",
@@ -2140,48 +2140,48 @@
       {
         "text": "She thought about all the small victories.",
         "startTime": 0,
-        "endTime": 3.236,
-        "duration": 3.236,
-        "sentenceIndex": 0
+        "endTime": 3.519,
+        "duration": 3.519,
+        "sentenceIndex": 246
       },
       {
         "text": "Saying \"dog.\" Climbing twelve stairs.",
-        "startTime": 3.236,
-        "endTime": 6.087,
-        "duration": 2.851,
-        "sentenceIndex": 1
+        "startTime": 3.519,
+        "endTime": 6.619,
+        "duration": 3.1,
+        "sentenceIndex": 247
       },
       {
         "text": "Holding Margaret's hand.",
-        "startTime": 6.087,
-        "endTime": 7.936,
-        "duration": 1.849,
-        "sentenceIndex": 2
+        "startTime": 6.619,
+        "endTime": 8.629,
+        "duration": 2.011,
+        "sentenceIndex": 248
       },
       {
         "text": "Each moment had felt impossible until it wasn't.",
-        "startTime": 7.936,
-        "endTime": 11.635,
-        "duration": 3.698,
-        "sentenceIndex": 3
+        "startTime": 8.629,
+        "endTime": 12.651,
+        "duration": 4.021,
+        "sentenceIndex": 249
       },
       {
         "text": "Rachel's right arm would never work perfectly again.",
-        "startTime": 11.635,
-        "endTime": 15.641,
-        "duration": 4.007,
-        "sentenceIndex": 4
+        "startTime": 12.651,
+        "endTime": 17.007,
+        "duration": 4.357,
+        "sentenceIndex": 250
       },
       {
         "text": "Her words would always come slower than before.",
-        "startTime": 15.641,
-        "endTime": 19.263,
-        "duration": 3.621,
-        "sentenceIndex": 5
+        "startTime": 17.007,
+        "endTime": 20.945,
+        "duration": 3.938,
+        "sentenceIndex": 251
       }
     ],
-    "totalDuration": 19.262562,
-    "measuredDuration": 19.262562
+    "totalDuration": 20.94517,
+    "measuredDuration": 20.94517
   },
   {
     "bundleId": "b42",
@@ -2192,48 +2192,48 @@
       {
         "text": "She would always walk with a slight drag in her right leg.",
         "startTime": 0,
-        "endTime": 4.051,
-        "duration": 4.051,
-        "sentenceIndex": 0
+        "endTime": 3.789,
+        "duration": 3.789,
+        "sentenceIndex": 252
       },
       {
         "text": "But she was here.",
-        "startTime": 4.051,
-        "endTime": 5.238,
-        "duration": 1.187,
-        "sentenceIndex": 1
+        "startTime": 3.789,
+        "endTime": 4.9,
+        "duration": 1.111,
+        "sentenceIndex": 253
       },
       {
         "text": "She was alive.",
-        "startTime": 5.238,
-        "endTime": 6.216,
-        "duration": 0.978,
-        "sentenceIndex": 2
+        "startTime": 4.9,
+        "endTime": 5.815,
+        "duration": 0.915,
+        "sentenceIndex": 254
       },
       {
         "text": "She was Rachel, just a different version.",
-        "startTime": 6.216,
-        "endTime": 9.229,
-        "duration": 3.013,
-        "sentenceIndex": 3
+        "startTime": 5.815,
+        "endTime": 8.643,
+        "duration": 2.829,
+        "sentenceIndex": 255
       },
       {
         "text": "The stroke had taken many things from her.",
-        "startTime": 9.229,
-        "endTime": 12.162,
-        "duration": 2.933,
-        "sentenceIndex": 4
+        "startTime": 8.643,
+        "endTime": 11.388,
+        "duration": 2.744,
+        "sentenceIndex": 256
       },
       {
         "text": "But it had also given her gifts.",
-        "startTime": 12.162,
-        "endTime": 14.397,
-        "duration": 2.235,
-        "sentenceIndex": 5
+        "startTime": 11.388,
+        "endTime": 13.478,
+        "duration": 2.091,
+        "sentenceIndex": 257
       }
     ],
-    "totalDuration": 14.397052,
-    "measuredDuration": 14.397052
+    "totalDuration": 13.478231,
+    "measuredDuration": 13.478231
   },
   {
     "bundleId": "b43",
@@ -2244,48 +2244,48 @@
       {
         "text": "Patience.",
         "startTime": 0,
-        "endTime": 0.858,
-        "duration": 0.858,
-        "sentenceIndex": 0
+        "endTime": 0.797,
+        "duration": 0.797,
+        "sentenceIndex": 258
       },
       {
         "text": "Courage.",
-        "startTime": 0.858,
-        "endTime": 1.621,
-        "duration": 0.763,
-        "sentenceIndex": 1
+        "startTime": 0.797,
+        "endTime": 1.505,
+        "duration": 0.708,
+        "sentenceIndex": 259
       },
       {
         "text": "Compassion.",
-        "startTime": 1.621,
-        "endTime": 2.67,
-        "duration": 1.049,
-        "sentenceIndex": 2
+        "startTime": 1.505,
+        "endTime": 2.479,
+        "duration": 0.974,
+        "sentenceIndex": 260
       },
       {
         "text": "The ability to find beauty in small victories.",
-        "startTime": 2.67,
-        "endTime": 7.056,
-        "duration": 4.386,
-        "sentenceIndex": 3
+        "startTime": 2.479,
+        "endTime": 6.552,
+        "duration": 4.073,
+        "sentenceIndex": 261
       },
       {
         "text": "The understanding that broken things can still be beautiful.",
-        "startTime": 7.056,
-        "endTime": 12.778,
-        "duration": 5.721,
-        "sentenceIndex": 4
+        "startTime": 6.552,
+        "endTime": 11.865,
+        "duration": 5.313,
+        "sentenceIndex": 262
       },
       {
         "text": "Rachel looked up at the sky.",
-        "startTime": 12.778,
-        "endTime": 15.448,
-        "duration": 2.67,
-        "sentenceIndex": 5
+        "startTime": 11.865,
+        "endTime": 14.344,
+        "duration": 2.479,
+        "sentenceIndex": 263
       }
     ],
-    "totalDuration": 15.447868,
-    "measuredDuration": 15.447868
+    "totalDuration": 14.344127,
+    "measuredDuration": 14.344127
   },
   {
     "bundleId": "b44",
@@ -2296,48 +2296,48 @@
       {
         "text": "The sun was setting.",
         "startTime": 0,
-        "endTime": 1.595,
-        "duration": 1.595,
-        "sentenceIndex": 0
+        "endTime": 1.596,
+        "duration": 1.596,
+        "sentenceIndex": 264
       },
       {
         "text": "It painted everything in gold and pink.",
-        "startTime": 1.595,
+        "startTime": 1.596,
         "endTime": 4.707,
         "duration": 3.111,
-        "sentenceIndex": 1
+        "sentenceIndex": 265
       },
       {
         "text": "She thought about saying \"beautiful,\" but she didn't need to.",
         "startTime": 4.707,
         "endTime": 9.723,
         "duration": 5.016,
-        "sentenceIndex": 2
+        "sentenceIndex": 266
       },
       {
         "text": "Some things are felt, not spoken.",
         "startTime": 9.723,
-        "endTime": 12.505,
+        "endTime": 12.506,
         "duration": 2.783,
-        "sentenceIndex": 3
+        "sentenceIndex": 267
       },
       {
         "text": "She smiled and whispered two words.",
-        "startTime": 12.505,
-        "endTime": 15.297,
+        "startTime": 12.506,
+        "endTime": 15.298,
         "duration": 2.792,
-        "sentenceIndex": 4
+        "sentenceIndex": 268
       },
       {
         "text": "\"Pole pole.\" \n\nSlowly, slowly.",
-        "startTime": 15.297,
+        "startTime": 15.298,
         "endTime": 17.841,
         "duration": 2.543,
-        "sentenceIndex": 5
+        "sentenceIndex": 269
       }
     ],
-    "totalDuration": 17.840544,
-    "measuredDuration": 17.840544
+    "totalDuration": 17.841338,
+    "measuredDuration": 17.841338
   },
   {
     "bundleId": "b45",
@@ -2348,33 +2348,33 @@
       {
         "text": "One step at a time.",
         "startTime": 0,
-        "endTime": 1.335,
-        "duration": 1.335,
-        "sentenceIndex": 0
+        "endTime": 1.527,
+        "duration": 1.527,
+        "sentenceIndex": 270
       },
       {
         "text": "That's how you climb mountains.",
-        "startTime": 1.335,
-        "endTime": 3.513,
-        "duration": 2.178,
-        "sentenceIndex": 1
+        "startTime": 1.527,
+        "endTime": 4.019,
+        "duration": 2.492,
+        "sentenceIndex": 271
       },
       {
         "text": "That's how you rebuild a life.",
-        "startTime": 3.513,
-        "endTime": 5.621,
-        "duration": 2.108,
-        "sentenceIndex": 2
+        "startTime": 4.019,
+        "endTime": 6.43,
+        "duration": 2.411,
+        "sentenceIndex": 272
       },
       {
         "text": "That's how broken wings learn to swim.",
-        "startTime": 5.621,
-        "endTime": 8.291,
-        "duration": 2.67,
-        "sentenceIndex": 3
+        "startTime": 6.43,
+        "endTime": 9.485,
+        "duration": 3.054,
+        "sentenceIndex": 273
       }
     ],
-    "totalDuration": 8.291202,
-    "measuredDuration": 8.291202
+    "totalDuration": 9.484717,
+    "measuredDuration": 9.484717
   }
 ]
