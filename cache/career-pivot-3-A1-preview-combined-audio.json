@@ -1,0 +1,134 @@
+{
+  "storyId": "career-pivot-3",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/career-pivot-3/A1/preview-combined.mp3",
+    "duration": 68.606893,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 4.884,
+        "duration": 4.884,
+        "text": "In this inspiring story, a teacher discovers new possibilities."
+      },
+      {
+        "startTime": 4.884,
+        "endTime": 8.717,
+        "duration": 3.832,
+        "text": "She faces a moment that challenges her assumptions."
+      },
+      {
+        "startTime": 8.717,
+        "endTime": 12.173,
+        "duration": 3.457,
+        "text": "This moment transforms her career and mindset."
+      },
+      {
+        "startTime": 12.173,
+        "endTime": 15.63,
+        "duration": 3.457,
+        "text": "One conversation opens her eyes to new dreams."
+      },
+      {
+        "startTime": 15.63,
+        "endTime": 19.462,
+        "duration": 3.832,
+        "text": "The story shows that courage can change everything."
+      },
+      {
+        "startTime": 19.462,
+        "endTime": 22.243,
+        "duration": 2.78,
+        "text": "It teaches us to follow our passions."
+      },
+      {
+        "startTime": 22.243,
+        "endTime": 25.324,
+        "duration": 3.081,
+        "text": "Elena had been a teacher for eight years."
+      },
+      {
+        "startTime": 25.324,
+        "endTime": 28.179,
+        "duration": 2.856,
+        "text": "She loved her job and felt good at it."
+      },
+      {
+        "startTime": 28.179,
+        "endTime": 31.786,
+        "duration": 3.607,
+        "text": "One day, she was on a panel at a tech company."
+      },
+      {
+        "startTime": 31.786,
+        "endTime": 34.642,
+        "duration": 2.856,
+        "text": "Many young women were there to listen."
+      },
+      {
+        "startTime": 34.642,
+        "endTime": 36.971,
+        "duration": 2.33,
+        "text": "Elena felt nervous but excited."
+      },
+      {
+        "startTime": 36.971,
+        "endTime": 39.15,
+        "duration": 2.179,
+        "text": "Then, a hard question came."
+      },
+      {
+        "startTime": 39.15,
+        "endTime": 40.954,
+        "duration": 1.803,
+        "text": "She could not answer it."
+      },
+      {
+        "startTime": 40.954,
+        "endTime": 44.635,
+        "duration": 3.682,
+        "text": "So, she passed the microphone to another woman."
+      },
+      {
+        "startTime": 44.635,
+        "endTime": 47.566,
+        "duration": 2.931,
+        "text": "This woman was an engineering director."
+      },
+      {
+        "startTime": 47.566,
+        "endTime": 49.82,
+        "duration": 2.254,
+        "text": "What she said surprised Elena."
+      },
+      {
+        "startTime": 49.82,
+        "endTime": 53.427,
+        "duration": 3.607,
+        "text": "It made her rethink everything about her future."
+      },
+      {
+        "startTime": 53.427,
+        "endTime": 60.266,
+        "duration": 6.838,
+        "text": "Many professionals discover that their assumptions about careers limit their possibilities."
+      },
+      {
+        "startTime": 60.266,
+        "endTime": 64.324,
+        "duration": 4.058,
+        "text": "This story shows how one moment can change everything."
+      },
+      {
+        "startTime": 64.324,
+        "endTime": 68.607,
+        "duration": 4.283,
+        "text": "It is about finding new paths and believing in ourselves."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-12T08:21:06.854Z",
+  "timingMethod": "enhanced-timing-v3"
+}

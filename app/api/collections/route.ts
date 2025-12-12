@@ -2,13 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
 // Cache for 1 hour (collections change infrequently)
-export const revalidate = 3600;
+// Temporarily set to 0 to force refresh after reorganization
+export const revalidate = 0;
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const type = searchParams.get('type'); // Optional filter by type
 
-  const where: any = {};
+  const where: any = {
+    isPrimary: true // Only show primary collections (excludes archived)
+  };
   if (type) where.type = type;
 
   try {
@@ -36,7 +39,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ collections }, {
       headers: {
-        'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400'
+        'Cache-Control': 's-maxage=0, stale-while-revalidate=0' // Temporarily disable cache
       }
     });
   } catch (error) {

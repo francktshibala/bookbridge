@@ -201,70 +201,115 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
           </div>
         )}
 
-        {/* Filter Toggle & Active Filters */}
-        <div className="flex items-center justify-center flex-wrap gap-4">
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all"
-            style={{
-              background: showFilters ? 'var(--accent-primary)' : 'var(--bg-secondary)',
-              color: showFilters ? 'var(--bg-primary)' : 'var(--text-primary)',
-              border: showFilters ? 'none' : '1px solid var(--border-light)',
-              fontFamily: '"Source Serif Pro", Georgia, serif',
-              fontWeight: 600
-            }}
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-            </svg>
-            {showFilters ? 'Hide' : 'Show'} Filters
-          </button>
+        {/* Filter Toggle & Active Filters - Only show when collection selected OR filters active */}
+        {(() => {
+          const hasActiveFilters = 
+            (filters.genres?.length ?? 0) > 0 ||
+            (filters.moods?.length ?? 0) > 0 ||
+            filters.readingTimeMax !== undefined ||
+            filters.search !== undefined;
+          
+          // Only show filter controls when collection is selected OR filters are active
+          if (!selectedCollection && !hasActiveFilters) {
+            return null; // Hide filter controls when showing only collections
+          }
+          
+          return (
+            <div className="flex items-center justify-center flex-wrap gap-4">
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all"
+                style={{
+                  background: showFilters ? 'var(--accent-primary)' : 'var(--bg-secondary)',
+                  color: showFilters ? 'var(--bg-primary)' : 'var(--text-primary)',
+                  border: showFilters ? 'none' : '1px solid var(--border-light)',
+                  fontFamily: '"Source Serif Pro", Georgia, serif',
+                  fontWeight: 600
+                }}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+                {showFilters ? 'Hide' : 'Show'} Filters
+              </button>
 
-          {loadState === 'ready' && books.length > 0 && (
-            <p
-              className="text-sm"
+              {loadState === 'ready' && books.length > 0 && (
+                <p
+                  className="text-sm"
+                  style={{
+                    fontFamily: '"Source Serif Pro", Georgia, serif',
+                    color: 'var(--text-secondary)'
+                  }}
+                >
+                  Showing {books.length} book{books.length !== 1 ? 's' : ''}
+                </p>
+              )}
+            </div>
+          );
+        })()}
+
+        {/* Filters Panel - Only show when collection selected OR filters active */}
+        {(() => {
+          const hasActiveFilters = 
+            (filters.genres?.length ?? 0) > 0 ||
+            (filters.moods?.length ?? 0) > 0 ||
+            filters.readingTimeMax !== undefined ||
+            filters.search !== undefined;
+          
+          // Only show filters panel when collection is selected OR filters are active
+          if (!selectedCollection && !hasActiveFilters) {
+            return null;
+          }
+          
+          return showFilters ? (
+            <div
+              className="p-6 rounded-lg"
               style={{
-                fontFamily: '"Source Serif Pro", Georgia, serif',
-                color: 'var(--text-secondary)'
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border-light)'
               }}
             >
-              Showing {books.length} book{books.length !== 1 ? 's' : ''}
-            </p>
-          )}
-        </div>
+              <BookFilters
+                filters={filters}
+                facets={facets}
+                onFiltersChange={setFilters}
+                onClearAll={handleClearFilters}
+              />
+            </div>
+          ) : null;
+        })()}
 
-        {/* Filters Panel */}
-        {showFilters && (
-          <div
-            className="p-6 rounded-lg"
-            style={{
-              background: 'var(--bg-secondary)',
-              border: '1px solid var(--border-light)'
-            }}
-          >
-            <BookFilters
-              filters={filters}
-              facets={facets}
-              onFiltersChange={setFilters}
-              onClearAll={handleClearFilters}
-            />
-          </div>
-        )}
-
-        {/* Books Grid */}
-        <BookGrid
-          books={books}
-          loading={loadState === 'loading'}
-          hasMore={!!nextCursor}
-          onLoadMore={loadNextPage}
-          onSelectBook={onSelectBook}
-          onAskAI={onAskAI}
-          emptyMessage={
-            filters.search
-              ? `No books found for "${filters.search}"`
-              : 'No books found. Try adjusting your filters.'
+        {/* Books Grid - Only show when collection is selected OR filters/search are active */}
+        {(() => {
+          const hasActiveFilters = 
+            (filters.genres?.length ?? 0) > 0 ||
+            (filters.moods?.length ?? 0) > 0 ||
+            filters.readingTimeMax !== undefined ||
+            filters.search !== undefined;
+          
+          // Show books only if: collection selected OR filters/search active
+          if (!selectedCollection && !hasActiveFilters) {
+            return null; // Show only collections, no books
           }
-        />
+          
+          return (
+            <BookGrid
+              books={books}
+              loading={loadState === 'loading'}
+              hasMore={!!nextCursor}
+              onLoadMore={loadNextPage}
+              onSelectBook={onSelectBook}
+              onAskAI={onAskAI}
+              emptyMessage={
+                filters.search
+                  ? `No books found for "${filters.search}"`
+                  : selectedCollection
+                  ? 'No books found in this collection.'
+                  : 'No books found. Try adjusting your filters.'
+              }
+            />
+          );
+        })()}
 
         {/* Error State */}
         {loadState === 'error' && error && (
