@@ -391,6 +391,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'YA1'
   },
   {
+    id: 'medical-crisis-2',
+    title: 'Impossible Possible: Overcoming Medical Crisis',
+    author: 'BookBridge',
+    description: 'Sarah was nineteen when meningitis struck, giving her less than two percent chance to live. She lost both legs but refused to give up. Jake was thirteen when cancer gave him three months to live. At fifteen, a second cancer gave him fourteen days. He lost a lung but chose to focus on living. These two people proved that the impossible is possible. Through determination, creativity, and passion, Sarah became a Paralympic snowboarder and Dancing with the Stars finalist. Jake became the first cancer survivor to climb Mount Everest with one lung. This powerful composite story shows that no matter what happens, you can choose to fight and prove everyone wrong. A1 level with Jane voice.',
+    sentences: 189,
+    bundles: 38,
+    gradient: 'from-rose-500 to-pink-600',
+    abbreviation: 'MC2'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -548,6 +558,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'youth-activism-1': {
     'A1': '/api/youth-activism-1-a1/bundles'
   },
+  'medical-crisis-2': {
+    'A1': '/api/medical-crisis-2-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -598,6 +611,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'single-parent-rising-2': 'A1',  // Default to A1 for Single Parent Rising: Overcoming Obstacles (Modern Story)
   'age-defiance-1': 'A1',  // Default to A1 for Age Defiance: Starting Over Later in Life (Modern Story)
   'youth-activism-1': 'A1',  // Default to A1 for Youth Activism: Young Person Creating Change (Modern Story)
+  'medical-crisis-2': 'A1',  // Default to A1 for Impossible Possible: Overcoming Medical Crisis (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -682,6 +696,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'single-parent-rising-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'age-defiance-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
   'youth-activism-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'medical-crisis-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

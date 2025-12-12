@@ -25,7 +25,9 @@
     "Rose": ["age-defiance-1"],
     "Maya": ["youth-activism-1"],
     "Emma": ["youth-activism-1"],
-    "Sofia": ["youth-activism-1"]
+    "Sofia": ["youth-activism-1"],
+    "Sarah": ["medical-crisis-2"],
+    "Jake": ["medical-crisis-2"]
   },
   "guidelines": {
     "avoidRepeating": true,

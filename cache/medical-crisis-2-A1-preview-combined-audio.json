@@ -1,0 +1,104 @@
+{
+  "storyId": "medical-crisis-2",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-2/A1/preview-combined.mp3",
+    "duration": 74.602086,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 4.326,
+        "duration": 4.326,
+        "text": "In this powerful story, Sarah and Jake face big challenges."
+      },
+      {
+        "startTime": 4.326,
+        "endTime": 9.635,
+        "duration": 5.309,
+        "text": "Sarah is a Paralympic snowboarder and a finalist on Dancing with the Stars."
+      },
+      {
+        "startTime": 9.635,
+        "endTime": 11.971,
+        "duration": 2.336,
+        "text": "She lost both legs to meningitis."
+      },
+      {
+        "startTime": 11.971,
+        "endTime": 15.014,
+        "duration": 3.044,
+        "text": "Jake fought cancer twice and lost one lung."
+      },
+      {
+        "startTime": 15.014,
+        "endTime": 16.784,
+        "duration": 1.77,
+        "text": "He climbed Mount Everest."
+      },
+      {
+        "startTime": 16.784,
+        "endTime": 21.951,
+        "duration": 5.167,
+        "text": "This is an inspiring story about proving that the impossible is possible."
+      },
+      {
+        "startTime": 21.951,
+        "endTime": 26.906,
+        "duration": 4.955,
+        "text": "Imagine being nineteen years old and feeling like you have everything."
+      },
+      {
+        "startTime": 26.906,
+        "endTime": 37.195,
+        "duration": 10.289,
+        "text": "Then in less than twenty-four hours, your body turns purple, your lungs collapse, and doctors tell your parents you have two hours to live."
+      },
+      {
+        "startTime": 37.195,
+        "endTime": 42.716,
+        "duration": 5.521,
+        "text": "Imagine being thirteen years old and being told you have three months to live."
+      },
+      {
+        "startTime": 42.716,
+        "endTime": 46.476,
+        "duration": 3.76,
+        "text": "Then at fifteen, being told you have fourteen days."
+      },
+      {
+        "startTime": 46.476,
+        "endTime": 53.996,
+        "duration": 7.52,
+        "text": "Imagine losing both legs, or losing a lung, and being told you can never do the things you love again."
+      },
+      {
+        "startTime": 53.996,
+        "endTime": 59.305,
+        "duration": 5.309,
+        "text": "This is the story of two people who proved that the impossible is possible."
+      },
+      {
+        "startTime": 59.305,
+        "endTime": 65.329,
+        "duration": 6.025,
+        "text": "Many people believe that when you face a serious medical crisis, your life is over."
+      },
+      {
+        "startTime": 65.329,
+        "endTime": 72.054,
+        "duration": 6.724,
+        "text": "They think that losing body parts or function means you can never do the things you love again."
+      },
+      {
+        "startTime": 72.054,
+        "endTime": 74.602,
+        "duration": 2.548,
+        "text": "This story proves that belief wrong."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-12T03:18:28.527Z",
+  "timingMethod": "enhanced-timing-v3"
+}

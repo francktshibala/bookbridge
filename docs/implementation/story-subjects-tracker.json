@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
   "lastUpdated": "2025-12-11",
-  "totalStories": 21,
+  "totalStories": 22,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -182,6 +182,15 @@
       "specificSubject": "Youth activism, young person making a difference, one person can change the world, voice matters, you don't have to wait to be great",
       "status": "complete",
       "notes": "Composite from 3 sources (Greta Thunberg, Marley Dias, Mari Copeny), generic characters Maya, Emma, Sofia"
+    },
+    {
+      "storyId": "medical-crisis-2",
+      "realPerson": null,
+      "storyConcept": "Person faces serious medical crisis (meningitis, cancer) and overcomes through determination, proving impossible possible (lost legs → Paralympic snowboarder, lost lung → Everest climber)",
+      "themeCategory": "Medical Crisis Overcome - Proving the Impossible Possible",
+      "specificSubject": "Medical crisis overcome, proving impossible possible, meningitis at 19 with 2% survival, cancer twice at 13/15, lost legs/lung, Paralympic snowboarder, Dancing with Stars, climbing Everest with one lung",
+      "status": "complete",
+      "notes": "Composite from 2 sources (Amy Purdy, Sean Swarner), generic characters Sarah, Jake"
     }
   ],
   "themeSaturation": {
@@ -199,7 +208,8 @@
     "griefToPurpose": 1,
     "singleParentRising": 2,
     "ageDefiance": 1,
-    "youthActivism": 1
+    "youthActivism": 1,
+    "medicalCrisis": 2
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -227,7 +237,8 @@
     "Single parent raising children alone while building new life through education",
     "Single parent overcoming domestic violence, homelessness, building business, being seen",
     "Starting over later in life, achieving dreams at any age (swimming at 64, college at 69, bodybuilding at 56)",
-    "Young person creating positive change through activism (climate action at 15, book diversity campaign at 11, water advocacy at 8)"
+    "Young person creating positive change through activism (climate action at 15, book diversity campaign at 11, water advocacy at 8)",
+    "Medical crisis overcome through determination (meningitis at 19 lost legs → Paralympic snowboarder, cancer twice at 13/15 lost lung → climbed Everest)"
   ],
   "guidelines": {
     "beforeImplementing": [
