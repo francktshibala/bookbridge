@@ -1,0 +1,104 @@
+{
+  "storyId": "single-parent-rising-2",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-2/A1/preview-combined.mp3",
+    "duration": 69.100658,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 4.552,
+        "duration": 4.552,
+        "text": "In this powerful story, Isabella flees an abusive relationship."
+      },
+      {
+        "startTime": 4.552,
+        "endTime": 7.486,
+        "duration": 2.934,
+        "text": "She faces homelessness and works two jobs."
+      },
+      {
+        "startTime": 7.486,
+        "endTime": 12.027,
+        "duration": 4.541,
+        "text": "Isabella starts a jewelry business and finds a craft fair moment."
+      },
+      {
+        "startTime": 12.027,
+        "endTime": 17.547,
+        "duration": 5.519,
+        "text": "She learns \"you are seen.\" This story shows her journey of building a new life."
+      },
+      {
+        "startTime": 17.547,
+        "endTime": 25.791,
+        "duration": 8.244,
+        "text": "An inspiring story about a single mother overcoming domestic violence and homelessness to build a successful business."
+      },
+      {
+        "startTime": 25.791,
+        "endTime": 29.564,
+        "duration": 3.773,
+        "text": "Isabella had to make the hardest decision of her life."
+      },
+      {
+        "startTime": 29.564,
+        "endTime": 34.814,
+        "duration": 5.25,
+        "text": "Her husband had become violent, and the last incident left her terrified."
+      },
+      {
+        "startTime": 34.814,
+        "endTime": 40.224,
+        "duration": 5.41,
+        "text": "She knew, deep in her bones, that if she stayed, she might not survive."
+      },
+      {
+        "startTime": 40.224,
+        "endTime": 45.824,
+        "duration": 5.6,
+        "text": "So she took her two children—Gabriel and Olivia—and left everything behind."
+      },
+      {
+        "startTime": 45.824,
+        "endTime": 47.431,
+        "duration": 1.607,
+        "text": "They had nowhere to go."
+      },
+      {
+        "startTime": 47.431,
+        "endTime": 48.898,
+        "duration": 1.467,
+        "text": "But she had to leave."
+      },
+      {
+        "startTime": 48.898,
+        "endTime": 50.575,
+        "duration": 1.677,
+        "text": "It was not safe anymore."
+      },
+      {
+        "startTime": 50.575,
+        "endTime": 58.481,
+        "duration": 7.906,
+        "text": "Many single parents face overwhelming obstacles: domestic violence, homelessness, and financial struggles."
+      },
+      {
+        "startTime": 58.481,
+        "endTime": 63.372,
+        "duration": 4.891,
+        "text": "This story follows one mother's journey from crisis to transformation."
+      },
+      {
+        "startTime": 63.372,
+        "endTime": 69.101,
+        "duration": 5.729,
+        "text": "Determination and support can help overcome even the most difficult circumstances."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-11T23:53:32.574Z",
+  "timingMethod": "enhanced-timing-v3"
+}

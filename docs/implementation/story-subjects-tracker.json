@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
   "lastUpdated": "2025-12-11",
-  "totalStories": 18,
+  "totalStories": 19,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -155,6 +155,15 @@
       "specificSubject": "Single parent overcoming obstacles, education journey, children as motivation, building new life",
       "status": "complete",
       "notes": "Composite from 3 sources (Ieshia Champs, Wayne Toh, Stephanie Land), generic characters Lisa/James/Emily/Noah"
+    },
+    {
+      "storyId": "single-parent-rising-2",
+      "realPerson": null,
+      "storyConcept": "Single parent overcoming diverse obstacles (domestic violence, homelessness, business building) while raising children alone",
+      "themeCategory": "Single Parent Rising - Overcoming Obstacles",
+      "specificSubject": "Single parent overcoming domestic violence, homelessness, building business, being seen, diverse obstacles beyond education",
+      "status": "complete",
+      "notes": "Composite from 5 sources (8 distinct narratives: Cassie Washington, Maryanne Lundy, Romona Bravo, Meshell Whyte, Shaquan Hoke, Sarah Keast, Kristy Carruthers, Mimi G Ford), generic characters Isabella/Gabriel/Olivia"
     }
   ],
   "themeSaturation": {
@@ -170,7 +179,7 @@
     "culturalBridge": 2,
     "romanticLove": 1,
     "griefToPurpose": 1,
-    "singleParentRising": 1
+    "singleParentRising": 2
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -195,7 +204,8 @@
     "Career choice pressure from immigrant parents",
     "Cross-cultural/interfaith romantic relationships with family resistance",
     "Grief transformation after loss of child",
-    "Single parent raising children alone while building new life through education"
+    "Single parent raising children alone while building new life through education",
+    "Single parent overcoming domestic violence, homelessness, building business, being seen"
   ],
   "guidelines": {
     "beforeImplementing": [

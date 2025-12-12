@@ -2,7 +2,7 @@
 
 **Purpose**: Track completion status, key details, and learnings for each modern story implementation.
 
-**Last Updated**: 2025-12-11 (Added single-parent-rising-1)
+**Last Updated**: 2025-12-11 (Added single-parent-rising-2)
 
 ---
 
@@ -29,6 +29,7 @@
 | `romantic-love-1` | Cross-Cultural Love Story | BookBridge | 4 sources (composite) | Cross-Cultural Love, Family Resistance, Choosing Love Over Expectations, Cultural Adaptation, Building Bicultural Family, Finding Voice, Persistence Despite Opposition | ✅ Complete | ✅ | - | - | ~17 min | 29 | 2025-12-11 |
 | `grief-to-purpose-1` | Grief to Purpose: Finding Meaning in Loss | BookBridge | 4 sources (composite) | Grief to Purpose, Loss, Finding Meaning, Helping Others, Transformation, Legacy, Service, Healing | ✅ Complete | ✅ | - | - | ~21 min | 31 | 2025-12-11 |
 | `single-parent-rising-1` | Single Parent Rising: Building a New Life | BookBridge | 3 sources (composite) | Single Parent, Overcoming Obstacles, Building New Life, Education Journey, Children as Motivation, Resilience, Transformation, Strength | ✅ Complete | ✅ | - | - | ~21 min | 32 | 2025-12-11 |
+| `single-parent-rising-2` | Single Parent Rising: Overcoming Obstacles | BookBridge | 5 sources (composite) | Single Parent, Overcoming Obstacles, Domestic Violence, Homelessness, Building Business, Being Seen, Resilience, Transformation, Strength | ✅ Complete | ✅ | - | - | ~21 min | 29 | 2025-12-11 |
 
 **Legend**:
 - ✅ Complete
@@ -1624,6 +1625,180 @@
 - `scripts/integrate-single-parent-rising-1-database.ts`
 - `scripts/seed-single-parent-rising-1.ts`
 - `app/api/single-parent-rising-1-a1/bundles/route.ts`
+
+---
+
+### 19. Single Parent Rising: Overcoming Obstacles
+
+**Story ID**: `single-parent-rising-2`  
+**Title**: Single Parent Rising: Overcoming Obstacles  
+**Author**: BookBridge  
+**Collection**: Modern Voices  
+**Completion Date**: 2025-12-11
+
+#### Sources
+- **Primary (9/10)**: NPR Multi-Story - Cassie Washington (Domestic violence to homeowner, 3 years homeless while pursuing degree)
+- **Primary (9/10)**: NPR Multi-Story - Maryanne Lundy (Childhood trauma, pandemic eviction, becoming advocate)
+- **Primary (9/10)**: NPR Multi-Story - Romona Bravo (23 years abuse, escape, own home with backyard)
+- **Primary (9/10)**: NPR Multi-Story - Meshell Whyte (Pregnant, homeless, son with disabilities, advocacy)
+- **Primary (8.5/10)**: Refinery29 - Shaquan Hoke (Homeless mom of 5 to CEO, "they SAW me" moment)
+- **Primary (8.5/10)**: Chatelaine - Sarah Keast (Young widow, Polar Bear Dip transformation)
+- **Primary (8/10)**: Entrepreneur - Kristy Carruthers (Homeless to million-dollar business, vision board)
+- **Primary (7.5/10)**: Entrepreneur + Goalcast - Mimi G Ford (Abuse survivor, homeless teen mom to sewing empire)
+
+**Total**: 5 sources with 8 distinct personal narratives
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - All sources story-driven (first-person narratives, memoirs, interviews)
+  - Sufficient emotional depth for 20+ minute story
+  - 5 sources for legal compliance (composite approach)
+  
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Abusive relationship → Flee → Homelessness → Rock bottom → Business building → "You are seen" moment → Success
+  - 8-11 emotional moments per source (exceeds 5-7 requirement)
+  - 5-8 ESL resonance multipliers per source (exceeds 3+ requirement)
+
+#### Content Details
+- **Original Text**: 1,536 words (~B1/B2 level)
+- **A1 Simplified**: 183 sentences, 1,688 words (~21 minutes)
+- **Bundles**: 29 (6 sentences per bundle)
+- **Voice**: Daniel (onwK4e9ZLuTAKqWW03F9) - stability 0.45, similarity_boost 0.8, style 0.1
+- **Audio Speed**: 0.765× effective (0.90× ElevenLabs → 0.85× FFmpeg)
+- **Total Audio Duration**: 668s (~11 minutes audio, ~21 minutes reading time)
+
+#### Themes & Emotional Moments
+**Themes**:
+- Single Parent Rising
+- Overcoming Obstacles
+- Domestic Violence
+- Homelessness
+- Building Business
+- Being Seen
+- Resilience
+- Transformation
+- Strength
+
+**Key Emotional Moments** (8-11 per source):
+**Cassie Washington:**
+1. Life-or-death decision to flee abusive husband
+2. Embarrassment and humility of homelessness
+3. Three years in shelters while pursuing degree
+4. Mentors became family
+5. Therapy with daughters - showing them nothing to be ashamed of
+6. Working full-time, school three nights a week, single mom
+7. Graduation moment - hearing kids yell from crowd
+8. Homeowner in subdivision where she used to trick-or-treat
+
+**Shaquan Hoke:**
+1. Homeless with 5 children under 8
+2. Abuse survivor with trust issues
+3. Body-image issues as plus-size Black woman
+4. Walking into Dress for Success - fear
+5. "They SAW me. I mean, they saw me" - mirror moment
+6. First suit she'd ever owned - transformation
+7. Laid off - but no despair this time
+8. Founded Beyond A J.O.B.
+9. Creating space for teen mothers - full circle
+
+**Sarah Keast:**
+1. Snowsuit battles - "alone for the rest of my life"
+2. Handwriting in jackets - grief punch
+3. 8 years of Kevin's addiction struggle
+4. His death - accidental overdose
+5. Also lost son Ryder
+6. Grief counseling - "they DO have a dad"
+7. Kitchen dance parties, graveside birthdays
+8. Polar Bear Dip decision - breakthrough
+9. "Renewed, strong, ready to kick ass"
+10. Redecorating, dating, living "happy-ish"
+
+**Kristy Carruthers:**
+1. Working from hospital bed 48 hours after birth
+2. Selling everything - furniture, clothes, jewelry
+3. Hiding single-mom status in interviews
+4. Sobbing in car after daycare drop-off
+5. Selling house - homeless
+6. "I had failed them miserably"
+7. Parents' spare room, midnight feedings + emails
+8. First vision board
+9. Own rental, private school achieved
+10. $1 million, Hawaii, new house
+
+**Romona Bravo:**
+1. 23 years in abusive relationship
+2. "I thought he was going to try to kill me"
+3. "I was invisible most of my life"
+4. Pressing charges, finally leaving
+5. "Baby taking a dive into the real world"
+6. School + work + 6 kids - overwhelmed
+7. Own home with backyard
+8. First Christmas tree - "it's my home"
+
+**ESL Resonance Multipliers** (5-8 per source):
+- First-Time Courage (leaving abuse, starting business, Polar Bear Dip)
+- Building New Life (homeless → homeowner, homeless → CEO, homeless → millionaire)
+- Overcoming "Not Good Enough" (shame of homelessness, body image, hiding single-mom status, "invisible")
+- Persistence Despite Setbacks (3 years homeless, 23 years abuse, pandemic eviction, working multiple jobs)
+- Belonging & Identity (being "seen," finding community, advocacy)
+- Learning Journeys (mindset shift, business building, understanding tenant rights)
+- Connection Across Differences (mentoring others, advocacy, creating community)
+- Grief/Loss (husband's death, father's death, lost son)
+
+#### Implementation Steps Completed
+- ✅ Step 0: Content Planning (verified single parent theme - 1/3 stories)
+- ✅ Step 0.25: Source Material Check (5 story-driven sources)
+- ✅ Step 0.5: Emotional Impact Validation (all 6 criteria met)
+- ✅ Step 0.6: Voice Selection (Daniel voice - professional/inspirational)
+- ✅ Step 0.75: Find Source Material (5 sources saved)
+- ✅ Step 1: Extract Source Text (themes extracted)
+- ✅ Step 2.5: Extract Themes & Emotional Moments
+- ✅ Step 2.6: Write Main Story (COMPOSITE APPROACH - generic characters Isabella/Gabriel/Olivia)
+- ✅ Step 2.1: Assess Original Complexity (B1/B2 → can simplify to A1/A2/B1)
+- ✅ Step 3: Create Background Context
+- ✅ Step 3.5: Create Emotional Hook
+- ✅ Step 4: Simplify to A1 Level (183 sentences)
+- ✅ Step 4: Expand A1 text (from 18 min to 21 min)
+- ✅ Step 7: Generate Preview Combined
+- ✅ Step 8: Generate Preview Audio (Daniel voice, Enhanced Timing v3)
+- ✅ Step 10.5: Generate Bundle Audio (29 bundles, Enhanced Timing v3)
+- ✅ Step 11.5: Integrate Database (29 BookChunks)
+- ✅ Step 13: Create API Endpoint
+- ✅ Step 14: Update Frontend Config (4 locations)
+- ✅ Step 15: Seed Database (sortOrder 24)
+
+#### Key Learnings
+1. **Five-source composite with 8 narratives provides rich material** - Diverse obstacles (domestic violence, homelessness, business building, grief, pandemic) create compelling story
+2. **Daniel voice perfect for professional/inspirational stories** - Professional tone fits business transformation and "being seen" theme
+3. **Story expansion needed** - Initial simplification was 18 minutes, expanded to 21 minutes to meet 20-minute minimum
+4. **Single parent theme highly resonant** - Strong ESL multipliers (5-8 per source), universal experience of overcoming obstacles
+5. **Differentiation from Story #1** - Story #1 focused on education journey, Story #2 focuses on diverse obstacles (domestic violence, homelessness, business building)
+6. **Character names**: Used "Isabella", "Gabriel", "Olivia" - tracked for diversity
+
+#### Issues Encountered
+- None - Implementation went smoothly following established patterns
+
+#### Files Created
+- `cache/files/single-parent-rising-2-sources.txt` (5-source research document with 8 narratives)
+- `cache/single-parent-rising-2-validation.md`
+- `cache/single-parent-rising-2-themes.json`
+- `cache/single-parent-rising-2-background.txt`
+- `cache/single-parent-rising-2-hook.txt`
+- `cache/single-parent-rising-2-original.txt` (1,536 words B1/B2)
+- `cache/single-parent-rising-2-complexity-assessment.md`
+- `cache/single-parent-rising-2-A1-simplified.txt` (1,688 words, 183 sentences)
+- `cache/single-parent-rising-2-A1-preview-combined.txt`
+- `cache/single-parent-rising-2-A1-preview-combined-audio.json`
+- `cache/single-parent-rising-2-A1-bundles-metadata.json` (29 bundles)
+- `scripts/simplify-single-parent-rising-2.js`
+- `scripts/expand-single-parent-rising-2-a1.js`
+- `scripts/generate-single-parent-rising-2-preview-combined.js`
+- `scripts/generate-single-parent-rising-2-preview-audio.js`
+- `scripts/generate-single-parent-rising-2-bundles.js`
+- `scripts/integrate-single-parent-rising-2-database.ts`
+- `scripts/seed-single-parent-rising-2.ts`
+- `app/api/single-parent-rising-2-a1/bundles/route.ts`
 
 ---
 

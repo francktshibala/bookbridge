@@ -1,0 +1,334 @@
+{
+  "storyId": "single-parent-rising-2",
+  "sources": [
+    {
+      "source": "NPR Multi-Story - Cassie Washington",
+      "struggle": "Trapped in abusive marriage, life-or-death decision to flee",
+      "perseverance": [
+        "Three years in homeless shelters while pursuing degree",
+        "Working full-time, attending classes three nights a week",
+        "Therapy sessions with daughters to work through trauma",
+        "Keeping up with rent while homeless"
+      ],
+      "breakthrough": "Graduation - hearing kids yell her name, becoming homeowner in dream neighborhood",
+      "emotionalMoments": [
+        "Life-or-death decision to flee abusive husband",
+        "Embarrassment and humility of homelessness",
+        "Mentors became family",
+        "Three years in shelters while pursuing degree",
+        "Therapy with daughters - showing them nothing to be ashamed of",
+        "Working full-time, school three nights a week, single mom",
+        "Graduation moment - hearing kids yell from crowd",
+        "Homeowner in subdivision where she used to trick-or-treat",
+        "Healthy relationship, new daughter, self-sufficient"
+      ],
+      "eslMultipliers": [
+        "First-Time Courage",
+        "Building New Life",
+        "Persistence Despite Setbacks",
+        "Overcoming 'Not Good Enough'",
+        "Belonging & Identity"
+      ]
+    },
+    {
+      "source": "NPR Multi-Story - Maryanne Lundy",
+      "struggle": "Childhood trauma (taken at 12, raped, molested, beaten), pandemic eviction",
+      "perseverance": [
+        "Quit job to prioritize kids' education during pandemic",
+        "Protecting kids from knowing they were homeless",
+        "Three months in shelters",
+        "Attending counseling sessions for single mothers"
+      ],
+      "breakthrough": "Becoming advocate for families facing eviction, educating about tenant rights",
+      "emotionalMoments": [
+        "Taken from mom at age 12",
+        "Raped, molested, beaten as child",
+        "Determined to break generational cycle",
+        "Quit job to prioritize kids' education",
+        "Eviction notice - 'see you in court'",
+        "Protecting kids - 'they didn't think we were homeless'",
+        "Hotel shelter - own room felt like home",
+        "Counseling sessions - 'not the only one'",
+        "Becoming advocate - helping others face eviction"
+      ],
+      "eslMultipliers": [
+        "Persistence Despite Setbacks",
+        "Overcoming 'Not Good Enough'",
+        "Building New Life",
+        "Belonging & Identity",
+        "Learning Journeys"
+      ]
+    },
+    {
+      "source": "NPR Multi-Story - Romona Bravo",
+      "struggle": "23 years in abusive relationship, 'he was going to try to kill me'",
+      "perseverance": [
+        "Pressing charges, finally leaving",
+        "'Baby taking a dive into the real world'",
+        "Pursuing associate degree while working as caregiver",
+        "School + work + 6 kids - overwhelmed but didn't give up"
+      ],
+      "breakthrough": "Own home with backyard, first Christmas tree without criticism",
+      "emotionalMoments": [
+        "23 years in abusive relationship",
+        "'I thought he was going to try to kill me'",
+        "'I was invisible most of my life'",
+        "Pressing charges, finally leaving",
+        "'Baby taking a dive into the real world'",
+        "School + work + 6 kids - overwhelmed",
+        "Financial stability achieved",
+        "Own home with backyard",
+        "First Christmas tree - 'it's my home'",
+        "Future goal: advocate for domestic violence survivors"
+      ],
+      "eslMultipliers": [
+        "First-Time Courage",
+        "Building New Life",
+        "Overcoming 'Not Good Enough'",
+        "Persistence Despite Setbacks",
+        "Learning Journeys"
+      ]
+    },
+    {
+      "source": "NPR Multi-Story - Meshell Whyte",
+      "struggle": "Pregnant, loses home after father's funeral, 3 years in shelters, son with complex disabilities",
+      "perseverance": [
+        "Proving homelessness while pregnant (10 days of bureaucracy)",
+        "Three years in shelter programs",
+        "First apartment was disaster (drugs, infected)",
+        "Son turned down from daycares - can't work",
+        "Finding purpose through advocacy"
+      ],
+      "breakthrough": "Becoming advocate - speaking to policy makers, 'I have power as a constituent'",
+      "emotionalMoments": [
+        "Father's funeral in Antigua",
+        "Returns to US, loses home while pregnant",
+        "Couch surfing, proving homelessness",
+        "Three years in shelter system",
+        "First apartment - drugs, infected",
+        "Son's disabilities - no childcare, can't work",
+        "Isolation and frustration",
+        "Discovering advocacy",
+        "Speaking to policy makers",
+        "'I don't know where I would be if I wasn't an advocate'"
+      ],
+      "eslMultipliers": [
+        "Persistence Despite Setbacks",
+        "Communication Barriers",
+        "Belonging & Identity",
+        "Overcoming 'Not Good Enough'",
+        "Building New Life"
+      ]
+    },
+    {
+      "source": "Shaquan Hoke - Refinery29",
+      "struggle": "Homeless single mom of 5 kids under 8, abuse survivor, body-image issues, trust issues",
+      "perseverance": [
+        "Walking into Dress for Success despite fear",
+        "Three-week job-readiness program",
+        "Volunteering, then working at Dress for Success",
+        "Laid off but 'notable absence of despair'",
+        "Starting Beyond A J.O.B."
+      ],
+      "breakthrough": "Mirror moment - 'they SAW me', first suit, becoming CEO, creating space for teen mothers",
+      "emotionalMoments": [
+        "Homeless with 5 children under 8",
+        "Abuse survivor with trust issues",
+        "Body-image issues as plus-size Black woman",
+        "Walking into Dress for Success - fear",
+        "'They SAW me. I mean, they saw me' - mirror moment",
+        "First suit she'd ever owned - transformation",
+        "Hired, volunteer work, community",
+        "Laid off - but no despair this time",
+        "Founded Beyond A J.O.B.",
+        "Creating space for teen mothers - full circle"
+      ],
+      "eslMultipliers": [
+        "Overcoming 'Not Good Enough'",
+        "Belonging & Identity",
+        "Building New Life",
+        "First-Time Courage",
+        "Persistence Despite Setbacks",
+        "Connection Across Differences"
+      ]
+    },
+    {
+      "source": "Sarah Keast - Chatelaine",
+      "struggle": "Husband's accidental overdose death, 'alone for the rest of my life', also lost son Ryder",
+      "perseverance": [
+        "Daily snowsuit battles - 'soul-crushing'",
+        "Finding ways to keep Kevin in their lives",
+        "Kitchen dance parties, graveside birthdays",
+        "Grief counseling",
+        "Polar Bear Dip decision"
+      ],
+      "breakthrough": "Polar Bear Dip - 'renewed, strong, ready to kick ass', redecorating, dating, living 'happy-ish'",
+      "emotionalMoments": [
+        "Snowsuit battles - 'alone for the rest of my life'",
+        "Handwriting in jackets - grief punch",
+        "8 years of Kevin's addiction struggle",
+        "His death - accidental overdose",
+        "Also lost son Ryder",
+        "Grief counseling - 'they DO have a dad'",
+        "Kitchen dance parties, graveside birthdays",
+        "'This is where the dead people go!' - dark humor",
+        "Polar Bear Dip decision - breakthrough",
+        "'Renewed, strong, ready to kick ass'",
+        "Redecorating, dating, living 'happy-ish'"
+      ],
+      "eslMultipliers": [
+        "Grief/Loss",
+        "Building New Life",
+        "Belonging & Identity",
+        "Persistence Despite Setbacks",
+        "First-Time Courage",
+        "Connection Across Differences"
+      ]
+    },
+    {
+      "source": "Kristy Carruthers - Entrepreneur",
+      "struggle": "Homeless with 6-year-old and 3-month-old, 'failed them miserably', working from hospital bed",
+      "perseverance": [
+        "Working from hospital bed 48 hours after birth",
+        "Selling everything",
+        "Hiding single-mom status in interviews",
+        "Sobbing in car after daycare drop-off",
+        "Parents' spare room, midnight feedings + emails",
+        "Every lunch hour making client calls"
+      ],
+      "breakthrough": "Vision board achievement, $1 million business, Hawaii trip, new house",
+      "emotionalMoments": [
+        "Pregnant, starting new business",
+        "Working from hospital bed 48 hours after birth",
+        "Selling everything - furniture, clothes, jewelry",
+        "Hiding single-mom status in interviews",
+        "Sobbing in car after daycare drop-off",
+        "Selling house - homeless",
+        "'I had failed them miserably'",
+        "Parents' spare room, midnight feedings + emails",
+        "First vision board",
+        "Own rental, private school achieved",
+        "$1 million, Hawaii, new house"
+      ],
+      "eslMultipliers": [
+        "Persistence Despite Setbacks",
+        "Building New Life",
+        "Overcoming 'Not Good Enough'",
+        "First-Time Courage",
+        "Learning Journeys"
+      ]
+    },
+    {
+      "source": "Mimi G Ford - Entrepreneur + Goalcast",
+      "struggle": "Abused by two family members, ran away at 15, homeless at 17 with baby",
+      "perseverance": [
+        "Receptionist, 3 kids, struggling",
+        "Rediscovered sewing 2008",
+        "Started blog",
+        "Made skirt, got requests",
+        "Hating fulfillment, pivoting to teaching",
+        "Quit day job 2012"
+      ],
+      "breakthrough": "'Thousands of dollars' surprise, 80,000 students, million-dollar brand, 'safe place to share'",
+      "emotionalMoments": [
+        "Childhood: sewing with aunt in Puerto Rico",
+        "Abuse by two family members",
+        "Ran away at 15",
+        "Homeless at 17 with baby",
+        "Receptionist, 3 kids, struggling",
+        "Rediscovered sewing - healing",
+        "'I woke up to thousands of dollars'",
+        "Hating fulfillment, pivoting to teaching",
+        "Quit day job - leap of faith",
+        "80,000 students, million-dollar brand",
+        "'Safe place for them to share'"
+      ],
+      "eslMultipliers": [
+        "Persistence Despite Setbacks",
+        "Building New Life",
+        "Learning Journeys",
+        "Overcoming 'Not Good Enough'",
+        "First-Time Courage",
+        "Creative Expression as Healing"
+      ]
+    }
+  ],
+  "thematicPatterns": {
+    "rockBottomMoments": [
+      "Kristy: Sobbing in car after daycare drop-off, selling house",
+      "Shaquan: Homeless with 5 kids under 8, abuse survivor",
+      "Cassie: 'Life or death matter' - fleeing abusive husband",
+      "Maryanne: Taken from mom at 12, raped/beaten as child",
+      "Romona: 'I thought he was going to try to kill me'",
+      "Meshell: Couch surfing while pregnant after father's funeral",
+      "Sarah: Husband's overdose death, 'alone for the rest of my life'",
+      "Mimi G: Sexual abuse, homeless at 17 with baby"
+    ],
+    "transformationCatalysts": [
+      "Kristy: Mindset shift - 'what was acceptable'",
+      "Shaquan: First suit - 'they SAW me'",
+      "Cassie: Bridge Communities mentors 'became my family'",
+      "Maryanne: Family Promise counseling - 'not the only one'",
+      "Romona: 'I wanted something more' - pressing charges",
+      "Meshell: Advocacy - 'I have power as a constituent'",
+      "Sarah: Polar Bear Dip - 'renewed, strong, ready to kick ass'",
+      "Mimi G: Rediscovering sewing - 'way to release and let go'"
+    ],
+    "childrenAsMotivation": [
+      "Kristy: 'I refuse to fail these kids again'",
+      "Shaquan: 5 kids under 8 drove her transformation",
+      "Cassie: Heard kids yelling at graduation",
+      "Maryanne: 'I want to give them a fighting chance'",
+      "Romona: 'I have two daughters... they were a lot of my motivation'",
+      "Meshell: Son Julian's needs led to advocacy",
+      "Sarah: Teaching daughters to love daddy despite him being gone",
+      "Mimi G: Children watching her build business"
+    ],
+    "givingBack": [
+      "Kristy: SHEcorporated - helping women entrepreneurs",
+      "Shaquan: Space for teenage mothers, Courage to Give Project",
+      "Cassie: Sharing story to help others recognize warning signs",
+      "Maryanne: Helping families facing eviction",
+      "Romona: Wants to advocate for domestic violence survivors",
+      "Meshell: Voices Advocacy Council, policy maker education",
+      "Sarah: Blog 'Adventures in Widowed Parenting'",
+      "Mimi G: 80,000 students, 'safe place to share'"
+    ]
+  },
+  "compositeStoryElements": {
+    "struggleMoments": [
+      "Fleeing abusive relationship (life-or-death decision)",
+      "Homelessness with children",
+      "Pandemic eviction",
+      "Grief/loss (death of partner)",
+      "Working from hospital bed",
+      "Sobbing in car after daycare drop-off",
+      "23 years of abuse",
+      "Childhood trauma"
+    ],
+    "perseveranceMoments": [
+      "Years in shelters while pursuing goals",
+      "Working multiple jobs",
+      "Protecting children from knowing they're homeless",
+      "Therapy and counseling",
+      "Vision boards and goal-setting",
+      "Finding community support",
+      "Pressing charges, finally leaving abuse"
+    ],
+    "breakthroughMoments": [
+      "Graduation - hearing kids yell",
+      "First suit - 'they SAW me'",
+      "Polar Bear Dip - transformation",
+      "Own home with backyard",
+      "First Christmas tree without criticism",
+      "Becoming advocate",
+      "Million-dollar business",
+      "Creating space for others"
+    ],
+    "characterNames": {
+      "note": "Avoid: Lisa, James, Emily, Noah (used in Story #1)",
+      "suggestions": ["Maria", "Carlos", "Sofia", "Diego", "Isabella", "Gabriel", "Olivia", "Samuel"]
+    }
+  }
+}
+
