@@ -1,0 +1,42 @@
+Story Theme: Career Pivot #3 - Professional Transformation
+Story Concept: Professional transformation story (different from burnout-to-passion and layoff-to-service)
+
+Find 3-5 story-driven sources that meet these requirements:
+
+**Story Requirements:**
+- **Length:** Must support minimum 20 minutes of engaging content (~1,500-1,700 words minimum for A1 level)
+- **Type:** First-person narratives, memoirs, interview transcripts, or long-form journalism with emotional journey
+- **Sources:** VOA Learning English, NASA Oral Histories, or similar public domain/educational sources
+- **Focus:** Professional transformation/career pivot (different from previous Career Pivot stories which covered burnout-to-passion and layoff-to-service)
+
+**What Makes a Good Story:**
+- Clear emotional arc: Struggle → Perseverance → Breakthrough
+- 5-7 identifiable emotional moments
+- First-person perspective preferred
+- Real challenges and obstacles overcome
+- Transformation/breakthrough moment
+
+**What to Avoid:**
+- Wikipedia articles (too factual)
+- Academic biographies (dates and achievements only)
+- Encyclopedia entries (no emotional journey)
+- Stories already covered: burnout-to-passion, layoff-to-service
+
+**Priority Sources:**
+1. NASA Oral Histories (astronaut career transformations - José Hernández story or similar)
+2. VOA Learning English - People in America series
+3. VOA Learning English - Education Report series
+4. Other public domain professional transformation stories
+
+**Output Format:**
+Create a downloadable text file with:
+- Source ratings (A/B/C) with justification
+- Word counts
+- Emotional arc summary
+- Key emotional moments (5-7)
+- ESL resonance multipliers
+- Simplification recommendations by CEFR level
+- Full text of each source
+
+**File Name:** career-pivot-3-sources.txt
+

@@ -8,7 +8,9 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const type = searchParams.get('type'); // Optional filter by type
 
-  const where: any = {};
+  const where: any = {
+    isPrimary: true // Only show primary collections (excludes archived)
+  };
   if (type) where.type = type;
 
   try {
