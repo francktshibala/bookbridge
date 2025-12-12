@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
 // Cache for 1 hour (collections change infrequently)
-// Temporarily set to 0 to force refresh after reorganization
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -39,7 +38,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ collections }, {
       headers: {
-        'Cache-Control': 's-maxage=0, stale-while-revalidate=0' // Temporarily disable cache
+        'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400'
       }
     });
   } catch (error) {
