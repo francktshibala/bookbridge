@@ -2,7 +2,7 @@
 
 **Purpose**: Track completion status, key details, and learnings for each modern story implementation.
 
-**Last Updated**: 2025-12-12 (Added medical-crisis-2)
+**Last Updated**: 2025-12-12 (Added community-builder-3)
 
 ---
 
@@ -34,6 +34,7 @@
 | `youth-activism-1` | Youth Activism: Young Person Creating Change | BookBridge | 3 sources (composite) | Youth Activism, Making a Difference, One Person Can Change the World, Voice Matters, First-Time Courage, Persistence Despite Setbacks, Belonging & Identity, Overcoming "Not Good Enough" | ✅ Complete | ✅ | - | - | ~19 min | 33 | 2025-12-11 |
 | `medical-crisis-2` | Impossible Possible: Overcoming Medical Crisis | BookBridge | 2 sources (composite) | Medical Crisis Overcome, Proving the Impossible Possible, Resilience, Determination, Overcoming Adversity, Building New Life, Persistence Despite Setbacks, First-Time Courage | ✅ Complete | ✅ | - | - | ~23 min | 38 | 2025-12-12 |
 | `refugee-journey-3` | Refugee Family Journey | BookBridge | 3 sources (composite) | Family Escape Together, Family Rebuilding Together, Dangerous Journey, Kindness from Strangers, Language Barriers, Education Priority, Identity Preservation, Gratitude, Hope, Persistence | ✅ Complete | ✅ | - | - | ~33 min | 63 | 2025-12-12 |
+| `community-builder-3` | Creating Belonging Through Action | BookBridge | 2 sources (composite) | Community Building, Belonging, Transformation, Loneliness, Taking Action, Storytelling, Connection, Creating Community | ✅ Complete | ✅ | - | - | ~20 min | 43 | 2025-12-12 |
 
 **Legend**:
 - ✅ Complete
@@ -2664,6 +2665,85 @@
 - `scripts/integrate-workplace-discrimination-1-database.ts`
 - `scripts/seed-workplace-discrimination-1.ts`
 - `app/api/workplace-discrimination-1-a1/bundles/route.ts`
+
+---
+
+### 37. Creating Belonging Through Action (Community Builder #3)
+
+**Story ID**: `community-builder-3`  
+**Title**: Creating Belonging Through Action  
+**Author**: BookBridge  
+**Collection**: Modern Voices  
+**Completion Date**: 2025-12-12
+
+#### Sources
+- **Primary**: David's Story - The Great Friendship Project (https://friendship-project.co.uk/stories/from-loneliness-to-belonging-my-story/)
+- **Secondary**: Malish James - South Sudanese Refugee Storyteller (https://www.wfp.org/stories/refugee-day-south-sudan-conflict-hunger-peace-world-food-programme-un)
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - Story-driven (first-person narratives)
+  - Sufficient content (~4,000 words combined)
+  - Multiple sources for legal compliance
+  
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Loneliness → Failed attempts → Taking action → Community building
+  - 7+ emotional moments identified
+  - 4+ ESL resonance multipliers: Belonging & Identity, Building New Life, Connection Across Differences, Persistence Despite Setbacks
+
+#### Content Details
+- **Original Text**: ~4,000 words (2 sources combined)
+- **A1 Simplified**: 213 sentences (~20 minutes)
+- **Bundles**: 43 (5 sentences per bundle)
+- **Voice**: Daniel (onwK4e9ZLuTAKqWW03F9)
+- **Audio Speed**: 0.85× (FFmpeg slowdown)
+- **Generic Character**: Nathan
+
+#### Themes & Emotional Moments
+**Themes**:
+- Community Building
+- Belonging
+- Transformation
+- Loneliness
+- Taking Action
+- Storytelling
+- Connection
+- Creating Community
+
+**Emotional Moments**:
+1. Childhood outsider feeling despite being surrounded
+2. University belonging (false security)
+3. COVID isolation + breakup (darkest point)
+4. Dating app failure (wrong solution)
+5. First walk breakthrough (12 people joined)
+6. Community growth (45,000 members)
+7. Finding purpose through storytelling
+
+**ESL Resonance Multipliers**:
+- Belonging & Identity
+- Building New Life
+- Connection Across Differences
+- Persistence Despite Setbacks
+
+#### Key Learnings
+- Successfully combined two very different narratives (UK community builder + South Sudanese refugee storyteller) into cohesive story
+- Generic character name "Nathan" used to avoid copyright issues
+- Composite approach worked well - extracted themes rather than copying text
+- Enhanced Timing v3 applied successfully for both preview and bundle audio
+
+#### Files Created
+- `cache/files/community-builder-3-sources.txt`
+- `cache/community-builder-3-A1-simplified.txt`
+- `cache/community-builder-3-A1-preview-combined.txt`
+- `cache/community-builder-3-A1-preview-combined-audio.json`
+- `cache/community-builder-3-A1-bundles-metadata.json`
+- `scripts/generate-community-builder-3-preview-combined.js`
+- `scripts/generate-community-builder-3-preview-audio.js`
+- `scripts/generate-community-builder-3-bundles.js`
+- `scripts/integrate-community-builder-3-database.ts`
+- `scripts/seed-community-builder-3.ts`
+- `app/api/community-builder-3-a1/bundles/route.ts`
 
 ---
 

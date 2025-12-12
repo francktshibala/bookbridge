@@ -824,7 +824,7 @@ Every story in Priority 1 and Priority 2 sources passes the "would someone text 
 
 **Additional Phase 2 Stories (expand high-impact themes)**
 - [x] **#24**: Refugee Journey #3 ✅ Complete (2025-12-12) - Family escape and rebuilding
-- [ ] **#25**: Community Builder #3 - VOA/Web Research - Creating belonging through action
+- [x] **#25**: Community Builder #3 ✅ Complete (2025-12-12) - Creating belonging through action
 - [ ] **#26**: Career Pivot #3 - VOA/NASA - Professional transformation story
 - [ ] **#27**: Disability Overcome #3 - VOA/Web Research - Finding new ways despite barriers
 

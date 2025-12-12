@@ -311,6 +311,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'CB2'
   },
   {
+    id: 'community-builder-3',
+    title: 'Creating Belonging Through Action',
+    author: 'BookBridge',
+    description: 'An inspiring story about Nathan, who felt lonely despite having friends. After trying dating apps, social clubs, and events, he realized he needed to create belonging himself. He organized walks that grew into a community of thousands. This powerful tale shows how taking action can transform loneliness into connection and belonging. A1 level with Daniel voice.',
+    sentences: 213,
+    bundles: 43,
+    gradient: 'from-green-500 to-teal-600',
+    abbreviation: 'CB3'
+  },
+  {
     id: 'disability-overcome-1',
     title: 'Disability Overcome: Finding New Ways',
     author: 'BookBridge',
@@ -564,6 +574,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'community-builder-2': {
     'A1': '/api/community-builder-2-a1/bundles'
   },
+  'community-builder-3': {
+    'A1': '/api/community-builder-3-a1/bundles'
+  },
   'disability-overcome-1': {
     'A1': '/api/disability-overcome-1-a1/bundles'
   },
@@ -642,6 +655,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'workplace-discrimination-1': 'A1',  // Default to A1 for Workplace Discrimination Overcome (Modern Story)
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
   'community-builder-2': 'A1',  // Default to A1 for Community Builder: From Wrong Turn to School Network (Modern Story)
+  'community-builder-3': 'A1',  // Default to A1 for Creating Belonging Through Action (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
   'disability-overcome-2': 'A1',  // Default to A1 for Blind Mountaineer: Reaching the Top (Modern Story)
   'medical-crisis-1': 'A1',  // Default to A1 for Finding New Wings: A Medical Crisis Story (Modern Story)
@@ -730,6 +744,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'workplace-discrimination-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'community-builder-3': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'medical-crisis-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
