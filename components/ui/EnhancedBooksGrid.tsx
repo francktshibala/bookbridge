@@ -131,7 +131,7 @@ export function EnhancedBooksGrid({
           maxWidth: '600px',
           margin: '0 auto'
         }}>
-          Classic literature adapted for English learners with AI-powered simplification
+          Classic literature and modern stories adapted for English learners with AI-powered simplification
         </p>
       </motion.div>
 

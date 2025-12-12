@@ -220,6 +220,141 @@ export default function HomePage() {
           />
         </motion.section>
 
+        {/* Modern Stories Preview */}
+        <motion.section
+          style={{ marginTop: '3rem' }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.4, duration: 0.6 }}
+          className="w-full"
+        >
+          <div style={{ 
+            maxWidth: '1200px',
+            margin: '0 auto',
+            padding: '0 2rem',
+            textAlign: 'center'
+          }}>
+            <h2 className="neo-classic-title" style={{
+              fontSize: '2rem',
+              fontWeight: 'bold',
+              color: 'var(--text-accent)',
+              marginBottom: '0.5rem'
+            }}>
+              Modern Stories
+            </h2>
+            <p className="neo-classic-subtitle" style={{
+              color: 'var(--text-secondary)',
+              fontSize: '1.125rem',
+              marginBottom: '2rem'
+            }}>
+              Inspiring real-life stories from refugees, immigrants, and everyday heroes
+            </p>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '1.5rem',
+              flexWrap: 'wrap',
+              marginBottom: '1.5rem'
+            }}>
+              <div style={{
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border-light)',
+                borderRadius: '12px',
+                padding: '1.5rem',
+                maxWidth: '280px',
+                textAlign: 'left'
+              }}>
+                <h3 style={{
+                  fontSize: '1.125rem',
+                  fontWeight: 'bold',
+                  color: 'var(--text-accent)',
+                  marginBottom: '0.5rem'
+                }}>
+                  Starting Over
+                </h3>
+                <p style={{
+                  fontSize: '0.875rem',
+                  color: 'var(--text-secondary)',
+                  lineHeight: '1.5'
+                }}>
+                  Stories of refugees rebuilding their lives, single parents overcoming challenges, and finding new beginnings
+                </p>
+              </div>
+              <div style={{
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border-light)',
+                borderRadius: '12px',
+                padding: '1.5rem',
+                maxWidth: '280px',
+                textAlign: 'left'
+              }}>
+                <h3 style={{
+                  fontSize: '1.125rem',
+                  fontWeight: 'bold',
+                  color: 'var(--text-accent)',
+                  marginBottom: '0.5rem'
+                }}>
+                  Breaking Barriers
+                </h3>
+                <p style={{
+                  fontSize: '0.875rem',
+                  color: 'var(--text-secondary)',
+                  lineHeight: '1.5'
+                }}>
+                  Overcoming disabilities, medical crises, and workplace challenges with courage and determination
+                </p>
+              </div>
+              <div style={{
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border-light)',
+                borderRadius: '12px',
+                padding: '1.5rem',
+                maxWidth: '280px',
+                textAlign: 'left'
+              }}>
+                <h3 style={{
+                  fontSize: '1.125rem',
+                  fontWeight: 'bold',
+                  color: 'var(--text-accent)',
+                  marginBottom: '0.5rem'
+                }}>
+                  Building Dreams
+                </h3>
+                <p style={{
+                  fontSize: '0.875rem',
+                  color: 'var(--text-secondary)',
+                  lineHeight: '1.5'
+                }}>
+                  Career pivots, first-generation success stories, and entrepreneurial journeys
+                </p>
+              </div>
+            </div>
+            <a
+              href="/catalog"
+              style={{
+                display: 'inline-block',
+                padding: '0.75rem 2rem',
+                background: 'var(--accent-primary)',
+                color: 'var(--bg-primary)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                fontWeight: '600',
+                fontSize: '1rem',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.opacity = '0.9';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              Explore All Stories →
+            </a>
+          </div>
+        </motion.section>
 
         {/* How ESL Reading Works */}
         <motion.section

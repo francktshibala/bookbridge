@@ -21,14 +21,14 @@ import { AudioProvider } from '@/contexts/AudioContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'BookBridge - Accessible AI Book Companion',
-  description: 'An accessible AI-powered book companion designed for students with disabilities',
-  keywords: 'accessible, AI, education, books, WCAG, screen reader',
+  title: 'BookBridge - Classic Literature & Modern Stories for ESL Learners',
+  description: 'Read classic literature and inspiring modern stories simplified to your English level (A1-C2). Perfect audio-text sync, AI tutor, and vocabulary help.',
+  keywords: 'ESL, English learning, classic literature, modern stories, simplified books, CEFR levels, audio books, AI tutor',
   authors: [{ name: 'BookBridge Team' }],
   manifest: '/manifest.json',
   openGraph: {
-    title: 'BookBridge - Accessible AI Book Companion',
-    description: 'AI-powered book analysis with 100% WCAG 2.1 AA compliance',
+    title: 'BookBridge - Classic Literature & Modern Stories for ESL Learners',
+    description: 'Read classic literature and inspiring modern stories simplified to your English level with perfect audio-text sync',
     type: 'website',
   },
   icons: {

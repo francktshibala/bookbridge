@@ -46,7 +46,7 @@ export default function Footer() {
               fontSize: '0.875rem',
               lineHeight: '1.5'
             }}>
-              Making classic literature accessible to English learners worldwide.
+              Making great stories accessible to English learners worldwide.
             </p>
           </div>
           

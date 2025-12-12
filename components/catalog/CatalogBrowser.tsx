@@ -84,7 +84,7 @@ export function CatalogBrowser({ onSelectBook, onAskAI }: CatalogBrowserProps) {
               lineHeight: '1.6'
             }}
           >
-            Discover classic literature with adaptive audio narration and multiple difficulty levels
+            Discover classic literature and inspiring modern stories with adaptive audio narration and multiple difficulty levels
           </p>
         </div>
 
