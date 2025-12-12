@@ -27,7 +27,12 @@
     "Emma": ["youth-activism-1"],
     "Sofia": ["youth-activism-1"],
     "Sarah": ["medical-crisis-2"],
-    "Jake": ["medical-crisis-2"]
+    "Jake": ["medical-crisis-2"],
+    "Fatima": ["refugee-journey-3"],
+    "Ahmed": ["refugee-journey-3"],
+    "Omar": ["refugee-journey-3"],
+    "Hassan": ["refugee-journey-3"],
+    "Yusuf": ["refugee-journey-3"]
   },
   "guidelines": {
     "avoidRepeating": true,

@@ -1,0 +1,152 @@
+{
+  "storyId": "refugee-journey-3",
+  "title": "Refugee Family Journey",
+  "themeCategory": "Refugee Journey - Family Escape and Rebuilding",
+  "sources": [
+    {
+      "name": "Hamed Amiri Family",
+      "origin": "Afghanistan → UK",
+      "rating": "9/10 FLAGSHIP"
+    },
+    {
+      "name": "Yulia Rybinska Family",
+      "origin": "Ukraine → USA",
+      "rating": "8/10 STRONG"
+    },
+    {
+      "name": "Olexandra Lukashov Family",
+      "origin": "Ukraine → USA",
+      "rating": "8.5/10 STRONG"
+    }
+  ],
+  "themes": [
+    "Family Escape Together",
+    "Family Rebuilding Together",
+    "Dangerous Journey",
+    "Kindness from Strangers",
+    "Language Barriers",
+    "Education Priority",
+    "Identity Preservation",
+    "Gratitude",
+    "Hope",
+    "Persistence"
+  ],
+  "emotionalArc": {
+    "struggle": "Execution order / War begins - family must flee immediately",
+    "perseverance": "Dangerous journey through multiple countries, border crossings, hunger, fear",
+    "breakthrough": "Kindness from strangers, reaching safety, children starting school, family rebuilding together"
+  },
+  "emotionalMoments": [
+    {
+      "moment": "Execution order received",
+      "source": "Hamed Amiri",
+      "weight": "very high",
+      "description": "Mother spoke out for women's rights, Taliban issued execution warrant"
+    },
+    {
+      "moment": "End of childhood at age 10",
+      "source": "Hamed Amiri",
+      "weight": "high",
+      "description": "From that point on, I stopped being a child"
+    },
+    {
+      "moment": "Hussein playing clown to distract family",
+      "source": "Hamed Amiri",
+      "weight": "high",
+      "description": "Trying to make things seem normal during horror"
+    },
+    {
+      "moment": "Father carrying sick son across Calais jungle",
+      "source": "Hamed Amiri",
+      "weight": "very high",
+      "description": "Time was running out, carrying son on back to save his life"
+    },
+    {
+      "moment": "Robbed and starving, no food for days",
+      "source": "Hamed Amiri",
+      "weight": "high",
+      "description": "We were robbed twice and had no food for days"
+    },
+    {
+      "moment": "Stripped identity",
+      "source": "Hamed Amiri",
+      "weight": "high",
+      "description": "I'd gone from being 'Hamed Amiri' to a boy called 'John', and later, 'a refugee'"
+    },
+    {
+      "moment": "First genuine smile from volunteers",
+      "source": "Hamed Amiri",
+      "weight": "very high",
+      "description": "First time in a long time we felt at home"
+    },
+    {
+      "moment": "NHS compassion treating brother",
+      "source": "Hamed Amiri",
+      "weight": "very high",
+      "description": "They treated my brother—a 14-year-old non-national who couldn't speak English—with nothing but compassion"
+    },
+    {
+      "moment": "Wake-up call at 5 AM",
+      "source": "Yulia Rybinska",
+      "weight": "high",
+      "description": "At 5:00 am my husband woke me up and said that it's time to leave the country"
+    },
+    {
+      "moment": "Leaving everything behind",
+      "source": "Yulia Rybinska",
+      "weight": "high",
+      "description": "We just took our kids and went from the city. Took documents, kids, nothing else"
+    },
+    {
+      "moment": "Border desperation - 6-7 days, panic attacks",
+      "source": "Yulia Rybinska",
+      "weight": "very high",
+      "description": "We had to spend six or seven days at the border. We ran out of food, we ran out of water and I had panic attacks for the first time in my life"
+    },
+    {
+      "moment": "Strangers' kindness at railway station",
+      "source": "Yulia Rybinska",
+      "weight": "very high",
+      "description": "Polish people spent nights at the railway station and they gave their personal apartments to families. It was like, you can have tears in your eyes"
+    },
+    {
+      "moment": "Dog's eyes at last minute",
+      "source": "Olexandra Lukashov",
+      "weight": "very high",
+      "description": "At the last minute when we went to the car, our dog looked into our eyes, and we cried a lot"
+    },
+    {
+      "moment": "Home destroyed",
+      "source": "Olexandra Lukashov",
+      "weight": "very high",
+      "description": "In April 2022, their home back in Ukraine was destroyed"
+    },
+    {
+      "moment": "Weekly flowers tradition",
+      "source": "Olexandra Lukashov",
+      "weight": "high",
+      "description": "They go to the store and every week buy me flowers. It's like a tradition from Ukraine"
+    }
+  ],
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers",
+    "Learning & Education Journeys",
+    "Belonging & Identity",
+    "Building New Life",
+    "Connection Across Differences",
+    "Persistence Despite Setbacks",
+    "First-Time Courage"
+  ],
+  "keyQuotes": [
+    "For me, this isn't a refugee story; it's a family story. It's a love story—three boys with a love of football, a parent who wants to sacrifice everything for their kids.",
+    "If we didn't leave home, my mum would not be around. If we didn't leave home, my brother wouldn't have lived as long as he did.",
+    "What does 'refugee' mean to me? It wasn't a word that I chose, it was a word that was given to me. I'm just Hamed. I'm a human being.",
+    "I don't want it to be a sad story, I don't want it to be a pity story—I want it to be a story of hope.",
+    "Don't be afraid to start something new, to start a new life."
+  ],
+  "characterNames": {
+    "note": "Will use generic names - check character-names-tracker.json to avoid repetition",
+    "suggested": ["Amina", "Rami", "Hassan", "Layla", "Omar", "Fatima", "Yusuf"]
+  }
+}
+

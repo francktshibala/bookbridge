@@ -261,6 +261,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'RJ2'
   },
   {
+    id: 'refugee-journey-3',
+    title: 'Refugee Family Journey',
+    author: 'BookBridge',
+    description: 'In 2000, Fatima receives an execution order for speaking out for women\'s rights. With her husband Ahmed and three sons—Hassan, Omar, and Yusuf—they must flee immediately. Hassan has a rare heart condition, and only doctors in the UK can save his life. This powerful story follows their 18-month journey through 8 countries, facing danger, hunger, and fear—but staying together as a family. Through kindness from strangers and unwavering determination, they reach safety and rebuild their lives together. An inspiring tale about family strength, hope, and the power of staying together. A1 level with Daniel voice.',
+    sentences: 312,
+    bundles: 63,
+    gradient: 'from-blue-500 to-indigo-600',
+    abbreviation: 'RJ3'
+  },
+  {
     id: 'community-builder-1',
     title: 'Community Builder: One Person Transforms a Neighborhood',
     author: 'BookBridge',
@@ -519,6 +529,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'refugee-journey-2': {
     'A1': '/api/refugee-journey-2-a1/bundles'
   },
+  'refugee-journey-3': {
+    'A1': '/api/refugee-journey-3-a1/bundles'
+  },
   'community-builder-1': {
     'A1': '/api/community-builder-1-a1/bundles'
   },
@@ -598,6 +611,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'immigrant-entrepreneur': 'A1',  // Default to A1 for Immigrant Entrepreneur: From Failure to Success (Modern Story)
   'refugee-journey-1': 'A1',  // Default to A1 for Refugee Journey: From War Zone to Hope (Modern Story)
   'refugee-journey-2': 'A1',  // Default to A1 for Refugee Journey: Family Reunited (Modern Story)
+  'refugee-journey-3': 'A1',  // Default to A1 for Refugee Family Journey (Modern Story)
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
   'community-builder-2': 'A1',  // Default to A1 for Community Builder: From Wrong Turn to School Network (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
@@ -683,6 +697,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'immigrant-entrepreneur': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'refugee-journey-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
   'refugee-journey-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'refugee-journey-3': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)

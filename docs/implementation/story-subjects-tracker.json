@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
-  "lastUpdated": "2025-12-11",
-  "totalStories": 22,
+  "lastUpdated": "2025-12-12",
+  "totalStories": 23,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -191,10 +191,19 @@
       "specificSubject": "Medical crisis overcome, proving impossible possible, meningitis at 19 with 2% survival, cancer twice at 13/15, lost legs/lung, Paralympic snowboarder, Dancing with Stars, climbing Everest with one lung",
       "status": "complete",
       "notes": "Composite from 2 sources (Amy Purdy, Sean Swarner), generic characters Sarah, Jake"
+    },
+    {
+      "storyId": "refugee-journey-3",
+      "realPerson": null,
+      "storyConcept": "Refugee family escapes danger together and rebuilds their life together in new country (not individual journey, not separation/reunion)",
+      "themeCategory": "Refugee Journey - Family Escape and Rebuilding",
+      "specificSubject": "Family escape together, 18-month journey through 8 countries, saving child's life, family staying together, rebuilding together",
+      "status": "complete",
+      "notes": "Composite from 3 sources (Hamed Amiri Family, Yulia Rybinska Family, Olexandra Lukashov Family), generic characters Fatima, Ahmed, Omar, Hassan, Yusuf"
     }
   ],
   "themeSaturation": {
-    "refugeeJourney": 2,
+    "refugeeJourney": 3,
     "careerPivot": 2,
     "communityBuilder": 2,
     "disabilityOvercome": 2,
@@ -238,7 +247,8 @@
     "Single parent overcoming domestic violence, homelessness, building business, being seen",
     "Starting over later in life, achieving dreams at any age (swimming at 64, college at 69, bodybuilding at 56)",
     "Young person creating positive change through activism (climate action at 15, book diversity campaign at 11, water advocacy at 8)",
-    "Medical crisis overcome through determination (meningitis at 19 lost legs → Paralympic snowboarder, cancer twice at 13/15 lost lung → climbed Everest)"
+    "Medical crisis overcome through determination (meningitis at 19 lost legs → Paralympic snowboarder, cancer twice at 13/15 lost lung → climbed Everest)",
+    "Refugee family escape together and rebuild together (18-month journey through 8 countries, saving child's life, family staying together, rebuilding together)"
   ],
   "guidelines": {
     "beforeImplementing": [

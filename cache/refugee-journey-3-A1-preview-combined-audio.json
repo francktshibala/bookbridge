@@ -1,0 +1,110 @@
+{
+  "storyId": "refugee-journey-3",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/refugee-journey-3/A1/preview-combined.mp3",
+    "duration": 78.104694,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 7.844,
+        "duration": 7.844,
+        "text": "In this powerful story, Fatima and Ahmed escape danger with their three sons, Hassan, Omar, and Yusuf."
+      },
+      {
+        "startTime": 7.844,
+        "endTime": 11.111,
+        "duration": 3.267,
+        "text": "They travel for 18 months through 8 countries."
+      },
+      {
+        "startTime": 11.111,
+        "endTime": 14.804,
+        "duration": 3.693,
+        "text": "They must save Hassan's life from a heart condition."
+      },
+      {
+        "startTime": 14.804,
+        "endTime": 18.142,
+        "duration": 3.338,
+        "text": "This journey is dangerous but full of kindness."
+      },
+      {
+        "startTime": 18.142,
+        "endTime": 22.332,
+        "duration": 4.19,
+        "text": "It shows the strength of family and the hope of rebuilding."
+      },
+      {
+        "startTime": 22.332,
+        "endTime": 29.079,
+        "duration": 6.747,
+        "text": "An inspiring story about a family who escapes danger together and rebuilds their life together."
+      },
+      {
+        "startTime": 29.079,
+        "endTime": 31.209,
+        "duration": 2.131,
+        "text": "Imagine you are ten years old."
+      },
+      {
+        "startTime": 31.209,
+        "endTime": 34.05,
+        "duration": 2.841,
+        "text": "Your mother receives an execution order."
+      },
+      {
+        "startTime": 34.05,
+        "endTime": 38.808,
+        "duration": 4.758,
+        "text": "Your older brother has a heart condition and needs special doctors."
+      },
+      {
+        "startTime": 38.808,
+        "endTime": 44.206,
+        "duration": 5.397,
+        "text": "Your family must leave everything behind and travel through eight countries."
+      },
+      {
+        "startTime": 44.206,
+        "endTime": 48.27,
+        "duration": 4.064,
+        "text": "You must walk, hide, and survive for eighteen months."
+      },
+      {
+        "startTime": 48.27,
+        "endTime": 51.545,
+        "duration": 3.275,
+        "text": "You must stay together, or you will all die."
+      },
+      {
+        "startTime": 51.545,
+        "endTime": 58.701,
+        "duration": 7.156,
+        "text": "This is the story of Omar and his family—a story of escape, survival, and rebuilding together."
+      },
+      {
+        "startTime": 58.701,
+        "endTime": 64.674,
+        "duration": 5.974,
+        "text": "In the year 2000, speaking out for women's rights in some countries was dangerous."
+      },
+      {
+        "startTime": 64.674,
+        "endTime": 70.001,
+        "duration": 5.326,
+        "text": "Families who challenged powerful leaders often had to flee for their lives."
+      },
+      {
+        "startTime": 70.001,
+        "endTime": 78.105,
+        "duration": 8.104,
+        "text": "This story takes place during that time, when families had to make impossible choices to protect their children."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-12T04:10:43.193Z",
+  "timingMethod": "enhanced-timing-v3"
+}
