@@ -20,7 +20,9 @@
     "Noah": ["single-parent-rising-1"],
     "Isabella": ["single-parent-rising-2"],
     "Gabriel": ["single-parent-rising-2"],
-    "Olivia": ["single-parent-rising-2"]
+    "Olivia": ["single-parent-rising-2"],
+    "Grace": ["age-defiance-1"],
+    "Rose": ["age-defiance-1"]
   },
   "guidelines": {
     "avoidRepeating": true,

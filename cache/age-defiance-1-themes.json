@@ -1,0 +1,89 @@
+{
+  "storyId": "age-defiance-1",
+  "title": "Age Defiance: Starting Over Later in Life",
+  "emotionalArc": {
+    "struggle": "Dream deferred - failed Cuba swim at 28, gave up swimming for 30 years, thought it was too late",
+    "perseverance": "Returned to swimming at 60, failed 4 more times, continued despite age and obstacles; started exercising at 56 after sister's death; went back to school at 65",
+    "breakthrough": "Completed Cuba swim at 64, became world champion bodybuilder, graduated college at 69"
+  },
+  "emotionalMoments": [
+    {
+      "moment": 1,
+      "description": "Failed Cuba swim at 28, gave up swimming completely",
+      "emotionalWeight": "high",
+      "location": "Beginning - struggle"
+    },
+    {
+      "moment": 2,
+      "description": "Realized at 60 she was no longer a doer, only watching others",
+      "emotionalWeight": "medium",
+      "location": "Beginning - awakening"
+    },
+    {
+      "moment": 3,
+      "description": "Swimsuit moment with sister Rose - both laughed at how they looked",
+      "emotionalWeight": "high",
+      "location": "Middle - catalyst"
+    },
+    {
+      "moment": 4,
+      "description": "Sister Rose died suddenly of brain aneurysm - devastated, fell into depression",
+      "emotionalWeight": "very high",
+      "location": "Middle - obstacle"
+    },
+    {
+      "moment": 5,
+      "description": "Got herself together, continued promise to Rose, started working out again",
+      "emotionalWeight": "high",
+      "location": "Middle - perseverance"
+    },
+    {
+      "moment": 6,
+      "description": "Completed Cuba swim at 64 - thousands of people crying on beach",
+      "emotionalWeight": "very high",
+      "location": "Breakthrough - swimming triumph"
+    },
+    {
+      "moment": 7,
+      "description": "Won first bodybuilding competition, became oldest female bodybuilder in world",
+      "emotionalWeight": "high",
+      "location": "Breakthrough - fitness triumph"
+    },
+    {
+      "moment": 8,
+      "description": "Graduated college at 69 - surprise party, cap and gown, tears",
+      "emotionalWeight": "very high",
+      "location": "Breakthrough - education triumph"
+    },
+    {
+      "moment": 9,
+      "description": "Diploma on dresser, reminder that it's never too late",
+      "emotionalWeight": "medium",
+      "location": "End - reflection"
+    }
+  ],
+  "themes": [
+    "Never give up",
+    "Dreams don't expire",
+    "Age is just a number",
+    "It's never too late",
+    "Perseverance matters most",
+    "Grief to purpose",
+    "Starting over at any age",
+    "Health transformation",
+    "Education at any age"
+  ],
+  "eslResonanceMultipliers": [
+    "Learning & Education Journeys",
+    "Overcoming 'Not Good Enough'",
+    "First-Time Courage",
+    "Persistence Despite Setbacks",
+    "Building New Life"
+  ],
+  "storyStructure": {
+    "beginning": "Failed swim at 28, gave up for 30 years",
+    "middle": "Returned at 60, multiple failures; sister's death and recovery; starting exercise at 56; going back to school at 65",
+    "end": "Triple triumph - swimming, bodybuilding, education - all achieved in 60s and 70s"
+  }
+}
+

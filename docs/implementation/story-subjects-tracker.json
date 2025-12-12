@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
   "lastUpdated": "2025-12-11",
-  "totalStories": 19,
+  "totalStories": 20,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -164,6 +164,15 @@
       "specificSubject": "Single parent overcoming domestic violence, homelessness, building business, being seen, diverse obstacles beyond education",
       "status": "complete",
       "notes": "Composite from 5 sources (8 distinct narratives: Cassie Washington, Maryanne Lundy, Romona Bravo, Meshell Whyte, Shaquan Hoke, Sarah Keast, Kristy Carruthers, Mimi G Ford), generic characters Isabella/Gabriel/Olivia"
+    },
+    {
+      "storyId": "age-defiance-1",
+      "realPerson": null,
+      "storyConcept": "Person achieves dreams and starts over at older age (swimming at 64, college graduation at 69, bodybuilding at 56)",
+      "themeCategory": "Age Defiance - Starting Over Later in Life",
+      "specificSubject": "Starting over later in life, achieving dreams at any age, age defiance, never too late",
+      "status": "complete",
+      "notes": "Composite from 4 sources (Diana Nyad, Ernestine Shepherd, Merrill Cooper, Priscilla Sitienei), generic character Grace"
     }
   ],
   "themeSaturation": {
@@ -179,7 +188,8 @@
     "culturalBridge": 2,
     "romanticLove": 1,
     "griefToPurpose": 1,
-    "singleParentRising": 2
+    "singleParentRising": 2,
+    "ageDefiance": 1
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -205,7 +215,8 @@
     "Cross-cultural/interfaith romantic relationships with family resistance",
     "Grief transformation after loss of child",
     "Single parent raising children alone while building new life through education",
-    "Single parent overcoming domestic violence, homelessness, building business, being seen"
+    "Single parent overcoming domestic violence, homelessness, building business, being seen",
+    "Starting over later in life, achieving dreams at any age (swimming at 64, college at 69, bodybuilding at 56)"
   ],
   "guidelines": {
     "beforeImplementing": [

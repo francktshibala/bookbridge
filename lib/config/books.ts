@@ -371,6 +371,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'SPR2'
   },
   {
+    id: 'age-defiance-1',
+    title: 'Age Defiance: Starting Over Later in Life',
+    author: 'BookBridge',
+    description: 'At sixty-four, Grace completed a swim that had defeated her at twenty-eight. At sixty-nine, she graduated from college. At fifty-six, she became a world champion bodybuilder. This powerful composite story shows how one woman proved that dreams don\'t expire, age is just a number, and it\'s never too late to start over. Through swimming, education, and health transformation, Grace\'s journey inspires millions. A moving tale about perseverance, grief to purpose, and proving that life doesn\'t end at sixty. A1 level with Sarah voice.',
+    sentences: 194,
+    bundles: 39,
+    gradient: 'from-amber-500 to-orange-600',
+    abbreviation: 'AD1'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -522,6 +532,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'single-parent-rising-2': {
     'A1': '/api/single-parent-rising-2-a1/bundles'
   },
+  'age-defiance-1': {
+    'A1': '/api/age-defiance-1-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -570,6 +583,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'grief-to-purpose-1': 'A1',  // Default to A1 for Grief to Purpose: Finding Meaning in Loss (Modern Story)
   'single-parent-rising-1': 'A1',  // Default to A1 for Single Parent Rising: Building a New Life (Modern Story)
   'single-parent-rising-2': 'A1',  // Default to A1 for Single Parent Rising: Overcoming Obstacles (Modern Story)
+  'age-defiance-1': 'A1',  // Default to A1 for Age Defiance: Starting Over Later in Life (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -652,6 +666,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'grief-to-purpose-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'single-parent-rising-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'single-parent-rising-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'age-defiance-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
