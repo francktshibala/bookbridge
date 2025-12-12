@@ -1,0 +1,134 @@
+{
+  "storyId": "community-builder-3",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/community-builder-3/A1/preview-combined.mp3",
+    "duration": 64.706871,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 3.78,
+        "duration": 3.78,
+        "text": "In this inspiring story, Nathan feels very lonely."
+      },
+      {
+        "startTime": 3.78,
+        "endTime": 7.051,
+        "duration": 3.271,
+        "text": "He tries many solutions, but nothing works."
+      },
+      {
+        "startTime": 7.051,
+        "endTime": 9.301,
+        "duration": 2.25,
+        "text": "Then he decides to take action."
+      },
+      {
+        "startTime": 9.301,
+        "endTime": 13.511,
+        "duration": 4.21,
+        "text": "Nathan helps others find their voice through storytelling."
+      },
+      {
+        "startTime": 13.511,
+        "endTime": 16.851,
+        "duration": 3.339,
+        "text": "He learns that belonging does not just happen."
+      },
+      {
+        "startTime": 16.851,
+        "endTime": 19.101,
+        "duration": 2.25,
+        "text": "You have to create it yourself."
+      },
+      {
+        "startTime": 19.101,
+        "endTime": 23.093,
+        "duration": 3.992,
+        "text": "This story shows the power of connection and community."
+      },
+      {
+        "startTime": 23.093,
+        "endTime": 26.433,
+        "duration": 3.339,
+        "text": "Nathan felt like he was always on the outside."
+      },
+      {
+        "startTime": 26.433,
+        "endTime": 28.901,
+        "duration": 2.468,
+        "text": "He had friends and went to events."
+      },
+      {
+        "startTime": 28.901,
+        "endTime": 31.586,
+        "duration": 2.686,
+        "text": "He tried everything people suggested."
+      },
+      {
+        "startTime": 31.586,
+        "endTime": 32.966,
+        "duration": 1.379,
+        "text": "But nothing worked."
+      },
+      {
+        "startTime": 32.966,
+        "endTime": 35.071,
+        "duration": 2.105,
+        "text": "He felt more alone than ever."
+      },
+      {
+        "startTime": 35.071,
+        "endTime": 37.544,
+        "duration": 2.473,
+        "text": "One evening, Nathan had an idea."
+      },
+      {
+        "startTime": 37.544,
+        "endTime": 40.592,
+        "duration": 3.049,
+        "text": "What if he stopped waiting for connection?"
+      },
+      {
+        "startTime": 40.592,
+        "endTime": 42.77,
+        "duration": 2.178,
+        "text": "What if he created it himself?"
+      },
+      {
+        "startTime": 42.77,
+        "endTime": 46.109,
+        "duration": 3.339,
+        "text": "That question would change everything for him."
+      },
+      {
+        "startTime": 46.109,
+        "endTime": 50.102,
+        "duration": 3.992,
+        "text": "Many people feel lonely even when surrounded by others."
+      },
+      {
+        "startTime": 50.102,
+        "endTime": 56.069,
+        "duration": 5.967,
+        "text": "They try dating apps, social clubs, and events, but still feel disconnected."
+      },
+      {
+        "startTime": 56.069,
+        "endTime": 61.077,
+        "duration": 5.009,
+        "text": "This story is about someone who stopped waiting for the perfect time."
+      },
+      {
+        "startTime": 61.077,
+        "endTime": 64.707,
+        "duration": 3.63,
+        "text": "Nathan decided to create belonging through action."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-12T07:24:23.428Z",
+  "timingMethod": "enhanced-timing-v3"
+}

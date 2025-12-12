@@ -1,0 +1,156 @@
+{
+  "storyId": "lost-heritage-1",
+  "theme": "Lost Heritage Reclaimed - Reconnecting with Cultural Roots",
+  "sources": [
+    {
+      "source": "Jessica Boling - Korean Adoptee Identity Journey",
+      "keyMoments": [
+        "Kindergarten exercise - couldn't match parents' features, had to lie",
+        "Heritage Day kimchi rejection - 'they didn't like my food, so they didn't like me'",
+        "Babysitter sending adopted boy back - fear of same fate",
+        "Driving herself to therapy at 16",
+        "First morning in Korea - seeing herself reflected on every TV channel",
+        "'Not Korean enough to be Korean, not White enough to be American'",
+        "Meeting birth father with unanswered questions",
+        "'I am in a much better place now'"
+      ],
+      "themes": [
+        "Childhood otherness and bullying",
+        "Rejecting Korean heritage in teen years",
+        "Moving to Korea to reconnect",
+        "Seeing self reflected everywhere",
+        "Leading adoptee organization",
+        "Finding belonging and identity"
+      ]
+    },
+    {
+      "source": "Returning to Korea as an Adoptee - Quartz",
+      "keyMoments": [
+        "'Kept awake by frustration with not understanding Korean' - taught herself at 15",
+        "Imposter syndrome: 'You look like them, but you're not really one of them'",
+        "Watching families at jjimjilbang - imagining parallel life",
+        "Visiting birth city Daejeon alone - 'I'm back! Has anyone missed me?'",
+        "Climbing Hallasan - physical metaphor for emotional journey",
+        "Crying on plane leaving - 'homesick for a place I had never considered home'"
+      ],
+      "themes": [
+        "Teaching self Korean language at 15",
+        "Decade-long language journey",
+        "First return trip to Korea",
+        "Blending in vs standing out",
+        "Visiting birth city",
+        "Mountain climb as metaphor",
+        "Bittersweet homecoming"
+      ]
+    },
+    {
+      "source": "Reclaiming K'iche' - Ancestral Language Journey",
+      "keyMoments": [
+        "Grandmother only spoke K'iche' in 'private spaces where she felt comfortable and safe'",
+        "Confusion as child - why grandmother spoke differently to great aunt than to her",
+        "Learning grandmother was told to speak only 'Castellano' to get better jobs",
+        "Regret: 'It is a shame that it has taken me until now to realize how I could have learned more effectively when my family's last two fluent speakers were still with us'",
+        "Mission statement: 'reclaim the spaces where my ancestors did not feel safe speaking their language'"
+      ],
+      "themes": [
+        "Language suppressed due to colonialism",
+        "Language lost by 2nd generation",
+        "Learning ancestral language as adult",
+        "Facing challenges with multiple teachers",
+        "Mission to reclaim spaces",
+        "Connection to ancestors and land"
+      ]
+    }
+  ],
+  "emotionalArc": {
+    "struggle": [
+      "Disconnected from cultural heritage",
+      "Feeling 'not enough' - not Korean enough, not American enough",
+      "Lost language and customs",
+      "Identity confusion and isolation",
+      "Fear of rejection and not belonging"
+    ],
+    "perseverance": [
+      "Teaching self ancestral language",
+      "Seeking therapy and support",
+      "Moving to birth country",
+      "Taking language classes",
+      "Visiting birth places",
+      "Connecting with community",
+      "Learning despite challenges"
+    ],
+    "breakthrough": [
+      "Seeing self reflected everywhere (TV moment)",
+      "Visiting birth city",
+      "Climbing mountain (metaphor for journey)",
+      "Finding community of others like self",
+      "Embracing identity",
+      "Mission to reclaim spaces",
+      "Finding peace and belonging"
+    ]
+  },
+  "keyEmotionalMoments": [
+    {
+      "moment": "Kindergarten exercise - couldn't match parents' features",
+      "emotionalWeight": "very high",
+      "source": "Jessica Boling"
+    },
+    {
+      "moment": "Heritage Day kimchi rejection",
+      "emotionalWeight": "very high",
+      "source": "Jessica Boling"
+    },
+    {
+      "moment": "First morning in Korea - seeing herself on every TV channel",
+      "emotionalWeight": "very high",
+      "source": "Jessica Boling"
+    },
+    {
+      "moment": "Teaching self Korean at 15 - kept awake by frustration",
+      "emotionalWeight": "high",
+      "source": "Quartz"
+    },
+    {
+      "moment": "Visiting birth city Daejeon - 'I'm back! Has anyone missed me?'",
+      "emotionalWeight": "very high",
+      "source": "Quartz"
+    },
+    {
+      "moment": "Climbing Hallasan mountain - physical metaphor",
+      "emotionalWeight": "very high",
+      "source": "Quartz"
+    },
+    {
+      "moment": "Crying on plane - homesick for place never considered home",
+      "emotionalWeight": "very high",
+      "source": "Quartz"
+    },
+    {
+      "moment": "Grandmother only spoke language in private safe spaces",
+      "emotionalWeight": "very high",
+      "source": "K'iche'"
+    },
+    {
+      "moment": "Mission: reclaim spaces where ancestors didn't feel safe",
+      "emotionalWeight": "very high",
+      "source": "K'iche'"
+    }
+  ],
+  "eslResonanceMultipliers": [
+    "Communication & Language Barriers",
+    "Learning & Education Journeys",
+    "Belonging & Identity",
+    "Overcoming 'Not Good Enough'",
+    "First-Time Courage",
+    "Building New Life",
+    "Connection Across Differences",
+    "Persistence Despite Setbacks"
+  ],
+  "compositeStoryElements": {
+    "character": "Generic character (not based on single real person)",
+    "approach": "Combine best moments from all 3 sources",
+    "focus": "Reconnecting with lost/disconnected heritage",
+    "differentiation": "NOT about balancing two existing cultures (different from Cultural Bridge stories)"
+  }
+}
+

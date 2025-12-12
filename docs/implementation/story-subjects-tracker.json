@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
   "lastUpdated": "2025-12-12",
-  "totalStories": 23,
+  "totalStories": 25,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -200,6 +200,24 @@
       "specificSubject": "Family escape together, 18-month journey through 8 countries, saving child's life, family staying together, rebuilding together",
       "status": "complete",
       "notes": "Composite from 3 sources (Hamed Amiri Family, Yulia Rybinska Family, Olexandra Lukashov Family), generic characters Fatima, Ahmed, Omar, Hassan, Yusuf"
+    },
+    {
+      "storyId": "lost-heritage-1",
+      "realPerson": null,
+      "storyConcept": "Person reconnects with cultural roots that were lost, forgotten, or disconnected - rediscovering ancestral heritage, language, customs, or identity",
+      "themeCategory": "Lost Heritage Reclaimed",
+      "specificSubject": "Korean adoptee reconnecting with lost heritage, learning ancestral language, visiting birth country, finding identity and belonging",
+      "status": "complete",
+      "notes": "Composite from 3 sources (Jessica Boling - Korean adoptee, Quartz adoptee story, Adriana Hernández - K'iche' language reclamation), generic character Yuna"
+    },
+    {
+      "storyId": "workplace-discrimination-1",
+      "realPerson": null,
+      "storyConcept": "Person faces discrimination at work (race, gender, disability, age, etc.) and overcomes barriers through determination, skill, and persistence - breaking barriers and achieving success despite discrimination",
+      "themeCategory": "Workplace Discrimination Overcome",
+      "specificSubject": "Workplace discrimination overcome through determination, proving worth, becoming leader and mentor, fighting for rights and pay equity",
+      "status": "complete",
+      "notes": "Composite from 3 sources (Haben Girma - deafblind Harvard Law, Dr. Cheryl Ingram - 24-year discrimination journey, Myrna Pitaluna-Alngog - construction industry), generic characters Jordan, Marcus, Sarah"
     }
   ],
   "themeSaturation": {
@@ -218,7 +236,9 @@
     "singleParentRising": 2,
     "ageDefiance": 1,
     "youthActivism": 1,
-    "medicalCrisis": 2
+    "medicalCrisis": 2,
+    "lostHeritageReclaimed": 1,
+    "workplaceDiscriminationOvercome": 1
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -248,7 +268,9 @@
     "Starting over later in life, achieving dreams at any age (swimming at 64, college at 69, bodybuilding at 56)",
     "Young person creating positive change through activism (climate action at 15, book diversity campaign at 11, water advocacy at 8)",
     "Medical crisis overcome through determination (meningitis at 19 lost legs → Paralympic snowboarder, cancer twice at 13/15 lost lung → climbed Everest)",
-    "Refugee family escape together and rebuild together (18-month journey through 8 countries, saving child's life, family staying together, rebuilding together)"
+    "Refugee family escape together and rebuild together (18-month journey through 8 countries, saving child's life, family staying together, rebuilding together)",
+    "Reconnecting with lost heritage (Korean adoptee learning Korean, visiting birth country, finding identity; K'iche' language reclamation)",
+    "Overcoming workplace discrimination (deafblind Harvard Law, 24-year discrimination journey, construction industry gender discrimination - breaking barriers, proving worth, becoming leader)"
   ],
   "guidelines": {
     "beforeImplementing": [

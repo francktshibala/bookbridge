@@ -824,7 +824,7 @@ Every story in Priority 1 and Priority 2 sources passes the "would someone text 
 
 **Additional Phase 2 Stories (expand high-impact themes)**
 - [x] **#24**: Refugee Journey #3 ✅ Complete (2025-12-12) - Family escape and rebuilding
-- [ ] **#25**: Community Builder #3 - VOA/Web Research - Creating belonging through action
+- [x] **#25**: Community Builder #3 ✅ Complete (2025-12-12) - Creating belonging through action
 - [ ] **#26**: Career Pivot #3 - VOA/NASA - Professional transformation story
 - [ ] **#27**: Disability Overcome #3 - VOA/Web Research - Finding new ways despite barriers
 
@@ -835,10 +835,10 @@ Every story in Priority 1 and Priority 2 sources passes the "would someone text 
 ### **Phase 3 Stories (#28-#40) - PRIORITY: MEDIUM**
 
 **Lost Heritage Reclaimed (1-2 stories needed)**
-- [ ] **#28**: Lost Heritage #1 - VOA/Web Research - Reconnecting with cultural roots
+- [x] **#28**: Lost Heritage #1 - VOA/Web Research - Reconnecting with cultural roots ✅ COMPLETE
 
 **Workplace Discrimination Overcome (1-2 stories needed)**
-- [ ] **#29**: Workplace Discrimination #1 - VOA/Web Research - Breaking barriers at work
+- [x] **#29**: Workplace Discrimination #1 - VOA/Web Research - Breaking barriers at work ✅ COMPLETE
 
 **Environmental Hero (1-2 stories needed)**
 - [ ] **#30**: Environmental Hero #1 - VOA/NASA - Individual creating environmental impact

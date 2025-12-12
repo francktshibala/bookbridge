@@ -1,0 +1,196 @@
+{
+  "themes": [
+    "community building",
+    "creating belonging through action",
+    "loneliness and isolation",
+    "taking action when existing solutions fail",
+    "small beginnings growing into transformation",
+    "community heals isolation",
+    "finding purpose through helping others",
+    "persistence despite setbacks",
+    "connection across differences",
+    "building new life",
+    "belonging and identity",
+    "communication barriers",
+    "learning journeys",
+    "first-time courage"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "Childhood loneliness despite being surrounded by others - feeling like an outsider",
+      "emotionalWeight": "high",
+      "source": "1",
+      "description": "Growing up feeling disconnected even with friends and sports teams"
+    },
+    {
+      "moment": "False security: 'I truly believed this was it. I had made my friends. Done. Check.'",
+      "emotionalWeight": "high",
+      "source": "1",
+      "description": "University graduation believing friendships would last forever"
+    },
+    {
+      "moment": "COVID isolation and breakup - 'the world closed its doors, causing an extreme toll on my mental health'",
+      "emotionalWeight": "very high",
+      "source": "1",
+      "description": "Darkest point: pandemic, relationship ending, complete isolation"
+    },
+    {
+      "moment": "Dating apps 'fed those feelings of disconnection' - wrong solution realization",
+      "emotionalWeight": "medium",
+      "source": "1",
+      "description": "Realizing dating apps weren't the answer, needed meaningful connections"
+    },
+    {
+      "moment": "Failed social attempts - superficial connections at clubs and events",
+      "emotionalWeight": "medium",
+      "source": "1",
+      "description": "Trying everything but still feeling disconnected"
+    },
+    {
+      "moment": "First walk breakthrough: '12 people joined us...we laughed, we chatted'",
+      "emotionalWeight": "very high",
+      "source": "1",
+      "description": "Taking action - organizing first walk, seeing immediate connection"
+    },
+    {
+      "moment": "Deep sense of belonging achieved - 'surpassed even what I felt at university'",
+      "emotionalWeight": "very high",
+      "source": "1",
+      "description": "Finding true belonging through community building"
+    },
+    {
+      "moment": "Witnessing transformation: 12 people → 45,000 community members",
+      "emotionalWeight": "high",
+      "source": "1",
+      "description": "Seeing small beginning grow into massive community impact"
+    },
+    {
+      "moment": "Mother's goodbye at river - 'My son, go. You will always remain in my heart.'",
+      "emotionalWeight": "very high",
+      "source": "2",
+      "description": "Emotional separation, mother's love and sacrifice"
+    },
+    {
+      "moment": "Looking back, eyes meeting, mother waving one last time",
+      "emotionalWeight": "very high",
+      "source": "2",
+      "description": "Powerful visual moment of final connection"
+    },
+    {
+      "moment": "Five-day barefoot walk - feet swollen, wanting to go back to mother",
+      "emotionalWeight": "high",
+      "source": "2",
+      "description": "Physical struggle, emotional pain, persistence"
+    },
+    {
+      "moment": "Learning of mother's death - 'I screamed and rolled on the ground'",
+      "emotionalWeight": "very high",
+      "source": "2",
+      "description": "Devastating loss, neighbors joining in grief"
+    },
+    {
+      "moment": "Uncle's disappearance - 'What is going on with our family?'",
+      "emotionalWeight": "high",
+      "source": "2",
+      "description": "Another loss, feeling hopeless, questioning fate"
+    },
+    {
+      "moment": "Clearing bush at Bidibidi - 'I wondered, when will this stop?'",
+      "emotionalWeight": "high",
+      "source": "2",
+      "description": "Cycle of refugee life, questioning if it will ever end"
+    },
+    {
+      "moment": "Storytelling training - finding purpose through helping others tell their stories",
+      "emotionalWeight": "high",
+      "source": "2",
+      "description": "Turning personal experience into way to help others"
+    },
+    {
+      "moment": "BBC call - becoming 'the voice of the voiceless'",
+      "emotionalWeight": "high",
+      "source": "2",
+      "description": "Recognition, purpose found through storytelling"
+    },
+    {
+      "moment": "World Economic Forum speaker - refugee child to global advocate",
+      "emotionalWeight": "very high",
+      "source": "2",
+      "description": "Ultimate transformation, inspiring others worldwide"
+    }
+  ],
+  "storyArc": {
+    "struggle": [
+      "Feeling like an outsider despite being surrounded by people",
+      "COVID isolation and breakup causing extreme loneliness",
+      "Dating apps and social clubs failing to create real connections",
+      "Mother's goodbye and separation",
+      "Five-day barefoot walk, physical and emotional pain",
+      "Loss of mother, then uncle",
+      "War forcing another refugee journey",
+      "Questioning when the cycle will stop"
+    ],
+    "perseverance": [
+      "Trying multiple approaches to find connection (dating apps, clubs, events)",
+      "Discussing frustrations with others who shared the same struggle",
+      "Surviving multiple refugee camps and losses",
+      "Continuing education despite hardships",
+      "Clearing bush and starting over again",
+      "Taking storytelling training when opportunity arose"
+    ],
+    "breakthrough": [
+      "Deciding to take matters into own hands - creating first walk",
+      "12 people joining first walk, immediate connection and laughter",
+      "Community growing from 12 to 45,000 members",
+      "Finding deep sense of belonging through community building",
+      "Storytelling training leading to purpose",
+      "Becoming 'voice of the voiceless'",
+      "Speaking at World Economic Forum, inspiring others worldwide",
+      "Creating community organization to help others"
+    ]
+  },
+  "eslResonanceMultipliers": [
+    "Belonging & Identity",
+    "Building New Life",
+    "Connection Across Differences",
+    "Persistence Despite Setbacks",
+    "First-Time Courage",
+    "Communication Barriers",
+    "Learning Journeys"
+  ],
+  "keyQuotes": {
+    "source1": [
+      "I often felt like an outsider",
+      "I truly believed this was it. I had made my friends. Done. Check.",
+      "The world closed its doors, causing an extreme toll on my mental health",
+      "Dating apps fed those feelings of disconnection",
+      "How do you make friends as an adult?",
+      "12 people joined us...we laughed, we chatted",
+      "A deep sense of belonging - the likes of which surpassed even what I felt at university",
+      "We should never underestimate the power of connection, belonging, and community"
+    ],
+    "source2": [
+      "My son, go. You will always remain in my heart.",
+      "Our eyes met and she waved to me",
+      "My feet were all swollen and very painful. I was a child and I wanted to go back to my mother",
+      "I screamed and rolled on the ground",
+      "What is going on with our family?",
+      "I wondered, when will this stop?",
+      "They asked how I became 'the voice of the voiceless'",
+      "But, with support, you can also land on your feet. I'm a living testimony to that."
+    ]
+  },
+  "compositeStoryFocus": {
+    "mainTheme": "Creating belonging through action - taking initiative when existing solutions fail",
+    "unifyingElements": [
+      "Both stories show loneliness/isolation leading to action",
+      "Both demonstrate small beginnings growing into transformation",
+      "Both involve creating community/connection for others",
+      "Both show persistence through multiple setbacks",
+      "Both find purpose through helping others"
+    ],
+    "characterApproach": "Generic character combining elements from both sources - someone who feels isolated, tries existing solutions that fail, then takes action to create belonging for themselves and others",
+    "emotionalJourney": "Struggle (isolation/loss) → Perseverance (trying solutions, surviving) → Breakthrough (taking action, creating community, finding belonging and purpose)"
+  }
+}
+

@@ -1,0 +1,2089 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-0.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "Yuna is four months old and leaves Korea.",
+        "startTime": 0,
+        "endTime": 3.657,
+        "duration": 3.657,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She has no memories of the country where she was born.",
+        "startTime": 3.657,
+        "endTime": 8.473,
+        "duration": 4.816,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She has no memories of the language her parents spoke.",
+        "startTime": 8.473,
+        "endTime": 13.289,
+        "duration": 4.816,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She has no memories of the food, sounds, and smells.",
+        "startTime": 13.289,
+        "endTime": 18.227,
+        "duration": 4.938,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Yuna had a Korean name and a small photo of her mother.",
+        "startTime": 18.227,
+        "endTime": 23.133,
+        "duration": 4.905,
+        "sentenceIndex": 4
+      }
+    ],
+    "totalDuration": 23.132812,
+    "measuredDuration": 23.132812
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-1.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "Yuna grew up in a small town in America.",
+        "startTime": 0,
+        "endTime": 3.032,
+        "duration": 3.032,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "It was a place where most people were white.",
+        "startTime": 3.032,
+        "endTime": 6.366,
+        "duration": 3.335,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "Her parents are white and they adopt her.",
+        "startTime": 6.366,
+        "endTime": 9.474,
+        "duration": 3.107,
+        "sentenceIndex": 7
+      },
+      {
+        "text": "Her sister from Korea is the only Asian person she knows.",
+        "startTime": 9.474,
+        "endTime": 13.794,
+        "duration": 4.32,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "They lived on a quiet street with nice neighbors.",
+        "startTime": 13.794,
+        "endTime": 17.508,
+        "duration": 3.714,
+        "sentenceIndex": 9
+      }
+    ],
+    "totalDuration": 17.507823,
+    "measuredDuration": 17.507823
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-2.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "They went to a school with children who are white.",
+        "startTime": 0,
+        "endTime": 3.666,
+        "duration": 3.666,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "They went to a church with families that are white.",
+        "startTime": 3.666,
+        "endTime": 7.405,
+        "duration": 3.739,
+        "sentenceIndex": 11
+      },
+      {
+        "text": "When Yuna was five, her teacher did an exercise.",
+        "startTime": 7.405,
+        "endTime": 11.074,
+        "duration": 3.669,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "She asked the children to stand if they had the same hair.",
+        "startTime": 11.074,
+        "endTime": 15.326,
+        "duration": 4.252,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "Most children stand up and look around.",
+        "startTime": 15.326,
+        "endTime": 18.185,
+        "duration": 2.859,
+        "sentenceIndex": 14
+      }
+    ],
+    "totalDuration": 18.185351,
+    "measuredDuration": 18.185351
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-3.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "She asked them to stand if their eyes matched their mother's.",
+        "startTime": 0,
+        "endTime": 4.647,
+        "duration": 4.647,
+        "sentenceIndex": 15
+      },
+      {
+        "text": "Most children stand up again and smile.",
+        "startTime": 4.647,
+        "endTime": 7.618,
+        "duration": 2.971,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "Yuna sits in her chair and looks around.",
+        "startTime": 7.618,
+        "endTime": 10.665,
+        "duration": 3.047,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "She looked very different from her adoptive parents.",
+        "startTime": 10.665,
+        "endTime": 14.626,
+        "duration": 3.961,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "She has black hair and dark eyes.",
+        "startTime": 14.626,
+        "endTime": 17.14,
+        "duration": 2.514,
+        "sentenceIndex": 19
+      }
+    ],
+    "totalDuration": 17.14,
+    "measuredDuration": 17.14
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-4.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "They have blonde hair and blue eyes.",
+        "startTime": 0,
+        "endTime": 2.498,
+        "duration": 2.498,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "She is the only child who cannot match.",
+        "startTime": 2.498,
+        "endTime": 5.204,
+        "duration": 2.706,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "The teacher asked many questions during the class.",
+        "startTime": 5.204,
+        "endTime": 8.674,
+        "duration": 3.47,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "Yuna felt hot on her face.",
+        "startTime": 8.674,
+        "endTime": 10.478,
+        "duration": 1.804,
+        "sentenceIndex": 23
+      },
+      {
+        "text": "She felt that everyone looked at her.",
+        "startTime": 10.478,
+        "endTime": 13.045,
+        "duration": 2.567,
+        "sentenceIndex": 24
+      }
+    ],
+    "totalDuration": 13.045329,
+    "measuredDuration": 13.045329
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-5.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "She finally tells a lie.",
+        "startTime": 0,
+        "endTime": 1.642,
+        "duration": 1.642,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "She said her father had black hair and went to lunch.",
+        "startTime": 1.642,
+        "endTime": 5.268,
+        "duration": 3.626,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "But she knows the truth now.",
+        "startTime": 5.268,
+        "endTime": 7.183,
+        "duration": 1.916,
+        "sentenceIndex": 27
+      },
+      {
+        "text": "She is different from others and feels alone.",
+        "startTime": 7.183,
+        "endTime": 10.262,
+        "duration": 3.079,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "She feels alone and thinks she does not belong.",
+        "startTime": 10.262,
+        "endTime": 13.477,
+        "duration": 3.215,
+        "sentenceIndex": 29
+      }
+    ],
+    "totalDuration": 13.477188,
+    "measuredDuration": 13.477188
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-6.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "In second grade, Yuna's school had a special Heritage Day.",
+        "startTime": 0,
+        "endTime": 4.723,
+        "duration": 4.723,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "Each child brings something from their culture to share.",
+        "startTime": 4.723,
+        "endTime": 9.139,
+        "duration": 4.416,
+        "sentenceIndex": 31
+      },
+      {
+        "text": "Yuna is excited and feels happy.",
+        "startTime": 9.139,
+        "endTime": 11.663,
+        "duration": 2.523,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "Her mother helps her make kimchi, a Korean food.",
+        "startTime": 11.663,
+        "endTime": 15.598,
+        "duration": 3.935,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "They prepared it with care and attention.",
+        "startTime": 15.598,
+        "endTime": 18.831,
+        "duration": 3.233,
+        "sentenceIndex": 34
+      }
+    ],
+    "totalDuration": 18.830544,
+    "measuredDuration": 18.830544
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-7.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "They put it in a nice box.",
+        "startTime": 0,
+        "endTime": 1.763,
+        "duration": 1.763,
+        "sentenceIndex": 35
+      },
+      {
+        "text": "Yuna is excited and wants to share it with her classmates.",
+        "startTime": 1.763,
+        "endTime": 5.697,
+        "duration": 3.934,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "When Yuna brought kimchi to school, the other children made faces.",
+        "startTime": 5.697,
+        "endTime": 10.323,
+        "duration": 4.626,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "They said it smells bad.",
+        "startTime": 10.323,
+        "endTime": 11.951,
+        "duration": 1.628,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "They said it looked bad and not nice.",
+        "startTime": 11.951,
+        "endTime": 14.46,
+        "duration": 2.509,
+        "sentenceIndex": 39
+      }
+    ],
+    "totalDuration": 14.460385,
+    "measuredDuration": 14.460385
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-8.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "They said they do not want to try it.",
+        "startTime": 0,
+        "endTime": 2.639,
+        "duration": 2.639,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Yuna feels excited but then feels shame.",
+        "startTime": 2.639,
+        "endTime": 5.491,
+        "duration": 2.852,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "They did not like her food but ate it anyway.",
+        "startTime": 5.491,
+        "endTime": 8.7,
+        "duration": 3.209,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "She felt that they did not like her.",
+        "startTime": 8.7,
+        "endTime": 11.267,
+        "duration": 2.567,
+        "sentenceIndex": 43
+      },
+      {
+        "text": "She threw the kimchi away and never brought it to school again.",
+        "startTime": 11.267,
+        "endTime": 15.76,
+        "duration": 4.493,
+        "sentenceIndex": 44
+      }
+    ],
+    "totalDuration": 15.759728,
+    "measuredDuration": 15.759728
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-9.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "Yuna tried harder to fit in as she got older.",
+        "startTime": 0,
+        "endTime": 3.565,
+        "duration": 3.565,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "She stopped using the few Korean words that she knew.",
+        "startTime": 3.565,
+        "endTime": 7.763,
+        "duration": 4.199,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "Yuna did not go to Korean camp in the summer because her parents wanted her to.",
+        "startTime": 7.763,
+        "endTime": 14.021,
+        "duration": 6.258,
+        "sentenceIndex": 47
+      },
+      {
+        "text": "She spent all her time with her friends in Korea.",
+        "startTime": 14.021,
+        "endTime": 17.903,
+        "duration": 3.882,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "She tried to be like them and act the same way.",
+        "startTime": 17.903,
+        "endTime": 21.626,
+        "duration": 3.723,
+        "sentenceIndex": 49
+      }
+    ],
+    "totalDuration": 21.626236,
+    "measuredDuration": 21.626236
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-10.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "Talk like them and you will understand better.",
+        "startTime": 0,
+        "endTime": 3.349,
+        "duration": 3.349,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "Dress like them and you will feel good.",
+        "startTime": 3.349,
+        "endTime": 6.189,
+        "duration": 2.84,
+        "sentenceIndex": 51
+      },
+      {
+        "text": "She tried hard, but she could not change her face.",
+        "startTime": 6.189,
+        "endTime": 9.98,
+        "duration": 3.791,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "She cannot change her eyes and feels sad.",
+        "startTime": 9.98,
+        "endTime": 12.965,
+        "duration": 2.985,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "She cannot change that she is Korean.",
+        "startTime": 12.965,
+        "endTime": 15.659,
+        "duration": 2.694,
+        "sentenceIndex": 54
+      }
+    ],
+    "totalDuration": 15.659138,
+    "measuredDuration": 15.659138
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-11.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "When Yuna was fifteen, something important happened in her life.",
+        "startTime": 0,
+        "endTime": 5.254,
+        "duration": 5.254,
+        "sentenceIndex": 55
+      },
+      {
+        "text": "Yuna watches a Korean drama on her computer at night.",
+        "startTime": 5.254,
+        "endTime": 9.482,
+        "duration": 4.227,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "The characters speak Korean and use it to talk.",
+        "startTime": 9.482,
+        "endTime": 13.23,
+        "duration": 3.749,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "Yuna cannot understand any words when she listens.",
+        "startTime": 13.23,
+        "endTime": 17.218,
+        "duration": 3.988,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "But she felt something very strange.",
+        "startTime": 17.218,
+        "endTime": 20.089,
+        "duration": 2.871,
+        "sentenceIndex": 59
+      }
+    ],
+    "totalDuration": 20.089229,
+    "measuredDuration": 20.089229
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-12.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "I feel a pull to go outside.",
+        "startTime": 0,
+        "endTime": 2.32,
+        "duration": 2.32,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "Yuna feels a strong longing for her home in Korea.",
+        "startTime": 2.32,
+        "endTime": 6.463,
+        "duration": 4.143,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "Yuna stayed awake all night because she did not understand Korean.",
+        "startTime": 6.463,
+        "endTime": 11.932,
+        "duration": 5.469,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "The next morning, Yuna wakes up and makes a decision.",
+        "startTime": 11.932,
+        "endTime": 16.474,
+        "duration": 4.542,
+        "sentenceIndex": 63
+      },
+      {
+        "text": "She teaches herself Korean and learns new words every day.",
+        "startTime": 16.474,
+        "endTime": 21.279,
+        "duration": 4.806,
+        "sentenceIndex": 64
+      }
+    ],
+    "totalDuration": 21.27941,
+    "measuredDuration": 21.27941
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-13.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "She found a website that teaches the Korean alphabet.",
+        "startTime": 0,
+        "endTime": 4.09,
+        "duration": 4.09,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "She printed out the worksheets for her class.",
+        "startTime": 4.09,
+        "endTime": 7.563,
+        "duration": 3.473,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "She practiced every day after school and got better.",
+        "startTime": 7.563,
+        "endTime": 11.576,
+        "duration": 4.013,
+        "sentenceIndex": 67
+      },
+      {
+        "text": "Her parents were surprised but they supported her.",
+        "startTime": 11.576,
+        "endTime": 15.435,
+        "duration": 3.859,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "They buy her books to learn Korean language.",
+        "startTime": 15.435,
+        "endTime": 18.83,
+        "duration": 3.396,
+        "sentenceIndex": 69
+      }
+    ],
+    "totalDuration": 18.83034,
+    "measuredDuration": 18.83034
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-14.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "They found a tutor from Korea on the internet.",
+        "startTime": 0,
+        "endTime": 3.547,
+        "duration": 3.547,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "Learning Korean is hard but fun.",
+        "startTime": 3.547,
+        "endTime": 6.014,
+        "duration": 2.467,
+        "sentenceIndex": 71
+      },
+      {
+        "text": "The grammar is very different from English.",
+        "startTime": 6.014,
+        "endTime": 9.329,
+        "duration": 3.315,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "The sounds are hard to make.",
+        "startTime": 9.329,
+        "endTime": 11.488,
+        "duration": 2.159,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "Yuna feels bad because she makes no progress.",
+        "startTime": 11.488,
+        "endTime": 14.957,
+        "duration": 3.469,
+        "sentenceIndex": 74
+      }
+    ],
+    "totalDuration": 14.957347,
+    "measuredDuration": 14.957347
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-15.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "But she continued to move forward.",
+        "startTime": 0,
+        "endTime": 2.679,
+        "duration": 2.679,
+        "sentenceIndex": 75
+      },
+      {
+        "text": "She watches Korean dramas and enjoys them very much.",
+        "startTime": 2.679,
+        "endTime": 6.776,
+        "duration": 4.097,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "She listens to Korean music and enjoys it.",
+        "startTime": 6.776,
+        "endTime": 10.086,
+        "duration": 3.309,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "She practiced writing Korean letters and felt happy.",
+        "startTime": 10.086,
+        "endTime": 14.183,
+        "duration": 4.097,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "She slowly starts to understand what is happening.",
+        "startTime": 14.183,
+        "endTime": 18.123,
+        "duration": 3.94,
+        "sentenceIndex": 79
+      }
+    ],
+    "totalDuration": 18.12263,
+    "measuredDuration": 18.12263
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-16.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "When Yuna was twenty-two, she chose to go to Korea.",
+        "startTime": 0,
+        "endTime": 3.872,
+        "duration": 3.872,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "She found a program that helps Korean adoptees return to Korea.",
+        "startTime": 3.872,
+        "endTime": 8.47,
+        "duration": 4.598,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "She applied for a job and hopes to get it.",
+        "startTime": 8.47,
+        "endTime": 11.535,
+        "duration": 3.065,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "She is happy because she was accepted.",
+        "startTime": 11.535,
+        "endTime": 14.309,
+        "duration": 2.773,
+        "sentenceIndex": 83
+      },
+      {
+        "text": "She buys a plane ticket to go on a trip.",
+        "startTime": 14.309,
+        "endTime": 17.228,
+        "duration": 2.919,
+        "sentenceIndex": 84
+      }
+    ],
+    "totalDuration": 17.227914,
+    "measuredDuration": 17.227914
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-17.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "She packs her bags for the trip.",
+        "startTime": 0,
+        "endTime": 2.379,
+        "duration": 2.379,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "She says goodbye to her family.",
+        "startTime": 2.379,
+        "endTime": 4.684,
+        "duration": 2.305,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "The flight is long and takes a lot of time.",
+        "startTime": 4.684,
+        "endTime": 7.881,
+        "duration": 3.197,
+        "sentenceIndex": 87
+      },
+      {
+        "text": "Yuna cannot sleep at night and feels very tired.",
+        "startTime": 7.881,
+        "endTime": 11.449,
+        "duration": 3.569,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "She feels nervous when she speaks in front of people.",
+        "startTime": 11.449,
+        "endTime": 15.389,
+        "duration": 3.94,
+        "sentenceIndex": 89
+      }
+    ],
+    "totalDuration": 15.389388,
+    "measuredDuration": 15.389388
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-18.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "What is Korea like and how does it feel?",
+        "startTime": 0,
+        "endTime": 3.059,
+        "duration": 3.059,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "Does she feel at home in Korea?",
+        "startTime": 3.059,
+        "endTime": 5.429,
+        "duration": 2.371,
+        "sentenceIndex": 91
+      },
+      {
+        "text": "Will people accept Yuna when she comes?",
+        "startTime": 5.429,
+        "endTime": 8.411,
+        "duration": 2.982,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "Does she finally belong in Korea or Daejeon?",
+        "startTime": 8.411,
+        "endTime": 11.776,
+        "duration": 3.365,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "Yuna arrives in Seoul on her birthday.",
+        "startTime": 11.776,
+        "endTime": 14.682,
+        "duration": 2.906,
+        "sentenceIndex": 94
+      }
+    ],
+    "totalDuration": 14.681882,
+    "measuredDuration": 14.681882
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-19.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "She thought it was important and had a special meaning.",
+        "startTime": 0,
+        "endTime": 4.533,
+        "duration": 4.533,
+        "sentenceIndex": 95
+      },
+      {
+        "text": "This is a new beginning for Yuna and her friends.",
+        "startTime": 4.533,
+        "endTime": 8.572,
+        "duration": 4.039,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "A new life begins.",
+        "startTime": 8.572,
+        "endTime": 10.056,
+        "duration": 1.484,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "She got off the plane and walked in the airport.",
+        "startTime": 10.056,
+        "endTime": 14.013,
+        "duration": 3.956,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "For the first time, she was with people who looked like her.",
+        "startTime": 14.013,
+        "endTime": 19.108,
+        "duration": 5.096,
+        "sentenceIndex": 99
+      }
+    ],
+    "totalDuration": 19.108118,
+    "measuredDuration": 19.108118
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-20.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "She has dark hair and it looks nice.",
+        "startTime": 0,
+        "endTime": 2.796,
+        "duration": 2.796,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "Yuna has dark eyes that shine like stars.",
+        "startTime": 2.796,
+        "endTime": 5.98,
+        "duration": 3.184,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "Korean faces are everywhere in Seoul and Daejeon.",
+        "startTime": 5.98,
+        "endTime": 9.785,
+        "duration": 3.805,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "She took a taxi to her hotel in Seoul.",
+        "startTime": 9.785,
+        "endTime": 12.736,
+        "duration": 2.951,
+        "sentenceIndex": 103
+      },
+      {
+        "text": "She checks in at the hotel.",
+        "startTime": 12.736,
+        "endTime": 14.833,
+        "duration": 2.097,
+        "sentenceIndex": 104
+      }
+    ],
+    "totalDuration": 14.832789,
+    "measuredDuration": 14.832789
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-21.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "She went to her room and closed the door.",
+        "startTime": 0,
+        "endTime": 2.787,
+        "duration": 2.787,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "She feels very tired after a long day.",
+        "startTime": 2.787,
+        "endTime": 5.37,
+        "duration": 2.583,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "She fell asleep right away and did not wake up.",
+        "startTime": 5.37,
+        "endTime": 8.564,
+        "duration": 3.195,
+        "sentenceIndex": 107
+      },
+      {
+        "text": "Yuna wakes up early in the morning.",
+        "startTime": 8.564,
+        "endTime": 10.943,
+        "duration": 2.379,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "She turns on the television to watch her favorite show.",
+        "startTime": 10.943,
+        "endTime": 14.682,
+        "duration": 3.738,
+        "sentenceIndex": 109
+      }
+    ],
+    "totalDuration": 14.681882,
+    "measuredDuration": 14.681882
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-22.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "Every channel shows Korean people on TV.",
+        "startTime": 0,
+        "endTime": 3.296,
+        "duration": 3.296,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "Korean news anchors read the news and share important stories.",
+        "startTime": 3.296,
+        "endTime": 8.404,
+        "duration": 5.108,
+        "sentenceIndex": 111
+      },
+      {
+        "text": "Korean actors work in movies and shows in Korea.",
+        "startTime": 8.404,
+        "endTime": 12.358,
+        "duration": 3.955,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "Korean singers make music and perform in many places.",
+        "startTime": 12.358,
+        "endTime": 16.725,
+        "duration": 4.367,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "Korean faces are everywhere in Korea and in Seoul.",
+        "startTime": 16.725,
+        "endTime": 20.845,
+        "duration": 4.119,
+        "sentenceIndex": 114
+      }
+    ],
+    "totalDuration": 20.844649,
+    "measuredDuration": 20.844649
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-23.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "Yuna sat on the bed and cried softly.",
+        "startTime": 0,
+        "endTime": 2.799,
+        "duration": 2.799,
+        "sentenceIndex": 115
+      },
+      {
+        "text": "She never saw herself like this before.",
+        "startTime": 2.799,
+        "endTime": 5.748,
+        "duration": 2.95,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "In America, she was often the only Asian person there.",
+        "startTime": 5.748,
+        "endTime": 9.983,
+        "duration": 4.234,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "She was everywhere in Korea and Yuna felt it.",
+        "startTime": 9.983,
+        "endTime": 13.386,
+        "duration": 3.404,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "She is normal and lives in Korea.",
+        "startTime": 13.386,
+        "endTime": 15.882,
+        "duration": 2.496,
+        "sentenceIndex": 119
+      }
+    ],
+    "totalDuration": 15.882336,
+    "measuredDuration": 15.882336
+  },
+  {
+    "bundleId": "b24",
+    "bundleIndex": 24,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-24.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-24.mp3",
+    "sentences": [
+      {
+        "text": "She felt she belonged to her family and friends.",
+        "startTime": 0,
+        "endTime": 3.706,
+        "duration": 3.706,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "Yuna explored Seoul for two weeks and had fun.",
+        "startTime": 3.706,
+        "endTime": 7.258,
+        "duration": 3.552,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "She walked through the busy streets and saw many people.",
+        "startTime": 7.258,
+        "endTime": 11.582,
+        "duration": 4.324,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "She ate Korean food at small restaurants in Seoul.",
+        "startTime": 11.582,
+        "endTime": 15.442,
+        "duration": 3.861,
+        "sentenceIndex": 123
+      },
+      {
+        "text": "She visited temples and palaces in Korea.",
+        "startTime": 15.442,
+        "endTime": 18.608,
+        "duration": 3.166,
+        "sentenceIndex": 124
+      }
+    ],
+    "totalDuration": 18.607755,
+    "measuredDuration": 18.607755
+  },
+  {
+    "bundleId": "b25",
+    "bundleIndex": 25,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-25.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-25.mp3",
+    "sentences": [
+      {
+        "text": "Yuna tried to speak Korean with shopkeepers and waiters.",
+        "startTime": 0,
+        "endTime": 4.637,
+        "duration": 4.637,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "Sometimes they understand her and feel her emotions.",
+        "startTime": 4.637,
+        "endTime": 8.943,
+        "duration": 4.306,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "They sometimes laugh at her accent and it makes her sad.",
+        "startTime": 8.943,
+        "endTime": 13.58,
+        "duration": 4.637,
+        "sentenceIndex": 127
+      },
+      {
+        "text": "They were always nice and kind to everyone.",
+        "startTime": 13.58,
+        "endTime": 17.141,
+        "duration": 3.561,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "One day, Yuna took a train to her city.",
+        "startTime": 17.141,
+        "endTime": 20.521,
+        "duration": 3.379,
+        "sentenceIndex": 129
+      }
+    ],
+    "totalDuration": 20.520658,
+    "measuredDuration": 20.520658
+  },
+  {
+    "bundleId": "b26",
+    "bundleIndex": 26,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-26.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-26.mp3",
+    "sentences": [
+      {
+        "text": "It was named Daejeon.",
+        "startTime": 0,
+        "endTime": 1.429,
+        "duration": 1.429,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "She has never been there before.",
+        "startTime": 1.429,
+        "endTime": 3.607,
+        "duration": 2.178,
+        "sentenceIndex": 131
+      },
+      {
+        "text": "She only saw the name on her papers before.",
+        "startTime": 3.607,
+        "endTime": 6.534,
+        "duration": 2.927,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "When she steps off the train, she looks around.",
+        "startTime": 6.534,
+        "endTime": 9.883,
+        "duration": 3.349,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "The buildings in Seoul are very tall and impressive.",
+        "startTime": 9.883,
+        "endTime": 13.422,
+        "duration": 3.539,
+        "sentenceIndex": 134
+      }
+    ],
+    "totalDuration": 13.422404,
+    "measuredDuration": 13.422404
+  },
+  {
+    "bundleId": "b27",
+    "bundleIndex": 27,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-27.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-27.mp3",
+    "sentences": [
+      {
+        "text": "The mountains are far away in the distance.",
+        "startTime": 0,
+        "endTime": 3.314,
+        "duration": 3.314,
+        "sentenceIndex": 135
+      },
+      {
+        "text": "People walk everywhere in the city and enjoy the day.",
+        "startTime": 3.314,
+        "endTime": 7.399,
+        "duration": 4.085,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "Yuna felt a strange feeling and did not know why.",
+        "startTime": 7.399,
+        "endTime": 11.176,
+        "duration": 3.777,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "A feeling of coming home is warm and nice.",
+        "startTime": 11.176,
+        "endTime": 14.413,
+        "duration": 3.237,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "But there is also loneliness.",
+        "startTime": 14.413,
+        "endTime": 16.648,
+        "duration": 2.235,
+        "sentenceIndex": 139
+      }
+    ],
+    "totalDuration": 16.647914,
+    "measuredDuration": 16.647914
+  },
+  {
+    "bundleId": "b28",
+    "bundleIndex": 28,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-28.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-28.mp3",
+    "sentences": [
+      {
+        "text": "She has no family here in Korea.",
+        "startTime": 0,
+        "endTime": 2.299,
+        "duration": 2.299,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "Yuna has no friends and feels lonely.",
+        "startTime": 2.299,
+        "endTime": 4.958,
+        "duration": 2.659,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "No one is there to welcome her back.",
+        "startTime": 4.958,
+        "endTime": 7.545,
+        "duration": 2.587,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "She wanted to shout to the people walking by that she is back.",
+        "startTime": 7.545,
+        "endTime": 12,
+        "duration": 4.455,
+        "sentenceIndex": 143
+      },
+      {
+        "text": "I am back after twenty-two years, but I feel happy.",
+        "startTime": 12,
+        "endTime": 15.814,
+        "duration": 3.815,
+        "sentenceIndex": 144
+      }
+    ],
+    "totalDuration": 15.814354,
+    "measuredDuration": 15.814354
+  },
+  {
+    "bundleId": "b29",
+    "bundleIndex": 29,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-29.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-29.mp3",
+    "sentences": [
+      {
+        "text": "No one missed me, but they just walked away.",
+        "startTime": 0,
+        "endTime": 3.286,
+        "duration": 3.286,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "They did not know her name or where she lived.",
+        "startTime": 3.286,
+        "endTime": 6.564,
+        "duration": 3.278,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "They did not know she was gone.",
+        "startTime": 6.564,
+        "endTime": 8.773,
+        "duration": 2.209,
+        "sentenceIndex": 147
+      },
+      {
+        "text": "Yuna walks in Daejeon for two hours.",
+        "startTime": 8.773,
+        "endTime": 11.339,
+        "duration": 2.566,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "She did not know where to go or what to do.",
+        "startTime": 11.339,
+        "endTime": 14.403,
+        "duration": 3.064,
+        "sentenceIndex": 149
+      }
+    ],
+    "totalDuration": 14.403265,
+    "measuredDuration": 14.403265
+  },
+  {
+    "bundleId": "b30",
+    "bundleIndex": 30,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-30.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-30.mp3",
+    "sentences": [
+      {
+        "text": "She did not know what to find or look for.",
+        "startTime": 0,
+        "endTime": 3.349,
+        "duration": 3.349,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "She feels thankful but is also sad.",
+        "startTime": 3.349,
+        "endTime": 6.141,
+        "duration": 2.791,
+        "sentenceIndex": 151
+      },
+      {
+        "text": "Daejeon is now more than just a name on paper.",
+        "startTime": 6.141,
+        "endTime": 9.809,
+        "duration": 3.668,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "It was a real place and people visited it.",
+        "startTime": 9.809,
+        "endTime": 13.159,
+        "duration": 3.349,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "She was there before.",
+        "startTime": 13.159,
+        "endTime": 14.833,
+        "duration": 1.675,
+        "sentenceIndex": 154
+      }
+    ],
+    "totalDuration": 14.833333,
+    "measuredDuration": 14.833333
+  },
+  {
+    "bundleId": "b31",
+    "bundleIndex": 31,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-31.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-31.mp3",
+    "sentences": [
+      {
+        "text": "She walked the streets of the city.",
+        "startTime": 0,
+        "endTime": 2.679,
+        "duration": 2.679,
+        "sentenceIndex": 155
+      },
+      {
+        "text": "She breathes the air and feels alive.",
+        "startTime": 2.679,
+        "endTime": 5.511,
+        "duration": 2.832,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "Yuna leaves Korea and decides to climb a mountain.",
+        "startTime": 5.511,
+        "endTime": 9.339,
+        "duration": 3.827,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "Hallasan is the tallest mountain in Korea.",
+        "startTime": 9.339,
+        "endTime": 12.554,
+        "duration": 3.215,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "Yuna never climbed a mountain before this time.",
+        "startTime": 12.554,
+        "endTime": 16.151,
+        "duration": 3.598,
+        "sentenceIndex": 159
+      }
+    ],
+    "totalDuration": 16.151406,
+    "measuredDuration": 16.151406
+  },
+  {
+    "bundleId": "b32",
+    "bundleIndex": 32,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-32.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-32.mp3",
+    "sentences": [
+      {
+        "text": "But she felt she must do it.",
+        "startTime": 0,
+        "endTime": 2.075,
+        "duration": 2.075,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "A physical test matches her feelings on the journey.",
+        "startTime": 2.075,
+        "endTime": 5.928,
+        "duration": 3.853,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "The climb was harder for Yuna than she thought.",
+        "startTime": 5.928,
+        "endTime": 9.411,
+        "duration": 3.483,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "The path is steep and hard to walk.",
+        "startTime": 9.411,
+        "endTime": 12.004,
+        "duration": 2.594,
+        "sentenceIndex": 163
+      },
+      {
+        "text": "Her legs hurt and she feels tired.",
+        "startTime": 12.004,
+        "endTime": 14.524,
+        "duration": 2.519,
+        "sentenceIndex": 164
+      }
+    ],
+    "totalDuration": 14.523651,
+    "measuredDuration": 14.523651
+  },
+  {
+    "bundleId": "b33",
+    "bundleIndex": 33,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-33.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-33.mp3",
+    "sentences": [
+      {
+        "text": "Her lungs burn when she runs fast.",
+        "startTime": 0,
+        "endTime": 2.331,
+        "duration": 2.331,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "She wanted to give up but kept trying.",
+        "startTime": 2.331,
+        "endTime": 4.936,
+        "duration": 2.605,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "But she continued to move forward.",
+        "startTime": 4.936,
+        "endTime": 7.266,
+        "duration": 2.331,
+        "sentenceIndex": 167
+      },
+      {
+        "text": "You move forward step by step to reach your goal.",
+        "startTime": 7.266,
+        "endTime": 10.625,
+        "duration": 3.359,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "We breathe in and out, one breath at a time.",
+        "startTime": 10.625,
+        "endTime": 13.791,
+        "duration": 3.166,
+        "sentenceIndex": 169
+      }
+    ],
+    "totalDuration": 13.791451,
+    "measuredDuration": 13.791451
+  },
+  {
+    "bundleId": "b34",
+    "bundleIndex": 34,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-34.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-34.mp3",
+    "sentences": [
+      {
+        "text": "She thinks about her journey and feels happy.",
+        "startTime": 0,
+        "endTime": 3.44,
+        "duration": 3.44,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "Yuna learns Korean and enjoys speaking with friends.",
+        "startTime": 3.44,
+        "endTime": 7.415,
+        "duration": 3.975,
+        "sentenceIndex": 171
+      },
+      {
+        "text": "I come to Korea and see many beautiful places.",
+        "startTime": 7.415,
+        "endTime": 10.932,
+        "duration": 3.516,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "Yuna finds herself when she looks inside her heart.",
+        "startTime": 10.932,
+        "endTime": 14.83,
+        "duration": 3.899,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "Each step is a part of her story.",
+        "startTime": 14.83,
+        "endTime": 17.353,
+        "duration": 2.523,
+        "sentenceIndex": 174
+      }
+    ],
+    "totalDuration": 17.352993,
+    "measuredDuration": 17.352993
+  },
+  {
+    "bundleId": "b35",
+    "bundleIndex": 35,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-35.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-35.mp3",
+    "sentences": [
+      {
+        "text": "Yuna reached the top after six long hours.",
+        "startTime": 0,
+        "endTime": 3.169,
+        "duration": 3.169,
+        "sentenceIndex": 175
+      },
+      {
+        "text": "She stood and gasped for air while looking at the world.",
+        "startTime": 3.169,
+        "endTime": 7.393,
+        "duration": 4.225,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "She feels the wind on her face.",
+        "startTime": 7.393,
+        "endTime": 9.732,
+        "duration": 2.339,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "She saw clouds moving around her in the sky.",
+        "startTime": 9.732,
+        "endTime": 13.051,
+        "duration": 3.319,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "She did it and felt happy.",
+        "startTime": 13.051,
+        "endTime": 15.013,
+        "duration": 1.961,
+        "sentenceIndex": 179
+      }
+    ],
+    "totalDuration": 15.012925,
+    "measuredDuration": 15.012925
+  },
+  {
+    "bundleId": "b36",
+    "bundleIndex": 36,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-36.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-36.mp3",
+    "sentences": [
+      {
+        "text": "She climbs the mountain and feels happy.",
+        "startTime": 0,
+        "endTime": 3.125,
+        "duration": 3.125,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "She comes back to Korea.",
+        "startTime": 3.125,
+        "endTime": 5,
+        "duration": 1.875,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "She reconnects with her heritage and feels happy.",
+        "startTime": 5,
+        "endTime": 8.828,
+        "duration": 3.828,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "When it was time to leave Korea, Yuna felt sad.",
+        "startTime": 8.828,
+        "endTime": 12.65,
+        "duration": 3.822,
+        "sentenceIndex": 183
+      },
+      {
+        "text": "She does not want to go.",
+        "startTime": 12.65,
+        "endTime": 14.525,
+        "duration": 1.875,
+        "sentenceIndex": 184
+      }
+    ],
+    "totalDuration": 14.52542,
+    "measuredDuration": 14.52542
+  },
+  {
+    "bundleId": "b37",
+    "bundleIndex": 37,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-37.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-37.mp3",
+    "sentences": [
+      {
+        "text": "On the plane, she looked out and saw Seoul below.",
+        "startTime": 0,
+        "endTime": 3.798,
+        "duration": 3.798,
+        "sentenceIndex": 185
+      },
+      {
+        "text": "She began to cry because she felt very sad.",
+        "startTime": 3.798,
+        "endTime": 7,
+        "duration": 3.202,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "Yuna cried for twenty-two years because she missed her heritage.",
+        "startTime": 7,
+        "endTime": 11.765,
+        "duration": 4.765,
+        "sentenceIndex": 187
+      },
+      {
+        "text": "She cried because she lost her language and felt sad.",
+        "startTime": 11.765,
+        "endTime": 15.711,
+        "duration": 3.946,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "She cried for the culture she left behind and missed.",
+        "startTime": 15.711,
+        "endTime": 19.657,
+        "duration": 3.946,
+        "sentenceIndex": 189
+      }
+    ],
+    "totalDuration": 19.657234,
+    "measuredDuration": 19.657234
+  },
+  {
+    "bundleId": "b38",
+    "bundleIndex": 38,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-38.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-38.mp3",
+    "sentences": [
+      {
+        "text": "Yuna cried when she left a place that felt like home.",
+        "startTime": 0,
+        "endTime": 4.258,
+        "duration": 4.258,
+        "sentenceIndex": 190
+      },
+      {
+        "text": "But she also feels something different.",
+        "startTime": 4.258,
+        "endTime": 7.39,
+        "duration": 3.133,
+        "sentenceIndex": 191
+      },
+      {
+        "text": "Hope is a feeling that helps us in hard times.",
+        "startTime": 7.39,
+        "endTime": 11.086,
+        "duration": 3.695,
+        "sentenceIndex": 192
+      },
+      {
+        "text": "She reconnects with her roots and feels happy.",
+        "startTime": 11.086,
+        "endTime": 14.781,
+        "duration": 3.695,
+        "sentenceIndex": 193
+      },
+      {
+        "text": "She learned her language and felt happy.",
+        "startTime": 14.781,
+        "endTime": 17.994,
+        "duration": 3.213,
+        "sentenceIndex": 194
+      }
+    ],
+    "totalDuration": 17.994127,
+    "measuredDuration": 17.994127
+  },
+  {
+    "bundleId": "b39",
+    "bundleIndex": 39,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-39.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-39.mp3",
+    "sentences": [
+      {
+        "text": "She visited her birth country, Korea, a long time ago.",
+        "startTime": 0,
+        "endTime": 4.301,
+        "duration": 4.301,
+        "sentenceIndex": 195
+      },
+      {
+        "text": "She saw her reflection everywhere and felt strange.",
+        "startTime": 4.301,
+        "endTime": 8.079,
+        "duration": 3.779,
+        "sentenceIndex": 196
+      },
+      {
+        "text": "She finds a part of herself that was lost.",
+        "startTime": 8.079,
+        "endTime": 11.191,
+        "duration": 3.112,
+        "sentenceIndex": 197
+      },
+      {
+        "text": "Yuna knew she would return to Korea one day.",
+        "startTime": 11.191,
+        "endTime": 14.451,
+        "duration": 3.26,
+        "sentenceIndex": 198
+      },
+      {
+        "text": "She knows she will keep learning Korean.",
+        "startTime": 14.451,
+        "endTime": 17.415,
+        "duration": 2.964,
+        "sentenceIndex": 199
+      }
+    ],
+    "totalDuration": 17.414807,
+    "measuredDuration": 17.414807
+  },
+  {
+    "bundleId": "b40",
+    "bundleIndex": 40,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-40.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-40.mp3",
+    "sentences": [
+      {
+        "text": "She knew she would explore her heritage more and more.",
+        "startTime": 0,
+        "endTime": 3.997,
+        "duration": 3.997,
+        "sentenceIndex": 200
+      },
+      {
+        "text": "Now she understands something important and feels happy.",
+        "startTime": 3.997,
+        "endTime": 8.143,
+        "duration": 4.145,
+        "sentenceIndex": 201
+      },
+      {
+        "text": "She is not only American but also from Korea.",
+        "startTime": 8.143,
+        "endTime": 11.474,
+        "duration": 3.331,
+        "sentenceIndex": 202
+      },
+      {
+        "text": "She is not only Korean but also from Daejeon.",
+        "startTime": 11.474,
+        "endTime": 14.805,
+        "duration": 3.331,
+        "sentenceIndex": 203
+      },
+      {
+        "text": "She was both happy and sad at the same time.",
+        "startTime": 14.805,
+        "endTime": 18.062,
+        "duration": 3.257,
+        "sentenceIndex": 204
+      }
+    ],
+    "totalDuration": 18.062426,
+    "measuredDuration": 18.062426
+  },
+  {
+    "bundleId": "b41",
+    "bundleIndex": 41,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-41.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-41.mp3",
+    "sentences": [
+      {
+        "text": "That was okay and everything was fine.",
+        "startTime": 0,
+        "endTime": 2.837,
+        "duration": 2.837,
+        "sentenceIndex": 205
+      },
+      {
+        "text": "That was very beautiful and made me happy.",
+        "startTime": 2.837,
+        "endTime": 5.973,
+        "duration": 3.136,
+        "sentenceIndex": 206
+      },
+      {
+        "text": "Yuna started a group for Korean adoptees in America.",
+        "startTime": 5.973,
+        "endTime": 9.856,
+        "duration": 3.883,
+        "sentenceIndex": 207
+      },
+      {
+        "text": "She wanted to help people connect with their culture.",
+        "startTime": 9.856,
+        "endTime": 13.813,
+        "duration": 3.957,
+        "sentenceIndex": 208
+      },
+      {
+        "text": "She wanted to share what she learned with others.",
+        "startTime": 13.813,
+        "endTime": 17.472,
+        "duration": 3.659,
+        "sentenceIndex": 209
+      }
+    ],
+    "totalDuration": 17.471587,
+    "measuredDuration": 17.471587
+  },
+  {
+    "bundleId": "b42",
+    "bundleIndex": 42,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-42.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-42.mp3",
+    "sentences": [
+      {
+        "text": "She wanted to make a place where people feel understood.",
+        "startTime": 0,
+        "endTime": 4.42,
+        "duration": 4.42,
+        "sentenceIndex": 210
+      },
+      {
+        "text": "Yuna started to speak Korean more often and enjoys it.",
+        "startTime": 4.42,
+        "endTime": 8.683,
+        "duration": 4.262,
+        "sentenceIndex": 211
+      },
+      {
+        "text": "She calls her Korean tutor every week.",
+        "startTime": 8.683,
+        "endTime": 11.682,
+        "duration": 2.999,
+        "sentenceIndex": 212
+      },
+      {
+        "text": "She watches Korean dramas and enjoys them very much.",
+        "startTime": 11.682,
+        "endTime": 15.787,
+        "duration": 4.105,
+        "sentenceIndex": 213
+      },
+      {
+        "text": "Yuna cooked food from Korea.",
+        "startTime": 15.787,
+        "endTime": 17.997,
+        "duration": 2.21,
+        "sentenceIndex": 214
+      }
+    ],
+    "totalDuration": 17.996916,
+    "measuredDuration": 17.996916
+  },
+  {
+    "bundleId": "b43",
+    "bundleIndex": 43,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-43.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-43.mp3",
+    "sentences": [
+      {
+        "text": "She celebrates holidays in Korea and enjoys the fun.",
+        "startTime": 0,
+        "endTime": 4.395,
+        "duration": 4.395,
+        "sentenceIndex": 215
+      },
+      {
+        "text": "She reclaims the places where her family felt safe.",
+        "startTime": 4.395,
+        "endTime": 8.706,
+        "duration": 4.311,
+        "sentenceIndex": 216
+      },
+      {
+        "text": "She reclaims her heritage and feels proud.",
+        "startTime": 8.706,
+        "endTime": 12.256,
+        "duration": 3.55,
+        "sentenceIndex": 217
+      },
+      {
+        "text": "She finds herself again and feels strong.",
+        "startTime": 12.256,
+        "endTime": 15.721,
+        "duration": 3.465,
+        "sentenceIndex": 218
+      },
+      {
+        "text": "Years later, Yuna thinks about her journey and feels happy.",
+        "startTime": 15.721,
+        "endTime": 20.858,
+        "duration": 5.137,
+        "sentenceIndex": 219
+      }
+    ],
+    "totalDuration": 20.857891,
+    "measuredDuration": 20.857891
+  },
+  {
+    "bundleId": "b44",
+    "bundleIndex": 44,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-44.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-44.mp3",
+    "sentences": [
+      {
+        "text": "Yuna thinks about the girl who threw away her kimchi.",
+        "startTime": 0,
+        "endTime": 4.032,
+        "duration": 4.032,
+        "sentenceIndex": 220
+      },
+      {
+        "text": "She thought about the teenager who tried hard to be white.",
+        "startTime": 4.032,
+        "endTime": 8.445,
+        "duration": 4.413,
+        "sentenceIndex": 221
+      },
+      {
+        "text": "She thought about the young woman who learned Korean by herself.",
+        "startTime": 8.445,
+        "endTime": 13.314,
+        "duration": 4.869,
+        "sentenceIndex": 222
+      },
+      {
+        "text": "She thinks about the person who climbed a mountain in Korea.",
+        "startTime": 13.314,
+        "endTime": 17.879,
+        "duration": 4.565,
+        "sentenceIndex": 223
+      },
+      {
+        "text": "Yuna knows reconnecting with her heritage is not easy.",
+        "startTime": 17.879,
+        "endTime": 21.988,
+        "duration": 4.108,
+        "sentenceIndex": 224
+      }
+    ],
+    "totalDuration": 21.987823,
+    "measuredDuration": 21.987823
+  },
+  {
+    "bundleId": "b45",
+    "bundleIndex": 45,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-45.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-45.mp3",
+    "sentences": [
+      {
+        "text": "It was painful and hard to forget.",
+        "startTime": 0,
+        "endTime": 2.4,
+        "duration": 2.4,
+        "sentenceIndex": 225
+      },
+      {
+        "text": "It was confusing and hard to understand.",
+        "startTime": 2.4,
+        "endTime": 5.223,
+        "duration": 2.823,
+        "sentenceIndex": 226
+      },
+      {
+        "text": "It was lonely for a long time.",
+        "startTime": 5.223,
+        "endTime": 7.34,
+        "duration": 2.117,
+        "sentenceIndex": 227
+      },
+      {
+        "text": "It was the most important journey of her life.",
+        "startTime": 7.34,
+        "endTime": 10.587,
+        "duration": 3.247,
+        "sentenceIndex": 228
+      },
+      {
+        "text": "Yuna reconnects with her heritage and finds herself again.",
+        "startTime": 10.587,
+        "endTime": 14.68,
+        "duration": 4.094,
+        "sentenceIndex": 229
+      }
+    ],
+    "totalDuration": 14.680272,
+    "measuredDuration": 14.680272
+  },
+  {
+    "bundleId": "b46",
+    "bundleIndex": 46,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/bundle-46.mp3",
+    "audioPath": "lost-heritage-1/A1/bundle-46.mp3",
+    "sentences": [
+      {
+        "text": "That was something no one could take from her.",
+        "startTime": 0,
+        "endTime": 2.754,
+        "duration": 2.754,
+        "sentenceIndex": 230
+      }
+    ],
+    "totalDuration": 2.753878,
+    "measuredDuration": 2.753878
+  }
+]

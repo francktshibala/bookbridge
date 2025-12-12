@@ -32,7 +32,10 @@
     "Ahmed": ["refugee-journey-3"],
     "Omar": ["refugee-journey-3"],
     "Hassan": ["refugee-journey-3"],
-    "Yusuf": ["refugee-journey-3"]
+    "Yusuf": ["refugee-journey-3"],
+    "Yuna": ["lost-heritage-1"],
+    "Jordan": ["workplace-discrimination-1"],
+    "Marcus": ["workplace-discrimination-1"]
   },
   "guidelines": {
     "avoidRepeating": true,

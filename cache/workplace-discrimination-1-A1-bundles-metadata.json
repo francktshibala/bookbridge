@@ -1,0 +1,2695 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-0.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "Jordan was twenty-two years old when she began her first job.",
+        "startTime": 0,
+        "endTime": 4.671,
+        "duration": 4.671,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She graduated from college with honors last week.",
+        "startTime": 4.671,
+        "endTime": 8.424,
+        "duration": 3.752,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She worked hard and felt proud of her effort.",
+        "startTime": 8.424,
+        "endTime": 11.87,
+        "duration": 3.446,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "She studied late at night and felt very tired.",
+        "startTime": 11.87,
+        "endTime": 15.392,
+        "duration": 3.523,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "She earned her degree and felt very happy.",
+        "startTime": 15.392,
+        "endTime": 18.609,
+        "duration": 3.216,
+        "sentenceIndex": 4
+      }
+    ],
+    "totalDuration": 18.608662,
+    "measuredDuration": 18.608662
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-1.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "She is ready to show that she can do it.",
+        "startTime": 0,
+        "endTime": 3.053,
+        "duration": 3.053,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "She is ready to succeed and feels good.",
+        "startTime": 3.053,
+        "endTime": 6.029,
+        "duration": 2.976,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "But on her first day, Jordan saw something new.",
+        "startTime": 6.029,
+        "endTime": 9.766,
+        "duration": 3.737,
+        "sentenceIndex": 7
+      },
+      {
+        "text": "She was not like the others and that made her special.",
+        "startTime": 9.766,
+        "endTime": 13.887,
+        "duration": 4.121,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "She was the only woman in a room with many men.",
+        "startTime": 13.887,
+        "endTime": 17.474,
+        "duration": 3.587,
+        "sentenceIndex": 9
+      }
+    ],
+    "totalDuration": 17.473991,
+    "measuredDuration": 17.473991
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-2.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "She was the only person with a different skin color.",
+        "startTime": 0,
+        "endTime": 3.8,
+        "duration": 3.8,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "She was the only one who needed help for her disability.",
+        "startTime": 3.8,
+        "endTime": 7.892,
+        "duration": 4.092,
+        "sentenceIndex": 11
+      },
+      {
+        "text": "The men looked at her with doubt in their eyes.",
+        "startTime": 7.892,
+        "endTime": 11.327,
+        "duration": 3.435,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "They looked at her and thought she did not belong.",
+        "startTime": 11.327,
+        "endTime": 14.981,
+        "duration": 3.654,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "They looked at her like she was wrong and not good.",
+        "startTime": 14.981,
+        "endTime": 18.707,
+        "duration": 3.727,
+        "sentenceIndex": 14
+      }
+    ],
+    "totalDuration": 18.707438,
+    "measuredDuration": 18.707438
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-3.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "Jordan tried to not think about it.",
+        "startTime": 0,
+        "endTime": 2.52,
+        "duration": 2.52,
+        "sentenceIndex": 15
+      },
+      {
+        "text": "She focuses on her work and does not stop.",
+        "startTime": 2.52,
+        "endTime": 5.544,
+        "duration": 3.024,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "She tried very hard and did her best.",
+        "startTime": 5.544,
+        "endTime": 8.208,
+        "duration": 2.664,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "She arrives early and waits for her friends.",
+        "startTime": 8.208,
+        "endTime": 11.376,
+        "duration": 3.168,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "She stayed late and worked on her project.",
+        "startTime": 11.376,
+        "endTime": 14.4,
+        "duration": 3.024,
+        "sentenceIndex": 19
+      }
+    ],
+    "totalDuration": 14.400091,
+    "measuredDuration": 14.400091
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-4.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "She asked many questions and wanted to learn more.",
+        "startTime": 0,
+        "endTime": 3.192,
+        "duration": 3.192,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "She learned all she could and tried her best.",
+        "startTime": 3.192,
+        "endTime": 6.065,
+        "duration": 2.873,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "But it was still not enough for Jordan.",
+        "startTime": 6.065,
+        "endTime": 8.554,
+        "duration": 2.49,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "The men treated her differently and it was not fair.",
+        "startTime": 8.554,
+        "endTime": 11.874,
+        "duration": 3.32,
+        "sentenceIndex": 23
+      },
+      {
+        "text": "They still do not believe her.",
+        "startTime": 11.874,
+        "endTime": 13.789,
+        "duration": 1.915,
+        "sentenceIndex": 24
+      }
+    ],
+    "totalDuration": 13.789274,
+    "measuredDuration": 13.789274
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-5.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "They still make her feel small and sad.",
+        "startTime": 0,
+        "endTime": 2.87,
+        "duration": 2.87,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "One day, Jordan worked at her desk and heard laughter.",
+        "startTime": 2.87,
+        "endTime": 6.994,
+        "duration": 4.124,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "She looked up at the sky and smiled.",
+        "startTime": 6.994,
+        "endTime": 9.644,
+        "duration": 2.649,
+        "sentenceIndex": 27
+      },
+      {
+        "text": "Her coworkers stand in a circle and laugh at something.",
+        "startTime": 9.644,
+        "endTime": 13.691,
+        "duration": 4.048,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "Jordan wants to join them.",
+        "startTime": 13.691,
+        "endTime": 15.605,
+        "duration": 1.913,
+        "sentenceIndex": 29
+      }
+    ],
+    "totalDuration": 15.604943,
+    "measuredDuration": 15.604943
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-6.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "She wanted to join the group and be with friends.",
+        "startTime": 0,
+        "endTime": 3.382,
+        "duration": 3.382,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "When she walked over, the laughter stopped and everyone was quiet.",
+        "startTime": 3.382,
+        "endTime": 8.088,
+        "duration": 4.706,
+        "sentenceIndex": 31
+      },
+      {
+        "text": "The men look at her and smile.",
+        "startTime": 8.088,
+        "endTime": 10.159,
+        "duration": 2.071,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "They looked uncomfortable and did not smile.",
+        "startTime": 10.159,
+        "endTime": 13.196,
+        "duration": 3.037,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "They did not invite her to join the group.",
+        "startTime": 13.196,
+        "endTime": 16.095,
+        "duration": 2.899,
+        "sentenceIndex": 34
+      }
+    ],
+    "totalDuration": 16.094853,
+    "measuredDuration": 16.094853
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-7.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "They did not tell us the joke and we did not laugh.",
+        "startTime": 0,
+        "endTime": 3.723,
+        "duration": 3.723,
+        "sentenceIndex": 35
+      },
+      {
+        "text": "They walked away quickly and did not look back.",
+        "startTime": 3.723,
+        "endTime": 7.155,
+        "duration": 3.431,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "Jordan sat down again at her desk.",
+        "startTime": 7.155,
+        "endTime": 9.637,
+        "duration": 2.482,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "She felt sad when her heart broke.",
+        "startTime": 9.637,
+        "endTime": 12.119,
+        "duration": 2.482,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "She felt heavy because she was different.",
+        "startTime": 12.119,
+        "endTime": 15.112,
+        "duration": 2.993,
+        "sentenceIndex": 39
+      }
+    ],
+    "totalDuration": 15.112245,
+    "measuredDuration": 15.112245
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-8.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "She felt sad when they did not include her.",
+        "startTime": 0,
+        "endTime": 3.343,
+        "duration": 3.343,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "She hears four sad words in her mind: you are left out.",
+        "startTime": 3.343,
+        "endTime": 7.82,
+        "duration": 4.476,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "Jordan feels sad and wants to cry.",
+        "startTime": 7.82,
+        "endTime": 10.463,
+        "duration": 2.644,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "But she did not do it.",
+        "startTime": 10.463,
+        "endTime": 12.174,
+        "duration": 1.711,
+        "sentenceIndex": 43
+      },
+      {
+        "text": "She worked hard and did not stop.",
+        "startTime": 12.174,
+        "endTime": 14.739,
+        "duration": 2.566,
+        "sentenceIndex": 44
+      }
+    ],
+    "totalDuration": 14.739274,
+    "measuredDuration": 14.739274
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-9.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "She tried many times and did not give up.",
+        "startTime": 0,
+        "endTime": 2.975,
+        "duration": 2.975,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "She kept showing that she is good.",
+        "startTime": 2.975,
+        "endTime": 5.443,
+        "duration": 2.467,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "But the unfair treatment did not stop.",
+        "startTime": 5.443,
+        "endTime": 8.2,
+        "duration": 2.758,
+        "sentenceIndex": 47
+      },
+      {
+        "text": "It happened many times and it was not good.",
+        "startTime": 8.2,
+        "endTime": 11.32,
+        "duration": 3.12,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "One afternoon, Jordan's boss called her to his office.",
+        "startTime": 11.32,
+        "endTime": 15.389,
+        "duration": 4.069,
+        "sentenceIndex": 49
+      }
+    ],
+    "totalDuration": 15.38907,
+    "measuredDuration": 15.38907
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-10.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "He told her a customer complained.",
+        "startTime": 0,
+        "endTime": 2.421,
+        "duration": 2.421,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "The customer called her bad names and made her upset.",
+        "startTime": 2.421,
+        "endTime": 6.194,
+        "duration": 3.773,
+        "sentenceIndex": 51
+      },
+      {
+        "text": "The customer said she was not good enough.",
+        "startTime": 6.194,
+        "endTime": 9.184,
+        "duration": 2.99,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "The customer asked for another person.",
+        "startTime": 9.184,
+        "endTime": 11.889,
+        "duration": 2.705,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "Jordan felt her face get hot and she was embarrassed.",
+        "startTime": 11.889,
+        "endTime": 15.662,
+        "duration": 3.773,
+        "sentenceIndex": 54
+      }
+    ],
+    "totalDuration": 15.662449,
+    "measuredDuration": 15.662449
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-11.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "She feels her hands shake when she is nervous.",
+        "startTime": 0,
+        "endTime": 3.125,
+        "duration": 3.125,
+        "sentenceIndex": 55
+      },
+      {
+        "text": "She did nothing wrong and felt good about it.",
+        "startTime": 3.125,
+        "endTime": 6.181,
+        "duration": 3.057,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "She only tried to help her friend.",
+        "startTime": 6.181,
+        "endTime": 8.49,
+        "duration": 2.309,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "The supervisor said she should handle it better.",
+        "startTime": 8.49,
+        "endTime": 11.751,
+        "duration": 3.26,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "He told her she should be more professional.",
+        "startTime": 11.751,
+        "endTime": 14.74,
+        "duration": 2.989,
+        "sentenceIndex": 59
+      }
+    ],
+    "totalDuration": 14.739501,
+    "measuredDuration": 14.739501
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-12.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "He said she must work harder.",
+        "startTime": 0,
+        "endTime": 2.385,
+        "duration": 2.385,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "Jordan wanted to cry because he felt very sad.",
+        "startTime": 2.385,
+        "endTime": 6.167,
+        "duration": 3.782,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "But she did not do it.",
+        "startTime": 6.167,
+        "endTime": 7.976,
+        "duration": 1.809,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "She nodded and showed that she understood.",
+        "startTime": 7.976,
+        "endTime": 11.43,
+        "duration": 3.454,
+        "sentenceIndex": 63
+      },
+      {
+        "text": "She said that she understands what happened.",
+        "startTime": 11.43,
+        "endTime": 15.048,
+        "duration": 3.618,
+        "sentenceIndex": 64
+      }
+    ],
+    "totalDuration": 15.047596,
+    "measuredDuration": 15.047596
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-13.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "She went back to her desk and worked harder.",
+        "startTime": 0,
+        "endTime": 3.244,
+        "duration": 3.244,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "Jordan needed help because of her disability.",
+        "startTime": 3.244,
+        "endTime": 6.561,
+        "duration": 3.317,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "She needed special tools to talk and share ideas.",
+        "startTime": 6.561,
+        "endTime": 10.173,
+        "duration": 3.612,
+        "sentenceIndex": 67
+      },
+      {
+        "text": "She needed help to understand what people say.",
+        "startTime": 10.173,
+        "endTime": 13.565,
+        "duration": 3.391,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "But her job does not understand her.",
+        "startTime": 13.565,
+        "endTime": 16.218,
+        "duration": 2.654,
+        "sentenceIndex": 69
+      }
+    ],
+    "totalDuration": 16.218435,
+    "measuredDuration": 16.218435
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-14.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "They did not know how to help her and felt sad.",
+        "startTime": 0,
+        "endTime": 3.448,
+        "duration": 3.448,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "They did not know what help Sarah needed.",
+        "startTime": 3.448,
+        "endTime": 6.455,
+        "duration": 3.008,
+        "sentenceIndex": 71
+      },
+      {
+        "text": "Jordan did not do it either.",
+        "startTime": 6.455,
+        "endTime": 8.509,
+        "duration": 2.054,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "She learned new things as she went along.",
+        "startTime": 8.509,
+        "endTime": 11.517,
+        "duration": 3.008,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "She tries different ways to solve the problem.",
+        "startTime": 11.517,
+        "endTime": 14.891,
+        "duration": 3.374,
+        "sentenceIndex": 74
+      }
+    ],
+    "totalDuration": 14.890862,
+    "measuredDuration": 14.890862
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-15.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "She found what worked for her.",
+        "startTime": 0,
+        "endTime": 2.24,
+        "duration": 2.24,
+        "sentenceIndex": 75
+      },
+      {
+        "text": "Jordan brought a special keyboard and used it at work.",
+        "startTime": 2.24,
+        "endTime": 6.271,
+        "duration": 4.031,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "It let people send messages that she reads right away.",
+        "startTime": 6.271,
+        "endTime": 10.302,
+        "duration": 4.031,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "She hoped it would help her talk to her coworkers.",
+        "startTime": 10.302,
+        "endTime": 14.034,
+        "duration": 3.733,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "She hoped it would help her feel part of the group.",
+        "startTime": 14.034,
+        "endTime": 17.841,
+        "duration": 3.807,
+        "sentenceIndex": 79
+      }
+    ],
+    "totalDuration": 17.841497,
+    "measuredDuration": 17.841497
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-16.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "At first, people were afraid to use it but then tried.",
+        "startTime": 0,
+        "endTime": 4.242,
+        "duration": 4.242,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "They felt uncomfortable and did not like it.",
+        "startTime": 4.242,
+        "endTime": 7.576,
+        "duration": 3.334,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "They did not know how to speak with her.",
+        "startTime": 7.576,
+        "endTime": 10.607,
+        "duration": 3.031,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "One day, a coworker named Marcus came to her desk.",
+        "startTime": 10.607,
+        "endTime": 14.546,
+        "duration": 3.939,
+        "sentenceIndex": 83
+      },
+      {
+        "text": "He looks nervous and feels worried.",
+        "startTime": 14.546,
+        "endTime": 17.198,
+        "duration": 2.652,
+        "sentenceIndex": 84
+      }
+    ],
+    "totalDuration": 17.197959,
+    "measuredDuration": 17.197959
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-17.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "He asked to try the keyboard.",
+        "startTime": 0,
+        "endTime": 2.309,
+        "duration": 2.309,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "Jordan smiled and said yes to the question.",
+        "startTime": 2.309,
+        "endTime": 5.732,
+        "duration": 3.423,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "Marcus types a message on his phone.",
+        "startTime": 5.732,
+        "endTime": 8.598,
+        "duration": 2.866,
+        "sentenceIndex": 87
+      },
+      {
+        "text": "Jordan read it right away.",
+        "startTime": 8.598,
+        "endTime": 10.668,
+        "duration": 2.07,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "She typed back quickly and felt happy.",
+        "startTime": 10.668,
+        "endTime": 13.693,
+        "duration": 3.025,
+        "sentenceIndex": 89
+      }
+    ],
+    "totalDuration": 13.692721,
+    "measuredDuration": 13.692721
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-18.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "They had a talk and shared their ideas.",
+        "startTime": 0,
+        "endTime": 3.338,
+        "duration": 3.338,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "It was slow and took a long time.",
+        "startTime": 3.338,
+        "endTime": 6.162,
+        "duration": 2.824,
+        "sentenceIndex": 91
+      },
+      {
+        "text": "It was not the same as before.",
+        "startTime": 6.162,
+        "endTime": 8.73,
+        "duration": 2.568,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "But it worked well and made everyone happy.",
+        "startTime": 8.73,
+        "endTime": 12.41,
+        "duration": 3.68,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "Marcus smiled and felt happy.",
+        "startTime": 12.41,
+        "endTime": 14.892,
+        "duration": 2.482,
+        "sentenceIndex": 94
+      }
+    ],
+    "totalDuration": 14.891723,
+    "measuredDuration": 14.891723
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-19.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "He said it was nice and fun.",
+        "startTime": 0,
+        "endTime": 2.161,
+        "duration": 2.161,
+        "sentenceIndex": 95
+      },
+      {
+        "text": "He said he will tell others about it.",
+        "startTime": 2.161,
+        "endTime": 5.017,
+        "duration": 2.856,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "More people slowly start to use the keyboard.",
+        "startTime": 5.017,
+        "endTime": 8.49,
+        "duration": 3.473,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "They began to talk to Jordan.",
+        "startTime": 8.49,
+        "endTime": 10.729,
+        "duration": 2.238,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "They included her in talks and she felt happy.",
+        "startTime": 10.729,
+        "endTime": 14.279,
+        "duration": 3.55,
+        "sentenceIndex": 99
+      }
+    ],
+    "totalDuration": 14.279116,
+    "measuredDuration": 14.279116
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-20.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "Jordan feels hope.",
+        "startTime": 0,
+        "endTime": 1.299,
+        "duration": 1.299,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "She felt happy because she finally connected with others.",
+        "startTime": 1.299,
+        "endTime": 5.413,
+        "duration": 4.114,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "She felt happy because she belonged.",
+        "startTime": 5.413,
+        "endTime": 8.011,
+        "duration": 2.598,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "But the unfair treatment continued in other ways.",
+        "startTime": 8.011,
+        "endTime": 11.548,
+        "duration": 3.536,
+        "sentenceIndex": 103
+      },
+      {
+        "text": "Jordan wants a new job and applied for a promotion.",
+        "startTime": 11.548,
+        "endTime": 15.228,
+        "duration": 3.681,
+        "sentenceIndex": 104
+      }
+    ],
+    "totalDuration": 15.228277,
+    "measuredDuration": 15.228277
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-21.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "She had more experience than all the others.",
+        "startTime": 0,
+        "endTime": 3.339,
+        "duration": 3.339,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "She has better skills and more experience than others.",
+        "startTime": 3.339,
+        "endTime": 7.436,
+        "duration": 4.097,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "She proves herself many times and shows her strength.",
+        "startTime": 7.436,
+        "endTime": 11.458,
+        "duration": 4.022,
+        "sentenceIndex": 107
+      },
+      {
+        "text": "But she was not chosen for the job.",
+        "startTime": 11.458,
+        "endTime": 14.113,
+        "duration": 2.656,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "A man with less experience got the job.",
+        "startTime": 14.113,
+        "endTime": 17.073,
+        "duration": 2.959,
+        "sentenceIndex": 109
+      }
+    ],
+    "totalDuration": 17.072676,
+    "measuredDuration": 17.072676
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-22.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "Jordan learned he made thirty-two thousand dollars each year.",
+        "startTime": 0,
+        "endTime": 4.771,
+        "duration": 4.771,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "She made twenty-eight thousand dollars last year.",
+        "startTime": 4.771,
+        "endTime": 8.604,
+        "duration": 3.833,
+        "sentenceIndex": 111
+      },
+      {
+        "text": "She was there longer, but she still felt alone.",
+        "startTime": 8.604,
+        "endTime": 12.43,
+        "duration": 3.826,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "She has more education, but she feels unhappy.",
+        "startTime": 12.43,
+        "endTime": 16.178,
+        "duration": 3.748,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "She did more work, but she feels tired.",
+        "startTime": 16.178,
+        "endTime": 19.379,
+        "duration": 3.2,
+        "sentenceIndex": 114
+      }
+    ],
+    "totalDuration": 19.378594,
+    "measuredDuration": 19.378594
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-23.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "Jordan feels angry.",
+        "startTime": 0,
+        "endTime": 1.471,
+        "duration": 1.471,
+        "sentenceIndex": 115
+      },
+      {
+        "text": "She feels frustrated because things do not go well.",
+        "startTime": 1.471,
+        "endTime": 5.42,
+        "duration": 3.949,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "She felt tired and wanted to give up.",
+        "startTime": 5.42,
+        "endTime": 8.285,
+        "duration": 2.865,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "But she did not do it.",
+        "startTime": 8.285,
+        "endTime": 9.988,
+        "duration": 1.703,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "She makes a complaint about the problem.",
+        "startTime": 9.988,
+        "endTime": 13.085,
+        "duration": 3.097,
+        "sentenceIndex": 119
+      }
+    ],
+    "totalDuration": 13.085125,
+    "measuredDuration": 13.085125
+  },
+  {
+    "bundleId": "b24",
+    "bundleIndex": 24,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-24.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-24.mp3",
+    "sentences": [
+      {
+        "text": "She fought for what she wanted and deserved.",
+        "startTime": 0,
+        "endTime": 3.331,
+        "duration": 3.331,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "It took a long time of many months.",
+        "startTime": 3.331,
+        "endTime": 5.98,
+        "duration": 2.649,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "It takes courage to do difficult things.",
+        "startTime": 5.98,
+        "endTime": 9.008,
+        "duration": 3.028,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "It needs hard work and patience to succeed.",
+        "startTime": 9.008,
+        "endTime": 12.263,
+        "duration": 3.255,
+        "sentenceIndex": 123
+      },
+      {
+        "text": "But she won the game.",
+        "startTime": 12.263,
+        "endTime": 13.853,
+        "duration": 1.59,
+        "sentenceIndex": 124
+      }
+    ],
+    "totalDuration": 13.853016,
+    "measuredDuration": 13.853016
+  },
+  {
+    "bundleId": "b25",
+    "bundleIndex": 25,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-25.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-25.mp3",
+    "sentences": [
+      {
+        "text": "She got the job and felt very happy.",
+        "startTime": 0,
+        "endTime": 2.825,
+        "duration": 2.825,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "She got the raise and feels very happy.",
+        "startTime": 2.825,
+        "endTime": 5.885,
+        "duration": 3.06,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "She showed that she will not be quiet.",
+        "startTime": 5.885,
+        "endTime": 8.867,
+        "duration": 2.982,
+        "sentenceIndex": 127
+      },
+      {
+        "text": "Jordan wants to go back to school now.",
+        "startTime": 8.867,
+        "endTime": 11.849,
+        "duration": 2.982,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "She wanted to learn more and understand better.",
+        "startTime": 11.849,
+        "endTime": 15.537,
+        "duration": 3.688,
+        "sentenceIndex": 129
+      }
+    ],
+    "totalDuration": 15.536621,
+    "measuredDuration": 15.536621
+  },
+  {
+    "bundleId": "b26",
+    "bundleIndex": 26,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-26.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-26.mp3",
+    "sentences": [
+      {
+        "text": "She wants to get better and feels hopeful.",
+        "startTime": 0,
+        "endTime": 2.95,
+        "duration": 2.95,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "She wanted to show that she was part of the group.",
+        "startTime": 2.95,
+        "endTime": 6.463,
+        "duration": 3.512,
+        "sentenceIndex": 131
+      },
+      {
+        "text": "She applied to graduate school and hopes to study more.",
+        "startTime": 6.463,
+        "endTime": 10.326,
+        "duration": 3.864,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "She was happy because she was accepted.",
+        "startTime": 10.326,
+        "endTime": 13.066,
+        "duration": 2.74,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "She worked in the day and studied at night.",
+        "startTime": 13.066,
+        "endTime": 16.086,
+        "duration": 3.021,
+        "sentenceIndex": 134
+      }
+    ],
+    "totalDuration": 16.086236,
+    "measuredDuration": 16.086236
+  },
+  {
+    "bundleId": "b27",
+    "bundleIndex": 27,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-27.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-27.mp3",
+    "sentences": [
+      {
+        "text": "It was difficult and made me feel tired.",
+        "startTime": 0,
+        "endTime": 2.851,
+        "duration": 2.851,
+        "sentenceIndex": 135
+      },
+      {
+        "text": "It was very tiring and made me feel weak.",
+        "startTime": 2.851,
+        "endTime": 5.773,
+        "duration": 2.922,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "But she did it and felt happy.",
+        "startTime": 5.773,
+        "endTime": 7.911,
+        "duration": 2.138,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "She earned her master's degree and felt very happy.",
+        "startTime": 7.911,
+        "endTime": 11.546,
+        "duration": 3.635,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "But even with her degree, she still faced discrimination.",
+        "startTime": 11.546,
+        "endTime": 15.759,
+        "duration": 4.213,
+        "sentenceIndex": 139
+      }
+    ],
+    "totalDuration": 15.758753,
+    "measuredDuration": 15.758753
+  },
+  {
+    "bundleId": "b28",
+    "bundleIndex": 28,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-28.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-28.mp3",
+    "sentences": [
+      {
+        "text": "One day, Jordan walks into a building when a man pushes her.",
+        "startTime": 0,
+        "endTime": 4.792,
+        "duration": 4.792,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "He opened the door for a woman instead.",
+        "startTime": 4.792,
+        "endTime": 7.81,
+        "duration": 3.018,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "Jordan felt very surprised and did not know what to say.",
+        "startTime": 7.81,
+        "endTime": 12.143,
+        "duration": 4.333,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "She felt hurt and was very sad.",
+        "startTime": 12.143,
+        "endTime": 14.542,
+        "duration": 2.399,
+        "sentenceIndex": 143
+      },
+      {
+        "text": "She feels invisible and sad.",
+        "startTime": 14.542,
+        "endTime": 16.708,
+        "duration": 2.166,
+        "sentenceIndex": 144
+      }
+    ],
+    "totalDuration": 16.70805,
+    "measuredDuration": 16.70805
+  },
+  {
+    "bundleId": "b29",
+    "bundleIndex": 29,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-29.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-29.mp3",
+    "sentences": [
+      {
+        "text": "She makes a complaint.",
+        "startTime": 0,
+        "endTime": 1.872,
+        "duration": 1.872,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "But nothing happened at all.",
+        "startTime": 1.872,
+        "endTime": 4.255,
+        "duration": 2.383,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "The man keeps his job and works hard.",
+        "startTime": 4.255,
+        "endTime": 7.404,
+        "duration": 3.149,
+        "sentenceIndex": 147
+      },
+      {
+        "text": "Jordan felt alone because he thought no one cared.",
+        "startTime": 7.404,
+        "endTime": 11.66,
+        "duration": 4.255,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "Jordan faced discrimination and felt very hurt.",
+        "startTime": 11.66,
+        "endTime": 15.66,
+        "duration": 4,
+        "sentenceIndex": 149
+      }
+    ],
+    "totalDuration": 15.659705,
+    "measuredDuration": 15.659705
+  },
+  {
+    "bundleId": "b30",
+    "bundleIndex": 30,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-30.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-30.mp3",
+    "sentences": [
+      {
+        "text": "But she continued to fight and did not give up.",
+        "startTime": 0,
+        "endTime": 3.419,
+        "duration": 3.419,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "She keeps showing that she is good.",
+        "startTime": 3.419,
+        "endTime": 5.965,
+        "duration": 2.546,
+        "sentenceIndex": 151
+      },
+      {
+        "text": "She keeps winning and feels very happy.",
+        "startTime": 5.965,
+        "endTime": 8.802,
+        "duration": 2.837,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "She gets better at her job every day.",
+        "startTime": 8.802,
+        "endTime": 11.494,
+        "duration": 2.692,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "She became a leader and helped many people.",
+        "startTime": 11.494,
+        "endTime": 14.622,
+        "duration": 3.128,
+        "sentenceIndex": 154
+      }
+    ],
+    "totalDuration": 14.622222,
+    "measuredDuration": 14.622222
+  },
+  {
+    "bundleId": "b31",
+    "bundleIndex": 31,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-31.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-31.mp3",
+    "sentences": [
+      {
+        "text": "She mentored people who faced discrimination and helped them.",
+        "startTime": 0,
+        "endTime": 4.233,
+        "duration": 4.233,
+        "sentenceIndex": 155
+      },
+      {
+        "text": "She helped them with the problems they faced.",
+        "startTime": 4.233,
+        "endTime": 7.356,
+        "duration": 3.123,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "She helped them and showed them how to speak.",
+        "startTime": 7.356,
+        "endTime": 10.478,
+        "duration": 3.123,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "One day, Jordan's company has a big event for people to meet.",
+        "startTime": 10.478,
+        "endTime": 14.861,
+        "duration": 4.383,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "It was at a bar in the city.",
+        "startTime": 14.861,
+        "endTime": 16.804,
+        "duration": 1.943,
+        "sentenceIndex": 159
+      }
+    ],
+    "totalDuration": 16.804082,
+    "measuredDuration": 16.804082
+  },
+  {
+    "bundleId": "b32",
+    "bundleIndex": 32,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-32.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-32.mp3",
+    "sentences": [
+      {
+        "text": "Jordan feels nervous.",
+        "startTime": 0,
+        "endTime": 1.646,
+        "duration": 1.646,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "The bars are loud and many people are there.",
+        "startTime": 1.646,
+        "endTime": 5.096,
+        "duration": 3.45,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "The bars are crowded and many people are there.",
+        "startTime": 5.096,
+        "endTime": 8.781,
+        "duration": 3.685,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "Bars are places where she feels lost and alone.",
+        "startTime": 8.781,
+        "endTime": 12.466,
+        "duration": 3.685,
+        "sentenceIndex": 163
+      },
+      {
+        "text": "But she chose to go.",
+        "startTime": 12.466,
+        "endTime": 14.034,
+        "duration": 1.568,
+        "sentenceIndex": 164
+      }
+    ],
+    "totalDuration": 14.034014,
+    "measuredDuration": 14.034014
+  },
+  {
+    "bundleId": "b33",
+    "bundleIndex": 33,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-33.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-33.mp3",
+    "sentences": [
+      {
+        "text": "She wanted to meet new people and make friends.",
+        "startTime": 0,
+        "endTime": 3.257,
+        "duration": 3.257,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "She wanted to make friends and build connections.",
+        "startTime": 3.257,
+        "endTime": 6.654,
+        "duration": 3.396,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "She wanted to show that she was part of the group.",
+        "startTime": 6.654,
+        "endTime": 10.119,
+        "duration": 3.465,
+        "sentenceIndex": 167
+      },
+      {
+        "text": "Jordan brings her keyboard to the bar.",
+        "startTime": 10.119,
+        "endTime": 12.753,
+        "duration": 2.634,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "She puts it on a table.",
+        "startTime": 12.753,
+        "endTime": 14.347,
+        "duration": 1.594,
+        "sentenceIndex": 169
+      }
+    ],
+    "totalDuration": 14.346825,
+    "measuredDuration": 14.346825
+  },
+  {
+    "bundleId": "b34",
+    "bundleIndex": 34,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-34.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-34.mp3",
+    "sentences": [
+      {
+        "text": "She waited for her friend to arrive.",
+        "startTime": 0,
+        "endTime": 3.038,
+        "duration": 3.038,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "People walk by and look around.",
+        "startTime": 3.038,
+        "endTime": 5.654,
+        "duration": 2.616,
+        "sentenceIndex": 171
+      },
+      {
+        "text": "They looked at her and smiled.",
+        "startTime": 5.654,
+        "endTime": 8.185,
+        "duration": 2.531,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "They looked uncomfortable and did not smile.",
+        "startTime": 8.185,
+        "endTime": 11.898,
+        "duration": 3.713,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "But then a person came close.",
+        "startTime": 11.898,
+        "endTime": 14.345,
+        "duration": 2.447,
+        "sentenceIndex": 174
+      }
+    ],
+    "totalDuration": 14.345057,
+    "measuredDuration": 14.345057
+  },
+  {
+    "bundleId": "b35",
+    "bundleIndex": 35,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-35.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-35.mp3",
+    "sentences": [
+      {
+        "text": "It was a woman called Sarah.",
+        "startTime": 0,
+        "endTime": 2.197,
+        "duration": 2.197,
+        "sentenceIndex": 175
+      },
+      {
+        "text": "She was a lawyer and helped many people.",
+        "startTime": 2.197,
+        "endTime": 5.335,
+        "duration": 3.138,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "She asked to try the keyboard and play music.",
+        "startTime": 5.335,
+        "endTime": 8.865,
+        "duration": 3.53,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "Jordan said yes and smiled.",
+        "startTime": 8.865,
+        "endTime": 10.983,
+        "duration": 2.118,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "Sarah types a message.",
+        "startTime": 10.983,
+        "endTime": 12.709,
+        "duration": 1.726,
+        "sentenceIndex": 179
+      }
+    ],
+    "totalDuration": 12.709002,
+    "measuredDuration": 12.709002
+  },
+  {
+    "bundleId": "b36",
+    "bundleIndex": 36,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-36.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-36.mp3",
+    "sentences": [
+      {
+        "text": "Jordan read it and then responded.",
+        "startTime": 0,
+        "endTime": 2.997,
+        "duration": 2.997,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "They had a talk and shared their ideas.",
+        "startTime": 2.997,
+        "endTime": 6.434,
+        "duration": 3.437,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "Sarah is interested in many things.",
+        "startTime": 6.434,
+        "endTime": 9.518,
+        "duration": 3.085,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "Sarah is respectful and kind to everyone.",
+        "startTime": 9.518,
+        "endTime": 13.132,
+        "duration": 3.614,
+        "sentenceIndex": 183
+      },
+      {
+        "text": "Sarah saw that Jordan is important.",
+        "startTime": 13.132,
+        "endTime": 16.217,
+        "duration": 3.085,
+        "sentenceIndex": 184
+      }
+    ],
+    "totalDuration": 16.216689,
+    "measuredDuration": 16.216689
+  },
+  {
+    "bundleId": "b37",
+    "bundleIndex": 37,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-37.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-37.mp3",
+    "sentences": [
+      {
+        "text": "Sarah tells Jordan about jobs at her law firm.",
+        "startTime": 0,
+        "endTime": 3.47,
+        "duration": 3.47,
+        "sentenceIndex": 185
+      },
+      {
+        "text": "She told Jordan about the summer programs and they talked.",
+        "startTime": 3.47,
+        "endTime": 7.845,
+        "duration": 4.375,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "She told Jordan that she should apply for a job.",
+        "startTime": 7.845,
+        "endTime": 11.466,
+        "duration": 3.621,
+        "sentenceIndex": 187
+      },
+      {
+        "text": "Jordan feels excited.",
+        "startTime": 11.466,
+        "endTime": 13.05,
+        "duration": 1.584,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "She felt hopeful and happy about the future.",
+        "startTime": 13.05,
+        "endTime": 16.37,
+        "duration": 3.319,
+        "sentenceIndex": 189
+      }
+    ],
+    "totalDuration": 16.369524,
+    "measuredDuration": 16.369524
+  },
+  {
+    "bundleId": "b38",
+    "bundleIndex": 38,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-38.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-38.mp3",
+    "sentences": [
+      {
+        "text": "She felt happy when doors opened for her.",
+        "startTime": 0,
+        "endTime": 3.242,
+        "duration": 3.242,
+        "sentenceIndex": 190
+      },
+      {
+        "text": "More people come to talk to Jordan.",
+        "startTime": 3.242,
+        "endTime": 6.009,
+        "duration": 2.767,
+        "sentenceIndex": 191
+      },
+      {
+        "text": "They used the keyboard and typed many words.",
+        "startTime": 6.009,
+        "endTime": 9.488,
+        "duration": 3.479,
+        "sentenceIndex": 192
+      },
+      {
+        "text": "They asked many questions and wanted to know more.",
+        "startTime": 9.488,
+        "endTime": 13.442,
+        "duration": 3.953,
+        "sentenceIndex": 193
+      },
+      {
+        "text": "They are curious about many things and want to learn.",
+        "startTime": 13.442,
+        "endTime": 17.632,
+        "duration": 4.191,
+        "sentenceIndex": 194
+      }
+    ],
+    "totalDuration": 17.632404,
+    "measuredDuration": 17.632404
+  },
+  {
+    "bundleId": "b39",
+    "bundleIndex": 39,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-39.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-39.mp3",
+    "sentences": [
+      {
+        "text": "They were kind and helped others.",
+        "startTime": 0,
+        "endTime": 2.36,
+        "duration": 2.36,
+        "sentenceIndex": 195
+      },
+      {
+        "text": "Jordan feels happy because she connects with others.",
+        "startTime": 2.36,
+        "endTime": 6.078,
+        "duration": 3.718,
+        "sentenceIndex": 196
+      },
+      {
+        "text": "She felt happy because she belonged with her friends.",
+        "startTime": 6.078,
+        "endTime": 9.868,
+        "duration": 3.79,
+        "sentenceIndex": 197
+      },
+      {
+        "text": "She felt happy because she was doing well.",
+        "startTime": 9.868,
+        "endTime": 12.871,
+        "duration": 3.003,
+        "sentenceIndex": 198
+      },
+      {
+        "text": "But some people were not kind.",
+        "startTime": 12.871,
+        "endTime": 15.017,
+        "duration": 2.145,
+        "sentenceIndex": 199
+      }
+    ],
+    "totalDuration": 15.016735,
+    "measuredDuration": 15.016735
+  },
+  {
+    "bundleId": "b40",
+    "bundleIndex": 40,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-40.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-40.mp3",
+    "sentences": [
+      {
+        "text": "A man came and shook Jordan's hand.",
+        "startTime": 0,
+        "endTime": 3.14,
+        "duration": 3.14,
+        "sentenceIndex": 200
+      },
+      {
+        "text": "He held it for a long time and felt tired.",
+        "startTime": 3.14,
+        "endTime": 6.908,
+        "duration": 3.768,
+        "sentenceIndex": 201
+      },
+      {
+        "text": "He talks and someone types for him.",
+        "startTime": 6.908,
+        "endTime": 10.047,
+        "duration": 3.14,
+        "sentenceIndex": 202
+      },
+      {
+        "text": "He said Jordan is inspiring.",
+        "startTime": 10.047,
+        "endTime": 12.559,
+        "duration": 2.512,
+        "sentenceIndex": 203
+      },
+      {
+        "text": "Jordan felt bad inside.",
+        "startTime": 12.559,
+        "endTime": 14.622,
+        "duration": 2.063,
+        "sentenceIndex": 204
+      }
+    ],
+    "totalDuration": 14.622404,
+    "measuredDuration": 14.622404
+  },
+  {
+    "bundleId": "b41",
+    "bundleIndex": 41,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-41.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-41.mp3",
+    "sentences": [
+      {
+        "text": "People with disabilities often hear \"inspiring\" but feel it means pity.",
+        "startTime": 0,
+        "endTime": 5.599,
+        "duration": 5.599,
+        "sentenceIndex": 205
+      },
+      {
+        "text": "Sometimes, when a person feels uncomfortable, they use the wrong words.",
+        "startTime": 5.599,
+        "endTime": 11.497,
+        "duration": 5.899,
+        "sentenceIndex": 206
+      },
+      {
+        "text": "Jordan smiled and was polite.",
+        "startTime": 11.497,
+        "endTime": 13.784,
+        "duration": 2.287,
+        "sentenceIndex": 207
+      },
+      {
+        "text": "She says thank you to him.",
+        "startTime": 13.784,
+        "endTime": 15.834,
+        "duration": 2.05,
+        "sentenceIndex": 208
+      },
+      {
+        "text": "She moved on and felt better.",
+        "startTime": 15.834,
+        "endTime": 18.121,
+        "duration": 2.287,
+        "sentenceIndex": 209
+      }
+    ],
+    "totalDuration": 18.120998,
+    "measuredDuration": 18.120998
+  },
+  {
+    "bundleId": "b42",
+    "bundleIndex": 42,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-42.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-42.mp3",
+    "sentences": [
+      {
+        "text": "She found other people to talk to and feel better.",
+        "startTime": 0,
+        "endTime": 4.204,
+        "duration": 4.204,
+        "sentenceIndex": 210
+      },
+      {
+        "text": "People saw her as a person and not just an inspiration.",
+        "startTime": 4.204,
+        "endTime": 8.827,
+        "duration": 4.624,
+        "sentenceIndex": 211
+      },
+      {
+        "text": "People respected her and liked her very much.",
+        "startTime": 8.827,
+        "endTime": 12.611,
+        "duration": 3.783,
+        "sentenceIndex": 212
+      },
+      {
+        "text": "People valued her and cared for her feelings.",
+        "startTime": 12.611,
+        "endTime": 16.394,
+        "duration": 3.783,
+        "sentenceIndex": 213
+      },
+      {
+        "text": "After the event, Jordan feels happy and full of energy.",
+        "startTime": 16.394,
+        "endTime": 21.168,
+        "duration": 4.774,
+        "sentenceIndex": 214
+      }
+    ],
+    "totalDuration": 21.167574,
+    "measuredDuration": 21.167574
+  },
+  {
+    "bundleId": "b43",
+    "bundleIndex": 43,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-43.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-43.mp3",
+    "sentences": [
+      {
+        "text": "She keeps making new friends and growing her social circle.",
+        "startTime": 0,
+        "endTime": 4.888,
+        "duration": 4.888,
+        "sentenceIndex": 215
+      },
+      {
+        "text": "Coworkers use the keyboard before and after meetings.",
+        "startTime": 4.888,
+        "endTime": 9.28,
+        "duration": 4.391,
+        "sentenceIndex": 216
+      },
+      {
+        "text": "New friends in coffee shops say hello and share names.",
+        "startTime": 9.28,
+        "endTime": 13.754,
+        "duration": 4.474,
+        "sentenceIndex": 217
+      },
+      {
+        "text": "Sometimes people walk away or say mean things.",
+        "startTime": 13.754,
+        "endTime": 17.565,
+        "duration": 3.811,
+        "sentenceIndex": 218
+      },
+      {
+        "text": "Jordan learns to ignore them.",
+        "startTime": 17.565,
+        "endTime": 19.968,
+        "duration": 2.403,
+        "sentenceIndex": 219
+      }
+    ],
+    "totalDuration": 19.967823,
+    "measuredDuration": 19.967823
+  },
+  {
+    "bundleId": "b44",
+    "bundleIndex": 44,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-44.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-44.mp3",
+    "sentences": [
+      {
+        "text": "Most people are kind and want to talk in a new way.",
+        "startTime": 0,
+        "endTime": 3.853,
+        "duration": 3.853,
+        "sentenceIndex": 220
+      },
+      {
+        "text": "Jordan faces discrimination and feels very sad.",
+        "startTime": 3.853,
+        "endTime": 7.404,
+        "duration": 3.551,
+        "sentenceIndex": 221
+      },
+      {
+        "text": "But she continued to fight and did not give up.",
+        "startTime": 7.404,
+        "endTime": 10.955,
+        "duration": 3.551,
+        "sentenceIndex": 222
+      },
+      {
+        "text": "She keeps showing that she is good.",
+        "startTime": 10.955,
+        "endTime": 13.6,
+        "duration": 2.644,
+        "sentenceIndex": 223
+      },
+      {
+        "text": "She keeps succeeding and feels happy about it.",
+        "startTime": 13.6,
+        "endTime": 17.075,
+        "duration": 3.475,
+        "sentenceIndex": 224
+      }
+    ],
+    "totalDuration": 17.074989,
+    "measuredDuration": 17.074989
+  },
+  {
+    "bundleId": "b45",
+    "bundleIndex": 45,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-45.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-45.mp3",
+    "sentences": [
+      {
+        "text": "She became a leader and helped many people.",
+        "startTime": 0,
+        "endTime": 2.918,
+        "duration": 2.918,
+        "sentenceIndex": 225
+      },
+      {
+        "text": "She became a mentor and helped many people.",
+        "startTime": 2.918,
+        "endTime": 5.836,
+        "duration": 2.918,
+        "sentenceIndex": 226
+      },
+      {
+        "text": "She helped people who had problems with discrimination.",
+        "startTime": 5.836,
+        "endTime": 9.568,
+        "duration": 3.732,
+        "sentenceIndex": 227
+      },
+      {
+        "text": "She made a place where everyone feels welcome and happy.",
+        "startTime": 9.568,
+        "endTime": 13.368,
+        "duration": 3.8,
+        "sentenceIndex": 228
+      },
+      {
+        "text": "She built a team that respects each other.",
+        "startTime": 13.368,
+        "endTime": 16.217,
+        "duration": 2.85,
+        "sentenceIndex": 229
+      }
+    ],
+    "totalDuration": 16.217483,
+    "measuredDuration": 16.217483
+  },
+  {
+    "bundleId": "b46",
+    "bundleIndex": 46,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-46.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-46.mp3",
+    "sentences": [
+      {
+        "text": "She showed that being different makes them strong.",
+        "startTime": 0,
+        "endTime": 3.682,
+        "duration": 3.682,
+        "sentenceIndex": 230
+      },
+      {
+        "text": "One day, Jordan speaks at a big conference.",
+        "startTime": 3.682,
+        "endTime": 6.998,
+        "duration": 3.317,
+        "sentenceIndex": 231
+      },
+      {
+        "text": "She feels nervous when she talks to new people.",
+        "startTime": 6.998,
+        "endTime": 10.46,
+        "duration": 3.461,
+        "sentenceIndex": 232
+      },
+      {
+        "text": "She never spoke in front of many people before.",
+        "startTime": 10.46,
+        "endTime": 13.921,
+        "duration": 3.461,
+        "sentenceIndex": 233
+      },
+      {
+        "text": "But she said yes.",
+        "startTime": 13.921,
+        "endTime": 15.172,
+        "duration": 1.252,
+        "sentenceIndex": 234
+      }
+    ],
+    "totalDuration": 15.172472,
+    "measuredDuration": 15.172472
+  },
+  {
+    "bundleId": "b47",
+    "bundleIndex": 47,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-47.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-47.mp3",
+    "sentences": [
+      {
+        "text": "She wants to share her story with others.",
+        "startTime": 0,
+        "endTime": 3.112,
+        "duration": 3.112,
+        "sentenceIndex": 235
+      },
+      {
+        "text": "She wanted to help and inspire other people.",
+        "startTime": 3.112,
+        "endTime": 6.451,
+        "duration": 3.339,
+        "sentenceIndex": 236
+      },
+      {
+        "text": "She wanted to show that people can overcome discrimination.",
+        "startTime": 6.451,
+        "endTime": 10.929,
+        "duration": 4.478,
+        "sentenceIndex": 237
+      },
+      {
+        "text": "Jordan stood on the stage and looked at the crowd.",
+        "startTime": 10.929,
+        "endTime": 14.724,
+        "duration": 3.795,
+        "sentenceIndex": 238
+      },
+      {
+        "text": "She saw many people and they came from different places.",
+        "startTime": 14.724,
+        "endTime": 18.974,
+        "duration": 4.25,
+        "sentenceIndex": 239
+      }
+    ],
+    "totalDuration": 18.974014,
+    "measuredDuration": 18.974014
+  },
+  {
+    "bundleId": "b48",
+    "bundleIndex": 48,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-48.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-48.mp3",
+    "sentences": [
+      {
+        "text": "She saw people who faced unfair treatment.",
+        "startTime": 0,
+        "endTime": 3.326,
+        "duration": 3.326,
+        "sentenceIndex": 240
+      },
+      {
+        "text": "She saw people fighting for change and hope.",
+        "startTime": 3.326,
+        "endTime": 6.81,
+        "duration": 3.484,
+        "sentenceIndex": 241
+      },
+      {
+        "text": "She took a deep breath and started to talk.",
+        "startTime": 6.81,
+        "endTime": 10.216,
+        "duration": 3.405,
+        "sentenceIndex": 242
+      },
+      {
+        "text": "She tells her story.",
+        "startTime": 10.216,
+        "endTime": 11.799,
+        "duration": 1.584,
+        "sentenceIndex": 243
+      },
+      {
+        "text": "She talked about the unfair treatment she faced.",
+        "startTime": 11.799,
+        "endTime": 15.601,
+        "duration": 3.801,
+        "sentenceIndex": 244
+      }
+    ],
+    "totalDuration": 15.60059,
+    "measuredDuration": 15.60059
+  },
+  {
+    "bundleId": "b49",
+    "bundleIndex": 49,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-49.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-49.mp3",
+    "sentences": [
+      {
+        "text": "She talked about the times she wanted to give up.",
+        "startTime": 0,
+        "endTime": 3.793,
+        "duration": 3.793,
+        "sentenceIndex": 245
+      },
+      {
+        "text": "She talked about the people who helped her.",
+        "startTime": 3.793,
+        "endTime": 7.122,
+        "duration": 3.329,
+        "sentenceIndex": 246
+      },
+      {
+        "text": "She told how she overcame her problems and felt strong.",
+        "startTime": 7.122,
+        "endTime": 11.38,
+        "duration": 4.258,
+        "sentenceIndex": 247
+      },
+      {
+        "text": "She told how she succeeded and felt happy.",
+        "startTime": 11.38,
+        "endTime": 14.632,
+        "duration": 3.251,
+        "sentenceIndex": 248
+      },
+      {
+        "text": "When Jordan finished speaking, the audience stood up and clapped.",
+        "startTime": 14.632,
+        "endTime": 19.814,
+        "duration": 5.182,
+        "sentenceIndex": 249
+      }
+    ],
+    "totalDuration": 19.813673,
+    "measuredDuration": 19.813673
+  },
+  {
+    "bundleId": "b50",
+    "bundleIndex": 50,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-50.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-50.mp3",
+    "sentences": [
+      {
+        "text": "They clapped and smiled because they were happy.",
+        "startTime": 0,
+        "endTime": 3.663,
+        "duration": 3.663,
+        "sentenceIndex": 250
+      },
+      {
+        "text": "They cheered loudly and felt very happy.",
+        "startTime": 3.663,
+        "endTime": 6.715,
+        "duration": 3.052,
+        "sentenceIndex": 251
+      },
+      {
+        "text": "They thanked her for helping them.",
+        "startTime": 6.715,
+        "endTime": 9.309,
+        "duration": 2.594,
+        "sentenceIndex": 252
+      },
+      {
+        "text": "Jordan felt joy in her heart.",
+        "startTime": 9.309,
+        "endTime": 11.522,
+        "duration": 2.213,
+        "sentenceIndex": 253
+      },
+      {
+        "text": "She shares her story and feels happy.",
+        "startTime": 11.522,
+        "endTime": 14.345,
+        "duration": 2.823,
+        "sentenceIndex": 254
+      }
+    ],
+    "totalDuration": 14.345351,
+    "measuredDuration": 14.345351
+  },
+  {
+    "bundleId": "b51",
+    "bundleIndex": 51,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-51.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-51.mp3",
+    "sentences": [
+      {
+        "text": "She inspired many people and gave them hope.",
+        "startTime": 0,
+        "endTime": 3.208,
+        "duration": 3.208,
+        "sentenceIndex": 255
+      },
+      {
+        "text": "She showed that people can overcome discrimination.",
+        "startTime": 3.208,
+        "endTime": 6.927,
+        "duration": 3.719,
+        "sentenceIndex": 256
+      },
+      {
+        "text": "After the conference, a young woman talks to Jordan.",
+        "startTime": 6.927,
+        "endTime": 10.869,
+        "duration": 3.942,
+        "sentenceIndex": 257
+      },
+      {
+        "text": "She cries because she feels sad.",
+        "startTime": 10.869,
+        "endTime": 13.202,
+        "duration": 2.333,
+        "sentenceIndex": 258
+      },
+      {
+        "text": "She told Jordan that she also faced unfair treatment.",
+        "startTime": 13.202,
+        "endTime": 17.067,
+        "duration": 3.865,
+        "sentenceIndex": 259
+      }
+    ],
+    "totalDuration": 17.067143,
+    "measuredDuration": 17.067143
+  },
+  {
+    "bundleId": "b52",
+    "bundleIndex": 52,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-52.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-52.mp3",
+    "sentences": [
+      {
+        "text": "She told Jordan she wanted to give up.",
+        "startTime": 0,
+        "endTime": 2.75,
+        "duration": 2.75,
+        "sentenceIndex": 260
+      },
+      {
+        "text": "Hearing Jordan's story gives her hope.",
+        "startTime": 2.75,
+        "endTime": 5.5,
+        "duration": 2.75,
+        "sentenceIndex": 261
+      },
+      {
+        "text": "It gave her courage and made her feel strong.",
+        "startTime": 5.5,
+        "endTime": 8.756,
+        "duration": 3.256,
+        "sentenceIndex": 262
+      },
+      {
+        "text": "It made her want to fight and not give up.",
+        "startTime": 8.756,
+        "endTime": 11.795,
+        "duration": 3.039,
+        "sentenceIndex": 263
+      },
+      {
+        "text": "Jordan hugged the young woman and smiled at her.",
+        "startTime": 11.795,
+        "endTime": 15.269,
+        "duration": 3.473,
+        "sentenceIndex": 264
+      }
+    ],
+    "totalDuration": 15.268526,
+    "measuredDuration": 15.268526
+  },
+  {
+    "bundleId": "b53",
+    "bundleIndex": 53,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-53.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-53.mp3",
+    "sentences": [
+      {
+        "text": "She told her that she is not alone.",
+        "startTime": 0,
+        "endTime": 2.401,
+        "duration": 2.401,
+        "sentenceIndex": 265
+      },
+      {
+        "text": "She told her that she can succeed.",
+        "startTime": 2.401,
+        "endTime": 4.734,
+        "duration": 2.333,
+        "sentenceIndex": 266
+      },
+      {
+        "text": "She said that they can overcome discrimination together.",
+        "startTime": 4.734,
+        "endTime": 8.576,
+        "duration": 3.842,
+        "sentenceIndex": 267
+      },
+      {
+        "text": "She told her to not give up.",
+        "startTime": 8.576,
+        "endTime": 10.498,
+        "duration": 1.921,
+        "sentenceIndex": 268
+      },
+      {
+        "text": "That night, Jordan thought about her trip and felt happy.",
+        "startTime": 10.498,
+        "endTime": 14.558,
+        "duration": 4.061,
+        "sentenceIndex": 269
+      }
+    ],
+    "totalDuration": 14.558413,
+    "measuredDuration": 14.558413
+  },
+  {
+    "bundleId": "b54",
+    "bundleIndex": 54,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-54.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-54.mp3",
+    "sentences": [
+      {
+        "text": "She thinks about all the unfairness she faced.",
+        "startTime": 0,
+        "endTime": 2.999,
+        "duration": 2.999,
+        "sentenceIndex": 270
+      },
+      {
+        "text": "She thinks about all the times she wanted to quit.",
+        "startTime": 2.999,
+        "endTime": 6.259,
+        "duration": 3.26,
+        "sentenceIndex": 271
+      },
+      {
+        "text": "She thinks about all the people who doubt her.",
+        "startTime": 6.259,
+        "endTime": 9.258,
+        "duration": 2.999,
+        "sentenceIndex": 272
+      },
+      {
+        "text": "But she also thinks about how far she comes.",
+        "startTime": 9.258,
+        "endTime": 12.127,
+        "duration": 2.869,
+        "sentenceIndex": 273
+      },
+      {
+        "text": "She thinks about all she has done.",
+        "startTime": 12.127,
+        "endTime": 14.344,
+        "duration": 2.217,
+        "sentenceIndex": 274
+      }
+    ],
+    "totalDuration": 14.343968,
+    "measuredDuration": 14.343968
+  },
+  {
+    "bundleId": "b55",
+    "bundleIndex": 55,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-55.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-55.mp3",
+    "sentences": [
+      {
+        "text": "She thought about how many people she helped.",
+        "startTime": 0,
+        "endTime": 3.226,
+        "duration": 3.226,
+        "sentenceIndex": 275
+      },
+      {
+        "text": "Jordan knows something important now.",
+        "startTime": 3.226,
+        "endTime": 5.879,
+        "duration": 2.653,
+        "sentenceIndex": 276
+      },
+      {
+        "text": "The hurt from discrimination made her feel bad.",
+        "startTime": 5.879,
+        "endTime": 9.249,
+        "duration": 3.37,
+        "sentenceIndex": 277
+      },
+      {
+        "text": "It made her doubt herself and feel unsure.",
+        "startTime": 9.249,
+        "endTime": 12.26,
+        "duration": 3.011,
+        "sentenceIndex": 278
+      },
+      {
+        "text": "It made her feel small and weak.",
+        "startTime": 12.26,
+        "endTime": 14.555,
+        "duration": 2.294,
+        "sentenceIndex": 279
+      }
+    ],
+    "totalDuration": 14.554807,
+    "measuredDuration": 14.554807
+  },
+  {
+    "bundleId": "b56",
+    "bundleIndex": 56,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-56.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-56.mp3",
+    "sentences": [
+      {
+        "text": "But it also made her stronger and more brave.",
+        "startTime": 0,
+        "endTime": 3.377,
+        "duration": 3.377,
+        "sentenceIndex": 280
+      },
+      {
+        "text": "It made her more strong and determined.",
+        "startTime": 3.377,
+        "endTime": 6.304,
+        "duration": 2.927,
+        "sentenceIndex": 281
+      },
+      {
+        "text": "It made her kinder and more caring.",
+        "startTime": 6.304,
+        "endTime": 8.931,
+        "duration": 2.627,
+        "sentenceIndex": 282
+      },
+      {
+        "text": "It made her who she is now.",
+        "startTime": 8.931,
+        "endTime": 10.957,
+        "duration": 2.026,
+        "sentenceIndex": 283
+      },
+      {
+        "text": "Jordan knew that unfair treatment still happens.",
+        "startTime": 10.957,
+        "endTime": 14.56,
+        "duration": 3.602,
+        "sentenceIndex": 284
+      }
+    ],
+    "totalDuration": 14.559796,
+    "measuredDuration": 14.559796
+  },
+  {
+    "bundleId": "b57",
+    "bundleIndex": 57,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-57.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-57.mp3",
+    "sentences": [
+      {
+        "text": "She knew there was more work to do.",
+        "startTime": 0,
+        "endTime": 2.196,
+        "duration": 2.196,
+        "sentenceIndex": 285
+      },
+      {
+        "text": "She knew she would have more problems ahead.",
+        "startTime": 2.196,
+        "endTime": 4.958,
+        "duration": 2.761,
+        "sentenceIndex": 286
+      },
+      {
+        "text": "But she knew she could win against them.",
+        "startTime": 4.958,
+        "endTime": 7.468,
+        "duration": 2.51,
+        "sentenceIndex": 287
+      },
+      {
+        "text": "She knew she could do well and succeed.",
+        "startTime": 7.468,
+        "endTime": 9.915,
+        "duration": 2.447,
+        "sentenceIndex": 288
+      },
+      {
+        "text": "She knew she could help people and make a change.",
+        "startTime": 9.915,
+        "endTime": 12.99,
+        "duration": 3.075,
+        "sentenceIndex": 289
+      }
+    ],
+    "totalDuration": 12.990499,
+    "measuredDuration": 12.990499
+  },
+  {
+    "bundleId": "b58",
+    "bundleIndex": 58,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-58.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-58.mp3",
+    "sentences": [
+      {
+        "text": "Jordan started her career and felt invisible.",
+        "startTime": 0,
+        "endTime": 3.111,
+        "duration": 3.111,
+        "sentenceIndex": 290
+      },
+      {
+        "text": "She feels like she does not belong anymore.",
+        "startTime": 3.111,
+        "endTime": 6.083,
+        "duration": 2.972,
+        "sentenceIndex": 291
+      },
+      {
+        "text": "But now she is a leader.",
+        "startTime": 6.083,
+        "endTime": 7.742,
+        "duration": 1.659,
+        "sentenceIndex": 292
+      },
+      {
+        "text": "Now she is a mentor and helps others.",
+        "startTime": 7.742,
+        "endTime": 10.299,
+        "duration": 2.558,
+        "sentenceIndex": 293
+      },
+      {
+        "text": "Now she is an inspiration for many people.",
+        "startTime": 10.299,
+        "endTime": 13.203,
+        "duration": 2.903,
+        "sentenceIndex": 294
+      }
+    ],
+    "totalDuration": 13.202653,
+    "measuredDuration": 13.202653
+  },
+  {
+    "bundleId": "b59",
+    "bundleIndex": 59,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/bundle-59.mp3",
+    "audioPath": "workplace-discrimination-1/A1/bundle-59.mp3",
+    "sentences": [
+      {
+        "text": "She overcame discrimination and felt strong.",
+        "startTime": 0,
+        "endTime": 3.425,
+        "duration": 3.425,
+        "sentenceIndex": 295
+      },
+      {
+        "text": "She proved that she is valuable.",
+        "startTime": 3.425,
+        "endTime": 5.916,
+        "duration": 2.491,
+        "sentenceIndex": 296
+      },
+      {
+        "text": "She achieved her dreams and felt very happy.",
+        "startTime": 5.916,
+        "endTime": 9.341,
+        "duration": 3.425,
+        "sentenceIndex": 297
+      },
+      {
+        "text": "She was just starting and felt excited.",
+        "startTime": 9.341,
+        "endTime": 12.376,
+        "duration": 3.036,
+        "sentenceIndex": 298
+      }
+    ],
+    "totalDuration": 12.376463,
+    "measuredDuration": 12.376463
+  }
+]
