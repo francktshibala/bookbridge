@@ -100,12 +100,19 @@ function CatalogContent() {
 
   const handleSelectBook = (book: UnifiedBook) => {
     // Phase 8: Unified routing - handle both Featured Books and Enhanced Books
-    if (isFeaturedBook(book) && book.slug) {
+    // Enhanced books (gutenberg-*) have bundles=0 and sentences=0, use chunk-based system
+    const isEnhancedBookType = (book.bundles === 0 && book.sentences === 0) || 
+                               (book.slug?.startsWith('gutenberg-') && (!book.bundles || book.bundles === 0)) ||
+                               isEnhancedBook(book);
+    
+    if (isEnhancedBookType) {
+      // Enhanced Books (chunk architecture) → /library/[id]/read
+      // Use slug as bookId for enhanced books (gutenberg-*)
+      const bookId = book.slug || book.id;
+      router.push(`/library/${bookId}/read`);
+    } else if (isFeaturedBook(book) && book.slug && book.bundles && book.bundles > 0) {
       // Featured Books (bundle architecture) → /read/[slug]
       router.push(`/read/${book.slug}`);
-    } else if (isEnhancedBook(book)) {
-      // Enhanced Books (chunk architecture) → /library/[id]/read
-      router.push(`/library/${book.id}/read`);
     } else {
       console.error('Unknown book architecture:', book);
     }

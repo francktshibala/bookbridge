@@ -44,6 +44,28 @@
   - `docs/research/CURRENT_BOOKS_IMPROVEMENT_RESEARCH.md` (4-week, $12.7K plan)
   - Updated codebase overview with implementation guides
 
+#### **`phase-3-stories` - Collection Reorganization & Classic Literature Expansion (Active)**
+- **Purpose**: Reorganize collections to honor classic literature origin, expand Classic Literature to 22+ books, create 5 themed modern collections
+- **Status**: ✅ **COMPLETE - Ready for merge to main**
+- **Completion Date**: 2025-12-12
+- **Implementation Plan**: `/docs/implementation/COLLECTION_REORGANIZATION_PLAN.md` - Complete step-by-step execution record
+- **Key Changes**:
+  - Classic Literature: Expanded from 10 to 22 books (added enhanced books from Enhanced Books Grid)
+  - Created 5 new modern collections: Starting Over (8), Breaking Barriers (8), Finding Home (7), Building Dreams (5), Making a Difference (6)
+  - Reassigned 32 Modern Voices stories to new themed collections
+  - Archived old collections (Quick Reads, Love Stories, Psychological Fiction, Gothic & Horror, Modern Voices)
+  - Updated catalog page to show only collections by default (no books until collection selected)
+  - Fixed routing for enhanced books (gutenberg-*) to use chunk-based system
+- **Files Modified**:
+  - `app/api/collections/route.ts` - Filter by `isPrimary: true`
+  - `components/catalog/CatalogBrowser.tsx` - Hide books when no collection selected
+  - `app/catalog/page.tsx` - Enhanced book routing fix
+- **Scripts Created**:
+  - `scripts/reorganize-collections.ts` - Main reorganization script
+  - `scripts/add-all-classics-to-collection.ts` - Add enhanced books to Classic Literature
+  - `scripts/add-tell-tale-heart-to-classics.ts` - Add Tell-Tale Heart
+- **Database Changes**: 6 primary collections, 22 books in Classic Literature, old collections archived
+
 #### **`feature/catalog-unification` - Catalog Unification (Active)**
 - **Purpose**: Unify book discovery into single catalog entry point
 - **Status**: ✅ **COMPLETE - All Phases Implemented** (Phases 1-9 complete, ready for production)

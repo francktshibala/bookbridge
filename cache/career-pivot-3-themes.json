@@ -1,0 +1,80 @@
+{
+  "themes": [
+    "career pivot",
+    "professional transformation",
+    "identity shift",
+    "mindset change",
+    "assumptions challenged",
+    "learning journey",
+    "financial risk",
+    "identity deconstruction"
+  ],
+  "emotionalMoments": [
+    {
+      "moment": "The Blank Moment",
+      "description": "Public exposure of knowledge gap",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "The Stereotype Shattered",
+      "description": "Honest admission of wrong thinking about engineers",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "\"I Wanted Her Superpower\"",
+      "description": "Desire awakened by seeing someone who represents potential",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "The Vow",
+      "description": "Determination to learn coding despite the challenges",
+      "emotionalWeight": "medium",
+      "source": "1"
+    },
+    {
+      "moment": "Financial Terror",
+      "description": "Fear of financial implications of career change",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Identity Deconstruction",
+      "description": "Struggle with redefining self and professional identity",
+      "emotionalWeight": "high",
+      "source": "1"
+    },
+    {
+      "moment": "Breakthrough Transformation",
+      "description": "Successful transition to a new career as a software engineer",
+      "emotionalWeight": "high",
+      "source": "1"
+    }
+  ],
+  "eslResonanceMultipliers": [
+    "Learning & Education Journeys",
+    "Overcoming 'Not Good Enough'",
+    "First-Time Courage",
+    "Building New Life",
+    "Persistence Despite Setbacks"
+  ],
+  "storyArc": {
+    "struggle": [
+      "Facing knowledge gaps during public speaking",
+      "Challenging preconceived notions about engineering",
+      "Navigating financial risks of bootcamp"
+    ],
+    "perseverance": [
+      "Commitment to learning despite setbacks",
+      "Balancing work and intensive coding bootcamp",
+      "Seeking support from peers and mentors"
+    ],
+    "breakthrough": [
+      "Graduating from bootcamp",
+      "Securing first software engineering role",
+      "Reconstructing professional identity"
+    ]
+  }
+}
