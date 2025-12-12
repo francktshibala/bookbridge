@@ -1,0 +1,1459 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-0.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "At fifteen, Maya was a quiet girl in the classroom.",
+        "startTime": 0,
+        "endTime": 3.97,
+        "duration": 3.97,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She never talks and does not say her thoughts.",
+        "startTime": 3.97,
+        "endTime": 7.415,
+        "duration": 3.445,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She thought she was too small but wanted to help.",
+        "startTime": 7.415,
+        "endTime": 11.085,
+        "duration": 3.67,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "When she learned about climate change, everything changed for her.",
+        "startTime": 11.085,
+        "endTime": 16.178,
+        "duration": 5.093,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Maya was eight when her teacher showed films about nature.",
+        "startTime": 16.178,
+        "endTime": 20.521,
+        "duration": 4.344,
+        "sentenceIndex": 4
+      }
+    ],
+    "totalDuration": 20.521361,
+    "measuredDuration": 20.521361
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-1.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "The films show plastic in the ocean and it is bad.",
+        "startTime": 0,
+        "endTime": 3.702,
+        "duration": 3.702,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "They showed polar bears and they had no food.",
+        "startTime": 3.702,
+        "endTime": 7.033,
+        "duration": 3.332,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "They showed forests that are burning.",
+        "startTime": 7.033,
+        "endTime": 9.773,
+        "duration": 2.739,
+        "sentenceIndex": 7
+      },
+      {
+        "text": "Maya cried when she watched all the movies.",
+        "startTime": 9.773,
+        "endTime": 12.956,
+        "duration": 3.184,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "Her classmates felt sad when they watched the films.",
+        "startTime": 12.956,
+        "endTime": 16.806,
+        "duration": 3.85,
+        "sentenceIndex": 9
+      }
+    ],
+    "totalDuration": 16.806145,
+    "measuredDuration": 16.806145
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-2.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "When the films stopped, her classmates thought about other things.",
+        "startTime": 0,
+        "endTime": 4.558,
+        "duration": 4.558,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "Maya cannot do that.",
+        "startTime": 4.558,
+        "endTime": 5.894,
+        "duration": 1.336,
+        "sentenceIndex": 11
+      },
+      {
+        "text": "The pictures stay in her head and make her think.",
+        "startTime": 5.894,
+        "endTime": 9.166,
+        "duration": 3.273,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "Maya thinks about climate change and feels worried.",
+        "startTime": 9.166,
+        "endTime": 12.572,
+        "duration": 3.406,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "She wondered if she has a future.",
+        "startTime": 12.572,
+        "endTime": 14.776,
+        "duration": 2.204,
+        "sentenceIndex": 14
+      }
+    ],
+    "totalDuration": 14.776327,
+    "measuredDuration": 14.776327
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-3.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "She kept her worries to herself because she did not talk much.",
+        "startTime": 0,
+        "endTime": 4.207,
+        "duration": 4.207,
+        "sentenceIndex": 15
+      },
+      {
+        "text": "That was not good for your health.",
+        "startTime": 4.207,
+        "endTime": 6.514,
+        "duration": 2.307,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "Maya feels very sad and becomes depressed.",
+        "startTime": 6.514,
+        "endTime": 9.364,
+        "duration": 2.85,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "She stopped going to school because she felt tired.",
+        "startTime": 9.364,
+        "endTime": 12.825,
+        "duration": 3.461,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "When Maya was home, her parents cared for her.",
+        "startTime": 12.825,
+        "endTime": 16.096,
+        "duration": 3.271,
+        "sentenceIndex": 19
+      }
+    ],
+    "totalDuration": 16.0961,
+    "measuredDuration": 16.0961
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-4.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "They talked because they had nothing else to do.",
+        "startTime": 0,
+        "endTime": 3.287,
+        "duration": 3.287,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "Maya told them what she worries about.",
+        "startTime": 3.287,
+        "endTime": 5.889,
+        "duration": 2.602,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "She told them about the problem with the climate.",
+        "startTime": 5.889,
+        "endTime": 9.244,
+        "duration": 3.355,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "She felt good when she shared her feelings.",
+        "startTime": 9.244,
+        "endTime": 12.189,
+        "duration": 2.944,
+        "sentenceIndex": 23
+      },
+      {
+        "text": "Her parents say everything will be all right for her.",
+        "startTime": 12.189,
+        "endTime": 15.818,
+        "duration": 3.629,
+        "sentenceIndex": 24
+      }
+    ],
+    "totalDuration": 15.818118,
+    "measuredDuration": 15.818118
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-5.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "That did not help, but it was expected.",
+        "startTime": 0,
+        "endTime": 2.733,
+        "duration": 2.733,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "It was good to talk and share feelings.",
+        "startTime": 2.733,
+        "endTime": 5.316,
+        "duration": 2.583,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "Maya talked a lot about climate change.",
+        "startTime": 5.316,
+        "endTime": 7.899,
+        "duration": 2.583,
+        "sentenceIndex": 27
+      },
+      {
+        "text": "She showed her parents pictures and charts.",
+        "startTime": 7.899,
+        "endTime": 10.747,
+        "duration": 2.848,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "She showed them movies and articles about the topic.",
+        "startTime": 10.747,
+        "endTime": 14.191,
+        "duration": 3.444,
+        "sentenceIndex": 29
+      }
+    ],
+    "totalDuration": 14.191429,
+    "measuredDuration": 14.191429
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-6.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "After some time, her parents began to listen.",
+        "startTime": 0,
+        "endTime": 3.324,
+        "duration": 3.324,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "Maya realized she can make a difference when she tries.",
+        "startTime": 3.324,
+        "endTime": 7.203,
+        "duration": 3.879,
+        "sentenceIndex": 31
+      },
+      {
+        "text": "Maya feels better when she thinks it is a waste of time.",
+        "startTime": 7.203,
+        "endTime": 11.153,
+        "duration": 3.95,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "I can do a lot of good with my life.",
+        "startTime": 11.153,
+        "endTime": 13.692,
+        "duration": 2.539,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "I still try to do that now.",
+        "startTime": 13.692,
+        "endTime": 15.596,
+        "duration": 1.904,
+        "sentenceIndex": 34
+      }
+    ],
+    "totalDuration": 15.596168,
+    "measuredDuration": 15.596168
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-7.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "Maya found out she could persuade people easily.",
+        "startTime": 0,
+        "endTime": 3.397,
+        "duration": 3.397,
+        "sentenceIndex": 35
+      },
+      {
+        "text": "Her mother stopped flying and changed her job.",
+        "startTime": 3.397,
+        "endTime": 6.652,
+        "duration": 3.255,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "Her father is a vegetarian now.",
+        "startTime": 6.652,
+        "endTime": 8.846,
+        "duration": 2.194,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "Over the years, her father had no more arguments.",
+        "startTime": 8.846,
+        "endTime": 12.463,
+        "duration": 3.617,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "Maya showed him many documentaries and he liked them.",
+        "startTime": 12.463,
+        "endTime": 16.214,
+        "duration": 3.751,
+        "sentenceIndex": 39
+      }
+    ],
+    "totalDuration": 16.213537,
+    "measuredDuration": 16.213537
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-8.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "They read books together and enjoy their time.",
+        "startTime": 0,
+        "endTime": 3.243,
+        "duration": 3.243,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Before that, her father did not know anything at all.",
+        "startTime": 3.243,
+        "endTime": 7.13,
+        "duration": 3.887,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "He thought the climate problem was fixed.",
+        "startTime": 7.13,
+        "endTime": 10.021,
+        "duration": 2.891,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "Maya changed her family and made them happy.",
+        "startTime": 10.021,
+        "endTime": 13.123,
+        "duration": 3.102,
+        "sentenceIndex": 43
+      },
+      {
+        "text": "Now she changes other people too.",
+        "startTime": 13.123,
+        "endTime": 15.45,
+        "duration": 2.327,
+        "sentenceIndex": 44
+      }
+    ],
+    "totalDuration": 15.44966,
+    "measuredDuration": 15.44966
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-9.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "One day in August, Maya painted a sign on wood.",
+        "startTime": 0,
+        "endTime": 3.781,
+        "duration": 3.781,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "She wrote facts that she thought everyone should know.",
+        "startTime": 3.781,
+        "endTime": 7.952,
+        "duration": 4.171,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "She took her bike and went to the parliament building.",
+        "startTime": 7.952,
+        "endTime": 12.124,
+        "duration": 4.171,
+        "sentenceIndex": 47
+      },
+      {
+        "text": "She sat alone and felt very lonely.",
+        "startTime": 12.124,
+        "endTime": 14.827,
+        "duration": 2.704,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "On the first day, she sat alone from morning until afternoon.",
+        "startTime": 14.827,
+        "endTime": 19.69,
+        "duration": 4.862,
+        "sentenceIndex": 49
+      }
+    ],
+    "totalDuration": 19.689524,
+    "measuredDuration": 19.689524
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-10.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "It was a normal day at school.",
+        "startTime": 0,
+        "endTime": 1.938,
+        "duration": 1.938,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "On the second day, people join her and have fun.",
+        "startTime": 1.938,
+        "endTime": 5.188,
+        "duration": 3.25,
+        "sentenceIndex": 51
+      },
+      {
+        "text": "There were people there all the time after that.",
+        "startTime": 5.188,
+        "endTime": 8.289,
+        "duration": 3.1,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "Maya kept her promise and struck every day.",
+        "startTime": 8.289,
+        "endTime": 11.066,
+        "duration": 2.778,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "She agreed to speak in front of many people.",
+        "startTime": 11.066,
+        "endTime": 13.908,
+        "duration": 2.842,
+        "sentenceIndex": 54
+      }
+    ],
+    "totalDuration": 13.90839,
+    "measuredDuration": 13.90839
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-11.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "Her parents do not want to help her.",
+        "startTime": 0,
+        "endTime": 2.659,
+        "duration": 2.659,
+        "sentenceIndex": 55
+      },
+      {
+        "text": "Maya was very quiet, so doctors said she had selective mutism.",
+        "startTime": 2.659,
+        "endTime": 7.388,
+        "duration": 4.729,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "Her parents tried to stop her, but she did not listen.",
+        "startTime": 7.388,
+        "endTime": 11.526,
+        "duration": 4.138,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "Maya is strong and she wants to succeed.",
+        "startTime": 11.526,
+        "endTime": 14.48,
+        "duration": 2.954,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "She said she does not change her mind when she is passionate.",
+        "startTime": 14.48,
+        "endTime": 18.985,
+        "duration": 4.505,
+        "sentenceIndex": 59
+      }
+    ],
+    "totalDuration": 18.985238,
+    "measuredDuration": 18.985238
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-12.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "Maya gave the speech in perfect English, but her family worried.",
+        "startTime": 0,
+        "endTime": 4.603,
+        "duration": 4.603,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "She invites the crowd to film her with their phones.",
+        "startTime": 4.603,
+        "endTime": 8.222,
+        "duration": 3.618,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "She asked them to share the message on social media.",
+        "startTime": 8.222,
+        "endTime": 11.84,
+        "duration": 3.618,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "Her father cried because he felt proud.",
+        "startTime": 11.84,
+        "endTime": 14.553,
+        "duration": 2.714,
+        "sentenceIndex": 63
+      },
+      {
+        "text": "Maya is quiet and does not want to change.",
+        "startTime": 14.553,
+        "endTime": 17.476,
+        "duration": 2.922,
+        "sentenceIndex": 64
+      }
+    ],
+    "totalDuration": 17.475918,
+    "measuredDuration": 17.475918
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-13.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "That was just who she was.",
+        "startTime": 0,
+        "endTime": 1.886,
+        "duration": 1.886,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "If she was like others, she would try to start a group.",
+        "startTime": 1.886,
+        "endTime": 6.027,
+        "duration": 4.141,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "But she cannot do that.",
+        "startTime": 6.027,
+        "endTime": 7.696,
+        "duration": 1.669,
+        "sentenceIndex": 67
+      },
+      {
+        "text": "She is not good with people and feels lonely.",
+        "startTime": 7.696,
+        "endTime": 10.961,
+        "duration": 3.265,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "So she did it by herself instead.",
+        "startTime": 10.961,
+        "endTime": 13.355,
+        "duration": 2.394,
+        "sentenceIndex": 69
+      }
+    ],
+    "totalDuration": 13.355397,
+    "measuredDuration": 13.355397
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-14.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "Maya is active on climate and she is no longer lonely.",
+        "startTime": 0,
+        "endTime": 4.049,
+        "duration": 4.049,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "She is not silent anymore.",
+        "startTime": 4.049,
+        "endTime": 5.998,
+        "duration": 1.949,
+        "sentenceIndex": 71
+      },
+      {
+        "text": "She is not so sad now.",
+        "startTime": 5.998,
+        "endTime": 7.648,
+        "duration": 1.65,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "She was busy and tried to make a difference.",
+        "startTime": 7.648,
+        "endTime": 10.947,
+        "duration": 3.299,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "She enjoys herself and feels happy.",
+        "startTime": 10.947,
+        "endTime": 13.571,
+        "duration": 2.624,
+        "sentenceIndex": 74
+      }
+    ],
+    "totalDuration": 13.571134,
+    "measuredDuration": 13.571134
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-15.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "Maya said it will be very big around the world.",
+        "startTime": 0,
+        "endTime": 3.448,
+        "duration": 3.448,
+        "sentenceIndex": 75
+      },
+      {
+        "text": "Hundreds of thousands of children strike from school for a better future.",
+        "startTime": 3.448,
+        "endTime": 8.803,
+        "duration": 5.355,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "They say we will not accept this anymore.",
+        "startTime": 8.803,
+        "endTime": 11.811,
+        "duration": 3.008,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "I think we are just seeing the start now.",
+        "startTime": 11.811,
+        "endTime": 14.819,
+        "duration": 3.008,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "I think change is coming soon and it feels good.",
+        "startTime": 14.819,
+        "endTime": 18.34,
+        "duration": 3.521,
+        "sentenceIndex": 79
+      }
+    ],
+    "totalDuration": 18.339751,
+    "measuredDuration": 18.339751
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-16.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "People stand up for their future and want change.",
+        "startTime": 0,
+        "endTime": 3.444,
+        "duration": 3.444,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "Maya went back to being a teenager again.",
+        "startTime": 3.444,
+        "endTime": 6.327,
+        "duration": 2.882,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "She said she looks forward to it.",
+        "startTime": 6.327,
+        "endTime": 8.646,
+        "duration": 2.32,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "I want to see all the pictures the next day.",
+        "startTime": 8.646,
+        "endTime": 11.739,
+        "duration": 3.093,
+        "sentenceIndex": 83
+      },
+      {
+        "text": "It will be fun and exciting for everyone.",
+        "startTime": 11.739,
+        "endTime": 14.621,
+        "duration": 2.882,
+        "sentenceIndex": 84
+      }
+    ],
+    "totalDuration": 14.621474,
+    "measuredDuration": 14.621474
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-17.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "Maya was not the only young person who helped others.",
+        "startTime": 0,
+        "endTime": 3.916,
+        "duration": 3.916,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "Emma was eleven years old and felt frustrated.",
+        "startTime": 3.916,
+        "endTime": 7.315,
+        "duration": 3.399,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "Every book in her class has white boys and their dogs.",
+        "startTime": 7.315,
+        "endTime": 11.305,
+        "duration": 3.99,
+        "sentenceIndex": 87
+      },
+      {
+        "text": "Emma reads five books in one year.",
+        "startTime": 11.305,
+        "endTime": 13.817,
+        "duration": 2.512,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "There are no characters who look like her.",
+        "startTime": 13.817,
+        "endTime": 16.92,
+        "duration": 3.103,
+        "sentenceIndex": 89
+      }
+    ],
+    "totalDuration": 16.920317,
+    "measuredDuration": 16.920317
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-18.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "Emma saw that this pattern happened often.",
+        "startTime": 0,
+        "endTime": 2.922,
+        "duration": 2.922,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "She feels frustrated when things do not go well.",
+        "startTime": 2.922,
+        "endTime": 6.262,
+        "duration": 3.34,
+        "sentenceIndex": 91
+      },
+      {
+        "text": "Emma liked the stories and her teacher, but she wanted more.",
+        "startTime": 6.262,
+        "endTime": 10.587,
+        "duration": 4.325,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "She wanted to see other people and their stories.",
+        "startTime": 10.587,
+        "endTime": 13.997,
+        "duration": 3.41,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "Emma has three choices.",
+        "startTime": 13.997,
+        "endTime": 15.597,
+        "duration": 1.6,
+        "sentenceIndex": 94
+      }
+    ],
+    "totalDuration": 15.597211,
+    "measuredDuration": 15.597211
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-19.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "Option one: focus on herself and get more books.",
+        "startTime": 0,
+        "endTime": 3.692,
+        "duration": 3.692,
+        "sentenceIndex": 95
+      },
+      {
+        "text": "Option two: find authors and ask them to write more books like her.",
+        "startTime": 3.692,
+        "endTime": 8.766,
+        "duration": 5.074,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "Emma chose option three and changed the system.",
+        "startTime": 8.766,
+        "endTime": 12.185,
+        "duration": 3.419,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "Emma started a campaign to collect and give one thousand books.",
+        "startTime": 12.185,
+        "endTime": 16.768,
+        "duration": 4.583,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "She named it the Thousand Books campaign.",
+        "startTime": 16.768,
+        "endTime": 19.751,
+        "duration": 2.983,
+        "sentenceIndex": 99
+      }
+    ],
+    "totalDuration": 19.750567,
+    "measuredDuration": 19.750567
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-20.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "Emma reached her goal and felt very happy.",
+        "startTime": 0,
+        "endTime": 2.927,
+        "duration": 2.927,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "She collected many books from different countries and loved them.",
+        "startTime": 2.927,
+        "endTime": 7.456,
+        "duration": 4.529,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "The community needed the books, so they donated them.",
+        "startTime": 7.456,
+        "endTime": 11.299,
+        "duration": 3.843,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "Emma wrote a book to help kids be activists.",
+        "startTime": 11.299,
+        "endTime": 14.366,
+        "duration": 3.066,
+        "sentenceIndex": 103
+      },
+      {
+        "text": "The hardest part of the campaign was learning about entitlement.",
+        "startTime": 14.366,
+        "endTime": 18.825,
+        "duration": 4.46,
+        "sentenceIndex": 104
+      }
+    ],
+    "totalDuration": 18.825351,
+    "measuredDuration": 18.825351
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-21.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "When Emma helps people, she feels like a charity.",
+        "startTime": 0,
+        "endTime": 3.52,
+        "duration": 3.52,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "She gives the books to you and wants praise for Emma.",
+        "startTime": 3.52,
+        "endTime": 7.164,
+        "duration": 3.645,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "But that was not something she wanted.",
+        "startTime": 7.164,
+        "endTime": 9.777,
+        "duration": 2.613,
+        "sentenceIndex": 107
+      },
+      {
+        "text": "Emma stays calm and does not fly away.",
+        "startTime": 9.777,
+        "endTime": 12.391,
+        "duration": 2.613,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "She does not want her friends to see her differently.",
+        "startTime": 12.391,
+        "endTime": 16.035,
+        "duration": 3.645,
+        "sentenceIndex": 109
+      }
+    ],
+    "totalDuration": 16.035238,
+    "measuredDuration": 16.035238
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-22.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "Sometimes she does not tell her friends what she does.",
+        "startTime": 0,
+        "endTime": 3.697,
+        "duration": 3.697,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "She did not tell them a lie.",
+        "startTime": 3.697,
+        "endTime": 5.613,
+        "duration": 1.917,
+        "sentenceIndex": 111
+      },
+      {
+        "text": "She said she is going to work and needs to help her mom.",
+        "startTime": 5.613,
+        "endTime": 9.447,
+        "duration": 3.834,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "Emma has a message for kids and wants to share it.",
+        "startTime": 9.447,
+        "endTime": 12.87,
+        "duration": 3.423,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "Emma said she wants to tell the girls they can help.",
+        "startTime": 12.87,
+        "endTime": 16.429,
+        "duration": 3.56,
+        "sentenceIndex": 114
+      }
+    ],
+    "totalDuration": 16.429433,
+    "measuredDuration": 16.429433
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-23.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "You should tell the person to stop that idea.",
+        "startTime": 0,
+        "endTime": 3.244,
+        "duration": 3.244,
+        "sentenceIndex": 115
+      },
+      {
+        "text": "You can help and make a difference in the world.",
+        "startTime": 3.244,
+        "endTime": 6.704,
+        "duration": 3.46,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "If you believe in your words, your dreams can come true.",
+        "startTime": 6.704,
+        "endTime": 10.891,
+        "duration": 4.187,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "Emma said that frustration is energy.",
+        "startTime": 10.891,
+        "endTime": 13.558,
+        "duration": 2.667,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "It can help make a new and useful idea.",
+        "startTime": 13.558,
+        "endTime": 16.37,
+        "duration": 2.811,
+        "sentenceIndex": 119
+      }
+    ],
+    "totalDuration": 16.369932,
+    "measuredDuration": 16.369932
+  },
+  {
+    "bundleId": "b24",
+    "bundleIndex": 24,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-24.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-24.mp3",
+    "sentences": [
+      {
+        "text": "To be brave, you must focus on finding your passions.",
+        "startTime": 0,
+        "endTime": 4.131,
+        "duration": 4.131,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "You do not have to wait to be great.",
+        "startTime": 4.131,
+        "endTime": 6.836,
+        "duration": 2.704,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "At eight, Sofia saw her mother put ointment on her sister.",
+        "startTime": 6.836,
+        "endTime": 11.342,
+        "duration": 4.507,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "Her sister has strange rashes on her body.",
+        "startTime": 11.342,
+        "endTime": 14.497,
+        "duration": 3.155,
+        "sentenceIndex": 123
+      },
+      {
+        "text": "Sofia and her family do not know the cause.",
+        "startTime": 14.497,
+        "endTime": 17.728,
+        "duration": 3.23,
+        "sentenceIndex": 124
+      }
+    ],
+    "totalDuration": 17.727596,
+    "measuredDuration": 17.727596
+  },
+  {
+    "bundleId": "b25",
+    "bundleIndex": 25,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-25.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-25.mp3",
+    "sentences": [
+      {
+        "text": "They thought it was the soap or something else.",
+        "startTime": 0,
+        "endTime": 3.519,
+        "duration": 3.519,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "They found out it came from the water.",
+        "startTime": 3.519,
+        "endTime": 6.365,
+        "duration": 2.845,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "The water from their taps has lead and other bad things.",
+        "startTime": 6.365,
+        "endTime": 10.558,
+        "duration": 4.193,
+        "sentenceIndex": 127
+      },
+      {
+        "text": "When Sofia learned about the water problem, she wrote to the President.",
+        "startTime": 10.558,
+        "endTime": 16.025,
+        "duration": 5.467,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "She asked him to come and see her city.",
+        "startTime": 16.025,
+        "endTime": 18.945,
+        "duration": 2.92,
+        "sentenceIndex": 129
+      }
+    ],
+    "totalDuration": 18.945125,
+    "measuredDuration": 18.945125
+  },
+  {
+    "bundleId": "b26",
+    "bundleIndex": 26,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-26.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-26.mp3",
+    "sentences": [
+      {
+        "text": "My mom said you are busy with important things, Sofia wrote.",
+        "startTime": 0,
+        "endTime": 4.42,
+        "duration": 4.42,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "Many people come on these buses and fill the space.",
+        "startTime": 4.42,
+        "endTime": 8.049,
+        "duration": 3.629,
+        "sentenceIndex": 131
+      },
+      {
+        "text": "A meeting from you or your wife would lift people's spirits.",
+        "startTime": 8.049,
+        "endTime": 12.319,
+        "duration": 4.27,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "Everyone is surprised because the President writes back.",
+        "startTime": 12.319,
+        "endTime": 16.304,
+        "duration": 3.985,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "You are right that Presidents are busy, he said.",
+        "startTime": 16.304,
+        "endTime": 19.869,
+        "duration": 3.566,
+        "sentenceIndex": 134
+      }
+    ],
+    "totalDuration": 19.869342,
+    "measuredDuration": 19.869342
+  },
+  {
+    "bundleId": "b27",
+    "bundleIndex": 27,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-27.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-27.mp3",
+    "sentences": [
+      {
+        "text": "In our country, being a citizen is the most important title.",
+        "startTime": 0,
+        "endTime": 4.291,
+        "duration": 4.291,
+        "sentenceIndex": 135
+      },
+      {
+        "text": "Letters from kids like you make me hopeful for the future.",
+        "startTime": 4.291,
+        "endTime": 8.295,
+        "duration": 4.003,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "The President came to Sofia's city and talked to people.",
+        "startTime": 8.295,
+        "endTime": 12.16,
+        "duration": 3.865,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "Sofia is a voice for clean water and helps many people.",
+        "startTime": 12.16,
+        "endTime": 15.956,
+        "duration": 3.796,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "She helps people with bad water in many places.",
+        "startTime": 15.956,
+        "endTime": 19.2,
+        "duration": 3.244,
+        "sentenceIndex": 139
+      }
+    ],
+    "totalDuration": 19.199932,
+    "measuredDuration": 19.199932
+  },
+  {
+    "bundleId": "b28",
+    "bundleIndex": 28,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-28.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-28.mp3",
+    "sentences": [
+      {
+        "text": "One day, a company sent Sofia's family a water filter.",
+        "startTime": 0,
+        "endTime": 4.018,
+        "duration": 4.018,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "The family gave it to an old neighbor who needed it.",
+        "startTime": 4.018,
+        "endTime": 7.742,
+        "duration": 3.724,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "Sofia now helps people in many places, not just her city.",
+        "startTime": 7.742,
+        "endTime": 11.975,
+        "duration": 4.233,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "She helps cities where water is bad and people need support.",
+        "startTime": 11.975,
+        "endTime": 16.272,
+        "duration": 4.297,
+        "sentenceIndex": 143
+      },
+      {
+        "text": "Sofia tells her sister and aunt she does not want to talk.",
+        "startTime": 16.272,
+        "endTime": 20.426,
+        "duration": 4.154,
+        "sentenceIndex": 144
+      }
+    ],
+    "totalDuration": 20.4261,
+    "measuredDuration": 20.4261
+  },
+  {
+    "bundleId": "b29",
+    "bundleIndex": 29,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-29.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-29.mp3",
+    "sentences": [
+      {
+        "text": "She wants to help set up the toy drive.",
+        "startTime": 0,
+        "endTime": 2.821,
+        "duration": 2.821,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "Sofia said one girl can change the world.",
+        "startTime": 2.821,
+        "endTime": 5.788,
+        "duration": 2.966,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "It is big and small at the same time.",
+        "startTime": 5.788,
+        "endTime": 8.464,
+        "duration": 2.677,
+        "sentenceIndex": 147
+      },
+      {
+        "text": "Maya, Emma, and Sofia show that young people can change things.",
+        "startTime": 8.464,
+        "endTime": 13.322,
+        "duration": 4.858,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "Maya thought she was small and felt sad.",
+        "startTime": 13.322,
+        "endTime": 16.216,
+        "duration": 2.894,
+        "sentenceIndex": 149
+      }
+    ],
+    "totalDuration": 16.215896,
+    "measuredDuration": 16.215896
+  },
+  {
+    "bundleId": "b30",
+    "bundleIndex": 30,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-30.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-30.mp3",
+    "sentences": [
+      {
+        "text": "Emma feels frustrated about what she sees.",
+        "startTime": 0,
+        "endTime": 2.966,
+        "duration": 2.966,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "Sofia saw her family and felt sad.",
+        "startTime": 2.966,
+        "endTime": 5.368,
+        "duration": 2.401,
+        "sentenceIndex": 151
+      },
+      {
+        "text": "They all took action and worked together.",
+        "startTime": 5.368,
+        "endTime": 8.263,
+        "duration": 2.896,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "They all helped and made a difference.",
+        "startTime": 8.263,
+        "endTime": 10.947,
+        "duration": 2.684,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "They all showed that you can be great now.",
+        "startTime": 10.947,
+        "endTime": 13.913,
+        "duration": 2.966,
+        "sentenceIndex": 154
+      }
+    ],
+    "totalDuration": 13.913175,
+    "measuredDuration": 13.913175
+  },
+  {
+    "bundleId": "b31",
+    "bundleIndex": 31,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-31.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-31.mp3",
+    "sentences": [
+      {
+        "text": "You can begin now and do it well.",
+        "startTime": 0,
+        "endTime": 2.699,
+        "duration": 2.699,
+        "sentenceIndex": 155
+      },
+      {
+        "text": "Your voice is important, even when you are a child.",
+        "startTime": 2.699,
+        "endTime": 7.02,
+        "duration": 4.321,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "One person can start a big change and help many others.",
+        "startTime": 7.02,
+        "endTime": 11.518,
+        "duration": 4.498,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "Frustration can help us change and grow better.",
+        "startTime": 11.518,
+        "endTime": 15.361,
+        "duration": 3.844,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "I thought I could not help because I was too small.",
+        "startTime": 15.361,
+        "endTime": 19.532,
+        "duration": 4.171,
+        "sentenceIndex": 159
+      }
+    ],
+    "totalDuration": 19.53229,
+    "measuredDuration": 19.53229
+  },
+  {
+    "bundleId": "b32",
+    "bundleIndex": 32,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/bundle-32.mp3",
+    "audioPath": "youth-activism-1/A1/bundle-32.mp3",
+    "sentences": [
+      {
+        "text": "But I was wrong about what I thought.",
+        "startTime": 0,
+        "endTime": 2.165,
+        "duration": 2.165,
+        "sentenceIndex": 160
+      }
+    ],
+    "totalDuration": 2.16483,
+    "measuredDuration": 2.16483
+  }
+]

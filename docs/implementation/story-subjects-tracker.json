@@ -1,7 +1,7 @@
 {
   "purpose": "Track real people/concepts already covered to prevent duplicates and ensure variety",
   "lastUpdated": "2025-12-11",
-  "totalStories": 20,
+  "totalStories": 21,
   "stories": [
     {
       "storyId": "teen-translating-hospital",
@@ -173,6 +173,15 @@
       "specificSubject": "Starting over later in life, achieving dreams at any age, age defiance, never too late",
       "status": "complete",
       "notes": "Composite from 4 sources (Diana Nyad, Ernestine Shepherd, Merrill Cooper, Priscilla Sitienei), generic character Grace"
+    },
+    {
+      "storyId": "youth-activism-1",
+      "realPerson": null,
+      "storyConcept": "Young person creates positive change in their community through activism, organizing, or leadership (climate action, book diversity, water advocacy)",
+      "themeCategory": "Youth Activism - Young Person Creating Change",
+      "specificSubject": "Youth activism, young person making a difference, one person can change the world, voice matters, you don't have to wait to be great",
+      "status": "complete",
+      "notes": "Composite from 3 sources (Greta Thunberg, Marley Dias, Mari Copeny), generic characters Maya, Emma, Sofia"
     }
   ],
   "themeSaturation": {
@@ -189,7 +198,8 @@
     "romanticLove": 1,
     "griefToPurpose": 1,
     "singleParentRising": 2,
-    "ageDefiance": 1
+    "ageDefiance": 1,
+    "youthActivism": 1
   },
   "realPeopleCovered": [
     "Helen Keller",
@@ -216,7 +226,8 @@
     "Grief transformation after loss of child",
     "Single parent raising children alone while building new life through education",
     "Single parent overcoming domestic violence, homelessness, building business, being seen",
-    "Starting over later in life, achieving dreams at any age (swimming at 64, college at 69, bodybuilding at 56)"
+    "Starting over later in life, achieving dreams at any age (swimming at 64, college at 69, bodybuilding at 56)",
+    "Young person creating positive change through activism (climate action at 15, book diversity campaign at 11, water advocacy at 8)"
   ],
   "guidelines": {
     "beforeImplementing": [

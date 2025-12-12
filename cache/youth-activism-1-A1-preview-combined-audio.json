@@ -1,0 +1,116 @@
+{
+  "storyId": "youth-activism-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/youth-activism-1/A1/preview-combined.mp3",
+    "duration": 68.853424,
+    "voice": "Daniel",
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 3.863,
+        "duration": 3.863,
+        "text": "In this powerful story, three girls make a change."
+      },
+      {
+        "startTime": 3.863,
+        "endTime": 6.908,
+        "duration": 3.045,
+        "text": "Maya is 15 and fights for climate action."
+      },
+      {
+        "startTime": 6.908,
+        "endTime": 10.774,
+        "duration": 3.866,
+        "text": "Emma, 11, collects 12,000 books for diversity."
+      },
+      {
+        "startTime": 10.774,
+        "endTime": 14.491,
+        "duration": 3.716,
+        "text": "Sofia, 8, writes to the President about water."
+      },
+      {
+        "startTime": 14.491,
+        "endTime": 17.536,
+        "duration": 3.045,
+        "text": "They go from lonely outsiders to leaders."
+      },
+      {
+        "startTime": 17.536,
+        "endTime": 21.769,
+        "duration": 4.233,
+        "text": "Their stories show that one person can make a difference."
+      },
+      {
+        "startTime": 21.769,
+        "endTime": 27.71,
+        "duration": 5.941,
+        "text": "This is an inspiring story about proving that young people can change the world."
+      },
+      {
+        "startTime": 27.71,
+        "endTime": 33.948,
+        "duration": 6.238,
+        "text": "Imagine being fifteen years old and thinking you are too small to make a difference."
+      },
+      {
+        "startTime": 33.948,
+        "endTime": 39.667,
+        "duration": 5.718,
+        "text": "Imagine sitting alone outside a government building with a hand-painted sign."
+      },
+      {
+        "startTime": 39.667,
+        "endTime": 42.638,
+        "duration": 2.971,
+        "text": "Imagine your parents trying to stop you."
+      },
+      {
+        "startTime": 42.638,
+        "endTime": 45.385,
+        "duration": 2.748,
+        "text": "Your classmates refusing to join you."
+      },
+      {
+        "startTime": 45.385,
+        "endTime": 47.985,
+        "duration": 2.599,
+        "text": "Strangers looking at you with pity."
+      },
+      {
+        "startTime": 47.985,
+        "endTime": 49.916,
+        "duration": 1.931,
+        "text": "But you keep going anyway."
+      },
+      {
+        "startTime": 49.916,
+        "endTime": 56.377,
+        "duration": 6.461,
+        "text": "This is the story of three girls who proved that one small person can change the world."
+      },
+      {
+        "startTime": 56.377,
+        "endTime": 61.055,
+        "duration": 4.679,
+        "text": "Many people believe that young people cannot make a difference."
+      },
+      {
+        "startTime": 61.055,
+        "endTime": 66.18,
+        "duration": 5.124,
+        "text": "They think that children are too small or too young to create change."
+      },
+      {
+        "startTime": 66.18,
+        "endTime": 68.853,
+        "duration": 2.674,
+        "text": "This story proves that belief wrong."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-12T01:43:20.596Z",
+  "timingMethod": "enhanced-timing-v3"
+}

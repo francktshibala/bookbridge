@@ -22,7 +22,10 @@
     "Gabriel": ["single-parent-rising-2"],
     "Olivia": ["single-parent-rising-2"],
     "Grace": ["age-defiance-1"],
-    "Rose": ["age-defiance-1"]
+    "Rose": ["age-defiance-1"],
+    "Maya": ["youth-activism-1"],
+    "Emma": ["youth-activism-1"],
+    "Sofia": ["youth-activism-1"]
   },
   "guidelines": {
     "avoidRepeating": true,

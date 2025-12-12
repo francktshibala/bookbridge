@@ -794,7 +794,7 @@ Every story in Priority 1 and Priority 2 sources passes the "would someone text 
 
 ## 📋 **SEQUENTIAL STORY ROADMAP (Stories #15-#50)**
 
-**Current Progress:** 20/50 stories completed (40%) - **Phase 2 IN PROGRESS** 🚧
+**Current Progress:** 21/50 stories completed (42%) - **Phase 2 IN PROGRESS** 🚧
 
 ### **Phase 2 Stories (#15-#27) - PRIORITY: HIGH**
 
@@ -816,7 +816,7 @@ Every story in Priority 1 and Priority 2 sources passes the "would someone text 
 - [x] **#21**: Age Defiance #1 ✅ Complete (2025-12-11) - Starting over later in life, achieving dreams at any age
 
 **Youth Activism (1-2 stories needed)**
-- [ ] **#22**: Youth Activism #1 - VOA/Web Research - Young person creating change in their community
+- [x] **#22**: Youth Activism #1 ✅ Complete (2025-12-11) - Young person creating change in their community
 
 **Medical Crisis Overcome (complete 2/2 target)**
 - [x] **#14**: Medical Crisis #1 - ✅ Complete (Finding New Wings)

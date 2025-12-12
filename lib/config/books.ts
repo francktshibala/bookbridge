@@ -381,6 +381,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'AD1'
   },
   {
+    id: 'youth-activism-1',
+    title: 'Youth Activism: Young Person Creating Change',
+    author: 'BookBridge',
+    description: 'At fifteen, Maya thought she was too small to make a difference. At eleven, Emma was frustrated that she never saw herself in books. At eight, Sofia watched her sister suffer from poisoned water. These three girls proved that one small person can change the world. Through climate action, book diversity campaigns, and water advocacy, they showed that your voice matters, even as a child. This powerful composite story inspires young people everywhere to take action and proves you do not have to wait to be great. A1 level with Daniel voice.',
+    sentences: 161,
+    bundles: 33,
+    gradient: 'from-green-500 to-emerald-600',
+    abbreviation: 'YA1'
+  },
+  {
     id: 'career-pivot-1',
     title: 'Career Pivot: Finding Your Path',
     author: 'BookBridge',
@@ -535,6 +545,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'age-defiance-1': {
     'A1': '/api/age-defiance-1-a1/bundles'
   },
+  'youth-activism-1': {
+    'A1': '/api/youth-activism-1-a1/bundles'
+  },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
   },
@@ -584,6 +597,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'single-parent-rising-1': 'A1',  // Default to A1 for Single Parent Rising: Building a New Life (Modern Story)
   'single-parent-rising-2': 'A1',  // Default to A1 for Single Parent Rising: Overcoming Obstacles (Modern Story)
   'age-defiance-1': 'A1',  // Default to A1 for Age Defiance: Starting Over Later in Life (Modern Story)
+  'youth-activism-1': 'A1',  // Default to A1 for Youth Activism: Young Person Creating Change (Modern Story)
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
@@ -667,6 +681,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'single-parent-rising-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'single-parent-rising-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'age-defiance-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
+  'youth-activism-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

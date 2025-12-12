@@ -2,7 +2,7 @@
 
 **Purpose**: Track completion status, key details, and learnings for each modern story implementation.
 
-**Last Updated**: 2025-12-11 (Added age-defiance-1)
+**Last Updated**: 2025-12-11 (Added youth-activism-1)
 
 ---
 
@@ -31,6 +31,7 @@
 | `single-parent-rising-1` | Single Parent Rising: Building a New Life | BookBridge | 3 sources (composite) | Single Parent, Overcoming Obstacles, Building New Life, Education Journey, Children as Motivation, Resilience, Transformation, Strength | ✅ Complete | ✅ | - | - | ~21 min | 32 | 2025-12-11 |
 | `single-parent-rising-2` | Single Parent Rising: Overcoming Obstacles | BookBridge | 5 sources (composite) | Single Parent, Overcoming Obstacles, Domestic Violence, Homelessness, Building Business, Being Seen, Resilience, Transformation, Strength | ✅ Complete | ✅ | - | - | ~21 min | 29 | 2025-12-11 |
 | `age-defiance-1` | Age Defiance: Starting Over Later in Life | BookBridge | 4 sources (composite) | Age Defiance, Starting Over, Never Give Up, Dreams Don't Expire, Perseverance, Health Transformation, Education at Any Age, Grief to Purpose | ✅ Complete | ✅ | - | - | ~21 min | 39 | 2025-12-11 |
+| `youth-activism-1` | Youth Activism: Young Person Creating Change | BookBridge | 3 sources (composite) | Youth Activism, Making a Difference, One Person Can Change the World, Voice Matters, First-Time Courage, Persistence Despite Setbacks, Belonging & Identity, Overcoming "Not Good Enough" | ✅ Complete | ✅ | - | - | ~19 min | 33 | 2025-12-11 |
 
 **Legend**:
 - ✅ Complete
@@ -1920,6 +1921,134 @@
 - `scripts/integrate-age-defiance-1-database.ts`
 - `scripts/seed-age-defiance-1.ts`
 - `app/api/age-defiance-1-a1/bundles/route.ts`
+
+---
+
+### 21. Youth Activism: Young Person Creating Change
+
+**Story ID**: `youth-activism-1`  
+**Title**: Youth Activism: Young Person Creating Change  
+**Author**: BookBridge  
+**Collection**: Modern Voices  
+**Completion Date**: 2025-12-11
+
+#### Sources
+- **Primary**: Greta Thunberg (The Guardian) - Depression to global movement, one girl sitting alone
+- **Primary**: Marley Dias (Atlas of the Future + Literary Hub) - "White boys and their dogs" frustration to 12,000 books
+- **Supporting**: Mari Copeny (Metro Times) - 8-year-old's letter brings President to Flint
+
+#### Validation
+- ✅ **Step 0.25**: Source Material Check - PASSED
+  - All sources story-driven (long-form journalism, interviews)
+  - Sufficient content for 20+ minute story
+  - 3 distinct narratives with strong emotional arcs
+  
+- ✅ **Step 0.5**: Emotional Impact Validation - PASSED
+  - "Text a friend" test: ✅ High emotional engagement
+  - Clear emotional arc: Struggle → perseverance → breakthrough
+  - 9+ emotional moments identified
+  - 6+ ESL resonance multipliers: Communication Barriers, "Not Good Enough", First-Time Courage, Persistence Despite Setbacks, Belonging & Identity, Learning & Education Journeys, Connection Across Differences
+
+#### Content Details
+- **Original Text**: 1,505 words (~A2 level)
+- **A1 Simplified**: 1,447 words (~19 minutes)
+- **Sentences**: 161 total
+- **Bundles**: 33 (~5 sentences per bundle)
+- **Voice**: Daniel (onwK4e9ZLuTAKqWW03F9)
+- **Audio Speed**: 0.85× (FFmpeg slowdown)
+- **Total Audio Duration**: 543.34s (~9 minutes)
+
+#### Themes & Emotional Moments
+**Themes**:
+- One small person can make a difference
+- Your voice matters, even as a child
+- You don't have to wait to be great
+- Frustration is fuel for change
+- First-time courage
+- Persistence despite setbacks
+- Belonging & identity transformation
+
+**Emotional Moments** (18):
+1. Maya crying through all environmental films while classmates moved on (high)
+2. Maya's depression and stopping going to school at age 8 (very high)
+3. Maya telling her parents about her worries and feeling relief (medium)
+4. Maya realizing she could make a difference when parents started listening (high)
+5. Maya getting out of depression by deciding to do good (high)
+6. Maya's first day sitting alone outside parliament (very high)
+7. Maya's father crying with pride when she gave her speech (very high)
+8. Maya's transformation: no longer lonely, silent, or depressed (high)
+9. Emma's frustration with "white boys and their dogs" books (high)
+10. Emma choosing Option 3: change the system (high)
+11. Emma learning about entitlement and rejecting it (medium)
+12. Emma collecting 12,000 books when goal was 1,000 (high)
+13. Sofia watching her mother cover her sister in ointment and plastic wrap (very high)
+14. Sofia and family discovering the rashes were from contaminated water (high)
+15. Sofia writing to the President despite being told he's too busy (high)
+16. The President writing back and coming to visit (very high)
+17. Sofia's family giving away their filter to an elderly neighbor (medium)
+18. Sofia preferring to help set up toy drive over giving interviews (medium)
+
+**ESL Resonance Multipliers**:
+- Communication Barriers (Maya's selective mutism, child's voice being heard)
+- "Not Good Enough" (Maya: "too small", Emma: kids thinking they can't)
+- First-Time Courage (all three: first strike, first campaign, first letter)
+- Persistence Despite Setbacks (Maya: every Friday, Sofia: ongoing crisis)
+- Belonging & Identity (Maya: loner → leader, Emma: wanting to see herself)
+- Learning & Education Journeys (Maya: teaching parents, Emma: entitlement lesson)
+- Connection Across Differences (Emma: Jamaica heritage, Sofia: helping other cities)
+
+#### Implementation Steps Completed
+- ✅ Step 0: Content Planning (verified youth activism theme not covered)
+- ✅ Step 0.25: Source Material Check (3 story-driven sources)
+- ✅ Step 0.5: Emotional Impact Validation (all 6 criteria met)
+- ✅ Step 0.6: Voice Selection (Daniel voice - professional/inspirational)
+- ✅ Step 0.75: Find Source Material (3 sources saved)
+- ✅ Step 1: Extract Source Text (themes extracted)
+- ✅ Step 2.1: Assess Original Complexity (A2 → can simplify to A1/A2)
+- ✅ Step 2.5: Extract Themes & Emotional Moments
+- ✅ Step 2.6: Write Main Story (COMPOSITE APPROACH - generic characters Maya, Emma, Sofia)
+- ✅ Step 3: Create Background Context
+- ✅ Step 3.5: Create Emotional Hook
+- ✅ Step 4: Simplify to A1 Level (161 sentences, 1,447 words)
+- ✅ Step 7: Generate Preview Combined
+- ✅ Step 8: Generate Preview Audio (Daniel voice, Enhanced Timing v3)
+- ✅ Step 10.5: Generate Bundle Audio Pilot (10 bundles)
+- ✅ Step 11: Full Bundle Generation (33 bundles, Enhanced Timing v3)
+- ✅ Step 11.5: Integrate Database (33 BookChunks)
+- ✅ Step 13: Create API Endpoint
+- ✅ Step 14: Update Frontend Config (4 locations)
+- ✅ Step 15: Test Reading Route (verified working)
+- ✅ Step 20: Log Completion
+
+#### Key Learnings
+1. **Three-source composite works well** - Greta Thunberg (climate), Marley Dias (books), Mari Copeny (water) create rich narrative
+2. **Daniel voice perfect for youth activism theme** - Professional/inspirational tone fits leadership and empowerment stories
+3. **Original complexity assessment critical** - Original was A2 level, so can simplify to A1/A2
+4. **Youth activism theme highly resonant** - Strong ESL multipliers, universal message "one person can make a difference"
+5. **Triple narrative structure** - Three girls (15, 11, 8) creates powerful progression and shows age doesn't matter
+6. **Character names**: Used "Maya", "Emma", "Sofia" - tracked for diversity
+
+#### Issues Encountered
+- None - Implementation went smoothly following established patterns
+
+#### Files Created
+- `cache/files/youth-activism-sources-compiled.txt` (3-source research document)
+- `cache/youth-activism-1-complexity-assessment.md`
+- `cache/youth-activism-1-themes.json`
+- `cache/youth-activism-1-background.txt`
+- `cache/youth-activism-1-hook.txt`
+- `cache/youth-activism-1-original.txt` (1,505 words A2)
+- `cache/youth-activism-1-A1-simplified.txt` (1,447 words, 161 sentences)
+- `cache/youth-activism-1-A1-preview-combined.txt`
+- `cache/youth-activism-1-A1-preview-combined-audio.json`
+- `cache/youth-activism-1-A1-bundles-metadata.json` (33 bundles)
+- `scripts/simplify-youth-activism-1.js`
+- `scripts/generate-youth-activism-1-preview-combined.js`
+- `scripts/generate-youth-activism-1-preview-audio.js`
+- `scripts/generate-youth-activism-1-bundles.js`
+- `scripts/integrate-youth-activism-1-database.ts`
+- `scripts/seed-youth-activism-1.ts`
+- `app/api/youth-activism-1-a1/bundles/route.ts`
 
 ---
 
