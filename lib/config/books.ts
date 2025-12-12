@@ -271,6 +271,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'RJ3'
   },
   {
+    id: 'lost-heritage-1',
+    title: 'Lost Heritage Reclaimed',
+    author: 'BookBridge',
+    description: 'Yuna was four months old when she left Korea. She grew up in America, the only Asian person in her small town. She forgot the language, the food, the customs. For twenty-two years, she tried to be someone else. But then she decided to go back. She learned Korean. She visited Korea. She saw herself reflected everywhere. This powerful story follows her journey of reconnecting with lost heritage, finding identity, and reclaiming her roots. An inspiring tale about belonging, identity, and the courage to reconnect with what was lost. A1 level with Jane voice.',
+    sentences: 231,
+    bundles: 47,
+    gradient: 'from-amber-500 to-orange-600',
+    abbreviation: 'LH'
+  },
+  {
     id: 'community-builder-1',
     title: 'Community Builder: One Person Transforms a Neighborhood',
     author: 'BookBridge',
@@ -532,6 +542,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'refugee-journey-3': {
     'A1': '/api/refugee-journey-3-a1/bundles'
   },
+  'lost-heritage-1': {
+    'A1': '/api/lost-heritage-1-a1/bundles'
+  },
   'community-builder-1': {
     'A1': '/api/community-builder-1-a1/bundles'
   },
@@ -612,6 +625,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'refugee-journey-1': 'A1',  // Default to A1 for Refugee Journey: From War Zone to Hope (Modern Story)
   'refugee-journey-2': 'A1',  // Default to A1 for Refugee Journey: Family Reunited (Modern Story)
   'refugee-journey-3': 'A1',  // Default to A1 for Refugee Family Journey (Modern Story)
+  'lost-heritage-1': 'A1',  // Default to A1 for Lost Heritage Reclaimed (Modern Story)
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
   'community-builder-2': 'A1',  // Default to A1 for Community Builder: From Wrong Turn to School Network (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
@@ -698,6 +712,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'refugee-journey-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
   'refugee-journey-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'refugee-journey-3': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'lost-heritage-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)

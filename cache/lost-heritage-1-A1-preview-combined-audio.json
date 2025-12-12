@@ -1,0 +1,140 @@
+{
+  "storyId": "lost-heritage-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/lost-heritage-1/A1/preview-combined.mp3",
+    "duration": 86.30161,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 3.718,
+        "duration": 3.718,
+        "text": "In this powerful story, Yuna is a Korean adoptee."
+      },
+      {
+        "startTime": 3.718,
+        "endTime": 7.942,
+        "duration": 4.224,
+        "text": "She is adopted at four months old and grows up in America."
+      },
+      {
+        "startTime": 7.942,
+        "endTime": 11.51,
+        "duration": 3.568,
+        "text": "Yuna learns the Korean language and visits Korea."
+      },
+      {
+        "startTime": 11.51,
+        "endTime": 14.568,
+        "duration": 3.058,
+        "text": "She sees herself reflected in her culture."
+      },
+      {
+        "startTime": 14.568,
+        "endTime": 17.554,
+        "duration": 2.986,
+        "text": "Yuna climbs a mountain to find her roots."
+      },
+      {
+        "startTime": 17.554,
+        "endTime": 23.889,
+        "duration": 6.335,
+        "text": "This is an inspiring story about reconnecting with lost heritage and finding belonging."
+      },
+      {
+        "startTime": 23.889,
+        "endTime": 26.22,
+        "duration": 2.33,
+        "text": "Imagine you are four months old."
+      },
+      {
+        "startTime": 26.22,
+        "endTime": 29.934,
+        "duration": 3.714,
+        "text": "You are taken from the country where you were born."
+      },
+      {
+        "startTime": 29.934,
+        "endTime": 33.356,
+        "duration": 3.423,
+        "text": "You are flown across an ocean to a new country."
+      },
+      {
+        "startTime": 33.356,
+        "endTime": 37.07,
+        "duration": 3.714,
+        "text": "You grow up in a place where no one looks like you."
+      },
+      {
+        "startTime": 37.07,
+        "endTime": 40.638,
+        "duration": 3.568,
+        "text": "You forget the language your birth parents spoke."
+      },
+      {
+        "startTime": 40.638,
+        "endTime": 44.798,
+        "duration": 4.159,
+        "text": "You forget the food, the customs, the sounds of home."
+      },
+      {
+        "startTime": 44.798,
+        "endTime": 48.657,
+        "duration": 3.859,
+        "text": "You spend twenty-two years trying to be someone else."
+      },
+      {
+        "startTime": 48.657,
+        "endTime": 51.943,
+        "duration": 3.286,
+        "text": "But then, one day, you decide to go back."
+      },
+      {
+        "startTime": 51.943,
+        "endTime": 55.001,
+        "duration": 3.058,
+        "text": "You decide to learn the language you lost."
+      },
+      {
+        "startTime": 55.001,
+        "endTime": 59.807,
+        "duration": 4.806,
+        "text": "You decide to reconnect with the heritage that was taken from you."
+      },
+      {
+        "startTime": 59.807,
+        "endTime": 65.239,
+        "duration": 5.432,
+        "text": "This is the story of Yuna—a story of loss, longing, and reclamation."
+      },
+      {
+        "startTime": 65.239,
+        "endTime": 72.53,
+        "duration": 7.291,
+        "text": "Between 1950 and 2000, over 200,000 Korean children were adopted by families in other countries."
+      },
+      {
+        "startTime": 72.53,
+        "endTime": 78.137,
+        "duration": 5.607,
+        "text": "Many of these children grew up as the only Asian person in their communities."
+      },
+      {
+        "startTime": 78.137,
+        "endTime": 83.389,
+        "duration": 5.252,
+        "text": "They lost connection to their birth language, culture, and heritage."
+      },
+      {
+        "startTime": 83.389,
+        "endTime": 86.302,
+        "duration": 2.913,
+        "text": "This story takes place during that time."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-12T05:32:10.546Z",
+  "timingMethod": "enhanced-timing-v3"
+}
