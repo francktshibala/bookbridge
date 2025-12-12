@@ -838,7 +838,7 @@ Every story in Priority 1 and Priority 2 sources passes the "would someone text 
 - [x] **#28**: Lost Heritage #1 - VOA/Web Research - Reconnecting with cultural roots ✅ COMPLETE
 
 **Workplace Discrimination Overcome (1-2 stories needed)**
-- [ ] **#29**: Workplace Discrimination #1 - VOA/Web Research - Breaking barriers at work
+- [x] **#29**: Workplace Discrimination #1 - VOA/Web Research - Breaking barriers at work ✅ COMPLETE
 
 **Environmental Hero (1-2 stories needed)**
 - [ ] **#30**: Environmental Hero #1 - VOA/NASA - Individual creating environmental impact

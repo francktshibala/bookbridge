@@ -281,6 +281,16 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     abbreviation: 'LH'
   },
   {
+    id: 'workplace-discrimination-1',
+    title: 'Workplace Discrimination Overcome',
+    author: 'BookBridge',
+    description: 'Jordan faces discrimination at work because of who she is. She is the only woman, the only person of color, the only one who needs accommodations. People doubt her. They exclude her. They make her feel small. But Jordan does not give up. She fights back. She proves her worth. She becomes a leader and mentor. This powerful story follows her journey of overcoming discrimination through determination, skill, and persistence. An inspiring tale about breaking barriers and achieving success despite discrimination. A1 level with Jane voice.',
+    sentences: 299,
+    bundles: 60,
+    gradient: 'from-purple-500 to-pink-600',
+    abbreviation: 'WD'
+  },
+  {
     id: 'community-builder-1',
     title: 'Community Builder: One Person Transforms a Neighborhood',
     author: 'BookBridge',
@@ -545,6 +555,9 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'lost-heritage-1': {
     'A1': '/api/lost-heritage-1-a1/bundles'
   },
+  'workplace-discrimination-1': {
+    'A1': '/api/workplace-discrimination-1-a1/bundles'
+  },
   'community-builder-1': {
     'A1': '/api/community-builder-1-a1/bundles'
   },
@@ -626,6 +639,7 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'refugee-journey-2': 'A1',  // Default to A1 for Refugee Journey: Family Reunited (Modern Story)
   'refugee-journey-3': 'A1',  // Default to A1 for Refugee Family Journey (Modern Story)
   'lost-heritage-1': 'A1',  // Default to A1 for Lost Heritage Reclaimed (Modern Story)
+  'workplace-discrimination-1': 'A1',  // Default to A1 for Workplace Discrimination Overcome (Modern Story)
   'community-builder-1': 'A1',  // Default to A1 for Community Builder: One Person Transforms a Neighborhood (Modern Story)
   'community-builder-2': 'A1',  // Default to A1 for Community Builder: From Wrong Turn to School Network (Modern Story)
   'disability-overcome-1': 'A1',  // Default to A1 for Disability Overcome: Finding New Ways (Modern Story)
@@ -713,6 +727,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'refugee-journey-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'refugee-journey-3': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'lost-heritage-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'workplace-discrimination-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'community-builder-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'disability-overcome-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)

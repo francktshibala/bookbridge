@@ -1,0 +1,128 @@
+{
+  "storyId": "workplace-discrimination-1",
+  "level": "A1",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/workplace-discrimination-1/A1/preview-combined.mp3",
+    "duration": 65.874127,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 4.876,
+        "duration": 4.876,
+        "text": "In this powerful story, Jordan faces workplace discrimination."
+      },
+      {
+        "startTime": 4.876,
+        "endTime": 8.764,
+        "duration": 3.888,
+        "text": "She fights back against doubt and proves her worth."
+      },
+      {
+        "startTime": 8.764,
+        "endTime": 12.195,
+        "duration": 3.43,
+        "text": "Jordan becomes a leader and mentor to others."
+      },
+      {
+        "startTime": 12.195,
+        "endTime": 16.159,
+        "duration": 3.964,
+        "text": "This story shows her journey of overcoming barriers."
+      },
+      {
+        "startTime": 16.159,
+        "endTime": 21.647,
+        "duration": 5.489,
+        "text": "It is an inspiring story about achieving success despite discrimination."
+      },
+      {
+        "startTime": 21.647,
+        "endTime": 24.773,
+        "duration": 3.125,
+        "text": "Imagine you work harder than anyone else."
+      },
+      {
+        "startTime": 24.773,
+        "endTime": 26.069,
+        "duration": 1.296,
+        "text": "You arrive early."
+      },
+      {
+        "startTime": 26.069,
+        "endTime": 27.136,
+        "duration": 1.067,
+        "text": "You stay late."
+      },
+      {
+        "startTime": 27.136,
+        "endTime": 28.965,
+        "duration": 1.83,
+        "text": "You do everything right."
+      },
+      {
+        "startTime": 28.965,
+        "endTime": 31.862,
+        "duration": 2.897,
+        "text": "But you are still treated differently."
+      },
+      {
+        "startTime": 31.862,
+        "endTime": 33.616,
+        "duration": 1.753,
+        "text": "You are still excluded."
+      },
+      {
+        "startTime": 33.616,
+        "endTime": 36.665,
+        "duration": 3.049,
+        "text": "People doubt you because of who you are."
+      },
+      {
+        "startTime": 36.665,
+        "endTime": 38.571,
+        "duration": 1.906,
+        "text": "They make you feel small."
+      },
+      {
+        "startTime": 38.571,
+        "endTime": 40.858,
+        "duration": 2.287,
+        "text": "They make you want to give up."
+      },
+      {
+        "startTime": 40.858,
+        "endTime": 43.297,
+        "duration": 2.439,
+        "text": "But what if you did not give up?"
+      },
+      {
+        "startTime": 43.297,
+        "endTime": 50.028,
+        "duration": 6.731,
+        "text": "This is the story of Jordan—a story of discrimination, determination, and triumph."
+      },
+      {
+        "startTime": 50.028,
+        "endTime": 55.288,
+        "duration": 5.26,
+        "text": "Workplace discrimination affects millions of people around the world."
+      },
+      {
+        "startTime": 55.288,
+        "endTime": 62.367,
+        "duration": 7.08,
+        "text": "People face discrimination based on race, gender, disability, age, and other factors."
+      },
+      {
+        "startTime": 62.367,
+        "endTime": 65.874,
+        "duration": 3.507,
+        "text": "Many are excluded or treated unfairly at work."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-12T06:24:26.767Z",
+  "timingMethod": "enhanced-timing-v3"
+}
