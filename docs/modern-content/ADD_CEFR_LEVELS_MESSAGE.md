@@ -27,13 +27,122 @@
 
 ---
 
+## ⚠️ CRITICAL: Pre-Flight Checks (ALWAYS RUN BEFORE STARTING)
+
+**Prevent wasting credits and time by verifying scripts BEFORE running ANY commands:**
+
+### **Step 0: Verify All Scripts Accept Level Arguments**
+
+Before giving ANY commands to the user, check these files:
+
+```bash
+# 1. Check simplify script
+grep "const.*CEFR_LEVEL\|const.*targetLevel" scripts/simplify-{story-id}.js
+
+# 2. Check preview-combined script
+grep "const.*CEFR_LEVEL\|const.*targetLevel" scripts/generate-{story-id}-preview-combined.js
+
+# 3. Check preview-audio script
+grep "const.*CEFR_LEVEL\|const.*targetLevel" scripts/generate-{story-id}-preview-audio.js
+
+# 4. Check bundles script
+grep "const.*CEFR_LEVEL\|const.*targetLevel" scripts/generate-{story-id}-bundles.js
+
+# 5. Check integration script
+grep "const.*CEFR_LEVEL\|const.*targetLevel" scripts/integrate-{story-id}-database.ts
+```
+
+**Expected Pattern:**
+```javascript
+// ✅ CORRECT - Script accepts level from command line
+const targetLevel = process.argv[2] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+const CEFR_LEVEL = targetLevel;
+
+// ❌ WRONG - Hardcoded level (will waste credits)
+const CEFR_LEVEL = 'A1';  // Script ignores command line argument!
+```
+
+**If ANY script is hardcoded:**
+1. ✅ Fix ALL scripts FIRST before running anything
+2. ✅ Use Edit tool to add level argument support
+3. ✅ Verify fixes with grep before proceeding
+
+### **Step 1: Verify Output After EVERY Command**
+
+**After user runs command, ALWAYS verify:**
+
+```bash
+# After simplification
+✅ Check: File saved to correct level: cache/{story-id}-A2-simplified.txt
+✅ Check: Sentence count matches original
+
+# After preview-combined
+✅ Check: File saved to correct level: cache/{story-id}-A2-preview-combined.txt
+
+# After preview-audio
+✅ Check: Audio JSON created: cache/{story-id}-A2-preview-combined-audio.json
+✅ Check: File contains sentenceTimings array
+
+# After bundles
+✅ Check: Output says "A2 level" (NOT A1!)
+✅ Check: Metadata saved to: cache/{story-id}-A2-bundles-metadata.json
+✅ Check: Bundle count matches expected (NOT regenerating existing level!)
+
+# After database integration
+✅ Check: Output says "A2" level
+✅ Check: BookChunks created matches bundle count
+```
+
+**If output is wrong:**
+- ❌ STOP immediately
+- ❌ Don't continue to next step
+- ✅ Check what went wrong (wrong level? wrong file?)
+- ✅ Fix before proceeding
+
+### **Step 2: Common Mistakes to Prevent**
+
+**Mistake #1: Wasting Credits on Wrong Level**
+- ❌ User runs bundles command → generates A1 instead of A2 → wastes $5-10
+- ✅ **Prevention:** Verify script accepts level argument BEFORE giving command
+- ✅ **Prevention:** Check output immediately shows correct level
+
+**Mistake #2: Missing Preview Audio File**
+- ❌ Intro section doesn't display because preview audio JSON missing
+- ✅ **Prevention:** Verify `cache/{story-id}-{LEVEL}-preview-combined-audio.json` exists
+- ✅ **Prevention:** Check file contains `sentenceTimings` array
+
+**Mistake #3: Not Checking Command Output**
+- ❌ User says "done" but we don't verify what actually happened
+- ✅ **Prevention:** ALWAYS ask user to paste first/last lines of output
+- ✅ **Prevention:** Use Bash tool to verify files created with correct names
+
+**Mistake #4: Typos in Commands**
+- ❌ User types "A2--pilot" (no space) → command fails
+- ✅ **Prevention:** Show command in code block with clear spacing
+- ✅ **Prevention:** Verify error messages and help user fix typos
+
+### **Quick Verification Checklist**
+
+Before starting ANY story:
+- [ ] All 5 scripts accept level as `process.argv[2]`
+- [ ] All scripts have `VALID_LEVELS` array check
+- [ ] No hardcoded `CEFR_LEVEL = 'A1'` anywhere
+
+After EACH command:
+- [ ] User pastes output showing correct level
+- [ ] Bash tool verifies correct file created
+- [ ] File naming matches level: `{story-id}-{LEVEL}-*.{ext}`
+
+---
+
 ## ✅ Implementation Checklist
 
 **Ordered by collection priority (catalog display order) and story number within collection**
 
 ### **1. Starting Over Collection** (sortOrder=1)
 
-- [ ] **`single-parent-rising-1`** - B1/B2 original → Add **A2**
+- [x] **`single-parent-rising-1`** - B1/B2 original → Add **A2** ✅ Complete (2025-12-12)
 - [ ] **`age-defiance-1`** - A1/A2 original → Add **A2** (use original as-is)
 
 ### **2. Breaking Barriers Collection** (sortOrder=2)
@@ -65,5 +174,7 @@
 - **Can add A2 level: 10 stories** ✅
 - **Cannot add higher levels: 1 story** (career-pivot-3)
 
-**Next story to work on:** `single-parent-rising-1` (Starting Over collection, first priority)
+**Last completed:** `single-parent-rising-1` ✅ (2025-12-12)
+
+**Next story to work on:** `age-defiance-1` (Starting Over collection, second priority)
 
