@@ -143,7 +143,7 @@ After EACH command:
 ### **1. Starting Over Collection** (sortOrder=1)
 
 - [x] **`single-parent-rising-1`** - B1/B2 original → Add **A2** ✅ Complete (2025-12-12)
-- [ ] **`age-defiance-1`** - A1/A2 original → Add **A2** (use original as-is)
+- [x] **`age-defiance-1`** - A1/A2 original → Add **A2** ✅ Complete (2025-12-13)
 
 ### **2. Breaking Barriers Collection** (sortOrder=2)
 
@@ -174,7 +174,7 @@ After EACH command:
 - **Can add A2 level: 10 stories** ✅
 - **Cannot add higher levels: 1 story** (career-pivot-3)
 
-**Last completed:** `single-parent-rising-1` ✅ (2025-12-12)
+**Last completed:** `age-defiance-1` ✅ (2025-12-13)
 
-**Next story to work on:** `age-defiance-1` (Starting Over collection, second priority)
+**Next story to work on:** `medical-crisis-2` (Breaking Barriers collection, first priority)
 
