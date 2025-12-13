@@ -498,13 +498,13 @@ function ConfirmResetPasswordPageContent() {
                 {/* Submit Button */}
                 <motion.button
                   type="submit"
-                  disabled={isLoading || !hasSession}
-                  whileHover={{ 
-                    scale: (isLoading || !hasSession) ? 1 : 1.02,
-                    boxShadow: (isLoading || !hasSession) ? undefined : '0 4px 6px var(--shadow-soft), 0 10px 25px var(--shadow-medium)',
-                    y: (isLoading || !hasSession) ? 0 : -3
+                  disabled={isLoading}
+                  whileHover={{
+                    scale: isLoading ? 1 : 1.02,
+                    boxShadow: isLoading ? undefined : '0 4px 6px var(--shadow-soft), 0 10px 25px var(--shadow-medium)',
+                    y: isLoading ? 0 : -3
                   }}
-                  whileTap={{ scale: (isLoading || !hasSession) ? 1 : 0.98 }}
+                  whileTap={{ scale: isLoading ? 1 : 0.98 }}
                   style={{
                     width: '100%',
                     padding: '16px 32px',
@@ -515,14 +515,14 @@ function ConfirmResetPasswordPageContent() {
                     fontSize: '1.1rem',
                     fontWeight: '800',
                     fontFamily: 'Source Serif Pro, Georgia, serif',
-                    cursor: (isLoading || !hasSession) ? 'not-allowed' : 'pointer',
+                    cursor: isLoading ? 'not-allowed' : 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '8px',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     boxShadow: '0 4px 6px var(--shadow-soft), 0 10px 25px var(--shadow-medium)',
-                    opacity: (isLoading || !hasSession) ? 0.7 : 1
+                    opacity: isLoading ? 0.7 : 1
                   }}
                 >
                   {isLoading ? 'Resetting Password...' : 'Reset Password'}
