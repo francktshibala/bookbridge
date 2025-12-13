@@ -131,7 +131,7 @@ export function EnhancedBookCard({ book, index = 0, onAskAI }: EnhancedBookCardP
       {/* Action Button - Wireframe Style */}
       <div style={{ marginTop: '8px' }}>
         <Link
-          href={`/library/${book.id}/read`}
+          href={book.id.startsWith('gutenberg-') ? `/library/${book.id}/read` : `/read/${book.id}`}
           className="neo-classic-card-button"
           style={{
             fontSize: '12px',

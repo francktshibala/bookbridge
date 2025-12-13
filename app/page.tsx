@@ -215,7 +215,7 @@ export default function HomePage() {
           className="w-full"
         >
           <EnhancedBooksGrid 
-            books={['gutenberg-1342', 'gutenberg-1513', 'gutenberg-11']} 
+            books={['gutenberg-1342', 'the-necklace', 'refugee-journey-1']} 
             onAskAI={handleAskAI}
           />
         </motion.section>

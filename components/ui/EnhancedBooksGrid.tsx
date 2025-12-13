@@ -11,7 +11,7 @@ interface EnhancedBooksGridProps {
   onAskAI?: (book: any) => void;
 }
 
-// Enhanced book data for the 7 ESL books
+// Enhanced book data for the 7 ESL books + featured books
 const ENHANCED_BOOKS_DATA = {
   'gutenberg-1342': {
     id: 'gutenberg-1342',
@@ -22,6 +22,26 @@ const ENHANCED_BOOKS_DATA = {
     estimatedReadingTime: '4 hours',
     isComplete: true,
     cefr: { min: 'B1', max: 'C2' }
+  },
+  'the-necklace': {
+    id: 'the-necklace',
+    title: 'The Necklace',
+    author: 'Guy de Maupassant',
+    genre: 'Short Story',
+    simplificationCount: 15,
+    estimatedReadingTime: '30 minutes',
+    isComplete: true,
+    cefr: { min: 'A1', max: 'B1' }
+  },
+  'refugee-journey-1': {
+    id: 'refugee-journey-1',
+    title: 'Refugee Journey: From War Zone to Hope',
+    author: 'Modern Story',
+    genre: 'Modern Story',
+    simplificationCount: 20,
+    estimatedReadingTime: '25 minutes',
+    isComplete: true,
+    cefr: { min: 'A1', max: 'A1' }
   },
   'gutenberg-1513': {
     id: 'gutenberg-1513',

@@ -464,7 +464,13 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
   }, [currentLevel, currentVoice, demoContent, preloadAudio, CEFR_LEVELS]);
 
   // Handle play/pause
-  const handlePlayPause = useCallback(() => {
+  const handlePlayPause = useCallback((e?: React.MouseEvent | React.TouchEvent) => {
+    // Prevent default to avoid double-firing on mobile
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     if (!isAudioEnabled) {
       console.log('🔇 Audio disabled by feature flag');
       return;
@@ -968,6 +974,11 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
         {/* Play Button */}
         <button
           onClick={handlePlayPause}
+          onTouchStart={(e) => {
+            // Mobile touch handler - prevent default to avoid double-firing
+            e.preventDefault();
+            handlePlayPause(e);
+          }}
           style={{
             background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))',
             color: 'var(--bg-primary)',
@@ -985,7 +996,10 @@ export function InteractiveReadingDemo({ className = '' }: InteractiveReadingDem
             minWidth: '100px',
             boxShadow: '0 4px 12px rgba(205, 127, 50, 0.3)',
             touchAction: 'manipulation',
-            WebkitTapHighlightColor: 'transparent'
+            WebkitTapHighlightColor: 'transparent',
+            WebkitUserSelect: 'none',
+            userSelect: 'none',
+            pointerEvents: 'auto'
           }}
         >
           <span style={{ fontSize: '18px' }}>{isPlaying ? '⏸️' : '▶️'}</span>
