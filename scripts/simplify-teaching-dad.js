@@ -18,11 +18,23 @@ const openai = new OpenAI({
 });
 
 const STORY_ID = 'teaching-dad-to-read';
+
+// Get target level from command line argument or default to A1
+const targetLevel = process.argv[2] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  console.log('Usage: node scripts/simplify-teaching-dad.js [A1|A2]');
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
 const CACHE_DIR = path.join(__dirname, '..', 'cache');
 
 const INPUT_FILE = path.join(CACHE_DIR, `${STORY_ID}-original.txt`);
-const OUTPUT_FILE_A1 = path.join(CACHE_DIR, `${STORY_ID}-A1-simplified.txt`);
-const CACHE_FILE_A1 = path.join(CACHE_DIR, `${STORY_ID}-A1-simplified.json`);
+const OUTPUT_FILE = path.join(CACHE_DIR, `${STORY_ID}-${CEFR_LEVEL}-simplified.txt`);
+const CACHE_FILE = path.join(CACHE_DIR, `${STORY_ID}-${CEFR_LEVEL}-simplified.json`);
 
 // A1 Simplification Guidelines
 const A1_GUIDELINES = `
@@ -41,6 +53,25 @@ const A1_GUIDELINES = `
 - Preserve punctuation for proper formatting
 - Keep proper nouns: Mia, David, etc.
 `;
+
+// A2 Simplification Guidelines
+const A2_GUIDELINES = `
+- Use 1000-2000 most common words
+- Present, simple past, and simple future tenses
+- Moderate sentences (8-15 words average)
+- MAXIMUM 15 WORDS PER SENTENCE
+- More connectors: "and", "but", "when", "because", "so", "after", "before"
+- Some subordinate clauses allowed
+- Maintain exact 1:1 sentence count mapping (CRITICAL)
+- Generate natural flow sentences (NOT forced micro-sentences)
+- Each sentence should express one complete thought
+- Avoid semicolons - use periods instead
+- Preserve punctuation for proper formatting
+- Keep proper nouns: Mia, David, etc.
+`;
+
+const GUIDELINES = CEFR_LEVEL === 'A1' ? A1_GUIDELINES : A2_GUIDELINES;
+const MAX_WORDS = CEFR_LEVEL === 'A1' ? 12 : 15;
 
 // Helper function to call OpenAI API
 async function callOpenAI(sentence, retryCount = 0) {
@@ -62,17 +93,17 @@ async function callOpenAI(sentence, retryCount = 0) {
       max_tokens: 200,
       messages: [{
         role: 'user',
-        content: `You are simplifying ONE sentence to A1 level. Return EXACTLY ONE sentence.
+        content: `You are simplifying ONE sentence to ${CEFR_LEVEL} level. Return EXACTLY ONE sentence.
 
-${A1_GUIDELINES}
+${GUIDELINES}
 
 Original sentence: "${cleanSentence}"
 
 CRITICAL RULES:
 1. Return EXACTLY ONE sentence (not two or three sentences)
-2. Maximum 12 words total - if too long, use connectors to combine ideas into ONE sentence
-3. Use 500-1000 most common words only
-4. Use connectors: "and", "but", "when" to create natural flow within ONE sentence
+2. Maximum ${MAX_WORDS} words total - if too long, use connectors to combine ideas into ONE sentence
+3. ${CEFR_LEVEL === 'A1' ? 'Use 500-1000 most common words only' : 'Use 1000-2000 most common words'}
+4. Use appropriate connectors to create natural flow within ONE sentence
 5. Keep the complete meaning and emotion
 6. Keep proper nouns unchanged (Mia, David, etc.)
 7. Return ONLY the simplified sentence, no explanations
@@ -99,7 +130,7 @@ Simplified sentence:`
     
     // Validate word count
     const words = simplified.split(/\s+/).length;
-    if (words > 12 && retryCount < maxAttempts) {
+    if (words > MAX_WORDS && retryCount < maxAttempts) {
       console.log(`⚠️  Sentence too long (${words} words), retrying...`);
       return callOpenAI(sentence, retryCount + 1);
     }
@@ -130,25 +161,25 @@ function splitIntoSentences(text) {
 }
 
 // Main simplification function
-async function simplifyToA1() {
-  console.log('📝 Simplifying to A1 level...');
+async function simplifyStory() {
+  console.log(`📝 Simplifying to ${CEFR_LEVEL} level...`);
   console.log('🎯 Target: At least 20 minutes reading time');
-  
+
   // Read original text
   if (!fs.existsSync(INPUT_FILE)) {
     console.error(`❌ Input file not found: ${INPUT_FILE}`);
     process.exit(1);
   }
-  
+
   const originalText = fs.readFileSync(INPUT_FILE, 'utf-8');
   const sentences = splitIntoSentences(originalText);
-  
+
   console.log(`📊 Original: ${sentences.length} sentences`);
-  
+
   // Load cache if exists
   let cache = { sentences: [], processed: 0 };
-  if (fs.existsSync(CACHE_FILE_A1)) {
-    cache = JSON.parse(fs.readFileSync(CACHE_FILE_A1, 'utf-8'));
+  if (fs.existsSync(CACHE_FILE)) {
+    cache = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf-8'));
     console.log(`📦 Resuming from cache: ${cache.processed}/${sentences.length} sentences`);
   }
   
@@ -170,7 +201,7 @@ async function simplifyToA1() {
       
       // Save cache every 10 sentences
       if ((i + 1) % 10 === 0) {
-        fs.writeFileSync(CACHE_FILE_A1, JSON.stringify(cache, null, 2), 'utf-8');
+        fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2), 'utf-8');
         console.log(`💾 Progress saved (${i + 1}/${sentences.length})`);
       }
       
@@ -184,22 +215,24 @@ async function simplifyToA1() {
   
   // Combine simplified sentences
   const simplifiedText = cache.sentences.join(' ');
-  
+
   // Save final output
-  fs.writeFileSync(OUTPUT_FILE_A1, simplifiedText, 'utf-8');
-  fs.writeFileSync(CACHE_FILE_A1, JSON.stringify(cache, null, 2), 'utf-8');
-  
+  fs.writeFileSync(OUTPUT_FILE, simplifiedText, 'utf-8');
+  fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2), 'utf-8');
+
   // Calculate statistics
   const wordCount = simplifiedText.split(/\s+/).length;
   const charCount = simplifiedText.length;
-  const estimatedMinutes = Math.round(wordCount / 80); // A1 reading speed ~80 words/min
-  
+  const readingSpeed = CEFR_LEVEL === 'A1' ? 80 : 100; // words/min
+  const estimatedMinutes = Math.round(wordCount / readingSpeed);
+
   console.log(`\n✅ Simplification complete!`);
   console.log(`📊 Statistics:`);
+  console.log(`   - Level: ${CEFR_LEVEL}`);
   console.log(`   - Sentences: ${cache.sentences.length}`);
   console.log(`   - Words: ${wordCount.toLocaleString()}`);
   console.log(`   - Characters: ${charCount.toLocaleString()}`);
-  console.log(`   - Estimated reading time: ~${estimatedMinutes} minutes (A1 level)`);
+  console.log(`   - Estimated reading time: ~${estimatedMinutes} minutes (${CEFR_LEVEL} level)`);
   
   if (estimatedMinutes < 20) {
     console.log(`\n⚠️  WARNING: Story is ${estimatedMinutes} minutes, target is at least 20 minutes.`);
@@ -212,8 +245,8 @@ async function simplifyToA1() {
 }
 
 if (require.main === module) {
-  simplifyToA1().catch(console.error);
+  simplifyStory().catch(console.error);
 }
 
-module.exports = { simplifyToA1 };
+module.exports = { simplifyStory };
 

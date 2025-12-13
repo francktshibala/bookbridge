@@ -8,9 +8,20 @@ config({ path: '.env.local' });
 const prisma = new PrismaClient();
 
 const BOOK_ID = 'teaching-dad-to-read';
-const CEFR_LEVEL = 'A1';
 
-console.log(`📚 INTEGRATING "First-Gen Student Teaching Dad to Read" - A1 LEVEL WITH ENHANCED TIMING V3`);
+// Get target level from command line argument or default to A1
+const targetLevel = process.argv[2] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  console.log('Usage: npx tsx scripts/integrate-teaching-dad-database.ts [A1|A2]');
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
+
+console.log(`📚 INTEGRATING "First-Gen Student Teaching Dad to Read" - ${CEFR_LEVEL} LEVEL WITH ENHANCED TIMING V3`);
 console.log(`=`.repeat(60));
 
 interface BundleMetadata {
