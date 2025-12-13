@@ -360,56 +360,51 @@ function IntroSectionWithHighlighting({
     };
   }, [isPlaying, updateTimeAndHighlight]);
 
-  const togglePlay = async () => {
+  const togglePlay = () => {
     if (!audioRef.current) {
       console.error('❌ Intro audio: No audio ref available');
       return;
     }
-    
+
     if (isPlaying) {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      try {
-        const audio = audioRef.current;
-        
-        // Check if audio is ready
-        if (audio.readyState < 2) {
-          console.log('⏳ Intro audio: Waiting for audio to load...');
-          await new Promise((resolve) => {
-            const handleCanPlay = () => {
-              audio.removeEventListener('canplay', handleCanPlay);
-              resolve(undefined);
-            };
-            audio.addEventListener('canplay', handleCanPlay);
+      // iOS Safari requires play() to be called synchronously in the click handler
+      // Any await before play() breaks the user gesture chain and blocks playback
+      const audio = audioRef.current;
+
+      // Ensure volume is set (do this synchronously)
+      audio.volume = 1.0;
+      audio.muted = false;
+
+      console.log('🎵 Intro audio: Attempting to play', {
+        src: audio.src,
+        readyState: audio.readyState,
+        networkState: audio.networkState,
+        duration: audio.duration
+      });
+
+      // Call play() immediately (returns a promise) - CRITICAL for iOS Safari
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+            console.log('✅ Intro audio: Playback started successfully');
+          })
+          .catch((error: any) => {
+            console.error('❌ Intro audio: Playback failed:', error);
+            console.error('Error details:', {
+              name: error.name,
+              message: error.message,
+              code: error.code
+            });
+            setIsPlaying(false);
+            // Show user-friendly error message
+            alert(`Unable to play audio: ${error.message || 'Please check your browser settings or try again.'}`);
           });
-        }
-        
-        // Ensure volume is set
-        audio.volume = 1.0;
-        audio.muted = false;
-        
-        console.log('🎵 Intro audio: Attempting to play', {
-          src: audio.src,
-          readyState: audio.readyState,
-          networkState: audio.networkState,
-          duration: audio.duration
-        });
-        
-        // Play audio and handle promise
-        await audio.play();
-        setIsPlaying(true);
-        console.log('✅ Intro audio: Playback started successfully');
-      } catch (error: any) {
-        console.error('❌ Intro audio: Playback failed:', error);
-        console.error('Error details:', {
-          name: error.name,
-          message: error.message,
-          code: error.code
-        });
-        setIsPlaying(false);
-        // Show user-friendly error message
-        alert(`Unable to play audio: ${error.message || 'Please check your browser settings or try again.'}`);
       }
     }
   };
