@@ -433,6 +433,14 @@ Find 3-5 story-driven sources that meet these requirements:
 
 #### **Step 5: Create Seed Script**
 - [ ] Create `scripts/seed-{story-id}.ts` with FeaturedBook, Collection, Membership records
+- [ ] **CRITICAL: Assign story to correct collection based on theme:**
+  - **Starting Over** (`starting-over`): Refugee Journey, Second Chance, Single Parent, Age Defiance, Always a Family
+  - **Breaking Barriers** (`breaking-barriers`): Disability Overcome, Medical Crisis, Workplace Discrimination, First-Gen Success (teaching-dad-to-read, immigrant-entrepreneur)
+  - **Finding Home** (`finding-home`): Community Builder, Cultural Bridge, Lost Heritage, Romantic Love
+  - **Building Dreams** (`building-dreams`): Career Pivot, First-Gen Success (teaching-dad-to-read, immigrant-entrepreneur)
+  - **Making a Difference** (`making-a-difference`): Grief to Purpose, Youth Activism, TED Talks, Teen Translating
+  - **Classic Literature** (`classics`): Only for classic/public domain books (NOT modern stories)
+- [ ] Reference: `cache/story-collection-mapping.json` for existing story assignments
 
 #### **Step 6: Run Seed Script**
 - [ ] Execute: `npx tsx scripts/seed-{story-id}.ts`
@@ -682,7 +690,7 @@ Update `lib/config/books.ts`:
    - Completion date
 
 2. **Add Detailed Story Notes** (bottom of file):
-   - Story ID, title, author, collection, completion date
+   - Story ID, title, author, collection (one of: starting-over, breaking-barriers, finding-home, building-dreams, making-a-difference), completion date
    - Sources (list all sources used)
    - Validation (Steps 0.25 and 0.5 results)
    - Content details (sentences, bundles, voice, audio speed)
