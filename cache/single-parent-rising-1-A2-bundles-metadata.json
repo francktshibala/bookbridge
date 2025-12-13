@@ -1,0 +1,1250 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-0.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "Lisa did not think her life could break down so fast and so completely.",
+        "startTime": 0,
+        "endTime": 5.026,
+        "duration": 5.026,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "One moment, she had a home, a job, and a family, but then everything changed.",
+        "startTime": 5.026,
+        "endTime": 11.076,
+        "duration": 6.05,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "In the next moment, she had no things left because everything was gone.",
+        "startTime": 11.076,
+        "endTime": 16.252,
+        "duration": 5.176,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "The story began with a phone call that changed everything for Lisa and James.",
+        "startTime": 16.252,
+        "endTime": 21.702,
+        "duration": 5.45,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Her husband was in an accident, so she was very worried.",
+        "startTime": 21.702,
+        "endTime": 25.816,
+        "duration": 4.114,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "When Lisa arrived at the hospital, he was already gone.",
+        "startTime": 25.816,
+        "endTime": 29.859,
+        "duration": 4.043,
+        "sentenceIndex": 5
+      }
+    ],
+    "totalDuration": 29.859025,
+    "measuredDuration": 29.859025
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-1.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "Lisa was seven months pregnant, but then she became a widow with two kids.",
+        "startTime": 0,
+        "endTime": 5.036,
+        "duration": 5.036,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "The weeks after were full of sadness and fear for Lisa and her friends.",
+        "startTime": 5.036,
+        "endTime": 9.723,
+        "duration": 4.687,
+        "sentenceIndex": 7
+      },
+      {
+        "text": "Lisa did not have any money saved for the future.",
+        "startTime": 9.723,
+        "endTime": 12.958,
+        "duration": 3.235,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "She lost her job just before the accident happened.",
+        "startTime": 12.958,
+        "endTime": 16.325,
+        "duration": 3.367,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "She had no family nearby, so she could not get help.",
+        "startTime": 16.325,
+        "endTime": 19.908,
+        "duration": 3.583,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "Lisa moved into a small apartment with her children, James, Emily, and baby Noah.",
+        "startTime": 19.908,
+        "endTime": 25.706,
+        "duration": 5.798,
+        "sentenceIndex": 11
+      }
+    ],
+    "totalDuration": 25.70576,
+    "measuredDuration": 25.70576
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-2.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "Lisa wanted to find work, but who would hire a mother with three kids.",
+        "startTime": 0,
+        "endTime": 5.174,
+        "duration": 5.174,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "She took any jobs she could find, like cleaning houses and working in fast food.",
+        "startTime": 5.174,
+        "endTime": 11.067,
+        "duration": 5.892,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "The work was very tiring, so I needed a break afterward.",
+        "startTime": 11.067,
+        "endTime": 15.236,
+        "duration": 4.17,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "Lisa comes home late and feels tired, but she still cooks dinner and helps the kids.",
+        "startTime": 15.236,
+        "endTime": 21.416,
+        "duration": 6.179,
+        "sentenceIndex": 15
+      },
+      {
+        "text": "Some nights, Lisa sits in her car after work and cries quietly.",
+        "startTime": 21.416,
+        "endTime": 26.088,
+        "duration": 4.672,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "She felt like no one could see her, so she was very sad.",
+        "startTime": 26.088,
+        "endTime": 30.257,
+        "duration": 4.17,
+        "sentenceIndex": 17
+      }
+    ],
+    "totalDuration": 30.257392,
+    "measuredDuration": 30.257392
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-3.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "The people whose houses Lisa cleaned did not know her name at all.",
+        "startTime": 0,
+        "endTime": 4.672,
+        "duration": 4.672,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "They saw her as a cleaner, not as a real person with feelings.",
+        "startTime": 4.672,
+        "endTime": 9.212,
+        "duration": 4.539,
+        "sentenceIndex": 19
+      },
+      {
+        "text": "Lisa cleaned toilets and vacuumed carpets, then went home to her small apartment with children.",
+        "startTime": 9.212,
+        "endTime": 16.087,
+        "duration": 6.875,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "The stress felt very strong and made everything seem hard for Lisa and James.",
+        "startTime": 16.087,
+        "endTime": 21.538,
+        "duration": 5.451,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "Lisa felt very sad, like she was sinking in deep water.",
+        "startTime": 21.538,
+        "endTime": 25.582,
+        "duration": 4.044,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "She could not sleep because she was worried about her friend Lisa.",
+        "startTime": 25.582,
+        "endTime": 30.254,
+        "duration": 4.672,
+        "sentenceIndex": 23
+      }
+    ],
+    "totalDuration": 30.254399,
+    "measuredDuration": 30.254399
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-4.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "She could not eat because she felt very sick that day.",
+        "startTime": 0,
+        "endTime": 3.749,
+        "duration": 3.749,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "Lisa woke up at night, worried about money and how to care for her children.",
+        "startTime": 3.749,
+        "endTime": 9.174,
+        "duration": 5.426,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "Some nights, dark thoughts come into Lisa's mind and make her feel sad.",
+        "startTime": 9.174,
+        "endTime": 14.253,
+        "duration": 5.079,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "What will happen if she decides to give up now.",
+        "startTime": 14.253,
+        "endTime": 17.516,
+        "duration": 3.263,
+        "sentenceIndex": 27
+      },
+      {
+        "text": "What would happen if she stopped trying to succeed.",
+        "startTime": 17.516,
+        "endTime": 21.056,
+        "duration": 3.54,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "The thoughts scared her because they were always there and felt very heavy.",
+        "startTime": 21.056,
+        "endTime": 26.262,
+        "duration": 5.206,
+        "sentenceIndex": 29
+      }
+    ],
+    "totalDuration": 26.262404,
+    "measuredDuration": 26.262404
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-5.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "One Friday night, Lisa knelt on her small apartment floor after a hard week.",
+        "startTime": 0,
+        "endTime": 5.972,
+        "duration": 5.972,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "The children were asleep in their beds, so it was very quiet.",
+        "startTime": 5.972,
+        "endTime": 10.795,
+        "duration": 4.823,
+        "sentenceIndex": 31
+      },
+      {
+        "text": "The apartment was very quiet, so Lisa and James could relax there.",
+        "startTime": 10.795,
+        "endTime": 16.001,
+        "duration": 5.206,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "Lisa felt very alone and broken inside, so she needed help.",
+        "startTime": 16.001,
+        "endTime": 20.67,
+        "duration": 4.67,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "She did not know how to continue, so she felt lost and confused.",
+        "startTime": 20.67,
+        "endTime": 25.723,
+        "duration": 5.053,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "She did not know if she had enough strength to continue.",
+        "startTime": 25.723,
+        "endTime": 30.013,
+        "duration": 4.29,
+        "sentenceIndex": 35
+      }
+    ],
+    "totalDuration": 30.01288,
+    "measuredDuration": 30.01288
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-6.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "She whispered, 'Please,' into the quiet room because she wanted help.",
+        "startTime": 0,
+        "endTime": 5.743,
+        "duration": 5.743,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "I don’t know how to do this by myself, and I need help.",
+        "startTime": 5.743,
+        "endTime": 10.231,
+        "duration": 4.488,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "I do not have the strength to do this right now.",
+        "startTime": 10.231,
+        "endTime": 14.017,
+        "duration": 3.786,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "She cried for help until she had no tears left.",
+        "startTime": 14.017,
+        "endTime": 17.725,
+        "duration": 3.707,
+        "sentenceIndex": 39
+      },
+      {
+        "text": "Then she went to bed because she expected nothing to change.",
+        "startTime": 17.725,
+        "endTime": 22.457,
+        "duration": 4.733,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "The next morning, Lisa's oldest son James came into her room and smiled.",
+        "startTime": 22.457,
+        "endTime": 28.287,
+        "duration": 5.829,
+        "sentenceIndex": 41
+      }
+    ],
+    "totalDuration": 28.286735,
+    "measuredDuration": 28.286735
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-7.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "He was six years old and had a toy in his hand.",
+        "startTime": 0,
+        "endTime": 3.237,
+        "duration": 3.237,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "Mommy,\" he said softly, because he wanted her to listen.",
+        "startTime": 3.237,
+        "endTime": 7.393,
+        "duration": 4.157,
+        "sentenceIndex": 43
+      },
+      {
+        "text": "My teacher gave me this gift because I worked hard in class.",
+        "startTime": 7.393,
+        "endTime": 11.526,
+        "duration": 4.132,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "James left the room after he put a small package on the table for you.",
+        "startTime": 11.526,
+        "endTime": 16.346,
+        "duration": 4.821,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "Lisa stayed still for a long time because she was thinking deeply.",
+        "startTime": 16.346,
+        "endTime": 20.892,
+        "duration": 4.545,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "She was very tired and felt defeated because she worked hard all day.",
+        "startTime": 20.892,
+        "endTime": 25.644,
+        "duration": 4.752,
+        "sentenceIndex": 47
+      }
+    ],
+    "totalDuration": 25.64356,
+    "measuredDuration": 25.64356
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-8.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "But finally, she sat up and looked at the package with curiosity.",
+        "startTime": 0,
+        "endTime": 4.767,
+        "duration": 4.767,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "The words made her cry again, but this time her tears felt different.",
+        "startTime": 4.767,
+        "endTime": 9.818,
+        "duration": 5.051,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "Lisa held the package that said \"Parents for Life,\" and she felt something move inside.",
+        "startTime": 9.818,
+        "endTime": 16.148,
+        "duration": 6.33,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "She knew at that moment that she must not give up.",
+        "startTime": 16.148,
+        "endTime": 19.7,
+        "duration": 3.552,
+        "sentenceIndex": 51
+      },
+      {
+        "text": "Her children needed her because they wanted her help and support every day.",
+        "startTime": 19.7,
+        "endTime": 25.027,
+        "duration": 5.327,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "They needed her to be strong and keep going for a better life together.",
+        "startTime": 25.027,
+        "endTime": 30.07,
+        "duration": 5.043,
+        "sentenceIndex": 53
+      }
+    ],
+    "totalDuration": 30.070363,
+    "measuredDuration": 30.070363
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-9.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "She could not leave them behind because she cared for them deeply.",
+        "startTime": 0,
+        "endTime": 4.689,
+        "duration": 4.689,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "She did not want to do it, so she wouldn't.",
+        "startTime": 4.689,
+        "endTime": 7.894,
+        "duration": 3.205,
+        "sentenceIndex": 55
+      },
+      {
+        "text": "That day, Lisa decided what she wanted to do next.",
+        "startTime": 7.894,
+        "endTime": 11.597,
+        "duration": 3.702,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "Lisa always dreamed of going back to school and building a career for her children.",
+        "startTime": 11.597,
+        "endTime": 17.494,
+        "duration": 5.897,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "She dropped out of high school years ago because life became too complicated.",
+        "startTime": 17.494,
+        "endTime": 22.965,
+        "duration": 5.471,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "She told herself it was too late and she had too many responsibilities.",
+        "startTime": 22.965,
+        "endTime": 28.009,
+        "duration": 5.045,
+        "sentenceIndex": 59
+      }
+    ],
+    "totalDuration": 28.009456,
+    "measuredDuration": 28.009456
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-10.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "Lisa saw the \"Parents for Life\" package on her table and decided to try it.",
+        "startTime": 0,
+        "endTime": 5.061,
+        "duration": 5.061,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "She joined a program to earn her high school diploma because she wants to learn.",
+        "startTime": 5.061,
+        "endTime": 10.459,
+        "duration": 5.398,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "She studied at night when the children were asleep and it was quiet.",
+        "startTime": 10.459,
+        "endTime": 15.047,
+        "duration": 4.588,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "She studied in the morning because they were still sleeping.",
+        "startTime": 15.047,
+        "endTime": 19.096,
+        "duration": 4.049,
+        "sentenceIndex": 63
+      },
+      {
+        "text": "She studied whenever she had free time because she wanted to learn more.",
+        "startTime": 19.096,
+        "endTime": 23.955,
+        "duration": 4.858,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "The children became study partners for Lisa, James, Emily, and Noah.",
+        "startTime": 23.955,
+        "endTime": 28.993,
+        "duration": 5.038,
+        "sentenceIndex": 65
+      }
+    ],
+    "totalDuration": 28.992993,
+    "measuredDuration": 28.992993
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-11.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "James helped her with flash cards while she cooked dinner.",
+        "startTime": 0,
+        "endTime": 3.902,
+        "duration": 3.902,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "Emily sat with her when she read her textbooks.",
+        "startTime": 3.902,
+        "endTime": 7.064,
+        "duration": 3.162,
+        "sentenceIndex": 67
+      },
+      {
+        "text": "Even little Noah understood that Mommy was doing something very important.",
+        "startTime": 7.064,
+        "endTime": 12.042,
+        "duration": 4.978,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "He played quietly while she studied because he knew she needed time.",
+        "startTime": 12.042,
+        "endTime": 16.617,
+        "duration": 4.575,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "Lisa passed her high school exam, and she felt very happy about it.",
+        "startTime": 16.617,
+        "endTime": 21.274,
+        "duration": 4.657,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "Then she signed up for community college because she wanted to learn more.",
+        "startTime": 21.274,
+        "endTime": 26.252,
+        "duration": 4.978,
+        "sentenceIndex": 71
+      }
+    ],
+    "totalDuration": 26.2522,
+    "measuredDuration": 26.2522
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-12.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "She took online classes to fit her work and her children's needs.",
+        "startTime": 0,
+        "endTime": 4.524,
+        "duration": 4.524,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "It was not easy, but I tried my best and learned a lot.",
+        "startTime": 4.524,
+        "endTime": 8.502,
+        "duration": 3.978,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "There were days when Lisa wanted to quit because she felt like a failure.",
+        "startTime": 8.502,
+        "endTime": 13.583,
+        "duration": 5.081,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "But she continued to move forward because she wanted to succeed.",
+        "startTime": 13.583,
+        "endTime": 18.037,
+        "duration": 4.454,
+        "sentenceIndex": 75
+      },
+      {
+        "text": "She remembered the package from \"Parents for Life\" because it was very important to her.",
+        "startTime": 18.037,
+        "endTime": 24.162,
+        "duration": 6.125,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "She remembered the faces of her children, Lisa, James, Emily, and Noah.",
+        "startTime": 24.162,
+        "endTime": 29.704,
+        "duration": 5.542,
+        "sentenceIndex": 77
+      }
+    ],
+    "totalDuration": 29.703991,
+    "measuredDuration": 29.703991
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-13.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "She remembered she must succeed for herself and for her family too.",
+        "startTime": 0,
+        "endTime": 4.479,
+        "duration": 4.479,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "Lisa moved to a university because she wanted to learn more and meet new friends.",
+        "startTime": 4.479,
+        "endTime": 9.894,
+        "duration": 5.415,
+        "sentenceIndex": 79
+      },
+      {
+        "text": "She studied social work because she wanted to help families who needed support.",
+        "startTime": 9.894,
+        "endTime": 15.175,
+        "duration": 5.281,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "She graduated with honors, so she applied to graduate school after that.",
+        "startTime": 15.175,
+        "endTime": 20.138,
+        "duration": 4.963,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "She was accepted into a master's program, so she continued her studies.",
+        "startTime": 20.138,
+        "endTime": 25.034,
+        "duration": 4.896,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "Her children, James and Emily, were always with her during everything.",
+        "startTime": 25.034,
+        "endTime": 30.014,
+        "duration": 4.979,
+        "sentenceIndex": 83
+      }
+    ],
+    "totalDuration": 30.01381,
+    "measuredDuration": 30.01381
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-14.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "They helped her study for the test because she wanted to do well.",
+        "startTime": 0,
+        "endTime": 4.311,
+        "duration": 4.311,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "They celebrated Lisa's small victories because they were proud of her progress.",
+        "startTime": 4.311,
+        "endTime": 9.551,
+        "duration": 5.24,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "They knew their mother was doing something important that would change their lives.",
+        "startTime": 9.551,
+        "endTime": 15.055,
+        "duration": 5.505,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "Lisa had one moment that she will always remember.",
+        "startTime": 15.055,
+        "endTime": 18.371,
+        "duration": 3.316,
+        "sentenceIndex": 87
+      },
+      {
+        "text": "It was in her last year of graduate school.",
+        "startTime": 18.371,
+        "endTime": 21.223,
+        "duration": 2.852,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "She felt very stressed because she had too many papers and exams to finish.",
+        "startTime": 21.223,
+        "endTime": 26.198,
+        "duration": 4.974,
+        "sentenceIndex": 89
+      }
+    ],
+    "totalDuration": 26.197574,
+    "measuredDuration": 26.197574
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-15.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "She worked part-time because she needed money to pay the bills.",
+        "startTime": 0,
+        "endTime": 4.304,
+        "duration": 4.304,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "She was very tired, so she felt like she could not do it anymore.",
+        "startTime": 4.304,
+        "endTime": 8.894,
+        "duration": 4.59,
+        "sentenceIndex": 91
+      },
+      {
+        "text": "One evening, Lisa went to her room because she wanted to cry.",
+        "startTime": 8.894,
+        "endTime": 13.211,
+        "duration": 4.317,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "She didn’t want the children to see her cry and feel sad.",
+        "startTime": 13.211,
+        "endTime": 17.105,
+        "duration": 3.894,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "When she came out, she saw that James had quietly gathered his siblings.",
+        "startTime": 17.105,
+        "endTime": 22.174,
+        "duration": 5.069,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "He gave them snacks because they were hungry and wanted to eat.",
+        "startTime": 22.174,
+        "endTime": 26.478,
+        "duration": 4.304,
+        "sentenceIndex": 95
+      }
+    ],
+    "totalDuration": 26.477778,
+    "measuredDuration": 26.477778
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-16.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "He helped them take baths when they needed it.",
+        "startTime": 0,
+        "endTime": 3.12,
+        "duration": 3.12,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "He laid out their school clothes for the next day because he wanted them ready.",
+        "startTime": 3.12,
+        "endTime": 8.478,
+        "duration": 5.358,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "Lisa did not ask him to do any of those things.",
+        "startTime": 8.478,
+        "endTime": 11.665,
+        "duration": 3.188,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "He did it because he knew she needed help.",
+        "startTime": 11.665,
+        "endTime": 14.514,
+        "duration": 2.849,
+        "sentenceIndex": 99
+      },
+      {
+        "text": "That moment made Lisa see her children are not only her responsibility.",
+        "startTime": 14.514,
+        "endTime": 19.329,
+        "duration": 4.815,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "They were her partners and support, so they helped her keep going.",
+        "startTime": 19.329,
+        "endTime": 23.955,
+        "duration": 4.626,
+        "sentenceIndex": 101
+      }
+    ],
+    "totalDuration": 23.955351,
+    "measuredDuration": 23.955351
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-17.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "They learned from her and watched her, so they felt proud of her.",
+        "startTime": 0,
+        "endTime": 4.149,
+        "duration": 4.149,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "Lisa finished graduate school with honors, and she is very proud of her achievement.",
+        "startTime": 4.149,
+        "endTime": 9.466,
+        "duration": 5.318,
+        "sentenceIndex": 103
+      },
+      {
+        "text": "She got a job as a social worker to help families who struggle like she did.",
+        "startTime": 9.466,
+        "endTime": 14.142,
+        "duration": 4.675,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "She could finally care for her children in a way that felt good and right.",
+        "startTime": 14.142,
+        "endTime": 18.694,
+        "duration": 4.552,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "Lisa showed herself and her children that she could do more than she thought.",
+        "startTime": 18.694,
+        "endTime": 23.431,
+        "duration": 4.737,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "She showed that it is never too late to begin again.",
+        "startTime": 23.431,
+        "endTime": 26.63,
+        "duration": 3.199,
+        "sentenceIndex": 107
+      }
+    ],
+    "totalDuration": 26.630317,
+    "measuredDuration": 26.630317
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-18.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "She showed that a single parent can succeed, even when it seems very hard.",
+        "startTime": 0,
+        "endTime": 5.051,
+        "duration": 5.051,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "She showed that with hard work, help, and love, anything can happen.",
+        "startTime": 5.051,
+        "endTime": 10.004,
+        "duration": 4.954,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "One day, Lisa was looking at old photos and remembering happy times.",
+        "startTime": 10.004,
+        "endTime": 14.658,
+        "duration": 4.654,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "Lisa found an old picture of herself when she felt invisible and struggled to survive.",
+        "startTime": 14.658,
+        "endTime": 20.354,
+        "duration": 5.696,
+        "sentenceIndex": 111
+      },
+      {
+        "text": "Lisa looked at the photo and then at her children, James, Emily, and Noah.",
+        "startTime": 20.354,
+        "endTime": 25.705,
+        "duration": 5.351,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "They were all doing well and feeling happy together.",
+        "startTime": 25.705,
+        "endTime": 29.149,
+        "duration": 3.444,
+        "sentenceIndex": 113
+      }
+    ],
+    "totalDuration": 29.148549,
+    "measuredDuration": 29.148549
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-19.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "They were all very happy because they had a fun day together.",
+        "startTime": 0,
+        "endTime": 4.355,
+        "duration": 4.355,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "They all felt proud of their mother because she worked hard for them.",
+        "startTime": 4.355,
+        "endTime": 9.281,
+        "duration": 4.926,
+        "sentenceIndex": 115
+      },
+      {
+        "text": "Lisa understood that her biggest success was not her degree or her job.",
+        "startTime": 9.281,
+        "endTime": 14.351,
+        "duration": 5.069,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "Her biggest success is her children, Lisa, James, Emily, and Noah.",
+        "startTime": 14.351,
+        "endTime": 19.663,
+        "duration": 5.312,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "They were the reason she continued to try and never gave up.",
+        "startTime": 19.663,
+        "endTime": 23.946,
+        "duration": 4.284,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "They were the reason Lisa found the strength to create a new life.",
+        "startTime": 23.946,
+        "endTime": 28.659,
+        "duration": 4.712,
+        "sentenceIndex": 119
+      }
+    ],
+    "totalDuration": 28.658503,
+    "measuredDuration": 28.658503
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-20.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "They showed that a single parent can raise happy and successful children, even when it is hard.",
+        "startTime": 0,
+        "endTime": 6.786,
+        "duration": 6.786,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "The journey was long and hard, but we kept going because we wanted to succeed.",
+        "startTime": 6.786,
+        "endTime": 12.385,
+        "duration": 5.599,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "Lisa had moments of despair when she wanted to give up, but she kept going.",
+        "startTime": 12.385,
+        "endTime": 17.774,
+        "duration": 5.389,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "She kept going every day and took one step at a time.",
+        "startTime": 17.774,
+        "endTime": 21.476,
+        "duration": 3.702,
+        "sentenceIndex": 123
+      },
+      {
+        "text": "Looking at her children, she knew every struggle was worth it for Lisa.",
+        "startTime": 21.476,
+        "endTime": 26.586,
+        "duration": 5.11,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "All her late nights of studying and tears led Lisa to this family and life.",
+        "startTime": 26.586,
+        "endTime": 31.825,
+        "duration": 5.239,
+        "sentenceIndex": 125
+      }
+    ],
+    "totalDuration": 31.825215,
+    "measuredDuration": 31.825215
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-21.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "Lisa began her journey with nothing, but she worked hard to succeed.",
+        "startTime": 0,
+        "endTime": 5.049,
+        "duration": 5.049,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "Lisa was a single parent with three young children and no job or support.",
+        "startTime": 5.049,
+        "endTime": 10.308,
+        "duration": 5.259,
+        "sentenceIndex": 127
+      },
+      {
+        "text": "But she built a good life for herself and felt happy.",
+        "startTime": 10.308,
+        "endTime": 14.127,
+        "duration": 3.818,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "She got an education because she worked hard and studied every day.",
+        "startTime": 14.127,
+        "endTime": 18.954,
+        "duration": 4.827,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "She found a job that she liked very much.",
+        "startTime": 18.954,
+        "endTime": 21.908,
+        "duration": 2.954,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "Lisa raised three children who knew she loved them and would always fight for them.",
+        "startTime": 21.908,
+        "endTime": 27.888,
+        "duration": 5.98,
+        "sentenceIndex": 131
+      }
+    ],
+    "totalDuration": 27.887664,
+    "measuredDuration": 27.887664
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-22.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "The \"Parents for Life\" package sat on Lisa's desk, reminding her to choose hope.",
+        "startTime": 0,
+        "endTime": 5.868,
+        "duration": 5.868,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "It reminded her that being a parent is not only about providing for children.",
+        "startTime": 5.868,
+        "endTime": 11.372,
+        "duration": 5.504,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "It was about showing them they could achieve anything and never be alone.",
+        "startTime": 11.372,
+        "endTime": 16.59,
+        "duration": 5.218,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "Lisa's story is about a single parent who succeeds against many challenges.",
+        "startTime": 16.59,
+        "endTime": 21.951,
+        "duration": 5.361,
+        "sentenceIndex": 135
+      },
+      {
+        "text": "A mother and her children work together to build a life full of love and hope.",
+        "startTime": 21.951,
+        "endTime": 27.526,
+        "duration": 5.575,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "It was about showing that family can be more than just two parents.",
+        "startTime": 27.526,
+        "endTime": 32.315,
+        "duration": 4.789,
+        "sentenceIndex": 137
+      }
+    ],
+    "totalDuration": 32.314853,
+    "measuredDuration": 32.314853
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/single-parent-rising-1/A2/bundle-23.mp3",
+    "audioPath": "single-parent-rising-1/A2/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "It was about love and commitment, and the choice to keep going no matter what.",
+        "startTime": 0,
+        "endTime": 5.915,
+        "duration": 5.915,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "Lisa made that choice every day for many years.",
+        "startTime": 5.915,
+        "endTime": 9.389,
+        "duration": 3.474,
+        "sentenceIndex": 139
+      },
+      {
+        "text": "She chose to keep going because she wanted to succeed.",
+        "startTime": 9.389,
+        "endTime": 13.38,
+        "duration": 3.991,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "She chose to make her life better because she wanted to be happy.",
+        "startTime": 13.38,
+        "endTime": 18.184,
+        "duration": 4.804,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "She wanted to show her children that they can do anything and be anything.",
+        "startTime": 18.184,
+        "endTime": 23.653,
+        "duration": 5.469,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "That choice changed everything for Lisa and James, so they felt very different.",
+        "startTime": 23.653,
+        "endTime": 29.642,
+        "duration": 5.989,
+        "sentenceIndex": 143
+      }
+    ],
+    "totalDuration": 29.642086,
+    "measuredDuration": 29.642086
+  }
+]

@@ -8,48 +8,48 @@
       {
         "text": "Lisa never thought her life would change so fast and so much.",
         "startTime": 0,
-        "endTime": 4.718,
-        "duration": 4.718,
+        "endTime": 4.373,
+        "duration": 4.373,
         "sentenceIndex": 0
       },
       {
         "text": "One moment, she has a home, a job, and a family.",
-        "startTime": 4.718,
-        "endTime": 8.88,
-        "duration": 4.162,
+        "startTime": 4.373,
+        "endTime": 8.265,
+        "duration": 3.891,
         "sentenceIndex": 1
       },
       {
         "text": "In the next moment, she has nothing at all.",
-        "startTime": 8.88,
-        "endTime": 12.356,
-        "duration": 3.476,
+        "startTime": 8.265,
+        "endTime": 11.497,
+        "duration": 3.233,
         "sentenceIndex": 2
       },
       {
         "text": "It was a sunny Tuesday morning when it all began.",
-        "startTime": 12.356,
-        "endTime": 16.145,
-        "duration": 3.79,
+        "startTime": 11.497,
+        "endTime": 15.01,
+        "duration": 3.513,
         "sentenceIndex": 3
       },
       {
         "text": "She was making breakfast for her children.",
-        "startTime": 16.145,
-        "endTime": 19.393,
-        "duration": 3.248,
+        "startTime": 15.01,
+        "endTime": 18.022,
+        "duration": 3.011,
         "sentenceIndex": 4
       },
       {
         "text": "The smell of pancakes filled the air, and her kids laughed happily.",
-        "startTime": 19.393,
-        "endTime": 24.725,
-        "duration": 5.332,
+        "startTime": 18.022,
+        "endTime": 22.975,
+        "duration": 4.953,
         "sentenceIndex": 5
       }
     ],
-    "totalDuration": 24.725079,
-    "measuredDuration": 24.725079
+    "totalDuration": 22.975125,
+    "measuredDuration": 22.975125
   },
   {
     "bundleId": "b1",
@@ -60,48 +60,48 @@
       {
         "text": "But then, she received a phone call.",
         "startTime": 0,
-        "endTime": 2.74,
-        "duration": 2.74,
+        "endTime": 2.728,
+        "duration": 2.728,
         "sentenceIndex": 6
       },
       {
         "text": "The phone rang loudly, breaking the joyful noise.",
-        "startTime": 2.74,
-        "endTime": 6.416,
-        "duration": 3.676,
+        "startTime": 2.728,
+        "endTime": 6.388,
+        "duration": 3.659,
         "sentenceIndex": 7
       },
       {
         "text": "Her heart raced as she picked it up.",
-        "startTime": 6.416,
-        "endTime": 9.006,
-        "duration": 2.59,
+        "startTime": 6.388,
+        "endTime": 8.966,
+        "duration": 2.578,
         "sentenceIndex": 8
       },
       {
         "text": "It was a strange voice on the line.",
-        "startTime": 9.006,
-        "endTime": 11.525,
-        "duration": 2.518,
+        "startTime": 8.966,
+        "endTime": 11.473,
+        "duration": 2.507,
         "sentenceIndex": 9
       },
       {
         "text": "They said, \"I’m sorry, but your husband was in an accident.\" Lisa's world stopped in that moment.",
-        "startTime": 11.525,
-        "endTime": 18.804,
-        "duration": 7.279,
+        "startTime": 11.473,
+        "endTime": 18.72,
+        "duration": 7.247,
         "sentenceIndex": 10
       },
       {
         "text": "She felt cold all over.",
-        "startTime": 18.804,
-        "endTime": 20.459,
-        "duration": 1.655,
+        "startTime": 18.72,
+        "endTime": 20.367,
+        "duration": 1.647,
         "sentenceIndex": 11
       }
     ],
-    "totalDuration": 20.458912,
-    "measuredDuration": 20.458912
+    "totalDuration": 20.366984,
+    "measuredDuration": 20.366984
   },
   {
     "bundleId": "b2",
@@ -112,48 +112,48 @@
       {
         "text": "Her husband was gone.",
         "startTime": 0,
-        "endTime": 1.62,
-        "duration": 1.62,
+        "endTime": 1.602,
+        "duration": 1.602,
         "sentenceIndex": 12
       },
       {
         "text": "When Lisa reached the hospital, she felt scared and lost.",
-        "startTime": 1.62,
-        "endTime": 6.167,
-        "duration": 4.547,
+        "startTime": 1.602,
+        "endTime": 6.1,
+        "duration": 4.498,
         "sentenceIndex": 13
       },
       {
         "text": "The hallways were bright, but her heart felt heavy.",
-        "startTime": 6.167,
-        "endTime": 10.251,
-        "duration": 4.084,
+        "startTime": 6.1,
+        "endTime": 10.14,
+        "duration": 4.04,
         "sentenceIndex": 14
       },
       {
         "text": "The nurse took her to a small room.",
-        "startTime": 10.251,
-        "endTime": 12.95,
-        "duration": 2.7,
+        "startTime": 10.14,
+        "endTime": 12.809,
+        "duration": 2.67,
         "sentenceIndex": 15
       },
       {
         "text": "She saw doctors and nurses talking, but no one could help her.",
-        "startTime": 12.95,
-        "endTime": 17.883,
-        "duration": 4.932,
+        "startTime": 12.809,
+        "endTime": 17.688,
+        "duration": 4.879,
         "sentenceIndex": 16
       },
       {
         "text": "They told her the news.",
-        "startTime": 17.883,
-        "endTime": 19.657,
-        "duration": 1.774,
+        "startTime": 17.688,
+        "endTime": 19.443,
+        "duration": 1.754,
         "sentenceIndex": 17
       }
     ],
-    "totalDuration": 19.657075,
-    "measuredDuration": 19.657075
+    "totalDuration": 19.442744,
+    "measuredDuration": 19.442744
   },
   {
     "bundleId": "b3",
@@ -164,48 +164,48 @@
       {
         "text": "Her husband was dead.",
         "startTime": 0,
-        "endTime": 1.557,
-        "duration": 1.557,
+        "endTime": 1.686,
+        "duration": 1.686,
         "sentenceIndex": 18
       },
       {
         "text": "Lisa was seven months pregnant.",
-        "startTime": 1.557,
-        "endTime": 3.856,
-        "duration": 2.299,
+        "startTime": 1.686,
+        "endTime": 4.175,
+        "duration": 2.489,
         "sentenceIndex": 19
       },
       {
         "text": "Suddenly, she became a widow.",
-        "startTime": 3.856,
-        "endTime": 6.157,
-        "duration": 2.301,
+        "startTime": 4.175,
+        "endTime": 6.653,
+        "duration": 2.478,
         "sentenceIndex": 20
       },
       {
         "text": "She felt alone and broken.",
-        "startTime": 6.157,
-        "endTime": 8.085,
-        "duration": 1.928,
+        "startTime": 6.653,
+        "endTime": 8.741,
+        "duration": 2.087,
         "sentenceIndex": 21
       },
       {
         "text": "The weeks after were full of sadness and fear.",
-        "startTime": 8.085,
-        "endTime": 11.497,
-        "duration": 3.411,
+        "startTime": 8.741,
+        "endTime": 12.434,
+        "duration": 3.693,
         "sentenceIndex": 22
       },
       {
         "text": "She cried many nights, holding her stomach.",
-        "startTime": 11.497,
-        "endTime": 14.836,
-        "duration": 3.339,
+        "startTime": 12.434,
+        "endTime": 16.036,
+        "duration": 3.602,
         "sentenceIndex": 23
       }
     ],
-    "totalDuration": 14.835782,
-    "measuredDuration": 14.835782
+    "totalDuration": 16.036077,
+    "measuredDuration": 16.036077
   },
   {
     "bundleId": "b4",
@@ -216,48 +216,48 @@
       {
         "text": "She thought about her baby.",
         "startTime": 0,
-        "endTime": 2.17,
-        "duration": 2.17,
+        "endTime": 2.051,
+        "duration": 2.051,
         "sentenceIndex": 24
       },
       {
         "text": "“How can I do this alone?” she whispered.",
-        "startTime": 2.17,
-        "endTime": 5.465,
-        "duration": 3.295,
+        "startTime": 2.051,
+        "endTime": 5.164,
+        "duration": 3.114,
         "sentenceIndex": 25
       },
       {
         "text": "Lisa had no money saved.",
-        "startTime": 5.465,
-        "endTime": 7.394,
-        "duration": 1.929,
+        "startTime": 5.164,
+        "endTime": 6.987,
+        "duration": 1.823,
         "sentenceIndex": 26
       },
       {
         "text": "She lost her job just before the accident happened.",
-        "startTime": 7.394,
-        "endTime": 11.493,
-        "duration": 4.099,
+        "startTime": 6.987,
+        "endTime": 10.86,
+        "duration": 3.873,
         "sentenceIndex": 27
       },
       {
         "text": "It was hard to support three children now.",
-        "startTime": 11.493,
-        "endTime": 14.869,
-        "duration": 3.376,
+        "startTime": 10.86,
+        "endTime": 14.05,
+        "duration": 3.19,
         "sentenceIndex": 28
       },
       {
         "text": "She has no family nearby to help her.",
-        "startTime": 14.869,
-        "endTime": 17.843,
-        "duration": 2.974,
+        "startTime": 14.05,
+        "endTime": 16.86,
+        "duration": 2.81,
         "sentenceIndex": 29
       }
     ],
-    "totalDuration": 17.842698,
-    "measuredDuration": 17.842698
+    "totalDuration": 16.860023,
+    "measuredDuration": 16.860023
   },
   {
     "bundleId": "b5",
@@ -268,48 +268,48 @@
       {
         "text": "Lisa moved into a small apartment with her children, James, Emily, and baby Noah.",
         "startTime": 0,
-        "endTime": 6.05,
-        "duration": 6.05,
+        "endTime": 6.226,
+        "duration": 6.226,
         "sentenceIndex": 30
       },
       {
         "text": "The apartment was tiny, but they made it home.",
-        "startTime": 6.05,
-        "endTime": 9.381,
-        "duration": 3.33,
+        "startTime": 6.226,
+        "endTime": 9.656,
+        "duration": 3.43,
         "sentenceIndex": 31
       },
       {
         "text": "Lisa wanted work, but it was hard to find a job.",
-        "startTime": 9.381,
-        "endTime": 12.85,
-        "duration": 3.469,
+        "startTime": 9.656,
+        "endTime": 13.229,
+        "duration": 3.573,
         "sentenceIndex": 32
       },
       {
         "text": "Every day, she looked in the newspaper and online.",
-        "startTime": 12.85,
-        "endTime": 16.457,
-        "duration": 3.607,
+        "startTime": 13.229,
+        "endTime": 16.944,
+        "duration": 3.715,
         "sentenceIndex": 33
       },
       {
         "text": "She took any job she could find and worked hard for money.",
-        "startTime": 16.457,
-        "endTime": 20.467,
-        "duration": 4.01,
+        "startTime": 16.944,
+        "endTime": 21.08,
+        "duration": 4.136,
         "sentenceIndex": 34
       },
       {
         "text": "The work is hard and makes her very tired.",
-        "startTime": 20.467,
-        "endTime": 23.371,
-        "duration": 2.904,
+        "startTime": 21.08,
+        "endTime": 24.075,
+        "duration": 2.995,
         "sentenceIndex": 35
       }
     ],
-    "totalDuration": 23.370862,
-    "measuredDuration": 23.370862
+    "totalDuration": 24.07483,
+    "measuredDuration": 24.07483
   },
   {
     "bundleId": "b6",
@@ -320,48 +320,48 @@
       {
         "text": "Lisa comes home late every day.",
         "startTime": 0,
-        "endTime": 2.406,
-        "duration": 2.406,
+        "endTime": 2.268,
+        "duration": 2.268,
         "sentenceIndex": 36
       },
       {
         "text": "She feels exhausted but still cooks dinner.",
-        "startTime": 2.406,
-        "endTime": 5.744,
-        "duration": 3.338,
+        "startTime": 2.268,
+        "endTime": 5.413,
+        "duration": 3.145,
         "sentenceIndex": 37
       },
       {
         "text": "She helps the kids with their homework.",
-        "startTime": 5.744,
-        "endTime": 8.772,
-        "duration": 3.027,
+        "startTime": 5.413,
+        "endTime": 8.266,
+        "duration": 2.853,
         "sentenceIndex": 38
       },
       {
         "text": "Some nights, Lisa sits in her car and cries after work.",
-        "startTime": 8.772,
-        "endTime": 13.191,
-        "duration": 4.419,
+        "startTime": 8.266,
+        "endTime": 12.439,
+        "duration": 4.173,
         "sentenceIndex": 39
       },
       {
         "text": "She feels invisible and alone when no one sees her.",
-        "startTime": 13.191,
-        "endTime": 17.15,
-        "duration": 3.959,
+        "startTime": 12.439,
+        "endTime": 16.169,
+        "duration": 3.731,
         "sentenceIndex": 40
       },
       {
         "text": "The people she cleaned for did not know her name.",
-        "startTime": 17.15,
-        "endTime": 20.954,
-        "duration": 3.804,
+        "startTime": 16.169,
+        "endTime": 19.754,
+        "duration": 3.584,
         "sentenceIndex": 41
       }
     ],
-    "totalDuration": 20.953696,
-    "measuredDuration": 20.953696
+    "totalDuration": 19.753583,
+    "measuredDuration": 19.753583
   },
   {
     "bundleId": "b7",
@@ -372,48 +372,48 @@
       {
         "text": "They saw her as a worker and not as a person.",
         "startTime": 0,
-        "endTime": 3.182,
-        "duration": 3.182,
+        "endTime": 3.241,
+        "duration": 3.241,
         "sentenceIndex": 42
       },
       {
         "text": "She cleans toilets and vacuums carpets, then goes home to her children.",
-        "startTime": 3.182,
-        "endTime": 8.352,
-        "duration": 5.17,
+        "startTime": 3.241,
+        "endTime": 8.504,
+        "duration": 5.263,
         "sentenceIndex": 43
       },
       {
         "text": "The stress was too much and made her feel bad.",
-        "startTime": 8.352,
-        "endTime": 11.604,
-        "duration": 3.252,
+        "startTime": 8.504,
+        "endTime": 11.817,
+        "duration": 3.313,
         "sentenceIndex": 44
       },
       {
         "text": "Lisa feels like she is drowning in sadness.",
-        "startTime": 11.604,
-        "endTime": 14.644,
-        "duration": 3.04,
+        "startTime": 11.817,
+        "endTime": 14.914,
+        "duration": 3.097,
         "sentenceIndex": 45
       },
       {
         "text": "She cannot sleep because she feels worried.",
-        "startTime": 14.644,
-        "endTime": 17.684,
-        "duration": 3.04,
+        "startTime": 14.914,
+        "endTime": 18.011,
+        "duration": 3.097,
         "sentenceIndex": 46
       },
       {
         "text": "She cannot eat because she feels bad.",
-        "startTime": 17.684,
-        "endTime": 20.3,
-        "duration": 2.616,
+        "startTime": 18.011,
+        "endTime": 20.676,
+        "duration": 2.665,
         "sentenceIndex": 47
       }
     ],
-    "totalDuration": 20.300476,
-    "measuredDuration": 20.300476
+    "totalDuration": 20.675669,
+    "measuredDuration": 20.675669
   },
   {
     "bundleId": "b8",
@@ -424,48 +424,48 @@
       {
         "text": "Lisa wakes up at night and worries about money and her kids.",
         "startTime": 0,
-        "endTime": 4.461,
-        "duration": 4.461,
+        "endTime": 4.629,
+        "duration": 4.629,
         "sentenceIndex": 48
       },
       {
         "text": "Some nights, dark thoughts come into her mind.",
-        "startTime": 4.461,
-        "endTime": 8.031,
-        "duration": 3.57,
+        "startTime": 4.629,
+        "endTime": 8.328,
+        "duration": 3.699,
         "sentenceIndex": 49
       },
       {
         "text": "What happens if she gives up and stops trying?",
-        "startTime": 8.031,
-        "endTime": 11.451,
-        "duration": 3.42,
+        "startTime": 8.328,
+        "endTime": 11.876,
+        "duration": 3.549,
         "sentenceIndex": 50
       },
       {
         "text": "What happens when she stops trying?",
-        "startTime": 11.451,
-        "endTime": 14.053,
-        "duration": 2.602,
+        "startTime": 11.876,
+        "endTime": 14.576,
+        "duration": 2.7,
         "sentenceIndex": 51
       },
       {
         "text": "The thoughts scared her, but they stayed heavy and strong.",
-        "startTime": 14.053,
-        "endTime": 18.515,
-        "duration": 4.462,
+        "startTime": 14.576,
+        "endTime": 19.201,
+        "duration": 4.625,
         "sentenceIndex": 52
       },
       {
         "text": "One Friday night, Lisa knelt on her apartment floor.",
-        "startTime": 18.515,
-        "endTime": 22.531,
-        "duration": 4.016,
+        "startTime": 19.201,
+        "endTime": 23.363,
+        "duration": 4.162,
         "sentenceIndex": 53
       }
     ],
-    "totalDuration": 22.531043,
-    "measuredDuration": 22.531043
+    "totalDuration": 23.362608,
+    "measuredDuration": 23.362608
   },
   {
     "bundleId": "b9",
@@ -476,48 +476,48 @@
       {
         "text": "The children were asleep, and they dream sweetly.",
         "startTime": 0,
-        "endTime": 3.883,
-        "duration": 3.883,
+        "endTime": 4.076,
+        "duration": 4.076,
         "sentenceIndex": 54
       },
       {
         "text": "The apartment is quiet and peaceful.",
-        "startTime": 3.883,
-        "endTime": 6.626,
-        "duration": 2.743,
+        "startTime": 4.076,
+        "endTime": 6.961,
+        "duration": 2.884,
         "sentenceIndex": 55
       },
       {
         "text": "Lisa feels alone and broken.",
-        "startTime": 6.626,
-        "endTime": 8.759,
-        "duration": 2.133,
+        "startTime": 6.961,
+        "endTime": 9.204,
+        "duration": 2.243,
         "sentenceIndex": 56
       },
       {
         "text": "She did not know how to continue.",
-        "startTime": 8.759,
-        "endTime": 11.273,
-        "duration": 2.514,
+        "startTime": 9.204,
+        "endTime": 11.848,
+        "duration": 2.644,
         "sentenceIndex": 57
       },
       {
         "text": "She did not know if she had strength.",
-        "startTime": 11.273,
-        "endTime": 14.092,
-        "duration": 2.819,
+        "startTime": 11.848,
+        "endTime": 14.813,
+        "duration": 2.965,
         "sentenceIndex": 58
       },
       {
         "text": "She whispers “please” into the quiet room.",
-        "startTime": 14.092,
-        "endTime": 17.292,
-        "duration": 3.2,
+        "startTime": 14.813,
+        "endTime": 18.178,
+        "duration": 3.365,
         "sentenceIndex": 59
       }
     ],
-    "totalDuration": 17.292132,
-    "measuredDuration": 17.292132
+    "totalDuration": 18.177846,
+    "measuredDuration": 18.177846
   },
   {
     "bundleId": "b10",
@@ -528,48 +528,48 @@
       {
         "text": "“I don’t know how to do this by myself.",
         "startTime": 0,
-        "endTime": 2.668,
-        "duration": 2.668,
+        "endTime": 2.86,
+        "duration": 2.86,
         "sentenceIndex": 60
       },
       {
         "text": "I do not have the strength to go on.” She cried and asked for help until she had no tears.",
-        "startTime": 2.668,
-        "endTime": 8.825,
-        "duration": 6.157,
+        "startTime": 2.86,
+        "endTime": 9.46,
+        "duration": 6.6,
         "sentenceIndex": 61
       },
       {
         "text": "She went to bed and expected nothing to change.",
-        "startTime": 8.825,
-        "endTime": 12.041,
-        "duration": 3.215,
+        "startTime": 9.46,
+        "endTime": 12.906,
+        "duration": 3.447,
         "sentenceIndex": 62
       },
       {
         "text": "She felt hopeless but still hoped for a miracle.",
-        "startTime": 12.041,
-        "endTime": 15.325,
-        "duration": 3.284,
+        "startTime": 12.906,
+        "endTime": 16.426,
+        "duration": 3.52,
         "sentenceIndex": 63
       },
       {
         "text": "The next morning, James came into Lisa's room.",
-        "startTime": 15.325,
-        "endTime": 18.622,
-        "duration": 3.297,
+        "startTime": 16.426,
+        "endTime": 19.949,
+        "duration": 3.523,
         "sentenceIndex": 64
       },
       {
         "text": "He is six years old and has something in his hand.",
-        "startTime": 18.622,
-        "endTime": 22.043,
-        "duration": 3.421,
+        "startTime": 19.949,
+        "endTime": 23.616,
+        "duration": 3.667,
         "sentenceIndex": 65
       }
     ],
-    "totalDuration": 22.042608,
-    "measuredDuration": 22.042608
+    "totalDuration": 23.61576,
+    "measuredDuration": 23.61576
   },
   {
     "bundleId": "b11",
@@ -580,48 +580,48 @@
       {
         "text": "His face looked bright, and he smiled.",
         "startTime": 0,
-        "endTime": 3.289,
-        "duration": 3.289,
+        "endTime": 3.101,
+        "duration": 3.101,
         "sentenceIndex": 66
       },
       {
         "text": "He said quietly, \"Mommy.",
-        "startTime": 3.289,
-        "endTime": 5.422,
-        "duration": 2.133,
+        "startTime": 3.101,
+        "endTime": 5.114,
+        "duration": 2.014,
         "sentenceIndex": 67
       },
       {
         "text": "My teacher gives me this gift.\" James put a small package on the table and left.",
-        "startTime": 5.422,
-        "endTime": 12.03,
-        "duration": 6.609,
+        "startTime": 5.114,
+        "endTime": 11.327,
+        "duration": 6.212,
         "sentenceIndex": 68
       },
       {
         "text": "Lisa stayed still for a long time.",
-        "startTime": 12.03,
-        "endTime": 14.839,
-        "duration": 2.809,
+        "startTime": 11.327,
+        "endTime": 13.967,
+        "duration": 2.64,
         "sentenceIndex": 69
       },
       {
         "text": "She was very tired and felt defeated.",
-        "startTime": 14.839,
-        "endTime": 17.895,
-        "duration": 3.056,
+        "startTime": 13.967,
+        "endTime": 16.84,
+        "duration": 2.873,
         "sentenceIndex": 70
       },
       {
         "text": "But she sat up and looked at the package.",
-        "startTime": 17.895,
-        "endTime": 21.282,
-        "duration": 3.387,
+        "startTime": 16.84,
+        "endTime": 20.023,
+        "duration": 3.184,
         "sentenceIndex": 71
       }
     ],
-    "totalDuration": 21.282404,
-    "measuredDuration": 21.282404
+    "totalDuration": 20.023469,
+    "measuredDuration": 20.023469
   },
   {
     "bundleId": "b12",
@@ -632,48 +632,48 @@
       {
         "text": "It was colorful and bright.",
         "startTime": 0,
-        "endTime": 1.884,
-        "duration": 1.884,
+        "endTime": 1.971,
+        "duration": 1.971,
         "sentenceIndex": 72
       },
       {
         "text": "The words made her cry again, but the tears felt different this time.",
-        "startTime": 1.884,
-        "endTime": 6.849,
-        "duration": 4.965,
+        "startTime": 1.971,
+        "endTime": 7.157,
+        "duration": 5.186,
         "sentenceIndex": 73
       },
       {
         "text": "Lisa held the package that said \"Parents for Life.\" She felt a change inside her heart.",
-        "startTime": 6.849,
-        "endTime": 12.919,
-        "duration": 6.071,
+        "startTime": 7.157,
+        "endTime": 13.508,
+        "duration": 6.35,
         "sentenceIndex": 74
       },
       {
         "text": "She knew she could not give up in that moment.",
-        "startTime": 12.919,
-        "endTime": 16.129,
-        "duration": 3.21,
+        "startTime": 13.508,
+        "endTime": 16.865,
+        "duration": 3.358,
         "sentenceIndex": 75
       },
       {
         "text": "Her children need her and love her very much.",
-        "startTime": 16.129,
-        "endTime": 19.269,
-        "duration": 3.14,
+        "startTime": 16.865,
+        "endTime": 20.15,
+        "duration": 3.285,
         "sentenceIndex": 76
       },
       {
         "text": "They needed her to be strong and build a better life.",
-        "startTime": 19.269,
-        "endTime": 22.967,
-        "duration": 3.698,
+        "startTime": 20.15,
+        "endTime": 24.018,
+        "duration": 3.869,
         "sentenceIndex": 77
       }
     ],
-    "totalDuration": 22.967052,
-    "measuredDuration": 22.967052
+    "totalDuration": 24.018481,
+    "measuredDuration": 24.018481
   },
   {
     "bundleId": "b13",
@@ -684,48 +684,48 @@
       {
         "text": "She could not leave them behind.",
         "startTime": 0,
-        "endTime": 2.194,
-        "duration": 2.194,
+        "endTime": 2.287,
+        "duration": 2.287,
         "sentenceIndex": 78
       },
       {
         "text": "She does not want to do it.",
-        "startTime": 2.194,
-        "endTime": 4.045,
-        "duration": 1.851,
+        "startTime": 2.287,
+        "endTime": 4.217,
+        "duration": 1.93,
         "sentenceIndex": 79
       },
       {
         "text": "That day, Lisa decided to do something important.",
-        "startTime": 4.045,
-        "endTime": 7.554,
-        "duration": 3.509,
+        "startTime": 4.217,
+        "endTime": 7.87,
+        "duration": 3.653,
         "sentenceIndex": 80
       },
       {
         "text": "Lisa dreams of going back to school and providing for her children.",
-        "startTime": 7.554,
-        "endTime": 12.147,
-        "duration": 4.593,
+        "startTime": 7.87,
+        "endTime": 12.66,
+        "duration": 4.789,
         "sentenceIndex": 81
       },
       {
         "text": "But she dropped out of high school when life became hard.",
-        "startTime": 12.147,
-        "endTime": 16.054,
-        "duration": 3.907,
+        "startTime": 12.66,
+        "endTime": 16.734,
+        "duration": 4.075,
         "sentenceIndex": 82
       },
       {
         "text": "She told herself it was too late and she was too old.",
-        "startTime": 16.054,
-        "endTime": 19.687,
-        "duration": 3.633,
+        "startTime": 16.734,
+        "endTime": 20.523,
+        "duration": 3.789,
         "sentenceIndex": 83
       }
     ],
-    "totalDuration": 19.687166,
-    "measuredDuration": 19.687166
+    "totalDuration": 20.52263,
+    "measuredDuration": 20.52263
   },
   {
     "bundleId": "b14",
@@ -736,48 +736,48 @@
       {
         "text": "Lisa sees the \"Parents for Life\" package and decides to try.",
         "startTime": 0,
-        "endTime": 4.352,
-        "duration": 4.352,
+        "endTime": 4.025,
+        "duration": 4.025,
         "sentenceIndex": 84
       },
       {
         "text": "She joins a program to get her high school diploma.",
-        "startTime": 4.352,
-        "endTime": 8.052,
-        "duration": 3.699,
+        "startTime": 4.025,
+        "endTime": 7.445,
+        "duration": 3.421,
         "sentenceIndex": 85
       },
       {
         "text": "She feels nervous but hopeful.",
-        "startTime": 8.052,
-        "endTime": 10.228,
-        "duration": 2.176,
+        "startTime": 7.445,
+        "endTime": 9.458,
+        "duration": 2.012,
         "sentenceIndex": 86
       },
       {
         "text": "She studied at night when the children were asleep.",
-        "startTime": 10.228,
-        "endTime": 13.927,
-        "duration": 3.699,
+        "startTime": 9.458,
+        "endTime": 12.878,
+        "duration": 3.421,
         "sentenceIndex": 87
       },
       {
         "text": "The room was quiet, and only the sound of pages turning could be heard.",
-        "startTime": 13.927,
-        "endTime": 19.228,
-        "duration": 5.3,
+        "startTime": 12.878,
+        "endTime": 17.791,
+        "duration": 4.912,
         "sentenceIndex": 88
       },
       {
         "text": "She studied in the morning before they woke up.",
-        "startTime": 19.228,
-        "endTime": 22.637,
-        "duration": 3.409,
+        "startTime": 17.791,
+        "endTime": 20.943,
+        "duration": 3.153,
         "sentenceIndex": 89
       }
     ],
-    "totalDuration": 22.637098,
-    "measuredDuration": 22.637098
+    "totalDuration": 20.943401,
+    "measuredDuration": 20.943401
   },
   {
     "bundleId": "b15",
@@ -788,48 +788,48 @@
       {
         "text": "She studied when she had free time.",
         "startTime": 0,
-        "endTime": 2.498,
-        "duration": 2.498,
+        "endTime": 2.527,
+        "duration": 2.527,
         "sentenceIndex": 90
       },
       {
         "text": "The children are her study partners now.",
-        "startTime": 2.498,
-        "endTime": 5.353,
-        "duration": 2.855,
+        "startTime": 2.527,
+        "endTime": 5.414,
+        "duration": 2.888,
         "sentenceIndex": 91
       },
       {
         "text": "James helps her with flash cards when she cooks dinner.",
-        "startTime": 5.353,
-        "endTime": 9.278,
-        "duration": 3.925,
+        "startTime": 5.414,
+        "endTime": 9.385,
+        "duration": 3.97,
         "sentenceIndex": 92
       },
       {
         "text": "He says, “Mommy, this word is easy!",
-        "startTime": 9.278,
-        "endTime": 12.076,
-        "duration": 2.798,
+        "startTime": 9.385,
+        "endTime": 12.211,
+        "duration": 2.827,
         "sentenceIndex": 93
       },
       {
         "text": "You can do it!” Emily sits with her when she reads her textbooks.",
-        "startTime": 12.076,
-        "endTime": 16.715,
-        "duration": 4.639,
+        "startTime": 12.211,
+        "endTime": 16.904,
+        "duration": 4.692,
         "sentenceIndex": 94
       },
       {
         "text": "Emily says, “Let’s learn together, Mommy!” Even little Noah understood that Mommy was busy and important.",
-        "startTime": 16.715,
-        "endTime": 24.509,
-        "duration": 7.794,
+        "startTime": 16.904,
+        "endTime": 24.783,
+        "duration": 7.88,
         "sentenceIndex": 95
       }
     ],
-    "totalDuration": 24.509297,
-    "measuredDuration": 24.509297
+    "totalDuration": 24.783447,
+    "measuredDuration": 24.783447
   },
   {
     "bundleId": "b16",
@@ -840,48 +840,48 @@
       {
         "text": "He plays quietly when she studies because he knows she needs time.",
         "startTime": 0,
-        "endTime": 5.074,
-        "duration": 5.074,
+        "endTime": 5.041,
+        "duration": 5.041,
         "sentenceIndex": 96
       },
       {
         "text": "Lisa feels grateful for her children.",
-        "startTime": 5.074,
-        "endTime": 7.918,
-        "duration": 2.844,
+        "startTime": 5.041,
+        "endTime": 7.866,
+        "duration": 2.826,
         "sentenceIndex": 97
       },
       {
         "text": "They are her light in dark times.",
-        "startTime": 7.918,
-        "endTime": 10.455,
-        "duration": 2.537,
+        "startTime": 7.866,
+        "endTime": 10.387,
+        "duration": 2.52,
         "sentenceIndex": 98
       },
       {
         "text": "One day, Lisa passed her exam and finished high school.",
-        "startTime": 10.455,
-        "endTime": 14.833,
-        "duration": 4.378,
+        "startTime": 10.387,
+        "endTime": 14.737,
+        "duration": 4.351,
         "sentenceIndex": 99
       },
       {
         "text": "She jumped up and down with joy.",
-        "startTime": 14.833,
-        "endTime": 17.293,
-        "duration": 2.46,
+        "startTime": 14.737,
+        "endTime": 17.181,
+        "duration": 2.444,
         "sentenceIndex": 100
       },
       {
         "text": "She felt proud.",
-        "startTime": 17.293,
-        "endTime": 18.446,
-        "duration": 1.153,
+        "startTime": 17.181,
+        "endTime": 18.327,
+        "duration": 1.146,
         "sentenceIndex": 101
       }
     ],
-    "totalDuration": 18.445646,
-    "measuredDuration": 18.445646
+    "totalDuration": 18.326871,
+    "measuredDuration": 18.326871
   },
   {
     "bundleId": "b17",
@@ -892,48 +892,48 @@
       {
         "text": "Then she goes to community college.",
         "startTime": 0,
-        "endTime": 2.64,
-        "duration": 2.64,
+        "endTime": 2.533,
+        "duration": 2.533,
         "sentenceIndex": 102
       },
       {
         "text": "She took online classes and worked around her children's needs.",
-        "startTime": 2.64,
-        "endTime": 7.392,
-        "duration": 4.752,
+        "startTime": 2.533,
+        "endTime": 7.091,
+        "duration": 4.559,
         "sentenceIndex": 103
       },
       {
         "text": "It was not easy to do.",
-        "startTime": 7.392,
-        "endTime": 9.052,
-        "duration": 1.659,
+        "startTime": 7.091,
+        "endTime": 8.683,
+        "duration": 1.592,
         "sentenceIndex": 104
       },
       {
         "text": "Lisa had days when she wanted to quit and felt like a failure.",
-        "startTime": 9.052,
-        "endTime": 13.729,
-        "duration": 4.677,
+        "startTime": 8.683,
+        "endTime": 13.17,
+        "duration": 4.486,
         "sentenceIndex": 105
       },
       {
         "text": "But she continued to move forward.",
-        "startTime": 13.729,
-        "endTime": 16.293,
-        "duration": 2.565,
+        "startTime": 13.17,
+        "endTime": 15.63,
+        "duration": 2.46,
         "sentenceIndex": 106
       },
       {
         "text": "She remembers the \"Parents for Life\" package.",
-        "startTime": 16.293,
-        "endTime": 19.688,
-        "duration": 3.394,
+        "startTime": 15.63,
+        "endTime": 18.887,
+        "duration": 3.256,
         "sentenceIndex": 107
       }
     ],
-    "totalDuration": 19.687687,
-    "measuredDuration": 19.687687
+    "totalDuration": 18.886508,
+    "measuredDuration": 18.886508
   },
   {
     "bundleId": "b18",
@@ -944,48 +944,48 @@
       {
         "text": "She remembers the faces of her children, Lisa and James.",
         "startTime": 0,
-        "endTime": 4.206,
-        "duration": 4.206,
+        "endTime": 4.123,
+        "duration": 4.123,
         "sentenceIndex": 108
       },
       {
         "text": "Their smiles give her strength.",
-        "startTime": 4.206,
-        "endTime": 6.452,
-        "duration": 2.245,
+        "startTime": 4.123,
+        "endTime": 6.322,
+        "duration": 2.199,
         "sentenceIndex": 109
       },
       {
         "text": "She remembers she must succeed for herself and for them.",
-        "startTime": 6.452,
-        "endTime": 10.508,
-        "duration": 4.056,
+        "startTime": 6.322,
+        "endTime": 10.294,
+        "duration": 3.973,
         "sentenceIndex": 110
       },
       {
         "text": "Lisa goes to a university now.",
-        "startTime": 10.508,
-        "endTime": 12.681,
-        "duration": 2.173,
+        "startTime": 10.294,
+        "endTime": 12.423,
+        "duration": 2.128,
         "sentenceIndex": 111
       },
       {
         "text": "She studied social work to help families who need support.",
-        "startTime": 12.681,
-        "endTime": 16.882,
-        "duration": 4.201,
+        "startTime": 12.423,
+        "endTime": 16.537,
+        "duration": 4.115,
         "sentenceIndex": 112
       },
       {
         "text": "She graduated with honors and applied to graduate school.",
-        "startTime": 16.882,
-        "endTime": 21.01,
-        "duration": 4.129,
+        "startTime": 16.537,
+        "endTime": 20.581,
+        "duration": 4.044,
         "sentenceIndex": 113
       }
     ],
-    "totalDuration": 21.010272,
-    "measuredDuration": 21.010272
+    "totalDuration": 20.580862,
+    "measuredDuration": 20.580862
   },
   {
     "bundleId": "b19",
@@ -996,48 +996,48 @@
       {
         "text": "She was accepted into a master's program and continued her studies.",
         "startTime": 0,
-        "endTime": 4.976,
-        "duration": 4.976,
+        "endTime": 5.215,
+        "duration": 5.215,
         "sentenceIndex": 114
       },
       {
         "text": "Her children are with her during everything.",
-        "startTime": 4.976,
-        "endTime": 8.243,
-        "duration": 3.268,
+        "startTime": 5.215,
+        "endTime": 8.64,
+        "duration": 3.425,
         "sentenceIndex": 115
       },
       {
         "text": "They helped her study for the test.",
-        "startTime": 8.243,
-        "endTime": 10.843,
-        "duration": 2.599,
+        "startTime": 8.64,
+        "endTime": 11.364,
+        "duration": 2.724,
         "sentenceIndex": 116
       },
       {
         "text": "One evening, they all sat on the floor together, books everywhere.",
-        "startTime": 10.843,
-        "endTime": 16.044,
-        "duration": 5.201,
+        "startTime": 11.364,
+        "endTime": 16.801,
+        "duration": 5.437,
         "sentenceIndex": 117
       },
       {
         "text": "They laughed and shared snacks.",
-        "startTime": 16.044,
-        "endTime": 18.346,
-        "duration": 2.302,
+        "startTime": 16.801,
+        "endTime": 19.214,
+        "duration": 2.413,
         "sentenceIndex": 118
       },
       {
         "text": "Lisa felt happy.",
-        "startTime": 18.346,
-        "endTime": 19.534,
-        "duration": 1.188,
+        "startTime": 19.214,
+        "endTime": 20.459,
+        "duration": 1.245,
         "sentenceIndex": 119
       }
     ],
-    "totalDuration": 19.534422,
-    "measuredDuration": 19.534422
+    "totalDuration": 20.458912,
+    "measuredDuration": 20.458912
   },
   {
     "bundleId": "b20",
@@ -1048,48 +1048,48 @@
       {
         "text": "They celebrate her small wins and feel happy.",
         "startTime": 0,
-        "endTime": 3.241,
-        "duration": 3.241,
+        "endTime": 3.51,
+        "duration": 3.51,
         "sentenceIndex": 120
       },
       {
         "text": "They knew their mother did something important that changed their lives.",
-        "startTime": 3.241,
-        "endTime": 8.427,
-        "duration": 5.186,
+        "startTime": 3.51,
+        "endTime": 9.126,
+        "duration": 5.616,
         "sentenceIndex": 121
       },
       {
         "text": "Lisa felt proud when they hugged her tightly.",
-        "startTime": 8.427,
-        "endTime": 11.668,
-        "duration": 3.241,
+        "startTime": 9.126,
+        "endTime": 12.635,
+        "duration": 3.51,
         "sentenceIndex": 122
       },
       {
         "text": "Lisa has one moment that she will never forget.",
-        "startTime": 11.668,
-        "endTime": 15.053,
-        "duration": 3.385,
+        "startTime": 12.635,
+        "endTime": 16.301,
+        "duration": 3.666,
         "sentenceIndex": 123
       },
       {
         "text": "It was her last year of school.",
-        "startTime": 15.053,
-        "endTime": 17.286,
-        "duration": 2.233,
+        "startTime": 16.301,
+        "endTime": 18.719,
+        "duration": 2.418,
         "sentenceIndex": 124
       },
       {
         "text": "She feels overwhelmed with papers and exams.",
-        "startTime": 17.286,
-        "endTime": 20.455,
-        "duration": 3.169,
+        "startTime": 18.719,
+        "endTime": 22.151,
+        "duration": 3.432,
         "sentenceIndex": 125
       }
     ],
-    "totalDuration": 20.455283,
-    "measuredDuration": 20.455283
+    "totalDuration": 22.150839,
+    "measuredDuration": 22.150839
   },
   {
     "bundleId": "b21",
@@ -1100,48 +1100,48 @@
       {
         "text": "She worked part-time and paid the bills.",
         "startTime": 0,
-        "endTime": 3.007,
-        "duration": 3.007,
+        "endTime": 3.027,
+        "duration": 3.027,
         "sentenceIndex": 126
       },
       {
         "text": "She was tired and felt she could not do it anymore.",
-        "startTime": 3.007,
-        "endTime": 6.842,
-        "duration": 3.834,
+        "startTime": 3.027,
+        "endTime": 6.886,
+        "duration": 3.859,
         "sentenceIndex": 127
       },
       {
         "text": "One evening, Lisa went to her room and cried.",
-        "startTime": 6.842,
-        "endTime": 10.375,
-        "duration": 3.533,
+        "startTime": 6.886,
+        "endTime": 10.441,
+        "duration": 3.555,
         "sentenceIndex": 128
       },
       {
         "text": "She did not want the children to see her cry.",
-        "startTime": 10.375,
-        "endTime": 13.759,
-        "duration": 3.383,
+        "startTime": 10.441,
+        "endTime": 13.846,
+        "duration": 3.405,
         "sentenceIndex": 129
       },
       {
         "text": "When she came out, she saw James with his siblings.",
-        "startTime": 13.759,
-        "endTime": 17.743,
-        "duration": 3.984,
+        "startTime": 13.846,
+        "endTime": 17.855,
+        "duration": 4.009,
         "sentenceIndex": 130
       },
       {
         "text": "He gives them snacks.",
-        "startTime": 17.743,
-        "endTime": 19.322,
-        "duration": 1.579,
+        "startTime": 17.855,
+        "endTime": 19.444,
+        "duration": 1.589,
         "sentenceIndex": 131
       }
     ],
-    "totalDuration": 19.322109,
-    "measuredDuration": 19.322109
+    "totalDuration": 19.443719,
+    "measuredDuration": 19.443719
   },
   {
     "bundleId": "b22",
@@ -1152,48 +1152,48 @@
       {
         "text": "He helped them take baths.",
         "startTime": 0,
-        "endTime": 2.186,
-        "duration": 2.186,
+        "endTime": 1.744,
+        "duration": 1.744,
         "sentenceIndex": 132
       },
       {
         "text": "He laid out their school clothes for the next day.",
-        "startTime": 2.186,
-        "endTime": 6.391,
-        "duration": 4.205,
+        "startTime": 1.744,
+        "endTime": 5.099,
+        "duration": 3.355,
         "sentenceIndex": 133
       },
       {
         "text": "Lisa did not ask him to do any of it.",
-        "startTime": 6.391,
-        "endTime": 9.503,
-        "duration": 3.111,
+        "startTime": 5.099,
+        "endTime": 7.582,
+        "duration": 2.482,
         "sentenceIndex": 134
       },
       {
         "text": "He did it because he knew she needed help.",
-        "startTime": 9.503,
-        "endTime": 13.035,
-        "duration": 3.532,
+        "startTime": 7.582,
+        "endTime": 10.399,
+        "duration": 2.818,
         "sentenceIndex": 135
       },
       {
         "text": "“Mommy, don’t worry!",
-        "startTime": 13.035,
-        "endTime": 14.866,
-        "duration": 1.832,
+        "startTime": 10.399,
+        "endTime": 11.891,
+        "duration": 1.492,
         "sentenceIndex": 136
       },
       {
         "text": "We can do this together!” he said with a smile.",
-        "startTime": 14.866,
-        "endTime": 18.819,
-        "duration": 3.952,
+        "startTime": 11.891,
+        "endTime": 15.045,
+        "duration": 3.153,
         "sentenceIndex": 137
       }
     ],
-    "totalDuration": 18.818821,
-    "measuredDuration": 18.818821
+    "totalDuration": 15.044671,
+    "measuredDuration": 15.044671
   },
   {
     "bundleId": "b23",
@@ -1204,48 +1204,48 @@
       {
         "text": "That moment made Lisa see her children are not only her duty.",
         "startTime": 0,
-        "endTime": 4.201,
-        "duration": 4.201,
+        "endTime": 4.117,
+        "duration": 4.117,
         "sentenceIndex": 138
       },
       {
         "text": "They were her partners and her reason to keep going.",
-        "startTime": 4.201,
-        "endTime": 7.782,
-        "duration": 3.581,
+        "startTime": 4.117,
+        "endTime": 7.627,
+        "duration": 3.51,
         "sentenceIndex": 139
       },
       {
         "text": "They watched her and learned from her, and they felt proud.",
-        "startTime": 7.782,
-        "endTime": 11.996,
-        "duration": 4.213,
+        "startTime": 7.627,
+        "endTime": 11.76,
+        "duration": 4.132,
         "sentenceIndex": 140
       },
       {
         "text": "Lisa graduated from school and got honors.",
-        "startTime": 11.996,
-        "endTime": 14.888,
-        "duration": 2.893,
+        "startTime": 11.76,
+        "endTime": 14.595,
+        "duration": 2.835,
         "sentenceIndex": 141
       },
       {
         "text": "She got a job to help families like she needed help.",
-        "startTime": 14.888,
-        "endTime": 18.47,
-        "duration": 3.581,
+        "startTime": 14.595,
+        "endTime": 18.105,
+        "duration": 3.51,
         "sentenceIndex": 142
       },
       {
         "text": "She can now care for her children in a good way.",
-        "startTime": 18.47,
-        "endTime": 21.776,
-        "duration": 3.306,
+        "startTime": 18.105,
+        "endTime": 21.345,
+        "duration": 3.24,
         "sentenceIndex": 143
       }
     ],
-    "totalDuration": 21.775556,
-    "measuredDuration": 21.775556
+    "totalDuration": 21.344966,
+    "measuredDuration": 21.344966
   },
   {
     "bundleId": "b24",
@@ -1256,48 +1256,48 @@
       {
         "text": "Lisa proved something important to herself and her children.",
         "startTime": 0,
-        "endTime": 4.44,
-        "duration": 4.44,
+        "endTime": 4.152,
+        "duration": 4.152,
         "sentenceIndex": 144
       },
       {
         "text": "She proved it is never too late to start again.",
-        "startTime": 4.44,
-        "endTime": 7.918,
-        "duration": 3.478,
+        "startTime": 4.152,
+        "endTime": 7.404,
+        "duration": 3.252,
         "sentenceIndex": 145
       },
       {
         "text": "She proved a single parent can succeed when it seems hard.",
-        "startTime": 7.918,
-        "endTime": 12.209,
-        "duration": 4.292,
+        "startTime": 7.404,
+        "endTime": 11.417,
+        "duration": 4.013,
         "sentenceIndex": 146
       },
       {
         "text": "She showed that with love and support, anything is possible.",
-        "startTime": 12.209,
-        "endTime": 16.799,
-        "duration": 4.59,
+        "startTime": 11.417,
+        "endTime": 15.718,
+        "duration": 4.302,
         "sentenceIndex": 147
       },
       {
         "text": "One day, Lisa looked at old photos and smiled.",
-        "startTime": 16.799,
-        "endTime": 20.353,
-        "duration": 3.554,
+        "startTime": 15.718,
+        "endTime": 19.051,
+        "duration": 3.333,
         "sentenceIndex": 148
       },
       {
         "text": "She found a picture of herself when she cleaned houses and felt invisible.",
-        "startTime": 20.353,
-        "endTime": 25.829,
-        "duration": 5.476,
+        "startTime": 19.051,
+        "endTime": 24.171,
+        "duration": 5.12,
         "sentenceIndex": 149
       }
     ],
-    "totalDuration": 25.82873,
-    "measuredDuration": 25.82873
+    "totalDuration": 24.171315,
+    "measuredDuration": 24.171315
   },
   {
     "bundleId": "b25",
@@ -1308,48 +1308,48 @@
       {
         "text": "She looked at the photo and then at her children, James, Emily, and Noah.",
         "startTime": 0,
-        "endTime": 5.635,
-        "duration": 5.635,
+        "endTime": 5.976,
+        "duration": 5.976,
         "sentenceIndex": 150
       },
       {
         "text": "They are all doing well and happy.",
-        "startTime": 5.635,
-        "endTime": 8.05,
-        "duration": 2.415,
+        "startTime": 5.976,
+        "endTime": 8.55,
+        "duration": 2.574,
         "sentenceIndex": 151
       },
       {
         "text": "They are all happy and smile together.",
-        "startTime": 8.05,
-        "endTime": 10.749,
-        "duration": 2.699,
+        "startTime": 8.55,
+        "endTime": 11.426,
+        "duration": 2.877,
         "sentenceIndex": 152
       },
       {
         "text": "They are all proud of their mother.",
-        "startTime": 10.749,
-        "endTime": 13.235,
-        "duration": 2.486,
+        "startTime": 11.426,
+        "endTime": 14.076,
+        "duration": 2.649,
         "sentenceIndex": 153
       },
       {
         "text": "Lisa saw that her best success is not her degree or job.",
-        "startTime": 13.235,
-        "endTime": 17.212,
-        "duration": 3.977,
+        "startTime": 14.076,
+        "endTime": 18.315,
+        "duration": 4.239,
         "sentenceIndex": 154
       },
       {
         "text": "Her greatest success is her children, Lisa and James.",
-        "startTime": 17.212,
-        "endTime": 21.126,
-        "duration": 3.914,
+        "startTime": 18.315,
+        "endTime": 22.477,
+        "duration": 4.162,
         "sentenceIndex": 155
       }
     ],
-    "totalDuration": 21.126304,
-    "measuredDuration": 21.126304
+    "totalDuration": 22.476689,
+    "measuredDuration": 22.476689
   },
   {
     "bundleId": "b26",
@@ -1360,48 +1360,48 @@
       {
         "text": "They were the reason she kept going and did not stop.",
         "startTime": 0,
-        "endTime": 3.815,
-        "duration": 3.815,
+        "endTime": 3.779,
+        "duration": 3.779,
         "sentenceIndex": 156
       },
       {
         "text": "They gave her strength and helped her build a new life.",
-        "startTime": 3.815,
-        "endTime": 7.774,
-        "duration": 3.959,
+        "startTime": 3.779,
+        "endTime": 7.7,
+        "duration": 3.921,
         "sentenceIndex": 157
       },
       {
         "text": "They show that a single parent can raise happy children.",
-        "startTime": 7.774,
-        "endTime": 11.805,
-        "duration": 4.031,
+        "startTime": 7.7,
+        "endTime": 11.692,
+        "duration": 3.993,
         "sentenceIndex": 158
       },
       {
         "text": "The journey was long and hard for everyone.",
-        "startTime": 11.805,
-        "endTime": 14.9,
-        "duration": 3.095,
+        "startTime": 11.692,
+        "endTime": 14.758,
+        "duration": 3.066,
         "sentenceIndex": 159
       },
       {
         "text": "Lisa had moments of despair when she wanted to give up.",
-        "startTime": 14.9,
-        "endTime": 18.859,
-        "duration": 3.959,
+        "startTime": 14.758,
+        "endTime": 18.679,
+        "duration": 3.921,
         "sentenceIndex": 160
       },
       {
         "text": "She kept going each day and took one step at a time.",
-        "startTime": 18.859,
-        "endTime": 22.602,
-        "duration": 3.743,
+        "startTime": 18.679,
+        "endTime": 22.387,
+        "duration": 3.707,
         "sentenceIndex": 161
       }
     ],
-    "totalDuration": 22.601655,
-    "measuredDuration": 22.601655
+    "totalDuration": 22.386576,
+    "measuredDuration": 22.386576
   },
   {
     "bundleId": "b27",
@@ -1412,48 +1412,48 @@
       {
         "text": "Looking at her children, she knew the struggle was worth it.",
         "startTime": 0,
-        "endTime": 4.518,
-        "duration": 4.518,
+        "endTime": 4.423,
+        "duration": 4.423,
         "sentenceIndex": 162
       },
       {
         "text": "Every late night and every tear led to this life and family.",
-        "startTime": 4.518,
-        "endTime": 8.886,
-        "duration": 4.368,
+        "startTime": 4.423,
+        "endTime": 8.697,
+        "duration": 4.273,
         "sentenceIndex": 163
       },
       {
         "text": "Lisa started with nothing and worked hard for more.",
-        "startTime": 8.886,
-        "endTime": 12.599,
-        "duration": 3.713,
+        "startTime": 8.697,
+        "endTime": 12.329,
+        "duration": 3.632,
         "sentenceIndex": 164
       },
       {
         "text": "She is a single parent with three kids and no job.",
-        "startTime": 12.599,
-        "endTime": 16.239,
-        "duration": 3.64,
+        "startTime": 12.329,
+        "endTime": 15.891,
+        "duration": 3.561,
         "sentenceIndex": 165
       },
       {
         "text": "But she built a good life for herself.",
-        "startTime": 16.239,
-        "endTime": 19.005,
-        "duration": 2.766,
+        "startTime": 15.891,
+        "endTime": 18.597,
+        "duration": 2.707,
         "sentenceIndex": 166
       },
       {
         "text": "She got an education and felt proud.",
-        "startTime": 19.005,
-        "endTime": 21.626,
-        "duration": 2.621,
+        "startTime": 18.597,
+        "endTime": 21.161,
+        "duration": 2.564,
         "sentenceIndex": 167
       }
     ],
-    "totalDuration": 21.625873,
-    "measuredDuration": 21.625873
+    "totalDuration": 21.16127,
+    "measuredDuration": 21.16127
   },
   {
     "bundleId": "b28",
@@ -1464,48 +1464,48 @@
       {
         "text": "She finds a job and feels happy.",
         "startTime": 0,
-        "endTime": 2.472,
-        "duration": 2.472,
+        "endTime": 2.353,
+        "duration": 2.353,
         "sentenceIndex": 168
       },
       {
         "text": "She raised three children who knew their mother loved them.",
-        "startTime": 2.472,
-        "endTime": 7.029,
-        "duration": 4.557,
+        "startTime": 2.353,
+        "endTime": 6.691,
+        "duration": 4.338,
         "sentenceIndex": 169
       },
       {
         "text": "The \"Parents for Life\" package sits on Lisa's desk and reminds her to hope.",
-        "startTime": 7.029,
-        "endTime": 12.821,
-        "duration": 5.793,
+        "startTime": 6.691,
+        "endTime": 12.206,
+        "duration": 5.515,
         "sentenceIndex": 170
       },
       {
         "text": "It reminds her that being a parent is more than just providing.",
-        "startTime": 12.821,
-        "endTime": 17.687,
-        "duration": 4.866,
+        "startTime": 12.206,
+        "endTime": 16.839,
+        "duration": 4.633,
         "sentenceIndex": 171
       },
       {
         "text": "It shows them they can achieve anything and are never alone.",
-        "startTime": 17.687,
-        "endTime": 22.322,
-        "duration": 4.634,
+        "startTime": 16.839,
+        "endTime": 21.251,
+        "duration": 4.412,
         "sentenceIndex": 172
       },
       {
         "text": "Lisa's story is about a single parent who succeeds.",
-        "startTime": 22.322,
-        "endTime": 26.261,
-        "duration": 3.939,
+        "startTime": 21.251,
+        "endTime": 25.001,
+        "duration": 3.75,
         "sentenceIndex": 173
       }
     ],
-    "totalDuration": 26.260635,
-    "measuredDuration": 26.260635
+    "totalDuration": 25.000952,
+    "measuredDuration": 25.000952
   },
   {
     "bundleId": "b29",
@@ -1516,48 +1516,48 @@
       {
         "text": "A mother and her children build a life full of love.",
         "startTime": 0,
-        "endTime": 3.817,
-        "duration": 3.817,
+        "endTime": 3.767,
+        "duration": 3.767,
         "sentenceIndex": 174
       },
       {
         "text": "It was about showing that family can be more than two parents.",
-        "startTime": 3.817,
-        "endTime": 8.367,
-        "duration": 4.55,
+        "startTime": 3.767,
+        "endTime": 8.259,
+        "duration": 4.492,
         "sentenceIndex": 175
       },
       {
         "text": "It was about love and the choice to keep going.",
-        "startTime": 8.367,
-        "endTime": 11.817,
-        "duration": 3.45,
+        "startTime": 8.259,
+        "endTime": 11.663,
+        "duration": 3.405,
         "sentenceIndex": 176
       },
       {
         "text": "Lisa made that choice every day for years.",
-        "startTime": 11.817,
-        "endTime": 14.899,
-        "duration": 3.083,
+        "startTime": 11.663,
+        "endTime": 14.706,
+        "duration": 3.043,
         "sentenceIndex": 177
       },
       {
         "text": "She chose to keep going and not stop.",
-        "startTime": 14.899,
-        "endTime": 17.615,
-        "duration": 2.716,
+        "startTime": 14.706,
+        "endTime": 17.386,
+        "duration": 2.68,
         "sentenceIndex": 178
       },
       {
         "text": "She chooses to build a better life for herself.",
-        "startTime": 17.615,
-        "endTime": 21.064,
-        "duration": 3.45,
+        "startTime": 17.386,
+        "endTime": 20.791,
+        "duration": 3.405,
         "sentenceIndex": 179
       }
     ],
-    "totalDuration": 21.064376,
-    "measuredDuration": 21.064376
+    "totalDuration": 20.791315,
+    "measuredDuration": 20.791315
   },
   {
     "bundleId": "b30",
@@ -1568,48 +1568,48 @@
       {
         "text": "She shows her children they can do anything and be anything.",
         "startTime": 0,
-        "endTime": 4.128,
-        "duration": 4.128,
+        "endTime": 4.199,
+        "duration": 4.199,
         "sentenceIndex": 180
       },
       {
         "text": "That choice changed everything for Lisa and James.",
-        "startTime": 4.128,
-        "endTime": 7.567,
-        "duration": 3.44,
+        "startTime": 4.199,
+        "endTime": 7.698,
+        "duration": 3.499,
         "sentenceIndex": 181
       },
       {
         "text": "They learned the value of hard work and love.",
-        "startTime": 7.567,
-        "endTime": 10.663,
-        "duration": 3.096,
+        "startTime": 7.698,
+        "endTime": 10.847,
+        "duration": 3.149,
         "sentenceIndex": 182
       },
       {
         "text": "They learned that family is about support and togetherness.",
-        "startTime": 10.663,
-        "endTime": 14.721,
-        "duration": 4.059,
+        "startTime": 10.847,
+        "endTime": 14.976,
+        "duration": 4.129,
         "sentenceIndex": 183
       },
       {
         "text": "Lisa felt proud of her journey.",
-        "startTime": 14.721,
-        "endTime": 16.854,
-        "duration": 2.133,
+        "startTime": 14.976,
+        "endTime": 17.146,
+        "duration": 2.169,
         "sentenceIndex": 184
       },
       {
         "text": "She felt proud of her children.",
-        "startTime": 16.854,
-        "endTime": 18.987,
-        "duration": 2.133,
+        "startTime": 17.146,
+        "endTime": 19.315,
+        "duration": 2.169,
         "sentenceIndex": 185
       }
     ],
-    "totalDuration": 18.986531,
-    "measuredDuration": 18.986531
+    "totalDuration": 19.315465,
+    "measuredDuration": 19.315465
   },
   {
     "bundleId": "b31",
@@ -1620,19 +1620,19 @@
       {
         "text": "They were a team, and they would always be there for each other.",
         "startTime": 0,
-        "endTime": 4.644,
-        "duration": 4.644,
+        "endTime": 4.506,
+        "duration": 4.506,
         "sentenceIndex": 186
       },
       {
         "text": "Together, they built a bright future filled with hope and joy.",
-        "startTime": 4.644,
-        "endTime": 9.149,
-        "duration": 4.504,
+        "startTime": 4.506,
+        "endTime": 8.877,
+        "duration": 4.37,
         "sentenceIndex": 187
       }
     ],
-    "totalDuration": 9.148503,
-    "measuredDuration": 9.148503
+    "totalDuration": 8.876531,
+    "measuredDuration": 8.876531
   }
 ]
