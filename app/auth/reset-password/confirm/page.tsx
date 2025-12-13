@@ -24,59 +24,47 @@ function ConfirmResetPasswordPageContent() {
 
   // Check if user has valid session from password reset link
   useEffect(() => {
-    let authListener: any;
-    let timeoutId: NodeJS.Timeout | undefined;
-    let sessionFound = false;
+    let mounted = true;
+    let checkInterval: NodeJS.Timeout | undefined;
+    let attempts = 0;
+    const MAX_ATTEMPTS = 30; // 3 seconds total (100ms * 30)
 
-    const initSession = async () => {
-      // Listen for auth state changes (including hash token processing)
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-        console.log('[ConfirmResetPassword] 🔐 Auth state change:', event, session?.user?.id);
-
-        if (session) {
-          sessionFound = true;
-          setHasSession(true);
-          setError(null);
-          // Clear timeout if session found via auth state change
-          if (timeoutId) {
-            clearTimeout(timeoutId);
-            timeoutId = undefined;
-          }
-        }
-      });
-
-      authListener = subscription;
-
-      // Also check current session immediately
+    const checkForSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
+
+      if (!mounted) return;
 
       if (session) {
         console.log('[ConfirmResetPassword] ✅ Valid session found:', session.user.id);
-        sessionFound = true;
         setHasSession(true);
+        setError(null);
+        if (checkInterval) {
+          clearInterval(checkInterval);
+        }
       } else {
-        console.warn('[ConfirmResetPassword] ⚠️ No immediate session, waiting for hash token processing...');
-
-        // Give Supabase time to process hash tokens (triggered by onAuthStateChange)
-        timeoutId = setTimeout(() => {
-          if (!sessionFound) {
-            console.error('[ConfirmResetPassword] ❌ No session after timeout - invalid/expired link');
-            setError('Invalid or expired password reset link. Please request a new one.');
-            announceToScreenReader('Invalid or expired password reset link.', 'assertive');
+        attempts++;
+        if (attempts >= MAX_ATTEMPTS) {
+          console.error('[ConfirmResetPassword] ❌ No session after max attempts - invalid/expired link');
+          setError('Invalid or expired password reset link. Please request a new one.');
+          announceToScreenReader('Invalid or expired password reset link.', 'assertive');
+          if (checkInterval) {
+            clearInterval(checkInterval);
           }
-        }, 3000);
+        }
       }
     };
 
-    initSession();
+    // Check immediately
+    checkForSession();
+
+    // Then check every 100ms for up to 3 seconds
+    checkInterval = setInterval(checkForSession, 100);
 
     // Cleanup
     return () => {
-      if (authListener) {
-        authListener.unsubscribe();
-      }
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      mounted = false;
+      if (checkInterval) {
+        clearInterval(checkInterval);
       }
     };
   }, [announceToScreenReader]);
