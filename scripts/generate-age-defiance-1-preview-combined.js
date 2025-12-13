@@ -15,7 +15,18 @@ const openai = new OpenAI({
 });
 
 const STORY_ID = 'age-defiance-1';
-const CEFR_LEVEL = 'A1';
+
+// Get target level from command line argument or default to A1
+const targetLevel = process.argv[2] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  console.log('Usage: node scripts/generate-age-defiance-1-preview-combined.js [A1|A2]');
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
 const CACHE_DIR = path.join(__dirname, '..', 'cache');
 
 async function generateCombinedPreview() {
@@ -24,12 +35,31 @@ async function generateCombinedPreview() {
   // Load background, hook, and story
   const background = fs.readFileSync(path.join(CACHE_DIR, `${STORY_ID}-background.txt`), 'utf-8').trim();
   const hook = fs.readFileSync(path.join(CACHE_DIR, `${STORY_ID}-hook.txt`), 'utf-8').trim();
-  const story = fs.readFileSync(path.join(CACHE_DIR, `${STORY_ID}-A1-simplified.txt`), 'utf-8').trim();
+  const storyFile = path.join(CACHE_DIR, `${STORY_ID}-${CEFR_LEVEL}-simplified.txt`);
+  if (!fs.existsSync(storyFile)) {
+    console.error(`❌ Error: Simplified story file not found: ${storyFile}`);
+    console.log(`   Please run simplification first: node scripts/simplify-age-defiance-1.js ${CEFR_LEVEL}`);
+    process.exit(1);
+  }
+  const story = fs.readFileSync(storyFile, 'utf-8').trim();
 
   // Get story summary (first 200 words)
   const storySummary = story.split(/\s+/).slice(0, 200).join(' ');
 
-  const prompt = `You are creating a combined preview text for an ESL story at A1 level.
+  const levelRequirements = CEFR_LEVEL === 'A1'
+    ? `A1 LEVEL REQUIREMENTS:
+- Short sentences (6-12 words average)
+- Simple words (common vocabulary)
+- Simple connectors: "and", "but", "when"
+- Present tense and simple past tense`
+    : `A2 LEVEL REQUIREMENTS:
+- Moderate sentences (8-15 words average)
+- Expanded vocabulary (2000+ words)
+- More connectors: "and", "but", "when", "because", "so"
+- Present, past, and simple future tenses
+- Some subordinate clauses allowed`;
+
+  const prompt = `You are creating a combined preview text for an ESL story at ${CEFR_LEVEL} level.
 
 CRITICAL FORMAT REQUIREMENTS:
 - Line 1: "About This Story"
@@ -40,11 +70,7 @@ CRITICAL FORMAT REQUIREMENTS:
 - Line 6: (blank line)
 - Line 7: Background section (30-50 words, factual)
 
-A1 LEVEL REQUIREMENTS:
-- Short sentences (6-12 words average)
-- Simple words (common vocabulary)
-- Simple connectors: "and", "but", "when"
-- Present tense and simple past tense
+${levelRequirements}
 
 PREVIEW SECTION (50-75 words):
 - Meta-description style: "In this powerful story..."

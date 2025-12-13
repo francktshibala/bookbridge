@@ -1,0 +1,110 @@
+{
+  "storyId": "age-defiance-1",
+  "level": "A2",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/preview-combined.mp3",
+    "duration": 72.532902,
+    "voice": "Sarah",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 4.681,
+        "duration": 4.681,
+        "text": "In this powerful story, Grace overcomes her past failures."
+      },
+      {
+        "startTime": 4.681,
+        "endTime": 10.222,
+        "duration": 5.541,
+        "text": "After giving up swimming for thirty years, she returns at sixty-four."
+      },
+      {
+        "startTime": 10.222,
+        "endTime": 15.222,
+        "duration": 5,
+        "text": "She completes her Cuba swim and graduates college at sixty-nine."
+      },
+      {
+        "startTime": 15.222,
+        "endTime": 18.425,
+        "duration": 3.203,
+        "text": "Grace becomes a bodybuilder at fifty-six."
+      },
+      {
+        "startTime": 18.425,
+        "endTime": 22.487,
+        "duration": 4.062,
+        "text": "This inspiring story shows that dreams don’t expire."
+      },
+      {
+        "startTime": 22.487,
+        "endTime": 28.268,
+        "duration": 5.781,
+        "text": "It teaches us that it’s never too late to start over and to never give up."
+      },
+      {
+        "startTime": 28.268,
+        "endTime": 34.049,
+        "duration": 5.781,
+        "text": "Imagine failing at your biggest dream when you are twenty-eight years old."
+      },
+      {
+        "startTime": 34.049,
+        "endTime": 39.284,
+        "duration": 5.234,
+        "text": "Imagine giving up completely and not trying again for thirty years."
+      },
+      {
+        "startTime": 39.284,
+        "endTime": 44.974,
+        "duration": 5.691,
+        "text": "Then imagine, at sixty-four years old, deciding to try one more time."
+      },
+      {
+        "startTime": 44.974,
+        "endTime": 46.693,
+        "duration": 1.719,
+        "text": "This is Grace's story."
+      },
+      {
+        "startTime": 46.693,
+        "endTime": 49.583,
+        "duration": 2.891,
+        "text": "She proved that dreams do not expire."
+      },
+      {
+        "startTime": 49.583,
+        "endTime": 52.474,
+        "duration": 2.891,
+        "text": "She proved that age is just a number."
+      },
+      {
+        "startTime": 52.474,
+        "endTime": 56.458,
+        "duration": 3.984,
+        "text": "She proved that it is never too late to start over."
+      },
+      {
+        "startTime": 56.458,
+        "endTime": 63.171,
+        "duration": 6.712,
+        "text": "Many people believe that after a certain age, it is too late to achieve your dreams."
+      },
+      {
+        "startTime": 63.171,
+        "endTime": 69.72,
+        "duration": 6.55,
+        "text": "They think that learning, changing, and starting over are only for young people."
+      },
+      {
+        "startTime": 69.72,
+        "endTime": 72.533,
+        "duration": 2.812,
+        "text": "This story challenges those beliefs."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-13T06:24:40.234Z",
+  "timingMethod": "enhanced-timing-v3"
+}

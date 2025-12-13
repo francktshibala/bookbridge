@@ -606,7 +606,8 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'A1': '/api/single-parent-rising-2-a1/bundles'
   },
   'age-defiance-1': {
-    'A1': '/api/age-defiance-1-a1/bundles'
+    'A1': '/api/age-defiance-1-a1/bundles',
+    'A2': '/api/age-defiance-1-a2/bundles'
   },
   'youth-activism-1': {
     'A1': '/api/youth-activism-1-a1/bundles'
@@ -753,9 +754,9 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'cultural-bridge-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'romantic-love-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'grief-to-purpose-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
-  'single-parent-rising-1': ['A1', 'A2'],  // A1 & A2 with Daniel (Modern Story - Modern Voices collection)
+  'single-parent-rising-1': ['A1', 'A2'],  // A1 & A2 with Daniel (Modern Story - Starting Over collection)
   'single-parent-rising-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
-  'age-defiance-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
+  'age-defiance-1': ['A1', 'A2'],  // A1 & A2 with Sarah (Modern Story - Starting Over collection)
   'youth-activism-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'medical-crisis-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)

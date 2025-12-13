@@ -1,0 +1,1750 @@
+[
+  {
+    "bundleId": "b0",
+    "bundleIndex": 0,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-0.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-0.mp3",
+    "sentences": [
+      {
+        "text": "At sixty-four years old, Grace stood on the beach in Florida, looking across the water toward Cuba.",
+        "startTime": 0,
+        "endTime": 6.96,
+        "duration": 6.96,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "She had first tried to swim this distance thirty-five years earlier, when she was twenty-eight.",
+        "startTime": 6.96,
+        "endTime": 13.501,
+        "duration": 6.541,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "She had failed then, and she had not swum a single stroke for thirty years after that.",
+        "startTime": 13.501,
+        "endTime": 19.437,
+        "duration": 5.936,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "But now, at sixty-four, she was about to try again.",
+        "startTime": 19.437,
+        "endTime": 23.168,
+        "duration": 3.731,
+        "sentenceIndex": 3
+      },
+      {
+        "text": "Grace had been a champion swimmer in her twenties.",
+        "startTime": 23.168,
+        "endTime": 26.532,
+        "duration": 3.364,
+        "sentenceIndex": 4
+      }
+    ],
+    "totalDuration": 26.531519,
+    "measuredDuration": 26.531519
+  },
+  {
+    "bundleId": "b1",
+    "bundleIndex": 1,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-1.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-1.mp3",
+    "sentences": [
+      {
+        "text": "She had swum around Manhattan Island.",
+        "startTime": 0,
+        "endTime": 2.678,
+        "duration": 2.678,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "She had swum between the Bahamas and Florida.",
+        "startTime": 2.678,
+        "endTime": 5.935,
+        "duration": 3.257,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "She had set records and become famous around the world.",
+        "startTime": 5.935,
+        "endTime": 9.916,
+        "duration": 3.981,
+        "sentenceIndex": 7
+      },
+      {
+        "text": "But the Cuba swim was different.",
+        "startTime": 9.916,
+        "endTime": 12.232,
+        "duration": 2.316,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "It was not about sports or records.",
+        "startTime": 12.232,
+        "endTime": 14.766,
+        "duration": 2.533,
+        "sentenceIndex": 9
+      }
+    ],
+    "totalDuration": 14.765714,
+    "measuredDuration": 14.765714
+  },
+  {
+    "bundleId": "b2",
+    "bundleIndex": 2,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-2.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-2.mp3",
+    "sentences": [
+      {
+        "text": "It was about a dream that would not let her go.",
+        "startTime": 0,
+        "endTime": 3.294,
+        "duration": 3.294,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "When Grace was a child, she had a poster in her room.",
+        "startTime": 3.294,
+        "endTime": 7.159,
+        "duration": 3.865,
+        "sentenceIndex": 11
+      },
+      {
+        "text": "It said, \"A diamond is a lump of coal that stuck with it.\" She had always valued perseverance.",
+        "startTime": 7.159,
+        "endTime": 13.897,
+        "duration": 6.738,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "She had always believed in never giving up.",
+        "startTime": 13.897,
+        "endTime": 16.911,
+        "duration": 3.014,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "But after failing the Cuba swim at twenty-eight, she had given up swimming completely.",
+        "startTime": 16.911,
+        "endTime": 23.088,
+        "duration": 6.178,
+        "sentenceIndex": 14
+      }
+    ],
+    "totalDuration": 23.088322,
+    "measuredDuration": 23.088322
+  },
+  {
+    "bundleId": "b3",
+    "bundleIndex": 3,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-3.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-3.mp3",
+    "sentences": [
+      {
+        "text": "For thirty years, Grace worked as a sports journalist.",
+        "startTime": 0,
+        "endTime": 3.851,
+        "duration": 3.851,
+        "sentenceIndex": 15
+      },
+      {
+        "text": "She traveled to the Olympic Games.",
+        "startTime": 3.851,
+        "endTime": 6.181,
+        "duration": 2.33,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "She covered the Tour de France.",
+        "startTime": 6.181,
+        "endTime": 8.306,
+        "duration": 2.125,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "She wrote about the best athletes in the world.",
+        "startTime": 8.306,
+        "endTime": 11.527,
+        "duration": 3.221,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "It was a good life, but something was missing.",
+        "startTime": 11.527,
+        "endTime": 14.83,
+        "duration": 3.303,
+        "sentenceIndex": 19
+      }
+    ],
+    "totalDuration": 14.829841,
+    "measuredDuration": 14.829841
+  },
+  {
+    "bundleId": "b4",
+    "bundleIndex": 4,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-4.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-4.mp3",
+    "sentences": [
+      {
+        "text": "As she approached sixty, she realized she was no longer a doer.",
+        "startTime": 0,
+        "endTime": 4.882,
+        "duration": 4.882,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "She was only watching others do things.",
+        "startTime": 4.882,
+        "endTime": 7.811,
+        "duration": 2.929,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "She was bothered by this.",
+        "startTime": 7.811,
+        "endTime": 9.689,
+        "duration": 1.878,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "Grace decided to return to swimming.",
+        "startTime": 9.689,
+        "endTime": 12.392,
+        "duration": 2.704,
+        "sentenceIndex": 23
+      },
+      {
+        "text": "She decided to chase her dream again, even though everyone said it was impossible.",
+        "startTime": 12.392,
+        "endTime": 18.701,
+        "duration": 6.309,
+        "sentenceIndex": 24
+      }
+    ],
+    "totalDuration": 18.701224,
+    "measuredDuration": 18.701224
+  },
+  {
+    "bundleId": "b5",
+    "bundleIndex": 5,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-5.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-5.mp3",
+    "sentences": [
+      {
+        "text": "She was sixty years old.",
+        "startTime": 0,
+        "endTime": 2.046,
+        "duration": 2.046,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "Her body was older.",
+        "startTime": 2.046,
+        "endTime": 3.666,
+        "duration": 1.62,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "Her muscles were weaker.",
+        "startTime": 3.666,
+        "endTime": 5.713,
+        "duration": 2.046,
+        "sentenceIndex": 27
+      },
+      {
+        "text": "But her dream was still alive.",
+        "startTime": 5.713,
+        "endTime": 8.271,
+        "duration": 2.558,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "The first attempt failed.",
+        "startTime": 8.271,
+        "endTime": 10.403,
+        "duration": 2.132,
+        "sentenceIndex": 29
+      }
+    ],
+    "totalDuration": 10.402608,
+    "measuredDuration": 10.402608
+  },
+  {
+    "bundleId": "b6",
+    "bundleIndex": 6,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-6.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-6.mp3",
+    "sentences": [
+      {
+        "text": "The second attempt failed.",
+        "startTime": 0,
+        "endTime": 1.871,
+        "duration": 1.871,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "The third attempt failed.",
+        "startTime": 1.871,
+        "endTime": 3.671,
+        "duration": 1.799,
+        "sentenceIndex": 31
+      },
+      {
+        "text": "The fourth attempt failed.",
+        "startTime": 3.671,
+        "endTime": 5.542,
+        "duration": 1.871,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "Each failure was painful.",
+        "startTime": 5.542,
+        "endTime": 7.341,
+        "duration": 1.799,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "Each failure made people say she should give up.",
+        "startTime": 7.341,
+        "endTime": 10.796,
+        "duration": 3.455,
+        "sentenceIndex": 34
+      }
+    ],
+    "totalDuration": 10.795873,
+    "measuredDuration": 10.795873
+  },
+  {
+    "bundleId": "b7",
+    "bundleIndex": 7,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-7.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-7.mp3",
+    "sentences": [
+      {
+        "text": "But Grace remembered her poster.",
+        "startTime": 0,
+        "endTime": 2.336,
+        "duration": 2.336,
+        "sentenceIndex": 35
+      },
+      {
+        "text": "A diamond is a lump of coal that stuck with it.",
+        "startTime": 2.336,
+        "endTime": 5.766,
+        "duration": 3.43,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "She would stick with it.",
+        "startTime": 5.766,
+        "endTime": 7.517,
+        "duration": 1.752,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "On the fifth attempt, Grace was sixty-four years old.",
+        "startTime": 7.517,
+        "endTime": 11.536,
+        "duration": 4.018,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "She swam for fifty-three hours straight.",
+        "startTime": 11.536,
+        "endTime": 14.455,
+        "duration": 2.919,
+        "sentenceIndex": 39
+      }
+    ],
+    "totalDuration": 14.455011,
+    "measuredDuration": 14.455011
+  },
+  {
+    "bundleId": "b8",
+    "bundleIndex": 8,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-8.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-8.mp3",
+    "sentences": [
+      {
+        "text": "She swam one hundred and ten miles through dangerous waters.",
+        "startTime": 0,
+        "endTime": 4.419,
+        "duration": 4.419,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "Sharks swam nearby.",
+        "startTime": 4.419,
+        "endTime": 5.818,
+        "duration": 1.399,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "Jellyfish stung her.",
+        "startTime": 5.818,
+        "endTime": 7.291,
+        "duration": 1.473,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "The sun burned her skin.",
+        "startTime": 7.291,
+        "endTime": 9.059,
+        "duration": 1.768,
+        "sentenceIndex": 43
+      },
+      {
+        "text": "But she kept swimming.",
+        "startTime": 9.059,
+        "endTime": 10.679,
+        "duration": 1.62,
+        "sentenceIndex": 44
+      }
+    ],
+    "totalDuration": 10.67907,
+    "measuredDuration": 10.67907
+  },
+  {
+    "bundleId": "b9",
+    "bundleIndex": 9,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-9.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-9.mp3",
+    "sentences": [
+      {
+        "text": "When Grace finally reached the beach in Florida, thousands of people were waiting.",
+        "startTime": 0,
+        "endTime": 6.154,
+        "duration": 6.154,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "They were crying.",
+        "startTime": 6.154,
+        "endTime": 7.398,
+        "duration": 1.245,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "They were emotional.",
+        "startTime": 7.398,
+        "endTime": 8.862,
+        "duration": 1.464,
+        "sentenceIndex": 47
+      },
+      {
+        "text": "These were not sports fans.",
+        "startTime": 8.862,
+        "endTime": 10.839,
+        "duration": 1.977,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "These were people who had watched Grace live out her message: Never ever give up.",
+        "startTime": 10.839,
+        "endTime": 16.97,
+        "duration": 6.13,
+        "sentenceIndex": 49
+      }
+    ],
+    "totalDuration": 16.969615,
+    "measuredDuration": 16.969615
+  },
+  {
+    "bundleId": "b10",
+    "bundleIndex": 10,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-10.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-10.mp3",
+    "sentences": [
+      {
+        "text": "Grace had been afraid her entire life of wasting her one wild and precious life.",
+        "startTime": 0,
+        "endTime": 6.493,
+        "duration": 6.493,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "She had refused to let her life slip by.",
+        "startTime": 6.493,
+        "endTime": 9.739,
+        "duration": 3.246,
+        "sentenceIndex": 51
+      },
+      {
+        "text": "She had determined to live a bold and fierce adventure.",
+        "startTime": 9.739,
+        "endTime": 14.202,
+        "duration": 4.464,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "And she had done it.",
+        "startTime": 14.202,
+        "endTime": 15.826,
+        "duration": 1.623,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "At sixty-four, she had proved that dreams do not expire.",
+        "startTime": 15.826,
+        "endTime": 20.52,
+        "duration": 4.695,
+        "sentenceIndex": 54
+      }
+    ],
+    "totalDuration": 20.520272,
+    "measuredDuration": 20.520272
+  },
+  {
+    "bundleId": "b11",
+    "bundleIndex": 11,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-11.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-11.mp3",
+    "sentences": [
+      {
+        "text": "Age is just a number.",
+        "startTime": 0,
+        "endTime": 1.443,
+        "duration": 1.443,
+        "sentenceIndex": 55
+      },
+      {
+        "text": "But Grace's story was not only about swimming.",
+        "startTime": 1.443,
+        "endTime": 4.605,
+        "duration": 3.162,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "It was also about learning.",
+        "startTime": 4.605,
+        "endTime": 6.461,
+        "duration": 1.856,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "When Grace was younger, she had wanted to finish her education.",
+        "startTime": 6.461,
+        "endTime": 10.941,
+        "duration": 4.48,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "She had started college, but life got in the way.",
+        "startTime": 10.941,
+        "endTime": 14.459,
+        "duration": 3.518,
+        "sentenceIndex": 59
+      }
+    ],
+    "totalDuration": 14.459025,
+    "measuredDuration": 14.459025
+  },
+  {
+    "bundleId": "b12",
+    "bundleIndex": 12,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-12.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-12.mp3",
+    "sentences": [
+      {
+        "text": "She had to drop out to help her family.",
+        "startTime": 0,
+        "endTime": 2.675,
+        "duration": 2.675,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "She went on to have a successful career, but she always regretted not finishing her degree.",
+        "startTime": 2.675,
+        "endTime": 9.067,
+        "duration": 6.392,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "As Grace got older, she thought it was probably too late.",
+        "startTime": 9.067,
+        "endTime": 13.126,
+        "duration": 4.06,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "She put her education dreams behind her.",
+        "startTime": 13.126,
+        "endTime": 15.87,
+        "duration": 2.744,
+        "sentenceIndex": 63
+      },
+      {
+        "text": "She got so involved in working and making a living that her dreams went out the window.",
+        "startTime": 15.87,
+        "endTime": 21.837,
+        "duration": 5.967,
+        "sentenceIndex": 64
+      }
+    ],
+    "totalDuration": 21.837256,
+    "measuredDuration": 21.837256
+  },
+  {
+    "bundleId": "b13",
+    "bundleIndex": 13,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-13.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-13.mp3",
+    "sentences": [
+      {
+        "text": "But after completing the Cuba swim, Grace realized something important.",
+        "startTime": 0,
+        "endTime": 5.758,
+        "duration": 5.758,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "It is never too late.",
+        "startTime": 5.758,
+        "endTime": 7.416,
+        "duration": 1.659,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "Grace decided to go back to school.",
+        "startTime": 7.416,
+        "endTime": 10.181,
+        "duration": 2.764,
+        "sentenceIndex": 67
+      },
+      {
+        "text": "At sixty-five, she enrolled in college classes.",
+        "startTime": 10.181,
+        "endTime": 14.043,
+        "duration": 3.862,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "She sat in classrooms with students who were younger than her own children.",
+        "startTime": 14.043,
+        "endTime": 19.967,
+        "duration": 5.924,
+        "sentenceIndex": 69
+      }
+    ],
+    "totalDuration": 19.966757,
+    "measuredDuration": 19.966757
+  },
+  {
+    "bundleId": "b14",
+    "bundleIndex": 14,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-14.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-14.mp3",
+    "sentences": [
+      {
+        "text": "Some of them looked at her strangely.",
+        "startTime": 0,
+        "endTime": 3.154,
+        "duration": 3.154,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "Some of them asked why she was there.",
+        "startTime": 3.154,
+        "endTime": 6.307,
+        "duration": 3.154,
+        "sentenceIndex": 71
+      },
+      {
+        "text": "But Grace did not care what they thought.",
+        "startTime": 6.307,
+        "endTime": 9.802,
+        "duration": 3.495,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "She was there to learn.",
+        "startTime": 9.802,
+        "endTime": 11.762,
+        "duration": 1.96,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "The classes were difficult.",
+        "startTime": 11.762,
+        "endTime": 14.063,
+        "duration": 2.301,
+        "sentenceIndex": 74
+      }
+    ],
+    "totalDuration": 14.063401,
+    "measuredDuration": 14.063401
+  },
+  {
+    "bundleId": "b15",
+    "bundleIndex": 15,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-15.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-15.mp3",
+    "sentences": [
+      {
+        "text": "Grace's mind was not as sharp as it had been when she was twenty.",
+        "startTime": 0,
+        "endTime": 4.74,
+        "duration": 4.74,
+        "sentenceIndex": 75
+      },
+      {
+        "text": "She had to study harder.",
+        "startTime": 4.74,
+        "endTime": 6.491,
+        "duration": 1.75,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "She had to work longer hours.",
+        "startTime": 6.491,
+        "endTime": 8.606,
+        "duration": 2.115,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "But she did not give up.",
+        "startTime": 8.606,
+        "endTime": 10.356,
+        "duration": 1.75,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "She remembered her swimming journey.",
+        "startTime": 10.356,
+        "endTime": 12.981,
+        "duration": 2.625,
+        "sentenceIndex": 79
+      }
+    ],
+    "totalDuration": 12.981247,
+    "measuredDuration": 12.981247
+  },
+  {
+    "bundleId": "b16",
+    "bundleIndex": 16,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-16.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-16.mp3",
+    "sentences": [
+      {
+        "text": "She remembered that perseverance was what mattered most.",
+        "startTime": 0,
+        "endTime": 4.117,
+        "duration": 4.117,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "After four years of study, Grace graduated from college.",
+        "startTime": 4.117,
+        "endTime": 8.384,
+        "duration": 4.267,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "She was sixty-nine years old.",
+        "startTime": 8.384,
+        "endTime": 10.516,
+        "duration": 2.132,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "Her family threw her a surprise graduation party.",
+        "startTime": 10.516,
+        "endTime": 14.118,
+        "duration": 3.602,
+        "sentenceIndex": 83
+      },
+      {
+        "text": "They invited all her friends.",
+        "startTime": 14.118,
+        "endTime": 16.25,
+        "duration": 2.132,
+        "sentenceIndex": 84
+      }
+    ],
+    "totalDuration": 16.250385,
+    "measuredDuration": 16.250385
+  },
+  {
+    "bundleId": "b17",
+    "bundleIndex": 17,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-17.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-17.mp3",
+    "sentences": [
+      {
+        "text": "They gave her a cap and gown.",
+        "startTime": 0,
+        "endTime": 2.148,
+        "duration": 2.148,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "When Grace put on the cap and gown, she could hardly hold back her tears.",
+        "startTime": 2.148,
+        "endTime": 7.704,
+        "duration": 5.556,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "Grace's diploma now sits on her dresser, framed and proud.",
+        "startTime": 7.704,
+        "endTime": 12.149,
+        "duration": 4.445,
+        "sentenceIndex": 87
+      },
+      {
+        "text": "She looks at it every morning.",
+        "startTime": 12.149,
+        "endTime": 14.371,
+        "duration": 2.222,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "It reminds her that it is never too late.",
+        "startTime": 14.371,
+        "endTime": 17.408,
+        "duration": 3.036,
+        "sentenceIndex": 89
+      }
+    ],
+    "totalDuration": 17.407596,
+    "measuredDuration": 17.407596
+  },
+  {
+    "bundleId": "b18",
+    "bundleIndex": 18,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-18.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-18.mp3",
+    "sentences": [
+      {
+        "text": "It reminds her that dreams do not expire.",
+        "startTime": 0,
+        "endTime": 2.954,
+        "duration": 2.954,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "It reminds her that age is just a number.",
+        "startTime": 2.954,
+        "endTime": 5.908,
+        "duration": 2.954,
+        "sentenceIndex": 91
+      },
+      {
+        "text": "But Grace's transformation was not only about swimming and education.",
+        "startTime": 5.908,
+        "endTime": 10.88,
+        "duration": 4.972,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "It was also about her health.",
+        "startTime": 10.88,
+        "endTime": 12.97,
+        "duration": 2.09,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "When Grace was fifty-six, she was working as a secretary.",
+        "startTime": 12.97,
+        "endTime": 17.227,
+        "duration": 4.257,
+        "sentenceIndex": 94
+      }
+    ],
+    "totalDuration": 17.226735,
+    "measuredDuration": 17.226735
+  },
+  {
+    "bundleId": "b19",
+    "bundleIndex": 19,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-19.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-19.mp3",
+    "sentences": [
+      {
+        "text": "She had never exercised.",
+        "startTime": 0,
+        "endTime": 2.01,
+        "duration": 2.01,
+        "sentenceIndex": 95
+      },
+      {
+        "text": "She was what some people called \"prissy.\" She did not want to mess up her hair.",
+        "startTime": 2.01,
+        "endTime": 8.625,
+        "duration": 6.615,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "She did not want to break her fingernails.",
+        "startTime": 8.625,
+        "endTime": 12.142,
+        "duration": 3.517,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "Exercise was not part of her life.",
+        "startTime": 12.142,
+        "endTime": 14.989,
+        "duration": 2.847,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "Then one day, Grace went shopping with her sister Rose.",
+        "startTime": 14.989,
+        "endTime": 19.744,
+        "duration": 4.755,
+        "sentenceIndex": 99
+      }
+    ],
+    "totalDuration": 19.744036,
+    "measuredDuration": 19.744036
+  },
+  {
+    "bundleId": "b20",
+    "bundleIndex": 20,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-20.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-20.mp3",
+    "sentences": [
+      {
+        "text": "They were looking for swimsuits for a pool party.",
+        "startTime": 0,
+        "endTime": 3.356,
+        "duration": 3.356,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "When they tried on the swimsuits and looked at each other in the mirror, they both laughed.",
+        "startTime": 3.356,
+        "endTime": 9.737,
+        "duration": 6.382,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "They did not look good.",
+        "startTime": 9.737,
+        "endTime": 11.313,
+        "duration": 1.575,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "They looked older than they felt.",
+        "startTime": 11.313,
+        "endTime": 13.572,
+        "duration": 2.26,
+        "sentenceIndex": 103
+      },
+      {
+        "text": "Rose said to Grace, \"We're going to have to do something about this.\" They made a promise to each other.",
+        "startTime": 13.572,
+        "endTime": 20.845,
+        "duration": 7.272,
+        "sentenceIndex": 104
+      }
+    ],
+    "totalDuration": 20.844512,
+    "measuredDuration": 20.844512
+  },
+  {
+    "bundleId": "b21",
+    "bundleIndex": 21,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-21.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-21.mp3",
+    "sentences": [
+      {
+        "text": "They would start exercising.",
+        "startTime": 0,
+        "endTime": 1.895,
+        "duration": 1.895,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "They would get healthy.",
+        "startTime": 1.895,
+        "endTime": 3.451,
+        "duration": 1.556,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "They would become the strongest versions of themselves, no matter their age.",
+        "startTime": 3.451,
+        "endTime": 8.743,
+        "duration": 5.293,
+        "sentenceIndex": 107
+      },
+      {
+        "text": "Grace and Rose started working out together.",
+        "startTime": 8.743,
+        "endTime": 11.721,
+        "duration": 2.977,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "They lifted weights.",
+        "startTime": 11.721,
+        "endTime": 13.074,
+        "duration": 1.353,
+        "sentenceIndex": 109
+      }
+    ],
+    "totalDuration": 13.073923,
+    "measuredDuration": 13.073923
+  },
+  {
+    "bundleId": "b22",
+    "bundleIndex": 22,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-22.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-22.mp3",
+    "sentences": [
+      {
+        "text": "They ran.",
+        "startTime": 0,
+        "endTime": 0.718,
+        "duration": 0.718,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "They changed their diets.",
+        "startTime": 0.718,
+        "endTime": 2.714,
+        "duration": 1.996,
+        "sentenceIndex": 111
+      },
+      {
+        "text": "It was hard at first.",
+        "startTime": 2.714,
+        "endTime": 4.391,
+        "duration": 1.676,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "Grace's body ached.",
+        "startTime": 4.391,
+        "endTime": 5.908,
+        "duration": 1.517,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "Her muscles were sore.",
+        "startTime": 5.908,
+        "endTime": 7.664,
+        "duration": 1.756,
+        "sentenceIndex": 114
+      }
+    ],
+    "totalDuration": 7.663855,
+    "measuredDuration": 7.663855
+  },
+  {
+    "bundleId": "b23",
+    "bundleIndex": 23,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-23.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-23.mp3",
+    "sentences": [
+      {
+        "text": "But she kept going.",
+        "startTime": 0,
+        "endTime": 1.464,
+        "duration": 1.464,
+        "sentenceIndex": 115
+      },
+      {
+        "text": "She and Rose encouraged each other.",
+        "startTime": 1.464,
+        "endTime": 4.161,
+        "duration": 2.697,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "They were doing this together.",
+        "startTime": 4.161,
+        "endTime": 6.472,
+        "duration": 2.311,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "Then, just over a year after they started, Rose died suddenly.",
+        "startTime": 6.472,
+        "endTime": 11.549,
+        "duration": 5.077,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "She had a brain aneurysm.",
+        "startTime": 11.549,
+        "endTime": 13.475,
+        "duration": 1.926,
+        "sentenceIndex": 119
+      }
+    ],
+    "totalDuration": 13.474989,
+    "measuredDuration": 13.474989
+  },
+  {
+    "bundleId": "b24",
+    "bundleIndex": 24,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-24.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-24.mp3",
+    "sentences": [
+      {
+        "text": "Grace was devastated.",
+        "startTime": 0,
+        "endTime": 1.671,
+        "duration": 1.671,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "She fell into a deep depression.",
+        "startTime": 1.671,
+        "endTime": 4.217,
+        "duration": 2.546,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "She could not do anything.",
+        "startTime": 4.217,
+        "endTime": 6.285,
+        "duration": 2.069,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "She could not work out.",
+        "startTime": 6.285,
+        "endTime": 8.115,
+        "duration": 1.83,
+        "sentenceIndex": 123
+      },
+      {
+        "text": "She could not eat.",
+        "startTime": 8.115,
+        "endTime": 9.547,
+        "duration": 1.432,
+        "sentenceIndex": 124
+      }
+    ],
+    "totalDuration": 9.547392,
+    "measuredDuration": 9.547392
+  },
+  {
+    "bundleId": "b25",
+    "bundleIndex": 25,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-25.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-25.mp3",
+    "sentences": [
+      {
+        "text": "She could only think about Rose.",
+        "startTime": 0,
+        "endTime": 2.32,
+        "duration": 2.32,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "But then Grace remembered the promise she and Rose had made.",
+        "startTime": 2.32,
+        "endTime": 6.671,
+        "duration": 4.351,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "Rose had wanted them to become strong.",
+        "startTime": 6.671,
+        "endTime": 9.427,
+        "duration": 2.756,
+        "sentenceIndex": 127
+      },
+      {
+        "text": "Rose had wanted them to prove that age did not matter.",
+        "startTime": 9.427,
+        "endTime": 13.343,
+        "duration": 3.916,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "Grace decided to continue.",
+        "startTime": 13.343,
+        "endTime": 15.228,
+        "duration": 1.885,
+        "sentenceIndex": 129
+      }
+    ],
+    "totalDuration": 15.227959,
+    "measuredDuration": 15.227959
+  },
+  {
+    "bundleId": "b26",
+    "bundleIndex": 26,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-26.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-26.mp3",
+    "sentences": [
+      {
+        "text": "She would keep the promise.",
+        "startTime": 0,
+        "endTime": 1.922,
+        "duration": 1.922,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "She would honor Rose's memory.",
+        "startTime": 1.922,
+        "endTime": 4.058,
+        "duration": 2.136,
+        "sentenceIndex": 131
+      },
+      {
+        "text": "Grace got herself together.",
+        "startTime": 4.058,
+        "endTime": 5.98,
+        "duration": 1.922,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "She found a trainer.",
+        "startTime": 5.98,
+        "endTime": 7.404,
+        "duration": 1.424,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "She worked out three days a week.",
+        "startTime": 7.404,
+        "endTime": 9.753,
+        "duration": 2.349,
+        "sentenceIndex": 134
+      }
+    ],
+    "totalDuration": 9.753424,
+    "measuredDuration": 9.753424
+  },
+  {
+    "bundleId": "b27",
+    "bundleIndex": 27,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-27.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-27.mp3",
+    "sentences": [
+      {
+        "text": "Then she worked out five days a week.",
+        "startTime": 0,
+        "endTime": 2.69,
+        "duration": 2.69,
+        "sentenceIndex": 135
+      },
+      {
+        "text": "Then she worked out every day.",
+        "startTime": 2.69,
+        "endTime": 4.87,
+        "duration": 2.181,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "Her body transformed.",
+        "startTime": 4.87,
+        "endTime": 6.397,
+        "duration": 1.526,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "Her health improved.",
+        "startTime": 6.397,
+        "endTime": 7.851,
+        "duration": 1.454,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "She had suffered from high blood pressure, panic attacks, and acid reflux.",
+        "startTime": 7.851,
+        "endTime": 13.53,
+        "duration": 5.679,
+        "sentenceIndex": 139
+      }
+    ],
+    "totalDuration": 13.52966,
+    "measuredDuration": 13.52966
+  },
+  {
+    "bundleId": "b28",
+    "bundleIndex": 28,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-28.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-28.mp3",
+    "sentences": [
+      {
+        "text": "After she started exercising, all of that went away.",
+        "startTime": 0,
+        "endTime": 4.143,
+        "duration": 4.143,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "Grace became a competitive bodybuilder.",
+        "startTime": 4.143,
+        "endTime": 7.138,
+        "duration": 2.995,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "She entered competitions.",
+        "startTime": 7.138,
+        "endTime": 9.058,
+        "duration": 1.92,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "She won her first competition.",
+        "startTime": 9.058,
+        "endTime": 11.362,
+        "duration": 2.304,
+        "sentenceIndex": 143
+      },
+      {
+        "text": "She became the oldest female bodybuilder in the world.",
+        "startTime": 11.362,
+        "endTime": 15.509,
+        "duration": 4.147,
+        "sentenceIndex": 144
+      }
+    ],
+    "totalDuration": 15.508753,
+    "measuredDuration": 15.508753
+  },
+  {
+    "bundleId": "b29",
+    "bundleIndex": 29,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-29.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-29.mp3",
+    "sentences": [
+      {
+        "text": "She bench-pressed one hundred and fifty pounds.",
+        "startTime": 0,
+        "endTime": 3.528,
+        "duration": 3.528,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "She ran eighty miles per week.",
+        "startTime": 3.528,
+        "endTime": 5.78,
+        "duration": 2.252,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "She felt better than she had at forty.",
+        "startTime": 5.78,
+        "endTime": 8.632,
+        "duration": 2.852,
+        "sentenceIndex": 147
+      },
+      {
+        "text": "People asked Grace how she did it.",
+        "startTime": 8.632,
+        "endTime": 11.184,
+        "duration": 2.552,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "They said she was too old.",
+        "startTime": 11.184,
+        "endTime": 13.136,
+        "duration": 1.952,
+        "sentenceIndex": 149
+      }
+    ],
+    "totalDuration": 13.135805,
+    "measuredDuration": 13.135805
+  },
+  {
+    "bundleId": "b30",
+    "bundleIndex": 30,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-30.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-30.mp3",
+    "sentences": [
+      {
+        "text": "They said it was too late.",
+        "startTime": 0,
+        "endTime": 1.866,
+        "duration": 1.866,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "But Grace had a message for them.",
+        "startTime": 1.866,
+        "endTime": 4.235,
+        "duration": 2.369,
+        "sentenceIndex": 151
+      },
+      {
+        "text": "She said, \"If ever there was an anti-aging pill, you would have to call it exercise.\" She said, \"It is never too late to get healthy.",
+        "startTime": 4.235,
+        "endTime": 14.231,
+        "duration": 9.996,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "It is never too late to change your life.\"\n\nGrace's story shows us many things.",
+        "startTime": 14.231,
+        "endTime": 19.902,
+        "duration": 5.67,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "It shows us that dreams do not expire.",
+        "startTime": 19.902,
+        "endTime": 22.629,
+        "duration": 2.728,
+        "sentenceIndex": 154
+      }
+    ],
+    "totalDuration": 22.629342,
+    "measuredDuration": 22.629342
+  },
+  {
+    "bundleId": "b31",
+    "bundleIndex": 31,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-31.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-31.mp3",
+    "sentences": [
+      {
+        "text": "It shows us that age is just a number.",
+        "startTime": 0,
+        "endTime": 2.879,
+        "duration": 2.879,
+        "sentenceIndex": 155
+      },
+      {
+        "text": "It shows us that it is never too late to start over.",
+        "startTime": 2.879,
+        "endTime": 6.819,
+        "duration": 3.94,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "It shows us that perseverance matters more than anything else.",
+        "startTime": 6.819,
+        "endTime": 11.517,
+        "duration": 4.698,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "Grace proved that you can achieve your dreams at any age.",
+        "startTime": 11.517,
+        "endTime": 15.836,
+        "duration": 4.319,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "She proved that you can learn at any age.",
+        "startTime": 15.836,
+        "endTime": 18.942,
+        "duration": 3.107,
+        "sentenceIndex": 159
+      }
+    ],
+    "totalDuration": 18.942245,
+    "measuredDuration": 18.942245
+  },
+  {
+    "bundleId": "b32",
+    "bundleIndex": 32,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-32.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-32.mp3",
+    "sentences": [
+      {
+        "text": "She proved that you can transform your health at any age.",
+        "startTime": 0,
+        "endTime": 3.887,
+        "duration": 3.887,
+        "sentenceIndex": 160
+      },
+      {
+        "text": "She proved that giving up is not an option, no matter how old you are.",
+        "startTime": 3.887,
+        "endTime": 8.809,
+        "duration": 4.923,
+        "sentenceIndex": 161
+      },
+      {
+        "text": "When Grace was sixty-four, she completed a swim that had defeated her at twenty-eight.",
+        "startTime": 8.809,
+        "endTime": 14.823,
+        "duration": 6.014,
+        "sentenceIndex": 162
+      },
+      {
+        "text": "When she was sixty-nine, she graduated from college.",
+        "startTime": 14.823,
+        "endTime": 18.519,
+        "duration": 3.696,
+        "sentenceIndex": 163
+      },
+      {
+        "text": "When she was fifty-six, she started exercising and became a world champion bodybuilder.",
+        "startTime": 18.519,
+        "endTime": 24.601,
+        "duration": 6.082,
+        "sentenceIndex": 164
+      }
+    ],
+    "totalDuration": 24.600862,
+    "measuredDuration": 24.600862
+  },
+  {
+    "bundleId": "b33",
+    "bundleIndex": 33,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-33.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-33.mp3",
+    "sentences": [
+      {
+        "text": "She did all of this because she refused to believe that it was too late.",
+        "startTime": 0,
+        "endTime": 5.313,
+        "duration": 5.313,
+        "sentenceIndex": 165
+      },
+      {
+        "text": "Grace's message is simple: Never ever give up.",
+        "startTime": 5.313,
+        "endTime": 8.907,
+        "duration": 3.594,
+        "sentenceIndex": 166
+      },
+      {
+        "text": "If you believe in your dream, if it is worthy of your precious time, if you just do not give up, you will get there.",
+        "startTime": 8.907,
+        "endTime": 17.917,
+        "duration": 9.01,
+        "sentenceIndex": 167
+      },
+      {
+        "text": "Whatever your other shore may be, you can reach it.",
+        "startTime": 17.917,
+        "endTime": 21.831,
+        "duration": 3.913,
+        "sentenceIndex": 168
+      },
+      {
+        "text": "Age does not matter.",
+        "startTime": 21.831,
+        "endTime": 23.306,
+        "duration": 1.476,
+        "sentenceIndex": 169
+      }
+    ],
+    "totalDuration": 23.306372,
+    "measuredDuration": 23.306372
+  },
+  {
+    "bundleId": "b34",
+    "bundleIndex": 34,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-34.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-34.mp3",
+    "sentences": [
+      {
+        "text": "Time does not matter.",
+        "startTime": 0,
+        "endTime": 1.52,
+        "duration": 1.52,
+        "sentenceIndex": 170
+      },
+      {
+        "text": "What matters is that you keep going.",
+        "startTime": 1.52,
+        "endTime": 4.127,
+        "duration": 2.606,
+        "sentenceIndex": 171
+      },
+      {
+        "text": "Grace is now in her seventies.",
+        "startTime": 4.127,
+        "endTime": 6.298,
+        "duration": 2.172,
+        "sentenceIndex": 172
+      },
+      {
+        "text": "She still swims for health and fitness.",
+        "startTime": 6.298,
+        "endTime": 9.122,
+        "duration": 2.823,
+        "sentenceIndex": 173
+      },
+      {
+        "text": "She still exercises every day.",
+        "startTime": 9.122,
+        "endTime": 11.294,
+        "duration": 2.172,
+        "sentenceIndex": 174
+      }
+    ],
+    "totalDuration": 11.293651,
+    "measuredDuration": 11.293651
+  },
+  {
+    "bundleId": "b35",
+    "bundleIndex": 35,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-35.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-35.mp3",
+    "sentences": [
+      {
+        "text": "She still learns new things.",
+        "startTime": 0,
+        "endTime": 2.13,
+        "duration": 2.13,
+        "sentenceIndex": 175
+      },
+      {
+        "text": "She still chases new dreams.",
+        "startTime": 2.13,
+        "endTime": 4.259,
+        "duration": 2.13,
+        "sentenceIndex": 176
+      },
+      {
+        "text": "She has proven that life does not end at sixty.",
+        "startTime": 4.259,
+        "endTime": 7.834,
+        "duration": 3.575,
+        "sentenceIndex": 177
+      },
+      {
+        "text": "Life does not end at seventy.",
+        "startTime": 7.834,
+        "endTime": 10.039,
+        "duration": 2.206,
+        "sentenceIndex": 178
+      },
+      {
+        "text": "Life continues as long as you are willing to live it fully.",
+        "startTime": 10.039,
+        "endTime": 14.527,
+        "duration": 4.487,
+        "sentenceIndex": 179
+      }
+    ],
+    "totalDuration": 14.526621,
+    "measuredDuration": 14.526621
+  },
+  {
+    "bundleId": "b36",
+    "bundleIndex": 36,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-36.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-36.mp3",
+    "sentences": [
+      {
+        "text": "Grace's story inspires millions of people around the world.",
+        "startTime": 0,
+        "endTime": 4.089,
+        "duration": 4.089,
+        "sentenceIndex": 180
+      },
+      {
+        "text": "People write to her.",
+        "startTime": 4.089,
+        "endTime": 5.476,
+        "duration": 1.386,
+        "sentenceIndex": 181
+      },
+      {
+        "text": "They tell her that she has changed their lives.",
+        "startTime": 5.476,
+        "endTime": 8.733,
+        "duration": 3.258,
+        "sentenceIndex": 182
+      },
+      {
+        "text": "They tell her that she has shown them that it is never too late.",
+        "startTime": 8.733,
+        "endTime": 13.169,
+        "duration": 4.436,
+        "sentenceIndex": 183
+      },
+      {
+        "text": "They tell her that she has given them hope.",
+        "startTime": 13.169,
+        "endTime": 16.149,
+        "duration": 2.98,
+        "sentenceIndex": 184
+      }
+    ],
+    "totalDuration": 16.149478,
+    "measuredDuration": 16.149478
+  },
+  {
+    "bundleId": "b37",
+    "bundleIndex": 37,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-37.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-37.mp3",
+    "sentences": [
+      {
+        "text": "Grace's message is for everyone.",
+        "startTime": 0,
+        "endTime": 2.152,
+        "duration": 2.152,
+        "sentenceIndex": 185
+      },
+      {
+        "text": "It is for the person who thinks they are too old to go back to school.",
+        "startTime": 2.152,
+        "endTime": 6.861,
+        "duration": 4.708,
+        "sentenceIndex": 186
+      },
+      {
+        "text": "It is for the person who thinks they are too old to start exercising.",
+        "startTime": 6.861,
+        "endTime": 11.502,
+        "duration": 4.641,
+        "sentenceIndex": 187
+      },
+      {
+        "text": "It is for the person who thinks their dream is impossible.",
+        "startTime": 11.502,
+        "endTime": 15.403,
+        "duration": 3.901,
+        "sentenceIndex": 188
+      },
+      {
+        "text": "It is for anyone who has ever thought, \"It is too late for me.\"\n\nGrace's answer is always the same: \"It is never too late.",
+        "startTime": 15.403,
+        "endTime": 23.959,
+        "duration": 8.556,
+        "sentenceIndex": 189
+      }
+    ],
+    "totalDuration": 23.959297,
+    "measuredDuration": 23.959297
+  },
+  {
+    "bundleId": "b38",
+    "bundleIndex": 38,
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/age-defiance-1/A2/bundle-38.mp3",
+    "audioPath": "age-defiance-1/A2/bundle-38.mp3",
+    "sentences": [
+      {
+        "text": "Never ever give up.",
+        "startTime": 0,
+        "endTime": 1.432,
+        "duration": 1.432,
+        "sentenceIndex": 190
+      },
+      {
+        "text": "Your dreams are waiting for you.",
+        "startTime": 1.432,
+        "endTime": 3.844,
+        "duration": 2.412,
+        "sentenceIndex": 191
+      },
+      {
+        "text": "Your other shore is waiting for you.",
+        "startTime": 3.844,
+        "endTime": 6.557,
+        "duration": 2.713,
+        "sentenceIndex": 192
+      },
+      {
+        "text": "All you have to do is start swimming.\"",
+        "startTime": 6.557,
+        "endTime": 9.421,
+        "duration": 2.864,
+        "sentenceIndex": 193
+      }
+    ],
+    "totalDuration": 9.421111,
+    "measuredDuration": 9.421111
+  }
+]
