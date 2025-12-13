@@ -38,7 +38,19 @@ const DANIEL_VOICE_SETTINGS = {
 };
 
 const STORY_ID = 'immigrant-entrepreneur';
-const CEFR_LEVEL = 'A1';
+
+// Get target level from command line argument (excluding --pilot flag)
+const args = process.argv.slice(2).filter(arg => arg !== '--pilot');
+const targetLevel = args[0] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  console.log('Usage: node scripts/generate-immigrant-entrepreneur-bundles.js [A1|A2] [--pilot]');
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
 
 // Get pilot mode from command line
 const isPilot = process.argv.includes('--pilot');

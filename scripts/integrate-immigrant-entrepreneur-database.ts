@@ -8,9 +8,20 @@ config({ path: '.env.local' });
 const prisma = new PrismaClient();
 
 const BOOK_ID = 'immigrant-entrepreneur';
-const CEFR_LEVEL = 'A1';
 
-console.log(`📚 INTEGRATING "Immigrant Entrepreneur: From Failure to Success" - A1 LEVEL WITH ENHANCED TIMING V3`);
+// Get target level from command line argument or default to A1
+const targetLevel = process.argv[2] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  console.log('Usage: npx tsx scripts/integrate-immigrant-entrepreneur-database.ts [A1|A2]');
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
+
+console.log(`📚 INTEGRATING "Immigrant Entrepreneur: From Failure to Success" - ${CEFR_LEVEL} LEVEL WITH ENHANCED TIMING V3`);
 console.log(`=`.repeat(60));
 
 interface BundleMetadata {
@@ -39,8 +50,8 @@ async function integrateDatabase() {
   const originalText = fs.readFileSync(originalTextPath, 'utf-8');
   console.log(`✅ Loaded original text (${originalText.split(/\s+/).length} words)`);
 
-  console.log(`\n📝 Step 2: Loading simplified text (A1)...`);
-  const simplifiedTextPath = path.join(process.cwd(), 'cache', `${BOOK_ID}-A1-simplified.txt`);
+  console.log(`\n📝 Step 2: Loading simplified text (${CEFR_LEVEL})...`);
+  const simplifiedTextPath = path.join(process.cwd(), 'cache', `${BOOK_ID}-${CEFR_LEVEL}-simplified.txt`);
   const simplifiedText = fs.readFileSync(simplifiedTextPath, 'utf-8');
   console.log(`✅ Loaded simplified text (${simplifiedText.split(/\s+/).length} words)`);
 

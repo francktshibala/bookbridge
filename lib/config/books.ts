@@ -548,10 +548,12 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'A1': '/api/teen-translating-hospital-a1/bundles'
   },
   'teaching-dad-to-read': {
-    'A1': '/api/teaching-dad-to-read-a1/bundles'
+    'A1': '/api/teaching-dad-to-read-a1/bundles',
+    'A2': '/api/teaching-dad-to-read-a2/bundles'
   },
   'immigrant-entrepreneur': {
-    'A1': '/api/immigrant-entrepreneur-a1/bundles'
+    'A1': '/api/immigrant-entrepreneur-a1/bundles',
+    'A2': '/api/immigrant-entrepreneur-a2/bundles'
   },
   'refugee-journey-1': {
     'A1': '/api/refugee-journey-1-a1/bundles'
@@ -613,7 +615,8 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'A1': '/api/youth-activism-1-a1/bundles'
   },
   'medical-crisis-2': {
-    'A1': '/api/medical-crisis-2-a1/bundles'
+    'A1': '/api/medical-crisis-2-a1/bundles',
+    'A2': '/api/medical-crisis-2-a2/bundles'
   },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
@@ -737,8 +740,8 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'always-a-family': ['A1', 'A2', 'B1'],  // A1 with Sarah, A2 with Jane, B1 with Daniel (StoryCorps - Modern Voices collection)
   'helen-keller': ['A1'],  // A1 with Jane (Memoir - Modern Voices collection)
   'teen-translating-hospital': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
-  'teaching-dad-to-read': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
-  'immigrant-entrepreneur': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'teaching-dad-to-read': ['A1', 'A2'],  // A1 & A2 with Daniel (Modern Story - Breaking Barriers collection)
+  'immigrant-entrepreneur': ['A1', 'A2'],  // A1 & A2 with Daniel (Modern Story - Breaking Barriers collection)
   'refugee-journey-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
   'refugee-journey-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'refugee-journey-3': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
@@ -758,7 +761,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'single-parent-rising-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'age-defiance-1': ['A1', 'A2'],  // A1 & A2 with Sarah (Modern Story - Starting Over collection)
   'youth-activism-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
-  'medical-crisis-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'medical-crisis-2': ['A1', 'A2'],  // A1 & A2 with Jane (Modern Story - Breaking Barriers collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

@@ -1,0 +1,1882 @@
+[
+  {
+    "bundleIndex": 0,
+    "startSentenceIndex": 0,
+    "endSentenceIndex": 3,
+    "text": "The sun sets and gives a warm glow to the sign. The sign says \"El Gran Taco Loco\" and shows happy tacos. The smell of tacos and salsa makes people hungry. Families came to eat and friends came to laugh at Carlos's tacos.",
+    "sentences": [
+      "The sun sets and gives a warm glow to the sign.",
+      "The sign says \"El Gran Taco Loco\" and shows happy tacos.",
+      "The smell of tacos and salsa makes people hungry.",
+      "Families came to eat and friends came to laugh at Carlos's tacos."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_0.mp3",
+    "duration": 16.854807,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The sun sets and gives a warm glow to the sign.",
+        "startTime": 0,
+        "endTime": 3.651,
+        "duration": 3.651,
+        "sentenceIndex": 0
+      },
+      {
+        "text": "The sign says \"El Gran Taco Loco\" and shows happy tacos.",
+        "startTime": 3.651,
+        "endTime": 8,
+        "duration": 4.35,
+        "sentenceIndex": 1
+      },
+      {
+        "text": "The smell of tacos and salsa makes people hungry.",
+        "startTime": 8,
+        "endTime": 11.806,
+        "duration": 3.806,
+        "sentenceIndex": 2
+      },
+      {
+        "text": "Families came to eat and friends came to laugh at Carlos's tacos.",
+        "startTime": 11.806,
+        "endTime": 16.855,
+        "duration": 5.049,
+        "sentenceIndex": 3
+      }
+    ]
+  },
+  {
+    "bundleIndex": 1,
+    "startSentenceIndex": 4,
+    "endSentenceIndex": 7,
+    "text": "Saul felt proud when he saw happy children eat tacos and laugh. He thinks this is what it is about and feels warm inside. The laughter and happy faces made Carlos's hard work worth it. His restaurant was a place for food, friends, and memories.",
+    "sentences": [
+      "Saul felt proud when he saw happy children eat tacos and laugh.",
+      "He thinks this is what it is about and feels warm inside.",
+      "The laughter and happy faces made Carlos's hard work worth it.",
+      "His restaurant was a place for food, friends, and memories."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_1.mp3",
+    "duration": 19.193696,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Saul felt proud when he saw happy children eat tacos and laugh.",
+        "startTime": 0,
+        "endTime": 4.939,
+        "duration": 4.939,
+        "sentenceIndex": 4
+      },
+      {
+        "text": "He thinks this is what it is about and feels warm inside.",
+        "startTime": 4.939,
+        "endTime": 9.408,
+        "duration": 4.469,
+        "sentenceIndex": 5
+      },
+      {
+        "text": "The laughter and happy faces made Carlos's hard work worth it.",
+        "startTime": 9.408,
+        "endTime": 14.268,
+        "duration": 4.861,
+        "sentenceIndex": 6
+      },
+      {
+        "text": "His restaurant was a place for food, friends, and memories.",
+        "startTime": 14.268,
+        "endTime": 19.194,
+        "duration": 4.925,
+        "sentenceIndex": 7
+      }
+    ]
+  },
+  {
+    "bundleIndex": 2,
+    "startSentenceIndex": 8,
+    "endSentenceIndex": 11,
+    "text": "He wipes his hands and smiles at the joy he made. But one night, everything changed for Carlos and Maria. It was a calm evening and the restaurant closed early. Saul is at home and rests after a long workday.",
+    "sentences": [
+      "He wipes his hands and smiles at the joy he made.",
+      "But one night, everything changed for Carlos and Maria.",
+      "It was a calm evening and the restaurant closed early.",
+      "Saul is at home and rests after a long workday."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_2.mp3",
+    "duration": 14.246281,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He wipes his hands and smiles at the joy he made.",
+        "startTime": 0,
+        "endTime": 3.369,
+        "duration": 3.369,
+        "sentenceIndex": 8
+      },
+      {
+        "text": "But one night, everything changed for Carlos and Maria.",
+        "startTime": 3.369,
+        "endTime": 7.301,
+        "duration": 3.932,
+        "sentenceIndex": 9
+      },
+      {
+        "text": "It was a calm evening and the restaurant closed early.",
+        "startTime": 7.301,
+        "endTime": 11.014,
+        "duration": 3.713,
+        "sentenceIndex": 10
+      },
+      {
+        "text": "Saul is at home and rests after a long workday.",
+        "startTime": 11.014,
+        "endTime": 14.246,
+        "duration": 3.232,
+        "sentenceIndex": 11
+      }
+    ]
+  },
+  {
+    "bundleIndex": 3,
+    "startSentenceIndex": 12,
+    "endSentenceIndex": 15,
+    "text": "He finished his favorite meal and was ready to relax. Suddenly, his phone rings and breaks the quiet silence. It was a call that changed his life. A voice shouted on the phone that there is a fire.",
+    "sentences": [
+      "He finished his favorite meal and was ready to relax.",
+      "Suddenly, his phone rings and breaks the quiet silence.",
+      "It was a call that changed his life.",
+      "A voice shouted on the phone that there is a fire."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_3.mp3",
+    "duration": 13.912744,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He finished his favorite meal and was ready to relax.",
+        "startTime": 0,
+        "endTime": 3.76,
+        "duration": 3.76,
+        "sentenceIndex": 12
+      },
+      {
+        "text": "Suddenly, his phone rings and breaks the quiet silence.",
+        "startTime": 3.76,
+        "endTime": 7.812,
+        "duration": 4.052,
+        "sentenceIndex": 13
+      },
+      {
+        "text": "It was a call that changed his life.",
+        "startTime": 7.812,
+        "endTime": 10.366,
+        "duration": 2.554,
+        "sentenceIndex": 14
+      },
+      {
+        "text": "A voice shouted on the phone that there is a fire.",
+        "startTime": 10.366,
+        "endTime": 13.913,
+        "duration": 3.547,
+        "sentenceIndex": 15
+      }
+    ]
+  },
+  {
+    "bundleIndex": 4,
+    "startSentenceIndex": 16,
+    "endSentenceIndex": 19,
+    "text": "His heart raced and fear held him tightly. He dropped the phone and ran out the door with fear. When he arrived at El Gran Taco Loco, it was bad. The flames reach high and roar like a monster at night.",
+    "sentences": [
+      "His heart raced and fear held him tightly.",
+      "He dropped the phone and ran out the door with fear.",
+      "When he arrived at El Gran Taco Loco, it was bad.",
+      "The flames reach high and roar like a monster at night."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_4.mp3",
+    "duration": 14.458299,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His heart raced and fear held him tightly.",
+        "startTime": 0,
+        "endTime": 3.035,
+        "duration": 3.035,
+        "sentenceIndex": 16
+      },
+      {
+        "text": "He dropped the phone and ran out the door with fear.",
+        "startTime": 3.035,
+        "endTime": 6.793,
+        "duration": 3.758,
+        "sentenceIndex": 17
+      },
+      {
+        "text": "When he arrived at El Gran Taco Loco, it was bad.",
+        "startTime": 6.793,
+        "endTime": 10.484,
+        "duration": 3.691,
+        "sentenceIndex": 18
+      },
+      {
+        "text": "The flames reach high and roar like a monster at night.",
+        "startTime": 10.484,
+        "endTime": 14.458,
+        "duration": 3.975,
+        "sentenceIndex": 19
+      }
+    ]
+  },
+  {
+    "bundleIndex": 5,
+    "startSentenceIndex": 20,
+    "endSentenceIndex": 23,
+    "text": "The fire started in the kitchen and the flame grew large. The flames spread fast and filled the air with black smoke. Saul watched the fire burn his restaurant and his dreams. The firefighters came, but they were too late.",
+    "sentences": [
+      "The fire started in the kitchen and the flame grew large.",
+      "The flames spread fast and filled the air with black smoke.",
+      "Saul watched the fire burn his restaurant and his dreams.",
+      "The firefighters came, but they were too late."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_5.mp3",
+    "duration": 16.04161,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The fire started in the kitchen and the flame grew large.",
+        "startTime": 0,
+        "endTime": 4.136,
+        "duration": 4.136,
+        "sentenceIndex": 20
+      },
+      {
+        "text": "The flames spread fast and filled the air with black smoke.",
+        "startTime": 4.136,
+        "endTime": 8.417,
+        "duration": 4.281,
+        "sentenceIndex": 21
+      },
+      {
+        "text": "Saul watched the fire burn his restaurant and his dreams.",
+        "startTime": 8.417,
+        "endTime": 12.554,
+        "duration": 4.136,
+        "sentenceIndex": 22
+      },
+      {
+        "text": "The firefighters came, but they were too late.",
+        "startTime": 12.554,
+        "endTime": 16.042,
+        "duration": 3.488,
+        "sentenceIndex": 23
+      }
+    ]
+  },
+  {
+    "bundleIndex": 6,
+    "startSentenceIndex": 24,
+    "endSentenceIndex": 27,
+    "text": "They fought bravely, but the fire destroyed the building quickly. The bright colors of El Gran Taco Loco turned to ash, and Saul felt sad. His dreams are gone, and he feels very helpless. He stands and watches the flames, feeling the world fall apart.",
+    "sentences": [
+      "They fought bravely, but the fire destroyed the building quickly.",
+      "The bright colors of El Gran Taco Loco turned to ash, and Saul felt sad.",
+      "His dreams are gone, and he feels very helpless.",
+      "He stands and watches the flames, feeling the world fall apart."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_6.mp3",
+    "duration": 22.211474,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They fought bravely, but the fire destroyed the building quickly.",
+        "startTime": 0,
+        "endTime": 5.814,
+        "duration": 5.814,
+        "sentenceIndex": 24
+      },
+      {
+        "text": "The bright colors of El Gran Taco Loco turned to ash, and Saul felt sad.",
+        "startTime": 5.814,
+        "endTime": 12.239,
+        "duration": 6.424,
+        "sentenceIndex": 25
+      },
+      {
+        "text": "His dreams are gone, and he feels very helpless.",
+        "startTime": 12.239,
+        "endTime": 16.571,
+        "duration": 4.333,
+        "sentenceIndex": 26
+      },
+      {
+        "text": "He stands and watches the flames, feeling the world fall apart.",
+        "startTime": 16.571,
+        "endTime": 22.211,
+        "duration": 5.64,
+        "sentenceIndex": 27
+      }
+    ]
+  },
+  {
+    "bundleIndex": 7,
+    "startSentenceIndex": 28,
+    "endSentenceIndex": 31,
+    "text": "He thinks, \"How can I go on. He put his heart, money, and dreams into the restaurant. It was not just a job; it was part of him. He sat alone in his empty apartment and could not sleep.",
+    "sentences": [
+      "He thinks, \"How can I go on.",
+      "He put his heart, money, and dreams into the restaurant.",
+      "It was not just a job; it was part of him.",
+      "He sat alone in his empty apartment and could not sleep."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_7.mp3",
+    "duration": 13.47805,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He thinks, \"How can I go on.",
+        "startTime": 0,
+        "endTime": 2.116,
+        "duration": 2.116,
+        "sentenceIndex": 28
+      },
+      {
+        "text": "He put his heart, money, and dreams into the restaurant.",
+        "startTime": 2.116,
+        "endTime": 6.348,
+        "duration": 4.232,
+        "sentenceIndex": 29
+      },
+      {
+        "text": "It was not just a job; it was part of him.",
+        "startTime": 6.348,
+        "endTime": 9.546,
+        "duration": 3.199,
+        "sentenceIndex": 30
+      },
+      {
+        "text": "He sat alone in his empty apartment and could not sleep.",
+        "startTime": 9.546,
+        "endTime": 13.478,
+        "duration": 3.932,
+        "sentenceIndex": 31
+      }
+    ]
+  },
+  {
+    "bundleIndex": 8,
+    "startSentenceIndex": 32,
+    "endSentenceIndex": 35,
+    "text": "Each night, he thinks about the fire in his mind. The sadness felt heavy like a dark blanket around him. His family needs him, but he feels lost and broken. Ibrahim left his home in Aleppo and went to a faraway city.",
+    "sentences": [
+      "Each night, he thinks about the fire in his mind.",
+      "The sadness felt heavy like a dark blanket around him.",
+      "His family needs him, but he feels lost and broken.",
+      "Ibrahim left his home in Aleppo and went to a faraway city."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_8.mp3",
+    "duration": 15.268095,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Each night, he thinks about the fire in his mind.",
+        "startTime": 0,
+        "endTime": 3.593,
+        "duration": 3.593,
+        "sentenceIndex": 32
+      },
+      {
+        "text": "The sadness felt heavy like a dark blanket around him.",
+        "startTime": 3.593,
+        "endTime": 7.388,
+        "duration": 3.795,
+        "sentenceIndex": 33
+      },
+      {
+        "text": "His family needs him, but he feels lost and broken.",
+        "startTime": 7.388,
+        "endTime": 11.122,
+        "duration": 3.734,
+        "sentenceIndex": 34
+      },
+      {
+        "text": "Ibrahim left his home in Aleppo and went to a faraway city.",
+        "startTime": 11.122,
+        "endTime": 15.268,
+        "duration": 4.146,
+        "sentenceIndex": 35
+      }
+    ]
+  },
+  {
+    "bundleIndex": 9,
+    "startSentenceIndex": 36,
+    "endSentenceIndex": 39,
+    "text": "His small restaurant served shawarma but was destroyed by a missile. Carlos cooked and laughed, but then he ran in fear. Carlos and Lina took their children and ran to Gaziantep. The streets are different and the signs are in another language.",
+    "sentences": [
+      "His small restaurant served shawarma but was destroyed by a missile.",
+      "Carlos cooked and laughed, but then he ran in fear.",
+      "Carlos and Lina took their children and ran to Gaziantep.",
+      "The streets are different and the signs are in another language."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_9.mp3",
+    "duration": 18.890658,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "His small restaurant served shawarma but was destroyed by a missile.",
+        "startTime": 0,
+        "endTime": 5.31,
+        "duration": 5.31,
+        "sentenceIndex": 36
+      },
+      {
+        "text": "Carlos cooked and laughed, but then he ran in fear.",
+        "startTime": 5.31,
+        "endTime": 9.442,
+        "duration": 4.132,
+        "sentenceIndex": 37
+      },
+      {
+        "text": "Carlos and Lina took their children and ran to Gaziantep.",
+        "startTime": 9.442,
+        "endTime": 13.893,
+        "duration": 4.451,
+        "sentenceIndex": 38
+      },
+      {
+        "text": "The streets are different and the signs are in another language.",
+        "startTime": 13.893,
+        "endTime": 18.891,
+        "duration": 4.998,
+        "sentenceIndex": 39
+      }
+    ]
+  },
+  {
+    "bundleIndex": 10,
+    "startSentenceIndex": 40,
+    "endSentenceIndex": 43,
+    "text": "Ibrahim looked at his wife and wondered if they can survive. He missed his home, friends, and restaurant where he cooked. He wanted to help his family, but he did not know how. The language was new and the culture was different.",
+    "sentences": [
+      "Ibrahim looked at his wife and wondered if they can survive.",
+      "He missed his home, friends, and restaurant where he cooked.",
+      "He wanted to help his family, but he did not know how.",
+      "The language was new and the culture was different."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_10.mp3",
+    "duration": 16.859909,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Ibrahim looked at his wife and wondered if they can survive.",
+        "startTime": 0,
+        "endTime": 4.376,
+        "duration": 4.376,
+        "sentenceIndex": 40
+      },
+      {
+        "text": "He missed his home, friends, and restaurant where he cooked.",
+        "startTime": 4.376,
+        "endTime": 9.052,
+        "duration": 4.676,
+        "sentenceIndex": 41
+      },
+      {
+        "text": "He wanted to help his family, but he did not know how.",
+        "startTime": 9.052,
+        "endTime": 13.14,
+        "duration": 4.088,
+        "sentenceIndex": 42
+      },
+      {
+        "text": "The language was new and the culture was different.",
+        "startTime": 13.14,
+        "endTime": 16.86,
+        "duration": 3.72,
+        "sentenceIndex": 43
+      }
+    ]
+  },
+  {
+    "bundleIndex": 11,
+    "startSentenceIndex": 44,
+    "endSentenceIndex": 47,
+    "text": "He felt scared and alone at that time. Every street is new and every face is a stranger. Ibrahim has a small idea and feels hope inside him. He decided to open a small restaurant.",
+    "sentences": [
+      "He felt scared and alone at that time.",
+      "Every street is new and every face is a stranger.",
+      "Ibrahim has a small idea and feels hope inside him.",
+      "He decided to open a small restaurant."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_11.mp3",
+    "duration": 14.682154,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt scared and alone at that time.",
+        "startTime": 0,
+        "endTime": 3.17,
+        "duration": 3.17,
+        "sentenceIndex": 44
+      },
+      {
+        "text": "Every street is new and every face is a stranger.",
+        "startTime": 3.17,
+        "endTime": 7.258,
+        "duration": 4.088,
+        "sentenceIndex": 45
+      },
+      {
+        "text": "Ibrahim has a small idea and feels hope inside him.",
+        "startTime": 7.258,
+        "endTime": 11.512,
+        "duration": 4.254,
+        "sentenceIndex": 46
+      },
+      {
+        "text": "He decided to open a small restaurant.",
+        "startTime": 11.512,
+        "endTime": 14.682,
+        "duration": 3.17,
+        "sentenceIndex": 47
+      }
+    ]
+  },
+  {
+    "bundleIndex": 12,
+    "startSentenceIndex": 48,
+    "endSentenceIndex": 51,
+    "text": "It was a risk, but he wanted to try for his family. He borrowed money from a friend and found a place to rent. In the United States, Saul struggles to find hope. His friends and family help him when he needs it.",
+    "sentences": [
+      "It was a risk, but he wanted to try for his family.",
+      "He borrowed money from a friend and found a place to rent.",
+      "In the United States, Saul struggles to find hope.",
+      "His friends and family help him when he needs it."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_12.mp3",
+    "duration": 14.619819,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "It was a risk, but he wanted to try for his family.",
+        "startTime": 0,
+        "endTime": 3.661,
+        "duration": 3.661,
+        "sentenceIndex": 48
+      },
+      {
+        "text": "He borrowed money from a friend and found a place to rent.",
+        "startTime": 3.661,
+        "endTime": 7.654,
+        "duration": 3.993,
+        "sentenceIndex": 49
+      },
+      {
+        "text": "In the United States, Saul struggles to find hope.",
+        "startTime": 7.654,
+        "endTime": 11.246,
+        "duration": 3.592,
+        "sentenceIndex": 50
+      },
+      {
+        "text": "His friends and family help him when he needs it.",
+        "startTime": 11.246,
+        "endTime": 14.62,
+        "duration": 3.373,
+        "sentenceIndex": 51
+      }
+    ]
+  },
+  {
+    "bundleIndex": 13,
+    "startSentenceIndex": 52,
+    "endSentenceIndex": 55,
+    "text": "They told him to join a group for people who lost businesses. You are not alone, Saul,\" his brother said and touched his shoulder. Saul feels grateful for their support, but he feels empty inside. One day, a friend started a campaign to help Saul.",
+    "sentences": [
+      "They told him to join a group for people who lost businesses.",
+      "You are not alone, Saul,\" his brother said and touched his shoulder.",
+      "Saul feels grateful for their support, but he feels empty inside.",
+      "One day, a friend started a campaign to help Saul."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_13.mp3",
+    "duration": 19.657324,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They told him to join a group for people who lost businesses.",
+        "startTime": 0,
+        "endTime": 4.764,
+        "duration": 4.764,
+        "sentenceIndex": 52
+      },
+      {
+        "text": "You are not alone, Saul,\" his brother said and touched his shoulder.",
+        "startTime": 4.764,
+        "endTime": 10.375,
+        "duration": 5.611,
+        "sentenceIndex": 53
+      },
+      {
+        "text": "Saul feels grateful for their support, but he feels empty inside.",
+        "startTime": 10.375,
+        "endTime": 15.602,
+        "duration": 5.227,
+        "sentenceIndex": 54
+      },
+      {
+        "text": "One day, a friend started a campaign to help Saul.",
+        "startTime": 15.602,
+        "endTime": 19.657,
+        "duration": 4.055,
+        "sentenceIndex": 55
+      }
+    ]
+  },
+  {
+    "bundleIndex": 14,
+    "startSentenceIndex": 56,
+    "endSentenceIndex": 59,
+    "text": "He was surprised when he saw his community's support. People he did not know sent him money and kind messages. You can do this, Saul, and I believe in you. They wrote that they believe in you, Carlos.",
+    "sentences": [
+      "He was surprised when he saw his community's support.",
+      "People he did not know sent him money and kind messages.",
+      "You can do this, Saul, and I believe in you.",
+      "They wrote that they believe in you, Carlos."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_14.mp3",
+    "duration": 16.249501,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He was surprised when he saw his community's support.",
+        "startTime": 0,
+        "endTime": 4.251,
+        "duration": 4.251,
+        "sentenceIndex": 56
+      },
+      {
+        "text": "People he did not know sent him money and kind messages.",
+        "startTime": 4.251,
+        "endTime": 8.742,
+        "duration": 4.491,
+        "sentenceIndex": 57
+      },
+      {
+        "text": "You can do this, Saul, and I believe in you.",
+        "startTime": 8.742,
+        "endTime": 12.571,
+        "duration": 3.829,
+        "sentenceIndex": 58
+      },
+      {
+        "text": "They wrote that they believe in you, Carlos.",
+        "startTime": 12.571,
+        "endTime": 16.25,
+        "duration": 3.679,
+        "sentenceIndex": 59
+      }
+    ]
+  },
+  {
+    "bundleIndex": 15,
+    "startSentenceIndex": 60,
+    "endSentenceIndex": 63,
+    "text": "Their words helped him feel less lonely and more happy. Saul slowly starts to feel better and heal. He thinks about his restaurant and remembers the joy it brings. He thinks maybe he can rebuild.",
+    "sentences": [
+      "Their words helped him feel less lonely and more happy.",
+      "Saul slowly starts to feel better and heal.",
+      "He thinks about his restaurant and remembers the joy it brings.",
+      "He thinks maybe he can rebuild."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_15.mp3",
+    "duration": 14.459025,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Their words helped him feel less lonely and more happy.",
+        "startTime": 0,
+        "endTime": 4.142,
+        "duration": 4.142,
+        "sentenceIndex": 60
+      },
+      {
+        "text": "Saul slowly starts to feel better and heal.",
+        "startTime": 4.142,
+        "endTime": 7.38,
+        "duration": 3.238,
+        "sentenceIndex": 61
+      },
+      {
+        "text": "He thinks about his restaurant and remembers the joy it brings.",
+        "startTime": 7.38,
+        "endTime": 12.124,
+        "duration": 4.744,
+        "sentenceIndex": 62
+      },
+      {
+        "text": "He thinks maybe he can rebuild.",
+        "startTime": 12.124,
+        "endTime": 14.459,
+        "duration": 2.335,
+        "sentenceIndex": 63
+      }
+    ]
+  },
+  {
+    "bundleIndex": 16,
+    "startSentenceIndex": 64,
+    "endSentenceIndex": 67,
+    "text": "The fire destroyed his restaurant, but it did not end his dreams. He started to draw ideas for a new place and saw bright colors. He felt excited when he made plans in his heart. Ibrahim worked hard and was happy in his new restaurant.",
+    "sentences": [
+      "The fire destroyed his restaurant, but it did not end his dreams.",
+      "He started to draw ideas for a new place and saw bright colors.",
+      "He felt excited when he made plans in his heart.",
+      "Ibrahim worked hard and was happy in his new restaurant."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_16.mp3",
+    "duration": 17.562653,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The fire destroyed his restaurant, but it did not end his dreams.",
+        "startTime": 0,
+        "endTime": 5.029,
+        "duration": 5.029,
+        "sentenceIndex": 64
+      },
+      {
+        "text": "He started to draw ideas for a new place and saw bright colors.",
+        "startTime": 5.029,
+        "endTime": 9.757,
+        "duration": 4.728,
+        "sentenceIndex": 65
+      },
+      {
+        "text": "He felt excited when he made plans in his heart.",
+        "startTime": 9.757,
+        "endTime": 13.36,
+        "duration": 3.603,
+        "sentenceIndex": 66
+      },
+      {
+        "text": "Ibrahim worked hard and was happy in his new restaurant.",
+        "startTime": 13.36,
+        "endTime": 17.563,
+        "duration": 4.203,
+        "sentenceIndex": 67
+      }
+    ]
+  },
+  {
+    "bundleIndex": 17,
+    "startSentenceIndex": 68,
+    "endSentenceIndex": 71,
+    "text": "He faced many challenges every day and worked hard. The language barrier was hard for Carlos and Maria. Sometimes, customers do not understand Carlos's accent. They ask for shawarma, but he does not always understand.",
+    "sentences": [
+      "He faced many challenges every day and worked hard.",
+      "The language barrier was hard for Carlos and Maria.",
+      "Sometimes, customers do not understand Carlos's accent.",
+      "They ask for shawarma, but he does not always understand."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_17.mp3",
+    "duration": 14.892336,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He faced many challenges every day and worked hard.",
+        "startTime": 0,
+        "endTime": 3.478,
+        "duration": 3.478,
+        "sentenceIndex": 68
+      },
+      {
+        "text": "The language barrier was hard for Carlos and Maria.",
+        "startTime": 3.478,
+        "endTime": 6.955,
+        "duration": 3.478,
+        "sentenceIndex": 69
+      },
+      {
+        "text": "Sometimes, customers do not understand Carlos's accent.",
+        "startTime": 6.955,
+        "endTime": 10.856,
+        "duration": 3.9,
+        "sentenceIndex": 70
+      },
+      {
+        "text": "They ask for shawarma, but he does not always understand.",
+        "startTime": 10.856,
+        "endTime": 14.892,
+        "duration": 4.037,
+        "sentenceIndex": 71
+      }
+    ]
+  },
+  {
+    "bundleIndex": 18,
+    "startSentenceIndex": 72,
+    "endSentenceIndex": 75,
+    "text": "At first, he felt embarrassed and worried he was not good enough. He thinks his heart is heavy because they may not like his food. Every mistake teaches him something new and helps him grow. Each day was a lesson, and he wanted to succeed more.",
+    "sentences": [
+      "At first, he felt embarrassed and worried he was not good enough.",
+      "He thinks his heart is heavy because they may not like his food.",
+      "Every mistake teaches him something new and helps him grow.",
+      "Each day was a lesson, and he wanted to succeed more."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_18.mp3",
+    "duration": 18.396757,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "At first, he felt embarrassed and worried he was not good enough.",
+        "startTime": 0,
+        "endTime": 5.031,
+        "duration": 5.031,
+        "sentenceIndex": 72
+      },
+      {
+        "text": "He thinks his heart is heavy because they may not like his food.",
+        "startTime": 5.031,
+        "endTime": 9.837,
+        "duration": 4.806,
+        "sentenceIndex": 73
+      },
+      {
+        "text": "Every mistake teaches him something new and helps him grow.",
+        "startTime": 9.837,
+        "endTime": 14.267,
+        "duration": 4.43,
+        "sentenceIndex": 74
+      },
+      {
+        "text": "Each day was a lesson, and he wanted to succeed more.",
+        "startTime": 14.267,
+        "endTime": 18.397,
+        "duration": 4.13,
+        "sentenceIndex": 75
+      }
+    ]
+  },
+  {
+    "bundleIndex": 19,
+    "startSentenceIndex": 76,
+    "endSentenceIndex": 79,
+    "text": "Ibrahim learns more about his customers and his new city every day. He asked his friends for help and they helped him. They taught him words and phrases that are very important. He asks to repeat it because he wants to improve.",
+    "sentences": [
+      "Ibrahim learns more about his customers and his new city every day.",
+      "He asked his friends for help and they helped him.",
+      "They taught him words and phrases that are very important.",
+      "He asks to repeat it because he wants to improve."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_19.mp3",
+    "duration": 15.50483,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Ibrahim learns more about his customers and his new city every day.",
+        "startTime": 0,
+        "endTime": 4.638,
+        "duration": 4.638,
+        "sentenceIndex": 76
+      },
+      {
+        "text": "He asked his friends for help and they helped him.",
+        "startTime": 4.638,
+        "endTime": 8.099,
+        "duration": 3.461,
+        "sentenceIndex": 77
+      },
+      {
+        "text": "They taught him words and phrases that are very important.",
+        "startTime": 8.099,
+        "endTime": 12.113,
+        "duration": 4.015,
+        "sentenceIndex": 78
+      },
+      {
+        "text": "He asks to repeat it because he wants to improve.",
+        "startTime": 12.113,
+        "endTime": 15.505,
+        "duration": 3.392,
+        "sentenceIndex": 79
+      }
+    ]
+  },
+  {
+    "bundleIndex": 20,
+    "startSentenceIndex": 80,
+    "endSentenceIndex": 83,
+    "text": "He practiced speaking every day with his children. Soon, he can talk better and know what people want. His restaurant became popular over time and many people came. People loved his food and told others quickly.",
+    "sentences": [
+      "He practiced speaking every day with his children.",
+      "Soon, he can talk better and know what people want.",
+      "His restaurant became popular over time and many people came.",
+      "People loved his food and told others quickly."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_20.mp3",
+    "duration": 14.069002,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He practiced speaking every day with his children.",
+        "startTime": 0,
+        "endTime": 3.346,
+        "duration": 3.346,
+        "sentenceIndex": 80
+      },
+      {
+        "text": "Soon, he can talk better and know what people want.",
+        "startTime": 3.346,
+        "endTime": 6.909,
+        "duration": 3.563,
+        "sentenceIndex": 81
+      },
+      {
+        "text": "His restaurant became popular over time and many people came.",
+        "startTime": 6.909,
+        "endTime": 10.991,
+        "duration": 4.082,
+        "sentenceIndex": 82
+      },
+      {
+        "text": "People loved his food and told others quickly.",
+        "startTime": 10.991,
+        "endTime": 14.069,
+        "duration": 3.078,
+        "sentenceIndex": 83
+      }
+    ]
+  },
+  {
+    "bundleIndex": 21,
+    "startSentenceIndex": 84,
+    "endSentenceIndex": 87,
+    "text": "One day, Ibrahim's restaurant was very busy and full. Families came to eat and laugh together. He looked around and smiled because he felt proud. He thought, \"I did this,\" and felt proud.",
+    "sentences": [
+      "One day, Ibrahim's restaurant was very busy and full.",
+      "Families came to eat and laugh together.",
+      "He looked around and smiled because he felt proud.",
+      "He thought, \"I did this,\" and felt proud."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_21.mp3",
+    "duration": 15.227324,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "One day, Ibrahim's restaurant was very busy and full.",
+        "startTime": 0,
+        "endTime": 4.407,
+        "duration": 4.407,
+        "sentenceIndex": 84
+      },
+      {
+        "text": "Families came to eat and laugh together.",
+        "startTime": 4.407,
+        "endTime": 7.619,
+        "duration": 3.212,
+        "sentenceIndex": 85
+      },
+      {
+        "text": "He looked around and smiled because he felt proud.",
+        "startTime": 7.619,
+        "endTime": 11.635,
+        "duration": 4.016,
+        "sentenceIndex": 86
+      },
+      {
+        "text": "He thought, \"I did this,\" and felt proud.",
+        "startTime": 11.635,
+        "endTime": 15.227,
+        "duration": 3.593,
+        "sentenceIndex": 87
+      }
+    ]
+  },
+  {
+    "bundleIndex": 22,
+    "startSentenceIndex": 88,
+    "endSentenceIndex": 91,
+    "text": "He felt proud of what he did. The hard work pays off and makes people happy. He provides for his family and lives his dream again. Seeing happy customers gives Carlos a strong sense of purpose.",
+    "sentences": [
+      "He felt proud of what he did.",
+      "The hard work pays off and makes people happy.",
+      "He provides for his family and lives his dream again.",
+      "Seeing happy customers gives Carlos a strong sense of purpose."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_22.mp3",
+    "duration": 13.421927,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He felt proud of what he did.",
+        "startTime": 0,
+        "endTime": 2.049,
+        "duration": 2.049,
+        "sentenceIndex": 88
+      },
+      {
+        "text": "The hard work pays off and makes people happy.",
+        "startTime": 2.049,
+        "endTime": 5.298,
+        "duration": 3.25,
+        "sentenceIndex": 89
+      },
+      {
+        "text": "He provides for his family and lives his dream again.",
+        "startTime": 5.298,
+        "endTime": 9.042,
+        "duration": 3.744,
+        "sentenceIndex": 90
+      },
+      {
+        "text": "Seeing happy customers gives Carlos a strong sense of purpose.",
+        "startTime": 9.042,
+        "endTime": 13.422,
+        "duration": 4.38,
+        "sentenceIndex": 91
+      }
+    ]
+  },
+  {
+    "bundleIndex": 23,
+    "startSentenceIndex": 92,
+    "endSentenceIndex": 95,
+    "text": "Saul remembers the community's support when he makes plans to reopen. He felt thankful for all the people who helped him. He thinks he wants to give back because of the kindness. Saul opened his new restaurant in a neighborhood that needed food.",
+    "sentences": [
+      "Saul remembers the community's support when he makes plans to reopen.",
+      "He felt thankful for all the people who helped him.",
+      "He thinks he wants to give back because of the kindness.",
+      "Saul opened his new restaurant in a neighborhood that needed food."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_23.mp3",
+    "duration": 17.069615,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Saul remembers the community's support when he makes plans to reopen.",
+        "startTime": 0,
+        "endTime": 4.867,
+        "duration": 4.867,
+        "sentenceIndex": 92
+      },
+      {
+        "text": "He felt thankful for all the people who helped him.",
+        "startTime": 4.867,
+        "endTime": 8.464,
+        "duration": 3.597,
+        "sentenceIndex": 93
+      },
+      {
+        "text": "He thinks he wants to give back because of the kindness.",
+        "startTime": 8.464,
+        "endTime": 12.414,
+        "duration": 3.95,
+        "sentenceIndex": 94
+      },
+      {
+        "text": "Saul opened his new restaurant in a neighborhood that needed food.",
+        "startTime": 12.414,
+        "endTime": 17.07,
+        "duration": 4.655,
+        "sentenceIndex": 95
+      }
+    ]
+  },
+  {
+    "bundleIndex": 24,
+    "startSentenceIndex": 96,
+    "endSentenceIndex": 99,
+    "text": "He wants to help others like he was helped before. Saul worked hard and found a new place for El Gran Taco Loco. He painted the walls bright colors like his old restaurant. He brought new tables and chairs for families to gather.",
+    "sentences": [
+      "He wants to help others like he was helped before.",
+      "Saul worked hard and found a new place for El Gran Taco Loco.",
+      "He painted the walls bright colors like his old restaurant.",
+      "He brought new tables and chairs for families to gather."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_24.mp3",
+    "duration": 16.919229,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He wants to help others like he was helped before.",
+        "startTime": 0,
+        "endTime": 3.743,
+        "duration": 3.743,
+        "sentenceIndex": 96
+      },
+      {
+        "text": "Saul worked hard and found a new place for El Gran Taco Loco.",
+        "startTime": 3.743,
+        "endTime": 8.31,
+        "duration": 4.567,
+        "sentenceIndex": 97
+      },
+      {
+        "text": "He painted the walls bright colors like his old restaurant.",
+        "startTime": 8.31,
+        "endTime": 12.727,
+        "duration": 4.417,
+        "sentenceIndex": 98
+      },
+      {
+        "text": "He brought new tables and chairs for families to gather.",
+        "startTime": 12.727,
+        "endTime": 16.919,
+        "duration": 4.192,
+        "sentenceIndex": 99
+      }
+    ]
+  },
+  {
+    "bundleIndex": 25,
+    "startSentenceIndex": 100,
+    "endSentenceIndex": 103,
+    "text": "He decorated the place with happy pictures and good food. When opening day came, he felt nervous and excited. Will people come to the party and have fun. Will they remember Carlos when he comes back.",
+    "sentences": [
+      "He decorated the place with happy pictures and good food.",
+      "When opening day came, he felt nervous and excited.",
+      "Will people come to the party and have fun.",
+      "Will they remember Carlos when he comes back."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_25.mp3",
+    "duration": 13.634172,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "He decorated the place with happy pictures and good food.",
+        "startTime": 0,
+        "endTime": 3.921,
+        "duration": 3.921,
+        "sentenceIndex": 100
+      },
+      {
+        "text": "When opening day came, he felt nervous and excited.",
+        "startTime": 3.921,
+        "endTime": 7.58,
+        "duration": 3.659,
+        "sentenceIndex": 101
+      },
+      {
+        "text": "Will people come to the party and have fun.",
+        "startTime": 7.58,
+        "endTime": 10.538,
+        "duration": 2.958,
+        "sentenceIndex": 102
+      },
+      {
+        "text": "Will they remember Carlos when he comes back.",
+        "startTime": 10.538,
+        "endTime": 13.634,
+        "duration": 3.096,
+        "sentenceIndex": 103
+      }
+    ]
+  },
+  {
+    "bundleIndex": 26,
+    "startSentenceIndex": 104,
+    "endSentenceIndex": 107,
+    "text": "The doors opened and people waited in line outside. Saul felt joy when he saw familiar and new faces. He saw old customers and new people. They came to help him and show their support.",
+    "sentences": [
+      "The doors opened and people waited in line outside.",
+      "Saul felt joy when he saw familiar and new faces.",
+      "He saw old customers and new people.",
+      "They came to help him and show their support."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_26.mp3",
+    "duration": 14.064717,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The doors opened and people waited in line outside.",
+        "startTime": 0,
+        "endTime": 3.963,
+        "duration": 3.963,
+        "sentenceIndex": 104
+      },
+      {
+        "text": "Saul felt joy when he saw familiar and new faces.",
+        "startTime": 3.963,
+        "endTime": 7.771,
+        "duration": 3.808,
+        "sentenceIndex": 105
+      },
+      {
+        "text": "He saw old customers and new people.",
+        "startTime": 7.771,
+        "endTime": 10.568,
+        "duration": 2.797,
+        "sentenceIndex": 106
+      },
+      {
+        "text": "They came to help him and show their support.",
+        "startTime": 10.568,
+        "endTime": 14.065,
+        "duration": 3.497,
+        "sentenceIndex": 107
+      }
+    ]
+  },
+  {
+    "bundleIndex": 27,
+    "startSentenceIndex": 108,
+    "endSentenceIndex": 111,
+    "text": "They shouted, \"Welcome back. Saul feels warm and happy in his heart. He felt the love of his community and knew he was not alone. He served tacos and listened to customers laugh, feeling happy.",
+    "sentences": [
+      "They shouted, \"Welcome back.",
+      "Saul feels warm and happy in his heart.",
+      "He felt the love of his community and knew he was not alone.",
+      "He served tacos and listened to customers laugh, feeling happy."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_27.mp3",
+    "duration": 13.7878,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They shouted, \"Welcome back.",
+        "startTime": 0,
+        "endTime": 2.138,
+        "duration": 2.138,
+        "sentenceIndex": 108
+      },
+      {
+        "text": "Saul feels warm and happy in his heart.",
+        "startTime": 2.138,
+        "endTime": 4.906,
+        "duration": 2.769,
+        "sentenceIndex": 109
+      },
+      {
+        "text": "He felt the love of his community and knew he was not alone.",
+        "startTime": 4.906,
+        "endTime": 9.166,
+        "duration": 4.259,
+        "sentenceIndex": 110
+      },
+      {
+        "text": "He served tacos and listened to customers laugh, feeling happy.",
+        "startTime": 9.166,
+        "endTime": 13.788,
+        "duration": 4.622,
+        "sentenceIndex": 111
+      }
+    ]
+  },
+  {
+    "bundleIndex": 28,
+    "startSentenceIndex": 112,
+    "endSentenceIndex": 115,
+    "text": "The restaurant had bright colors and smelled of good food. He felt happy and had a feeling of belonging. Success feels sweet, but the journey is what matters most. He faced his fears and found his dreams again.",
+    "sentences": [
+      "The restaurant had bright colors and smelled of good food.",
+      "He felt happy and had a feeling of belonging.",
+      "Success feels sweet, but the journey is what matters most.",
+      "He faced his fears and found his dreams again."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_28.mp3",
+    "duration": 13.636984,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "The restaurant had bright colors and smelled of good food.",
+        "startTime": 0,
+        "endTime": 3.779,
+        "duration": 3.779,
+        "sentenceIndex": 112
+      },
+      {
+        "text": "He felt happy and had a feeling of belonging.",
+        "startTime": 3.779,
+        "endTime": 6.711,
+        "duration": 2.932,
+        "sentenceIndex": 113
+      },
+      {
+        "text": "Success feels sweet, but the journey is what matters most.",
+        "startTime": 6.711,
+        "endTime": 10.64,
+        "duration": 3.929,
+        "sentenceIndex": 114
+      },
+      {
+        "text": "He faced his fears and found his dreams again.",
+        "startTime": 10.64,
+        "endTime": 13.637,
+        "duration": 2.997,
+        "sentenceIndex": 115
+      }
+    ]
+  },
+  {
+    "bundleIndex": 29,
+    "startSentenceIndex": 116,
+    "endSentenceIndex": 119,
+    "text": "Ibrahim's restaurant grows and becomes more popular every day. He hired some people from the neighborhood and they work together. Some of them are new immigrants like him. He wanted to help others find their way like he did.",
+    "sentences": [
+      "Ibrahim's restaurant grows and becomes more popular every day.",
+      "He hired some people from the neighborhood and they work together.",
+      "Some of them are new immigrants like him.",
+      "He wanted to help others find their way like he did."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_29.mp3",
+    "duration": 14.032971,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Ibrahim's restaurant grows and becomes more popular every day.",
+        "startTime": 0,
+        "endTime": 3.937,
+        "duration": 3.937,
+        "sentenceIndex": 116
+      },
+      {
+        "text": "He hired some people from the neighborhood and they work together.",
+        "startTime": 3.937,
+        "endTime": 8.128,
+        "duration": 4.191,
+        "sentenceIndex": 117
+      },
+      {
+        "text": "Some of them are new immigrants like him.",
+        "startTime": 8.128,
+        "endTime": 10.731,
+        "duration": 2.603,
+        "sentenceIndex": 118
+      },
+      {
+        "text": "He wanted to help others find their way like he did.",
+        "startTime": 10.731,
+        "endTime": 14.033,
+        "duration": 3.302,
+        "sentenceIndex": 119
+      }
+    ]
+  },
+  {
+    "bundleIndex": 30,
+    "startSentenceIndex": 120,
+    "endSentenceIndex": 123,
+    "text": "Ibrahim shared his story and many young people asked him for advice. He encouraged them to be brave and work hard like he did. One day, Saul and Ibrahim meet at a community event. They shared stories and saw they had much in common.",
+    "sentences": [
+      "Ibrahim shared his story and many young people asked him for advice.",
+      "He encouraged them to be brave and work hard like he did.",
+      "One day, Saul and Ibrahim meet at a community event.",
+      "They shared stories and saw they had much in common."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_30.mp3",
+    "duration": 16.646757,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Ibrahim shared his story and many young people asked him for advice.",
+        "startTime": 0,
+        "endTime": 4.899,
+        "duration": 4.899,
+        "sentenceIndex": 120
+      },
+      {
+        "text": "He encouraged them to be brave and work hard like he did.",
+        "startTime": 4.899,
+        "endTime": 9.005,
+        "duration": 4.106,
+        "sentenceIndex": 121
+      },
+      {
+        "text": "One day, Saul and Ibrahim meet at a community event.",
+        "startTime": 9.005,
+        "endTime": 12.901,
+        "duration": 3.896,
+        "sentenceIndex": 122
+      },
+      {
+        "text": "They shared stories and saw they had much in common.",
+        "startTime": 12.901,
+        "endTime": 16.647,
+        "duration": 3.746,
+        "sentenceIndex": 123
+      }
+    ]
+  },
+  {
+    "bundleIndex": 31,
+    "startSentenceIndex": 124,
+    "endSentenceIndex": 127,
+    "text": "Saul smiles and says we are stronger together. Ibrahim nodded and felt a connection with Saul. They gave phone numbers and said they will meet again. From that day, Saul and Ibrahim are friends.",
+    "sentences": [
+      "Saul smiles and says we are stronger together.",
+      "Ibrahim nodded and felt a connection with Saul.",
+      "They gave phone numbers and said they will meet again.",
+      "From that day, Saul and Ibrahim are friends."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_31.mp3",
+    "duration": 14.278118,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Saul smiles and says we are stronger together.",
+        "startTime": 0,
+        "endTime": 3.403,
+        "duration": 3.403,
+        "sentenceIndex": 124
+      },
+      {
+        "text": "Ibrahim nodded and felt a connection with Saul.",
+        "startTime": 3.403,
+        "endTime": 6.879,
+        "duration": 3.477,
+        "sentenceIndex": 125
+      },
+      {
+        "text": "They gave phone numbers and said they will meet again.",
+        "startTime": 6.879,
+        "endTime": 10.873,
+        "duration": 3.994,
+        "sentenceIndex": 126
+      },
+      {
+        "text": "From that day, Saul and Ibrahim are friends.",
+        "startTime": 10.873,
+        "endTime": 14.278,
+        "duration": 3.405,
+        "sentenceIndex": 127
+      }
+    ]
+  },
+  {
+    "bundleIndex": 32,
+    "startSentenceIndex": 128,
+    "endSentenceIndex": 131,
+    "text": "They helped each other's restaurants and worked together for their events. They invite people to taste their food and share their stories. Ibrahim suggested a food festival one day and felt excited. Saul agreed and said we can show our food and stories.",
+    "sentences": [
+      "They helped each other's restaurants and worked together for their events.",
+      "They invite people to taste their food and share their stories.",
+      "Ibrahim suggested a food festival one day and felt excited.",
+      "Saul agreed and said we can show our food and stories."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_32.mp3",
+    "duration": 18.278662,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They helped each other's restaurants and worked together for their events.",
+        "startTime": 0,
+        "endTime": 5.41,
+        "duration": 5.41,
+        "sentenceIndex": 128
+      },
+      {
+        "text": "They invite people to taste their food and share their stories.",
+        "startTime": 5.41,
+        "endTime": 10.017,
+        "duration": 4.606,
+        "sentenceIndex": 129
+      },
+      {
+        "text": "Ibrahim suggested a food festival one day and felt excited.",
+        "startTime": 10.017,
+        "endTime": 14.33,
+        "duration": 4.314,
+        "sentenceIndex": 130
+      },
+      {
+        "text": "Saul agreed and said we can show our food and stories.",
+        "startTime": 14.33,
+        "endTime": 18.279,
+        "duration": 3.948,
+        "sentenceIndex": 131
+      }
+    ]
+  },
+  {
+    "bundleIndex": 33,
+    "startSentenceIndex": 132,
+    "endSentenceIndex": 135,
+    "text": "Saul learns to accept mistakes when they plan the event. He says every mistake helps us get better and succeed. Ibrahim found help and strength in his community. We are not alone and we have each other,\" he told his friends.",
+    "sentences": [
+      "Saul learns to accept mistakes when they plan the event.",
+      "He says every mistake helps us get better and succeed.",
+      "Ibrahim found help and strength in his community.",
+      "We are not alone and we have each other,\" he told his friends."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_33.mp3",
+    "duration": 16.250748,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "Saul learns to accept mistakes when they plan the event.",
+        "startTime": 0,
+        "endTime": 4.08,
+        "duration": 4.08,
+        "sentenceIndex": 132
+      },
+      {
+        "text": "He says every mistake helps us get better and succeed.",
+        "startTime": 4.08,
+        "endTime": 8.014,
+        "duration": 3.934,
+        "sentenceIndex": 133
+      },
+      {
+        "text": "Ibrahim found help and strength in his community.",
+        "startTime": 8.014,
+        "endTime": 11.584,
+        "duration": 3.57,
+        "sentenceIndex": 134
+      },
+      {
+        "text": "We are not alone and we have each other,\" he told his friends.",
+        "startTime": 11.584,
+        "endTime": 16.251,
+        "duration": 4.667,
+        "sentenceIndex": 135
+      }
+    ]
+  },
+  {
+    "bundleIndex": 34,
+    "startSentenceIndex": 136,
+    "endSentenceIndex": 139,
+    "text": "They both changed when time passed. They feel lost but become successful business owners and leaders. They inspired others to follow their dreams and believe in themselves. They shared their problems and many people felt inspired.",
+    "sentences": [
+      "They both changed when time passed.",
+      "They feel lost but become successful business owners and leaders.",
+      "They inspired others to follow their dreams and believe in themselves.",
+      "They shared their problems and many people felt inspired."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_34.mp3",
+    "duration": 15.663583,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They both changed when time passed.",
+        "startTime": 0,
+        "endTime": 2.415,
+        "duration": 2.415,
+        "sentenceIndex": 136
+      },
+      {
+        "text": "They feel lost but become successful business owners and leaders.",
+        "startTime": 2.415,
+        "endTime": 6.9,
+        "duration": 4.485,
+        "sentenceIndex": 137
+      },
+      {
+        "text": "They inspired others to follow their dreams and believe in themselves.",
+        "startTime": 6.9,
+        "endTime": 11.73,
+        "duration": 4.83,
+        "sentenceIndex": 138
+      },
+      {
+        "text": "They shared their problems and many people felt inspired.",
+        "startTime": 11.73,
+        "endTime": 15.664,
+        "duration": 3.933,
+        "sentenceIndex": 139
+      }
+    ]
+  },
+  {
+    "bundleIndex": 35,
+    "startSentenceIndex": 140,
+    "endSentenceIndex": 143,
+    "text": "They worked hard and made a new life for their families. They built a strong community of support and help. They know starting over is hard, but they can achieve anything. Saul and Ibrahim’s stories spread in the city.",
+    "sentences": [
+      "They worked hard and made a new life for their families.",
+      "They built a strong community of support and help.",
+      "They know starting over is hard, but they can achieve anything.",
+      "Saul and Ibrahim’s stories spread in the city."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_35.mp3",
+    "duration": 14.775896,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They worked hard and made a new life for their families.",
+        "startTime": 0,
+        "endTime": 3.81,
+        "duration": 3.81,
+        "sentenceIndex": 140
+      },
+      {
+        "text": "They built a strong community of support and help.",
+        "startTime": 3.81,
+        "endTime": 7.211,
+        "duration": 3.401,
+        "sentenceIndex": 141
+      },
+      {
+        "text": "They know starting over is hard, but they can achieve anything.",
+        "startTime": 7.211,
+        "endTime": 11.647,
+        "duration": 4.436,
+        "sentenceIndex": 142
+      },
+      {
+        "text": "Saul and Ibrahim’s stories spread in the city.",
+        "startTime": 11.647,
+        "endTime": 14.776,
+        "duration": 3.129,
+        "sentenceIndex": 143
+      }
+    ]
+  },
+  {
+    "bundleIndex": 36,
+    "startSentenceIndex": 144,
+    "endSentenceIndex": 147,
+    "text": "People admire them for their strength and hard work. They learned that it is possible to rise again after losing everything. Hard struggles can lead to beautiful successes in life. Saul and Ibrahim feel thankful for their journeys.",
+    "sentences": [
+      "People admire them for their strength and hard work.",
+      "They learned that it is possible to rise again after losing everything.",
+      "Hard struggles can lead to beautiful successes in life.",
+      "Saul and Ibrahim feel thankful for their journeys."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_36.mp3",
+    "duration": 17.417438,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "People admire them for their strength and hard work.",
+        "startTime": 0,
+        "endTime": 3.972,
+        "duration": 3.972,
+        "sentenceIndex": 144
+      },
+      {
+        "text": "They learned that it is possible to rise again after losing everything.",
+        "startTime": 3.972,
+        "endTime": 9.396,
+        "duration": 5.424,
+        "sentenceIndex": 145
+      },
+      {
+        "text": "Hard struggles can lead to beautiful successes in life.",
+        "startTime": 9.396,
+        "endTime": 13.598,
+        "duration": 4.202,
+        "sentenceIndex": 146
+      },
+      {
+        "text": "Saul and Ibrahim feel thankful for their journeys.",
+        "startTime": 13.598,
+        "endTime": 17.417,
+        "duration": 3.82,
+        "sentenceIndex": 147
+      }
+    ]
+  },
+  {
+    "bundleIndex": 37,
+    "startSentenceIndex": 148,
+    "endSentenceIndex": 151,
+    "text": "They remember the hard days and how much they grew. They know their experiences shape their lives and they look forward. Saul and Ibrahim see they build businesses and lives together. They create chances and help families and inspire others.",
+    "sentences": [
+      "They remember the hard days and how much they grew.",
+      "They know their experiences shape their lives and they look forward.",
+      "Saul and Ibrahim see they build businesses and lives together.",
+      "They create chances and help families and inspire others."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_37.mp3",
+    "duration": 17.967937,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They remember the hard days and how much they grew.",
+        "startTime": 0,
+        "endTime": 3.85,
+        "duration": 3.85,
+        "sentenceIndex": 148
+      },
+      {
+        "text": "They know their experiences shape their lives and they look forward.",
+        "startTime": 3.85,
+        "endTime": 8.984,
+        "duration": 5.134,
+        "sentenceIndex": 149
+      },
+      {
+        "text": "Saul and Ibrahim see they build businesses and lives together.",
+        "startTime": 8.984,
+        "endTime": 13.665,
+        "duration": 4.681,
+        "sentenceIndex": 150
+      },
+      {
+        "text": "They create chances and help families and inspire others.",
+        "startTime": 13.665,
+        "endTime": 17.968,
+        "duration": 4.303,
+        "sentenceIndex": 151
+      }
+    ]
+  },
+  {
+    "bundleIndex": 38,
+    "startSentenceIndex": 152,
+    "endSentenceIndex": 155,
+    "text": "They turned their problems into strength and moved forward together. Their story shows the strength of community and the courage to dream. They served food and shared stories to connect with everyone. Saul and Ibrahim stand together with hope and strong spirits.",
+    "sentences": [
+      "They turned their problems into strength and moved forward together.",
+      "Their story shows the strength of community and the courage to dream.",
+      "They served food and shared stories to connect with everyone.",
+      "Saul and Ibrahim stand together with hope and strong spirits."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_38.mp3",
+    "duration": 21.405964,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They turned their problems into strength and moved forward together.",
+        "startTime": 0,
+        "endTime": 5.62,
+        "duration": 5.62,
+        "sentenceIndex": 152
+      },
+      {
+        "text": "Their story shows the strength of community and the courage to dream.",
+        "startTime": 5.62,
+        "endTime": 11.323,
+        "duration": 5.703,
+        "sentenceIndex": 153
+      },
+      {
+        "text": "They served food and shared stories to connect with everyone.",
+        "startTime": 11.323,
+        "endTime": 16.364,
+        "duration": 5.042,
+        "sentenceIndex": 154
+      },
+      {
+        "text": "Saul and Ibrahim stand together with hope and strong spirits.",
+        "startTime": 16.364,
+        "endTime": 21.406,
+        "duration": 5.042,
+        "sentenceIndex": 155
+      }
+    ]
+  },
+  {
+    "bundleIndex": 39,
+    "startSentenceIndex": 156,
+    "endSentenceIndex": 159,
+    "text": "They know dreams can grow strong when we learn from our struggles. As the sun set, Saul and Ibrahim smiled at each other. They found a way to survive and thrive together. Their journey begins, and they are excited to see what happens.",
+    "sentences": [
+      "They know dreams can grow strong when we learn from our struggles.",
+      "As the sun set, Saul and Ibrahim smiled at each other.",
+      "They found a way to survive and thrive together.",
+      "Their journey begins, and they are excited to see what happens."
+    ],
+    "audioUrl": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/immigrant-entrepreneur/A2/bundle_39.mp3",
+    "duration": 17.687982,
+    "voiceId": "onwK4e9ZLuTAKqWW03F9",
+    "voiceName": "Daniel",
+    "speed": 0.85,
+    "sentenceTimings": [
+      {
+        "text": "They know dreams can grow strong when we learn from our struggles.",
+        "startTime": 0,
+        "endTime": 4.968,
+        "duration": 4.968,
+        "sentenceIndex": 156
+      },
+      {
+        "text": "As the sun set, Saul and Ibrahim smiled at each other.",
+        "startTime": 4.968,
+        "endTime": 9.183,
+        "duration": 4.215,
+        "sentenceIndex": 157
+      },
+      {
+        "text": "They found a way to survive and thrive together.",
+        "startTime": 9.183,
+        "endTime": 12.796,
+        "duration": 3.613,
+        "sentenceIndex": 158
+      },
+      {
+        "text": "Their journey begins, and they are excited to see what happens.",
+        "startTime": 12.796,
+        "endTime": 17.688,
+        "duration": 4.892,
+        "sentenceIndex": 159
+      }
+    ]
+  }
+]

@@ -1,0 +1,104 @@
+{
+  "storyId": "medical-crisis-2",
+  "level": "A2",
+  "audio": {
+    "url": "https://xsolwqqdbsuydwmmwtsl.supabase.co/storage/v1/object/public/audio-files/medical-crisis-2/A2/preview-combined.mp3",
+    "duration": 74.268458,
+    "voice": "Jane",
+    "voiceId": "RILOU7YmBhvwJGDGjNmP",
+    "sentenceTimings": [
+      {
+        "startTime": 0,
+        "endTime": 4.721,
+        "duration": 4.721,
+        "text": "In this powerful story, Sarah and Jake face medical crises."
+      },
+      {
+        "startTime": 4.721,
+        "endTime": 7.665,
+        "duration": 2.944,
+        "text": "Sarah is nineteen and loses both legs."
+      },
+      {
+        "startTime": 7.665,
+        "endTime": 10.531,
+        "duration": 2.866,
+        "text": "She becomes a Paralympic snowboarder."
+      },
+      {
+        "startTime": 10.531,
+        "endTime": 13.475,
+        "duration": 2.944,
+        "text": "Jake is thirteen and has cancer twice."
+      },
+      {
+        "startTime": 13.475,
+        "endTime": 17.038,
+        "duration": 3.564,
+        "text": "He climbs Mount Everest after losing one lung."
+      },
+      {
+        "startTime": 17.038,
+        "endTime": 20.602,
+        "duration": 3.564,
+        "text": "This story shows determination and resilience."
+      },
+      {
+        "startTime": 20.602,
+        "endTime": 24.011,
+        "duration": 3.409,
+        "text": "It proves that impossible things can happen."
+      },
+      {
+        "startTime": 24.011,
+        "endTime": 29.046,
+        "duration": 5.036,
+        "text": "An inspiring story about proving that the impossible is possible."
+      },
+      {
+        "startTime": 29.046,
+        "endTime": 34.469,
+        "duration": 5.423,
+        "text": "Imagine being nineteen years old and feeling like you have everything."
+      },
+      {
+        "startTime": 34.469,
+        "endTime": 45.687,
+        "duration": 11.218,
+        "text": "Then in less than twenty-four hours, your body turns purple, your lungs collapse, and doctors tell your parents you have two hours to live."
+      },
+      {
+        "startTime": 45.687,
+        "endTime": 51.73,
+        "duration": 6.043,
+        "text": "Imagine being thirteen years old and being told you have three months to live."
+      },
+      {
+        "startTime": 51.73,
+        "endTime": 57.54,
+        "duration": 5.81,
+        "text": "This is the story of two people who proved that the impossible is possible."
+      },
+      {
+        "startTime": 57.54,
+        "endTime": 64.12,
+        "duration": 6.58,
+        "text": "Many people believe that when you face a serious medical crisis, your life is over."
+      },
+      {
+        "startTime": 64.12,
+        "endTime": 71.48,
+        "duration": 7.36,
+        "text": "They think that losing body parts or function means you can never do the things you love again."
+      },
+      {
+        "startTime": 71.48,
+        "endTime": 74.268,
+        "duration": 2.789,
+        "text": "This story proves that belief wrong."
+      }
+    ]
+  },
+  "generatedAt": "2025-12-13T06:52:01.378Z",
+  "timingMethod": "enhanced-timing-v3"
+}

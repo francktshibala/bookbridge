@@ -147,8 +147,8 @@ After EACH command:
 
 ### **2. Breaking Barriers Collection** (sortOrder=2)
 
-- [ ] **`medical-crisis-2`** - B1/B2 original → Add **A2**
-- [ ] **`teaching-dad-to-read`** - B1/B2 original → Add **A2**
+- [x] **`medical-crisis-2`** - B1/B2 original → Add **A2** ✅ Complete (2025-12-13)
+- [x] **`teaching-dad-to-read`** - B1/B2 original → Add **A2** ✅ Complete (2025-12-13)
 - [ ] **`immigrant-entrepreneur`** - B1/B2 original → Add **A2**
 
 ### **3. Finding Home Collection** (sortOrder=3)
@@ -174,7 +174,7 @@ After EACH command:
 - **Can add A2 level: 10 stories** ✅
 - **Cannot add higher levels: 1 story** (career-pivot-3)
 
-**Last completed:** `age-defiance-1` ✅ (2025-12-13)
+**Last completed:** `teaching-dad-to-read` ✅ (2025-12-13)
 
-**Next story to work on:** `medical-crisis-2` (Breaking Barriers collection, first priority)
+**Next story to work on:** `immigrant-entrepreneur` (Breaking Barriers collection)
 
