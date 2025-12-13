@@ -26,8 +26,6 @@ function ConfirmResetPasswordPageContent() {
   useEffect(() => {
     let mounted = true;
     let checkInterval: NodeJS.Timeout | undefined;
-    let attempts = 0;
-    const MAX_ATTEMPTS = 30; // 3 seconds total (100ms * 30)
 
     const checkForSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
@@ -41,24 +39,15 @@ function ConfirmResetPasswordPageContent() {
         if (checkInterval) {
           clearInterval(checkInterval);
         }
-      } else {
-        attempts++;
-        if (attempts >= MAX_ATTEMPTS) {
-          console.error('[ConfirmResetPassword] ❌ No session after max attempts - invalid/expired link');
-          setError('Invalid or expired password reset link. Please request a new one.');
-          announceToScreenReader('Invalid or expired password reset link.', 'assertive');
-          if (checkInterval) {
-            clearInterval(checkInterval);
-          }
-        }
       }
+      // No timeout - keep checking indefinitely until session appears
     };
 
     // Check immediately
     checkForSession();
 
-    // Then check every 100ms for up to 3 seconds
-    checkInterval = setInterval(checkForSession, 100);
+    // Then check every 200ms indefinitely (no max attempts)
+    checkInterval = setInterval(checkForSession, 200);
 
     // Cleanup
     return () => {
