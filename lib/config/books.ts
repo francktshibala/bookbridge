@@ -613,7 +613,8 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'A1': '/api/youth-activism-1-a1/bundles'
   },
   'medical-crisis-2': {
-    'A1': '/api/medical-crisis-2-a1/bundles'
+    'A1': '/api/medical-crisis-2-a1/bundles',
+    'A2': '/api/medical-crisis-2-a2/bundles'
   },
   'career-pivot-1': {
     'A1': '/api/career-pivot-1-a1/bundles'
@@ -758,7 +759,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'single-parent-rising-2': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'age-defiance-1': ['A1', 'A2'],  // A1 & A2 with Sarah (Modern Story - Starting Over collection)
   'youth-activism-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
-  'medical-crisis-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  'medical-crisis-2': ['A1', 'A2'],  // A1 & A2 with Jane (Modern Story - Breaking Barriers collection)
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)

@@ -34,7 +34,18 @@ const JANE_VOICE_SETTINGS = {
 };
 
 const STORY_ID = 'medical-crisis-2';
-const CEFR_LEVEL = 'A1';
+
+// Get target level from command line argument or default to A1
+const targetLevel = process.argv[2] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  console.log('Usage: node scripts/generate-medical-crisis-2-preview-audio.js [A1|A2]');
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
 
 /**
  * Enhanced Timing v3: Character-count proportion + punctuation penalties

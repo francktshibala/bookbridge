@@ -13,7 +13,18 @@ config({ path: '.env.local' });
 const prisma = new PrismaClient();
 
 const BOOK_ID = 'medical-crisis-2';
-const CEFR_LEVEL = 'A1';
+
+// Get target level from command line argument or default to A1
+const targetLevel = process.argv[2] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  console.log('Usage: npx tsx scripts/integrate-medical-crisis-2-database.ts [A1|A2]');
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
 
 interface SentenceTiming {
   text: string;

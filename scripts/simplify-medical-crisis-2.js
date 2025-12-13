@@ -9,6 +9,16 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+// Get target level from command line argument or default to A1
+const targetLevel = process.argv[2] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  console.log('Usage: node scripts/simplify-medical-crisis-2.js [A1|A2]');
+  process.exit(1);
+}
+
 // A1 Simplification Guidelines
 const A1_GUIDELINES = `
 - Use 500-1000 most common words
@@ -26,6 +36,26 @@ const A1_GUIDELINES = `
 - Preserve punctuation for proper formatting
 - Keep proper nouns: Sarah, Jake, etc.
 `;
+
+// A2 Simplification Guidelines
+const A2_GUIDELINES = `
+- Use 1000-2000 most common words
+- Present, simple past, and simple future tenses
+- Moderate sentences (8-15 words average)
+- MAXIMUM 15 WORDS PER SENTENCE
+- More connectors: "and", "but", "when", "because", "so", "after", "before"
+- Some subordinate clauses allowed
+- Cultural references with brief context
+- Maintain exact 1:1 sentence count mapping (CRITICAL)
+- Generate natural flow sentences with moderate complexity
+- Each sentence should express one complete thought or closely related ideas
+- Avoid semicolons - use periods instead
+- Preserve punctuation for proper formatting
+- Keep proper nouns: Sarah, Jake, etc.
+`;
+
+const GUIDELINES = targetLevel === 'A1' ? A1_GUIDELINES : A2_GUIDELINES;
+const MAX_WORDS = targetLevel === 'A1' ? 12 : 15;
 
 // Helper function to call OpenAI API
 async function callOpenAI(sentence, retryCount = 0) {
@@ -47,17 +77,17 @@ async function callOpenAI(sentence, retryCount = 0) {
       max_tokens: 200,
       messages: [{
         role: 'user',
-        content: `You are simplifying ONE sentence to A1 level. Return EXACTLY ONE sentence.
+        content: `You are simplifying ONE sentence to ${targetLevel} level. Return EXACTLY ONE sentence.
 
-${A1_GUIDELINES}
+${GUIDELINES}
 
 Original sentence: "${cleanSentence}"
 
 CRITICAL RULES:
 1. Return EXACTLY ONE sentence (not two or three sentences)
-2. Maximum 12 words total - if too long, use connectors to combine ideas into ONE sentence
-3. Use 500-1000 most common words only
-4. Use connectors: "and", "but", "when" to create natural flow within ONE sentence
+2. Maximum ${MAX_WORDS} words total - if too long, use connectors to combine ideas into ONE sentence
+3. ${targetLevel === 'A1' ? 'Use 500-1000 most common words only' : 'Use 1000-2000 most common words'}
+4. Use appropriate connectors for ${targetLevel} level to create natural flow within ONE sentence
 5. Keep the complete meaning and emotion
 6. Keep proper nouns unchanged (Sarah, Jake, etc.)
 7. Return ONLY the simplified sentence, no explanations
@@ -92,7 +122,7 @@ Simplified sentence:`
 
 async function simplifyStory() {
   const inputFile = path.join(process.cwd(), 'cache', 'medical-crisis-2-original.txt');
-  const outputFile = path.join(process.cwd(), 'cache', 'medical-crisis-2-A1-simplified.txt');
+  const outputFile = path.join(process.cwd(), 'cache', `medical-crisis-2-${targetLevel}-simplified.txt`);
 
   if (!fs.existsSync(inputFile)) {
     console.error(`❌ Input file not found: ${inputFile}`);
@@ -100,7 +130,7 @@ async function simplifyStory() {
   }
 
   const originalText = fs.readFileSync(inputFile, 'utf-8');
-  
+
   // Split into sentences (preserving punctuation)
   const sentences = originalText
     .split(/(?<=[.!?])\s+/)
@@ -108,7 +138,7 @@ async function simplifyStory() {
     .filter(s => s.length > 0);
 
   console.log(`📖 Original story: ${sentences.length} sentences`);
-  console.log(`🎯 Simplifying to A1 level...\n`);
+  console.log(`🎯 Simplifying to ${targetLevel} level...\n`);
 
   const simplifiedSentences = [];
   let processed = 0;
