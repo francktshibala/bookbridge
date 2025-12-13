@@ -24,18 +24,54 @@ function ConfirmResetPasswordPageContent() {
 
   // Check if user has valid session from password reset link
   useEffect(() => {
-    const checkSession = async () => {
+    let authListener: any;
+    let timeout: NodeJS.Timeout;
+
+    const initSession = async () => {
+      // Listen for auth state changes (including hash token processing)
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        console.log('[ConfirmResetPassword] 🔐 Auth state change:', event, session?.user?.id);
+
+        if (session) {
+          setHasSession(true);
+          setError(null);
+        }
+      });
+
+      authListener = subscription;
+
+      // Also check current session immediately
       const { data: { session } } = await supabase.auth.getSession();
+
       if (session) {
+        console.log('[ConfirmResetPassword] ✅ Valid session found:', session.user.id);
         setHasSession(true);
       } else {
-        // No session means invalid/expired reset link
-        setError('Invalid or expired password reset link. Please request a new one.');
-        announceToScreenReader('Invalid or expired password reset link.', 'assertive');
+        console.warn('[ConfirmResetPassword] ⚠️ No immediate session, waiting for hash token processing...');
+
+        // Give Supabase time to process hash tokens (triggered by onAuthStateChange)
+        timeout = setTimeout(() => {
+          if (!hasSession) {
+            console.error('[ConfirmResetPassword] ❌ No session after timeout - invalid/expired link');
+            setError('Invalid or expired password reset link. Please request a new one.');
+            announceToScreenReader('Invalid or expired password reset link.', 'assertive');
+          }
+        }, 3000);
       }
     };
-    checkSession();
-  }, [announceToScreenReader]);
+
+    initSession();
+
+    // Cleanup
+    return () => {
+      if (authListener) {
+        authListener.unsubscribe();
+      }
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [announceToScreenReader, hasSession]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
