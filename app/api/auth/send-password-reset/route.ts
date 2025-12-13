@@ -51,11 +51,12 @@ export async function POST(request: NextRequest) {
     console.log('[send-password-reset] 🔐 Step 3: Generating password reset link...');
     
     // Generate password reset link using Supabase Admin API
+    // Use dedicated /auth/callback/reset route for password resets
     const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
       type: 'recovery', // Password reset type
       email: email,
       options: {
-        redirectTo: `${appUrl}/auth/callback?type=password_reset`,
+        redirectTo: `${appUrl}/auth/callback/reset`, // Dedicated password reset callback
       },
     });
 
