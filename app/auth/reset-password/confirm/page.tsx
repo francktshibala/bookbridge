@@ -25,7 +25,8 @@ function ConfirmResetPasswordPageContent() {
   // Check if user has valid session from password reset link
   useEffect(() => {
     let authListener: any;
-    let timeout: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout | undefined;
+    let sessionFound = false;
 
     const initSession = async () => {
       // Listen for auth state changes (including hash token processing)
@@ -33,8 +34,14 @@ function ConfirmResetPasswordPageContent() {
         console.log('[ConfirmResetPassword] 🔐 Auth state change:', event, session?.user?.id);
 
         if (session) {
+          sessionFound = true;
           setHasSession(true);
           setError(null);
+          // Clear timeout if session found via auth state change
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = undefined;
+          }
         }
       });
 
@@ -45,13 +52,14 @@ function ConfirmResetPasswordPageContent() {
 
       if (session) {
         console.log('[ConfirmResetPassword] ✅ Valid session found:', session.user.id);
+        sessionFound = true;
         setHasSession(true);
       } else {
         console.warn('[ConfirmResetPassword] ⚠️ No immediate session, waiting for hash token processing...');
 
         // Give Supabase time to process hash tokens (triggered by onAuthStateChange)
-        timeout = setTimeout(() => {
-          if (!hasSession) {
+        timeoutId = setTimeout(() => {
+          if (!sessionFound) {
             console.error('[ConfirmResetPassword] ❌ No session after timeout - invalid/expired link');
             setError('Invalid or expired password reset link. Please request a new one.');
             announceToScreenReader('Invalid or expired password reset link.', 'assertive');
@@ -67,11 +75,11 @@ function ConfirmResetPasswordPageContent() {
       if (authListener) {
         authListener.unsubscribe();
       }
-      if (timeout) {
-        clearTimeout(timeout);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
       }
     };
-  }, [announceToScreenReader, hasSession]);
+  }, [announceToScreenReader]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
