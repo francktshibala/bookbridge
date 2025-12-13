@@ -552,7 +552,8 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
     'A2': '/api/teaching-dad-to-read-a2/bundles'
   },
   'immigrant-entrepreneur': {
-    'A1': '/api/immigrant-entrepreneur-a1/bundles'
+    'A1': '/api/immigrant-entrepreneur-a1/bundles',
+    'A2': '/api/immigrant-entrepreneur-a2/bundles'
   },
   'refugee-journey-1': {
     'A1': '/api/refugee-journey-1-a1/bundles'
@@ -740,7 +741,7 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'helen-keller': ['A1'],  // A1 with Jane (Memoir - Modern Voices collection)
   'teen-translating-hospital': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'teaching-dad-to-read': ['A1', 'A2'],  // A1 & A2 with Daniel (Modern Story - Breaking Barriers collection)
-  'immigrant-entrepreneur': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
+  'immigrant-entrepreneur': ['A1', 'A2'],  // A1 & A2 with Daniel (Modern Story - Breaking Barriers collection)
   'refugee-journey-1': ['A1'],  // A1 with Sarah (Modern Story - Modern Voices collection)
   'refugee-journey-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'refugee-journey-3': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)

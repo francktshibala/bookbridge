@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Simplify "Immigrant Entrepreneur: From Failure to Success" to A1 level
- * Target: At least 20 minutes reading time (A1 level)
+ * Simplify "Immigrant Entrepreneur: From Failure to Success" to specified CEFR level
+ * Target: At least 20 minutes reading time
  */
 
 const { config } = require('dotenv');
@@ -20,9 +20,21 @@ const openai = new OpenAI({
 const STORY_ID = 'immigrant-entrepreneur';
 const CACHE_DIR = path.join(__dirname, '..', 'cache');
 
+// Get target level from command line argument or default to A1
+const targetLevel = process.argv[2] || 'A1';
+const VALID_LEVELS = ['A1', 'A2'];
+
+if (!VALID_LEVELS.includes(targetLevel)) {
+  console.error(`❌ Error: Invalid level "${targetLevel}". Valid levels: ${VALID_LEVELS.join(', ')}`);
+  console.log('Usage: node scripts/simplify-immigrant-entrepreneur.js [A1|A2]');
+  process.exit(1);
+}
+
+const CEFR_LEVEL = targetLevel;
+
 const INPUT_FILE = path.join(CACHE_DIR, `${STORY_ID}-original.txt`);
-const OUTPUT_FILE_A1 = path.join(CACHE_DIR, `${STORY_ID}-A1-simplified.txt`);
-const CACHE_FILE_A1 = path.join(CACHE_DIR, `${STORY_ID}-A1-simplified.json`);
+const OUTPUT_FILE = path.join(CACHE_DIR, `${STORY_ID}-${CEFR_LEVEL}-simplified.txt`);
+const CACHE_FILE = path.join(CACHE_DIR, `${STORY_ID}-${CEFR_LEVEL}-simplified.json`);
 
 // A1 Simplification Guidelines
 const A1_GUIDELINES = `
@@ -41,6 +53,26 @@ const A1_GUIDELINES = `
 - Preserve punctuation for proper formatting
 - Keep proper nouns: Carlos, Maria, David, Sofia, etc.
 `;
+
+// A2 Simplification Guidelines
+const A2_GUIDELINES = `
+- Use 1000-2000 most common words
+- Present, simple past, and simple future tenses
+- Moderate sentences (8-15 words average)
+- MAXIMUM 15 WORDS PER SENTENCE
+- More connectors: "and", "but", "when", "because", "so", "after", "before"
+- Some subordinate clauses allowed
+- Basic cultural references with context
+- Maintain exact 1:1 sentence count mapping (CRITICAL)
+- Generate natural flow sentences
+- Each sentence should express one or two related thoughts
+- Preserve punctuation for proper formatting
+- Keep proper nouns: Carlos, Maria, David, Sofia, etc.
+`;
+
+// Select guidelines based on target level
+const GUIDELINES = CEFR_LEVEL === 'A1' ? A1_GUIDELINES : A2_GUIDELINES;
+const MAX_WORDS = CEFR_LEVEL === 'A1' ? 12 : 15;
 
 // Helper function to call OpenAI API
 async function callOpenAI(sentence, retryCount = 0) {
@@ -62,17 +94,17 @@ async function callOpenAI(sentence, retryCount = 0) {
       max_tokens: 200,
       messages: [{
         role: 'user',
-        content: `You are simplifying ONE sentence to A1 level. Return EXACTLY ONE sentence.
+        content: `You are simplifying ONE sentence to ${CEFR_LEVEL} level. Return EXACTLY ONE sentence.
 
-${A1_GUIDELINES}
+${GUIDELINES}
 
 Original sentence: "${cleanSentence}"
 
 CRITICAL RULES:
 1. Return EXACTLY ONE sentence (not two or three sentences)
-2. Maximum 12 words total - if too long, use connectors to combine ideas into ONE sentence
-3. Use 500-1000 most common words only
-4. Use connectors: "and", "but", "when" to create natural flow within ONE sentence
+2. Maximum ${MAX_WORDS} words total - if too long, use connectors to combine ideas into ONE sentence
+3. Use appropriate vocabulary for ${CEFR_LEVEL} level
+4. Use connectors to create natural flow within ONE sentence
 5. Keep the complete meaning and emotion
 6. Keep proper nouns unchanged (Carlos, Maria, etc.)
 7. Return ONLY the simplified sentence, no explanations
@@ -99,8 +131,9 @@ Simplified sentence:`
     
     // Validate word count
     const words = simplified.split(/\s+/).filter(w => w.length > 0);
-    if (words.length > 16) {
-      console.warn(`   ⚠️  Sentence ${retryCount + 1} has ${words.length} words (max 16 allowed for A1)`);
+    const maxAllowed = MAX_WORDS + 4; // Allow some flexibility
+    if (words.length > maxAllowed) {
+      console.warn(`   ⚠️  Sentence ${retryCount + 1} has ${words.length} words (max ${maxAllowed} allowed for ${CEFR_LEVEL})`);
     }
     
     return simplified;
@@ -114,14 +147,14 @@ Simplified sentence:`
   }
 }
 
-async function simplifyToA1() {
-  console.log('📖 Simplifying to A1 level...');
+async function simplifyStory() {
+  console.log(`📖 Simplifying to ${CEFR_LEVEL} level...`);
   console.log('🎯 Target: At least 20 minutes reading time');
-  
+
   // Load cache if exists
   let cache = {};
-  if (fs.existsSync(CACHE_FILE_A1)) {
-    cache = JSON.parse(fs.readFileSync(CACHE_FILE_A1, 'utf-8'));
+  if (fs.existsSync(CACHE_FILE)) {
+    cache = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf-8'));
     console.log(`📁 Loaded cache: ${Object.keys(cache).length} sentences already simplified`);
   }
   
@@ -161,7 +194,7 @@ async function simplifyToA1() {
       
       // Save cache every 10 sentences
       if (processed % 10 === 0) {
-        fs.writeFileSync(CACHE_FILE_A1, JSON.stringify(cache, null, 2));
+        fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2));
         console.log(`   ✅ Processed ${processed}/${sentences.length} (saved cache)`);
       }
       
@@ -175,50 +208,51 @@ async function simplifyToA1() {
   }
   
   // Save final cache
-  fs.writeFileSync(CACHE_FILE_A1, JSON.stringify(cache, null, 2));
-  
+  fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2));
+
   // Combine simplified sentences
   const simplifiedText = simplifiedSentences.join(' ');
-  
+
   // Save simplified text
-  fs.writeFileSync(OUTPUT_FILE_A1, simplifiedText, 'utf-8');
-  
+  fs.writeFileSync(OUTPUT_FILE, simplifiedText, 'utf-8');
+
   // Statistics
   const wordCount = simplifiedText.split(/\s+/).length;
-  const estimatedMinutes = Math.round(wordCount / 80); // A1 reading speed ~80 words/min
-  
+  const readingSpeed = CEFR_LEVEL === 'A1' ? 80 : 100; // A1: ~80 wpm, A2: ~100 wpm
+  const estimatedMinutes = Math.round(wordCount / readingSpeed);
+
   console.log(`\n✅ Simplification complete!`);
   console.log(`📊 Statistics:`);
   console.log(`   - Sentences: ${simplifiedSentences.length} (1:1 mapping maintained)`);
   console.log(`   - Words: ${wordCount.toLocaleString()}`);
-  console.log(`   - Estimated reading time: ~${estimatedMinutes} minutes (A1 level)`);
+  console.log(`   - Estimated reading time: ~${estimatedMinutes} minutes (${CEFR_LEVEL} level)`);
   
   if (estimatedMinutes < 20) {
     console.log(`⚠️  WARNING: Story is ${estimatedMinutes} minutes, target is at least 20 minutes.`);
-    console.log(`💡 Consider expanding A1 version to meet target.`);
+    console.log(`💡 Consider expanding ${CEFR_LEVEL} version to meet target.`);
   } else {
     console.log(`✅ Target met: ${estimatedMinutes} minutes (≥20 minutes)`);
   }
-  
+
   // Check sentence length distribution
   const wordCounts = simplifiedSentences.map(s => s.split(/\s+/).length);
   const avgWords = Math.round(wordCounts.reduce((a, b) => a + b, 0) / wordCounts.length);
   const maxWords = Math.max(...wordCounts);
-  const overLimit = wordCounts.filter(w => w > 12).length;
-  
+  const overLimit = wordCounts.filter(w => w > MAX_WORDS).length;
+
   console.log(`\n📏 Sentence Length Analysis:`);
   console.log(`   - Average words per sentence: ${avgWords}`);
   console.log(`   - Maximum words: ${maxWords}`);
-  console.log(`   - Sentences over 12 words: ${overLimit} (${Math.round(overLimit / wordCounts.length * 100)}%)`);
-  
+  console.log(`   - Sentences over ${MAX_WORDS} words: ${overLimit} (${Math.round(overLimit / wordCounts.length * 100)}%)`);
+
   if (overLimit > wordCounts.length * 0.1) {
-    console.log(`⚠️  WARNING: More than 10% of sentences exceed 12 words.`);
+    console.log(`⚠️  WARNING: More than 10% of sentences exceed ${MAX_WORDS} words.`);
   }
 }
 
 if (require.main === module) {
-  simplifyToA1().catch(console.error);
+  simplifyStory().catch(console.error);
 }
 
-module.exports = { simplifyToA1 };
+module.exports = { simplifyStory };
 
