@@ -135,9 +135,8 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // No code provided - redirect to reset password page
-  console.warn('[auth/callback/reset] ⚠️ No code provided in callback');
-  return NextResponse.redirect(
-    `${baseUrl}/auth/reset-password?error=missing_code&message=${encodeURIComponent('Invalid reset link. Please request a new one.')}`
-  );
+  // No code provided - likely implicit flow with tokens in hash fragment
+  // Supabase client will automatically handle the hash fragment tokens
+  console.log('[auth/callback/reset] ℹ️ No code provided - redirecting to confirm page (implicit flow)');
+  return NextResponse.redirect(`${baseUrl}/auth/reset-password/confirm`);
 }
