@@ -12,7 +12,7 @@
 - **Purpose**: Stable production code
 - **Usage**: Never commit directly, only merge tested features
 - **Status**: Latest stable release
-- **Latest Addition**: Hero Interactive Reading Demo (October 2025)
+- **Latest Addition**: Phase 1 Supabase Security Improvements (December 2025)
 
 #### **`feature/hero-interactive-demo` - Marketing Demo (Completed)**
 - **Purpose**: Interactive reading demo for homepage marketing
@@ -24,6 +24,38 @@
   - `public/audio/demo/` - Demo audio files for all CEFR levels (A1-C2, Original)
   - `public/data/demo/pride-prejudice-demo.json` - Demo content data
 - **Features**: 7 CEFR levels, dual voice (Daniel/Sarah), real-time highlighting, mobile-responsive
+
+#### **`fix/supabase-security-phase1` - Phase 1 Supabase Security Improvements (Completed)**
+- **Purpose**: Safe, non-breaking security fixes for database functions and authentication
+- **Status**: ✅ Merged to main (December 14, 2025)
+- **Completion Date**: 2025-12-14
+- **Implementation Plan**: `docs/issues/PHASE1_COMPLETION_SUMMARY.md` - Complete execution record and verification
+- **Security Impact**: Reduced security warnings from 11-13 to 1
+- **Key Changes**:
+  - **Database Function Security**: Added `SECURITY INVOKER` to 8 functions to fix search_path warnings
+    - `update_audio_access`, `update_reading_positions_updated_at`, `handle_updated_at`
+    - `cleanup_expired_audio_cache`, `update_featured_book_search_vector`
+    - `invalidate_book_audio_cache` (trigger version), `invalidate_book_audio_cache(target_book_id)` (function version)
+    - `get_audio_cache_stats`
+  - **Auth Security Settings** (configured via Supabase Dashboard):
+    - ✅ Enabled leaked password protection (HaveIBeenPwned API)
+    - ✅ Reduced OTP expiry from 24 hours to 1 hour (3600s)
+    - ✅ Re-enabled custom SMTP (Resend) for better email delivery
+- **Files Created**:
+  - `supabase/migrations/20251214_fix_function_search_path.sql` - Database function security fixes
+  - `docs/issues/PHASE1_COMPLETION_SUMMARY.md` - Complete documentation and verification guide
+- **Testing Completed**:
+  - ✅ Email functionality (signup, password reset) verified working
+  - ✅ App functionality (audio playback, reading progress, bookmarks) verified working
+  - ✅ Build passes with no errors
+  - ✅ Security Advisor: 11-13 warnings → 1 warning
+- **Deferred to Phase 2** (before monetization):
+  - ⚠️ Postgres version upgrade (requires maintenance window)
+  - ⚠️ RLS (Row Level Security) policies - 11 errors (critical before payment features)
+- **Notes**:
+  - All database configuration changes done via Supabase Dashboard (not in code)
+  - Site URL configured for production: https://bookbridge.app
+  - Custom SMTP (Resend) enabled for transactional emails
 
 #### **`fix/audio-flow-interruptions` - Current Books Tactical Improvements**
 - **Purpose**: Implementing current books bridge solution (4-week plan, $12.7K)
