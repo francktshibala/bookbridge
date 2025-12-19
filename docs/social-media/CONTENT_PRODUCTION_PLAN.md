@@ -160,25 +160,52 @@
 
 ### **PILLAR 4: "Feel It, Say It" Emotion/Intonation Lab** 🆕 (Agent 2)
 
+**📖 Complete Production Plan:** See [PILLAR_4_EMOTION_LAB_PLAN.md](./PILLAR_4_EMOTION_LAB_PLAN.md) for:
+- 15 emotion categories with 3-level gradations each
+- Example sentences for each emotion level
+- Enhanced video structure optimized for maximum views
+- Script templates (copy-paste ready)
+- 30-day content calendar
+- Visual requirements and best practices
+- Production workflow (25 min per video)
+
 **Format:** One feeling with 3 gradations (A1-C1)
 
-**Structure:**
-- Introduce feeling (10 sec): "Today: nervous"
-- Gradations (30 sec): worried → anxious → panicked (with AI voice demonstrations)
-- Visual demo (20 sec): AI-generated emotion images (Canva)
-- Shadow practice (20 sec): 3 mini-lines to repeat
-- Situational swap (10 sec): "Use this when [situation]"
+**Enhanced Structure (60-90s) - Optimized for Views:**
+- Hook (0-3s): "You're saying 'nervous' wrong" (critical for TikTok)
+- Problem Setup (3-8s): "Most learners only know one word"
+- Gradations (8-25s): Level 1 → Level 2 → Level 3 (with visuals + text overlays)
+- Visual Comparison (25-40s): Side-by-side comparison
+- Shadow Practice (40-55s): 3 sentences to repeat (5s pauses)
+- Situational Use (55-70s): "Use this when..."
+- CTA + Challenge (70-90s): "Comment below! Follow for Day 2"
 
 **Production:**
-- Voice: ElevenLabs (varying intonation for each gradation)
-- Visuals: AI-generated emotion images (Midjourney/DALL-E via Canva)
-- Duration: 45-90 seconds
+- Voice: ElevenLabs Jane (varying intonation for each gradation)
+- Visuals: AI-generated emotion images (3 per video: mild → moderate → extreme)
+- Text Overlays: Bold emotion words (white/yellow, 200% scale)
+- Closed Captions: Yellow text, all caps, 200% scale (TikTok best practice)
+- Duration: 60-90 seconds (optimized for maximum views)
 
 **Content Independence:** 100% standalone - creates emotion vocabulary content
 
-**Posting Schedule:** 2x/week (Tuesday/Thursday)
+**Posting Schedule:** Daily for quick validation OR 2x/week (Tuesday/Thursday)
 
-**Why It Works:** Emotion vocabulary + prosody is underserved; highly visual; sticky on TikTok/IG; repeatable series
+**Why It Works:** 
+- ✅ Hook in first 1 second (TikTok algorithm)
+- ✅ Highly visual (algorithm loves visuals)
+- ✅ Relatable problem (every ESL learner struggles)
+- ✅ Quick value (60-90s perfect attention span)
+- ✅ Series potential ("30 Emotions in 30 Days")
+- ✅ Shareable (immediate utility)
+- ✅ SEO-friendly titles ("How to Say Nervous in English (3 Ways)")
+
+**View Optimization Features:**
+- Trending hooks ("POV: You're trying to explain your feelings")
+- Before/After format ("Before: I'm nervous. After: I'm anxious about...")
+- Real situations ("Use this when: job interview, first date")
+- Challenge questions ("Can you use all 3 words? Comment below!")
+- Series numbering ("Day 1/30: Nervous" - creates FOMO)
 
 ---
 
