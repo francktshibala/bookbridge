@@ -152,9 +152,56 @@ docs/social-media/
 
 ---
 
+---
+
+## ✅ Pillar 4: Emotion Lab - "Nervous" (Day 1)
+
+**Generated:** December 18, 2024  
+**Status:** ✅ Complete & Posted (YouTube, TikTok, Instagram)  
+**Pillar:** 4 - "Feel It, Say It" Emotion Lab  
+**Source:** Standalone content (not from BookBridge)
+
+| Component | Filename | Duration | Size | Notes |
+|-----------|----------|----------|------|-------|
+| **Complete Audio** | `nervous-emotion.mp3` | 2m 9s | 0.99 MB | Daniel voice at 0.70x speed |
+
+**Emotion Gradations:**
+1. **Worried** (Level 1 - mild concern)
+2. **Anxious** (Level 2 - moderate anxiety)
+3. **Panicked** (Level 3 - extreme fear)
+
+**Example Sentences:**
+- "I'm worried about my test tomorrow." (A1)
+- "She feels anxious before speaking in public." (A2)
+- "He panicked when he lost his passport." (B1)
+
+**Script File (Desktop):**
+- `nervous-emotion-script.txt`
+
+**Generation Script:**
+- `docs/social-media/scripts/generate_nervous_emotion_audio.py`
+
+**Platforms Posted:**
+- ✅ YouTube (Playlist: "Emotion Vocabulary")
+- ✅ TikTok
+- ✅ Instagram Reels
+
+**Workflow Completed:**
+- [x] Step 1: Script writing
+- [x] Step 2: Audio generation (ElevenLabs API + FFmpeg)
+- [x] Step 3: Visual preparation (3 emotion images)
+- [x] Step 4: Video assembly
+- [x] Step 5: Posting (YouTube, TikTok, Instagram)
+
+**Cost:** ~$0.15 (ElevenLabs API)  
+**Generation Time:** ~15 minutes
+
+---
+
 ## 📝 Notes
 
-- All audio uses Jane voice (RILOU7YmBhvwJGDGjNmP) at 0.70x speed
+- All audio uses Jane voice (RILOU7YmBhvwJGDGjNmP) at 0.70x speed for story videos
+- Emotion videos use Daniel voice (onwK4e9ZLuTAKqWW03F9) at 0.70x speed for educational content
 - Vocabulary-Shadowing overlap strategy: 7-8/8 vocab words appear in shadowing sentences
 - Files remain on Desktop - NOT pushed to GitHub
 - Source bundles remain in Supabase (can regenerate if needed)
