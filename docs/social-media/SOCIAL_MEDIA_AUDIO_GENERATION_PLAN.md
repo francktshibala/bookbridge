@@ -6,6 +6,29 @@
 
 ---
 
+## 📚 RELATED DOCUMENTATION
+
+**This is the technical implementation guide. For strategic planning, see:**
+
+- **[CONTENT_PRODUCTION_PLAN.md](./CONTENT_PRODUCTION_PLAN.md)** - Master strategic plan (7 content pillars, weekly calendar, production workflow, source research)
+- **[CONTENT_INVENTORY.md](./CONTENT_INVENTORY.md)** - Track all created content (files, durations, vocabulary, shadowing sentences)
+- **[CONTENT_PRODUCTION_RESEARCH.md](./CONTENT_PRODUCTION_RESEARCH.md)** - Research findings and strategic analysis
+
+**How to Use These Files Together:**
+1. **Choose content** → Use `CONTENT_PRODUCTION_PLAN.md` to select which content concept to create (Pillar 1-7)
+2. **Follow this guide** → Use technical workflow here for audio generation (ElevenLabs API, FFmpeg, scripts)
+3. **Track content** → Update `CONTENT_INVENTORY.md` with generated files
+
+**For Multi-Part Story Series (Pillar 1):**
+- Master plan defines: Story selection, vocabulary strategy, shadowing overlap, posting schedule
+- This guide provides: Script formats, ElevenLabs voice settings, FFmpeg commands, pause timing
+
+**For Other Content Types (Pillars 2-7):**
+- Master plan defines: Content structure, source research, weekly themes
+- This guide provides: Audio generation workflow (adapt component structure as needed)
+
+---
+
 ## 🎯 Purpose
 
 Generate **standalone audio files** for social media marketing content. These are **NOT** part of the BookBridge app - they're external marketing materials to drive traffic to the app.

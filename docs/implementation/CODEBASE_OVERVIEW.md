@@ -641,6 +641,35 @@ Python scripts for automated audio generation using ElevenLabs API and FFmpeg. I
 - ✅ Documentation + scripts versioned in GitHub
 - ✅ Can regenerate audio from scripts + Supabase bundles if needed
 
+#### **CONTENT_PRODUCTION_PLAN.md**
+**Location**: `/docs/social-media/CONTENT_PRODUCTION_PLAN.md`
+**Description**: Complete content strategy for "Slow English Story & Shadowing" YouTube/TikTok/Instagram channel (Synthesized Research v2.0). Documents 7 content pillars synthesized from multiple research agents: (1) Multi-part story series, (2) Life Moments micro-stories, (3) Real-World English Now, (4) Feel It, Say It emotion/intonation lab, (5) Speed Ladder shadowing, (6) Story to Speech book breakdowns, (7) Daily micro-lessons. Defines freemium model: 60% standalone content (independent value) + 40% BookBridge-enhanced content (drives premium conversions). Includes AI-only production workflow (no face/voice recording), 4-week batching cycle, platform-specific strategies, SMART implementation framework, freemium conversion tracking, and scaling plan (solo → assistant → full team).
+
+**Core Strategy**: Freemium model - 60% standalone educational content + 40% BookBridge-enhanced content, all using AI voices, stock visuals, and professional production (NO face/voice recording required). Mission: Build #1 daily ESL learning destination that makes learners return daily. Social media = free product; BookBridge.app = premium upgrade.
+
+**Content Independence Framework**:
+- **Standalone Content (60%)**: Life Moments, Real-World English, emotion lab, micro-lessons - provides value without requiring BookBridge.app
+- **BookBridge-Enhanced (40%)**: Story series, Speed Ladder, Story to Speech - uses app assets and drives premium conversions
+
+**Content Relationship**:
+- **Social Media**: Free product (daily English learning habit, standalone value)
+- **BookBridge.app**: Premium upgrade (synchronized reading, full stories, multiple CEFR levels, deep practice)
+
+#### **CONTENT_PRODUCTION_RESEARCH.md**
+**Location**: `/docs/social-media/CONTENT_PRODUCTION_RESEARCH.md`
+**Description**: Master research file synthesizing findings from multiple research agents and independent analysis. Documents comprehensive research on content independence strategy, freemium conversion benchmarks (2-5% social → app, 10-20% app → premium), optimal posting frequency (daily TikTok/IG, 2-3x/week YouTube), AI-only production workflow efficiency (10x scalability vs. face/voice recording), content pillar performance predictions, appointment viewing strategies, conversion tracking setup, competitive analysis, and risk assessment. Includes research gaps identified (AI-only channel benchmarks, ESL-specific conversion rates) and validation plan (pilot testing Month 1-2, optimization Month 3+). Provides actionable recommendations with confidence levels and implementation readiness assessment.
+
+**Key Research Findings**:
+- Content independence critical (60% standalone ensures sustainable pipeline)
+- Freemium model validated (HubSpot 90/10, Canva 80/20, Duolingo 70/30)
+- AI-only production 10x more efficient (30 videos in 17 hours vs. 60-90 hours traditional)
+- Conversion benchmarks realistic (2-5% social → app achievable)
+- Appointment viewing works (predictable themes + consistent schedule = habit formation)
+
+**Research Confidence**: High (content strategy, freemium model, scalability) | Medium (conversion rates, posting frequency) | Low (AI-only benchmarks, ESL-specific data)
+
+**Status**: ✅ Research Complete - Ready for Implementation (validate assumptions through Month 1-2 pilot testing)
+
 ---
 
 ## 📱 **Mobile Development Documentation**

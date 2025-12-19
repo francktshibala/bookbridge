@@ -6,6 +6,21 @@
 
 ---
 
+## 📚 RELATED DOCUMENTATION
+
+**This file tracks what content has been created. For planning and generation:**
+
+- **[CONTENT_PRODUCTION_PLAN.md](./CONTENT_PRODUCTION_PLAN.md)** - Master strategic plan (7 content pillars, weekly calendar, production workflow)
+- **[SOCIAL_MEDIA_AUDIO_GENERATION_PLAN.md](./SOCIAL_MEDIA_AUDIO_GENERATION_PLAN.md)** - Technical workflow for generating audio (scripts, ElevenLabs API, FFmpeg)
+- **[CONTENT_PRODUCTION_RESEARCH.md](./CONTENT_PRODUCTION_RESEARCH.md)** - Research findings and strategic analysis
+
+**How to Use These Files Together:**
+1. **Plan content** → Use `CONTENT_PRODUCTION_PLAN.md` to choose what to create
+2. **Generate audio** → Follow `SOCIAL_MEDIA_AUDIO_GENERATION_PLAN.md` for technical steps
+3. **Update this file** → Document all generated files, durations, vocabulary, shadowing sentences
+
+---
+
 ## ✅ Romantic Love - Part 1 (Bundles 0-9)
 **Generated:** 2025-12-18
 **Status:** Complete
