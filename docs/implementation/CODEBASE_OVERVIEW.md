@@ -572,6 +572,77 @@ This document establishes the universal accessibility vision while defining the 
 
 ---
 
+## 📱 **Social Media Content Generation**
+
+### **Planning & Workflow Documentation**
+
+#### **SOCIAL_MEDIA_AUDIO_GENERATION_PLAN.md**
+**Location**: `/docs/social-media/SOCIAL_MEDIA_AUDIO_GENERATION_PLAN.md`
+**Description**: Complete production workflow for generating YouTube/TikTok/Instagram content from BookBridge stories. Documents 7-component video structure (Cold Open → Hook → Vocabulary → Shadowing → Story → Questions → CTA), ElevenLabs API integration, FFmpeg post-processing, and proven pedagogical strategy (vocabulary-shadowing overlap for spaced repetition). Includes case studies for "I Hid My Love for 5 Years" Part 1 & 2 with technical specs, generation costs (~$0.45/video), and quality standards.
+
+**Status**: ✅ Production (2 complete videos, proven workflow)
+
+**Key Content Types**:
+1. **Educational/Instructional** - Method explanation videos (e.g., "The REAL Way to Learn English")
+2. **Story Previews/Hooks** - 30-60s emotional clips for TikTok/Reels
+3. **Full Story Videos** - 10-12 min multi-part series with complete pedagogical structure
+
+**7-Component Video Structure**:
+- **Cold Open (45s)**: Explains shadowing method benefits + part navigation (reusable template)
+- **Hook (30s)**: Dramatic story opening with emotional cliffhanger
+- **Vocabulary (90s)**: 8 key words with definitions + 3s pauses for repetition
+- **Shadowing (3-4 min)**: 10 sentences from story, each spoken twice with 5s pauses
+- **Main Story (4-5 min)**: 10 bundles slowed to 0.70x with 3s comprehension pauses
+- **Questions (1 min)**: Mix of rhetorical, yes/no, and bridge questions
+- **CTA (15s)**: Subscribe prompt (reusable)
+
+**🔥 Pedagogical Innovation - Vocabulary-Shadowing Overlap**:
+- 7-8 vocabulary words MUST appear in shadowing sentences
+- Creates spaced repetition: Definition → Sentence practice (2 min later) → Full story (8 min later)
+- 3 exposures in different contexts = deep memory encoding
+- Secret to retention documented and proven
+
+**Technical Workflow**:
+1. Extract bundles from Supabase (e.g., romantic-love-1 bundles 0-9)
+2. Select 8 emotionally powerful vocabulary words from transcript
+3. Find 10 sentences containing 7-8 of those words for shadowing
+4. Generate audio via ElevenLabs API (Jane voice: RILOU7YmBhvwJGDGjNmP)
+5. Create silence segments with FFmpeg
+6. Concatenate all segments
+7. Apply 0.70x speed reduction (atempo filter)
+8. Validate duration with ffprobe
+
+**Voice Strategy**:
+- **Jane** (RILOU7YmBhvwJGDGjNmP): Story videos (professional audiobook quality, warm tone)
+- **Daniel** (onwK4e9ZLuTAKqWW03F9): Educational/instructional content
+- Settings: stability 0.75, similarity_boost 0.85, model: eleven_multilingual_v2
+
+**File Organization**:
+- **Desktop**: Working files (audio + scripts) - LOCAL ONLY
+- **Google Drive**: Backup recommended
+- **GitHub**: Documentation + scripts ONLY (audio files excluded via .gitignore)
+
+#### **CONTENT_INVENTORY.md**
+**Location**: `/docs/social-media/CONTENT_INVENTORY.md`
+**Description**: Complete inventory of all social media content created, tracking files, durations, vocabulary words, shadowing sentences, and generation stats. Documents Romantic Love Part 1 (6 components, 12 min, 5.3 MB) and Part 2 (7 components, 12 min, 5.4 MB) with full specifications. Tracks reusable components (Cold Open template, CTA) and pending content. Includes file organization structure and backup strategy.
+
+**Current Inventory**:
+- ✅ Romantic Love - Part 1 (bundles 0-9): 6 audio files, 12 min, 5.3 MB
+- ✅ Romantic Love - Part 2 (bundles 10-19): 7 audio files, 12 min, 5.4 MB
+- 🔄 Romantic Love - Part 3 (bundles 20-28): Pending
+
+**Generation Scripts**:
+**Location**: `/docs/social-media/scripts/`
+Python scripts for automated audio generation using ElevenLabs API and FFmpeg. Includes scripts for Cold Open, Hook, Vocabulary, Shadowing, Questions, CTA, and main story bundle processing.
+
+**Critical Rules**:
+- ✅ Audio files stored on Desktop (NOT pushed to GitHub)
+- ✅ Source bundles remain in Supabase (app dependency - DO NOT DELETE)
+- ✅ Documentation + scripts versioned in GitHub
+- ✅ Can regenerate audio from scripts + Supabase bundles if needed
+
+---
+
 ## 📱 **Mobile Development Documentation**
 
 ### **Master Planning & Strategy**

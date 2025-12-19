@@ -45,3 +45,7 @@ Thumbs.db
 # Exception for demo audio files
 !/public/audio/demo/
 !/public/audio/demo/**
+
+# Social media audio files (stored on Desktop/Google Drive, not in repo)
+docs/social-media/**/*.mp3
+docs/social-media/**/*.txt
