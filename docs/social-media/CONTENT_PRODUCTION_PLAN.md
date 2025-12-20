@@ -776,9 +776,12 @@
 - **Grammar resources** (Grammarly blog, ESL Library) - Grammar explanations
 
 **Story to Speech (Book Breakdowns):**
-- **BookBridge classics library** - 76K books, select powerful quotes
-- **Project Gutenberg** (https://www.gutenberg.org) - Public domain classics
-- **Goodreads quotes** (https://www.goodreads.com/quotes) - Popular book quotes
+- **BookBridge modern stories** (BEST) - Real, emotional quotes from grief-to-purpose-1, romantic-love-1, teaching-dad-to-read, etc.
+- **TED Talks** (https://www.ted.com/talks) - Viral quotes from Brené Brown, Simon Sinek, etc. (60M+ views = proven impact)
+- **Modern memoirs/biographies** (2020s) - "Educated" by Tara Westover, "Born a Crime" by Trevor Noah (contemporary, shareable)
+- **Inspirational speeches** - MLK Jr., Malala, Greta Thunberg (recognizable, powerful)
+- **BookBridge classics library** - 76K books, select powerful quotes (backup)
+- **Goodreads quotes** (https://www.goodreads.com/quotes) - Popular book quotes (backup)
 
 **Speed Ladder Shadowing:**
 - **BookBridge audio bundles** - Use existing synchronized audio
