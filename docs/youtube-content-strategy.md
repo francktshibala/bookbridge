@@ -1,5 +1,12 @@
 # BookBridge YouTube Content Strategy
 
+> **⚠️ OUTDATED STRATEGY**  
+> This file contains our OLD strategy (educational/vocabulary content).  
+> **For current strategy, see:** `docs/social-media/SERIALIZED_STORY_STRATEGY.md`  
+> This file is kept for reference only.
+
+---
+
 ## Overview
 
 **Goal:** Create viral ESL YouTube content that drives users to the BookBridge app.
