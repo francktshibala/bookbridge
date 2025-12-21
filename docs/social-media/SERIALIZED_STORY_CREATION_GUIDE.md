@@ -320,6 +320,23 @@ Part 3 (20-30 min): Decision struggle → Alex's reaction → Resolution
 - **Health challenges** - Overcoming disabilities, mental health journeys
 - **Community impact** - Individuals who changed their communities
 
+### High-Impact Additional Themes (Based on TikTok Performance Data)
+
+**These themes have proven to drive 10-20x more views than educational content:**
+
+- **Betrayal & Revenge** - Discovering deception, seeking justice, transformation
+- **Secret Identity** - Hidden past, dual lives, revealing truth
+- **Impossible Choice** - Moral dilemmas, life-or-death decisions, sacrifice
+- **Hidden Talent** - Underdog discovery, unexpected abilities, transformation
+- **Forbidden Friendship** - Cross-cultural connections despite barriers, secret relationships
+
+**Why These Work:**
+- Strong emotional hooks in first 3 seconds
+- Natural cliffhanger potential at end of each part
+- Universal appeal (not just ESL learners)
+- Multiple dramatic moments for serialization
+- "Text a friend" factor (shareable, shocking moments)
+
 **Note:** All these themes work well for serialization because they have natural progression and multiple dramatic moments.
 
 ---
@@ -494,6 +511,7 @@ Part 3 (20-30 min): Decision struggle → Alex's reaction → Resolution
 - **Modern Story Guide:** `docs/MODERN_CONTENT_EMOTIONAL_IMPACT_STRATEGY.md` - Sentence length requirements
 - **Text Overlays:** `docs/social-media/scripts/TEXT_OVERLAY_INSTRUCTIONS.md` - Video formatting
 - **Codebase Overview:** `docs/implementation/CODEBASE_OVERVIEW.md` - References this guide
+- **Example Adaptation:** `docs/social-media/IMMIGRANT_ENTREPRENEUR_SERIALIZATION_PLAN.md` - Complete 3-part serialization plan for adapting existing app story
 
 ---
 

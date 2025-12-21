@@ -35,7 +35,10 @@
     "Yusuf": ["refugee-journey-3"],
     "Yuna": ["lost-heritage-1"],
     "Jordan": ["workplace-discrimination-1"],
-    "Marcus": ["workplace-discrimination-1"]
+    "Marcus": ["workplace-discrimination-1"],
+    "Diego": ["he-arrived-20-dream"],
+    "Elena": ["he-arrived-20-dream"],
+    "Chen": ["he-arrived-20-dream"]
   },
   "guidelines": {
     "avoidRepeating": true,

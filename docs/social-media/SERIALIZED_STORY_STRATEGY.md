@@ -75,11 +75,33 @@
 
 **Story Themes:**
 
+**Core Themes (Proven High Performance):**
 1. **Forbidden Love** - "I Hid My Love for 5 Years"
 2. **Medical Crisis** - "She Had 24 Hours to Live"
 3. **Family Sacrifice** - "Teaching Dad to Read"
 4. **Single Parent** - "Escape and Survival"
 5. **Immigration** - "The American Dream"
+
+**High-Impact Additional Themes (Based on TikTok Data):**
+6. **Betrayal & Revenge** - "She Found Out Her Best Friend Stole Everything"
+   - Why: High emotional hook, universal appeal, strong cliffhanger potential
+   - TikTok hook potential: "She discovered her best friend had been lying for 5 years..."
+
+7. **Secret Identity** - "I Hid My Real Name for 10 Years"
+   - Why: Mystery hook, identity themes resonate with ESL learners
+   - TikTok hook potential: "Everyone knew me as Maria, but my real name was..."
+
+8. **Impossible Choice** - "She Had to Choose: Save Her Brother or Her Daughter"
+   - Why: High drama, emotional conflict, universal moral dilemma
+   - TikTok hook potential: "The doctor gave her 5 minutes to decide..."
+
+9. **Hidden Talent** - "She Was a Janitor, But She Could Sing Like an Angel"
+   - Why: Underdog story, universal appeal, transformation arc
+   - TikTok hook potential: "No one knew the cleaning lady was a world-class singer..."
+
+10. **Forbidden Friendship** - "They Were Told Never to Speak, But They Became Best Friends"
+    - Why: Cross-cultural connection, ESL resonance, forbidden love variant
+    - TikTok hook potential: "Their families hated each other, but they met in secret..."
 
 **Why This Works:**
 
