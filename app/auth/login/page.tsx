@@ -104,10 +104,20 @@ function LoginPageContent() {
     });
   };
 
-      // Read error from URL (e.g., from expired verification link)
+      // Read error/success from URL (e.g., from expired verification link or successful verification)
   useEffect(() => {
     const urlError = searchParams.get('error');
     const urlMessage = searchParams.get('message');
+    const verified = searchParams.get('verified');
+
+    // Show success message if email was just verified (FIX: Don't show error after successful verification)
+    if (verified === 'true') {
+      setError('Email verified successfully! Please log in to continue.');
+      announceToScreenReader('Email verified successfully! Please log in to continue.');
+      return;
+    }
+
+    // Only show error if there's an actual error
     if (urlError || urlMessage) {
       // Map URL error to user-friendly message
       const mappedError = urlMessage ? { userMessage: urlMessage, errorType: urlError || 'unknown' } : mapAuthError(urlError || 'unknown');
@@ -462,10 +472,10 @@ function LoginPageContent() {
                     style={{
                       padding: '16px',
                       borderRadius: '12px',
-                      background: error.includes('expired') || error.includes('New confirmation') 
-                        ? 'rgba(34, 197, 94, 0.1)' 
+                      background: error.includes('expired') || error.includes('New confirmation') || error.includes('Email verified')
+                        ? 'rgba(34, 197, 94, 0.1)'
                         : 'rgba(239, 68, 68, 0.1)',
-                      border: `1px solid ${error.includes('expired') || error.includes('New confirmation')
+                      border: `1px solid ${error.includes('expired') || error.includes('New confirmation') || error.includes('Email verified')
                         ? 'rgba(34, 197, 94, 0.3)'
                         : 'rgba(239, 68, 68, 0.3)'}`,
                       backdropFilter: 'blur(10px)'
@@ -473,7 +483,7 @@ function LoginPageContent() {
                   >
                     <div style={{
                       fontSize: '14px',
-                      color: error.includes('expired') || error.includes('New confirmation') || error.includes('verification link')
+                      color: error.includes('expired') || error.includes('New confirmation') || error.includes('verification link') || error.includes('Email verified')
                         ? '#16a34a'
                         : 'var(--error-text)',
                       fontWeight: '600',

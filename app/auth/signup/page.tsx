@@ -22,6 +22,7 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [hasTrackedStarted, setHasTrackedStarted] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   // Track signup started on component mount
   useEffect(() => {
@@ -62,6 +63,14 @@ export default function SignupPage() {
       return;
     }
 
+    // Validate passwords match (FIX: Prevent password typos)
+    if (password !== confirmPassword) {
+      setError('Passwords do not match. Please check and try again.');
+      announceToScreenReader('Passwords do not match. Please check and try again.', 'assertive');
+      setIsLoading(false);
+      return;
+    }
+
     try {
       // Better URL detection for email redirects
       // Priority: 1. Explicit env var, 2. Vercel URL, 3. Current origin (if production), 4. localhost fallback
@@ -70,12 +79,12 @@ export default function SignupPage() {
         if (process.env.NEXT_PUBLIC_APP_URL) {
           return process.env.NEXT_PUBLIC_APP_URL;
         }
-        
+
         // 2. Check Vercel URL (if deployed on Vercel)
         if (process.env.NEXT_PUBLIC_VERCEL_URL) {
           return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
         }
-        
+
         // 3. Check if we're in production (not localhost)
         if (typeof window !== 'undefined') {
           const origin = window.location.origin;
@@ -84,14 +93,14 @@ export default function SignupPage() {
             return origin;
           }
         }
-        
+
         // 4. Fallback to localhost for dev
         return 'http://localhost:3000';
       };
-      
+
       const appUrl = getAppUrl();
       console.log('[Signup] Using redirect URL:', `${appUrl}/auth/callback?type=signup`);
-      
+
       // Step 1: Try Supabase signup (may fail with email error but user might be created)
       const { error, data } = await supabase.auth.signUp({
         email,
@@ -131,30 +140,27 @@ export default function SignupPage() {
         const createUserResult = await createUserResponse.json();
         
         if (!createUserResponse.ok) {
-          // Check if it's a duplicate user error
-          if (createUserResponse.status === 400 && 
-              (createUserResult.error?.includes('already registered') || 
+          // Check if it's a duplicate user error - DON'T throw, user was just created successfully
+          if (createUserResponse.status === 400 &&
+              (createUserResult.error?.includes('already registered') ||
                createUserResult.error?.includes('already exists'))) {
-            console.log('[Signup] ⚠️ User already exists - aborting signup');
-            // Throw error that will be caught and mapped by mapAuthError
-            throw new Error(createUserResult.error || 'User already registered');
+            console.log('[Signup] ℹ️ User already exists (expected after signUp) - password should be saved');
+            // Don't throw - this is expected since signUp just created the user
+            // Password should already be saved from signUp
+            passwordSaved = true;
+            trackPasswordSaved(true, 'user_exists_from_signup');
+          } else {
+            console.error('[Signup] ❌ Failed to ensure user/password:', createUserResult);
+            trackPasswordSaved(false, 'create_user_api');
+            // Don't throw here - might be a temporary error, let email sending proceed
           }
-          
-          console.error('[Signup] ❌ Failed to ensure user/password:', createUserResult);
-          trackPasswordSaved(false, 'create_user_api');
-          // Don't throw here - might be a temporary error, let email sending proceed
         } else {
           console.log('[Signup] ✅ User/password verified:', createUserResult.message);
           passwordSaved = true;
           trackPasswordSaved(true, 'user_created');
         }
       } catch (createUserError) {
-        // If it's a duplicate user error, re-throw it to be caught by outer catch
-        if (createUserError instanceof Error && 
-            (createUserError.message.includes('already registered') || 
-             createUserError.message.includes('already exists'))) {
-          throw createUserError;
-        }
+        // Log error but don't throw - let email sending proceed
         console.error('[Signup] Failed to ensure user/password:', createUserError);
         trackPasswordSaved(false, 'create_user_error');
       }
@@ -580,6 +586,66 @@ export default function SignupPage() {
                   fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}>
                   Password must be at least 6 characters long
+                </div>
+              </div>
+
+              {/* Premium Confirm Password Input */}
+              <div>
+                <label htmlFor="confirmPassword" style={{
+                  display: 'block',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  color: 'var(--text-primary)',
+                  marginBottom: '8px',
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
+                }}>
+                  Confirm Password
+                </label>
+                <div style={{ position: 'relative' }}>
+                  <Lock className="w-5 h-5" style={{
+                    position: 'absolute',
+                    left: isVerySmall ? '14px' : (isMobile ? '16px' : '12px'),
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    color: 'var(--text-secondary)',
+                    zIndex: 1
+                  }} />
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    autoComplete="new-password"
+                    minLength={6}
+                    required
+                    disabled={isLoading}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="input-styled"
+                    style={{
+                      width: '100%',
+                      padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
+                      color: 'var(--text-primary)',
+                      background: 'var(--bg-tertiary)',
+                      border: '2px solid var(--border-light)',
+                      borderRadius: '12px',
+                      fontSize: '16px',
+                      fontFamily: 'Source Serif Pro, Georgia, serif',
+                      outline: 'none',
+                      transition: 'all 0.3s ease',
+                      opacity: isLoading ? 0.5 : 1
+                    }}
+                    placeholder="Confirm your password"
+                    aria-describedby="confirm-password-help"
+                  />
+                </div>
+                <div id="confirm-password-help" style={{
+                  fontSize: '12px',
+                  color: 'var(--text-secondary)',
+                  marginTop: '6px',
+                  opacity: 0.8,
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
+                }}>
+                  Re-enter your password to confirm
                 </div>
               </div>
 
