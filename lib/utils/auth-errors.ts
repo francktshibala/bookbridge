@@ -28,11 +28,30 @@ export function mapAuthError(error: Error | string): AuthError {
     };
   }
   
-  if ((lowerMessage.includes('password') && lowerMessage.includes('6')) || lowerMessage.includes('password should be at least')) {
+  // More comprehensive password validation error detection
+  if (lowerMessage.includes('password') &&
+      (lowerMessage.includes('8') ||
+       lowerMessage.includes('6') ||
+       lowerMessage.includes('at least') ||
+       lowerMessage.includes('too short') ||
+       lowerMessage.includes('should be at least'))) {
     return {
-      userMessage: "Password must be at least 6 characters long.",
+      userMessage: "Password must be at least 8 characters long.",
       recoveryAction: 'try_again',
       errorType: 'weak_password',
+    };
+  }
+
+  // Add new: Password strength requirements
+  if (lowerMessage.includes('password') &&
+      (lowerMessage.includes('uppercase') ||
+       lowerMessage.includes('lowercase') ||
+       lowerMessage.includes('number') ||
+       lowerMessage.includes('special character'))) {
+    return {
+      userMessage: "Password must contain uppercase, lowercase, and numbers.",
+      recoveryAction: 'try_again',
+      errorType: 'weak_password_complexity',
     };
   }
   

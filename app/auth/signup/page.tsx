@@ -557,7 +557,7 @@ export default function SignupPage() {
                     name="password"
                     type="password"
                     autoComplete="new-password"
-                    minLength={6}
+                    minLength={8}
                     required
                     disabled={isLoading}
                     className="input-styled"
@@ -574,7 +574,7 @@ export default function SignupPage() {
                       transition: 'all 0.3s ease',
                       opacity: isLoading ? 0.5 : 1
                     }}
-                    placeholder="Create a password (min 6 characters)"
+                    placeholder="Create a password (min 8 characters)"
                     aria-describedby="password-help"
                   />
                 </div>
@@ -585,7 +585,7 @@ export default function SignupPage() {
                   opacity: 0.8,
                   fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}>
-                  Password must be at least 6 characters long
+                  Password must be at least 8 characters long
                 </div>
               </div>
 
@@ -615,7 +615,7 @@ export default function SignupPage() {
                     name="confirmPassword"
                     type="password"
                     autoComplete="new-password"
-                    minLength={6}
+                    minLength={8}
                     required
                     disabled={isLoading}
                     value={confirmPassword}
@@ -645,7 +645,7 @@ export default function SignupPage() {
                   opacity: 0.8,
                   fontFamily: 'Source Serif Pro, Georgia, serif'
                 }}>
-                  Re-enter your password to confirm
+                  Re-enter your password (min 8 characters)
                 </div>
               </div>
 
