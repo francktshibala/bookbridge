@@ -7,7 +7,7 @@ import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
-import { ArrowLeft, Mail, Lock, User, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Mail, Lock, User, CheckCircle, Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 import { trackSignupStarted, trackUserSignedUp, trackSignupAbandoned, trackPasswordSaved, trackSignupError } from '@/lib/analytics/posthog';
 import { mapAuthError } from '@/lib/utils/auth-errors';
@@ -22,7 +22,10 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [hasTrackedStarted, setHasTrackedStarted] = useState(false);
+  const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Track signup started on component mount
   useEffect(() => {
@@ -42,6 +45,33 @@ export default function SignupPage() {
     };
   }, [success, hasTrackedStarted]);
 
+  // Password strength indicator helper function
+  const getPasswordStrength = (password: string): {
+    strength: 'weak' | 'medium' | 'strong',
+    color: string,
+    message: string
+  } => {
+    if (password.length < 8) {
+      return { strength: 'weak', color: '#ef4444', message: 'Too short (min 8 characters)' };
+    }
+
+    let score = 0;
+    if (password.length >= 8) score++;
+    if (password.length >= 12) score++;
+    if (/[a-z]/.test(password)) score++;
+    if (/[A-Z]/.test(password)) score++;
+    if (/[0-9]/.test(password)) score++;
+    if (/[^a-zA-Z0-9]/.test(password)) score++;
+
+    if (score <= 2) {
+      return { strength: 'weak', color: '#ef4444', message: 'Weak - add uppercase and numbers' };
+    } else if (score <= 4) {
+      return { strength: 'medium', color: '#f59e0b', message: 'Medium - consider adding special characters' };
+    } else {
+      return { strength: 'strong', color: '#10b981', message: 'Strong password!' };
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -49,8 +79,8 @@ export default function SignupPage() {
 
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
     const name = formData.get('name') as string;
+    // Password already in state from input onChange
 
     // Client-side email validation (before API call)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -555,7 +585,9 @@ export default function SignupPage() {
                   <input
                     id="password"
                     name="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     autoComplete="new-password"
                     minLength={8}
                     required
@@ -563,7 +595,7 @@ export default function SignupPage() {
                     className="input-styled"
                     style={{
                       width: '100%',
-                      padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
+                      padding: isVerySmall ? '14px 48px 14px 48px' : (isMobile ? '16px 52px 16px 52px' : '12px 44px 12px 44px'),
                       color: 'var(--text-primary)',
                       background: 'var(--bg-tertiary)',
                       border: '2px solid var(--border-light)',
@@ -577,7 +609,63 @@ export default function SignupPage() {
                     placeholder="Create a password (min 8 characters)"
                     aria-describedby="password-help"
                   />
+                  {/* Eye icon toggle button */}
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: 'absolute',
+                      right: isVerySmall ? '14px' : (isMobile ? '16px' : '12px'),
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      color: 'var(--text-secondary)',
+                      zIndex: 1
+                    }}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
                 </div>
+                {/* Password strength indicator */}
+                {password && (
+                  <div style={{
+                    marginTop: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <div style={{
+                      flex: 1,
+                      height: '4px',
+                      background: 'var(--border-light)',
+                      borderRadius: '2px',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{
+                        height: '100%',
+                        width: getPasswordStrength(password).strength === 'weak' ? '33%' :
+                               getPasswordStrength(password).strength === 'medium' ? '66%' : '100%',
+                        background: getPasswordStrength(password).color,
+                        transition: 'all 0.3s ease'
+                      }} />
+                    </div>
+                    <span style={{
+                      fontSize: '12px',
+                      color: getPasswordStrength(password).color,
+                      fontFamily: 'Source Serif Pro, Georgia, serif',
+                      fontWeight: '600',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {getPasswordStrength(password).message}
+                    </span>
+                  </div>
+                )}
                 <div id="password-help" style={{
                   fontSize: '12px',
                   color: 'var(--text-secondary)',
@@ -613,7 +701,7 @@ export default function SignupPage() {
                   <input
                     id="confirmPassword"
                     name="confirmPassword"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     autoComplete="new-password"
                     minLength={8}
                     required
@@ -623,7 +711,7 @@ export default function SignupPage() {
                     className="input-styled"
                     style={{
                       width: '100%',
-                      padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
+                      padding: isVerySmall ? '14px 48px 14px 48px' : (isMobile ? '16px 52px 16px 52px' : '12px 44px 12px 44px'),
                       color: 'var(--text-primary)',
                       background: 'var(--bg-tertiary)',
                       border: '2px solid var(--border-light)',
@@ -637,6 +725,31 @@ export default function SignupPage() {
                     placeholder="Confirm your password"
                     aria-describedby="confirm-password-help"
                   />
+                  {/* Show/Hide Confirm Password Toggle */}
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    disabled={isLoading}
+                    style={{
+                      position: 'absolute',
+                      right: isVerySmall ? '14px' : '12px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: isLoading ? 'not-allowed' : 'pointer',
+                      color: 'var(--text-secondary)',
+                      padding: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      opacity: isLoading ? 0.5 : 1,
+                      zIndex: 1
+                    }}
+                    aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+                  >
+                    {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
                 </div>
                 <div id="confirm-password-help" style={{
                   fontSize: '12px',
@@ -647,6 +760,63 @@ export default function SignupPage() {
                 }}>
                   Re-enter your password (min 8 characters)
                 </div>
+
+                {/* Passwords Match Indicator */}
+                {confirmPassword && password && (
+                  <div style={{
+                    marginTop: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '13px',
+                    fontFamily: 'Source Serif Pro, Georgia, serif',
+                    fontWeight: '600',
+                    color: password === confirmPassword ? '#10b981' : '#ef4444'
+                  }}>
+                    {password === confirmPassword ? (
+                      <>
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style={{ flexShrink: 0 }}
+                        >
+                          <circle cx="8" cy="8" r="8" fill="#10b981"/>
+                          <path
+                            d="M11.5 5.5L6.5 10.5L4 8"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <span>Passwords match</span>
+                      </>
+                    ) : (
+                      <>
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style={{ flexShrink: 0 }}
+                        >
+                          <circle cx="8" cy="8" r="8" fill="#ef4444"/>
+                          <path
+                            d="M10 6L6 10M6 6L10 10"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                        <span>Passwords do not match</span>
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Premium Error Message */}
