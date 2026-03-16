@@ -9,6 +9,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Mail, Lock, User, CheckCircle, Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
+import GoogleSignInButton from '@/components/auth/GoogleSignInButton';
 import { trackSignupStarted, trackUserSignedUp, trackSignupAbandoned, trackPasswordSaved, trackSignupError } from '@/lib/analytics/posthog';
 import { mapAuthError } from '@/lib/utils/auth-errors';
 
@@ -462,11 +463,26 @@ export default function SignupPage() {
               Signup Form
             </h2>
 
-            <form onSubmit={handleSubmit} style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: isVerySmall ? '16px' : '24px' 
+            <form onSubmit={handleSubmit} style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: isVerySmall ? '16px' : '24px'
             }}>
+              {/* Google Sign-Up */}
+              <GoogleSignInButton mode="signup" />
+
+              {/* Divider */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ flex: 1, height: '1px', background: 'var(--border-light)' }} />
+                <span style={{
+                  fontSize: '13px',
+                  color: 'var(--text-secondary)',
+                  fontFamily: 'Source Serif Pro, Georgia, serif',
+                  whiteSpace: 'nowrap'
+                }}>or sign up with email</span>
+                <div style={{ flex: 1, height: '1px', background: 'var(--border-light)' }} />
+              </div>
+
               {/* Premium Name Input */}
               <div>
                 <label htmlFor="name" style={{

@@ -9,6 +9,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
+import GoogleSignInButton from '@/components/auth/GoogleSignInButton';
 import { trackEvent, trackLoginError } from '@/lib/analytics/posthog';
 import { mapAuthError } from '@/lib/utils/auth-errors';
 import posthog from 'posthog-js';
@@ -359,11 +360,26 @@ function LoginPageContent() {
               Login Form
             </h2>
 
-            <form onSubmit={handleSubmit} style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: isVerySmall ? '16px' : '24px' 
+            <form onSubmit={handleSubmit} style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: isVerySmall ? '16px' : '24px'
             }}>
+              {/* Google Sign-In */}
+              <GoogleSignInButton mode="signin" />
+
+              {/* Divider */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ flex: 1, height: '1px', background: 'var(--border-light)' }} />
+                <span style={{
+                  fontSize: '13px',
+                  color: 'var(--text-secondary)',
+                  fontFamily: 'Source Serif Pro, Georgia, serif',
+                  whiteSpace: 'nowrap'
+                }}>or sign in with email</span>
+                <div style={{ flex: 1, height: '1px', background: 'var(--border-light)' }} />
+              </div>
+
               {/* Premium Email Input */}
               <div>
                 <label htmlFor="email" style={{
