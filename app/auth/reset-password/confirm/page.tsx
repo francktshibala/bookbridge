@@ -22,6 +22,35 @@ function ConfirmResetPasswordPageContent() {
   const [success, setSuccess] = useState(false);
   const [hasSession, setHasSession] = useState(false);
 
+  // Handle implicit flow: extract tokens from URL hash and establish session
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const hash = window.location.hash.substring(1);
+    if (!hash) return;
+
+    const params = new URLSearchParams(hash);
+    const accessToken = params.get('access_token');
+    const refreshToken = params.get('refresh_token');
+    const type = params.get('type');
+
+    if (accessToken && type === 'recovery') {
+      console.log('[ConfirmResetPassword] 🔑 Recovery tokens found in hash, establishing session...');
+      supabase.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken || '',
+      }).then(({ data, error }) => {
+        if (error) {
+          console.error('[ConfirmResetPassword] ❌ Failed to set session from hash:', error.message);
+        } else if (data.session) {
+          console.log('[ConfirmResetPassword] ✅ Session established from hash tokens');
+          // Clear hash from URL without reload
+          window.history.replaceState(null, '', window.location.pathname);
+        }
+      });
+    }
+  }, []);
+
   // Check if user has valid session from password reset link
   useEffect(() => {
     let mounted = true;

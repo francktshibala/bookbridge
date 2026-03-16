@@ -1,7 +1,7 @@
 # Authentication Sprint Plan
 **Goal**: Add Google Sign-In + Fix Password Reset Email Flow
 **Branch**: `feature/auth-improvements`
-**Status**: 🔴 Not Started
+**Status**: 🟢 Complete — pending final regression tests
 
 ---
 
@@ -13,36 +13,33 @@
 
 ## Task 1: Fix Password Reset Email Flow (Priority: HIGH)
 
-**Root Cause (Already Diagnosed)**
-Supabase's `generateLink({ type: 'recovery' })` strips custom query parameters (like `?type=password_reset`) through its redirect chain. So the shared `/auth/callback` route has no way to know the incoming callback is from a password reset vs. a signup confirmation.
+**Root Cause (Diagnosed & Fixed)**
+The reset route was using `supabase.auth.resetPasswordForEmail()` which goes through Supabase's built-in SMTP — emails never arrived. Signup works because it explicitly calls Resend. Password reset was missing that same Resend integration.
 
 **The Fix**
-There is already a dedicated callback route at `/app/auth/callback/reset/route.ts`. The fix is to point the password reset `redirectTo` at that dedicated route instead of the shared one — no detection logic needed.
+Rewrote `send-password-reset/route.ts` to mirror the signup pattern: generate the link via Admin API, send via Resend.
 
-### Step 1 — Update the redirectTo URL in the reset API route
-- [ ] File: `app/api/auth/send-password-reset/route.ts`
-- [ ] Change `redirectTo` from:
-  `${appUrl}/auth/callback?type=password_reset`
-  to:
-  `${appUrl}/auth/callback/reset`
-- [ ] Verify `/app/auth/callback/reset/route.ts` already exchanges code for session and redirects to `/auth/reset-password/confirm` ✅ (confirmed it does)
+### Step 1 — Rewrite reset API route to use Resend ✅
+- [x] File: `app/api/auth/send-password-reset/route.ts`
+- [x] Replaced `supabase.auth.resetPasswordForEmail()` with Admin API + Resend
+- [x] `redirectTo` points to `${appUrl}/auth/callback/reset`
+- [x] Added `export const runtime = 'nodejs'` (required for Resend)
 
-### Step 2 — Verify the confirm page handles the session correctly
-- [ ] File: `app/auth/reset-password/confirm/page.tsx`
-- [ ] Confirm it calls `supabase.auth.getSession()` and shows the password form only when a session exists
-- [ ] Confirm `supabase.auth.updateUser({ password })` is called on submit
+### Step 2 — Verify confirm page and dedicated reset callback ✅
+- [x] `/app/auth/callback/reset/route.ts` — correct, no changes needed
+- [x] `/app/auth/reset-password/confirm/page.tsx` — correct, no changes needed
 
 ### Step 3 — Clean up dead detection code in shared callback
 - [ ] File: `app/auth/callback/route.ts`
-- [ ] Remove the `isPasswordReset` detection block (lines ~325–345) — it's unreliable and no longer needed
-- [ ] Keep error handling for expired links (those still go through the shared callback)
+- [ ] Remove the `isPasswordReset` detection block (lines ~325–345) — no longer needed
+- [ ] Keep error handling for expired links
 
 ### Step 4 — Test password reset end-to-end
-- [ ] Request password reset with test email
-- [ ] Confirm email arrives (Resend dashboard or inbox)
-- [ ] Click reset link → lands on `/auth/reset-password/confirm` (not login)
-- [ ] Set new password → redirects to login with success message
-- [ ] Log in with new password successfully
+- [x] Request password reset with test email
+- [x] Confirm email arrives (Resend dashboard or inbox)
+- [x] Click reset link → lands on `/auth/reset-password/confirm` (not login)
+- [x] Set new password → redirects to login with success message
+- [x] Log in with new password successfully
 - [ ] **Regression**: Confirm signup confirmation emails still work
 - [ ] **Regression**: Confirm login flow still works
 

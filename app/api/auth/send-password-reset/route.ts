@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { createClient } from '@supabase/supabase-js';
+import { sendPasswordResetEmail } from '@/lib/services/auth-email-service';
+
+// Force Node runtime (required for Resend)
+export const runtime = 'nodejs';
 
 /**
  * POST /api/auth/send-password-reset
  *
- * Sends password reset email using Supabase's built-in resetPasswordForEmail.
- * Simple, reliable, and uses Supabase's email templates.
+ * Generates a password reset link via Supabase Admin API,
+ * then sends it via Resend (same pattern as signup confirmation).
  */
 export async function POST(request: NextRequest) {
   const startTime = Date.now();
@@ -15,45 +19,45 @@ export async function POST(request: NextRequest) {
     const { email } = await request.json();
 
     if (!email || typeof email !== 'string') {
-      console.error('[send-password-reset] ❌ Email is required');
-      return NextResponse.json(
-        { error: 'Email is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
-    console.log('[send-password-reset] 📧 Sending reset email to:', email);
+    console.log('[send-password-reset] 📧 Generating reset link for:', email);
 
-    const supabase = await createClient();
+    const supabaseAdmin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
 
-    // Get app URL for redirect
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL ||
-                   process.env.NEXT_PUBLIC_VERCEL_URL ||
-                   'https://bookbridge.app';
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://bookbridge.app';
 
-    // Use Supabase's built-in password reset method
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${appUrl}/auth/reset-password/confirm`,
+    // Generate recovery link using Admin API
+    const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+      type: 'recovery',
+      email,
+      options: {
+        redirectTo: `${appUrl}/auth/reset-password/confirm`,
+      },
     });
 
-    if (error) {
-      console.error('[send-password-reset] ❌ Failed to send reset email:', error);
+    if (linkError || !linkData?.properties?.action_link) {
+      console.error('[send-password-reset] ❌ Failed to generate reset link:', linkError);
       return NextResponse.json(
-        {
-          error: 'Failed to send password reset email',
-          details: error.message
-        },
+        { error: 'Failed to generate password reset link', details: linkError?.message },
         { status: 500 }
       );
     }
 
+    const resetLink = linkData.properties.action_link;
+    console.log('[send-password-reset] ✅ Reset link generated, sending via Resend...');
+
+    // Send via Resend (same as signup confirmation)
+    await sendPasswordResetEmail({ email, resetLink });
+
     const duration = Date.now() - startTime;
     console.log('[send-password-reset] ✅ Password reset email sent successfully', `(${duration}ms)`);
 
-    return NextResponse.json(
-      { success: true, message: 'Password reset email sent' },
-      { status: 200 }
-    );
+    return NextResponse.json({ success: true, message: 'Password reset email sent' }, { status: 200 });
 
   } catch (error) {
     const duration = Date.now() - startTime;
@@ -61,10 +65,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Failed to send password reset email',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );
   }
 }
-
