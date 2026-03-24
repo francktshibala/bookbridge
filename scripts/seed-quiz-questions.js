@@ -14,11 +14,42 @@ const SERVICE_ROLE_KEY   = process.env.SUPABASE_SERVICE_ROLE_KEY
 const ANTHROPIC_API_KEY  = process.env.ANTHROPIC_API_KEY
 
 const BOOKS = [
-  { bookId: 'the-necklace',    level: 'A1', textFile: 'cache/the-necklace-A1-simplified.txt' },
-  { bookId: 'the-necklace',    level: 'A2', textFile: 'cache/the-necklace-A2-simplified.txt' },
-  { bookId: 'gift-of-the-magi',level: 'A1', textFile: 'cache/gift-of-the-magi-A1-simplified.txt' },
-  { bookId: 'tell-tale-heart', level: 'A1', textFile: 'cache/tell-tale-heart-A1-simplified.txt' },
-  { bookId: 'helen-keller',    level: 'A1', textFile: 'cache/helen-keller-A1-simplified.txt' },
+  // Already seeded — script will skip these
+  { bookId: 'the-necklace',             level: 'A1', textFile: 'cache/the-necklace-A1-simplified.txt' },
+  { bookId: 'the-necklace',             level: 'A2', textFile: 'cache/the-necklace-A2-simplified.txt' },
+  { bookId: 'gift-of-the-magi',         level: 'A1', textFile: 'cache/gift-of-the-magi-A1-simplified.txt' },
+  { bookId: 'tell-tale-heart',          level: 'A1', textFile: 'cache/tell-tale-heart-A1-simplified.txt' },
+  { bookId: 'helen-keller',             level: 'A1', textFile: 'cache/helen-keller-A1-simplified.txt' },
+
+  // New entries
+  { bookId: 'the-necklace',             level: 'B1', textFile: 'cache/the-necklace-B1-simplified.txt' },
+  { bookId: 'gift-of-the-magi',         level: 'A2', textFile: 'cache/gift-of-the-magi-A2-simplified.txt' },
+  { bookId: 'gift-of-the-magi',         level: 'B1', textFile: 'cache/gift-of-the-magi-B1-simplified.txt' },
+  { bookId: 'tell-tale-heart',          level: 'A2', textFile: 'cache/tell-tale-heart-A2-simplified.txt' },
+  { bookId: 'tell-tale-heart',          level: 'B1', textFile: 'cache/tell-tale-heart-B1-simplified.txt' },
+  { bookId: 'the-metamorphosis',        level: 'A1', textFile: 'cache/the-metamorphosis-A1-simplified.txt' },
+  { bookId: 'teen-translating-hospital',level: 'A1', textFile: 'cache/teen-translating-hospital-A1-simplified.txt' },
+  { bookId: 'teaching-dad-to-read',     level: 'A1', textFile: 'cache/teaching-dad-to-read-A1-simplified.txt' },
+  { bookId: 'teaching-dad-to-read',     level: 'A2', textFile: 'cache/teaching-dad-to-read-A2-simplified.txt' },
+  { bookId: 'immigrant-entrepreneur',   level: 'A1', textFile: 'cache/immigrant-entrepreneur-A1-simplified.txt' },
+  { bookId: 'immigrant-entrepreneur',   level: 'A2', textFile: 'cache/immigrant-entrepreneur-A2-simplified.txt' },
+  { bookId: 'lost-heritage-1',          level: 'A1', textFile: 'cache/lost-heritage-1-A1-simplified.txt' },
+  { bookId: 'workplace-discrimination-1',level: 'A1', textFile: 'cache/workplace-discrimination-1-A1-simplified.txt' },
+  { bookId: 'community-builder-2',      level: 'A1', textFile: 'cache/community-builder-2-A1-simplified.txt' },
+  { bookId: 'community-builder-3',      level: 'A1', textFile: 'cache/community-builder-3-A1-simplified.txt' },
+  { bookId: 'cultural-bridge-1',        level: 'A1', textFile: 'cache/cultural-bridge-1-A1-simplified.txt' },
+  { bookId: 'cultural-bridge-2',        level: 'A1', textFile: 'cache/cultural-bridge-2-A1-simplified.txt' },
+  { bookId: 'medical-crisis-1',         level: 'A1', textFile: 'cache/medical-crisis-1-A1-simplified.txt' },
+  { bookId: 'medical-crisis-2',         level: 'A1', textFile: 'cache/medical-crisis-2-A1-simplified.txt' },
+  { bookId: 'medical-crisis-2',         level: 'A2', textFile: 'cache/medical-crisis-2-A2-simplified.txt' },
+  { bookId: 'grief-to-purpose-1',       level: 'A1', textFile: 'cache/grief-to-purpose-1-A1-simplified.txt' },
+  { bookId: 'romantic-love-1',          level: 'A1', textFile: 'cache/romantic-love-1-A1-simplified.txt' },
+  { bookId: 'single-parent-rising-1',   level: 'A1', textFile: 'cache/single-parent-rising-1-A1-simplified.txt' },
+  { bookId: 'single-parent-rising-1',   level: 'A2', textFile: 'cache/single-parent-rising-1-A2-simplified.txt' },
+  { bookId: 'single-parent-rising-2',   level: 'A1', textFile: 'cache/single-parent-rising-2-A1-simplified.txt' },
+  { bookId: 'age-defiance-1',           level: 'A1', textFile: 'cache/age-defiance-1-A1-simplified.txt' },
+  { bookId: 'age-defiance-1',           level: 'A2', textFile: 'cache/age-defiance-1-A2-simplified.txt' },
+  { bookId: 'youth-activism-1',         level: 'A1', textFile: 'cache/youth-activism-1-A1-simplified.txt' },
 ]
 
 async function supabaseRequest(path, options = {}) {
