@@ -7,7 +7,7 @@ import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
-import { ArrowLeft, Mail, Lock } from 'lucide-react';
+import { ArrowLeft, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 import GoogleSignInButton from '@/components/auth/GoogleSignInButton';
 import { trackEvent, trackLoginError } from '@/lib/analytics/posthog';
@@ -24,6 +24,7 @@ function LoginPageContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [resendingEmail, setResendingEmail] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const logAuthFlow = (message: string, details?: Record<string, unknown>) => {
     if (details) {
@@ -451,14 +452,14 @@ function LoginPageContent() {
                   <input
                     id="password"
                     name="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     autoComplete="current-password"
                     required
                     disabled={isLoading}
                     className="input-styled"
                     style={{
                       width: '100%',
-                      padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
+                      padding: isVerySmall ? '14px 48px 14px 48px' : (isMobile ? '16px 52px 16px 52px' : '12px 44px 12px 44px'),
                       color: 'var(--text-primary)',
                       background: 'var(--bg-tertiary)',
                       border: '2px solid var(--border-light)',
@@ -471,6 +472,28 @@ function LoginPageContent() {
                     }}
                     placeholder="Enter your password"
                   />
+                  {/* Eye icon toggle button */}
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: 'absolute',
+                      right: isVerySmall ? '14px' : (isMobile ? '16px' : '12px'),
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      color: 'var(--text-secondary)',
+                      zIndex: 1
+                    }}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
                 </div>
               </div>
 

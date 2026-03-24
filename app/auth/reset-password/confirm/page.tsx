@@ -7,7 +7,7 @@ import { AccessibleWrapper } from '@/components/AccessibleWrapper';
 import { useAccessibility } from '@/contexts/AccessibilityContext';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { supabase } from '@/lib/supabase/client';
-import { ArrowLeft, Lock, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Lock, CheckCircle, Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 import { trackEvent } from '@/lib/analytics/posthog';
 
@@ -21,6 +21,8 @@ function ConfirmResetPasswordPageContent() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [hasSession, setHasSession] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Handle implicit flow: extract tokens from URL hash and establish session
   useEffect(() => {
@@ -422,7 +424,7 @@ function ConfirmResetPasswordPageContent() {
                     <input
                       id="password"
                       name="password"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       autoComplete="new-password"
                       required
                       disabled={isLoading}
@@ -430,7 +432,7 @@ function ConfirmResetPasswordPageContent() {
                       className="input-styled"
                       style={{
                         width: '100%',
-                        padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
+                        padding: isVerySmall ? '14px 48px 14px 48px' : (isMobile ? '16px 52px 16px 52px' : '12px 44px 12px 44px'),
                         color: 'var(--text-primary)',
                         background: 'var(--bg-tertiary)',
                         border: '2px solid var(--border-light)',
@@ -443,6 +445,28 @@ function ConfirmResetPasswordPageContent() {
                       }}
                       placeholder="Enter new password"
                     />
+                    {/* Eye icon toggle button */}
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      style={{
+                        position: 'absolute',
+                        right: isVerySmall ? '14px' : (isMobile ? '16px' : '12px'),
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        padding: '4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        color: 'var(--text-secondary)',
+                        zIndex: 1
+                      }}
+                      aria-label={showPassword ? "Hide password" : "Show password"}
+                    >
+                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    </button>
                   </div>
                 </div>
 
@@ -470,7 +494,7 @@ function ConfirmResetPasswordPageContent() {
                     <input
                       id="confirmPassword"
                       name="confirmPassword"
-                      type="password"
+                      type={showConfirmPassword ? "text" : "password"}
                       autoComplete="new-password"
                       required
                       disabled={isLoading}
@@ -478,7 +502,7 @@ function ConfirmResetPasswordPageContent() {
                       className="input-styled"
                       style={{
                         width: '100%',
-                        padding: isVerySmall ? '14px 12px 14px 48px' : (isMobile ? '16px 16px 16px 52px' : '12px 16px 12px 44px'),
+                        padding: isVerySmall ? '14px 48px 14px 48px' : (isMobile ? '16px 52px 16px 52px' : '12px 44px 12px 44px'),
                         color: 'var(--text-primary)',
                         background: 'var(--bg-tertiary)',
                         border: '2px solid var(--border-light)',
@@ -491,6 +515,28 @@ function ConfirmResetPasswordPageContent() {
                       }}
                       placeholder="Confirm new password"
                     />
+                    {/* Eye icon toggle button */}
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      style={{
+                        position: 'absolute',
+                        right: isVerySmall ? '14px' : (isMobile ? '16px' : '12px'),
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        padding: '4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        color: 'var(--text-secondary)',
+                        zIndex: 1
+                      }}
+                      aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                    >
+                      {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    </button>
                   </div>
                 </div>
 
