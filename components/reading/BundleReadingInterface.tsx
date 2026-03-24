@@ -32,6 +32,7 @@ import { SettingsModal } from '@/app/featured-books/components/SettingsModal';
 import { ChapterModal, type Chapter } from '@/app/featured-books/components/ChapterModal';
 // Note: Using ChapterModal's Chapter type (compatible with chapters.ts Chapter interface)
 import FeedbackWidget from '@/components/feedback/FeedbackWidget';
+import { QuizEntry } from '@/components/quiz/QuizEntry';
 import { trackFirstBookOpened } from '@/lib/analytics/posthog';
 import { createClient } from '@/lib/supabase/client';
 import posthog from 'posthog-js';
@@ -1476,6 +1477,11 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
             </>
           )}
         </div>
+
+        {/* Comprehension Quiz */}
+        {selectedBook && (
+          <QuizEntry bookId={selectedBook.id} cefrLevel={cefrLevel as 'A1' | 'A2' | 'B1'} />
+        )}
 
         {/* Settings Modal */}
         <SettingsModal
