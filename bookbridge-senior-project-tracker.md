@@ -22,7 +22,7 @@
 
 ---
 
-## SPRINT 2: COMPREHENSION QUIZ SYSTEM 🔄 IN PROGRESS
+## SPRINT 2: COMPREHENSION QUIZ SYSTEM ✅ COMPLETED
 
 **Implementation Plan:** [`docs/implementation/SPRINT2_QUIZ_SYSTEM_PLAN.md`](docs/implementation/SPRINT2_QUIZ_SYSTEM_PLAN.md)
 
@@ -43,7 +43,7 @@
   - Store questions in database
   - Test 5 books minimum ✅
 
-- [ ] Create teacher dashboard (Est: 5hr)
+- [ ] Create teacher dashboard (Est: 5hr) — deferred to post-Sprint 2
   - View student quiz scores
   - Filter by student/book/date
   - Export results
@@ -113,7 +113,7 @@
 
 ### Core Requirements (MUST COMPLETE ALL):
 - [x] Sprint 1: Enhanced Authentication
-- [ ] Sprint 2: Comprehension Quiz System
+- [x] Sprint 2: Comprehension Quiz System
 - [ ] Sprint 3: Expanded Content Library
 - [ ] Sprint 4: Mobile-Friendly Design
 
