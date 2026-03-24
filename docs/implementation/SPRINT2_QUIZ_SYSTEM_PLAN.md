@@ -315,8 +315,8 @@ File: `app/teacher/page.tsx`
 
 - [x] Franck creates `feature/sprint2-quiz-backend` from `main`
 - [x] Franck pushes `types/quiz.ts` and migration → notifies Daniel
-- [ ] Daniel creates `feature/sprint2-quiz-ui` from `feature/sprint2-quiz-backend`
+- [x] Daniel creates `feature/sprint2-quiz-ui` from `feature/sprint2-quiz-backend`
 - [x] Franck completes all API routes
-- [ ] Daniel completes all UI components
-- [ ] Both merge and integrate in Phase 3 session
+- [x] Daniel completes all UI components
+- [x] Both merge and integrate in Phase 3 session
 - [ ] PR from `feature/sprint2-quiz-backend` → `main`
