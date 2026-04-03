@@ -501,6 +501,36 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-orange-600 to-rose-700',
     abbreviation: 'BW'
   },
+  {
+    id: 'harriet-jacobs-childhood',
+    title: 'Childhood',
+    author: 'Harriet Jacobs',
+    description: 'Harriet Jacobs spent her first six years not knowing she was a slave. When her kind mistress died and left her to a five-year-old heir, she learned how little a promise to an enslaved person was worth. A memoir about literacy, love, and the cruelty of a system that called people property. A2 level.',
+    sentences: 22,
+    bundles: 6,
+    gradient: 'from-purple-600 to-indigo-700',
+    abbreviation: 'HJ'
+  },
+  {
+    id: 'dubois-meaning-of-progress',
+    title: 'Of the Meaning of Progress',
+    author: 'W.E.B. Du Bois',
+    description: 'As a young man, Du Bois taught school in the Tennessee hills and fell in love with a community — especially a determined girl named Josie. Years later he returned to find her gone, the school replaced, and a question that still has no easy answer: how do you measure progress? A2 level.',
+    sentences: 24,
+    bundles: 6,
+    gradient: 'from-green-700 to-teal-800',
+    abbreviation: 'WD'
+  },
+  {
+    id: 'jane-addams-hull-house',
+    title: 'First Days at Hull-House',
+    author: 'Jane Addams',
+    description: 'Jane Addams came to Chicago with a dream: to open a house where immigrants and neighbors could find help, community, and belonging. This is the story of how she found Hull-House and opened its doors for the first time. A1 level.',
+    sentences: 20,
+    bundles: 5,
+    gradient: 'from-rose-500 to-pink-700',
+    abbreviation: 'JA'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -668,6 +698,15 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'booker-washington-school': {
     'A2': '/api/featured-books/bundles'
   },
+  'harriet-jacobs-childhood': {
+    'A2': '/api/featured-books/bundles'
+  },
+  'dubois-meaning-of-progress': {
+    'A2': '/api/featured-books/bundles'
+  },
+  'jane-addams-hull-house': {
+    'A1': '/api/featured-books/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -721,6 +760,9 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'frederick-douglass-reading': 'A2',
   'mary-antin-promised-land': 'A1',
   'booker-washington-school': 'A2',
+  'harriet-jacobs-childhood': 'A2',
+  'dubois-meaning-of-progress': 'A2',
+  'jane-addams-hull-house': 'A1',
 };
 
 // Get the correct CEFR level for a book
@@ -814,6 +856,9 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'frederick-douglass-reading': ['A2'],
   'mary-antin-promised-land': ['A1'],
   'booker-washington-school': ['A2'],
+  'harriet-jacobs-childhood': ['A2'],
+  'dubois-meaning-of-progress': ['A2'],
+  'jane-addams-hull-house': ['A1'],
 };
 
 // Single-level books configuration

@@ -39,6 +39,27 @@ const STORIES = [
     era: 'american-19c',
     textFile: 'cache/booker-washington-school-A2-simplified.txt',
   },
+  {
+    bookId: 'harriet-jacobs-childhood',
+    title: 'Childhood',
+    author: 'Harriet Jacobs',
+    era: 'american-19c',
+    textFile: 'cache/harriet-jacobs-childhood-A2-simplified.txt',
+  },
+  {
+    bookId: 'dubois-meaning-of-progress',
+    title: 'Of the Meaning of Progress',
+    author: 'W.E.B. Du Bois',
+    era: 'american-19c',
+    textFile: 'cache/dubois-meaning-of-progress-A2-simplified.txt',
+  },
+  {
+    bookId: 'jane-addams-hull-house',
+    title: 'First Days at Hull-House',
+    author: 'Jane Addams',
+    era: 'american-19c',
+    textFile: 'cache/jane-addams-hull-house-A1-simplified.txt',
+  },
 ];
 
 const SENTENCES_PER_BUNDLE = 4;

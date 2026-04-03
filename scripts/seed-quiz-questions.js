@@ -55,6 +55,9 @@ const BOOKS = [
   { bookId: 'frederick-douglass-reading', level: 'A2', textFile: 'cache/frederick-douglass-reading-A2-simplified.txt' },
   { bookId: 'mary-antin-promised-land',   level: 'A1', textFile: 'cache/mary-antin-promised-land-A1-simplified.txt' },
   { bookId: 'booker-washington-school',   level: 'A2', textFile: 'cache/booker-washington-school-A2-simplified.txt' },
+  { bookId: 'harriet-jacobs-childhood',   level: 'A2', textFile: 'cache/harriet-jacobs-childhood-A2-simplified.txt' },
+  { bookId: 'dubois-meaning-of-progress', level: 'A2', textFile: 'cache/dubois-meaning-of-progress-A2-simplified.txt' },
+  { bookId: 'jane-addams-hull-house',     level: 'A1', textFile: 'cache/jane-addams-hull-house-A1-simplified.txt' },
 ]
 
 async function supabaseRequest(path, options = {}) {
