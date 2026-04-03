@@ -470,6 +470,37 @@ export const ALL_FEATURED_BOOKS: FeaturedBook[] = [
     gradient: 'from-orange-500 to-red-600',
     abbreviation: 'SC'
   },
+  // Sprint 3: American Voices collection (public domain, text-only)
+  {
+    id: 'frederick-douglass-reading',
+    title: 'Learning to Read and Write',
+    author: 'Frederick Douglass',
+    description: 'The true story of how Frederick Douglass secretly taught himself to read while enslaved — trading bread for lessons with poor white boys, copying letters from ships, practicing with chalk on walls. A powerful memoir about literacy as liberation. A2 level.',
+    sentences: 22,
+    bundles: 6,
+    gradient: 'from-amber-600 to-stone-700',
+    abbreviation: 'FD'
+  },
+  {
+    id: 'mary-antin-promised-land',
+    title: 'The Promised Land: Initiation',
+    author: 'Mary Antin',
+    description: 'Mary Antin arrived from Russia at age 13, knowing no English. This is the story of her first months in an American school — the teachers who believed in her, the words she conquered, and the day she saw her own name in print for the very first time. A1 level.',
+    sentences: 20,
+    bundles: 5,
+    gradient: 'from-teal-600 to-blue-700',
+    abbreviation: 'MA'
+  },
+  {
+    id: 'booker-washington-school',
+    title: 'The Struggle for an Education',
+    author: 'Booker T. Washington',
+    description: 'Booker T. Washington heard two miners talking about a school in Virginia. He had no money, no map, and no plan — only the fire of ambition. This is the story of his 500-mile journey to Hampton Institute, and the broom test that changed his life. A2 level.',
+    sentences: 24,
+    bundles: 6,
+    gradient: 'from-orange-600 to-rose-700',
+    abbreviation: 'BW'
+  },
 ];
 
 export const FEATURED_BOOKS = ALL_FEATURED_BOOKS;
@@ -627,6 +658,16 @@ export const BOOK_API_MAPPINGS: { [bookId: string]: { [level: string]: string } 
   'second-chance-1': {
     'A1': '/api/second-chance-1-a1/bundles'
   },
+  // Sprint 3: American Voices — use shared featured-books bundles endpoint (text-only)
+  'frederick-douglass-reading': {
+    'A2': '/api/featured-books/bundles'
+  },
+  'mary-antin-promised-land': {
+    'A1': '/api/featured-books/bundles'
+  },
+  'booker-washington-school': {
+    'A2': '/api/featured-books/bundles'
+  },
   // Single-level books use the default /api/test-book/real-bundles
 };
 
@@ -676,6 +717,10 @@ export const BOOK_DEFAULT_LEVELS: { [bookId: string]: string } = {
   'career-pivot-1': 'A1',  // Default to A1 for Career Pivot: Finding Your Path (Modern Story)
   'career-pivot-2': 'A1',  // Default to A1 for Career Pivot: New Path Forward (Modern Story)
   'second-chance-1': 'A1',  // Default to A1 for Second Chance: Finding Redemption (Modern Story)
+  // Sprint 3: American Voices (public domain, text-only)
+  'frederick-douglass-reading': 'A2',
+  'mary-antin-promised-land': 'A1',
+  'booker-washington-school': 'A2',
 };
 
 // Get the correct CEFR level for a book
@@ -765,6 +810,10 @@ export const MULTI_LEVEL_BOOKS: { [key: string]: string[] } = {
   'career-pivot-1': ['A1'],  // A1 with Daniel (Modern Story - Modern Voices collection)
   'career-pivot-2': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
   'second-chance-1': ['A1'],  // A1 with Jane (Modern Story - Modern Voices collection)
+  // Sprint 3: American Voices (public domain, text-only)
+  'frederick-douglass-reading': ['A2'],
+  'mary-antin-promised-land': ['A1'],
+  'booker-washington-school': ['A2'],
 };
 
 // Single-level books configuration

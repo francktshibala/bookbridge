@@ -95,13 +95,6 @@ export async function GET(request: NextRequest) {
 
     console.log(`✅ Page loaded: ${pageAssets?.length || 0} assets (offset=${pageOffset}, limit=${pageLimit}, total=${totalBundlesCount || 0})`);
 
-    if (!pageAssets || pageAssets.length === 0) {
-      return NextResponse.json({
-        success: false,
-        error: `No audio found for ${bookId} at ${level} level`
-      }, { status: 404 });
-    }
-
     // Get display text
     let displayText = bookContent.fullText;
     if (level !== 'original') {
@@ -128,35 +121,79 @@ export async function GET(request: NextRequest) {
       .filter(s => s.length > 0)
       .map(s => s + (s.endsWith('.') || s.endsWith('!') || s.endsWith('?') ? '' : '.'));
 
-    // Create proper bundles with Jekyll's dynamic timing method (CRITICAL FIX)
-    const bundles: BundleMetadata[] = pageAssets.map(asset => {
-      const bundleSentences = sentences.slice(
-        asset.sentence_index * SENTENCES_PER_BUNDLE,
-        (asset.sentence_index + 1) * SENTENCES_PER_BUNDLE
-      );
-
-      // Calculate dynamic timings based on word count (Jekyll's method)
-      const sentencesWithTimings = bundleSentences.map((text, sentenceIdx) => {
+    const buildSentencesWithTimings = (bundleSentences: string[], bundleIndex: number) => {
+      const secondsPerWord = 0.4;
+      const minDuration = 2.0;
+      return bundleSentences.map((text, sentenceIdx) => {
         const words = text.trim().split(/\s+/).length;
-        const secondsPerWord = 0.4; // Same as Jekyll
-        const minDuration = 2.0;    // Same as Jekyll
         const duration = Math.max(words * secondsPerWord, minDuration);
-
-        // Calculate cumulative start time (Jekyll's method)
         const startTime = sentenceIdx === 0 ? 0 : bundleSentences.slice(0, sentenceIdx).reduce((sum, prevText) => {
           const prevWords = prevText.trim().split(/\s+/).length;
           return sum + Math.max(prevWords * secondsPerWord, minDuration);
         }, 0);
-
         return {
-          sentenceId: `s${asset.sentence_index * SENTENCES_PER_BUNDLE + sentenceIdx}`,
-          sentenceIndex: asset.sentence_index * SENTENCES_PER_BUNDLE + sentenceIdx,
+          sentenceId: `s${bundleIndex * SENTENCES_PER_BUNDLE + sentenceIdx}`,
+          sentenceIndex: bundleIndex * SENTENCES_PER_BUNDLE + sentenceIdx,
           text: text.trim(),
-          startTime: startTime,
+          startTime,
           endTime: startTime + duration
         };
       });
+    };
 
+    let bundles: BundleMetadata[];
+
+    if (!pageAssets || pageAssets.length === 0) {
+      // Text-only mode: no audio assets, build bundles from text alone
+      const totalBundles = Math.ceil(sentences.length / SENTENCES_PER_BUNDLE);
+      const startBundle = Math.floor(pageOffset);
+      const endBundle = Math.min(startBundle + pageLimit, totalBundles);
+
+      bundles = Array.from({ length: endBundle - startBundle }, (_, i) => {
+        const bundleIdx = startBundle + i;
+        const bundleSentences = sentences.slice(
+          bundleIdx * SENTENCES_PER_BUNDLE,
+          (bundleIdx + 1) * SENTENCES_PER_BUNDLE
+        );
+        const sentencesWithTimings = buildSentencesWithTimings(bundleSentences, bundleIdx);
+        return {
+          bundleId: `bundle_${bundleIdx}`,
+          bundleIndex: bundleIdx,
+          audioUrl: '',
+          totalDuration: 0,
+          sentences: sentencesWithTimings
+        };
+      });
+
+      return new NextResponse(
+        JSON.stringify({
+          success: true,
+          book: { id: bookId, title: bookContent.title, author: bookContent.author },
+          level,
+          textOnly: true,
+          totalBundles: totalBundles,
+          bundleCount: totalBundles,
+          totalSentences: sentences.length,
+          bundles,
+          page: { offset: pageOffset, limit: pageLimit, returned: bundles.length }
+        }),
+        {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+          }
+        }
+      );
+    }
+
+    // Create proper bundles with Jekyll's dynamic timing method (CRITICAL FIX)
+    bundles = pageAssets.map(asset => {
+      const bundleSentences = sentences.slice(
+        asset.sentence_index * SENTENCES_PER_BUNDLE,
+        (asset.sentence_index + 1) * SENTENCES_PER_BUNDLE
+      );
+      const sentencesWithTimings = buildSentencesWithTimings(bundleSentences, asset.sentence_index);
       return {
         bundleId: `bundle_${asset.sentence_index}`,
         bundleIndex: asset.sentence_index,

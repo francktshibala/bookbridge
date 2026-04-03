@@ -50,6 +50,11 @@ const BOOKS = [
   { bookId: 'age-defiance-1',           level: 'A1', textFile: 'cache/age-defiance-1-A1-simplified.txt' },
   { bookId: 'age-defiance-1',           level: 'A2', textFile: 'cache/age-defiance-1-A2-simplified.txt' },
   { bookId: 'youth-activism-1',         level: 'A1', textFile: 'cache/youth-activism-1-A1-simplified.txt' },
+
+  // Sprint 3: American Voices collection (public domain)
+  { bookId: 'frederick-douglass-reading', level: 'A2', textFile: 'cache/frederick-douglass-reading-A2-simplified.txt' },
+  { bookId: 'mary-antin-promised-land',   level: 'A1', textFile: 'cache/mary-antin-promised-land-A1-simplified.txt' },
+  { bookId: 'booker-washington-school',   level: 'A2', textFile: 'cache/booker-washington-school-A2-simplified.txt' },
 ]
 
 async function supabaseRequest(path, options = {}) {
