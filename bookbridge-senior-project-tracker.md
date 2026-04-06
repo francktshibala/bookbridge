@@ -52,15 +52,24 @@
 
 ---
 
-## SPRINT 3: EXPANDED CONTENT LIBRARY ⏳ UPCOMING
+## SPRINT 3: EXPANDED CONTENT LIBRARY 🔄 IN PROGRESS
 
-**Goal:** Add 10-15 engaging short stories across 5 genres
+**Implementation Plan:** [`docs/implementation/SPRINT3_CONTENT_LIBRARY_PLAN.md`](docs/implementation/SPRINT3_CONTENT_LIBRARY_PLAN.md)
+**Story Guide:** [`docs/implementation/SPRINT3_STORY_IMPLEMENTATION_GUIDE.md`](docs/implementation/SPRINT3_STORY_IMPLEMENTATION_GUIDE.md)
+
+**Goal:** Add 3 public domain stories (Frederick Douglass, Mary Antin, Booker T. Washington)
 
 ### Tasks:
-- [ ] Curate 10-15 short stories (Est: 6hr)
-  - 6-10 paragraphs each
-  - 5 genres: Romance, Thriller, Inspirational, Comedy, Drama
-  - Emotional and compelling with cliffhanger endings
+- [ ] Fetch raw story text from Project Gutenberg (Est: 1hr)
+  - Frederick Douglass — "Learning to Read and Write" → A2
+  - Mary Antin — "The Promised Land" (school/arrival chapter) → A1
+  - Booker T. Washington — "Up From Slavery" (Hampton Institute arrival) → A2
+
+- [ ] Simplify each story to target CEFR level (Est: 4hr)
+
+- [ ] Write background + hook for each story (Est: 2hr)
+
+- [ ] Upload stories to Supabase story_bundles (text-only, no audio) (Est: 3hr)
 
 - [ ] Build story preview cards (Est: 5hr)
   - Genre tags
@@ -71,10 +80,7 @@
   - Algorithm based on genre/completion
   - Auto-suggest after story completion
 
-- [ ] Add reading streak badges (Est: 5hr)
-  - Track consecutive reading days
-  - Display badges on profile
-  - Celebration animations
+- [ ] Seed quiz questions for all 3 stories (Est: 1hr)
 
 ### Total Estimated: 20 hours
 
