@@ -1,3 +1,4 @@
+// Sample quiz data for The Necklace - used during UI development
 import { QuizWithQuestions, UserScore } from '@/types/quiz'
 
 export const sampleQuiz: QuizWithQuestions = {
