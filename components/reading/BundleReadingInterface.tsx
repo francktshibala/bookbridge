@@ -565,7 +565,7 @@ function IntroSectionWithHighlighting({
       <div className="flex items-center gap-3 p-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-light)] mb-4">
         <button
           onClick={togglePlay}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-secondary)] transition-all shadow-md hover:shadow-lg"
+          className="flex items-center justify-center w-11 h-11 rounded-full bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-secondary)] transition-all shadow-md hover:shadow-lg"
           aria-label={isPlaying ? 'Pause preview' : 'Play preview'}
         >
           {isPlaying ? '⏸️' : '▶️'}
@@ -1423,7 +1423,7 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
                       <span
                         key={sentence.sentenceIndex}
                         data-sentence={sentence.sentenceIndex}
-                        className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1 py-0.5 mr-1 rounded mobile-reading-text ${
+                        className={`inline cursor-pointer transition-all duration-700 ease-in-out px-1.5 py-1 mr-1 rounded mobile-reading-text ${
                           sentence.sentenceIndex === currentSentenceIndex && isPlaying
                             ? 'bg-blue-100 text-[var(--text-primary)] font-medium'
                             : sentence.sentenceIndex === currentSentenceIndex + 1 && isPlaying
@@ -1507,7 +1507,7 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
         />
 
         {/* Mobile Control Bar */}
-        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[var(--bg-secondary)] border-t border-[var(--border-light)] shadow-lg z-50">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[var(--bg-secondary)] border-t border-[var(--border-light)] shadow-lg z-50" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
           <div className="px-4 py-3">
             <div className="flex justify-between items-center text-xs text-[var(--text-secondary)] mb-2">
               <span>{formatTime(playbackTime)}</span>
@@ -1527,7 +1527,7 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
             <div className="flex items-center justify-center gap-6">
               <button
                 onClick={cycleSpeed}
-                className="flex items-center justify-center w-9 h-9 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all"
+                className="flex items-center justify-center w-11 h-11 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all"
               >
                 <div className="text-sm font-semibold">{formatSpeed(playbackSpeed)}</div>
               </button>
@@ -1558,12 +1558,12 @@ export function BundleReadingInterface({ bookSlug, defaultLevel }: BundleReading
 
               <button
                 onClick={() => setShowChapterModal(true)}
-                className="flex items-center justify-center w-9 h-9 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all"
+                className="flex items-center justify-center w-11 h-11 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all"
               >
                 <div className="text-lg">📖</div>
               </button>
 
-              <button className="flex items-center justify-center w-9 h-9 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all">
+              <button className="flex items-center justify-center w-11 h-11 text-[var(--text-secondary)] hover:bg-[var(--accent-primary)]/10 hover:text-[var(--accent-primary)] rounded-full transition-all">
                 <div className="text-lg">🎙️</div>
               </button>
             </div>

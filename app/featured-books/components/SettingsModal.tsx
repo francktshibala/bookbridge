@@ -62,7 +62,8 @@ export function SettingsModal({
           </h2>
           <button
             onClick={onClose}
-            className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
+            className="w-11 h-11 flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-2xl transition-colors"
+            aria-label="Close settings"
           >
             ×
           </button>
@@ -116,7 +117,7 @@ export function SettingsModal({
                       }
                     }}
                     disabled={isDisabled}
-                    className={`py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                    className={`py-3 px-4 rounded-md text-sm font-medium transition-all ${
                       currentLevel === level && currentContentMode === 'simplified'
                         ? 'bg-[var(--accent-primary)] text-white shadow-sm'
                         : isDisabled

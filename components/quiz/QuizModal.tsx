@@ -118,8 +118,9 @@ export function QuizModal({ quiz, userBestScore, onClose, onScoreSubmit }: QuizM
           </h2>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-lg transition-colors hover:bg-black/10"
+            className="w-11 h-11 flex items-center justify-center rounded-full text-xl transition-colors hover:bg-black/10"
             style={{ color: 'var(--text-secondary)' }}
+            aria-label="Close quiz"
           >
             ×
           </button>

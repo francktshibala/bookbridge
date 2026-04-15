@@ -59,7 +59,8 @@ export function ChapterModal({
           </h2>
           <button
             onClick={onClose}
-            className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-xl transition-colors"
+            className="w-11 h-11 flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent-primary)] text-2xl transition-colors"
+            aria-label="Close chapter menu"
           >
             ×
           </button>

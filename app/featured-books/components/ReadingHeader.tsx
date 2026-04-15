@@ -37,7 +37,8 @@ export function ReadingHeader({
         {/* Back Button */}
         <button
           onClick={onBack}
-          className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
+          className="w-11 h-11 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xl hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
+          aria-label="Go back"
         >
           ←
         </button>
@@ -54,7 +55,8 @@ export function ReadingHeader({
         {/* Settings Button */}
         <button
           onClick={onSettings}
-          className="w-10 h-10 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-base font-medium hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
+          className="w-11 h-11 rounded-full border-2 border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-base font-medium hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/50 hover:bg-[var(--accent-primary)]/5 transition-all duration-200 flex items-center justify-center shadow-sm"
+          aria-label="Text settings"
         >
           Aa
         </button>
