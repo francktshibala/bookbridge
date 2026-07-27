@@ -2203,6 +2203,18 @@ The modern content documentation has been reorganized into a clear, phase-based 
 
 ---
 
+## 🎓 **Teacher-Facing Features Roadmap (July 2026)**
+
+### **ROLE_BASED_SIGNUP_DESIGN_RATIONALE.md** ⚠️ **PRE-IMPLEMENTATION AUTH DESIGN NOTES**
+**Location**: `/docs/implementation/ROLE_BASED_SIGNUP_DESIGN_RATIONALE.md`
+**Description**: Design rationale for role-based (Teacher/Student) signup, written before implementation to capture why specific decisions were made and which past auth failures must not repeat. **PAST INCIDENTS REFERENCED**: confirmation-email silent failures (`CONFIRMATION_EMAIL_SOLUTION.md`), Resend domain restriction, password-saving-depended-on-email bug (fixed via `app/api/auth/create-user/route.ts` admin path), incomplete password reset flow, deferred RLS (11 errors, no longer urgent since Stripe/monetization is inactive and the app is free). **NEW LANDMINES FOUND (undocumented elsewhere)**: two independent auth-state providers (`SimpleAuthProvider` — real one, app-wide; `AuthProvider` — dead/parallel, homepage-only); the Prisma `User` row is never created at signup, only lazily on first AI chat message with a placeholder email (`lib/ai/claude-service.ts:640`); `middleware.ts` is fully disabled (no route protection exists); `isStudent` field is a dormant Stripe pricing-tier flag, not an account role, must not be conflated with the new `role` field. Essential reference before writing any role-based signup code.
+
+### **TEACHER_FEATURES_FEASIBILITY.md** ⚠️ **CONTAINS AUTH RISK NOTE**
+**Location**: `/docs/implementation/TEACHER_FEATURES_FEASIBILITY.md`
+**Description**: Feasibility assessment for 8 teacher-requested features sourced from a real teacher survey, scoped in priority order: (1) CEFR level-switching bug fix, (2) Teacher Dashboard (reading progress, time spent, completed books, comprehension results), (3) Content pipeline for BC Reads (CC BY 4.0, attribution: Shantel Ivits) and VOA Learning English (public domain), (4) Question-type selector for comprehension quizzes, (5) Student vocabulary list from tap-to-define dictionary, (6) Role-based signup (Teacher/Student), (7) One-click book assignment, (8) Shared reading lists between teachers. **VERDICT**: All 8 are doable on the current stack, no rewrite needed. **⚠️ CRITICAL CAUTION**: Feature #6 (role-based signup) is the only one that touches the live Supabase authentication system relied on by 259 active students across 3 schools with zero downtime to date — a small mistake there can lock users out or break login entirely. Must be built and tested against a non-production Supabase project/branch before touching production auth, unlike the other 7 features which carry materially lower risk. Essential reference before starting implementation of any of these features.
+
+---
+
 ## 🛡️ **Master Prevention Documentation**
 
 ### **MASTER_MISTAKES_PREVENTION.md**
