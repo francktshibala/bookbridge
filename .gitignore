@@ -6,6 +6,7 @@ node_modules
 .env.local
 .env.production
 .env.local.bak
+.env.development.local
 
 # Build outputs
 .next/
