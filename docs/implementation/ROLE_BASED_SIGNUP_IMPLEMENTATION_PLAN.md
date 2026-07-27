@@ -1,5 +1,7 @@
 # Role-Based Signup — Implementation Plan (July 2026)
 
+**Status: ✅ COMPLETE — merged, deployed, flag live in production.** See `ROLE_BASED_SIGNUP_COMPLETION_SUMMARY.md` for verification results and issues found.
+
 Companion to `ROLE_BASED_SIGNUP_DESIGN_RATIONALE.md` (the why). This is the how — five phases, each independently testable and low blast-radius. Built on branch `feature/role-based-signup`, off `main`, against a non-production Supabase project before merge.
 
 **Out of scope by explicit decision**: `components/AuthProvider.tsx` (the dead/parallel homepage-only auth provider) is not touched, removed, or consolidated as part of this work. Everything here reads/writes through `SimpleAuthProvider` only.
