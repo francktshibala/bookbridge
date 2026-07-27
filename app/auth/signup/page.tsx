@@ -922,8 +922,8 @@ export default function SignupPage() {
               {/* Premium Submit Button */}
               <motion.button
                 type="submit"
-                disabled={isLoading}
-                whileHover={{ 
+                disabled={isLoading || (isRoleBasedSignupEnabled && !role)}
+                whileHover={{
                   scale: isLoading ? 1 : 1.02,
                   boxShadow: isLoading ? undefined : '0 12px 40px var(--shadow-heavy), 0 0 0 1px rgba(255,255,255,0.1)',
                   y: isLoading ? 0 : -3
@@ -939,7 +939,7 @@ export default function SignupPage() {
                   fontSize: '1.1rem',
                   fontWeight: '800',
                   fontFamily: 'Source Serif Pro, Georgia, serif',
-                  cursor: isLoading ? 'not-allowed' : 'pointer',
+                  cursor: isLoading || (isRoleBasedSignupEnabled && !role) ? 'not-allowed' : 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -950,7 +950,7 @@ export default function SignupPage() {
                   boxShadow: '0 8px 25px var(--shadow-medium), inset 0 1px 0 rgba(255,255,255,0.2)',
                   letterSpacing: '0.02em',
                   textShadow: '0 1px 2px rgba(0,0,0,0.2)',
-                  opacity: isLoading ? 0.7 : 1
+                  opacity: isLoading || (isRoleBasedSignupEnabled && !role) ? 0.7 : 1
                 }}
               >
                 {/* Enhanced Shimmer Effect */}
