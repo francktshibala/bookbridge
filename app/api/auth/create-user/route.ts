@@ -1,25 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { resolveSignupRole } from '@/lib/auth/resolve-signup-role';
+import { buildUserSignupPayload } from '@/lib/auth/build-user-signup-payload';
+import { servicePrisma } from '@/lib/prisma-service';
 
 // Force Node runtime
 export const runtime = 'nodejs';
 
 /**
  * POST /api/auth/create-user
- * 
+ *
  * Creates user account with password using Supabase Admin API.
  * Ensures password is ALWAYS saved, even if email sending fails.
  * Then sends confirmation email via Resend.
  */
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, name } = await request.json();
+    const { email, password, name, role: requestedRole } = await request.json();
 
     if (!email || !password) {
       return NextResponse.json(
         { error: 'Email and password are required' },
         { status: 400 }
       );
+    }
+
+    const roleResolution = resolveSignupRole({ requestedRole, authMethod: 'password' });
+    if (roleResolution.error) {
+      return NextResponse.json({ error: roleResolution.error }, { status: 400 });
     }
 
     // Create Supabase admin client
@@ -65,6 +73,7 @@ export async function POST(request: NextRequest) {
       email_confirm: false, // User needs to confirm via email
       user_metadata: {
         name: name || undefined,
+        role: roleResolution.role || undefined,
       },
     });
 
@@ -78,12 +87,33 @@ export async function POST(request: NextRequest) {
 
     console.log('[create-user] ✅ User created with password:', newUser.user.id);
 
+    // Create the real Prisma User row now, with the real email - not the
+    // lazy placeholder-email upsert that used to run on first AI usage.
+    // Best-effort: the auth account above is the guarantee that must not
+    // fail; claude-service.ts's upsert remains a safety net if this errors.
+    try {
+      const payload = buildUserSignupPayload({
+        id: newUser.user.id,
+        email: newUser.user.email!,
+        name,
+        role: roleResolution.role,
+      });
+      await servicePrisma.user.upsert({
+        where: { id: payload.id },
+        update: {},
+        create: payload,
+      });
+    } catch (dbError) {
+      console.error('[create-user] ⚠️ Failed to create Prisma user row (non-fatal):', dbError);
+    }
+
     return NextResponse.json({
       success: true,
       user: {
         id: newUser.user.id,
         email: newUser.user.email,
       },
+      needsRolePrompt: roleResolution.needsRolePrompt,
       message: 'User created successfully with password',
     });
 

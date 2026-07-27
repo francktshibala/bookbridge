@@ -27,6 +27,7 @@ export default function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [role, setRole] = useState<'TEACHER' | 'STUDENT' | ''>('');
 
   // Track signup started on component mount
   useEffect(() => {
@@ -102,6 +103,13 @@ export default function SignupPage() {
       return;
     }
 
+    if (!role) {
+      setError('Please select whether you are signing up as a teacher or a student.');
+      announceToScreenReader('Please select whether you are signing up as a teacher or a student.', 'assertive');
+      setIsLoading(false);
+      return;
+    }
+
     try {
       // Better URL detection for email redirects
       // Priority: 1. Explicit env var, 2. Vercel URL, 3. Current origin (if production), 4. localhost fallback
@@ -139,6 +147,7 @@ export default function SignupPage() {
         options: {
           data: {
             name: name,
+            role: role,
           },
           emailRedirectTo: `${appUrl}/auth/callback?type=signup`,
         },
@@ -165,7 +174,7 @@ export default function SignupPage() {
         const createUserResponse = await fetch('/api/auth/create-user', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password, name }),
+          body: JSON.stringify({ email, password, name, role }),
         });
         
         const createUserResult = await createUserResponse.json();
@@ -481,6 +490,48 @@ export default function SignupPage() {
                   whiteSpace: 'nowrap'
                 }}>or sign up with email</span>
                 <div style={{ flex: 1, height: '1px', background: 'var(--border-light)' }} />
+              </div>
+
+              {/* Role Selector */}
+              <div>
+                <label style={{
+                  display: 'block',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  color: 'var(--text-primary)',
+                  marginBottom: '8px',
+                  fontFamily: 'Source Serif Pro, Georgia, serif'
+                }}>
+                  I am signing up as a...
+                </label>
+                <div role="radiogroup" aria-label="Account type" style={{ display: 'flex', gap: '12px' }}>
+                  {(['STUDENT', 'TEACHER'] as const).map((option) => (
+                    <button
+                      key={option}
+                      type="button"
+                      role="radio"
+                      aria-checked={role === option}
+                      disabled={isLoading}
+                      onClick={() => setRole(option)}
+                      style={{
+                        flex: 1,
+                        padding: '12px 16px',
+                        borderRadius: '12px',
+                        border: `2px solid ${role === option ? 'var(--accent-primary)' : 'var(--border-light)'}`,
+                        background: role === option ? 'var(--accent-primary)' : 'var(--bg-tertiary)',
+                        color: role === option ? 'var(--bg-primary)' : 'var(--text-primary)',
+                        fontSize: '15px',
+                        fontWeight: '600',
+                        fontFamily: 'Source Serif Pro, Georgia, serif',
+                        cursor: isLoading ? 'not-allowed' : 'pointer',
+                        opacity: isLoading ? 0.5 : 1,
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      {option === 'STUDENT' ? 'Student' : 'Teacher'}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Premium Name Input */}

@@ -14,10 +14,14 @@ describe('resolveSignupRole', () => {
     expect(result.error).toBeUndefined();
   });
 
-  it('rejects a missing role on password signup', () => {
+  it('treats a missing role on password signup as needing a prompt, not an error', () => {
+    // A stale cached client (open tab from before a deploy) may call this API
+    // with no role field at all - that must not hard-fail signup. Only a
+    // present-but-invalid value is rejected; see next test.
     const result = resolveSignupRole({ requestedRole: null, authMethod: 'password' });
     expect(result.role).toBeNull();
-    expect(result.error).toBeDefined();
+    expect(result.needsRolePrompt).toBe(true);
+    expect(result.error).toBeUndefined();
   });
 
   it('rejects an invalid role value on password signup', () => {

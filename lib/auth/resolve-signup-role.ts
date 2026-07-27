@@ -30,6 +30,12 @@ export function resolveSignupRole(input: ResolveSignupRoleInput): ResolveSignupR
     return { role: null, needsRolePrompt: true };
   }
 
+  if (!input.requestedRole) {
+    // No role field at all (e.g. a stale cached client mid-deploy) - don't
+    // hard-fail signup, prompt for a role afterward instead.
+    return { role: null, needsRolePrompt: true };
+  }
+
   const requestedRole = normalizeRole(input.requestedRole);
   if (!requestedRole) {
     return {
