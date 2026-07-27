@@ -5,10 +5,8 @@ describe('resolvePostLoginDestination', () => {
     expect(resolvePostLoginDestination('STUDENT')).toBe('/catalog');
   });
 
-  it('sends teachers to the catalog for now (no Teacher Dashboard yet)', () => {
-    // Once the Teacher Dashboard feature ships, this becomes '/dashboard' -
-    // this test should be updated alongside that change, not before.
-    expect(resolvePostLoginDestination('TEACHER')).toBe('/catalog');
+  it('sends teachers to the Teacher Dashboard', () => {
+    expect(resolvePostLoginDestination('TEACHER')).toBe('/dashboard');
   });
 
   it('defaults to the catalog when role is unknown', () => {
