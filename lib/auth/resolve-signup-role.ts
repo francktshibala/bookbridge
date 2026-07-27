@@ -14,7 +14,7 @@ export interface ResolveSignupRoleResult {
 
 const VALID_ROLES: SignupRole[] = ['TEACHER', 'STUDENT'];
 
-function normalizeRole(value: string | null | undefined): SignupRole | null {
+export function normalizeRole(value: string | null | undefined): SignupRole | null {
   if (!value) return null;
   const upper = value.toUpperCase();
   return (VALID_ROLES as string[]).includes(upper) ? (upper as SignupRole) : null;
