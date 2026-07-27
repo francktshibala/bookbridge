@@ -4,6 +4,20 @@
 
 ---
 
+## 🎓 Senior Project Tracking (CSE499 — BYU-Idaho)
+
+**Master Tracker:** [`/bookbridge-senior-project-tracker.md`](/bookbridge-senior-project-tracker.md)
+Track all 4 sprint goals, task completion, and hours for Franck Tshibala & Daniel Adetaba.
+
+| Sprint | Status | Plan |
+|--------|--------|------|
+| Sprint 1: Enhanced Authentication | ✅ Completed | — |
+| Sprint 2: Comprehension Quiz System | 🔄 In Progress | [`SPRINT2_QUIZ_SYSTEM_PLAN.md`](SPRINT2_QUIZ_SYSTEM_PLAN.md) |
+| Sprint 3: Expanded Content Library | ⏳ Upcoming | — |
+| Sprint 4: Mobile-Friendly Design | ⏳ Upcoming | — |
+
+---
+
 ## 🌿 **Branch Strategy & Implementation Guide**
 
 ### **Active Development Branches**
@@ -2186,6 +2200,26 @@ The modern content documentation has been reorganized into a clear, phase-based 
 3. **Validation (Week 7-8):** Measure actual engagement metrics, recalibrate targets based on data
 4. **Full Rollout (Week 9+):** Scale to 50-100 stories using validated approach
 5. Monitor completion rates (pilot target: 50%+, acceptable: 55%+, exceptional: 70%+)
+
+---
+
+## 🎓 **Teacher-Facing Features Roadmap (July 2026)**
+
+### **ROLE_BASED_SIGNUP_DESIGN_RATIONALE.md** ⚠️ **PRE-IMPLEMENTATION AUTH DESIGN NOTES**
+**Location**: `/docs/implementation/ROLE_BASED_SIGNUP_DESIGN_RATIONALE.md`
+**Description**: Design rationale for role-based (Teacher/Student) signup, written before implementation to capture why specific decisions were made and which past auth failures must not repeat. **PAST INCIDENTS REFERENCED**: confirmation-email silent failures (`CONFIRMATION_EMAIL_SOLUTION.md`), Resend domain restriction, password-saving-depended-on-email bug (fixed via `app/api/auth/create-user/route.ts` admin path), incomplete password reset flow, deferred RLS (11 errors, no longer urgent since Stripe/monetization is inactive and the app is free). **NEW LANDMINES FOUND (undocumented elsewhere)**: two independent auth-state providers (`SimpleAuthProvider` — real one, app-wide; `AuthProvider` — dead/parallel, homepage-only); the Prisma `User` row is never created at signup, only lazily on first AI chat message with a placeholder email (`lib/ai/claude-service.ts:640`); `middleware.ts` is fully disabled (no route protection exists); `isStudent` field is a dormant Stripe pricing-tier flag, not an account role, must not be conflated with the new `role` field. Essential reference before writing any role-based signup code.
+
+### **KNOWN_SCHEMA_ISSUES.md** ⚠️ **LOGGED, NOT YET FIXED**
+**Location**: `/docs/implementation/KNOWN_SCHEMA_ISSUES.md`
+**Description**: Two pre-existing schema issues found while validating role-based signup Phase 0 against a fresh local Supabase stack, deliberately left unfixed to keep that branch scoped. (1) `Feedback.userId` is `@db.Uuid` but `User.id` is plain text — a fresh `prisma db push` fails on this FK, suggesting `schema.prisma` and the live production database may have drifted apart; needs direct production inspection before deciding which side to correct. (2) `supabase/migrations/001_add_subscription_system.sql` can't replay against a fresh local Supabase stack (`ALTER TABLE auth.users` ownership error), and the SQL migrations generally assume Prisma-managed tables already exist — documents the actual working order for building a local/staging environment (Prisma `db push` first, then these SQL patches). Reference before attempting either fix or before building any staging/local Supabase environment.
+
+### **ROLE_BASED_SIGNUP_IMPLEMENTATION_PLAN.md** 🔨 **IN PROGRESS**
+**Location**: `/docs/implementation/ROLE_BASED_SIGNUP_IMPLEMENTATION_PLAN.md`
+**Description**: The how, companion to `ROLE_BASED_SIGNUP_DESIGN_RATIONALE.md` (the why). Five phases on branch `feature/role-based-signup`: (0) additive nullable `role` enum on Prisma `User`, no behavior change, (1) TDD pure role-decision logic modeled on the existing `password-reset-intent.ts` test pattern, (2) persist role through the resilient `create-user` admin-API route rather than the fragile client path, fixing the placeholder-email lazy-upsert bug as part of the same change, (3) handle Google OAuth's missing role via a post-callback `/auth/select-role` prompt, (4) role-based post-login redirect sourced from `SimpleAuthProvider` only (`AuthProvider.tsx` explicitly untouched — user decision), (5) staging verification + feature flag before merge to `main`. Also documents feature order after this: Teacher Dashboard next, then one-click assignment, then shared reading lists; content pipeline/question-selector/vocab list are parallelizable; CEFR bug fix remains outstanding and independent.
+
+### **TEACHER_FEATURES_FEASIBILITY.md** ⚠️ **CONTAINS AUTH RISK NOTE**
+**Location**: `/docs/implementation/TEACHER_FEATURES_FEASIBILITY.md`
+**Description**: Feasibility assessment for 8 teacher-requested features sourced from a real teacher survey, scoped in priority order: (1) CEFR level-switching bug fix, (2) Teacher Dashboard (reading progress, time spent, completed books, comprehension results), (3) Content pipeline for BC Reads (CC BY 4.0, attribution: Shantel Ivits) and VOA Learning English (public domain), (4) Question-type selector for comprehension quizzes, (5) Student vocabulary list from tap-to-define dictionary, (6) Role-based signup (Teacher/Student), (7) One-click book assignment, (8) Shared reading lists between teachers. **VERDICT**: All 8 are doable on the current stack, no rewrite needed. **⚠️ CRITICAL CAUTION**: Feature #6 (role-based signup) is the only one that touches the live Supabase authentication system relied on by 259 active students across 3 schools with zero downtime to date — a small mistake there can lock users out or break login entirely. Must be built and tested against a non-production Supabase project/branch before touching production auth, unlike the other 7 features which carry materially lower risk. Essential reference before starting implementation of any of these features.
 
 ---
 

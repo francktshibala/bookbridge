@@ -2,6 +2,9 @@ import { detectPasswordResetIntent } from '@/lib/auth/password-reset-intent';
 import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { mapAuthError } from '@/lib/utils/auth-errors';
+import { resolveSignupRole } from '@/lib/auth/resolve-signup-role';
+import { buildUserSignupPayload } from '@/lib/auth/build-user-signup-payload';
+import { servicePrisma } from '@/lib/prisma-service';
 
 // This route must be dynamic because it uses searchParams
 export const dynamic = 'force-dynamic';
@@ -173,6 +176,37 @@ export async function GET(request: NextRequest) {
           console.log('[auth/callback] 🔗 Redirecting to password reset confirmation:', resetUrl);
           return NextResponse.redirect(resetUrl);
         } else {
+          // Signup or email verification - check whether this user still
+          // needs to pick a role (e.g. Google OAuth, which can't collect
+          // one up front) before sending them into the app.
+          const existingRole = (data.user.user_metadata as { role?: string } | null)?.role ?? null;
+          const roleResolution = resolveSignupRole({ authMethod: 'oauth', existingRole });
+          const isRoleBasedSignupEnabled = process.env.NEXT_PUBLIC_ROLE_BASED_SIGNUP === 'true';
+
+          if (isRoleBasedSignupEnabled && roleResolution.needsRolePrompt) {
+            // Best-effort: ensure the Prisma row exists even before a role
+            // is chosen, same as the password-signup path. Non-fatal.
+            try {
+              const payload = buildUserSignupPayload({
+                id: data.user.id,
+                email: data.user.email!,
+                name: (data.user.user_metadata as { name?: string } | null)?.name,
+                role: null,
+              });
+              await servicePrisma.user.upsert({
+                where: { id: payload.id },
+                update: {},
+                create: payload,
+              });
+            } catch (dbError) {
+              console.error('[auth/callback] ⚠️ Failed to create Prisma user row (non-fatal):', dbError);
+            }
+
+            const selectRoleUrl = `${baseUrl}/auth/select-role`;
+            console.log('[auth/callback] 🔗 No role yet, redirecting to:', selectRoleUrl);
+            return NextResponse.redirect(selectRoleUrl);
+          }
+
           // Signup or email verification - redirect to catalog
           const redirectUrl = `${baseUrl}/catalog?verified=true`;
           console.log('[auth/callback] 🔗 Redirecting to:', redirectUrl);

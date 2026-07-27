@@ -12,6 +12,7 @@ model User {
   id               String         @id @default(cuid())
   email            String         @unique
   name             String?
+  role             String?
   isStudent        Boolean        @default(false)
   fontSize         Int            @default(18)
   contrast         String         @default("normal")

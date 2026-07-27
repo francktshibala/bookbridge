@@ -636,7 +636,9 @@ continuous text document without formal chapter organization.`;
   private async trackUsage(userId: string, usage: AIResponse['usage'], model: string, cost: number): Promise<void> {
     const today = new Date().toISOString().split('T')[0];
     
-    // Ensure user exists in Prisma database (sync from Supabase)
+    // Safety-net fallback: the real user row is now created at signup time
+    // (see app/api/auth/create-user/route.ts). This only fires for users
+    // who signed up before that existed, or if that write failed.
     await prisma.user.upsert({
       where: { id: userId },
       update: {},

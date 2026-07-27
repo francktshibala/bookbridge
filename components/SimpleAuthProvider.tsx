@@ -5,17 +5,20 @@ import { createClient } from '@/lib/supabase/client';
 import { User } from '@supabase/supabase-js';
 import posthog from 'posthog-js';
 import { trackEmailVerified } from '@/lib/analytics/posthog';
+import { normalizeRole } from '@/lib/auth/resolve-signup-role';
 
 interface SimpleAuthContextType {
   user: User | null;
   loading: boolean;
   signOut: () => Promise<void>;
+  role: 'TEACHER' | 'STUDENT' | null;
 }
 
 const SimpleAuthContext = createContext<SimpleAuthContextType>({
   user: null,
   loading: true,
   signOut: async () => {},
+  role: null,
 });
 
 export const useAuth = () => useContext(SimpleAuthContext);
@@ -133,8 +136,10 @@ export function SimpleAuthProvider({ children }: { children: React.ReactNode }) 
     await supabase.auth.signOut();
   };
 
+  const role = normalizeRole((user?.user_metadata as { role?: string } | undefined)?.role);
+
   return (
-    <SimpleAuthContext.Provider value={{ user, loading, signOut }}>
+    <SimpleAuthContext.Provider value={{ user, loading, signOut, role }}>
       {children}
     </SimpleAuthContext.Provider>
   );

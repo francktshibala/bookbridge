@@ -14,6 +14,8 @@ import { trackEvent, trackLoginError } from '@/lib/analytics/posthog';
 import { mapAuthError } from '@/lib/utils/auth-errors';
 import posthog from 'posthog-js';
 import type { Session } from '@supabase/supabase-js';
+import { normalizeRole } from '@/lib/auth/resolve-signup-role';
+import { resolvePostLoginDestination } from '@/lib/auth/resolve-post-login-destination';
 
 function LoginPageContent() {
   const router = useRouter();
@@ -234,12 +236,15 @@ function LoginPageContent() {
 
       announceToScreenReader('Login successful! Redirecting...');
       
-      // Get redirectTo from URL or default to /catalog
-      const rawRedirectTo = searchParams.get('redirectTo') || '/catalog';
+      // Get redirectTo from URL, or fall back to the role-based default
+      // (currently /catalog for every role until Teacher Dashboard ships)
+      const role = normalizeRole((user?.user_metadata as { role?: string } | undefined)?.role);
+      const defaultRedirect = resolvePostLoginDestination(role);
+      const rawRedirectTo = searchParams.get('redirectTo') || defaultRedirect;
       const redirectTo =
         typeof rawRedirectTo === 'string' && rawRedirectTo.startsWith('/')
           ? rawRedirectTo
-          : '/catalog';
+          : defaultRedirect;
       logAuthFlow('Redirect requested after login', { rawRedirectTo, redirectTo });
 
       await waitForStableSession();

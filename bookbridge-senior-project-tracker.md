@@ -52,35 +52,25 @@
 
 ---
 
-## SPRINT 3: EXPANDED CONTENT LIBRARY 🔄 IN PROGRESS
+## SPRINT 3: EXPANDED CONTENT LIBRARY ✅ COMPLETED
 
 **Implementation Plan:** [`docs/implementation/SPRINT3_CONTENT_LIBRARY_PLAN.md`](docs/implementation/SPRINT3_CONTENT_LIBRARY_PLAN.md)
 **Story Guide:** [`docs/implementation/SPRINT3_STORY_IMPLEMENTATION_GUIDE.md`](docs/implementation/SPRINT3_STORY_IMPLEMENTATION_GUIDE.md)
 
-**Goal:** Add 3 public domain stories (Frederick Douglass, Mary Antin, Booker T. Washington)
+**Goal:** Add public domain stories to a new "American Voices" collection
 
-### Tasks:
-- [ ] Fetch raw story text from Project Gutenberg (Est: 1hr)
-  - Frederick Douglass — "Learning to Read and Write" → A2
-  - Mary Antin — "The Promised Land" (school/arrival chapter) → A1
-  - Booker T. Washington — "Up From Slavery" (Hampton Institute arrival) → A2
-
-- [ ] Simplify each story to target CEFR level (Est: 4hr)
-
-- [ ] Write background + hook for each story (Est: 2hr)
-
-- [ ] Upload stories to Supabase story_bundles (text-only, no audio) (Est: 3hr)
-
-- [ ] Build story preview cards (Est: 5hr)
-  - Genre tags
-  - Estimated read time
-  - First 2 paragraphs preview
-
-- [ ] Implement "Next Read" recommendation (Est: 4hr)
-  - Algorithm based on genre/completion
-  - Auto-suggest after story completion
-
-- [ ] Seed quiz questions for all 3 stories (Est: 1hr)
+### Completion Notes:
+- 6 stories added total across 2 batches:
+  - Frederick Douglass — "Learning to Read and Write" (A2)
+  - Mary Antin — "The Promised Land: Initiation" (A1)
+  - Booker T. Washington — "The Struggle for an Education" (A2)
+  - Harriet Jacobs — "Childhood" from Incidents in the Life of a Slave Girl (A2)
+  - W.E.B. Du Bois — "Of the Meaning of Progress" from Souls of Black Folk (A2)
+  - Jane Addams — "First Days at Hull-House" (A1)
+- All stories text-only (architecture supports future audio)
+- Quiz questions seeded for all 6 stories
+- "American Voices" collection live at bookbridge.app
+- Modified bundles API to support text-only mode (no audio_assets required)
 
 ### Total Estimated: 20 hours
 
@@ -120,7 +110,7 @@
 ### Core Requirements (MUST COMPLETE ALL):
 - [x] Sprint 1: Enhanced Authentication
 - [x] Sprint 2: Comprehension Quiz System
-- [ ] Sprint 3: Expanded Content Library
+- [x] Sprint 3: Expanded Content Library
 - [ ] Sprint 4: Mobile-Friendly Design
 
 ### Final Deliverables:

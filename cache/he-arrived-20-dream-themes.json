@@ -1,0 +1,92 @@
+{
+  "storyId": "he-arrived-20-dream",
+  "sources": 3,
+  "extractionMethod": "thematic",
+  "themes": {
+    "arrival": [
+      "Arrived with almost nothing (no money, no English, no connections)",
+      "Left home country for opportunity/freedom",
+      "Language barrier as major obstacle",
+      "First days in new country: fear, confusion, hope"
+    ],
+    "earlyStruggles": [
+      "Living on very little money ($3-7 a day)",
+      "Multiple jobs to survive (parking cars, cleaning, waiting tables)",
+      "Learning English through work and daily life",
+      "Pooling resources with friends/community",
+      "Simple treats as weekly highlights (all-you-can-eat buffet)"
+    ],
+    "firstSuccess": [
+      "Building business from nothing",
+      "Early success and wealth accumulation",
+      "Buying first house/car",
+      "Feeling of achievement"
+    ],
+    "setback": [
+      "Losing everything (dotcom crash, investments fail)",
+      "Unable to pay mortgage",
+      "Stock crashes from millions to thousands",
+      "Back to square one"
+    ],
+    "rebuilding": [
+      "Starting over despite setback",
+      "Using credit cards/loans to restart",
+      "Working from basement/small space",
+      "Focus on building business, not wealth",
+      "Rapid growth after initial struggle"
+    ],
+    "success": [
+      "Business becomes successful (millions/billions)",
+      "Hiring others (especially immigrants/refugees)",
+      "Giving back to community",
+      "Creating opportunities for others",
+      "Redefining success as impact, not net worth"
+    ],
+    "givingBack": [
+      "Hiring refugees/immigrants",
+      "Feeding community during crisis",
+      "Helping elderly and vulnerable",
+      "Creating programs to help others",
+      "American Dream = giving back, not just wealth"
+    ]
+  },
+  "emotionalMoments": [
+    "Arrival in new country with nothing",
+    "First job and language struggles",
+    "Weekly treat (pooling money for special meal)",
+    "First success and becoming millionaire",
+    "Losing everything in crash",
+    "Starting over from basement",
+    "Business success and growth",
+    "Hiring and helping others",
+    "Giving back to community",
+    "Meeting someone with similar journey"
+  ],
+  "eslResonance": [
+    "Communication & Language Barriers",
+    "Building New Life",
+    "First-Time Courage",
+    "Persistence Despite Setbacks",
+    "Overcoming 'Not Good Enough'",
+    "Connection Across Differences"
+  ],
+  "serializationBreakPoints": {
+    "part1": {
+      "end": "First success, then crash begins",
+      "cliffhanger": "Diego became a millionaire, but then everything changed..."
+    },
+    "part2": {
+      "end": "Starting over, rebuilding business",
+      "cliffhanger": "Diego started his new business from his basement, but would it work?"
+    },
+    "part3": {
+      "end": "Success and giving back",
+      "resolution": "Diego and Chen meet, create community, redefine success"
+    }
+  }
+}
+
+
+
+
+
