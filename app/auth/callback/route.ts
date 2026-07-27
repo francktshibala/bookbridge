@@ -181,8 +181,9 @@ export async function GET(request: NextRequest) {
           // one up front) before sending them into the app.
           const existingRole = (data.user.user_metadata as { role?: string } | null)?.role ?? null;
           const roleResolution = resolveSignupRole({ authMethod: 'oauth', existingRole });
+          const isRoleBasedSignupEnabled = process.env.NEXT_PUBLIC_ROLE_BASED_SIGNUP === 'true';
 
-          if (roleResolution.needsRolePrompt) {
+          if (isRoleBasedSignupEnabled && roleResolution.needsRolePrompt) {
             // Best-effort: ensure the Prisma row exists even before a role
             // is chosen, same as the password-signup path. Non-fatal.
             try {

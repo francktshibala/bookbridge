@@ -13,6 +13,8 @@ import GoogleSignInButton from '@/components/auth/GoogleSignInButton';
 import { trackSignupStarted, trackUserSignedUp, trackSignupAbandoned, trackPasswordSaved, trackSignupError } from '@/lib/analytics/posthog';
 import { mapAuthError } from '@/lib/utils/auth-errors';
 
+const isRoleBasedSignupEnabled = process.env.NEXT_PUBLIC_ROLE_BASED_SIGNUP === 'true';
+
 export default function SignupPage() {
   const router = useRouter();
   const { announceToScreenReader } = useAccessibility();
@@ -103,7 +105,7 @@ export default function SignupPage() {
       return;
     }
 
-    if (!role) {
+    if (isRoleBasedSignupEnabled && !role) {
       setError('Please select whether you are signing up as a teacher or a student.');
       announceToScreenReader('Please select whether you are signing up as a teacher or a student.', 'assertive');
       setIsLoading(false);
@@ -147,7 +149,7 @@ export default function SignupPage() {
         options: {
           data: {
             name: name,
-            role: role,
+            role: isRoleBasedSignupEnabled ? role : undefined,
           },
           emailRedirectTo: `${appUrl}/auth/callback?type=signup`,
         },
@@ -174,7 +176,7 @@ export default function SignupPage() {
         const createUserResponse = await fetch('/api/auth/create-user', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password, name, role }),
+          body: JSON.stringify({ email, password, name, role: isRoleBasedSignupEnabled ? role : undefined }),
         });
         
         const createUserResult = await createUserResponse.json();
@@ -493,6 +495,7 @@ export default function SignupPage() {
               </div>
 
               {/* Role Selector */}
+              {isRoleBasedSignupEnabled && (
               <div>
                 <label style={{
                   display: 'block',
@@ -533,6 +536,7 @@ export default function SignupPage() {
                   ))}
                 </div>
               </div>
+              )}
 
               {/* Premium Name Input */}
               <div>
