@@ -31,8 +31,44 @@ model User {
   readingSessions ReadingSession[]
   readingPositions ReadingPosition[]
   feedback Feedback[]
+  taughtClasses    Class[]          @relation("TeacherClasses")
+  enrollments      Enrollment[]     @relation("StudentEnrollments")
 
   @@map("users")
+}
+
+model Class {
+  id          String       @id @default(cuid())
+  name        String
+  code        String       @unique
+  teacherId   String       @map("teacher_id")
+  teacher     User         @relation("TeacherClasses", fields: [teacherId], references: [id], onDelete: Cascade)
+  enrollments Enrollment[]
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  @@index([teacherId])
+  @@map("classes")
+}
+
+model Enrollment {
+  id        String           @id @default(cuid())
+  classId   String           @map("class_id")
+  studentId String           @map("student_id")
+  class     Class            @relation(fields: [classId], references: [id], onDelete: Cascade)
+  student   User             @relation("StudentEnrollments", fields: [studentId], references: [id], onDelete: Cascade)
+  status    EnrollmentStatus @default(ACTIVE)
+  joinedAt  DateTime         @default(now()) @map("joined_at")
+
+  @@unique([classId, studentId])
+  @@index([classId])
+  @@index([studentId])
+  @@map("enrollments")
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  ARCHIVED
 }
 
 model Subscription {

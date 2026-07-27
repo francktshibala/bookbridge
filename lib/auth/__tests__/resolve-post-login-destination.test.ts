@@ -5,9 +5,12 @@ describe('resolvePostLoginDestination', () => {
     expect(resolvePostLoginDestination('STUDENT')).toBe('/catalog');
   });
 
-  it('sends teachers to the catalog for now (no Teacher Dashboard yet)', () => {
-    // Once the Teacher Dashboard feature ships, this becomes '/dashboard' -
-    // this test should be updated alongside that change, not before.
+  it('sends teachers to the Teacher Dashboard when the flag is enabled', () => {
+    expect(resolvePostLoginDestination('TEACHER', { teacherDashboardEnabled: true })).toBe('/dashboard');
+  });
+
+  it('sends teachers to the catalog when the flag is disabled or omitted (killable rollout)', () => {
+    expect(resolvePostLoginDestination('TEACHER', { teacherDashboardEnabled: false })).toBe('/catalog');
     expect(resolvePostLoginDestination('TEACHER')).toBe('/catalog');
   });
 
