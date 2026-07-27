@@ -1,6 +1,6 @@
 # Teacher Dashboard — Implementation Plan (July 2026)
 
-**Status: 📋 PLANNED — not started, pending approval to begin Phase 0.**
+**Status: ✅ COMPLETE — all 5 phases built and verified locally, behind `NEXT_PUBLIC_TEACHER_DASHBOARD` (off by default). Not yet pushed/deployed.**
 
 Next feature per the priority order in `TEACHER_FEATURES_FEASIBILITY.md`, which becomes possible now that `role` exists on `User` (see `ROLE_BASED_SIGNUP_IMPLEMENTATION_PLAN.md`).
 
@@ -157,12 +157,13 @@ Dashboard entry point (this is what a `TEACHER`-role user lands on post-login, r
 
 "Enter class code" input on the student's own dashboard, immediate feedback on join success/failure (invalid code, already enrolled).
 
-## Phase 5 — Rollout safety
+## Phase 5 — Rollout safety ✅
 
-- Built and verified against the local Supabase stack first, same as role-based signup — not production.
-- Behind a feature flag, killable instantly, same mechanism as `NEXT_PUBLIC_ROLE_BASED_SIGNUP`.
-- Manual regression check: existing student login/catalog flow unaffected; a `role = null` legacy user (if any remain) isn't broken by the new post-login redirect logic.
-- Merge to `main` only after a real browser click-through: create class → copy code → join as a second test account → see roster update.
+- `NEXT_PUBLIC_TEACHER_DASHBOARD`, same mechanism as `NEXT_PUBLIC_ROLE_BASED_SIGNUP` — off by default. `resolvePostLoginDestination` takes it as an explicit `{ teacherDashboardEnabled }` option (kept as a pure, testable function rather than reading `process.env` internally); `/dashboard`, `/dashboard/classes/[classId]`, and `/join` each redirect to `/catalog` immediately if the flag is off, regardless of role. API routes are intentionally flag-agnostic (same precedent as `create-user`/`set-role`) — the flag only gates the UI surface.
+- Verified both states in a real browser against the local Supabase stack: flag off → a TEACHER-role account logging in lands on `/catalog`, and directly navigating to `/dashboard` bounces back to `/catalog`. Flag on → identical behavior to Phases 3/4 (dashboard, roster, join all work).
+- Known follow-up, out of scope here: Google OAuth login for an existing teacher redirects to `/catalog` unconditionally (`app/auth/callback/route.ts` never called `resolvePostLoginDestination` — pre-existing, not introduced by this feature). Only the password-login path picks up the new flag-gated destination. A teacher can still reach `/dashboard` by URL either way, since the page-level guard is independent of how they logged in.
+- All existing tests still pass; the 5 mobile/tokenizer test failures present throughout this branch are pre-existing and unrelated (none import anything touched by this feature).
+- Not yet merged to `main` or pushed to `origin` — that's a separate step once you're ready.
 
 ## Before Phase 0 starts
 

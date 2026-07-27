@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/SimpleAuthProvider';
 
+const isTeacherDashboardEnabled = process.env.NEXT_PUBLIC_TEACHER_DASHBOARD === 'true';
+
 interface ClassSummary {
   id: string;
   name: string;
@@ -21,6 +23,10 @@ export default function TeacherDashboardPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isTeacherDashboardEnabled) {
+      router.replace('/catalog');
+      return;
+    }
     if (loading) return;
     if (!user) {
       router.replace('/auth/login');
@@ -64,7 +70,7 @@ export default function TeacherDashboardPage() {
     }
   };
 
-  if (loading || !user || role !== 'TEACHER') {
+  if (!isTeacherDashboardEnabled || loading || !user || role !== 'TEACHER') {
     return null;
   }
 

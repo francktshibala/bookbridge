@@ -1,9 +1,16 @@
 import type { SignupRole } from '@/lib/auth/resolve-signup-role';
 
-export function resolvePostLoginDestination(role: SignupRole | null): string {
+export interface ResolvePostLoginDestinationOptions {
+  teacherDashboardEnabled?: boolean;
+}
+
+export function resolvePostLoginDestination(
+  role: SignupRole | null,
+  options: ResolvePostLoginDestinationOptions = {}
+): string {
   switch (role) {
     case 'TEACHER':
-      return '/dashboard';
+      return options.teacherDashboardEnabled ? '/dashboard' : '/catalog';
     case 'STUDENT':
       return '/catalog';
     default:

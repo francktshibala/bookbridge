@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/SimpleAuthProvider';
 
+const isTeacherDashboardEnabled = process.env.NEXT_PUBLIC_TEACHER_DASHBOARD === 'true';
+
 export default function JoinClassPage() {
   const router = useRouter();
   const { user, loading, role } = useAuth();
@@ -13,6 +15,10 @@ export default function JoinClassPage() {
   const [joinedClassName, setJoinedClassName] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isTeacherDashboardEnabled) {
+      router.replace('/catalog');
+      return;
+    }
     if (loading) return;
     if (!user) {
       router.replace('/auth/login');
@@ -49,7 +55,7 @@ export default function JoinClassPage() {
     }
   };
 
-  if (loading || !user || role !== 'STUDENT') {
+  if (!isTeacherDashboardEnabled || loading || !user || role !== 'STUDENT') {
     return null;
   }
 

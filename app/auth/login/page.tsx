@@ -17,6 +17,8 @@ import type { Session } from '@supabase/supabase-js';
 import { normalizeRole } from '@/lib/auth/resolve-signup-role';
 import { resolvePostLoginDestination } from '@/lib/auth/resolve-post-login-destination';
 
+const isTeacherDashboardEnabled = process.env.NEXT_PUBLIC_TEACHER_DASHBOARD === 'true';
+
 function LoginPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -237,9 +239,10 @@ function LoginPageContent() {
       announceToScreenReader('Login successful! Redirecting...');
       
       // Get redirectTo from URL, or fall back to the role-based default
-      // (currently /catalog for every role until Teacher Dashboard ships)
       const role = normalizeRole((user?.user_metadata as { role?: string } | undefined)?.role);
-      const defaultRedirect = resolvePostLoginDestination(role);
+      const defaultRedirect = resolvePostLoginDestination(role, {
+        teacherDashboardEnabled: isTeacherDashboardEnabled,
+      });
       const rawRedirectTo = searchParams.get('redirectTo') || defaultRedirect;
       const redirectTo =
         typeof rawRedirectTo === 'string' && rawRedirectTo.startsWith('/')

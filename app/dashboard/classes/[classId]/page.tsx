@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useAuth } from '@/components/SimpleAuthProvider';
 
+const isTeacherDashboardEnabled = process.env.NEXT_PUBLIC_TEACHER_DASHBOARD === 'true';
+
 interface RosterEntry {
   enrollmentId: string;
   studentId: string;
@@ -24,6 +26,10 @@ export default function ClassRosterPage() {
   const [removingId, setRemovingId] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!isTeacherDashboardEnabled) {
+      router.replace('/catalog');
+      return;
+    }
     if (loading) return;
     if (!user) {
       router.replace('/auth/login');
@@ -67,7 +73,7 @@ export default function ClassRosterPage() {
     }
   };
 
-  if (loading || !user || role !== 'TEACHER') {
+  if (!isTeacherDashboardEnabled || loading || !user || role !== 'TEACHER') {
     return null;
   }
 

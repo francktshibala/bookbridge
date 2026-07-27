@@ -5,8 +5,13 @@ describe('resolvePostLoginDestination', () => {
     expect(resolvePostLoginDestination('STUDENT')).toBe('/catalog');
   });
 
-  it('sends teachers to the Teacher Dashboard', () => {
-    expect(resolvePostLoginDestination('TEACHER')).toBe('/dashboard');
+  it('sends teachers to the Teacher Dashboard when the flag is enabled', () => {
+    expect(resolvePostLoginDestination('TEACHER', { teacherDashboardEnabled: true })).toBe('/dashboard');
+  });
+
+  it('sends teachers to the catalog when the flag is disabled or omitted (killable rollout)', () => {
+    expect(resolvePostLoginDestination('TEACHER', { teacherDashboardEnabled: false })).toBe('/catalog');
+    expect(resolvePostLoginDestination('TEACHER')).toBe('/catalog');
   });
 
   it('defaults to the catalog when role is unknown', () => {
