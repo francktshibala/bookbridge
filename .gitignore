@@ -49,3 +49,16 @@ Thumbs.db
 # Social media audio files (stored on Desktop/Google Drive, not in repo)
 docs/social-media/**/*.mp3
 docs/social-media/**/*.txt
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# Generated/cached audio (large binaries, not source)
+cache/audio/
+temp/
+
+# User data exports - must never be committed (contains PII)
+docs/users/
+
+# Stray artifact from a script writing to a literal "~" path instead of $HOME
+~/

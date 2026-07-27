@@ -4,6 +4,20 @@
 
 ---
 
+## 🎓 Senior Project Tracking (CSE499 — BYU-Idaho)
+
+**Master Tracker:** [`/bookbridge-senior-project-tracker.md`](/bookbridge-senior-project-tracker.md)
+Track all 4 sprint goals, task completion, and hours for Franck Tshibala & Daniel Adetaba.
+
+| Sprint | Status | Plan |
+|--------|--------|------|
+| Sprint 1: Enhanced Authentication | ✅ Completed | — |
+| Sprint 2: Comprehension Quiz System | 🔄 In Progress | [`SPRINT2_QUIZ_SYSTEM_PLAN.md`](SPRINT2_QUIZ_SYSTEM_PLAN.md) |
+| Sprint 3: Expanded Content Library | ⏳ Upcoming | — |
+| Sprint 4: Mobile-Friendly Design | ⏳ Upcoming | — |
+
+---
+
 ## 🌿 **Branch Strategy & Implementation Guide**
 
 ### **Active Development Branches**

@@ -155,3 +155,7 @@ Pilot suggestion: Start with Reddit (fastest pull), UNHCR/NGO (verified arcs), H
 - Use transcripts for audio/video; keep emotional beats intact.  
 - Prioritize 2020s content; 2010s acceptable if arc is exceptional.  
 
+
+
+
+
